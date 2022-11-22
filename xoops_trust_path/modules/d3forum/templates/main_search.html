@@ -1,58 +1,61 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{if $mod_config.show_breadcrumbs}>
-    <ul class="breadcrumb" aria-label="breadcrumb">
+<nav aria-label="breadcrumb">
+    <ul>
         <li><a href="<{$xoops_url}>/"><img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
         <li><a href="<{$mod_url}>/index.php"><img class="svg forum" src="<{$xoops_url}>/images/icons/forum_1.svg" alt=""> <{$smarty.const._MD_D3FORUM_TOP}></a>
         <li class="active" aria-current="page"><{$smarty.const._MD_D3FORUM_TITLE_SEARCH}></li>
     </ul>
+</nav>
 <{/if}>
 
-<section id="search-advanced" data-layout="column">
+
+<form name="search" action="<{$mod_url}>/index.php" method="get">
+    <input type="hidden" name="page" value="search">
+
+<article id="search-advanced">
 
     <h2><{$smarty.const._MD_D3FORUM_TITLE_SEARCH}></h2>
 
-    <form name="search" action="<{$mod_url}>/index.php" method="get">
-        <input type="hidden" name="page" value="search">
+    <h4><label for="keywords"><img class="svg search-adv" src="<{$xoops_url}>/images/icons/search-adv.svg"> <{$smarty.const._MD_D3FORUM_LABEL_KEYWORDS}></label></h4>
+    <input type="text" name="keyword" id="keywords" size="44" value="<{$keyword}>">
 
-        <h4><label for="keywords"><img class="svg search-adv" src="<{$xoops_url}>/images/icons/search-adv.svg"> <{$smarty.const._MD_D3FORUM_LABEL_KEYWORDS}></label></h4>
-        <div data-layout="row mb-7"><input type="text" data-self="left" name="keyword" id="keywords" size="44" value="<{$keyword}>"></div>
+    <fieldset>
+        <legend><{$smarty.const._MD_D3FORUM_LEGEND_WORDSMEANING}></legend>
+        <{* Available option : separator='<br>' *}>
+        <{html_radios class="form-check-input position-static" name="andor" options=$andor_options selected=$andor_selected separator=''}>
+    </fieldset>
 
-        <fieldset data-layout="row mb-7">
-            <legend data-self="mt-n4"><{$smarty.const._MD_D3FORUM_LEGEND_WORDSMEANING}></legend>
-            <{html_radios class="form-check-input position-static" name="andor" options=$andor_options selected=$andor_selected separator='<br>'}>
-        </fieldset>
+    <fieldset>
+        <legend><{$smarty.const._MD_D3FORUM_LEGEND_SEARCHIN}></legend>
+        <{html_radios class="form-check-input position-static" name="target" options=$target_options selected=$target_selected separator=''}>
+    </fieldset>
 
-        <fieldset data-layout="row mb-7">
-            <legend data-self="mt-n4"><{$smarty.const._MD_D3FORUM_LEGEND_SEARCHIN}></legend>
-            <{html_radios class="form-check-input position-static" name="target" options=$target_options selected=$target_selected separator='<br>'}>
-        </fieldset>
+    <h4><label for="forum_id"><img class="svg forum" src="<{$xoops_url}>/images/icons/forum_0.svg"> <{$smarty.const._MD_D3FORUM_FORUM}></label></h4>
+    <select id="forum_id">
+        <option value="">-<{$smarty.const._MD_D3FORUM_WHOLE}>-</option>
+        <{$forum_jumpbox_options}>
+    </select>
 
-        <h4><label for="forum_id"><img class="svg forum" src="<{$xoops_url}>/images/icons/forum_0.svg"> <{$smarty.const._MD_D3FORUM_FORUM}></label></h4>
-            <select data-self="left mb-7" id="forum_id">
-                <option value="">-<{$smarty.const._MD_D3FORUM_WHOLE}>-</option>
-                <{$forum_jumpbox_options}>
-            </select>
+    <h4><label for="searchin_poster"><img class="svg user" src="<{$xoops_url}>/images/icons/user.svg"> <{$smarty.const._MD_D3FORUM_POSTER}></label></h4>
+    <input type="text" name="search_username" id="searchin_poster" placeholder="uname" value="<{$uname}>">
 
-        <h4><label for="searchin_poster"><img class="svg user" src="<{$xoops_url}>/images/icons/user.svg"> <{$smarty.const._MD_D3FORUM_POSTER}></label></h4>
-        <input type="text" data-self="left mb-7" name="search_username" id="searchin_poster" placeholder="uname" value="<{$uname}>">
+    <fieldset>
+        <legend><{$smarty.const._MD_D3FORUM_LABEL_SORTBY}></legend>
+        <{html_radios class="form-check-input" name="sortby" options=$sortby_options selected=$sortby_selected separator=''}>
+    </fieldset>
 
-        <fieldset data-layout="row mb-7">
-                <legend data-self="mt-n4"><{$smarty.const._MD_D3FORUM_LABEL_SORTBY}></legend>
-                <{html_radios class="form-check-input" name="sortby" options=$sortby_options selected=$sortby_selected separator='<br>'}>
-        </fieldset>
+    <footer>
+        <button type="submit" role="button" class="submit" name="submit" value="<{$smarty.const._MD_D3FORUM_BTN_SEARCH}>">
+            <img class="svg search" src="<{$xoops_url}>/images/icons/search.svg"> <{$smarty.const._MD_D3FORUM_BTN_SEARCH}>
+        </button>
+    </footer>
 
-        <div data-layout="row my-7">
-                <button type="submit" class="ui-button" name="submit" value="<{$smarty.const._MD_D3FORUM_BTN_SEARCH}>">
-                    <img class="svg search" src="<{$xoops_url}>/images/icons/search.svg"> <{$smarty.const._MD_D3FORUM_BTN_SEARCH}>
-                </button>
-        </div>
+</article>
 
-    </form>
-
-</section>
-
+</form>
 <hr>
 
 <section id="search-results">
@@ -95,7 +98,7 @@
         <{else}>
 
         <{* no hit *}>
-        <div class="msg-callout msg-warning">
+        <div class="alert warning">
             <p><{$smarty.const._MD_D3FORUM_MSG_NOMATCH}></p>
         </div>
 

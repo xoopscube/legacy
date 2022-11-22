@@ -1,20 +1,17 @@
-<{* set tab sent-box to current active *}>
-<{if $smarty.template == 'db:message_outboxview.html'}>
-<{assign var="tabSent" value="active"}>
-<{/if}>
+<{* set tab sent-box to active *}>
+<{assign var="outboxView" value="ui-state-active"}>
 
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<div class="ui-dev-mode"><{$smarty.template}> - <{$tabSent}></div>
 
-<ul class="breadcrumb" aria-label="breadcrumb">
-    <li><a href="<{$xoops_url}>/">
-        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
-    <li><a href="index.php">
-    <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <span data-self="sm-hide"><{$smarty.const._MI_MESSAGE_NAME}></span></a>
-    <li><a href="index.php?action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a>
-    <li aria-current="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>"><{$smarty.const._MD_MESSAGE_TEMPLATE4}>
+<nav aria-label="breadcrumb">
+<ul>
+    <li><a href="<{$xoops_url}>/"><img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a></li>
+    <li><a href="index.php"><img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <span data-self="sm-hide"><{$smarty.const._MI_MESSAGE_NAME}></span></a></li>
+    <li><a href="index.php?action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a></li>
+    <li aria-current="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></li>
 </ul>
-
+</nav>
 
 <div id="tabs-mail">
 
@@ -24,38 +21,35 @@
 
         <div class="ui-tab-content" id="printhis">
 
-
+            <div class="headings">
+            <h3 class="mail-subject" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE3}>"><{$msgdata.title}></h3>
+                <div class="flex-justify">
+                    <div class="mail-to" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>">
+                        <{$smarty.const._MD_MESSAGE_TEMPLATE9}> <img src="<{$msgdata.to_uid|xoops_user_avatarize}>" width="24px" data-self="radius-circle" alt="avatar">
+                        <{$msgdata.toname}>
+                    </div>
+                    <div class="mail-date" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE10}>">
+                        <img class="svg datetime" src="<{$xoops_url}>/images/icons/datetime.svg" alt="datetime"> <span class="badge"><{$msgdata.utime|xoops_formattimestamp:l}></span>
+                    </div>
+                </div>
+        </div>
             <hr>
 
-
-            <h3 data-self="px-6" class="mail-title"><{$smarty.const._MD_MESSAGE_TEMPLATE3}> : <{$msgdata.title}></h3>
-
-            <div data-layout="row center-justify p-6" class="mail-author" style="border-bottom: 1px solid hsl(219, 17%, 21%);">
-
-                <div data-self="size-x1"><{$smarty.const._MD_MESSAGE_TEMPLATE9}> : <img src="<{$msgdata.to_uid|xoops_user_avatarize}>" width="24px" data-self="radius-circle" class="avatar"> <{$msgdata.toname}></div>
-                <div><{$smarty.const._MD_MESSAGE_TEMPLATE10}> : <span class="badge"><{$msgdata.utime|xoops_formattimestamp:l}></span></div>
-
-            </div>
-
-
-            <div data-layout="column center-left p-6" class="mail-text">
-                <div data-self="size-x1 p-6"><{$smarty.const._MD_MESSAGE_TEMPLATE4}> :</div>
-                <div data-self="size-x1 p-6"><{$msgdata.message}></div>
-            </div>
-
-
-            <hr>
-
-
-            <div data-layout="row center-center pb-6" data-self="size-x1">
-             <form method="post" action="index.php?action=delete&amp;inout=out">
-                 <input type="hidden" name="outbox" value="<{$msgdata.outbox_id}>">
-                 <button type="submit" class="ui-button delete" value="<{$smarty.const._MD_MESSAGE_TEMPLATE14}>">
-                     <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt=""> <{$smarty.const._MD_MESSAGE_TEMPLATE14}></button>
-             </form>
+            <div class="mail-content" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>">
+                <{$msgdata.message}>
             </div>
 
         </div><{* ------- /ui-tab-content *}>
+
+        <{* NOTE : form must wrap the footer class action-control to apply negative margin *}>
+        <form id="message-delete" method="post" action="index.php?action=delete&amp;inout=out">
+        <footer class="action-control">
+                <input type="hidden" name="outbox" value="<{$msgdata.outbox_id}>">
+                <button type="submit" role="button" class="outline secondary delete" value="<{$smarty.const._MD_MESSAGE_TEMPLATE14}>">
+                    <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt="delete"> <{$smarty.const._MD_MESSAGE_TEMPLATE14}>
+                </button>
+        </footer>
+        </form>
 
     </div><{* ------- /mail-outbox-view *}>
 

@@ -19,7 +19,7 @@
         $('.svg').renderClassSvg();
 
         // Sidebar - Theme Options
-        // .theme-options .theme-options-toggle
+        // .theme-options .theme-options-close
         // $(".right-side-toggle").click(function() {
         $(".theme-options").click(function () {
             $(".right-sidebar").slideDown(50), $(".right-sidebar").toggleClass("right-panel-show");

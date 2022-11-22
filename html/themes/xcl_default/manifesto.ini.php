@@ -2,18 +2,18 @@
 /**
 
 [Manifesto]
-Name="Default Base"
+Name="Default Theme"
 Depends=Legacy_RenderSystem,legacy
 ThemeOptions="index.php"
-Url="https://github.com/xoopscube/xcl"
-Version="2.3.2"
+Url="https://github.com/xoopscube/legacy"
+Version="1.5.6"
 
 [Theme]
 RenderSystem=Legacy_RenderSystem
 Format="XOOPS2 Legacy Style"
-Author=XOOPSCube Project Team
-ScreenShot="xcl-screenshot.png"
-Description="Theme Default Base built with CSS Custom properties and xLayout Flexbox."
+Author=Nuno Luciano @gigamaster
+ScreenShot="default-picocss-screenshot.png"
+Description="Default theme with a classic company or blog layout with a sidebar. Built with Pico.css"
 W3C=NG
 
 License="MIT"

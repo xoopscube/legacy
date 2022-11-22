@@ -1,33 +1,34 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{include file=db:legacy_search_form.html}>
 <hr>
 
-<section id="search-results" data-layout="column mx-auto">
+<div id="search-results">
 <{foreach item=module from=$searchResults}>
     <h3><{$module.name}></h3>
 
     <{* start results item loop *}>
-    <article data-layout="column my-2" class="result">
+    <article  class="result">
         <{foreach item=result from=$module.results}>
-        <div data-layout="row center-left">
-            <h4 data-self="size-x1 center">
+        <div class="headings">
+            <h5>
                 <img class="svg" src="<{$result.image}>" alt="<{$module.name}>" aria-label="<{$module.name}>">
                 <a href="<{$result.link}>"><{$result.title}></a>
-            </h4>
+            </h5>
             <p>
             <{if $result.uid > 0}>
             <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$result.uid|xoops_escape}>"><{$result.uid|xoops_user:user_name}></a>
             <{/if}>
-            <span class="badge"><{$result.time|xoops_formattimestampGMT:l}></span></p>
+            <span class="badge"><{$result.time|xoops_formattimestampGMT:l}></span>
+            </p>
         </div>
         <{/foreach}>
-    </article>
+    </article >
   <{* /end results item loop *}>
 
   <{if $module.has_more}>
-    <a class="ui-button" href="<{$smarty.const.XOOPS_URL}>/search.php?action=showall&amp;query=<{$actionForm->get('query')|escape:url}>&amp;mid=<{$module.mid}>&amp;andor=<{$actionForm->get('andor')|xoops_escape}>"><{$smarty.const._MD_LEGACY_LANG_SHOW_ALL}></a>
+    <a role="button" class="primary" href="<{$smarty.const.XOOPS_URL}>/search.php?action=showall&amp;query=<{$actionForm->get('query')|escape:url}>&amp;mid=<{$module.mid}>&amp;andor=<{$actionForm->get('andor')|xoops_escape}>"><{$smarty.const._MD_LEGACY_LANG_SHOW_ALL}></a>
   <{/if}>
 <{/foreach}>
-</section>
+</div>

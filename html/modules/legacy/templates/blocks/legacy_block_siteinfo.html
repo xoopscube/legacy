@@ -1,5 +1,5 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <div data-layout="column" class="block-site-info">
 
@@ -9,9 +9,9 @@
     <div data-layout="row left my-2"><{$group.name}></div>
 
         <{foreach item=user from=$group.users}>
-        <div data-layout="row center-left pl-4 my-2">
+        <div>
             <img src="<{$user.avatar}>" alt="profile" width="32" data-self="radius-circle"/>
-            <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>" data-self="mx-2"><{$user.name}></a>
+            <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>"><{$user.name}></a>
             <{$user.msglink}>
         </div>
         <{/foreach}>
@@ -20,7 +20,7 @@
 
     <{/if}>
 
-    <div data-self="size-x1 center my-4">
+    <div>
       <img src="<{$block.logourl}>" alt=""><br>
         <{if $block.recoomendtime != 0}>
           <a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=friend&amp;op=sendform&amp;t=<{$block.recoomendtime}>','friend',<{$block.popup_width}>,<{$block.popup_height}>)"><{$smarty.const._MB_LEGACY_RECO}></a>

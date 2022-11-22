@@ -28,7 +28,7 @@ include_once './class/dbmanager.php';
 $dbm = new db_manager();
 
 // default settings
-$xoopsConfig['sitename']              = 'XCL Web Application Platform';
+$xoopsConfig['sitename']              = 'Web Application Platform';
 $xoopsConfig['slogan']                = 'Just use it!';
 $xoopsConfig['adminmail']             = '';
 $xoopsConfig['language']              = 'english';
@@ -40,8 +40,8 @@ $xoopsConfig['new_user_notify_group'] = 1;
 $xoopsConfig['self_delete']           = 0;
 $xoopsConfig['gzip_compression']      = 0;
 $xoopsConfig['uname_test_level']      = 0;
-$xoopsConfig['usercookie']            = 'xcl_wap_user';
-$xoopsConfig['sessioncookie']         = 'xcl_wap_session';
+$xoopsConfig['usercookie']            = 'wap_user';
+$xoopsConfig['sessioncookie']         = 'wap_session';
 $xoopsConfig['sessionexpire']         = 4500;
 $xoopsConfig['server_TZ']             = 0;
 $xoopsConfig['default_TZ']            = 0;
@@ -81,7 +81,7 @@ $dbm->insert( 'config', " VALUES (44, 0, 5, 'enable_search', '_MD_AM_DOSEARCH', 
 $dbm->insert( 'config', " VALUES (45, 0, 5, 'keyword_min', '_MD_AM_MINSEARCH', '5', '_MD_AM_MINSEARCHDSC', 'textbox', 'int', 1)" );
 $dbm->insert( 'config', " VALUES (47, 0, 1, 'enable_badips', '_MD_AM_DOBADIPS', '0', '_MD_AM_DOBADIPSDSC', 'yesno', 'int', 40)" );
 $dbm->insert( 'config', " VALUES (53, 0, 1, 'use_mysession', '_MD_AM_USEMYSESS', '0', '_MD_AM_USEMYSESSDSC', 'yesno', 'int', 19)" );
-$dbm->insert( 'config', " VALUES (57, 0, 1, 'theme_fromfile', '_MD_AM_THEMEFILE', '0', '_MD_AM_THEMEFILEDSC', 'yesno', 'int', 13)" );
+$dbm->insert( 'config', " VALUES (57, 0, 1, 'theme_fromfile', '_MD_AM_THEMEFILE', '1', '_MD_AM_THEMEFILEDSC', 'yesno', 'int', 13)" );
 $dbm->insert( 'config', " VALUES (58, 0, 1, 'closesite', '_MD_AM_CLOSESITE', '0', '_MD_AM_CLOSESITEDSC', 'yesno', 'int', 26)" );
 $dbm->insert( 'config', " VALUES (59, 0, 1, 'closesite_okgrp', '_MD_AM_CLOSESITEOK', '" . addslashes( serialize( [ '1' ] ) ) . "', '_MD_AM_CLOSESITEOKDSC', 'group_multi', 'array', 27)" );
 $dbm->insert( 'config', " VALUES (60, 0, 1, 'closesite_text', '_MD_AM_CLOSESITETXT', '" . _INSTALL_L165 . "', '_MD_AM_CLOSESITETXTDSC', 'textarea', 'text', 28)" );
@@ -95,15 +95,15 @@ $dbm->insert( 'config', " VALUES (67,0,6,'smtppass','_MD_AM_SMTPPASS','','_MD_AM
 $dbm->insert( 'config', " VALUES (68,0,6,'sendmailpath','_MD_AM_SENDMAILPATH','/usr/sbin/sendmail','_MD_AM_SENDMAILPATHDESC','textbox','text',5)" );
 $dbm->insert( 'config', " VALUES (69,0,6,'from','_MD_AM_MAILFROM','','_MD_AM_MAILFROMDESC','textbox','text',1)" );
 $dbm->insert( 'config', " VALUES (70,0,6,'fromname','_MD_AM_MAILFROMNAME','','_MD_AM_MAILFROMNAMEDESC','textbox','text',2)" );
-$dbm->insert( 'config', " VALUES (71, 0, 1, 'sslloginlink', '_MD_AM_SSLLINK', 'https://', '_MD_AM_SSLLINKDSC', 'textbox', 'text', 33)" );
-$dbm->insert( 'config', " VALUES (72, 0, 1, 'theme_set_allowed', '_MD_AM_THEMEOK', '" . serialize( [ 'default' ] ) . "', '_MD_AM_THEMEOKDSC', 'theme_multi', 'array', 13)" );
+$dbm->insert( 'config', " VALUES (71,0,1, 'sslloginlink', '_MD_AM_SSLLINK', 'https://', '_MD_AM_SSLLINKDSC', 'textbox', 'text', 33)" );
+$dbm->insert( 'config', " VALUES (72,0,1, 'theme_set_allowed', '_MD_AM_THEMEOK', '" . serialize( [ 'xcl_default' ] ) . "', '_MD_AM_THEMEOKDSC', 'theme_multi', 'array', 13)" );
 $dbm->insert( 'config', " VALUES (73,0,6,'fromuid','_MD_AM_MAILFROMUID','1','_MD_AM_MAILFROMUIDDESC','user','int',3)" );
 
 
 // default the default theme
 
 $time = time();
-$dbm->insert( 'tplset', " VALUES (1, 'xcl_default', 'XCL 2.3.0 Default Theme', '', " . $time . ')' ); //TODO check install tplset
+$dbm->insert( 'tplset', " VALUES (1, 'xcl_default', 'Default Theme', '', " . $time . ')' ); //TODO check install tplset
 
 
 

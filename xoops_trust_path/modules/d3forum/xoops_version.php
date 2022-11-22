@@ -138,6 +138,16 @@ $modversion['config'][] = [
 ];
 
 $modversion['config'][] = [
+    'name'        => 'show_rss',
+    'title'       => $constpref . '_SHOW_RSS',
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+    'options'     => []
+];
+
+$modversion['config'][] = [
 	'name'        => 'default_options',
 	'title'       => $constpref . '_DEFAULT_OPTIONS',
 	'description' => $constpref . '_DEFAULT_OPTIONSDSC',
@@ -203,7 +213,7 @@ $modversion['config'][] = [
 	'description' => $constpref . '_POSTS_PER_TOPICDSC',
 	'formtype'    => 'textbox',
 	'valuetype'   => 'int',
-	'default'     => 50,
+	'default'     => 25,
 	'options'     => []
 ];
 
@@ -324,7 +334,7 @@ $modversion['config'][] = [
 	'formtype'    => 'select',
 	'valuetype'   => 'text',
 	'default'     => 'xoopsdhtml',
-	'options'     => [ 'xoopsdhtml' => 'xoopsdhtml', 'common/fckeditor' => 'common_fckeditor' ]
+	'options'     => [ 'xoopsdhtml' => 'xoopsdhtml', /*'common/fckeditor' => 'common_fckeditor'*/ ]
 ];
 
 $modversion['config'][] = [

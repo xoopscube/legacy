@@ -1,5 +1,5 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{if $block.full_view == true}>
 <table class="outer">
@@ -38,13 +38,13 @@
 
 	<{if $topic.u2t_marked}><img src="<{$block.mod_imageurl}>/block_marked.gif" alt="<{$block.lang_alt_marked}>"><{/if}>
 	<{* displays the last post's subject or topic title *}>
-		<{if $block.disp_last_subject }>
+		<{if $block.disp_last_subject}>
 			<{$topic.last_subject}>
 		<{else}>
 			<{$topic.title}>
 		<{/if}>
 	<{if $block.current_topic_id == $topic.id}></span><{else}></a><{/if}>
-	<{if ! $topic.solved}>
+	<{if !$topic.solved}>
 <!--		<img src="<{$block.mod_imageurl}>/block_unsolved.gif" alt="<{$block.lang_alt_unsolved}>">-->
 		<img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" alt="<{$block.lang_alt_unsolved}>">
 		<{/if}>
@@ -64,16 +64,16 @@
 <{/foreach}>
 </table>
 
-<div data-self="right mx-2">
+<div>
 <a class="button" href="<{$block.mod_url}>/index.php?page=search"><{$block.lang_linktosearch}></a>
 &nbsp;
-<{if is_numeric( $block.forums ) }>
+<{if is_numeric($block.forums)}>
 <a class="button" href="<{$block.mod_url}>/index.php?forum_id=<{$block.forums}>"><{$block.lang_linktolisttopics}></a>
 <{else}>
 <a class="button" href="<{$block.mod_url}>/index.php?cat_ids=<{$block.categories}>"><{$block.lang_linktolisttopics}></a>
 <{/if}>
 &nbsp;
-<{if is_numeric( $block.categories ) }>
+<{if is_numeric($block.categories)}>
 <a class="button" href="<{$block.mod_url}>/index.php?cat_id=<{$block.categories}>"><{$block.lang_linktolistforums}></a>
 &nbsp;
 <{/if}>
@@ -83,7 +83,7 @@
 
 <{else}>
 
-<ol data-self="mx-2" class="d3f_eachbranch">
+<ol class="d3f_eachbranch">
 <{foreach item=topic from=$block.topics}>
 	<li<{if $block.current_topic_id == $topic.id}> class="d3f_currenttopic d3f_block_currenttopic"<{/if}>>
 	<{if $block.current_topic_id != $topic.id}>

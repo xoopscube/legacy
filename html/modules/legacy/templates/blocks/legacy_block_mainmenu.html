@@ -1,18 +1,19 @@
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <style>
     <{if $xoops_dirname}>body.<{$xoops_dirname}> ul#main-menu li a.<{$xoops_dirname}>
     <{else}>ul#main-menu li a.menu-top<{/if}> {
-    color: var(--link-active); /* Active main-menu link */
+    background-color: var(--primary-focus); /* Active main-menu link */
     }
 </style>
 
-<div class="block-main-menu">
+
+<nav class="block-main-menu">
 
     <ul id="main-menu" >
         <li><a class="menu-top" href="<{$xoops_url}>/">
             <{if $block.icon == true}>
-            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt=""></span>
+            <i class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt=""></i>
             <{/if}>
                 <{$smarty.const._MB_LEGACY_HOME}>
             </a>
@@ -21,19 +22,18 @@
             <li>
                 <a class="<{$module.directory}> menuMain" href="<{$xoops_url}>/modules/<{$module.directory}>/">
                 <{if $module.icon}><span class="icon"><img class="svg" src="<{$xoops_url}>/modules/<{$module.directory}>/<{$module.icon}>" width="1em"></span><{/if}>
-                    <{$module.name}>
+                    <{* |ucfirst - Modifier makes a string's first character uppercase *}>
+                    <{$module.name|ucfirst}>
                 </a>
             </li>
             <{foreach item=sublink from=$module.sublinks}>
-                <li><a class="menu-sub" href="<{$sublink.url}>">
-                    <{* Smarty Truncate for Modules sub-links eg: D3Forum and Pico
-                    This truncates a variable to a character length, the default is 80.
-                    As an optional second parameter, you can specify a string of text to display at the end if the variable was truncated. *}>
-                        <{$sublink.name|truncate:30}>
-                    </a>
-                </li>
+                <{* Smarty Truncate for Modules sub-menu eg: D3Forum and Pico
+                This truncates a variable to a character length, the default is 80.
+                As an optional second parameter, you can specify a string of text
+                to display at the end if the variable was truncated eg: '...' *}>
+                <li><a class="menu-sub" href="<{$sublink.url}>"><{$sublink.name|truncate:27:'...'}></a></li>
                 <{/foreach}>
         <{/foreach}>
     </ul>
 
-</div>
+</nav>

@@ -1,8 +1,9 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{if $mod_config.show_breadcrumbs}>
-    <ul class="breadcrumb" aria-label="breadcrumb">
+<nav aria-label="breadcrumb">
+    <ul>
         <li><a href="<{$xoops_url}>/">
             <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
         <li><a href="<{$mod_url}>/index.php">
@@ -14,44 +15,43 @@
         <{/if}>
         <li aria-current="page"><{$smarty.const._MD_D3FORUM_TOPICMANAGER}>
     </ul>
+</nav>
 <{/if}>
 
 
-<section id="topic-manager">
 
 <h3 class="d3f_title"><img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg"> <{$smarty.const._MD_D3FORUM_TOPICMANAGER}></h3>
 
+    <div class="alert info">
+        <p class="targettopic">
+            <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg"> <{$category.title}><br>
+            <img class="svg forum" src="<{$xoops_url}>/images/icons/forum_1.svg"> <{$forum.title}><br>
+            <img class="svg topic" src="<{$xoops_url}>/images/icons/topic_01.svg"> <{$topic.title}></p>
+    </div>
+<form name="topicmanager_update" id="topicmanager_update" action="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$topic.id}>" method="post">
+    <{$gticket_hidden}>
 <article id="topic-settings">
 
-    <div class="msg-callout msg-info">
-    <p class="targettopic">
-        <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg"> <{$category.title}><br>
-        <img class="svg forum" src="<{$xoops_url}>/images/icons/forum_1.svg"> <{$forum.title}><br>
-        <img class="svg topic" src="<{$xoops_url}>/images/icons/topic_01.svg"> <{$topic.title}></p>
-    </div>
 
-    <form name="topicmanager_update" id="topicmanager_update" action="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$topic.id}>" method="post">
-    <{$gticket_hidden}>
 
-    <p>
-    <label for="topic_title" class="col-sm-4 col-form-label"><img class="svg topic" src="<{$xoops_url}>/images/icons/topic_01.svg"> <{$smarty.const._MD_D3FORUM_TOPICTITLE}></label>
-        <br>
-    <input type="text" class="form-control" name="topic_title" id="topic_title" size="50" value="<{$topic.title4edit}>">
-    </p>
+    <label for="topic_title">
+        <img class="svg topic" src="<{$xoops_url}>/images/icons/topic_01.svg"> <{$smarty.const._MD_D3FORUM_TOPICTITLE}>
+        <input type="text" class="form-control" name="topic_title" id="topic_title" size="50" value="<{$topic.title4edit}>">
+    </label>
 
-    <p>
-    <label for="forum_id" class="col-sm-4 col-form-label"><img class="svg forum" src="<{$xoops_url}>/images/icons/forum_1.svg"> <{$smarty.const._MD_D3FORUM_FORUM}></label>
-        <br>
-     <select name="forum_id" id="forum_id" class="custom-select mr-sm-4" ><{$forum_jumpbox_options}></select>
-    </p>
+
+    <label for="forum_id">
+        <img class="svg forum" src="<{$xoops_url}>/images/icons/forum_1.svg">
+        <{$smarty.const._MD_D3FORUM_FORUM}>
+        <select name="forum_id" id="forum_id" class="custom-select mr-sm-4" ><{$forum_jumpbox_options}></select>
+    </label>
 
 
     <{if $forum.external_link_format}>
-    <p>
-    <label for="topic_external_link_id" class="col-sm-4 col-form-label"><{$smarty.const._MD_D3FORUM_TOPICEXTERNALLINKID}></label>
-    <br>
-    <input type="text" class="form-control" name="topic_external_link_id" id="topic_external_link_id" size="20" value="<{$topic.external_link_id}>">
-    </p>>
+    <label for="topic_external_link_id">
+        <{$smarty.const._MD_D3FORUM_TOPICEXTERNALLINKID}>
+        <input type="text" class="form-control" name="topic_external_link_id" id="topic_external_link_id" size="20" value="<{$topic.external_link_id}>">
+    </label>
     <{/if}>
 
     <p>
@@ -66,7 +66,7 @@
 
 
     <p>
-        <img class="svg date-time" src="<{$xoops_url}>/images/icons/date-time.svg">
+        <img class="svg date-time" src="<{$xoops_url}>/images/icons/datetime.svg">
         <{$smarty.const._MD_D3FORUM_FIRSTPOST}> <span class="badge"><{$topic.first_post_time_formatted}></span>
     </p>
 
@@ -74,59 +74,72 @@
         <img class="svg timeline" src="<{$xoops_url}>/images/icons/timeline.svg">
         <{$smarty.const._MD_D3FORUM_LASTPOST}> <span class="badge"><{$topic.last_post_time_formatted}></span>
     </p>
-    <p>
-        <label for="topic_sticky"><img class="svg sticky" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg"> <{$smarty.const._MD_D3FORUM_TH_STICKY}></label>
-        <input type="text" class="form-control col-sm-2" name="topic_sticky" id="topic_sticky" size="2" value="<{$topic.sticky}>">
-    </p>
-    <div class="msg-callout">
+
+        <label for="topic_sticky">
+            <img class="svg sticky" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg">
+            <{$smarty.const._MD_D3FORUM_TH_STICKY}>
+            <input type="text" class="form-control col-sm-2" name="topic_sticky" id="topic_sticky" size="2" value="<{$topic.sticky}>">
+        </label>
+
+    <div class="alert">
 
 
-    <p>
+    <label for="topic_locked">
         <input  class="switch" type="checkbox" name="topic_locked" id="topic_locked" value="1" <{if $topic.locked}>checked="checked"<{/if}>>
-        <label for="topic_locked"><img class="svg topic-lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg"> <{$smarty.const._MD_D3FORUM_TH_LOCK}></label>
-    </p>
+        <img class="svg topic-lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg">
+        <{$smarty.const._MD_D3FORUM_TH_LOCK}>
+    </label>
 
 
-    <p>
+    <label for="topic_invisible">
         <input type="checkbox" name="topic_invisible" id="topic_invisible" value="1" <{if $topic.invisible}>checked="checked"<{/if}>>
-        <label for="topic_invisible"><img class="svg invisible" src="<{$xoops_url}>/images/icons/topic_invisible.svg"> <{$smarty.const._MD_D3FORUM_TH_INVISIBLE}></label>
-    </p>
+        <img class="svg invisible" src="<{$xoops_url}>/images/icons/topic_invisible.svg">
+        <{$smarty.const._MD_D3FORUM_TH_INVISIBLE}>
+    </label>
 
-    <p>
+    <label for="topic_solved">
         <input type="checkbox" name="topic_solved" id="topic_solved" value="1" <{if $topic.solved}>checked="checked"<{/if}>>
-        <label for="topic_solved"><img class="svg comment-check" src="<{$xoops_url}>/images/icons/comment-check.svg"> <{$smarty.const._MD_D3FORUM_TH_SOLVED}></label>
-    </p>
+        <img class="svg comment-check" src="<{$xoops_url}>/images/icons/comment-check.svg"> <{$smarty.const._MD_D3FORUM_TH_SOLVED}>
+    </label>
+
     </div>
 
 
-    <p class="text-center">
-        <button type="submit" class="ui-button" name="topicman_post" value="<{$smarty.const._MD_D3FORUM_BTN_UPDATE}>">
+    <footer>
+        <button type="submit" class="primary" name="topicman_post" value="<{$smarty.const._MD_D3FORUM_BTN_UPDATE}>">
             <img class="svg update" src="<{$xoops_url}>/images/icons/update.svg"> <{$smarty.const._MD_D3FORUM_BTN_UPDATE}> </button>
-        <button type="submit" class="ui-button" name="topicman_sync" value="<{$smarty.const._MD_D3FORUM_BTN_SYNCTHISTOPIC}>">
+        <button type="submit" class="primary" name="topicman_sync" value="<{$smarty.const._MD_D3FORUM_BTN_SYNCTHISTOPIC}>">
             <img class="svg sync" src="<{$xoops_url}>/images/icons/sync.svg"> <{$smarty.const._MD_D3FORUM_BTN_SYNCTHISTOPIC}></button>
-    </p>
+    </footer>
 
-    </form>
+
 </article>
+</form>
+
 
 <hr>
 
+
+<div class="alert info">
+    <p> You can export the topic to another selected module, and then select the category or forum.<br>
+        This feature is only available when you have installed other instances of D3Forum renamed e.g. comments, module-name, etc.</p>
+</div>
+
 <{* ------- Topic Export *}>
+<form name="topicmanager_export" id="topicmanager_export" action="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$topic.id}>" class="outer head" method="post">
+    <{$gticket_hidden}>
 <article id="topic-export">
 
-    <div class="msg-callout msg-info">
-        <p> You can export the topic to another selected module, and then select the category or forum.<br>
-            This feature is only available when you have installed other instances of D3Forum renamed e.g. comments, module-name, etc.</p>
-    </div>
 
-    <form name="topicmanager_export" id="topicmanager_export" action="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$topic.id}>" class="outer head" method="post">
-        <div class="form-group row">
-        <label for="export_mid" class="col-sm-2 col-form-label">Module Instance</label>
-        <div class="col-sm-10">
-        <select name="export_mid" class="form-control" id="export_mid" onchange="d3forum_showhide_forum_select(this);"><{html_options options=$export_to_module_options}></select>
-        </div>
-        <label for="export_forum_id_0" class="col-sm-2 col-form-label">Export to forum</label>
-            <div class="col-sm-10">
+        <label for="export_mid">
+            Module Instance
+
+        <select name="export_mid" id="export_mid" onchange="d3forum_showhide_forum_select(this);"><{html_options options=$export_to_module_options}></select>
+    </label>
+
+        <label for="export_forum_id_0">
+            Export to forum
+
         <select name="export_forum_id[0]" class="form-control" id="export_forum_id_0">
             <option value="0">----</option>
         </select>
@@ -137,22 +150,24 @@
                 <{$ex_options}>
             </select>
         <{/foreach}>
-        </div>
-        <div class="col-12 text-center my-4">
+    </label>
+
+        <footer>
     <!--	<input class="ui-button ui-primary" type="submit" name="topicman_export_move" value="<{$smarty.const._MD_D3FORUM_BTN_MOVETOPICTOOTHERFORUM}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">-->
     <!--	<input class="ui-button ui-primary" type="submit" name="topicman_export_copy" value="<{$smarty.const._MD_D3FORUM_BTN_COPYTOPICTOOTHERFORUM}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">-->
-            <button type="submit" class="ui-button ui-primary" name="topicman_export_move" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
-                <img class="svg file-move" src="<{$xoops_url}>/images/icons/file-move.svg"> <{$smarty.const._MD_D3FORUM_BTN_MOVETOPICTOOTHERFORUM}></button>
-            <button type="submit" class="ui-button ui-primary" name="topicman_export_copy" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
-                <img class="svg file-copy" src="<{$xoops_url}>/images/icons/file-copy.svg"> <{$smarty.const._MD_D3FORUM_BTN_COPYTOPICTOOTHERFORUM}>
+            <button type="submit" class="primary" name="topicman_export_move" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
+                <img class="svg file-move" src="<{$xoops_url}>/images/icons/file-move.svg">
+                <{$smarty.const._MD_D3FORUM_BTN_MOVETOPICTOOTHERFORUM}>
             </button>
-        </div>
-            <{$gticket_hidden}>
-        </div>
-    </form>
-</article>
+            <button type="submit" class="primary" name="topicman_export_copy" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
+                <img class="svg file-copy" src="<{$xoops_url}>/images/icons/file-copy.svg">
+                <{$smarty.const._MD_D3FORUM_BTN_COPYTOPICTOOTHERFORUM}>
+            </button>
+        </footer>
 
-</section>
+</article>
+</form>
+
 
 <script type="text/javascript">
 <!--//

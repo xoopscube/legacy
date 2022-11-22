@@ -17,9 +17,6 @@ $mid = Ckeditor4_Utils::getMid();
 if (defined('LEGACY_BASE_VERSION')) {
 	$pref = XOOPS_MODULE_URL . '/legacy/admin/index.php?action=PreferenceEdit&amp;confmod_id=';
 	$help = '<li><a href="' . XOOPS_MODULE_URL . '/legacy/admin/index.php?action=Help&amp;dirname=ckeditor4">' . _HELP . '</a></li>';
-} else {
-	$pref = XOOPS_URL . '/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod=';
-	$help = '';
 }
 ?>
 

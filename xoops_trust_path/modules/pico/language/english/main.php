@@ -20,7 +20,7 @@ define( '_MD_PICO_DOWNLOADIT' , 'Download it');
 define( '_MD_PICO_VIEWED' , 'Views');
 define( '_MD_PICO_NEXT' , 'Next');
 define( '_MD_PICO_PREV' , 'Prev');
-define( '_MD_PICO_CATEGORYINDEX' , 'Top of category');
+define( '_MD_PICO_CATEGORYINDEX' , 'Top category');
 define( '_MD_PICO_NOSUBJECT' , '(no subject)');
 define( '_MD_PICO_FMT_PUBLIC' , 'Public');
 define( '_MD_PICO_FMT_PRIVATE' , 'Private');
@@ -97,7 +97,7 @@ define( '_MD_PICO_TH_BODY' , 'Body');
 define( '_MD_PICO_TH_BODY_WAITING' , 'Waiting body');
 define( '_MD_PICO_TH_FILTERS' , 'Filters');
 define( '_MD_PICO_TH_TAGS' , 'Tags');
-define( '_MD_PICO_TH_TAGSDSC' , 'multiple tags separated by spaces');
+define( '_MD_PICO_TH_TAGSDSC' , 'multiple tags separated by space');
 define( '_MD_PICO_TH_WEIGHT' , 'Order weight');
 define( '_MD_PICO_TH_CONTENTOPTIONS' , 'Options');
 define( '_MD_PICO_LABEL_USECACHE' , 'Use cache');
@@ -144,7 +144,7 @@ define( '_MD_PICO_VOTEPOINTDSCWORST' , 'Useless');
 // query contents
 define( '_MD_PICO_FMT_QUERYTAGTITLE' , 'Tag: %s');
 define( '_MD_PICO_FMT_QUERYTAGDESC' , 'Content tagged %s');
-define( '_MD_PICO_ERR_NOCONTENTMATCHED' , 'No content');
+define( '_MD_PICO_ERR_NOCONTENTMATCHED' , 'The requested content or resource is not available.');
 
 // filters
 define( '_MD_PICO_FILTERS_EVALTITLE' , 'php code');

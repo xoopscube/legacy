@@ -40,6 +40,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_LISTASINDEX', 'カテゴリートップでリストを表示する' );
     define( $constpref . '_LISTASINDEXDSC', '「はい」の場合、カテゴリートップではサブカテゴリーと直下のコンテンツがリスト式に表示されます。「いいえ」の場合、そのカテゴリー内で最も表示優先度の高いコンテンツが表示されます。' );
     define( $constpref . '_SHOW_BREADCRUMBS', 'パンくずを表示する' );
+    define( $constpref . '_SHOW_RSS', 'Display link RSS' );
     define( $constpref . '_SHOW_PAGENAVI', 'ページナビゲーションを表示する' );
     define( $constpref . '_SHOW_PRINTICON', '印刷画面へのリンクを表示する' );
     define( $constpref . '_SHOW_TELLAFRIEND', '友達に紹介するリンクを表示する' );

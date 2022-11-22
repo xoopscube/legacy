@@ -61,7 +61,7 @@ while ( $cat_row = $db->fetchArray( $crs ) ) {
 
 		$forum_id = (int) $forum_row['forum_id'];
 
-		// get last visit each forums
+		// get last visit each forum
 		if ( $uid > 0 ) {
 			$sql = 'SELECT u2t.u2t_time FROM ' . $db->prefix( $mydirname . '_posts' ) . ' p LEFT JOIN ' . $db->prefix( $mydirname . '_users2topics' ) . ' u2t ON u2t.topic_id=p.topic_id WHERE p.post_id=' . (int) $forum_row['forum_last_post_id'] . ' AND u2t.uid=' . $uid;
 			[ $u2t_time ] = $db->fetchRow( $db->query( $sql ) );

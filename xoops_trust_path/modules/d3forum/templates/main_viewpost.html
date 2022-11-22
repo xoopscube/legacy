@@ -1,8 +1,9 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{if $mod_config.show_breadcrumbs}>
-    <ul class="breadcrumb" aria-label="breadcrumb">
+<nav aria-label="breadcrumb">
+    <ul>
         <li><a href="<{$xoops_url}>/">
             <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
         <li><a href="<{$mod_url}>/index.php">
@@ -13,27 +14,25 @@
         <li><a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a>
         <li><a aria-current="page" href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a>
     </ul>
+</nav>
 <{/if}>
-
 
 <{include file="db:`$mydirname`_inc_d3comment_summary.html"}>
 
-
+<div class="flex-justify">
     <{if $topic.external_link_id}>
-    <div class="d3f_link" data-self="size-x1 right my-2">
-    <{$posts|@count|string_format:$smarty.const._MD_D3FORUM_FMT_POSTDISPLAYSINFO}>
-    <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>&amp;external_link_id=<{$topic.external_link_id|escape:"url"}>">
+        <div class="d3f_link">
+        <{$posts|@count|string_format:$smarty.const._MD_D3FORUM_FMT_POSTDISPLAYSINFO}>
+        <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>&amp;external_link_id=<{$topic.external_link_id|escape:'url'}>">
         <{$smarty.const._MD_D3FORUM_LINK_LISTALLCOMMENTS}></a>
-    </div>
+        </div>
     <{/if}>
 
+    <a role="button" class="outline" href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>">
+        <img class="svg list-tree" src="<{$xoops_url}>/images/icons/list-tree.svg" alt="list-tree">
+        <{$smarty.const._MD_D3FORUM_LINK_LISTPOSTS}></a>
 
-
-    <p class="text-right">
-        <a class="ui-button" href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>">
-            <img class="svg list-tree" src="<{$xoops_url}>/images/icons/list-tree.svg"> <{$smarty.const._MD_D3FORUM_LINK_LISTPOSTS}></a>
-    </p>
-
+</div>
 
 <div class="d3f_wrap">
 
@@ -43,31 +42,24 @@
 
 <hr>
 
-    <{* /////// QUICK REPLY \\\\\\\ *}>
-
-    <{if $post.can_reply}>
-        <{include file="db:`$mydirname`_inc_post_form_quick.html" uname=$uname h2_title=$smarty.const._MD_D3FORUM_REPLYTHISPOST quick_form_mode="reply" subject_raw=$post.subject_raw}>
-    <{/if}>
-
-
-
-    <{* /////// NOTIFICATION \\\\\\\ *}>
-
-    <{include file='db:system_notification_select.html'}>
+<{* /////// QUICK REPLY \\\\\\\ *}>
+<{if $post.can_reply}>
+    <{include file="db:`$mydirname`_inc_post_form_quick.html" uname=$uname h2_title=$smarty.const._MD_D3FORUM_REPLYTHISPOST quick_form_mode="reply" subject_raw=$post.subject_raw}>
+<{/if}>
 
 
 
-    <{* /////// POST TREE \\\\\\\ *}>
+<{* /////// POST TREE \\\\\\\ *}>
+<h5>
+        <label for="post-order">
+            <input role="switch" type="checkbox" id="post-order" name="post-order" onclick="slideToggle('.post-tree-view', this)" value="0">
+            <img class="svg tree" src="<{$xoops_url}>/images/icons/tree.svg" alt="post-tree">
+            <{$smarty.const._MD_D3FORUM_POSTSTREE}>
+        </label>
+    </h5>
+<div class="post-tree-view" style="display:none">
 
-    <h4 class="my-4">
-        <img class="svg tree" src="<{$xoops_url}>/images/icons/tree.svg"> <input class='switch' type='checkbox' name='post-order' onclick="slideToggle('.post-order', this)" value='0'>
-        <label for='post-order'> <{$smarty.const._MD_D3FORUM_POSTSTREE}></label>
-    </h4>
-
-
-    <section class="post-order" style="display:none">
-
-    <h3 class="my-4"><{$smarty.const._MD_D3FORUM_POSTSTREE}></h3>
+<!--    <h3><{$smarty.const._MD_D3FORUM_POSTSTREE}></h3>-->
 
     <{* /////// -------------------- NOTE
 
@@ -78,38 +70,32 @@
         trust_path/modules/d3forum/include/viewpost.php
         line 82
 
-        Here the UL is replaced (removed) from the "tree structure" and LI incremented by 10px
-        Closing tag /LI is optional, all "block-level" tags are self-closing tags in HTML5.
+        Here UL is replaced (removed) from the "tree structure" and LI margin incremented by 10px
+        Closing tag /LI is optional, since all "block-level" tags are self-closing tags in HTML5.
 
         /////// -------------------- *}>
 
-    <ul style='list-style:none;padding:0;margin:0'>
+    <ul class="post-tree">
     <{foreach from=$posts item=eachpost}>
 
     <{if $eachpost.id == $post.id}>
-
-        <{$eachpost.ul_in|replace:"<ul>":"\n\t"|replace:"<li>":"<li class='d3f_eachbranchitem d3f_currenttopic'><span style='padding-left:`$eachpost.depth_in_tree`0px;'>"}>
-
+        <{$eachpost.ul_in|replace:"<ul>":"\n\t"|replace:"<li>":"<li class='post-tree-item post-tree-current'><span style='margin-left:`$eachpost.depth_in_tree`0px;'>"}>
         <{else}>
-
-        <{$eachpost.ul_in|replace:"<ul>":"\n\t"|replace:"<li>":"<li class='d3f_eachbranchitem' style='padding-left:`$eachpost.depth_in_tree`0px;'><span style='display:block;padding:1em; padding-left:`$eachpost.depth_in_tree`0px;background-color: rgba(0,0,0, .1`$eachpost.depth_in_tree`5);'>"}>
-
+        <{$eachpost.ul_in|replace:"<ul>":"\n\t"|replace:"<li>":"<li class='post-tree-item'><span style='display:block;margin-left:`$eachpost.depth_in_tree`0px;background-color:rgba(0,0,0, .1`$eachpost.depth_in_tree`5);'>"}>
     <{/if}>
 
-        <{if $eachpost.id != $post.id}><a href="<{$mod_url}>/index.php?post_id=<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" aria-label="post_path<{$eachpost.unique_path}>"><{/if}>
+    <{if $eachpost.id !=$post.id}><a href="<{$mod_url}>/index.php?post_id=<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>"><{/if}>
+    <img class="svg <{$icon_meanings[$eachpost.icon]}>" src="<{$xoops_url}>/images/icons/posticon<{$eachpost.icon}>.svg" alt="posticon"> <{$eachpost.subject}>
+    <{if $eachpost.id !=$post.id}></a><{/if}>
 
-        <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$eachpost.icon}>.svg" alt="<{$icon_meanings[$eachpost.icon]}>"> <{$eachpost.subject}>
+    <{$eachpost.poster_uname}>, <span class="badge"><{$eachpost.post_time_formatted}></span>
 
-        <{if $eachpost.id != $post.id}></a><{/if}>
+    <{if $forum.isadminormod}>
+    <a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$eachpost.id}>" data-tooltip="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>">
+        <img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg" width="1em" alt="tools"></a>
+    <{/if}>
 
-            <br><{$eachpost.poster_uname}>, <span class="badge"><{$eachpost.post_time_formatted}></span>
-
-        <{if $forum.isadminormod}>
-        <a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$eachpost.id}>" aria-label="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>">
-            <img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg" alt=""></a>
-        <{/if}>
-
-            </span>
+    </span>
 
         <{* /////// -------------------- NOTE :
 
@@ -120,73 +106,87 @@
         *}>
 
         <{/foreach}>
-        </ul>
+    </ul>
 
 
-    </section>
-    <{* ------- /end post tree *}>
+</div>
+<{* ------- /end post tree *}>
 
 
-    <{* ------- Start external topic list tree  *}>
 
-    <{if $topic.external_link_id && ($tree_tp_count>1)}>
+<{* /////// POST TREE - EXTERNAL LINK \\\\\\\ *}>
+<{if $topic.external_link_id && ($tree_tp_count>1)}>
+<h5>
+    <label for="post-tree-ext">
+        <input role="switch" type="checkbox" id="post-tree-ext" onclick="slideToggle('.post-tree-ext-view', this)" value="0">
+        <img class="svg tree" src="<{$xoops_url}>/images/icons/tree.svg" alt="post-tree">
+        <{$smarty.const._MD_D3FORUM_LINK_LISTALLCOMMENTS}>
+    </label>
+</h5>
+<div class="post-tree-ext-view" style="display:none">
+    <{foreach from=$tree item=eachpost}>
 
-        <h3 class="my-4"><{$smarty.const._MD_D3FORUM_LINK_LISTALLCOMMENTS}></h3>
+    <{if ($eachpost.depth_in_tree == 0)}>
 
-        <{foreach from=$tree item=eachpost}>
+        <{if $eachpost.topic_id == $topic.id}>
 
-        <{if ($eachpost.depth_in_tree == 0)}>
+        <{$eachpost.ul_in|replace:"<ul>":"<ul class='d3f_eachbranch'>\n\t"|replace:"<li>":"<li class='d3f_eachbranchitem d3f_currenttopic'><span style='padding-left:`$eachpost.depth_in_tree`0px;'>"}>
 
-           <{if $eachpost.topic_id == $topic.id}>
+           <{else}>
 
-               <{$eachpost.ul_in|replace:"<ul>":"<ul class='d3f_eachbranch'>\n\t"|replace:"<li>":"<li class='d3f_eachbranchitem d3f_currenttopic'><span style='padding-left:`$eachpost.depth_in_tree`0px;'>"}>
+           <{$eachpost.ul_in|replace:"<ul>":"<ul class='d3f_eachbranch'>\n\t"|replace:"<li>":"<li class='d3f_eachbranchitem'>
 
-               <{else}>
+           <span style='padding-left:`$eachpost.depth_in_tree`0px;'>"}>
+       <{/if}>
 
-               <{$eachpost.ul_in|replace:"<ul>":"<ul class='d3f_eachbranch'>\n\t"|replace:"<li>":"<li class='d3f_eachbranchitem'>
+        <a href="<{$mod_url}>/index.php?topic_id=<{$eachpost.topic_id}>#post_id<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" aria-label="post_path<{$eachpost.unique_path}>">
 
-               <span style='padding-left:`$eachpost.depth_in_tree`0px;'>"}>
-           <{/if}>
+        <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$eachpost.icon}>.svg" alt="<{$icon_meanings[$eachpost.icon]}>"> <{$eachpost.subject}></a>
 
-            <a href="<{$mod_url}>/index.php?topic_id=<{$eachpost.topic_id}>#post_id<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" aria-label="post_path<{$eachpost.unique_path}>">
+           (<{$eachpost.poster_uname}>, <{$eachpost.post_time_formatted}>)
 
-            <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$eachpost.icon}>.svg" alt="<{$icon_meanings[$eachpost.icon]}>"> <{$eachpost.subject}></a>
+        <{if $forum.isadminormod}>
 
-                   (<{$eachpost.poster_uname}>, <{$eachpost.post_time_formatted}>)
+            <a href="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$eachpost.topic_id}>" aria-label="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>">
+            <img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg" alt=""></a>
 
-                <{if $forum.isadminormod}>
+        <{/if}>
 
-                    <a href="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$eachpost.topic_id}>" aria-label="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>">
-                    <img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg" alt=""></a>
+        </span>
 
-                <{/if}>
-
-                </span>
-
-                <{if $eachpost.topic_id == $topic.id}>
-                    <span class="d3f_thistopic"><{$smarty.const._MD_D3FORUM_THIS_TOPIC}></span>
-                <{/if}>
-
-            <{/if}>
-
-        <{$eachpost.ul_out}>
-
-        <{/foreach}>
+        <{if $eachpost.topic_id == $topic.id}>
+            <span class="d3f_thistopic"><{$smarty.const._MD_D3FORUM_THIS_TOPIC}></span>
+        <{/if}>
 
     <{/if}>
 
-    <{* -------  End external topic list tree  *}>
+<{$eachpost.ul_out}>
+
+<{/foreach}>
+</div>
+
+<{/if}>
+
+<{* -------  End external topic list tree  *}>
 
 
-<hr>
+<{* /////// NOTIFICATION \\\\\\\ *}>
+<{if $xoops_isadmin}>
+<{include file='db:system_notification_select.html'}>
+<{/if}>
 
 <{* ----- Forum Jumpbox *}>
-<section name="jump-box">
-  <form name="forum_jump_box" action="<{$mod_url}>/index.php" method="get" class="form-inline">
-    <input type="hidden" name="page" value="forum_access">
-    <select name="forum_id" id="select_forum_id"><{$forum_jumpbox_options}></select>
-    <button type="submit" class="ui-button" value="<{$smarty.const._MD_D3FORUM_BTN_JUMPTOFORUM}>"><{$smarty.const._MD_D3FORUM_BTN_JUMPTOFORUM}></button>
-    <a class="ui-button" href="<{$mod_url}>/index.php?page=search">
-      <img class="svg search" src="<{$xoops_url}>/images/icons/search.svg"> <{$smarty.const._MD_D3FORUM_LINK_ADVSEARCH}></a>
+<article id="jump-box">
+    <form name="forum_jump_box" action="<{$mod_url}>/index.php" method="get" class="form-inline">
+        <input type="hidden" name="page" value="forum_access">
+        <label>
+            <select name="forum_id" id="select_forum_id"><{$forum_jumpbox_options}></select>
+        </label>
+        <div class="grid-2">
+            <a role="button" class="outline" href="<{$mod_url}>/index.php?page=search">
+                <img class="svg search" src="<{$xoops_url}>/images/icons/search.svg"> <{$smarty.const._MD_D3FORUM_LINK_ADVSEARCH}>
+            </a>
+            <button type="submit" role="button" class="outline" value="<{$smarty.const._MD_D3FORUM_BTN_JUMPTOFORUM}>"><{$smarty.const._MD_D3FORUM_BTN_JUMPTOFORUM}></button>
+        </div>
   </form>
-</section>
+</article>

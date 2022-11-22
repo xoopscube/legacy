@@ -63,7 +63,7 @@ if ( ! empty( $xoopsModuleConfig['use_solved'] ) && $isadminormod ) {
 	$can_change_solved = false;
 }
 
-// form elements or javascripts for anti-SPAM
+// form elements or javascript for anti-SPAM
 if ( d3forum_common_is_necessary_antispam( $xoopsUser, $xoopsModuleConfig ) ) {
 	$antispam_obj    =& d3forum_common_get_antispam_object( $xoopsModuleConfig );
 	$antispam4assign = $antispam_obj->getHtml4Assign();

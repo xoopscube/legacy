@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 
 Refer please to repository Legacy Commits  
 
-## [2.3.1] 2022-11-21
+## [2.3.1] 2022-11-22
 
 ### Added 
 - Theme PicoCSS 

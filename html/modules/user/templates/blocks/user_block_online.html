@@ -1,18 +1,18 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<div data-layout="column" class="block-online">
+<div class="block-online">
     <p><{$block.online_total}></p>
-    <div data-self="size-x1"><{$smarty.const._MB_USER_MEMBERS}> <span class="badge"><{$block.online_members}></span>
+    <div><{$smarty.const._MB_USER_MEMBERS}> <span class="badge"><{$block.online_members}></span>
         <{$smarty.const._MB_USER_GUESTS}> <span class="badge"><{$block.online_guests}></span></div>
     <{foreach item=member from=$block.online_member_list}>
-    <div data-layout="row center my-2" data-self="size-x1" class="block-online-members">
-        <img src="<{$member.uid|xoops_user_avatarize}>" alt="<{$member.uname}>" height="24" data-self="mr-2 radius-circle">
+    <div class="block-online-members">
+        <img src="<{$member.uid|xoops_user_avatarize}>" alt="<{$member.uname}>" width="24" height="24" data-self="radius-circle">
         <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$member.uid}>">
 
             <span><{$member.uname}></span>
         </a>
     </div>
     <{/foreach}>
-    <a class="ui-button" href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);"><{$smarty.const._MB_USER_MORE}></a>
+    <a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);"><{$smarty.const._MB_USER_MORE}></a>
 </div>

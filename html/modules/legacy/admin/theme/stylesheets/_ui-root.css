@@ -58,12 +58,7 @@
 
 :root[data-theme="dark"] {
 
-    --trackBG       : hsl(228, 10%, 10%);
-    --thumbBG       : hsl(219, 15%, 25%); /*  hsl(229, 20%, 21%);  */
-
     --color-mode    : 'dark';
-
-/* -------------------- -------------------- Color Scheme Dark */
 
     --color-amber   : hsl(45, 75%, 45%);
     --color-black   : hsl(0, 0%, 10%);
@@ -71,16 +66,12 @@
     --color-green   : hsl(122, 40%, 48%);
     --color-indigo  : hsl(275, 75%, 35%);
     --color-orange  : hsl(38, 75%, 45%);
-    --color-purple  : hsl(300, 75%, 40%); /* #673ab7 */
+    --color-purple  : hsl(300, 75%, 40%);
     --color-red     : hsl(5, 75%, 50%);
     --color-redark  : hsl(347, 75%, 40%);
     --color-white   : hsl(0, 0%, 90%);
 
-
-/* -------------------- -------------------- Color Link Dark */
-
     --layer-1       : hsl(227deg 27% 12%);
-    /*--layer-1       : hsl(227deg 20% 10%);*/
     --layer-2       : hsl(227deg 25% 14%);
     --layer-3       : hsl(227deg 25% 16%);
     --layer-4       : hsl(227deg 25% 20%);
@@ -91,12 +82,15 @@
     --disable       : hsl(219, 15%, 70%);
     --contrast      : hsl(219, 15%, 70%);
 
-    --body-bg       : var(  --layer-2  ); /* #232831; */
-    --body-color    : var(  --secondary  );
-    --link          : var(  --primary );
+    --body-bg       : var( --layer-2  );
+    --body-color    : var( --secondary  );
+    --link          : var( --primary );
     --link-active   : #face74;
     --link-hover    : #face74;
-    --link-visited  : var(  --primary  );
+    --link-visited  : var( --primary  );
+
+    --trackBG       : hsl(228, 10%, 10%);
+    --thumbBG       : hsl(219, 15%, 25%);
 
     }
  }
@@ -107,15 +101,13 @@
 
     --color-mode    : 'light';
 
-    /* -------------------- -------------------- Light Mode Colors */
-
     --color-amber   : hsl(45, 70%, 45%);
     --color-black   : hsl(0, 0%, 6%);
     --color-blue    : hsl(210, 74%, 40%);
     --color-green   : hsl(126, 70%, 35%);
     --color-indigo  : hsl(275, 70%, 35%);
     --color-orange  : hsl(38, 75%, 35%);
-    --color-purple  : hsl(300, 70%, 35%); /* #673ab7 */
+    --color-purple  : hsl(300, 70%, 35%);
     --color-red     : hsl(5, 70%, 45%);
     --color-white   : hsl(0, 0%, 90%);
 
@@ -130,7 +122,7 @@
     --disable       : hsl(219, 15%, 70%);
     --contrast      : hsl(219, 15%, 70%);
 
-    --body-bg       : var( --layer-2 ); /* #232831; */
+    --body-bg       : var( --layer-2 );
     --body-color    : var( --primary );
     --link          : var( --color-blue );
     --link-active   : var( --color-red );
@@ -157,11 +149,16 @@
     --trackBG           : var( --layer-1 );
     --thumbBG           : var( --layer-4 );
     --thumbLinear       : linear-gradient(left, #272727, rgba(255, 147, 5, 0.5));
+
 /* -------------------- -------------------- -------------------- LAYOUT Grid template */
 
     --bg-linear         : linear-gradient(360deg, hsla(219, 15%, 25%, 0.70), hsla(0, 0%, 0%, 0.90));
     --bg-gradient       : linear-gradient(360deg, hsl(220deg 15% 18%), hsla(0, 0%, 0%, 0.90));
-    --aside-bg          : var( --layer-2 );
+
+    --aside-bg          : var( --layer-1 );
+
+    --aside-panel-bg    : var( --layer-1 );
+    --aside-panel-shadow: var( --shadow-5 );
 
     --footer-bg         : var( --layer-2 );
     --footer-border     : 1px solid var( --layer-3 ); /* border-top, ui-layout.css */

@@ -1,7 +1,7 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<div data-layout="column center-center" data-self="size-x1" class="block-login">
+<div class="block-login">
 
     <form action="<{$xoops_url}>/user.php" method="post">
 
@@ -34,25 +34,20 @@
     <input type="hidden" name="xoops_redirect" value="<{if $xoops_redirect}><{$xoops_redirect}><{else}><{$xoops_requesturi}><{/if}>">
     <{xoops_input type=hidden name=op value=login id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_op"}>
 
-
-    <div data-layout="row center-justify p-4">
-
-        <{if $block.use_ssl == '1'}>
-        <span class="ssl"><a href="javascript:openWithSelfMain('<{$block.sslloginlink}>', 'ssllogin', 320, 240);">
-            <img class="svg ssl" src="<{$xoops_url}>/images/icons/shield.svg"> <{$smarty.const._MB_USER_SECURE}></a>
-        </span>
-        <{/if}>
+    <{if $block.use_ssl == '1'}>
+    <span class="ssl"><a href="javascript:openWithSelfMain('<{$block.sslloginlink}>', 'ssllogin', 320, 240);">
+        <img class="svg ssl" src="<{$xoops_url}>/images/icons/shield.svg" width="1em"> <{$smarty.const._MB_USER_SECURE}></a>
+    </span>
+    <{/if}>
 
     <{* xoops_input type=submit name=submit value=$smarty.const._MB_USER_LOGIN id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_submit" *}>
 
-        <{* Smarty local variable concatenation : const + cat:'' *}>
-        <button type="submit" class="ui-button" name="submit" id="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX|cat:'block_submit'}>">
-            <img src="<{$xoops_url}>/images/icons/login.svg" width="1em" height="1em" alt="" class="svg"> <{$smarty.const._MB_USER_LOGIN}>
-        </button>
+    <{* Smarty local variable concatenation : const + cat:'' *}>
+    <button type="submit" role="button" class="primary" name="submit" id="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX|cat:'block_submit'}>">
+        <img src="<{$xoops_url}>/images/icons/login.svg" width="1em" height="1em" alt="" class="svg"> <{$smarty.const._MB_USER_LOGIN}>
+    </button>
 
-    </div>
-
-    <p data-layout="row centered p-4">
+    <p>
         <small><a href="<{$xoops_url}>/lostpass.php"><{$smarty.const._MB_USER_LOSTPASS}></a>
         <{if $block.allow_register == '1'}>
         &nbsp;|  <a href="<{$xoops_url}>/register.php"><{$smarty.const._MB_USER_USERREG}></a>

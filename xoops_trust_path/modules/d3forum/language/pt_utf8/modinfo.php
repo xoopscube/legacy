@@ -25,6 +25,7 @@ define($constpref.'_BODY_EDITORDSC','WYSIWYG editor will be enabled under only f
 // Appended by Xoops Language Checker -GIJOE- in 2007-09-26 17:55:48
 define($constpref.'_ADMENU_POSTHISTORIES','Histories');
 define($constpref.'_SHOW_BREADCRUMBS','Display breadcrumbs');
+define($constpref.'_SHOW_RSS','Display link RSS');
 define($constpref.'_ANTISPAM_GROUPS','Groups should be checked anti-SPAM');
 define($constpref.'_ANTISPAM_GROUPSDSC','Usually set all blank.');
 define($constpref.'_ANTISPAM_CLASS','Class name of anti-SPAM');

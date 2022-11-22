@@ -18,7 +18,7 @@ define( '_MD_PICO_TH_TAGS' , 'Étiquettes - Mots clés');
 define( '_MD_PICO_TH_TAGSDSC' , 'séparer chaque étiquette par un espace');
 define( '_MD_PICO_FMT_QUERYTAGTITLE' , 'Étiqueter: %s');
 define( '_MD_PICO_FMT_QUERYTAGDESC' , 'Contenu étiqueté %s');
-define( '_MD_PICO_ERR_NOCONTENTMATCHED' , 'Aucun contenu');
+define( '_MD_PICO_ERR_NOCONTENTMATCHED' , "Le contenu ou la ressource demandée n'est pas disponible.");
 
 define( '_MD_PICO_CSVENCODING' , 'UTF-8');
 

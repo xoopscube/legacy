@@ -84,8 +84,8 @@ define( '_MD_D3FORUM_SOLVEDYES_DESC' , 'This topic is SOLVED topics are treated 
 define( '_MD_D3FORUM_SOLVEDNO_DESC' , 'This topic is UNSOLVED - Responses are welcome');
 define( '_MD_D3FORUM_MARK_TURNON' , 'Sticky topic');
 define( '_MD_D3FORUM_MARK_TURNOFF' , 'Unsticky topic');
-define( '_MD_D3FORUM_SOLVED_TURNON' , 'Solved');
-define( '_MD_D3FORUM_SOLVED_TURNOFF' , 'Unsolved');
+define( '_MD_D3FORUM_SOLVED_TURNON' , 'Change the status to Solved');
+define( '_MD_D3FORUM_SOLVED_TURNOFF' , 'Change the status to Unsolved');
 define( '_MD_D3FORUM_LINK_TOPICHISTORIES' , 'View History');
 define( '_MD_D3FORUM_A_TOPOFTHETOPIC' , 'Top of the posts'); //jidaikobo
 define( '_MD_D3FORUM_A_BOTTOMOFTHETOPIC' , 'Bottom of the posts'); //jidaikobo
@@ -321,8 +321,7 @@ Define( '_MD_D3FORUM_TH_CATEGORYPARENT' , 'Parent category');
 Define( '_MD_D3FORUM_TH_CATEGORYDESC' , 'Category desc');
 Define( '_MD_D3FORUM_TH_CATEGORYOPTIONS' , 'Category options');
 Define( '_MD_D3FORUM_ONOFF' , 'ON/OFF');
-Define( '_MD_D3FORUM_HOWTO_OVERRIDEOPTIONS' , 'Override preferences by line eg. <em>option name:option value</em> (1=on, 0=off))<br><strong>show_breadcrumbs:1</strong><br><br>Overridable options and current values:');
-
+Define( '_MD_D3FORUM_HOWTO_OVERRIDEOPTIONS' , '<p>Override preferences by writing a new line for each option.<br><code><b>(option name)</b>:<u>(option value)</u></code><br>Example to show breadcrumbs (1=on, 0=off):<br><code><b>show_breadcrumbs</b>:<u>1</u></code></p><h5>Overridable options current values</h5>');
 Define( '_MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY' , '(under this category)');
 Define( '_MD_D3FORUM_SUFFIX_UNDERTHISFORUM' , '(under this forum)');
 

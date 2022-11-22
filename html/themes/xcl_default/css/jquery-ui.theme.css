@@ -10,6 +10,14 @@
 /*! jQuery UI - v1.13.1 - 2022-01-20 */
 /* Component containers
 ----------------------------------*/
+
+.ui-dialog.ui-widget.ui-front {
+    background      : var(--ui-widget-content-bg  );
+    box-shadow      : var(--ui-dialog-shadow );
+    padding         : calc(var(--block-spacing-horizontal) * 1);
+    border          : var(--border-color);
+}
+
 .ui-widget {
 	font-family     : var(--ui-widget-font-family);
 	font-size       : var(--ui-widget-font-size)
@@ -28,6 +36,15 @@
 .ui-widget.ui-widget-content {
 	border          : var(--ui-widget-content-border);
 }
+.ui-widget.ui-widget-content {
+    border: var(--ui-widget-content-border);
+    background: var(--card-background-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-box-shadow);
+    margin: var(--block-spacing-vertical) 0;
+    padding: calc(var(--block-spacing-horizontal) * 2);
+}
+
 .ui-widget-content {
 	background      : var(--ui-widget-content-bg);
     border          : var(--ui-widget-content-border);
@@ -52,17 +69,14 @@
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default,
 .ui-button,
-
-/* We use html here because we need a greater specificity to make sure disabled
-works properly when clicked or hovered */
+/* greater specificity to make sure disabled works properly when clicked or hovered */
 html .ui-button.ui-state-disabled:hover,
 html .ui-button.ui-state-disabled:active {
-    background      : var(--ui-state-default-bg);
-    border          : var(--ui-state-default-border);
-    color           : var(--ui-state-default-color);
-    font            : var(--ui-state-default-font);
-    font-weight     : var(--ui-state-default-font-weight);
-	/* padding         : var(--button-padding) Increase calendar table cell */
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    color: var(--primary-inverse);
+    font            : var(--font-size);
+    font-weight     : var(--font-weight);
 }
 .ui-state-default a,
 .ui-state-default a:link,
@@ -82,9 +96,12 @@ a:visited.ui-button,
 .ui-widget-header .ui-state-focus,
 .ui-button:hover,
 .ui-button:focus {
-	background      : var(--ui-state-hover-bg);
-    border          : var(--ui-state-hover-border);
-    color           : var(--ui-state-hover-color);
+	/*background      : var(--ui-state-hover-bg);*/
+    background: var(--primary-hover);
+    /*border          : var(--ui-state-hover-border);*/
+    border:1px solid var(--primary-hover);
+    /*color           : var(--ui-state-hover-color);*/
+    color:var(--primary-inverse);
     font-weight     : inherit; /*bold*/
     outline: none;
 } /* + outline */
@@ -113,11 +130,14 @@ a.ui-button:focus {
 a.ui-button:active,
 .ui-button:active,
 .ui-button.ui-state-active:hover {
-	background      : var(--ui-state-active-bg);
+	background      : var(--ui-state-active-bg);background: var(--primary-hover);
     border          : var(--ui-state-active-border);
-    border-radius   : var(--ui-state-active-radius);
-    color           : var(--ui-state-active-color);
-	font-weight     : var(--ui-state-active-font-weight, var(--ui-state-active-font ));
+    border:1px solid var(--primary-hover);
+    border-radius   : 0;
+    /*border:var(--border-radius);*/
+    /*color           : var(--ui-state-active-color);*/
+    color:var(--primary-inverse);
+	font-weight     : var(--font-weight );
 }
 
 /* Checkbox */
@@ -138,9 +158,9 @@ a.ui-button:active,
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
-    background      : var(--ui-state-highlight-bg);
-    border          : var(--ui-state-highlight-border);
-    color           : var(--ui-state-highlight-color);
+    background      : var(--primary-hover);
+    border          : 1px solid var(--primary-hover);
+    color           : var(--primary-inverse);
 }
 .ui-state-checked {
 	background      : var(--ui-state-checked-bg);
@@ -259,7 +279,7 @@ a.ui-button:active,
 /*Applies 100% width & height dimensions to an overlay screen, along with background color/texture, and screen opacity.*/
 .ui-widget-overlay {
 	background : var(--ui-widget-overlay-bg);
-	opacity    : var(--ui-widget-overlay-opacity); /* .8 */
+	opacity    : var(--ui-widget-overlay-op); /* .8 */
 }
 /*Class to be applied to overlay widget shadow elements. Sets box-shadow x & y offset, blur radius and color.*/
 .ui-widget-shadow {
@@ -421,12 +441,7 @@ TODO : https://api.jquery.com/first/
 	font-size: var(--input-font);
 }
 
-.ui-dialog {
 
-    background      : var(--ui-dialog-bg );
-    box-shadow      : var(--ui-dialog-shadow );
-
-}
 
 .ui-progressbar {
 	height          :  var(--ui-progressbar-height);
@@ -495,10 +510,10 @@ TODO : https://api.jquery.com/first/
  when the <a href="#option-collapsible"><code>collapsible</code> option</a> is set */
 .ui-tabs {
 	position        : relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
-    border          : var(--tabs-border) !important;
+    /*border          : var(--tabs-border) !important;*/ border: 1px solid var(--border-color);
     border-radius   : var(--tabs-radius);
     margin          : 0;
-    padding         : var(--tabs-padding);
+    padding         : var(--tabs-padding); padding:0.875rem;
     list-style      : none;
 }
 .ui-tabs .ui-tabs-nav {
@@ -527,7 +542,8 @@ TODO : https://api.jquery.com/first/
 	top: 0;
 	margin: var(--tabs-nav-li-margin);
 	border-bottom-width: 0;
-	padding: 0 !important; /* Override padding-bottom -1px */
+    /*padding: 0 !important;  Override padding-bottom -1px */
+    /*padding:var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);*/
 	white-space: nowrap;
 }
 
@@ -550,6 +566,7 @@ TODO : https://api.jquery.com/first/
     color                   : var(--tabs-anchor-color);
     float                   : left;
     padding                 : var(--tabs-anchor-padding); /*    : var(--space-2) var(--space-4);*/
+    padding:var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
     text-decoration         : none;
 }
 

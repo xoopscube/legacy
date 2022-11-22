@@ -1,7 +1,10 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
 <form method="get" action="<{$pageName}>">
-  <table class="outer">
+    <table class="outer">
     <tr>
-      <td class="even">
+        <td class="even">
         <{html_options name=com_mode options=$modeOptions selected=$com_mode}>
         <{html_options name=com_order options=$orderOptions selected=$com_order}>
         <input type="hidden" name="<{$itemName}>" value="<{$com_itemid}>">
@@ -9,7 +12,7 @@
         <{foreach key=key item=value from=$extraParams}>
           <{xoops_input type=hidden name=$key value=$value}>
         <{/foreach}>
-		<{if $postcomment_link}>
+        <{if $postcomment_link}>
           <input class="ui-button" type="button" onclick="self.location.href='<{$postcomment_link|xoops_escape:link}><{$link_extra|xoops_escape:link}>'" value="<{$smarty.const._CM_POSTCOMMENT}>">
         <{/if}>
     </td>

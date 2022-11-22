@@ -1,8 +1,9 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{if $mod_config.show_breadcrumbs}>
-    <ul class="breadcrumb" aria-label="breadcrumb">
+<nav aria-label="breadcrumb">
+    <ul>
         <li>
             <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
         <li>
@@ -15,53 +16,70 @@
         <{/if}>
         <li aria-current="page"><{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>
     </ul>
+</nav>
  <{/if}>
 
+<article id="post_reference" class="reference">
 
 <h2><{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}></h2>
 
-    <article id="post_reference" class="reference">
-        <blockquote>
-            <h3><{$reference_subject}></h3>
-            <p><{$smarty.const._MD_D3FORUM_BY}>: <{$reference_name}></p>
-            <p><{$smarty.const._MD_D3FORUM_ON}>: <{$reference_time_formatted}></p>
-            <div data-layout="row" name="post-message"><{$reference_message}></div>
-            <p><{$smarty.const._MD_D3FORUM_CHILDREN_COUNT}> <span class="badge"><{$children_count}></span> <{$smarty.const._MD_D3FORUM_PARENT_POSTID}> <span class="badge"><{$post.pid}></span></p>
-        </blockquote>
-    </article>
+    <blockquote>
+        <h4><{$reference_subject}></h4>
+        <p><{$smarty.const._MD_D3FORUM_BY}>: <{$reference_name}></p>
+        <p><{$smarty.const._MD_D3FORUM_ON}>: <{$reference_time_formatted}></p>
+        <div data-layout="row" name="post-message"><{$reference_message}></div>
 
+    </blockquote>
+
+    <fieldset>
+        <{$smarty.const._MD_D3FORUM_CHILDREN_COUNT}> <span class="badge"><{$children_count}></span>
+        <{$smarty.const._MD_D3FORUM_PARENT_POSTID}> <span class="badge"><{$post.pid}></span>
+    </fieldset>
+
+</article>
 
 <hr>
 
-
-<h3><img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg"> <{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTIDSBJ}></h3>
-
+<article>
+    <div class="headings">
+    <h2><img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg"> <{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTIDSBJ}></h2>
+        <p class="tips"><{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTIDDSC}></p>
+    </div>
 
 <form name="cutpastebypostid" id="cutpastebypostid" action="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post_id}>" method="post">
-	<div class="tips"><{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTIDDSC}></div>
-    <div data-self="size-x1">
-        <label for="pid"><{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTID_DEST}></label>
-	    <input type="text" name="pid" id="pid" size="12" maxlength="12" value="">
-        <button type="submit" class="ui-button" name="cutpastepostsok" id="cutpastepostsok" value="<{$smarty.const._SUBMIT}>"><{$smarty.const._SUBMIT}></button>
-    </div>
+
+    <label for="pid"><{$smarty.const._MD_D3FORUM_CUTPASTEBYPOSTID_DEST}>
+    <input type="text" name="pid" id="pid" size="12" maxlength="12" value="">
+    </label>
+
+    <button type="submit" class="primary" name="cutpastepostsok" id="cutpastepostsok" value="<{$smarty.const._SUBMIT}>"><{$smarty.const._SUBMIT}></button>
+
 </form>
 
+</article>
 
 <hr>
 
-
+<article>
+    <div class="headings">
 <{if $post.pid}>
-	<h3><img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg"> <{$smarty.const._MD_D3FORUM_CUTPASTETOPICDIVSBJ}></h3>
-	<div class="tips"><{$smarty.const._MD_D3FORUM_CUTPASTETOPICDIVDSC}></div>
+	<h2><img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg"> <{$smarty.const._MD_D3FORUM_CUTPASTETOPICDIVSBJ}></h2>
+	<p class="tips"><{$smarty.const._MD_D3FORUM_CUTPASTETOPICDIVDSC}></p>
 <{else}>
-	<h3><img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg"> <{$smarty.const._MD_D3FORUM_CUTPASTEBYFORUMIDSBJ}></h3>
-	<div class="tips"><{$smarty.const._MD_D3FORUM_CUTPASTEBYFORUMIDDSC}></div>
+	<h2><img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg"> <{$smarty.const._MD_D3FORUM_CUTPASTEBYFORUMIDSBJ}></h2>
+	<p class="tips"><{$smarty.const._MD_D3FORUM_CUTPASTEBYFORUMIDDSC}></p>
 <{/if}>
+    </div>
 
 <form name="cutpastebyforumid" id="cutpastebyforumid" action="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post_id}>" method="post">
-	<div data-layout="row center-left" data-self="size-x1">
-        <label for="forum_id"><{$smarty.const._MD_D3FORUM_CUTPASTEBYFORUMID_DEST}></label>
+
+    <label for="forum_id">
+        <{$smarty.const._MD_D3FORUM_CUTPASTEBYFORUMID_DEST}>
         <select name="forum_id" id="forum_id"><{$forum_jumpbox_options}></select>
-        <button type="submit" class="button" name="cutpastepostsok" id="cutpastepostsok" value="<{$smarty.const._SUBMIT}>"><{$smarty.const._SUBMIT}></button>
-    </div>
+    </label>
+
+    <button type="submit" class="button" name="cutpastepostsok" id="cutpastepostsok" value="<{$smarty.const._SUBMIT}>"><{$smarty.const._SUBMIT}></button>
+
 </form>
+
+</article>

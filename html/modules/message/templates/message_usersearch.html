@@ -1,14 +1,16 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<ul class="breadcrumb" aria-label="breadcrumb">
+<!--<nav role="breadcrumb">-->
+<nav aria-label="breadcrumb">
+<ul>
     <li><a href="<{$xoops_url}>/">
-        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a></li>
     <li><a href="index.php">
-    <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <{$smarty.const._MI_MESSAGE_NAME}></a>
-    <li aria-current="page"><{$smarty.const._MD_USERSEARCH_1}>
+        <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <{$smarty.const._MI_MESSAGE_NAME}></a></li>
+    <li aria-current="page"><{$smarty.const._MD_USERSEARCH_1}></li>
 </ul>
-
+</nav>
 
 <div class=" mt-sm-5" style="padding: 5px;">
   <fieldset>

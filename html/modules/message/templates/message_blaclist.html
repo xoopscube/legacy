@@ -1,15 +1,16 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<ul class="breadcrumb" aria-label="breadcrumb">
-    <li>
-        <a href="<{$xoops_url}>/">
-            <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="Home"></a>
-    </li>
+<!--<nav role="breadcrumb">-->
+<nav aria-label="breadcrumb">
+<ul>
+    <li><a href="<{$xoops_url}>/">
+            <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="Home"></a></li>
     <li><a href="index.php">
-        <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <{$smarty.const._MI_MESSAGE_NAME}></a>
-    <li aria-current="page"><{$smarty.const._MD_MESSAGE_SETTINGS_MSG15}>
+        <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <{$smarty.const._MI_MESSAGE_NAME}></a></li>
+    <li aria-current="page"><{$smarty.const._MD_MESSAGE_SETTINGS_MSG15}></li>
 </ul>
+</nav>
 
 
 <div id="tabs-mail">
@@ -23,28 +24,25 @@
 
     <hr>
 
-        <div data-layout="column px-6">
-
-        <form action="index.php?action=blacklist" method="post" name="adduser">
-
+        <{* ------- Grid 2 columns *}>
+        <form action="index.php?action=blacklist" method="post" name="adduser" class="grid-2">
             <input type="hidden" name="cmd" value="add">
-
-            <div data-layout="row centered sm-column p-6">
-                <label for="uname"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></label>
-                <input type="text" class="form-control form-control-sm ml-2" id="uname" name="uname" value="" placeholder="uname">
-
-            <button type="submit" class="ui-button">
-                <img class="svg shield" src="<{$xoops_url}>/images/icons/shield.svg"> <{$smarty.const._MD_MESSAGE_ADDBLACKLIST}>
-            </button>
-
+            <div>
+                <label for="uname"><{$smarty.const._MD_MESSAGE_TEMPLATE2}>
+                    <input type="text" class="form-control form-control-sm ml-2" id="uname" name="uname" value="" placeholder="uname">
+                </label>
+            </div>
+            <div>
+                <label><{$smarty.const._MD_MESSAGE_SETTINGS_MSG15}></label>
+                <button type="submit" role="button" class="outline secondary warning">
+                    <img class="svg shield" src="<{$xoops_url}>/images/icons/shield.svg"> <{$smarty.const._MD_MESSAGE_ADDBLACKLIST}>
+                </button>
             </div>
         </form>
 
-        </div>
-
+        <hr>
 
         <form action="index.php?action=blacklist" method="post" name="listform">
-
             <input type="hidden" name="cmd" value="del">
 
             <table class="outer">
@@ -54,7 +52,7 @@
                     <th><{$smarty.const._MD_MESSAGE_TEMPLATE2}></th>
                 </tr>
                 </thead>
-
+                <tbody>
                 <{foreach item=uname key=uid from=$blackuser}>
                 <tr>
                     <td class="odd">
@@ -65,21 +63,21 @@
                     </td>
                     <td class="even">
                         <div data-layout="row centered">
-                            <img src="<{$uid|xoops_user_avatarize}>" width="24px" data-self="radius-circle mr-4"> <{$uname}>
+                            <img src="<{$uid|xoops_user_avatarize}>" width="24px" data-self="radius-circle"> <{$uname}>
                         </div>
                     </td>
                 </tr>
                 <{/foreach}>
-
+                </tbody>
             </table>
 
-        <hr>
-
-            <div data-layout="row centered pb-6">
-            <button id=Submit class="ui-button">
-                <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg"> <{$smarty.const._SUBMIT}></button>
-            </div>
-
+            <footer class="action-control">
+                <div>
+                    <button id=Submit role="button" class="primary">
+                        <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg"> <{$smarty.const._SUBMIT}>
+                    </button>
+                </div>
+            </footer>
 
         </form>
 

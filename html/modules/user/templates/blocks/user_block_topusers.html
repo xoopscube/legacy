@@ -1,17 +1,17 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <table class="block-top-users">
-  <{foreach item=user from=$block.users}>
-  <tr class="<{cycle values="even,odd"}>" valign="middle">
+    <{foreach item=user from=$block.users}>
+    <tr>
     <td width="25%"><{$user.rank}></td>
-    <td align="center">
-      <{if $user.avatar != ""}>
-      <img src="<{$user.avatar}>" alt="" width="32" data-self="radius-circle"/><br>
-      <{/if}>
-      <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>"><{$user.name}></a>
+    <td>
+        <{if $user.avatar != ""}>
+        <img src="<{$user.avatar}>" alt="" width="32" data-self="radius-circle"/><br>
+        <{/if}>
+        <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>"><{$user.name}></a>
     </td>
     <td align="center"><span class="badge"><{$user.posts}></span></td>
-  </tr>
-  <{/foreach}>
+    </tr>
+    <{/foreach}>
 </table>

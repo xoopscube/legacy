@@ -1,21 +1,26 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<ul class="breadcrumb" aria-label="breadcrumb">
+<nav aria-label="breadcrumb">
+    <ul>
   <li><a href="<{$xoops_url}>/">
       <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
   <li><a href="<{$xoops_url}>/user.php"><{$smarty.const._MD_USER_LANG_PROFILE}></a>
   <li aria-current="page"><{$smarty.const._MD_USER_LANG_LOSTPASSWORD}>
-</ul>
+    </ul>
+</nav>
 
-<hr>
+<form action="#" method="post">
+    <{xoops_token form=$actionForm}>
 
-<section data-layout="column" class="lost-password">
+<article class="lost-password">
 
+    <header>
     <h2><{$smarty.const._MD_USER_LANG_LOSTPASSWORD}></h2>
+    </header>
 
     <{if $actionForm->hasError()}>
-    <div class="errorMsg msg-callout msg-warning">
+    <div class="alert error">
       <ul>
         <{foreach item=message from=$actionForm->getErrorMessages()}>
           <li><{$message}></li>
@@ -25,22 +30,24 @@
     <{/if}>
 
 
-    <form action="#" method="post">
-    <{xoops_token form=$actionForm}>
 
-        <div class="errorMsg msg-callout msg-warning">
+
+        <div class="alert error">
             <{$smarty.const._MD_USER_LANG_NOPROBLEM}>
         </div>
 
-        <div data-layout="column centered">
+        <label>
             <{$smarty.const._MD_USER_LANG_EMAIL}>
-            <br>
+
             <{xoops_input name=email value=$actionForm->get('email') size=34 maxlength=60}>
-            <br>
-            <input type="submit" class="ui-button" value="<{$smarty.const._SEND}>">
-        </div>
+        </label>
 
-    </form>
+    <footer>
+    <input type="submit" role="button" class="primary" value="<{$smarty.const._SEND}>">
+    </footer>
 
-</section>
 
+
+</article>
+
+</form>

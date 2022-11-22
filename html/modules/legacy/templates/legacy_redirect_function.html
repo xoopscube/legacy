@@ -1,8 +1,9 @@
 <!DOCTYPE html>
+<html lang="<?php echo _CHARSET; ?>">
 <head>
 <title><?php echo htmlspecialchars($xoopsConfig['sitename']); ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo _CHARSET; ?>">
-<meta http-equiv="Refresh" content="<?php echo $time; ?>; url='<?php echo $url; ?>'" />
+<meta http-equiv="Refresh" content="<?php echo $time; ?>; url='<?php echo $url; ?>'">
 <link rel="stylesheet" href="<?php echo XOOPS_URL.'/modules/legacy/admin/theme/style.css'; ?>">
 <style>
     body {
@@ -161,13 +162,14 @@
 </head>
 <body>
 <div class="wrapper-redirect">
-<div class="cube-loading"><i class="vcenter">Loading</i>
-<div class="cube-line1"></div>
-<div class="cube-line2"></div>
-<div class="cube-line3"></div>
-<div class="cube-line4"></div>
-</div>
-<h3>Theme<h3>
+    <div class="cube-loading">
+        <i class="vcenter">Loading</i>
+    <div class="cube-line1"></div>
+    <div class="cube-line2"></div>
+    <div class="cube-line3"></div>
+    <div class="cube-line4"></div>
+    </div>
+<h3>Theme</h3>
 <h4><?php echo $message; ?></h4>
 <p><?php echo sprintf(_IFNOTRELOAD, $url); ?></p>
 </div>

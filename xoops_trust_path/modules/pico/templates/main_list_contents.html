@@ -1,180 +1,100 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
 
 
-<{* ------- Top Message - Module's preferences *}>
+<{* ------- Module Top Message - Edit Module's preferences *}>
 <{if $category.id == 0 && $mod_config.top_message != null}>
-    <div data-layout="row p-2">
-        <{$mod_config.top_message}>
-    </div>
-
-    <hr>
+<article>
+    <{$mod_config.top_message}>
+</article>
 <{/if}>
 
 
-    <{* ------- Category Top *}>
-    <section data-layout="column sm-first" id="<{$mydirname}>_container" class="category-top">
+<{* ------- Category Top *}>
+<article id="<{$mydirname}>_container" class="category-top">
 
-        <div data-layout="row center-justify">
-            <h3>
-                <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="category">
-                <{$category.title}>
-            </h3>
+    <header>
+        <div class="headings">
+            <h2>
+                <span>
+                    <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="category">
+                    <{$category.title}>
+                </span>
 
-            <{* ------- Admin Control *}>
-            <{if $category.isadminormod}>
-            <div>
+                <{if $mod_config.show_rss}>
+                <a href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">
+                    <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" height="1em" alt="rss">
+                </a>
+                <{/if}>
+            </h2>
+            <{* ------- Activity Overview - Top Category *}>
+            <small class="activity">
 
-                <div class="dropdown">
+                <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="folder">
+                <span data-self="sm-hide"><{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}></span> <span class="badge"><{$category.redundants.subcategories_total}></span>
 
-                    <a href="#" class="dropdown-toggle ui-button" aria-label="<{$smarty.const._MD_PICO_LINK_EDITCATEGORY}>">
-<!--                        <img class="svg" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="1em" alt="<{$smarty.const._MD_PICO_LINK_EDITCATEGORY}>">-->
-                        <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1.25em" height="1.25em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
-                            <path d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2z" fill="currentColor"/>
-                        </svg>
-                    </a>
+                <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file">
+                <span data-self="sm-hide"><{$smarty.const._MD_PICO_CONTENTS_TOTAL}></span>
+                <span class="badge"><{$category.redundants.contents_total}></span>
 
-                    <div class="dropdown-content">
-
-                        <{if $category.isadminormod}>
-                        <a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>">
-                            <img class="svg folder-edit" src="<{$xoops_url}>/images/icons/folder-edit.svg" width="1em" height="1em" alt="edit">
-                            <{$smarty.const._MD_PICO_LINK_EDITCATEGORY}>
-                        </a>
-                        <{/if}>
-
-                        <{if $xoops_isadmin}>
-                        <a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>">
-                            <img class="svg folder-lock" src="<{$xoops_url}>/images/icons/folder-lock.svg" width="1em" height="1em" alt="permissions">
-                            <{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>
-                        </a>
-                        <{/if}>
-
-
-                        <{if $xoops_isadmin}>
-                        <a href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>">
-                            <img class="svg file-move" src="<{$xoops_url}>/images/icons/file-move.svg" width="1em" height="1em" alt="batch">
-                            <{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>
-                        </a>
-                        <{/if}>
-                    </div>
-                </div>
-
-            </div>
-            <{/if}>
+            </small>
+            <{* ------- /Activity Overview *}>
         </div>
 
-        <div data-layout="row my-2" class="description">
+        <div class="description">
             <{$category.desc}>
         </div>
 
-        <{* ------- Activity Overview - Top Category *}>
-        <div data-layout="row center-justify" class="activity">
-
-            <div data-self="left">
-                <{$smarty.const._MD_PICO_CONTENTS_TOTAL}> <span class="badge"><{$category.redundants.contents_total}></span>
-                <{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}> <span class="badge"><{$category.redundants.subcategories_total}></span>
-            </div>
-
-            <a data-self="ml-2" href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">
-                <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" height="1em" alt="rss">
-            </a>
-
-        </div>
-        <{* ------- /Activity Overview *}>
-
-
-        <{* ---------------------------
-<!--        <div data-layout="row sm-column">
-
-
-            <div data-self="right inline sm-full">
-            <{if $category.isadminormod}>
-                <a class="ui-button" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>">
-                    <img class="svg cat-edit" src="<{$xoops_url}>/images/icons/folder-edit.svg" width="1em" height="1em" alt="category edit">
-                    <{$smarty.const._MD_PICO_LINK_EDITCATEGORY}>
-                </a>
-            <{/if}>
-
-            <{if $xoops_isadmin}>
-            <a class="ui-button" href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>">
-                <img class="svg cat-lock" src="<{$xoops_url}>/images/icons/folder-lock.svg" width="1em" height="1em" alt="category permissions">
-                <{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>
-            </a>
-            <{/if}>
-
-            <{if $xoops_isadmin}>
-            <a class="ui-button" href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>">
-                <img class="svg cat-batch" src="<{$xoops_url}>/images/icons/file-move.svg" width="1em" height="1em" alt="batch manage">
-                <{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>
-            </a>
-            <{/if}>
-            </div>
-
-        </div>-->
-        --------------------------- *}>
-
-    </section>
-
-
-
-    <{* ----- Action controllers - Content ----- *}>
-    <section data-layout="row center-right" class="action-control">
-        <{if $category.can_makesubcategory}>
-        <a class="ui-button" href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>">
-            <img class="svg cat-new" src="<{$xoops_url}>/images/icons/folder-plus.svg" width="1em" height="1em" alt="new category">
-            <{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a>
-        <{/if}>
-        <{if $category.can_post}>
-        <a class="ui-button" href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mc<{$category.id}>">
-            <img class="svg new-topic" src="<{$xoops_url}>/images/icons/file-new.svg" width="1em" height="1em" alt="new topic">
-            <{$smarty.const._MD_PICO_LINK_MAKECONTENT}></a>
-        <{/if}>
-    </section>
-    <{* ----- /Action controllers - Content ----- *}>
-
+    </header>
 
 
     <{* ----- List Top Categories ----- *}>
 
     <{* ----- Subcategories ----- *}>
-
     <{if $subcategories}>
     <{foreach from=$subcategories item="subcategory"}>
-
-    <section data-layout="column" class="category">
-
-        <div data-layout="rows center-justify">
-            <h3>
-                <a href="<{$mod_url}>/<{$subcategory.link}>">
+    <div class="list-content">
+    <div class="headings">
+        <h3>
+            <a href="<{$mod_url}>/<{$subcategory.link}>">
                 <img class="svg category" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="category">
                 <{$subcategory.title}>
             </a>
-            </h3>
+
+            <{if $mod_config.show_rss}>
             <a href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">
                 <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" height="1em" alt="rss">
             </a>
-        </div>
-
-        <div data-layout="row">
-            <{$subcategory.desc}>
-        </div>
+            <{/if}>
+        </h3>
 
         <{* ----- Activity Overview - Subcategories ----- *}>
-        <{if $category.isadminormod}>
-        <div data-layout="row center-justify sm-column" class="activity">
-            <div data-self="left sm-full">
-                <{$smarty.const._MD_PICO_CONTENTS_TOTAL}> <span class="badge"><{$subcategory.redundants.contents_total}></span>
-                <{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}> <span class="badge"><{$subcategory.redundants.subcategories_total > 0}></span>
-            </div>
-        </div>
-        <{/if}>
+
+        <{* ----- if $category.isadminormod *}> <{* REMOVE SMARTY COMMENT TO MAKE ACTIVITY PRIVATE *}>
+        <p>
+            <span  data-tooltip="<{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}>">
+            <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="folder">
+            <{* ----- <span data-self="sm-hide"><{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}></span> ----- *}>
+            <span class="badge"><{$subcategory.redundants.subcategories_total > 0}></span>
+            </span>
+
+            <span data-tooltip="<{$smarty.const._MD_PICO_CONTENTS_TOTAL}>">
+            <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file">
+            <{* ----- <span data-self="sm-hide"><{$smarty.const._MD_PICO_CONTENTS_TOTAL}></span> ----- *}>
+            <span class="badge"><{$subcategory.redundants.contents_total}></span>
+            </span>
+        </p>
+        <{* ----- /if *}> <{* REMOVE SMARTY COMMENT TO MAKE ACTIVITY PRIVATE *}>
         <{* ----- /Activity Overview - Subcategories ----- *}>
+    </div>
 
-    </section>
+    <div class="description">
+        <{$subcategory.desc}>
+    </div>
 
+    </div>
     <{/foreach}>
     <{/if}>
     <{* ----- /Subcategories ----- *}>
@@ -182,37 +102,93 @@
 
     <{* ----- Content ----- *}>
     <{if $contents}>
-    <section data-layout="column" class="list-content">
 
-        <{foreach from=$contents item="content"}>
-
-        <div data-layout="center py-4">
-            <a data-self="size-auto ml-4" href="<{$mod_url}>/<{$content.link}>">
-                <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file">
-                <{if $content.public}>
-                        <{$content.subject}>
-                    <{elseif $category.isadminormod}>
-                        <em class="pico_notice badge badge-warning"><{$content.subject}></em>
-                    <{if ! $content.approval}>
-                        <em class="pico_notice badge badge-warning"><{$content.poster_uname}> <{$content.created_time_formatted}> </em>
-                    <{/if}>
+    <{foreach from=$contents item="content"}>
+    <div class="list-content">
+    <h4>
+        <a href="<{$mod_url}>/<{$content.link}>">
+            <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file">
+            <{if $content.public}>
+            <{$content.subject}>
+            <{elseif $category.isadminormod}>
+                <{if !$content.visible}>
+                <strong class="badge warning">
+                    <img class="svg view-hide" src="<{$xoops_url}>/images/icons/view-hide.svg" width="1em" height="1em" alt="invisible">
+                    <{$smarty.const._MD_PICO_INVISIBLE}>
+                </strong>
                 <{/if}>
-            </a>
-
-            <{if $category.can_edit}>
-                <a class="mr-4" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=mc<{$category.id}>" aria-label="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>">
-                    <img class="svg cat-edit" src="<{$xoops_url}>/images/icons/file-edit.svg" width="1em" height="1em" alt="cat-edit"> </a>
+                <em class="pico_notice badge warning"><{$content.subject}></em>
+                <{if !$content.approval}>
+                <em class="pico_notice badge warning"><{$content.poster_uname}> <{$content.created_time_formatted}> </em>
+                <{/if}>
             <{/if}>
+        </a>
+        <{if $category.can_edit}>
+        <a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=mc<{$category.id}>" data-tooltip="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>">
+            <img class="svg edit" src="<{$xoops_url}>/images/icons/file-edit.svg" width="1em" height="1em" alt="edit">
+        </a>
+        <{/if}>
+    </h4>
         </div>
+    <{/foreach}>
 
-        <{/foreach}>
-
-    </section>
     <{/if}>
     <{* ----- /Content ----- *}>
 
-<hr>
+    <{if $xoops_isuser}>
+    <footer>
+
+        <div class="grid-2">
+
+            <{if $category.can_post}>
+            <a role="button" class="primary new" href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mc<{$category.id}>">
+                <img class="svg new-topic" src="<{$xoops_url}>/images/icons/file-new.svg" width="1em" height="1em" alt="new topic">
+                <{$smarty.const._MD_PICO_LINK_MAKECONTENT}></a>
+            <{/if}>
+
+            <{* ----- Action controllers - Content ----- *}>
+            <div>
+                <details role="list">
+                <summary aria-haspopup="listbox" role="button" class="outline primary">
+                    Action
+                </summary>
+                <ul role="listbox">
+
+                    <{if $category.can_makesubcategory}>
+                    <li><a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>">
+                        <img class="svg cat-new" src="<{$xoops_url}>/images/icons/folder-plus.svg" width="1em" height="1em" alt="new category">
+                        <{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a></li>
+                    <{/if}>
+
+                    <{if $category.isadminormod}>
+                    <li><a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>">
+                        <img class="svg folder-edit" src="<{$xoops_url}>/images/icons/folder-edit.svg" width="1em" height="1em" alt="edit">
+                        <{$smarty.const._MD_PICO_LINK_EDITCATEGORY}></a></li>
+                    <{/if}>
+
+                    <{if $xoops_isadmin}>
+                    <li><a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>">
+                        <img class="svg folder-lock" src="<{$xoops_url}>/images/icons/folder-lock.svg" width="1em" height="1em" alt="permissions">
+                        <{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}></a></li>
+
+                    <li><a href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>">
+                        <img class="svg file-move" src="<{$xoops_url}>/images/icons/file-move.svg" width="1em" height="1em" alt="batch">
+                        <{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}></a></li>
+                    <{/if}>
+
+                </ul>
+            </details>
+            </div>
+
+        </div>
+        <{* ----- /Action controllers - Content ----- *}>
+
+    </footer>
+    <{/if}>
+
+</article>
 
 <{* ----- NOTIFICATION ----- *}>
-
+<{if $xoops_isuser}>
 <{include file='db:system_notification_select.html'}>
+<{/if}>

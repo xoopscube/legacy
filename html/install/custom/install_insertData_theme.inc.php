@@ -19,7 +19,7 @@ foreach ( $_POST as $key => $value ) {
 	}
 }
 if ( empty( $available_themes ) ) {
-	$available_themes = [ 'xcl_default', 'xcl-bootstrap' ]; // !Todo Theme boilerplate
+	$available_themes = [ 'xcl_default' ]; // !Todo Theme boilerplate, , 'xcl-darkmode'
 }
 
 $default_theme = 'xcl_default';

@@ -29,7 +29,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     // configurations
     define( $constpref . '_USE_WRAPSMODE', 'Enable wraps mode. All content should be wrapped in a div' );
     define( $constpref . '_ERR_DOCUMENT_404', 'Custom page for error : 404 Not Found ' );
-    define( $constpref . '_ERR_DOCUMENT_404DSC', 'Example: <b>xoops_root_path/404.html</b> redirects to public root path <b>' . XOOPS_ROOT_PATH . '/404.html</b> and<br> <b>xoops_trust_path/404.html</b> redirects to trust patht <b>' . XOOPS_TRUST_PATH . '/404.html</b>' );
+    define( $constpref . '_ERR_DOCUMENT_404DSC', 'Example: <b>xoops_root_path/404.html</b> redirects to public root path <b>' . XOOPS_ROOT_PATH . '/404.html</b> and<br> <b>xoops_trust_path/404.html</b> redirects to trust path <b>' . XOOPS_TRUST_PATH . '/404.html</b>' );
     define( $constpref . '_USE_REWRITE', 'Enable mod_rewrite' );
     define( $constpref . '_USE_REWRITEDSC', 'Rename .htaccess.rewrite_wraps (with wraps) or htaccess.rewrite_normal (without wraps) to .htaccess under XOOPS_ROOT_PATH/modules/(dirname)/' );
     define( $constpref . '_WRAPSAUTOREGIST', 'Enable auto-registering HTML wrapped files into DB as contents' );
@@ -37,9 +37,10 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_TOP_MESSAGE', 'Description of TOP category' );
     define( $constpref . '_TOP_MESSAGEDEFAULT', '' );
     define( $constpref . '_MENUINMODULETOP', 'Display menu (index) in the top of this module' );
-    define( $constpref . '_LISTASINDEX', "Display contents index in category's top" );
+    define( $constpref . '_LISTASINDEX', "Display table of contents (TOC) or custom page" );
     define( $constpref . '_LISTASINDEXDSC', 'YES - a table of contents (TOC) is auto-generated and displayed on the main page.<br> NO - the content with the highest priority (order, weight) is displayed instead of TOC.' );
     define( $constpref . '_SHOW_BREADCRUMBS', 'Display the breadcrumbs' );
+    define( $constpref . '_SHOW_RSS', 'Display link RSS' );
     define( $constpref . '_SHOW_PAGENAVI', 'Display the page navigation' );
     define( $constpref . '_SHOW_PRINTICON', 'Display the printer friendly icon' );
     define( $constpref . '_SHOW_TELLAFRIEND', 'Display tell a friend icon' );

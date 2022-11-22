@@ -1,21 +1,27 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-    <ul class="breadcrumb" aria-label="breadcrumb">
+<nav aria-label="breadcrumb">
+    <ul>
         <li><a href="<{$xoops_url}>/">
             <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
         <li><a href="<{$xoops_url}>/user.php"><{$smarty.const._MD_USER_LANG_PROFILE}></a>
         <li aria-current="page"><{$smarty.const._MD_USER_LANG_USERREG}>
     </ul>
+</nav>
 
 
+<form action="#" method="post" autocomplete="off">
+    <{xoops_token form=$actionForm}>
 
-<section data-layout="column" class="user-register">
+<article class="user-register">
 
+    <header>
     <h2><{$smarty.const._MD_USER_LANG_USERREG}></h2>
+    </header>
 
     <{if $actionForm->hasError()}><{foreach item=message from=$actionForm->getErrorMessages()}>
-    <div class="errorMsg msg-callout msg-warning">
+    <div class="alert error">
 <!--        <ul><li>-->
                 <{$message}>
 <!--        </li></ul>-->
@@ -23,69 +29,71 @@
     <{/if}>
 
 
-    <form action="#" method="post" autocomplete="off">
-    <{xoops_token form=$actionForm}>
+
 
     <{* Larger screen with margin and small screen margin-auto *}>
 <!--    <div data-layout="row center-center mx-auto" data-self="size-smaller sm-mx-0">-->
 
-        <div data-layout="column" data-self="sm-mx-auto">
 
-            <div data-self="my-2">
-                <label for="uname"><{$smarty.const._MD_USER_LANG_NICKNAME}></label><br>
+            <label for="uname">
+                <{$smarty.const._MD_USER_LANG_NICKNAME}>
                 <{* xoops_input size=30 maxlength=25 name=uname value=$actionForm->get('uname') autocomplete="username" *}>
-                <input type="text" size="30" maxlength="25" name="uname" value="<{$actionForm->get('uname')}>" autocomplete="username">
-            </div>
+                <input type="text" size="30" maxlength="25" id="uname" name="uname" value="<{$actionForm->get('uname')}>" autocomplete="username">
+            </label>
 
-            <div data-self="my-2">
-                <label for="email"><{$smarty.const._MD_USER_LANG_EMAIL}></label><br>
-                <{* xoops_input name=email size=30 maxlength=60 value=$actionForm->get('email') *}>
+            <fieldset>
+            <label for="email">
+                <{$smarty.const._MD_USER_LANG_EMAIL}>
+                <{* xoops_input id="email" name=email size=30 maxlength=60 value=$actionForm->get('email') *}>
                 <input type="email" name="email" size="30" maxlength="60" value="<{$actionForm->get('email')}>"
                        autocomplete="email"
-                       pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$"><br>
-                <label><{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}> <{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></label>
-            </div>
+                       pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$">
+            </label>
 
-            <div data-self="my-2">
-                <label for="url"><{$smarty.const._MD_USER_LANG_WEBSITE}></label><br>
+            <label><{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}> <{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></label>
+            </fieldset>
+
+            <label for="url"><{$smarty.const._MD_USER_LANG_WEBSITE}>
                 <{* xoops_input name=url size=30 maxlength=100 value=$actionForm->get('url') *}>
                 <input type="text" name="url" size="30" maxlength="100" value="<{$actionForm->get('url')}>"
                        autocomplete="url"
                        placeholder="https://example.com"
                        pattern="^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?">
-            </div>
+            </label>
 
-            <div data-self="my-2">
-                <label for="timezone_offset"><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}></label><br>
+            <label for="timezone_offset"><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}>
                 <select name="timezone_offset">
                     <{xoops_optionsArray id=timezone_offset label=zone_name value=offset from=$timezones default=$actionForm->get('timezone_offset')}>
                 </select>
-            </div>
+            </label>
 
-            <div data-self="my-2">
-                <label for="pass"><{$smarty.const._MD_USER_LANG_PASSWORD}></label><br>
+            <label for="pass"><{$smarty.const._MD_USER_LANG_PASSWORD}>
                 <{* xoops_input type=password name=pass value=$actionForm->get('pass') size=15 maxlength=32 autocomplete="new-password" *}>
                 <input type="password" name="pass" value="<{$actionForm->get('pass')}>" size="15" maxlength="32" autocomplete="new-password">
-            </div>
+            </label>
 
-            <div data-self="my-2">
-                <label><{$smarty.const._MD_USER_LANG_VERIFYPASS}></label><br>
+
+            <label for="vpass">
+                <{$smarty.const._MD_USER_LANG_VERIFYPASS}>
                 <{* xoops_input type=password name=vpass value=$actionForm->get('vpass') size=15 maxlength=32 *}>
-                <input type="password" name="vpass" value="<{$actionForm->get('vpass')}>" size="15" maxlength="32" autocomplete="new-password">
-            </div>
+                <input type="password" id="vpass" name="vpass" value="<{$actionForm->get('vpass')}>" size="15" maxlength="32" autocomplete="new-password">
+            </label>
 
-            <div data-self="my-2">
-                <{$smarty.const._MD_USER_LANG_USER_MAILOK}><br>
-                <label><{xoops_input type=radio name=user_mailok value=1 default=$actionForm->get('user_mailok')}><{$smarty.const._YES}></label>
-                <label><{xoops_input type=radio name=user_mailok value=0 default=$actionForm->get('user_mailok')}><{$smarty.const._NO}></label>
-            </div>
+            <fieldset>
+                <legend><{$smarty.const._MD_USER_LANG_USER_MAILOK}></legend>
+                <label for="yes"><{xoops_input type=radio id="yes" name=user_mailok value=1 default=$actionForm->get('user_mailok')}><{$smarty.const._YES}></label>
+                <label for="no"><{xoops_input type=radio id="no" name=user_mailok value=0 default=$actionForm->get('user_mailok')}><{$smarty.const._NO}></label>
+            </fieldset>
 
             <{if $enableAgree}>
-            <div data-self="left my-2">
-                <labal for="disclaimer"><{$smarty.const._MD_USER_LANG_DISCLAIMER}></label><br>
-                    <{xoops_textarea name=disclaimer rows=8 cols=50 readonly=true value=$disclaimer}><br>
-                    <label><{xoops_input type=checkbox name=agree value=1 default=$actionForm->get('agree')}> <{$smarty.const._MD_USER_MESSAGE_IAGREE}></label>
-            </div>
+                <label for="disclaimer">
+                    <{$smarty.const._MD_USER_LANG_DISCLAIMER}>
+                    <{xoops_textarea name="disclaimer" rows=8 cols=50 readonly=true value=$disclaimer}>
+                </label>
+                <label for="agree">
+                    <{xoops_input type=checkbox id="agree" name=agree value=1 default=$actionForm->get('agree')}>
+                    <{$smarty.const._MD_USER_MESSAGE_IAGREE}>
+                </label>
             <{/if}>
 
             <{if $validators}>
@@ -97,14 +105,10 @@
                 <{/foreach}>
             <{/if}>
 
-            <div data-self="my-2">
-                <input type="submit" class="ui-button" value="<{$smarty.const._MD_USER_LANG_SUBMIT}>">
-            </div>
+        <footer>
+            <input type="submit" role="button" class="primary" value="<{$smarty.const._MD_USER_LANG_SUBMIT}>">
+        </footer>
 
-            <{* </div>rows *}>
-
-    </div><{* column *}>
+</article>
 
 </form>
-
-</section>

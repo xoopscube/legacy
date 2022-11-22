@@ -1,9 +1,9 @@
+<small data-tooltip="<{$smarty.const._MD_D3FORUM_MODERATOR}>" class="secondary">
+    <img class="svg moderator" src="<{$xoops_url}>/images/icons/avatar.svg" alt="moderator">
 <{foreach from=$target.moderate_groups item=moderator}>
-<span aria-label="<{$smarty.const._MD_D3FORUM_MODERATOR}> : <{$moderator.gname}>">
-	<img class="svg moderator" src="<{$xoops_url}>/images/icons/avatar.svg" alt="">
-</span>
+	 <{$moderator.gname}>
 <{/foreach}>
 <{foreach from=$target.moderate_users item=moderator}>
-	<a href="<{$xoops_url}>/userinfo.php?uid=<{$moderator.uid}>"><{$moderator.uname}></a>
+	<a href="<{$xoops_url}>/userinfo.php?uid=<{$moderator.uid}>" class="secondary"><{$moderator.uname}></a>
 <{/foreach}>
-
+</small>

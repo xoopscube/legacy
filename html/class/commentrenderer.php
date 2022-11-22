@@ -47,10 +47,10 @@ class XoopsCommentRenderer
      *
      * @param object $tpl reference to a {@link Smarty} object
      * @param bool   $use_icons
-     * @param bool   $do_iconcheck
+     * @param bool   $do_iconcheck default  = false
      * @return \XoopsCommentRenderer
      */
-    public function &instance(&$tpl, $use_icons = true, $do_iconcheck = false)
+    public function &instance(object &$tpl, bool $use_icons = true, bool $do_iconcheck)
     {
         static $instance;
         if (!isset($instance)) {
@@ -62,9 +62,9 @@ class XoopsCommentRenderer
     /**
      * Accessor
      *
-     * @param   object  &$comments_arr  array of {@link XoopsComment} objects
+     * @param object  &$comments_arr array of {@link XoopsComment} objects
      **/
-    public function setComments(&$comments_arr)
+    public function setComments(object &$comments_arr)
     {
         if (isset($this->_comments)) {
             unset($this->_comments);
@@ -75,9 +75,9 @@ class XoopsCommentRenderer
     /**
      * Render the comments in flat view
      *
-     * @param bool $admin_view
+     * @param bool $admin_view default=false
      **/
-    public function renderFlatView($admin_view = false)
+    public function renderFlatView(bool $admin_view)
     {
         foreach ($this->_comments as $iValue) {
             if (false !== $this->_useIcons) {
@@ -115,10 +115,10 @@ class XoopsCommentRenderer
      * This method calls itself recursively
      *
      * @param int  $comment_id Should be "0" when called by client
-     * @param bool $admin_view
+     * @param bool $admin_view default = false
      * @param bool $show_nav
      **/
-    public function renderThreadView($comment_id = 0, $admin_view = false, $show_nav = true)
+    public function renderThreadView(int $comment_id = 0, bool $admin_view, bool $show_nav = true)
     {
         include_once XOOPS_ROOT_PATH.'/class/tree.php';
         // construct comment tree
@@ -187,7 +187,7 @@ class XoopsCommentRenderer
      *
      * @access  private
      **/
-    public function _renderThreadReplies(&$thread, $key, &$replies, $prefix, $admin_view, $depth = 0, $current_prefix = '')
+    public function _renderThreadReplies(array &$thread, int $key, array &$replies, string $prefix, bool $admin_view, int $depth = 0, string $current_prefix = '')
     {
         if ($depth > 0) {
             if (false !== $this->_useIcons) {
@@ -230,9 +230,9 @@ class XoopsCommentRenderer
      * Danger: Recursive!
      *
      * @param int  $comment_id Always "0" when called by client.
-     * @param bool $admin_view
+     * @param bool $admin_view default = false
      **/
-    public function renderNestView($comment_id = 0, $admin_view = false)
+    public function renderNestView(int $comment_id = 0, bool $admin_view)
     {
         include_once XOOPS_ROOT_PATH.'/class/tree.php';
         $xot = new XoopsObjectTree($this->_comments, 'com_id', 'com_pid', 'com_rootid');
@@ -282,12 +282,12 @@ class XoopsCommentRenderer
      * @param int    $key
      * @param array  $replies
      * @param string $prefix
-     * @param bool   $admin_view
+     * @param bool   $admin_view default =" false
      * @param int    $depth
      *
      * @access  private
      **/
-    public function _renderNestReplies(&$thread, $key, &$replies, $prefix, $admin_view, $depth = 0)
+    public function _renderNestReplies(array &$thread, int $key, array &$replies, string $prefix, bool $admin_view, int $depth = 0)
     {
         if ($depth > 0) {
             if (false !== $this->_useIcons) {
@@ -342,6 +342,7 @@ class XoopsCommentRenderer
      *
      * @access  private
      **/
+
     public function _getPosterName($poster_id)
     {
         $poster['id'] = (int)$poster_id;

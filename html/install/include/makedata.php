@@ -35,16 +35,16 @@ function make_data( &$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, 
 
 	// data for table 'banner'
 
-	$dbm->insert( 'banner', " (bid, cid, imptotal, impmade, clicks, imageurl, clickurl, date, htmlcode) VALUES (1, 1, 0, 1, 0, '" . XOOPS_URL . "/images/banners/banner.png', 'https://xoopscube.org/', 1008813250, '')" );
+	$dbm->insert( 'banner', " (bid, cid, imptotal, impmade, clicks, imageurl, clickurl, date, htmlcode) VALUES (1, 1, 0, 1, 0, '" . XOOPS_URL . "/images/banners/banner.png', 'https://github.com/xoopscube/legacy', 1008813250, '')" );
 
 	// default theme
 
 	$time = time();
-	$dbm->insert( 'tplset', " VALUES (1, 'default', 'XCL Default Template Set', '', " . $time . ')' );
+	$dbm->insert( 'tplset', " VALUES (1, 'default', 'Default Template Set', '', " . $time . ')' );
 
 	// data for table 'config'
 
-	$dbm->insert( 'config', " VALUES (1, 0, 1, 'sitename', '_MD_AM_SITENAME', 'XCL Web Application Platform', '_MD_AM_SITENAMEDSC', 'textbox', 'text', 0)" );
+	$dbm->insert( 'config', " VALUES (1, 0, 1, 'sitename', '_MD_AM_SITENAME', 'Web Application Platform', '_MD_AM_SITENAMEDSC', 'textbox', 'text', 0)" );
 	$dbm->insert( 'config', " VALUES (2, 0, 1, 'slogan', '_MD_AM_SLOGAN', 'Just Use it!', '_MD_AM_SLOGANDSC', 'textbox', 'text', 2)" );
 	$dbm->insert( 'config', " VALUES (3, 0, 1, 'language', '_MD_AM_LANGUAGE', '" . addslashes( $language ) . "', '_MD_AM_LANGUAGEDSC', 'language', 'other', 4)" );
 	$dbm->insert( 'config', " VALUES (4, 0, 1, 'startpage', '_MD_AM_STARTPAGE', '--', '_MD_AM_STARTPAGEDSC', 'startpage', 'other', 6)" );
@@ -79,11 +79,11 @@ function make_data( &$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, 
 	$dbm->insert( 'config', " VALUES (47, 0, 1, 'enable_badips', '_MD_AM_DOBADIPS', '0', '_MD_AM_DOBADIPSDSC', 'yesno', 'int', 40)" );
 	$dbm->insert( 'config', " VALUES (48, 0, 1, 'cool_uri', '_MD_AM_COOLURI', '0', '_MD_AM_COOLURIDSC', 'yesno', 'int', 17)" );
 	$dbm->insert( 'config', " VALUES (53, 0, 1, 'use_mysession', '_MD_AM_USEMYSESS', '0', '_MD_AM_USEMYSESSDSC', 'yesno', 'int', 19)" );
-	$dbm->insert( 'config', " VALUES (57, 0, 1, 'theme_fromfile', '_MD_AM_THEMEFILE', '0', '_MD_AM_THEMEFILEDSC', 'yesno', 'int', 13)" );
+	$dbm->insert( 'config', " VALUES (57, 0, 1, 'theme_fromfile', '_MD_AM_THEMEFILE', '1', '_MD_AM_THEMEFILEDSC', 'yesno', 'int', 13)" );
 	$dbm->insert( 'config', " VALUES (58, 0, 1, 'closesite', '_MD_AM_CLOSESITE', '0', '_MD_AM_CLOSESITEDSC', 'yesno', 'int', 26)" );
 	$dbm->insert( 'config', " VALUES (59, 0, 1, 'closesite_okgrp', '_MD_AM_CLOSESITEOK', '" . addslashes( serialize( [ '1' ] ) ) . "', '_MD_AM_CLOSESITEOKDSC', 'group_multi', 'array', 27)" );
 	$dbm->insert( 'config', " VALUES (60, 0, 1, 'closesite_text', '_MD_AM_CLOSESITETXT', '" . _INSTALL_L165 . "', '_MD_AM_CLOSESITETXTDSC', 'textarea', 'text', 28)" );
-	$dbm->insert( 'config', " VALUES (61, 0, 1, 'sslpost_name', '_MD_AM_SSLPOST', 'xcl_wap_ssl', '_MD_AM_SSLPOSTDSC', 'textbox', 'text', 31)" );
+	$dbm->insert( 'config', " VALUES (61, 0, 1, 'sslpost_name', '_MD_AM_SSLPOST', 'wap_ssl', '_MD_AM_SSLPOSTDSC', 'textbox', 'text', 31)" );
 	$dbm->insert( 'config', " VALUES (62, 0, 1, 'module_cache', '_MD_AM_MODCACHE', '', '_MD_AM_MODCACHEDSC', 'module_cache', 'array', 50)" );
 	$dbm->insert( 'config', " VALUES (63, 0, 1, 'template_set', '_MD_AM_DTPLSET', 'default', '_MD_AM_DTPLSETDSC', 'tplset', 'other', 14)" );
 
@@ -94,8 +94,8 @@ function make_data( &$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, 
 	$dbm->insert( 'config', " VALUES (68,0,6,'sendmailpath','_MD_AM_SENDMAILPATH','/usr/sbin/sendmail','_MD_AM_SENDMAILPATHDESC','textbox','text',5)" );
 	$dbm->insert( 'config', " VALUES (69,0,6,'from','_MD_AM_MAILFROM','','_MD_AM_MAILFROMDESC','textbox','text', 1)" );
 	$dbm->insert( 'config', " VALUES (70,0,6,'fromname','_MD_AM_MAILFROMNAME','','_MD_AM_MAILFROMNAMEDESC','textbox','text',2)" );
-	$dbm->insert( 'config', " VALUES (71, 0, 1, 'sslloginlink', '_MD_AM_SSLLINK', 'https://', '_MD_AM_SSLLINKDSC', 'textbox', 'text', 33)" );
-	$dbm->insert( 'config', " VALUES (72, 0, 1, 'theme_set_allowed', '_MD_AM_THEMEOK', '" . serialize( [ 'xcl_default' ] ) . "', '_MD_AM_THEMEOKDSC', 'theme_multi', 'array', 13)" );
+	$dbm->insert( 'config', " VALUES (71,0,1,'sslloginlink', '_MD_AM_SSLLINK', 'https://', '_MD_AM_SSLLINKDSC', 'textbox', 'text', 33)" );
+	$dbm->insert( 'config', " VALUES (72,0,1,'theme_set_allowed', '_MD_AM_THEMEOK', '" . serialize( [ 'xcl_default' ] ) . "', '_MD_AM_THEMEOKDSC', 'theme_multi', 'array', 13)" );
 	// RMV-NOTIFY... Need to specify which user is sender of notification PM
 	$dbm->insert( 'config', " VALUES (73,0,6,'fromuid','_MD_AM_MAILFROMUID','1','_MD_AM_MAILFROMUIDDESC','user','int',3)" );
 	// data for table 'users'

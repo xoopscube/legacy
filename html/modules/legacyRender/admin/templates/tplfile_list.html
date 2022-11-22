@@ -228,7 +228,7 @@
             <td class="list_control">
                 <{if $targetTplset == 'default'}>
                 <a href="index.php?action=TplfileView&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
-                    <span>👁</span>
+                    <span>?</span>
 <!--                    <img class="svg" src="<{'icons/icon-file-view.svg'|theme}>" alt="View">-->
                 </a>
                 <a href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
@@ -239,12 +239,12 @@
                 <{elseif $obj->mOverride != null}>
 
                 <a href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._EDIT}>">
-                    <span>🖉</span>
+                    <span>?</span>
 <!--                    ✐ <img class="svg" src="<{'icons/icon-file-edit.svg'|theme}>" alt="Edit">-->
                 </a>
                 <a href="index.php?action=TplfileDelete&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._DELETE}>" class="bg-red">
                     <span>⮾</span>
-<!--                   ⮿ 🗑 ⛔ ☒ 🗑 <img class="svg" src="<{'icons/icon-file-delete.svg'|theme}>" alt="Delete">-->
+<!--                   ⮿ ? ⛔ ☒ ? <img class="svg" src="<{'icons/icon-file-delete.svg'|theme}>" alt="Delete">-->
                 </a>
                 <a href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
                     <span>⭳</span>
@@ -268,7 +268,7 @@
 
                 <{if $obj->get('tpl_tplset') == 'default'}>
                 <a href="index.php?action=TplfileView&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
-                    <span>👁</span>
+                    <span>?</span>
 <!--                    <img class="svg" src="<{'icons/icon-file-view.svg'|theme}>" alt="View">-->
                 </a>
                 <{else}>
@@ -303,4 +303,4 @@
     </table>
 </form>
 
-<div class="pagenavi"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+<nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>

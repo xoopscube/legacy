@@ -1,14 +1,15 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<ul class="breadcrumb" aria-label="breadcrumb">
+<nav aria-label="breadcrumb">
+<ul>
     <li><a href="<{$xoops_url}>/">
-        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a></li>
     <li><a href="index.php">
-    <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <span data-self="sm-hide"><{$smarty.const._MI_MESSAGE_NAME}></span></a>
-    <li aria-current="page"><{$smarty.const._MD_MESSAGE_SETTINGS}>
+        <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg"> <span data-self="sm-hide"><{$smarty.const._MI_MESSAGE_NAME}></span></a></li>
+    <li aria-current="page"><{$smarty.const._MD_MESSAGE_SETTINGS}></li>
 </ul>
-
+</nav>
 
 <div id="tabs-mail">
 
@@ -19,92 +20,92 @@
 
     <div class="ui-tab-content">
 
-        <div data-layout="column center-justify mt-7">
-
-            <div data-self="size-x1 m-6" class="msg-callout msg-warning">
+            <div class="alert warning">
                     <p><{$smarty.const._MI_MESSAGE_SAVEDAYS}> &#9203; <span class="badge badge-warning"><{$purgedays}></span> days &#128293;</p>
                     <{if $purgetype == 1}>
                         <p><{$smarty.const._MI_MESSAGE_DELTYPE_DESC}></p>
                     <{/if}>
            </div>
 
-        <hr>
+    <hr>
 
-        <form action="index.php?action=settings" method="post">
-
-        <div data-layout="row center-center p-6">
-            <div data-self="size-x1 sm-full">
+    <form action="index.php?action=settings" method="post">
+            <{xoops_token form=$mActionForm}>
+        <div class="grid-left">
+            <div>
                 <{$smarty.const._MD_MESSAGE_SETTINGS_MSG1}>
             </div>
-            <div data-self="size-x1 sm-full">
-                <label data-self="px-4" for="legacy_xoopsform_usepm_1">
+            <div>
+
                 <{xoops_input type=radio name=usepm default=$mActionForm->get('usepm') value=1}>
-                <{$smarty.const._YES}></label>
-                <label data-self="px-4" for="legacy_xoopsform_usepm_0">
+                    <label for="legacy_xoopsform_usepm_1"><{$smarty.const._YES}></label>
+
                 <{xoops_input type=radio name=usepm default=$mActionForm->get('usepm') value=0}>
-                <{$smarty.const._NO}></label>
+                    <label for="legacy_xoopsform_usepm_0"><{$smarty.const._NO}></label>
             </div>
         </div>
 
-        <div data-layout="row center-center p-6">
-            <div data-self="size-x1 sm-full">
+        <div class="grid-left">
+            <div>
                 <{$smarty.const._MD_MESSAGE_SETTINGS_MSG2}>
             </div>
-            <div data-self="size-x1 sm-full">
+            <div>
                 <{xoops_input type=radio class="custom-control-input" name=tomail default=$mActionForm->get('tomail') value=1}>
-                <label data-self="px-4" for="legacy_xoopsform_tomail_1"><{$smarty.const._YES}></label>
+                <label for="legacy_xoopsform_tomail_1"><{$smarty.const._YES}></label>
                 <{xoops_input type=radio class="custom-control-input" name=tomail default=$mActionForm->get('tomail') value=0}>
-                <label data-self="px-4" for="legacy_xoopsform_tomail_0"><{$smarty.const._NO}></label>
+                <label for="legacy_xoopsform_tomail_0"><{$smarty.const._NO}></label>
             </div>
         </div>
 
-        <div data-layout="row center-center p-6">
-            <div data-self="size-x1 sm-full">
+        <div class="grid-left">
+            <div>
                 <{$smarty.const._MD_MESSAGE_SETTINGS_MSG7}>
             </div>
-            <div data-self="size-x1 sm-full">
+            <div>
                 <{xoops_input type=radio class="custom-control-input" name=viewmsm default=$mActionForm->get('viewmsm') value=1}>
-                <label data-self="px-4" for="legacy_xoopsform_viewmsm_1"><{$smarty.const._YES}></label>
+                <label for="legacy_xoopsform_viewmsm_1"><{$smarty.const._YES}></label>
                 <{xoops_input type=radio class="custom-control-input" name=viewmsm default=$mActionForm->get('viewmsm') value=0}>
-                <label data-self="px-4" for="legacy_xoopsform_viewmsm_0"><{$smarty.const._NO}></label>
+                <label for="legacy_xoopsform_viewmsm_0"><{$smarty.const._NO}></label>
             </div>
         </div>
 
-        <div data-layout="row center-spread p-6">
-            <div data-self="size-x1 sm-full">
+        <div class="grid-left">
+            <div>
                 <{$smarty.const._MD_MESSAGE_SETTINGS_MSG8}><br>
-                <small data-self="px-4">⚠ <{$smarty.const._MD_MESSAGE_SETTINGS_MSG9}></small>
+
             </div>
-            <div data-self="size-x1 sm-full">
-                <input id="pagenum" name="pagenum" value="<{$mActionForm->get('pagenum')}>">
+            <div>
+                <label for="pagenum">
+                    <input type="number" id="pagenum" name="pagenum" value="<{$mActionForm->get('pagenum')}>">
+                    <small>⚠ <{$smarty.const._MD_MESSAGE_SETTINGS_MSG9}></small>
+                </label>
             </div>
 
         </div>
 
-        <div data-layout="row center-justify p-6 sm-column">
-            <div data-self="size-x1 sm-full">
+    <hr>
+
+        <div class="grid-left">
+            <div>
                 <{$smarty.const._MD_MESSAGE_SETTINGS_MSG10}><br>
-                <a class="ui-button" href="index.php?action=blacklist">
+                <a role="button" class="outline" href="index.php?action=blacklist">
                     <img class="svg view" src="<{$xoops_url}>/images/icons/view.svg"> <{$smarty.const._MD_MESSAGE_SETTINGS_MSG18}></a>
             </div>
-            <div data-self="size-x1 py-6 sm-full">
+            <div>
                 <{$smarty.const._MD_MESSAGE_SETTINGS_MSG11}><br>
                 <{xoops_input type=text class="form-control" name=blacklist value=$mActionForm->get('blacklist') maxlength=191 size=40}><br>
-
             </div>
         </div>
 
-        <hr>
+        <footer class="action-control">
+            <div>
+                <{legacy_button id=Submit role="button" class="submit" Text=$smarty.const._SUBMIT}>
+            </div>
+        </footer>
 
-        <div data-layout="row center-center pb-6" data-self="size-x1">
-                <{legacy_button id=Submit class="ui-button ui-button-submit" Text=$smarty.const._SUBMIT}>
-        </div>
+    </form>
 
-        <{xoops_token form=$mActionForm}>
 
-        </form>
-
-        </div>
 
     </div><{* ------- /ui-tab-content *}>
 
@@ -119,11 +120,17 @@
             min: 0,
             max: 20,
             step: 1,
+            corners: false,
             incremental: false,
             create: function (event, ui) {
-                $(this).width(42);
+                $(this).width(55);
+            },
+            classes: {
+                "ui-spinner": "ui-borderno",
+                "ui-spinner-button": "ui-borderno",
             }
-        }).val();
+        }).val()
+        $( "#pagenum" ).spinner().removeClass('ui-corner-all ui-corner-tr ui-corner-br');
 
-     });
+     })
 </script>

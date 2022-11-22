@@ -1,11 +1,11 @@
 <ul>
-    <li>
+    <li class="<{$inboxView}>">
         <a href="index.php" target="_self">
         <img class="svg inbox-in" src="<{$xoops_url}>/images/icons/inbox-in.svg">
         <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></span></a>
     </li>
 
-    <li>
+    <li class="<{$outboxView}>">
         <a href="index.php?action=send" target="_self">
         <img class="svg inbox-out" src="<{$xoops_url}>/images/icons/inbox-out.svg">
         <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></span></a>
@@ -17,15 +17,17 @@
         <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE8}></span></a>
     </li>
 
+    <{* ------- dropdown *}>
     <li class="settings">
-        <{* ------- dropdown *}>
+
         <div class="dropdown">
 
-            <a id="#settings" href="#/" class="dropdown-toggle" aria-label="<{$smarty.const._MI_MESSAGE_SUB_SETTINGS}>">
+            <a id="#settings" href="#!" class="dropdown-toggle" aria-label="<{$smarty.const._MI_MESSAGE_SUB_SETTINGS}>">
             <img class="svg dropdown" src="<{$xoops_url}>/images/icons/dropdown.svg" alt="control"></a>
 
             <div class="dropdown-content">
                 <ul>
+                    <{if $msgdata.inbox_id}>
                     <li>
                         <a class="dropdown-item" href="#" onclick="location.href='index.php?action=new&amp;res=<{$msgdata.inbox_id}>'">
                         <img class="svg reply" src="<{$xoops_url}>/images/icons/reply.svg" width="1em" height="1em" alt="reply"> <{$smarty.const._MD_MESSAGE_TEMPLATE13}></a>
@@ -37,24 +39,31 @@
                             <input type="hidden" name="cmd" value="mail">
                             <input type="hidden" name="action" value="view">
                             <a class="dropdown-item" href="javascript:document.getElementById('forwardEmail').submit();">
-                                <img class="svg mail-forward" src="<{$xoops_url}>/images/icons/mail-send.svg" width="1em" height="1em" alt="Message Forward"> <{$smarty.const._MD_MESSAGE_TEMPLATE21}></a>
+                                <img class="svg mail-forward" src="<{$xoops_url}>/images/icons/mail-send.svg" width="1em" height="1em" alt="Forward"> <{$smarty.const._MD_MESSAGE_TEMPLATE21}></a>
                         </form>
                     </li>
+                    <{elseif $msgdata.outbox_id}>
                     <li>
-                        <a class="dropdown-item" href="javascript:document.getElementById('formLock').submit();">
-                            <img class="svg file-shield" src="<{$xoops_url}>/images/icons/shield.svg" width="1em" height="1em" alt="private">
-                            <{if $msgdata.is_read==1}>
-                            <{$smarty.const._MD_MESSAGE_TEMPLATE19}>
-                            <{else}>
-                            <{$smarty.const._MD_MESSAGE_TEMPLATE20}>
-                            <{/if}>
-                        </a>
+                        <a class="dropdown-item" onclick="document.getElementById('message-delete').submit();">
+                            <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"> <{$smarty.const._MD_MESSAGE_TEMPLATE14}></a>
                     </li>
+                    <li>
+                        <form method="post" action="index.php?action=view&amp;inout=out&amp;outbox=<{$msgdata.outbox_id}>" id="forward_mail_message">
+                            <input type="hidden" name="outbox" value="<{$msgdata.outbox_id}>">
+                            <input type="hidden" name="inout" value="out">
+                            <input type="hidden" name="cmd" value="mail">
+                            <input type="hidden" name="action" value="view">
+                            <a href="#" onclick="mailForm()"><img class="svg mail-send" src="<{$xoops_url}>/images/icons/mail-send.svg" width="1em" alt="Forward"> <{$smarty.const._MD_MESSAGE_TEMPLATE21}></a>
+                            <script type="text/javascript">function mailForm() { let form = document.getElementById("forward_mail_message"); form.submit(); }</script>
+                        </form>
+                    </li>
+                    <{/if}>
                     <li>
                         <a class="dropdown-item" href="#" onclick="xoopsPrintag('printhis');">
                         <img class="svg print" src="<{$xoops_url}>/images/icons/print.svg" width="1em" height="1em" alt="Print"> Print</a>
                     </li>
-                    <{if $msgdata.from_uid != 0}>
+
+                    <{if $msgdata.inbox_id && $msgdata.from_uid !=1}>
                     <li>
                         <a class="dropdown-item" href="#" onclick="location.href='index.php?action=blacklist&amp;uid=<{$msgdata.from_uid}>'">
                         <img class="svg user" src="<{$xoops_url}>/images/icons/user.svg" width="1em" height="1em" alt="user"> <{$smarty.const._MD_MESSAGE_SETTINGS_MSG10}> this user</a>
@@ -69,12 +78,12 @@
                     <{if $UserSearch}>
                     <li>
                         <a class="dropdown-item"  href="<{$message_url}>?action=search">
-                        <img class="svg user-seach" src="<{$xoops_url}>/images/icons/search-adv.svg" width="1em" height="1em" alt="user search">
+                        <img class="svg user-search" src="<{$xoops_url}>/images/icons/search-adv.svg" width="1em" height="1em" alt="user search">
                         <{$smarty.const._MI_MESSAGE_SUB_SEARCH}></a>
                     </li>
                     <li>
                         <a class="dropdown-item"  href="<{$message_url}>?action=favorites">
-                        <img class="svg user-seach" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" height="1em" alt="favorites">
+                        <img class="svg user-search" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" height="1em" alt="favorites">
                         <{$smarty.const._MI_MESSAGE_SUB_FAVORITES}></a>
                     </li>
                     <{/if}>
@@ -87,41 +96,7 @@
             </div>
 
         </div>
-        <{* ------- dropdown *}>
+
     </li>
+    <{* ------- dropdown *}>
 </ul>
-
-<script>
-    // Highlight the active Message nav-tab
-    $(function () {
-
-    $("#tabs-mail").tabs({
-        active: false,
-        collapsible: true,
-        beforeActivate: function (event, ui) {
-            window.open($(ui.newTab).find('a').attr('href'), '_self');
-            return false;
-        }
-    });
-        // url constructor
-        const parseUrl = new URL(window.location.href);
-        const msgAction = parseUrl.searchParams.get("action");
-        //console.log(parseUrl.searchParams.get("action"));
-        //console.log('the action of this url is:', msgAction);
-
-        // If module message index, highlight the first nav-tab
-        if (msgAction == null) {
-           // $('#tabs-mail ul:first-child li').addClass('ui-state-hover ');
-            $('#tabs-mail ul li:first-child a').addClass('mail-tab-active');
-        } else {
-            // Highlight current action nav-tab
-            //$('a[href^="index.php?action=' + msgAction + '"]').parent('li').addClass('mail-tab-active');
-            $('a[href="index.php?action=' + msgAction + '"]').addClass('mail-tab-active');
-            // console.log('the tab url is :' + )
-        }
-        if (msgAction == 'settings'|| msgAction == 'blacklist'){
-            // Highlight dropdown menu
-            $('.dropdown').parent('li').addClass("mail-tab-active");
-        }
-    });
-</script>

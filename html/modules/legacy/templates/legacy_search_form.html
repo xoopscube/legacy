@@ -1,19 +1,23 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<ul class="breadcrumb" aria-label="breadcrumb">
+<nav role="breadcrumb">
+    <ul>
     <li><a href="<{$xoops_url}>/" aria-label="<{$smarty.const._YOURHOME}>">
         <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
     <li aria-current="page"><{$smarty.const._SR_SEARCH}>
 </ul>
+</nav>
 
+<form action="<{$smarty.const.XOOPS_URL}>/search.php" method="get">
+    <{xoops_input type=hidden name=action value=results}>
 
-<section data-layout="column mx-auto" class="search-form">
-
+<article class="search-form">
+<header>
     <h2><{$smarty.const._SR_SEARCH}></h2>
-
+</header>
     <{if $actionForm->hasError()}>
-    <div class="errorMsg">
+    <div class="alert error">
         <ul>
             <{foreach item=message from=$actionForm->getErrorMessages()}>
             <li><{$message|xoops_escape}></li>
@@ -22,45 +26,35 @@
     </div>
     <{/if}>
 
-    <div data-layout="column mx-auto" data-self="size-smaller sm-mx-0">
+    <label for="query">
+    <{$smarty.const._SR_KEYWORDS}>
+    <{xoops_input type=text id="query name=query size=32 maxlength=191 value=$actionForm->get('query')}>
+    </label>
+    <p><small aria-label="<{$smarty.const._SR_SEARCHRULE}>">* <{$searchRuleMessage}></small></p>
 
-        <form action="<{$smarty.const.XOOPS_URL}>/search.php" method="get">
-            <{xoops_input type=hidden name=action value=results}>
 
-            <div data-layout="row sm-column">
-                <div data-self="size-1of2 my-2">
-                    <label for="query"><{$smarty.const._SR_KEYWORDS}></label>
-                    <br>
-                    <{xoops_input type=text name=query size=32 maxlength=191 value=$actionForm->get('query')}>
-                    <br>
-                    <small aria-label="<{$smarty.const._SR_SEARCHRULE}>">* <{$searchRuleMessage}></small>
-                </div>
+    <label for="andor">
+    <{$smarty.const._SR_TYPE}>
+    <select name="andor">
+    <option id="andor_AND" value="AND" <{if $actionForm->get('andor') == 'AND'}>selected="selected"<{/if}>><{$smarty.const._SR_ALL}></option>
+    <option id="andor_OR" value="OR" <{if $actionForm->get('andor') == 'OR'}>selected="selected"<{/if}>><{$smarty.const._SR_ANY}></option>
+    <option id="andor_exact" value="exact" <{if $actionForm->get('andor') == 'exact'}>selected="selected"<{/if}>><{$smarty.const._SR_EXACT}></option>
+    </select>
+    </label>
 
-                <div data-self="size-1of2 my-2">
-                <label for="andor"><{$smarty.const._SR_TYPE}></label>
-                    <br>
-                    <select name="andor">
-                    <option id="andor_AND" value="AND" <{if $actionForm->get('andor') == 'AND'}>selected="selected"<{/if}>><{$smarty.const._SR_ALL}></option>
-                    <option id="andor_OR" value="OR" <{if $actionForm->get('andor') == 'OR'}>selected="selected"<{/if}>><{$smarty.const._SR_ANY}></option>
-                    <option id="andor_exact" value="exact" <{if $actionForm->get('andor') == 'exact'}>selected="selected"<{/if}>><{$smarty.const._SR_EXACT}></option>
-                    </select>
-                </div>
-            </div>
 
-        <h3><{$smarty.const._SR_SEARCHIN}></h3>
+    <h4><{$smarty.const._SR_SEARCHIN}></h4>
 
-            <div data-self="my-2">
-                <{foreach item=module from=$moduleArr}>
-                    <label for="mids[]">
-                        <input type="checkbox" name="mids[]" value="<{$module.mid|xoops_escape:plain}>" <{if in_array($module.mid, $selectedMidArr)}>checked="checked"<{/if}>><{$module.name|xoops_escape}>
-                    </label>
-                <{/foreach}>
-            </div>
 
-            <input type="submit" class="ui-button" value="<{$smarty.const._SR_SEARCH}>">
+    <{foreach item=module from=$moduleArr}>
+        <label for="mids[]">
+            <input type="checkbox" name="mids[]" value="<{$module.mid|xoops_escape:plain}>" <{if in_array($module.mid, $selectedMidArr)}>checked="checked"<{/if}>><{$module.name|xoops_escape}>
+        </label>
+    <{/foreach}>
 
-        </form>
+    <footer>
+    <input type="submit" role="button" class="primary" value="<{$smarty.const._SR_SEARCH}>">
+    </footer>
 
-    </div>
-
-</section>
+</article>
+</form>

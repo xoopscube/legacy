@@ -229,7 +229,7 @@ $modversion['config'][]= [
     'description' => '_MI_USER_CONF_DISPDSCLMR_DESC',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     =>1
+    'default'     => 1
 ];
 
 $modversion['config'][]= [
@@ -247,7 +247,7 @@ $modversion['config'][]= [
     'description' => '_MI_USER_CONF_USERCOOKIE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'string',
-    'default'     => 'xcl_user'
+    'default'     => 'wap_user'
 ];
 
 $modversion['config'][]= [
@@ -255,7 +255,7 @@ $modversion['config'][]= [
     'title'     => '_MI_USER_CONF_USE_SSL',
     'formtype'  => 'yesno',
     'valuetype' => 'int',
-    'default'   =>1
+    'default'   => 0
 ];
 
 $modversion['config'][]= [

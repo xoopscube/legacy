@@ -100,22 +100,14 @@ if ('dologin' == $op) {
 if ('login' == $op) {
     echo $header;
     echo '
-    <div style="text-align: center; padding: 5px; margin: 0">
+    <div style="padding: 1em; margin: 0">
     <form action="login.php" method="post">
-      <table class="outer" width="95%">
-        <tr>
-          <td class="head">'._USERNAME.'</td>
-          <td class="even"><input type="text" name="username" value="" /></td>
-        </tr>
-        <tr>
-          <td class="head">'._PASSWORD.'</td>
-          <td class="even"><input type="password" name="userpass" value="" /></td>
-        </tr>
-        <tr>
-          <td class="head">&nbsp;</td>
-          <td class="even"><input type="hidden" name="op" value="dologin" /><input type="submit" name="submit" value="'._LOGIN.'" /></td>
-        </tr>
-      </table>
+      <label for="username">'._USERNAME.'</label>
+      <br><input type="text" id="username" name="username" value="">
+      <label for="userpass">'._PASSWORD.'</label>
+      <br><input type="password" id="userpass" name="userpass" value="">
+      <input type="hidden" name="op" value="dologin">
+      <p><input class="button" type="submit" name="submit" value="'._LOGIN.'"></p>
     </form>
     </div>
     ';

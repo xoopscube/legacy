@@ -178,7 +178,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $mTpl->assign(
             [
             'xoops_requesturi' => htmlspecialchars($GLOBALS['xoopsRequestUri'], ENT_QUOTES),    //@todo ?????????????
-            // set JavaScript/Weird, but need extra <script> tags for Xoops Legacy 2.x themes
+            //@todo set JavaScript/Weird, but need extra <script> tags for Xoops Legacy 2.x themes
             'xoops_js' => '//--></script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript"><!--'
             ]
         );
@@ -608,11 +608,10 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 
     /**
      * @TODO This function is not cool!
-     * @param bool $isDialog
+     * @param bool $isDialog default  = false
      * @return Legacy_DialogRenderTarget|Legacy_ThemeRenderTarget
      */
-// public function &getThemeRenderTarget(bool $isDialog)
-    public function &getThemeRenderTarget($isDialog = false)
+    public function &getThemeRenderTarget(bool $isDialog)
     {
         $screenTarget = $isDialog ? new Legacy_DialogRenderTarget() : new Legacy_ThemeRenderTarget();
         return $screenTarget;

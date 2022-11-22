@@ -60,7 +60,7 @@
 
     .success {
         border-left     : 7px solid var(  --color-green     );
-        background: var(  --notification-bg    ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M9 19l-5.657-5.657l2.121-2.121L9 14.757l8.485-8.485l2.122 2.121L9 19zm-3.536-6.364l-.707.707L9 17.586l9.192-9.193l-.707-.707L9 16.172l-3.536-3.536z' fill='%23face74'/%3E %3C/svg%3E") .6em 1em no-repeat;
+        background: var(  --notification-bg    ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M9 19l-5.657-5.657l2.121-2.121L9 14.757l8.485-8.485l2.122 2.121L9 19zm-3.536-6.364l-.707.707L9 17.586l9.192-9.193l-.707-.707L9 16.172l-3.536-3.536z' fill='%2349ab4d'/%3E %3C/svg%3E") .6em 1em no-repeat;
     }
 
     .message-warning {

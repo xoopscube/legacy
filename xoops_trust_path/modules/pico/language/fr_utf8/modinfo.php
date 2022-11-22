@@ -92,6 +92,7 @@ forcément corrigés et le HTML filtré par HTMLPurifier du module Protector.' )
     define( $constpref . '_LISTASINDEX', "Afficher un index de contenu en tête des catégories" );
     define( $constpref . '_LISTASINDEXDSC', 'OUI - affiche une liste automatique au dessus de la catégorie.<br>NON - affiche le contenu (page) avec la plus haute priorité au lieu de la liste automatique' );
     define( $constpref . '_SHOW_BREADCRUMBS', 'Afficher les sommaires' );
+    define( $constpref . '_SHOW_RSS', 'Afficher lien RSS' );
     define( $constpref . '_SHOW_PAGENAVI', 'Afficher la page navigation' );
     define( $constpref . '_SHOW_PRINTICON', 'Afficher une icône pour le format imprimable' );
     define( $constpref . '_SHOW_TELLAFRIEND', 'Afficher une icône pour informer un ami' );

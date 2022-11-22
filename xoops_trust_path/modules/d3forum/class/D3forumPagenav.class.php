@@ -51,8 +51,10 @@ class D3forumPageNav {
 
 			$prev = $this->current - $this->perpage;
 
-			if ( $prev >= 0 ) {
-				$ret .= '<a href="' . $this->url . $prev . '"><u>&laquo;</u></a> ';
+            $ret .= '<ul class="pagenavi">';
+
+            if ( $prev >= 0 ) {
+				$ret .= '<li><a href="' . $this->url . $prev . '">&laquo;</a></li>';
 			}
 			$i = 1;
 
@@ -60,14 +62,14 @@ class D3forumPageNav {
 
 			while ( $i <= $total_pages ) {
 				if ( $i === $current_page ) {
-					$ret .= '<b>(' . $i . ')</b> ';
+					$ret .= '<li aria-label="page '. $i .'" aria-current="page"><b>' . $i . '</b></li>';
 				} elseif ( ( $i > $current_page - $offset && $i < $current_page + $offset ) || 1 === $i || $i === $total_pages ) {
 					if ( $i === $total_pages && $current_page < $total_pages - $offset ) {
-						$ret .= '... ';
+						$ret .= '<li>...</li>';
 					}
-					$ret .= '<a href="' . $this->url . ( ( $i - 1 ) * $this->perpage ) . '">' . $i . '</a> ';
+					$ret .= '<li><a href="' . $this->url . ( ( $i - 1 ) * $this->perpage ) . '">' . $i . '</a></li> ';
 					if ( 1 === $i && $current_page > 1 + $offset ) {
-						$ret .= '... ';
+						$ret .= '<li>...</li>';
 					}
 				}
 				$i ++;
@@ -76,8 +78,9 @@ class D3forumPageNav {
 			$next = $this->current + $this->perpage;
 
 			if ( $this->total > $next ) {
-				$ret .= '<a href="' . $this->url . $next . '"><u>&raquo;</u></a> ';
+				$ret .= '<li><a href="' . $this->url . $next . '">&raquo;</a></li>';
 			}
+            $ret .='</ul>';
 		}
 
 		return $ret;

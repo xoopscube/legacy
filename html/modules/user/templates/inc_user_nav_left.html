@@ -1,144 +1,86 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{* ------- User profile avatar *}>
 
         <div class="user-data">
 
-            <{* ---------- ---------- ---------- User Avatar *}>
-            <div data-layout="row centered mx-auto">
+            <{* ---------- User Data *}>
 
-                <{if $thisUser->get('user_avatar') != "blank.gif" }>
-                <img data-self="center radius-circle mx-auto"
-                     src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$thisUser->getShow('user_avatar')}>"
-                     alt="<{$smarty.const._MD_USER_LANG_AVATAR}>"
-                     aria-label="<{$smarty.const._MD_USER_LANG_AVATAR}>"
-                     width="96">
-                <{else}>
-<!--                <img data-self="center radius-circle mx-auto" src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" alt="No Avatar" aria-label="No Avatar" width="96">-->
+            <{* ----- Moved to inc_user_tab_profile
+            <!-- <div data-layout="row center-right">
+                <h6><{$smarty.const._MD_USER_LANG_UNAME}></h6>
+                <h4><{$thisUser->getShow('uname')}></h4>
+            </div> -->
+            ----- *}>
 
-                <div id="avatar"><span id="username"><{$thisUser->getShow('uname')}></span></div>
+            <{if $name != null}>
+            <label>
+                <{$smarty.const._MD_USER_LANG_NAME}>
+                <span><{$thisUser->getShow('name')}></span>
+            </label>
+            <{/if}>
 
-                <style>
-
-                    :root{--avatar-size:96px;}
-
-                    #username {
-                        font-size: 0;
-                        display: inline-block;
-                        color: var(--link-color );
-                        position: relative;
-                        line-height: 1;
-                        text-transform: uppercase;
-                        top: calc(var(--avatar-size) / 4); /* 25% of parent */
-                        transition: font-size 0.3s ease-in;
-                        /* drop-shadow(offset-x offset-y blur-radius color) */
-                        filter: drop-shadow(2px 2px 5px #010);
-                    }
-                    #username::first-letter {
-                        /* 50% of parent  */
-                        font-size: calc(var(--avatar-size) / 2);
-                    }
-                    #avatar {
-                        background-color: #512DA8;
-                        border-radius: 50%;
-                        box-shadow:2px 2px 2px #111;
-                        height: var(--avatar-size);
-                        margin: 20px 0;
-                        text-align: center;
-                        width: var(--avatar-size);
-                    }
-                </style>
-                <{/if}>
-            </div>
-
-
-            <{if $user_ownpage == true}>
-            <div data-layout="row">
-                <a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>">
-                <img class="svg avatar" src="<{$xoops_url}>/images/icons/avatar.svg" width="1em" height="1em" alt="Edit Avatar">
-                    <{$smarty.const._MD_USER_LANG_AVATAR_EDIT}>
-                </a>
-            </div>
+            <{if $rank != null}>
+            <label>
+                <{$smarty.const._MD_USER_LANG_RANK}> 
+                <span class="badge"><{$rank->getShow('rank_title')}></span>
+            </label>
             <{/if}>
 
 
-            <{* ---------- User Data *}>
-            <div data-layout="column top-stretch px-4" data-self="size-x1" class="text-small">
+            <label>
+                <{$smarty.const._MD_USER_LANG_POSTS}>
+                <span class="badge"><{$thisUser->getShow('posts')}></span>
+            </label>
 
-                <{* ----- Moved to inc_user_tab_profile
-                <!-- <div data-layout="row center-right">
-                    <h6><{$smarty.const._MD_USER_LANG_UNAME}></h6>
-                    <h4><{$thisUser->getShow('uname')}></h4>
-                </div> -->
-                ----- *}>
 
-                <{if $name != null}>
-                <div data-layout="row mt-6">
-                    <h6><{$smarty.const._MD_USER_LANG_NAME}></h6>
-                    <span><{$thisUser->getShow('name')}></span>
-                </div>
-                <{/if}>
-
-                <{if $rank != null}>
-                <div data-layout="row center-justify mt-6">
-                    <h6><{$smarty.const._MD_USER_LANG_RANK}></h6>
-                    <span class="badge"><{$rank->getShow('rank_title')}></span>
-                </div>
-                <{/if}>
-
-                <div data-layout="row center-justify mt-6">
-                    <h6><{$smarty.const._MD_USER_LANG_POSTS}></h6>
-                    <span class="badge"><{$thisUser->getShow('posts')}></span>
-                </div>
-
-                <{if $xoops_isuser}>
-                <div data-layout="row center-justify mt-6">
-                    <h6><{$smarty.const._MD_USER_LANG_LAST_LOGIN}></h6>
+            <{if $xoops_isuser}>
+                <label>
+                    <{$smarty.const._MD_USER_LANG_LAST_LOGIN}> 
                     <span class="badge"><{$thisUser->get('last_login')|xoops_formattimestamp:l}></span>
-                </div>
+                </label>
 
-                <div data-layout="row center-justify mt-6">
-                    <h6><{$smarty.const._MD_USER_LANG_USER_REGDATE}></h6>
+                <label>
+                    <{$smarty.const._MD_USER_LANG_USER_REGDATE}> 
                     <span class="badge"><{$thisUser->get('user_regdate')|xoops_formattimestampGMT}></span>
-                </div>
+                </label>
 
-                    <{if $pmliteUrl != ''}>
-                    <div data-layout="row center-justify mt-6">
-                        <h6><{$smarty.const._MD_USER_LANG_PM}></h6>
-                        <a href="<{$pmliteUrl|xoops_escape:link}>">
-                            <svg class="mail-user" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <title><{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}></title>
-                                <path fill-rule="evenodd" d="M14 3H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
-                                <path d="M.05 3.555C.017 3.698 0 3.847 0 4v.697l5.803 3.546L0 11.801V12c0 .306.069.596.192.856l6.57-4.027L8 9.586l1.239-.757 6.57 4.027c.122-.26.191-.55.191-.856v-.2l-5.803-3.557L16 4.697V4c0-.153-.017-.302-.05-.445L8 8.414.05 3.555z"/>
-                            </svg>
-                        </a>
-                    </div>
-                    <{/if}>
+                <{if $pmliteUrl !=''}>
+                    <label>
+                        <{$smarty.const._MD_USER_LANG_PM}>
+                    <a href="<{$pmliteUrl|xoops_escape:link}>">
+                        <svg class="mail-user" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <title><{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}></title>
+                            <path fill-rule="evenodd" d="M14 3H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z"/>
+                            <path d="M.05 3.555C.017 3.698 0 3.847 0 4v.697l5.803 3.546L0 11.801V12c0 .306.069.596.192.856l6.57-4.027L8 9.586l1.239-.757 6.57 4.027c.122-.26.191-.55.191-.856v-.2l-5.803-3.557L16 4.697V4c0-.153-.017-.302-.05-.445L8 8.414.05 3.555z"/>
+                        </svg>
+                    </a>
+                    </label>
+                <{/if}>
 
-                <{/if}><{* /is user *}>
-
-                <div data-layout="row center-justify mt-6">
-                    <h6>
-                    <svg class="i-building" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M15.285.089A.5.5 0 0 1 15.5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5H1a.5.5 0 0 1-.5-.5v-6a.5.5 0 0 1 .418-.493l5.582-.93V3.5a.5.5 0 0 1 .324-.468l8-3a.5.5 0 0 1 .46.057zM7.5 3.846V8.5a.5.5 0 0 1-.418.493l-5.582.93V15h8v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.222l-7 2.624z"/>
-                        <path fill-rule="evenodd" d="M6.5 15.5v-7h1v7h-1z"/>
-                        <path d="M2.5 11h1v1h-1v-1zm2 0h1v1h-1v-1zm-2 2h1v1h-1v-1zm2 0h1v1h-1v-1zm6-10h1v1h-1V3zm2 0h1v1h-1V3zm-4 2h1v1h-1V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm-2 2h1v1h-1V7zm2 0h1v1h-1V7zm-4 0h1v1h-1V7zm0 2h1v1h-1V9zm2 0h1v1h-1V9zm2 0h1v1h-1V9zm-4 2h1v1h-1v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1z"/>
-                    </svg> <{$smarty.const._MD_USER_LANG_USER_FROM}></h6>
-                    <span class="badge"><{$thisUser->getShow('user_from')}></span>
-                </div>
+            <{/if}><{* /is user *}>
 
 
-                <{* /////— PROFILE CUSTOM FIELDS —\\\\\ *}>
-                <{legacy_profile uid=$thisUser->getShow('uid')}>
+            <label>
+                <svg class="i-building" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M15.285.089A.5.5 0 0 1 15.5.5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5H1a.5.5 0 0 1-.5-.5v-6a.5.5 0 0 1 .418-.493l5.582-.93V3.5a.5.5 0 0 1 .324-.468l8-3a.5.5 0 0 1 .46.057zM7.5 3.846V8.5a.5.5 0 0 1-.418.493l-5.582.93V15h8v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.222l-7 2.624z"/>
+                    <path fill-rule="evenodd" d="M6.5 15.5v-7h1v7h-1z"/>
+                    <path d="M2.5 11h1v1h-1v-1zm2 0h1v1h-1v-1zm-2 2h1v1h-1v-1zm2 0h1v1h-1v-1zm6-10h1v1h-1V3zm2 0h1v1h-1V3zm-4 2h1v1h-1V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm-2 2h1v1h-1V7zm2 0h1v1h-1V7zm-4 0h1v1h-1V7zm0 2h1v1h-1V9zm2 0h1v1h-1V9zm2 0h1v1h-1V9zm-4 2h1v1h-1v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1z"/>
+                </svg> <{$smarty.const._MD_USER_LANG_USER_FROM}>
+                <span class="badge"><{$thisUser->getShow('user_from')}></span>
+            </label>
 
 
-                <div data-layout="column mt-6">
-                    <H6><{$smarty.const._MD_USER_LANG_USER_SIG}></H6>
-                    <div data-self="mt-6"><{$thisUser->getShow('user_sig')}></div>
-                </div>
+
+            <{* /////— PROFILE CUSTOM FIELDS —\\\\\ *}>
+            <{legacy_profile uid=$thisUser->getShow('uid')}>
 
 
+            <div>
+                <H6><{$smarty.const._MD_USER_LANG_USER_SIG}></H6>
+                <div><{$thisUser->getShow('user_sig')}></div>
             </div>
 
-        </div><{* /user-data *}>
+
+        </div> <{* /user-data *}>

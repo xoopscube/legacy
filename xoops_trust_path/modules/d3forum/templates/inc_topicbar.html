@@ -1,117 +1,125 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<{* strip *}>
 
-<{if ! $xoops_isuser}>
-<div class="msg-callout msg-warning">
+<!-- TODO ALERT -->
+<{if !$xoops_isuser}>
+<div class="alert warning">
 
-	<{* ----- GUEST CAN POST ----- *}>
-	<{if $forum.can_post}>
-		<p><{$smarty.const._MD_D3FORUM_GUESTSCANPOST_DESC}></p>
-	<{else}>
-		<p><{$smarty.const._MD_D3FORUM_GUESTSCANNOTPOST_DESC}></p>
-	<{/if}>
+    <{* ----- GUEST CAN POST ----- *}>
+    <{if $forum.can_post}>
+        <p><{$smarty.const._MD_D3FORUM_GUESTSCANPOST_DESC}></p>
+    <{else}>
+        <p><{$smarty.const._MD_D3FORUM_GUESTSCANNOTPOST_DESC}></p>
+    <{/if}>
 
 </div>
 <{/if}>
 
+<{* strip *}>
+<article>
+
+
 
 <{* ---------- CAPTURE TOPIC ACTION CONTROL *}>
 <{capture name="topic_controller"}>
-<section class="action-control">
 
-	<{* ----- D3 MODULE COMMENT MANAGEMENT ----- *}>
-	<{if $forum.external_link_format}>
-		<div class="description"><{$smarty.const._MD_D3FORUM_FORUMASCOMMENT_DESC}></div>
-	<{/if}>
 
-	<{* ----- NOTIFICATION TOPIC LOCKED ----- *}>
+
+	<{* ----- ALERT NOTIFICATION TOPIC LOCKED ----- *}>
 	<{if $topic.locked}>
-		<div class="msg-callout msg-warning">
-			<img class="svg topic-lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg">
-			<strong><{$smarty.const._MD_D3FORUM_TOPICLOCKED_DESC}></strong>
-		</div>
-	<{/if}>
-
-
-	<{* ----- TOPIC ----- *}>
-	<div data-layout="row">
-
-	<{* ----- TOPIC MARKED STICKY ----- *}>
-	<{if $uid && $mod_config.allow_mark}>
-		<{if $topic.u2t_marked}>
-			<a class="ui-button"
-			   href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"
-			   title="<{$smarty.const._MD_D3FORUM_MARKEDYES_DESC}>">
-				<img class="svg topic-sticky" src="<{$xoops_url}>/images/icons/topic_sticky0.svg" width="1em">
-				<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>
-			</a>
-		<{else}>
-			<a class="ui-button"
-			   href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"
-			   title="<{$smarty.const._MD_D3FORUM_MARKEDNO_DESC}>">
-				<img class="svg topic-unsticky" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em">
-				<{$smarty.const._MD_D3FORUM_MARK_TURNON}>
-			</a>
-		<{/if}>
-	<{/if}>
-
-	<{* ----- TOPIC SOLVED ----- *}>
-	<{if $forum.isadminormod && $mod_config.use_solved}>
-		<{if $topic.solved}>
-			<a class="ui-button"
-			   href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"
-			   title="<{$smarty.const._MD_D3FORUM_SOLVEDYES_DESC}>">
-				<img class="svg topic-solved" src="<{$xoops_url}>/images/icons/topic_status_solved1.svg" width="1em">
-				<{$smarty.const._MD_D3FORUM_SOLVED_TURNOFF}>
-			</a>
-		<{else}>
-			<a class="ui-button"
-			   href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"
-			   title="<{$smarty.const._MD_D3FORUM_SOLVEDNO_DESC}>">
-				<img class="svg topic-unsolved" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em">
-				<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>
-			</a>
-		<{/if}>
-	<{/if}>
-
-	<{* ----- TOPIC ADMIN HISTORY ----- *}>
-	<{if $xoops_isadmin}>
-		<a class="ui-button" href="<{$mod_url}>/admin/index.php?page=post_histories&amp;topic_id=<{$topic.id}>">
-			<img class="svg timeline" src="<{$xoops_url}>/images/icons/timeline.svg" width="1em">
-			<{$smarty.const._MD_D3FORUM_LINK_TOPICHISTORIES}>
-		</a>
-	<{/if}>
-
-	<{* ----- TOPIC VISIBILITY ----- *}>
-	<{if $forum.isadminormod}>
-		<{if $topic.invisible}>
-			<strong><{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></strong>
-		<{/if}>
-
-		<a class="ui-button" href="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$topic.id}>" title="<{$smarty.const._MD_D3FORUM_TOPICMANAGER_DESC}>">
-			<img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg">
-			<{$smarty.const._MD_D3FORUM_TOPICMANAGER}>
-		</a>
-	<{/if}>
-
+	<div class="alert warning">
+		<img class="svg topic-lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg">
+		<strong><{$smarty.const._MD_D3FORUM_TOPICLOCKED_DESC}></strong>
 	</div>
-	<{* ----- /TOPIC ----- *}>
+	<{/if}>
 
-	<{if $forum.can_post}>
-	<div data-layout="row right">
-		<a class="ui-button" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>">
-			<{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}>
-		</a>
-	</div>
-	<{else}>
-	<div class="msg-callout msg-warning">
+	<{if !$forum.can_post}>
+	<div class="alert warning">
 		<p><{$smarty.const._MD_D3FORUM_CANTCREATENEWTOPICTHISFORUM}></p>
 	</div>
 	<{/if}>
+    <!-- TODO ALERT -->
+    <{if $forum.external_link_format}>
+    <div class="alert warning">
+        <{$smarty.const._MD_D3FORUM_FORUMASCOMMENT_DESC}>
+    </div>
+    <{/if}>
 
-</section>
+<{* ----- ACTION - TOPIC ----- *}>
+<div class="grid-2">
+
+
+    <{* ----- D3 MODULE COMMENT MANAGEMENT ----- *}>
+
+    <{if $forum.can_post}>
+    <a role="button" class="primary" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>">
+        <{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}>
+    </a>
+    <{/if}>
+
+<details role="list">
+    <summary aria-haspopup="listbox"  role="button" class="outline secondary">
+        Action
+    </summary>
+    <ul role="listbox"  class="action-control">
+        <{* ----- TOPIC MARKED STICKY ----- *}>
+        <{if $uid && $mod_config.allow_mark}>
+            <{if $topic.u2t_marked}>
+            <li><a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"
+                   title="<{$smarty.const._MD_D3FORUM_MARKEDYES_DESC}>">
+                <img class="svg topic-sticky" src="<{$xoops_url}>/images/icons/topic_sticky0.svg" width="1em">
+                <{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>
+            </a></li>
+            <{else}>
+            <li><a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"
+                   title="<{$smarty.const._MD_D3FORUM_MARKEDNO_DESC}>">
+                <img class="svg topic-unsticky" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em">
+                <{$smarty.const._MD_D3FORUM_MARK_TURNON}>
+            </a></li>
+            <{/if}>
+        <{/if}>
+
+        <{* ----- TOPIC SOLVED ----- *}>
+        <{if $forum.isadminormod && $mod_config.use_solved}>
+            <{if $topic.solved}>
+            <li><a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"
+                   title="<{$smarty.const._MD_D3FORUM_SOLVEDYES_DESC}>">
+                <img class="svg topic-solved" src="<{$xoops_url}>/images/icons/topic_status_solved1.svg" width="1em">
+                <{$smarty.const._MD_D3FORUM_SOLVED_TURNOFF}>
+            </a></li>
+            <{else}>
+            <li><a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"
+                   title="<{$smarty.const._MD_D3FORUM_SOLVEDNO_DESC}>">
+                <img class="svg topic-unsolved" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em">
+                <{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>
+            </a></li>
+            <{/if}>
+        <{/if}>
+
+        <{* ----- TOPIC ADMIN HISTORY ----- *}>
+        <{if $xoops_isadmin}>
+            <li><a href="<{$mod_url}>/admin/index.php?page=post_histories&amp;topic_id=<{$topic.id}>">
+                <img class="svg timeline" src="<{$xoops_url}>/images/icons/timeline.svg" width="1em">
+                <{$smarty.const._MD_D3FORUM_LINK_TOPICHISTORIES}>
+            </a></li>
+        <{/if}>
+
+        <{* ----- TOPIC VISIBILITY ----- *}>
+        <{if $forum.isadminormod}>
+            <{if $topic.invisible}>
+            <li><strong><{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></strong></li>
+            <{/if}>
+
+            <li><a href="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$topic.id}>" title="<{$smarty.const._MD_D3FORUM_TOPICMANAGER_DESC}>">
+                <img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg">
+                <{$smarty.const._MD_D3FORUM_TOPICMANAGER}>
+            </a></li>
+        <{/if}>
+    </ul>
+</details>
+</div>
+<{* ----- / ACTION - TOPIC ----- *}>
 <{/capture}>
 
 <{* ---------- RENDER CAPTURE *}>
@@ -119,5 +127,5 @@
 	<{$smarty.capture.topic_controller}>
 <{/if}>
 
-
+</article>
 <{* /strip *}>

@@ -1,7 +1,7 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<div class="block-messages">
+<nav class="block-messages">
 
 <ul id="privatemessages">
     <li>
@@ -44,4 +44,4 @@
         <{/if}>
 </ul>
 
-</div>
+</nav>

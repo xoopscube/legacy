@@ -1,9 +1,9 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 
 <{if $actionForm->hasError()}>
-<div class="errorMsg">
+<div class="alert error">
   <ul>
     <{foreach item=message from=$actionForm->getErrorMessages()}>
       <li><{$message}></li>
@@ -12,7 +12,7 @@
 </div>
 <{/if}>
 
-<div class='confirmMsg'>
+<div class='alert confirm'>
   <h4><{$self_delete_message|nl2br}></h4>
   <form method="post" action="#">
     <{xoops_token form=$actionForm}>

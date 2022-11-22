@@ -18,7 +18,7 @@
  * Author:   gigamaster
  * Date:     Nov 13, 2005
  * Author:   minahito
- * Purpose:  the place holder for xoops pagenavi.
+ * Purpose:  the placeholder for xoops pagenavi.
  * Input:    pagenavi =
  *           offset =
  *
@@ -61,14 +61,14 @@ function smarty_function_xoops_pagenavi($params, &$smarty)
         while ($counter<=$totalPages) {
             if ($counter==$currentPage) {
                 // gigamaster removed '(' and ')'
-                $ret.=@sprintf("<li><strong>%d</strong></li>", $counter);
+                $ret.=@sprintf("<li aria-label='page' aria-current='page'><strong>%d</strong></li>", $counter);
             } elseif (($counter>$currentPage-$offset && $counter<$currentPage+$offset) || $counter==1 || $counter==$totalPages) {
                 if ($counter==$totalPages && $currentPage<$totalPages-$offset) {
-                    $ret.="... ";
+                    $ret.="<li>...</li>";
                 }
                 $ret .= @sprintf("<li><a href='%s'>%d</a></li> ", $navi->renderURLForPage(($counter-1)*$perPage), $counter);
                 if ($counter==1 && $currentPage>1 + $offset) {
-                    $ret.="... ";
+                    $ret.="<li>...</li>";
                 }
             }
             $counter++;
@@ -79,7 +79,7 @@ function smarty_function_xoops_pagenavi($params, &$smarty)
         //
         $next=$current + $perPage;
         if ($navi->hasNextPage()) {
-            $ret.=@sprintf("<li><a href='%s' class='next'>&raquo;</a></li>", $navi->renderURLForPage($navi->getNextStart()));
+            $ret.=@sprintf("<li class='next'><a href='%s'>&raquo;</a></li>", $navi->renderURLForPage($navi->getNextStart()));
         }
         $ret.= "</ul>";
     }

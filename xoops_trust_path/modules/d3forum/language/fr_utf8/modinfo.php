@@ -44,6 +44,7 @@ define($constpref.'_ADMENU_MYPREFERENCES','Préférences');
 define($constpref.'_TOP_MESSAGE','Message en-tête du forum');
 define($constpref.'_TOP_MESSAGEDEFAULT','<h2 class="d3f_title">Forum Top</h2><p class="d3f_welcome">Pour consulter les messages, choisissez la catégorie et le forum que vous voulez visiter ci-dessous. </p>');
 define($constpref.'_SHOW_BREADCRUMBS','Afficher la navigation (breadcrumbs)');
+define($constpref.'_SHOW_RSS','Afficher le lien RSS');
 define($constpref.'_DEFAULT_OPTIONS','Options cochées par défault dans le formulaire pour poster');
 define($constpref.'_DEFAULT_OPTIONSDSC','Lister les options a cocher  séparées par  une virgule (,).<br>eg) smiley,xcode,br,number_entity<br>Vous pouvez ajouter ces options: special_entity html attachsig u2t_marked');
 define($constpref.'_ALLOW_HTML','Autoriser HTML');

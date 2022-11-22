@@ -1,39 +1,39 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<ul class="breadcrumb" aria-label="breadcrumb">
+<nav aria-label="breadcrumb">
+    <ul>
     <li><a href="<{$xoops_url}>/">
         <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
     <li><a href="<{$xoops_url}>/user.php"><{$smarty.const._MD_USER_LANG_PROFILE}></a>
     <li aria-current="page"><{$smarty.const._MD_USER_LANG_USERREG}>
-</ul>
+    </ul>
+</nav>
 
-<hr>
 
-<section data-layout="column" class="user-register">
+<form action="#" method="post">
+
+<article class="user-register">
 
     <h2><{$smarty.const._MD_USER_LANG_USERREG}></h2>
 
-    <form action="#" method="post">
-        <table width="100%" class="outer">
-            <tr>
-                <td class="head"><{$smarty.const._MD_USER_LANG_NICKNAME}></td>
-                <td>
-                <input type="text" value="<{$registForm->get('uname')|xoops_escape}>" style="cursor:not-allowed;" readonly>
-                </td>
-            </tr>
-            <tr>
-                <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
-                <td>
-                <input type="email" value="<{$registForm->get('email')|xoops_escape}>" style="cursor:not-allowed;" readonly>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" class="foot" style="text-align:center;">
-                    <input type="submit" class="ui-button cancel" name="_form_control_cancel" value="<{$smarty.const._CANCEL}>">
-                    <input type="submit" class="ui-button" value="<{$smarty.const._MD_USER_LANG_FINISH}>">
-                </td>
-            </tr>
-        </table>
-    </form>
-</section>
+   
+    <label for="uname">
+    <{$smarty.const._MD_USER_LANG_NICKNAME}>            
+    <input type="text" id="uname" value="<{$registForm->get('uname')|xoops_escape}>" style="cursor:not-allowed;" readonly>
+    </label>
+    <label for="email">
+    <{$smarty.const._MD_USER_LANG_EMAIL}>
+    <input type="email" id="email" value="<{$registForm->get('email')|xoops_escape}>" style="cursor:not-allowed;" readonly>
+    </label>
+
+    <footer>
+        <div class="grid-2">
+        <input type="submit" role="button" class="outline secondary" name="_form_control_cancel" value="<{$smarty.const._CANCEL}>">
+        <input type="submit" role="button" class="primary" value="<{$smarty.const._MD_USER_LANG_FINISH}>">
+        </div>
+    </footer>
+
+</article>
+
+</form>

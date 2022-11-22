@@ -280,6 +280,16 @@ $modversion['config'][] = [
 ];
 
 $modversion['config'][] = [
+    'name'        => 'show_rss',
+    'title'       => $constpref . '_SHOW_RSS',
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => []
+];
+
+$modversion['config'][] = [
 	'name'        => 'show_pagenavi',
 	'title'       => $constpref . '_SHOW_PAGENAVI',
 	'description' => '',
@@ -546,7 +556,7 @@ $modversion['config'][] = [
 	'description' => '',
 	'formtype'    => 'textbox',
 	'valuetype'   => 'int',
-	'default'     => '10',
+	'default'     => '5',
 	'options'     => []
 ];
 

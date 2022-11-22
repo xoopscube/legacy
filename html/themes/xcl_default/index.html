@@ -1,0 +1,837 @@
+<!doctype html>
+<html lang="en">
+<!-- 
+   /*
+    * XCL Theme PicoCSS
+    *
+    * @version   2.3.2
+    * @author    Nuno Luciano ( https://github.com/gigamaster )
+    * @copyright 2005-2022 The XOOPSCube Project, author
+    * @license   BSD
+    * @link      https://github.com/xoopscube
+    */
+-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--  <meta charset="<{$xoops_charset}>">-->
+    <title>XCL Theme built with PicoCSS for XOOPSCube</title>
+    <meta name="description" content="XCL Theme built with PicoCSS for XOOPSCube Web Application Platform and Content Management System">
+    <!--  <meta name="description" content="A classic company or blog layout with a sidebar. Built with Pico CSS.">-->
+    <meta name="robots" content="index,follow">
+    <meta name="keywords" content="free, theme, template, css, code, component, design, html, single file component, open source, free templates, ui, update, ux, website, wizard, wysiwyg">
+    <meta name="rating" content="general">
+    <meta name="author" content="Nuno Luciano">
+    <meta name="copyright" content="Copyright © 2022">
+    <meta name="generator" content="XOOPSCube">
+    <!-- Meta Webmaster Tools-->
+    <meta name="msvalidate.01" content="">
+    <meta name="google-site-verification" content="">
+    <meta name="yandex-verification" content="">
+    <!-- Facebook Open Graph data -->
+    <meta property="fb:app_id" content="">
+    <meta property="og:url" content="https://xoopscube-themes.github.io/xcl-picocss/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="XCL Theme built with PicoCSS for XOOPSCube">
+    <meta property="og:image" content="picocss-screenshot.png">
+    <meta property="og:description" content="XCL Theme built with PicoCSS for XOOPSCube">
+    <meta property="og:site_name" content="XCL Theme built with PicoCSS">
+    <meta property="article:author" content="Nuno Luciano">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="XCL Theme built with PicoCSS"><!-- @site_account -->
+    <meta name="twitter:creator" content="@nunoluciano">
+    <meta name="twitter:url" content="https://xoopscube-themes.github.io/xcl-picocss/">
+    <meta name="twitter:title" content="XCL Theme built with PicoCSS">
+    <meta name="twitter:description" content="XCL Theme built with PicoCSS for XOOPSCube">
+    <meta name="twitter:image" content="picocss-screenshot.png">
+    <meta name="twitter:image:alt" content="XCL Theme built with PicoCSS">
+    <!-- HTML5 valid Data URI for fake favicon requests by Browsers -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <!-- Mobile App favicon.ico Place in the root directory -->
+    <link rel="icon" href="https://xoopscube-themes.github.io/xcl-picocss/favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="https://xoopscube-themes.github.io/xcl-picocss/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="https://picocss.com/favicon.ico">
+    <!-- Request uri -->
+    <link rel="canonical" href="https://xoopscube-themes.github.io/xcl-picocss/">
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+    <!-- Custom styles for this example -->
+    <!-- Custom styles for this example -->
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        section.content {grid-area: content;}
+        aside {grid-area:side;}
+        :where(.grid,.grid-2,.grid-3,.grid-left,.grid-right) > div {
+            background: var(--card-background-color);
+            border:1px solid var(--muted-border-color);
+            border-radius: var(--border-radius);
+            padding:1rem;
+        }
+        :where(.container-fluid .grid-3) > div {background: transparent;border:none}
+        :where(.theme-info) > div {padding:.5rem 1rem;font-size: 16px}
+        main div.grid {grid-template-areas:"content side";}
+        .grid-custom {display:grid;column-gap: calc(var(--spacing) * 3);grid-template-areas:"side content";}
+        @media (max-width: 768px){
+            .grid,.grid-2,.grid-3,.grid-left,.grid-right,.grid-custom {grid-template-columns: 1fr;}
+            main > div.grid-custom {grid-template-columns: 1fr;grid-template-areas:"side" "content";}
+        }
+        #customization figure~article {
+            margin-top: 0;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+        #customization figure {
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: repeat(18,1fr);
+            border-top-right-radius: var(--border-radius);
+            border-top-left-radius: var(--border-radius);
+            margin: 0;
+            padding: 0;
+        }
+        #customization figure button {
+            margin-bottom: 0;
+            padding: 0;
+            padding-top: 100%;
+            border: none;
+            border-radius: 0;
+        }
+        #customization figure button.picked {
+            --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(255, 255, 255)' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            --icon-check-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(0, 0, 0, 0.75)' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-image: var(--icon-check);
+            background-position: center;
+            background-size: 0.66rem auto;
+            background-repeat: no-repeat;
+            box-shadow: inset 0 0 1rem 0 rgb(0 0 0 / 25%);
+        }
+        p>code {vertical-align: bottom;}
+        ul.check li {margin-left: 1.5rem;list-style: none}
+        header hgroup > :last-child, header .headings > :last-child {color: var(--primary-inverse);}
+        ul.check li::before {
+            display: block;
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            margin-top: .25rem;
+            margin-left: -1.5rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(16, 149, 193, 0.999)' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-size: 100%;
+            content: ""
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- Hero -->
+<div class="hero" data-theme="dark">
+    <nav class="container-fluid">
+        <ul>
+            <li><a href="./" class="contrast" onclick="event.preventDefault()"><strong>Brand</strong></a></li>
+        </ul>
+        <ul>
+            <li>
+                <details role="list" dir="rtl">
+                    <summary aria-haspopup="listbox" role="link" class="contrast">Color</summary>
+                    <ul role="listbox">
+                        <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                        <li><a href="#" data-theme-switcher="light">Light</a></li>
+                        <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+                    </ul>
+                </details>
+            </li>
+            <li>
+                <details role="list" dir="rtl">
+                    <summary aria-haspopup="listbox" role="link" class="contrast">About</summary>
+                    <ul role="listbox">
+                        <li><a href="#theme-pico">Theme</a></li>
+                        <li><a href="#customization">Customization</a></li>
+                        <li><a href="#components">Components</a></li>
+                        <li><a href="#theme-blockquote">Blockquote</a></li>
+                        <li><a href="#theme-group">Button Group</a></li>
+                        <li><a href="#theme-figure">Figure</a></li>
+                        <li><a href="#theme-grid">Grid</a></li>
+                        <li><a href="#theme-pagination">Pagination</a></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </nav>
+    <header class="container">
+        <hgroup>
+            <h1>Minimal CSS Framework for semantic HTML</h1>
+            <h2>Elegant styles for all natives HTML elements without .classes and dark mode automatically enabled.</h2>
+        </hgroup>
+        <p><a href="#" role="button" onclick="event.preventDefault()">Theme XCL PicoCSS</a></p>
+    </header>
+</div>
+
+
+<main class="container">
+
+    <div class="grid grid-custom">
+
+    <section class="content">
+
+        <h2>Let’s keep the web design simple!</h2>
+        <p>With just the right amount of everything, Pico is great starting point for a clean and lightweight design system.</p>
+
+        <h3>More Code, More Problems</h3>
+        <p>A great design should be minimal, fast and maintainable.</p>
+        <ul class="check">
+            <li>Most popular CSS frameworks are bulky, overkill and hard to customize without <em>hyper-overriding</em>
+                styles.
+            </li>
+            <li>Huge stackings of wrappers and CSS classes are unnecessary for semantics elements.</li>
+            <li>Large and complex CSS file increase memory usage and cause longer style calculations.</li>
+            <li>Basics HTML elements should not require packaging large amount of dependencies.</li>
+        </ul>
+
+    <hr>
+
+    <div role="document">
+
+        <div id="customization">
+            <h2>Customization</h2>
+            <p>You can customize XCL themes with variables, by editing the CSS custom properties of
+                <code>/theme-name/css/_ui_root.css</code><br>
+             For example <code><i>--primary</i>: <u>var</u>(<i>--red</i>);</code></p>
+            <p><strong>Pick a color!</strong></p>
+
+
+            <article data-theme="generated" aria-label="Generated theme example">
+                <h3><span class="name">Lime </span></h3>
+                <form>
+                    <div class="grid">
+                        <input type="text"
+                               name="login"
+                               placeholder="Login"
+                               aria-label="Login"
+                               autocomplete="nickname"
+                               required="">
+                        <input type="password"
+                               name="password"
+                               placeholder="Password"
+                               aria-label="Password"
+                               autocomplete="current-password"
+                               required="">
+                        <button type="submit" aria-label="Example button" onclick="event.preventDefault()">Login
+                        </button>
+                    </div>
+                    <fieldset>
+                        <label for="remember">
+                            <input type="checkbox"
+                                   role="switch"
+                                   id="remember"
+                                   name="remember"
+                                   checked="checked"> Remember me
+                        </label>
+                    </fieldset>
+                </form>
+
+                <footer class="code">
+<pre><code><em>// Simplified example</em>
+<b>:root</b> {
+<i>--primary</i>: <u class="c600">#c0ca33</u>;
+}
+</code></pre>
+                </footer>
+
+            </article>
+
+        </div><!-- customization -->
+
+    </div>
+
+    <article>
+
+        <h3>Overriding CSS variables</h3>
+        <p>The XCL Theme includes some components of X-layout and
+            the CSS overrides some elements that are listed below.</p>
+        <p>First of all, Pico's styles and colors are set with <em>CSS custom properties</em> (variables).
+            Just override the CSS variables to customize your version of theme PicoCSS.</p>
+
+        <pre><code><em>/* <span class="name">Lime </span>Light scheme (Default) */
+/* Can be forced with data-theme="light" */</em>
+<b>[data-theme=<u>"light"</u>]</b>,
+<b>:root:not([data-theme=<u>"dark"</u>])</b> {
+<i>--primary</i>: <u class="c600">#c0ca33</u>;
+<i>--primary-hover</i>: <u class="c700">#afb42b</u>;
+<i>--primary-focus</i>: <u class="c600-outline-light">rgba(192, 202, 51, 0.125)</u>;
+<i>--primary-inverse</i>: <u class="inverse">rgba(0, 0, 0, 0.75)</u>;
+}
+
+<em>/* <span class="name">Lime </span>Dark scheme (Auto) */
+/* Automatically enabled if user has Dark mode enabled */</em>
+<i>@media</i> only <b>screen</b> and <b>(prefers-color-scheme: <u>dark</u>)</b> {
+<b>:root:not([data-theme=<u>"light"</u>])</b> {
+<i>--primary</i>: <u class="c600">#c0ca33</u>;
+<i>--primary-hover</i>: <u class="c500">#cddc39</u>;
+<i>--primary-focus</i>: <u class="c600-outline-dark">rgba(192, 202, 51, 0.25)</u>;
+<i>--primary-inverse</i>: <u class="inverse">rgba(0, 0, 0, 0.75)</u>;
+}
+}
+
+<em>/* <span class="name">Lime </span>Dark scheme (Forced) */
+/* Enabled if forced with data-theme="dark" */</em>
+<b>[data-theme=<u>"dark"</u>]</b> {
+<i>--primary</i>: <u class="c600">#c0ca33</u>;
+<i>--primary-hover</i>: <u class="c500">#cddc39</u>;
+<i>--primary-focus</i>: <u class="c600-outline-dark">rgba(192, 202, 51, 0.25)</u>;
+<i>--primary-inverse</i>: <u class="inverse">rgba(0, 0, 0, 0.75)</u>;
+}
+
+<em>/* <span class="name">Lime </span>(Common styles) */</em>
+<b>:root</b> {
+<i>--form-element-active-border-color</i>: <u>var</u>(<i>--primary</i>);
+<i>--form-element-focus-color</i>: <u>var</u>(<i>--primary-focus</i>);
+<i>--switch-color</i>: <u>var</u>(<i>--primary-inverse</i>);
+<i>--switch-checked-background-color</i>: <u>var</u>(<i>--primary</i>);
+}
+</code></pre>
+
+        <p>You can find all the PicoCSS variables used in the default theme here: <a href="https://github.com/picocss/pico/blob/master/css/themes/default.css" target="_blank" rel="noopener">css/themes/default.css</a></p>
+
+
+        </article>
+
+        <h2 id="components">CSS Variables and Components</h2>
+        <p>CSS overrides and components implemented in XCL Theme PicoCSS.</p>
+
+        <p><button aria-busy="true">Updating Components. Please wait…</button></p>
+
+        <article id="theme-blockquote">
+            <h3>Blockquote</h3>
+            <p>Use blockquote with footer cite.</p>
+            <blockquote>
+            “What you leave behind is not what is engraved in stone monuments, but what is woven into the lives of others.”
+            <footer><cite>― Pericles</cite></footer>
+        </blockquote>
+        </article>
+
+        <article id="theme-figure">
+            <h3>Figure and Caption</h3>
+            <p>Use <code>figure</code> tag to wrap an image, and <code>figcaption</code> to provide a caption.
+            Example SVG placeholder.</p>
+            <figure>
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 300 150">
+                    <defs>
+                        <linearGradient id="MyGradient"
+                                        x1="0%" y1="15%"
+                                        x2="35%" y2="100%"
+                                        spreadMethod="repeat">
+                            <stop offset="5%" stop-color="#8c8473" />
+                            <stop offset="25%" stop-color="#b17a52" />
+                            <stop offset="95%" stop-color="#4d606d" />
+                        </linearGradient>
+                    </defs>
+                    <rect fill="url(#MyGradient)" width="300" height="150"/>
+                    <text fill="#cfb38f" font-family="sans-serif" font-size="100%" dy="10.5" font-weight="bold" x="50%" y="50%" text-anchor="middle">Your Dream. Your Legacy.</text>
+                </svg>
+                <figcaption>Every Legacy Begins with a Dream. What's Yours?</figcaption>
+            </figure>
+
+            <figure>
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                    <path fill="#817c70" d="M0 0h1024v1024H0z" />
+                    <g fill-opacity=".502">
+                        <path fill="#03020f" d="M178 994l580 92L402-62" />
+                        <path fill="#f2e2ba" d="M638 894L614 6l472 340" />
+                        <path fill="#11181e" d="M-62 854h300L138-62" />
+                        <path fill="#0b4041" d="M410-62L154 530-62 38" />
+                        <path fill="#62b4cf" d="M1086-2L498-30l484 408" />
+                        <path fill="#010412" d="M430-2l196 52-76 306" />
+                        <path fill="#eb7d3f" d="M598 594l488-32-308 500" />
+                    </g>
+                    <text fill="#d7d7d2" font-family="sans-serif" font-size="100%" dy="2" font-weight="bold" x="45%" y="70%" text-anchor="middle">Legacy to Remind Us of Where We Come From</text>
+                </svg>
+            </figure>
+        </article>
+
+
+
+        <article id="theme-group">
+            <h3>Button Group - primary</h3>
+            <p>Group is used with <code>&lt;<b>div</b> <i>role</i>="<u>group</u>"&gt;</code> for <code><i>class</i>="<u>action-control</u>"</code> and style of ui-tabs.</p>
+
+
+            <div role="group" aria-label="Action Control">
+                <a role="button" class="primary new" href="#!" title="Edit">New</a>
+                <a role="button" class="primary edit" href="#!" title="Edit">Edit</a>
+                <a role="button" class="primary" href="#!" title="Edit">Delete</a>
+                <a role="button" class="primary cancel" href="#!" title="Edit">Cancel</a>
+            </div>
+
+            <h3>Button Group - secondary</h3>
+            <div role="group" aria-label="Action Control">
+                <a role="button" class="secondary new" href="#!" title="Edit">New</a>
+                <a role="button" class="secondary edit" href="#!" title="Edit">Edit</a>
+                <a role="button" class="secondary" href="#!" title="Edit">Delete</a>
+                <a role="button" class="secondary cancel" href="#!" title="Edit">Cancel</a>
+            </div>
+
+            <h3>Button Group - outline</h3>
+            <div role="group" aria-label="Action Control">
+                <a role="button" class="outline new" href="#!" title="Edit">New</a>
+                <a role="button" class="outline edit" href="#!" title="Edit">Edit</a>
+                <a role="button" class="outline delete" href="#!" title="Edit">Delete</a>
+                <a role="button" class="outline cancel" href="#!" title="Edit">Cancel</a>
+            </div>
+        </article>
+
+        <article id="theme-dropdown">
+        <h3>Dropdown</h3>
+        <p>This component of X-layout requires jQuery and it is used to render action-control.</p>
+        <div>
+            <h4 class="block-title">
+                Main Menu
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" aria-label="Edit">
+                        <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1.25em" height="1.25em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                            <path d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#!">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path>
+                                <rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)"></rect>
+                            </svg> Edit <span class="badge">B-id</span></a>
+                        <a href="#!">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                <path d="M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z" fill="currentColor"></path>
+                                <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)"></rect>
+                            </svg> Clone Block</a>
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                <path d="M12.89 3l1.96.4L11.11 21l-1.96-.4L12.89 3m6.7 9L16 8.41V5.58L22.42 12L16 18.41v-2.83L19.59 12M1.58 12L8 5.58v2.83L4.41 12L8 15.58v2.83L1.58 12z" fill="currentColor"></path>
+                                <rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)"></rect>
+                            </svg> <span>Edit template</span></a>
+                    </div>
+                </div>
+            </h4>
+        </div>
+        </article>
+
+        <article id="theme-grid">
+
+        <h3>Grid</h3>
+        <p>The default grid creates a column for each child div in the parent element.</p>
+        <div class="grid">
+            <div>div 1</div>
+            <div>div 2</div>
+            <div>div 3</div>
+            <div>div 4</div>
+        </div>
+
+        <h4>Grid-2</h4>
+        <p>The class "grid-2" creates two columns, each occupying 50% of a parent element.</p>
+        <div class="grid-2">
+            <div>div 1</div>
+            <div>div 2</div>
+            <div>div 3</div>
+            <div>div 4</div>
+        </div>
+
+        <h4>Grid-3</h4>
+        <p>The class "grid-3" creates three columns for all child divs.</p>
+        <div class="grid-3">
+            <div>div 1</div>
+            <div>div 2</div>
+            <div>div 3</div>
+            <div>div 4</div>
+        </div>
+
+        <h4>Grid-left</h4>
+        <p>The class "grid-left" creates a first column width 1fr and second 3fr.</p>
+        <div class="grid-left">
+            <div>div 1</div>
+            <div>div 2</div>
+            <div>div 3</div>
+            <div>div 4</div>
+        </div>
+
+        <h4>Grid-right</h4>
+        <p>The class "grid-right" creates a first column width 3f and second 3fr.</p>
+        <div class="grid-right">
+            <div>div 1</div>
+            <div>div 2</div>
+            <div>div 3</div>
+            <div>div 4</div>
+        </div>
+        </article>
+
+
+
+        <article id="theme-pagination">
+        <header><div class="headings">
+            <h3>Pagination</h3>
+        <p>The Smarty plugin automatically generates the page navigation.
+            Thus allowing to use a CSS container class "pagination" and to easily customize the generated list "pagenavi".
+        </p></div>
+        </header>
+        <div class="pagination" aria-label="pagination">
+            <ul class="pagenavi" style="place-content: center;">
+                <li><a href="#!">1</a></li>
+                <li><strong>2</strong></li>
+                <li><a href="#!">3</a></li>
+                <li><a href="#!" class="next">»</a></li>
+            </ul>
+        </div>
+
+        <pre><code>&lt;<b>ul</b> <i>class</i>=<u>"pagenavi"</u>&gt;
+    &lt;<b>li</b>&gt;---&lt;<b>li</b>&gt;
+&lt;/<b>ul</b>&gt;</code></pre>
+        </article>
+
+    </section>
+
+    <aside>
+
+        <h2 id="theme-pico">XCL Theme PicoCSS</h2>
+        <p>Theme built with PicoCSS including templates for modules of XCL bundle package.</p>
+
+        <div class="grid-left theme-info">
+            <div>
+                <svg class="icon-bundle" width="1.25em" height="1.25em" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M2 21.4V2.6a.6.6 0 01.6-.6h18.8a.6.6 0 01.6.6v6.8a.6.6 0 01-.6.6H10.6a.6.6 0 00-.6.6v10.8a.6.6 0 01-.6.6H2.6a.6.6 0 01-.6-.6zM16 10V7M10 10V7M10 16H7M10 10H7" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                THEME</div> <div>XCL PicoCSS</div>
+            <div>
+                <svg class="icon-bundle" width="1.25em" height="1.25em" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M2.695 7.185l9 4 .61-1.37-9-4-.61 1.37zM12.75 21.5v-11h-1.5v11h1.5zm-.445-10.315l9-4-.61-1.37-9 4 .61 1.37z" fill="currentColor"></path><path d="M3 17.11V6.89a.6.6 0 01.356-.548l8.4-3.734a.6.6 0 01.488 0l8.4 3.734A.6.6 0 0121 6.89v10.22a.6.6 0 01-.356.548l-8.4 3.734a.6.6 0 01-.488 0l-8.4-3.734A.6.6 0 013 17.11z" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7.5 4.5l8.644 3.842a.6.6 0 01.356.548v3.61" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Version</div>  <div>XCL Bundle Package 2.3.x</div>
+            <div>
+                <svg class="icon-code" width="1.25em" height="1.25em" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M10 17h-.667a2 2 0 01-2-2v-1.889C7.333 12.556 6 12 6 12s1.333-.556 1.333-1.111V9a2 2 0 012-2H10M14 17h.667a2 2 0 002-2v-1.889C16.667 12.556 18 12 18 12s-1.333-.556-1.333-1.111V9a2 2 0 00-2-2H14" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21 3.6v16.8a.6.6 0 01-.6.6H3.6a.6.6 0 01-.6-.6V3.6a.6.6 0 01.6-.6h16.8a.6.6 0 01.6.6z" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Render</div> <div>Smarty Template Engine</div>
+            <div>
+                <svg class="icon-template" width="1.25em" height="1.25em" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M3.6 3h16.8a.6.6 0 01.6.6v16.8a.6.6 0 01-.6.6H3.6a.6.6 0 01-.6-.6V3.6a.6.6 0 01.6-.6zM9.75 9.75V21M3 9.75h18" stroke="currentColor" stroke-width="0.96"></path></svg>
+                Templates</div> <div>D3 Forum, Pico, and core modules</div>
+            <div>
+                <svg class="icon-lang" width="1.25em" height="1.25em" stroke-width="0.96" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M2 5h7m7 0h-2.5M9 5h4.5M9 5V3m4.5 2c-.82 2.735-2.539 5.32-4.5 7.593M4 17.5c1.585-1.359 3.376-3.026 5-4.907m0 0C8 11.5 6.4 9.3 6 8.5m3 4.093l3 2.907M13.5 21l1.143-3m6.857 3l-1.143-3m-5.714 0l2.857-7.5 2.857 7.5m-5.714 0h5.714" stroke="currentColor" stroke-width="0.96" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Language</div> <div>English, multi-Language</div>
+        </div>
+
+        <blockquote>
+            Smarty is a template engine for PHP, facilitating the separation of presentation (HTML/CSS) from application logic.
+        </blockquote>
+
+        <hr>
+
+        <article class="side-right">
+            <hgroup>
+                <h1>Themes</h1>
+                <h2>Pico is shipped with 2 consistent themes: Light &amp; Dark.</h2></hgroup>
+            <p>The Light theme is used by default. The Dark theme is automatically enabled if the user has dark mode enabled
+                <code><i>prefers-color-scheme</i>: <u>dark</u></code></p>
+            <p>Themes can be forced on document level <code>&lt;<b>html</b> <i>data-theme</i>=<u>"light"</u>&gt;</code> or
+                on any HTML element <code>&lt;<b>article</b> <i>data-theme</i>=<u>"dark"</u>&gt;</code></p>
+        </article>
+
+        <article data-theme="dark" aria-label="Forced dark theme example"><h3>Dark theme</h3>
+            <form class="grid">
+                <input type="text"
+                       name="login"
+                       placeholder="Login"
+                       aria-label="Login"
+                       autocomplete="nickname"
+                       required="">
+                <input type="password"
+                       name="password"
+                       placeholder="Password"
+                       aria-label="Password"
+                       autocomplete="current-password"
+                       required="">
+                <button type="submit" aria-label="Example button" onclick="event.preventDefault()">Login</button>
+            </form>
+
+            <footer class="code">
+<pre><code>&lt;<b>article</b> <i>data-theme</i>=<u>"dark"</u>&gt;
+…
+&lt;/<b>article</b>&gt;</code></pre>
+            </footer>
+        </article>
+
+
+        <article data-theme="light" aria-label="Forced light theme example"><h3>Light theme</h3>
+            <form class="grid">
+                <input type="text"
+                       name="login"
+                       placeholder="Login"
+                       aria-label="Login"
+                       autocomplete="nickname"
+                       required="">
+                <input type="password"
+                       name="password"
+                       placeholder="Password"
+                       aria-label="Password"
+                       autocomplete="current-password"
+                       required="">
+                <button type="submit" aria-label="Example button" onclick="event.preventDefault()">Login</button>
+            </form>
+            <footer class="code">
+<pre><code>&lt;<b>article</b> <i>data-theme</i>=<u>"light"</u>&gt;
+…
+&lt;/<b>article</b>&gt;</code></pre>
+            </footer>
+        </article>
+
+    </aside>
+
+    </div>
+
+</main>
+
+<section class="container-fluid block-center">
+
+    <div class="grid-3">
+
+        <div aria-label="column-left">
+            <div class="block-center-left b-0">
+            <h4 data-layout="row center-justify" class="block-title">
+                Private Message
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" aria-label="Edit">
+                        <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1.25em" height="1.25em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                            <path d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#!">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path>
+                                <rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)"></rect>
+                            </svg> Edit <span class="badge">B-id</span></a>
+                        <a href="#!">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                <path d="M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z" fill="currentColor"></path>
+                                <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)"></rect>
+                            </svg> Clone Block</a>
+                        <a href="#!">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                <path d="M12.89 3l1.96.4L11.11 21l-1.96-.4L12.89 3m6.7 9L16 8.41V5.58L22.42 12L16 18.41v-2.83L19.59 12M1.58 12L8 5.58v2.83L4.41 12L8 15.58v2.83L1.58 12z" fill="currentColor"></path>
+                                <rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)"></rect>
+                            </svg> <span title="message_block_template.html">Edit template</span></a>
+                    </div>
+                </div>
+            </h4>
+                <nav class="block-messages">
+                    <ul id="privatemessages">
+                        <li>
+                            <a href="#!">
+                                <span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="svg inbox-full" role="img"><path d="M19 15V5H5v10h4c0 1.66 1.34 3 3 3s3-1.34 3-3h4m0-12c1.1 0 2 .9 2 2v14c0 1.1-.9 2-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14M7 13v-2h10v2H7m0-4V7h10v2H7z" fill="currentColor"></path></svg>
+                                    Inbox</span>
+                                <span class="badge"><b style="color:orange">11</b>/15</span>
+                            </a>
+                        </li>
+                        <li>
+                        <a href="#!">
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="svg inbox-out" role="img"><path d="M14 14h-4v-3H8l4-4l4 4h-2v3m-9 1V5h14v10h-4a3 3 0 0 1-3 3a3 3 0 0 1-3-3H5M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2" fill="currentColor"></path></svg>
+                                Sent Box</span> <span class="badge"> 10</span></a>
+                        </li>
+                        <li>
+                        <a href="#!">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="svg mail-edit" role="img"><path d="M21 12.13c-.15.01-.29.06-.39.17l-1 1l2.05 2l1-1c.22-.21.22-.56 0-.77l-1.24-1.23a.557.557 0 0 0-.38-.17m-2 1.75L13 19.94V22h2.06l6.06-6.07M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7v-.89l8.24-8.22c.47-.49 1.12-.76 1.8-.76c.34 0 .68.06 1 .19V6c0-1.12-.92-2-2.04-2m0 4l-8 5l-8-5V6l8 5l8-5" fill="currentColor"></path></svg>
+                            New message</a>
+                        </li>
+                        <li>
+                        <a href="#!">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="svg settings" role="img"><path d="M3 17v2h6v-2H3M3 5v2h10V5H3m10 16v-2h8v-2h-8v-2h-2v6h2M7 9v2H3v2h4v2h2V9H7m14 4v-2H11v2h10m-6-4h2V7h4V5h-4V3h-2v6z" fill="currentColor"></path></svg>
+                        Settings</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div aria-label="column-center">
+            <div class="block-center-center b-0">
+                <h4 data-layout="row center-justify" class="block-title">
+                    Welcome
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" aria-label="Edit">
+                            <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1.25em" height="1.25em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                <path d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2z" fill="currentColor"></path>
+                            </svg>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="#!">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                    <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path>
+                                    <rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)"></rect>
+                                </svg> Edit <span class="badge">B-27</span></a>
+                            <a href="#!">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                    <path d="M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z" fill="currentColor"></path>
+                                    <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)"></rect>
+                                </svg> Clone Block</a>
+                            <a href="#!">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                    <path d="M12.89 3l1.96.4L11.11 21l-1.96-.4L12.89 3m6.7 9L16 8.41V5.58L22.42 12L16 18.41v-2.83L19.59 12M1.58 12L8 5.58v2.83L4.41 12L8 15.58v2.83L1.58 12z" fill="currentColor"></path>
+                                    <rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)"></rect>
+                                </svg> <span title="">Edit template</span></a>
+                        </div>
+                    </div>
+                </h4>
+                <div class="block-content"><h2>Welcome to your new website!</h2>
+                    <p>A web application platform that is simple to deploy and to customize with the frameworks of your choice,
+                        modules and blocks, accessible format and expanded search capabilities, simpler navigation, and direct control of your data.&nbsp;</p>
+                </div>
+            </div>
+        </div>
+
+        <div aria-label="column-right">
+            <div class="block-center-right b-0">
+                <h4 data-layout="row center-justify" class="block-title">
+                    Menu
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" aria-label="Edit">
+                            <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1.25em" height="1.25em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+                                <path d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2z" fill="currentColor"></path>
+                            </svg>
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="#!">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                    <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path>
+                                    <rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)"></rect>
+                                </svg> Edit <span class="badge">B-id</span></a>
+                            <a href="#!">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                    <path d="M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z" fill="currentColor"></path>
+                                    <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)"></rect>
+                                </svg> Clone Block</a>
+                            <a href="#!">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                    <path d="M12.89 3l1.96.4L11.11 21l-1.96-.4L12.89 3m6.7 9L16 8.41V5.58L22.42 12L16 18.41v-2.83L19.59 12M1.58 12L8 5.58v2.83L4.41 12L8 15.58v2.83L1.58 12z" fill="currentColor"></path>
+                                    <rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)"></rect>
+                                </svg> <span title="">Edit template</span></a>
+                        </div>
+                    </div>
+                </h4>
+                <div class="block-menu">
+                    <dl>
+                        <dt><a href="#!">TOP</a></dt>
+                        <dd>
+                            <ul>
+                                <li><a href="#!" aria-label=":2022/10/9 8:09:03">Readme - information about modules and templates</a></li>
+                                <li><a href="#!" aria-label=":2022/11/11 22:25:20">Release with default theme PicoCSS</a></li>
+                                <li><a href="#!" aria-label=":2022/10/9 1:23:28">Changelog for XOOPSCube Legacy version 240</a></li>
+                            </ul>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt><a href="#!">Modules</a></dt>
+                        <dd>
+                            <ul>
+                                <li><a href="#!" aria-label=":2022/10/9 8:03:39">D3Forum and comment management</a></li>
+                                <li><a href="#!" aria-label=":2022/10/9 8:06:12">Pico - Content Management</a></li>
+                                <li><a href="#!" aria-label=":2022/10/13 16:02:38">elFinder - File Management</a></li>
+                                <li><a href="#!" aria-label=":2022/10/18 23:59:27">Update Manager</a></li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</section>
+
+<!-- Subscribe -->
+<section aria-label="Subscribe example">
+    <div class="container">
+        <article>
+            <hgroup>
+                <h2>Subscribe</h2>
+                <h3>Litora torquent per conubia nostra</h3>
+            </hgroup>
+            <form class="grid">
+                <input type="text" id="firstname" name="firstname" placeholder="First name" aria-label="First name" required>
+                <input type="email" id="email" name="email" placeholder="Email address" aria-label="Email address" required>
+                <button type="submit" onclick="event.preventDefault()">Subscribe</button>
+            </form>
+        </article>
+    </div>
+</section><!-- ./ Subscribe -->
+
+<div class="scroll-top">
+    <a href="#" aria-label="Scroll to top">
+        <svg width="48px" height="48px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path id="ntop-bg" d="M0 0h48v48h-48z"></path>
+            <path id="ntop-arrow" d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z"></path>
+        </svg>
+    </a>
+</div>
+
+<!-- Footer -->
+<footer class="container">
+    <small>Built with <a href="https://picocss.com" target="_blank" rel="noopener nofollow">Pico CSS</a> • <a href="https://github.com/picocss/examples/tree/master/company/">Source code</a></small><br>
+    <small>Powered by XCL 2.3.1 © 2005-2022 <a href="https://github.com/xoopscube/" rel="external">The XOOPSCube Project</a> | <a href="https://xoopscube.github.io/legacy/">Web Installation Wizard</a></small>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+<script src="./js/minimal-theme-switcher.js"></script>
+<script>
+    $(".dropdown").on("click", ".dropdown-toggle", function (event) {
+        event.preventDefault();
+        $('.dropdown').removeClass('isopen');
+        $(this).parent().toggleClass('isopen');
+    });
+    $(document).on("click", function (event) {
+        var $trigger = $(".dropdown");
+        if ($trigger !== event.target && !$trigger.has(event.target).length) {
+            $(".dropdown").removeClass("isopen");
+        }
+    });
+    "use strict";!function(){
+        var e={colors:null,buttonsTarget:'#customization article[data-theme="generated"]',selectorButton:"#customization button[data-color]",selectorSection:"#customization",buttons:null,generatedStyles:null,init(){this.generateButtons(),this.setActiveButton("red"),this.generateTheme("red")},generateButtons(){let e="",a="";for(const t in this.colors)e+=`<button data-color="${t}" aria-label="Activate ${t} theme"></button>`,a+=`
+        button[data-color="${t}"] {
+          background-color: ${this.colors[t][600]};
+        }
+        [data-theme="light"] button[data-color="${t}"]:hover,
+        [data-theme="light"] button[data-color="${t}"]:active,
+        [data-theme="light"] button[data-color="${t}"]:focus {
+          background-color: ${this.colors[t][700]}; '
+        }
+        [data-theme="dark"] button[data-color="${t}"]:hover,
+        [data-theme="dark"] button[data-color="${t}"]:active,
+        [data-theme="dark"] button[data-color="${t}"]:focus {
+          background-color: ${this.colors[t][500]};
+        }`;
+        var f=document.createElement("FIGURE"),f=(f.innerHTML=e,document.querySelector(this.buttonsTarget).before(f),this.buttons=document.querySelectorAll(this.selectorButton),this.buttons.forEach(e=>{e.addEventListener("click",e=>{e=e.target.getAttribute("data-color");this.setActiveButton(e),this.generateTheme(e)},!1)}),document.createElement("STYLE"));f.setAttribute("title","color-picker"),this.generatedStyles=this.minifyCSS(a),f.innerHTML=this.generatedStyles,document.querySelector("head").appendChild(f)},setActiveButton(e){this.buttons.forEach(e=>{e.removeAttribute("class")}),document.querySelector(this.selectorButton+'[data-color="'+e+'"]').setAttribute("class","picked")},generateTheme(e){var a=e,e=this.colors[e];let f={".name":a.charAt(0).toUpperCase()+a.substring(1)+" ",".c500":e[500],".c600":e[600],".c700":e[700],".c600-outline-light":this.hexToRgbA(e[600],.125),".c600-outline-dark":this.hexToRgbA(e[600],.25),".inverse":e.inverse};Object.keys(f).forEach(a=>{document.querySelectorAll(this.selectorSection+" "+a).forEach(e=>{e.innerHTML=f[a]})});a=`
+    [data-theme="generated"] {
+      --h4-color: ${e[700]};
+      --primary: ${e[600]};
+      --primary-hover: ${e[700]};
+      --primary-focus: ${this.hexToRgbA(e[600],.125)};
+      --primary-inverse: ${e.inverse};
+    }
+    @media only screen and (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) [data-theme="generated"] {
+        --h4-color: ${e[400]};
+        --primary: ${e[600]};
+        --primary-hover: ${e[500]};
+        --primary-focus: ${this.hexToRgbA(e[600],.25)};
+        --primary-inverse: ${e.inverse};
+      }
+    }
+    [data-theme="dark"] [data-theme="generated"] {
+      --h4-color: ${e[500]};
+      --primary: ${e[600]};
+      --primary-hover: ${e[500]};
+      --primary-focus: ${this.hexToRgbA(e[600],.25)};
+      --primary-inverse: ${e.inverse};
+    }
+    [data-theme="generated"] {
+      --form-element-active-border-color: var(--primary);
+      --form-element-focus-color: var(--primary-focus);
+      --switch-color: var(--primary-inverse);
+      --switch-checked-background-color: var(--primary);
+    }`;document.querySelector('style[title="color-picker"]').innerHTML=this.generatedStyles+this.minifyCSS(a)},minifyCSS(e){return e.replace(/^ +/gm,"")},hexToRgbA(e,a){let f;if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(e))return"rgba("+[(f="0x"+(f=3==(f=e.substring(1).split("")).length?[f[0],f[0],f[1],f[1],f[2],f[2]]:f).join(""))>>16&255,f>>8&255,255&f].join(", ")+", "+a+")";throw new Error("Bad Hex")}};e.colors={red:{50:"#ffebee",100:"#ffcdd2",200:"#ef9a9a",300:"#e57373",400:"#ef5350",500:"#f44336",600:"#e53935",700:"#d32f2f",800:"#c62828",900:"#b71c1c",a100:"#ff8a80",a200:"#ff5252",a400:"#ff1744",a700:"#d50000",inverse:"#FFF"},pink:{50:"#fce4ec",100:"#f8bbd0",200:"#f48fb1",300:"#f06292",400:"#ec407a",500:"#e91e63",600:"#d81b60",700:"#c2185b",800:"#ad1457",900:"#880e4f",a100:"#ff80ab",a200:"#ff4081",a400:"#f50057",a700:"#c51162",inverse:"#FFF"},purple:{50:"#f3e5f5",100:"#e1bee7",200:"#ce93d8",300:"#ba68c8",400:"#ab47bc",500:"#9c27b0",600:"#8e24aa",700:"#7b1fa2",800:"#6a1b9a",900:"#4a148c",a100:"#ea80fc",a200:"#e040fb",a400:"#d500f9",a700:"#aa00ff",inverse:"#FFF"},"deep-purple":{50:"#ede7f6",100:"#d1c4e9",200:"#b39ddb",300:"#9575cd",400:"#7e57c2",500:"#673ab7",600:"#5e35b1",700:"#512da8",800:"#4527a0",900:"#311b92",a100:"#b388ff",a200:"#7c4dff",a400:"#651fff",a700:"#6200ea",inverse:"#FFF"},indigo:{50:"#e8eaf6",100:"#c5cae9",200:"#9fa8da",300:"#7986cb",400:"#5c6bc0",500:"#3f51b5",600:"#3949ab",700:"#303f9f",800:"#283593",900:"#1a237e",a100:"#8c9eff",a200:"#536dfe",a400:"#3d5afe",a700:"#304ffe",inverse:"#FFF"},blue:{50:"#e3f2fd",100:"#bbdefb",200:"#90caf9",300:"#64b5f6",400:"#42a5f5",500:"#2196f3",600:"#1e88e5",700:"#1976d2",800:"#1565c0",900:"#0d47a1",a100:"#82b1ff",a200:"#448aff",a400:"#2979ff",a700:"#2962ff",inverse:"#FFF"},"light-blue":{50:"#e1f5fe",100:"#b3e5fc",200:"#81d4fa",300:"#4fc3f7",400:"#29b6f6",500:"#03a9f4",600:"#039be5",700:"#0288d1",800:"#0277bd",900:"#01579b",a100:"#80d8ff",a200:"#40c4ff",a400:"#00b0ff",a700:"#0091ea",inverse:"#FFF"},cyan:{50:"#e0f7fa",100:"#b2ebf2",200:"#80deea",300:"#4dd0e1",400:"#26c6da",500:"#00bcd4",600:"#00acc1",700:"#0097a7",800:"#00838f",900:"#006064",a100:"#84ffff",a200:"#18ffff",a400:"#00e5ff",a700:"#00b8d4",inverse:"#FFF"},teal:{50:"#e0f2f1",100:"#b2dfdb",200:"#80cbc4",300:"#4db6ac",400:"#26a69a",500:"#009688",600:"#00897b",700:"#00796b",800:"#00695c",900:"#004d40",a100:"#a7ffeb",a200:"#64ffda",a400:"#1de9b6",a700:"#00bfa5",inverse:"#FFF"},green:{50:"#e8f5e9",100:"#c8e6c9",200:"#a5d6a7",300:"#81c784",400:"#66bb6a",500:"#4caf50",600:"#43a047",700:"#388e3c",800:"#2e7d32",900:"#1b5e20",a100:"#b9f6ca",a200:"#69f0ae",a400:"#00e676",a700:"#00c853",inverse:"#FFF"},"light-green":{50:"#f1f8e9",100:"#dcedc8",200:"#c5e1a5",300:"#aed581",400:"#9ccc65",500:"#8bc34a",600:"#7cb342",700:"#689f38",800:"#558b2f",900:"#33691e",a100:"#ccff90",a200:"#b2ff59",a400:"#76ff03",a700:"#64dd17",inverse:"#FFF"},lime:{50:"#f9fbe7",100:"#f0f4c3",200:"#e6ee9c",300:"#dce775",400:"#d4e157",500:"#cddc39",600:"#c0ca33",700:"#afb42b",800:"#9e9d24",900:"#827717",a100:"#f4ff81",a200:"#eeff41",a400:"#c6ff00",a700:"#aeea00",inverse:"rgba(0, 0, 0, 0.75)"},yellow:{50:"#fffde7",100:"#fff9c4",200:"#fff59d",300:"#fff176",400:"#ffee58",500:"#ffeb3b",600:"#fdd835",700:"#fbc02d",800:"#f9a825",900:"#f57f17",a100:"#ffff8d",a200:"#ffff00",a400:"#ffea00",a700:"#ffd600",inverse:"rgba(0, 0, 0, 0.75)"},amber:{50:"#fff8e1",100:"#ffecb3",200:"#ffe082",300:"#ffd54f",400:"#ffca28",500:"#ffc107",600:"#ffb300",700:"#ffa000",800:"#ff8f00",900:"#ff6f00",a100:"#ffe57f",a200:"#ffd740",a400:"#ffc400",a700:"#ffab00",inverse:"rgba(0, 0, 0, 0.75)"},orange:{50:"#fff3e0",100:"#ffe0b2",200:"#ffcc80",300:"#ffb74d",400:"#ffa726",500:"#ff9800",600:"#fb8c00",700:"#f57c00",800:"#ef6c00",900:"#e65100",a100:"#ffd180",a200:"#ffab40",a400:"#ff9100",a700:"#ff6d00",inverse:"#FFF"},"deep-orange":{50:"#fbe9e7",100:"#ffccbc",200:"#ffab91",300:"#ff8a65",400:"#ff7043",500:"#ff5722",600:"#f4511e",700:"#e64a19",800:"#d84315",900:"#bf360c",a100:"#ff9e80",a200:"#ff6e40",a400:"#ff3d00",a700:"#dd2c00",inverse:"#FFF"},grey:{50:"#fafafa",100:"#f5f5f5",200:"#eeeeee",300:"#e0e0e0",400:"#bdbdbd",500:"#9e9e9e",600:"#757575",700:"#616161",800:"#424242",900:"#212121",inverse:"#FFF"},"blue-grey":{50:"#eceff1",100:"#cfd8dc",200:"#b0bec5",300:"#90a4ae",400:"#78909c",500:"#607d8b",600:"#546e7a",700:"#455a64",800:"#37474f",900:"#263238",inverse:"#FFF"}},e.init()}();
+</script>
+</body>
+</html>

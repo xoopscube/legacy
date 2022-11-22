@@ -369,8 +369,7 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 
 		if ( $post_hits > $num ) {
 			// POS
-			$pos = isset( $_GET['d3f_pos'] ) ? (int) $_GET['d3f_pos']
-				: ( ( 1 == $postorder ) ? (int) ( ( $post_hits - 1 ) / $num ) * $num : 0 );
+			$pos = isset( $_GET['d3f_pos'] ) ? (int) $_GET['d3f_pos'] : ( ( 1 == $postorder ) ? (int) ( ( $post_hits - 1 ) / $num ) * $num : 0 );
 
 			if ( ! empty( $_SERVER['QUERY_STRING'] ) ) {
 				if ( preg_match( '/^d3f_pos=[0-9]+/', $_SERVER['QUERY_STRING'] ) ) {

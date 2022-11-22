@@ -11,10 +11,11 @@ body
 	font-size: 12px;
 
 	/* Text color */
-	color: #333;
-
+	/*color: #333;*/
+	color: var(--ckeditor-color, #bbc6ce);
 	/* Remove the background color to make it transparent. */
-	background-color: #fff;
+	/*background-color: #fff;*/
+	background : var(--ckeditor-background, #11191f92);
 
 	margin: 20px;
 }

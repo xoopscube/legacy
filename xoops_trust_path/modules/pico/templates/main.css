@@ -1,6 +1,5 @@
 /* ToDo */
 .pico_container .pico_menu {
-
 }
 ul.list-group{
     /*border-left: 1px solid #ddd;*/
@@ -10,41 +9,8 @@ ul.list-group{
     padding: 10px;
 
 }
-/*li.list-group-item {
 
-    position: relative;
-    display: block;
-    !*left: 10px;*!
-}
-li.list-group-item div[class^="level"]::before{
-    position: absolute;
-    left: 10px;
-    top: 1em;
-    content: '';
-    display: block;
-    border-left: 1px solid #ddd;
-    height: 2em;
-    border-bottom: 1px solid #ddd;
-    width: 10px;
-}
 
-li.list-group-item div.level1::before { left:10px;width: 10px; overflow-clip: }
-
-li.list-group-item div.level2::before { left:10px;width: 20px; }
-
-li.list-group-item div.level3::before { left:10px;width: 30px; }
-li.list-group-item div.level4::before { left:10px;width: 40px; }
-li.list-group-item div.level5::before { left:10px;width: 50px; }
-
-li.list-group-item div[class^="level"]:after{
-    position: absolute;
-    left: 10px;
-    bottom: -50px;
-    content: '';
-    display: block;
-    border-left: 1px solid #ddd;
-    height: 233%;
-}*/
 /* Apply Level To Heading (Category Name) */
 li.list-group-item div.level1>h4 {margin-left:20px;}
 li.list-group-item div.level2>h4 {margin-left:20px;}

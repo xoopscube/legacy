@@ -1,8 +1,9 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{if $mod_config.show_breadcrumbs}>
-    <ul class="breadcrumb" aria-label="breadcrumb">
+<nav aria-label="breadcrumb">
+    <ul>
         <li>
             <a href="<{$xoops_url}>/">
                 <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
@@ -16,6 +17,7 @@
         <{/if}>
         <li aria-current="page"><{$smarty.const._DELETE}>
     </ul>
+</nav>
 <{/if}>
 
 
@@ -36,7 +38,7 @@
 
 <{$gticket_hidden}>
 
-	<p class="msg-callout msg-warning"><{if $children_count}>
+	<p class="alert warning"><{if $children_count}>
 		<{$smarty.const._MD_D3FORUM_CONFIRM_AREUSUREDEL}>
 	<{else}>
 		<{$smarty.const._MD_D3FORUM_CONFIRM_AREUSUREDELONE}>

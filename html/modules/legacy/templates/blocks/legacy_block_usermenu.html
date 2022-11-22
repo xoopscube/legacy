@@ -1,7 +1,7 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<div class="block-user-menu">
+<nav class="block-user-menu">
 <ul id="user-menu">
     <{if $block.flagShowInbox}>
         <li class="user-menu-email">
@@ -43,4 +43,4 @@
         </a>
     </li>
 </ul>
-</div>
+</nav>

@@ -162,8 +162,7 @@ if ( $topic4assign['external_link_id'] > 0 ) {
 
 		$tree[] = [
 			'id'                  => (int) $post_row['post_id'],
-			'subject'             => $myts->makeTboxData4Show( $post_row['subject'], $post_row['number_entity'],
-				$post_row['special_entity'] ),
+			'subject'             => $myts->makeTboxData4Show( $post_row['subject'], $post_row['number_entity'], $post_row['special_entity'] ),
 			'post_time_formatted' => formatTimestamp( $post_row['post_time'], 'm' ),
 			'poster_uid'          => $topic_last_uid,
 			'poster_uname'        => $topic_last_uname,

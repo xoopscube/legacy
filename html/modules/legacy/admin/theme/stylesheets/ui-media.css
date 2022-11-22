@@ -185,7 +185,7 @@
     }
 
     .ui-card-small {
-        padding                 : .5rem;
+        /*padding                 : .5rem;*/
     }
 
     }
@@ -211,9 +211,10 @@
         transform               : translateX(0);
     }
 }
+
 /* device 1440px */
 @media screen and (min-width:88em) {
     #container > main {
-        max-width               : calc(84vw - 360px);
+        max-width               : calc(84vw - 140px);
     }
 }

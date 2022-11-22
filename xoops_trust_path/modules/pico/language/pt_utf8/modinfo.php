@@ -84,6 +84,7 @@ define($constpref."_MENUINMODULETOP","Mostrar o menu (índice) no topo deste mó
 define($constpref."_LISTASINDEX","Mostrar o índice de artigos na página inicial");
 define($constpref."_LISTASINDEXDSC","Optar por SIM fará com que a página inicial deste módulo seja um índice dos artigos; optar por NÃO fará com que o artigo de maior prioridade seja a página inicial.");
 define($constpref."_SHOW_BREADCRUMBS","Mostrar breadcrumbs");
+define($constpref."_SHOW_RSS","Mostrar RSS");
 define($constpref."_SHOW_PAGENAVI","Mostrar a página de navegação do artigo");
 define($constpref."_SHOW_PRINTICON","Mostrar o ícone de página para impressão");
 define($constpref."_SHOW_TELLAFRIEND","Mostrar o ícone de indicação de artigo por email");

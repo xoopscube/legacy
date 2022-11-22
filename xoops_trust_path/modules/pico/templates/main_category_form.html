@@ -1,5 +1,5 @@
 <{* Dev-Mode Toggle *}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
 
@@ -9,35 +9,26 @@
 <form name="categoryform" id="categoryform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>" method="post" onsubmit="return xoopsFormValidate_categoryform();">
     <{$gticket_hidden}>
 
-	<section data-layout="column" class="framed" id="<{$mydirname}>_container">
+	<article data-layout="column" class="framed" id="<{$mydirname}>_container">
 
-
-		<div data-layout="row center-justify mb-6">
+		<header>
 			<h3><{$formtitle}></h3>
-		</div>
+		</header>
 
-		<div data-layout="row center-left sm-column mb-6">
-			<div data-self="size-xxsmall sm-full">
-				<label for="category_pid"><{$smarty.const._MD_PICO_TH_CATEGORYPARENT}></label>
-			</div>
-			<div data-self="sm-full">
-				<{if $category.id == 0}>
-				(<{$smarty.const._MD_PICO_TOP}>)
-				<{else}>
+		<label for="category_pid">
+			<{$smarty.const._MD_PICO_TH_CATEGORYPARENT}>
+			<{if $category.id == 0}>
+				<{$smarty.const._MD_PICO_TOP}>
+			<{else}>
 				<select name="pid" id="category_pid">
 					<{html_options options=$categories_can_makesubcategory selected=$category.pid}>
 				</select>
-				<{/if}>
-			</div>
-		</div>
-
+			<{/if}>
+		</label>
 
 		<{if $mod_config.use_wraps_mode && $category.id != 0}>
-		<div data-layout="row center-left sm-column mb-6">
-			<div data-self="size-xxsmall sm-full">
-				<label for="category_vpath"><{$smarty.const._MD_PICO_TH_VIRTUALPATH}></label>
-			</div>
-			<div data-self="sm-full">
+			<label for="category_vpath">
+				<{$smarty.const._MD_PICO_TH_VIRTUALPATH}>
 				<input type="text" name="cat_vpath" id="category_vpath" size="50" value="<{$category.vpath}>" class="pico_ascii_only">
 				<{if $xoops_isadmin}>
 				<br>
@@ -45,89 +36,62 @@
 					<{html_options options=$category.wraps_directories selected=$category.vpath}>
 				</select>
 				<{/if}>
-			</div>
-		</div>
+			</label>
 		<{/if}>
 
+		<label for="category_title">
+			<{$smarty.const._MD_PICO_TH_CATEGORYTITLE}>
+			<input type="text" name="cat_title" id="category_title" size="60" maxlength="191" value="<{$category.title}>">
+		</label>
 
-		<div data-layout="row center-left sm-column mb-6">
-			<div data-self="size-xxsmall sm-full">
-				<label for="category_title"><{$smarty.const._MD_PICO_TH_CATEGORYTITLE}></label>
-			</div>
-			<div data-self="sm-full">
-				<input type="text" name="cat_title" id="category_title" size="60" maxlength="191" value="<{$category.title}>">
-			</div>
-		</div>
+		<label for="category_desc">
+			<{$smarty.const._MD_PICO_TH_CATEGORYDESC}>
+				<textarea name="cat_desc" id="category_desc" cols="50" rows="3"><{$category.desc}></textarea>
+		</label>
 
+		<label>
+			<span class="badge"><{$category.children_count}></span>
+			<{$smarty.const._MD_PICO_SUBCATEGORY_COUNT}>
+		</label>
 
-		<div data-layout="row center-left sm-column mb-6">
-			<div data-self="size-xxsmall sm-full">
-				<label for="category_desc"><{$smarty.const._MD_PICO_TH_CATEGORYDESC}></label>
-			</div>
-			<div data-self="sm-full">
-				<textarea name="cat_desc" id="category_desc" cols="50" rows="5"><{$category.desc}></textarea>
-			</div>
-		</div>
-
-
-
-		<div data-layout="row center-left sm-column mb-6">
-			<div data-self="size-xxsmall sm-full">
-				<label for="category_weight"><{$smarty.const._MD_PICO_TH_CATEGORYWEIGHT}></label>
-			</div>
-			<div data-self="sm-full">
-				<{*	Input type number Max 100 *}>
-				<input type="number" min="0" max="100" step="1" name="cat_weight" id="category_weight" value="<{$category.weight}>" class="pico_number_only" aria-label="Max 100">
-			</div>
-		</div>
-
-
-		<div data-layout="row center-left sm-column mb-6">
-			<div data-self="size-xxsmall sm-full">
-				<{$smarty.const._MD_PICO_SUBCATEGORY_COUNT}>
-			</div>
-			<div data-self="sm-full">
-				<span class="badge"><{$category.children_count}></span>
-			</div>
-		</div>
+		<label for="category_weight">
+			<{$smarty.const._MD_PICO_TH_CATEGORYWEIGHT}>
+			<{*	Input type number Max 100 *}>
+			<input type="number" min="0" max="100" step="1" name="cat_weight" id="category_weight" value="<{$category.weight}>" class="pico_number_only" aria-label="Max 100">
+		</label>
 
 		<{* ----- CATEGORY OPTIONS *}>
-		<div data-layout="row center-left sm-column mb-6">
-			<div data-self="size-xxsmall sm-full">
-				<{$smarty.const._MD_PICO_TH_CATEGORYOPTIONS}>
-			</div>
-			<div data-self="sm-full">
-				<label for="category_option_controller_onoff">
-				<input type="checkbox" id="category_option_controller_onoff"
-					   onclick="if(this.checked){xoopsGetElementById('category_option_controller').style.display='block';}else{xoopsGetElementById('category_option_controller').style.display='none';};"
-					<{if $category.options}>checked="checked"<{/if}>>
+		<h5><{$smarty.const._MD_PICO_TH_CATEGORYOPTIONS}></h5>
+
+		<label for="category_option_controller_onoff">
+		<input type="checkbox" id="category_option_controller_onoff"
+			   onclick="if(this.checked)
+			   {xoopsGetElementById('category_option_controller').style.display='block';}
+			   else
+			   {xoopsGetElementById('category_option_controller').style.display='none';};" <{if $category.options}>checked="checked"<{/if}>>
 				<{$smarty.const._MD_PICO_ONOFF}></label>
 
-				<div id="category_option_controller" <{if ! $category.options}>style="display:none;"<{/if}>>
-					<textarea name="cat_options" id="category_options" cols="50" rows="10"><{$category.options}></textarea>
-					<div>
-					<{$smarty.const._MD_PICO_HOWTO_OVERRIDEOPTIONS}>
-					<span class="categoryoptiondesc"><{$category.option_desc}></span>
-					</div>
-				</div>
-			</div>
+		<div id="category_option_controller" <{if !$category.options}>style="display:none;"<{/if}>>
+			<textarea name="cat_options" id="category_options" cols="50" rows="3"><{$category.options}></textarea>
+
+                <{* CONSTANT CUSTOM HTML: trust_path/module/pico/language/[lang]/main.php *}>
+                <{* -- DEFAULT <code><b>(option name)</b>:<u>(option value)</u></code> -- *}>
+				<{$smarty.const._MD_PICO_HOWTO_OVERRIDEOPTIONS}>
+                <div class="category_options_desc"><{$category.option_desc}></div>
 		</div>
 		<{* ----- /CATEGORY OPTIONS *}>
 
-		<div data-layout="row center-left sm-column mb-6">
-			<div data-self="size-xxsmall sm-full">
-
-			</div>
-			<div data-self="sm-full">
+		<footer>
+			<div class="grid-2">
 				<{if $page == 'categorymanager' && $children_count == 0}>
-				<input type="submit" class="button delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>"
+				<input type="submit" role="button" class="outline delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>"
 					   onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECATEGORY}>')">
 				<{/if}>
-				<input type="submit" class="button" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
+				<input type="submit" role="button" class="button" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
 			</div>
-		</div>
+		</footer>
 
-	</section>
+	</article>
 
 </form>
 

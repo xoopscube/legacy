@@ -1,3 +1,6 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
 <{if $actionForm->hasError()}>
 <div class="errorMsg">
     <ul>
@@ -77,8 +80,8 @@
         <tfoot>
         <tr class="foot">
             <td colspan="2">
-                <input class="btn submit" type="submit" name="com_dopost" value="<{$smarty.const._SUBMIT}>">
-                <input class="btn cancel" type="button" value="<{$smarty.const._BACK}>" onclick="javascript:history.back()">
+                <input role="button" class="outline" type="button" value="<{$smarty.const._BACK}>" onclick="javascript:history.back()">
+                <input role="button" class="primary" type="submit" name="com_dopost" value="<{$smarty.const._SUBMIT}>">
             </td>
         </tr>
         </tfoot>

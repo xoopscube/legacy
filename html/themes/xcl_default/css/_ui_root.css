@@ -1,695 +1,182 @@
 /*
- * Theme XCL DEFAULT
+ * XCL Theme PicoCSS
+ *
  * @version   2.3.2
  * @author    Nuno Luciano ( https://github.com/gigamaster )
- * @copyright 2005-2022 The XOOPSCube Project
+ * @copyright 2005-2022 The XOOPSCube Project, author
  * @license   BSD
  * @link      https://github.com/xoopscube
  */
-
-/* -------------------- ROOT DEFAULT */
-
-@font-face {
-    font-family     : 'Nunito'; /*'Nunito';  nunito-300 - latin */
-    font-style      : normal;
-    font-weight     : 300;
-    src             : url('../fonts/nunito-v16-latin-300.woff2') format('woff2'); /*local(''),Chrome 26+, Opera 23+, Firefox 39+ */
+/* Global CSS variables */
+/* -------------------- -------------------- COLOR */
+/* Smooth scrolling IF user doesn't have a preference due to motion sensitivities */
+@media screen and (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
 }
+:root:not([data-theme=dark]), [data-theme=light] {
+    color-scheme: light;
+    --background-color: hsl(0deg 0% 92%); /* changed */
+    --color: hsl(205deg, 20%, 42%); /* changed */
+    --h1-color: hsl(205deg, 30%, 15%);
+    --h2-color: #24333e;
+    --h3-color: hsl(205deg, 25%, 23%);
+    --h4-color: #374956;
+    --h5-color: hsl(205deg, 20%, 32%);
+    --h6-color: #4d606d;
+    --card-background-color:hsl(0deg 0% 98%);/* changed var(--card-sectionning-background-color)*/
+    --card-sectionning-background-color: hsl(0deg 0% 94%); /* changed  #fbfbfc */
+    --muted-color: hsl(205deg, 10%, 50%);
+    --muted-border-color: hsl(205deg, 20%, 94%);
+    --primary: hsl(195deg, 85%, 41%);
+    --primary-hover: hsl(195deg, 90%, 32%);
+    --primary-focus: rgba(16, 149, 193, 0.125);
+    --primary-inverse: #fff;
+    --secondary: hsl(205deg, 15%, 41%);
+    --secondary-hover: hsl(205deg, 20%, 32%);
+    --secondary-focus: rgba(89, 107, 120, 0.125);
+    --secondary-inverse: #fff;
+    --contrast: hsl(205deg, 30%, 15%);
+    --contrast-hover: #000;
+    --contrast-focus: rgba(89, 107, 120, 0.125);
+    --contrast-inverse: #fff;
+    --mark-background-color: #fff2ca;
+    --mark-color: #543a26;
+    --ins-color: #388e3c;
+    --del-color: #c62828;
+}
+@media only screen and (prefers-color-scheme:dark) {
+    :root:not([data-theme=light]) {
+        color-scheme: dark;
+        --background-color: #11191f;
+        --color: hsl(205deg, 16%, 77%);
+    }
+}
+:root{
+    --red: #e53935;
+    --pink: #d81b60;
+    --purple: #8e24aa;
+    --deep-purple: #5e35b1;
+    --indigo: #3949ab;
+    --blue: #1e88e5;
+    --light-blue: #039be5;
+    --cyan: #00acc1;
+    --teal: #00897b;
+    --green: #43a047;
+    --light-green: #7cb342;
+    --lime: #c0ca33;
+    --yellow: #fdd835;
+    --amber: #ffb300;
+    --orange: #fb8c00;
+    --deep-orange: #f4511e;
+    --grey: #757575;
+    --blue-grey: #546e7a;
 
-:root {
     /* -------------------- Development Mode */
-    --dev-mode      : none; /* [block] : [none] Display Smarty Template Name */
+    --dev-mode: none; /*  Display Smarty Template Name : block, none */
 
-    /* -------------------- FONT-FAMILY */
-    --font-family   : "Segoe UI", sans-serif, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --font-round    : 'Nunito', Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;  /* Web Safe font-family rounded */
-    --font-mono     : SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-    --font-serif    : serif;
-    /* calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
-    --font-scale    : calc(14px + (20 - 14) * ((100vw - 600px) / (1600 - 600)));
-    /* Fixed */
-    --font-size     : 16px;
-    --font-clamp    : clamp(16px, 0.96rem + 0.18vw, 1.125rem);
-    /* shorthand font-style font-variant font-weight font-size/line-height font-family */
-    --font-48       : 100 48px/1.5 var(--font-round);
-    --font-32       : 100 32px/1.5 var(--font-round);
-    --font-24       : 100 24px/1.5 var(--font-round);
-    --font-20       : 100 20px/1.5 var(--font-round);
-    --font-16       : 100 16px/1.5 var(--font-family);
-    --font-14       : 100 14px/1.5 var(--font-family);
-    --font-12       : 100 12px/1.5 var(--font-family);
-    --font-10       : 100 10px/1.5 var(--font-family);
+    /* -------------------- THEME COLOR */
+    --primary: var(--blue);
 
-    --font-weight   : lighter; /*lighter; normal or 300 */
-    --line-height   : calc(3px + 2ex + 3px);
+    --spacing:1rem;
 
-    /* -------------------- SPACING - MARGIN & PADDING  */
-    /* Override default value in X-layout */
-    --space-0       : 0; /* Remove any element space  */
-    /*--space-unit : var( --font-size ); /* Default */
+    --typography-spacing-vertical: 1.5rem;
 
-    --space-unit    : var(--font-size);
-    /* Space unit 16px * 1, 2, 3,  4,  5,  6,  7,  8,  9 */
-    /* Space in pixels = 4, 6, 8, 10, 12, 16, 24, 32, 40 */
-    --space-1       : calc(var(--space-unit) * 0.25);
-    --space-2       : calc(var(--space-unit) * 0.375);
-    --space-3       : calc(var(--space-unit) * 0.5);
-    --space-4       : calc(var(--space-unit) * 0.625);
-    --space-5       : calc(var(--space-unit) * 0.75);
-    --space-6       : calc(var(--space-unit) * 1);
-    --space-7       : calc(var(--space-unit) * 1.5);
-    --space-8       : calc(var(--space-unit) * 2);
-    --space-9       : calc(var(--space-unit) * 2.5);
+    --block-spacing-vertical:calc(var(--spacing) * 2);
+    --block-spacing-horizontal:var(--spacing);
 
-    /* -------------------- -------------------- COLOR-SCHEME */
-    /* hue, saturation, lightness */
-    --H: 219;
-    --S: 27%;
-    --L: 10%;
-    /*--color-1       : hsl(var(--H), var(--S), calc(var(--L) * 0.5) );*/
-    /*--color-2       : hsl(var(--H), var(--S), calc(var(--L) * .75) );*/
-    /*--color-3       : hsl(var(--H), var(--S), calc(var(--L) * 1) );*/
-    /*--color-4       : hsl(var(--H), var(--S), calc(var(--L) * 1.25) );*/
-    /*--color-5       : hsl(var(--H), var(--S), calc(var(--L) * 1.5) );*/
-    /*--color-6       : hsl(var(--H), var(--S), calc(var(--L) * 3.5) );*/
-    /*--color-7       : hsl(var(--H), var(--S), calc(var(--L) * 7) );*/
-    /*--color-8       : hsl(var(--H), var(--S), calc(var(--L) * 8) );*/
-    /*--color-9       : hsl(var(--H), var(--S), calc(var(--L) * 9) );*/
+    --grid-spacing-vertical:var(--spacing);
+    --grid-spacing-horizontal:calc(var(--spacing) * 3);
 
-    --color-1       : hsl(219, 27%, 4% );
-    --color-2       : hsl(var(--H), var(--S), 6% );
-    --color-3       : hsl(var(--H), var(--S), 8% );
-    --color-4       : hsl(var(--H), var(--S), 10% );
-    --color-5       : hsl(var(--H), var(--S), 25% );
-    --color-6       : hsl(var(--H), var(--S), 60% );
-    --color-7       : hsl(var(--H), var(--S), 70% );
-    --color-8       : hsl(var(--H), var(--S), 80% );
-    --color-9       : hsl(var(--H), var(--S), 90% );
+    --form-element-spacing-vertical:0.75rem;
+    --form-element-spacing-horizontal:1rem;
 
-    /* -------------------- -------------------- COLORS */
+    --nav-element-spacing-vertical:1rem;
+    --nav-element-spacing-horizontal:0.5rem;
+    --nav-link-spacing-vertical:0.5rem;
+    --nav-link-spacing-horizontal:0.5rem;
 
-    --red-1         : hsl(0, 100%, 40%);
-    --red-2         : hsl(0, 100%, 50%);
-    --red-3         : hsl(0, 100%, 60%);
-    --orange-1      : hsl(30, 100%, 40%);
-    --orange-2      : hsl(30, 100%, 50%);
-    --orange-3      : hsl(30, 100%, 60%);
-    --pink          : hsl(340, 82%, 52%);
-    --purple-1      : hsl(300, 100%, 15%);
-    --purple-2      : hsl(300, 100%, 20%);
-    --purple-3      : hsl(300, 100%, 25%);
-    --purple-4      : hsl(300, 100%, 30%);
-    --indigo        : hsl(231, 48%, 48%);
-    --blue-1        : hsl(215, 80%, 40%);
-    --blue-2        : hsl(207, 90%, 54%);
-    --blue-3        : hsl(199, 98%, 48%);
-    --cyan          : hsl(187, 100%, 42%);
-    --teal          : hsl(174, 100%, 29%);
-    --green         : hsl(122, 40%, 40%);
-    --green-light   : hsl(90, 50%, 45%);
-    --lime          : hsl(65, 70%, 44%);
-    --amber         : hsl(40, 93%, 74%);
-    --white         : hsl(0, 0%, 90%);
+    --avatar-size: 96px; /* User Tab Avatar Letter */
 
-    /* -------------------- -------------------- BODY */
+    --border-radius: .25rem;
 
-    --body-bg               : var( --color-1 );
-    --body-color            : var( --color-8 );
-    --body-font             : var( --font-family );
-    --body-width            : 100%;
+    --button-box-shadow: 0 0.0625rem 0.1875rem #000, 0 0.0625rem 0.125rem #000;
+    --button-hover-box-shadow: 0 0.1875rem 0.375rem #000, 0 0.1875rem 0.375rem #000;
 
-    /*--layout-main-width   : 1242px;*/
-    /*--layout-footer-width : 1242px;*/
+    --font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu", "Oxygen-Sans",
+    "Cantarell", "Noto Sans", "Helvetica", "Helvetica Neue", "Arial", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-    --border                : var(--border-width) var(--border-style) var(--border-color);
-    --border-color          : var( --color-4);
-    --border-style          : solid;
-    --border-radius         : 5px;
-    --border-width          : 1px;
+    --line-height: 1.5;
 
+    --font-size: 18px;
+    --font-weight: 400;
+    --tooltip-background-color: var(--contrast);
+    --tooltip-color:var(--contrast-inverse);
+    /* -------------------- -------------------- BREADCRUMBS */
 
-    --width-fixed           : 1242px;
-    --width-var             : calc(100vw - 10%);
+    /*--breadcrumbs-bg            : var(--color-2);*/
+    --breadcrumbs-bg: none;
+    --breadcrumbs-border: none; /* var( --border); */
+    --breadcrumbs-list: none;
+    --breadcrumbs-margin: 0 auto var(--space-7) 0; /* refer to div.content py-7 */
+    --breadcrumbs-padding: var(--space-2); /* .125em; */
+    --breadcrumbs-radius: var(--border-radius);
+    --breadcrumbs-shadow: 1px 2px 3px 1px hsl(0, 10%, 10%);
 
-    --layout-head-width     : var(--width-var);
-    --layout-main-width     : var(--width-fixed);
-    --layout-footer-width   : var(--width-fixed);
+    /* -------------------- -------------------- DROPDOWN */
 
-    --link-color            : var(--color-9);
-    --link-active           : var(--amber);
-    --link-hover            : var(--amber);
-    --link-visited          : var(--color-9);
-    --link-focus            : var(--amber);
+    --d-toggle-bg               : var(--primary-focus); /*var(--background-color);*/
+    --d-toggle-border           : none;
+    --d-toggle-color            : var(--primary);
+    --d-toggle-font             : 1rem;
+    --d-toggle-radius           : var(--border-radius);
+    --d-toggle-shadow           : none;
+    --d-toggle-padding          : 0 .25rem .125rem;
+    --d-toggle-transition       : all var(--transition-time) var(--transition-cube);
+    /* state action */
+    --d-toggle-bg-on            : var(--primary-focus); /* link [div][a] */
+    --d-toggle-color-on         : var(--primary-hover);
+    --d-toggle-shadow-on        : none;
 
-    /*--bg-linear     : linear-gradient(145deg, var(--color-3), var(--color-2) );*/
-    --bg-gradient       : linear-gradient(145deg, hsl(219, 18%, 17%), hsl(219, 18%, 15%));
-    /*--bg-gradient   : linear-gradient(145deg, #222730, var(--color-4));*/
-    --bg-linear         : linear-gradient(145deg, hsl(219, 15%, 12%), hsl(219, 21%, 15%));
-    --bg-linear2        : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+    /* dropdown menu */
+    --dropdown-bg               : var(--dropdown-background-color);
+    --dropdown-border           : var(--border-width) solid var(--dropdown-border-color);
+    --dropdown-color            : var(--primary);
+    --dropdown-font             : 16px;
+    --dropdown-icon-margin      : 0 .5rem 0 0;
+    --dropdown-radius           : var(--border-radius);
+    --dropdown-shadow           : var(--card-box-shadow);
+    --dropdown-padding          : calc(var(--form-element-spacing-vertical) * 1.25) var(--form-element-spacing-horizontal);
+    --dropdown-transition       : all var(--transition-time) var(--transition-cube);
+    --dropdown-width            : 184px;
+    /* state action */
+    --dropdown-bg-on            : var(--dropdown-hover-background-color);
+    --dropdown-color-on         : var(--primary-hover);
+    --dropdown-shadow-on        : 0px 2px 4px 1px rgba(0, 0, 0, 0.75);
 
     /*	-------------------- -------------------- -------------------- CUSTOMIZE UI-WIDGET */
 
-    --ui-widget-content-bg      : none;
+    --ui-widget-content-bg      : var(--background-color);
     /*--ui-widget-content-bg      : var(--bg-linear);*/
-    --ui-widget-content-border  : var(--border);
-    --ui-widget-content-color   : var(--color-8);
+    --ui-widget-content-border  : 1px solid var(--border-color);
+    --ui-widget-content-color   : var(--color);
     --ui-widget-content-font    : var(--font-family);
-    --ui-widget-content-link    : var(--link-color);
+    --ui-widget-content-link    : var(--primary);
 
     --ui-widget-font-family     : var( --font-family );
     --ui-widget-font-size       : var( --font-size );
 
-    --ui-widget-overlay-bg      : var(--color-2);
+    --ui-widget-overlay-bg      : hsl(205deg 15% 41%);
     --ui-widget-overlay-op      : .8; /* opacity : .8; */
-    --ui-widget-shadow          : 1px 2px 4px 1px var(--color-2); /* box-shadow: */
+    --ui-widget-shadow          : 1px 2px 4px 1px var(--card-background-color); /* box-shadow: */
 
-    --ui-widget-header-bg       : none; /* background-image: none; */
+    --ui-widget-header-bg       : var(--card-background-color);
     --ui-widget-header-border   : var(--border);
-    --ui-widget-header-color    : var(--color-8);
+    --ui-widget-header-color    : var(--color);
     --ui-widget-header-font     : var(--font-family);
-    --ui-widget-header-link     : var(--link-color);
-    /* -------------------- -------------------- ACCORDION */
+    --ui-widget-header-link     : var(--primary);
 
-    --accordion-bg              : var(--color-2);
-    --accordion-border          : var(--border);
-    --accordion-cursor          : pointer;
-    --accordion-font            : var(--font-16);
-    --accordion-margin          : 2px 0 0 0;
-    --accordion-radius          : var(--border-radius);
-    --accordion-shadow          : inherit;
-    --accordion-padding         : var(--space-4) var(--space-5);
-
-    /*background      : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));*/
-
-    --accordion-content-bg      : var(--color-2);
-    --accordion-content-border  : var(--border);
-    --accordion-content-color   : var(--color-8);
-    --accordion-content-radius  : var(--border-radius);
-    --accordion-content-padding : 1em 2.2em;
-
-    /* -------------------- -------------------- ASIDE LEFT [ column ] */
-
-    --aside-left-animation      : left 1s .4s both;
-    --aside-left-bg             : none; /*transparent ;*/
-    --aside-left-border         : none;
-    --aside-left-height         : auto;
-    --aside-left-radius         : none;
-    --aside-left-shadow         : none;
-    --aside-left-padding        : 0;
-    --aside-left-width          : 270px; /* 320px !important;  size-xsmall */
-    /* state action */
-    --aside-left-shadow-on      : none;
-
-    /* -------------------- -------------------- BLOCK ASIDE RIGHT */
-
-    --aside-right-bg            : transparent ;
-    --aside-right-border        : none;
-    --aside-right-height        : auto;
-    --aside-right-radius        : none;
-    --aside-right-shadow        : none;
-    --aside-right-padding       : 0;
-    --aside-right-width         : 270px;
-    /* state action */
-    --aside-right-shadow-on     : none;
-
-    /* -------------------- -------------------- BADGE */
-
-    --badge-bg                  : var(--color-2);
-    --badge-border              : var(--border);
-    --badge-display             : inline-block;
-    --badge-font                : var(--font-12);
-    --badge-radius              : var(--border-radius);
-    --badge-shadow              : none;
-    --badge-padding             : var(--space-0) var(--space-3); /* padding */
-
-    /* -------------------- -------------------- BLOCK [div] */
-
-    --block-bg                  : var( --color-2 );
-    --block-border              : none;
-    --block-content             : var( --font-16 );
-    --block-footer              : var( --font-16 );
-    --block-hover               : var( --color-4 );
-    --block-image               : none; /* ratio */
-    --block-margin              : 0;
-    --block-padding             : var( --space-4 );
-    --block-radius              : var( --border-radius );
-    --block-shadow              : var( --shadow-in);
-
-    --block-subtitle            : var( --font-14 );
-    /* state action hover */
-    --block-bg-on               : var( --color-2 );
-    --block-border-on           : none;
-    --block-shadow-on           : none;
-
-    --block-title-bg            : none;
-    --block-title-border        : var(--border);
-    --block-title-color         : var( --color-7);
-    --block-title-font          : var(--font-20);
-    --block-title-margin        : 0;
-    --block-title-padding       : var( --space-2 );
-    --block-title-radius        : 0;
-    --block-title-shadow        : 0;
-
-    /* -------------------- -------------------- BLOCK LEFT */
-
-    --block-left-bg             : none;
-    --block-left-border         : none;
-    --block-left-margin         : 0 0 var(--space-6);
-    --block-left-padding        : 0;
-    --block-left-radius         : none;
-    --block-left-shadow         : none;
-
-    --block-bl-title-bg         : none;
-    --block-bl-title-border     : none;
-    --block-bl-title-color      : var(--color-7);
-    --block-bl-title-font       : var(--font-20);
-    --block-bl-title-padding    : var(--space-1) var(--space-2) var(--space-2) var(--space-6);
-    --block-bl-title-shadow     : 0 1px 0 0 var( --color-4);
-
-    --block-bl-content-bg       : transparent;
-    --block-bl-content-border   : none;
-    --block-bl-content-color    : inherit;
-    --block-bl-content-font     : var(--font-16);
-    --block-bl-content-radius   : none;
-    --block-bl-content-padding  : var( --space-4 );
-    --block-bl-content-shadow   : none;
-
-    /* -------------------- -------------------- BLOCK RIGHT */
-
-    --block-right-bg            : none;
-    --block-right-border        : none;
-    --block-right-margin        : 0;
-    --block-right-padding       : 0;
-    --block-right-radius        : none;
-    --block-right-shadow        : none;
-
-    --block-br-title-bg         : none;
-    --block-br-title-border     : none;
-    --block-br-title-color      : var(--color-7);
-    --block-br-title-font       : var(--font-20 );
-    --block-br-title-padding    : var(--space-1) var(--space-2) var(--space-2) var(--space-6);
-
-    --block-br-content-bg       : transparent;
-    --block-br-content-border   : none;
-    --block-br-content-color    : inherit;
-    --block-br-content-font     : var(--font-14);
-    --block-br-content-radius   : var( --border-radius );
-    --block-br-content-padding  : var( --space-4 );
-    --block-br-content-shadow   : none;
-
-    /* -------------------- -------------------- BLOCK CENTER */
-    /* ALL BLOCKS CENTER */
-    --block-center-bg           : transparent;
-    --block-center-border       : none;
-    --block-center-margin       : var( --space-6 );
-    --block-center-padding      : var( --space-6 );
-    --block-center-radius       : none;
-    --block-center-shadow       : none;
-    --block-center-transition   : none;
-
-    --block-center-title-bg     : none;
-    --block-center-title-border : 0;
-    --block-center-title-radius : 0;
-    --block-center-title-color  : var( --color-7);
-    --block-center-title-font   : var(--font-20);
-    --block-center-title-padding: var( --space-2 );
-
-    --block-center-bg-on        : none;
-    --block-center-border-on    : none;
-    --block-center-shadow-on    : none;
-
-    /* -------------------- -------------------- BLOCK MENU [ul] [li] [a] */
-
-    --b-menu-ul-bg              : none;
-    --b-menu-ul-boder           : none;
-    --b-menu-ul-list            : none;
-    --b-menu-ul-margin          : 0;
-    --b-menu-ul-padding         : var( --space-2 ) var( --space-2 ) var( --space-1 );
-    --b-menu-ul-radius          : var( --border-radius );
-    --b-menu-ul-shadow          : var( --shadow-in );
-
-    --b-menu-bg                 : none;
-    --b-menu-border             : 1px solid transparent;
-    --b-menu-color              : var( --link-color );
-    --b-menu-icon-color         : inherit;
-    --b-menu-icon-margin        : 0 .5rem 0 0;
-    --b-menu-padding            : var( --space-2 ) var( --space-6 );
-    --b-menu-radius             : var( --border-radius );
-    --b-menu-shadow             : var( --shadow-out );
-    --b-menu-subtitle           : var( --font-14 );
-    --b-menu-transition         : all var( --transition-time ) var( --transition-cube );
-    /* state action hover */
-    --b-menu-bg-on              : var( --color-3);
-    --b-menu-border-on          : 1px solid var(--color-4);
-    --b-menu-color-on           : var( --link-hover );
-    --b-menu-icon-color-on      : inherit;
-    --b-menu-radius-on          : var( --border-radius );
-    --b-menu-shadow-on          : var( --shadow-in );
-
-    /* -------------------- -------------------- BLOCK FULL WIDTH */
-
-    /* SECTION FULL WIDTH > BLOCK FOOTER */
-    --block-full-bg             : var( --color-2 );
-    --block-full-border         : none;
-    --block-full-padding        : var( --space-8 );
-
-
-
-    /* -------------------- -------------------- BREADCRUMBS */
-
-    /*--breadcrumbs-bg            : var(--color-2);*/
-    --breadcrumbs-bg            : none;
-    --breadcrumbs-border        : none; /* var( --border); */
-    --breadcrumbs-list          : none;
-    --breadcrumbs-margin        : 0 auto var(--space-7) 0; /* refer to div.content py-7 */
-    --breadcrumbs-padding       : var(--space-2);/* .125em; */
-    --breadcrumbs-radius        : var(--border-radius);
-    --breadcrumbs-shadow        : var(--shadow-in ); /* 1px 2px 3px 1px hsl(0, 10%, 10%); */
-
-    /* -------------------- -------------------- BREADCRUMBS LI */
-    --bc-li-bg                  : none;
-    --bc-li-border              : none;
-    --bc-li-color               : inherit;
-    --bc-li-margin              : 0 var(--space-1) 0 0;
-    --bc-li-padding             : 0;
-    --bc-li-radius              : 0;
-    --bc-li-shadow              : 0;
-
-    /* -------------------- BREADCRUMBS LINK */
-
-    --bc-link-bg                : var(--bg-gradient);
-    --bc-link-border            : var(--border);
-    --bc-link-color             : var(--link-color);
-    --bc-link-radius            : var(--border-radius );
-    /*--bc-link-shadow            : 0 0 4px 1px rgba(44, 98, 246, 0);*/
-    --bc-link-padding           : var( --space-2 ) var( --space-6 );
-    --bc-link-shadow            : 0;
-    --bc-transition             : all var(--transition-time) var(--transition-cube);
-    /* state action */
-    --bc-link-bg-on             : var(--color-2);
-    --bc-link-border-on         : var(--border);
-    --bc-link-color-on          : var(--link-hover);
-    /*--bc-link-shadow-on         : 0 0 4px 1px hsla(40, 93%, 74%, 0);*/
-    --bc-link-shadow-on         : 0;
-
-    /* -------------------- -------------------- BUTTON */
-
-    --button-bg                 : var(--color-4); /* linear-gradient(145deg, var(--blue-1), var(--blue-2)); */
-    --button-color              : var(--color-9);
-    --button-border             : var(--border); /*1px solid hsl(219, 17%, 21%); */
-    --button-font               : var(--font-16);
-    --button-margin             : var(--input-margin);
-    /*--button-shadow             : 0 0 3px 1px rgba(44, 98, 246, 0);*/
-
-    --button-padding            : var(--space-1) var(--space-6); /* 0.25em 1em; */
-    --button-radius             : var(--border-radius);
-    --button-shadow             : 0;
-    --button-transition         : all 0.3s ease-in;
-    /* state action */
-    --button-bg-on              : var(--color-5); /* linear-gradient(145deg, var(--color-3), var(--color-5) ); */
-    --button-border-on          : var(--border);
-    --button-color-on           : var( --link-color );
-    --button-shadow-on          : 0;
-    /* state action */
-    --button-bg-active          : var(--color-6);
-    --button-border-active      : var(--border);
-    --button-color-active       : var( --link-hover );
-    --button-shadow-active      : 0;
-
-    /* -------------------- -------------------- CARD */
-
-    --card-bg                   : var( --bg-linear );
-    --card-border               : var( --border );
-    --card-content              : var( --font-16 );
-    --card-footer               : var( --font-16 );
-    --card-full-bg              : var( --color-7 );
-    --card-image                : none;
-    --card-padding              : var( --space-4 ) var( --space-5 );
-    --card-radius               : var( --border-radius );
-    --card-shadow               : none;
-    --card-subtitle             : var( --font-14 );
-    --card-title                : var( --font-24 );
-    --card-transition           : all var(--transition-time) var(--transition-cube);
-    /* state action */
-    --card-bg-on                : var( --bg-linear );
-    --card-border-on            : var( --border );
-    --card-shadow-on            : none;
-
-    /* -------------------- -------------------- DROPDOWN */
-
-    --d-toggle-bg               : none; /*var(--color-2); */
-    --d-toggle-border           : none;
-    --d-toggle-color            : var(--link-color);
-    --d-toggle-font             : inherit;
-    --d-toggle-radius           : var(--border-radius);
-    --d-toggle-shadow           : none;
-    --d-toggle-padding          : var(--space-2 ) var(--space-2);
-    --d-toggle-transition       : all var(--transition-time) var(--transition-cube);
-    /* state action */
-    --d-toggle-bg-on            : var(--color-3); /* link [div][a] */
-    --d-toggle-color-on         : var(--link-color);
-    --d-toggle-shadow-on        : var(--shadow-in);
-
-    /* dropdown menu */
-    --dropdown-bg               : var(--color-4);
-    --dropdown-border           : var(--border);
-    --dropdown-color            : var(--link-color);
-    --dropdown-font             : var(--font-14);
-    --dropdown-icon-margin      : 0 .5rem 0 0;
-    --dropdown-radius           : var(--border-radius);
-    --dropdown-shadow           : var(--shadow-3);
-    --dropdown-padding          : var(--space-2);
-    --dropdown-transition       : all var(--transition-time) var(--transition-cube);
-    --dropdown-width            : 184px;
-    /* state action */
-    --dropdown-bg-on            : var(--color-2);
-    --dropdown-color-on         : var(--link-hover);
-    --dropdown-shadow-on        : 0px 2px 4px 1px rgba(0, 0, 0, 0.75);
-
-    /* -------------------- -------------------- FIELDSET LEGEND  */
-
-    --fieldset-bg               : var(--color-3);
-    --fieldset-border           : var(--border);
-    --fieldset-radius           : var(--border-radius);
-    --fieldset-display          : block;
-    --fieldset-padding          : var(--space-6);
-    --fieldset-transition       : all 0.2s ease;
-
-    --legend-bg                 : var(--color-4);
-    --legend-border             : var(--border);
-    --legend-color              : var(--color-8);
-    --legend-radius             : var(--border-radius);
-    --legend-shadow             : 0 1px 3px 0 rgba(0, 0, 0, 0.5);
-    --legend-padding            : var(--space-2 ) var(--space-4 );
-
-    /* -------------------- -------------------- FOOTER */
-
-    --footer-bg                 : transparent; /* var(--color-2); */
-    --footer-border             : 1px solid var(--color-3);
-    --footer-color              : var(--color-6);
-    --footer-link               : var(--color-7);
-
-    --footer-font               : var(--font-round); /* font-family */
-    --footer-size               : var(--font-14);
-    --footer-weight             : var(--font-weight);
-    --footer-height             : auto;
-    --footer-margin             : 0 auto;
-    --footer-padding            : var(--space-8) var(--space-8); /* padding */
-    --footer-width              : var(--layout-footer-width);
-
-    /* -------------------- -------------------- HEADER */
-
-    --header-bg                 : hsl(var(--H), var(--S), 10%, 0.7 ); /*hsla(222, 25%, 10%, 0.8);hsl(219deg 27% 10% / 80%)*/
-
-    --header-color              : var(--color-7);
-    --header-filter             : blur(8px);
-    --header-font               : normal 700 var(--font-scale ) var(--font-round); /* font-family */
-    --header-height             : 4rem;
-    --header-margin             : 0 auto;
-    --header-padding            : var(--space-4); /* padding */
-    --header-position           : fixed;
-    /*--header-opacity            : 0.7;*/
-    --header-shadow             : -1px -1px 0 var(--color-6), 2px 2px 4px #000;
-    --header-text-shadow        : -1px -1px 0 var(--color-6), 2px 2px 4px #000;
-    --header-width              : var(--layout-head-width);
-    --header-z-index            : 1;
-
-
-
-    --h1-animation              : top 1s .5s both;
-    --h1-border                 : none;
-    --h1-radius                 : var(--border-radius);
-    --h1-shadow                 : none;
-    --h1-color                  : var(--color-5);
-    --h1-font                   : 100 24px var(--font-round); /* must include values for: <font-size> <font-family> */
-    --h1-margin                 : var(--space-2);
-    --h1-padding                : var(--space-1);
-    --h1-align                  : center;
-    --h1-text-shadow            : -1px 0px 0 var(--color-7), 1px 1px 4px #000;
-
-    --header-slogan-color       : var(--color-7);
-
-    /* -------------------- -------------------- HEADING [h1] to [h6] */
-
-    --head-color                : var(--color-8);
-    --head-font                 : var(--font-round);
-    --head-weight               : 100;
-    --head-line                 : 1.25; /* var(--line-height);*/
-    --head-padding              : var(--space-2) 0;
-
-    /* -------------------- -------------------- INPUT */
-
-    --input-bg                  : var(--color-2);
-    --input-border              : var(--border);
-    --input-color               : var(--link-color);
-    --input-radius              : var(--border-radius);
-    --input-shadow              : var(--shadow-in);
-    --input-font                : var(--font-16);
-    --input-padding             : var(--space-1) var(--space-4);
-    --input-margin              : var(--space-1) var(--space-2);
-    --input-max-width           : 100%;
-    --input-transition          : 0.4s;
-    --input-width               : auto;
-    /* state action */
-    --input-bg-on               : var(--color-3);
-    --input-border-on           : 1px solid var(--color-5);
-    --input-color-on            : var(--link-hover);
-    --input-shadow-on           : 0 0 6px 1px var(--blue-1);
-    /*inset 0px -2px 4px rgb(255 255 255 / 20%), inset 0px 2px 4px rgb(0 0 0 / 20%);*/
-
-    /* -------------------- -------------------- INPUT CHECKBOX RADIO */
-
-    --input-check-bg            : var(--color-2);
-    --input-check-border        : 3px solid var(--border-color);
-    --input-check-radius        : var(--border-radius);
-    --input-check-shadow        : var(--shadow-in);
-    --input-check-height        : 1.125rem;
-    --input-check-width         : 1.125rem;
-
-    --input-check-bg-on         : var(--white);
-    --input-check-border-on     : 3px solid hsl(41deg 93% 27% / 65%);
-    --input-check-shadow-on     : -1px -1px 2px 0px #191101, 0 0 8px #face74;
-
-    /* -------------------- -------------------- MAIN */
-
-    --main-bg                   : none;
-    --main-border               : none;
-    --main-margin               : calc(var(--header-height ) + 2rem) auto 2rem;
-    --main-padding              : 0;
-    --main-radius               : none;
-    --main-shadow               : none;
-    --main-width                : var(--layout-main-width);
-
-    /* -------------------- -------------------- NOTIFICATION */
-
-    --notify-bg                 : var( --color-3 );
-    --notify-border-color       : var( --color-4 );
-    --notify-border-radius      : var( --border-radius );
-    --notify-border-style       : solid ;
-    --notify-border-width       : 7px ;
-    --notify-color              : var( --color-8  );
-    --notify-margin             : var( --space-6) auto;
-    --notify-padding            : 1em 1em 1em 3em;
-    --notify-shadow             : var( --shadow-1 );
-    --notify-width              : 90%;
-    /* state action */
-    --notify-bg-on              : var( --color-3 );
-    --notify-color-on           : var( --color-7 );
-    --notify-shadow-on          : var(	--shadow-3 );
-
-    /* -------------------- -------------------- SECTION */
-
-    --section-bg                : var( --color-3 );
-    --section-border            : var( --border );
-    --section-color             : var( --color-8  );
-    --section-margin            : var( --space-6) auto;
-    --section-padding           : 1em 1em 1em 3em;
-    --section-radius            : var( --border-radius );
-    --section-shadow            : var( --shadow-1 );
-    --section-width             : 98%;
-    /* state action */
-    --section-bg-on             : var( --color-3 );
-    --section-border-on         : var( --color-7 );
-    --section-shadow-on         : var( --shadow-3 );
-
-    /* -------------------- -------------------- SHADOW */
-
-    --shadow                    : 4px 8px 12px #1a1e25, -4px -8px 12px #2c323d;
-    /* Box-Shadow */
-    --shadow-1                  : 0 1px 0 rgba(0,0,0,0.10), 0 1px 0 rgba(0,0,0,0.10);
-    --shadow-2                  : 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    --shadow-3                  : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    --shadow-4                  : 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    --shadow-5                  : 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    --shadow-6                  : 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    --shadow-on                 : 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-
-    /* -------------------- -------------------- TAB */
-
-    /*--tabs-bg                   : var(--bg-gradient);*/
-    --tabs-bg                   : var(--color-3);
-    --tabs-border               : var(--border);
-    --tabs-radius               : var(--border-radius);
-    --tabs-padding              : var(--space-4);
-
-    --tabs-nav-bg               : noned;
-    --tabs-nav-border           : var(--border);
-    --tabs-nav-radius           : var(--border-radius);
-    --tabs-nav-margin           : var(--space-2) var(--space-4) 0;
-    --tabs-nav-padding          : var(--space-4) var(--space-4) 0;
-    /*--tabs-nav-shadow           : 0 5px 5px hsla(210, 10%, 12%, 0.9);*/
-    --tabs-nav-shadow           : none;
-
-    /* TODO */
-    --tabs-nav-li-margin        : 0 1px; /* 1px .2em 0 0 */
-
-    /* TODO */
-    --ui-tabs-loading           : var(--red-1);
-
-    --tabs-anchor-bg            : var(--color-4);
-    --tabs-anchor-border        : 1px solid transparent;
-    --tabs-anchor-color         : var(--link-color);
-    --tabs-anchor-padding       : var( --space-2 ) var( --space-6 );
-    --tabs-anchor-radius        : var(--border-radius) var(--border-radius) 0 0;
-    --tabs-anchor-shadow        : none;
-    /* state action */
-    --tabs-anchor-bg-on         : var(--color-3);
-    --tabs-anchor-color-on      : var(--link-hover);
-    --tabs-anchor-border-on     : 1px solid var(--color-3);
-    --tabs-anchor-shadow-on     : none;
-
-    /* tab panel */
-    --tab-panel-bg              : none;
-    --tab-panel-border          : none;
-    --tab-panel-color           : var(--body-color);
-    --tab-panel-padding         : var(--space-6); /* .5em 1em; */
-
-    /* -------------------- -------------------- TABLE */
-    --table-align               : center;
-    --table-bg                  : none;
-    --table-bg-odd              : transparent;
-    --table-bg-even             : transparent;
-    --table-border              : var(--border);
-    --table-color               : var(--body-color);
-    --table-font                : var(--font-14);
-    --table-margin              : 0;
-    --table-padding             : var(--space-4);
-    --table-radius              : var(--border-radius);
-    --table-shadow              : none;
-    --table-vertical-align      : top;
-    --table-width               : 100%;
-
-    --table-thead-bg            : var(--color-3);
-    --table-thead-font          : var(--font-12);
-    --table-tbody-bg            : transparent;
-    --table-tfoot-bg            : transparent;
-    --table-th-bg               : transparent;
-    --table-td-bg               : transparent;
-
-    /* state action */
-    --table-color-on            : inherit;
-    --table-tr-on               : var(--color-4);
-    --table-td-on               : var(--color-4);
+    --ui-tab-content-padding    : var(--block-spacing-vertical) var(--block-spacing-horizontal);
 
     /* -------------------- -------------------- TRANSITION */
     /* Transitions to control ANIMATION = TIME + Effect    */
@@ -698,101 +185,13 @@
     --transition-cube           : all cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --transition-ease           : all .15s ease-in-out,box-shadow .15s ease-in-out;
 
-    /* -------------------- -------------------- JQUERY-UI */
-
-    --ui-button                 : inherit; /* a, active, ui-state-active:hover  */
-
-    --ui-corner-all             : var(--border-radius);
-
-    --ui-dialog-bg              : rgb(21,25,27) !important;
-    --ui-dialog-shadow          : 0 5px 5px hsla(200, 13%, 9%, 0.9);
-
-    --ui-icon-background        : var(--link-hover); /* background-color, border */
-    --ui-icon-background-border : var(--link-hover);
-    --ui-icon-width             : 16px;
-    --ui-icon-height            : 16px;
-
-    --ui-menu-background        : var(--color-4);
-    --ui-menu-border            : var(--border);
-    --ui-menu-radius            : var(--border-radius);
-    --ui-menu-margin            : inherit;
-    --ui-menu-padding           : var(--space-2);
-    /* UI-MENU ITEM / WRAPPER */
-    --ui-menu-item-background   : inherit;
-    --ui-menu-item-border       : var(--border);
-    --ui-menu-item-radius       : var(--border-radius);
-    --ui-menu-item-color        : var(--link-color);
-    --ui-menu-item-padding      : var(--space-1) var(--space-4);
-    /* state action */
-    /* UI-MENU ITEM / HOVER / ACTIVE / FOCUS */
-    --ui-menu-item-bg-on        : var(--color-2);
-    --ui-menu-item-border-on    : var(--border);
-    --ui-menu-item-radius-on    : var(--border-radius);
-    --ui-menu-item-color-on     : var(--link-hover);
-    /*--ui-menu-item-padding-on   : inherit;*/
-
-    --ui-priority-primary       : var(--font-weight); /* font-weight : bold; */
-    --ui-priority-secondary     : .7; /* opacity : .7; of var(--font-weight) */
-
-    --ui-progressbar-height     : 1em;
-    --ui-progressbar-value      : var(--blue-1);
-
-    --ui-selectmenu-menu-padding: var(--space-2);
-
-    --ui-state-active-bg        : var(--button-bg);
-    --ui-state-active-border    : var(--border); /*1px solid transparent;*/
-    --ui-state-active-color     : var(--color-8);
-    --ui-state-active-font      : var(--button-font); /* Fallback : var(--ui-state-active-font-weight, var(--ui-state-active-font )); */
-    --ui-state-active-radius    : var(--border-radius);
-
-    --ui-state-check-bg         : var(--input-bg);
-    --ui-state-check-border     : var(--border);
-    --ui-state-check-radius     : 50% !important; /* default and checked */
-    --ui-state-check-shadow     : 1px 1px 4px hsl(219, 17%, 21%); /* default and checked */
-    --ui-state-check-height     : 16px;
-    --ui-state-check-width      : 16px;
-
-    --ui-state-checked-bg       : var(--blue-1);
-    --ui-state-checked-border   : 5px solid var(--color-2);
-
-    --ui-state-default-bg       : var(--button-bg);
-    --ui-state-default-border   : var(--border);
-    --ui-state-default-color    : var(--color-8);
-
-    --ui-state-disabled-bg      : var(--color-3);
-    --ui-state-disabled-border  : var(--border);
-    --ui-state-disabled-color   : var(--color-3);
-    --ui-state-disabled-font    : var(--button-font);
-    --ui-state-disabled-opacity : .4; /* background-image: none; opacity: .35;*/
-
-    --ui-state-error-bg         : var(--color-3);
-    --ui-state-error-border     : 1px solid var(--red-2);
-    --ui-state-error-color      : var(--color-8);
-    --ui-state-error-link       : var(--link-color); /* ui-state-error a : color */
-    --ui-state-error-text       : var(--red-3);
-
-    --ui-state-highlight-bg     : var(--color-2);
-    --ui-state-highlight-border : var(--button-border-on);
-    --ui-state-highlight-color  : var(--link-color);
-
-    /* state action */
-    --ui-state-hover-bg         : var(--button-bg-on);
-    --ui-state-hover-border     : var(--button-border-on);
-    --ui-state-hover-color      : var(--color-8);
-    --ui-state-hover-font       : var(--button-font);
-
-    --ui-visual-focus           : 0 0 3px 1px var(--blue-3); /* box-shadow */
-
-}
-
-html[data-theme="gold-dragon"] {
-    --color-1 : hsl(45, 0%, 4%);
-    --color-2 : hsl(45, 0%, 12%);
-    --color-3 : hsl(45, 0%, 23%);
-    --color-4 : hsl(45, 0%, 34%);
-    --color-5 : hsl(45, 12%, 45%);
-    --color-6 : hsl(45, 90%, 30%);
-    --color-7 : hsl(45, 90%, 35%);
-    --color-8 : hsl(45, 90%, 40%);
-    --color-9: hsl(45, 70%, 45%);
+    /* -------------------- -------------------- Z-INDEX */
+    --z-modal       : 600;
+    --z-notify      : 500;
+    --z-overlay     : 400;
+    --z-tooltip     : 300;
+    --z-sticky      : 200;
+    --z-above       : 100; /* dropdown menu */
+    --z-default     : 1;
+    --z-below       : -1;
 }
