@@ -1,9 +1,9 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XOOPSCube XCL 2.3.1
-	Version : 1.0.0
+	Version : 1.1.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2021-10-28
+	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
 
 -------------------- -------------------- -------------------- -------------------- ICONS */
@@ -47,12 +47,11 @@
         border          : none;
         border-radius   : var(--border-radius);
         box-shadow      : var( --button-shadow );
-        color           : var( --color-1 );
+        color           : var( --primary);
         display         : inline-block;
         font-size       : 0.74rem;
         font-family     : sans-serif;
         font-style      : normal;
-        font-weight     : 300;
         letter-spacing  : 0.1rem;
         line-height     : 1em;
         margin          : var( --button-margin );
@@ -67,7 +66,7 @@
 
 
     .badge-count {
-        background      : var( --color-6 );
+        background      : var( --layer-3 );
         font-size       : 13px;
         margin          : 0 var( --space-2 );
         padding         : var( --space-1 ) var( --space-2 );
@@ -110,9 +109,8 @@
         /* font-size        : 0.875rem;
         font-family         : sans-serif;
         font-style          : normal;
-        font-weight         : 300;
         letter-spacing      : 0.08rem;*/
-        line-height         : 1.25;
+        line-height         : 1.5;
         padding             : var( --button-padding );
         position            : relative;
         margin              : var( --button-margin  );
@@ -128,7 +126,7 @@
     }
     .button:active {
     /*[class*="button"]:active {*/
-        box-shadow          : var( --shadow-3 );
+        box-shadow          : var( --button-shadow-on );
     }
 
 
@@ -156,6 +154,7 @@
     .button.button-small:focus {
         background          : var( --button-bg-hover );
         color               : var( --button-color-hover );
+        box-shadow          : var( --button-shadow-on );
     }
 
 /* -------------------- -------------------- -------------------- btn-fx BTNVAV */
@@ -265,7 +264,6 @@ a.round{
     border-radius: 50%;
     line-height: 50px;
     font-size: 13px;
-    font-weight: 300;
     height: 50px;
     width: 50px;
     display: flex;
@@ -281,13 +279,13 @@ a.round{
     padding: 0 16px;
     margin: 10px 4px;
     color: hsl(230deg 70% 70%) !important;
-    border: 1px solid #3f51b5;
+    border: var(--border);
     border-radius: 2px;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    /*box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);*/
+    box-shadow: var(--shadow-2);
     text-decoration: none;
     text-transform: uppercase;
     font-size: 13px;
-    font-weight: lighter; /* 300; */
     line-height: 36px;
     vertical-align: middle;
     overflow: hidden;

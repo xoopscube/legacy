@@ -1,9 +1,9 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL 2.3
-	Version : 1.0.0
+	Distribution : XOOPSCube XCL 2.3.1
+	Version : 1.1.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2021-10-28
+	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
 
     -------------------- -------------------- -------------------- -------------------- HEADER NAV */
@@ -97,8 +97,8 @@
         font-size: 1.25em;
         /* width: 20px; */
         /* height: 20px; */
-        background: var( --color-7);
-        color: var( --color-2);
+        background: var( --layer-3);
+        color: var( --secondary);
         cursor: pointer;
         text-align: center;
         margin: 0 1em;
@@ -107,7 +107,7 @@
 
     nav > ul > li > button > .caret {
 
-        border-top      : 5px solid var(  --color-2    );
+        border-top      : 5px solid var(  --secondary    );
         border-right    : 5px solid transparent;
         border-left     : 5px solid transparent;
         content         : "";
@@ -130,7 +130,7 @@
     /* nav-sub */
     nav > ul > li > ul.nav-sub  {
 
-        background      : var(  --color-1      );
+        background      : var(  --primary     );
 
         border-top      : 0;
         border-radius   : var(  --border-radius  );
@@ -178,7 +178,7 @@
 
     nav > ul > li > ul.nav-sub > li:hover > a {
 
-        background      : var(  --color-4	);
+        background      : var(  --layer-4	);
 
     }
 

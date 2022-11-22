@@ -29,10 +29,10 @@ Alternative data display
 :where(table, table.outer, table:not([class^="cke_"])) {
 
     background      : var(  --table-background );
-    border-color    : var(  --border-color     );
-    border-radius   : var(  --border-radius    );
-    border-style    : var(  --border-radius    );
-    border-width    : var(  --border-width     );
+    /*border-color    : var(  --border-color     );*/
+    /*border-radius   : var(  --border-radius    );*/
+    /*border-style    : var(  --border-radius    );*/
+    /*border-width    : var(  --border-width     );*/
     border-collapse : collapse;
     box-shadow    	: var(  --shadow-2         );
     padding       	: var(  --space-4          );
@@ -78,7 +78,7 @@ Alternative data display
     border          : none;
     border-radius   : var( --border-radius );
     box-shadow      : var( --button-shadow );
-    color           : var( --color-1 );
+    color           : var( --primary);
     display         : inline-block;
     margin          : 0 var( --space-1 );
     min-width       : 4ch; /* width of UTF8 icons */
@@ -91,11 +91,9 @@ Alternative data display
 
 tr, th, td {
     padding         : var( --table-padding );
-    font-weight     : 300;
-    border-bottom   : 1px solid var(--color-6);
 }
 tr {
-    /*border-bottom: 1px solid var(--color-6);*/
+    /*border-bottom: 1px solid var(--layer-1);*/
 }
 td.head{
     vertical-align  : top;
@@ -209,7 +207,7 @@ table {
 }
 
 table tr {
-    border-bottom: var(--border); /*1px solid #333300;*/
+    border-bottom: var(--table-border-bottom); /*1px solid #333300;*/
     padding: var(--space-3);
 }
 
@@ -264,6 +262,5 @@ table th {
         content: attr(data-label);
         float: left;
         text-transform: uppercase;
-        font-weight: bold;
     }
 }

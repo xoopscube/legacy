@@ -1,15 +1,15 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL 2.3
-	Version : 1.0.0
+	Distribution : XOOPSCube XCL 2.3.1
+	Version : 1.1.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2021-10-28
+	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
 
     -------------------- -------------------- NAV MOBILE */
 
     .nav-mobile {
-        background      : var( --color-5 );
+        background      : var( --layer-3 );
         border-color    : var( --border-color );
         border-radius   : 0 var( --border-radius ) 0 0;
         border-style    : var( --border-style );
@@ -32,10 +32,9 @@
     /* -------------------- -------------------- NAV ASIDE */
 
     .nav-aside {
-        background      : var(  --aside-bg   );
-        background-image: linear-gradient(360deg, hsla(219, 15%, 25%, 0.70), hsla(0, 0%, 0%, 0.90));
+        background      : var( --aside-bg   );
         bottom          : 0;/* fix overflow-y scroll*/
-        color           : var(  --color-1  );
+        color           : var(  --primary );
         grid-area       : nav-aside;
         height          : 100vh;
         left            : 0;
@@ -84,7 +83,7 @@
     .nav-block:after {
         border-width    : 1px 0 0 1px;
         border-style    : solid;
-        border-color    : var(  --link-hover   );
+        border-color    : var(  --link   );
         content         : "";
         height          : var(  --nav-set-height   );
         position        : absolute;

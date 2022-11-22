@@ -1,9 +1,9 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL 2.3
-	Version : 1.0.0
+	Distribution : XOOPSCube XCL 2.3.1
+	Version : 1.1.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2021-10-28
+	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
 
     -------------------- -------------------- -------------------- -------------------- Media Queries */
@@ -75,7 +75,9 @@
     .ui-card-2-col {
         column-count    : 1;
         display         : block;
+        list-style      : none;
         margin          : 0;
+
     }
 
     .ui-card-overview {

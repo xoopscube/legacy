@@ -1,17 +1,17 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL 2.3
-	Version : 1.0.0
+	Distribution : XOOPSCube XCL 2.3.1
+	Version : 1.1.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2021-10-28
+	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
 
 
     -------------------- -------------------- NAV IMPORT */
 
-    @import "./ui-nav-aside.css";  /*      Nav-side    */
-    @import "./ui-nav-header.css";/*      Nav-header  */
-
+@import "./ui-nav-aside.css";  /*      Nav-side    */
+@import "./ui-nav-header.css";/*      Nav-header  */
+@import "./ui-panel.css";/*      Nav-header  */
     /* -------------------- -------------------- NAV ADMIN */
 
 .admintitle {
@@ -21,8 +21,8 @@
 
 .adminavi,
 .adminavi-sub {
-    background      : var(--color-5);
-    border          : 1px solid var(--color-5);
+    background      : var(--layer-3);
+    border          : 1px solid var(--layer-3);
     box-shadow      : var(--shadow-2);
     display         : grid;
     justify-content : center;
@@ -30,7 +30,7 @@
     grid-template-columns: repeat(auto-fit, 13em);
     /*grid-template-columns: repeat(auto-fit, minmax(Min(9em, 100%), 1fr)); */
     grid-auto-flow  : row;
-    margin-bottom   : 2em;
+    margin          : 2em 0;
     /*max-width: 57em; container */
     padding         : var(--space-2);
 }
@@ -39,8 +39,8 @@
 
 /*.adminavi,
 .adminavi-sub {
-    background      : var( --color-5 );
-    border          : 1px solid var(--color-5);
+    background      : var( --layer-3 );
+    border          : 1px solid var(--layer-3);
     box-shadow      : var( --shadow-2 );
     display         : flex;
     flex-wrap       : wrap;
@@ -53,7 +53,7 @@
     overflow        : hidden;
     }
 .adminavi-item {
-    border          : 1px solid var(--color-5);
+    border          : 1px solid var(--layer-3);
     color           : var(--link);
     padding         : var(--space-4);
     margin-right    : var(--space-2);
@@ -94,7 +94,7 @@
 
 .adminavi .adminavi-item,
 .adminavi-sub .adminavi-item {
-    border          : 1px solid var(--color-5);
+    border          : 1px solid var(--layer-3);
     color           : var(--link);
     display         : block;
     max-width       : 100%;
@@ -111,14 +111,14 @@
 }
 
 .adminavi-item:not(.selected) {
-    /*background      : var(--color-5);*/
+    /*background      : var(--layer-3);*/
 }
 
 .adminavi-item.selected,
 .adminavi-item:not(.selected):hover,
 .adminavi-item.selected:active {
-    background      : var(--color-6);
-    border          : 1px solid var( --color-7 );
+    background      : var(--layer-2);
+    border          : 1px solid var( --layer-3 );
     border-radius   : var(--border-radius);
     color           : var( --link-hover );
     outline-width   : 0;
@@ -223,12 +223,12 @@ div.dropdown-content {
     border          : none;
     border-radius   : 7px;
     box-shadow      : var( --button-shadow );
-    color           : var( --color-1 );
+    color           : var( --primary);
     display         : inline-block;
     font-size       : 0.74rem;
     font-family     : sans-serif;
     font-style      : normal;
-    font-weight     : 300;
+    font-weight     : var( --font-weight );
     letter-spacing  : 0.1rem;
     line-height     : 1em;
     margin          : var( --button-margin );

@@ -17,7 +17,8 @@
 
     .ui-breadcrumbs a,
     .adminnavi a,
-    .pagenavi a {
+    .pagenavi a,
+    .pagenavi [aria-current] {
 
     background      : var( --breadcrumbs-bg-link        );
 
