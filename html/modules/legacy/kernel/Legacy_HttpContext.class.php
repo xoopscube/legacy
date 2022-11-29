@@ -99,10 +99,12 @@ class Legacy_HttpContext extends XCube_HttpContext
      *     This method is for the theme changer feature. However, this API will be
      *     changed.
      */
-    public function setThemeName(string $theme)
+    // @disable-parser-inspector
+    // Note: X-app themes must use Base System Render version 2.3.0 !    
+    public function setThemeName($name)
     {
-        parent::setThemeName($theme);
-        $this->mXoopsConfig['theme_set'] = $theme;
-        $GLOBALS['xoopsConfig']['theme_set'] = $theme;
+        parent::setThemeName($name);
+        $this->mXoopsConfig['theme_set'] = $name;
+        $GLOBALS['xoopsConfig']['theme_set'] = $name;
     }
 }

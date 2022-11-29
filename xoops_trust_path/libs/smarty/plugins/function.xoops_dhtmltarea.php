@@ -38,9 +38,9 @@
  * -------------------------------------------------------------
  */
 
-const XOOPS_DHTMLTAREA_DEFID_PREFIX = "legacy_xoopsform_";
-const XOOPS_DHTMLTAREA_DEFAULT_COLS = "50";
-const XOOPS_DHTMLTAREA_DEFAULT_ROWS = "5";
+define("XOOPS_DHTMLTAREA_DEFID_PREFIX", "legacy_xoopsform_");
+define("XOOPS_DHTMLTAREA_DEFAULT_COLS", "50");
+define("XOOPS_DHTMLTAREA_DEFAULT_ROWS", "5");
 
 function smarty_function_xoops_dhtmltarea($params, &$smarty)
 {

@@ -56,13 +56,7 @@
 
     <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/js/jquery-ui-custom-var.css">
 
-    <{* ---------- ---------- Javascript plugin *}>
-    <script type="module">
-        import {ThemeManager} from '<{$xoops_url}>/common/js/x-theme-manager.js';
-        new ThemeManager(document.getElementById('themeToggle'));
-    </script>
 
-    <script src='<{$xoops_url}>/common/js/x-utils.js'></script>
 
     <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/prismjs/prism.css">
     <{* prism.js included before closing /body }>
@@ -167,7 +161,13 @@
     </div>
 
 	</div><{* /Layout Grid *}>
+<{* ---------- ---------- Javascript plugin *}>
+<script type="module">
+    import {ThemeManager} from '<{$xoops_url}>/common/js/x-theme-manager.js';
+    new ThemeManager(document.getElementById('themeToggle'));
+</script>
 
+<script src='<{$xoops_url}>/common/js/x-utils.js'></script>
 <script src='<{$xoops_url}>/common/prismjs/prism.js' defer></script>
 
 <script src="<{'js/wap.js'|theme}>"></script>

@@ -76,6 +76,20 @@
         }
     }(jQuery));
 
+/**
+ * Copy element
+ * Usage line 190
+ */
+$.fn.elcopy = function() {
+        $('span[id^="success-alert"]').remove();
+        this.select();
+        $(this).focus();
+        document.execCommand("copy");
+        document.getSelection().removeAllRanges();
+        $(this).after('<span id="success-alert"><br>Copied to clipboard</span>');
+        $('#alert-success').css( "color", "green" );
+    };
+
 
     /* Reusable Toggle
         - How To Use
@@ -89,7 +103,6 @@
     function slideToggle(className, obj) {
         $(className).slideToggle(500,"easeInOutCubic", obj.checked );
     }
-
 
     /* Function Toggle Class */
     function toggleClass(el, className) {
@@ -174,7 +187,10 @@ $(function () {
         }
     });
 
-
+    // Copy source to clipboard
+    $('.clipboard').click(function(){
+        $(this).parents(".textarea-wrap").find("textarea").elcopy();
+    });
 
 
 
@@ -195,7 +211,7 @@ $(function () {
     });
     btop.on('click', function (e) {
         e.preventDefault();
-        $('html, body').animate({scrollTop: 0}, '300');
+        $('html, body').animate({scrollTop: 0}, 300);
     });
 
     /**
@@ -211,7 +227,6 @@ $(function () {
         $(this).toggleClass("isDown");
         return false;
     });
-
 
     /**
      *  Alert Unsaved Changes
@@ -243,11 +258,8 @@ $(function () {
         if(unsaved){
             return "You have unsaved changes on this page. Do you want to <{$smarty.const._AD_LEGACY_LANG_UPDATE}> or discard your changes and leave this page?";
         }
-
     }
-
     window.onbeforeunload = unloadPage;
-
 
 //--- document ready function
 });

@@ -194,6 +194,8 @@ class Legacy_TextFilter extends XCube_TextFilter
      * @param bool   $x2comat
      * @return    string
      */
+// TODO version 2.3.0
+// public function toPreviewTarea($text, $html = 0, $smiley = 1, $xcode = 1, $image = 1, $br = 1, $x2comat=false)
     public function toPreviewTarea(string $text, int $html = 0, int $smiley = 1, int $xcode = 1, int $image = 1, int $br = 1, bool $x2comat=false)
     {
         return $this->toShowTarea($text, $html, $smiley, $xcode, $image, $br, $x2comat);
@@ -209,6 +211,8 @@ class Legacy_TextFilter extends XCube_TextFilter
      *
      * @return	string
      **/
+// TODO version 2.3.0
+//     public function purifyHtml(/*** string ***/ $html, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null, /*** object ***/ $config=null)
     public function purifyHtml( string $html, string $encoding=null, string $doctype=null, object $config=null)
     {
         require_once LIBRARY_PATH.'/htmlpurifier/library/HTMLPurifier.auto.php';

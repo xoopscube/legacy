@@ -33,6 +33,7 @@
     color               : rgb(0, 204, 255);
     font-size           : 12px;
     display             : var(--dev-mode);
+    position            : absolute;
 }
 
 html {
@@ -71,6 +72,8 @@ h1, h2, h3, h4, h5 { font-weight: var(--font-weight); }
 
 hr { margin: 2rem 1rem; }
 
+label.required::before { content: '*';color:var(--red); }
+
 pre {
     display: inline-grid;
     border: 1px dotted var(--form-element-disabled-border-color);
@@ -84,8 +87,11 @@ code, kbd {
 
 small { color: var(--muted-color); }
 
-table {display:block; margin-bottom: 0; max-width:100%; overflow-x: auto;}
-[data-self="radius-circle"] { border-radius: 25%}
+table {display:revert; margin-bottom: 0; max-width:100%; overflow-x: auto;}
+.list-action,
+.list-order {text-align: center}
+
+[data-self="radius-circle"] { border-radius: 50%}
 
 [data-self="sm-hide"] { display:none; } /* Show icon + hide text */
 
@@ -478,6 +484,7 @@ a[role="button"].ui-widget.ui-spinner-button {
 
 
 /* -------------------- -------------------- --  ICONS */
+[class^="i-"] {padding:.25rem .5rem}
 i[class^="i-"],
 :is(span.icon, i.icon) {
     padding-right: .5rem;
@@ -531,10 +538,10 @@ ul.icon-list li {
     outline: 1px dotted darkorange;
 }
 .post-author {
-    width: 90px;
-    /*min-width: 20%;*/
-    margin:1em;
-    font-size: var(--font-14);
+    /*width: 90px;
+    min-width: 20%;
+    margin:0 .5em;
+    font-size: var(--font-14);*/
 }
 .post-author-info {
     padding: 0 1rem 1rem; /* for Dropdown */

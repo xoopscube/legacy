@@ -1,0 +1,166 @@
+@charset "utf-8";
+.sticky p, .floated p, .fixed p, .ondemand p{ float:left; padding:0px; margin:0px; margin-left:10px; line-height:45px; color:#fff; font-size:12px;}
+.sticky a, .floated a, .fixed a, .ondemand a{ float:right; margin:13px 10px 0px 0px; }
+.wrapper{padding:20px;}
+
+.sticky {
+	background: #91BD09;
+	background: linear-gradient(315deg, rgb(255, 0, 0) 0%, rgba(15,15,50,1) 45%, rgb(255, 4, 0) 100%);
+	border-bottom:2px solid #fff !important;
+	box-shadow: 1px 1px 7px #676767;
+	height: 45px;
+	left:0;
+	position:fixed;
+	top:0;
+	width:100%;
+	z-index:1000;
+}
+
+
+.sticky .floated {
+	border-bottom:2px solid #fff !important;
+	background: #0e59ae; /* Old browsers */
+	background: -moz-linear-gradient(top, rgb(14, 89, 174) 0%, rgb(14, 89, 174) 100%); /* FF3.6+ */
+	box-shadow: 1px 1px 7px #676767;
+	height: 45px;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:1000;
+	width:100%;
+}
+
+.sticky .fixed {
+	border-bottom:2px solid #fff !important;
+	background: #660099; /* Old browsers */
+	background: -moz-linear-gradient(top, rgb(102, 0, 153) 0%, rgb(102, 0, 153) 100%); /* FF3.6+ */
+	box-shadow: 1px 1px 7px #676767;
+	height: 45px;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+}
+
+.sticky .ondemand {
+	background: #CC0000;
+	background: linear-gradient(top, rgb(204, 0, 0) 0%, rgb(204, 0, 0) 100%);
+	box-shadow: 1px 1px 7px #676767;
+	border-bottom:2px solid #fff !important;
+	position:absolute;
+	height: 45px;
+	top:0;
+	left:0;
+	width:100%;
+	z-index:1000;
+}
+.sticky .ondemand-button {
+width:40px !important;
+height:40px;
+float:right !important;
+z-index:999;
+position:absolute;
+margin-right:100px!important;
+}
+
+.sticky .hide{display:none;}
+
+/* Buttons */
+
+.sticky .round.button {
+-moz-border-radius: 15px;
+-webkit-border-radius: 15px;
+border-radius: 15px;
+background-image: url(button-images/round-button-overlay.png);
+border: 1px solid rgba(0, 0, 0, 0.25);
+font-size: 13px;
+padding: 0;
+}
+
+.sticky .button {
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.50);
+-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.50);
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.50);
+background: #222 url(button-images/button-overlay.png) repeat-x;
+border: 1px solid rgba(0, 0, 0, 0.25);
+color: white !important;
+cursor: pointer;
+display: inline-block;
+font-size: 13px;
+font-weight: bold;
+line-height: 1;
+overflow: visible;
+padding: 5px 15px 6px;
+position: relative;
+text-decoration: none;
+text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+width: auto;
+text-align: center;
+}
+
+.sticky .round.button span {
+-moz-border-radius: 14px;
+-webkit-border-radius: 14px;
+border-radius: 14px;
+display: block;
+line-height: 1;
+padding: 4px 15px 6px;
+}
+
+
+.sticky .green.button {
+background-color:#91BD09;
+}
+.sticky .green.button:hover {
+background-color:#749A02;
+}
+.sticky .green.button:active {
+background-color:#a4d50b;
+}
+.sticky .blue.button {
+background-color:#0E59AE;
+}
+.sticky .blue.button:hover {
+background-color:#063468;
+}
+.sticky .blue.button:active {
+background-color:#1169cc;
+}
+.sticky .purple.button {
+background-color:#660099;
+}
+.sticky .purple.button:hover {
+background-color:#330066;
+}
+.sticky .purple.button:active {
+background-color:#7f02bd;
+}
+
+.sticky .red.button {
+background-color:#CC0000;
+}
+.sticky .red.button:hover {
+background-color:#990000;
+}
+.sticky .red.button:active {
+background-color:#ea0202;
+}
+.sticky .close
+{}
+
+.sticky .show{
+	background: #CC0000;
+	background: linear-gradient(top, #CC0000 0%, #CC0000 100%);
+	box-shadow: 1px 1px 7px #676767;
+	height: 35px;
+	float: right;
+	width: 30px;
+	overflow:hidden;
+	margin-right: 10px !important;
+	text-align: center;
+}
+
+.sticky .show img{margin-top:10px;}

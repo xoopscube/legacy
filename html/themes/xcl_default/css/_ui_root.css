@@ -52,6 +52,9 @@
     }
 }
 :root{
+    /* -------------------- Development Mode */
+    --dev-mode: block; /*  Display Smarty Template Name : block, none */
+
     --red: #e53935;
     --pink: #d81b60;
     --purple: #8e24aa;
@@ -70,9 +73,6 @@
     --deep-orange: #f4511e;
     --grey: #757575;
     --blue-grey: #546e7a;
-
-    /* -------------------- Development Mode */
-    --dev-mode: none; /*  Display Smarty Template Name : block, none */
 
     /* -------------------- THEME COLOR */
     --primary: var(--blue);

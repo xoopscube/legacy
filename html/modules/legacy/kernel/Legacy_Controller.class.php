@@ -191,7 +191,7 @@ class Legacy_Controller extends XCube_Controller
             error_reporting(0);
         }
 
-        // ^^;
+        // This ^^;
         $this->_setupErrorHandler();
 
         //function date_default_timezone_set() is added on PHP5.1.0
@@ -235,13 +235,13 @@ class Legacy_Controller extends XCube_Controller
      * It'll be used when process starts with $xoopsOption['nocommon'] and
      * This process requires connecting XOOPS Database or LEGACY constant values
      * But it won't do any other initial settings
-     *	(eg. Session start, Permission handling)
+     *	(e.g. Session start, Permission handling)
      *
      * @access public
-     * @param bool $connectdb set false if you don't want to connetcting XOOPS Database
+     * @param bool $connectdb set false if you don't want to connect XOOPS Database
      *
      */
-    public function executeCommonSubset($connectdb = true)
+    public function executeCommonSubset(bool $connectdb = true)
     {
         $this->_setupErrorHandler();
         $this->_setupEnvironment();
@@ -346,7 +346,7 @@ class Legacy_Controller extends XCube_Controller
      * It's not flexible. It's not the fixed style.
      *
      * @MEMO
-     * For test, you can use automatic loading plug-in by writing a setting in site_custom.ini.php
+     * For testing, you can use the autoload plugin by writing a parameter in site_custom.ini.php
      *
      * site_custom.ini.php:
      *	[Legacy]
@@ -370,7 +370,7 @@ class Legacy_Controller extends XCube_Controller
      * and set the result to the member property.
      *
      * In this member function, the cache mechanism must be important.
-     * If the object has its own cache settings,this function loads the data from the cache
+     * If the object has its own cache settings, this function loads the data from the cache
      * instead of calling the business logic of the block.
      *
      * @access protected
@@ -430,15 +430,16 @@ class Legacy_Controller extends XCube_Controller
                 $renderBuffer = null;
                 if ($blockProcedure->isDisplay()) {
                     $renderBuffer =& $blockProcedure->getRenderTarget();
-
+                    // Note : version 2.3.0
+                    // @gigamaster added 'getTemplate' for block link in theme
                     $context->mAttributes['legacy_BlockShowFlags'][$blockProcedure->getEntryIndex()] = true;
                     $context->mAttributes['legacy_BlockContents'][$blockProcedure->getEntryIndex()][] = [
-                            'name' => $blockProcedure->getName(),
-                            'title'=>$blockProcedure->getTitle(),
-                            'content'=>$renderBuffer->getResult(),
-                            'weight'=>$blockProcedure->getWeight(),
-                            'id' => $blockProcedure->getId(),
-                        'template'  => $blockProcedure->getTemplate(), //TODO gigamaster
+                        'name'      => $blockProcedure->getName(),
+                        'title'     => $blockProcedure->getTitle(),
+                        'content'   => $renderBuffer->getResult(),
+                        'weight'    => $blockProcedure->getWeight(),
+                        'id'        => $blockProcedure->getId(),
+                        'template'  => $blockProcedure->getTemplate(),
                     ];
                 } else {
                     //
@@ -530,7 +531,7 @@ class Legacy_Controller extends XCube_Controller
 
             if (!$this->_mStrategy->enableAccess()) {
                 XCube_DelegateUtils::call('Legacy.Event.Exception.ModuleSecurity', $module);
-                $this->executeRedirect(XOOPS_URL . '/user.php', 1, _NOPERM);    // Depends on const message catalog.
+                $this->executeRedirect(XOOPS_URL . '/user.php', 1, _NOPERM); // Depends on const message catalog.
                 die();
             }
 
@@ -597,7 +598,7 @@ class Legacy_Controller extends XCube_Controller
 
         // Set instance to global variable for compatibility with XOOPS2
         $GLOBALS['xoopsUser'] =& $this->mRoot->mContext->mXoopsUser;
-        $GLOBALS['xoopsUserIsAdmin'] = is_object($this->mRoot->mContext->mXoopsUser) ? $this->mRoot->mContext->mXoopsUser->isAdmin(1) : false; // @todo Remove '1'
+        $GLOBALS['xoopsUserIsAdmin'] = is_object($this->mRoot->mContext->mXoopsUser) ? $this->mRoot->mContext->mXoopsUser->isAdmin(1) : false; // @todo Remove '1'?
 
         //
         // Set member handler to global variables for compatibility with XOOPS2
@@ -738,16 +739,17 @@ class Legacy_Controller extends XCube_Controller
         $this->mRoot->mContext->mXoopsConfig =& $configHandler->getConfigsByCat(XOOPS_CONF);
 
         $this->mRoot->mContext->mXoopsConfig['language'] = $this->mRoot->mLanguageManager->getLanguage();
-        $GLOBALS['xoopsConfig'] =& $this->mRoot->mContext->mXoopsConfig; // Compatibility for 2.0.x
+        $GLOBALS['xoopsConfig'] =& $this->mRoot->mContext->mXoopsConfig; // Compatibility for X2
         $GLOBALS['config_handler'] =& $configHandler;
         $GLOBALS['module_handler'] = xoops_gethandler('module');
 
         if (0 == count($this->mRoot->mContext->mXoopsConfig)) {
             return;
         }
-// @todo gigamaster setThemeName renders theme 'xcl_default'
-        // $this->mRoot->mContext->setThemeName('theme_set', $this->mRoot->mContext->mXoopsConfig['theme_set']);
 
+        // @disable-parser-inspector
+        // Note: X-app themes must use Base System Render !
+        $this->mRoot->mContext->setThemeName($this->mRoot->mContext->mXoopsConfig['theme_set']);
         $this->mRoot->mContext->setAttribute('legacy_sitename', $this->mRoot->mContext->mXoopsConfig['sitename']);
         $this->mRoot->mContext->setAttribute('legacy_pagetitle', $this->mRoot->mContext->mXoopsConfig['slogan']);
         $this->mRoot->mContext->setAttribute('legacy_slogan', $this->mRoot->mContext->mXoopsConfig['slogan']);
@@ -1096,9 +1098,10 @@ class Legacy_Controller extends XCube_Controller
             if ($successFlag) {
                 XCube_DelegateUtils::call('Site.Logout.Success', $xoopsUser);
                 // @gigamaster join lang array, 'message' must be of the type string
-                $msg_array = [_MD_LEGACY_MESSAGE_LOGGEDOUT, _MD_LEGACY_MESSAGE_THANKYOUFORVISIT];
-                $msg_show = join('<br>', $msg_array);
-                $this->executeRedirect(XOOPS_URL . '/', 1, $msg_show);
+                // $msg_array = [_MD_LEGACY_MESSAGE_LOGGEDOUT, _MD_LEGACY_MESSAGE_THANKYOUFORVISIT];
+                // $msg_show = join('<br>', $msg_array);
+                // $this->executeRedirect(XOOPS_URL . '/', 1, $msg_show);
+ $this->executeRedirect(XOOPS_URL . '/', 1, [_MD_LEGACY_MESSAGE_LOGGEDOUT, _MD_LEGACY_MESSAGE_THANKYOUFORVISIT]);
             } else {
                 XCube_DelegateUtils::call('Site.Logout.Fail', $xoopsUser);
             }
@@ -1187,7 +1190,9 @@ class Legacy_Controller extends XCube_Controller
      * @todo Change this function to delegate.
      * @remark This method encodes $url and $message directly without its template, to share the template with old function.
      */
-    public function executeRedirect(string $url, int $time = 1, string $message = null)
+// TODO check this
+// public function executeRedirect($url, $time = 1, $message = null, bool $addRedirect = true)
+    public function executeRedirect(string $url, int $time = 1, string $message = null, bool $addRedirect = true)
     {
         global $xoopsConfig, $xoopsRequestUri;
 
@@ -1212,7 +1217,8 @@ class Legacy_Controller extends XCube_Controller
 
         // @TODO test XOOPS2 Compatibility $addredirect = true
 
-        $addRedirect = $addredirect = true;
+// TODO uncomment line 1195
+        // $addRedirect = $addredirect = true;
 
         if ($addRedirect && strpos($url, 'user.php') !== false) {
             $this->_mNotifyRedirectToUser->call(new XCube_Ref($url));
@@ -1237,6 +1243,7 @@ class Legacy_Controller extends XCube_Controller
             }
         }
         //@gigamaster added theme_set, theme_url and theme_css (custom templates from theme)
+// TODO icon_set
         if (!defined('XOOPS_CPFUNC_LOADED')) {
             require_once XOOPS_ROOT_PATH.'/class/template.php';
             $xoopsTpl = new XoopsTpl();
@@ -1257,7 +1264,7 @@ class Legacy_Controller extends XCube_Controller
             );
             $GLOBALS['xoopsModuleUpdate'] = 1;
 
-            $xoopsTpl->display('db:system_redirect.html');
+            $xoopsTpl->display('db:system_redirect.html');  // TODO gigamaster
 
         } else {
 

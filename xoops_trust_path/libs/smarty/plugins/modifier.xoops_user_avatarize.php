@@ -32,7 +32,7 @@ function smarty_modifier_xoops_user_avatarize($uid, $tag=false, $url=null)
     }
 
     if ($tag===true) {
-        $imageTag = sprintf('<img src="%s" width="%d" height="%d" alt="%s" />', $src, $width, $height, $user->get('uname'));
+        $imageTag = sprintf('<img src="%s" width="%d" height="%d" alt="%s">', $src, $width, $height, $user->get('uname'));
         if (is_null($url)) {
             return $imageTag;
         } else {

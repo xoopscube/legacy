@@ -38,7 +38,6 @@
             setTimeout(function() {
                 $(self).parent().scrollTop(originalScrollTop);
             }, 0);
-
             return false;
         });
 
@@ -64,8 +63,7 @@
             // alert('Clik <{$smarty.const._AD_LEGACY_LANG_UPDATE}> to apply changes!');
         });
 
-
-
+        /* Code block Soure */
         Prism.highlightAll();
 
     });
