@@ -76,6 +76,7 @@ define( '_YES' , 'はい');
 define( '_EDIT' , '編集');
 define( '_DELETE' , '削除');
 define( '_VIEW' , '閲覧');
+define( '_SAVE' , '変更を保存');
 define( '_SUBMIT' , '送信');
 define( '_MODULENOEXIST' , '選択されたページは存在しません');
 define( '_ALIGN' , '位置');

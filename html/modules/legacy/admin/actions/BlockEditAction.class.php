@@ -229,7 +229,13 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        $controller->executeForward('./index.php?action=BlockList');
+        // $controller->executeForward('./index.php?action=BlockList');
+        // TODO @gigamaster save changes update button
+        if(xoops_getrequest('_form_control_save_edit')){
+            $controller->executeForward("./index.php?action=CustomBlockEdit&bid=".xoops_getrequest('bid'));
+        } else {
+            $controller->executeForward("./index.php?action=BlockList");
+        }
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)

@@ -140,6 +140,7 @@ define( '_STATUS_POSTED' , "Enviado");
 define( '_STATUS_PUBLISHED' , "Publicado");
 define( '_STATUS_REJECTED' , "Rejeitado");
 define( '_SUBJECT' , "Assunto");
+define( '_SAVE' , 'Salvar');
 define( '_SUBMIT' , "Enviar");
 define( '_SYS_MODULE_DISABLED' , "Necessário (desabilitado)");
 define( '_SYS_MODULE_UNINSTALLED' , "Necessário (não instalado)");

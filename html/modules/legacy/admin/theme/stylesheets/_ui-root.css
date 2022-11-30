@@ -153,7 +153,7 @@
 /* -------------------- -------------------- -------------------- LAYOUT Grid template */
 
     --bg-linear         : linear-gradient(360deg, hsla(219, 15%, 25%, 0.70), hsla(0, 0%, 0%, 0.90));
-    --bg-gradient       : linear-gradient(360deg, hsl(220deg 15% 18%), hsla(0, 0%, 0%, 0.90));
+    --bg-gradient       : linear-gradient(360deg, var(--layer-1), var(--layer-2));
 
     --aside-bg          : var( --layer-1 );
 
@@ -462,7 +462,7 @@
 
 /*	-------------------- -------------------- -------------------- DIALOG / MODAL */
 
-    --ui-dialog-bg          : var(--layer-3);
+    --ui-dialog-bg          : var(--layer-1);
     --ui-dialog-shadow      : var(--shadow-5);
 
 /*	-------------------- -------------------- -------------------- NAV SIDE */
@@ -493,7 +493,7 @@
     --notif-border-style    : var( --border-style );
     --notif-border-width    : var( --border-width );
 
-    --notif-box-shadow      : var(	--shadow-3 );
+    --notif-box-shadow      : var(	--shadow-2 );
 
     --notification-color    : var( --primary );
 

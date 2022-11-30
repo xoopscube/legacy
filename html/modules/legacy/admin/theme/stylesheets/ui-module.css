@@ -105,6 +105,7 @@
     /* UL - LI vertical scroll eg. Module Update */
     .scroll-y {
         background:var(--bg-gradient);
+        /*background: var(--layer-1 );*/
         border: var(--border);
         border-radius: var(--border-radius);
         display:block;
@@ -117,7 +118,7 @@
 
     }
     .scroll-y > li > a {
-        background: hsla(219, 14%, 20%, 0.4);
+        background: var(--layer-3);
         display: block;
         margin-bottom: 2px;
         padding: .5em 1.5em;

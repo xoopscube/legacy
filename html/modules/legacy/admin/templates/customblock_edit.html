@@ -92,8 +92,7 @@
             <{assign var=editor value=bbcode}>
             <{/if}>
             <{xoops_dhtmltarea type=text name=content value=$actionForm->get('content') rows=20 cols=60 class=$editor editor=$editor}>
-            <{* fck_htmlarea name=content width=100% hight=400px
-            skin=silver value=$actionForm->get('content') *}>
+            <{* fck_htmlarea name=content width=100% hight=400px skin=silver value=$actionForm->get('content') *}>
             </td>
         </tr>
         <tr>
@@ -141,6 +140,7 @@
         <tr>
             <td colspan="2" class="foot">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+                <input class="formButton" type="submit" value="<{$smarty.const._SAVE}>" name="_form_control_save_edit">
                 <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>
         </tr>

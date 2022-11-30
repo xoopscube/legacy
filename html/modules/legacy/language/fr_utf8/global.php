@@ -76,6 +76,7 @@ define( '_YES' , "Oui");
 define( '_EDIT' , "Editer");
 define( '_DELETE' , "Effacer");
 define( '_VIEW' , "Visualiser");
+define( '_SAVE' , 'Enregistrer');
 define( '_SUBMIT' , "Valider");
 define( '_MODULENOEXIST' , "Le module sélectionné n'existe pas !");
 define( '_ALIGN' , "Alignement");
