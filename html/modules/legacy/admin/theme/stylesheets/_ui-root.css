@@ -68,7 +68,6 @@
     --color-orange  : hsl(38, 75%, 45%);
     --color-purple  : hsl(300, 75%, 40%);
     --color-red     : hsl(5, 75%, 50%);
-    --color-redark  : hsl(347, 75%, 40%);
     --color-white   : hsl(0, 0%, 90%);
 
     --layer-1       : hsl(227deg 27% 12%);
@@ -255,7 +254,7 @@
     --button-color              : var( --link );
     --button-font-size          : var( --size-3 );
     --button-margin             : var( --space-1 ) var( --space-2 ); /* 0.75rem 1rem; */
-    --button-padding            : var( --space-3 ) var( --space-4 );
+    --button-padding            : var( --space-3 ) var( --space-5 );
     --button-radius             : var( --border-radius );
     --button-shadow             : var( --shadow-2 );
 
@@ -499,7 +498,7 @@
 
     --notif-margin          : var(--space-8) auto;
     --notif-padding         : var(--space-6) var(--space-6) var(--space-6) var(--space-9);
-    --notif-max-width       : 98%;
+    --notif-max-width       : 90%;
 
     /* -------------------- -------------------- TAB */
 

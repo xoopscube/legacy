@@ -67,13 +67,13 @@
         color: #fff;
         border-radius: 7px;
         box-shadow: 1px 2px 8px hsla(219, 10%, 10%, 0.8);
-        margin-top: -32px;
+        margin-top: -42px;
         margin-left: 24px;
         padding: 1em;
         pointer-events: none;
         transition: all 0.15s ease;
         transform-style: preserve-3d;
-        z-index: 100;
+        z-index:var(--z-above);
         overflow: visible;
     }
     [aria-label]:hover:before {
@@ -84,7 +84,7 @@
         border: 1px solid hsla(219, 10%, 18%, 0.9);
         font-size: 13px;
         max-width: 280px;
-        z-index: 101;
+        z-index: var(--z-above);
     }
 
     #dialog-online {

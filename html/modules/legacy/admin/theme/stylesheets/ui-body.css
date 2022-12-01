@@ -34,6 +34,7 @@
         transition      : background 500ms ease-in-out, color 200ms ease;
     }
 
+
     /* -------------------- -------------------- -------------------- -------------------- HTML Elements */
 
     a,
@@ -88,7 +89,7 @@
 
     h1, h2, h3, h4 {
         font-weight     : 400;
-        width           : 100%;
+        /*width           : 100%;*/
     }
 
     h1 {

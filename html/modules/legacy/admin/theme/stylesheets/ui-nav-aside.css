@@ -36,12 +36,13 @@
         bottom          : 0;/* fix overflow-y scroll*/
         color           : var(  --primary );
         grid-area       : nav-aside;
-        height          : 100vh;
+        display         : flex;
+        flex-direction  : column;
         left            : 0;
-        overflow-x      : hidden;
-        overflow-y      : auto;
+        height          : 100%;
+        min-height      : 100vh;
         position        : fixed;
-        margin-top      : 50px;
+        top             : 0;
         transform       : translateX(-247px);
         transition      : all 0.6s ease-in-out;
         width           : 247px;
@@ -58,11 +59,11 @@
         /*border-top-right-radius: 5px;*/
         /*border-bottom-right-radius: 5px;*/
         box-shadow      : var( --nav-side-box-shadow );
-        /*height          : 100vh;*/
-        /*height          : 100%;*/
-        display         : inline-table;
+        overflow-x      : hidden;
+        overflow-y      : auto;
+        height          : 100%;
         list-style-type : none;
-        padding         : var( --nav-side-padding );
+        padding         : var( --nav-side-padding ) 0 0;
         margin          : var( --nav-side-margin );
         width           : var( --nav-side-width );
     }

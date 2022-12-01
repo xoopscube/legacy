@@ -11,8 +11,12 @@
     margin          : var( --breadcrumbs-margin         );
     }
 
-    .pagenavi {
+    nav.pagination {
+         display : flex;
+         justify-content: center;
+     }
 
+    .pagenavi {
     }
 
     .ui-breadcrumbs a,

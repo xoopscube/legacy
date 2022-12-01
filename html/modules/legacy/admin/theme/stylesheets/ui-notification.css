@@ -8,7 +8,7 @@
 
 -------------------- -------------------- -------------------- Notifications */
 
-
+/* DEV MODE HELPER */
 .ui-dev-mode {
 
     background      : var(  --notification-bg       )
@@ -17,17 +17,36 @@
     border-radius   : var(  --notif-border-radius    );
     border-style    : var(  --notif-border-style     );
     border-width    : var(  --notif-border-width     );
-
     box-shadow      : var(  --notif-box-shadow       );
-
     color           : var(  --notification-color     );
     display         : var(  --dev-mode               );
     padding         : var(  --notif-padding          );
-
 }
-/* TODO override with modal notification */
 
-    .tips, .error, .confirm, .success {
+/* NOTIFY SUBMIT CHANGES */
+div.foot-sticky {
+    background      : #22221fcc;
+    border          : 1px solid red;
+    border-radius   : 0.5rem;
+    box-shadow      : var(--shadow-5);
+    display         : none;
+    line-height     : 5;
+    position        : fixed;
+    right           : 4rem;
+    text-align      : center;
+    top             : 4rem;
+    width           : 274px;
+    z-index         : var(--z-sticky);
+}
+.sticky-view {
+    border:2px solid red;
+    display: block !important;
+}
+
+/* TODO check for : xoops_confirm class="confirmMsg", xoops_error class="<{$style}>", xoops_result class="resultMsg" */
+/* TODO override with modal notification !?  */
+
+    .tips, .error, .confirm, .success, .confirmMsg, .resultMsg {
         background      : var(  --notification-bg    );
         border-color    : var(  --notif-border-color );
         border-radius   : var(  --notif-border-radius);
@@ -40,7 +59,7 @@
         max-width       : var(  --notif-max-width    );
     }
 
-    .confirm {
+    .confirm, .confirmMsg {
         border-left     : 7px solid var( --color-amber );
         background      : var( --notification-bg ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='%23face74'/%3E %3C/svg%3E") .6em 1em no-repeat;
     }

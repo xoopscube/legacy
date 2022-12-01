@@ -15,37 +15,47 @@
 
     @media only screen and (min-width: 320px) and (orientation:portrait) {
 
-    body {
-
-        /*height      : 100vw;*/
-
-    }
-
     .layout-grid,
     .ondemand,
     .ondemand-button  {
 
         left        : -30px;
         grid-template-columns: auto;
-
+        grid-template-columns: 1fr;
     }
     .layout-grid .footer {
         width:100%;
+    }
+    .ui-block-online-stats {
+        display: grid;
+        grid-auto-flow: initial;
+        grid-gap: 24px;
+        grid-template-columns: 1fr;
+    }
+    .dashboard-options a.set-link {
+        max-width: calc(100% / 3);
     }
 
     nav ul li.nav-logo {
         padding: 0;
     }
-        .btnav {
-            min-width :20px;
-            max-width: 24px;
-        }
-        main.main {
-
-        padding: 0 .5rem;
-        max-width: 100%;
+    .btnav {
+        min-width :20px;
+        max-width: 24px;
     }
+    main.main {
+    padding: 0 .5rem;
+    max-width: 100%;
+    }
+    .ui-card-2-col {
+        column-count    : 1;
+        display         : block;
+        list-style      : none;
+        margin          : 0;
 
+    }
+        .tips, .error, .confirm, .success, .confirmMsg, .resultMsg {
+            margin:1rem auto;padding: 0.5rem 0 0.5rem 2.5rem;width:100%}
     }
 
 
@@ -72,13 +82,7 @@
         margin      : 0;
     }
 
-    .ui-card-2-col {
-        column-count    : 1;
-        display         : block;
-        list-style      : none;
-        margin          : 0;
 
-    }
 
     .ui-card-overview {
         grid-template-areas	:

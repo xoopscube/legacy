@@ -139,8 +139,8 @@ $modversion['templates'][51]['file'] = 'legacy_redirect_function.html';
 $modversion['templates'][51]['description'] = 'Replace direct Xoops2 system';
 $modversion['templates'][52]['file'] = 'legacy_redirect_front_function.html';
 $modversion['templates'][52]['description'] = 'Redirect top page if module content is not selected.';
-$modversion['templates'][52]['file'] = 'legacy_app_front_page.html';
-$modversion['templates'][52]['description'] = 'App front page if module is not selected.';
+$modversion['templates'][52]['file'] = 'legacy_app_start_page.html';
+$modversion['templates'][52]['description'] = 'App start page if module is not selected.';
 
 // Menu
 $modversion['hasMain'] = 0;

@@ -1101,7 +1101,7 @@ class Legacy_Controller extends XCube_Controller
                 // $msg_array = [_MD_LEGACY_MESSAGE_LOGGEDOUT, _MD_LEGACY_MESSAGE_THANKYOUFORVISIT];
                 // $msg_show = join('<br>', $msg_array);
                 // $this->executeRedirect(XOOPS_URL . '/', 1, $msg_show);
- $this->executeRedirect(XOOPS_URL . '/', 1, [_MD_LEGACY_MESSAGE_LOGGEDOUT, _MD_LEGACY_MESSAGE_THANKYOUFORVISIT]);
+                $this->executeRedirect(XOOPS_URL . '/', 1, [_MD_LEGACY_MESSAGE_LOGGEDOUT, _MD_LEGACY_MESSAGE_THANKYOUFORVISIT]);
             } else {
                 XCube_DelegateUtils::call('Site.Logout.Fail', $xoopsUser);
             }
@@ -1191,8 +1191,8 @@ class Legacy_Controller extends XCube_Controller
      * @remark This method encodes $url and $message directly without its template, to share the template with old function.
      */
 // TODO check this
-// public function executeRedirect($url, $time = 1, $message = null, bool $addRedirect = true)
-    public function executeRedirect(string $url, int $time = 1, string $message = null, bool $addRedirect = true)
+ public function executeRedirect(string $url, int $time = 1, $message = null, bool $addRedirect = true)
+//    public function executeRedirect(string $url, int $time = 1, string $message = null, bool $addRedirect = true)
     {
         global $xoopsConfig, $xoopsRequestUri;
 

@@ -33,7 +33,7 @@ define( '_AD_LEGACY_PHPSETTING_ON' , "On");
 define( '_AD_LEGACY_PHPSETTING_OFF' , "Off");
 define( '_AD_LEGACY_PHPVERSION' , "PHP Version");
 define( '_AD_LEGACY_SERVER' , "Server");
-define( '_AD_LEGACY_SYSTEMINFO' , "Site/System Info");
+define( '_AD_LEGACY_SYSTEMINFO' , "System Information");
 define( '_AD_LEGACY_USERAGENT' , "User Agent");
 define( '_AD_LEGACY_XCLEGACYVERSION' , "XC Legacy Version");
 define( '_AD_LEGACY_XCVERSION' , "XOOPSCube Version");

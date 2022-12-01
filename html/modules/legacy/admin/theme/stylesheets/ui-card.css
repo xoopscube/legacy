@@ -29,14 +29,10 @@
 }
 
 .ui-card-2-col {
-
     column-count	: 2;
     column-gap		: 18px;
-
     display         : block;
-
 }
-
 
 .ui-block-online-content {
 

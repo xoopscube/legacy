@@ -41,6 +41,44 @@
             return false;
         });
 
+        // Overview Tabs
+        $( "#tabs" ).tabs({
+            collapsible: true,
+            select: function(event, ui) {
+                window.location.hash = ui.tab.hash;
+            }
+        });
+        $("#taboard").tabs({
+            collapsible: true,
+            heightStyle: "fill",
+            select: function(event, ui) {
+                window.location.hash = ui.tab.hash;
+            }
+        });
+        $("#taboard div").click(function(){
+            $("#tabs div").removeClass("active");
+            $(this).addClass("active");
+        });
+
+        // Overview Tabs > Accordion
+        $(".accordion").accordion({
+            heightStyle: "content",
+            collapsible: true,
+            animated: 'slide',
+            navigation: true,
+            active: 1
+        });
+
+        // Load overview from the module's help file
+        var str = window.location.pathname;
+        console.log(str);
+        var rest = str.substring(0, str.lastIndexOf("/") + 1);
+        console.log(rest);
+        $('#tab3').load(rest +'modules/legacy/admin/index.php?action=Help&dirname=legacy #help-overview');
+
+        // Module is not available with this distribution !
+        var target = $("a.set-link[href*='#no'] ")
+        target.addClass('not-available')
 
         $("a").click(function () {
             $("a").removeClass("selected");
@@ -54,12 +92,15 @@
             // Switch color of elements: <a> (affects border bottom), svg icon and text !
             $(this).closest(".ui-card-block").find('.ui-block-type').toggleClass('ui-update-change');
             // alert('Clik <{$smarty.const._AD_LEGACY_LANG_UPDATE}> to apply changes!');
+            $('div.foot-sticky').toggle();
         });
         // !TODO merge block and module switch
         // Module Management State Switch
         $('input[name^=isactive]').on('change', function () {
             $(this).parent('.ui-checkbox').next('a').toggleClass('ui-update-change');
             $(this).closest(".ui-card-block").find('.ui-card-block-image,.ui-module-state').toggleClass('ui-update-change');
+            $('div.foot-sticky').addClass("sticky-view");
+            //$('div.foot-sticky').toggle();
             // alert('Clik <{$smarty.const._AD_LEGACY_LANG_UPDATE}> to apply changes!');
         });
 
