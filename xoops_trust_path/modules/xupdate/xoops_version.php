@@ -23,14 +23,13 @@ require_once XUPDATE_TRUST_PATH . '/class/XupdateUtils.class.php';
 
 $dirname  = __DIR__;
 $basename = basename( $dirname );
-//
-// Define a basic manifesto.
-//
+
+// Manifesto
 $modversion['dirname']          = $myDirName;
 $modversion['trust_dirname']    = $basename;
 $modversion['name']             = _MI_XUPDATE_LANG_XUPDATE;
-$modversion['version']          = '2.31';
-$modversion['detailed_version'] = '2.31.2';
+$modversion['version']          = '2.32';
+$modversion['detailed_version'] = '2.32.0';
 $modversion['description']      = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author']           = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits']          = _MI_XUPDATE_LANG_CREDITS;
@@ -43,7 +42,7 @@ $modversion['image']            = 'images/module_xupdate.svg';
 $modversion['icon']             = 'images/module_icon.svg';
 $modversion['cube_style']       = true;
 
-// Install
+// SQL Install
 $modversion['legacy_installer']             = [
 	'installer'   => [
 		'class'     => 'Installer',

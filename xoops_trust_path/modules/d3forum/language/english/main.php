@@ -299,7 +299,7 @@ Define( '_MD_D3FORUM_MSG_FORUMUPDATED' , 'The forum has been modified successful
 Define( '_MD_D3FORUM_MSG_FORUMDELETED' , 'The forum has been deleted successfully');
 Define( '_MD_D3FORUM_TH_FORUMTITLE' , 'Forum title');
 Define( '_MD_D3FORUM_TH_FORUMWEIGHT' , 'Forum weight');
-Define( '_MD_D3FORUM_TH_FORUMDESC' , 'Forum desc');
+Define( '_MD_D3FORUM_TH_FORUMDESC' , 'Forum description');
 Define( '_MD_D3FORUM_TH_FORUMOPTIONS' , 'Forum options');
 Define( '_MD_D3FORUM_TH_EXTERNALLINKFORMAT' , 'Format for comment-integration');
 Define( '_MD_D3FORUM_HELP_EXTERNALLINKFORMAT' , 'leave blank for ordinary forums. If you write URI with %s started from  {XOOPS_URL}/modules/ , it will be the template linking to the sources. Native comment-integrated modules will set this field automatically.');

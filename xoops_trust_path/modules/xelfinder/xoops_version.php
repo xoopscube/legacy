@@ -19,6 +19,7 @@ $langman = D3LanguageManager::getInstance();
 $langman->read( 'modinfo.php', $mydirname, $mytrustdirname, false );
 $constpref = '_MI_' . strtoupper( $mydirname );
 
+// Manifesto
 $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = 'xelFinder';
@@ -28,13 +29,14 @@ $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'Naoki Sawada (aka Nao-pon) <Hypweb.net>';
 $modversion['credits']          = 'Naoki Sawada (aka Nao-pon). Nuno Luciano (aka gigamaster) 2020 XCL PHP7';
 $modversion['license']          = 'GPL';
-$modversion['image']            = '/images/module_xelfinder.svg'; // $modversion['image'] = is_file( $mydirpath.'/images/module_xelfinder.svg' ) ? '/images/module_xelfinder.svg' : 'module_icon.php' ;
+$modversion['image']            = '/images/module_xelfinder.svg';
 $modversion['icon']             = 'images/module_icon.svg';
 $modversion['help']             = 'help.html';
 $modversion['official']         = 0;
 $modversion['cube_style']       = true;
 $modversion['read_any']         = true;
 
+// SQL Install
 // Any tables can't be touched by modulesadmin.
 $modversion['sqlfile'] = false;
 $modversion['tables']  = [];

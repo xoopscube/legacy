@@ -72,6 +72,8 @@ function b_altsys_admin_menu_show($options)
 
         $dirname = $mod->getVar('dirname');
 
+        // TODO gigamaster add module icon
+        $moduleIcon = '<img class="svg" src="'.XOOPS_URL.'/modules/'.$dirname.'/images/module_icon.svg" width="1em" height="1em">';
         $modinfo = $mod->getInfo();
 
         $submenus4assign = [];
@@ -138,15 +140,16 @@ function b_altsys_admin_menu_show($options)
                 ];
             }
         }
-
+        // TODO gigamaster add module icon
         $module4assign = [
             'mid' => $mid,
             'dirname' => $dirname,
             'name' => $mod->getVar('name'),
+            'icon' => $moduleIcon,
             'version_in_db' => sprintf('%.2f', $mod->getVar('version') / 100.0),
             'version_in_file' => sprintf('%.2f', $modinfo['version']),
             'description' => htmlspecialchars(@$modinfo['description'], ENT_QUOTES),
-            'image' => htmlspecialchars($modinfo['image'], ENT_QUOTES),
+//            'image' => htmlspecialchars($modinfo['image'], ENT_QUOTES),
             'isactive' => $mod->getVar('isactive'),
             'hasmain' => $mod->getVar('hasmain'),
             'hasadmin' => $mod->getVar('hasadmin'),

@@ -49,7 +49,7 @@ if ( ! function_exists( 'pico_global_search_base' ) ) {
 			$whr_uid = '1';
 		}
 
-		// where by keywords
+		// whereby keywords
 		if ( is_array( $keywords ) && count( $keywords ) > 0 ) {
 			switch ( strtolower( $andor ) ) {
 				case 'and':
