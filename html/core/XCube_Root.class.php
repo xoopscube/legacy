@@ -56,7 +56,7 @@ class XCube_Root {
 
 	/**
 	 * @private
-	 * @brief Hash-Map Array - std::map<string, XCube_RenderSystem*> - Caches for genereted render-systems.
+	 * @brief Hash-Map Array - std::map<string, XCube_RenderSystem*> - Caches for generated render-systems.
 	 * @attention
 	 *      Only the kernel system should access this member property.
 	 */

@@ -82,7 +82,7 @@ $dbm->insert( 'config', " VALUES (45, 0, 5, 'keyword_min', '_MD_AM_MINSEARCH', '
 $dbm->insert( 'config', " VALUES (47, 0, 1, 'enable_badips', '_MD_AM_DOBADIPS', '0', '_MD_AM_DOBADIPSDSC', 'yesno', 'int', 40)" );
 $dbm->insert( 'config', " VALUES (53, 0, 1, 'use_mysession', '_MD_AM_USEMYSESS', '0', '_MD_AM_USEMYSESSDSC', 'yesno', 'int', 19)" );
 $dbm->insert( 'config', " VALUES (57, 0, 1, 'theme_fromfile', '_MD_AM_THEMEFILE', '1', '_MD_AM_THEMEFILEDSC', 'yesno', 'int', 13)" );
-$dbm->insert( 'config', " VALUES (58, 0, 1, 'closesite', '_MD_AM_CLOSESITE', '0', '_MD_AM_CLOSESITEDSC', 'yesno', 'int', 26)" );
+$dbm->insert( 'config', " VALUES (58, 0, 1, 'closesite', '_MD_AM_CLOSESITE', '1', '_MD_AM_CLOSESITEDSC', 'yesno', 'int', 26)" );
 $dbm->insert( 'config', " VALUES (59, 0, 1, 'closesite_okgrp', '_MD_AM_CLOSESITEOK', '" . addslashes( serialize( [ '1' ] ) ) . "', '_MD_AM_CLOSESITEOKDSC', 'group_multi', 'array', 27)" );
 $dbm->insert( 'config', " VALUES (60, 0, 1, 'closesite_text', '_MD_AM_CLOSESITETXT', '" . _INSTALL_L165 . "', '_MD_AM_CLOSESITETXTDSC', 'textarea', 'text', 28)" );
 $dbm->insert( 'config', " VALUES (61, 0, 1, 'sslpost_name', '_MD_AM_SSLPOST', 'xcl_wap_ssl', '_MD_AM_SSLPOSTDSC', 'textbox', 'text', 31)" );

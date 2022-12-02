@@ -5,14 +5,15 @@
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
+*/
 
-
-    -------------------- -------------------- NAV IMPORT */
+/* -------------------- --------------------  NAV IMPORT */
 
 @import "./ui-nav-aside.css";  /*      Nav-side    */
 @import "./ui-nav-header.css";/*      Nav-header  */
-@import "./ui-panel.css";/*      Nav-header  */
-    /* -------------------- -------------------- NAV ADMIN */
+@import "./ui-panel.css";    /*      Nav-header  */
+
+    /* -------------------- --------------------  NAV ADMIN */
 
 .admintitle {
     border-bottom   : 3px solid var(--border);
@@ -34,63 +35,6 @@
     /*max-width: 57em; container */
     padding         : var(--space-2);
 }
-
-
-
-/*.adminavi,
-.adminavi-sub {
-    background      : var( --layer-3 );
-    border          : 1px solid var(--layer-3);
-    box-shadow      : var( --shadow-2 );
-    display         : flex;
-    flex-wrap       : wrap;
-    gap             : 5px 5px; !* row-gap column-gap *!
-    margin          : 1.5em auto 1.5em 0;
-    padding         : var(--space-2);
-    max-width       : max-content;
-    width           : -moz-fit-content;
-    width           : fit-content;
-    overflow        : hidden;
-    }
-.adminavi-item {
-    border          : 1px solid var(--layer-3);
-    color           : var(--link);
-    padding         : var(--space-4);
-    margin-right    : var(--space-2);
-    text-decoration : none;
-    transition      : .3s;
-}
-
-.adminavi .adminavi-item:first-child {
-    border-top-left-radius: var(--border-radius);
-    border-bottom-left-radius: var(--border-radius);
-}
-.adminavi .adminavi-item:last-child {
-    border-top-right-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
-}
-
-.adminavi-sub .adminavi-item {
-    width           : 19%;
-    margin-right    : var(--space-2);
-    padding         : var(--space-4);
-}
-.adminavi-sub .adminavi-item > svg {
-    margin-right    : var(--space-2);
-}
-.adminavi-sub .adminavi-item:nth-of-type(5n) {
-    margin-right    : 0;
-}
-.adminavi-sub .adminavi-item:nth-of-type(5n+1) {
-    margin-left     : 0;
-}
-.adminavi-sub .adminavi-item {
-    align-items     : center;
-    display         : flex;
-    !*justify-content : space-between;*!
-    margin-left     : 0;
-    padding         : var(--space-2) var(--space-4);
-    }*/
 
 .adminavi .adminavi-item,
 .adminavi-sub .adminavi-item {
@@ -124,7 +68,7 @@
     outline-width   : 0;
 }
 
-/* -------------------- dropdown MENU */
+/* -------------------- --------------------  DROPDOWN MENU */
 
 div.dropdown {
     position        : relative;
@@ -144,10 +88,14 @@ div.dropdown a.dropdown-toggle {
     cursor          : pointer;
     display         : block;
     font            : var(--d-toggle-font);
-    margin          : 0;
-    padding         : var(--d-toggle-padding);
     transition      : var(--d-toggle-transition);
-    /*width          : max-content;*/
+    width           : min-content;
+    font-size       : 20px;
+    height          : 40px;
+    line-height     : 40px;
+    margin          : var( --space-1 );
+    padding         : 0;
+    position        : relative
 }
 div.dropdown a.dropdown-toggle:hover {
     background      : var(--d-toggle-bg-on);
@@ -163,16 +111,18 @@ div.dropdown-content {
     border-radius   : var(--dropdown-radius);
     box-shadow      : var(--dropdown-shadow);
     display         : none;
-
     min-width       : var(--dropdown-width);
-
     padding         : var(--dropdown-padding);
     position        : absolute;
     right           : 1px; /* Fix device Viewport */
     text-align      : left;
     top             : 100%;
     transition      : var(--dropdown-transition);
-    width           : auto;
+    width           : min-content;
+}
+div.dropdown-content > a {
+    margin          : 0 0 var(--space-2) 0;
+    width           : 100%;
 }
 :where(div.dropdown.isopen) div.drop-left {
     left            : 1px; /* Fix device Viewport */

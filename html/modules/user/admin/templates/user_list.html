@@ -87,11 +87,14 @@
         <{/foreach}>
     </div>
 
-
-    <div data-layout="row centered" class="adminnavi">
-        <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+    <div class="foot-sticky" style="display: none">
+        <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+    </div>
+    <div class="ui-card-2-col">
+        <span><input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>"></span>
+        <span><{include file="./components/pagenavi.html"}></span>
     </div>
 
 </form>
 
-<{include file="./components/pagenavi.html"}>
+

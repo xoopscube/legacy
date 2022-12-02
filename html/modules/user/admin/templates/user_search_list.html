@@ -210,13 +210,14 @@
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="10" class="foot">
+            <td colspan="9" class="foot">
                 <input class="button cancel" type="submit" name="confirm_back" value="<{$smarty.const._BACK}>" onclick="javascript:history.go(-1);">
                 <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+            </td>
+            <td>
+                <{include file="./components/pagenavi.html"}>
             </td>
         </tr>
         </tfoot>
     </table>
 </form>
-
-<nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>

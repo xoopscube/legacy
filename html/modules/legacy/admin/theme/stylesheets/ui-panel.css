@@ -5,9 +5,9 @@
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
+*/
 
-
-/* -------------------- -------------------- XCL Panel */
+/* -------------------- --------------------  XCL Panel */
 
 .right-sidebar {
     background      : var(--aside-panel-bg);
@@ -72,7 +72,7 @@
     width           : 274px;
 }
 
-/* -------------------- -------------------- Right side toggle */
+/* -------------------- --------------------  Right side toggle */
 
 @keyframes rotate {
     from {
@@ -131,7 +131,7 @@
     /*filter          : drop-shadow(1px 1px 0px rgba(10, 10, 10, 0.7));*/
 }
 
-/* -------------------- -------------------- XCL CUBE */
+/* -------------------- --------------------  XCL CUBE */
 
 .qube-perspective{-webkit-perspective:900px;-moz-perspective:900px;perspective:900px}
 .qube-preserve3d{-webkit-transform-style:preserve-3d;-moz-transform-style:preserve-3d;transform-style:preserve-3d}
@@ -190,7 +190,7 @@
     background      : rgba(40,52,60,0.27);
 }
 
-/* -------------------- -------------------- COLOR SCHEME */
+/* -------------------- --------------------  COLOR SCHEME */
 
 ul#themecolors {display: block;}
 ul#themecolors li {display: inline-block;}

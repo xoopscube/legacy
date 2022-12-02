@@ -206,12 +206,11 @@
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="8" class="foot">
+            <td colspan="7">
                 <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>
+            <td><{include file="./components/pagenavi.html"}></td>
         </tr>
         </tfoot>
     </table>
 </form>
-
-<nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>

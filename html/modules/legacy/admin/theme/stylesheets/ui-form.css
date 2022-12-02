@@ -5,8 +5,9 @@
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
+*/
 
-    -------------------- -------------------- -------------------- -------------------- Form elements  */
+/* -------------------- --------------------  Form elements  */
 
     /* TODO
     test overwrite default templates
@@ -98,7 +99,7 @@ input[type="number"] {
         outline         : var(  --input-border-hover );
     }
 
-    /* 	-------------------- -------------------- -------------------- -------------------- BUTTON  */
+    /* 	-------------------- -------------------- INPUT BUTTON  */
 
 
     input[type="image"] svg path {
@@ -198,7 +199,7 @@ input[type="number"] {
         outline         : none;
     }
 
-    /* 	-------------------- -------------------- SELECT  */
+    /* 	-------------------- --------------------  SELECT  */
 
     select {
         background      : var( --input-bg );
@@ -284,7 +285,7 @@ textarea::-webkit-resizer {
     }
 
 
-    /* 	-------------------- -------------------- CHECKBOX & RADIO  */
+    /* 	-------------------- --------------------  CHECKBOX & RADIO  */
 
     @supports (-webkit-appearance: none) or (-moz-appearance: none) {
 

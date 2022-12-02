@@ -151,16 +151,16 @@ class XoopsErrorHandler
                     $out = 'Notice [PHP]: ';
                     break;
                 case E_WARNING:
-                    $out = 'Warning [PHP7]: ';
+                    $out = 'Warning [PHP]: ';
                     break;
                 case E_DEPRECATED:
-                    $out = 'Deprecated [PHP7]: ';
+                    $out = 'Deprecated [PHP]: ';
                     break;
                 case E_STRICT:
-                    $out = 'Strict [PHP7]: ';
+                    $out = 'Strict [PHP]: ';
                     break;
                 case E_ERROR:
-                    $out = 'Fatal [PHP7]: ';
+                    $out = 'Fatal [PHP]: ';
                     break;
                 default:
                     $out = 'Unknown Condition [' . $error['errno'] . ']: ';
@@ -179,7 +179,7 @@ class XoopsErrorHandler
                 $count[$md5] = 1;
             }
         }
-        $ret = '<div class="error">';
+        $ret = '<div class="alert error">';
         $ret .= implode("<br>\n", $output);
         $ret .= '</div>';
         return $ret;

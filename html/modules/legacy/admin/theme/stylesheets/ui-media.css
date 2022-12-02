@@ -5,12 +5,13 @@
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
+*/
 
-    -------------------- -------------------- -------------------- -------------------- Media Queries */
+/*  -------------------- --------------------  Media Queries */
     /*
     * Screen Mode Portrait -> Invite To Turn Device
     *
-    /* -------------------- -------------------- -------------------- Screen Portrait */
+    /* -------------------- --------------------  Screen Portrait */
 
 
     @media only screen and (min-width: 320px) and (orientation:portrait) {
@@ -18,9 +19,7 @@
     .layout-grid,
     .ondemand,
     .ondemand-button  {
-
         left        : -30px;
-        grid-template-columns: auto;
         grid-template-columns: 1fr;
     }
     .layout-grid .footer {
@@ -52,16 +51,21 @@
         display         : block;
         list-style      : none;
         margin          : 0;
-
     }
-        .tips, .error, .confirm, .success, .confirmMsg, .resultMsg {
-            margin:1rem auto;padding: 0.5rem 0 0.5rem 2.5rem;width:100%}
+    .tips, .error, .confirm, .success, .confirmMsg, .resultMsg {
+        margin:1rem auto;padding: 0.5rem;width:100%;
     }
+    #taboard {
+        display: block;
+        max-width: 400px;
+    }
+}
 
 
-    /* -------------------- -------------------- -------------------- -------------------- Screen max 420px */
 
-    @media only screen and (min-width: 420px)  and (orientation:portrait) {
+    /* -------------------- --------------------  Screen max 420px */
+
+    @media only screen and (min-width: 420px) and (orientation:portrait) {
 
     .layout-grid {
         grid-template-areas:
@@ -96,10 +100,14 @@
 
 
 
-    /* -------------------- -------------------- -------------------- -------------------- Tablet Hor. 736 px*/
+    /* -------------------- --------------------  Tablet Hor. 736 px*/
 
     @media only screen and (min-width: 46.875em) {
-
+    .ui-block-online-stats {
+        display: grid;
+        grid-auto-flow: column;
+        grid-gap: 42px;
+    }
     .ui-flex-column {
         flex    : 1
     }
@@ -141,7 +149,8 @@
     }
 
 
-    /* -------------------- -------------------- -------------------- -------------------- Tablet Hor. 1024px*/
+    /* -------------------- --------------------  Tablet Hor. 1024px*/
+
     @media screen and (min-width: 64em) {
         .layout-grid {
             grid-template-columns: auto;

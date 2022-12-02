@@ -5,10 +5,9 @@
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
+*/
 
--------------------- -------------------- -------------------- -------------------- ICONS */
-
-
+/*-------------------- --------------------  ICONS */
 
     /* Icons color and size */
     i[class^="i-"] {
@@ -38,7 +37,7 @@
         /*box-shadow          : 0 8px 6px -6px green;*/
     }
 
-/* -------------------- -------------------- -------------------- -------------------- BADGE */
+/* -------------------- --------------------  BADGE */
 
     /* Badge default */
     .badge,
@@ -63,7 +62,6 @@
         vertical-align  : baseline;
         white-space     : nowrap;
     }
-
 
     .badge-count {
         background      : var( --layer-2 );
@@ -93,7 +91,7 @@
     }
 
 
-/* -------------------- -------------------- -------------------- -------------------- button + jQueryUI */
+/* -------------------- --------------------  button + jQueryUI */
 
     /* Overwrite jQuery Components */
 
@@ -129,7 +127,6 @@
         box-shadow          : var( --button-shadow-on );
     }
 
-
     .button-small {
     /*[class*="button-"].button-small {*/
         color               : var( --button-color );
@@ -157,7 +154,7 @@
         box-shadow          : var( --button-shadow-on );
     }
 
-/* -------------------- -------------------- -------------------- btn-fx BTNVAV */
+/* -------------------- --------------------  BTNVAV */
 
     .btnav {
         background      : none;
@@ -207,7 +204,7 @@
         transform       : scale3d(1, 1, 1);
     }
 
-/*-------------------- -------------------- -------------------- BUTTON COLOR */
+/* -------------------- --------------------  BUTTON COLOR */
 
     .bg-amber {
         border: 1px solid var(  --color-amber	);
@@ -265,7 +262,7 @@ a.round{
     justify-content: center;
     align-items: center;
 }
-/*-------------------- -------------------- -------------------- BUTTON COLOR */
+/* -------------------- --------------------  BUTTON COLOR */
 
 .outline {
     position: relative;
@@ -295,8 +292,7 @@ a.round{
     opacity: .9;
 }
 
-
-/*-------------------- -------------------- RIPPLE */
+/* -------------------- -------------------- RIPPLE */
 
 .ripple:before {
     content: '';

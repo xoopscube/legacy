@@ -167,20 +167,20 @@
 
             <{if $obj->get('block_type') == 'C'}>
             <a href="./index.php?action=CustomBlockEdit&amp;bid=<{$obj->getShow('bid')}>" class="button button-small" aria-label="<{$smarty.const._EDIT}>">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="svg-ui-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-ui-icon">
                     <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path>
                 </svg> <{$smarty.const._EDIT}>
             </a>
             <{else}>
             <a href="./index.php?action=BlockEdit&amp;bid=<{$obj->getShow('bid')}>" class="button button-small" aria-label="<{$smarty.const._EDIT}>">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="svg-ui-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-ui-icon">
                     <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path>
                 </svg> <{$smarty.const._EDIT}>
             </a>
             <{/if}>
 
             <a href="./index.php?action=BlockUninstall&amp;bid=<{$obj->getShow('bid')}>" class="button button-small" aria-label="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="svg-ui-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-ui-icon">
                     <path d="M3.27 1L2 2.27L6.22 6.5L3 9l1.63 1.27L12 16l2.1-1.63l1.43 1.43L12 18.54l-7.37-5.73L3 14.07l9 7l4.95-3.85L20.73 21L22 19.73L3.27 1m16.09 9.27L21 9l-9-7l-2.91 2.27l7.87 7.88l2.4-1.88m.45 4.73l1.19-.93l-1.43-1.43l-1.19.92L19.81 15z" fill="currentColor">
                     </path>
                 </svg> <{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>

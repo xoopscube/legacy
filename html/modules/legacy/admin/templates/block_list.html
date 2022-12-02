@@ -39,17 +39,17 @@
 
     <div class="control-view">
         <button id="list" class="button" data-id="1" type="button" aria-label="View List">
-            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24">
                 <path d="M9 5v4h12V5M9 19h12v-4H9m0-1h12v-4H9M4 9h4V5H4m0 14h4v-4H4m0-1h4v-4H4v4z" fill="currentColor"/></svg>
         </button>
 
         <button id="grid" class="button" data-id="2" type="button" aria-label="View Grid">
-            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24">
                 <path d="M16 5v6h5V5m-11 6h5V5h-5m6 13h5v-6h-5m-6 6h5v-6h-5m-6 6h5v-6H4m0-1h5V5H4v6z" fill="currentColor"/></svg>
         </button>
 
         <button id="filter" class="button" type="button" data-id="3" onclick="slideToggle('.block-filter', this)" aria-label="View Filter">
-            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
+            <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24">
                 <path d="M7 11h10v2H7zM4 7h16v2H4zm6 8h4v2h-4z" fill="currentColor"/></svg>
         </button>
 
@@ -98,10 +98,14 @@
 
     <hr>
 
-    <div class="ui-card-full foot">
+    <div class="ui-card-full foot-sticky">
         <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
     </div>
 
+    <div class="ui-card-full">
+        <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+        <{* Smarty generates nav pagination + ul pagenavi *}>
+        <nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
+    </div>
 </form>
-<{* Smarty generates nav pagination + ul pagenavi *}>
-<div class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+

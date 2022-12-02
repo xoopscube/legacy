@@ -2,29 +2,32 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-blue">
-      <img src="<{"icons/icon-user-group.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_TOTAL}>">
+			<img src="<{'icons/icon-user-group.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_TOTAL}>">
 		</div>
 		<div class="ui-card-small-info">
-			<h4 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_USER_TOTAL}>: <strong><{$UserTotal}></strong></h4>
+			<h4 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_USER_TOTAL}>: <strong><{$UserTotal}></strong>
+			</h4>
 		</div>
 	</div>
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-green">
-      <img src="<{"icons/icon-user-account.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>">
+			<img src="<{'icons/icon-user-account.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>">
 		</div>
 		<div class="ui-card-small-info">
-			<h4 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>: <strong><{$activeUserTotal}></strong></h4>
+			<h4 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>:
+				<strong><{$activeUserTotal}></strong></h4>
 			<!-- <p class="ui-card-small-subtitle"><a href="index.php?action=UserEdit"><{$smarty.const._AD_USER_LANG_USER_NEW}></a></p> -->
 		</div>
 	</div>
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-red">
-      <img src="<{"icons/icon-user-inactive.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>">
+			<img src="<{'icons/icon-user-inactive.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>">
 		</div>
 		<div class="ui-card-small-info">
-			<h4 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>: <strong><{$inactiveUserTotal}></strong></h4>
+			<h4 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>: <strong><{$inactiveUserTotal}></strong>
+			</h4>
 			<!-- <p class="ui-card-small-subtitle"><a href="index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a></p> -->
 		</div>
 	</div>

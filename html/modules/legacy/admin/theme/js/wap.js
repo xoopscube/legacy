@@ -49,14 +49,14 @@
             }
         });
         $("#taboard").tabs({
-            collapsible: true,
-            heightStyle: "fill",
+            // collapsible: true,
+            // heightStyle: "fill",
             select: function(event, ui) {
                 window.location.hash = ui.tab.hash;
             }
         });
         $("#taboard div").click(function(){
-            $("#tabs div").removeClass("active");
+            $("#taboard div").removeClass("active");
             $(this).addClass("active");
         });
 
@@ -76,9 +76,11 @@
         console.log(rest);
         $('#tab3').load(rest +'modules/legacy/admin/index.php?action=Help&dirname=legacy #help-overview');
 
+
         // Module is not available with this distribution !
         var target = $("a.set-link[href*='#no'] ")
         target.addClass('not-available')
+
 
         $("a").click(function () {
             $("a").removeClass("selected");
@@ -92,7 +94,7 @@
             // Switch color of elements: <a> (affects border bottom), svg icon and text !
             $(this).closest(".ui-card-block").find('.ui-block-type').toggleClass('ui-update-change');
             // alert('Clik <{$smarty.const._AD_LEGACY_LANG_UPDATE}> to apply changes!');
-            $('div.foot-sticky').toggle();
+            $('div.foot-sticky').addClass("sticky-view");
         });
         // !TODO merge block and module switch
         // Module Management State Switch
@@ -102,6 +104,9 @@
             $('div.foot-sticky').addClass("sticky-view");
             //$('div.foot-sticky').toggle();
             // alert('Clik <{$smarty.const._AD_LEGACY_LANG_UPDATE}> to apply changes!');
+        });
+        $('input[name^=delete]').on('change', function () {
+            $('div.foot-sticky').addClass("sticky-view");
         });
 
         /* Code block Soure */

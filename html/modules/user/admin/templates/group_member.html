@@ -53,6 +53,11 @@
         </td>
     </tr>
     </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="7"><{include file="./components/pagenavi.html"}></td>
+    </tr>
+    </tfoot>
 </table>
 
 
@@ -121,15 +126,14 @@
         </tbody>
         <tbody>
         <tr>
-            <td class="foot" colspan="10">
+            <td class="foot" colspan="9">
                 <input class="button" type="submit" value="<{$smarty.const._MD_USER_LANG_ASSIGN}>">
             </td>
+            <td><{include file="./components/pagenavi.html"}></td>
         </tr>
         </tbody>
     </table>
 </form>
-
-<nav class="pagination"><{xoops_pagenavi pagenavi=$noPageNavi}></nav>
 
 
 <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_ASSIN_MEMBERS}></h3>
@@ -184,12 +188,11 @@
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="10">
+            <td class="foot" colspan="9">
                 <input class="button" type="submit" value="<{$smarty.const._MD_USER_LANG_UNASSIGN}>">
             </td>
+            <td><{include file="./components/pagenavi.html"}></td>
         </tr>
         </tfoot>
     </table>
 </form>
-
-<nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>

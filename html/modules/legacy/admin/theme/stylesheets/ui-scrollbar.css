@@ -5,19 +5,10 @@
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
+*/
 
--------------------- -------------------- -------------------- -------------------- SCROLLBAR */
-
-/*	-------------------- -------------------- -------------------- Text Selection */
-::selection {
-
-    background-color	: rgba(15, 15, 15, 0.85);
-    color               : var(  --secondary	 );
-
-}
-
-
-/*	-------------------- -------------------- -------------------- TODO
+/* -------------------- --------------------  SCROLLBAR */
+/*	-------------------- --------------------  TODO
     Implement crosshover css/js scrollbar
 */
 ::-webkit-scrollbar {

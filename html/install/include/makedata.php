@@ -80,7 +80,7 @@ function make_data( &$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, 
 	$dbm->insert( 'config', " VALUES (48, 0, 1, 'cool_uri', '_MD_AM_COOLURI', '0', '_MD_AM_COOLURIDSC', 'yesno', 'int', 17)" );
 	$dbm->insert( 'config', " VALUES (53, 0, 1, 'use_mysession', '_MD_AM_USEMYSESS', '0', '_MD_AM_USEMYSESSDSC', 'yesno', 'int', 19)" );
 	$dbm->insert( 'config', " VALUES (57, 0, 1, 'theme_fromfile', '_MD_AM_THEMEFILE', '1', '_MD_AM_THEMEFILEDSC', 'yesno', 'int', 13)" );
-	$dbm->insert( 'config', " VALUES (58, 0, 1, 'closesite', '_MD_AM_CLOSESITE', '0', '_MD_AM_CLOSESITEDSC', 'yesno', 'int', 26)" );
+	$dbm->insert( 'config', " VALUES (58, 0, 1, 'closesite', '_MD_AM_CLOSESITE', '1', '_MD_AM_CLOSESITEDSC', 'yesno', 'int', 26)" );
 	$dbm->insert( 'config', " VALUES (59, 0, 1, 'closesite_okgrp', '_MD_AM_CLOSESITEOK', '" . addslashes( serialize( [ '1' ] ) ) . "', '_MD_AM_CLOSESITEOKDSC', 'group_multi', 'array', 27)" );
 	$dbm->insert( 'config', " VALUES (60, 0, 1, 'closesite_text', '_MD_AM_CLOSESITETXT', '" . _INSTALL_L165 . "', '_MD_AM_CLOSESITETXTDSC', 'textarea', 'text', 28)" );
 	$dbm->insert( 'config', " VALUES (61, 0, 1, 'sslpost_name', '_MD_AM_SSLPOST', 'wap_ssl', '_MD_AM_SSLPOSTDSC', 'textbox', 'text', 31)" );
@@ -111,64 +111,6 @@ function make_data( &$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, 
 
     // Block Welcome
     // $dbm->insert( 'groups_users_link', ' VALUES (11, ' . $gruops['XOOPS_GROUP_ADMIN'] . ',	9)' );
-	/*
-		// install modules
-		installModule($dbm, 1, "system", _MI_SYSTEM_NAME, $language, $gruops);
-		// data for table 'group_permission'
-		$dbm->insert("group_permission", " VALUES (0,".$gruops['XOOPS_GROUP_ADMIN'].",1,1,'module_admin')");
-		$dbm->insert("group_permission", " VALUES (0,".$gruops['XOOPS_GROUP_ADMIN'].",1,1, 'module_read')");
-		$dbm->insert("group_permission", " VALUES (0,".$gruops['XOOPS_GROUP_USERS'].",1,1,'module_read')");
-		$dbm->insert("group_permission", " VALUES (0,".$gruops['XOOPS_GROUP_ANONYMOUS'].",1,1,'module_read')");
-
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",1,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",2,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",3,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",4,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",5,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",6,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",7,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",8,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",9,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",10,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",11,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",12,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",13,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",14,1,'system_admin')");
-		$dbm->insert("group_permission", " VALUES(0,".$gruops['XOOPS_GROUP_ADMIN'].",15,1,'system_admin')");
-
-		installModule($dbm, 2, "legacy", _MI_LEGACY_NAME, $language, $gruops, true);
-		$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 2, 1, 'module_admin')");
-
-		installModule($dbm, 3, "legacyRender", _MI_LEGACYRENDER_NAME, $language, $gruops, true);
-		$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 3, 1, 'module_admin')");
-
-		installModule($dbm, 4, "user", _MI_USER_NAME, $language, $gruops, true);
-		$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 4, 1, 'module_admin')");
-		$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 4, 1, 'module_read')");
-		$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_USERS'].", 4, 1, 'module_read')");
-		$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ANONYMOUS'].", 4, 1, 'module_read')");
-
-		installModule($dbm, 5, "pm", _MI_PM_NAME, $language, $gruops, true);
-		$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 5, 1, 'module_admin')");
-		$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 5, 1, 'module_read')");
-		$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_USERS'].", 5, 1, 'module_read')");
-
-		installModule($dbm, 6, "stdCache", _MI_STDCACHE_NAME, $language, $gruops, true);
-		$dbm->insert("group_permission", " VALUES (0, ".$gruops['XOOPS_GROUP_ADMIN'].", 6, 1, 'module_admin')");
-
-		// data for table 'block_module_link'
-
-		$sql = 'SELECT bid, side FROM '.$dbm->prefix('newblocks');
-		$result = $dbm->query($sql);
-
-		while ($myrow = $dbm->fetchArray($result)) {
-			if ($myrow['side'] == 0) {
-				$dbm->insert("block_module_link", " VALUES (".$myrow['bid'].", 0)");
-			} else {
-				$dbm->insert("block_module_link", " VALUES (".$myrow['bid'].", -1)");
-			}
-		}
-	*/
 
 	return $gruops;
 }

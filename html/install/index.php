@@ -54,6 +54,10 @@ if ( PHP_VERSION_ID >= 70000 ) {
 	echo $exceptions[$code];
 } */
 
+/*
+ * error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+*/
+
 include_once './passwd.php';
 
 if ( INSTALL_USER !== '' || INSTALL_PASSWD !== '' ) {

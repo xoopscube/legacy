@@ -5,8 +5,9 @@
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
+*/
 
-    -------------------- -------------------- -------------------- -------------------- GRID FLEX */
+/*  -------------------- --------------------  GRID FLEX */
 
     .layout-grid {
         align-content           : space-around;
@@ -21,7 +22,7 @@
         justify-content         : space-between;
     }
 
-    /* -------------------- -------------------- -------------------- -------------------- HEADER */
+    /* -------------------- --------------------  HEADER */
 
     .header {
         align-items     : center;
@@ -38,7 +39,7 @@
     }
 
 
-    /* -------------------- -------------------- -------------------- -------------------- Main */
+    /* -------------------- --------------------  Main */
 
     .main {
 
@@ -60,7 +61,7 @@
         margin          : 0 auto;
     }
 
-    /* -------------------- -------------------- -------------------- -------------------- Footer */
+    /* -------------------- --------------------  Footer */
 
     .layout-grid .footer {
 
@@ -101,7 +102,7 @@
     }
 
 
-    /*------------------------------------------------------  Dashboard Options */
+    /* -------------------- --------------------   Dashboard Options */
 
     .dashboard-options {
         position:relative;
@@ -111,7 +112,7 @@
     .dashboard-options div[data-layout^=row]{
         flex-wrap       : wrap;
         column-gap      : var(--space-3);
-        row-gap         : var(--space-3);
+        row-gap         : var(--space-6);
         text-align      : center;
     }
     .dashboard-options a.set-link {

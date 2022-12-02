@@ -120,9 +120,8 @@ class XCube_Utils {
 		}
 
         // @todo @gigamaster
-        // Condition is unnecessary because it is checked by '! is_string( $key )'
-        // if ( null === $key || ! is_string( $key ) ) {
-		if (! is_string( $key )) {
+        // TODO check if ondition is unnecessary because it is checked by '! is_string( $key )'
+         if ( null === $key || ! is_string( $key ) ) {
 			if ( ! defined( 'XOOPS_SALT' ) ) {
 				return $plain_text;
 			}
@@ -168,8 +167,7 @@ class XCube_Utils {
 
         // @todo @gigamaster
         // Condition is unnecessary because it is checked by '! is_string( $key )'
-        //if ( null === $key || ! is_string( $key ) ) {
-		if (! is_string( $key )) {
+        if ( null === $key || ! is_string( $key ) ) {
 			if ( ! defined( 'XOOPS_SALT' ) ) {
 				return $crypt_text;
 			}

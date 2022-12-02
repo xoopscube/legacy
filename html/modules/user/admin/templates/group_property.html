@@ -96,9 +96,10 @@
     </tr>
     <{/foreach}>
     </tbody>
+    <tfoot><tr>
+        <td colspan="9"><{include file="./components/pagenavi.html"}></td>
+    </tr></tfoot>
 </table>
-
-<nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
 
 
 <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_PERM_ACCESS_ADMIN}></h3>
@@ -209,4 +210,3 @@
 </table>
 <br>
 <{/foreach}>
-

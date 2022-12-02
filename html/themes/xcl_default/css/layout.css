@@ -180,10 +180,11 @@ header .headings > :last-child {
 }
 
 :is(article, hgroup, .list-content) h3, h4, .block-title {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+    align-items     : center;
+    display         : flex;
+    flex-wrap       : wrap;
+    justify-content : space-between;
+    width           : 100%;
 }
 
 /* Fix for Firefox */
@@ -237,6 +238,7 @@ section.block-center {
     --background-color: var(--primary-focus);
     border-radius: var(--border-radius);
     justify-content: space-between;
+    flex-wrap: nowrap;
     background-image: linear-gradient(var(--background-color) 0 0);
     background-size: 200% .08em; /* .08em is our fixed height, use what you want  */
     background-position: 200% 100%;
@@ -437,12 +439,17 @@ a.cke_button[role="button"]{
 
 /* -------------------- -------------------- -- BUTTON GROUP */
 
-[role="group"]:not(.cke_reset_all *){display:inline-flex;white-space:nowrap;}
-[role="group"] > button, [role="group"] > a[role="button"] {border-radius:0}
-[role="group"] > button:first-child, [role="group"] > a[role="button"]:first-child {border-radius:var(--border-radius) 0 0 var(--border-radius)}
-[role="group"] > button:last-child, [role="group"] > a[role="button"]:last-child {border-radius:0 var(--border-radius) var(--border-radius) 0}
-[role="group"] > button:only-child, [role="group"] > a[role="button"]:only-child{border-radius:var(--border-radius)}
+/*[role="group"]:not(.cke_reset_all *){display:inline-flex;white-space:nowrap;}*/
+/*[role="group"] > button, [role="group"] > a[role="button"] {border-radius:0}*/
+/*[role="group"] > button:first-child, [role="group"] > a[role="button"]:first-child {border-radius:var(--border-radius) 0 0 var(--border-radius)}*/
+/*[role="group"] > button:last-child, [role="group"] > a[role="button"]:last-child {border-radius:0 var(--border-radius) var(--border-radius) 0}*/
+/*[role="group"] > button:only-child, [role="group"] > a[role="button"]:only-child{border-radius:var(--border-radius)}*/
 
+[role="group"]{display:inline-flex;white-space:nowrap;}
+[role="group"] > * {border-radius:0}
+[role="group"] > *:first-child {border-radius:var(--border-radius) 0 0 var(--border-radius)}
+[role="group"] > *:last-child {border-radius:0 var(--border-radius) var(--border-radius) 0}
+[role="group"] > *:only-child{border-radius:var(--border-radius)}
 /* -------------------- -------------------- -- BUTTON INPUT SEARCH */
 
 /* Search Add a cancel button */
@@ -712,7 +719,6 @@ summary[role="link"].contrast:is([aria-current],:hover,:active,:focus) {
 /* -------------------- -------------------- -- PAGINATION */
 :is(ul.pagenavi) {
     align-items: center;
-    justify-content: space-around;
     justify-content: flex-end;
     display: flex;
     margin: 0;
@@ -728,17 +734,11 @@ summary[role="link"].contrast:is([aria-current],:hover,:active,:focus) {
     user-select:none;
     min-width: 4ch;
 }
-:is(ul.pagenavi) li[aria-current]{ border-color:var(--primary-inverse);}
-:is(ul.pagenavi) li:first-child  {}
-:is(ul.pagenavi) li:last-child  { }
-:is(ul.pagenavi) li:only-child  { }
+:is(ul.pagenavi) li[aria-current]{ border-color:var(--primary);}
+:is(ul.pagenavi) li:first-child {}
+:is(ul.pagenavi) li:last-child  {}
+:is(ul.pagenavi) li:only-child  {}
 
-/* class = "pagenavi pagination" */
-/* a href=' « ' + a href ' 1 ' +  <strong>(2)<s/strong> */
-.pagenavi, .pagination {
-    text-align      : center;
-    /*margin-top      : var(--space-7);*/
-}
 .pagenavi a {
     background      : var(--button-bg);
     border          : var(--border);

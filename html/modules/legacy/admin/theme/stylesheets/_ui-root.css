@@ -5,8 +5,9 @@
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
+*/
 
-    -------------------- -------------------- -------------------- ROOT SETTINGS */
+/* -------------------- -------------------- ROOT SETTINGS */
 
     /* Theme customization
 
@@ -22,24 +23,36 @@
     - ROOT DEFAULT
     - Grid template
     - BORDER style [default]
-    - BUTTON style [default]
+    - CUSTOMIZE UI-WIDGET
+    - ACCORDION
+    - ACTION-CONTROL
     - BREADCRUMBS
+    - BUTTON style [default]
     - CARD-BLOCK
     - CARD-FULL
     - CARD-SMALL
+    - Color Block Type SVG TODO refactor and rename
+    - DROPDOWN
+    - FILTER
     - FORM input
+    - JQUERY
+    - - BUTTON
+    - - DIALOG / MODAL
+    - NAV HEADER
     - NAV SIDE
-    - NAV SIDE Block Module
+    - NAV SIDE BLOCK
     - NOTIFICATION
-    - SCREEN-MODE
-    - SHADOW
-    - SORT
-    - SPACE
+    - TAB
     - TABLE
-    - TEXT
+    - SHADOW
+    - SORT TODO refactor and rename
+    - SCALABLE SPACE relative margin & padding
+    - SCALABLE SIZE TEXT TODO refactor and rename
     - @UTILS
+    - SCROLLBAR FIREFOX
+    - WEBKIT SCROLLBAR
 */
-/* -------------------- -------------------- -------------------- ROOT Motion */
+/* -------------------- --------------------  ROOT Motion */
 
     /* This removes all animations and transitions	for users who prefer reduced motion ! */
     /* 	@media (prefers-reduced-motion: reduce) {
@@ -94,7 +107,7 @@
     }
  }
 
-/* -------------------- -------------------- Light Mode */
+/* -------------------- --------------------  Light Mode */
 
 :root[data-theme="light"] {
 
@@ -131,25 +144,25 @@
 }
 
 
- /* -------------------- -------------------- ROOT DEFAULT */
+/* -------------------- --------------------  ROOT DEFAULT */
 
 :root {
 
     /* Development Mode Display Smarty Template Name : block / none */
     --dev-mode          : none;
-    /* Fallback for Custom Properties */
-    /* --vh                 : 1vh; */
+
     --font-family       : 'Avenir', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif;
     --font-monospace    : SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
     --font-serif        : serif;
     --font-size         : 16px;
-    --font-weight       : 400; /* 300; */
+    --font-weight       : 400;
 
     --trackBG           : var( --layer-1 );
     --thumbBG           : var( --layer-4 );
     --thumbLinear       : linear-gradient(left, #272727, rgba(255, 147, 5, 0.5));
 
-/* -------------------- -------------------- -------------------- LAYOUT Grid template */
+
+    /* -------------------- --------------------  LAYOUT Grid template */
 
     --bg-linear         : linear-gradient(360deg, hsla(219, 15%, 25%, 0.70), hsla(0, 0%, 0%, 0.90));
     --bg-gradient       : linear-gradient(360deg, var(--layer-1), var(--layer-2));
@@ -172,8 +185,13 @@
 
     --main-background   : none;
 
+    /* @UTILS LEGACY */
 
-    /* BORDER style [default] */
+    --adminnavi          : rgba(74, 74, 74, 0.8);
+    --adminmenu          : rgba(74, 74, 74, 0.8);
+    --breadcrumbs        : rgba(74, 74, 74, 0.8);
+
+    /* -------------------- --------------------  BORDER style [default] */
 
     --border            : var(--border-width) var(--border-style) var(--border-color);
     --border-none       : 0;
@@ -182,8 +200,7 @@
     --border-style      : solid;
     --border-width      : 1px;
 
-
-    /*	-------------------- -------------------- -------------------- CUSTOMIZE UI-WIDGET */
+    /* -------------------- --------------------  CUSTOMIZE UI-WIDGET */
 
     --ui-widget-content-bg      : var( --layer-3 );
     --ui-widget-content-color   : var( --body-color );
@@ -198,7 +215,7 @@
     --ui-widget-font-family     : var( --font-family );
     --ui-widget-font-size       : var( --font-size );
 
-    /* -------------------- -------------------- ACCORDION */
+    /* -------------------- --------------------  ACCORDION */
 
     --accordion-bg              : var(--layer-2);
     --accordion-border          : var(--border);
@@ -209,16 +226,13 @@
     --accordion-radius          : var(--border-radius);
     --accordion-shadow          : var(--shadow-2);
 
-
-    /*background      : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));*/
-
     --accordion-content-bg      : var(--layer-3);
     --accordion-content-border  : var(--border);
     --accordion-content-color   : var(--secondary);
     --accordion-content-radius  : var(--border-radius);
     --accordion-content-padding : 1em 2.2em;
 
-    /* -------------------- -------------------- ACTION-CONTROL -> DATA / TABLE */
+    /* -------------------- --------------------  ACTION-CONTROL -> DATA / TABLE */
     /* class="action-control" */
     --action-bg                 : var(--layer-2);
     --action-border             : var(--border);
@@ -229,7 +243,7 @@
     --action-shadow             : var(--shadow-2);
     --action-padding            : var(--space-4) var(--space-5);
 
-/* -------------------- -------------------- -------------------- BREADCRUMBS */
+    /* -------------------- --------------------  BREADCRUMBS */
 
     --breadcrumbs-bg   	        : var( --layer-3 );
 
@@ -245,8 +259,7 @@
 
     --breadcrumbs-bg-link       : var( --layer-4 );
 
-
-/* -------------------- -------------------- -------------------- BUTTON style [default]  */
+    /* -------------------- --------------------  BUTTON style [default]  */
 
     --button-active             : 0;
     --button-bg                 : var( --layer-4 );
@@ -262,8 +275,7 @@
     --button-color-hover        : var( --link-hover);
     --button-shadow-on          : var( --shadow-3);
 
-
-        /* -------------------- -------------------- -------------------- CARD-BLOCK */
+    /* -------------------- --------------------  CARD-BLOCK */
 
     --card-block-bg    	        : var( --layer-3 );
     --card-block-border-color  	: var( --layer-4 );
@@ -298,8 +310,7 @@
 
     --card-block-box-shadow-on : var( --shadow-5 );
 
-
-/* -------------------- -------------------- -------------------- CARD-FULL */
+    /* -------------------- --------------------  CARD-FULL */
 
     --card-full-bg              : var( --layer-3 );
     --card-full-border-color    : var( --layer-4);
@@ -310,7 +321,7 @@
     --card-full-margin          : var( --space-6 ) auto;
     --card-full-box-shadow    	: var( --shadow-1 );
 
-/* -------------------- -------------------- -------------------- CARD-SMALL */
+    /* -------------------- --------------------  CARD-SMALL */
 
     --card-small-bg             : var(--layer-3);
     --card-small-border-color   : var(--layer-4);
@@ -324,20 +335,19 @@
     --card-small-padding        : var(--space-7) var(--space-6);
     --card-small-margin         : var(--space-6);
 
-
-/* -------------------- -------------------- -------------------- Color Block Type SVG Color !Todo : Refactor and rename */
+    /* -------------------- --------------------  Color Block Type SVG !Todo : Refactor and rename */
 
     --color-block-html          : var( --layer-3 );
     --color-block-module        : var( --layer-3 );
     --color-block-php           : var( --layer-3 );
     --color-block-smilies       : var( --layer-3 );
 
-    /* -------------------- -------------------- -------------------- DROPDOWN */
+    /* -------------------- --------------------  DROPDOWN */
 
-    --d-toggle-bg               : var(--layer-3); /*var(--color2); */
-    --d-toggle-border           : var(--layer-4); /*var(--border);*/
+    --d-toggle-bg               : var(--layer-3);
+    --d-toggle-border           : var(--layer-4);
     --d-toggle-color            : var(--link);
-    --d-toggle-font             : inherit; /* bold 16px/1.5 sans-serif; */
+    --d-toggle-font             : inherit;
     --d-toggle-padding          : var(--space-2 ) var(--space-2);
     --d-toggle-radius           : var(--border-radius);
     --d-toggle-shadow           : 0 0 3px 1px rgba(44, 98, 246, .5);
@@ -350,7 +360,7 @@
     --dropdown-border           : var(--border);
     --dropdown-font             : 100 14px/2 sans-serif;
 
-    --dropdown-shadow           : var(--shadow-5); /* 0px 2px 4px 1px rgba(0, 0, 0, 0.75); */
+    --dropdown-shadow           : var(--shadow-4);
     --dropdown-padding          : var(--space-2);
     --dropdown-radius           : var( --border-radius );
     --dropdown-transition       : all var(--transition-time) var(--transition-cube);
@@ -358,8 +368,7 @@
 
     --dropdown-bg-on            : var(--layer-4);
 
-
-    /* -------------------- -------------------- -------------------- FILTER [ DATA ] */
+    /* -------------------- --------------------  FILTER / SORT */
 
     --filter-background         : var( --layer-3 );
 
@@ -372,8 +381,7 @@
     --filter-margin             : var( --space-6 ) auto;
     --filter-padding            : var( --space-6 );
 
-
-/* -------------------- -------------------- -------------------- FORM input */
+    /* -------------------- --------------------  FORM input */
 
     --input-bg                  : var( --layer-1 );
     --input-border-color        : var( --layer-2 );
@@ -386,10 +394,8 @@
 
     --input-color               : var( --secondary );
 
-    /* --input-shadow        : var(  --shadow-inset 	); */
+    --input-shadow              : none;
 
-    /*--input-shadow              : 0 1px 2px 0 rgba(47, 27, 5, 0.15), 0 3px 1px -2px rgba(47, 27, 5, 0.2), 0 1px 5px 0 rgba(47, 27, 5, 0.12);*/
-    --input-shadow :none;
     /* input checkbox */
     --input-check-active        : var( --color-blue );
     --input-check-active-inner  : var(--color-white);
@@ -408,17 +414,14 @@
     --input-padding             : var( --space-4 );
     --input-margin              : var( --space-0 );
 
-
     /* state action */
     --input-bg-on               : var(--layer-2);
     --input-border-on           : 1px solid var(--layer-3);
     --input-color-on            : var(--link-hover);
     --input-shadow-on           : 0 0 6px 1px var(--color-blue);
 
-
-    /*	-------------------- -------------------- -------------------- JQUERY-UI */
-
-    /* -------------------- -------------------- BUTTON */
+    /* -------------------- --------------------  JQUERY-UI */
+    /* -------------------- --------------------  BUTTON */
 
     --ui-button-bg              : var(--layer-4);
     --ui-button-color           : var(--layer-1);
@@ -459,12 +462,21 @@
     --ui-icon-width             : 16px;
     --ui-icon-height            : 16px;
 
-/*	-------------------- -------------------- -------------------- DIALOG / MODAL */
+    /* -------------------- --------------------  DIALOG / MODAL */
 
     --ui-dialog-bg          : var(--layer-1);
     --ui-dialog-shadow      : var(--shadow-5);
 
-/*	-------------------- -------------------- -------------------- NAV SIDE */
+
+    /* -------------------- --------------------  NAV HEADER */
+
+    --nav-hover          : rgba(255, 255, 255, .2);
+    --nav-open           : rgba(0, 0, 0, 0.05);
+    --nav-admin-bg       : rgba(15, 15, 15, 0.75);
+    --nav-link-color     : orange;
+    --nav-link-border    : 3px solid orange;
+
+    /* -------------------- --------------------  NAV SIDE */
 
     --nav-side-background   : transparent;
     --nav-side-box-shadow   : none;
@@ -473,8 +485,7 @@
     --nav-side-padding      : 60px 0;
     --nav-side-width        : 100%;
 
-
-/*	-------------------- -------------------- -------------------- NAV SIDE Block Module */
+    /* -------------------- --------------------  NAV SIDE BLOCK */
 
     --nav-block-background  : var( --layer-4 );
     --nav-block-border-color: var( --link-hover );
@@ -484,7 +495,7 @@
     --nav-set-height        : 8px;
     --nav-set-width         : 8px;
 
-/*	-------------------- -------------------- -------------------- NOTIFICATION */
+    /* -------------------- --------------------  NOTIFICATION */
 
     --notification-bg       : var( --layer-2 );
     --notif-border-color    : var( --layer-4 );
@@ -500,23 +511,22 @@
     --notif-padding         : var(--space-6) var(--space-6) var(--space-6) var(--space-9);
     --notif-max-width       : 90%;
 
-    /* -------------------- -------------------- TAB */
+    /* -------------------- --------------------  TAB */
 
     --tabs-bg                   : var(--layer-2);
     --tabs-border               : none;
     --tabs-radius               : var(--border-radius);
-    --tabs-padding              : none; /* var(--space-4); */
+    --tabs-padding              : none;
 
     --tabs-nav-bg               : var(--layer-3);
     --tabs-nav-border           : none;
     --tabs-nav-radius           : var(--border-radius);
     --tabs-nav-margin           : var(--space-4) var(--space-4) 0;
     --tabs-nav-padding          : var(--space-5) var(--space-5) 0;
-    /*--tabs-nav-shadow           : 0 5px 5px hsla(210, 10%, 12%, 0.9);*/
     --tabs-nav-shadow           : none;
 
     /* TODO */
-    --tabs-nav-li-margin        : 0 1px; /* 1px .2em 0 0 */
+    --tabs-nav-li-margin        : 0 1px;
 
     /* TODO */
     --ui-tabs-loading           : var(--red-1);
@@ -537,12 +547,9 @@
     --tab-panel-bg              : var(--layer-3);
     --tab-panel-border          : none;
     --tab-panel-color           : var(--primary);
-    --tab-panel-padding         : var(--space-6); /* .5em 1em; */
+    --tab-panel-padding         : var(--space-6);
 
-
-
-
-    /*	-------------------- -------------------- -------------------- TABLE */
+    /* -------------------- --------------------  TABLE */
 
     --table-background   : var( --layer-1 );
     --table-border-bottom: 1px solid var( --layer-1);
@@ -558,8 +565,7 @@
 
     --table-padding      : var( --space-5 );
 
-
-    /*	-------------------- -------------------- -------------------- SHADOW */
+    /* -------------------- --------------------  SHADOW */
 
     --shadow-1          : 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     --shadow-2          : 0 2px 4px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.28);
@@ -575,8 +581,7 @@
 
     --shadow-transition	: all 0.3s cubic-bezier(.25,.8,.25,1);
 
-
-/*	-------------------- -------------------- -------------------- SORT */
+    /* -------------------- --------------------  SORT */
 
     --sort-background    : var( --layer-3 );
     --sort-border-color  : var( --border-color );
@@ -588,25 +593,24 @@
     --sort-padding       : var( --space-6 ) var( --space-8 );
 
 
-/*	-------------------- -------------------- -------------------- SPACE : relative margin and padding */
+    /* -------------------- --------------------  SPACE : relative margin and padding */
     /* Exmple : margin : var(--sp4); // = --sp-unit x 'value' = space
             '--sp4' = 15px * 0.5 = 7.5px'
     */
 
     --space-unit : 16px;
 
-    --space-0       : 0;
-    --space-1       : calc(var(--space-unit) * 0.125);
-    --space-2       : calc(var(--space-unit) * 0.25);
-    --space-3       : calc(var(--space-unit) * 0.375);
-    --space-4       : calc(var(--space-unit) * 0.5);
-    --space-5       : calc(var(--space-unit) * 0.75);
-    --space-6       : calc(var(--space-unit) * 1.25);
-    --space-7       : calc(var(--space-unit) * 2);
-    --space-8       : calc(var(--space-unit) * 3.25);
+    --space-0   : 0;
+    --space-1   : calc(var(--space-unit) * 0.125);
+    --space-2   : calc(var(--space-unit) * 0.25);
+    --space-3   : calc(var(--space-unit) * 0.375);
+    --space-4   : calc(var(--space-unit) * 0.5);
+    --space-5   : calc(var(--space-unit) * 0.75);
+    --space-6   : calc(var(--space-unit) * 1.25);
+    --space-7   : calc(var(--space-unit) * 2);
+    --space-8   : calc(var(--space-unit) * 3.25);
 
-
-/*	-------------------- -------------------- -------------------- TEXT typography scalable */
+    /* -------------------- --------------------  SCALABLE TEXT typography */
     /* Example :
             '--size-1' = 16px / 1.6 = 10px
             '--size-2' = 10px x 'ui-size-scale-ratio' = 16px
@@ -614,39 +618,26 @@
     */
     --size-scale-ratio	: 1.6;
 
-    --size-1       : calc((1rem / var(--size-scale-ratio)) );
-    --size-2       : calc(var(--size-1) * var(--size-scale-ratio));
-    --size-3       : calc(var(--size-2) * var(--size-scale-ratio));
-    --size-4       : calc(var(--size-3) * var(--size-scale-ratio));
-    --size-5       : calc(var(--size-4) * var(--size-scale-ratio));
-    --size-6       : calc(var(--size-5) * var(--size-scale-ratio));
-    --size-7       : calc(var(--size-6) * var(--size-scale-ratio));
-    --size-8       : calc(var(--size-7) * var(--size-scale-ratio));
+    --size-1    : calc((1rem / var(--size-scale-ratio)) );
+    --size-2    : calc(var(--size-1) * var(--size-scale-ratio));
+    --size-3    : calc(var(--size-2) * var(--size-scale-ratio));
+    --size-4    : calc(var(--size-3) * var(--size-scale-ratio));
+    --size-5    : calc(var(--size-4) * var(--size-scale-ratio));
+    --size-6    : calc(var(--size-5) * var(--size-scale-ratio));
+    --size-7    : calc(var(--size-6) * var(--size-scale-ratio));
+    --size-8    : calc(var(--size-7) * var(--size-scale-ratio));
 
 
-    /*	-------------------- -------------------- -------------------- @UTILS LEGACY */
-
-    --adminnavi          : rgba(74, 74, 74, 0.8);
-    --adminmenu          : rgba(74, 74, 74, 0.8);
-    --breadcrumbs        : rgba(74, 74, 74, 0.8);
-    /*--breadcrumbs-bg     : var(  --layer-3  );*/
-
-    /*	-------------------- -------------------- -------------------- Nav Menu */
-
-    --nav-hover          : rgba(255, 255, 255, .2);
-    --nav-open           : rgba(0, 0, 0, 0.05);
-    --nav-admin-bg       : rgba(15, 15, 15, 0.75);
-    --nav-link-color     : orange;
-    --nav-link-border    : 3px solid orange;
-
+    /* -------------------- --------------------  SCROLLBAR FIREFOX */
     /* Firefox Scrollbar */
     /* Copy values to element */
-    scrollbar-color     : var(--thumbBG) var( --trackBG ); /* thumb-color track-color */
+    scrollbar-color        : var(--thumbBG) var( --trackBG ); /* thumb-color track-color */
     scrollbar-width     : thin;
 
 }
 
-/*  Webkit Scrollbar */
+/* -------------------- --------------------  Webkit Scrollbar */
+
 ::-webkit-scrollbar {
     width: 9px;
     height: 9px;

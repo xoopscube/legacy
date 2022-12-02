@@ -15,9 +15,10 @@
  * But, we should move it to another directory in a later stage.
  */
 
+//The default umask for the root user is 022 result into 
+// default directory permissions are 755 and default file permissions are 644.
 
-//define("XCUBE_FORMFILE_PREVMASK", "0022");
-const XCUBE_FORMFILE_CHMOD = 0644;
+define("XCUBE_FORMFILE_PREVMASK", "0022");
 
 
 class XCube_FormFile {

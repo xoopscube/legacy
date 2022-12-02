@@ -5,8 +5,9 @@
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
+*/
 
-    -------------------- -------------------- NAV MOBILE */
+/* -------------------- --------------------  NAV MOBILE */
 
     .nav-mobile {
         background      : var( --layer-3 );
@@ -29,7 +30,7 @@
         top             : 127px;
     }
 
-    /* -------------------- -------------------- NAV ASIDE */
+    /* -------------------- --------------------  NAV ASIDE */
 
     .nav-aside {
         background      : var( --aside-bg   );
@@ -69,7 +70,7 @@
     }
 
 
-    /* -------------------- -------------------- NAV-SIDE - Module Block */
+    /* -------------------- --------------------  NAV-SIDE - Module Block */
 
     .nav-block {
         border-left     : 3px solid transparent;
@@ -118,7 +119,7 @@
         justify-content : center;
     }
 
-    /* -------------------- -------------------- NAV-SIDE - Module Name */
+    /* -------------------- --------------------  NAV-SIDE - Module Name */
 
     .nav-module-name {
         margin          : 0 10px;
@@ -144,7 +145,7 @@
         visibility      : hidden;
     }
 
-    /* -------------------- -------------------- NAV-Module-Admin */
+    /* -------------------- --------------------  NAV-Module-Admin */
 
     .nav-module-admin {
         background      : var( --nav-block-background );
@@ -177,7 +178,7 @@
         color           : var( --nav-link-color );
     }
 
-    /* -------------------- -------------------- NAV-Module-Options Icons */
+    /* -------------------- --------------------  NAV-Module-Options Icons */
 
     .nav-module-options > a,
     .nav-module-options > a:hover {

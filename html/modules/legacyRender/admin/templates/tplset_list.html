@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}>/<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DESC}></h6>
+                    <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}></h6>
                     <div>
                         <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_NAME}>"
                            class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
@@ -99,7 +99,7 @@
             </div><{* ----- /Dropdown-content *}>
         </div><{* ----- /Dropdown *}>
         </th>
-        <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}> / <{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DESC}></th>
+        <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}> <{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DESC}></th>
         <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREDITS}></th>
         <th class="list_center"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREATED}></th>
         <th><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE}></th>
@@ -164,9 +164,14 @@
     </tr>
     <{/foreach}>
     </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="6"><nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav></td>
+    </tr>
+    </tfoot>
 </table>
 
-<nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
+
 
 <hr>
 
@@ -227,11 +232,10 @@
     </tbody>
     <tfoot>
     <tr>
-        <td class="foot" colspan="8">
+        <td class="foot" colspan="6">
             <a class="button" href="index.php?action=TplfileList&amp;sort=-7"><{$smarty.const._MORE}></a>
         </td>
+        <td colspan="2"><nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav></td>
     </tr>
     </tfoot>
 </table>
-
-<nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
