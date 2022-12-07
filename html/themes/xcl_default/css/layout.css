@@ -450,6 +450,11 @@ a.cke_button[role="button"]{
 [role="group"] > *:first-child {border-radius:var(--border-radius) 0 0 var(--border-radius)}
 [role="group"] > *:last-child {border-radius:0 var(--border-radius) var(--border-radius) 0}
 [role="group"] > *:only-child{border-radius:var(--border-radius)}
+
+
+.cke_toolbox[role="group"]{
+    display: inherit;
+}
 /* -------------------- -------------------- -- BUTTON INPUT SEARCH */
 
 /* Search Add a cancel button */
@@ -689,6 +694,15 @@ ul.layout-list li {
     background      : var(--code-background-color);
     color           : var(--code-value-color);
     padding         : .5rem 0 var(--typography-spacing-vertical);
+}
+
+/* -------------------- -------------------- Module WIDGET   */
+
+/* MINI-CALENDAR */
+.holiday span {
+background: var(--primary-focus);
+border: 1px dotted var(--blue);
+padding: 0 calc(var(--spacing)/ 2);
 }
 
 /* -------------------- -------------------- -- NAV */
