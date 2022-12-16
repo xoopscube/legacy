@@ -119,6 +119,8 @@ class Legacy_ModuleInstallUtils
     {
         $info = [];
 
+        $root =& XCube_Root::getSingleton();
+        $root->mLanguageManager->loadModinfoMessageCatalog($dirname);
         $filepath = XOOPS_MODULE_PATH . "/${dirname}/xoops_version.php";
         if (file_exists($filepath)) {
             @include $filepath;

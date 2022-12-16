@@ -27,7 +27,7 @@ class Legacy_DebuggerManager
      * @param $instance
      * @param $debug_mode
      */
-    public function createInstance(&$instance, $debug_mode)
+    public static function createInstance(&$instance, $debug_mode)
     {
         if (is_object($instance)) {
             return;
