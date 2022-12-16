@@ -61,10 +61,6 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
         parent::__construct($caption, $name, $value, $rows, $cols);
         $this->_xoopsHiddenText = $hiddentext;
     }
-    public function XoopsFormDhtmlTextArea($caption, $name, $value, $rows=5, $cols=50, $hiddentext= 'xoopsHiddenText')
-    {
-        return self::__construct($caption, $name, $value, $rows, $cols, $hiddentext);
-    }
 
     /**
      * Prepare HTML for output
