@@ -86,7 +86,7 @@ class My_Mailer extends PHPMailer
     public function setBody($text)
     {
         $search = ["\r\n", "\r", "\n"];
-        $replace = ["\n", "\n", self::$LE]
+        $replace = ["\n", "\n", self::$LE]; // PHPMailer 6.x.x
         $text = str_replace($search, $replace, $text);
         $this->Body = $this->convertLocal($text);
     }
@@ -110,7 +110,7 @@ class My_Mailer extends PHPMailer
 
     public function send()
     {
-        parent::Send();
+        parent::send();
     }
 
     public function EncodeHeader($str, $position = 'text')
