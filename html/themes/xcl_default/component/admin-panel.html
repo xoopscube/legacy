@@ -231,17 +231,20 @@
 			    </li>
             </ul>
 
-            <{* Admin Help *}>
-            <{* assign var="helpAdmin" value="`$xoops_dirname` article#help-overview" *}>
-            <h5>Module</h5>
 
-            <div layout="row center-spread">
-
-                <button class="help-admin button" type="button" data-module="<{$xoops_dirname}>" data-help-article="#help-overview" aria-label="<{$smarty.const._HELP}>">
-                    <b>?</b> <{$smarty.const._HELP}> : <{$xoops_dirname}>
-                </button>
-
+            <{* ---------- Block-Right *}>
+            <{foreach item=block from=$xoops_rblocks}>
+            <{if $block.title|strstr:"admin"}>
+            <div class="block-right b-<{$block.weight}>">
+                <h4 data-layout="row center-justify" class="block-title">
+                    <{* REMOVE 'admin' FROM BLOCK-TITLE *}>
+                    <{$block.title|replace:'admin':''}>
+                    <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+                </h4>
+                <div class="block-content"><{$block.content}></div>
             </div>
+            <{/if}>
+            <{/foreach}>
 
 
             <{* ----- ADMIN PREVIEW ----- *}>
@@ -347,9 +350,6 @@
 </div>
 <{* -----/ RIGHT-SIDEBAR *}>
 <script>
-    // Sidebar - Theme Options
-    // .theme-options .theme-options-toggle
-    // $(".right-side-toggle").click(function() {
     $(".theme-options").click(function () {
         $(".right-sidebar").slideDown(50), $(".right-sidebar").toggleClass("right-panel-show");
     });

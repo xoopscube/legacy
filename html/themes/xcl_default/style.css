@@ -8,9 +8,9 @@
  * @link      https://github.com/xoopscube
  */
 /* ---------- ---------- ---------- ---------- ---------- IMPORT */
-@import "./css/_ui_root.css";    /*  UI Default Settings     */
-@import "./css/layout.css";      /*  Layout Grid-Flex       */
-@import "./css/dropdown.css";    /*  Menu Navigation       */
+@import "./css/_ui_root.css";    /*  UI Default Settings    */
+@import "./css/layout.css";      /*  Layout Grid-Flex     */
+@import "./css/dropdown.css";    /*  Menu Navigation    */
 /* ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~
  ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~
  */

@@ -1,7 +1,8 @@
 <{* Dev-Mode Toggle
 <div class="ui-dev-mode"><{$smarty.template}></div>*}>
 <details role="list">
-    <summary aria-haspopup="listbox" role="link" class="contrast"><{$xoops_uname}></summary>
+    <summary aria-haspopup="listbox" role="link" class="contrast">
+        <img class="avatar" src="<{$xoops_uname|xoops_user_avatarize}>" alt="<{$xoops_uname}>" width="24px" height="24px" data-self="radius-circle"/> <{$xoops_uname}></summary>
     <ul>
     <{if $block.flagShowInbox}>
         <li class="user-menu-email">
