@@ -6,21 +6,14 @@
 
 # XCL :: XOOPSCube Legacy 
 ## Simple, Secure and Scalable
-### Web Application Platform
+### Web Application Platform and Content Management System
 
-## Overview
-
-### Simple
-XOOPSCube Legacy (XCL) is a free and open-source Web Application Platform (WAP) empowering you to build, manage and deploy scalable web applications, custom Content Management System (CMS), forums, community discussion board and knowledge management systems, or multiple blogs (e.g. WordPress). The XCL bundle package is designed for easy usage and to benefit from the performance of XCube Core and the most popular web server stack: Apache, MySQL and PHP.
-
-### Secure
-XCube Core (©2005-2022 Minahito, BSD) is secure by design, in software engineering, means that software products and capabilities have been designed to be foundationally secure. However, the module Protector (©peak.ne.jp, GPL) is installed to provide an extra layer of security to the subsystem Legacy (©XOOPSCube, GPL) — which provides backward and forward compatibility with older systems and new modules or frameworks.
-
-### Scalable
-Scaling a web application means allowing more people to use the application and being able to meet increasing demand, without changing the code, data or your trusted system. You can deploy additional infrastructure and offload functions, including SSL/TLS termination, cloud storage, static content delivery and server-side rendering, that would otherwise overload your application server.
-
-### Self-hosting
-Self-hosted platforms are decentralized, allow for superior accessibility, customization of features and style, which means you are not dependent on a centralized service and are also free to choose your hosting service as the number of users grows. You have full control over your own data and services, rather than depending on expensive third-party services (cloud, saas).
+XOOPSCube Legacy (XCL) is a free and open-source Web Application Platform (WAP) to build, manage and deploy customized Content Management System (CMS), forums, community discussion board, knowledge management systems, or multiple blogs (e.g. WordPress). The XCL bundle package is designed for easy usage and to benefit from the performance of XCube Core and the most popular web server stack: Apache, MySQL and PHP.
+    
+    
+<a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
+<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl-installer-wizard.jpg" alt="Wizard Installation" title="Wizard Installation" width="100%">
+</a>
 
 -----  
 
@@ -28,35 +21,17 @@ Self-hosted platforms are decentralized, allow for superior accessibility, custo
 
 -----
 
-
-## License
-
-### XOOPSCube - XCube Core  
-
-XOOPSCube was started from scratch and the minimalist XCube Core source code is released under the BSD licence.
-
- 
-### XOOPSCube - Package Legacy  
-
-XOOPSCube Legacy source code which is a set of modules to ensure compatibility with old versions of Xoops2 is released under a GPL licence.
-
-
 ## Get Started 
 
 The XCL bundle package is designed to run smoothly on any local server environment bundle LAMP, MAMP, XAMPP,
 dedicated server, virtual private server (VPS) or shared hosting.  
 Running a local instance (Linux, macOS, Windows) and deploying to your dedicated server or shared hosting is fairly easy.  
-The following guide focuses on the user-friendly [Web installation wizard](https://xoopscube.github.io/legacy/)  
+The following guide focuses on the user-friendly [Web installation wizard](https://xoopscube.github.io/legacy/)   
 
-- Upload a Zip file to your server
-- Extract the files to the web root
-- Browse to your install URL
-- Follow the steps in the Installer
-
-<a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
-<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl-installer-wizard.jpg" alt="Wizard Installation" title="Wizard Installation" width="100%">
-</a>
-
+1. Create a database (MySQL or MariaDB)
+2. Unzip the package files in your root directory
+4. Browse to your website URL 
+5. Follow the steps in the Installer
 
 ## Requirements
 
@@ -95,22 +70,25 @@ Language</th>
 </tr>
 </table>
 
-### Software
+## Usage
 
-Useful Wikipedia articles with tables comparing general and technical information of Proprietary software, Free and open-source software.  
+After you complete the Wizard process, there are lots of options to customize your Web Application Platform :
+- From the Admin dashboard, set-up your preferences (you can close your site)
+- Install modules, blocks or create custom blocks (HTML, CSS, JavaScript or PHP) to specific modules pages
+- Create new user groups and set permissions
+- Customize meta tags (SEO)
+- Manage translations and localization
 
-<img src="https://xoopscube.org/uploads/fckeditor/server_database.png"> <a href="http://en.wikipedia.org/wiki/List_of_AMP_packages"> Local Test Server</a> : List of Apache–MySQL–PHP packages  
-<img src="https://xoopscube.org/uploads/fckeditor/script_edit.png"> <a href="http://en.wikipedia.org/wiki/Source_code_editor"> Source Code Editor</a> : Some well-known source code editors  
-<img src="https://xoopscube.org/uploads/fckeditor/picture_edit.png"> <a href="http://en.wikipedia.org/wiki/Comparison_of_raster_graphics_editors"> Graphics Editor</a> : Comparison of raster graphics editors  
-<img src="https://xoopscube.org/uploads/fckeditor/computer_go.png"> <a href="http://en.wikipedia.org/wiki/FTP_clients"> FTP Clients</a> : Comparison of FTP client software  
+<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl_site_ui_modules.jpg" alt="Modules">
 
-### Features
+
+## Features
 
 Below is a list of some of XOOPS Cube Legacy features.
 
-* Installation wizard  
+* Installation wizard
 * Admin Dashboard
-* Dashboard Update Manager 
+* Dashboard Update Manager
 * Install modules, themes directly from GitHub
 * Simple Core and Modular architecture
 * Module API for unlimited expandability
@@ -125,29 +103,32 @@ Below is a list of some of XOOPS Cube Legacy features.
 * Third-party modules and extensions (preloads)
 
 
+## License
 
-### Download
+### XOOPSCube - XCube Core
+
+XOOPSCube was started from scratch and the minimalist XCube Core source code is released under the BSD licence.
+
+
+### XOOPSCube - Package Legacy
+
+XOOPSCube Legacy source code which is a set of modules to ensure compatibility with old versions of Xoops2 is released under a GPL licence.
+
+
+
+
+## Download
 
 The source code of XOOPSCube Legacy is available on [Github](https://github.com/xoopscube/legacy)
 
 XOOPSCube Legacy packages are available at [downloads](https://github.com/xoopscube/legacy/downloads)
 
 
-### Usage
-
-After you complete the Wizard process, there are lots of options to customize your Web Application Platform :  
-- From the Admin dashboard, set-up your preferences (you can close your site)
-- Install modules, blocks or create custom blocks (HTML, CSS, JavaScript or PHP) to specific modules pages 
-- Create new user groups and set permissions 
-- Customize meta tags (SEO) 
-- Manage translations and localization 
-
-<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl_site_ui_modules.jpg" alt="Modules">
 
 
 #### Documentation
 
-XOOPSCube features a built-in "Help" documentation and search function.
+XOOPSCube features a built-in "Help" documentation and Action search function.
 
 **Legacy API documentation**  
 Previous version of the subsystem API generated by Apigen 2.7.0
