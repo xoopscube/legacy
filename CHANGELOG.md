@@ -8,6 +8,34 @@ All notable changes to this project will be documented in this file.
 
 Refer please to repository Legacy Commits  
 
+## [2.3.1] 2022-12-20
+
+### Version 2.32.1 beta
+
+###Update modules  
+
+- AltSys (Components)
+- CKEditor
+- D3Forum
+- Legacy System
+- Legacy Renderer
+- Message
+- Pico
+- Profile
+- Protector
+- Sitemap
+- Standard Cache
+- User Groups
+- X-elFinder
+- X-Update manager 
+
+### Feature and Fix
+- Fix #184 #186 #187 #189 #193 #194 #200  
+- Feat #185 #188 #189 #190 #191 #197 #201 #202  
+- Add start page to editable templates  
+- Add site close to editable templates  
+- Enhanced language constants  
+
 ## [2.3.1] 2022-11-22
 
 ### Added 
