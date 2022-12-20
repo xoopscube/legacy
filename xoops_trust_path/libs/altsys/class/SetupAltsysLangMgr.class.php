@@ -100,7 +100,7 @@ class AltsysLangMgr_LanguageManager extends Legacy_LanguageManager {
 	/**
 	 * @param string $type
 	 */
-	public function loadPageTypeMessageCatalog(string $type ) {
+	public function loadPageTypeMessageCatalog( $type ) {
 		// I dare not to use langman...
 		if ( false === mb_strpos( $type, '.' ) && $this->langman->my_language ) {
 			$mylang_file = $this->langman->my_language . '/' . $this->mLanguageName . '/' . $type . '.php';
