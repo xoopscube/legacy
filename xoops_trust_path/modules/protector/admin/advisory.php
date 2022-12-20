@@ -113,11 +113,11 @@ echo '<div class="server-software" style="display:none">
     <code aria-label="SERVER_PROTOCOL">' . $_SERVER['SERVER_PROTOCOL'] . '</code>
     <strong>Protocol:</strong><code aria-label="Protocol http or https">' . $protocol . '</code></td></tr>
     <tr><td>Server Address : <b>' . $_SERVER['SERVER_ADDR'] . '</b></td><td>Server Name : <b>' . $_SERVER['SERVER_NAME'] . '</b></td></tr>
-    <tr><td>HTTP_ACCEPT</td><td>' . $_SERVER['HTTP_ACCEPT'] . ' <code>' . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . '</code> <code aria-label="HTTP_ACCEPT_ENCODING">' . $_SERVER['HTTP_ACCEPT_ENCODING'] . '</code></td></tr>
-    <tr><td>DOCUMENT_ROOT</td><td>' . $_SERVER['DOCUMENT_ROOT'] . '</td></tr>
-    <tr><td>SCRIPT_FILENAME</td><td>' . $_SERVER['SCRIPT_FILENAME'] . '</td></tr>
-    <tr><td>PHP SELF</td><td>' . $_SERVER['PHP_SELF'] . '</td></tr>
-    <tr><td>REQUEST_URI</td><td>' . $_SERVER['REQUEST_URI'] . '</td></tr>
+    <tr><td>HTTP_ACCEPT</td><td><pre><code>' . $_SERVER['HTTP_ACCEPT'] . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . '</code> <code aria-label="HTTP_ACCEPT_ENCODING">' . $_SERVER['HTTP_ACCEPT_ENCODING'] . '</code></pre></td></tr>
+    <tr><td>DOCUMENT_ROOT</td><td><pre>' . $_SERVER['DOCUMENT_ROOT'] . '</pre></td></tr>
+    <tr><td>SCRIPT_FILENAME</td><td><pre>' . $_SERVER['SCRIPT_FILENAME'] . '</pre></td></tr>
+    <tr><td>PHP SELF</td><td><pre>' . $_SERVER['PHP_SELF'] . '</pre></td></tr>
+    <tr><td>REQUEST_URI</td><td><pre>' . $_SERVER['REQUEST_URI'] . '</pre></td></tr>
     </table></div>';
 
 // TODO : Modal loading echo phpinfo();

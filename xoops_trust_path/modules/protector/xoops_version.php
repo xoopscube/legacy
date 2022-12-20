@@ -15,14 +15,14 @@ if ( file_exists( __DIR__ . '/language/' . @$GLOBALS['xoopsConfig']['language'] 
 } elseif ( file_exists( __DIR__ . '/language/english/modinfo.php' ) ) {
 	include __DIR__ . '/language/english/modinfo.php';
 }
-$constpref = '_MI_' . strtoupper( $mydirname );
 
+$constpref = '_MI_' . strtoupper( $mydirname );
 
 // Manifesto
 $modversion['dirname']          = $mydirname;
 $modversion['name']             = constant( $constpref . '_NAME' );
 $modversion['version']          = file_get_contents(dirname(__FILE__).'/include/version.txt');
-$modversion['detailed_version'] = $modversion['version'].'.2';
+$modversion['detailed_version'] = $modversion['version'].'.1';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'GIJ=CHECKMATE PEAK Corp.(https://www.peak.ne.jp/) ';
 $modversion['credits']          = 'PEAK Corp. (v.3.54). Gigamaster (XCL23/PHP)';
@@ -69,6 +69,24 @@ $modversion['config'][]  = [
 	'valuetype'   => 'text',
 	'default'     => @$GLOBALS['xoopsConfig']['language'],
 	'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'enable_manip_check',
+    'title'       => $constpref . '_MANIPUCHECK',
+    'description' => $constpref . '_MANIPUCHECKDSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'manip_value',
+    'title'       => $constpref . '_MANIPUVALUE',
+    'description' => $constpref . '_MANIPUVALUEDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => '',
+    'options'     => [],
 ];
 $modversion['config'][]  = [
 	'name'        => 'log_level',
@@ -394,24 +412,7 @@ $modversion['config'][] = [
 	'default'     => '',
 	'options'     => [],
 ];
-$modversion['config'][] = [
-	'name'        => 'enable_manip_check',
-	'title'       => $constpref . '_MANIPUCHECK',
-	'description' => $constpref . '_MANIPUCHECKDSC',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 1,
-	'options'     => [],
-];
-$modversion['config'][] = [
-	'name'        => 'manip_value',
-	'title'       => $constpref . '_MANIPUVALUE',
-	'description' => $constpref . '_MANIPUVALUEDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'text',
-	'default'     => '',
-	'options'     => [],
-];
+
 
 // Search
 $modversion['hasSearch'] = 0;
