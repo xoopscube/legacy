@@ -56,8 +56,6 @@
 
     <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/js/jquery-ui-custom-var.css">
 
-
-
     <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/prismjs/prism.css">
     <{* prism.js included before closing /body }>
 
@@ -99,28 +97,22 @@
 
         <ul class="nav-side-menu">
 
-            <{* ---------- ---------- Module Block *}>
+        <{* ---------- ---------- Module Block *}>
 
-            <{$xoops_lblocks.sidemenu.content}>
+        <{$xoops_lblocks.sidemenu.content}>
 
-            <{foreach name='lblock' item='block' from=$xoops_lblocks}>
-            <{if $block.name !='action_search' && $block.name !='onlineinfo' && $block.name !='sidemenu'}>
-            <{$block.content}>
-            <{/if}>
-            <{/foreach}>
+        <{foreach name='lblock' item='block' from=$xoops_lblocks}>
+        <{if $block.name !='action_search' && $block.name !='onlineinfo' && $block.name !='sidemenu'}>
+        <{$block.content}>
+        <{/if}>
+        <{/foreach}>
 
         </ul><{* /nav-side-menu *}>
 
     </aside>
 
 
-
-    <{* ---------- ---------- Main *}>
-
     <main class="main">
-
-
-
 
         <{* ---------- ---------- Block Online Info *}>
         <{if $smarty.server.SCRIPT_FILENAME|basename == "admin.php"}>
@@ -138,29 +130,32 @@
 
         <{* ---------- ---------- Module Content *}>
 
-
         <{$xoops_contents}>
 
         <hr>
-        <{* ---------- ---------- Admin Dialog Help *}>
 
-        <{include file="../templates/components/admin-help.html"}>
-        <{include file="../templates/components/admin-panel.html"}>
+        <{* ---------- ---------- Footer*}>
+        <footer class="credits">
+            <p><span>Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}> &copy;</span> 2005-2022 <a href="https://github.com/xoopscube/" target="_blank" rel="external">The XOOPS Cube Project</a></p>
+<!--            <p><a href="#container" class="links">Back To Top</a></p>-->
+        </footer>
+    </main>
 
-    </main><{* /Main *}>
+    <{* ---------- ---------- Admin Panel and Help *}>
+    <{include file="../templates/components/admin-panel.html"}>
+    <{include file="../templates/components/admin-help.html"}>
 
-
-    <{* ---------- ---------- Footer*}>
-
-
-    <div class="footer">
-        <!--		Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}>-->
-        <!--		<p><span class="footer-copy">&copy;</span> 2005-2022 <a href="https://github.com/xoopscube/" target="_blank" rel="external" class="footer-credits">The XOOPS Cube Project</a></p>-->
-        <p><a href="#container" class="footer-link">Back To Top</a></p>
-
+    <{* ---------- ---------- Scroll to top *}>
+    <div class="scroll-top">
+        <a href="#">
+            <svg width="42px" height="42px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path id="ntop-bg" d="M0 0h48v48h-48z"></path>
+                <path id="ntop-arrow" d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z"></path>
+            </svg>
+        </a>
     </div>
 
-	</div><{* /Layout Grid *}>
+</div><{* /Layout Grid *}>
 <{* ---------- ---------- Javascript plugin *}>
 <script type="module">
     import {ThemeManager} from '<{$xoops_url}>/common/js/x-theme-manager.js';
@@ -169,7 +164,6 @@
 
 <script src='<{$xoops_url}>/common/js/x-utils.js'></script>
 <script src='<{$xoops_url}>/common/prismjs/prism.js' defer></script>
-
 <script src="<{'js/wap.js'|theme}>"></script>
 
 </body>

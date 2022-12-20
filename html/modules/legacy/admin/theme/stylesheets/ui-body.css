@@ -6,137 +6,363 @@
 	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
 */
-    /* -------------------- -------------------- HTML BODY */
+/* -------------------- -------------------- HTML BODY */
 
-    html,
-    body {
-        margin          : var(  --space-0    );
-        padding         : var(  --space-0    );
-        overflow-x      : hidden;
-        text-rendering	: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-    }
+html,
+body {
+    margin          : var(  --space-0    );
+    padding         : var(  --space-0    );
+    /*overflow-x      : hidden;*/
+    text-rendering	: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
 
-    html { /*:not(.elfinder) */
-        /* Scroll to page anchors [id]:target padding-top = height of theme sticky header */
-        scroll-padding-top: 70px;
-        scroll-behavior: smooth;
-    }
-    body {
-        background      : var( --body-bg     );
-        color           : var( --body-color  );
-        font-family     : var( --font-family );
-        font-size       : var( --font-size   );
-        font-weight     : var( --font-weight );
-        /* Removed Background white Flash transition */
-        transition      : background 500ms ease-in-out, color 200ms ease;
-        /* Prevent Scrollbar Layout Shift
-        scrollbar-gutter: stable both-edges;*/
-    }
+html { /*:not(.elfinder) */
+    /* Scroll to page anchors [id]:target padding-top = height of theme sticky header */
+    /*scroll-padding-top: 70px;*/
+    /*scroll-behavior: smooth;*/
+}
+body {
+    background      : var( --body-bg     );
+    color           : var( --body-color  );
+    font-family     : var( --font-family );
+    font-size       : var( --font-size   );
+    font-weight     : var( --font-weight );
+    /* Removed Background white Flash transition */
+    transition      : background 500ms ease-in-out, color 200ms ease;
+    /* Prevent Scrollbar Layout Shift
+    scrollbar-gutter: stable both-edges;
+    position: relative;
+    margin: 0 auto 2rem;*/
+}
 
 
 /*	-------------------- --------------------  Text Selection */
 
 ::selection {
-    background-color	: rgba(15, 15, 15, 0.85);
-    color               : var(  --secondary	 );
+    background-color: var( --blue-opacity-5 );
+    color           : var(  --secondary	 );
 }
 
+/* -------------------- --------------------  Webkit Scrollbar */
+
+::-webkit-scrollbar {
+    width           : 9px;
+    height          : 9px;
+}
+::-webkit-scrollbar-thumb {
+    background      : var( --thumbBG );
+}
+::-webkit-scrollbar-thumb:hover {
+    background      : #686c7e;
+}
+::-webkit-scrollbar-track {
+    background-color: var( --trackBG );
+}
+textarea::-webkit-resizer {
+    background-color: var( --layer-1 );
+}
 /* -------------------- -------------------- HTML Elements */
 
-    a:link,
-    a:visited {
-        color           : var(  --link );
-        cursor          : pointer;
-        display         : inline-block;
-        text-decoration : none;
-    }
+a:link, a:visited {
+    color           : var(  --link );
+    cursor          : pointer;
+    display         : inline-block;
+    text-decoration : none;
+}
 
-    a:active,
-    a:focus {
-        color           : var(  --link-active  );
-    }
+a:active, a:focus {
+    color           : var(  --link-active  );
+}
 
-    a:hover,
-    a:visited:hover {
-        color           : var(  --link-hover   );
-    }
-    /* ----- Add icon to external link
-    a[href^="http://"]:not([href*="example.com"]):after,
-    a[href^="https://"]:not([href*="example.com"]):after{
-        font-size       : 0.75rem;
-        vertical-align  : text-top;
-        content         : '\0020\2197';
-        text-decoration : none;
-    }*/
+a:hover, a:visited:hover {
+    color           : var(  --link-hover   );
+}
+/* ----- Add icon to external link
+a[href^="http://"]:not([href*="example.com"]):after,
+a[href^="https://"]:not([href*="example.com"]):after{
+    font-size       : 0.75rem;
+    vertical-align  : text-top;
+    content         : '\0020\2197';
+    text-decoration : none;
+}*/
 
-    a[name|=help] {
-        scroll-margin-top: 4em;
-    }
+a[name|=help] {
+    scroll-margin-top: 4em;
+}
 
-    blockquote {
-        border-left     : 3px solid var(  --layer-4  );
-        font-style      : italic;
-        font-size       : var(  --size-3   );
-        padding         : var(  --space-5   ) var(  --space-7  );
-    }
+blockquote {
+    border-left     : 3px solid var(  --layer-4  );
+    font-style      : italic;
+    font-size       : var(  --size-3   );
+    padding         : var(  --space-5   ) var(  --space-7  );
+}
 
-    code,kbd,pre,samp {
-        padding         : var(--space-4);
-        /* overflow-wrap   : anywhere; /* normal | break-word | anywhere */
-        white-space     : pre-wrap;
-    }
+code,kbd,pre,samp {
+    padding         : var(--space-4);
+    overflow-wrap   : anywhere; /* normal | break-word | anywhere */
+    white-space     : pre-wrap!important;/* <pre> tag doesn't support wrapping, by default. */
+}
 
-    pre {
-        border-left     : 3px solid var( --layer-4 );
-        padding         : var(--space-3) ;
-    }
+pre {
+    border-left     : 3px solid var( --layer-4 );
+    padding         : var(--space-3) ;
+}
 
-    h1, h2, h3, h4, h5 {
-        font-weight     : 400;
-    }
+h1, h2, h3, h4, h5 {
+    font-weight     : 400;
+}
 
-    h1 {
-        font-size       : var(  --size-5   );
-        margin          : 0 0 var(  --space-3  );
+h1 {
+    font-size       : var(  --size-5   );
+    margin          : 0 0 var(  --space-3  );
 
-    }
-    h2 {
-        font-size       : 32px;
-        margin          : 1em 0;
-    }
-    h3 {
-        font-size       : 24px;
-        margin          : 1.25em 0;
-    }
-    h4 {
-        font-size       : 20px;
-        margin          : 1.25em 0;
-    }
-    h5 {
-        font-size       : 16px;
-        letter-spacing  : 1px;
-        text-transform  : uppercase;
-        margin          : var(  --space-6  ) 0;
-    }
-    h6 {
-        font-size       : 14px;
-        letter-spacing  : 1px;
-        text-transform  : uppercase;
-        margin          : var(  --space-6  ) 0;
-    }
+}
+h2 {
+    font-size       : 32px;
+    margin          : 1em 0;
+}
+h3 {
+    font-size       : 24px;
+    margin          : 1.25em 0;
+}
+h4 {
+    font-size       : 20px;
+    margin          : 1.25em 0;
+}
+h5 {
+    font-size       : 16px;
+    letter-spacing  : 1px;
+    text-transform  : uppercase;
+    margin          : var(  --space-6  ) 0;
+}
+h6 {
+    font-size       : 14px;
+    letter-spacing  : 1px;
+    text-transform  : uppercase;
+    margin          : var(  --space-6  ) 0;
+}
 
 
-    hr {
-        border          : 0;
-        border-top      : 1px solid var( --layer-3 );
-        margin          : 1.5em 0;
-        height          : 5px;
-        background-image : linear-gradient(90deg, transparent, var( --layer-3 ), transparent);
-    }
+hr {
+    border          : 0;
+    border-top      : 1px solid var( --layer-3 );
+    margin          : 1.5em 0;
+    height          : 5px;
+    background-image: linear-gradient(90deg, transparent, var( --layer-3 ), transparent);
+}
 
-    p {
-        font-size       : var( --size-2 );
-        margin          : var( --space-5 ) 0;
-        line-height     : 1.5;
-    }
+p {
+    font-size       : var( --size-2 );
+    margin          : var( --space-5 ) 0;
+    line-height     : 1.5;
+}
+/*  -------------------- --------------------  LAYOUT GRID FLEX */
+
+.layout-grid {
+    align-content   : space-around;
+    display         : grid;
+    grid-gap        : 1px;
+    grid-template-columns : 200px auto;
+    grid-template-rows    : 55px 1fr 80px;
+    grid-template-areas   : "header  header"
+                            "nav-aside main";
+    /*justify-content : space-between;*/
+}
+
+/* -------------------- --------------------  LAYOUT HEADER */
+
+.header {
+    align-items     : center;
+    background      : var( --header-bg     );
+    border          : var( --header-border );
+    border-radius   : var( --header-radius );
+    box-shadow      : var( --header-shadow );
+    grid-area       : header;
+    position        : var( --header-position);
+    width           : 100%;
+    z-index         : 200;
+}
+
+/* -------------------- --------------------  LAYOUT Main */
+
+.main {
+    background      : var( --main-background);
+    border-color    : var( --border-none    );
+    border-radius   : var( --border-none    );
+    border-style    : var( --border-none    );
+    border-width    : var( --border-none    );
+    box-shadow      : var( --border-none    );
+    grid-area       : main;
+    /* padding         : 0 4rem 2rem; */
+    /* Set according to device screen-width */
+    width           : 100%;
+    max-width       : 1174px; /* fixed */
+    /*max-width       : calc(90vw - 400px);*/
+    margin          : 0 auto;
+}
+
+/* -------------------- --------------------  LAYOUT Footer */
+
+.layout-grid footer {
+    background      : var( --footer-bg     );
+    border-top      : var( --footer-border );
+    border-radius   : var( --footer-radius );
+    box-shadow      : var( --footer-shadow );
+    color           : var( --footer-color  );
+    display         : inline-block;
+    padding         : var( --footer-padding);
+    width           : 100%;
+    text-align      : center;
+}
+
+footer .credits,
+footer .links {
+    font-size       : var( --footer-font);
+    color           : var(  --footer-link    ) !important;
+    cursor          : pointer;
+}
+
+/* -------------------- --------------------   BREADCRUMBS + PAGINATION */
+.ui-breadcrumbs,
+.adminnavi {
+    background      : var( --breadcrumbs-bg     );
+    border-color    : var( --breadcrumbs-border-color   );
+    border-radius   : var( --breadcrumbs-border-radius  );
+    border-style    : var( --breadcrumbs-border-radius  );
+    border-width    : var( --breadcrumbs-border-width   );
+    box-shadow      : var( --breadcrumbs-box-shadow     );
+    padding         : var( --breadcrumbs-padding        );
+    margin          : var( --breadcrumbs-margin         );
+}
+nav.pagination {
+    display         : flex;
+    justify-content : center;
+}
+.pagenavi {
+}
+.ui-breadcrumbs a,
+.adminnavi a,
+.pagenavi a,
+.pagenavi [aria-current] {
+    background      : var( --breadcrumbs-bg-link       );
+    border-color    : var( --breadcrumbs-border-color  );
+    border-radius   : var( --breadcrumbs-border-radius );
+    border-style    : var( --breadcrumbs-border-radius );
+    border-width    : var( --breadcrumbs-border-width  );
+    box-shadow      : var( --breadcrumbs-box-shadow    );
+    padding         : var( --breadcrumbs-padding       );
+    margin          : var( --breadcrumbs-margin        );
+    transition      : all 0.3s ease;
+}
+
+/* -------------------- --------------------   Dashboard Options */
+
+.dashboard-options {
+    position:relative;
+    row-gap         : var(--space-3);
+    margin          : 2em auto;
+}
+.dashboard-options div[data-layout^=row]{
+    flex-wrap       : wrap;
+    column-gap      : var(--space-3);
+    row-gap         : var(--space-6);
+    text-align      : center;
+}
+.dashboard-options a.set-link {
+    display         : block;
+    font-size       : 1em;
+    line-height     : 1.25em;
+    min-width       : 5.75em;
+    max-width       : calc(100% / 7 );
+    /*width           : 5.75em;*/
+    background      : var(--card-block-bg);
+    border          : 1px solid var(--card-block-border-color);
+    border-radius   : var(--border-radius);
+    padding         : var(--space-3);
+    text-align      : center;
+}
+.dashboard-options a.set-link:hover {
+    background      : var(--layer-4)
+}
+.dashboard-options .set-icon {
+    display         : block;
+    font-size       : 2rem;
+    height          : 1em;
+    margin          : var(--space-4) auto;
+}
+.dashboard-options .set-icon svg {
+    height          : 24px;
+    width           : 24px;
+}
+.dashboard-options .set-name {
+    display         : block;
+    font-size       : 13px;
+    margin          : 0;
+}
+.not-available {
+    border          : 1px dotted var(--color-red) !important;;
+    color           : var(--color-red) !important;
+}
+.not-available:hover {
+    cursor          :not-allowed;
+}
+/* ---------- ---------- ------- SCROLL TOP
+background      : var(  --input-bg       );
+border-color    : hsl(14, 100%, 57%);
+border-radius   : var(  --input-border-radius    );
+border-width    : var(  --input-border-width     );
+box-shadow      : 0 2px 2px 0 hsla(14, 100%, 57%, 0.14), 0 3px 1px -2px hsla(14, 100%, 57%, 0.2), 0 1px 5px 0 hsla(14, 100%, 57%, 0.12);
+color           : #ff5722;
+cursor          : pointer;
+padding         : var(--space-3) var(--space-7);
+*/
+
+.scroll-top {
+    position        : absolute;
+    top             : 12rem;
+    right           : 2rem;
+    bottom          : 0;
+    pointer-events  : none;
+    z-index         : 9000;
+}
+.scroll-top #ntop-bg {fill: var( --input-bg )}
+.scroll-top #ntop-arrow {fill: var( --link );}
+.scroll-top a:hover #ntop-bg {fill: var( --link-hover );}
+.scroll-top a:hover #ntop-arrow {fill: var( --link );}
+.scroll-top a {
+    position        : fixed;
+    top             : -5rem;
+    right           : 2rem;
+    width           : 3rem;
+    height          : 3rem;
+    margin-bottom   : -5rem;
+    transform       : translateY(100vh);transition: all 0.3s ease-out;
+    backface-visibility: hidden;
+    display         : inline-block;
+    text-decoration : none;
+    user-select     : none;
+    pointer-events  : all;
+    outline         : none;
+    overflow        : hidden;
+}
+.scroll-top a:hover {
+    border-color    : hsl(14, 100%, 57%);
+    box-shadow      : 0 14px 26px -12px hsl(14deg 80% 45% / 42%), 0 4px 23px 0 hsl(14deg 100% 49% / 42%), 0 8px 10px -5px hsl(14deg 100% 49% / 42%);
+}
+.scroll-top a svg {
+    display         : block;
+    border-radius   : var(--border-radius);
+    width           : 100%;
+    height          : 100%;
+}
+.scroll-top a svg path {
+    transition      : all 0.1s;
+}
+.scroll-top a #ntop-arrow {
+    transform       : scale(0.66);
+    transform-origin: center;
+}
+@media print {
+    .scroll-top { display: none !important; }
+}

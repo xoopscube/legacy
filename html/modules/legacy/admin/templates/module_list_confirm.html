@@ -33,14 +33,14 @@
                 <{if $actionForm->get('name',$mid) == $moduleObjects[$mid]->get('name')}>
                 <{$actionForm->get('name',$mid)|xoops_escape}>
                 <{else}>
-                (<{$moduleObjects[$mid]->getShow('name')}>) &raquo; <b  class="message-warning"><{$actionForm->get('name',$mid)|xoops_escape}></b>
+                (<{$moduleObjects[$mid]->getShow('name')}>) &raquo; <b class="message-warning"><{$actionForm->get('name',$mid)|xoops_escape}></b>
                 <{/if}>
             </td>
             <td class="list_order">
                 <{if $actionForm->get('weight',$mid) == $moduleObjects[$mid]->get('weight')}>
                 <{$actionForm->get('weight',$mid)|xoops_escape}>
                 <{else}>
-                (<{$moduleObjects[$mid]->getShow('weight')}>) &raquo; <b  class="message-warning"><{$actionForm->get('weight',$mid)|xoops_escape}></b>
+                (<{$moduleObjects[$mid]->getShow('weight')}>) &raquo; <b class="message-warning"><{$actionForm->get('weight',$mid)|xoops_escape}></b>
                 <{/if}>
             </td>
             <td class="list_select">
@@ -76,7 +76,9 @@
         <tr>
             <td class="foot" colspan="4">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
-                <input class="button-submit" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
+                <button class="button-submit" type="submit">
+                    <img class="svg" src="<{'icons/icon-update.svg'|theme}>" alt="update" width="1em" height="1em">
+                    <{$smarty.const._AD_LEGACY_LANG_UPDATE}></button>
             </td>
         </tr>
         </tfoot>

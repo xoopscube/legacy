@@ -157,7 +157,7 @@ class Legacy_AbstractModule
      * @param string|null $key
      * @return mixed If $key is specified null, returns map array (std::map<string, mixed>)
      */
-    public function getModuleConfig(string $key = null)
+    public function getModuleConfig($key = null)
     {
         if (null == $key) {
             return $this->mModuleConfig;

@@ -58,14 +58,14 @@ class Legacy_LanguageManager extends XCube_LanguageManager
             ini_set('mbstring.substitute_character', 'none');
             ini_set('default_charset', _CHARSET);
             ini_set('mbstring.substitute_character', 'none');
-            if (PHP_VERSION_ID < 50600) {
-                ini_set('mbstring.http_input', 'pass');
-                ini_set('mbstring.http_output', 'pass');
-            } else {
+            //if (PHP_VERSION_ID < 50600) {
+               // ini_set('mbstring.http_input', 'pass');
+              //  ini_set('mbstring.http_output', 'pass');
+            //} else {
                 @ini_set('mbstring.internal_encoding', '');
                 @ini_set('mbstring.http_input', '');
                 @ini_set('mbstring.http_output', '');
-            }
+           // }
         }
         #endif
 
@@ -98,7 +98,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * @access public
      * @param string $type
      */
-    public function loadPageTypeMessageCatalog(string $type)
+    public function loadPageTypeMessageCatalog($type)
     {
         if (false === strpos($type, '.')) {
             if (!$this->_loadFile(XOOPS_ROOT_PATH . '/language/' . $this->mLanguageName . '/' . $type . '.php')) {
@@ -113,7 +113,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * @access public
      * @param string $moduleName
      */
-    public function loadModuleMessageCatalog(string $moduleName)
+    public function loadModuleMessageCatalog($moduleName)
     {
         $this->_loadLanguage($moduleName, 'main');
     }
@@ -202,7 +202,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * @param string $filename A name of file
      * @return bool
      */
-    public function existFile(string $section, string $filename)
+    public function existFile($section, $filename)
     {
         return file_exists(XOOPS_ROOT_PATH . '/languages/' . $this->mLanguageName . ($section?"/$section/$filename":"/$filename"));
     }
@@ -215,7 +215,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * @param string $filename A name of file
      * @return string
      */
-    public function getFilepath(string $section, string $filename)
+    public function getFilepath($section, $filename)
     {
         $filepath = XOOPS_ROOT_PATH . '/languages/' . $this->mLanguageName . ($section?"/${section}/${filename}":"/${filename}");
 
@@ -234,13 +234,13 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * @param string $filename A name of file
      * @return string
      */
-    public function loadTextFile(string $section, string $filename)
+    public function loadTextFile($section, $filename)
     {
         $filepath = $this->getFilepath($section, $filename);
         return file_get_contents($filepath);
     }
 
-    public function getFallbackLanguage() : string
+    public function getFallbackLanguage()
     {
         return 'english';
     }

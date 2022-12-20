@@ -32,7 +32,7 @@
 
 .ui-card-2-col {
     column-count	: 2;
-    column-gap		: 18px;
+    column-gap		: 5px;
     display         : block;
 }
 
@@ -351,7 +351,7 @@ img.ui-avatar-card {
 .module-update{
 }
 
-.ui-module-state ui-update-change .module-icon{
+.ui-module-state .ui-update-change .module-icon{
     border:1px solid red;
 }
 
@@ -367,7 +367,7 @@ img.ui-avatar-card {
     display         : flex;
 
 }
-
+.ui-module-update,
 .ui-module-update svg,
 .ui-module-version svg,
 .ui-module-date svg {

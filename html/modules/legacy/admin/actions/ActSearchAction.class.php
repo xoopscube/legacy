@@ -83,10 +83,10 @@ class Legacy_ActionSearchRecord
     public $mTitle;
     public $mDescription;
 
-    public function Legacy_ActionSearchRecord($moduleName, $url, $title, $desc=null)
-    {
-        $this->__construct($moduleName, $url, $title, $desc);
-    }
+//    public function Legacy_ActionSearchRecord($moduleName, $url, $title, $desc=null)
+//    {
+//        $this->__construct($moduleName, $url, $title, $desc);
+//    }
 
     public function __construct($moduleName, $url, $title, $desc=null)
     {
@@ -99,7 +99,7 @@ class Legacy_ActionSearchRecord
 
 /***
  * @internal
- *  Execute action searching. Now, it returns all of modules' results whether
+ *  Execute action searching. Now, it returns all modules' results whether
  * the current user can access to.
  *
  * @todo We should return the result by the current user's permission.
@@ -113,10 +113,10 @@ class Legacy_ActSearchAction extends Legacy_Action
 
     public $mSearchAction = null;
 
-    public function Legacy_ActSearchAction($flag)
-    {
-        $this->__construct($flag);
-    }
+//    public function Legacy_ActSearchAction($flag)
+//    {
+//        $this->__construct($flag);
+//    }
 
     public function __construct($flag)
     {

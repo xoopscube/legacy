@@ -1190,9 +1190,7 @@ class Legacy_Controller extends XCube_Controller
      * @todo Change this function to delegate.
      * @remark This method encodes $url and $message directly without its template, to share the template with old function.
      */
-// TODO check this
- public function executeRedirect(string $url, int $time = 1, $message = null, bool $addRedirect = true)
-//    public function executeRedirect(string $url, int $time = 1, string $message = null, bool $addRedirect = true)
+    public function executeRedirect($url, $time = 1, $message = null, $addRedirect = true)
     {
         global $xoopsConfig, $xoopsRequestUri;
 

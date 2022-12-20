@@ -168,8 +168,8 @@ class Legacy_BlockInfoCollection
 }
 
 /**
- * The structure which is able to keep preference's informations without DB.
- * This is installer only.
+ * The structure is able to keep preference's information without DB.
+ * This is only for installer.
  */
 class Legacy_PreferenceInformation
 {

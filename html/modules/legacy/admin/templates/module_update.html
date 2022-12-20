@@ -88,7 +88,9 @@
     <tr>
         <td class="foot" colspan="2">
             <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
-            <input class="button-update" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
+            <button class="button-update" type="submit">
+                <img class="svg" src="<{'icons/icon-update.svg'|theme}>" alt="update" width="1em" height="1em">
+                <{$smarty.const._AD_LEGACY_LANG_UPDATE}></button>
         </td>
     </tr>
 </table>

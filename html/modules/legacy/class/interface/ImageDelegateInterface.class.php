@@ -38,7 +38,8 @@ interface Legacy_iImageDelegate
      * 3) create thumbnail if needed.
      *
      * @param bool		&$ret
-     * @param Abstract_ImageObject	$obj
+     * @param **Abstract_ImageObject**	$obj
+     * @param Legacy_AbstractImageObject	$obj
      *
      * @return	void
      */
@@ -51,7 +52,8 @@ interface Legacy_iImageDelegate
      * 3) delete image data from database
      *
      * @param bool		&$ret
-     * @param Abstract_ImageObject	$obj
+     * @param **Abstract_ImageObject**	$obj
+     * @param Legacy_AbstractImageObject	$obj
      *
      * @return	void
      */

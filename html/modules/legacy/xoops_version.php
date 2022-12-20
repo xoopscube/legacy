@@ -10,8 +10,8 @@
 
 $modversion['dirname']          = 'legacy';
 $modversion['name']             = _MI_LEGACY_NAME;
-$modversion['version']          = '2.31';
-$modversion['detailed_version'] = '2.31.1';
+$modversion['version']          = '2.32';
+$modversion['detailed_version'] = '2.32.1';
 $modversion['description']      = _MI_LEGACY_NAME_DESC;
 $modversion['author']           = 'The XOOPSCube Project Team';
 $modversion['credits']          = 'The XOOPSCube Project Team';
@@ -36,11 +36,11 @@ $modversion['adminmenu'] = 'admin/menu.php';
 
 // Templates
 $modversion['templates'][1]['file'] = 'legacy_misc_ssllogin.html';
-$modversion['templates'][1]['description'] = '';
+$modversion['templates'][1]['description'] = 'Template SSL login';
 $modversion['templates'][2]['file'] = 'legacy_misc_smilies.html';
 $modversion['templates'][2]['description'] = '';
 $modversion['templates'][3]['file'] = 'legacy_search_form.html';
-$modversion['templates'][3]['description'] = '';
+$modversion['templates'][3]['description'] = 'Template Search Form';
 $modversion['templates'][4]['file'] = 'legacy_comment_edit.html';
 $modversion['templates'][4]['description'] = '';
 $modversion['templates'][5]['file'] = 'legacy_xoops_result.html';
@@ -64,7 +64,7 @@ $modversion['templates'][13]['description'] = '';
 $modversion['templates'][14]['file'] = 'legacy_dummy.html';
 $modversion['templates'][14]['description'] = '';
 $modversion['templates'][15]['file'] = 'legacy_redirect.html';
-$modversion['templates'][15]['description'] = '';
+$modversion['templates'][15]['description'] = 'Template Redirect';
 $modversion['templates'][16]['file'] = 'legacy_image_list.html';
 $modversion['templates'][16]['description'] = '';
 $modversion['templates'][17]['file'] = 'legacy_image_upload.html';
@@ -72,7 +72,7 @@ $modversion['templates'][17]['description'] = '';
 $modversion['templates'][18]['file'] = 'legacy_rss.html';
 $modversion['templates'][18]['description'] = '';
 $modversion['templates'][19]['file'] = 'legacy_search_results.html';
-$modversion['templates'][19]['description'] = '';
+$modversion['templates'][19]['description'] = 'Template Search Results';
 $modversion['templates'][20]['file'] = 'legacy_search_showall.html';
 $modversion['templates'][20]['description'] = '';
 $modversion['templates'][21]['file'] = 'legacy_search_showallbyuser.html';
@@ -141,7 +141,8 @@ $modversion['templates'][52]['file'] = 'legacy_redirect_front_function.html';
 $modversion['templates'][52]['description'] = 'Redirect top page if module content is not selected.';
 $modversion['templates'][52]['file'] = 'legacy_app_start_page.html';
 $modversion['templates'][52]['description'] = 'App start page if module is not selected.';
-
+$modversion['templates'][53]['file'] = 'legacy_site_closed.html';
+$modversion['templates'][53]['description'] = 'Used when the site is closed. Maintenance mode, coming soon, etc.';
 // Menu
 $modversion['hasMain'] = 0;
 

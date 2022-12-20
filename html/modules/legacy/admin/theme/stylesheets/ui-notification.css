@@ -12,16 +12,16 @@
 /* DEV MODE HELPER */
 .ui-dev-mode {
 
-    background      : var(  --notification-bg       )
+    background      : var(  --notify-bg       )
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='%23C33022FF'/%3E %3C/svg%3E") 1em 1em no-repeat;
-    border-color    : var(  --notif-border-color     );
-    border-radius   : var(  --notif-border-radius    );
-    border-style    : var(  --notif-border-style     );
-    border-width    : var(  --notif-border-width     );
-    box-shadow      : var(  --notif-box-shadow       );
+    border-color    : var(  --notify-border-color     );
+    border-radius   : var(  --notify-border-radius    );
+    border-style    : var(  --notify-border-style     );
+    border-width    : var(  --notify-border-width     );
+    box-shadow      : var(  --notify-box-shadow       );
     color           : var(  --notification-color     );
     display         : var(  --dev-mode               );
-    padding         : var(  --notif-padding          );
+    padding         : var(  --notify-padding          );
 }
 
 /* NOTIFY SUBMIT CHANGES */
@@ -39,6 +39,13 @@ div.foot-sticky {
     width           : 274px;
     z-index         : var(--z-sticky);
 }
+.foot-sticky .button-submit {
+background      : #ff5722;
+border-color    : #ff5722;
+/*box-shadow      : 0 14px 26px -12px hsla(14, 100%, 57%, 0.42), 0 4px 23px 0 hsla(0, 0%, 0%, 0.12), 0 8px 10px -5px hsla(14, 100%, 57%, 0.2);*/
+box-shadow      : 0 14px 26px -12px hsla(14, 80%, 45%, 0.42), 0 4px 23px 0 hsla(14, 100%, 49%, 0.42), 0 8px 10px -5px hsla(14, 100%, 49%, 0.42);
+color           : #ffffff;
+}
 .sticky-view {
     border:2px solid red;
     display: block !important;
@@ -48,26 +55,30 @@ div.foot-sticky {
 /* TODO override with modal notification !?  */
 
     .tips, .error, .confirm, .success, .confirmMsg, .resultMsg {
-        background      : var(  --notification-bg    );
-        border-color    : var(  --notif-border-color );
-        border-radius   : var(  --notif-border-radius);
-        border-style    : var(  --notif-border-style );
-        border-width    : var(  --notif-border-width );
-        box-shadow      : var(  --notif-box-shadow   );
+        background      : var(  --notify-bg    );
+        border-color    : var(  --notify-border-color );
+        border-radius   : var(  --notify-border-radius);
+        border-style    : var(  --notify-border-style );
+        border-width    : var(  --notify-border-width );
+        box-shadow      : var(  --notify-box-shadow   );
         color           : var(  --notification-color );
-        padding         : var(  --notif-padding      );
-        margin          : var(  --notif-margin       );
-        max-width       : var(  --notif-max-width    );
+        padding         : var(  --notify-padding      );
+        margin          : var(  --notify-margin       );
+        max-width       : var(  --notify-max-width    );
+
     }
 
+:is(.tips, .error, .confirm, .success, .confirmMsg, .resultMsg) * code[class*=language-] {
+    overflow-wrap: anywhere;
+}
     .confirm, .confirmMsg {
         border-left     : 7px solid var( --color-amber );
-        background      : var( --notification-bg ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='%23face74'/%3E %3C/svg%3E") .6em 1em no-repeat;
+        background      : var( --notify-bg ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='%23face74'/%3E %3C/svg%3E") .6em 1em no-repeat;
     }
 
     .tips {
         border-left     : 7px solid var( --color-blue );
-        background      : var( --notification-bg ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='%23face74'/%3E %3C/svg%3E") .6em 1em no-repeat;
+        background      : var( --notify-bg ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='%23face74'/%3E %3C/svg%3E") .6em 1em no-repeat;
     }
 
     .error {
@@ -80,13 +91,13 @@ div.foot-sticky {
 
     .success {
         border-left     : 7px solid var(  --color-green     );
-        background: var(  --notification-bg    ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M9 19l-5.657-5.657l2.121-2.121L9 14.757l8.485-8.485l2.122 2.121L9 19zm-3.536-6.364l-.707.707L9 17.586l9.192-9.193l-.707-.707L9 16.172l-3.536-3.536z' fill='%2349ab4d'/%3E %3C/svg%3E") .6em 1em no-repeat;
+        background: var(  --notify-bg    ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M9 19l-5.657-5.657l2.121-2.121L9 14.757l8.485-8.485l2.122 2.121L9 19zm-3.536-6.364l-.707.707L9 17.586l9.192-9.193l-.707-.707L9 16.172l-3.536-3.536z' fill='%2349ab4d'/%3E %3C/svg%3E") .6em 1em no-repeat;
     }
 
     .message-warning {
-        background      : var(  --notification-bg    );
+        background      : var(  --notify-bg    );
         border          : 1px solid var(  --color-amber );
-        border-radius   : var(  --notif-border-radius );
+        border-radius   : var(  --notify-border-radius );
         color           : var(  --color-white     );
         padding         : var(  --space-2       );
         animation       : badge-warning 1s infinite alternate;

@@ -156,7 +156,7 @@
     --font-serif        : serif;
     --font-size         : 16px;
     --font-weight       : 400;
-
+    /* SCROLLBAR */
     --trackBG           : var( --layer-1 );
     --thumbBG           : var( --layer-4 );
     --thumbLinear       : linear-gradient(left, #272727, rgba(255, 147, 5, 0.5));
@@ -164,6 +164,8 @@
 
     /* -------------------- --------------------  LAYOUT Grid template */
 
+    --blue-opacity-5    : hsla(210, 74%, 40%, 0.5);
+    --blue-opacity-7    : hsla(210, 74%, 40%, 0.7);
     --bg-linear         : linear-gradient(360deg, hsla(219, 15%, 25%, 0.70), hsla(0, 0%, 0%, 0.90));
     --bg-gradient       : linear-gradient(360deg, var(--layer-1), var(--layer-2));
 
@@ -172,14 +174,9 @@
     --aside-panel-bg    : var( --layer-1 );
     --aside-panel-shadow: var( --shadow-5 );
 
-    --footer-bg         : var( --layer-2 );
-    --footer-border     : 1px solid var( --layer-3 ); /* border-top, ui-layout.css */
-    --footer-color      : var( --secondary );
-    --footer-link       : var( --link );
-
-    --grid-background   : none;
-
     --header-bg         : var( --layer-2 );
+    --header-border     : none;
+    --header-radius     : none;
     --header-shadow     : var( --shadow-3 );
     --header-position   : fixed;
 
@@ -191,29 +188,7 @@
     --adminmenu          : rgba(74, 74, 74, 0.8);
     --breadcrumbs        : rgba(74, 74, 74, 0.8);
 
-    /* -------------------- --------------------  BORDER style [default] */
 
-    --border            : var(--border-width) var(--border-style) var(--border-color);
-    --border-none       : 0;
-    --border-color      : var( --layer-4 );
-    --border-radius     : 5px;
-    --border-style      : solid;
-    --border-width      : 1px;
-
-    /* -------------------- --------------------  CUSTOMIZE UI-WIDGET */
-
-    --ui-widget-content-bg      : var( --layer-3 );
-    --ui-widget-content-color   : var( --body-color );
-    --ui-widget-content-border  : var( --layer-4 );
-
-    --ui-widget-content-link    : var( --link );
-
-    --ui-widget-header-bg       : transparent;
-    --ui-widget-header-border   : 1px solid transparent;
-    --ui-widget-header-color    : var( --link );
-    --ui-widget-header-font     : var( --font-weight );
-    --ui-widget-font-family     : var( --font-family );
-    --ui-widget-font-size       : var( --font-size );
 
     /* -------------------- --------------------  ACCORDION */
 
@@ -243,20 +218,25 @@
     --action-shadow             : var(--shadow-2);
     --action-padding            : var(--space-4) var(--space-5);
 
+    /* -------------------- --------------------  BORDER style [default] */
+
+    --border            : var(--border-width) var(--border-style) var(--border-color);
+    --border-none       : 0;
+    --border-color      : var( --layer-4 );
+    --border-radius     : 5px;
+    --border-style      : solid;
+    --border-width      : 1px;
+
     /* -------------------- --------------------  BREADCRUMBS */
 
     --breadcrumbs-bg   	        : var( --layer-3 );
-
     --breadcrumbs-border-color 	: var( --layer-3 );
     --breadcrumbs-border-radius	: var( --border-radius );
     --breadcrumbs-border-style 	: var( --border-style );
     --breadcrumbs-border-width 	: var( --border-width );
-
     --breadcrumbs-box-shadow    : var( --shadow-1 );
-
     --breadcrumbs-padding       : var( --space-3 ) var( --space-4 );
     --breadcrumbs-margin        : var( --space-3 ) 0; /* Top & Bottom, '0' for Left & Right*/
-
     --breadcrumbs-bg-link       : var( --layer-4 );
 
     /* -------------------- --------------------  BUTTON style [default]  */
@@ -270,7 +250,6 @@
     --button-padding            : var( --space-3 ) var( --space-5 );
     --button-radius             : var( --border-radius );
     --button-shadow             : var( --shadow-2 );
-
     --button-bg-hover           : var( --layer-4 );
     --button-color-hover        : var( --link-hover);
     --button-shadow-on          : var( --shadow-3);
@@ -282,33 +261,23 @@
     --card-block-border-radius 	: var( --border-radius );
     --card-block-border-style  	: var( --border-style );
     --card-block-border-width  	: var( --border-width );
-
     --card-block-box-shadow     : var( --shadow-2 );
-
     --card-block-hover          : var( --layer-4 );
-
     --card-block-padding        : var( --space-6 );
     --card-block-margin         : var( --space-6 );
-
-
     /* CARD BLOCK HEADER  */
     --card-block-header-bg      : transparent ;
-
     --card-block-header-border  : var( --layer-4 );
     --card-block-header-height  : 3em;
     --card-block-header-padding : var( --space-6 );
-
     /* CARD BLOCK CONTENT */
     --card-block-content-bg     : transparent ;
-
     --card-block-content-border : var( --layer-4 );
-    --card-block-content-padding : 0;
-
+    --card-block-content-padding: 0;
     /* CARD BLOCK ITEM    */
     --card-block-item-padding   : 0.5em 1em;
     --card-block-item-width     : 100%;
-
-    --card-block-box-shadow-on : var( --shadow-5 );
+    --card-block-box-shadow-on  : var( --shadow-5 );
 
     /* -------------------- --------------------  CARD-FULL */
 
@@ -319,7 +288,7 @@
     --card-full-border-width    : var( --border-width );
     --card-full-padding         : var( --space-6 );
     --card-full-margin          : var( --space-6 ) auto;
-    --card-full-box-shadow    	: var( --shadow-1 );
+    --card-full-box-shadow      : var( --shadow-1 );
 
     /* -------------------- --------------------  CARD-SMALL */
 
@@ -329,152 +298,103 @@
     --card-small-border-style   : var(--border-style);
     --card-small-border-width   : var(--border-width);
     --card-small-box-shadow     : var(--shadow-1);
-
     --card-small-box-hover      : var(--shadow-3);
-
     --card-small-padding        : var(--space-7) var(--space-6);
     --card-small-margin         : var(--space-6);
 
     /* -------------------- --------------------  Color Block Type SVG !Todo : Refactor and rename */
 
-    --color-block-html          : var( --layer-3 );
-    --color-block-module        : var( --layer-3 );
-    --color-block-php           : var( --layer-3 );
-    --color-block-smilies       : var( --layer-3 );
+    --color-block-html      : var( --layer-3 );
+    --color-block-module    : var( --layer-3 );
+    --color-block-php       : var( --layer-3 );
+    --color-block-smilies   : var( --layer-3 );
 
     /* -------------------- --------------------  DROPDOWN */
 
-    --d-toggle-bg               : var(--layer-3);
-    --d-toggle-border           : var(--layer-4);
-    --d-toggle-color            : var(--link);
-    --d-toggle-font             : inherit;
-    --d-toggle-padding          : var(--space-2 ) var(--space-2);
-    --d-toggle-radius           : var(--border-radius);
-    --d-toggle-shadow           : 0 0 3px 1px rgba(44, 98, 246, .5);
+    --d-toggle-bg           : var(--layer-3);
+    --d-toggle-border       : var(--layer-4);
+    --d-toggle-color        : var(--link);
+    --d-toggle-font         : inherit;
+    --d-toggle-padding      : var(--space-2 ) var(--space-2);
+    --d-toggle-radius       : var(--border-radius);
+    --d-toggle-shadow       : 0 0 3px 1px rgba(44, 98, 246, .5);
 
-    --d-toggle-transition       : all var(--transition-time) var(--transition-cube);
+    --d-toggle-transition   : all var(--transition-time) var(--transition-cube);
 
-    --d-toggle-bg-on            : var(--layer-4); /* link [div][a] */
+    --d-toggle-bg-on        : var(--layer-4); /* link [div][a] */
 
-    --dropdown-bg               : var(--layer-2);
-    --dropdown-border           : var(--border);
-    --dropdown-font             : 100 14px/2 sans-serif;
+    --dropdown-bg           : var(--layer-2);
+    --dropdown-border       : var(--border);
+    --dropdown-font         : 100 14px/2 sans-serif;
 
-    --dropdown-shadow           : var(--shadow-4);
-    --dropdown-padding          : var(--space-2);
-    --dropdown-radius           : var( --border-radius );
-    --dropdown-transition       : all var(--transition-time) var(--transition-cube);
-    --dropdown-width            : 200px;
-
-    --dropdown-bg-on            : var(--layer-4);
+    --dropdown-shadow       : var(--shadow-4);
+    --dropdown-padding      : var(--space-2);
+    --dropdown-radius       : var( --border-radius );
+    --dropdown-transition   : all var(--transition-time) var(--transition-cube);
+    --dropdown-width        : 200px;
+    --dropdown-bg-on        : var(--layer-4);
 
     /* -------------------- --------------------  FILTER / SORT */
 
-    --filter-background         : var( --layer-3 );
+    --filter-background     : var( --layer-3 );
+    --filter-border-color   : var( --layer-4);
+    --filter-border-radius  : var( --border-radius );
+    --filter-border-style   : var( --border-style );
+    --filter-border-width   : var( --border-width );
+    --filter-box-shadow     : var( --shadow-1 );
+    --filter-margin         : var( --space-6 ) auto;
+    --filter-padding        : var( --space-6 );
 
-    --filter-border-color       : var( --layer-4);
-    --filter-border-radius      : var( --border-radius );
-    --filter-border-style       : var( --border-style );
-    --filter-border-width       : var( --border-width );
-    --filter-box-shadow         : var( --shadow-1 );
+    /* -------------------- --------------------  FILTER / SORT */
 
-    --filter-margin             : var( --space-6 ) auto;
-    --filter-padding            : var( --space-6 );
+    --footer-bg             : inherit;
+    --footer-border         : none;
+    --footer-radius         : none;
+    --footer-color          : var( --secondary );
+    --footer-font           : var( --size-2 );
+    --footer-link           : var( --link );
+    --footer-margin         : var( --space-8 ) auto 0;
+    --footer-padding        : var( --space-8 );
+    --footer-shadow         : none;
 
     /* -------------------- --------------------  FORM input */
 
-    --input-bg                  : var( --layer-1 );
-    --input-border-color        : var( --layer-2 );
-    --input-border-radius       : var( --border-radius );
-    --input-border-style        : var( --border-style );
-    --input-border-width        : var( --border-width );
-
-    --input-border-hover        : 1px solid var( --link-active );
-    --input-border-focus        : 1px solid var( --layer-4 );
-
-    --input-color               : var( --secondary );
-
-    --input-shadow              : none;
+    --input-bg              : var( --layer-1 );
+    --input-border-color    : var( --layer-2 );
+    --input-border-radius   : var( --border-radius );
+    --input-border-style    : var( --border-style );
+    --input-border-width    : var( --border-width );
+    --input-border-hover    : 1px solid var( --link-active );
+    --input-border-focus    : 1px solid var( --layer-4 );
+    --input-color           : var( --secondary );
+    --input-shadow          : none;
 
     /* input checkbox */
-    --input-check-active        : var( --color-blue );
-    --input-check-active-inner  : var(--color-white);
-    --input-check-animation     : var( --color-blue );
-
-    --input-check-bg            : var( --layer-2 );
-
-    --input-check-border        : 1px solid var( --color-blue );
-    --input-check-border-hover  : 1px solid var( --color-blue );
-
-    --input-check-disabled      : var( --layer-1 );
-    --input-check-disabled-inner: var( --disable );
-
-    --input-check-shadow-inner  : var( --color-white );
-
-    --input-padding             : var( --space-4 );
-    --input-margin              : var( --space-0 );
+    --input-check-active    : var( --color-blue );
+    --input-check-active-in : var(--color-white);
+    --input-check-animation : var( --color-blue );
+    --input-check-bg        : var( --layer-2 );
+    --input-check-border    : 1px solid var( --color-blue );
+    --input-check-border-on : 1px solid var( --color-blue );
+    --input-check-disabled  : var( --layer-1 );
+    --input-check-disabled-in: var( --disable );
+    --input-check-shadow-in : var( --color-white );
+    --input-padding         : var( --space-4 );
+    --input-margin          : var( --space-0 );
 
     /* state action */
-    --input-bg-on               : var(--layer-2);
-    --input-border-on           : 1px solid var(--layer-3);
-    --input-color-on            : var(--link-hover);
-    --input-shadow-on           : 0 0 6px 1px var(--color-blue);
-
-    /* -------------------- --------------------  JQUERY-UI */
-    /* -------------------- --------------------  BUTTON */
-
-    --ui-button-bg              : var(--layer-4);
-    --ui-button-color           : var(--layer-1);
-    --ui-button-border          : var(--button-border);
-    --ui-button-font            : 100 14px/1.5 sans-serif;
-    --ui-button-margin          : var(--button-margin);
-    --ui-button-shadow          : 0 0 3px 1px rgba(44, 98, 246, 0);
-    --ui-button-padding         : var(--button-padding);
-    --ui-button-radius          : 5px;
-
-    --ui-button-transition      : all .5s var(--transition-cube);
-
-    --ui-button-bg-on           : var(--button-bg-hover);
-    --ui-button-border-on       : var(--button-border );
-    --ui-button-color-on        : var( --link );
-    --ui-button-shadow-on       : 0 0 4px 2px rgba(44, 93, 247, .85);
-
-    --ui-state-default-bg       : var(--button-bg);
-    --ui-state-default-border   : 1px solid var(--layer-4);
-    --ui-state-default-color    : var(--link);
-    --ui-state-default-font     : var(--font-family );
-    --ui-state-default-link     : var(--link); /*text-decoration : none;*/
-
-    --ui-state-hover-bg         : var(--button-bg-hover);
-    --ui-state-hover-border     : 1px solid var(--layer-4);
-    --ui-state-hover-color      : var(--link-hover);
-    --ui-state-hover-font       : var(--button-font);
-
-    --ui-state-link-hover       : var( --link-hover );
-
-    --ui-button-bg-active       : var(--button-bg-hover);
-    --ui-button-border-active   : 1px solid var(--link);
-    --ui-button-color-active    : var( --link );
-    --ui-button-shadow-active   : 0 0 4px 2px rgba(44, 93, 247, .85);
-
-    --ui-icon-background        : var(--link-hover); /* background-color, border */
-    --ui-icon-background-border : var(--link-hover);
-    --ui-icon-width             : 16px;
-    --ui-icon-height            : 16px;
-
-    /* -------------------- --------------------  DIALOG / MODAL */
-
-    --ui-dialog-bg          : var(--layer-1);
-    --ui-dialog-shadow      : var(--shadow-5);
-
+    --input-bg-on           : var(--layer-2);
+    --input-border-on       : 1px solid var(--layer-3);
+    --input-color-on        : var(--link-hover);
+    --input-shadow-on       : 0 0 6px 1px var(--color-blue);
 
     /* -------------------- --------------------  NAV HEADER */
 
-    --nav-hover          : rgba(255, 255, 255, .2);
-    --nav-open           : rgba(0, 0, 0, 0.05);
-    --nav-admin-bg       : rgba(15, 15, 15, 0.75);
-    --nav-link-color     : orange;
-    --nav-link-border    : 3px solid orange;
+    --nav-hover             : rgba(255, 255, 255, .2);
+    --nav-open              : rgba(0, 0, 0, 0.05);
+    --nav-admin-bg          : rgba(15, 15, 15, 0.75);
+    --nav-link-color        : orange;
+    --nav-link-border       : 3px solid orange;
 
     /* -------------------- --------------------  NAV SIDE */
 
@@ -497,101 +417,40 @@
 
     /* -------------------- --------------------  NOTIFICATION */
 
-    --notification-bg       : var( --layer-2 );
-    --notif-border-color    : var( --layer-4 );
-    --notif-border-radius   : var( --border-radius );
-    --notif-border-style    : var( --border-style );
-    --notif-border-width    : var( --border-width );
-
-    --notif-box-shadow      : var(	--shadow-2 );
-
+    --notify-bg             : var( --layer-2 );
+    --notify-border-color   : var( --layer-4 );
+    --notify-border-radius  : var( --border-radius );
+    --notify-border-style   : var( --border-style );
+    --notify-border-width   : var( --border-width );
+    --notify-box-shadow     : var(	--shadow-2 );
     --notification-color    : var( --primary );
-
-    --notif-margin          : var(--space-8) auto;
-    --notif-padding         : var(--space-6) var(--space-6) var(--space-6) var(--space-9);
-    --notif-max-width       : 90%;
-
-    /* -------------------- --------------------  TAB */
-
-    --tabs-bg                   : var(--layer-2);
-    --tabs-border               : none;
-    --tabs-radius               : var(--border-radius);
-    --tabs-padding              : none;
-
-    --tabs-nav-bg               : var(--layer-3);
-    --tabs-nav-border           : none;
-    --tabs-nav-radius           : var(--border-radius);
-    --tabs-nav-margin           : var(--space-4) var(--space-4) 0;
-    --tabs-nav-padding          : var(--space-5) var(--space-5) 0;
-    --tabs-nav-shadow           : none;
-
-    /* TODO */
-    --tabs-nav-li-margin        : 0 1px;
-
-    /* TODO */
-    --ui-tabs-loading           : var(--red-1);
-
-    --tabs-anchor-bg            : var(--layer-3);
-    --tabs-anchor-border        : var(--border);
-    --tabs-anchor-color         : var(--link-color);
-    --tabs-anchor-padding       : var( --space-4 ) var( --space-6 );
-    --tabs-anchor-radius        : var(--border-radius) var(--border-radius) 0 0;
-    --tabs-anchor-shadow        : var(--shadow-1);
-    /* state action */
-    --tabs-anchor-bg-on         : var(--layer-4);
-    --tabs-anchor-color-on      : var(--link-hover);
-    --tabs-anchor-border-on     : 1px solid var(--layer-4);
-    --tabs-anchor-shadow-on     : var(--shadow-2);
-
-    /* tab panel */
-    --tab-panel-bg              : var(--layer-3);
-    --tab-panel-border          : none;
-    --tab-panel-color           : var(--primary);
-    --tab-panel-padding         : var(--space-6);
-
-    /* -------------------- --------------------  TABLE */
-
-    --table-background   : var( --layer-1 );
-    --table-border-bottom: 1px solid var( --layer-1);
-    --table-thead        : inherit;
-    --table-tbody        : inherit;
-    --table-tfoot        : inherit;
-
-    --table-even         : var( --layer-3 );
-    --table-odd          : var( --layer-3 );
-
-    --table-hover        : var( --layer-4 );
-    --table-hover-text   : var( --secondary );
-
-    --table-padding      : var( --space-5 );
+    --notify-margin         : var(--space-8) auto;
+    --notify-padding        : var(--space-6) var(--space-6) var(--space-6) var(--space-9);
+    --notify-max-width      : 90%;
 
     /* -------------------- --------------------  SHADOW */
 
-    --shadow-1          : 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    --shadow-2          : 0 2px 4px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.28);
-    --shadow-3          : 0 3px 6px rgba(0,0,0,0.19), 0 3px 6px rgba(0,0,0,0.28);
-    --shadow-4          : 0 4px 8px rgba(0,0,0,0.25), 0 4px 8px rgba(0,0,0,0.28);
-    --shadow-5          : 0 5px 10px rgba(0,0,0,0.30), 0 5px 10px rgba(0,0,0,0.25);
-    --shadow-6          : 0 6px 12px rgba(0,0,0,0.30), 0 6px 12px rgba(0,0,0,0.25);
-    --shadow-7          : 0 7px 14px rgba(0,0,0,0.30), 0 7px 14px rgba(0,0,0,0.25);
-    --shadow-8          : 0 10px 18px rgba(0,0,0,0.30), 0 10px 18px rgba(0,0,0,0.25);
-
-    --shadow-inset      : 0 5px 10px rgba(0, 0, 0, 0.05), 0 0 0 1px #ddd inset;
-    --shadow-hover      : 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    --shadow-1  : 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    --shadow-2  : 0 2px 4px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.28);
+    --shadow-3  : 0 3px 6px rgba(0,0,0,0.19), 0 3px 6px rgba(0,0,0,0.28);
+    --shadow-4  : 0 4px 8px rgba(0,0,0,0.25), 0 4px 8px rgba(0,0,0,0.28);
+    --shadow-5  : 0 5px 10px rgba(0,0,0,0.30), 0 5px 10px rgba(0,0,0,0.25);
+    --shadow-6  : 0 6px 12px rgba(0,0,0,0.30), 0 6px 12px rgba(0,0,0,0.25);
+    --shadow-7  : 0 7px 14px rgba(0,0,0,0.30), 0 7px 14px rgba(0,0,0,0.25);
+    --shadow-8  : 0 10px 18px rgba(0,0,0,0.30), 0 10px 18px rgba(0,0,0,0.25);
 
     --shadow-transition	: all 0.3s cubic-bezier(.25,.8,.25,1);
 
     /* -------------------- --------------------  SORT */
 
-    --sort-background    : var( --layer-3 );
-    --sort-border-color  : var( --border-color );
-    --sort-border-radius : var( --border-radius );
-    --sort-border-style  : var( --border-style );
-    --sort-border-width  : var( --border-width );
-    --sort-box-shadow    : var( --shadow-2 );
-    --sort-margin        : var( --space-8 ) auto;
-    --sort-padding       : var( --space-6 ) var( --space-8 );
-
+    --sort-background       : var( --layer-3 );
+    --sort-border-color     : var( --border-color );
+    --sort-border-radius    : var( --border-radius );
+    --sort-border-style     : var( --border-style );
+    --sort-border-width     : var( --border-width );
+    --sort-box-shadow       : var( --shadow-2 );
+    --sort-margin           : var( --space-8 ) auto;
+    --sort-padding          : var( --space-6 ) var( --space-8 );
 
     /* -------------------- --------------------  SPACE : relative margin and padding */
     /* Exmple : margin : var(--sp4); // = --sp-unit x 'value' = space
@@ -631,26 +490,112 @@
     /* -------------------- --------------------  SCROLLBAR FIREFOX */
     /* Firefox Scrollbar */
     /* Copy values to element */
-    scrollbar-color        : var(--thumbBG) var( --trackBG ); /* thumb-color track-color */
-    scrollbar-width     : thin;
+    scrollbar-color         : var(--thumbBG) var( --trackBG ); /* thumb-color track-color */
+    scrollbar-width         : thin;
 
-}
+    /* -------------------- --------------------  TAB */
 
-/* -------------------- --------------------  Webkit Scrollbar */
+    --tabs-bg               : var(--layer-2);
+    --tabs-border           : none;
+    --tabs-radius           : var(--border-radius);
+    --tabs-padding          : none;
 
-::-webkit-scrollbar {
-    width: 9px;
-    height: 9px;
-}
-::-webkit-scrollbar-thumb {
-    background: var( --thumbBG );
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #686c7e;
-}
-::-webkit-scrollbar-track {
-    background-color: var( --trackBG );
-}
-textarea::-webkit-resizer {
-    background-color: var( --thumbBG );
+    --tabs-nav-bg           : var(--layer-3);
+    --tabs-nav-border       : none;
+    --tabs-nav-radius       : var(--border-radius);
+    --tabs-nav-margin       : var(--space-4) var(--space-4) 0;
+    --tabs-nav-padding      : var(--space-5) var(--space-5) 0;
+    --tabs-nav-shadow       : none;
+
+    /* TODO */
+    --tabs-nav-li-margin    : 0 1px;
+
+    /* TODO */
+    --ui-tabs-loading       : var(--red-1);
+
+    --tabs-anchor-bg        : var(--layer-3);
+    --tabs-anchor-border    : 1px solid var(--layer-2);
+    --tabs-anchor-color     : var(--link-color);
+    --tabs-anchor-padding   : var( --space-4 ) var( --space-6 );
+    --tabs-anchor-radius    : var(--border-radius) var(--border-radius) 0 0;
+    --tabs-anchor-shadow    : var(--shadow-1);
+    /* state action */
+    --tabs-anchor-bg-on     : var(--layer-4);
+    --tabs-anchor-color-on  : var(--link-hover);
+    --tabs-anchor-border-on : 1px solid var(--layer-4);
+    --tabs-anchor-shadow-on : var(--shadow-2);
+
+    /* tab panel */
+    --tab-panel-bg          : var(--layer-3);
+    --tab-panel-border      : none;
+    --tab-panel-color       : var(--primary);
+    --tab-panel-padding     : var(--space-6);
+
+    /* -------------------- --------------------  TABLE */
+
+    --table-background      : var( --layer-1 );
+    --table-border-bottom   : 1px solid var( --layer-1);
+    --table-thead           : inherit;
+    --table-tbody           : inherit;
+    --table-tfoot           : inherit;
+
+    --table-even            : var( --layer-3 );
+    --table-odd             : var( --layer-3 );
+
+    --table-hover           : var( --layer-4 );
+    --table-hover-text      : var( --secondary );
+
+    --table-padding         : var( --space-5 );
+
+    /* -------------------- --------------------  JQUERY-UI */
+
+    --ui-button-bg          : var(--layer-4);
+    --ui-button-color       : var(--layer-1);
+    --ui-button-border      : var(--button-border);
+    --ui-button-font        : 100 14px/1.5 sans-serif;
+    --ui-button-margin      : var(--button-margin);
+    --ui-button-shadow      : 0 0 3px 1px rgba(44, 98, 246, 0);
+    --ui-button-padding     : var(--button-padding);
+    --ui-button-radius      : 5px;
+    --ui-button-transition  : all .5s var(--transition-cube);
+    --ui-button-bg-on       : var(--button-bg-hover);
+    --ui-button-border-on   : var(--button-border );
+    --ui-button-color-on    : var( --link );
+    --ui-button-shadow-on   : 0 0 4px 2px rgba(44, 93, 247, .85);
+    --ui-button-bg-active    : var(--button-bg-hover);
+    --ui-button-border-active: 1px solid var(--link);
+    --ui-button-color-active : var( --link );
+    --ui-button-shadow-active: 0 0 4px 2px rgba(44, 93, 247, .85);
+
+    /* -------------------- --------------------  UI DIALOG / MODAL */
+
+    --ui-dialog-bg          : var(--layer-1);
+    --ui-dialog-shadow      : var(--shadow-5);
+    --ui-icon-background    : var(--link-hover); /* background-color, border */
+    /*--ui-icon-background-border : var(--link-hover);*/
+    --ui-icon-width         : 16px;
+    --ui-icon-height        : 16px;
+    --ui-state-default-bg   : var(--button-bg);
+    /*--ui-state-default-border   : 1px solid var(--layer-4);*/
+    --ui-state-default-color: var(--link);
+    --ui-state-default-font : var(--font-family );
+    --ui-state-default-link : var(--link); /*text-decoration : none;*/
+    --ui-state-hover-bg     : var(--button-bg-hover);
+    --ui-state-hover-border : 1px solid var(--layer-4);
+    --ui-state-hover-color  : var(--link-hover);
+    --ui-state-hover-font   : inherit;
+    --ui-state-link-hover   : var( --link-hover );
+
+    /* -------------------- --------------------  CUSTOMIZE UI-WIDGET */
+
+    --ui-widget-content-bg      : var( --layer-3 );
+    --ui-widget-content-color   : var( --body-color );
+    --ui-widget-content-border  : var( --layer-4 );
+    --ui-widget-content-link    : var( --link );
+    --ui-widget-header-bg       : transparent;
+    --ui-widget-header-border   : 1px solid transparent;
+    --ui-widget-header-color    : var( --link );
+    --ui-widget-header-font     : var( --font-weight );
+    --ui-widget-font-family     : var( --font-family );
+    --ui-widget-font-size       : var( --font-size );
 }

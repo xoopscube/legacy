@@ -7,10 +7,8 @@
 	URL : https://github.com/xoopscube/
 
 	-------------------- -------------------- -------------------- ----- IMPORT   */
-@import "./stylesheets/_ui-root.css";       /*  UI Default Settings         */
-@import "./stylesheets/ui-body.css";        /*  Body Elements              */
-@import "./stylesheets/ui-layout.css";      /*  Layout Grid-Flex          */
-@import "./stylesheets/ui-breadcrumbs.css"; /*  Breadcrumbs Adminnavi    */
+@import "./stylesheets/_ui-root.css";       /*  UI Default Settings        */
+@import "./stylesheets/ui-body.css";        /*  Elements Grid-Flex        */
 @import "./stylesheets/ui-button.css";      /*  Buttons                 */
 @import "./stylesheets/ui-card.css";        /*  Card elements          */
 @import "./stylesheets/ui-form.css";        /*  Form Elements         */

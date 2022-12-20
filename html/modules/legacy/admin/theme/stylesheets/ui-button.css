@@ -72,15 +72,22 @@
         text-align      : right;
     }
 
-    /* Badge with icon */
+    /* Badge with icon background mask */
     .badge > i[class^="i-"]{
         mask-size           : 1.5em 1.5em;
         -webkit-mask-size   : 1.5em 1.5em;
     }
+    .badge:hover > i[class^="i-"]:hover{
+        filter: invert(100%);
+        ---color    : currentColor;
+    }
+    button.badge:hover {
+        filter: invert(100%);
+    }
     .badge:hover {
         background      : var(  --button-bg-hover  );
     }
-    /* Button with badge */
+
     button > .badge {
         border-radius   : 50%;
         box-shadow      : 1px 2px 2px -1px hsla(0, 0%, 7%, 0.9);
@@ -301,7 +308,6 @@ a.round{
     left: 50%;
     width: 0;
     height: 0;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background-color: currentColor;

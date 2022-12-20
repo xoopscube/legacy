@@ -86,7 +86,10 @@
         <tr>
             <td class="foot" colspan="3">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
-                <input class="button-uninstall" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>">
+                <button class="button uninstall" type="submit">
+                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="uninstall" width="1em" height="1em">
+                    <{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>
+                </button>
             </td>
         </tr>
         </tfoot>

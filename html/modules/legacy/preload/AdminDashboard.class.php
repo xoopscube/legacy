@@ -208,13 +208,13 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
 
                 $debugmode = (int)($root->mContext->mXoopsConfig['debug_mode']);
                 if ($debugmode == 0) {
-                    $systeminfo_message[] = _MD_AM_DEBUGMODE. ' : ' ._MD_AM_DEBUGMODE0;
+                    $systeminfo_message[] = _MD_AM_DEBUGMODE. ' <span class="badge"> ' ._MD_AM_DEBUGMODE0. '</span>';
                 } elseif ($debugmode == 1) {
-                    $systeminfo_message[] = _MD_AM_DEBUGMODE. ' : ' ._MD_AM_DEBUGMODE1;
+                    $systeminfo_message[] = _MD_AM_DEBUGMODE. ' <span class="badge"> ' ._MD_AM_DEBUGMODE1. '</span>';
                 } elseif ($debugmode == 2) {
-                    $systeminfo_message[] = _MD_AM_DEBUGMODE. ' : ' ._MD_AM_DEBUGMODE2;
+                    $systeminfo_message[] = _MD_AM_DEBUGMODE. ' <span class="badge"> ' ._MD_AM_DEBUGMODE2. '</span>';
                 } elseif ($debugmode == 3) {
-                    $systeminfo_message[] = _MD_AM_DEBUGMODE. ' : ' ._MD_AM_DEBUGMODE3;
+                    $systeminfo_message[] = _MD_AM_DEBUGMODE. ' <span class="badge"> ' ._MD_AM_DEBUGMODE3. '</span>';
                 }
 
             $systemconfig = [];
@@ -244,7 +244,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
         if (XC_ADMINDASHBOARD_PHPSETTING) {
 
             $phpsetting_message = [];
-            $d_open ="<div data-layout='row sm-column'><div data-self='size-1of4 sm-half'>";
+            $d_open ="<div data-layout='row sm-column'><div data-self='size-1of3 sm-half'>";
             $d_close= "</div>";
             $badge = "<div><span class='badge'>";
             $green ="<div><span class='badge' style='color:var(--color-green)'>";
@@ -262,34 +262,39 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
             $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_DE . $d_close . (ini_get('display_errors')? $on : $off);
             $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_SOT. $d_close . (ini_get('short_open_tag')? $on : $off);
             $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_FU. $d_close . (ini_get('file_uploads')?
-            $green . _AD_LEGACY_PHPSETTING_ON . "</span>"
-            . "<span class='badge'>" . _AD_LEGACY_PHPSETTING_FU_UMAX.ini_get('upload_max_filesize') . "</span>"
-            . "<span class='badge'>" . _AD_LEGACY_PHPSETTING_FU_PMAX.ini_get('post_max_size') . $closed
+            $green . _AD_LEGACY_PHPSETTING_ON . "</span><br>"
+            . "<span class='badge'>" . _AD_LEGACY_PHPSETTING_FU_UMAX . ini_get('upload_max_filesize') . "</span>"
+            . "<span class='badge'>" . _AD_LEGACY_PHPSETTING_FU_PMAX . ini_get('post_max_size') . $closed
             : $red . _AD_LEGACY_PHPSETTING_OFF . $closed);
             $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_OB . $d_close . (ini_get('output_buffering')? $on : $off);
             $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_OBD  . $d_close . (ini_get('open_basedir')? $on : $off);
             // Recommended on << off
             $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_UFO . $d_close . (ini_get('allow_url_fopen')? $red ._AD_LEGACY_PHPSETTING_ON." (recommended OFF)" . $closed : $green ._AD_LEGACY_PHPSETTING_OFF. $closed);
             // PHP EXTENSIONS
+            $phpsetting_message[] = $d_open . 'OpenSSL encrypt' . $d_close . (function_exists('openssl_encrypt')? $yes : $no);
+            $phpsetting_message[] = $d_open . 'Open SSL' . $d_close . (extension_loaded('openssl')? $yes : $no);
+            $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_CRL . $d_close . (extension_loaded('curl')? $yes : $no);
             $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_DOM . $d_close . (extension_loaded('dom')? $yes : $no);
             $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_EXIF . $d_close . (extension_loaded('exif')? $yes : $no);
             $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_GTXT. $d_close . (extension_loaded('gettext')? $yes : $no);
             $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_JSON. $d_close . (extension_loaded('json')? $yes : $no);
-            $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_XML. $d_close . (extension_loaded('xml')? $yes : $no);
-            $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_CRL . $d_close . (extension_loaded('curl')? $yes : $no);
-            $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_ZLIB . $d_close . (extension_loaded('zlib')? $yes : $no);
-            $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_SOAP . $d_close . (extension_loaded('soap')? $yes : $no);
             $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_MB . $d_close . (extension_loaded('mbstring')? $yes : $no);
+            $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_SOAP . $d_close . (extension_loaded('soap')? $yes : $no);
+            $phpsetting_message[] = $d_open . 'Zip/Tar PharData class' . $d_close . (class_exists('PharData')? $yes : $no);
+            $phpsetting_message[] = $d_open . 'ZipArchive class' . $d_close . (class_exists('ZipArchive')? $yes : $no);
+            $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_ZLIB . $d_close . (extension_loaded('zlib')? $yes : $no);
+            $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_XML. $d_close . (extension_loaded('xml')? $yes : $no);
             $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_ICONV . $d_close . (function_exists('iconv')? $yes : $no);
             $phpsetting_message[] = $d_open . _AD_LEGACY_PHPSETTING_GD . $d_close . (function_exists('gd_info')? $yes : $no);
+
 
             /* Check GD version */
             if (function_exists('gd_info')) {
                 $gd_info = gd_info() ;
-                $phpsetting_message[] =  $d_open . "GD Version". $d_close . $badge . "{$gd_info['GD Version']}" . $closed;
+                $phpsetting_message[] =  $d_open . "GD version" . $d_close . $badge . "{$gd_info['GD Version']}" . $closed;
             }
             if (function_exists('imagecreatetruecolor')) {
-                $phpsetting_message[] =  $d_open . _AD_LEGACY_PHPSETTING_GD. $d_close . $badge . "Image create Truecolor" . $closed;
+                $phpsetting_message[] =  $d_open . 'GdImage' . $d_close . $badge . "Image create Truecolor" . $closed;
             }
             if( extension_loaded('imagick') || class_exists("Imagick") ){
                 /* Check Imagick */

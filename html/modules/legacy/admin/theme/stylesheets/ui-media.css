@@ -22,9 +22,9 @@
         left        : -30px;
         grid-template-columns: 1fr;
     }
-    .layout-grid .footer {
-        width:100%;
-    }
+    /*.layout-grid .footer {*/
+    /*    width:100%;*/
+    /*}*/
     .ui-block-online-stats {
         display: grid;
         grid-auto-flow: initial;
@@ -32,7 +32,7 @@
         grid-template-columns: 1fr;
     }
     .dashboard-options a.set-link {
-        max-width: calc(100% / 3);
+        max-width: calc(100% / 4);
     }
 
     nav ul li.nav-logo {
@@ -70,13 +70,12 @@
     .layout-grid {
         grid-template-areas:
             "header header"
-            "main main"
-            "footer footer";
+            "main main";
     }
 
     main {
         max-width: 100%;
-        padding: 0 2rem 2rem;
+        padding: 0 2rem;
     }
     .nav-side-menu {
         margin      : 0;
@@ -156,17 +155,16 @@
             grid-template-columns: auto;
             grid-template-areas:
             "header header"
-            "main main"
-            "footer footer";
+            "main main";
         }
 
     #container > main {
-        padding: 0 .5rem;
+        padding: 0 1rem;
         max-width: 100%;
     }
-    #container > .footer {
-        visibility              : hidden;
-    }
+    /*#container > .footer {*/
+    /*    visibility              : hidden;*/
+    /*}*/
 
     /*.nav-mobile {*/
     /*    visibility              : hidden;*/
@@ -186,9 +184,9 @@
         list-style              : none;
     }
 
-    .ui-card-full {
-        column-count            : 1;
-    }
+    /*.ui-card-full {*/
+    /*    column-count            : 1;*/
+    /*}*/
     .ui-block-online-content {
         flex-direction          : row;
     }
@@ -208,8 +206,8 @@
     .layout-grid {
         display                 : grid;
         grid-template-columns   : 230px calc(100% - 230px);
-        grid-template-rows      : 50px 1fr 50px;
-        grid-template-areas     : "header header" "nav-aside main" "footer footer";
+        grid-template-rows      : 50px 1fr;
+        grid-template-areas     : "header header" "nav-aside main";
     }
 
     #container > main {

@@ -45,7 +45,7 @@
             <td class="<{$class}>"><{$notification.event_title}></td>
             <td class="<{$class}>"><{$notification.category_title}></td>
             <td class="<{$class}>"><{if $item.id != 0}><{$item.id}><{/if}></td>
-            <td class="<{$class}>"><{if $item.id != 0}><{if $item.url != ''}><a href="<{$item.url}>"><{/if}><{$item.name}><{if $item.url != ''}></a><{/if}><{/if}></td>
+            <td class="<{$class}>"><{if $item.id != 0}><{if $item.url !=''}><a href="<{$item.url}>"><{/if}><{$item.name}><{if $item.url !=''}></a><{/if}><{/if}></td>
         </tr>
         <{/foreach}>
         <{/foreach}>
@@ -56,8 +56,8 @@
 
     <footer>
             <div class="grid">
-                <input type="submit" role="button" class="outline delete" name="delete" value="<{$smarty.const._DELETE}>">
-            <div><input type="reset" role="button" class="outline reset" name="delete_reset" value="<{$smarty.const._NOT_CLEAR}>"></div>
+                <input type="submit" role="button" class="outline secondary delete" name="delete" value="<{$smarty.const._DELETE}>">
+                <div><input type="reset" role="button" class="outline reset" name="delete_reset" value="<{$smarty.const._NOT_CLEAR}>"></div>
                 <div><input type="submit" role="button" class="outline cancel" name="delete_cancel" value="<{$smarty.const._CANCEL}>"></div>
             </div>
     </footer>
