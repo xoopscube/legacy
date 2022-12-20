@@ -161,7 +161,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	private function _unzipFile_ZipArchive( $downloadFilePath, $exploredDirPath ) {
 		try {
 			if ( ! class_exists( 'ZipArchive' ) ) {
-				throw new Exception( 'ZipArchive class not found fail', 1 );
+				throw new Exception( 'Fail ! ZipArchive class not found.', 1 );
 			}
 		} catch ( Exception $e ) {
 			$this->_set_error_log( $e->getMessage() );
@@ -276,7 +276,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 					continue;
 				}
 
-				// make dirctory at first for safe_mode
+				// make directory at first for safe_mode
 				if ( $this->Ftp->isSafeMode ) {
 					$dir = ( '/' === substr( $file, - 1 ) ) ? substr( $file, 0, - 1 ) : dirname( $file );
 					if ( ! isset( $dirs[ $dir ] ) && $dir != $exploredDirPath ) {

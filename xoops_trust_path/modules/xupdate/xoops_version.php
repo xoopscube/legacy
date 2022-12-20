@@ -29,7 +29,7 @@ $modversion['dirname']          = $myDirName;
 $modversion['trust_dirname']    = $basename;
 $modversion['name']             = _MI_XUPDATE_LANG_XUPDATE;
 $modversion['version']          = '2.32';
-$modversion['detailed_version'] = '2.32.0';
+$modversion['detailed_version'] = '2.32.1';
 $modversion['description']      = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author']           = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits']          = _MI_XUPDATE_LANG_CREDITS;
@@ -37,9 +37,8 @@ $modversion['cube_style']       = true;
 $modversion['help']             = 'help.html';
 $modversion['license']          = 'GPL';
 $modversion['official']         = 0;
-// $modversion['image'] = 'module_icon.php';
 $modversion['image']            = 'images/module_xupdate.svg';
-$modversion['icon']             = 'images/module_icon.svg';
+$modversion['icon']             = 'images/module_icon.svg'; // $modversion['image'] = 'module_icon.php';
 $modversion['cube_style']       = true;
 
 // SQL Install
@@ -73,26 +72,12 @@ $modversion['tables']               = [
 	##[/cubson:tables]
 ];
 
-//
 // Templates. You must never change [cubson] chunk to get the help of cubson.
-//
 $modversion['templates'] = [
-	/*
-	array(
-		'file'		  => '{dirname}_xxx.html',
-		'description' => _MI_XUPDATE_TPL_XXX
-	),
-*/
-	##[cubson:templates]
-	//array('file' => '{dirname}_admin_storeview.html','admin' => 'adminmenu'),
 	[ 'file' => '{dirname}_modulestore_inc.html', 'description' => _MI_XUPDATE_TPL_MODULESTORE_INC ],
-	##[/cubson:templates]
 ];
 
-//
 // Admin panel setting
-//
-
 $modversion['hasAdmin']   = 1;
 $modversion['adminindex'] = 'admin/index.php?action=ModuleView';
 
@@ -121,7 +106,6 @@ $modversion['adminmenu'] = [
 	],
 	[
 		'title'    => _MI_XUPDATE_ADMENU_THEME,
-		//'link'	=> 'admin/index.php?action=ThemeStore',
 		'link'     => 'admin/index.php?action=ThemeStore',
 		'keywords' => _MI_XUPDATE_ADMENU_THEME,
 		'show'     => true,
@@ -142,9 +126,8 @@ $modversion['adminmenu'] = [
 		'absolute' => false
 	]
 ];
-//
+
 // Public side control setting
-//
 $modversion['hasMain']   = 0;
 $modversion['hasSearch'] = 0;
 $modversion['sub']       = [
@@ -160,9 +143,8 @@ $modversion['sub']       = [
 
 ##[/cubson:adminmenu]
 
-//
+
 // Config setting
-//
 if ( ! defined( 'XOOPSX_COREPACK_VERSION' ) && defined( '_MI_LEGACY_DETAILED_VERSION' ) && 'CorePack ' === substr( _MI_LEGACY_DETAILED_VERSION, 0, 9 ) ) {
 	define( 'XOOPSX_COREPACK_VERSION', substr( _MI_LEGACY_DETAILED_VERSION, 9 ) );
 }
@@ -187,7 +169,6 @@ $modversion['config'] = [
 		'options'		=> array()
 	) ,
 */
-
 	[
 		'name'        => 'temp_path',
 		'title'       => '_MI_XUPDATE_TEMP_PATH',
@@ -197,7 +178,6 @@ $modversion['config'] = [
 		'default'     => 'uploads/xupdate',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'ftp_method',
 		'title'       => '_MI_XUPDATE_FTP_METHOD',
@@ -213,7 +193,6 @@ $modversion['config'] = [
 			'_MI_XUPDATE_CUSTOM_SSH2' => 3
 		]
 	],
-
 	[
 		'name'        => 'FTP_SSL',
 		'title'       => '_MI_XUPDATE_FTP_USESSL',
@@ -223,7 +202,6 @@ $modversion['config'] = [
 		'default'     => 0,
 		'options'     => []
 	],
-
 	[
 		'name'        => 'FTP_server',
 		'title'       => '_MI_XUPDATE_FTP_SERVER',
@@ -233,7 +211,6 @@ $modversion['config'] = [
 		'default'     => '127.0.0.1',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'FTP_UserName',
 		'title'       => '_MI_XUPDATE_FTP_UNAME',
@@ -243,7 +220,6 @@ $modversion['config'] = [
 		'default'     => '',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'FTP_password',
 		'title'       => '_MI_XUPDATE_FTP_PASS',
@@ -253,7 +229,6 @@ $modversion['config'] = [
 		'default'     => '',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'SSH_port',
 		'title'       => '_MI_XUPDATE_SSH_PORT',
@@ -263,7 +238,6 @@ $modversion['config'] = [
 		'default'     => '22',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'SSH_key',
 		'title'       => '_MI_XUPDATE_SSH_KEY',
@@ -273,7 +247,6 @@ $modversion['config'] = [
 		'default'     => '',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'writable_file_perm',
 		'title'       => '_MI_XUPDATE_WRITABLE_FILE_PERM',
@@ -283,7 +256,6 @@ $modversion['config'] = [
 		'default'     => '666',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'writable_dir_perm',
 		'title'       => '_MI_XUPDATE_WRITABLE_DIR_PERM',
@@ -293,7 +265,6 @@ $modversion['config'] = [
 		'default'     => '777',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'writable_file_perm_t',
 		'title'       => '_MI_XUPDATE_WRITABLE_FILE_PERM_T',
@@ -303,7 +274,6 @@ $modversion['config'] = [
 		'default'     => '666',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'writable_dir_perm_t',
 		'title'       => '_MI_XUPDATE_WRITABLE_DIR_PERM_T',
@@ -313,7 +283,6 @@ $modversion['config'] = [
 		'default'     => '777',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'php_perm',
 		'title'       => '_MI_XUPDATE_PHP_PERM',
@@ -323,7 +292,6 @@ $modversion['config'] = [
 		'default'     => '',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'only_conf_lang',
 		'title'       => '_MI_XUPDATE_ONLY_CONF_LANG',
@@ -333,7 +301,6 @@ $modversion['config'] = [
 		'default'     => 0,
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'disabled_items',
 		'title'       => '_MI_XUPDATE_DISABLED_ITEMS',
@@ -343,7 +310,6 @@ $modversion['config'] = [
 		'default'     => '',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'tag_dirname',
 		'title'       => '_MI_XUPDATE_TAG_DIRNAME',
@@ -353,7 +319,6 @@ $modversion['config'] = [
 		'default'     => '',
 		'options'     => [ 'none', 'tag' ]
 	],
-
 	[
 		'name'        => 'xelfinder_dirname',
 		'title'       => '_MI_XUPDATE_XEL_DIRNAME',
@@ -363,7 +328,6 @@ $modversion['config'] = [
 		'default'     => 'xelfinder',
 		'options'     => []
 	],
-
 	[
 		'name'        => 'Show_debug',
 		'title'       => '_MI_XUPDATE_DEBUG',
@@ -373,7 +337,6 @@ $modversion['config'] = [
 		'default'     => 0,
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'Theme_download_Url_format',
 		'title'       => '_MI_XUPDATE_FTP_THEME_URL',
@@ -383,7 +346,6 @@ $modversion['config'] = [
 		'default'     => 'http://cmsthemefinder.com/modules/lica/index.php?controller=download&id=%u',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'stores_json_url',
 		'title'       => '_MI_XUPDATE_FTP_STORE_URL',
@@ -393,7 +355,6 @@ $modversion['config'] = [
 		'default'     => 'https://xoopscube.net/uploads/xupdatemaster/stores_json_V1.txt',
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'show_disabled_store',
 		'title'       => '_MI_XUPDATE_SHOW_DISABLED_STORE',
@@ -403,7 +364,6 @@ $modversion['config'] = [
 		'default'     => 0,
 		'options'     => [],
 	],
-
 	//parallel_fetch_max
 	[
 		'name'        => 'parallel_fetch_max',
@@ -414,7 +374,6 @@ $modversion['config'] = [
 		'default'     => 50,
 		'options'     => [],
 	],
-
 	//parallel_fetch_max
 	[
 		'name'        => 'curl_multi_select_not_use',
@@ -425,7 +384,6 @@ $modversion['config'] = [
 		'default'     => 0,
 		'options'     => [],
 	],
-
 	[
 		'name'        => 'curl_ssl_no_verify',
 		'title'       => '_MI_XUPDATE_CURL_SSL_NO_VERIFY',
@@ -435,14 +393,12 @@ $modversion['config'] = [
 		'default'     => 0,
 		'options'     => [],
 	]
-
 	##[cubson:config]
 	##[/cubson:config]
 ];
 
-//
+
 // Block setting
-//
 $modversion['blocks'] = [
 	/*
 	x => array(

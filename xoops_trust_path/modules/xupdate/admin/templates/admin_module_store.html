@@ -278,7 +278,12 @@
         </span>
         <{/if}>
         <{else}>
-        <img src="<{"icons/error.png"|theme}>" alt="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>">
+        <span class="uninstall" aria-label="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>">
+            <img class="svg" src="<{'icons/icon-package-open.svg'|theme}>"
+             alt="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>"
+             width="24px"
+             height="24px">
+        </span>
         <{/if}>
         <{else}>
         <a href="<{$module->get_StoreUrl()}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
