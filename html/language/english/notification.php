@@ -46,7 +46,7 @@ define( '_NOT_CONFIG_EVENTS' , 'Enable Specific Events');
 define( '_NOT_CONFIG_EVENTSDSC' , 'Select which notification events to which your users may subscribe.');
 
 define( '_NOT_CONFIG_ENABLE' , 'Enable Notification');
-define( '_NOT_CONFIG_ENABLEDSC' , 'This module allows users to be notified when certain events occur.  Select if users should be presented with notification options in a Block (Block-style), within the module (Inline-style), or both.  For block-style notification, the Notification Options block must be enabled for this module.');
+define( '_NOT_CONFIG_ENABLEDSC' , 'This module allows users to be notified when certain events occur.<br>Select if users should be presented with notification options in a Block (Block-style),<br>within the module (Inline-style), or both.<br>For block-style notification, the Notification Options block must be enabled for this module.');
 define( '_NOT_CONFIG_DISABLE' , 'Disable Notification');
 define( '_NOT_CONFIG_ENABLEBLOCK' , 'Enable only Block-style');
 define( '_NOT_CONFIG_ENABLEINLINE' , 'Enable only Inline-style');

@@ -62,7 +62,7 @@ class XCube_LanguageManager {
 	 *
 	 * @return string  locale name
 	 */
-	public function getLocale(): string
+	public function getLocale()
     {
 		return $this->mLanguageName;
 	}
@@ -72,7 +72,7 @@ class XCube_LanguageManager {
 	 *
 	 * @param string $language language name
 	 */
-	public function setLanguage(string $language ) {
+	public function setLanguage( $language ) {
 		$this->mLanguageName = $language;
 	}
 
@@ -81,7 +81,7 @@ class XCube_LanguageManager {
 	 *
 	 * @return string  language name
 	 */
-	public function getLanguage(): string
+	public function getLanguage()
     {
 		return $this->mLanguageName;
 	}
@@ -167,7 +167,7 @@ class XCube_LanguageManager {
 	 * @access protected
 	 * @return string
 	 */
-	public function getFallbackLanguage(): string
+	public function getFallbackLanguage()
     {
 		return "en"; // !Todo check UTF-8
 	}
@@ -178,7 +178,7 @@ class XCube_LanguageManager {
 	 * @access protected
 	 * @return string
 	 */
-	public function getFallbackLocale(): string
+	public function getFallbackLocale()
     {
 		return "EN"; // !Todo check UTF-8
 	}

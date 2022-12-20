@@ -50,7 +50,7 @@ class XoopsCommentRenderer
      * @param bool   $do_iconcheck default  = false
      * @return \XoopsCommentRenderer
      */
-    public function &instance(object &$tpl, bool $use_icons = true, bool $do_iconcheck)
+    public function &instance(&$tpl, $use_icons = true, $do_iconcheck = false)
     {
         static $instance;
         if (!isset($instance)) {
@@ -64,7 +64,7 @@ class XoopsCommentRenderer
      *
      * @param object  &$comments_arr array of {@link XoopsComment} objects
      **/
-    public function setComments(object &$comments_arr)
+    public function setComments(&$comments_arr)
     {
         if (isset($this->_comments)) {
             unset($this->_comments);
@@ -77,7 +77,7 @@ class XoopsCommentRenderer
      *
      * @param bool $admin_view default=false
      **/
-    public function renderFlatView(bool $admin_view)
+    public function renderFlatView($admin_view = false)
     {
         foreach ($this->_comments as $iValue) {
             if (false !== $this->_useIcons) {

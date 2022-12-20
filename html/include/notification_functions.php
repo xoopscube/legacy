@@ -272,7 +272,7 @@ function notificationEventEnabled(&$category, &$event, &$module)
     $mod_config = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
 
     $option_name = notificationGenerateConfig($category, $event, 'option_name');
-    if (is_array($mod_config['notification_events']) && in_array($option_name, $mod_config['notification_events'], true)) {
+    if (is_array($mod_config['notification_events']) && in_array($option_name, $mod_config['notification_events'])) {
         return true;
     }
     $notification_handler =& xoops_gethandler('notification');
@@ -336,7 +336,7 @@ function &notificationSubscribableCategoryInfo($module_id=null)
                 $subscribe_from = [$subscribe_from];
             }
         }
-        if (!in_array($script_name, $subscribe_from, true)) {
+        if (!in_array($script_name, $subscribe_from)) {
             continue;
         }
 

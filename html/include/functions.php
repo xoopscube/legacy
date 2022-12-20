@@ -359,10 +359,16 @@ function xoops_getbanner()
     if ($numrows > 1) {
         $numrows = $numrows-1;
         mt_srand((double)microtime()*1000000);
-        try {
+/*use rand() unless you need a securely randomized integer, 
+then use random_int() . If you don't know if you need the latter, 
+you probably don't (it impacts "guessability", so imagine where that's useful). 
+If you're trying to randomize a slideshow, for instance, rand() is just fine */
+$bannum = mt_rand(0, $numrows);
+/*        try {
             $bannum = random_int (0, $numrows);
         } catch (Exception $e) {
         }
+*/
     } else {
         $bannum = 0;
     }
@@ -382,9 +388,11 @@ function xoops_getbanner()
             $db->queryF(sprintf('DELETE FROM %s WHERE bid = %u', $db->prefix('banner'), $bid));
         }
         if ($htmlbanner) {
-            $bannerobject = $htmlcode;
+            $bannerobject = '<div class="banner"><a href="'.XOOPS_URL.'/banners.php?op=click&amp;bid='.$bid.'" rel="noopener">';
+            $bannerobject .= $htmlcode;
+            $bannerobject .= '</a></div>';
         } else {
-            $bannerobject = '<div><a href="'.XOOPS_URL.'/banners.php?op=click&amp;bid='.$bid.'" rel="external">';
+            $bannerobject = '<div class="banner"><a href="'.XOOPS_URL.'/banners.php?op=click&amp;bid='.$bid.'" rel="noopener">';
             $bannerobject .= '<img src="' . $imageurl . '" alt="">';
             $bannerobject .= '</a></div>';
         }
@@ -413,7 +421,8 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
             }
         }
         if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && '' !== $xoopsConfig['session_name'] && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
-            if (strpos($url, XOOPS_URL) === 0) {
+// Goodbye strpos and strstr: str_contains in PHP8            
+if (strpos($url, XOOPS_URL) === 0) {
                 //@gigamaster changed this to save memory
                 if (strpos($url, '?') === false) {
                     $connector = '?';
@@ -464,7 +473,7 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
     if (file_exists($file)) {
         include $file;
     } else {
-        $message = urlencode("Unable to load redirect template! The form Redirect to the previous page form. ");
+        $message = urlencode("Unable to load redirect template! The form Redirect to the previous page.");
         header("Location:".$_SERVER[HTTP_REFERER]."?message=".$message);
     }
     exit;

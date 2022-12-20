@@ -468,7 +468,7 @@ class XoopsObject extends AbstractXoopsObject
 
     /**
      * clean values of all variables of the object for storage.
-     * also add slashes whereever needed
+     * also add slashes wherever needed
      *
      * @return bool true if successful
      * @access public

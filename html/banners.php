@@ -12,36 +12,45 @@
  */
 
 include 'mainfile.php';
-
+/**
+ * Banner advertisement, otherwise known as an advert or ad, is generally considered a public communication
+ * that promotes a product, service, brand or event. To some the definition can be even broader than that,
+ * extending to any paid communication designed to inform or influence.
+ * Control Panel »» Dashboard »» Renderer »» Banner Management
+ * 1. Create client account
+ * 2. Create client banner
+ */
 function clientlogin()
 {
     global $xoopsDB, $xoopsLogger, $xoopsConfig;
     include('header.php');
-    echo "<style type='text/css'>
-                body {margin-left: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;}
+    echo "<style>
                 .redirect {width: 70%;margin: 110px;text-align: center;padding: 15px;text-align:center;text-align: center;}
                 .redirect a:link {text-decoration: none;font-weight: bold;}
                 .redirect a:visited {text-decoration: none;font-weight: bold;}
                 .redirect a:hover {text-decoration: underline;font-weight: bold;}
-                hr {height: 3px;border: 1px #E18A00 solid;filter : Alpha(Opacity=100,FinishOpacity=10,Style=2);width: 95%;}
-                font.bigtext { font-size: 16px; font-weight: bold; }
         </style>
 
     <form action='banners.php' method='post'>
-    <table width='100%' class='redirect'>
-    <tr><td colspan='2' align='center'>
-    <b>Advertising Statistics</b><hr /></td></tr>
-    <tr><td align='right'><b>Login: </b></td>
-        <td><input class='textbox' type='text' name='login' size='12' maxlength='10' /></td></tr>
-    <tr><td align='right'><b>Password: </b></td>
-        <td><input class='textbox' type='password' name='pass' size='12' maxlength='10' /></td></tr>
-    <tr><td align='center' colspan='2'><input type='hidden' name='op' value='Ok' />";
+    <article>
+    <header>
+    <div class='headings'>
+    <h3>Advertising Statistics</h3>
+    <p>Please type your client information</p>
+    </div>
+    </header>
+    <label>Login
+    <input class='textbox' type='text' name='login' size='12' maxlength='10'>
+    </label>
+    <label>Password
+    <input class='textbox' type='password' name='pass' size='12' maxlength='10'>
+    </label>
+    <input type='hidden' name='op' value='Ok'>";
     $token =& XoopsMultiTokenHandler::quickCreate('banner_Ok');
     echo $token->getHtml();
     echo "
-        <input type='submit' value='Login' /></td></tr>
-    <tr><td colspan='2' align='center'><hr />Please type your client information</td></tr>
-    </table></form>";
+    <footer><input type='submit' value='Login'></footer>
+    </article></form>";
     include 'footer.php';
 }
 
@@ -56,22 +65,27 @@ function bannerstats($login, $pass)
         redirect_header('banners.php', 2);
         exit();
     }
+
+    // Sanitize Textarea HTML
+    $myts =& MyTextSanitizer::getInstance();
+
     $result = $xoopsDB->query(sprintf('SELECT cid, name, passwd FROM %s WHERE login=%s', $xoopsDB->prefix('bannerclient'), $xoopsDB->quoteString($login)));
     list($cid, $name, $passwd) = $xoopsDB->fetchRow($result);
     if ($pass==$passwd) {
         include 'header.php';
-        echo "<style type='text/css'>
-                         .b_td {color: #ffffff; background-color: #2F5376; padding: 3px; text-align: center;}
-                  </style>
-            <h4 style='text-align:center;'><b>Current Active Banners for $name</b><br></h4>
-            <table width='100%' border='0'><tr>
-                <td class='b_td'><b>ID</b></td>
-                <td class='b_td'><b>Imp. Made</b></td>
-                <td class='b_td'><b>Imp. Total</b></td>
-                <td class='b_td'><b>Imp. Left</b></td>
-                <td class='b_td'><b>Clicks</b></td>
-                <td class='b_td'><b>% Clicks</b></td>
-                <td class='b_td'><b>Functions</b></td></tr>";
+        echo "
+            <h4>Current Active Banners for $name</h4>
+            <table>
+            <thead>
+            <tr class='list_center'>
+                <th class='list_id'>ID</th>
+                <th class='list_center'>Imp. Made</th>
+                <th class='b_td'>Imp. Total</th>
+                <th class='b_td'><b>Imp. Left</th>
+                <th class='b_td'><b>Clicks</th>
+                <th class='b_td'><b>% Clicks</th>
+                <th class='list-action'>Action</th>
+            </tr></thead>";
         $result = $xoopsDB->query('select bid, imptotal, impmade, clicks, date from ' . $xoopsDB->prefix('banner') . " where cid=$cid");
         while (list($bid, $imptotal, $impmade, $clicks, $date) = $xoopsDB->fetchRow($result)) {
             if (0 == $impmade) {
@@ -85,23 +99,30 @@ function bannerstats($login, $pass)
                 $left = $imptotal-$impmade;
             }
             $token =& XoopsMultiTokenHandler::quickCreate('banner_EmailStats');
-            echo "<tr><td align='center'>$bid</td>
-                <td align='center'>$impmade</td>
-                <td align='center'>$imptotal</td>
-                <td align='center'>$left</td>
-                <td align='center'>$clicks</td>
-                <td align='center'>$percent%</td>
-                <td align='center'><a href='banners.php?op=EmailStats&amp;login=$login&amp;pass=$pass&amp;cid=$cid&amp;bid=$bid&amp;".$token->getUrl()."'>E-mail Stats</a></td></tr>";
+            echo "<tr class='list_center'>
+                <td>$bid</td>
+                <td>$impmade</td>
+                <td>$imptotal</td>
+                <td>$left</td>
+                <td>$clicks</td>
+                <td>$percent%</td>
+                <td><a href='banners.php?op=EmailStats&amp;login=$login&amp;pass=$pass&amp;cid=$cid&amp;bid=$bid&amp;".$token->getUrl()."'>E-mail Stats</a></td>
+                </tr>";
         }
-        echo '</table><br><br><div>Following are your running Banners in ' . htmlspecialchars($xoopsConfig['sitename']) . ' </div><br><br>';
+        echo '</table>'
+            .'<hr><div>Following are your running Banners in ' . htmlspecialchars($xoopsConfig['sitename']) . ' </div>';
+
         $result = $xoopsDB->query('select bid, imageurl, clickurl, htmlbanner, htmlcode from ' . $xoopsDB->prefix('banner') . " where cid=$cid");
         while (list($bid, $imageurl, $clickurl, $htmlbanner, $htmlcode) = $xoopsDB->fetchRow($result)) {
             $numrows = $xoopsDB->getRowsNum($result);
             if ($numrows>1) {
-                echo '<hr /><br>';
+                echo '<hr>';
             }
             if (!empty($htmlbanner) && !empty($htmlcode)) {
-                echo $myts->displayTarea($htmlcode);
+                // Sanitize Textarea HTML
+                $bannerHtml = $myts->displayTarea( $htmlcode );
+                echo "<pre><code>".$bannerHtml."</code></pre>";
+
             } else {
                 if ('.swf' == strtolower(substr($imageurl, strrpos($imageurl, '.')))) {
                     echo '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="https://download.macromedia.com/pub/shockwave/cabs/flash/ swflash.cab#version=6,0,40,0"; width="468" height="60">';
@@ -111,7 +132,7 @@ function bannerstats($login, $pass)
                     echo '</embed>';
                     echo '</object>';
                 } else {
-                    echo "<img src='$imageurl' border='1' alt='' />";
+                    echo "<img src='$imageurl' border='1' alt=''>";
                 }
             }
             $token =& XoopsMultiTokenHandler::quickCreate('banner_EmailStats');
@@ -137,21 +158,22 @@ function bannerstats($login, $pass)
             echo '<br>';
         if (!$result = $xoopsDB->query('select bid, impressions, clicks, datestart, dateend from ' . $xoopsDB->prefix('bannerfinish') . " where cid=$cid")) {
             echo "<h4 style='text-align:center;'>Banners Finished for $name</h4><br>
-            <table width='100%' border='0'><tr>
-            <td class='b_td'><b>ID</b></td>
-            <td class='b_td'><b>Impressions</b></td>
-            <td class='b_td'><b>Clicks</b></td>
-            <td class='b_td'><b>% Clicks</b></td>
-            <td class='b_td'><b>Start Date</b></td>
-            <td class='b_td'><b>End Date</b></td></tr>";
+            <table><tr>
+            <td>ID</td>
+            <td>Impressions</td>
+            <td>Clicks</td>
+            <td>% Clicks</td>
+            <td>Start Date</td>
+            <td>End Date</td></tr>";
             while (list($bid, $impressions, $clicks, $datestart, $dateend) = $xoopsDB->fetchRow($result)) {
                 $percent = substr(100 * $clicks / $impressions, 0, 5);
-                echo "<tr><td align='center'>$bid</td>
-                <td align='center'>$impressions</td>
-                <td align='center'>$clicks</td>
-                <td align='center'>$percent%</td>
-                <td align='center'>".formatTimestamp($datestart)."</td>
-                <td align='center'>".formatTimestamp($dateend) . '</td></tr>';
+                echo "<tr>
+                <td>$bid</td>
+                <td>$impressions</td>
+                <td>$clicks</td>
+                <td>$percent%</td>
+                <td>".formatTimestamp($datestart)."</td>
+                <td>".formatTimestamp($dateend) . '</td></tr>';
             }
             echo '</table>';
         }
@@ -217,7 +239,7 @@ function EmailStats($login, $cid, $bid, $pass)
 }
 
 /*********************************************/
-/* Function to let the client to change the  */
+/* Function to let the client change the     */
 /* url for his banner                        */
 /*********************************************/
 function change_banner_url_by_client($login, $pass, $cid, $bid, $url)

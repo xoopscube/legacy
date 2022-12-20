@@ -47,7 +47,7 @@ $subject_icons = XoopsLists::getSubjectsList();
 
 foreach ($subject_icons as $iconfile)
 {
-    $icons_radio->addOption($iconfile, '<img src="'.XOOPS_URL.'/images/subject/'.$iconfile.'" alt="" />');
+    $icons_radio->addOption($iconfile, '<img src="'.XOOPS_URL.'/images/subject/'.$iconfile.'" alt="">');
 }
 
 $cform->addElement($icons_radio);

@@ -70,7 +70,7 @@ class XCube_Utils {
 	public static function formatString() {
 		$arr = func_get_args();
 
-		if ( 0 === count( $arr ) ) {
+		if (count($arr) === 0) {
 			return null;
 		}
 
@@ -115,12 +115,13 @@ class XCube_Utils {
 	 * @return string - Encrypted string.
 	 */
 	public static function encrypt(string $plain_text, string $key = null ) {
-		if ( '' === $plain_text ) {
+		if ($plain_text === '') {
 			return $plain_text;
 		}
 
         // @todo @gigamaster
         // TODO check if ondition is unnecessary because it is checked by '! is_string( $key )'
+        // if (! is_string( $key )) {
          if ( null === $key || ! is_string( $key ) ) {
 			if ( ! defined( 'XOOPS_SALT' ) ) {
 				return $plain_text;
@@ -167,6 +168,7 @@ class XCube_Utils {
 
         // @todo @gigamaster
         // Condition is unnecessary because it is checked by '! is_string( $key )'
+        // if (! is_string( $key )) {
         if ( null === $key || ! is_string( $key ) ) {
 			if ( ! defined( 'XOOPS_SALT' ) ) {
 				return $crypt_text;
@@ -248,4 +250,39 @@ class XCube_Utils {
 
 		return str_replace( $searches, $replaces, $subject );
 	}
+
+    /**
+     * Recursively delete directory /install
+     *
+     * @param string $delete_path
+     */
+    public function recursiveRemove( string $delete_path ) {
+        if (is_dir( $delete_path )) {
+            foreach (scandir( $delete_path ) as $entry ) {
+                if (!in_array( $entry, ['.', '..'], true )) {
+                    $this->recursiveRemove($delete_path . DIRECTORY_SEPARATOR . $entry);
+                }
+            }
+            rmdir( $delete_path );
+        } else {
+            unlink( $delete_path );
+        }
+    }
+
+    /**
+     * Preload Active
+     * Copy preload from directory /preload/disabled
+     *
+     * @param string $pre_disable
+     * @param string $pre_active
+     */
+    public function preloadActive(string $pre_disable, string $pre_active ) {
+
+        if( !copy( $pre_disable, $pre_active ) ) {
+            echo "File can't be copied! \n";
+        } else {
+            echo "File has been copied! \n";
+        }
+
+    }
 }

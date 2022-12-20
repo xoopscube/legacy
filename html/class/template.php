@@ -40,7 +40,7 @@ class XoopsTpl extends Smarty
         $this->compile_id = XOOPS_URL;
         if (1 == $xoopsConfig['theme_fromfile']) {
             $this->_canUpdateFromFile = true;
-            $this->compile_check = false;
+            $this->compile_check = false; /*This should be set to false on an active site*/
             $this->force_compile = true;
         } else {
             $this->_canUpdateFromFile = false;
@@ -123,7 +123,7 @@ class XoopsTpl extends Smarty
      *
      * @param bool $flag
      **/
-    public function xoops_setDebugging(bool $flag=false)
+    public function xoops_setDebugging($flag=false)
     {
         $this->debugging = is_bool($flag) ? $flag : false;
     }
@@ -133,7 +133,7 @@ class XoopsTpl extends Smarty
      *
      * @param int $num
      **/
-    public function xoops_setCaching(int $num=0)
+    public function xoops_setCaching($num=0)
     {
         $this->caching = (int)$num;
     }
@@ -143,7 +143,7 @@ class XoopsTpl extends Smarty
      *
      * @param int $num Cache lifetime
      **/
-    public function xoops_setCacheTime(int $num=0)
+    public function xoops_setCacheTime($num=0)
     {
         $num = (int)$num;
         if ($num <= 0) {
@@ -158,7 +158,7 @@ class XoopsTpl extends Smarty
      *
      * @param   string  $dirname    Full directory path without a trailing slash
      **/
-    public function xoops_setCompileDir(string $dirname)
+    public function xoops_setCompileDir($dirname)
     {
         $this->compile_dir = $dirname;
     }
@@ -168,7 +168,7 @@ class XoopsTpl extends Smarty
      *
      * @param   string  $dirname    Full directory path without a trailing slash
      **/
-    public function xoops_setCacheDir(string $dirname)
+    public function xoops_setCacheDir($dirname)
     {
         $this->cache_dir = $dirname;
     }
@@ -181,7 +181,7 @@ class XoopsTpl extends Smarty
      **@deprecated
      *
      */
-    public function xoops_fetchFromData(string &$data)
+    public function xoops_fetchFromData(&$data)
     {
         $dummyfile = XOOPS_CACHE_PATH.'/dummy_'.time();
         $fp = fopen($dummyfile, 'w');
@@ -261,7 +261,7 @@ class XoopsTpl extends Smarty
  * @param bool $clear_old
  * @return  bool
  **/
-function xoops_template_touch(string $tpl_id, bool $clear_old = true)
+function xoops_template_touch($tpl_id, $clear_old = true)
 {
     $result = null;
 

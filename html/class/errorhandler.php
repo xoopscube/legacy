@@ -72,7 +72,7 @@ class XoopsErrorHandler
      * @param bool $showErrors True if debug mode is on
      * @return void
      */
-    public function activate(bool $showErrors=false)
+    public function activate($showErrors=false)
     {
         $this->_showErrors = $showErrors;
     }
@@ -113,7 +113,7 @@ class XoopsErrorHandler
      * @TODO Use language? or allow customized message?
      *
      * @access public
-     * @return string
+     * @return void
      */
     public function renderErrors()
     {
