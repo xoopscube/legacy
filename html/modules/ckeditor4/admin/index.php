@@ -16,18 +16,22 @@ require_once XOOPS_ROOT_PATH . '/modules/ckeditor4/class/Ckeditor4Utiles.class.p
 $mid = Ckeditor4_Utils::getMid();
 if (defined('LEGACY_BASE_VERSION')) {
 	$pref = XOOPS_MODULE_URL . '/legacy/admin/index.php?action=PreferenceEdit&amp;confmod_id=';
-	$help = '<li><a href="' . XOOPS_MODULE_URL . '/legacy/admin/index.php?action=Help&amp;dirname=ckeditor4">' . _HELP . '</a></li>';
+	$help = '<a href="' . XOOPS_MODULE_URL . '/legacy/admin/index.php?action=Help&amp;dirname=ckeditor4">' . _HELP . '</a>';
 }
 ?>
 
-<h3>CKEditor 4 for XCL</h3>
+    <div class="adminnavi" aria-label="breadcrumb">
+        <a href="https://xclmaster.local/package231/html/admin.php">Dashboard</a>
 
-<hr>
+        »» <a href="./index.php">CKEditor</a>
+    </div>
 
-<ul>
-	<li><a href="<?php echo $pref . $mid ?>"><?php echo _PREFERENCES ?></a></li>
+    <h3>CKEditor 4 for XCL</h3>
+    <hr>
+    <nav class="adminavi"><a href="<?php echo $pref . $mid ?>"><?php echo _PREFERENCES ?></a>
 	<?php echo $help ?>
-</ul>
+    </nav>
+
 
 <?php
 require_once XOOPS_ROOT_PATH . "/footer.php";

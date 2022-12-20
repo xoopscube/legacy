@@ -1,20 +1,18 @@
+<div data-layout="row sm-column">
+    <div data-self="size-xxsmall">
+        <nav id="help-menu">
+            <ul data-layout="rows">
+                <li><a href ="#help-overview" class="button">CKEditor4</a>
+                <li><a href="#help-features" class="button">Features</a>
+                <li><a href="#help-implement" class="button">Implement</a>
+                <li><a href="#help-customize" class="button">Customize</a>
+                <li><a href="#help-license" class="button">License</a>
+                <li><a href="#help-development" class="button">Development</a>
+            </ul>
+        </nav>
+    </div>
+
 <article id="help-module">
-
-
-    <nav id="help-menu">
-        <ul>
-            <li><a href ="#help-overview" class="button">CKEditor4</a>
-            <li><a href="#help-features" class="button">Features</a>
-            <li><a href="#help-implement" class="button">Implement</a>
-            <li><a href="#help-customize" class="button">Customize</a>
-            <li><a href="#help-license" class="button">License</a>
-            <li><a href="#help-development" class="button">Development</a>
-        </ul>
-    </nav>
-
-
-<hr>
-
 
     <section id="help-overview">
 
@@ -47,13 +45,8 @@
 <hr>
 
 
+
     <section id="help-implement">
-
-    <h3>Implement CKEditor to textarea.</h3>
-
-        <p>The CKEditor toolbar can be fully customized.</p>
-
-            <p><a class="button" href="https://ckeditor.com/ckeditor-4/demo/" target="_blank">Demo  ⭧</a></p>
 
         <h3>Installation</h3>
         <ol>
@@ -63,12 +56,743 @@
 
         <pre><code class="lang-smarty">&lt;{xoops_dhtmltarea editor=html}&gt;</code></pre>
 
-        <div class="confirm"><strong>Note :</strong> remember to uppdate your new template set.<br>
-        The CKEditor4 module won't make any data conversion.<br>
+        <div class="confirm"><strong>Note !</strong> Remember to update your new template set.<br>
+            The CKEditor4 module won't make any data conversion.<br>
             Any textarea with previous data will  be automatically escaped.
         </div>
 
     </section>
+
+
+<hr>
+
+
+    <section id="preferences">
+        <h3>Preferences</h3>
+        <p>Toolbar for Admin
+        <p>CKEditor's "config.toolbar" for admin.
+
+        <p>Toolbar UI Color
+        <p>Setting Editor UI Color with hexadecimal color code eg. #405060
+
+        <p>Toolbar for registed user
+        <p>CKEditor's "onfig.toolbar" for registed user.
+
+        <p>Toolbar for guest
+        <p>CKEditor's "config.toolbar" for guest.
+
+        <p>Toolbar for BBcode plugin
+        <p>CKEditor's "config.toolbar" for BBcode plugin.
+
+        <p>CSS URL of editing area
+        <p>URL of external CSS applied to edit area is set up per line.
+        <p>* A special value "&lt;head&gt;" reads automatically CSS specified in &lt;head&gt; in HTML of a display page.
+
+        <p>Extra plugin
+        <p>CKEditor's "config.extraPlugins" setting.
+
+        <p>Custom config URL
+        <p>CKEditor's "config.customConfig" setting.
+
+        <p>Enter Mode
+        <p>CKEditor's "config.enterMode" setting.
+
+        <p>Shift+Enter Mode
+        <p>CKEditor's "config.shiftEnterMode" setting.
+
+        <p>Allow All Content
+        <p>CKEditor's "config.allowedContent" setting.
+
+        <p>Auto Paragraph
+        <p>CKEditor's "config.autoParagraph" setting.
+
+        <p>X-elFinder
+        <p>Set X-elFinder directory name for server browser.
+
+        <h3>Implement CKEditor to textarea.</h3>
+
+        <p>The CKEditor toolbar can be fully customized.</p>
+
+        <p><a class="button" href="https://ckeditor.com/ckeditor-4/demo/" target="_blank">Demo ⭧</a></p>
+
+    </section>
+
+<hr>
+
+
+    <section id="customize">
+
+
+        <h3>Customize config.js</h3>
+
+<pre><code class="lang-javascript">
+CKEDITOR.editorConfig = function( config ) {
+	// Define changes to default configuration here. For example:
+	// config.language = 'fr';
+	// config.uiColor = '#AADC6E';
+    config.docType = '<!DOCTYPE html>';
+    // Pressing Enter will create a new <P> element.
+    config.enterMode = CKEDITOR.ENTER_P;
+    // Pressing Shift+Enter will create a new <br> element.
+    config.shiftEnterMode = CKEDITOR.ENTER_BR;
+};
+</code></pre>
+
+<h3>CKEDITOR.config</h3>
+<p>Stores default configuration settings. Changes to this object are reflected in all editor instances, if not specified otherwise for a particular instance.
+<p>Read more about setting CKEditor configuration in the <a href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html" target="_blank">documentation</a>.
+
+<style>
+ul.config-options {
+    display: inline-flex;
+    flex-flow: row wrap;
+    gap: 12px;
+    width: 100%;
+    padding: 0;
+    margin:0;
+}
+/* Create four equal columns */
+.config-options li{
+    flex: 24%;
+    list-style: none;
+    padding: 0;
+}
+
+/* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 992px) {
+    .config-options li {
+        flex: 48%;
+    }
+}
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    ul.config-options {
+        flex-direction: column;
+    }
+}
+/*.config-options li {*/
+/*    flex-flow: row wrap;*/
+/*    */
+/*    display: flex;*/
+/*    min-width: calc(90% / 4);*/
+/*    line-height: 1.5rem;*/
+/*    padding:0;*/
+/*}*/
+</style>
+
+        <ul class="config-options">
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-allowedContent"
+                   target="_blank">allowedContent</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-applicationTitle"
+                   target="_blank">applicationTitle</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-autoEmbed_widget"
+                   target="_blank">autoEmbed_widget</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-autoGrow_bottomSpace"
+                   target="_blank">autoGrow_bottomSpace</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-autoGrow_maxHeight"
+                   target="_blank">autoGrow_maxHeight</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-autoGrow_minHeight"
+                   target="_blank">autoGrow_minHeight</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-autoGrow_onStartup"
+                   target="_blank">autoGrow_onStartup</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-autoUpdateElement"
+                   target="_blank">autoUpdateElement</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-autocomplete_commitKeystrokes"
+                   target="_blank">autocomplete_commitKeystrokes</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-autolink_commitKeystrokes"
+                   target="_blank">autolink_commitKeystrokes</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-autolink_emailRegex"
+                   target="_blank">autolink_emailRegex</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-autolink_urlRegex"
+                   target="_blank">autolink_urlRegex</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-baseFloatZIndex"
+                   target="_blank">baseFloatZIndex</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-baseHref"
+                   target="_blank">baseHref</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-basicEntities"
+                   target="_blank">basicEntities</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-blockedKeystrokes"
+                   target="_blank">blockedKeystrokes</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-bodyClass"
+                   target="_blank">bodyClass</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-bodyId"
+                   target="_blank">bodyId</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-browserContextMenuOnCtrl"
+                   target="_blank">browserContextMenuOnCtrl</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-clipboard_defaultContentType"
+                   target="_blank">clipboard_defaultContentType</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-clipboard_handleImages"
+                   target="_blank">clipboard_handleImages</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-clipboard_notificationDuration"
+                   target="_blank">clipboard_notificationDuration</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-codeSnippet_codeClass"
+                   target="_blank">codeSnippet_codeClass</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-codeSnippet_languages"
+                   target="_blank">codeSnippet_languages</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-codeSnippet_theme"
+                   target="_blank">codeSnippet_theme</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-colorButton_backStyle"
+                   target="_blank">colorButton_backStyle</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-colorButton_colors"
+                   target="_blank">colorButton_colors</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-colorButton_colorsPerRow"
+                   target="_blank">colorButton_colorsPerRow</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-colorButton_enableAutomatic"
+                   target="_blank">colorButton_enableAutomatic</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-colorButton_enableMore"
+                   target="_blank">colorButton_enableMore</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-colorButton_foreStyle"
+                   target="_blank">colorButton_foreStyle</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-colorButton_historyRowLimit"
+                   target="_blank">colorButton_historyRowLimit</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-colorButton_normalizeBackground"
+                   target="_blank">colorButton_normalizeBackground</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-colorButton_renderContentColors"
+                   target="_blank">colorButton_renderContentColors</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-contentsCss"
+                   target="_blank">contentsCss</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-contentsLangDirection"
+                   target="_blank">contentsLangDirection</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-contentsLanguage"
+                   target="_blank">contentsLanguage</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-contextmenu_contentsCss"
+                   target="_blank">contextmenu_contentsCss</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-copyFormatting_allowRules"
+                   target="_blank">copyFormatting_allowRules</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-copyFormatting_allowedContexts"
+                   target="_blank">copyFormatting_allowedContexts</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-copyFormatting_disallowRules"
+                   target="_blank">copyFormatting_disallowRules</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-copyFormatting_keystrokeCopy"
+                   target="_blank">copyFormatting_keystrokeCopy</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-copyFormatting_keystrokePaste"
+                   target="_blank">copyFormatting_keystrokePaste</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-copyFormatting_outerCursor"
+                   target="_blank">copyFormatting_outerCursor</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-coreStyles_bold"
+                   target="_blank">coreStyles_bold</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-coreStyles_italic"
+                   target="_blank">coreStyles_italic</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-coreStyles_strike"
+                   target="_blank">coreStyles_strike</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-coreStyles_subscript"
+                   target="_blank">coreStyles_subscript</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-coreStyles_superscript"
+                   target="_blank">coreStyles_superscript</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-coreStyles_underline"
+                   target="_blank">coreStyles_underline</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-customConfig"
+                   target="_blank">customConfig</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-dataIndentationChars"
+                   target="_blank">dataIndentationChars</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-defaultLanguage"
+                   target="_blank">defaultLanguage</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-delayIfDetached"
+                   target="_blank">delayIfDetached</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-delayIfDetached_callback"
+                   target="_blank">delayIfDetached_callback</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-delayIfDetached_interval"
+                   target="_blank">delayIfDetached_interval</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-devtools_styles"
+                   target="_blank">devtools_styles</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-devtools_textCallback"
+                   target="_blank">devtools_textCallback</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-dialog_backgroundCoverColor"
+                   target="_blank">dialog_backgroundCoverColor</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-dialog_backgroundCoverOpacity"
+                   target="_blank">dialog_backgroundCoverOpacity</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-dialog_buttonsOrder"
+                   target="_blank">dialog_buttonsOrder</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-dialog_magnetDistance"
+                   target="_blank">dialog_magnetDistance</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-dialog_noConfirmCancel"
+                   target="_blank">dialog_noConfirmCancel</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-dialog_startupFocusTab"
+                   target="_blank">dialog_startupFocusTab</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-disableNativeTableHandles"
+                   target="_blank">disableNativeTableHandles</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-disableObjectResizing"
+                   target="_blank">disableObjectResizing</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-disableReadonlyStyling"
+                   target="_blank">disableReadonlyStyling</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-disallowedContent"
+                   target="_blank">disallowedContent</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-div_wrapTable"
+                   target="_blank">div_wrapTable</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-docType"
+                   target="_blank">docType</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-easyimage_class"
+                   target="_blank">easyimage_class</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-editorplaceholder"
+                   target="_blank">editorplaceholder</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-emailProtection"
+                   target="_blank">emailProtection</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-embed_provider"
+                   target="_blank">embed_provider</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-enableContextMenu"
+                   target="_blank">enableContextMenu</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-enableTabKeyTools"
+                   target="_blank">enableTabKeyTools</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-enterMode"
+                   target="_blank">enterMode</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-entities"
+                   target="_blank">entities</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-entities_additional"
+                   target="_blank">entities_additional</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-entities_greek"
+                   target="_blank">entities_greek</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-entities_latin"
+                   target="_blank">entities_latin</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-entities_processNumerical"
+                   target="_blank">entities_processNumerical</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-extraAllowedContent"
+                   target="_blank">extraAllowedContent</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-extraPlugins"
+                   target="_blank">extraPlugins</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-fileTools_defaultFileName"
+                   target="_blank">fileTools_defaultFileName</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-fileTools_requestHeaders"
+                   target="_blank">fileTools_requestHeaders</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-fillEmptyBlocks"
+                   target="_blank">fillEmptyBlocks</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-find_highlight"
+                   target="_blank">find_highlight</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-floatSpaceDockedOffsetX"
+                   target="_blank">floatSpaceDockedOffsetX</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-floatSpaceDockedOffsetY"
+                   target="_blank">floatSpaceDockedOffsetY</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-floatSpacePinnedOffsetX"
+                   target="_blank">floatSpacePinnedOffsetX</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-floatSpacePinnedOffsetY"
+                   target="_blank">floatSpacePinnedOffsetY</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-floatSpacePreferRight"
+                   target="_blank">floatSpacePreferRight</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-fontSize_defaultLabel"
+                   target="_blank">fontSize_defaultLabel</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-fontSize_sizes"
+                   target="_blank">fontSize_sizes</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-fontSize_style"
+                   target="_blank">fontSize_style</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-font_defaultLabel"
+                   target="_blank">font_defaultLabel</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-font_names"
+                   target="_blank">font_names</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-font_style"
+                   target="_blank">font_style</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-forceEnterMode"
+                   target="_blank">forceEnterMode</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-forcePasteAsPlainText"
+                   target="_blank">forcePasteAsPlainText</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-forceSimpleAmpersand"
+                   target="_blank">forceSimpleAmpersand</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-format_address"
+                   target="_blank">format_address</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-format_div"
+                   target="_blank">format_div</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-format_h1"
+                   target="_blank">format_h1</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-format_h2"
+                   target="_blank">format_h2</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-format_h3"
+                   target="_blank">format_h3</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-format_h4"
+                   target="_blank">format_h4</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-format_h5"
+                   target="_blank">format_h5</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-format_h6"
+                   target="_blank">format_h6</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-format_p"
+                   target="_blank">format_p</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-format_pre"
+                   target="_blank">format_pre</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-format_tags"
+                   target="_blank">format_tags</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-fullPage"
+                   target="_blank">fullPage</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-height"
+                   target="_blank">height</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-htmlEncodeOutput"
+                   target="_blank">htmlEncodeOutput</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-ignoreEmptyParagraph"
+                   target="_blank">ignoreEmptyParagraph</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-image_prefillDimensions"
+                   target="_blank">image_prefillDimensions</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-image_previewText"
+                   target="_blank">image_previewText</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-image_removeLinkByEmptyURL"
+                   target="_blank">image_removeLinkByEmptyURL</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-indentClasses"
+                   target="_blank">indentClasses</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-indentOffset"
+                   target="_blank">indentOffset</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-indentUnit"
+                   target="_blank">indentUnit</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-jqueryOverrideVal"
+                   target="_blank">jqueryOverrideVal</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-justifyClasses"
+                   target="_blank">justifyClasses</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-keystrokes"
+                   target="_blank">keystrokes</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-language"
+                   target="_blank">language</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-language_list"
+                   target="_blank">language_list</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-linkDefaultProtocol"
+                   target="_blank">linkDefaultProtocol</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-linkJavaScriptLinksAllowed"
+                   target="_blank">linkJavaScriptLinksAllowed</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-linkPhoneMsg"
+                   target="_blank">linkPhoneMsg</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-linkPhoneRegExp"
+                   target="_blank">linkPhoneRegExp</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-linkShowAdvancedTab"
+                   target="_blank">linkShowAdvancedTab</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-linkShowTargetTab"
+                   target="_blank">linkShowTargetTab</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-magicline_color"
+                   target="_blank">magicline_color</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-magicline_everywhere"
+                   target="_blank">magicline_everywhere</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-magicline_holdDistance"
+                   target="_blank">magicline_holdDistance</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-magicline_keystrokeNext"
+                   target="_blank">magicline_keystrokeNext</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-magicline_keystrokePrevious"
+                   target="_blank">magicline_keystrokePrevious</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-magicline_tabuList"
+                   target="_blank">magicline_tabuList</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-magicline_triggerOffset"
+                   target="_blank">magicline_triggerOffset</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-mathJaxClass"
+                   target="_blank">mathJaxClass</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-mathJaxLib"
+                   target="_blank">mathJaxLib</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-maximize_historyIntegration"
+                   target="_blank">maximize_historyIntegration</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-mentions"
+                   target="_blank">mentions</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-menu_groups"
+                   target="_blank">menu_groups</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-menu_subMenuDelay"
+                   target="_blank">menu_subMenuDelay</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-notification_duration"
+                   target="_blank">notification_duration</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-observableParent"
+                   target="_blank">observableParent</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-on"
+                   target="_blank">on</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-pasteFilter"
+                   target="_blank">pasteFilter</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-pasteTools_keepZeroMargins"
+                   target="_blank">pasteTools_keepZeroMargins</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-plugins"
+                   target="_blank">plugins</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-protectedSource"
+                   target="_blank">protectedSource</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-readOnly"
+                   target="_blank">readOnly</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-removeButtons"
+                   target="_blank">removeButtons</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-removeDialogTabs"
+                   target="_blank">removeDialogTabs</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-removeFormatAttributes"
+                   target="_blank">removeFormatAttributes</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-removeFormatTags"
+                   target="_blank">removeFormatTags</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-removePlugins"
+                   target="_blank">removePlugins</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-resize_dir"
+                   target="_blank">resize_dir</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-resize_enabled"
+                   target="_blank">resize_enabled</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-resize_maxHeight"
+                   target="_blank">resize_maxHeight</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-resize_maxWidth"
+                   target="_blank">resize_maxWidth</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-resize_minHeight"
+                   target="_blank">resize_minHeight</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-resize_minWidth"
+                   target="_blank">resize_minWidth</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-sharedSpaces"
+                   target="_blank">sharedSpaces</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-shiftEnterMode"
+                   target="_blank">shiftEnterMode</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-shiftLineBreaks"
+                   target="_blank">shiftLineBreaks</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-skin"
+                   target="_blank">skin</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-smiley_columns"
+                   target="_blank">smiley_columns</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-smiley_descriptions"
+                   target="_blank">smiley_descriptions</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-smiley_images"
+                   target="_blank">smiley_images</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-smiley_path"
+                   target="_blank">smiley_path</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-sourceAreaTabSize"
+                   target="_blank">sourceAreaTabSize</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-specialChars"
+                   target="_blank">specialChars</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-startupFocus"
+                   target="_blank">startupFocus</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-startupMode"
+                   target="_blank">startupMode</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-startupOutlineBlocks"
+                   target="_blank">startupOutlineBlocks</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-startupShowBorders"
+                   target="_blank">startupShowBorders</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-stylesSet"
+                   target="_blank">stylesSet</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-stylesheetParser_skipSelectors"
+                   target="_blank">stylesheetParser_skipSelectors</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-stylesheetParser_validSelectors"
+                   target="_blank">stylesheetParser_validSelectors</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-tabIndex"
+                   target="_blank">tabIndex</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-tabSpaces"
+                   target="_blank">tabSpaces</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-templates"
+                   target="_blank">templates</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-templates_files"
+                   target="_blank">templates_files</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-templates_replaceContent"
+                   target="_blank">templates_replaceContent</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-title"
+                   target="_blank">title</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-toolbar"
+                   target="_blank">toolbar</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-toolbarCanCollapse"
+                   target="_blank">toolbarCanCollapse</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-toolbarGroupCycling"
+                   target="_blank">toolbarGroupCycling</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-toolbarGroups"
+                   target="_blank">toolbarGroups</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-toolbarLocation"
+                   target="_blank">toolbarLocation</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-toolbarStartupExpanded"
+                   target="_blank">toolbarStartupExpanded</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-uiColor"
+                   target="_blank">uiColor</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-undoStackSize"
+                   target="_blank">undoStackSize</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-uploadUrl"
+                   target="_blank">uploadUrl</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-useComputedState"
+                   target="_blank">useComputedState</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-widget_keystrokeInsertLineAfter"
+                   target="_blank">widget_keystrokeInsertLineAfter</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-widget_keystrokeInsertLineBefore"
+                   target="_blank">widget_keystrokeInsertLineBefore</a>
+            <li><a class="api-member-name"
+                   href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-width"
+                   target="_blank">width</a>
+        </ul>
+
+
+    </section>
+
 
 <hr>
 
@@ -145,7 +869,7 @@
                 <td>Recommended</td>
             </tr>
             <tr>
-                <td>🌐 Repository URL</td>
+                <td>? Repository URL</td>
                 <td><a href="https://github.com/xoopscube/legacy" target="_blank">https://github.com/xoopscube/legacy ⭧</a></td>
             </tr>
             </tbody>
@@ -155,3 +879,4 @@
 
 
 </article>
+</div>
