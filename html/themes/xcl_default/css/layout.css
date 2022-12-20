@@ -557,15 +557,12 @@ ul.icon-list li {
 .topic-sort {}
 
 .topics-list {
-    border:1px dotted darkcyan;
+    /*border:1px dotted darkcyan;*/
 }
 .topic-last-post {
-    outline: 1px dotted darkorange;
 }
 .post {
     margin-bottom: 1em;
-    border:1px dotted darkolivegreen;
-    outline: 1px dotted darkorange;
 }
 .post-author {
 }

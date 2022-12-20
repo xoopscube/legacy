@@ -53,7 +53,7 @@
 }
 :root{
     /* -------------------- Development Mode */
-    --dev-mode: block; /*  Display Smarty Template Name : block, none */
+    --dev-mode: none; /*  Display Smarty Template Name : block, none */
 
     --red: #e53935;
     --pink: #d81b60;
