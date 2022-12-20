@@ -30,17 +30,22 @@
     <table class="outer">
         <thead>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD_FILE}></td>
-            <td>
-            <{xoops_input type=file name=upload}>
-            </td>
+            <th colspan="2">Template Set .tar</th>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}></td>
             <td>
-            <{xoops_input type=text name=tplset_name size=50 maxlength=255}>
+            <{xoops_input type=text name=tplset_name size=50 maxlength=191}>
+            </td>
+        </tr>
+        <tr>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD_FILE}></td>
+            <td>
+                <{* TODO archive TAR.GZ *}>
+                <{* xoops_input type=file name=upload accept="tar" *}>
+                <input type="file" name="upload" id="legacy_xoopsform_upload" accept=".tar">
             </td>
         </tr>
         </tbody>

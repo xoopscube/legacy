@@ -37,7 +37,7 @@ define( '_TPLSADMIN_DD_GETTEMPLATES' , 'Select a set before pushing either butto
 
 define( '_TPLSADMIN_FMT_MSG_PUTTEMPLATES' , '%d templates are imported.');
 define( '_TPLSADMIN_DT_PUTTEMPLATES' , 'Upload templates');
-define( '_TPLSADMIN_DD_PUTTEMPLATES' , 'Select a set you want to upload/overwrite before uploading the zip/tgz archive including the template files (.html).<br> It is not necessary to check the depth of the paths in the archive.');
+define( '_TPLSADMIN_DD_PUTTEMPLATES' , 'Select a template set you want to upload/overwrite.<br>Select the file <b>tar</b> archive including the template files (.html)<br>Automatically extracts all files  from the archive to their absolute location no matter the tree structure.');
 
 
 define( '_TPLSADMIN_ERR_NOTUPLOADED' , 'No files are uploaded.');

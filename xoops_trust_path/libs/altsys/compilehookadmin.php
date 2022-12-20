@@ -247,7 +247,7 @@ echo "
 		dd	{ margin-left:20px; }
 	</style>
 	
-	<form action='?mode=admin&amp;lib=altsys&amp;page=compilehookadmin' method='post' class='odd' style='margin: 40px;'>
+	<form action='?mode=admin&amp;lib=altsys&amp;page=compilehookadmin' method='post'>
 \n";
 
 foreach ( $compile_hooks as $command => $compile_hook ) {
@@ -270,7 +270,7 @@ foreach ( $compile_hooks as $command => $compile_hook ) {
 	</form>
 
 
-	<form action='?mode=admin&amp;lib=altsys&amp;page=get_tplsvarsinfo' method='post' class='odd' style='margin: 40px;' target='_blank'>
+	<form action='?mode=admin&amp;lib=altsys&amp;page=get_tplsvarsinfo' method='post' style='margin: 40px;' target='_blank'>
 		<h3>" . _TPLSADMIN_DT_GETTPLSVARSINFO_DW . "</h3>
 		<div class='ui-card-full'>
 		<p>" . _TPLSADMIN_DD_GETTPLSVARSINFO_DW . "</p>
@@ -278,7 +278,7 @@ foreach ( $compile_hooks as $command => $compile_hook ) {
 		</div>
 	</form>
 
-	<form action='?mode=admin&amp;lib=altsys&amp;page=get_templates' method='post' class='odd' style='margin: 40px;' target='_blank'>
+	<form action='?mode=admin&amp;lib=altsys&amp;page=get_templates' method='post' style='margin: 40px;' target='_blank'>
 		<h3>" . _TPLSADMIN_DT_GETTEMPLATES . "</h3>
 		<div class='ui-card-full'>
 		<p>" . _TPLSADMIN_DD_GETTEMPLATES . "</p>
@@ -286,11 +286,11 @@ foreach ( $compile_hooks as $command => $compile_hook ) {
 		</div>
 	</form>
 
-	<form action='?mode=admin&amp;lib=altsys&amp;page=put_templates' method='post' enctype='multipart/form-data' class='odd' style='margin: 40px;'>
+	<form action='?mode=admin&amp;lib=altsys&amp;page=put_templates' method='post' enctype='multipart/form-data' style='margin: 40px;'>
 		<h3>" . _TPLSADMIN_DT_PUTTEMPLATES . "</h3>
 		<div class='ui-card-full'>
 		<p>" . _TPLSADMIN_DD_PUTTEMPLATES . "</p>
-		<p><select name='tplset'>$tplset_options</select> <input type='file' name='tplset_archive' size='60'> <input class='button upload' type='submit' value='" . _SUBMIT . "'></p>
+		<p><select name='tplset'>$tplset_options</select> <input type='file' accept='.tar' name='tplset_archive' size='60'> <input class='button upload' type='submit' value='" . _SUBMIT . "'></p>
 		</div>
     </form>";
 

@@ -48,17 +48,30 @@ $orig_filename4check = mb_strtolower( $_FILES['tplset_archive']['name'] );
 if ( '.zip' == mb_strtolower( mb_substr( $orig_filename4check, - 4 ) ) ) {
 	// zip
 
+    // TODO gigamaster redirect with message
+    $msg = "Deprecated zip! "._TPLSADMIN_ERR_NOTUPLOADED;
+    redirect_header( '?mode=admin&lib=altsys&page=compilehookadmin', 3, $msg );
+    redirect_header( $_SERVER['REQUEST_URI'], 1, $msg );
+    exit;
+
 	// zip
-	require_once __DIR__ . '/include/Archive_Zip.php';
-	$reader = new Archive_Zip( $_FILES['tplset_archive']['tmp_name'] );
-	$files  = $reader->extract( [ 'extract_as_string' => true ] );
-	if ( ! is_array( @$files ) ) {
-		die( $reader->errorName() );
-	}
-	$do_upload = true;
+	//require_once __DIR__ . '/include/Archive_Zip.php';
+	//$reader = new Archive_Zip( $_FILES['tplset_archive']['tmp_name'] );
+	//$files  = $reader->extract( [ 'extract_as_string' => true ] );
+	//if ( ! is_array( @$files ) ) {
+	//	die( $reader->errorName() );
+	//}
+	//$do_upload = true;
 } elseif ( '.tgz' == mb_substr( $orig_filename4check, - 4 ) || '.tar.gz' == mb_substr( $orig_filename4check, - 7 ) ) {
 	// tar.gz
 
+    // TODO gigamaster redirect with message
+    //$msg = "Deprecated zip"._TPLSADMIN_ERR_NOTUPLOADED;
+    $msg = "Deprecated .tgz and .tar.gz ! "._TPLSADMIN_ERR_NOTUPLOADED;
+    redirect_header( '?mode=admin&lib=altsys&page=compilehookadmin', 3, $msg );
+    exit;
+//TODO gigamaster TAR
+} elseif ( '.tar' == mb_substr( $orig_filename4check, - 4 ) ) {
 	// tar.gz
 	require_once XOOPS_ROOT_PATH . '/class/class.tar.php';
 	$tar = new tar();

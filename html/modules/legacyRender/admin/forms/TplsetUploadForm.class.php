@@ -12,7 +12,9 @@ class LegacyRender_TplsetUploadForm extends XCube_ActionForm
     public $mOldFileName = null;
     public $_mIsNew = null;
     public $mFormFile = null;
-    public $_allowExtensions = ['tar', 'tar.gz', 'tgz', 'gz'];
+    // TODO github issue loop bug #200 bug loop with archive zip/tar.gz
+    public $_allowExtensions = ['tar'];
+    //public $_allowExtensions = ['tar', 'tar.gz', 'tgz', 'gz'];
 
     public function getTokenName()
     {

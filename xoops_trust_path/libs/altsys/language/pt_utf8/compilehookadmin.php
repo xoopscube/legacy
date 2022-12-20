@@ -15,7 +15,7 @@ define( '_TPLSADMIN_DD_ENCLOSEBYCOMMENT' , "Dois comentários em HTML serão col
 define( '_TPLSADMIN_DD_GETTEMPLATES' , "Selecione um conjunto antes de apertar cada botão.");
 define( '_TPLSADMIN_DD_GETTPLSVARSINFO_DW' , "Primeiro , abra o Gerenciador de Extensões do Adobe DreamWeaver.<br />Extraia o arquivo descarregado.<br />Execute os arquivos com a extensão .mxi e você encontrará diálogos de instalação.<br />Os snippets para variáveis de modelo de seu site serão utilizáveis após reiniciar o Adobe DreamWeaver.");
 define( '_TPLSADMIN_DD_HOOKSAVEVARS' , "O primeiro passo para obtenção das informações das variáveis de modelo em seu site. As informações das variáveis do modelo serão coletadas quando o lado público de seu site for exibido. Após os modelos que você deseja editar forem mostrados, obtenha as informações das variáveis do modelo através dos botões subjacentes.");
-define( '_TPLSADMIN_DD_PUTTEMPLATES' , "Selecione um conjunto que você queira enviar ou subescrever, antes de enviar o arquivo zip ou tgz incluindo esses arquivos des modelos (.html). Você não precisa verificar a profundidade dos caminhos nos arquivos.");
+define( '_TPLSADMIN_DD_PUTTEMPLATES' , "Selecione um conjunto de modelos que você deseja substituir.<br>Selecione o arquivo <b>tar</b> incluindo os modelos (.html)<br>Extrair automaticamente todos os modelos, independentemente da estrutura em árvore do directório do arquivo.");
 define( '_TPLSADMIN_DD_REMOVEHOOKS' , "Isso remove comentários, códigos <q><code>DIV</code></q>, e sequências lógicas inseridas pelas operações acima em cada cache compilado do modelo.");
 define( '_TPLSADMIN_DT_ENCLOSEBYBORDEREDDIV' , "Inserir códigos <q><code>DIV</code></q>");
 define( '_TPLSADMIN_DT_ENCLOSEBYCOMMENT' , "Inserir comentários");

@@ -36,7 +36,7 @@ define( '_TPLSADMIN_DD_GETTEMPLATES' , 'テンプレートセットを選択し�
 
 define( '_TPLSADMIN_FMT_MSG_PUTTEMPLATES' , '%d 個のテンプレートをインポートしました');
 define( '_TPLSADMIN_DT_PUTTEMPLATES' , 'テンプレートをアップロードする');
-define( '_TPLSADMIN_DD_PUTTEMPLATES' , '上書きしたいテンプレートセットを選択してから、各テンプレートファイル(.html)をzipかtar.gzにくるんでアップロードしてください。テンプレートファイル名さえ正しければ、パスの深さは気にしなくて構いません');
+define( '_TPLSADMIN_DD_PUTTEMPLATES' , '置き換える一連のテンプレートを選択します。<br> テンプレート (.html) を含む <b>tar</b> ファイルを選択します。<br> ディレクトリ ツリー構造に関係なく、すべてのテンプレートを自動的に抽出します。');
 
 
 define( '_TPLSADMIN_ERR_NOTUPLOADED' , 'ファイルがアップロードされていません');

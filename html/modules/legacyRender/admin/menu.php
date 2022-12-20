@@ -1,5 +1,9 @@
 <?php
 
+$adminmenu[5]['title']=_MI_LEGACYRENDER_ADMENU_THEME_SETTING;
+$adminmenu[5]['link']= '../legacy/admin/index.php?action=ThemeList';
+$adminmenu[5]['show']=true;
+
 $adminmenu[10]['title']=_MI_LEGACYRENDER_ADMENU_TEMPLATE_MANAGE;
 $adminmenu[10]['link']= 'admin/index.php?action=TplsetList';
 $adminmenu[10]['show']=true;

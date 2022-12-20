@@ -36,7 +36,7 @@ define( '_TPLSADMIN_DD_GETTEMPLATES' , 'Select a set before pushing either butto
 
 define( '_TPLSADMIN_FMT_MSG_PUTTEMPLATES' , '%d templates are imported.');
 define( '_TPLSADMIN_DT_PUTTEMPLATES' , 'Upload templates');
-define( '_TPLSADMIN_DD_PUTTEMPLATES' , 'Select a set you want to upload/overwrite before uploading zip/tgz archive including template files (.html). You need not to check depths of the paths in the archive.');
+define( '_TPLSADMIN_DD_PUTTEMPLATES' , "Sélectionner un ensemble de modèles que vous souhaitez remplacer.<br> Sélectionner le fichier <b>tar</b> comprenant les modèles (.html)<br> Extraire automatiquement tous les modèles indépendamment de l'arborescence des répertoires.");
 
 
 define( '_TPLSADMIN_ERR_NOTUPLOADED' , 'No files are uploaded.');

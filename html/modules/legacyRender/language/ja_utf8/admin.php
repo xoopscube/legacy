@@ -88,7 +88,7 @@ define( '_AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD' , 'ダウンロード');
 define( '_AD_LEGACYRENDER_LANG_TPLSET_ID' , 'ID');
 define( '_AD_LEGACYRENDER_LANG_TPLSET_NAME' , '名前');
 define( '_AD_LEGACYRENDER_LANG_TPLSET_UPLOAD' , 'テンプレートセットのアップロード');
-define( '_AD_LEGACYRENDER_LANG_TPLSET_UPLOAD_FILE' , 'アップロードファイル');
+define( '_AD_LEGACYRENDER_LANG_TPLSET_UPLOAD_FILE' , 'テンプレート セット file.tar のアップロードを選択します。');
 define( '_AD_LEGACYRENDER_LANG_TPLSET_UPLOAD_RESULT' , 'テンプレートセットアップロード結果');
 define( '_AD_LEGACYRENDER_LANG_UN_LIMITED' , '無制限');
 define( '_AD_LEGACYRENDER_LANG_UPLOAD' , 'アップロード');
@@ -97,6 +97,6 @@ define( '_AD_LEGACYRENDER_MESSAGE_CONFIRM_DELETE' , '以下のデータを本当
 define( '_AD_LEGACYRENDER_MESSAGE_UPLOAD_TEMPLATE_SUCCESS' , 'テンプレートのアップロードに成功しました');
 define( '_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_1' , 'まず、デフォルトのテンプレートセットの複製を作成し、テンプレートを変更してサイトをカスタマイズしましょう。詳しくはヘルプをご覧ください。');
 define( '_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2' , 'サイトに適用するテンプレートセットを変更しますか？　選択ボタンを押して、テンプレートセットを選びましょう。詳しくはヘルプをご覧ください。');
-define( '_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD' , 'もしこの場で名前を指定しなかった場合は、アップロードされたファイルからテンプレートセット名が取得されます。<br/>このシステムが対応しているTAR.GZ形式のファイルをアップロードしてください。');
+define( '_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD' , 'もしこの場で名前を指定しなかった場合は、アップロードされたファイルからテンプレートセット名が取得されます。<br>このシステムが対応しているTAR.GZ形式のファイルをアップロードしてください。');
 define( '_AD_LEGACYRENDER_LANG_HTACCESS' , '.htaccess ファイル');
 define( '_AD_LEGACYRENDER_DESC_HTACCESS' , 'お使いのサーバが mod_rewrite に対応していれば、このページの設定を .htaccess ファイルに追加することで URI を変換することが出来ます。このオプションを使う場合、<a href="' . XOOPS_URL . '/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">全般設定</a> 画面で Cool Uri のオプションを「はい」に設定してください。');
