@@ -13,7 +13,7 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_NAME', 'Forum');
 
     // A brief description of this module
-    define($constpref . '_DESC', 'Module to manage Comments and Forums.');
+    define($constpref . '_DESC', 'Duplicatable module to manage Comments and Forums.');
 
     // Names of blocks for this module (Not all module has blocks)
     define($constpref . '_BNAME_LIST_TOPICS', 'Topics');
@@ -32,70 +32,70 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_ADMENU_MYPREFERENCES', 'Preferences');
 
     // configurations
-    define($constpref . '_TOP_MESSAGE', 'Top Message of Forum');
+    define($constpref . '_TOP_MESSAGE', 'Description of TOP category [ html ]');
     define($constpref . '_TOP_MESSAGEDEFAULT', '<h2>Top Forum</h2><p>To start viewing messages, select a category and then a forum from the selection below.</p>');
-    define($constpref . '_SHOW_BREADCRUMBS', 'Display breadcrumbs');
-    define($constpref . '_SHOW_RSS', 'Display link RSS');
-    define($constpref . '_DEFAULT_OPTIONS', 'Default checked in post form');
-    define($constpref . '_DEFAULT_OPTIONSDSC', 'List checked options separated by comma(,).<br>eg) smiley,xcode,br,number_entity<br>available options: special_entity html attachsig u2t_marked');
-    define($constpref . '_USENAME', 'display name');
-    define($constpref . '_USENAMEDESC', "which name to use display name 'uname'(user ID) or 'name'(Real name). <br> the default is 'uname'(user ID)");
+    define($constpref . '_SHOW_BREADCRUMBS', 'Enable breadcrumbs');
+    define($constpref . '_SHOW_RSS', 'Enable RSS');
+    define($constpref . '_DEFAULT_OPTIONS', 'Default filters');
+    define($constpref . '_DEFAULT_OPTIONSDSC', 'Specify filter names separated by comma ",". Example: smiley,xcode,br,number_entity<br>Available options: special_entity, html attachsig, u2t_marked');
+    define($constpref . '_USENAME', 'Display Username or Real Name');
+    define($constpref . '_USENAMEDESC', "Select the name to display : 'uname'(user ID) or 'name'(Real name). Default value (user ID): 'uname'");
     define($constpref . '_USENAME_UNAME', "use'uname'(user ID)");
     define($constpref . '_USENAME_NAME', "use'name'(Real name)");
-    define($constpref . '_ALLOW_HTML', 'Allow HTML');
-    define($constpref . '_ALLOW_HTMLDSC', 'Don\'t turn this on casually. It cause Script Insertion vulnerability if malicious user can post.');
-    define($constpref . '_ALLOW_TEXTIMG', 'Allow external images in the post');
-    define($constpref . '_ALLOW_TEXTIMGDSC', 'If some attackers post an external image using [img], they can know IPs or User-Agents of the site users.');
-    define($constpref . '_ALLOW_SIG', 'Allow Signature');
+    define($constpref . '_ALLOW_HTML', 'Enable HTML');
+    define($constpref . '_ALLOW_HTMLDSC', 'Beware of the risks of Script injection attack by malicious users. Allow trusted user groups only.');
+    define($constpref . '_ALLOW_TEXTIMG', 'Enable external images in comments and posts');
+    define($constpref . '_ALLOW_TEXTIMGDSC', 'These images, sometimes called Web Beacons, can be used to track IPs or User-Agents of registered users. External images are not a security threat. However, it is recommended to turn off external images.');
+    define($constpref . '_ALLOW_SIG', 'Enable Signature');
     define($constpref . '_ALLOW_SIGDSC', '');
-    define($constpref . '_ALLOW_SIGIMG', 'Allow to display external images in the signature');
-    define($constpref . '_ALLOW_SIGIMGDSC', 'If some attackers post an external image using [img], they can know IPs or User-Agents of site users.');
-    define($constpref . '_USE_VOTE', 'use the feature of VOTE');
-    define($constpref . '_USE_SOLVED', 'use the feature of SOLVED');
-    define($constpref . '_ALLOW_MARK', 'use the feature of MARKING');
-    define($constpref . '_ALLOW_HIDEUID', 'Allow a registered user to post anonymously');
-    define($constpref . '_POSTS_PER_TOPIC', 'Max posts in a topic');
-    define($constpref . '_POSTS_PER_TOPICDSC', 'A topic having this number of posts will be locked automatically.');
-    define($constpref . '_HOT_THRESHOLD', 'Hot Topic Threshold');
-    define($constpref . '_HOT_THRESHOLDDSC', '');
-    define($constpref . '_TOPICS_PER_PAGE', 'Topics per page in the view of a forum');
+    define($constpref . '_ALLOW_SIGIMG', 'Enable external images in signature');
+    define($constpref . '_ALLOW_SIGIMGDSC', 'You can turn off automatic loading of external images as an additional privacy protection.');
+    define($constpref . '_USE_VOTE', 'Enable Voting');
+    define($constpref . '_USE_SOLVED', 'Enable Solved');
+    define($constpref . '_ALLOW_MARK', 'Enable Marking');
+    define($constpref . '_ALLOW_HIDEUID', 'Allow Users to Post Anonymously<br>Registered users can check the anonymous option when they write topics and posts.');
+    define($constpref . '_POSTS_PER_TOPIC', 'Enable Auto-lock Topic');
+    define($constpref . '_POSTS_PER_TOPICDSC', 'Set the maximum posts to automatically lock topic. Default value: 25');
+    define($constpref . '_HOT_THRESHOLD', 'Enable Hot Topic Threshold');
+    define($constpref . '_HOT_THRESHOLDDSC', 'Set the number of replies that a topic must receive for it to be considered a "hot topic". Default value: 10');
+    define($constpref . '_TOPICS_PER_PAGE', 'Topics per page in the view forum');
     define($constpref . '_TOPICS_PER_PAGEDSC', '');
-    define($constpref . '_VIEWALLBREAK', 'Topics per page in the view all forums');
+    define($constpref . '_VIEWALLBREAK', 'Topics per page in view all');
     define($constpref . '_VIEWALLBREAKDSC', '');
-    define($constpref . '_SELFEDITLIMIT', 'Time limit for users edit (sec)');
-    define($constpref . '_SELFEDITLIMITDSC', 'Allow users to edit own post, set the value in seconds. Disable Edit Post, set 0.');
-    define($constpref . '_SELFDELLIMIT', 'Time limit for users delete (sec)');
-    define($constpref . '_SELFDELLIMITDSC', 'Allow users to delete own posts, set the value in seconds. Disable Delete Post, set 0. Parent posts cannot be removed.');
-    define($constpref . '_CSS_URI', 'URI of CSS file for this module');
-    define($constpref . '_CSS_URIDSC', 'relative or absolute path can be set. default: {mod_url}/index.php?page=main_css');
+    define($constpref . '_SELFEDITLIMIT', 'Time limit to edit posts');
+    define($constpref . '_SELFEDITLIMITDSC', 'This specifies the amount of time users have to re-edit forum postings. Disable with value set to 0. Default in seconds (4min): 240');
+    define($constpref . '_SELFDELLIMIT', 'Time limit to delete posts');
+    define($constpref . '_SELFDELLIMITDSC', 'Enable users to delete own posts. Parent posts cannot be removed. Set the value in seconds. Disable delete with value set to 0. ');
+    define($constpref . '_CSS_URI', 'CSS file for this module');
+    define($constpref . '_CSS_URIDSC', 'Relative or absolute path can be defined. Default value : {mod_url}/index.php?page=main_css');
     define($constpref . '_IMAGES_DIR', 'Directory for image files');
-    define($constpref . '_IMAGES_DIRDSC', 'relative path should be set in the module directory. default: images');
-    define($constpref . '_BODY_EDITOR', 'Body Editor');
+    define($constpref . '_IMAGES_DIRDSC', 'Relative path to module in the public directory e.g. dirname/images. Default value : images');
+    define($constpref . '_BODY_EDITOR', 'Editor');
     define($constpref . '_BODY_EDITORDSC', 'WYSIWYG editor will be enabled under only forums allowing HTML. With forums escaping HTML specialchars, xoopsdhtml will be displayed automatically.');
     define($constpref . '_ANONYMOUS_NAME', 'Anonymous Name');
-    define($constpref . '_ANONYMOUS_NAMEDSC', '');
-    define($constpref . '_ICON_MEANINGS', 'Meanings of icons');
-    define($constpref . '_ICON_MEANINGSDSC', 'Specify ALTs of icons. each alts should be separated by pipe(|). The first alt corresponds "posticon0.gif".');
+    define($constpref . '_ANONYMOUS_NAMEDSC', 'A pseudonym or alias is a fictitious name that a person or group assumes for a particular purpose, which differs from their original or true name. Default value: guest');
+    define($constpref . '_ICON_MEANINGS', 'Alt attribute of icons');
+    define($constpref . '_ICON_MEANINGSDSC', 'The alt attribute provides alternative information explaining the meaning of forum icons.<br>Specify each alt separated by pipe "|". The first alt corresponds to "posticon0.svg"<br>Default value: none|normal|unhappy|happy|lower it|raise it|report|question');
     define($constpref . '_ICON_MEANINGSDEF', 'none|normal|unhappy|happy|lower it|raise it|report|question');
-    define($constpref . '_GUESTVOTE_IVL', 'Vote from guests');
-    define($constpref . '_GUESTVOTE_IVLDSC', 'Set this 0, to disable voting from guest. The other this number means time(sec.) to allow second post from the same IP.');
-    define($constpref . '_ANTISPAM_GROUPS', 'Groups should be checked anti-SPAM');
-    define($constpref . '_ANTISPAM_GROUPSDSC', 'Usually set all blank.');
-    define($constpref . '_ANTISPAM_CLASS', 'Class name of anti-SPAM');
-    define($constpref . '_ANTISPAM_CLASSDSC', 'Default value is "default". If you disable anti-SPAM against guests even, set it blank');
-    define($constpref . '_RSS_SHOW_HIDDEN', 'RSS Show hidden topics');
-    define($constpref . '_RSS_SHOW_HIDDENDSC', 'Show hidden (comment integrated) topic title.');
-    define($constpref . '_RSS_HIDDEN_TITLE', 'RSS Title of hidden topic');
-    define($constpref . '_RSS_HIDDEN_TITLEDSC', 'Own title uses when empty value.');
+    define($constpref . '_GUESTVOTE_IVL', 'Enable Voting from guests');
+    define($constpref . '_GUESTVOTE_IVLDSC', 'Allow votes from the same IP with required delay in seconds. Disable with value set to 0. Default value: 86400.');
+    define($constpref . '_ANTISPAM_GROUPS', 'Anti-SPAM ');
+    define($constpref . '_ANTISPAM_GROUPSDSC', 'Spam filter settings can be applied to User groups. If guests are not allowed to post, you can leave all unchecked.');
+    define($constpref . '_ANTISPAM_CLASS', ' Anti-SPAM Class name');
+    define($constpref . '_ANTISPAM_CLASSDSC', 'If you disable Anti-SPAM for guests, leave input field blank. Default class name: defaultmobile<br>Available options : defaultmobilesmart, japanese and japanesemobilesmart require WizMobile by Gusagi or hyp_common ktai-renderer by Nao-pon.');
+    define($constpref . '_RSS_SHOW_HIDDEN', 'Enable RSS Show hidden topics');
+    define($constpref . '_RSS_SHOW_HIDDENDSC', 'Show hidden topics from comment-integration.');
+    define($constpref . '_RSS_HIDDEN_TITLE', 'Enable RSS Show Title of hidden topics');
+    define($constpref . '_RSS_HIDDEN_TITLEDSC', 'Default title used when empty value.');
 
 
     // Notify Categories
     define($constpref . '_NOTCAT_TOPIC', 'This topic');
-    define($constpref . '_NOTCAT_TOPICDSC', 'Notifications about the targetted topic');
+    define($constpref . '_NOTCAT_TOPICDSC', 'Notifications about the targeted topic');
     define($constpref . '_NOTCAT_FORUM', 'This forum');
-    define($constpref . '_NOTCAT_FORUMDSC', 'Notifications about the targetted forum');
+    define($constpref . '_NOTCAT_FORUMDSC', 'Notifications about the targeted forum');
     define($constpref . '_NOTCAT_CAT', 'This category');
-    define($constpref . '_NOTCAT_CATDSC', 'Notifications about the targetted category');
+    define($constpref . '_NOTCAT_CATDSC', 'Notifications about the targeted category');
     define($constpref . '_NOTCAT_GLOBAL', 'All categories');
     define($constpref . '_NOTCAT_GLOBALDSC', 'Notifications about all categories');
 

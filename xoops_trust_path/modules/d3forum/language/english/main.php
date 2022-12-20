@@ -1,6 +1,6 @@
 <?php
 
-define( '_MD_D3FORUM_ON' , 'Posted on');
+define( '_MD_D3FORUM_ON' , 'Posted');
 define( '_MD_D3FORUM_LASTMODIFIED' , 'Last modified');
 define( '_MD_D3FORUM_HISTORIES' , 'View edit history');
 define( '_MD_D3FORUM_BY' , 'Posted by');
@@ -19,7 +19,7 @@ define( '_MD_D3FORUM_BTN_UPDATE' , 'Update');
 define( '_MD_D3FORUM_MSG_UPDATED' , 'Updated successfully');
 define( '_MD_D3FORUM_BTN_REFRESHTOPICS' , 'Refresh');
 define( '_MD_D3FORUM_POST' , 'Post');
-define( '_MD_D3FORUM_DOPOST' , 'Post');
+define( '_MD_D3FORUM_DOPOST' , 'New Post');
 define( '_MD_D3FORUM_TOPIC' , 'Topic');
 define( '_MD_D3FORUM_FORUM' , 'Forum');
 define( '_MD_D3FORUM_CATEGORY' , 'Category');
@@ -235,7 +235,7 @@ Define( '_MD_D3FORUM_LABEL_ATTACHSIG' , 'Attach signature');
 Define( '_MD_D3FORUM_POSTREPLY' , 'Reply');
 Define( '_MD_D3FORUM_POSTEDIT' , 'Edit');
 Define( '_MD_D3FORUM_POSTDELETE' , 'Delete');
-Define( '_MD_D3FORUM_EDITTIMELIMITED' , 'Sorry, time has been expired to edit this post');
+Define( '_MD_D3FORUM_EDITTIMELIMITED' , 'Sorry, the delay to edit this post has expired.');
 Define( '_MD_D3FORUM_NOTICE_YOUAREEDITING' , 'You are editing the post now !');
 Define( '_MD_D3FORUM_ERR_NOMESSAGE' , 'You have posted an empty message');
 

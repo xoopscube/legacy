@@ -64,14 +64,14 @@
 
 <{* /////// QUICK REPLY == 3 \\\\\\\ *}>
 <{if $first_post.can_reply && ($postorder==3)}>
-<{include file="`$xoops_theme`/templates/$mydirname/inc_post_form_quick.html" uname=$xoops_uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw}>
-<{* include file="db:`$mydirname`_inc_post_form_quick.html" uname=$xoops_uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw *}>
+<{* include file="`$xoops_theme`/templates/$mydirname/inc_post_form_quick.html" uname=$xoops_uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw *}>
+<{include file="db:`$mydirname`_inc_post_form_quick.html" uname=$xoops_uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw}>
 <{/if}>
 
 <{* /////// Quick Reply Form  !=3 \\\\\\\ *}>
 <{if $first_post.can_reply && ($postorder!=3)}>
-<{include file="`$xoops_theme`/templates/$mydirname/inc_post_form_quick.html"  uname=$uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw}>
-<{* include file="db:`$mydirname`_inc_post_form_quick.html" uname=$uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw *}>
+<{* include file="`$xoops_theme`/templates/$mydirname/inc_post_form_quick.html"  uname=$uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw *}>
+<{include file="db:`$mydirname`_inc_post_form_quick.html" uname=$uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw}>
 <{/if}>
 
 <hr>

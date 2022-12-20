@@ -16,8 +16,57 @@
     <input type="hidden" name="page" value="search">
 
 <article id="search-advanced">
-
+    <header>
     <h2><{$smarty.const._MD_D3FORUM_TITLE_SEARCH}></h2>
+    </header>
+
+    <div id="search-results">
+        <{if $show_results}>
+
+        <h3><{$smarty.const._MD_D3FORUM_TITLE_SEARCHRESULTS}></h3>
+
+        <{if $results}>
+
+        <div class="tips"><{$hits_count|string_format:$smarty.const._MD_D3FORUM_FMT_SEARCHHITS}></div>
+
+        <table class="outer searchresult">
+            <thead>
+            <tr>
+                <th abbr="<{$smarty.const._MD_D3FORUM_FORUM}>"><{$smarty.const._MD_D3FORUM_FORUM}></th>
+                <th abbr="<{$smarty.const._MD_D3FORUM_SUBJECT}>"><{$smarty.const._MD_D3FORUM_SUBJECT}></th>
+                <th abbr="<{$smarty.const._MD_D3FORUM_POSTER}>"><{$smarty.const._MD_D3FORUM_POSTER}></th>
+                <th abbr="<{$smarty.const._MD_D3FORUM_VIEWS}>"><{if $mod_config.use_vote}><{$smarty.const._MD_D3FORUM_VOTEPOINTAVG}><{else}><{$smarty.const._MD_D3FORUM_VIEWS}><{/if}></th>
+                <th abbr="<{$smarty.const._MD_D3FORUM_ON}>"><{$smarty.const._MD_D3FORUM_ON}></th>
+            </tr>
+            </thead>
+            <{* ----- start search results *}>
+            <{foreach from=$results item=post}>
+            <tr>
+                <td><a href="<{$mod_url}>/index.php?forum_id=<{$post.forum_id}>"><{$post.forum_title}></a></td>
+                <td>
+                    <a href="<{$mod_url}>/index.php?post_id=<{$post.post_id}>" data-tooltip="<{$post.subject}> - <{$post.body_length|string_format:$smarty.const._MD_D3FORUM_FMT_BYTE}>">
+                        <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$post.icon}>.svg"><{$post.subject|truncate:28}></a>
+                    <{* <span class="badge"><{$post.body_length|string_format:$smarty.const._MD_D3FORUM_FMT_BYTE}></span> *}>
+                </td>
+                <td><a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>"><{$post.poster_uname}></a></td>
+                <td><span class="badge"><{if $mod_config.use_vote}><{$post.votes_avg|string_format:"%.2f"}>/<{$post.votes_count}><{else}><{$post.topic_views}><{/if}></span></td>
+                <td><span class="badge"><{$post.post_time_formatted}></span></td>
+            </tr>
+            <{/foreach}>
+            <{* ----- end search results *}>
+        </table>
+        <hr>
+        <{else}>
+
+        <{* no hit *}>
+        <div class="alert warning">
+            <p><{$smarty.const._MD_D3FORUM_MSG_NOMATCH}></p>
+        </div>
+
+        <{/if}>
+
+        <{/if}>
+    </div>
 
     <h4><label for="keywords"><img class="svg search-adv" src="<{$xoops_url}>/images/icons/search-adv.svg"> <{$smarty.const._MD_D3FORUM_LABEL_KEYWORDS}></label></h4>
     <input type="text" name="keyword" id="keywords" size="44" value="<{$keyword}>">
@@ -56,53 +105,4 @@
 </article>
 
 </form>
-<hr>
 
-<section id="search-results">
-    <{if $show_results}>
-
-    <h3><{$smarty.const._MD_D3FORUM_TITLE_SEARCHRESULTS}></h3>
-
-        <{if $results}>
-
-        <div class="tips"><{$hits_count|string_format:$smarty.const._MD_D3FORUM_FMT_SEARCHHITS}>
-        </div>
-
-        <table class="outer searchresult">
-        <thead>
-            <tr>
-                <th abbr="<{$smarty.const._MD_D3FORUM_FORUM}>"><{$smarty.const._MD_D3FORUM_FORUM}></th>
-                <th abbr="<{$smarty.const._MD_D3FORUM_SUBJECT}>"><{$smarty.const._MD_D3FORUM_SUBJECT}></th>
-                <th abbr="<{$smarty.const._MD_D3FORUM_POSTER}>"><{$smarty.const._MD_D3FORUM_POSTER}></th>
-                <th abbr="<{$smarty.const._MD_D3FORUM_VIEWS}>"><{if $mod_config.use_vote}><{$smarty.const._MD_D3FORUM_VOTEPOINTAVG}><{else}><{$smarty.const._MD_D3FORUM_VIEWS}><{/if}></th>
-                <th abbr="<{$smarty.const._MD_D3FORUM_ON}>"><{$smarty.const._MD_D3FORUM_ON}></th>
-            </tr>
-        </thead>
-        <{* ----- start search results *}>
-        <{foreach from=$results item=post}>
-        <tr>
-            <td><a href="<{$mod_url}>/index.php?forum_id=<{$post.forum_id}>"><{$post.forum_title}></a></td>
-            <td>
-                <a href="<{$mod_url}>/index.php?post_id=<{$post.post_id}>">
-                <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$post.icon}>.svg">
-                    <{$post.subject}>
-                </a><span class="badge"><{$post.body_length|string_format:$smarty.const._MD_D3FORUM_FMT_BYTE}></span></td>
-            <td><a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>"><{$post.poster_uname}></a></td>
-            <td><span class="badge"><{if $mod_config.use_vote}><{$post.votes_avg|string_format:"%.2f"}>/<{$post.votes_count}><{else}><{$post.topic_views}><{/if}></span></td>
-            <td><span class="badge"><{$post.post_time_formatted}></span></td>
-        </tr>
-        <{/foreach}>
-        <{* ----- end search results *}>
-        </table>
-
-        <{else}>
-
-        <{* no hit *}>
-        <div class="alert warning">
-            <p><{$smarty.const._MD_D3FORUM_MSG_NOMATCH}></p>
-        </div>
-
-        <{/if}>
-
-    <{/if}>
-</section>

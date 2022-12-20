@@ -28,8 +28,8 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = constant( $constpref . '_NAME' );
-$modversion['version']          = '2.31';
-$modversion['detailed_version'] = '2.31.4';
+$modversion['version']          = '2.32';
+$modversion['detailed_version'] = '2.32.1';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'Gijoe (peak.ne.jp) and Jidaikbo, @nao-pon Naoki Sawada';
 $modversion['credits']          = '@domifara, @naao Naoki Okino, @nao-pon Naoki Sawada, @gigamaster (XCL/PHP7)';
@@ -126,7 +126,123 @@ $modversion['config'][1] = [
 	'default'     => constant( $constpref . '_TOP_MESSAGEDEFAULT' ),
 	'options'     => []
 ];
-
+$modversion['config'][] = [
+    'name'        => 'css_uri',
+    'title'       => $constpref . '_CSS_URI',
+    'description' => $constpref . '_CSS_URIDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => '{mod_url}/index.php?page=main_css',
+    'options'     => []
+];
+$modversion['config'][] = [
+    'name'        => 'images_dir',
+    'title'       => $constpref . '_IMAGES_DIR',
+    'description' => $constpref . '_IMAGES_DIRDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'images',
+    'options'     => []
+];
+$modversion['config'][] = [
+    'name'        => 'icon_meanings',
+    'title'       => $constpref . '_ICON_MEANINGS',
+    'description' => $constpref . '_ICON_MEANINGSDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => constant( $constpref . '_ICON_MEANINGSDEF' ),
+    'options'     => []
+];
+$modversion['config'][] = [
+    'name'        => 'antispam_groups',
+    'title'       => $constpref . '_ANTISPAM_GROUPS',
+    'description' => $constpref . '_ANTISPAM_GROUPSDSC',
+    'formtype'    => 'group_multi',
+    'valuetype'   => 'array',
+    'default'     => [ 3 ],
+    'options'     => []
+];
+$modversion['config'][] = [
+    'name'        => 'antispam_class',
+    'title'       => $constpref . '_ANTISPAM_CLASS',
+    'description' => $constpref . '_ANTISPAM_CLASSDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'defaultmobile',
+    'options'     => []
+];
+$modversion['config'][] = [
+    'name'        => 'allow_hideuid',
+    'title'       => $constpref . '_ALLOW_HIDEUID',
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => []
+];
+$modversion['config'][] = [
+    'name'        => 'anonymous_name',
+    'title'       => $constpref . '_ANONYMOUS_NAME',
+    'description' => $constpref . '_ANONYMOUS_NAMEDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => _GUESTS,
+    'options'     => []
+];
+$modversion['config'][] = [
+    'name'        => 'use_name',
+    'title'       => $constpref . '_USENAME',
+    'description' => $constpref . '_USENAMEDESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => '0',
+    'options'     => [ $constpref . '_USENAME_UNAME' => 0, $constpref . '_USENAME_NAME' => 1 ]
+];
+$modversion['config'][] = [
+    'name'        => 'allow_html',
+    'title'       => $constpref . '_ALLOW_HTML',
+    'description' => $constpref . '_ALLOW_HTMLDSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => []
+];
+$modversion['config'][] = [
+    'name'        => 'default_options',
+    'title'       => $constpref . '_DEFAULT_OPTIONS',
+    'description' => $constpref . '_DEFAULT_OPTIONSDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'smiley,xcode,br,number_entity',
+    'options'     => []
+];
+$modversion['config'][] = [
+    'name'        => 'allow_textimg',
+    'title'       => $constpref . '_ALLOW_TEXTIMG',
+    'description' => $constpref . '_ALLOW_TEXTIMGDSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => []
+];
+$modversion['config'][] = [
+    'name'        => 'allow_sig',
+    'title'       => $constpref . '_ALLOW_SIG',
+    'description' => $constpref . '_ALLOW_SIGDSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+    'options'     => []
+];
+$modversion['config'][] = [
+    'name'        => 'allow_sigimg',
+    'title'       => $constpref . '_ALLOW_SIGIMG',
+    'description' => $constpref . '_ALLOW_SIGIMGDSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => []
+];
 $modversion['config'][] = [
 	'name'        => 'show_breadcrumbs',
 	'title'       => $constpref . '_SHOW_BREADCRUMBS',
@@ -136,107 +252,33 @@ $modversion['config'][] = [
 	'default'     => 1,
 	'options'     => []
 ];
-
 $modversion['config'][] = [
     'name'        => 'show_rss',
     'title'       => $constpref . '_SHOW_RSS',
     'description' => '',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
-    'default'     => 1,
+    'default'     => 0,
     'options'     => []
 ];
-
 $modversion['config'][] = [
-	'name'        => 'default_options',
-	'title'       => $constpref . '_DEFAULT_OPTIONS',
-	'description' => $constpref . '_DEFAULT_OPTIONSDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'text',
-	'default'     => 'smiley,xcode,br,number_entity',
-	'options'     => []
+    'name'        => 'rss_show_hidden',
+    'title'       => $constpref . '_RSS_SHOW_HIDDEN',
+    'description' => $constpref . '_RSS_SHOW_HIDDENDSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => []
 ];
-
 $modversion['config'][] = [
-	'name'        => 'use_name',
-	'title'       => $constpref . '_USENAME',
-	'description' => $constpref . '_USENAMEDESC',
-	'formtype'    => 'select',
-	'valuetype'   => 'int',
-	'default'     => '0',
-	'options'     => [ $constpref . '_USENAME_UNAME' => 0, $constpref . '_USENAME_NAME' => 1 ]
+    'name'        => 'rss_hidden_title',
+    'title'       => $constpref . '_RSS_HIDDEN_TITLE',
+    'description' => $constpref . '_RSS_HIDDEN_TITLEDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => '',
+    'options'     => []
 ];
-
-$modversion['config'][] = [
-	'name'        => 'allow_html',
-	'title'       => $constpref . '_ALLOW_HTML',
-	'description' => $constpref . '_ALLOW_HTMLDSC',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'allow_textimg',
-	'title'       => $constpref . '_ALLOW_TEXTIMG',
-	'description' => $constpref . '_ALLOW_TEXTIMGDSC',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'allow_sig',
-	'title'       => $constpref . '_ALLOW_SIG',
-	'description' => $constpref . '_ALLOW_SIGDSC',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 1,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'allow_sigimg',
-	'title'       => $constpref . '_ALLOW_SIGIMG',
-	'description' => $constpref . '_ALLOW_SIGIMGDSC',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'posts_per_topic',
-	'title'       => $constpref . '_POSTS_PER_TOPIC',
-	'description' => $constpref . '_POSTS_PER_TOPICDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'int',
-	'default'     => 25,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'hot_threshold',
-	'title'       => $constpref . '_HOT_THRESHOLD',
-	'description' => $constpref . '_HOT_THRESHOLDDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'int',
-	'default'     => 10,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'topics_per_page',
-	'title'       => $constpref . '_TOPICS_PER_PAGE',
-	'description' => $constpref . '_TOPICS_PER_PAGEDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'int',
-	'default'     => 10,
-	'options'     => []
-];
-
 $modversion['config'][] = [
 	'name'        => 'use_vote',
 	'title'       => $constpref . '_USE_VOTE',
@@ -246,7 +288,15 @@ $modversion['config'][] = [
 	'default'     => 1,
 	'options'     => []
 ];
-
+$modversion['config'][] = [
+    'name'        => 'guest_vote_interval',
+    'title'       => $constpref . '_GUESTVOTE_IVL',
+    'description' => $constpref . '_GUESTVOTE_IVLDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 86400,
+    'options'     => []
+];
 $modversion['config'][] = [
 	'name'        => 'use_solved',
 	'title'       => $constpref . '_USE_SOLVED',
@@ -256,7 +306,6 @@ $modversion['config'][] = [
 	'default'     => 1,
 	'options'     => []
 ];
-
 $modversion['config'][] = [
 	'name'        => 'allow_mark',
 	'title'       => $constpref . '_ALLOW_MARK',
@@ -266,37 +315,51 @@ $modversion['config'][] = [
 	'default'     => 1,
 	'options'     => []
 ];
-
 $modversion['config'][] = [
-	'name'        => 'allow_hideuid',
-	'title'       => $constpref . '_ALLOW_HIDEUID',
-	'description' => '',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => []
+    'name'        => 'posts_per_topic',
+    'title'       => $constpref . '_POSTS_PER_TOPIC',
+    'description' => $constpref . '_POSTS_PER_TOPICDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 25,
+    'options'     => []
 ];
-
 $modversion['config'][] = [
-	'name'        => 'viewallbreak',
-	'title'       => $constpref . '_VIEWALLBREAK',
-	'description' => $constpref . '_VIEWALLBREAKDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'int',
-	'default'     => 10,
-	'options'     => []
+    'name'        => 'hot_threshold',
+    'title'       => $constpref . '_HOT_THRESHOLD',
+    'description' => $constpref . '_HOT_THRESHOLDDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 10,
+    'options'     => []
 ];
-
+$modversion['config'][] = [
+    'name'        => 'topics_per_page',
+    'title'       => $constpref . '_TOPICS_PER_PAGE',
+    'description' => $constpref . '_TOPICS_PER_PAGEDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 10,
+    'options'     => []
+];
+$modversion['config'][] = [
+    'name'        => 'viewallbreak',
+    'title'       => $constpref . '_VIEWALLBREAK',
+    'description' => $constpref . '_VIEWALLBREAKDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 10,
+    'options'     => []
+];
 $modversion['config'][] = [
 	'name'        => 'selfeditlimit',
 	'title'       => $constpref . '_SELFEDITLIMIT',
 	'description' => $constpref . '_SELFEDITLIMITDSC',
 	'formtype'    => 'textbox',
 	'valuetype'   => 'int',
-	'default'     => 31536000,
+	'default'     => 240,
 	'options'     => []
 ];
-
 $modversion['config'][] = [
 	'name'        => 'selfdellimit',
 	'title'       => $constpref . '_SELFDELLIMIT',
@@ -306,27 +369,6 @@ $modversion['config'][] = [
 	'default'     => 0,
 	'options'     => []
 ];
-
-$modversion['config'][] = [
-	'name'        => 'css_uri',
-	'title'       => $constpref . '_CSS_URI',
-	'description' => $constpref . '_CSS_URIDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'text',
-	'default'     => '{mod_url}/index.php?page=main_css',
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'images_dir',
-	'title'       => $constpref . '_IMAGES_DIR',
-	'description' => $constpref . '_IMAGES_DIRDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'text',
-	'default'     => 'images',
-	'options'     => []
-];
-
 $modversion['config'][] = [
 	'name'        => 'body_editor',
 	'title'       => $constpref . '_BODY_EDITOR',
@@ -335,76 +377,6 @@ $modversion['config'][] = [
 	'valuetype'   => 'text',
 	'default'     => 'xoopsdhtml',
 	'options'     => [ 'xoopsdhtml' => 'xoopsdhtml', /*'common/fckeditor' => 'common_fckeditor'*/ ]
-];
-
-$modversion['config'][] = [
-	'name'        => 'anonymous_name',
-	'title'       => $constpref . '_ANONYMOUS_NAME',
-	'description' => $constpref . '_ANONYMOUS_NAMEDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'text',
-	'default'     => _GUESTS,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'icon_meanings',
-	'title'       => $constpref . '_ICON_MEANINGS',
-	'description' => $constpref . '_ICON_MEANINGSDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'text',
-	'default'     => constant( $constpref . '_ICON_MEANINGSDEF' ),
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'guest_vote_interval',
-	'title'       => $constpref . '_GUESTVOTE_IVL',
-	'description' => $constpref . '_GUESTVOTE_IVLDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'int',
-	'default'     => 86400,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'antispam_groups',
-	'title'       => $constpref . '_ANTISPAM_GROUPS',
-	'description' => $constpref . '_ANTISPAM_GROUPSDSC',
-	'formtype'    => 'group_multi',
-	'valuetype'   => 'array',
-	'default'     => [ 3 ],
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'antispam_class',
-	'title'       => $constpref . '_ANTISPAM_CLASS',
-	'description' => $constpref . '_ANTISPAM_CLASSDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'text',
-	'default'     => 'defaultmobilesmart',
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'rss_show_hidden',
-	'title'       => $constpref . '_RSS_SHOW_HIDDEN',
-	'description' => $constpref . '_RSS_SHOW_HIDDENDSC',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'rss_hidden_title',
-	'title'       => $constpref . '_RSS_HIDDEN_TITLE',
-	'description' => $constpref . '_RSS_HIDDEN_TITLEDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'text',
-	'default'     => '',
-	'options'     => []
 ];
 
 // Notification
@@ -552,8 +524,3 @@ $modversion['notification'] = [
 $modversion['onInstall']   = 'oninstall.php';
 $modversion['onUpdate']    = 'onupdate.php';
 $modversion['onUninstall'] = 'onuninstall.php';
-
-// keep block's options
-/*if (!defined('XOOPS_CUBE_LEGACY') && substr(XOOPS_VERSION, 6, 3) < 2.1 && !empty($_POST['fct']) && !empty($_POST['op']) && 'modulesadmin' == $_POST['fct'] && 'update_ok' == $_POST['op'] && $_POST['dirname'] == $modversion['dirname']) {
-	include __DIR__ . '/include/x20_keepblockoptions.inc.php';
-}*/

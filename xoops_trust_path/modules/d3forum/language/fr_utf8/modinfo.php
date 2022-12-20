@@ -48,7 +48,7 @@ define($constpref.'_SHOW_RSS','Afficher le lien RSS');
 define($constpref.'_DEFAULT_OPTIONS','Options cochées par défault dans le formulaire pour poster');
 define($constpref.'_DEFAULT_OPTIONSDSC','Lister les options a cocher  séparées par  une virgule (,).<br>eg) smiley,xcode,br,number_entity<br>Vous pouvez ajouter ces options: special_entity html attachsig u2t_marked');
 define($constpref.'_ALLOW_HTML','Autoriser HTML');
-define($constpref.'_ALLOW_HTMLDSC','N\'activez pas cette option au hazard. Ceci peut rendre votre site vulnérable et permettre à un utilisateur malveillant \'insérer d\'un script.');
+define($constpref.'_ALLOW_HTMLDSC','N\'activez pas cette option au hazard. Ceci peut rendre votre site vulnérable et permettre à un utilisateur malveillant \'insérer un script.');
 define($constpref.'_ALLOW_TEXTIMG','Autoriser l\'affichage d\'images externes dans les messages');
 define($constpref.'_ALLOW_TEXTIMGDSC','Si un utilisateur malveillant poste une image externe utilisant [img], il peut connaitre les adresses IP ou navigateurs des utilisateurs de votre site.');
 define($constpref.'_ALLOW_SIG','Autoriser la signature');
