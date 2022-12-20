@@ -1,5 +1,116 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
+<style>
+    :is(#tabs+.ui-tabs, #tabs+.ui-widget-content)  {
+        background: transparent !important;
+    }
+    :where(.accordion ) h3 {
+        background: var(--color-6) !important;
+        border:none !important;
+        box-shadow:none!important;
+    }
+    :is(.accordion) h3.ui-state-active{
+        border-bottom: 1px solid var(--color-blue)!important;
+        color: var(--color-blue) !important;
+    }
 
+    #tabs ul{margin: 0;padding: 0;list-style: none;}
+    #tabs ul li {
+        line-height: 24px;
+        background: var(--color-6);
+        border: 1px solid var(--color-5);
+        border-left: 1px solid var(--color-5) !important;
+        border-right: medium none;
+        color: var(--color-2);
+        display: inline-block;
+        padding: 10px 20px;
+        cursor: pointer;
+        margin-right: -5px;
+    }
+    #tabs ul li.ui-tabs-active{
+        background: none;
+        color: #007fff;
+        border-bottom: 1px solid var(--color-6);
+        border-top: 3px solid #007fff;
+        padding-top: 8px;
+        position: sticky;
+    }
+    #tabs .ui-tabs-panel,
+    #tabs .ui-accordion-content{
+        background: var(--color-6);
+        border: 1px solid var(--color-5);
+        padding: 15px;
+        margin-top: -1px;
+        box-shadow: inset 0px 8px 10px #1a1d23, 0 8px 12px var(--color-5);
+    }
+    .xcl-beta-anim,
+    .accordion {display:inline-block; width:50%;}
+    @media screen and (max-width:40em) {
+        .xcl-beta-anim, .accordion {width:100%;}
+    }
+    h1.xcl {
+        font-size: 5rem;
+        line-height: 1.5em;
+        outline: 0;
+        margin: 3rem 2rem;
+        text-align: center;
+        text-shadow: -1px 1px var(--layer-1),
+        -2px 2px var(--layer-1),
+        -3px 3px var(--layer-2),
+        -4px 4px var(--layer-3),
+        -5px 5px var(--layer-4),
+        -6px 6px var(--color-blue),
+        -7px 7px var(--layer-4),
+        -8px 8px var(--layer-3),
+        -9px 9px var(--layer-2),
+        -10px 10px var(--layer-1),
+        -11px 11px var(--color-blue),
+        -12px 12px var(--layer-1),
+        -20px 20px rgba(0, 0, 0, 0.8);
+        transform: rotateZ(-5deg) skewX(27deg);;
+        user-select: none;
+    }
+    h3.beta {text-align:center; width: 100%;}
+    h3.beta b {animation: text-shadow 7s ease infinite;font-weight: normal;margin-top:1em;margin-right:0.5em}
+    h3.beta b:nth-of-type(1) {animation-delay: 100ms;}
+    h3.beta b:nth-of-type(2) {animation-delay: 200ms;}
+    h3.beta b:nth-of-type(3) {animation-delay: 300ms;}
+    h3.beta b:nth-of-type(4) {animation-delay: 400ms;}
+    h3.beta b:nth-of-type(5) {animation-delay: 500ms;}
+    h3.beta b:nth-of-type(6) {animation-delay: 600ms;}
+    h3.beta b:nth-of-type(7) {animation-delay: 700ms;}
+    @keyframes text-shadow {
+        0% {color: white;text-shadow: 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0);}
+        15% {text-shadow: -1px 1px 6px rgba(250, 250, 250, 1), -3px 3px 16px rgba(25, 25, 25, 1), -8px 8px 26px rgba(250, 250, 250, 0.9), -16px 16px 36px rgba(250, 250, 250, 0.8);}
+        40% {color: #face74;text-shadow: 5px 5px 14px rgba(250, 250, 250, 1), 10px 10px 22px rgba(250, 250, 250, 0.9), 20px 20px 40px rgba(250, 250, 250, 0.8), 30px 30px 52px rgba(250, 250, 250, 0.7);}
+        55%, 80% {color: #152728;text-shadow: 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0);}
+        90% {color: black;}}
+
+    #taboard {
+        border: var(--border);
+        display:block;
+        height: 460px;
+        overflow-y: auto;
+    }
+    #taboard > ul {
+        box-shadow: var(--shadow-4);
+        display: block;
+        margin:0;
+        padding:0;
+        max-width: 100%;
+        position: sticky;
+        top: 0;
+    }
+    #taboard > ul li {
+        border:1px solid transparent;
+    }
+    #tab2.active {
+        background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="1em" height="1em"http://www.w3.org/2000/svg viewBox="0 0 512 512"%3E%3Cpath fill="%230a1120dd" d="M256 32C132.3 32 32 134.9 32 261.7c0 101.5 64.2 187.5 153.2 217.9a17.56 17.56 0 0 0 3.8.4c8.3 0 11.5-6.1 11.5-11.4c0-5.5-.2-19.9-.3-39.1a102.4 102.4 0 0 1-22.6 2.7c-43.1 0-52.9-33.5-52.9-33.5c-10.2-26.5-24.9-33.6-24.9-33.6c-19.5-13.7-.1-14.1 1.4-14.1h.1c22.5 2 34.3 23.8 34.3 23.8c11.2 19.6 26.2 25.1 39.6 25.1a63 63 0 0 0 25.6-6c2-14.8 7.8-24.9 14.2-30.7c-49.7-5.8-102-25.5-102-113.5c0-25.1 8.7-45.6 23-61.6c-2.3-5.8-10-29.2 2.2-60.8a18.64 18.64 0 0 1 5-.5c8.1 0 26.4 3.1 56.6 24.1a208.21 208.21 0 0 1 112.2 0c30.2-21 48.5-24.1 56.6-24.1a18.64 18.64 0 0 1 5 .5c12.2 31.6 4.5 55 2.2 60.8c14.3 16.1 23 36.6 23 61.6c0 88.2-52.4 107.6-102.3 113.3c8 7.1 15.2 21.1 15.2 42.5c0 30.7-.3 55.5-.3 63c0 5.4 3.1 11.5 11.4 11.5a19.35 19.35 0 0 0 4-.4C415.9 449.2 480 363.1 480 261.7C480 134.9 379.7 32 256 32Z"%2F%3E%3C%2Fsvg%3E');
+        background-repeat: no-repeat;
+        background-size: 460px;
+        background-size: contain;
+    }
+
+</style>
 
 <div class="adminnavi">
     <a href="<{$xoops_url}>/admin.php">Dashboard</a>
@@ -7,162 +118,25 @@
   &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._CPHOME}></span>
 </div>
 
-<{* $uid|xoops_user:"name" *}>
-<p><{$uid|xoops_user:"uname"}>, <{$uid|xoops_user:"email"}>, <{$uid|xoops_user:"last_login"|xoops_formattimestamp:l}></p>
-
 <hr>
 
 <div id="ui-component">
 
     <div class="ui-flex-row">
 
-<style>
-:is(#tabs+.ui-tabs, #tabs+.ui-widget-content)  {
-    background: transparent !important;
-}
-:where(.accordion ) h3 {
-    background: var(--color-6) !important;
-    border:none !important;
-    box-shadow:none!important;
-}
-:is(.accordion) h3.ui-state-active{
-    border-bottom: 1px solid var(--color-blue)!important;
-    color: var(--color-blue) !important;
-}
 
-#tabs ul{margin: 0;padding: 0;list-style: none;}
-#tabs ul li {
-    line-height: 24px;
-    background: var(--color-6);
-    border: 1px solid var(--color-5);
-    border-left: 1px solid var(--color-5) !important;
-    border-right: medium none;
-    color: var(--color-2);
-    display: inline-block;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-right: -5px;
-}
-#tabs ul li.ui-tabs-active{
-    background: none;
-    color: #007fff;
-    border-bottom: 1px solid var(--color-6);
-    border-top: 3px solid #007fff;
-    padding-top: 8px;
-    position: sticky;
-    }
-#tabs .ui-tabs-panel,
-#tabs .ui-accordion-content{
-    background: var(--color-6);
-    border: 1px solid var(--color-5);
-    padding: 15px;
-    margin-top: -1px;
-    box-shadow: inset 0px 8px 10px #1a1d23, 0 8px 12px var(--color-5);
-}
 
-h1.xcl {
-    font-size: 5rem;
-    line-height: 1.5em;
-    outline: 0;
-    margin: 3rem 2rem;
-    text-align: center;
-    text-shadow: -1px 1px var(--layer-1),
-    -2px 2px var(--layer-1),
-    -3px 3px var(--layer-2),
-    -4px 4px var(--layer-3),
-    -5px 5px var(--layer-4),
-    -6px 6px var(--color-blue),
-    -7px 7px var(--layer-4),
-    -8px 8px var(--layer-3),
-    -9px 9px var(--layer-2),
-    -10px 10px var(--layer-1),
-    -11px 11px var(--color-blue),
-    -12px 12px var(--layer-1),
-    -20px 20px rgba(0, 0, 0, 0.8);
-    transform: rotateZ(-5deg) skewX(27deg);;
-    user-select: none;
-}
-h3.beta {text-align:center; width: 100%;}
-h3.beta b {animation: text-shadow 7s ease infinite;font-weight: normal;margin-top:1em;margin-right:0.5em}
-h3.beta b:nth-of-type(1) {animation-delay: 100ms;}
-h3.beta b:nth-of-type(2) {animation-delay: 200ms;}
-h3.beta b:nth-of-type(3) {animation-delay: 300ms;}
-h3.beta b:nth-of-type(4) {animation-delay: 400ms;}
-h3.beta b:nth-of-type(5) {animation-delay: 500ms;}
-h3.beta b:nth-of-type(6) {animation-delay: 600ms;}
-h3.beta b:nth-of-type(7) {animation-delay: 700ms;}
-@keyframes text-shadow {
-    0% {color: white;text-shadow: 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0);}
-    15% {text-shadow: -1px 1px 6px rgba(250, 250, 250, 1), -3px 3px 16px rgba(25, 25, 25, 1), -8px 8px 26px rgba(250, 250, 250, 0.9), -16px 16px 36px rgba(250, 250, 250, 0.8);}
-    40% {color: #face74;text-shadow: 5px 5px 14px rgba(250, 250, 250, 1), 10px 10px 22px rgba(250, 250, 250, 0.9), 20px 20px 40px rgba(250, 250, 250, 0.8), 30px 30px 52px rgba(250, 250, 250, 0.7);}
-    55%, 80% {color: #152728;text-shadow: 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0);}
-    90% {color: black;}}
-/*p.package {*/
-/*    column-count: 2;*/
-/*    column-gap: var(--space-7);*/
-/*    column-rule: var(--border);*/
-/*    padding: var(--space-6);*/
-/*    text-align: justify;*/
-/*}*/
-#taboard {
-    border: var(--border);
-    display:block;
-    height: 460px;
-    overflow-y: auto;
-}
-#taboard > ul {
-    box-shadow: var(--shadow-4);
-    display: block;
-    margin:0;
-    padding:0;
-    max-width: 100%;
-    position: sticky;
-    top: 0;
-}
-#taboard > ul li {
- border:1px solid transparent;
-}
-#tab2.active {
-    background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="1em" height="1em"http://www.w3.org/2000/svg viewBox="0 0 512 512"%3E%3Cpath fill="%230a1120dd" d="M256 32C132.3 32 32 134.9 32 261.7c0 101.5 64.2 187.5 153.2 217.9a17.56 17.56 0 0 0 3.8.4c8.3 0 11.5-6.1 11.5-11.4c0-5.5-.2-19.9-.3-39.1a102.4 102.4 0 0 1-22.6 2.7c-43.1 0-52.9-33.5-52.9-33.5c-10.2-26.5-24.9-33.6-24.9-33.6c-19.5-13.7-.1-14.1 1.4-14.1h.1c22.5 2 34.3 23.8 34.3 23.8c11.2 19.6 26.2 25.1 39.6 25.1a63 63 0 0 0 25.6-6c2-14.8 7.8-24.9 14.2-30.7c-49.7-5.8-102-25.5-102-113.5c0-25.1 8.7-45.6 23-61.6c-2.3-5.8-10-29.2 2.2-60.8a18.64 18.64 0 0 1 5-.5c8.1 0 26.4 3.1 56.6 24.1a208.21 208.21 0 0 1 112.2 0c30.2-21 48.5-24.1 56.6-24.1a18.64 18.64 0 0 1 5 .5c12.2 31.6 4.5 55 2.2 60.8c14.3 16.1 23 36.6 23 61.6c0 88.2-52.4 107.6-102.3 113.3c8 7.1 15.2 21.1 15.2 42.5c0 30.7-.3 55.5-.3 63c0 5.4 3.1 11.5 11.4 11.5a19.35 19.35 0 0 0 4-.4C415.9 449.2 480 363.1 480 261.7C480 134.9 379.7 32 256 32Z"%2F%3E%3C%2Fsvg%3E');
-    background-repeat: no-repeat;
-    background-size: 460px;
-    background-size: contain;
-}
+        <div data-layout="row md-column">
 
-</style>
-
-        <p>
-            BUTTON
-        </p>
-        <p>
-            <button class="button">Button</button>
-            <button class="button delete">Delete</button>
-            <button class="button uninstall">Uninstall</button>
-            <button class="button cancel">Cancel</button>
-            <button class="button button-small">Button</button>
-            <button class="button">Button <span class="badge">B</span> </button>
-            <br>
-            <button class="badge">Badge</button>
-            <a href="#!" class="badge">A-badge</a>
-            <span class="badge-count">badge-count</span>
-            <span class="badge"><i class="i-add"></i> badge</span>
-            <button class="badge"><i class="i-add"></i> btn bdg i</button>
-            <button class="badge bg-red"><i class="i-add"></i> btn bdg reg</button>
-            <br>
-            <a href="#!" class="button">button</a>
-            <a href="#!" class="round">Round</a>
-            <a href="#!" class="outline">outline</a>
-
-            <a href="#!" class="button ripple">ripple</a>
-            <a href="#!" class="btnav">outline</a>
-            <br>
-            input<br>
-            <input class="button-cancel" type="submit" value="button-cancel" name="_form_control_cancel">
-            <input class="button-submit" type="submit" value="button-submit">
-
-        </p>
             <{include file="./components/dashboard-nav.html"}>
 
+            <div data-self="size-xxsmall sm-first sm-full mb-7">
+                <{* $uid|xoops_user:"name" *}>
+                <h5><{$smarty.const._PROFILE}> <{$smarty.const._INFO}></h5>
+                <h6><img class="svg" src="<{'icons/icon-user-time.svg'|theme}>" width="1em" height="1em" alt="options"> <{$uid|xoops_user:"uname"}></h6>
+                <p><span class="badge"><{$uid|xoops_user:"email"}></span> <span class="badge"><{$uid|xoops_user:"last_login"|xoops_formattimestamp:l}></span></p>
+            </div>
+        </div>
 
         <div id="taboard">
 
@@ -182,13 +156,14 @@ h3.beta b:nth-of-type(7) {animation-delay: 700ms;}
             <div id="tab1">
 
                 <div data-layout="row sm-column">
-                <div data-layout="column center" data-self="size-1of2" style="display:inline-block; width:420px; max-width:50%;">
+
+                <div data-layout="column center" data-self="size-1of2 sm-full" class="xcl-beta-anim">
                     <h1 class="xcl">XCL</h1><h3 class="beta"><b>B</b><b>E</b><b>T</b><b>A</b><b>2</b><b>3</b><b>1</b></h3>
                 </div>
 
                 <hr>
 
-                <div class="accordion" style="display:inline-block; width:50%;">
+                <div class="accordion" data-self="sm-full">
                     <h3>GPL and BSD licenses</h3>
                     <div>
                         <p>Open-source licensed software is mostly available free of charge, though it is not always the case.<br>

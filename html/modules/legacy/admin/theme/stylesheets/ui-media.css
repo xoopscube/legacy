@@ -22,14 +22,14 @@
         left        : -30px;
         grid-template-columns: 1fr;
     }
-    /*.layout-grid .footer {*/
-    /*    width:100%;*/
-    /*}*/
     .ui-block-online-stats {
         display: grid;
         grid-auto-flow: initial;
         grid-gap: 24px;
         grid-template-columns: 1fr;
+    }
+    .user-top-nav {
+        display: none!important;
     }
     .dashboard-options a.set-link {
         max-width: calc(100% / 4);
@@ -39,9 +39,12 @@
         padding: 0;
     }
     .btnav {
-        min-width :20px;
-        max-width: 24px;
+        min-width: 30px;
+        max-width: 30px;
     }
+        nav ul li.ui-color-mode {
+            margin: 0;
+        }
     main.main {
     padding: 0 .5rem;
     max-width: 100%;
@@ -53,11 +56,7 @@
         margin          : 0;
     }
     .tips, .error, .confirm, .success, .confirmMsg, .resultMsg {
-        margin:1rem auto;padding: 0.5rem;width:100%;
-    }
-    #taboard {
-        display: block;
-        max-width: 400px;
+        margin:1rem auto;padding: .5rem .5rem .5rem 2.5rem;width:100%;
     }
 }
 

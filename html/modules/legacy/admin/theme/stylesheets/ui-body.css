@@ -261,7 +261,7 @@ nav.pagination {
 .dashboard-options {
     position:relative;
     row-gap         : var(--space-3);
-    margin          : 2em auto;
+    margin-bottom   : 3em;
 }
 .dashboard-options div[data-layout^=row]{
     flex-wrap       : wrap;
@@ -307,17 +307,8 @@ nav.pagination {
 .not-available:hover {
     cursor          :not-allowed;
 }
-/* ---------- ---------- ------- SCROLL TOP
-background      : var(  --input-bg       );
-border-color    : hsl(14, 100%, 57%);
-border-radius   : var(  --input-border-radius    );
-border-width    : var(  --input-border-width     );
-box-shadow      : 0 2px 2px 0 hsla(14, 100%, 57%, 0.14), 0 3px 1px -2px hsla(14, 100%, 57%, 0.2), 0 1px 5px 0 hsla(14, 100%, 57%, 0.12);
-color           : #ff5722;
-cursor          : pointer;
-padding         : var(--space-3) var(--space-7);
-*/
 
+/* ---------- ---------- ------- SCROLL TOP */
 .scroll-top {
     position        : absolute;
     top             : 12rem;
@@ -328,12 +319,12 @@ padding         : var(--space-3) var(--space-7);
 }
 .scroll-top #ntop-bg {fill: var( --input-bg )}
 .scroll-top #ntop-arrow {fill: var( --link );}
-.scroll-top a:hover #ntop-bg {fill: var( --link-hover );}
-.scroll-top a:hover #ntop-arrow {fill: var( --link );}
+.scroll-top a:hover #ntop-bg {fill: var( --color-blue );}
+.scroll-top a:hover #ntop-arrow {fill: var( --color-white );}
 .scroll-top a {
     position        : fixed;
     top             : -5rem;
-    right           : 2rem;
+    right           : 1rem;
     width           : 3rem;
     height          : 3rem;
     margin-bottom   : -5rem;
@@ -347,8 +338,8 @@ padding         : var(--space-3) var(--space-7);
     overflow        : hidden;
 }
 .scroll-top a:hover {
-    border-color    : hsl(14, 100%, 57%);
-    box-shadow      : 0 14px 26px -12px hsl(14deg 80% 45% / 42%), 0 4px 23px 0 hsl(14deg 100% 49% / 42%), 0 8px 10px -5px hsl(14deg 100% 49% / 42%);
+    border-color    : var(--border);
+    box-shadow      : 0 12px 24px -12px var(--blue-opacity-5), 0 4px 20px 0 var(--blue-opacity-5), 0 8px 8px -5px var(--blue-opacity-5);
 }
 .scroll-top a svg {
     display         : block;
