@@ -107,11 +107,11 @@ define( $constpref.'_JQUERY_UI_THEME_DESC' ,    'When CDN of Google is used, The
 define( $constpref.'_GMAPS_APIKEY' ,            'Google Maps API Key' );
 define( $constpref.'_GMAPS_APIKEY_DESC' ,       'Google Maps API key used in KML preview' );
 define( $constpref.'_ZOHO_APIKEY' ,             'Zoho office editor API Key' );
-define( $constpref.'_ZOHO_APIKEY_DESC' ,        'Specify the API key when using Zoho office editor when editing Office items. You can to get API key in <a href=""https://www.zoho.com/docs/help/office-apis.html#get-started" target="_blank">www.zoho.com/docs/help/office-apis.html</a>.' );
+define( $constpref.'_ZOHO_APIKEY_DESC' ,        'Specify the API key when using Zoho office editor when editing Office items. You can to get API key in <a href="https://www.zoho.com/docs/help/office-apis.html#get-started" target="_blank">www.zoho.com/docs/help/office-apis.html</a>.' );
 define( $constpref.'_CREATIVE_CLOUD_APIKEY' ,   'Creative SDK API Key' );
 define( $constpref.'_CREATIVE_CLOUD_APIKEY_DESC','Specify the Creative Cloud API key when using Creative SDK image editor of Creative Cloud. <br> API key can be obtained at https://console.adobe.io/ .' );
-define( $constpref.'_ONLINE_CONVERT_APIKEY' ,   'ONLINE-CONVERT.COM API Key' );
-define( $constpref.'_ONLINE_CONVERT_APIKEY_DESC','Specify the ONLINE-CONVERT.COM API key when using the content converter API of ONLINE-CONVERT.COM.<br>API key can be obtained at https://apiv2.online-convert.com/docs/getting_started/api_key.html .' );
+define( $constpref.'_ONLINE_CONVERT_APIKEY' ,   'Online-convert.com API Key' );
+define( $constpref.'_ONLINE_CONVERT_APIKEY_DESC','API key for the content converter online-convert.com<br>API key can be obtained at https://apiv2.online-convert.com/docs/getting_started/api_key.html .' );
 define( $constpref.'_EDITORS_JS',               'URL of editors.js' );
 define( $constpref.'_EDITORS_JS_DESC',          'Specify the URL of JavaScript when customizing "common/elfinder/js/extras/editors.default.js".' );
 define( $constpref.'_UI_OPTIONS_JS',            'URL of xelfinderUiOptions.js' );
