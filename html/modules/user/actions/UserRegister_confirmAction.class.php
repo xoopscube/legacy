@@ -123,7 +123,8 @@ class User_UserRegister_confirmAction extends User_Action
         XCube_DelegateUtils::call('Legacy.Event.RegistUser.SendMail', new XCube_Ref($mailer), (0 == $activationType)? 'Register' : 'AdminActivate');
         
         if (!$mailer->send()) {
-        }    // TODO CHECKS and use '_MD_USER_ERROR_YOURREGMAILNG'
+            // TODO CHECKS and use '_MD_USER_ERROR_YOURREGMAILNG'
+        }
     }
     
     public function _eventNotifyMail(&$controller)

@@ -82,14 +82,18 @@ define( '_MD_USER_LANG_UNAME' , 'User name');
 define( '_MD_USER_LANG_UNASSIGN' , 'Unassign');
 define( '_MD_USER_LANG_UORDER' , 'Comments Sort Order');
 define( '_MD_USER_LANG_URL' , 'Website');
+define( '_MD_USER_LANG_USER_AIM' , 'AIM');
 define( '_MD_USER_LANG_USER_AVATAR' , 'Avatar');
 define( '_MD_USER_LANG_USER_FROM' , 'Location');
+define( '_MD_USER_LANG_USER_ICQ' , 'ICQ');
 define( '_MD_USER_LANG_USER_INTREST' , 'Interest');
 define( '_MD_USER_LANG_USER_MAILOK' , 'Receive occasional email notices ');
+define( '_MD_USER_LANG_USER_MSNM' , 'MSNM');
 define( '_MD_USER_LANG_USER_OCC' , 'Occupation');
 define( '_MD_USER_LANG_USER_REGDATE' , 'Member Since');
 define( '_MD_USER_LANG_USER_SIG' , 'Signature');
 define( '_MD_USER_LANG_USER_VIEWEMAIL' , 'Email visible to users');
+define( '_MD_USER_LANG_USER_YIM' , 'YIM');
 define( '_MD_USER_LANG_USERCOOKIE' , 'Store my user name in a cookie for 1 year');
 define( '_MD_USER_LANG_USERKEYFOR' , 'User activation key for %s');
 define( '_MD_USER_LANG_USERREG' , 'User Registration');
@@ -111,3 +115,8 @@ define( '_MD_USER_MESSAGE_USER_DELETE_SUCCESS' , 'Your account has been deleted.
 define( '_MD_USER_MESSAGE_YOURREGISTERED' , 'You are now registered. An email containing an user activation key has been sent to the email account you provided. Please follow the instructions in the mail to activate your account. ');
 define( '_MD_USER_MESSAGE_YOURREGISTERED2' , 'You are now registered.  Please wait for your account to be activated by the administrators.  You will receive an email once you are activated.  This could take a while so please be patient.');
 define( '_MD_USER_MESSAGE_REPASSWORD' , 'Please re-register your password for more security improvement.');
+if (!defined('LEGACY_MAIL_LANG')) {
+    define('LEGACY_MAIL_LANG','en');
+    define('LEGACY_MAIL_CHAR','UTF-8');
+    define('LEGACY_MAIL_ENCO','7bit');
+}

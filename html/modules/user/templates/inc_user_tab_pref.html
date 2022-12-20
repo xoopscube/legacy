@@ -55,17 +55,25 @@
     </label>
 
 
-    <label for="usercookie">
+    <{* <label for="usercookie">
         <input type="checkbox" id="usercookie" name="usercookie" value=1 default="<{$actionForm->get('usercookie')}>">
         <{$smarty.const._MD_USER_LANG_USERCOOKIE}>
-    </label>
+    </label> *}>
 
 
-    <label for="user_mailok">
+    <{* <label for="user_mailok">
         <input type="checkbox" id="user_mailok" name="user_mailok" value=1 default="<{$actionForm->get('user_mailok')}>">
         <{$smarty.const._MD_USER_LANG_USER_MAILOK}>
+    </label> *}>
+    <label class="head">
+      <{xoops_input type=radio name=usercookie value=1 default=$actionForm->get('usercookie')}><{$smarty.const._YES}>
+      <{xoops_input type=radio name=usercookie value=0 default=$actionForm->get('usercookie')}><{$smarty.const._NO}> <{$smarty.const._MD_USER_LANG_USERCOOKIE}>
     </label>
 
+    <label class="head">
+      <{xoops_input type=radio name=user_mailok value=1 default=$actionForm->get('user_mailok')}><{$smarty.const._YES}>
+      <{xoops_input type=radio name=user_mailok value=0 default=$actionForm->get('user_mailok')}><{$smarty.const._NO}> <{$smarty.const._MD_USER_LANG_USER_MAILOK}>
+</label>
 
    <footer class="action-control">
        <div>

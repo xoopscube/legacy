@@ -31,7 +31,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
     public $mPrimary = 'mailjob_id';
     public $mClass = 'UserMailjob_linkObject';
 
-    public function &get( $id, $mailjob_id = '',$uid = '' )
+    public function &get( $id, $mailjob_id = '', $uid = '' )
     {
 
         $ret = null;

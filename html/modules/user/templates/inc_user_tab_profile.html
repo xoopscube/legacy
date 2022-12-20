@@ -50,16 +50,17 @@
             <{if $xoops_isuser == true}>
 
                 <{if $thisUser->get('user_viewemail') == 1 || $user_ownpage == true || $xoops_isadmin == true}>
-                <label class="row">
-                    <{$smarty.const._MD_USER_LANG_EMAIL}>
-                    <{mailto address=$thisUser->get('email') encode="javascript"}>
-                </label>
+                <p><span><img class="svg mail" src="<{$xoops_url}>/images/icons/mail.svg" width="1em" height="1em" alt="Email"> <{$smarty.const._MD_USER_LANG_EMAIL}></span>
+                    <br>
+                    <span class="badge"><{mailto address=$thisUser->get('email') encode="javascript"}></span>
+                </p>
                 <{/if}>
 
-                <label class="row">
-                    <{$smarty.const._MD_USER_LANG_WEBSITE}>
-                    <a href="<{$thisUser->getShow('url')}>" rel="external"><{$thisUser->getShow('url')}></a>
-                </label>
+                <p>
+                    <span><img class="svg url" src="<{$xoops_url}>/images/icons/url.svg" width="1em" height="1em" alt="URL"> <{$smarty.const._MD_USER_LANG_WEBSITE}></span>
+                    <br>
+                    <span class="badge"><a href="<{$thisUser->getShow('url')}>" rel="external"><{$thisUser->getShow('url')}></a></span>
+                </p>
 
                 <hr>
 
