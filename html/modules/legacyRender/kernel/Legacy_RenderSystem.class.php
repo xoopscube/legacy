@@ -347,7 +347,8 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     {
         $this->_commonPrepareRender();
 
-        // @gigamaster using null coalescing operator in PHP 7
+        // TODO refactor using null coalescing operator in PHP 7
+//$cachedTemplateId = isset($GLOBLAS['xoopsCachedTemplateId']) ? $GLOBLAS['xoopsCachedTemplateId'] : null;
         $cachedTemplateId = $GLOBLAS['xoopsCachedTemplateId'] ?? null;
 
         foreach ($target->getAttributes() as $key=>$value) {
@@ -517,10 +518,11 @@ class Legacy_RenderSystem extends XCube_RenderSystem
      * @param bool $closeHead
      * @deprecated
      */
-    public function showXoopsHeader(bool $closeHead=true)
+    public function showXoopsHeader($closeHead=true)
     {
         global $xoopsConfig;
         $myts =& MyTextSanitizer::sGetInstance();
+//if (1 == $xoopsConfig['gzip_compression']) {
         if (1 === $xoopsConfig['gzip_compression']) {
             ob_start('ob_gzhandler');
         } else {
@@ -537,7 +539,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
      * @param bool $closehead
      * @deprecated
      */
-    public function _renderHeader(bool $closehead=true)
+    public function _renderHeader($closehead=true)
     {
         global $xoopsConfig, $xoopsTheme, $xoopsConfigMetaFooter;
 
@@ -611,7 +613,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
      * @param bool $isDialog default  = false
      * @return Legacy_DialogRenderTarget|Legacy_ThemeRenderTarget
      */
-    public function &getThemeRenderTarget(bool $isDialog)
+    public function &getThemeRenderTarget($isDialog)
     {
         $screenTarget = $isDialog ? new Legacy_DialogRenderTarget() : new Legacy_ThemeRenderTarget();
         return $screenTarget;

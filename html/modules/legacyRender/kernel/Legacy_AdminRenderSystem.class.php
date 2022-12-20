@@ -349,7 +349,8 @@ function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
     $moduleObject =& $root->mContext->mXoopsModule;
 
     if ($isSpDirname && is_object($moduleObject) && 'legacy' == $moduleObject->get('dirname') && isset($_REQUEST['dirname'])) {
-        //$dirname = xoops_getrequest('dirname');
+// TODO test this        
+//$dirname = xoops_getrequest('dirname');
 	    $root->mContext->mRequest->getRequest($dirname);
         if (preg_match('/^[a-z0-9_]+$/i', $dirname)) {
             $handler = xoops_gethandler('module');

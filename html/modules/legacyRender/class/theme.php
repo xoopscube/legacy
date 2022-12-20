@@ -94,6 +94,8 @@ class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
                         //
                         // If this system can use this theme, add this to list.
                         // @gigamaster merged isset
+//if (isset($manifesto['Manifesto']) && isset($manifesto['Manifesto']['Depends']) && preg_match('/Legacy_RenderSystem(\s|,|$)/', $manifesto['Manifesto']['Depends'])) {
+                            
                         if (isset($manifesto['Manifesto'], $manifesto['Manifesto']['Depends']) && preg_match('/Legacy_RenderSystem(\s|,|$)/', $manifesto['Manifesto']['Depends'])) {
                             $themeList[]=$dir;
                         }
@@ -143,7 +145,7 @@ class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
         // We also have to remove from DB.
         //
         foreach ($DBthemes as $theme) {
-            if (!in_array($theme->get('name'), $diskThemeNames, true)) {
+            if (!in_array($theme->get('name'), $diskThemeNames)) {
                 $this->delete($theme, true);
             }
         }
