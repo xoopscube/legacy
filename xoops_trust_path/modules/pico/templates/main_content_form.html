@@ -278,10 +278,11 @@
 			<{else}>
 				<{assign var=check value=1}>
 			<{/if}>
-			<label aria-label="<{$filter.desc}>" class="grid-2">
+
+			<label aria-label="filter_enabled_<{$filter_name}>" class="grid-right">
 				<span>
 					<input type="checkbox" name="filter_enabled_<{$filter_name}>" id="filter_enabled_<{$filter_name}>" value="1" <{if $filter.enabled && $check}>checked="checked"<{/if}> <{if $filter.fixed}>disabled="disabled"<{/if}>>
-					<{$filter.title}>
+					<{$filter.title}> <br><small><{$filter.desc}></small>
 				</span>
 				<span>
 					<input type="number" size="3" min="0" max="100" step="1" name="filter_weight_<{$filter_name}>" id="filter_weight_<{$filter_name}>" value="<{$filter.weight}>" class="pico_number_only" aria-label="Max 100">
@@ -436,7 +437,7 @@
 		<{/if}>
 
 		<{if $category.isadminormod}>
-		<h4><{$smarty.const._MD_PICO_EXPIRING}></h4>
+		<h5><{$smarty.const._MD_PICO_EXPIRING}></h5>
 			<{if $content.specify_expiring_time}>
 				<{assign var="specify_expiring_time_checked" value="checked='checked'"}>
 			<{else}>

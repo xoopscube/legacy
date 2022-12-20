@@ -78,7 +78,7 @@ if ( ! empty( $_GET['lib'] ) ) {
 	$langman->read( 'admin.php', $mydirname, $mytrustdirname );
 	$langman->read( 'main.php', $mydirname, $mytrustdirname );
 
-	// fork each pages of this module
+	// fork each page of this module
 	$page = preg_replace( '/[^a-zA-Z0-9_-]/', '', @$_GET['page'] );
 
 	if ( file_exists( "$mytrustdirpath/admin/$page.php" ) ) {

@@ -96,11 +96,14 @@ class PicoControllerAbstract {
 	public function exitFileNotFound(): void {
 		$error404 = $this->mod_config['err_document_404'];
 		if ( ! empty( $error404 ) ) {
-			$error404 = preg_replace( '#^xoops_root_path#i', XOOPS_ROOT_PATH, $error404 );
-			$error404 = preg_replace( '#^xoops_trust_path#i', XOOPS_TRUST_PATH, $error404 );
+			$error404 = preg_replace( '#^root_path#i', XOOPS_ROOT_PATH, $error404 );
+			$error404 = preg_replace( '#^trust_path#i', XOOPS_TRUST_PATH, $error404 );
 		}
 		if ( $error404 && is_readable( $error404 ) ) {
-			header( 'HTTP/1.0 404 Not Found' );
+            // Note
+			// Do not mix the use of http_response_code() and manually setting the response code header to avoid unexpected status code
+            // header( 'HTTP/1.0 404 Not Found' );
+            http_response_code(404);
 			readfile( $error404 );
 		} else {
 			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT );

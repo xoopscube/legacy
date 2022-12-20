@@ -27,8 +27,8 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = $mydirname;
-$modversion['version']          = '2.41';
-$modversion['detailed_version'] = '2.41.4';
+$modversion['version']          = '2.42';
+$modversion['detailed_version'] = '2.42.1';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'GIJ=CHECKMATE PEAK Corp. - peak.ne.jp';
 $modversion['credits']          = 'PEAK Corp. Update by XOOPS-X (10) and refactoring by @gigamaster (XCL PHP7)';
@@ -150,6 +150,46 @@ $modversion['hasComments'] = 0;
 
 // Configs
 $modversion['config'][1] = [
+    'name'        => 'top_message',
+    'title'       => $constpref . '_TOP_MESSAGE',
+    'description' => '',
+    'formtype'    => 'textarea',
+    'valuetype'   => 'text',
+    'default'     => constant( $constpref . '_TOP_MESSAGEDEFAULT' ),
+    'options'     => []
+];
+
+$modversion['config'][] = [
+    'name'        => 'htmlheader',
+    'title'       => $constpref . '_HTMLHEADER',
+    'description' => '',
+    'formtype'    => 'textarea',
+    'valuetype'   => 'text',
+    'default'     => '',
+    'options'     => []
+];
+
+$modversion['config'][] = [
+    'name'        => 'allow_each_htmlheader',
+    'title'       => $constpref . '_ALLOWEACHHEAD',
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+    'options'     => []
+];
+
+$modversion['config'][] = [
+    'name'        => 'css_uri',
+    'title'       => $constpref . '_CSS_URI',
+    'description' => $constpref . '_CSS_URIDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => '{mod_url}/index.php?page=main_css',
+    'options'     => []
+];
+
+$modversion['config'][0] = [
 	'name'        => 'use_wraps_mode',
 	'title'       => $constpref . '_USE_WRAPSMODE',
 	'description' => '',
@@ -200,33 +240,33 @@ $modversion['config'][] = [
 ];
 
 $modversion['config'][] = [
-	'name'        => 'filters',
-	'title'       => $constpref . '_FILTERS',
-	'description' => $constpref . '_FILTERSDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'text',
-	'default'     => constant( $constpref . '_FILTERSDEFAULT' ),
-	'options'     => []
+    'name'        => 'search_by_uid',
+    'title'       => $constpref . '_SEARCHBYUID',
+    'description' => $constpref . '_SEARCHBYUIDDSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+    'options'     => []
 ];
 
 $modversion['config'][] = [
-	'name'        => 'filters_forced',
-	'title'       => $constpref . '_FILTERSF',
-	'description' => $constpref . '_FILTERSFDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'text',
-	'default'     => '',
-	'options'     => []
+    'name'        => 'histories_per_content',
+    'title'       => $constpref . '_HISTORY_P_C',
+    'description' => '',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 4,
+    'options'     => []
 ];
 
 $modversion['config'][] = [
-	'name'        => 'filters_prohibited',
-	'title'       => $constpref . '_FILTERSP',
-	'description' => $constpref . '_FILTERSPDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'text',
-	'default'     => 'textwiki',
-	'options'     => []
+    'name'        => 'minlifetime_per_history',
+    'title'       => $constpref . '_MLT_HISTORY',
+    'description' => '',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 300,
+    'options'     => []
 ];
 
 $modversion['config'][] = [
@@ -236,16 +276,6 @@ $modversion['config'][] = [
 	'formtype'    => 'yesno',
 	'valuetype'   => 'int',
 	'default'     => 0,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'top_message',
-	'title'       => $constpref . '_TOP_MESSAGE',
-	'description' => '',
-	'formtype'    => 'textarea',
-	'valuetype'   => 'text',
-	'default'     => constant( $constpref . '_TOP_MESSAGEDEFAULT' ),
 	'options'     => []
 ];
 
@@ -280,32 +310,12 @@ $modversion['config'][] = [
 ];
 
 $modversion['config'][] = [
-    'name'        => 'show_rss',
-    'title'       => $constpref . '_SHOW_RSS',
-    'description' => '',
-    'formtype'    => 'yesno',
-    'valuetype'   => 'int',
-    'default'     => 0,
-    'options'     => []
-];
-
-$modversion['config'][] = [
 	'name'        => 'show_pagenavi',
 	'title'       => $constpref . '_SHOW_PAGENAVI',
 	'description' => '',
 	'formtype'    => 'yesno',
 	'valuetype'   => 'int',
 	'default'     => 1,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'show_printicon',
-	'title'       => $constpref . '_SHOW_PRINTICON',
-	'description' => '',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 0,
 	'options'     => []
 ];
 
@@ -326,16 +336,6 @@ $modversion['config'][] = [
 	'formtype'    => 'yesno',
 	'valuetype'   => 'int',
 	'default'     => 0,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'search_by_uid',
-	'title'       => $constpref . '_SEARCHBYUID',
-	'description' => $constpref . '_SEARCHBYUIDDSC',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 1,
 	'options'     => []
 ];
 
@@ -370,33 +370,22 @@ $modversion['config'][] = [
 ];
 
 $modversion['config'][] = [
-	'name'        => 'htmlheader',
-	'title'       => $constpref . '_HTMLHEADER',
-	'description' => '',
-	'formtype'    => 'textarea',
-	'valuetype'   => 'text',
-	'default'     => '',
-	'options'     => []
+    'name'        => 'show_rss',
+    'title'       => $constpref . '_SHOW_RSS',
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => []
 ];
-
 $modversion['config'][] = [
-	'name'        => 'allow_each_htmlheader',
-	'title'       => $constpref . '_ALLOWEACHHEAD',
-	'description' => '',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 1,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'css_uri',
-	'title'       => $constpref . '_CSS_URI',
-	'description' => $constpref . '_CSS_URIDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'text',
-	'default'     => '{mod_url}/index.php?page=main_css',
-	'options'     => []
+    'name'        => 'show_printicon',
+    'title'       => $constpref . '_SHOW_PRINTICON',
+    'description' => '',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => []
 ];
 
 $modversion['config'][] = [
@@ -410,6 +399,56 @@ $modversion['config'][] = [
 ];
 
 $modversion['config'][] = [
+    'name'        => 'browser_cache',
+    'title'       => $constpref . '_BRCACHE',
+    'description' => $constpref . '_BRCACHEDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 3600,
+    'options'     => []
+];
+
+$modversion['config'][] = [
+    'name'        => 'htmlpurify_except',
+    'title'       => $constpref . '_HTMLPR_EXCEPT',
+    'description' => $constpref . '_HTMLPR_EXCEPTDSC',
+    'formtype'    => 'group_multi',
+    'valuetype'   => 'array',
+    'default'     => [ 1, 2, 4 ],
+    'options'     => []
+];
+
+$modversion['config'][] = [
+    'name'        => 'filters',
+    'title'       => $constpref . '_FILTERS',
+    'description' => $constpref . '_FILTERSDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => constant( $constpref . '_FILTERSDEFAULT' ),
+    'options'     => []
+];
+
+$modversion['config'][] = [
+    'name'        => 'filters_forced',
+    'title'       => $constpref . '_FILTERSF',
+    'description' => $constpref . '_FILTERSFDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => '',
+    'options'     => []
+];
+
+$modversion['config'][] = [
+    'name'        => 'filters_prohibited',
+    'title'       => $constpref . '_FILTERSP',
+    'description' => $constpref . '_FILTERSPDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => 'textwiki',
+    'options'     => []
+];
+
+$modversion['config'][] = [
 	'name'        => 'body_editor',
 	'title'       => $constpref . '_BODY_EDITOR',
 	'description' => '',
@@ -418,46 +457,6 @@ $modversion['config'][] = [
 	'default'     => 'xoopsdhtml',
 	//	'options'		=> array('xoopsdhtml' => 'xoopsdhtml', 'common/fckeditor' => 'common_fckeditor')
 	'options'     => [ 'xoopsdhtml' => 'xoopsdhtml' ]
-];
-
-$modversion['config'][] = [
-	'name'        => 'htmlpurify_except',
-	'title'       => $constpref . '_HTMLPR_EXCEPT',
-	'description' => $constpref . '_HTMLPR_EXCEPTDSC',
-	'formtype'    => 'group_multi',
-	'valuetype'   => 'array',
-	'default'     => [ 1, 2, 4 ],
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'histories_per_content',
-	'title'       => $constpref . '_HISTORY_P_C',
-	'description' => '',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'int',
-	'default'     => 4,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'minlifetime_per_history',
-	'title'       => $constpref . '_MLT_HISTORY',
-	'description' => '',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'int',
-	'default'     => 300,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'browser_cache',
-	'title'       => $constpref . '_BRCACHE',
-	'description' => $constpref . '_BRCACHEDSC',
-	'formtype'    => 'textbox',
-	'valuetype'   => 'int',
-	'default'     => 3600,
-	'options'     => []
 ];
 
 $modversion['config'][] = [
@@ -560,7 +559,6 @@ $modversion['config'][] = [
 	'options'     => []
 ];
 
-
 // Notification
 $modversion['hasNotification'] = 1;
 
@@ -633,8 +631,3 @@ $modversion['notification'] = [
 $modversion['onInstall']   = 'oninstall.php';
 $modversion['onUpdate']    = 'onupdate.php';
 $modversion['onUninstall'] = 'onuninstall.php';
-
-// keep block's options
-/*if (!defined('XOOPS_CUBE_LEGACY') && substr(XOOPS_VERSION, 6, 3) < 2.1 && !empty($_POST['fct']) && !empty($_POST['op']) && 'modulesadmin' === $_POST['fct'] && 'update_ok' === $_POST['op'] && $_POST['dirname'] === $modversion['dirname']) {
-	include __DIR__ . '/include/x20_keepblockoptions.inc.php';
-}*/

@@ -147,24 +147,24 @@ define( '_MD_PICO_FMT_QUERYTAGDESC' , 'Content tagged %s');
 define( '_MD_PICO_ERR_NOCONTENTMATCHED' , 'The requested content or resource is not available.');
 
 // filters
-define( '_MD_PICO_FILTERS_EVALTITLE' , 'php code');
-define( '_MD_PICO_FILTERS_EVALDESC' , 'It will be the parameter of eval() function');
+define( '_MD_PICO_FILTERS_EVALTITLE' , 'PHP code');
+define( '_MD_PICO_FILTERS_EVALDESC' , 'Evaluate the given code with eval() function.');
 define( '_MD_PICO_FILTERS_HTMLSPECIALCHARSTITLE' , 'HTML special character escape');
-define( '_MD_PICO_FILTERS_HTMLSPECIALCHARSDESC' , 'If you want to use BBCode etc. also, set it the first place.');
-define( '_MD_PICO_FILTERS_TEXTWIKITITLE' , 'PEAR TextWiki <a href="https://wiki.ciaweb.net/yawiki/index.php?area=Text_Wiki&amp;page=SamplePage" target="_blank">Sample</a>');
-define( '_MD_PICO_FILTERS_TEXTWIKIDESC' , 'Rendered by TextWiki rule');
-define( '_MD_PICO_FILTERS_XOOPSTPLTITLE' , 'Smarty(XoopsTpl)');
-define( '_MD_PICO_FILTERS_XOOPSTPLDESC' , 'Rendered as a Smarty template');
-define( '_MD_PICO_FILTERS_NL2BRTITLE' , 'Auto new line');
-define( '_MD_PICO_FILTERS_NL2BRDESC' , 'LF will be replaced into &lt;br /&gt;');
+define( '_MD_PICO_FILTERS_HTMLSPECIALCHARSDESC' , 'Set this filter in first place for BBCode etc.');
+define( '_MD_PICO_FILTERS_TEXTWIKITITLE' , 'PEAR TextWiki ');
+define( '_MD_PICO_FILTERS_TEXTWIKIDESC' , 'Rendered with TextWiki rules');
+define( '_MD_PICO_FILTERS_XOOPSTPLTITLE' , 'Smarty Renderer');
+define( '_MD_PICO_FILTERS_XOOPSTPLDESC' , 'Enable Smarty template constants and variables.');
+define( '_MD_PICO_FILTERS_NL2BRTITLE' , 'Automatically create and replace line-break');
+define( '_MD_PICO_FILTERS_NL2BRDESC' , 'Replace line break LF with &lt;br /&gt;');
 define( '_MD_PICO_FILTERS_SMILEYTITLE' , 'Smiley');
-define( '_MD_PICO_FILTERS_SMILEYDESC' , ':-) :-D etc.');
+define( '_MD_PICO_FILTERS_SMILEYDESC' , 'Convert character :-) combinations into emoticons.');
 define( '_MD_PICO_FILTERS_XCODETITLE' , 'BBCode');
-define( '_MD_PICO_FILTERS_XCODEDESC' , 'Auto link and BBCode will be enabled');
-define( '_MD_PICO_FILTERS_WRAPSTITLE' , 'Page wraps (note: displays the file specified in the virtual path)');
-define( '_MD_PICO_FILTERS_WRAPSDESC' , 'The target file is XOOPS_TRUST_PATH/wraps/(dirname)/file (same as wraps)');
-define( '_MD_PICO_FILTERS_XOOPSTSTITLE' , 'Editor default filter (smiley, xcode , img, br)');
-define( '_MD_PICO_FILTERS_XOOPSTSDESC' , 'Use default text filter, enabled smiley, xcode , img & br');
+define( '_MD_PICO_FILTERS_XCODEDESC' , 'Automatically generates hyperlinks');
+define( '_MD_PICO_FILTERS_WRAPSTITLE' , 'Page [wraps]');
+define( '_MD_PICO_FILTERS_WRAPSDESC' , 'Displays the file specified in virtual path');
+define( '_MD_PICO_FILTERS_XOOPSTSTITLE' , 'Editor default filter');
+define( '_MD_PICO_FILTERS_XOOPSTSDESC' , 'Enable text filter, smiley, xcode, img and br');
 
 
 // permissions
@@ -183,7 +183,7 @@ if ( defined( '_ADM_USE_RTL' ) ) {
     @define( '_ALIGN_START', _ADM_USE_RTL ? 'right' : 'left' );
     @define( '_ALIGN_END', _ADM_USE_RTL ? 'left' : 'right' );
 } else {
-    @define( '_ALIGN_START', 'left' ); // change it right for RTL
+    @define( '_ALIGN_START', 'left' ); // change it right for RTL TODO error on PHP7->PHP8
     @define( '_ALIGN_END', 'right' );  // change it left for RTL
 }
 
