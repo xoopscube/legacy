@@ -4,7 +4,18 @@
 ![X-Updare Store](https://img.shields.io/badge/X--Update%20Store-Pending-red)
 
 
-# XCL :: XOOPSCube Legacy 
+# XOOPSCube Legacy :: XCL
+
+**Active branches in GitHub**  
+Use active branches for all new features and bug fixes (PHP74, PHP8).  
+Keep a tested high quality, up-to-date master/main branch for releases.  
+
+| Branch | Version | Commit / Pull request |
+| -- | -- | -- |
+| Master | PHP7.x | Release Candidate (RC)  |
+| PHP8  | PHP 8.x | Features and bug fixes |
+| PHP74  | PHP 7.4 | Features and bug fixes |
+
 ## Simple, Secure and Scalable
 ### Web Application Platform and Content Management System
 
