@@ -288,18 +288,20 @@ function Legacy_modifier_theme($string)
    
     return LEGACY_ADMIN_RENDER_FALLBACK_URL . '/' . $string;
 }
-
-function Legacy_function_stylesheet($params, &$smarty)
+//function Legacy_function_stylesheet($params, &$smarty)
+function Legacy_function_stylesheet($params, $smarty)
 {
     if (!isset($params['file'])) {
-        $smarty->trigger_error('stylesheet: missing file parameter.');
+        //$smarty->trigger_error('stylesheet: missing file parameter.');
+        trigger_error('stylesheet: missing file parameter.');
         return;
     }
     
     $file = $params['file'];
     
     if (false !== strstr($file, '..')) {
-        $smarty->trigger_error('stylesheet: missing file parameter.');
+        //$smarty->trigger_error('stylesheet: missing file parameter.');
+        trigger_error('stylesheet: missing file parameter.');
         return;
     }
 

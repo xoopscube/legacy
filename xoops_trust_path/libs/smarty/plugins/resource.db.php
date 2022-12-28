@@ -46,7 +46,7 @@ function smarty_resource_db_source($tpl_name, &$tpl_source, &$smarty)
     return true;
 }
 
-function smarty_resource_db_timestamp($tpl_name, &$tpl_timestamp, &$smarty)
+function smarty_resource_db_timestamp($tpl_name, &$tpl_timestamp, $smarty)
 {
     $tpl_name = smarty_resource_db_systemTpl($tpl_name);
     if (!$tpl = smarty_resource_db_tplinfo($tpl_name, $smarty)) {
