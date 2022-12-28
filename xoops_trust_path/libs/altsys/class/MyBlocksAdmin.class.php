@@ -610,14 +610,14 @@ class MyBlocksAdmin {
 			$xoopsTpl->xoops_setCaching( 2 );
 
 			if ( '' != $block->getVar( 'template' ) ) {
-				if ( $xoopsTpl->is_cached( 'db:' . $block->getVar( 'template' ) ) ) {
-					if ( ! $xoopsTpl->clear_cache( 'db:' . $block->getVar( 'template' ) ) ) {
+				if ( $xoopsTpl->isCached( 'db:' . $block->getVar( 'template' ) ) ) {
+					if ( ! $xoopsTpl->clearCache( 'db:' . $block->getVar( 'template' ) ) ) {
 						$msg = 'Unable to clear cache for block ID' . $bid;
 					}
 				}
 			} else {
-				if ( $xoopsTpl->is_cached( 'db:system_dummy.html', 'blk_' . $bid ) ) {
-					if ( ! $xoopsTpl->clear_cache( 'db:system_dummy.html', 'blk_' . $bid ) ) {
+				if ( $xoopsTpl->isCached( 'db:system_dummy.html', 'blk_' . $bid ) ) {
+					if ( ! $xoopsTpl->clearCache( 'db:system_dummy.html', 'blk_' . $bid ) ) {
 						$msg = 'Unable to clear cache for block ID' . $bid;
 					}
 				}

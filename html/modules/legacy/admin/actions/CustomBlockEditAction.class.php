@@ -16,6 +16,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 require_once XOOPS_MODULE_PATH . '/legacy/class/AbstractEditAction.class.php';
 require_once XOOPS_MODULE_PATH . '/legacy/admin/actions/BlockEditAction.class.php';
 require_once XOOPS_MODULE_PATH . '/legacy/admin/forms/CustomBlockEditForm.class.php';
+require_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
 
 class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
 {
@@ -97,5 +98,42 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
         } else {
             $controller->executeForward('./index.php?action=BlockList');
         }
+    }
+
+    public function execute(&$controller, &$xoopsUser)
+    {
+        if (null === $this->mObject) {
+            return LEGACY_FRAME_VIEW_ERROR;
+        }
+
+        if (null !== xoops_getrequest('_form_control_preview')) {
+            $this->mActionForm->load($this->mObject);
+
+            $this->mActionForm->fetch();
+            $this->mActionForm->validate();
+
+            return LEGACY_FRAME_VIEW_PREVIEW;
+        }
+        return parent::execute($controller, $xoopsUser);
+    }
+
+    public function executeViewPreview(&$controller, &$xoopsUser, &$render)
+    {
+        $this->executeViewInput($controller, $xoopsUser, $render);
+
+        $bid = !empty(xoops_getrequest('bid')) ? intval(xoops_getrequest('bid')) : 0;
+        if (!empty($bid)) {
+            $myblock = new XoopsBlock($bid);
+        } else {
+            $myblock = new XoopsBlock();
+            $myblock->setVar('block_type', 'C');
+        }
+        $myts =& MyTextSanitizer::sGetInstance();
+        $myblock->setVar('content', $myts->stripSlashesGPC(xoops_getrequest('content')));
+        restore_error_handler();
+        $original_level = error_reporting( E_ALL );
+        $preview = $myblock->getContent('S', xoops_getrequest('c_type'));
+        error_reporting( $original_level );
+        $render->setAttribute('content_preview', $preview);
     }
 }

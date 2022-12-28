@@ -203,7 +203,8 @@ class Legacy_ResourcedbUtils
 {
     public static function getModuleTemplatePath(XoopsTplfile $tplObj)
     {
-        $block = ($tplObj->getVar('tpl_type') === 'block') ? '/blocks' : null;
+        //$block = ($tplObj->getVar('tpl_type') === 'block') ? '/blocks' : null;
+$block = ($tplObj->getVar('tpl_type') == 'block') ? '/blocks' : null;
         $dirname = $tplObj->getVar('tpl_module');
         $modulePath = $dirname.'/templates'.$block;
 

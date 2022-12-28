@@ -34,7 +34,7 @@ return;
   <input type="hidden" name="target" value="<{$target}>" />
   <select name="imgcat_id" onchange="location='<{$smarty.const.XOOPS_URL}>/imagemanager.php?target=<{$target}>&amp;imgcat_id='+this.options[this.selectedIndex].value">
     <option id="imgcat_id_0" value="0">---</option>
-    <{xoops_optionsArray id=imgcat_id from=$categoryArr value=imgcat_id label=imgcat_name default=$imgcatId}>
+    <{xoops_optionsArray id="imgcat_id" from=$categoryArr value="imgcat_id" label="imgcat_name" default=$imgcatId}>
   </select>
   <input type="submit" value="<{$smarty.const._SUBMIT}>" />
 </form>

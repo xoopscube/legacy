@@ -40,6 +40,10 @@
 </div>
 <{/if}>
 
+<{if $content_preview}>
+<div class="ui-block-admin-preview"><{$content_preview}></div>
+<{/if}>
+
 <form action="index.php?action=CustomBlockEdit" method="post">
     <{xoops_token form=$actionForm}>
     <{xoops_input type=hidden name=bid value=$actionForm->get('bid')}>
@@ -71,7 +75,7 @@
             <td class="head"><{$smarty.const._AD_LEGACY_LANG_SIDE}></td>
             <td>
             <select name="side">
-                <{xoops_optionsArray id=side from=$columnSideArr label=name value=id default=$actionForm->get('side')}>
+                <{xoops_optionsArray id="side" from=$columnSideArr label="name" value="id" default=$actionForm->get('side')}>
             </select>
             </td>
         </tr>
@@ -93,13 +97,48 @@
             <{/if}>
             <{xoops_dhtmltarea type=text name=content value=$actionForm->get('content') rows=20 cols=60 class=$editor editor=$editor}>
             <{* fck_htmlarea name=content width=100% hight=400px skin=silver value=$actionForm->get('content') *}>
+            <{if $actionForm->get('c_type') == 'P'}>
+            <script type="text/javascript" src="<{$xoops_url}>/modules/ckeditor4/ckeditor/ckeditor.js"></script>
+            <style>
+                .cke_chrome {
+                    border: none!important;
+                }
+                .cke_top {
+                    border-bottom: 1px solid #000000!important;
+                    background: hsl(220deg 30% 5%)!important;
+                    padding: 6px 8px 2px;
+                    white-space: normal;
+                }
+                a.cke_button{
+                    background: #363d49;
+                    border-color: hsl(220deg 30% 5%);
+                    margin-right: 0.25rem;
+                }
+                a.cke_button_off:hover, a.cke_button_off:focus, a.cke_button_off:active {
+                    background-color: var(--button-active)!important;
+                    border-color: var(--link-hover)!important;
+                }
+                .cke_button_on {
+                    background-color: transparent!important;
+                    border-color: var(--link-hover)!important;
+                }
+                .cke_button_icon {
+                    background: #363d49;
+                }
+            </style>
+            <script type="text/javascript">
+                CKEDITOR.replace( 'content', {
+                    customConfig: '<{$xoops_url}>/modules/ckeditor4/ckeditor/config_php.js',
+                });
+            </script>
+            <{/if}>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._AD_LEGACY_LANG_C_TYPE}></td>
             <td>
             <select name='c_type'>
-                <{xoops_optionsArray id=c_type from=$ctypeArr value=type label=label default=$actionForm->get('c_type')}>
+                <{xoops_optionsArray id="c_type" from=$ctypeArr value="type" label="label" default=$actionForm->get('c_type')}>
             </select>
             </td>
         </tr>
@@ -107,7 +146,7 @@
             <td class="head"><{$smarty.const._AD_LEGACY_LANG_BCACHETIME}></td>
             <td>
             <select name='bcachetime'>
-                <{xoops_optionsArray id=bcachetime from=$cachetimeArr value=cachetime label=label default=$actionForm->get('bcachetime')}>
+                <{xoops_optionsArray id="bcachetime" from=$cachetimeArr value="cachetime" label="label" default=$actionForm->get('bcachetime')}>
             </select>
             </td>
         </tr>
@@ -116,9 +155,9 @@
             <td>
             <select  size='5' name='bmodule[]' multiple='multiple'>
                 <{if $actionForm->get('bmodule')}>
-                <{xoops_optionsArray id=bmodule[] from=$moduleArr value=mid label=name default=$actionForm->get('bmodule')}>
+                <{xoops_optionsArray id="bmodule[]" from=$moduleArr value="mid" label="name" default=$actionForm->get('bmodule')}>
                 <{else}>
-                <{xoops_optionsArray id=bmodule[] from=$moduleArr value=mid label=name default=-1}>
+                <{xoops_optionsArray id="bmodule[]" from=$moduleArr value="mid" label="name" default=-1}>
                 <{/if}>
             </select>
             </td>
@@ -128,9 +167,9 @@
             <td>
             <select  size='5' name='groupid[]' multiple='multiple'>
                 <{if $actionForm->get('groupid')}>
-                <{xoops_optionsArray id=groupid[] from=$groupArr value=groupid label=name default=$actionForm->get('groupid')}>
+                <{xoops_optionsArray id="groupid[]" from=$groupArr value="groupid" label="name" default=$actionForm->get('groupid')}>
                 <{else}>
-                <{xoops_optionsArray id=groupid[] from=$groupArr value=groupid label=name default=1}>
+                <{xoops_optionsArray id="groupid[]" from=$groupArr value="groupid" label="name" default=1}>
                 <{/if}>
             </select>
             </td>
@@ -140,6 +179,7 @@
         <tr>
             <td colspan="2" class="foot">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+                <input class="formButton" type="submit" value="<{$smarty.const._PREVIEW}>" name="_form_control_preview">
                 <input class="formButton" type="submit" value="<{$smarty.const._SAVE}>" name="_form_control_save_edit">
                 <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>

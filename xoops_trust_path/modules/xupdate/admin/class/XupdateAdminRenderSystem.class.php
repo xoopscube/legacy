@@ -33,8 +33,9 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem {
 		$this->mController =& $controller;
 
 		$this->mSmarty = new Legacy_AdminSmarty();    // TODO will be use other class?
-		$this->mSmarty->register_modifier( 'theme', [ $this, 'modifierTheme' ] );
-		$this->mSmarty->register_function( 'stylesheet', [ $this, 'functionStylesheet' ] );
+		$this->mSmarty->registerPlugin( 'modifier','theme', [ $this, 'modifierTheme' ] );
+        $this->mSmarty->registerPlugin('function', 'stylesheet', [ $this, 'functionStylesheet' ]);
+		//$this->mSmarty->register_function( 'stylesheet', [ $this, 'functionStylesheet' ] );
 
 		$this->mSmarty->assign(
 			[
@@ -121,7 +122,7 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem {
 		$this->_mStdoutBuffer .= $target->getAttribute( 'stdout_buffer' );
 
 		foreach ( $target->getAttributes() as $key => $val ) {
-			$this->mSmarty->clear_assign( $key );
+			$this->mSmarty->clearAssign( $key );
 		}
 	}
 

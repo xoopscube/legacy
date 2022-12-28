@@ -60,13 +60,16 @@ function make_sidebar($side)
         }
         $btpl = $iValue->getVar('template');
         if ('' !== $btpl) {
-            if (empty($bcachetime) || !$xoopsTpl->is_cached('db:'.$btpl)) {
+            //if (empty($bcachetime) || !$xoopsTpl->is_cached('db:'.$btpl)) {
+            if (empty($bcachetime) || !$xoopsTpl->isCached('db:'.$btpl)) {
                 $xoopsLogger->addBlock($iValue->getVar('name'));
                 $bresult =& $iValue->buildBlock();
                 if (!$bresult) {
                     continue;
                 }
-                $xoopsTpl->assign_by_ref('block', $bresult);
+                //$xoopsTpl->assign_by_ref('block', $bresult);
+// smarty3
+$xoopsTpl->assignByRef('block', $bresult);
                 $bcontent =& $xoopsTpl->fetch('db:'.$btpl);
                 $xoopsTpl->clear_assign('block');
             } else {
@@ -75,13 +78,15 @@ function make_sidebar($side)
             }
         } else {
             $bid = $iValue->getVar('bid');
-            if (empty($bcachetime) || !$xoopsTpl->is_cached('db:system_dummy.html', 'blk_'.$bid)) {
+            if (empty($bcachetime) || !$xoopsTpl->isCached('db:system_dummy.html', 'blk_'.$bid)) {
                 $xoopsLogger->addBlock($iValue->getVar('name'));
                 $bresult =& $iValue->buildBlock();
                 if (!$bresult) {
                     continue;
                 }
-                $xoopsTpl->assign_by_ref('dummy_content', $bresult['content']);
+                //$xoopsTpl->assign_by_ref('dummy_content', $bresult['content']);
+// smarty3
+$xoopsTpl->assignByRef('dummy_content', $bresult['content']);
                 $bcontent =& $xoopsTpl->fetch('db:system_dummy.html', 'blk_'.$bid);
                 $xoopsTpl->clear_assign('block');
             } else {
@@ -137,13 +142,15 @@ function make_cblock()
             }
             $btpl = $iValue->getVar('template');
             if ('' !== $btpl) {
-                if (empty($bcachetime) || !$xoopsTpl->is_cached('db:'.$btpl)) {
+                if (empty($bcachetime) || !$xoopsTpl->isCached('db:'.$btpl)) {
                     $xoopsLogger->addBlock($iValue->getVar('name'));
                     $bresult =& $iValue->buildBlock();
                     if (!$bresult) {
                         continue;
                     }
-                    $xoopsTpl->assign_by_ref('block', $bresult);
+                    //$xoopsTpl->assign_by_ref('block', $bresult);
+// smarty3
+$xoopsTpl->assignByRef('block', $bresult);
                     $bcontent =& $xoopsTpl->fetch('db:'.$btpl);
                     $xoopsTpl->clear_assign('block');
                 } else {
@@ -152,13 +159,15 @@ function make_cblock()
                 }
             } else {
                 $bid = $iValue->getVar('bid');
-                if (empty($bcachetime) || !$xoopsTpl->is_cached('db:system_dummy.html', 'blk_'.$bid)) {
+                if (empty($bcachetime) || !$xoopsTpl->isCached('db:system_dummy.html', 'blk_'.$bid)) {
                     $xoopsLogger->addBlock($iValue->getVar('name'));
                     $bresult =& $iValue->buildBlock();
                     if (!$bresult) {
                         continue;
                     }
                     $xoopsTpl->assign_by_ref('dummy_content', $bresult['content']);
+// smarty3
+$xoopsTpl->assignByRef('dummy_content', $bresult['content']);
                     $bcontent =& $xoopsTpl->fetch('db:system_dummy.html', 'blk_'.$bid);
                     $xoopsTpl->clear_assign('block');
                 } else {
