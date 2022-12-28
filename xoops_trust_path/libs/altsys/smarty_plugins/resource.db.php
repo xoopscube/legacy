@@ -17,7 +17,7 @@
  *
  * @return bool
  */
-function smarty_resource_db_source( $tpl_name, &$tpl_source, &$smarty ) {
+function smarty_resource_db_source( $tpl_name, &$tpl_source, $smarty ) {
 	if ( ! $tpl = smarty_resource_db_tplinfo( $tpl_name ) ) {
 		return false;
 	}

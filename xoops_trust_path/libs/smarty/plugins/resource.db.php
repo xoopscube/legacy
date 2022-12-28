@@ -32,7 +32,7 @@ function smarty_resource_db_systemTpl($tpl_name)
     return $tpl_name;
 }
 
-function smarty_resource_db_source($tpl_name, &$tpl_source, &$smarty)
+function smarty_resource_db_source($tpl_name, &$tpl_source, $smarty)
 {
     $tpl_name = smarty_resource_db_systemTpl($tpl_name);
     if (!$tpl = smarty_resource_db_tplinfo($tpl_name, $smarty)) {
