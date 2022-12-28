@@ -65,10 +65,6 @@ class XoopsFormSelect extends XoopsFormElement
             $this->setValue($value);
         }
     }
-    public function XoopsFormSelect($caption, $name, $value=null, $size=1, $multiple=false)
-    {
-        return $this->__construct($caption, $name, $value, $size, $multiple);
-    }
 
     /**
      * Are multiple selections allowed?

@@ -50,7 +50,10 @@ if ( ! function_exists( 'protector_onupdate_base' ) ) {
 		//$db->query( 'ALTER TABLE ' . $db->prefix( 'config' ) . ' ADD CONSTRAINT `conf_title` (`conf_title`)' );
 
 		// 2.x -> 3.0
-		[ , $create_string ] = $db->fetchRow( $db->query( 'SHOW CREATE TABLE ' . $db->prefix( $mydirname . '_log' ) ) );
+		$result = $db->query( 'SHOW CREATE TABLE ' . $db->prefix( $mydirname . '_log' ) );
+		if ($result) {
+			[ , $create_string ] = $db->fetchRow( $result );
+		}
 		if ( preg_match( '/timestamp\(/i', $create_string ) ) {
 			$db->query( 'ALTER TABLE ' . $db->prefix( $mydirname . '_log' ) . ' MODIFY `timestamp` DATETIME' );
 		}

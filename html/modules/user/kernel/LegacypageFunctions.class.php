@@ -207,6 +207,7 @@ class User_LegacypageFunctions
 
         $root->mController->setupModuleContext('user');
         $root->mLanguageManager->loadModuleMessageCatalog('user');
+        $root->mLanguageManager->loadBlockMessageCatalog('user');
 
         require_once XOOPS_MODULE_PATH . '/user/class/ActionFrame.class.php';
 

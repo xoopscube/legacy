@@ -144,9 +144,6 @@ class XoopsErrorHandler
                 case E_USER_DEPRECATED:
                     $out = 'Deprecated [Xoops]: ';
                     break;
-                case E_USER_STRICT:
-                    $out = 'Strict [Xoops]: ';
-                    break;
                 case E_NOTICE:
                     $out = 'Notice [PHP]: ';
                     break;

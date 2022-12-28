@@ -43,10 +43,6 @@ class XoopsPageNav
         }
         $this->url = xoops_getenv('PHP_SELF').'?'.$extra_arg.trim($start_name).'=';
     }
-    public function XoopsPageNav($total_items, $items_perpage, $current_start, $start_name= 'start', $extra_arg= '')
-    {
-        return $this->__construct($total_items, $items_perpage, $current_start, $start_name, $extra_arg);
-    }
 
     /**
      * Create text navigation
