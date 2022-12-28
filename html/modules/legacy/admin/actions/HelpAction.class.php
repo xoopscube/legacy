@@ -43,15 +43,14 @@ class Legacy_HelpSmarty extends Smarty
      */
     public $mFilename = null;
 
-//    public function Legacy_HelpSmarty()
-//    {
-//        self::__construct();
-//    }
+    public function Legacy_HelpSmarty()
+    {
+        self::__construct();
+    }
 
     public function __construct()
     {
-        //parent::Smarty();
-        parent::__construct();
+        parent::Smarty();
 
         $this->compile_id = null;
         $this->_canUpdateFromFile = true;
@@ -62,10 +61,8 @@ class Legacy_HelpSmarty extends Smarty
 
         $this->force_compile = true;
 
-//        $this->register_modifier('helpurl', 'Legacy_modifier_helpurl');
-//        $this->register_modifier('helpimage', 'Legacy_modifier_helpimage');
-        $this->registerPlugin('modifier', 'helpurl', 'Legacy_modifier_helpurl');
-        $this->registerPlugin('modifier', 'helpimage', 'Legacy_modifier_helpimage');
+        $this->register_modifier('helpurl', 'Legacy_modifier_helpurl');
+        $this->register_modifier('helpimage', 'Legacy_modifier_helpimage');
     }
 
     public function setDirname($dirname)

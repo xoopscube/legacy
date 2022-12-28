@@ -75,7 +75,7 @@
     <tbody>
     <{foreach from=$users item=user }>
     <tr>
-    <td class="list_image"><i aria-label="<{$smarty.const._AD_USER_LANG_USER}>"><img src="<{'icons/icon-user-group.svg'|theme}>" class="svg"></i></td>
+    <td class="list_image"><i aria-label="<{$smarty.const._AD_USER_LANG_USER}>"><img src="<{"icons/icon-user-group.svg"|theme}>" class="svg"></i></td>
     <td class="list_id"><{$user->getShow('uid')}></td>
     <td class="list_title"><{$user->getShow('uname')}></td>
     <td class="list_name"><{$user->getShow('name')}></td>
@@ -115,7 +115,7 @@
     </thead>
     <tbody>
     <tr>
-        <{foreach item="perm" from=$systemPermissions key="perm_key" name="SysPer"}>
+        <{foreach item=perm from=$systemPermissions key="perm_key" name="SysPer"}>
         <td class="head" style="width:35%;">&nbsp;<{$perm->mItem->getName()|xoops_escape}></td>
         <td class="even"><{assign var="getId" value=$perm->getId() }>
             <{if $perm->mValue==2}>
@@ -142,7 +142,7 @@
     </thead>
     <tbody>
     <tr>
-        <{foreach item="perm" from=$modulePermissions name="ModPer"}>
+        <{foreach item=perm from=$modulePermissions name="ModPer"}>
         <td class="head" style="width:25%;">&nbsp;<{$perm->mItem->getName()|xoops_escape}></td>
         <td class="even">
             <{assign var="getId" value=$perm->getId() }>
@@ -171,7 +171,7 @@
 
 <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_PERM_BLOCK_ACCESS}></h3>
 
-<{foreach key="i" item="permissions" from=$blockPermissions}>
+<{foreach key=i item=permissions from=$blockPermissions}>
 <table class="outer">
     <thead>
     <tr>
@@ -188,7 +188,7 @@
     </thead>
     <tbody>
     <tr>
-        <{foreach item=perm from=$permissions}>
+        <{foreach item=perm from=$permissions name=$i}>
         <td class="head" style="width:35%;">&nbsp;
             <{if $perm->mItem->isActive()}>
             <{$perm->mItem->getName()|xoops_escape}>
@@ -203,7 +203,7 @@
             --
             <{/if}>
         </td>
-        <{cycle values=",</tr><tr>"}>
+        <{cycle values=",</tr><tr>" name=$i}>
         <{/foreach}>
     </tr>
     </tbody>

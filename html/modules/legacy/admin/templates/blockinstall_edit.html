@@ -49,7 +49,8 @@
             <td><{$smarty.const._AD_LEGACY_LANG_SIDE}></td>
             <td>
                 <select name="side">
-                    <{xoops_optionsArray id="side" from=$columnSideArr value="id" label="name" default=$actionForm->get('side')}>
+                    <{xoops_optionsArray id=side from=$columnSideArr value=id label=name
+                    default=$actionForm->get('side')}>
                 </select>
             </td>
         </tr>
@@ -63,7 +64,8 @@
             <td><{$smarty.const._AD_LEGACY_LANG_BCACHETIME}></td>
             <td>
                 <select name='bcachetime'>
-                    <{xoops_optionsArray id="bcachetime" from=$cachetimeArr value="cachetime" label="label" default=$actionForm->get('bcachetime')}>
+                    <{xoops_optionsArray id=bcachetime from=$cachetimeArr value=cachetime label=label
+                    default=$actionForm->get('bcachetime')}>
                 </select>
             </td>
         </tr>
@@ -71,7 +73,8 @@
             <td><{$smarty.const._AD_LEGACY_LANG_TARGET_MODULES}></td>
             <td>
                 <select size='5' name='bmodule[]' multiple='multiple'>
-                    <{xoops_optionsArray id="bmodule[]" label="name" value="mid" from=$moduleArr default=$actionForm->get('bmodule')}>
+                    <{xoops_optionsArray id=bmodule[] label=name value=mid from=$moduleArr
+                    default=$actionForm->get('bmodule')}>
                 </select>
             </td>
         </tr>
@@ -79,7 +82,8 @@
             <td><{$smarty.const._AD_LEGACY_LANG_TARGET_GROUPS}></td>
             <td>
                 <select size='5' name='groupid[]' multiple='multiple'>
-                    <{xoops_optionsArray id="groupid[]" label="name" value="groupid" from=$groupArr default=$actionForm->get('groupid')}>
+                    <{xoops_optionsArray id=groupid[] label=name value=groupid from=$groupArr
+                    default=$actionForm->get('groupid')}>
                 </select>
             </td>
         </tr>

@@ -36,9 +36,7 @@ class XoopsTpl extends Smarty
     public function __construct()
     {
         global $xoopsConfig;
-
-        parent::__construct();
-
+        $this->Smarty();
         $this->compile_id = XOOPS_URL;
         if (1 == $xoopsConfig['theme_fromfile']) {
             $this->_canUpdateFromFile = true;
@@ -54,17 +52,12 @@ class XoopsTpl extends Smarty
         $this->template_dir = XOOPS_THEME_PATH;
         $this->cache_dir = XOOPS_CACHE_PATH;
         $this->compile_dir = XOOPS_COMPILE_PATH;
-        $this->config_dir = LIBRARY_PATH. '/configs'; // smarty3
         //loading under root_path for compatibility with XCL2.1
         //$this->plugins_dir = [SMARTY_DIR . 'plugins', XOOPS_ROOT_PATH . '/class/smarty/plugins'];
         $this->plugins_dir = [SMARTY_DIR . 'plugins'];
 
 //		$this->default_template_handler_func = 'xoops_template_create';
         $this->use_sub_dirs = false;
-        // escape as default for security
-        // $this->default_modifiers = ['escape'];
-        //$this->testInstall();
-        //exit;
 
         $this->assign(
             [
@@ -83,25 +76,8 @@ class XoopsTpl extends Smarty
 //                'fdn_url'           => XCL_UI_FDN_URL
             ]
         );
-// !TODO SMARTY3 SECURITY POLICY -> php_handling
 
-/*          if (empty($this->debug_tpl)) {
-            // set path to debug template from SMARTY_DIR
-            $this->debug_tpl = XOOPS_ROOT_PATH.'/modules/legacy/templates/xoops_debug.tpl';
-            $security_policy = new Smarty_Security($this);
-            $security_policy->allow_php_tag = true;
-            $security_policy->php_functions = ['is_array', 'is_string', 'is_null', 'isset', 'is_numeric'];
-            //$security_policy->php_handling = Smarty::PHP_REMOVE;
-            $security_policy->php_handling = Smarty::PHP_PASSTHRU;
-            $security_policy->php_modifiers = array();
-            if (is_file($this->debug_tpl)) {
-                $security_policy->secure_dir[] = realpath($this->debug_tpl);
-                //$security_policy->trusted_dir[] = realpath($this->debug_tpl);
-            }
-            $this->enableSecurity($security_policy);
-            $this->debug_tpl = 'file:' . XOOPS_ROOT_PATH.'/modules/legacy/templates/xoops_debug.tpl';
-        } */
-/*       if (empty($this->debug_tpl)) {
+        if (empty($this->debug_tpl)) {
             // set path to debug template from SMARTY_DIR
             $this->debug_tpl = XOOPS_ROOT_PATH.'/modules/legacy/templates/xoops_debug.tpl';
             if ($this->security && is_file($this->debug_tpl)) {
@@ -109,7 +85,6 @@ class XoopsTpl extends Smarty
             }
             $this->debug_tpl = 'file:' . XOOPS_ROOT_PATH.'/modules/legacy/templates/xoops_debug.tpl';
         }
-*/
 
         // Delegate 'XoopsTpl.New'
         //  Delegate may define additional initialization code for XoopTpl Instance;
@@ -128,7 +103,7 @@ class XoopsTpl extends Smarty
      *
      * @param string $dirname    Directory path without a trailing slash
      **/
-    public function xoops_setTemplateDir($dirname)
+    public function xoops_setTemplateDir(string $dirname)
     {
         $this->template_dir = $dirname;
     }
@@ -234,7 +209,7 @@ class XoopsTpl extends Smarty
 
     public function isBlockCached($template, $bid)
     {
-        return $this->isCached('db:'.$template, 'blk_'.$bid);
+        return $this->is_cached('db:'.$template, 'blk_'.$bid);
     }
 
     public function isModuleCached($templateName, $dirname)
@@ -243,7 +218,7 @@ class XoopsTpl extends Smarty
             $templateName='system_dummy.html';
         }
 
-        return $this->isCached('db:'.$templateName, $this->getModuleCachedTemplateId($dirname));
+        return $this->is_cached('db:'.$templateName, $this->getModuleCachedTemplateId($dirname));
     }
 
     public function fetchModule($templateName, $dirname)
@@ -305,8 +280,8 @@ function xoops_template_touch($tpl_id, $clear_old = true)
         if (is_object($tplfile)) {
             $file = $tplfile->getVar('tpl_file');
             if ($clear_old) {
-                $tpl->clearCache('db:'.$file);
-                $tpl->clearCompiledTemplate('db:'.$file);
+                $tpl->clear_cache('db:'.$file);
+                $tpl->clear_compiled_tpl('db:'.$file);
             }
             // $tpl->fetch('db:'.$file);
             return true;

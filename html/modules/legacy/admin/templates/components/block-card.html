@@ -154,7 +154,7 @@
         <div class="ui-card-block-item pad-center">
             <select name="bcachetime[<{$obj->getShow('bid')}>]">
                 <{assign var="bid" value=$obj->getShow('bid')}>
-                <{xoops_optionsArray id="bcachetime[`$bid`]" from=$cachetimeArr value="cachetime" label="label" default=$obj->get('bcachetime')}>
+                <{xoops_optionsArray id="bcachetime[`$bid`]" from=$cachetimeArr value=cachetime label=label default=$obj->get('bcachetime')}>
             </select>
         </div>
 

@@ -21,7 +21,7 @@
 
 <form action="index.php?action=ModuleEdit" method="post">
     <{xoops_token form=$actionForm}>
-    <{xoops_input type=hidden name="mid" value=$actionForm->get('mid')}>
+    <{xoops_input type=hidden name=mid value=$actionForm->get('mid')}>
 
 <table class="outer">
 <!--    <thead>-->
@@ -32,7 +32,7 @@
     <tbody>
     <tr>
         <td class="head"><{$smarty.const._AD_LEGACY_LANG_NAME}></td>
-        <td><{xoops_input type=text name="name" value=$actionForm->get('name') size=50 maxlength=191}></td>
+        <td><{xoops_input type=text name=name value=$actionForm->get('name') size=50 maxlength=191}></td>
     </tr>
     <tr>
         <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
@@ -73,14 +73,14 @@
     <tr>
         <td class="head"><{$smarty.const._AD_LEGACY_LANG_WEIGHT}></td>
         <td>
-        <{xoops_input type=text name="weight" value=$actionForm->get('weight') size=5 class=list_number}>
+        <{xoops_input type=text name=weight value=$actionForm->get('weight') size=5 class=list_number}>
         </td>
     </tr>
     <tr>
         <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_ADMINGROUP}></td>
         <td>
         <select size='5' name='admin_groupid[]' multiple='multiple'>
-            <{xoops_optionsArray id="admin_groupid[]" from=$groupArr value="groupid" label="name" default=$admingroupidArr}>
+            <{xoops_optionsArray id=admin_groupid[] from=$groupArr value=groupid label=name default=$admingroupidArr}>
         </select>
         </td>
     </tr>
@@ -88,7 +88,7 @@
         <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_READGROUP}></td>
         <td>
         <select  size='5' name='read_groupid[]' multiple='multiple'>
-            <{xoops_optionsArray id="read_groupid[]" from=$groupArr value="groupid" label="name" default=$readgroupidArr}>
+            <{xoops_optionsArray id=read_groupid[] from=$groupArr value=groupid label=name default=$readgroupidArr}>
         </select>
         </td>
     </tr>
@@ -97,7 +97,7 @@
         <td>
         <{if $object->get('hasmain')}>
         <select name='module_cache'>
-            <{xoops_optionsArray id="module_cache" from=$cachetimeArr value="cachetime" label="label" default=$actionForm->get('module_cache')}>
+            <{xoops_optionsArray id=module_cache from=$cachetimeArr value=cachetime label=label default=$actionForm->get('module_cache')}>
         </select>
         <{else}>
         <{$smarty.const._NOCACHE}><{xoops_input type=hidden name=module_cache value=0}>

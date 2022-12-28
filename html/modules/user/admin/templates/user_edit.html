@@ -39,7 +39,7 @@
 
 <form action="" method="post" autocomplete="off">
     <{xoops_token form=$actionForm}>
-    <{xoops_input type="hidden" name="uid" value=$actionForm->get('uid')}>
+    <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
     <table class="outer">
         <thead>
         <tr>
@@ -59,42 +59,42 @@
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_UNAME}></td>
             <td>
-            <{xoops_input type="text" name="uname" value=$actionForm->get('uname') size=25 maxlength=25}>
+            <{xoops_input type=text name=uname value=$actionForm->get('uname') size=25 maxlength=25}>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_NAME}></td>
             <td>
-            <{xoops_input type="text" name="name" value=$actionForm->get('name') size=30 maxlength=60}>
+            <{xoops_input type=text name=name value=$actionForm->get('name') size=30 maxlength=60}>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
             <td>
-            <{xoops_input type="text" name="email" value=$actionForm->get('email') size=30 maxlength=60}>
+            <{xoops_input type=text name=email value=$actionForm->get('email') size=30 maxlength=60}>
             <br>
             <{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}>
-            <{xoops_input type=checkbox name="user_viewemail" value="1" default=$actionForm->get('user_viewemail')}>
+            <{xoops_input type=checkbox name=user_viewemail value=1 default=$actionForm->get('user_viewemail')}>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_URL}></td>
             <td>
-            <{xoops_input type="text" name="url" value=$actionForm->get('url') size=50 maxlength=100}>
+            <{xoops_input type=text name=url value=$actionForm->get('url') size=50 maxlength=100}>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}></td>
             <td>
             <select name="timezone_offset">
-                <{xoops_optionsArray id="timezone_offset" label="zone_name" value="offset" from=$timezones default=$actionForm->get('timezone_offset')}>
+                <{xoops_optionsArray id=timezone_offset label=zone_name value=offset from=$timezones default=$actionForm->get('timezone_offset')}>
             </select>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_BIO}></td>
             <td>
-                <{xoops_textarea type="text" rows=5 cols=50 name="bio" value=$actionForm->get('bio')}>
+                <{xoops_textarea type=text rows=5 cols=50 name=bio value=$actionForm->get('bio')}>
             </td>
         </tr>
 
@@ -130,33 +130,33 @@
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_UMODE}></td>
             <td>
-            <{html_options name="umode" options=$umodeOptions selected=$actionForm->get('umode')}>
+            <{html_options name=umode options=$umodeOptions selected=$actionForm->get('umode')}>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_UORDER}></td>
             <td>
-            <{html_options name="uorder" options=$uorderOptions selected=$actionForm->get('uorder')}>
+            <{html_options name=uorder options=$uorderOptions selected=$actionForm->get('uorder')}>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_NOTIFY_METHOD}></td>
             <td>
-            <{html_options name="notify_method" options=$notify_methodOptions selected=$actionForm->get('notify_method')}>
+            <{html_options name=notify_method options=$notify_methodOptions selected=$actionForm->get('notify_method')}>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_NOTIFY_MODE}></td>
             <td>
-            <{html_options name="notify_mode" options=$notify_modeOptions selected=$actionForm->get('notify_mode')}>
+            <{html_options name=notify_mode options=$notify_modeOptions selected=$actionForm->get('notify_mode')}>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
             <td>
-                <{xoops_dhtmltarea type="text" name="user_sig" value=$actionForm->get('user_sig')}>
+                <{xoops_dhtmltarea type=text name=user_sig value=$actionForm->get('user_sig')}>
                 <br>
-                <label><{xoops_input type="checkbox" name="attachsig" value="1" default=$actionForm->get('attachsig')}> <{$smarty.const._MD_USER_LANG_ATTACHSIG}></label>
+                <label><{xoops_input type=checkbox name=attachsig value=1 default=$actionForm->get('attachsig')}> <{$smarty.const._MD_USER_LANG_ATTACHSIG}></label>
             </td>
         </tr>
         <tr>
@@ -164,27 +164,27 @@
             <td>
             <select name="rank">
                 <option id="rank_0" value="0"><{$smarty.const._AD_USER_LANG_NO_SPECIAL_RANK}></option>
-                <{xoops_optionsArray id="rank" value="rank_id" label="rank_title" from=$ranks default=$actionForm->get('rank')}>
+                <{xoops_optionsArray id=rank value=rank_id label=rank_title from=$ranks default=$actionForm->get('rank')}>
             </select>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_PASS}></td>
             <td>
-            <{xoops_input type="password" name="pass" size=25 maxlength=32}>
+            <{xoops_input type=password name=pass size=25 maxlength=32}>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._AD_USER_LANG_VPASS}></td>
             <td>
-            <{xoops_input type="password" name="vpass" size=25 maxlength=32}>
+            <{xoops_input type=password name=vpass size=25 maxlength=32}>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_USER_MAILOK}></td>
             <td>
-            <label><{xoops_input type="radio" name="user_mailok" value="1" default=$actionForm->get('user_mailok')}><{$smarty.const._YES}></label>
-            <label><{xoops_input type="radio" name="user_mailok" value="0" default=$actionForm->get('user_mailok')}><{$smarty.const._NO}></label>
+            <label><{xoops_input type=radio name=user_mailok value=1 default=$actionForm->get('user_mailok')}><{$smarty.const._YES}></label>
+            <label><{xoops_input type=radio name=user_mailok value=0 default=$actionForm->get('user_mailok')}><{$smarty.const._NO}></label>
             </td>
         </tr>
         <tr>
@@ -198,7 +198,7 @@
         <tr>
             <td class="head"><{$smarty.const._MD_USER_LANG_POSTS}></td>
             <td>
-            <{xoops_input type="text" name="posts" value=$actionForm->get('posts') class=list_number}>
+            <{xoops_input type=text name=posts value=$actionForm->get('posts') class=list_number}>
             </td>
         </tr>
         <tr>
@@ -211,14 +211,14 @@
             </select>
             <{elseif $actionForm->get('level') == 1}>
             <{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>
-            <{xoops_input type="hidden" name="level" value=$actionForm->get('level')}>
+            <{xoops_input type=hidden name=level value=$actionForm->get('level')}>
             <{elseif $actionForm->get('level') == 5}>
             <{$smarty.const._AD_USER_LANG_LEVEL_ROOT}>
-            <{xoops_input type="hidden" name="level" value=$actionForm->get('level')}>
+            <{xoops_input type=hidden name=level value=$actionForm->get('level')}>
             <{/if}>
             </td>
         </tr>
-        <{legacy_profile template="profile_inc_data_edit.html" action="edit" actionForm=$actionForm}>
+        <{legacy_profile template=profile_inc_data_edit.html action=edit actionForm=$actionForm}>
         </tbody>
         <tfoot>
         <tr>

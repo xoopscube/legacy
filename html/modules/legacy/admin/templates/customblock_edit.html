@@ -75,7 +75,7 @@
             <td class="head"><{$smarty.const._AD_LEGACY_LANG_SIDE}></td>
             <td>
             <select name="side">
-                <{xoops_optionsArray id="side" from=$columnSideArr label="name" value="id" default=$actionForm->get('side')}>
+                <{xoops_optionsArray id=side from=$columnSideArr label=name value=id default=$actionForm->get('side')}>
             </select>
             </td>
         </tr>
@@ -138,7 +138,7 @@
             <td class="head"><{$smarty.const._AD_LEGACY_LANG_C_TYPE}></td>
             <td>
             <select name='c_type'>
-                <{xoops_optionsArray id="c_type" from=$ctypeArr value="type" label="label" default=$actionForm->get('c_type')}>
+                <{xoops_optionsArray id=c_type from=$ctypeArr value=type label=label default=$actionForm->get('c_type')}>
             </select>
             </td>
         </tr>
@@ -146,7 +146,7 @@
             <td class="head"><{$smarty.const._AD_LEGACY_LANG_BCACHETIME}></td>
             <td>
             <select name='bcachetime'>
-                <{xoops_optionsArray id="bcachetime" from=$cachetimeArr value="cachetime" label="label" default=$actionForm->get('bcachetime')}>
+                <{xoops_optionsArray id=bcachetime from=$cachetimeArr value=cachetime label=label default=$actionForm->get('bcachetime')}>
             </select>
             </td>
         </tr>
@@ -155,9 +155,9 @@
             <td>
             <select  size='5' name='bmodule[]' multiple='multiple'>
                 <{if $actionForm->get('bmodule')}>
-                <{xoops_optionsArray id="bmodule[]" from=$moduleArr value="mid" label="name" default=$actionForm->get('bmodule')}>
+                <{xoops_optionsArray id=bmodule[] from=$moduleArr value=mid label=name default=$actionForm->get('bmodule')}>
                 <{else}>
-                <{xoops_optionsArray id="bmodule[]" from=$moduleArr value="mid" label="name" default=-1}>
+                <{xoops_optionsArray id=bmodule[] from=$moduleArr value=mid label=name default=-1}>
                 <{/if}>
             </select>
             </td>
@@ -167,9 +167,9 @@
             <td>
             <select  size='5' name='groupid[]' multiple='multiple'>
                 <{if $actionForm->get('groupid')}>
-                <{xoops_optionsArray id="groupid[]" from=$groupArr value="groupid" label="name" default=$actionForm->get('groupid')}>
+                <{xoops_optionsArray id=groupid[] from=$groupArr value=groupid label=name default=$actionForm->get('groupid')}>
                 <{else}>
-                <{xoops_optionsArray id="groupid[]" from=$groupArr value="groupid" label="name" default=1}>
+                <{xoops_optionsArray id=groupid[] from=$groupArr value=groupid label=name default=1}>
                 <{/if}>
             </select>
             </td>
@@ -181,7 +181,6 @@
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="formButton" type="submit" value="<{$smarty.const._PREVIEW}>" name="_form_control_preview">
                 <input class="formButton" type="submit" value="<{$smarty.const._SAVE}>" name="_form_control_save_edit">
-                <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>
         </tr>
         </tfoot>

@@ -133,23 +133,25 @@
 
             <{elseif $conf_formtype == 'theme'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
-                <{xoops_optionsArray id=$conf_name value="dirname" label="dirname" from=$themeArr default=$actionForm->get($rconf_name)}>
+                <{xoops_optionsArray id=$conf_name value=dirname label=dirname from=$themeArr
+                default=$actionForm->get($rconf_name)}>
             </select>
 
             <{elseif $conf_formtype == 'theme_multi'}>
             <select name='<{$conf_name}>[]' id='legacy_xoopsform_<{$conf_name}>' size='5' multiple="multiple">
-                <{xoops_optionsArray id=$conf_name value="dirname" label="dirname" from=$themeArr default=$actionForm->get($rconf_name)}>
+                <{xoops_optionsArray id=$conf_name value=dirname label=dirname from=$themeArr
+                default=$actionForm->get($rconf_name)}>
             </select>
 
             <{elseif $conf_formtype == 'tplset'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
-                <{xoops_optionsArray id=$conf_name value="tplset_name" label="tplset_name" from=$tplsetArr
+                <{xoops_optionsArray id=$conf_name value=tplset_name label=tplset_name from=$tplsetArr
                 default=$actionForm->get($rconf_name)}>
             </select>
 
             <{elseif $conf_formtype == 'timezone'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
-                <{xoops_optionsArray id=$conf_name value="offset" label="zone_name" from=$timezoneArr default=$actionForm->get($rconf_name)}>
+                <{xoops_optionsArray id=$conf_name value=offset label=zone_name from=$timezoneArr default=$actionForm->get($rconf_name)}>
             </select>
 
             <{elseif $conf_formtype == 'language'}>
@@ -165,12 +167,13 @@
             <{elseif $conf_formtype == 'startpage'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
                 <option value="--"><{$smarty.const._AD_LEGACY_LANG_NONE}></option>
-                <{xoops_optionsArray id=$conf_name value="mid" label="name" from=$moduleArr default=$actionForm->get($rconf_name)}>
+                <{xoops_optionsArray id=$conf_name value=mid label=name from=$moduleArr
+                default=$actionForm->get($rconf_name)}>
             </select>
 
             <{elseif $conf_formtype == 'group'}>
             <select name='<{$conf_name}>' id='legacy_xoopsform_<{$conf_name}>'>
-                <{xoops_optionsArray id=$conf_name value="groupid" label="name" from=$groupArr default=$actionForm->get($rconf_name)}>
+                <{xoops_optionsArray id=$conf_name value=groupid label=name from=$groupArr default=$actionForm->get($rconf_name)}>
             </select>
 
             <{elseif $conf_formtype == 'group_multi'}>

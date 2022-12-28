@@ -57,7 +57,7 @@
             <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_READ_GROUPS}></td>
             <td>
             <select  size='5' name='readgroups[]' multiple='multiple'>
-                <{xoops_optionsArray id="readgroups[]" from=$groupArr value="groupid" label="name" default=$actionForm->get('readgroups')}>
+                <{xoops_optionsArray id=readgroups[] from=$groupArr value=groupid label=name default=$actionForm->get('readgroups')}>
             </select>
             </td>
         </tr>
@@ -65,14 +65,14 @@
             <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_UPLOAD_GROUPS}></td>
             <td>
             <select  size='5' name='uploadgroups[]' multiple='multiple'>
-                <{xoops_optionsArray id="uploadgroups[]" from=$groupArr value="groupid" label="name" default=$actionForm->get('uploadgroups')}>
+                <{xoops_optionsArray id=uploadgroups[] from=$groupArr value=groupid label=name default=$actionForm->get('uploadgroups')}>
             </select>
             </td>
         </tr>
         <tr>
             <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXSIZE}></td>
             <td>
-            <{xoops_input type=text name="imgcat_maxsize" value=$actionForm->get('imgcat_maxsize')}>
+            <{xoops_input type=text name=imgcat_maxsize value=$actionForm->get('imgcat_maxsize')}>
             </td>
         </tr>
         <tr>

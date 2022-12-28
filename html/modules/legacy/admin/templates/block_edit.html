@@ -23,7 +23,7 @@
 <form action="index.php?action=BlockEdit" method="post">
     <{xoops_token form=$actionForm}>
     <{xoops_input type=hidden name=bid value=$actionForm->get('bid')}>
-    <{if !$hasVisibleOptionForm && $optionForm !=null}>
+    <{if !$hasVisibleOptionForm && $optionForm != null}>
     <{$optionForm}>
     <{/if}>
 
@@ -52,21 +52,23 @@
             <td><{$smarty.const._AD_LEGACY_LANG_SIDE}></td>
             <td>
                 <select name="side">
-                    <{xoops_optionsArray id="side" from=$columnSideArr label="name" value="id" default=$actionForm->get('side')}>
+                    <{xoops_optionsArray id=side from=$columnSideArr label=name value=id
+                    default=$actionForm->get('side')}>
                 </select>
             </td>
         </tr>
         <tr>
             <td><{$smarty.const._AD_LEGACY_LANG_WEIGHT}></td>
             <td>
-                <{xoops_input type=text name=weight value=$actionForm->get('weight') size=5}>
+                <{xoops_input type=text name=weight value=$actionForm->get('weight') size=5 class=list_number}>
             </td>
         </tr>
         <tr>
             <td><{$smarty.const._AD_LEGACY_LANG_BCACHETIME}></td>
             <td>
                 <select name='bcachetime'>
-                    <{xoops_optionsArray id="bcachetime" from=$cachetimeArr value="cachetime" label="label" default=$actionForm->get('bcachetime')}>
+                    <{xoops_optionsArray id=bcachetime from=$cachetimeArr value=cachetime label=label
+                    default=$actionForm->get('bcachetime')}>
                 </select>
             </td>
         </tr>
@@ -74,7 +76,8 @@
             <td><{$smarty.const._AD_LEGACY_LANG_TARGET_MODULES}></td>
             <td>
                 <select size='5' name='bmodule[]' multiple='multiple'>
-                    <{xoops_optionsArray id="bmodule[]" from=$moduleArr value="mid" label="name" default=$actionForm->get('bmodule')}>
+                    <{xoops_optionsArray id=bmodule[] from=$moduleArr value=mid label=name
+                    default=$actionForm->get('bmodule')}>
                 </select>
             </td>
         </tr>
@@ -82,11 +85,12 @@
             <td><{$smarty.const._AD_LEGACY_LANG_TARGET_GROUPS}></td>
             <td>
                 <select size='5' name='groupid[]' multiple='multiple'>
-                    <{xoops_optionsArray id="groupid[]" from=$groupArr value="groupid" label="name" default=$actionForm->get('groupid')}>
+                    <{xoops_optionsArray id=groupid[] from=$groupArr value=groupid label=name
+                    default=$actionForm->get('groupid')}>
                 </select>
             </td>
         </tr>
-        <{if $hasVisibleOptionForm && $optionForm !=null}>
+        <{if $hasVisibleOptionForm && $optionForm != null}>
         <tr>
             <td><{$smarty.const._AD_LEGACY_LANG_OPTIONS}></td>
             <td>
@@ -98,7 +102,7 @@
         <tr>
             <td class="head"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE}></td>
             <td>
-            <{xoops_input type=text name=template value=$actionForm->get('template') size=32}>
+            <{xoops_input type=text name=template value=$actionForm->get('template') size=32 class=legacy_list_number}>
             </td>
         </tr>
 

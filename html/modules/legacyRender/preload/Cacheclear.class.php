@@ -31,8 +31,8 @@ class LegacyRender_Cacheclear extends XCube_ActionFilter
         
         $xoopsTpl =new XoopsTpl();
         foreach (array_keys($tplfileArr) as $key) {
-            $xoopsTpl->clearCache('db:' . $tplfileArr[$key]->get('tpl_file'));
-            $xoopsTpl->clearCompiledTemplate('db:' . $tplfileArr[$key]->get('tpl_file'));
+            $xoopsTpl->clear_cache('db:' . $tplfileArr[$key]->get('tpl_file'));
+            $xoopsTpl->clear_compiled_tpl('db:' . $tplfileArr[$key]->get('tpl_file'));
         }
     }
 }

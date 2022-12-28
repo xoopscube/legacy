@@ -40,8 +40,8 @@ class Legacy_XoopsTpl extends XoopsTpl
         $this->_mContextReserve = ['xoops_pagetitle' => 'legacy_pagetitle'];
         parent::__construct();
     }
-    public function assign($tpl_var, $value = null, $dummy = null)
-//    public function assign($tpl_var, $value = null)
+
+    public function assign($tpl_var, $value = null)
     {
         if (is_array($tpl_var)) {
             $root =& XCube_Root::getSingleton();
@@ -52,9 +52,7 @@ class Legacy_XoopsTpl extends XoopsTpl
                     if (isset($reserve[$key])) {
                         $context->setAttribute($reserve[$key], htmlspecialchars_decode($val));
                     }
-                    //$this->_tpl_vars[$key] = $val;
-// smarty3
-parent::assign($key, $val);
+                    $this->_tpl_vars[$key] = $val;
                 }
             }
         } else {
@@ -63,25 +61,19 @@ parent::assign($key, $val);
                     $root =& XCube_Root::getSingleton();
                     $root->mContext->setAttribute($this->_mContextReserve[$tpl_var], htmlspecialchars_decode($value));
                 }
-                // $this->_tpl_vars[$tpl_var] = $value;
-// smarty3
-parent::assign($tpl_var, $value);
+                $this->_tpl_vars[$tpl_var] = $value;
             }
         }
     }
 
-    //public function assign_by_ref($tpl_var, &$value)
-//smarty3
-public function assignByRef($tpl_var, &$value, $nocache = false)
+    public function assign_by_ref($tpl_var, &$value)
     {
         if ('' !== $tpl_var) {
             if (isset($this->_mContextReserve[$tpl_var])) {
                 $root =& XCube_Root::getSingleton();
                 $root->mContext->setAttribute($this->_mContextReserve[$tpl_var], htmlspecialchars_decode($value));
             }
-            //$this->_tpl_vars[$tpl_var] =& $value;
-// smarty3
-parent::assign($tpl_var, $value);
+            $this->_tpl_vars[$tpl_var] =& $value;
         }
     }
 
@@ -91,25 +83,20 @@ parent::assign($tpl_var, $value);
         if (!isset($name)) {
             foreach ($this->_mContextReserve as $t_key => $t_value) {
                 if (isset($this->_mContextReserve[$t_value])) {
-                    //$this->_tpl_vars[$t_key] = htmlspecialchars($root->mContext->getAttribute($this->_mContextReserve[$t_value]), ENT_QUOTES);
-//smarty3
-  $this->global_tpl_vars[$t_key] = htmlspecialchars($root->mContext->getAttribute($this->_mContextReserve[$t_value]), ENT_QUOTES);
-                                
-}
+                    $this->_tpl_vars[$t_key] = htmlspecialchars($root->mContext->getAttribute($this->_mContextReserve[$t_value]), ENT_QUOTES);
+                }
             }
             $value =& parent::get_template_vars($name);
         } elseif (isset($this->_mContextReserve[$name])) {
             $value = htmlspecialchars($root->mContext->getAttribute($this->_mContextReserve[$name]), ENT_QUOTES);
         } else {
-          //  $value =& parent::get_template_vars($name);
-// smarty3
-$value =& parent::getTemplateVars($name);
+            $value =& parent::get_template_vars($name);
         }
         return $value;
     }
 }
 // @TODO test version 2.4.0
-//require_once XOOPS_ROOT_PATH . '/core/XCube_Theme.class.php';
+require_once XOOPS_ROOT_PATH . '/core/XCube_Theme.class.php';
 /**
  * Compatible render system with XOOPS 2 Themes & Templates.
  *
@@ -175,10 +162,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             $this->mXoopsTpl =new Legacy_XoopsTpl();
         }
         $mTpl =& $this->mXoopsTpl;
-//        $mTpl->register_function('legacy_notifications_select', 'LegacyRender_smartyfunction_notifications_select');
-// smarty3
-$mTpl->registerPlugin('function', 'legacy_notifications_select', 'LegacyRender_smartyfunction_notifications_select');
-        
+        $mTpl->register_function('legacy_notifications_select', 'LegacyRender_smartyfunction_notifications_select');
         $this->mSetupXoopsTpl->call(new XCube_Ref($mTpl));
 
         // Legacy compatibility
@@ -317,9 +301,7 @@ $mTpl->registerPlugin('function', 'legacy_notifications_select', 'LegacyRender_s
         //
         // Reset
         //
-//        $mTpl->clear_assign(array_keys($vars));
-// smarty3
-$mTpl->clearAssign(array_keys($vars));
+        $mTpl->clear_assign(array_keys($vars));
     }
 
     public function _render(&$target)
@@ -631,8 +613,7 @@ $mTpl->clearAssign(array_keys($vars));
      * @param bool $isDialog default  = false
      * @return Legacy_DialogRenderTarget|Legacy_ThemeRenderTarget
      */
-//    public function &getThemeRenderTarget($isDialog)
-public function &getThemeRenderTarget($isDialog = false)
+    public function &getThemeRenderTarget($isDialog)
     {
         $screenTarget = $isDialog ? new Legacy_DialogRenderTarget() : new Legacy_ThemeRenderTarget();
         return $screenTarget;

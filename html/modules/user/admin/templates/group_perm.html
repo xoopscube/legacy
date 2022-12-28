@@ -151,7 +151,7 @@
         </thead>
         <tbody>
         <tr>
-            <{foreach item=perm from=$permissions}>
+            <{foreach item=perm from=$permissions name=$i}>
             <td class="head" style="width:35%;">&nbsp;
                 <{if $perm->mItem->isActive()}>
                 <{if $perm->mItem->mBlock->get('block_type') == 'C'}>
@@ -168,7 +168,7 @@
                 <{$smarty.const._AD_USER_LANG_PERM_ACCESS}>
                 <input type="checkbox" name="block[<{$getId}>]" value="1" <{if $perm->mValue==1}>checked="checked"<{/if}>>
             </td>
-            <{cycle values=",</tr><tr>"}>
+            <{cycle values=",</tr><tr>" name=$i}>
             <{/foreach}>
         </tr>
         </tbody>

@@ -33,11 +33,15 @@ class Legacy_AdminSmarty extends Smarty
     // If you don't intend to override the theme, set false.
     //
     public $overrideMode = true;
-    private $_canUpdateFromFile;
+    
+    public function Legacy_AdminSmarty()
+    {
+        self::__construct();
+    }
 
     public function __construct()
     {
-        parent::__construct();
+        parent::Smarty();
 
         $this->compile_id = XOOPS_URL;
         $this->_canUpdateFromFile = true;
@@ -116,8 +120,8 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         $this->mController =& $controller;
         
         $this->mSmarty =new Legacy_AdminSmarty();
-        $this->mSmarty->registerPlugin('modifier', 'theme', 'Legacy_modifier_theme');
-        $this->mSmarty->registerPlugin('function', 'stylesheet', 'Legacy_function_stylesheet');
+        $this->mSmarty->register_modifier('theme', 'Legacy_modifier_theme');
+        $this->mSmarty->register_function('stylesheet', 'Legacy_function_stylesheet');
 
         /**
          * @todo - get global smarty module and uid for theme design :
@@ -163,7 +167,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         // Reset
         //
         foreach ($target->getAttributes() as $key => $value) {
-            $this->mSmarty->clearAssign($key);
+            $this->mSmarty->clear_assign($key);
         }
     }
     
@@ -259,7 +263,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         // Clear assign.
         //
         foreach ($target->getAttributes() as $key=>$value) {
-            $this->mSmarty->clearAssign($key);
+            $this->mSmarty->clear_assign($key);
         }
     }
 }
@@ -302,8 +306,8 @@ function Legacy_function_stylesheet($params, &$smarty)
         $smarty->trigger_error('stylesheet: missing file parameter.');
         return;
     }
-
-    $media = (isset($params['media'])) ? $params['media'] : 'all';
+    
+    $media = $params['media'] ?? 'all';
 
     $infoArr = Legacy_get_override_file($file, 'stylesheets/');
 

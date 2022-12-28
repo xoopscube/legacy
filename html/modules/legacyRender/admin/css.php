@@ -44,11 +44,6 @@ if (strpos($theme, '..') !== false || strpos($dirname, '..') !== false || strpos
 require_once XOOPS_ROOT_PATH.'/modules/legacyRender/kernel/Legacy_AdminRenderSystem.class.php';
 
 $smarty =new Legacy_AdminSmarty();
-//$smarty->register_modifier('theme', 'Legacy_modifier_css_theme');
-//$smarty->register_function('stylesheet', 'Legacy_function_stylesheet');
-// TODO check if needs new smarty3 e.g.
-// $this->registerPlugin('theme', Smarty_Internal_Template, 'Legacy_modifier_css_theme' );
-// $this->registerPlugin('stylesheet', Smarty_Internal_Template, 'Legacy_function_stylesheet' );
 $smarty->register_modifier('theme', 'Legacy_modifier_css_theme');
 $smarty->register_function('stylesheet', 'Legacy_function_stylesheet');
 

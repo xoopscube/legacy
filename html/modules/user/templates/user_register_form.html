@@ -63,7 +63,7 @@
 
             <label for="timezone_offset"><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}>
                 <select name="timezone_offset">
-                    <{xoops_optionsArray id="timezone_offset" label="zone_name" value="offset" from=$timezones default=$actionForm->get('timezone_offset')}>
+                    <{xoops_optionsArray id=timezone_offset label=zone_name value=offset from=$timezones default=$actionForm->get('timezone_offset')}>
                 </select>
             </label>
 
