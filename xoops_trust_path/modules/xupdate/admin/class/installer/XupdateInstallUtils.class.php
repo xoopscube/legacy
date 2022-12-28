@@ -271,7 +271,7 @@ class Xupdate_InstallUtils {
 
 		if ( is_array( $delTemplates ) && count( $delTemplates ) > 0 ) {
 			$xoopsTpl = new XoopsTpl();
-			$xoopsTpl->clear_cache( null, 'mod_' . $module->get( 'dirname' ) );
+			$xoopsTpl->clearCache( null, 'mod_' . $module->get( 'dirname' ) );
 			foreach ( $delTemplates as $tpl ) {
 				if ( ! $tplHandler->delete( $tpl ) ) {
 					$log->addError(

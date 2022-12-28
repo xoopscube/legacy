@@ -145,7 +145,7 @@ class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
         // We also have to remove from DB.
         //
         foreach ($DBthemes as $theme) {
-            if (!in_array($theme->get('name'), $diskThemeNames)) {
+            if (!in_array($theme->get('name'), $diskThemeNames, true)) {
                 $this->delete($theme, true);
             }
         }

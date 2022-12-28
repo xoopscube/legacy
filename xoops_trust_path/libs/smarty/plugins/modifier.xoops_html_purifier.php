@@ -34,7 +34,7 @@ function smarty_modifier_xoops_html_purifier($html, $ecoding=null, $doctype=null
         $config->set('HTML.Doctype', $doctype);
     }
 
-    if ($_conv = ($encoding != 'UTF-8' && function_exists('mb_convert_encoding'))) {
+    if ($_conv = ($encoding !== 'UTF-8' && function_exists('mb_convert_encoding'))) {
         $_substitute = mb_substitute_character();
         mb_substitute_character('none');
         $html = mb_convert_encoding($html, 'UTF-8', $encoding);

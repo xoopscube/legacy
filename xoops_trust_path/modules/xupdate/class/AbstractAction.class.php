@@ -21,7 +21,8 @@ if ( ! defined( 'PATH_SEPARATOR' ) ) {
 }
 // TODO gigamaster check
 //set_include_path( get_include_path() . PATH_SEPARATOR . dirname( __DIR__ ) . '/PEAR' );
-set_include_path( get_include_path() . PEAR_PATH . PATH_SEPARATOR . '/PEAR' );
+//set_include_path( get_include_path() . PEAR_PATH . PATH_SEPARATOR . '/PEAR' );
+set_include_path( get_include_path() . PEAR_PATH );
 /**
  * Xupdate_AbstractAction
  **/

@@ -49,9 +49,9 @@
             <td>
             <select name="imgcat_id">
                 <{if $category}>
-                <{xoops_optionsArray id=imgcat_id from=$categoryArr value=imgcat_id label=imgcat_name default=$category->getShow('imgcat_id')}>
+                <{xoops_optionsArray id="imgcat_id" from=$categoryArr value="imgcat_id" label="imgcat_name" default=$category->getShow('imgcat_id')}>
                 <{else}>
-                <{xoops_optionsArray id=imgcat_id from=$categoryArr value=imgcat_id label=imgcat_name}>
+                <{xoops_optionsArray id="imgcat_id" from=$categoryArr value="imgcat_id" label="imgcat_name"}>
                 <{/if}>
             </select>
             </td>

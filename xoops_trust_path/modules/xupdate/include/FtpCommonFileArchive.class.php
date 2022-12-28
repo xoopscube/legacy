@@ -219,7 +219,8 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	 * @return    bool
 	 */
 	private function _unzipFile_FileArchive( $downloadFilePath, $exploredDirPath ) {
-		require_once PEAR_PATH . PATH_SEPARATOR . 'File/Archive.php';
+		//require_once PEAR_PATH . PATH_SEPARATOR . 'File/Archive.php';
+        require_once PEAR_PATH . '/File/Archive.php';
 
 		if ( $source = File_Archive::read( $downloadFilePath . '/' ) ) {
 			if ( is_object( $source ) && 'PEAR_Error' !== get_class( $source ) ) {
@@ -248,7 +249,8 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	 * @return    bool
 	 */
 	private function _unzipFile_FileArchiveCareful( $downloadFilePath, $exploredDirPath ) {
-		require_once PEAR_PATH . PATH_SEPARATOR . 'File/Archive.php';
+		//require_once PEAR_PATH . PATH_SEPARATOR . 'File/Archive.php';
+        require_once PEAR_PATH . '/File/Archive.php';
 
 		$source    = ( new File_Archive )->read( $downloadFilePath . '/' );
 		$className = 'File_Archive_Reader';
