@@ -10,11 +10,12 @@
 Use active branches for all new features and bug fixes (PHP74, PHP8).  
 Keep a tested high quality, up-to-date master/main branch for releases.  
 
-| Branch | Version | Commit / Pull request |
+| Branch | PHP Version | Commit / Pull request |
 | -- | -- | -- |
 | Master | PHP7.x | Release Candidate (RC)  |
 | PHP8  | PHP 8.x | Features and bug fixes |
 | PHP74  | PHP 7.4 | Features and bug fixes |
+| Smarty3 | PHP 7.4 | Smarty v3 bug fixes |
 
 ## Simple, Secure and Scalable
 ### Web Application Platform and Content Management System
