@@ -647,7 +647,7 @@ public function &getThemeRenderTarget($isDialog = false)
  */
 //function LegacyRender_smartyfunction_notifications_select($params, &$smarty)
 // smarty3
-function LegacyRender_smartyfunction_notifications_select($params, &$smarty)
+function LegacyRender_smartyfunction_notifications_select($params, $smarty)
 {
     $root =& XCube_Root::getSingleton();
     $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
