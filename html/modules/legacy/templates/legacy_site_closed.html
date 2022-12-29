@@ -1,4 +1,4 @@
-<{php}>
+<{*  Smarty3 php not allowed }>
 ob_start();
 header('HTTP/1.1 503 Service Temporarily Unavailable');
 header('Status: 503 Service Temporarily Unavailable');
@@ -6,7 +6,7 @@ header('Retry-After: 3600');
 header('X-Powered-By: XOOPSCube');
 ob_end_clean();
 ob_end_flush();
-<{/php}>
+<{ /php not allowed *}>
 <!DOCTYPE html>
 <html class="no-js" lang="<{$xoops_langcode}>">
 <head>
