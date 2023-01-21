@@ -28,9 +28,9 @@ function altsys_set_module_config() {
 	}
 
 	// for RTL users
-	// TODO PHP8
-/* 	define( '_GLOBAL_LEFT', 1 == _ADM_USE_RTL ? 'right' : 'left' );
-	define( '_GLOBAL_RIGHT', 1 == _ADM_USE_RTL ? 'left' : 'right' ); */
+	if (!defined("_ADM_USE_RTL")) define("_ADM_USE_RTL", 0);
+	@define( '_GLOBAL_LEFT', 1 == @_ADM_USE_RTL ? 'right' : 'left' );
+	@define( '_GLOBAL_RIGHT', 1 == @_ADM_USE_RTL ? 'left' : 'right' );
 }
 
 
