@@ -92,10 +92,10 @@ class Profile_Module extends Legacy_ModuleAdapter
         $fileName = ucfirst($this->mActionName) . 'Action';
         if ($this->mAdminFlag) {
             $className = 'Profile_Admin_' . ucfirst($this->mActionName) . 'Action';
-            $fileName = XOOPS_MODULE_PATH . "/profile/admin/actions/${fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/profile/admin/actions/{$fileName}.class.php";
         } else {
             $className = 'Profile_' . ucfirst($this->mActionName) . 'Action';
-            $fileName = XOOPS_MODULE_PATH . "/profile/actions/${fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/profile/actions/{$fileName}.class.php";
         }
     
         if (!file_exists($fileName)) {

@@ -493,7 +493,7 @@ function xoops_getenv($key)
         case 'PHP_SELF':
         case 'PATH_INFO':
         case 'PATH_TRANSLATED':
-            $ret = htmlspecialchars($ret, ENT_QUOTES);
+            if ($ret) $ret = htmlspecialchars($ret, ENT_QUOTES);
             break;
     }
 

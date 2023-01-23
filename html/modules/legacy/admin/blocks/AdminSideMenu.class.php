@@ -100,12 +100,12 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
         // Users who belong to the ADMIN group have full permissions, so we need to prepare two types of SQL.
         //
         if ($root->mContext->mUser->isInRole('Site.Owner')) {
-            $sql = "SELECT DISTINCT weight, mid FROM ${mod} WHERE isactive=1 AND hasadmin=1 ORDER BY weight, mid";
+            $sql = "SELECT DISTINCT weight, mid FROM {$mod} WHERE isactive=1 AND hasadmin=1 ORDER BY weight, mid";
         } else {
-            $sql = "SELECT DISTINCT ${mod}.weight, ${mod}.mid FROM ${mod},${perm} " .
-                   "WHERE ${mod}.isactive=1 AND ${mod}.mid=${perm}.gperm_itemid AND ${perm}.gperm_name='module_admin' AND ${perm}.gperm_groupid IN (${groups}) " .
-                   "AND ${mod}.hasadmin=1 " .
-                   "ORDER BY ${mod}.weight, ${mod}.mid";
+            $sql = "SELECT DISTINCT {$mod}.weight, {$mod}.mid FROM {$mod},{$perm} " .
+                   "WHERE {$mod}.isactive=1 AND {$mod}.mid={$perm}.gperm_itemid AND {$perm}.gperm_name='module_admin' AND {$perm}.gperm_groupid IN ({$groups}) " .
+                   "AND {$mod}.hasadmin=1 " .
+                   "ORDER BY {$mod}.weight, {$mod}.mid";
         }
 
         $result=$db->query($sql);
@@ -122,7 +122,7 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
         // Template
         $tpl = $db->prefix('tplfile');
         $tpl_modules = [];
-        $sql = "SELECT DISTINCT tpl_module FROM ${tpl}";
+        $sql = "SELECT DISTINCT tpl_module FROM {$tpl}";
         $result = $db->query($sql);
         while ($row = $db->fetchArray($result)) {
             $tpl_modules[] = $row['tpl_module'];

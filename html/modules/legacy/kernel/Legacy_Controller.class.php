@@ -777,7 +777,7 @@ class Legacy_Controller extends XCube_Controller
         }
 
         $this->mSetupDebugger->call(new XCube_Ref($this->mDebugger), $debug_mode);
-        $this->mDebugger->prepare();
+        $this->mDebugger && $this->mDebugger->prepare();
 
         $GLOBALS['xoopsDebugger']=&$this->mDebugger;
     }

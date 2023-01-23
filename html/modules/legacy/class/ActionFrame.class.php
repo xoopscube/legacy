@@ -98,9 +98,9 @@ class Legacy_ActionFrame
         $className = 'Legacy_' . ucfirst($actionFrame->mActionName) . 'Action';
         $fileName = ucfirst($actionFrame->mActionName) . 'Action';
         if ($actionFrame->mAdminFlag) {
-            $fileName = XOOPS_MODULE_PATH . "/legacy/admin/actions/${fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/legacy/admin/actions/{$fileName}.class.php";
         } else {
-            $fileName = XOOPS_MODULE_PATH . "/legacy/actions/${fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/legacy/actions/{$fileName}.class.php";
         }
 
         if (!file_exists($fileName)) {
