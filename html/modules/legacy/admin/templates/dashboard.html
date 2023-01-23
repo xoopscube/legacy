@@ -112,30 +112,30 @@
 
 </style>
 
-<div class="adminnavi">
-    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
-    &raquo;&raquo; <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceList"><{$smarty.const._MI_LEGACY_NAME}></a>
-  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._CPHOME}></span>
-</div>
-
 <hr>
 
+<h3><{$title}></h3>
+<div class="tips"><{$content}></div>
+
+<ul>
+<{foreach item=arr from=$attributes}>
+    <li>Test : <{$attributes.test}></li>
+<{/foreach}>
+
+</ul>
+
+<{foreach item=tribute from=$attributes}>
+<h3>attributes.title = <{$attributes.title}></h3>
+<h4>attributes.content = <{$attributes.content}></h4>
+<{/foreach}>
+<hr>
+<{$attributes.dummy_content}>
 <div id="ui-component">
 
     <div class="ui-flex-row">
 
-
-
         <div data-layout="row md-column">
-
             <{include file="./components/dashboard-nav.html"}>
-
-            <div data-self="size-xxsmall sm-first sm-full mb-7">
-                <{* $uid|xoops_user:"name" *}>
-                <h5><{$smarty.const._PROFILE}> <{$smarty.const._INFO}></h5>
-                <h6><img class="svg" src="<{'icons/icon-user-time.svg'|theme}>" width="1em" height="1em" alt="options"> <{$uid|xoops_user:"uname"}></h6>
-                <p><span class="badge"><{$uid|xoops_user:"email"}></span> <span class="badge"><{$uid|xoops_user:"last_login"|xoops_formattimestamp:l}></span></p>
-            </div>
         </div>
 
         <div id="taboard">
@@ -203,7 +203,6 @@
             </div>
 
         </div>
-<hr>
 
 
     </div>

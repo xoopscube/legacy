@@ -1,0 +1,106 @@
+<{* ---------- ---------- ---------- ---------- ---------- Module Overview *}>
+<div class="ui-card-overview">
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-blue">
+
+			<img src="<{'icons/icon-package.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>">
+		</div>
+		<div class="ui-card-small-info">
+			<h4 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <strong><{$ModuleTotal}></strong></h4>
+		</div>
+	</div>
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-green">
+			<img class="svg module-active" src="<{'icons/icon-module-active.svg'|theme}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>">
+		</div>
+		<div class="ui-card-small-info">
+			<h4 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_ACTIVE}>: <strong><{$activeModuleTotal}></strong></h4>
+			<p class="ui-card-small-subtitle"></p>
+		</div>
+	</div>
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-red">
+			<img class="svg module-inactive" src="<{'icons/icon-module-inactive.svg'|theme}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>">
+
+		</div>
+		<div class="ui-card-small-info">
+			<h4 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>: <strong><{$inactiveModuleTotal}></strong></h4>
+			<p class="ui-card-small-subtitle"></p>
+		</div>
+	</div>
+
+</div><{* Modules Overview *}>
+<{* ---------- ---------- Block Overview *}>
+<div class="ui-card-overview">
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-blue">
+        <img class="svg blocks" src="<{'icons/icon-blocks.svg'|theme}>">
+		</div>
+		<div class="ui-card-small-info">
+			<h4 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_BLOCK_TOTAL}>: <strong><{$BlockTotal}></strong></h4>
+		</div>
+	</div>
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-green">
+        <img class="svg block-active" src="<{'icons/icon-block-active.svg'|theme}>">
+		</div>
+		<div class="ui-card-small-info">
+			<h4 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_BLOCK_ACTIVETOTAL}>: <strong><{$ActiveBlockTotal}></strong></h4>
+			<p class="ui-card-small-subtitle"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL}>:
+				<strong><{$ActiveInstalledBlockTotal}></strong> &nbsp;|&nbsp;
+				<{$smarty.const._AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL}>: <strong><{$ActiveUninstalledBlockTotal}></strong></p>
+		</div>
+	</div>
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-red">
+        <img class="svg block-inactive" src="<{'icons/icon-block-inactive.svg'|theme}>">
+		</div>
+		<div class="ui-card-small-info">
+			<h4 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>: <strong><{$InactiveBlockTotal}></strong></h4>
+			<p class="ui-card-small-subtitle"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL}>: <strong><{$InactiveInstalledBlockTotal}></strong> &nbsp;|&nbsp;
+				<{$smarty.const._AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL}>: <strong><{$InactiveUninstalledBlockTotal}></strong></p>
+		</div>
+	</div>
+
+</div><{* Module Blocks Overview *}>
+<div class="ui-card-overview">
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-blue">
+			<img src="<{'icons/icon-user-group.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_TOTAL}>">
+		</div>
+		<div class="ui-card-small-info">
+			<h4 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_USER_TOTAL}>: <strong><{$UserTotal}></strong>
+			</h4>
+		</div>
+	</div>
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-green">
+			<img src="<{'icons/icon-user-account.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>">
+		</div>
+		<div class="ui-card-small-info">
+			<h4 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>:
+				<strong><{$activeUserTotal}></strong></h4>
+			<!-- <p class="ui-card-small-subtitle"><a href="index.php?action=UserEdit"><{$smarty.const._AD_USER_LANG_USER_NEW}></a></p> -->
+		</div>
+	</div>
+
+	<div class="ui-card-small">
+		<div class="ui-card-small-icon ui-icon-red">
+			<img src="<{'icons/icon-user-inactive.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>">
+		</div>
+		<div class="ui-card-small-info">
+			<h4 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>: <strong><{$inactiveUserTotal}></strong>
+			</h4>
+			<!-- <p class="ui-card-small-subtitle"><a href="index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a></p> -->
+		</div>
+	</div>
+
+</div><{* User Groups Overview *}>
