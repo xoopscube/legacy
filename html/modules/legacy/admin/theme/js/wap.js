@@ -13,7 +13,7 @@
         mobileNavControl();
 
         /* Do something on document ready
-         * Inline SVG icons ex.:
+         * Inline SVG icons with the class "svg" ex.:
          * <img class="svg" src="..." width="24px" height="24px" alt="...">
          */
         $('.svg').renderClassSvg();
@@ -31,10 +31,12 @@
         $('select[multiple] option').mousedown(function(e) {
             e.preventDefault();
             var originalScrollTop = $(this).parent().scrollTop();
-            console.log(originalScrollTop);
+            // console.log(originalScrollTop);
             $(this).prop('selected', !$(this).prop('selected'));
             var self = this;
             $(this).parent().focus();
+            $(this).parent().closest(".ui-card-block").addClass('ui-update-change');
+            $('div.foot-sticky').addClass("sticky-view");
             setTimeout(function() {
                 $(self).parent().scrollTop(originalScrollTop);
             }, 0);
@@ -71,9 +73,9 @@
 
         // Load overview from the module's help file
         var str = window.location.pathname;
-        console.log(str);
+        //console.log(str);
         var rest = str.substring(0, str.lastIndexOf("/") + 1);
-        console.log(rest);
+        //console.log(rest);
         $('#tab3').load(rest +'modules/legacy/admin/index.php?action=Help&dirname=legacy #help-overview');
 
 
@@ -86,25 +88,16 @@
             $("a").removeClass("selected");
             $(this).addClass("selected");
         });
-        // !TODO merge block and module switch
-        $('input[name^=uninstall]').on('change', function () {
-            $(this).parent('.ui-checkbox').next('a').toggleClass('ui-update-change');
-            // Switch only the svg background !
-            // $(this).closest(".ui-card-block").find('.ui-card-block-image').toggleClass('ui-update-change');
-            // Switch color of elements: <a> (affects border bottom), svg icon and text !
-            $(this).closest(".ui-card-block").find('.ui-block-type').toggleClass('ui-update-change');
-            // alert('Clik <{$smarty.const._AD_LEGACY_LANG_UPDATE}> to apply changes!');
-            $('div.foot-sticky').addClass("sticky-view");
+
+        // Visual notice for all ui-card-block
+        // Change the background color and notify
+        $(function(){
+            $("body").on("change","input,select", function() {
+                $(this).parent().closest(".ui-card-block").addClass('ui-update-change');
+                $('div.foot-sticky').addClass("sticky-view");
+            });
         });
-        // !TODO merge block and module switch
-        // Module Management State Switch
-        $('input[name^=isactive]').on('change', function () {
-            $(this).parent('.ui-checkbox').next('a').toggleClass('ui-update-change');
-            $(this).closest(".ui-card-block").find('.ui-card-block-image,.ui-module-state').toggleClass('ui-update-change');
-            $('div.foot-sticky').addClass("sticky-view");
-            //$('div.foot-sticky').toggle();
-            // alert('Clik <{$smarty.const._AD_LEGACY_LANG_UPDATE}> to apply changes!');
-        });
+
         $('input[name^=delete]').on('change', function () {
             $('div.foot-sticky').addClass("sticky-view");
         });

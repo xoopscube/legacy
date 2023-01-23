@@ -24,5 +24,3 @@ class D3forumCommonCss extends XCube_ActionFilter
         }
     }
 }
-
-?>

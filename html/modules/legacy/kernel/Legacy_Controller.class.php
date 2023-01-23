@@ -12,11 +12,11 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 if (!defined('XOOPS_TRUST_PATH')) {
-    echo 'Since XOOPSCube Legacy version 2.2 a  TRUST_PATH is required in mainfile.php';
+    echo 'Since XOOPSCube Legacy version 2.2 a TRUST_PATH is required in mainfile.php';
     exit();
 }
 
-define('LEGACY_MODULE_VERSION', '2.3.1');
+define('LEGACY_MODULE_VERSION', '2.3.2');
 
 define('LEGACY_CONTROLLER_STATE_PUBLIC', 1);
 define('LEGACY_CONTROLLER_STATE_ADMIN', 2);
@@ -320,6 +320,7 @@ class Legacy_Controller extends XCube_Controller
     public function _setupEnvironment()
     {
         parent::_setupEnvironment();
+
         require_once XOOPS_ROOT_PATH.'/include/version.php';
 
         require_once XOOPS_TRUST_PATH.'/settings/definition.inc.php';

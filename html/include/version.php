@@ -7,4 +7,4 @@
  * @author     Minahito, 2008/11/16
  */
 
-define('XOOPS_VERSION', 'XCL 2.3.1');
+define('XOOPS_VERSION', 'XCL 2.3.2');

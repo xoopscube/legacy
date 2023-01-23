@@ -115,7 +115,7 @@ class Legacy_ModuleListAction extends Legacy_Action
     }
 
     /**
-     * To support a template writer, this send the list of mid that actionForm kept.
+     * To support a template writer, this sends the list of mid that actionForm kept.
      * @param $controller
      * @param $xoopsUser
      * @param $render

@@ -102,10 +102,12 @@
         <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
     </div>
 
-    <div class="ui-card-full">
+    <div class="ui-card-full" data-layout="row center-justify sm-column">
+        <div data-self="size-x1 centered">
         <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+        </div>
         <{* Smarty generates nav pagination + ul pagenavi *}>
-        <nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
+        <nav class="pagination" data-self="center-right"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
     </div>
 </form>
 
