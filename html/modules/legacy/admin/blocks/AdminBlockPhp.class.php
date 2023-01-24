@@ -1,8 +1,8 @@
 <?php
 /**
- * AdminDashboardServer.class.php
+ * AdminBlockPhp.class.php
  * @package    Legacy
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.2
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Kilica, 2008/09/25
  * @copyright  (c) 2005-2022 The XOOPSCube Project
@@ -13,7 +13,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 // TODO cache block ?
-//define('LEGACY_ADMINDASBOARDSERVER_CACHEPREFIX', XOOPS_CACHE_PATH.'/'.urlencode(XOOPS_URL).'_admin_dashboardserver_');
+//define('LEGACY_ADMINBLOCKPHP_CACHEPREFIX', XOOPS_CACHE_PATH.'/'.urlencode(XOOPS_URL).'_admin_blockphp_');
 
 /**
  * This is test menu block for control panel of legacy module.

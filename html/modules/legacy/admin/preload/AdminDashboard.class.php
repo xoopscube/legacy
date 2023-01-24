@@ -69,7 +69,7 @@ if (!defined('XC_ADMIN_BLOCK_PHP')) {
 }
 // Smarty : <{$xoops_lblocks.block_server.content}>
 if (!defined('XC_ADMIN_BLOCK_SERVER')) {
-    define('XC_ADMIN_BLOCK_SERVER', 0);
+    define('XC_ADMIN_BLOCK_SERVER', 1);
 }
 // Smarty : <{$xoops_lblocks.block_system.content}>
 if (!defined('XC_ADMIN_BLOCK_SYSTEM')) {
