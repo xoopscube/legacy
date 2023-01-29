@@ -54,7 +54,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
         $mailjob_id = (int)$mailjob_id;
         $table = $this->mTable;
 
-        $sql = "SELECT min(retry) AS cretry FROM ${table} where mailjob_id='${mailjob_id}'";
+        $sql = "SELECT min(retry) AS cretry FROM {$table} where mailjob_id='{$mailjob_id}'";
 
         $result = $this->db->query($sql);
         $row = $this->db->fetchArray($result);
@@ -71,9 +71,9 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 
         foreach ($arr as $_name => $_value) {
             if ('mailjob_id' == $_name || 'uid' == $_name) {
-                $where = "${_name}=${_value}";
+                $where = "{$_name}={$_value}";
             } else {
-                $set_lists[] = "${_name}=${_value}";
+                $set_lists[] = "{$_name}={$_value}";
             }
         }
 

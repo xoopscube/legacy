@@ -275,7 +275,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
         $arr = $this->_makeVars4sql($obj);
 
         foreach ($arr as $_name => $_value) {
-            $fields[] = "`${_name}`";
+            $fields[] = "`{$_name}`";
             $values[] = $_value;
         }
 
@@ -298,9 +298,9 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
         foreach ($arr as $_name => $_value) {
             if ($_name == $this->mPrimary) {
-                $where = "`${_name}`=${_value}";
+                $where = "`{$_name}`={$_value}";
             } else {
-                $set_lists[] = "`${_name}`=${_value}";
+                $set_lists[] = "`{$_name}`={$_value}";
             }
         }
 

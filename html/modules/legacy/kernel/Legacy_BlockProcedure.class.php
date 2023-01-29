@@ -323,7 +323,7 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
             $options = explode('|', $this->_mBlock->get('options'));
             foreach ($options as $val) {
                 $val = $textFilter->ToEdit($val);
-                $buf .= "<input type='hidden' name='options[]' value='${val}'/>";
+                $buf .= "<input type='hidden' name='options[]' value='{$val}'/>";
             }
 
             return $buf;

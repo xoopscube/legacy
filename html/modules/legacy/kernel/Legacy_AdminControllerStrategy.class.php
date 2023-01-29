@@ -162,7 +162,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
                 return $this->mController->mRoot->mContext->mXoopsUser->isAdmin(0);
             }
 
-            return $principal->isInRole("Module.${dirname}.Admin");
+            return $principal->isInRole("Module.{$dirname}.Admin");
         } else {
             return $principal->isInRole('Site.Administrator');
         }

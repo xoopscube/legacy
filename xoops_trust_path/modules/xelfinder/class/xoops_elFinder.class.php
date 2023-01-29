@@ -591,7 +591,7 @@ class xoops_elFinder {
 				$head = <<<EOD
 USER: $uname
 UID: $uid
-IP: ${_SERVER['REMOTE_ADDR']}
+IP: {$_SERVER['REMOTE_ADDR']}
 CMD: $cmd
 DATE: $date
 EOD;

@@ -241,7 +241,7 @@ class User_UserSearchListAction extends User_AbstractListAction
             foreach ($navi->mExtra as $key => $value) {
                 if (!in_array($key, $mask)) {
                     $value = htmlspecialchars($value, ENT_QUOTES);
-                    $buf .= "<input type=\"hidden\" name=\"${key}\" value=\"${value}\" />";
+                    $buf .= "<input type=\"hidden\" name=\"{$key}\" value=\"{$value}\" />";
                 }
             }
         }

@@ -377,7 +377,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
                     if (strpos($url, 'offset=') === false) {
                         $url .= '&offset=' . $offset;
                     } else {
-                        $url = preg_replace('/^(.+?offset=)\d+(.*)$/', '${1}' . $offset . '$2', $url);
+                        $url = preg_replace('/^(.+?offset=)\d+(.*)$/', '$1' . $offset . '$2', $url);
                     }
                     $more = $this->_bd_fetch($url);
                     if (is_array($more)) {

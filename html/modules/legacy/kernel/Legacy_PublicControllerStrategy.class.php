@@ -108,7 +108,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
         if (null != $this->mController->mRoot->mContext->mModule) {
             $dirname = $this->mController->mRoot->mContext->mXoopsModule->get('dirname');
 
-            return $this->mController->mRoot->mContext->mUser->isInRole("Module.${dirname}.Visitor");
+            return $this->mController->mRoot->mContext->mUser->isInRole("Module.{$dirname}.Visitor");
         }
 
         return true;

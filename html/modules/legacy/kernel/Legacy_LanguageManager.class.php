@@ -227,12 +227,12 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      */
     public function getFilepath(string $section, string $filename)
     {
-        $filepath = XOOPS_ROOT_PATH . '/languages/' . $this->mLanguageName . ($section?"/${section}/${filename}":"/${filename}");
+        $filepath = XOOPS_ROOT_PATH . '/languages/' . $this->mLanguageName . ($section?"/{$section}/{$filename}":"/{$filename}");
 
         if (file_exists($filepath)) {
             return $filepath;
         } else {
-            return XOOPS_ROOT_PATH . '/languages/' . $this->getFallbackLanguage() . ($section?"/${section}/${filename}":"/${filename}");
+            return XOOPS_ROOT_PATH . '/languages/' . $this->getFallbackLanguage() . ($section?"/{$section}/{$filename}":"/{$filename}");
         }
     }
 

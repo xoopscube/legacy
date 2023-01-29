@@ -128,15 +128,15 @@ function make_data( &$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, 
  * @param        $groups
  */
 function installModule( &$dbm, $mid, $module, $module_name, $language = 'english', &$groups ) {
-	if ( file_exists( "../modules/${module}/language/${language}/modinfo.php" ) ) {
-		include "../modules/${module}/language/${language}/modinfo.php";
+	if ( file_exists( "../modules/{$module}/language/{$language}/modinfo.php" ) ) {
+		include "../modules/{$module}/language/{$language}/modinfo.php";
 	} else {
-		include "../modules/${module}/language/english/modinfo.php";
+		include "../modules/{$module}/language/english/modinfo.php";
 		$language = 'english';
 	}
 
 	$modversion = [];
-	require_once "../modules/${module}/xoops_version.php";
+	require_once "../modules/{$module}/xoops_version.php";
 	$time = time();
 
 	// RMV-NOTIFY (updated for extra column in table)
@@ -148,23 +148,23 @@ function installModule( &$dbm, $mid, $module, $module_name, $language = 'english
 	if ( isset( $modversion['hasMain'] ) && ( 1 === $modversion['hasMain'] ) ) {
 		$hasmain = 1;
 	}
-	$dbm->insert( 'modules', " VALUES (${mid}, '" . constant( $module_name ) . "', 100, " . $time . ", 0, 1, '${module}', ${hasmain}, 1, 0, ${hasconfig}, 0, 0)" );
+	$dbm->insert( 'modules', " VALUES ({$mid}, '" . constant( $module_name ) . "', 100, " . $time . ", 0, 1, '{$module}', {$hasmain}, 1, 0, {$hasconfig}, 0, 0)" );
 
 	//
 	// Database
 	// TODO Dependence on mysql, Now.
 	//
 	if ( isset( $modversion['sqlfile']['mysql'] ) ) {
-		$dbm->queryFromFile( "../modules/${module}/" . $modversion['sqlfile']['mysql'] );
+		$dbm->queryFromFile( "../modules/{$module}/" . $modversion['sqlfile']['mysql'] );
 	}
 
 	if ( is_array( $modversion['templates'] ) && count( $modversion['templates'] ) > 0 ) {
 		foreach ( $modversion['templates'] as $tplfile ) {
-			if ( $fp = fopen( "../modules/${module}/templates/" . $tplfile['file'], 'r' ) ) {
-				$newtplid = $dbm->insert( 'tplfile', " VALUES (0, ${mid}, '${module}', 'default', '" . addslashes( $tplfile['file'] ) . "', '" . addslashes( $tplfile['description'] ) . "', " . $time . ', ' . $time . ", 'module')" );
+			if ( $fp = fopen( "../modules/{$module}/templates/" . $tplfile['file'], 'r' ) ) {
+				$newtplid = $dbm->insert( 'tplfile', " VALUES (0, {$mid}, '{$module}', 'default', '" . addslashes( $tplfile['file'] ) . "', '" . addslashes( $tplfile['description'] ) . "', " . $time . ', ' . $time . ", 'module')" );
 				//$newtplid = $xoopsDB->getInsertId();
-				if ( filesize( "../modules/${module}/templates/" . $tplfile['file'] ) > 0 ) {
-					$tplsource = fread( $fp, filesize( "../modules/${module}/templates/" . $tplfile['file'] ) );
+				if ( filesize( "../modules/{$module}/templates/" . $tplfile['file'] ) > 0 ) {
+					$tplsource = fread( $fp, filesize( "../modules/{$module}/templates/" . $tplfile['file'] ) );
 				} else {
 					$tplsource = '';
 				}
@@ -176,7 +176,7 @@ function installModule( &$dbm, $mid, $module, $module_name, $language = 'english
 
 	if ( is_array( $modversion['blocks'] ) && count( $modversion['blocks'] ) > 0 ) {
 		foreach ( $modversion['blocks'] as $func_num => $newblock ) {
-			if ( $fp = fopen( '../modules/${module}/templates/blocks/' . $newblock['template'], 'rb' ) ) {
+			if ( $fp = fopen( '../modules/{$module}/templates/blocks/' . $newblock['template'], 'rb' ) ) {
 				//
 				// The following checking is dependence on the structure of system module.
 				//
@@ -191,13 +191,13 @@ function installModule( &$dbm, $mid, $module, $module_name, $language = 'english
 				}
 				$options   = ! isset( $newblock['options'] ) ? '' : trim( $newblock['options'] );
 				$edit_func = ! isset( $newblock['edit_func'] ) ? '' : trim( $newblock['edit_func'] );
-				$newbid    = $dbm->insert( 'newblocks', " VALUES (0, ${mid}, " . $func_num . ", '" . addslashes( $options ) . "', '" . addslashes( $newblock['name'] ) . "', '" . addslashes( $newblock['name'] ) . "', '', 0, 0, " . $visible . ", 'S', 'H', 1, '${module}', '" . addslashes( $newblock['file'] ) . "', '" . addslashes( $newblock['show_func'] ) . "', '" . addslashes( $edit_func ) . "', '" . addslashes( $newblock['template'] ) . "', 0, " . $time . ')'
+				$newbid    = $dbm->insert( 'newblocks', " VALUES (0, {$mid}, " . $func_num . ", '" . addslashes( $options ) . "', '" . addslashes( $newblock['name'] ) . "', '" . addslashes( $newblock['name'] ) . "', '', 0, 0, " . $visible . ", 'S', 'H', 1, '{$module}', '" . addslashes( $newblock['file'] ) . "', '" . addslashes( $newblock['show_func'] ) . "', '" . addslashes( $edit_func ) . "', '" . addslashes( $newblock['template'] ) . "', 0, " . $time . ')'
 				);
 				//$newbid = $xoopsDB->getInsertId();
-				$newtplid = $dbm->insert( 'tplfile', ' VALUES (0, ' . $newbid . ", '${module}', 'default', '" . addslashes( $newblock['template'] ) . "', '" . addslashes( $newblock['description'] ) . "', " . $time . ', ' . $time . ", 'block')" );
+				$newtplid = $dbm->insert( 'tplfile', ' VALUES (0, ' . $newbid . ", '{$module}', 'default', '" . addslashes( $newblock['template'] ) . "', '" . addslashes( $newblock['description'] ) . "', " . $time . ', ' . $time . ", 'block')" );
 				//$newtplid = $xoopsDB->getInsertId();
-				if ( filesize( "../modules/${module}/templates/blocks/" . $newblock['template'] ) > 0 ) {
-					$tplsource = fread( $fp, filesize( "../modules/${module}/templates/blocks/" . $newblock['template'] ) );
+				if ( filesize( "../modules/{$module}/templates/blocks/" . $newblock['template'] ) > 0 ) {
+					$tplsource = fread( $fp, filesize( "../modules/{$module}/templates/blocks/" . $newblock['template'] ) );
 				} else {
 					$tplsource = '';
 				}
@@ -232,11 +232,11 @@ function installModule( &$dbm, $mid, $module, $module_name, $language = 'english
 				$default = serialize( explode( '|', trim( $default ) ) );
 			}
 
-			$conf_id = $dbm->insert( 'config', " VALUES (0, ${mid}, 0, '${name}', '${title}', '${default}', '${desc}', '${formtype}', '${valuetype}', ${count})" );
+			$conf_id = $dbm->insert( 'config', " VALUES (0, {$mid}, 0, '{$name}', '{$title}', '{$default}', '{$desc}', '{$formtype}', '{$valuetype}', {$count})" );
 
 			if ( isset( $configInfo['options'] ) && is_array( $configInfo['options'] ) ) {
 				foreach ( $configInfo['options'] as $key => $value ) {
-					$dbm->insert( 'configoption', " VALUES (0, '${key}', '${value}', ${conf_id})" );
+					$dbm->insert( 'configoption', " VALUES (0, '{$key}', '{$value}', {$conf_id})" );
 				}
 			}
 

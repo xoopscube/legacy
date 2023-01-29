@@ -52,7 +52,7 @@ class LegacyRender_TplfileDeleteAction extends LegacyRender_AbstractDeleteAction
         
         $tplset = $this->mObject->get('tpl_tplset');
         $module = $this->mObject->get('tpl_module');
-        $controller->executeForward("./index.php?action=TplfileList&tpl_tplset=${tplset}&tpl_module=${module}");
+        $controller->executeForward("./index.php?action=TplfileList&tpl_tplset={$tplset}&tpl_module={$module}");
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
@@ -64,6 +64,6 @@ class LegacyRender_TplfileDeleteAction extends LegacyRender_AbstractDeleteAction
     {
         $tplset = $this->mObject->get('tpl_tplset');
         $module = $this->mObject->get('tpl_module');
-        $controller->executeForward("./index.php?action=TplfileList&tpl_tplset=${tplset}&tpl_module=${module}");
+        $controller->executeForward("./index.php?action=TplfileList&tpl_tplset={$tplset}&tpl_module={$module}");
     }
 }
