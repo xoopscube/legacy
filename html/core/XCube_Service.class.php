@@ -182,7 +182,7 @@ class XCube_ServiceClient extends XCube_AbstractServiceClient {
 			return $ret;
 		}
 
-		$this->mClientErrorStr = "operation ${operation} not present.";
+		$this->mClientErrorStr = "operation {$operation} not present.";
 
 		return null;
 	}

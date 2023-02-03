@@ -119,7 +119,7 @@ class XCube_FormFile {
 	public function setExtension( $ext ) {
 		$filename = $this->getFileName();
 		if ( preg_match( "/(.+)\.\w+$/", $filename, $match ) ) {
-			$this->setFileName( $match[1] . ".${ext}" );
+			$this->setFileName( $match[1] . ".{$ext}" );
 		}
 	}
 
