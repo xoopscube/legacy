@@ -10,6 +10,7 @@ class User_AbstractFilterForm
     public $mSortKeys = [];
     public $_mCriteria = null;
     public $mNavi = null;
+    public $_mHandler = null;
 
     public function User_AbstractFilterForm(&$navi, &$handler)
     {
@@ -18,8 +19,8 @@ class User_AbstractFilterForm
 
     public function __construct(&$navi, &$handler)
     {
-        $this->mNavi = &$navi;
-        $this->_mHandler = &$handler;
+        $this->mNavi = $navi;
+        $this->_mHandler = $handler;
 
         $this->_mCriteria = new CriteriaCompo();
 

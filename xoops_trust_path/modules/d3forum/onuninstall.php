@@ -22,7 +22,7 @@ if ( ! function_exists( 'd3forum_onuninstall_base' ) ) {
 		// for Cube 2.1
 		if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
 
-			$root =& XCube_Root::getSingleton();
+			$root = XCube_Root::getSingleton();
 
 			$root->mDelegateManager->add( 'Legacy.Admin.Event.ModuleUninstall.' . ucfirst( $mydirname ) . '.Success', 'd3forum_message_append_onuninstall' );
 
@@ -34,7 +34,7 @@ if ( ! function_exists( 'd3forum_onuninstall_base' ) ) {
 			}
 		}
 
-		$db = &XoopsDatabaseFactory::getDatabaseConnection();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 		$mid = $module->getVar( 'mid' );
 

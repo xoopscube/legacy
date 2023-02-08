@@ -11,7 +11,7 @@
  * @brief      Keep Block option values when update (by nobunobu) for XOOPS 2.x
  */
 
-$db = &XoopsDatabaseFactory::getDatabaseConnection();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 $query = 'SELECT mid FROM ' . $db->prefix( 'modules' ) . " WHERE dirname='" . $modversion['dirname'] . "' ";
 

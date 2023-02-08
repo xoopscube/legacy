@@ -11,11 +11,10 @@
  */
 
 function d3forum_notify_iteminfo( $mydirname, $category, $item_id ) {
-	// $db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	$module_handler =& xoops_gethandler( 'module' );
-	$module         =& $module_handler->getByDirname( $mydirname );
+	$module_handler = xoops_gethandler( 'module' );
+	$module         = $module_handler->getByDirname( $mydirname );
 
 	if ( 'global' === $category ) {
 		$item['name'] = '';

@@ -30,7 +30,7 @@ function smarty_function_xoops_pagenavi($params, &$smarty)
     $ret = "<ul class='pagenavi'>";
 
     if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
-        $navi =& $params['pagenavi'];
+        $navi = $params['pagenavi'];
 
         $perPage = $navi->getPerpage();
 

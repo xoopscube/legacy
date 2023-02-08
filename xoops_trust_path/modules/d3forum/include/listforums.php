@@ -24,7 +24,7 @@ $sql = 'SELECT COUNT(*) FROM ' . $db->prefix( $mydirname . '_posts' );
 
 // get last visit
 if ( $uid > 0 ) {
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$lv_result = $db->query( 'SELECT MAX(u2t_time) FROM ' . $db->prefix( $mydirname . '_users2topics' ) . " WHERE uid='$uid'" );
 
@@ -97,9 +97,9 @@ while ( $forum_row = $db->fetchArray( $frs ) ) {
 	}
 
 	// get last poster's object
-	$user_handler =& xoops_gethandler( 'user' );
+	$user_handler = xoops_gethandler( 'user' );
 
-	$last_poster_obj =& $user_handler->get( (int) $forum_row['uid'] );
+	$last_poster_obj = $user_handler->get( (int) $forum_row['uid'] );
 
 	if ( is_object( $last_poster_obj ) ) {
 		// naao from

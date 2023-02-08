@@ -14,8 +14,8 @@
 class D3commentUserinfo extends D3commentAbstract {
 	// get reference description as string
 	public function fetchDescription( $link_id ) {
-		$user_handler =& xoops_gethandler( 'user' );
-		$user         =& $user_handler->get( $link_id );
+		$user_handler = xoops_gethandler( 'user' );
+		$user         = $user_handler->get( $link_id );
 		if ( is_object( $user ) ) {
 			return '
 			<table class="outer">
@@ -35,8 +35,8 @@ class D3commentUserinfo extends D3commentAbstract {
 
 	// get reference information as array
 	public function fetchSummary( $link_id ) {
-		$user_handler =& xoops_gethandler( 'user' );
-		$user         =& $user_handler->get( $link_id );
+		$user_handler = xoops_gethandler( 'user' );
+		$user         = $user_handler->get( $link_id );
 		if ( is_object( $user ) ) {
 			return [
 				'module_name' => '',
@@ -58,8 +58,8 @@ class D3commentUserinfo extends D3commentAbstract {
 	public function validate_id( $link_id ) {
 		$link_id = (int) $link_id;
 
-		$user_handler =& xoops_gethandler( 'user' );
-		$user         =& $user_handler->get( $link_id );
+		$user_handler = xoops_gethandler( 'user' );
+		$user         = $user_handler->get( $link_id );
 		if ( is_object( $user ) ) {
 			return $link_id;
 		}

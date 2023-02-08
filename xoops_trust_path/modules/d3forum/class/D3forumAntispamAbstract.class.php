@@ -38,7 +38,7 @@ class D3forumAntispamAbstract {
 	public function isMobile() {
 		if ( class_exists( 'Wizin_User' ) ) {
 			// WizMobile (gusagi)
-			$user =& Wizin_User::getSingleton();
+			$user = Wizin_User::getSingleton();
 
 			return $user->bIsMobile;
 		}

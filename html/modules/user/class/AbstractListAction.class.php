@@ -40,11 +40,11 @@ class User_AbstractListAction extends User_Action
 
     public function getDefaultView(&$controller, &$xoopsUser)
     {
-        $this->mFilter = &$this->_getFilterForm();
+        $this->mFilter = $this->_getFilterForm();
         $this->mFilter->fetch();
 
-        $handler = &$this->_getHandler();
-        $this->mObjects = &$handler->getObjects($this->mFilter->getCriteria());
+        $handler = $this->_getHandler();
+        $this->mObjects = $handler->getObjects($this->mFilter->getCriteria());
 
         return USER_FRAME_VIEW_INDEX;
     }

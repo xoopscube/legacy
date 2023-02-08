@@ -47,10 +47,9 @@ function d3forum_get_rssdata( $mydirname, $limit = 0, $offset = 0, $forum_id = 0
 
 	require_once dirname( __DIR__ ) . '/class/d3forum.textsanitizer.php';
 
-	( method_exists( 'D3forumTextSanitizer', 'sGetInstance' ) and $myts =& D3forumTextSanitizer::sGetInstance() ) || $myts =& ( new D3forumTextSanitizer )->getInstance();
+	( method_exists( 'D3forumTextSanitizer', 'sGetInstance' ) and $myts = D3forumTextSanitizer::sGetInstance() ) || $myts = ( new D3forumTextSanitizer )->getInstance();
 
-	// $db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$forum_id = ( $forum_id ) ? ' AND f.forum_id=' . (int) $forum_id : '';
 

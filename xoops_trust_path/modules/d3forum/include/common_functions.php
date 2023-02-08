@@ -13,7 +13,7 @@
 function d3forum_get_forums_can_read( $mydirname ) {
 	global $xoopsUser;
 
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ( is_object( $xoopsUser ) ) {
 
@@ -70,8 +70,7 @@ function d3forum_get_forums_can_read( $mydirname ) {
 function d3forum_get_categories_can_read( $mydirname ) {
 	global $xoopsUser;
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ( is_object( $xoopsUser ) ) {
 		$uid    = (int) $xoopsUser->getVar( 'uid' );
@@ -111,18 +110,17 @@ function d3forum_get_submenu( $mydirname ) {
 		return $submenus_cache[ $mydirname ];
 	}
 
-	$module_handler =& xoops_gethandler( 'module' );
-	$module         =& $module_handler->getByDirname( $mydirname );
+	$module_handler = xoops_gethandler( 'module' );
+	$module         = $module_handler->getByDirname( $mydirname );
 	if ( ! is_object( $module ) ) {
 		return [];
 	}
-	$config_handler =& xoops_gethandler( 'config' );
-	$mod_config     =& $config_handler->getConfigsByCat( 0, $module->getVar( 'mid' ) );
+	$config_handler = xoops_gethandler( 'config' );
+	$mod_config     = $config_handler->getConfigsByCat( 0, $module->getVar( 'mid' ) );
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts =& MyTextSanitizer::sGetInstance() ) || $myts =& ( new MyTextSanitizer )->getInstance();
+	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = MyTextSanitizer::sGetInstance() ) || $myts = ( new MyTextSanitizer )->getInstance();
 
 	$whr_read4cat = '`cat_id` IN (' . implode( ',', d3forum_get_categories_can_read( $mydirname ) ) . ')';
 
@@ -230,7 +228,7 @@ function d3forum_common_unhtmlspecialchars( $text ) {
 
 
 function d3forum_common_simple_request( $params ) {
-	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts =& MyTextSanitizer::sGetInstance() ) || $myts =& ( new MyTextSanitizer )->getInstance();
+	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = MyTextSanitizer::sGetInstance() ) || $myts = ( new MyTextSanitizer )->getInstance();
 
 	$requests = [];
 	$whrs     = [];

@@ -11,9 +11,9 @@
  */
 
 function b_sitemap_d3forum( $mydirname ) {
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts =& MyTextSanitizer::sGetInstance() ) || $myts =& ( new MyTextSanitizer )->getInstance();
+	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = MyTextSanitizer::sGetInstance() ) || $myts = ( new MyTextSanitizer )->getInstance();
 	$ret = [];
 
 	include_once __DIR__ . '/common_functions.php';

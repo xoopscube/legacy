@@ -18,11 +18,11 @@ if ( ! function_exists( 'd3forum_notify_base' ) ) {
 
 		include_once __DIR__ . '/include/common_functions.php';
 
-		$db = &XoopsDatabaseFactory::getDatabaseConnection();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-		$module_handler =& xoops_gethandler( 'module' );
+		$module_handler = xoops_gethandler( 'module' );
 
-		$module =& $module_handler->getByDirname( $mydirname );
+		$module = $module_handler->getByDirname( $mydirname );
 
 		if ( 'global' == $category ) {
 			$item['name'] = '';

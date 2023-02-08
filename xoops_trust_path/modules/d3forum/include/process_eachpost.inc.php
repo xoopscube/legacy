@@ -27,8 +27,8 @@ if ( $post_row['invisible'] || ! $post_row['approval'] ) {
 }
 
 // get this poster's object
-$user_handler =& xoops_gethandler( 'user' );
-$poster_obj   =& $user_handler->get( (int) $post_row['uid'] );
+$user_handler = xoops_gethandler( 'user' );
+$poster_obj   = $user_handler->get( (int) $post_row['uid'] );
 if ( is_object( $poster_obj ) ) {
 	// active user's post
 	// naao from

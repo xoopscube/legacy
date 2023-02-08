@@ -31,11 +31,11 @@ class D3commentAbstract {
 
 		// set $this->mod_config as config of target_module
 		if ( $this->mydirname ) {
-			$module_hanlder =& xoops_gethandler( 'module' );
-			$config_handler =& xoops_gethandler( 'config' );
-			$this->module   =& $module_hanlder->getByDirname( $this->mydirname );
+			$module_hanlder = xoops_gethandler( 'module' );
+			$config_handler = xoops_gethandler( 'config' );
+			$this->module   = $module_hanlder->getByDirname( $this->mydirname );
 			if ( is_object( $this->module ) ) {
-				$this->mod_config =& $config_handler->getConfigsByCat( 0, $this->module->getVar( 'mid' ) );
+				$this->mod_config = $config_handler->getConfigsByCat( 0, $this->module->getVar( 'mid' ) );
 			}
 		}
 
@@ -46,7 +46,7 @@ class D3commentAbstract {
 
 	// set smarty
 	public function setSmarty( &$smarty ) {
-		$this->smarty =& $smarty;
+		$this->smarty = $smarty;
 	}
 
 	public function setForumId( $id ) {
@@ -271,9 +271,9 @@ class D3commentAbstract {
 			return false;
 		}
 
-		$not_module  =& $this->module;
+		$not_module  = $this->module;
 		$not_modid   = $this->module->getVar( 'mid' );
-		$not_catinfo =& notificationCommentCategoryInfo( $not_modid );
+		$not_catinfo = notificationCommentCategoryInfo( $not_modid );
 
 		// module without 'comment' notification
 		if ( empty( $not_catinfo ) ) {
@@ -300,16 +300,15 @@ class D3commentAbstract {
 	// returns comment count
 	// override it if necessary
 	public function countComments( $params ) {
-		//$db =& Database::getInstance();
-		$db = &XoopsDatabaseFactory::getDatabaseConnection();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 		$forum_id = $params['forum_id'];
 
 		$mydirname = $params['forum_dirname'];
 
 		// check the d3forum exists and is active
-		$module_hanlder =& xoops_gethandler( 'module' );
-		$module         =& $module_hanlder->getByDirname( $mydirname );
+		$module_hanlder = xoops_gethandler( 'module' );
+		$module         = $module_hanlder->getByDirname( $mydirname );
 		if ( ! is_object( $module ) || ! $module->getVar( 'isactive' ) ) {
 			return 0;
 		}
@@ -332,8 +331,7 @@ class D3commentAbstract {
 
 	// returns posts count (does not check the permissions)
 	public function getPostsCount( $forum_id, $link_id ) {
-		//$db =& Database::getInstance();
-		$db = &XoopsDatabaseFactory::getDatabaseConnection();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 		[ $count ] = $db->fetchRow( $db->query( 'SELECT COUNT(*) FROM ' . $db->prefix( $this->d3forum_dirname . '_posts' ) . ' p LEFT JOIN ' . $db->prefix( $this->d3forum_dirname . '_topics' ) . " t ON t.topic_id=p.topic_id WHERE t.forum_id=$forum_id AND t.topic_external_link_id='$link_id'" ) );
 
@@ -342,8 +340,7 @@ class D3commentAbstract {
 
 	// returns topics count (does not check the permissions)
 	public function getTopicsCount( $forum_id, $link_id ) {
-		//$db =& Database::getInstance();
-		$db = &XoopsDatabaseFactory::getDatabaseConnection();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 		[ $count ] = $db->fetchRow( $db->query( 'SELECT COUNT(*) FROM ' . $db->prefix( $this->d3forum_dirname . '_topics' ) . " t WHERE t.forum_id=$forum_id AND t.topic_external_link_id='$link_id'" ) );
 

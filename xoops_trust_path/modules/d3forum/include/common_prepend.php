@@ -15,9 +15,9 @@ require_once __DIR__ . '/common_functions.php';
 
 require_once dirname( __DIR__ ) . '/class/d3forum.textsanitizer.php';
 
-$myts =& D3forumTextSanitizer::sGetInstance();
+$myts = D3forumTextSanitizer::sGetInstance();
 
-$db = &XoopsDatabaseFactory::getDatabaseConnection();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 // GET $uid
 $uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar( 'uid' ) : 0;

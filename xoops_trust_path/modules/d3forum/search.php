@@ -20,9 +20,9 @@ if ( ! function_exists( 'd3forum_global_search_base' ) ) {
 	function d3forum_global_search_base( $mydirname, $keywords, $andor, $limit, $offset, $userid ) {
 
 
-		( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts =& MyTextSanitizer::sGetInstance() ) || $myts =& MyTextsanitizer::getInstance();
+		( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = MyTextSanitizer::sGetInstance() ) || $myts = MyTextsanitizer::getInstance();
 
-		$db = &XoopsDatabaseFactory::getDatabaseConnection();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 		$andor = strtoupper( $andor );
 
