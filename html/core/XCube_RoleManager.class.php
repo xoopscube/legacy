@@ -1,10 +1,10 @@
 <?php
 /**
- * XCube_RoleManager.class.php
+ * /core/XCube_RoleManager.class.php
  * @package XCube
  * @version    XCL 2.3.1
  * @author     Minahito, 2008/10/12
- * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    BSD-3-Clause
  * @brief      Provider class to manage role information with the store.
  */

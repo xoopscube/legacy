@@ -1,11 +1,11 @@
 <?php
 /**
- * XCube_Identity.class.php
+ * /core/XCube_Identity.class.php
  * @package    XCube
  * @version    XCL 2.3.1
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Minahito, 2008/10/12
- * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    BSD-3-Clause
  * @brief      Defines the basic functionality of an identity object.
  */

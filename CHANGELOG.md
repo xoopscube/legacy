@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 
 Refer please to repository Legacy Commits  
 
+## [2.3.1] 2023-02-20
+
+### Changed
+
+- (c) 2005-2023 The XOOPSCube Project
+
 ## [2.3.1] 2022-12-20
 
 ### Version 2.32.1 beta

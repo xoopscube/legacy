@@ -1,15 +1,15 @@
 <?php
 /**
- * XCube_ActionFilter.class.php
+ * /core/XCube_ActionFilter.class.php
+ * [Abstract] Used for initialization, post-processing and other purposes by the controller.
  * This class is an abstract class.
  * Typically, an abstract defines an interface for other classes to extend.
  * @package    XCube
  * @version    XCL 2.3.1
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Minahito, 2008/10/12
- * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    BSD-3-Clause
- * @brief      [Abstract] Used for initialization, post-processing and other purposes by the controller.
  *
  *    This class is chained and called by the initialization procedure of the controller class.
  *    Developers or users can use the subclass to customize dynamically.

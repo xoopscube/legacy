@@ -1,11 +1,11 @@
 <?php
 /**
- * XCube_Property.class.php
+ * /core/XCube_Property.class.php
  * @package    XCube
  * @version    XCL 2.3.1
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Minahito, 2008/10/12
- * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    BSD-3-Clause
  * @brief      [Abstract] Defines an interface for the property class group.
  * XCube_PropertyInterface is designed to work in XCube_ActionForm and XCube_Service (further dev).
