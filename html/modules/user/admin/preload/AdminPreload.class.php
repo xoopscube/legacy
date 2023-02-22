@@ -29,7 +29,7 @@ class User_AdminPreload extends XCube_ActionFilter
             $t_conds[] = 'theme <> ' . $db->quoteString($theme);
         }
         
-        $sql = "UPDATE ${table} SET theme=${mainTheme} WHERE " . implode(' AND ', $t_conds);
+        $sql = "UPDATE {$table} SET theme={$mainTheme} WHERE " . implode(' AND ', $t_conds);
 
         $db->query($sql);
     }

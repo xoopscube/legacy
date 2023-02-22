@@ -29,7 +29,7 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
      * @var string
      * @access  private
      */
-    public $_hiddenText;
+    public $_xoopsHiddenText;
 
     /**
      * Editor type

@@ -73,7 +73,7 @@ class Legacy_Utils
         //
         $className = ucfirst($dirname) . '_Module';
         if (!XC_CLASS_EXISTS($className)) {
-            $filePath = XOOPS_ROOT_PATH . "/modules/${dirname}/class/Module.class.php";
+            $filePath = XOOPS_ROOT_PATH . "/modules/{$dirname}/class/Module.class.php";
             if (file_exists($filePath)) {
                 require_once $filePath;
             }

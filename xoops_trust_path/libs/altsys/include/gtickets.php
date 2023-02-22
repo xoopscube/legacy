@@ -130,7 +130,7 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
          * @throws Exception
          */
 
-		public function getTicketParamString(string $salt = '', bool $noamp, int $timeout = 1800, string $area = '' ) {
+		public function getTicketParamString(string $salt = '', bool $noamp = false, int $timeout = 1800, string $area = '' ) {
 			return ( $noamp ? '' : '&amp;' ) . 'XOOPS_G_TICKET=' . $this->issue( $salt, $timeout, $area );
 		}
 

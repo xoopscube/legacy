@@ -32,9 +32,8 @@ class Legacy_MiscSmiliesAction extends Legacy_AbstractListAction
 
     public function &_getFilterForm()
     {
-//        $filter =new Legacy_SmilesFilterForm($this->_getPageNavi(), $this->_getHandler());
-//        return $filter;
-        return new Legacy_SmilesFilterForm($this->_getPageNavi(), $this->_getHandler());
+        $filter =new Legacy_SmilesFilterForm($this->_getPageNavi(), $this->_getHandler());
+        return $filter;
     }
 
     public function _getBaseUrl()

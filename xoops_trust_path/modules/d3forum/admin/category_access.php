@@ -14,10 +14,9 @@ require_once dirname( __DIR__ ) . '/include/common_functions.php';
 require_once dirname( __DIR__ ) . '/class/d3forum.textsanitizer.php';
 require_once dirname( __DIR__ ) . '/class/gtickets.php';
 
-$myts =& D3forumTextSanitizer::sGetInstance();
+$myts =D3forumTextSanitizer::sGetInstance();
 
-//$db =& Database::getInstance();
-$db = &XoopsDatabaseFactory::getDatabaseConnection();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 // get right $cat_id
 $cat_id = (int) @$_GET['cat_id'];
@@ -103,7 +102,7 @@ if ( ! empty( $_POST['user_update'] ) && empty( $invaild_cat_id ) ) {
 		}
 	}
 
-	$member_hander =& xoops_gethandler( 'member' );
+	$member_hander = xoops_gethandler( 'member' );
 
 	if ( is_array( @$_POST['new_uids'] ) ) {
 
@@ -120,7 +119,7 @@ if ( ! empty( $_POST['user_update'] ) && empty( $invaild_cat_id ) ) {
 				[ $user ] = $member_handler->getUsers( $criteria );
 
 			} else {
-				$user =& $member_handler->getUser( (int) $uid );
+				$user = $member_handler->getUser( (int) $uid );
 			}
 			if ( is_object( $user ) ) {
 				$db->query( 'INSERT INTO '
@@ -149,9 +148,9 @@ while ( list( $id, $title, $depth ) = $db->fetchRow( $crs ) ) {
 
 
 // create group form
-$group_handler =& xoops_gethandler( 'group' );
+$group_handler = xoops_gethandler( 'group' );
 
-$groups =& $group_handler->getObjects();
+$groups = $group_handler->getObjects();
 
 $group_trs = '';
 

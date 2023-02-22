@@ -81,6 +81,13 @@ class Smarty_Compiler extends Smarty {
     var $_strip_depth           =   0;
     var $_additional_newline    =   "\n";
 
+    var $_plugins_code          =   '';
+    var $_param_regexp          =   '';
+    var $_dvar_math_regexp      =   '';
+    var $_dvar_math_var_regexp  =   '';
+    var $_obj_single_param_regexp = '';
+    var $_obj_restricted_param_regexp = '';
+
     /**#@-*/
     /**
      * The class constructor.
@@ -399,7 +406,7 @@ class Smarty_Compiler extends Smarty {
         }
 
         // put header at the top of the compiled template
-        $template_header = "<?php /* Smarty version ".$this->_version.", created on ".strftime("%Y-%m-%d %H:%M:%S")."\n";
+        $template_header = "<?php /* Smarty version ".$this->_version.", created on ".date("Y-m-d H:i:s")."\n";
         $template_header .= "         compiled from ".strtr(urlencode($resource_name), array('%2F'=>'/', '%3A'=>':'))." */ ?>\n";
 
         /* Emit code to load needed plugins. */

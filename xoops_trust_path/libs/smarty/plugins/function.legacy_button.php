@@ -39,21 +39,21 @@ function smarty_function_legacy_button($params, &$smarty)
         // Fetch major elements from $params.
         //
         $id = trim($params['id']);
-        $name = "Legacy.Event.User.${id}";
+        $name = "Legacy.Event.User.{$id}";
         $text = isset($params['Text']) ? htmlspecialchars(trim($params['Text']), ENT_QUOTES) : null;
         $class = isset($params['class']) ? htmlspecialchars(trim($params['class']), ENT_QUOTES) : null;
 
         //
         // Build string.
         //
-        $string = "<input type='submit' id='${id}' name='${name}'";
+        $string = "<input type='submit' id='{$id}' name='{$name}'";
 
         if ($text != null) {
-            $string .= " value='${text}'";
+            $string .= " value='{$text}'";
         }
 
         if ($class != null) {
-            $string .= " class='${class}'";
+            $string .= " class='{$class}'";
         }
 
         $string .= " />";

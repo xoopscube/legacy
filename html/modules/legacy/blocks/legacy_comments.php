@@ -60,7 +60,7 @@ function b_legacy_comments_show($options)
 
 function b_legacy_comments_edit($options)
 {
-    $inputtag = "<input type='text' name='options[]' value='" . (int)$options[0] . "' />";
+    $inputtag = "<input type='text' name='options[]' value='" . (int)$options[0] . "'>";
     $form = sprintf(_MB_LEGACY_DISPLAYC, $inputtag);
     return $form;
 }

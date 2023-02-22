@@ -72,7 +72,7 @@ class Legacy_BlockInstallListAction extends Legacy_AbstractListAction
                 $rtn['link']     = XOOPS_URL . '/modules/system/admin.php?fct=preferences&amp;op=showmod&amp;mod=' . $mod->getVar('mid');
                 $rtn['title']    = htmlspecialchars($mod->name(), ENT_QUOTES);
                 $rtn['absolute'] = 1;
-                $rtn['icon']     = XOOPS_ADMINTHEME_URL . '/icons/prefs_small.png';
+                $rtn['icon']     = XOOPS_ADMINTHEME_URL . '/icons/prefs_small.png'; // TODO
                 $menu[]          = $rtn;
             }
         }

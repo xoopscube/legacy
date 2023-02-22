@@ -24,7 +24,7 @@ class D3forumAntispamJapanesemobilesmart extends D3forumAntispamJapanese {
 	public function isMobile() {
 		if ( class_exists( 'Wizin_User' ) ) {
 			// WizMobile (gusagi)
-			$user =& Wizin_User::getSingleton();
+			$user = Wizin_User::getSingleton();
 
 			return $user->bIsMobile;
 		}

@@ -138,7 +138,7 @@ class Profile_AssetManager
         }
 
         $filePath = $this->_getBasePath($isAdmin) . '/forms/' . ucfirst($entity) . 'FilterForm.class.php';
-        $className = ucfirst($this->mDirname) . "_${adminToken}" . ucfirst($entity) . 'FilterForm';
+        $className = ucfirst($this->mDirname) . "_{$adminToken}" . ucfirst($entity) . 'FilterForm';
 
         $instance =& $this->_createInstance($className, $filePath);
 
@@ -168,7 +168,7 @@ class Profile_AssetManager
             $entity = $matches[2];
         }
 
-        $className = ucfirst($this->mDirname) . "_${adminToken}" . ucfirst($entity) . ucfirst($mode) . 'Form';
+        $className = ucfirst($this->mDirname) . "_{$adminToken}" . ucfirst($entity) . ucfirst($mode) . 'Form';
         $filePath = $this->_getBasePath($isAdmin) . '/forms/' . ucfirst($entity) . ucfirst($mode) . 'Form.class.php';
 
         $instance =& $this->_createInstance($className, $filePath);

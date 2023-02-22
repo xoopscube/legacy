@@ -58,9 +58,9 @@ class LegacyRender_ActionFrame
         $className = 'LegacyRender_' . ucfirst($actionFrame->mActionName) . 'Action';
         $fileName = ucfirst($actionFrame->mActionName) . 'Action';
         if ($actionFrame->mAdminFlag) {
-            $fileName = XOOPS_MODULE_PATH . "/legacyRender/admin/actions/${fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/legacyRender/admin/actions/{$fileName}.class.php";
         } else {
-            $fileName = XOOPS_MODULE_PATH . "/legacyRender/actions/${fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/legacyRender/actions/{$fileName}.class.php";
         }
 
         if (!file_exists($fileName)) {

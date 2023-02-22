@@ -15,6 +15,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
 {
     public $mStatusFlag = LEGACY_CONTROLLER_STATE_PUBLIC;
+    public $_mLoadedFilterNames = array();
 
     public function __construct(&$controller)
     {
@@ -107,7 +108,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
         if (null != $this->mController->mRoot->mContext->mModule) {
             $dirname = $this->mController->mRoot->mContext->mXoopsModule->get('dirname');
 
-            return $this->mController->mRoot->mContext->mUser->isInRole("Module.${dirname}.Visitor");
+            return $this->mController->mRoot->mContext->mUser->isInRole("Module.{$dirname}.Visitor");
         }
 
         return true;

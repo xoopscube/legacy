@@ -23,15 +23,15 @@ function b_d3forum_list_forums_show( $options ) {
 		die( 'Invalid mydirname' );
 	}
 
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts =& MyTextSanitizer::sGetInstance() ) || $myts =& ( new MyTextSanitizer )->getInstance();
+	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = MyTextSanitizer::sGetInstance() ) || $myts = ( new MyTextSanitizer )->getInstance();
 
 	$uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar( 'uid' ) : 0;
 
-	$module_handler =& xoops_gethandler( 'module' );
-	$module         =& $module_handler->getByDirname( $mydirname );
-	$config_handler =& xoops_gethandler( 'config' );
+	$module_handler = xoops_gethandler( 'module' );
+	$module         = $module_handler->getByDirname( $mydirname );
+	$config_handler = xoops_gethandler( 'config' );
 	$configs        = $config_handler->getConfigList( $module->mid() );
 
 	// forums can be read by current viewer (check by forum_access)
@@ -163,15 +163,15 @@ function b_d3forum_list_topics_show( $options ) {
 		die( 'Invalid mydirname' );
 	}
 
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts =& MyTextSanitizer::sGetInstance() ) || $myts =& ( new MyTextSanitizer )->getInstance();
+	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = MyTextSanitizer::sGetInstance() ) || $myts = ( new MyTextSanitizer )->getInstance();
 
 	$uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar( 'uid' ) : 0;
 
-	$module_handler =& xoops_gethandler( 'module' );
-	$module         =& $module_handler->getByDirname( $mydirname );
-	$config_handler =& xoops_gethandler( 'config' );
+	$module_handler = xoops_gethandler( 'module' );
+	$module         = $module_handler->getByDirname( $mydirname );
+	$config_handler = xoops_gethandler( 'config' );
 	$configs        = $config_handler->getConfigList( $module->mid() );
 
 	// naao from
@@ -517,16 +517,15 @@ function b_d3forum_list_posts_show( $options ) {
 		die( 'Invalid mydirname' );
 	}
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts =& MyTextSanitizer::sGetInstance() ) || $myts =& ( new MyTextSanitizer )->getInstance();
+	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = MyTextSanitizer::sGetInstance() ) || $myts = ( new MyTextSanitizer )->getInstance();
 
 	$uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar( 'uid' ) : 0;
 
-	$module_handler =& xoops_gethandler( 'module' );
-	$module         =& $module_handler->getByDirname( $mydirname );
-	$config_handler =& xoops_gethandler( 'config' );
+	$module_handler = xoops_gethandler( 'module' );
+	$module         = $module_handler->getByDirname( $mydirname );
+	$config_handler = xoops_gethandler( 'config' );
 	$configs        = $config_handler->getConfigList( $module->mid() );
 
 	// naao from
@@ -787,7 +786,7 @@ if ( ! function_exists( 'd3forum_b_get_comment_object' ) ) {
 	function d3forum_b_get_comment_object( $mydirname, $external_link_format, $forum_id = null ) {
 		include_once dirname( __DIR__ ) . '/class/D3commentAbstract.class.php';
 
-		[ $external_dirname, $classname, $external_trustdirname ] = explode( '::', $external_link_format );
+		[ $external_dirname, $classname, $external_trustdirname ] = preg_split( '/::/', $external_link_format . '::::::');
 
 		if ( empty( $classname ) ) {
 			$obj = new D3commentAbstract( $mydirname, '' );

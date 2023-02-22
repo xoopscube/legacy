@@ -51,11 +51,11 @@
 				<{if $module->mXoopsModule->getInfo('blocks') && $dirname != "legacy" && $dirname != "altsys"  && $dirname != "system"}>
 
 				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList&amp;dirname=<{$dirname}>" aria-label="<{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}>">
-					<img class="svg block-active" src="<{"icons/icon-block-active.svg"|theme}>">
+					<img class="svg block-active" src="<{'icons/icon-block-active.svg'|theme}>">
 				</a>
 
 				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockInstallList&amp;dirname=<{$dirname}>" aria-label="<{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}>">
-					<img class="svg block-install" src="<{"icons/icon-block-install.svg"|theme}>">
+					<img class="svg block-install" src="<{'icons/icon-block-install.svg'|theme}>">
 				</a>
 
 				<{/if}>
@@ -68,7 +68,7 @@
 				<{foreach item=tplmodule from=$tplmodules}>
 				<{if $dirname == $tplmodule}>
 				<a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$dirname}>&amp;sort=-9" aria-label="<{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}>">
-					<img class="svg file-view" src="<{"icons/icon-file-view.svg"|theme}>">
+					<img class="svg file-view" src="<{'icons/icon-file-view.svg'|theme}>">
 				</a>
 				<{/if}>
 				<{/foreach}>
@@ -80,7 +80,7 @@
 
 				<{if $module->mXoopsModule->getInfo('hasComments')}>
 				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList&amp;com_modid=<{$mid}>&amp;sort=-8" aria-label="<{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}>">
-					<img class="svg comments" src="<{"icons/icon-comments.svg"|theme}>">
+					<img class="svg comments" src="<{'icons/icon-comments.svg'|theme}>">
 				</a>
 				<{/if}>
 
@@ -89,13 +89,13 @@
 
 
 				<{if $module->mXoopsModule->hasNeedUpdate()}>
-				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$dirname}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>">
-					<img class="svg update" src="<{"icons/icon-package-update.svg"|theme}>">
+				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$dirname}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>">
+					<img class="svg update" src="<{'icons/icon-package-update.svg'|theme}>">
 				</a>
 				<{else}>
 
-				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$dirname}>" alt="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>">
-					<img class="svg update" src="<{"icons/icon-update.svg"|theme}>">
+				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$dirname}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_UPGRADE}>">
+					<img class="svg update" src="<{'icons/icon-update.svg'|theme}>">
 				</a>
 				<{/if}>
 
@@ -103,7 +103,7 @@
 				<{* ---------- ---------- ---------- ---------- ---------- Module Info *}>
 
 				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleInfo&amp;dirname=<{$dirname}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_INFORMATION}>">
-					<img class="svg info" src="<{"icons/icon-info.svg"|theme}>">
+					<img class="svg info" src="<{'icons/icon-info.svg'|theme}>">
 				</a>
 
 			</li>

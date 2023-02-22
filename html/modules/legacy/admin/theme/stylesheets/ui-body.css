@@ -181,7 +181,7 @@ p {
     grid-area       : header;
     position        : var( --header-position);
     width           : 100%;
-    z-index         : 200;
+    z-index         : var(--z-overlay);
 }
 
 /* -------------------- --------------------  LAYOUT Main */
@@ -234,6 +234,9 @@ footer .links {
     box-shadow      : var( --breadcrumbs-box-shadow     );
     padding         : var( --breadcrumbs-padding        );
     margin          : var( --breadcrumbs-margin         );
+    position        : sticky;
+    top             : 50px;
+    z-index         : var(--z-sticky);
 }
 nav.pagination {
     display         : flex;

@@ -53,7 +53,7 @@
         color              	: var(--link);
         text-anchor        	: middle; /* align center */
         dominant-baseline  	: middle; /* vertical alignment fix */
-        font-size          	: 24px;
+        font-size          	: 20px;
         transition         	: all 1s;
 
     }

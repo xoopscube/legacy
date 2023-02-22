@@ -25,7 +25,7 @@ function b_legacy_notification_show()
         return false; // do not display block
     }
     $notification_handler =& xoops_gethandler('notification');
-    // Now build the a nested associative array of info to pass
+    // Now build a nested associative array of info to pass
     // to the block template.
     $block = [];
     $categories =& notificationSubscribableCategoryInfo();

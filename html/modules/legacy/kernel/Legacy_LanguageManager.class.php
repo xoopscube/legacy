@@ -63,8 +63,18 @@ class Legacy_LanguageManager extends XCube_LanguageManager
               //  ini_set('mbstring.http_output', 'pass');
             //} else {
                 @ini_set('mbstring.internal_encoding', '');
-                @ini_set('mbstring.http_input', '');
-                @ini_set('mbstring.http_output', '');
+               // @ini_set('mbstring.http_input', ''); deprecated
+               // @ini_set('mbstring.http_output', ''); deprecated 
+/**
+* default_charset string
+* "UTF-8" is the default value and its value is used as the default character encoding for 
+* htmlentities(), html_entity_decode() and htmlspecialchars() 
+* if the encoding parameter is omitted. The value of default_charset will also be used to set 
+* the default character set for iconv functions if the iconv.input_encoding, iconv.output_encoding 
+* and iconv.internal_encoding configuration options are unset, and for mbstring functions if the 
+* mbstring.http_input mbstring.http_output mbstring.internal_encoding configuration option is unset.
+* https://www.php.net/manual/en/ini.core.php#ini.default-charset
+**/
            // }
         }
         #endif
@@ -98,7 +108,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * @access public
      * @param string $type
      */
-    public function loadPageTypeMessageCatalog($type)
+    public function loadPageTypeMessageCatalog(string $type)
     {
         if (false === strpos($type, '.')) {
             if (!$this->_loadFile(XOOPS_ROOT_PATH . '/language/' . $this->mLanguageName . '/' . $type . '.php')) {
@@ -113,7 +123,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * @access public
      * @param string $moduleName
      */
-    public function loadModuleMessageCatalog($moduleName)
+    public function loadModuleMessageCatalog(string $moduleName)
     {
         $this->_loadLanguage($moduleName, 'main');
     }
@@ -202,7 +212,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * @param string $filename A name of file
      * @return bool
      */
-    public function existFile($section, $filename)
+    public function existFile(string $section, string $filename)
     {
         return file_exists(XOOPS_ROOT_PATH . '/languages/' . $this->mLanguageName . ($section?"/$section/$filename":"/$filename"));
     }
@@ -215,14 +225,14 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * @param string $filename A name of file
      * @return string
      */
-    public function getFilepath($section, $filename)
+    public function getFilepath(string $section, string $filename)
     {
-        $filepath = XOOPS_ROOT_PATH . '/languages/' . $this->mLanguageName . ($section?"/${section}/${filename}":"/${filename}");
+        $filepath = XOOPS_ROOT_PATH . '/languages/' . $this->mLanguageName . ($section?"/{$section}/{$filename}":"/{$filename}");
 
         if (file_exists($filepath)) {
             return $filepath;
         } else {
-            return XOOPS_ROOT_PATH . '/languages/' . $this->getFallbackLanguage() . ($section?"/${section}/${filename}":"/${filename}");
+            return XOOPS_ROOT_PATH . '/languages/' . $this->getFallbackLanguage() . ($section?"/{$section}/{$filename}":"/{$filename}");
         }
     }
 
@@ -234,13 +244,13 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      * @param string $filename A name of file
      * @return string
      */
-    public function loadTextFile($section, $filename)
+    public function loadTextFile(string $section, string $filename)
     {
         $filepath = $this->getFilepath($section, $filename);
         return file_get_contents($filepath);
     }
 
-    public function getFallbackLanguage()
+    public function getFallbackLanguage() : string
     {
         return 'english';
     }

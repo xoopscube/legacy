@@ -33,8 +33,8 @@ if ( ! $isadminormod ) {
 
 
 // get all of d3forum module instances
-$module_handler     =& xoops_gethandler( 'module' );
-$modules            =& $module_handler->getObjects();
+$module_handler     = xoops_gethandler( 'module' );
+$modules            = $module_handler->getObjects();
 $exportable_modules = [ 0 => '----' ];
 
 $exportable_module_categories = [];

@@ -61,7 +61,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
             // Check bad uname patterns.
             //
             foreach ($this->mConfig['bad_unames'] as $t_uname) {
-                if (!empty($t_uname) && preg_match("/${t_uname}/i", $this->get('uname'))) {
+                if (!empty($t_uname) && preg_match("/{$t_uname}/i", $this->get('uname'))) {
                     $this->addErrorMessage(_MD_USER_LANG_NAMERESERVED);
                     break;
                 }
@@ -73,7 +73,7 @@ class User_AbstractUserEditForm extends XCube_ActionForm
     {
         if (strlen($this->get('email')) > 0) {
             foreach ($this->mConfig['bad_emails'] as $t_email) {
-                if (!empty($t_email) && preg_match("/${t_email}/i", $this->get('email'))) {
+                if (!empty($t_email) && preg_match("/{$t_email}/i", $this->get('email'))) {
                     $this->addErrorMessage(_MD_USER_ERROR_INVALID_EMAIL);
                     return;
                 }

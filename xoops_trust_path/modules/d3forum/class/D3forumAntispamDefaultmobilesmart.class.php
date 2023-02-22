@@ -24,7 +24,7 @@ class D3forumAntispamDefaultmobilesmart extends D3forumAntispamDefault {
 	public function isMobile() {
 		if ( class_exists( 'Wizin_User' ) ) {
 			// WizMobile (gusagi)
-			$user =& Wizin_User::getSingleton();
+			$user = Wizin_User::getSingleton();
 
 			return $user->bIsMobile;
 		}

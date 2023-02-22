@@ -10,7 +10,7 @@
  */
 
 
-$db = &XoopsDatabaseFactory::getDatabaseConnection();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 //
 // form stage
 //

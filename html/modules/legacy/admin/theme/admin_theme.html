@@ -2,7 +2,7 @@
 <html class="no-js" lang="<{$xoops_langcode}>" data-theme="dark">
 <!-- ===========================
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL 2.3.1
+	Distribution : XOOPSCube XCL 2.3.2
 	Version : 1.1.1
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2022-11-21
@@ -41,11 +41,6 @@
     <!-- HTML5 valid Data URI for fake favicon requests by Browsers -->
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
-    <{* ---------- ---------- Module Header *}>
-    <!-- module script -->
-    <{$xoops_module_header}>
-    <!-- module script -->
-
     <{* ---------- ---------- Admin Style *}>
 
     <!-- !TODO Check This -->
@@ -54,15 +49,23 @@
     <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/modules/legacy/admin/theme/style.css">
     <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/css/x-layout.css">
 
-    <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/js/jquery-ui-custom-var.css">
+
 
     <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/prismjs/prism.css">
     <{* prism.js included before closing /body }>
 
+    <{* ---------- ---------- Module Header *}>
+    <!-- module script -->
+    <{if $xoops_module_header}>
+        <{$xoops_module_header}>
+    <{/if}>
+    <{if $xoops_block_header}>
+    <{$xoops_block_header}>
+    <{/if}>
 
-	<{* ---------- ---------- Xoops javascript *}>
+	<{* ---------- ---------- CSS & JS *}>
 	<!-- <script type="text/javascript" src="<{$xoops_url}>/include/xoops.js"></script> -->
-
+    <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/js/jquery-ui-custom-var.css">
 </head>
 
 <body>
@@ -101,30 +104,48 @@
 
         <{$xoops_lblocks.sidemenu.content}>
 
-        <{foreach name='lblock' item='block' from=$xoops_lblocks}>
-        <{if $block.name !='action_search' && $block.name !='onlineinfo' && $block.name !='sidemenu'}>
-        <{$block.content}>
-        <{/if}>
-        <{/foreach}>
-
         </ul><{* /nav-side-menu *}>
 
     </aside>
 
 
     <main class="main">
+        <{* foreach name='lblock' item='block' from=$xoops_lblocks *}>
+        <{* if $block.name !='action_search' && $block.name !='dashboardmenu' && $block.name !='onlineinfo' && $block.name !='sidemenu' *}>
+        <{* $block.content *}>
+        <{* /if *}>
+        <{* /foreach * }>
 
-        <{* ---------- ---------- Block Online Info *}>
+        <{* ---------- ---------- Admin Dashboard Info *}>
         <{if $smarty.server.SCRIPT_FILENAME|basename == "admin.php"}>
+
+        <div class="adminnavi">
+            <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+            &raquo;&raquo; <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceList"><{$smarty.const._MI_LEGACY_NAME}></a>
+            &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._CPHOME}></span>
+        </div>
+
+        <hr>
+
 
         <{* Display Block on each page of module
         if $xoops_dirname == "legacy" && $currentModule->mXoopsModule->getVar('dirname') == "legacy" *}>
 
-        <{foreach name='lblock' item='block' from=$xoops_lblocks}>
-        <{if $block.name =='onlineinfo' && $block.name !='sidemenu'}>
-        <{$block.content}>
-        <{/if}>
-        <{/foreach}>
+        <{$xoops_lblocks.block_online.content}>
+
+        <div data-layout="row sm-column" data-self="sm-full">
+
+            <div data-layout="column px-6" data-self="size-x1">
+                <{$xoops_lblocks.block_server.content}>
+
+                <{$xoops_lblocks.block_php.content}>
+            </div>
+
+            <div data-layout="column" data-self="size-xsmall sm-full">
+                <{$xoops_lblocks.block_overview.content}>
+            </div>
+
+        </div>
 
         <{/if}>
 

@@ -188,34 +188,36 @@
 
     /* -------------------- --------------------  BLOCK STATE SWITCH */
 
+
     /* Block Switch Off - color indicator */
     .ui-update-change {
-        background      : var(  --layer-3  );
+        background      : var(--color-red-op);
         transition      : all 1s;
     }
-    .ui-block-type.ui-update-change {
-        background      : var(  --color-red  );
-    }
-    .ui-update-change svg,
-    .ui-update-change > svg path.block-icon,
-    .ui-update-change > svg text.block-name {
-        color           : var(  --color-red  );
-    }
+
+    /*.ui-block-type.ui-update-change {*/
+    /*    background      : var(  --color-red  );*/
+    /*}*/
+    /*.ui-update-change svg,*/
+    /*.ui-update-change > svg path.block-icon,*/
+    /*.ui-update-change > svg text.block-name {*/
+    /*    color           : var(  --color-red  );*/
+    /*}*/
 
     /* -------------------- --------------------  Module STATE SWITCH */
 
     /* Update indicator */
-    .ui-update-change {
-        transition      : all 1s;
-    }
-    .ui-update-change a {
-        background      : var(  --color-red  );
-    }
-    .ui-update-change svg,
-    .ui-update-change > svg path.module-icon,
-    .ui-update-change > svg text.module-name {
-        color           : var(  --color-red  );
-    }
+    /*.ui-update-change {*/
+    /*    transition      : all 1s;*/
+    /*}*/
+    /*.ui-update-change a {*/
+    /*    background      : var(  --color-red  );*/
+    /*}*/
+    /*.ui-update-change svg,*/
+    /*.ui-update-change > svg path.module-icon,*/
+    /*.ui-update-change > svg text.module-name {*/
+    /*    color           : var(  --color-red  );*/
+    /*}*/
 
     /* -------------------- --------------------  AlSYS BLOCK PREVIEW & TEMPLATES */
 

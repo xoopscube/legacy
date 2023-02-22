@@ -1,8 +1,8 @@
 <?php
 
 define( '_MYTPLSADMIN_TIPS' , 'The original template file is read-only for added security reasons.<br>
-	Create a new template set and copy the templates to customize.<br>
-	In the Render, you can select the new Template, edit, copy, download or delete.');
+	Create a new Template Set and check the templates to copy and to customize.<br>
+	You can also use the Renderer to select a Template Set, edit, copy, download or delete.');
 define( '_MYTPLSADMIN_CREATE_NEW_TPLSET' , 'Create a new set');
 define( '_MYTPLSADMIN_CAPTION_BASE' , 'Base');
 define( '_MYTPLSADMIN_CAPTION_SETNAME' , 'name');

@@ -22,7 +22,7 @@ if ( ! function_exists( 'd3forum_oninstall_base' ) ) {
 		// for Cube 2.1
 		if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
 
-			$root =& XCube_Root::getSingleton();
+			$root = XCube_Root::getSingleton();
 
 			$root->mDelegateManager->add( 'Legacy.Admin.Event.ModuleInstall.' . ucfirst( $mydirname ) . '.Success', 'd3forum_message_append_oninstall' );
 
@@ -34,7 +34,7 @@ if ( ! function_exists( 'd3forum_oninstall_base' ) ) {
 			}
 		}
 
-		$db = &XoopsDatabaseFactory::getDatabaseConnection();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 		$mid = $module->getVar( 'mid' );
 
@@ -90,7 +90,7 @@ if ( ! function_exists( 'd3forum_oninstall_base' ) ) {
 		}
 
 		// TEMPLATES
-		$tplfile_handler =& xoops_gethandler( 'tplfile' );
+		$tplfile_handler = xoops_gethandler( 'tplfile' );
 
 		$tpl_path = __DIR__ . '/templates';
 
@@ -107,7 +107,7 @@ if ( ! function_exists( 'd3forum_oninstall_base' ) ) {
 				if ( is_file( $file_path ) ) {
 
 					$mtime   = (int) @filemtime( $file_path );
-					$tplfile =& $tplfile_handler->create();
+					$tplfile = $tplfile_handler->create();
 					$tplfile->setVar( 'tpl_source', file_get_contents( $file_path ), true );
 					$tplfile->setVar( 'tpl_refid', $mid );
 					$tplfile->setVar( 'tpl_tplset', 'default' );

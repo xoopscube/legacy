@@ -13,16 +13,16 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-class Legacy_AdminOnlineInfo extends Legacy_AbstractBlockProcedure
+class Legacy_AdminBlockOnline extends Legacy_AbstractBlockProcedure
 {
     public function getName()
     {
-        return 'onlineinfo';
+        return 'block_online';
     }
 
     public function getTitle()
     {
-        return 'TEST: AdminOnlineInfo';
+        return 'Online';
     }
 
     public function getEntryIndex()
@@ -45,6 +45,7 @@ class Legacy_AdminOnlineInfo extends Legacy_AbstractBlockProcedure
 
         $root =& XCube_Root::getSingleton();
         $root->mLanguageManager->loadBlockMessageCatalog('user');
+
         require_once XOOPS_ROOT_PATH . '/modules/user/blocks/user_online.php';
 
         $contents = b_user_online_show();

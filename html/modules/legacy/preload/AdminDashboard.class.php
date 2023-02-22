@@ -386,7 +386,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
      * @param bool $return
      * @return mixed
      */
-    public static function display_message(array $attributes = [], string $template= '', bool $return)
+    public static function display_message(array $attributes = [], string $template= '', bool $return = false)
     {
         $root =& XCube_Root::getSingleton();
 

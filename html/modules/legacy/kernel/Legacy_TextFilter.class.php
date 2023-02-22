@@ -128,6 +128,7 @@ class Legacy_TextFilter extends XCube_TextFilter
      */
     public function toShow($text, $x2comat=false)
     {
+        if (empty($text)) return $text;
         if ($x2comat) {
             //ToDo: &nbsp; patern is defined for XOOPS2.0 compatiblity. But what is it?
             //		This comatiblity option is used from method from MyTextSanitizer.
@@ -285,6 +286,7 @@ class Legacy_TextFilter extends XCube_TextFilter
      */
     public function smiley($text)
     {
+        if (empty($text)) return $text;
         if (0 === count($this->mSmileys)) {
             $this->getSmileys();
         }
@@ -302,6 +304,7 @@ class Legacy_TextFilter extends XCube_TextFilter
      **/
     public function makeClickable($text)
     {
+        if (empty($text)) return $text;
         if (empty($this->mClickablePatterns)) {
             // Delegate Call 'Legacy_TextFilter.MakeClickableConvertTable'
             //	Delegate may replace makeClickable conversion table
@@ -359,6 +362,7 @@ class Legacy_TextFilter extends XCube_TextFilter
      */
     public function convertXCode($text, $allowimage = 1)
     {
+        if (empty($text)) return $text;
         if (empty($this->mXCodePatterns)) {
             // Delegate Call 'Legacy_TextFilter.MakeXCodeConvertTable'
             //	Delegate may replace makeClickable conversion table
@@ -529,7 +533,7 @@ class Legacy_TextFilter extends XCube_TextFilter
      */
     public function nl2Br($text)
     {
-        return preg_replace("/(\015\012)|(\015)|(\012)/", '<br>', $text);
+        return empty($text)?$text:preg_replace("/(\015\012)|(\015)|(\012)/", '<br>', $text);
     }
 
     /**
@@ -543,6 +547,7 @@ class Legacy_TextFilter extends XCube_TextFilter
      */
     public function preConvertXCode($text, $xcode = 1)
     {
+        if (empty($text)) return $text;
         if (0 !== $xcode) {
             if (empty($this->mPreXCodePatterns)) {
                 // RaiseEvent 'Legacy_TextFilter.MakePreXCodeConvertTable'
@@ -580,7 +585,7 @@ class Legacy_TextFilter extends XCube_TextFilter
     public static function sMakePreXCodeConvertTable(&$patterns, &$replacements)
     {
         $patterns[] = "/\[code\](.*)\[\/code\]/sU";
-        $replacements[] = 'self::_sCodeToBase64Encode';
+        $replacements[] = 'Legacy_TextFilter::_sCodeToBase64Encode';
     }
 
     protected static function _sCodeToBase64Encode($match)
@@ -610,6 +615,7 @@ class Legacy_TextFilter extends XCube_TextFilter
      */
     public function postConvertXCode($text, $xcode=1, $image=1)
     {
+        if (empty($text)) return $text;
         if (0 !== $xcode) {
             if (empty($this->mPostXCodePatterns)) {
                 // RaiseEvent 'Legacy_TextFilter.MakePostXCodeConvertTable'

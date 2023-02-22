@@ -38,7 +38,7 @@ if ( $uid > 0 ) {
 		if ( isset( $notify ) ) {
 			$notify = (int) $notify;
 		} else {
-			$notification_handler =& xoops_gethandler( 'notification' );
+			$notification_handler = xoops_gethandler( 'notification' );
 			if ( ! empty( $topic_id ) && $notification_handler->isSubscribed( 'topic', $topic_id, 'newpost', $xoopsModule->getVar( 'mid' ), $uid ) ) {
 				$notify = 1;
 			} else {
@@ -65,7 +65,7 @@ if ( ! empty( $xoopsModuleConfig['use_solved'] ) && $isadminormod ) {
 
 // form elements or javascript for anti-SPAM
 if ( d3forum_common_is_necessary_antispam( $xoopsUser, $xoopsModuleConfig ) ) {
-	$antispam_obj    =& d3forum_common_get_antispam_object( $xoopsModuleConfig );
+	$antispam_obj    = d3forum_common_get_antispam_object( $xoopsModuleConfig );
 	$antispam4assign = $antispam_obj->getHtml4Assign();
 } else {
 	$antispam4assign = [];

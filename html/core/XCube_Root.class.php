@@ -21,7 +21,7 @@ require_once XCUBE_CORE_PATH . '/XCube_HttpContext.class.php';
 
 if ( PHP_VERSION_ID >= 50000 ) {
 	function XC_CLASS_EXISTS( $className ) {
-		return class_exists( $className, false );
+		return $className && class_exists( $className, false );
 	}
 } else {
 	function XC_CLASS_EXISTS( $className ) {

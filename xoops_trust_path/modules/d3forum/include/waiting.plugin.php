@@ -11,8 +11,7 @@
  */
 
 function b_waiting_d3forum( $mydirname ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$ret = [];
 

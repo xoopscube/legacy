@@ -14,10 +14,9 @@ require_once dirname( __DIR__ ) . '/include/common_functions.php';
 require_once dirname( __DIR__ ) . '/class/d3forum.textsanitizer.php';
 require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 
-$myts =& D3forumTextSanitizer::sGetInstance();
+$myts = D3forumTextSanitizer::sGetInstance();
 
-// $db =& Database::getInstance();
-$db = &XoopsDatabaseFactory::getDatabaseConnection();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 //
 // form stage
