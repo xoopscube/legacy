@@ -3,7 +3,7 @@
  *
  * @version   2.3.2
  * @author    Nuno Luciano ( https://github.com/gigamaster )
- * @copyright 2005-2022 The XOOPSCube Project, author
+ * @copyright (c) 2005-2023 The XOOPSCube Project, authors
  * @license   BSD
  * @link      https://github.com/xoopscube
  */
@@ -47,8 +47,11 @@
 @media only screen and (prefers-color-scheme:dark) {
     :root:not([data-theme=light]) {
         color-scheme: dark;
+
+        /* -------------------- THEME COLOR */
         --background-color: #11191f;
         --color: hsl(205deg, 16%, 77%);
+        --primary: var(--blue);
     }
 }
 :root{

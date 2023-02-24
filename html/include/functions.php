@@ -151,6 +151,7 @@ function xoops_refcheck($docheck=1)
     if ($ref === '') {
         return false;
     }
+    //TODO PHP8 'strpos' call can be converted to 'str_starts_with'
     if (strpos($ref, XOOPS_URL) !== 0) {
         return false;
     }
@@ -359,16 +360,17 @@ function xoops_getbanner()
     if ($numrows > 1) {
         $numrows = $numrows-1;
         mt_srand((double)microtime()*1000000);
-/*use rand() unless you need a securely randomized integer, 
-then use random_int() . If you don't know if you need the latter, 
-you probably don't (it impacts "guessability", so imagine where that's useful). 
-If you're trying to randomize a slideshow, for instance, rand() is just fine */
-$bannum = mt_rand(0, $numrows);
-/*        try {
+        /*use rand() unless you need a securely randomized integer,
+        then use random_int() . If you don't know if you need the latter,
+        you probably don't (it impacts "guessability", so imagine where that's useful).
+        If you're trying to randomize a slideshow, for instance, rand() is just fine */
+        $bannum = mt_rand(0, $numrows);
+        /*
+        try {
             $bannum = random_int (0, $numrows);
         } catch (Exception $e) {
         }
-*/
+        */
     } else {
         $bannum = 0;
     }
@@ -385,6 +387,7 @@ $bannum = mt_rand(0, $numrows);
             $newid = $db->genId($db->prefix('bannerfinish') . '_bid_seq');
             $sql = sprintf('INSERT INTO %s (bid, cid, impressions, clicks, datestart, dateend) VALUES (%u, %u, %u, %u, %u, %u)', $db->prefix('bannerfinish'), $newid, $cid, $impmade, $clicks, $date, time());
             $db->queryF($sql);
+            // Delete banner finished impressions
             $db->queryF(sprintf('DELETE FROM %s WHERE bid = %u', $db->prefix('banner'), $bid));
         }
         if ($htmlbanner) {
@@ -464,16 +467,15 @@ if (strpos($url, XOOPS_URL) === 0) {
         $xoopsTpl->display('db:system_redirect.html');
         exit();
     }
-
     //@gigamaster split workflow
     $url = preg_replace('/&amp;/i', '&', htmlspecialchars($url, ENT_QUOTES));
-
     //File from module templates for ease of customization
     $file = XOOPS_ROOT_PATH.'/modules/legacy/templates/legacy_redirect_function.html';
     if (file_exists($file)) {
         include $file;
     } else {
         $message = urlencode("Unable to load redirect template! The form Redirect to the previous page.");
+        // $_SERVER['HTTP_REFERER'], Returns the complete URL of the current page
         header("Location:".$_SERVER[HTTP_REFERER]."?message=".$message);
     }
     exit;
