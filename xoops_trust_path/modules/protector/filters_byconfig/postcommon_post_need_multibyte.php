@@ -6,7 +6,7 @@
  * @version    XCL 2.3.1
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Authors
+ * @copyright  (c) 2005-2023 Authors
  * @license    GPL v2.0
  * @brief      Don't enable this for site using single-byte.
                Perhaps, japanese, schinese, tchinese, and korean can use it.

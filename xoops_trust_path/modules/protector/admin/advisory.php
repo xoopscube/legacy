@@ -6,7 +6,7 @@
  * @version    XCL 2.3.1
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Authors
+ * @copyright  (c) 2005-2023 Authors
  * @license    GPL v2.0
  */
 
@@ -155,7 +155,7 @@ echo "<div class='confirm'>
     Public check [ link ] : <a href='" . XOOPS_URL . '/' . htmlspecialchars( $relative_path ) . "/modules/protector/public_check.php' target='_blank'>" . _AM_ADV_TRUSTPATH_PUBLIC_LINK . "</a>
     </div>";
 
-echo '<div class="accordion" id="trust_path" data-layout"column" data-self="size-1of2 sm-full">
+echo '<div class="accordion" id="trust_path" data-layout="column" data-self="size-1of2 sm-full">
     <h3>' . _AM_TH_INFO . '</h3>
     <div>' . _AM_ADV_TRUSTPATH_PUBLIC . '</div>
     <h3>' . _AM_TH_DESC . '</h3>
@@ -175,7 +175,7 @@ if ( $safe ) {
 } else {
 	echo '<div class="error">[ on ] &nbsp; <span style="color:red;font-weight:bold;">' . _AM_ADV_NOTSECURE . '</span></div>';
 
-echo '<div class="accordion" id="fopen" data-layout"column" data-self="size-1of2 sm-full">
+echo '<div class="accordion" id="fopen" data-layout="column" data-self="size-1of2 sm-full">
     <h3>' . _AM_TH_INFO . '</h3>
     <div>' . _AM_ADV_FOPEN_ON . '</div>
     <h3>' . _AM_TH_DESC . '</h3>
@@ -197,7 +197,7 @@ if ( $safe ) {
 } else {
 	echo '<div class="error">[ on ] &nbsp; <span style="color:red;font-weight:bold;">' . _AM_ADV_NOTSECURE . '</span></div>';
 
-    echo '<div class="accordion" id="sid" data-layout"column" data-self="size-1of2 sm-full">
+    echo '<div class="accordion" id="sid" data-layout="column" data-self="size-1of2 sm-full">
     <h3>' . _AM_TH_INFO . '</h3>
     <div>' . _AM_ADV_SESSION_ON . '</div>
     <h3>' . _AM_TH_DESC . '</h3>
@@ -218,7 +218,7 @@ if ( $safe ) {
 } else {
 	echo '<div class="error">[ ' . XOOPS_DB_PREFIX . ' ] &nbsp; <span style="color:red;font-weight:bold;">' . _AM_ADV_NOTSECURE . '</span></div>';
 
-    echo '<div class="accordion" id="prefix" data-layout"column" data-self="size-1of2 sm-full">
+    echo '<div class="accordion" id="prefix" data-layout="column" data-self="size-1of2 sm-full">
     <h3>' . _AM_TH_INFO . '</h3>
     <div>' . _AM_ADV_DBPREFIX_ON . '</div>
     <h3>' . _AM_TH_DESC . '</h3>
@@ -238,7 +238,7 @@ $db =& Database::getInstance();
 if ( 'protectormysqldatabase' != strtolower( get_class( $db ) ) ) {
 	echo '<div class="error"><span style="color:red;font-weight:bold;">' . _AM_ADV_DBFACTORYUNPATCHED . '</span></div>';
 
-    echo '<div class="accordion" id="db" data-layout"column" data-self="size-1of2 sm-full">
+    echo '<div class="accordion" id="db" data-layout="column" data-self="size-1of2 sm-full">
     <h3>' . _AM_TH_INFO . '</h3>
     <div>' . _AM_ADV_DBFACTORY_ON . '</div>
     <h3>' . _AM_TH_DESC . '</h3>
