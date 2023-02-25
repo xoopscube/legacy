@@ -109,13 +109,13 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_NOTIFY_GLOBAL_WAITINGCONTENT', '' );
     define( $constpref . '_NOTIFY_GLOBAL_WAITINGCONTENTCAP', 'Notify when new posts or modifications wait approval (Just notify admins or moderators)' );
     define( $constpref . '_NOTIFY_GLOBAL_WAITINGCONTENTSBJ', '[{X_SITENAME}] {X_MODULE}: waiting' );
-    define( $constpref . '_NOTIFY_GLOBAL_NEWCONTENT', 'new content' );
+    define( $constpref . '_NOTIFY_GLOBAL_NEWCONTENT', 'New content' );
     define( $constpref . '_NOTIFY_GLOBAL_NEWCONTENTCAP', 'Notify when new content is created. (approved content only)' );
     define( $constpref . '_NOTIFY_GLOBAL_NEWCONTENTSBJ', '[{X_SITENAME}] {X_MODULE} : a new content {CONTENT_SUBJECT}' );
-    define( $constpref . '_NOTIFY_CATEGORY_NEWCONTENT', 'new content' );
+    define( $constpref . '_NOTIFY_CATEGORY_NEWCONTENT', 'New content' );
     define( $constpref . '_NOTIFY_CATEGORY_NEWCONTENTCAP', 'Notify when a new content is created. (approved content only)' );
     define( $constpref . '_NOTIFY_CATEGORY_NEWCONTENTSBJ', '[{X_SITENAME}] {X_MODULE}:{CAT_TITLE} a new content {CONTENT_SUBJECT}' );
-    define( $constpref . '_NOTIFY_CONTENT_COMMENT', 'new comment' );
+    define( $constpref . '_NOTIFY_CONTENT_COMMENT', 'New comment' );
     define( $constpref . '_NOTIFY_CONTENT_COMMENTCAP', 'Notify when new comment is posted. (approved content only)' );
     define( $constpref . '_NOTIFY_CONTENT_COMMENTSBJ', '[{X_SITENAME}] {X_MODULE} : a new comment' );
 }

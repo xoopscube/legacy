@@ -6,8 +6,8 @@
  * @version    XCL 2.3.1
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Author
- * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @copyright  (c) 2005-2023 Authors
+ * @license    GPL v2.0
  * @brief      you can override this class by specifying your sub class into the preferences
  */
 
@@ -87,6 +87,7 @@ class PicoExtraFields {
 		}
 
 		// check the directory exists
+        // TODO REDIRECT MESSAGE TO SETTINGS
 		if ( ! is_dir( $this->images_path ) ) {
 			die( 'create upload directory for pico first' );
 		}
@@ -111,6 +112,7 @@ class PicoExtraFields {
 		$prev_mask = @umask( 0022 );
 
 		// move temporary
+        // TODO REDIRECT MESSAGE TO SETTINGS
 		$upload_result = move_uploaded_file( $file['tmp_name'], $tmp_image );
 		if ( ! $upload_result ) {
 			die( 'check the permission/owner of the directory ' . htmlspecialchars( $this->mod_config['extra_images_dir'], ENT_QUOTES ) );
@@ -157,6 +159,11 @@ class PicoExtraFields {
 		return $this->images_path . '/' . sprintf( PICO_EXTRA_IMAGES_FMT, $field_name, $size_key, $image_id );
 	}
 
+    /**
+     * Image format allowed
+     * @param $mime
+     * @return string|null
+     */
 	public function getExtFromMime( $mime ): ?string {
 		switch ( strtolower( $mime ) ) {
 			case 'image/gif':

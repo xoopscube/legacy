@@ -6,8 +6,8 @@
  * @subpackage Pico
  * @version 2.3
  * @author Gijoe (Peak), Gigamaster (XCL)
- * @copyright  (c) 2005-2022 Author
- * @license https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @copyright  (c) 2005-2023 Authors
+ * @license GPL v2.0
  */
 
 $GLOBALS['pico_blocks_tags_order_options'] = array(

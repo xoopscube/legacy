@@ -5,8 +5,8 @@
  * @version    XCL 2.3.1
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Author
- * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @copyright  (c) 2005-2023 Authors
+ * @license    GPL v2.0
  */
 
 // language file (modinfo.php)
@@ -495,7 +495,7 @@ $modversion['config'][] = [
 	'description' => $constpref . '_EFIMAGES_SIZEDSC',
 	'formtype'    => 'textbox',
 	'valuetype'   => 'text',
-	'default'     => '480x480 160x160',
+	'default'     => '1200x627 820x312 640x360',
 	'options'     => []
 ];
 

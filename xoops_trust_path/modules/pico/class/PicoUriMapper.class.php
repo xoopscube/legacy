@@ -6,8 +6,8 @@
  * @version    XCL 2.3.1
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Author
- * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @copyright  (c) 2005-2023 Authors
+ * @license    GPL v2.0
  */
 
 class PicoUriMapper {
@@ -265,6 +265,12 @@ class PicoUriMapper {
 		$this->transferWrappedFile( $wrap_full_path, $ext );
 	}
 
+    /**
+     * Note PHP warning that session_cache_limiter(): Cannot change cache limiter when session is active
+     * this results when JavaScript triggers a modification on document when the DOM is ready.
+     * @param $wrap_full_path
+     * @param $ext
+     */
 	public function transferWrappedFile( $wrap_full_path, $ext ): void {
 		// remove output bufferings
 		while ( ob_get_level() ) {
@@ -278,6 +284,7 @@ class PicoUriMapper {
 		}
 
 		// headers for browser cache
+        // TODO Warning Cannot change cache limiter when session is active
 		$cache_limit = (int) @$this->config['browser_cache'];
 		if ( $cache_limit > 0 ) {
 			session_cache_limiter( 'public' );

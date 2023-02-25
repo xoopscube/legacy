@@ -7,7 +7,7 @@
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2022 Author
- * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license    GPL v2.0
  */
 
 require_once dirname( __DIR__ ) . '/include/common_functions.php';
