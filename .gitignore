@@ -83,3 +83,4 @@ dw_php_codehinting.config
 *.user
 *.userosscache
 *.sln.docstates
+*.project

@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## The XOOPSCube Project 
+## The XOOPSCube Project 2023
 
 #### Git Repository  
 

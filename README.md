@@ -4,7 +4,7 @@
 ![X-Updare Store](https://img.shields.io/badge/X--Update%20Store-Pending-red)
 
 
-# XOOPSCube Legacy :: XCL
+# XOOPSCube Legacy :: XCL 2.3.x
 
 **Active branches in GitHub**  
 Use active branches for all new features and bug fixes (PHP74, PHP8).  
