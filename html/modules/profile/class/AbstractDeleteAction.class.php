@@ -4,7 +4,7 @@
  * @version    2.3.1
  * @author     Other Authors Nuno Luciano (aka gigamaster), 2020, XCL PHP7
  * @author     Original Author Kilica
- * @copyright  2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
  */
 
