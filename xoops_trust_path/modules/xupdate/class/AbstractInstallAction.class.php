@@ -6,8 +6,8 @@
  * @subpackage Xupdate
  * @version 2.3
  * @author Naoki Sawada, Naoki Okino, Gigamaster (XCL 2.3)
- * @copyright Copyright 2005-2022 XOOPSCube Project
- * @license https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @copyright Copyright 2005-2023 XOOPSCube Project
+ * @license GPL v2.0
  */
 
 if ( ! defined( 'XOOPS_ROOT_PATH' ) ) {

@@ -7,7 +7,7 @@
  * @version 2.3
  * @author Other authors Gigamaster XCL/PHP7
  * @author Naoki Sawada, Naoki Okino
- * @copyright  (c) 2005-2022 Authors
+ * @copyright  (c) 2005-2023 Authors
  * @license GPL V2
  */
 

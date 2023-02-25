@@ -7,7 +7,7 @@
  * @version 2.3.1
  * @author Other authors Gigamaster (XCL 2.3)
  * @author Naoki Sawada, Naoki Okino
- * @copyright  (c) 2005-2022 Authors
+ * @copyright  (c) 2005-2023 Authors
  * @license GPL V2
  */
 
