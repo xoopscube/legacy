@@ -2,12 +2,13 @@
 
 define( '_MI_LEGACYRENDER_ADMENU_BANNER_MANAGE' , "Gestion des Bannières");
 define( '_MI_LEGACYRENDER_ADMENU_TEMPLATE_MANAGE' , "Gestion des Templates");
-define( '_MI_LEGACYRENDER_ADMENU_THEME_SETTING' , "Paramètres Theme");
+define( '_MI_LEGACYRENDER_ADMENU_THEME_MANAGE' , "Paramètres Theme");
 define( '_MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE' , "Fichiers Templates");
 define( '_MI_LEGACYRENDER_ADMENU_HTACCESS_VIEW' , "htaccess setting");
 define( '_MI_LEGACYRENDER_CONF_BANNERS' , "Activer les bannières?");
+define( '_MI_LEGACYRENDER_CONF_BANNERS_DESC' , 'Client Management, account and login []');
 define( '_MI_LEGACYRENDER_NAME' , "Legacy Renderer");
-define( '_MI_LEGACYRENDER_NAME_DESC' , "Ce module de rendu (renderer) est compatible avec XOOPS 2.0.9 et XOOPS JP 2.0.x. Vous pouvez utiliser vos themes favoris de XOOPS2 avec ce système.");
+define( '_MI_LEGACYRENDER_NAME_DESC' , "Ce module de rendu (renderer) est compatible avecXOOPS JP 2.0.x et XCL 2.3.x. Vous pouvez utiliser vos themes favoris de XOOPS2 avec ce système.");
 define( '_MI_LR_FOOTER' , "Pied de page");
 define( '_MI_LR_FOOTER_DESC' , "Veuillez indiquer des liens complets avec http://, autrement les liens ne fonctionneront pas correctement dans les pages des modules");
 define( '_MI_LR_META_AUTHOR' , "Meta Auteur");
@@ -40,4 +41,9 @@ define( '_MI_LR_JQUERY_CORE' , 'jQuery Core Library');
 define( '_MI_LR_JQUERY_CORE_DESC' , 'If you use Google Libraries API, set the jQuery version. If you use local jQuery file, set the url.');
 define( '_MI_LR_JQUERY_UI' , 'jQuery UI Library');
 define( '_MI_LR_JQUERY_UI_DESC' , 'If you use Google Libraries API, set the jQuery UI version. If you use local jQuery UI file, set the url. You must choose the same way of jQuery Core Library.');
-
+define( '_MI_LR_ICONSET' , 'Directory for icon set files');
+define( '_MI_LR_ICONSET_DSC' , 'Relative path to public/common/images. Default: icons');
+define( '_MI_LR_FAVICON' , 'Directory for icon set files');
+define( '_MI_LR_FAVICON_DSC' , 'Relative path to public/common/images. Default: icons');
+define( '_MI_LR_LOGO' , 'Directory for icon set files');
+define( '_MI_LR_LOGO_DSC' , 'Relative path to public/common/images. Default: icons');

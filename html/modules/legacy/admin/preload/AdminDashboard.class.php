@@ -49,11 +49,11 @@ if (!defined('XC_ADMIN_BLOCK_COMMENTS')) {
 }
 // Smarty : <{$xoops_lblocks.block_loginfo.content}>
 if(!defined('XC_ADMIN_BLOCK_LOGINFO')) {
-    define('XC_ADMIN_BLOCK_LOGINFO', 0);
+    define('XC_ADMIN_BLOCK_LOGINFO', 1);
 }
 // Smarty : <{$xoops_lblocks.block_menu.content}>
 if (!defined('XC_ADMIN_BLOCK_MENU')) {
-    define('XC_ADMIN_BLOCK_MENU', 0);
+    define('XC_ADMIN_BLOCK_MENU', 1);
 }
 // Smarty : <{$xoops_lblocks.block_online.content}>
 if (!defined('XC_ADMIN_BLOCK_ONLINE')) {

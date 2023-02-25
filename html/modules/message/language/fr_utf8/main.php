@@ -76,6 +76,7 @@ define( '_MD_MESSAGE_ADDBLACKLIST' , 'Cet utilisateur a été ajouté aux contac
 
 define( '_MD_MESSAGE_DELETEMSG1' , 'Le paramètre est invalide.');
 define( '_MD_MESSAGE_DELETEMSG2' , 'Sélection manquante');
+define( '_MD_MESSAGE_DELETE_CONFIRM' , 'Are you sure you want to delete?');
 
 define( '_MD_MESSAGE_SEARCH' , 'Rechercher');
 

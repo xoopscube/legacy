@@ -27,6 +27,11 @@
     padding             : var( --space-4 );
     scroll-padding-top: 70px;
 }
+.admin-theme-list li {
+    font-size: 13px;
+    margin              : var( --space-1 );
+    padding             : var( --space-2 ) var( --space-4 );
+}
 
 /* -------------------- --------------------  Form elements  */
 

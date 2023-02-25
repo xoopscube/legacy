@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: Waiting.class.php,v 1.3 2008/09/25 15:12:44 kilica Exp $
- * @copyright (c) 2005-2022 XOOPS Cube Project
+ * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license   GPL 2.0
  *
  */
@@ -22,10 +22,8 @@ class Legacy_Waiting extends XCube_ActionFilter
     public function callbackWaitingShow(&$modules)
     {
         $xoopsDB =& Database::getInstance();
-
-        $module_handler =& xoops_gethandler('module');
-
         // for News Module
+        $module_handler =& xoops_gethandler('module');
         if ($module_handler->getCount(new Criteria('dirname', 'news'))) {
             $result = $xoopsDB->query('SELECT COUNT(*) FROM ' . $xoopsDB->prefix('stories') . ' WHERE published=0');
             if ($result) {

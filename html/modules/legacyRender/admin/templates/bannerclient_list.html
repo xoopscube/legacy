@@ -11,16 +11,29 @@
 <h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></h2>
 
 <div class="tips">
-    Add link to : https://xyz.local/xcl/html/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=3
-    <br> and "id" to language
+    <{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST_DESC}>
 </div>
 
 
+<{* ////— ACTION-CONTROL —\\\\ *}>
+<section data-layout="row center-justify" class="action-control">
 
+    <div>
+        <a href="index.php?action=BannerList" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}></a>
+        <a href="index.php?action=BannerfinishList" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a>
+        <a href="index.php?action=BannerclientEdit" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW}></a>
+<!--        <a href="index.php?action=BannerclientEdit" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_CREATE_NEW}></a>-->
+    </div>
+
+    <div class="control-view">
+        <button class="help-admin button" type='button' data-module='legacyRender' data-help-article='#help-bannerclient' aria-label="<{$smarty.const._HELP}>">
+            <b>?</b> </button>
+    </div>
+
+</section>
+<{* ----- / CONTROL-ACTION *}>
 <p>
-    <a href="index.php?action=BannerList" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}></a>
-    <a href="index.php?action=BannerfinishList" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a>
-    <a href="index.php?action=BannerclientEdit" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_CREATE_NEW}></a>
+
 </p>
 <!-- <ul class="toptab">
   <li class="addBannerList"><a href="index.php?action=BannerList" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}></a></li>

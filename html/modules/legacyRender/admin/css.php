@@ -17,6 +17,11 @@ function Legacy_modifier_css_theme($string)
 {
     $infoArr = Legacy_get_override_file($string, null, true);
 
+    // XCL 2.3.x
+    if (!empty($infoArr['theme']) && !empty($infoArr['dirname'])) {
+        return XOOPS_THEME_URL . '/' . $infoArr['theme'] . '/templates/' . $infoArr['dirname'] . '/' . $string;
+    }
+
     if (!empty($infoArr['theme']) && !empty($infoArr['dirname'])) {
         return XOOPS_THEME_URL . '/' . $infoArr['theme'] . '/modules/' . $infoArr['dirname'] . '/' . $string;
     }

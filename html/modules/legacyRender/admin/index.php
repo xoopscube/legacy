@@ -10,7 +10,8 @@ require_once XOOPS_MODULE_PATH . '/legacyRender/class/ActionFrame.class.php';
 
 $root =& XCube_Root::getSingleton();
 
-$actionName = isset($_GET['action']) ? trim($_GET['action']) : 'TplsetList';
+// Module Admin Default 
+$actionName = isset($_GET['action']) ? trim($_GET['action']) : 'AdminRender';
 
 $moduleRunner =new LegacyRender_ActionFrame(true);
 $moduleRunner->setActionName($actionName);

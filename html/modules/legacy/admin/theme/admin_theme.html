@@ -125,23 +125,24 @@
             &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._CPHOME}></span>
         </div>
 
-        <hr>
-
-
-        <{* Display Block on each page of module
-        if $xoops_dirname == "legacy" && $currentModule->mXoopsModule->getVar('dirname') == "legacy" *}>
+        <{* Admin Blocks management from /legacy/admin/preload/AdminDashboard.php
+            Disable (0) or Enable (1) block render *}>
 
         <{$xoops_lblocks.block_online.content}>
 
         <div data-layout="row sm-column" data-self="sm-full">
 
-            <div data-layout="column px-6" data-self="size-x1">
+            <div data-layout="column px-3" data-self="size-x1">
+
+                <{$xoops_lblocks.block_menu.content}>
+
                 <{$xoops_lblocks.block_server.content}>
 
                 <{$xoops_lblocks.block_php.content}>
+
             </div>
 
-            <div data-layout="column" data-self="size-xsmall sm-full">
+            <div data-layout="column px-3" data-self="size-xsmall sm-full">
                 <{$xoops_lblocks.block_overview.content}>
             </div>
 
@@ -157,8 +158,7 @@
 
         <{* ---------- ---------- Footer*}>
         <footer class="credits">
-            <p><span>Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}> &copy;</span> 2005-2022 <a href="https://github.com/xoopscube/" target="_blank" rel="external">The XOOPS Cube Project</a></p>
-<!--            <p><a href="#container" class="links">Back To Top</a></p>-->
+            <p><span>Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}> &copy;</span> 2005-2023 <a href="https://github.com/xoopscube/" target="_blank" rel="external">The XOOPS Cube Project</a></p>
         </footer>
     </main>
 

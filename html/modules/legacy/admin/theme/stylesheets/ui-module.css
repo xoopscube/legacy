@@ -97,6 +97,7 @@
 
     div.help section[id|="help"] {
         padding         : var(--space-6);
+        scroll-margin-top: 6em; /* property should be applied to each anchor section to leave a margin at the top */
     }
 
 /* -------------------- --------------------  X-UPDATE STORE */
@@ -194,30 +195,6 @@
         background      : var(--color-red-op);
         transition      : all 1s;
     }
-
-    /*.ui-block-type.ui-update-change {*/
-    /*    background      : var(  --color-red  );*/
-    /*}*/
-    /*.ui-update-change svg,*/
-    /*.ui-update-change > svg path.block-icon,*/
-    /*.ui-update-change > svg text.block-name {*/
-    /*    color           : var(  --color-red  );*/
-    /*}*/
-
-    /* -------------------- --------------------  Module STATE SWITCH */
-
-    /* Update indicator */
-    /*.ui-update-change {*/
-    /*    transition      : all 1s;*/
-    /*}*/
-    /*.ui-update-change a {*/
-    /*    background      : var(  --color-red  );*/
-    /*}*/
-    /*.ui-update-change svg,*/
-    /*.ui-update-change > svg path.module-icon,*/
-    /*.ui-update-change > svg text.module-name {*/
-    /*    color           : var(  --color-red  );*/
-    /*}*/
 
     /* -------------------- --------------------  AlSYS BLOCK PREVIEW & TEMPLATES */
 

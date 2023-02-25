@@ -78,6 +78,7 @@ define( '_MD_MESSAGE_SETTINGS_MSG19' , 'ユーザが存在しません。');
 
 define( '_MD_MESSAGE_MAILSUBJECT' , 'プライベートメッセージが届きました');
 define( '_MD_MESSAGE_MAILBODY' , '{0} よりログインして確認してください。');
+define( '_MD_MESSAGE_DELETE_CONFIRM' , 'Are you sure you want to delete?');
 
 define( '_MD_MESSAGE_ADDBLACKLIST' , 'このユーザをブラックリストに追加する');
 

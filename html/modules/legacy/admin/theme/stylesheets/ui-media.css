@@ -1,7 +1,7 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL 2.3.1
-	Version : 1.1.1
+	Distribution : XOOPSCube XCL
+	Version :  2.3.1
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
@@ -13,8 +13,7 @@
     *
     /* -------------------- --------------------  Screen Portrait */
 
-
-    @media only screen and (min-width: 320px) and (orientation:portrait) {
+@media only screen and (min-width: 320px) and (orientation:portrait) {
 
     .layout-grid,
     .ondemand,
@@ -58,13 +57,15 @@
     .tips, .error, .confirm, .success, .confirmMsg, .resultMsg {
         margin:1rem auto;padding: .5rem .5rem .5rem 2.5rem;width:100%;
     }
+        nav#help-menu {
+            position :initial;
+        }
 }
 
 
+/* -------------------- --------------------  Screen max 420px */
 
-    /* -------------------- --------------------  Screen max 420px */
-
-    @media only screen and (min-width: 420px) and (orientation:portrait) {
+@media only screen and (min-width: 420px) and (orientation:portrait) {
 
     .layout-grid {
         grid-template-areas:
@@ -84,23 +85,20 @@
         margin      : 0;
     }
 
-
-
     .ui-card-overview {
         grid-template-areas	:
             "header"
             "main"
             "footer";
         width       : 100%;
-        }
+   }
 
-    }
+}
 
 
+/* -------------------- --------------------  Tablet Hor. 736 px*/
 
-    /* -------------------- --------------------  Tablet Hor. 736 px*/
-
-    @media only screen and (min-width: 46.875em) {
+@media only screen and (min-width: 46.875em) {
     .ui-block-online-stats {
         display: grid;
         grid-auto-flow: column;
@@ -142,14 +140,16 @@
     .table-responsive > .table-bordered {
         border          : 0;
     }
-
-
+    nav#help-menu {
+        position :sticky;
     }
 
+}
 
-    /* -------------------- --------------------  Tablet Hor. 1024px*/
 
-    @media screen and (min-width: 64em) {
+/* -------------------- --------------------  Tablet Hor. 1024px*/
+
+@media screen and (min-width: 64em) {
         .layout-grid {
             grid-template-columns: auto;
             grid-template-areas:
@@ -161,18 +161,6 @@
         padding: 0 1rem;
         max-width: 100%;
     }
-    /*#container > .footer {*/
-    /*    visibility              : hidden;*/
-    /*}*/
-
-    /*.nav-mobile {*/
-    /*    visibility              : hidden;*/
-    /*}*/
-
-    /*.nav-aside {*/
-    /*    visibility              : unset;*/
-    /*    transform               : translateX(0);*/
-    /*}*/
 
     .ui-card-overview {
         grid-template-columns   : repeat(auto-fit, minmax(214px, 1fr));
@@ -183,9 +171,6 @@
         list-style              : none;
     }
 
-    /*.ui-card-full {*/
-    /*    column-count            : 1;*/
-    /*}*/
     .ui-block-online-content {
         flex-direction          : row;
     }
@@ -194,11 +179,7 @@
         align-items             : flex-start;
     }
 
-    .ui-card-small {
-        /*padding                 : .5rem;*/
-    }
-
-    }
+}
 /* device 1360px */
 @media screen and (min-width:85em) {
 

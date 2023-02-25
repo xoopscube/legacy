@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: xoops_version.php,v 1.13 2008/09/25 14:31:43 kilica Exp $
- * @copyright Copyright 2005-2022 XOOPSCube Project
- * @license   GPL 2.0
+ * @copyright (c) 2005-2023 The XOOPSCube Project
+ * @license   GPL v2.0
  *
  */
 
@@ -143,6 +143,7 @@ $modversion['templates'][52]['file'] = 'legacy_app_start_page.html';
 $modversion['templates'][52]['description'] = 'App start page if module is not selected.';
 $modversion['templates'][53]['file'] = 'legacy_site_closed.html';
 $modversion['templates'][53]['description'] = 'Used when the site is closed. Maintenance mode, coming soon, etc.';
+
 // Menu
 $modversion['hasMain'] = 0;
 

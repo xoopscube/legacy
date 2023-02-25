@@ -1,6 +1,10 @@
 <?php
 
-$adminmenu[5]['title']=_MI_LEGACYRENDER_ADMENU_THEME_SETTING;
+$adminmenu[7]['title']= _CPHOME;
+$adminmenu[7]['link']= 'admin/index.php';
+$adminmenu[7]['show']=true;
+
+$adminmenu[5]['title']=_MI_LEGACYRENDER_ADMENU_THEME_MANAGE;
 $adminmenu[5]['link']= '../legacy/admin/index.php?action=ThemeList';
 $adminmenu[5]['show']=true;
 

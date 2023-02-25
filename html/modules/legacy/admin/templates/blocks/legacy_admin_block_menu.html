@@ -1,0 +1,207 @@
+<style>
+	.menu-overlay {
+		background: rgba(0, 0, 0, 0);
+		border:var(--ui-widget-content-border);
+		display: block;
+		pointer-events: none;
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		transition: all 0.4s ease-out;
+		transition-delay: 0.2s;
+		z-index: 99999;
+	}
+	.menu-overlay .dialog {
+		border-radius: var(--border-radius);
+		background: var(--ui-dialog-bg );
+		box-shadow: var(--ui-dialog-shadow );
+		margin: 10% auto;
+		padding: var(--space-6);
+		position: relative;
+		top: -1500px;
+		width: 320px;
+	}
+
+	.menu-overlay:target {
+		display: block;
+		pointer-events: auto;
+		background: rgba(0, 0, 0, 0.3);
+		transition: all 0.2s ease-out;
+	}
+	.menu-overlay:target .dialog {
+		top: -20px;
+		transition: all 0.4s ease-out;
+		transition-delay: 0.2s;
+	}
+	.menu-close{
+		background: inherit;
+		color: #FFFFFF;
+		line-height: 25px;
+		position: absolute;
+		right: 8px;
+		text-align: center;
+		top: 1px;
+		width: 24px;
+		text-decoration: none;
+		font-weight: bold;
+		border-radius: var(--border-radius);
+		box-shadow: var(--shadow-3);
+		transition: all 0.4s ease-out;
+		transition-delay: 0.2s;
+	}
+	.menu-close:hover {
+		background: var(--link-hover);
+		transition: all 0.4s ease-out;
+	}
+	ul.module-menu {
+		display:flex;
+		flex-flow: column;	max-height: 420px;
+		list-style: none;
+		margin:0;
+		padding: var(--space-6);
+		overflow-y: auto;
+	}
+	ul.module-menu li { text-align: left;}
+	ul.module-menu li svg { margin-right:1em;}
+</style>
+<div data-layout="column" class="dashboard-options">
+
+<div data-layout="rows">
+
+<{foreach item=module from=$modules}>
+
+<{assign var=mid value=$module->mXoopsModule->getVar('mid')}>
+<{assign var=dirname value=$module->mXoopsModule->getVar('dirname', 'N')}>
+<{assign var=icon value=$module->mXoopsModule->getInfo('icon')}>
+
+<{* $module->modinfo.icon *}>
+
+	<a href="#m_<{$mid}>">
+	<div class="set-link">
+		<{if $module->mXoopsModule->getInfo('icon')}>
+		<span class="set-icon"><img class="svg" src="<{$xoops_url}>/modules/<{$dirname}>/<{$icon}>"></span>
+		<{/if}>
+		<span class="set-name t<{$mid}>"><{$module->mXoopsModule->getVar('name')}></span>
+	</div>
+	</a><{* ----- /set-link *}>
+
+	<div id="m_<{$mid}>" class="menu-overlay">
+		<div class="dialog">
+		<{if $module->hasAdminIndex()}>
+
+		<{if $module->getAdminMenu()}>
+
+
+		<a href="#menu-close" title="menu-close" class="menu-close">X</a>
+
+			<ul class="module-menu">
+
+			<{* ---------- ---------- ---------- ---------- ---------- Module Admin Links *}>
+			<{foreach item=menu from=$module->getAdminMenu()}>
+			<{if $menu.show !== false}>
+			<li class="button module-link"><a href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
+			<{/if}>
+			<{/foreach}>
+
+			<{* ---------- ---------- ---------- ---------- ---------- Module Admin Options *}>
+
+			<{* ---------- ---------- ---------- ---------- ---------- Module Edit *}>
+			<li class="button module-link">
+			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleEdit&amp;mid=<{$mid}>">
+				<img class="svg edit" src="<{'icons/icon-edit.svg'|theme}>"> <{$smarty.const._EDIT}>
+			</a>
+			</li>
+
+			<{* ---------- ---------- ---------- ---------- ---------- Module Blocks *}>
+
+			<{if $module->mXoopsModule->getInfo('blocks') && $dirname !="legacy" && $dirname !="altsys" && $dirname !="system"}>
+			<li class="button module-link">
+			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList&amp;dirname=<{$dirname}>">
+				<img class="svg block-active" src="<{'icons/icon-block-active.svg'|theme}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}>
+			</a>
+			</li>
+
+			<li class="button module-link">
+			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockInstallList&amp;dirname=<{$dirname}>">
+				<img class="svg block-install" src="<{'icons/icon-block-install.svg'|theme}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}>
+			</a>
+			</li>
+			<{/if}>
+
+			<{* ---------- ---------- ---------- ---------- ---------- Module Templates *}>
+
+			<{if $dirname !="legacyRender" && $dirname !="altsys" && $dirname !="system"}>
+			<{foreach item=tplmodule from=$tplmodules}>
+			<{if $dirname == $tplmodule}>
+			<li class="button module-link">
+			<a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$dirname}>&amp;sort=-9">
+				<img class="svg file-view" src="<{'icons/icon-file-view.svg'|theme}>"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}>
+			</a>
+			</li>
+			<{/if}>
+			<{/foreach}>
+			<{/if}>
+
+			<{* ---------- ---------- ---------- ---------- ---------- Module Comments *}>
+
+			<{if $module->mXoopsModule->getInfo('hasComments')}>
+			<li class="button module-link">
+			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList&amp;com_modid=<{$mid}>&amp;sort=-8">
+				<img class="svg comments" src="<{'icons/icon-comments.svg'|theme}>"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}>
+			</a>
+			</li>
+			<{/if}>
+
+			<{* ---------- ---------- ---------- ---------- ---------- Module Update *}>
+
+			<{if $module->mXoopsModule->hasNeedUpdate()}>
+			<li class="button module-link">
+			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$dirname}>">
+				<img class="svg update" src="<{'icons/icon-package-update.svg'|theme}>"><{$smarty.const._AD_LEGACY_LANG_UPGRADE}>
+			</a>
+			</li>
+			<{else}>
+			<li class="button module-link">
+			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$dirname}>">
+				<img class="svg update" src="<{'icons/icon-update.svg'|theme}>"><{$smarty.const._AD_LEGACY_LANG_UPGRADE}>
+			</a>
+			</li>
+			<{/if}>
+
+			<{* ---------- ---------- ---------- ---------- ---------- Module Info *}>
+
+			<li class="button module-link">
+			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleInfo&amp;dirname=<{$dirname}>">
+				<img class="svg info" src="<{'icons/icon-info.svg'|theme}>"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}>
+			</a>
+			</li>
+
+				<{else}>
+
+				<{* ---------- ---------- ---------- ---------- ---------- Module No-Settings *}>
+
+				<li class="nav-module-link">
+					<{$smarty.const._AD_LEGACY_LANG_NO_SETTING}>
+				</li>
+		</ul>
+
+
+
+
+		<{/if}><{* ----- /getAdminMenu *}>
+
+	<{/if}><{* ----- /hasAdminIndex *}>
+
+</div>
+</div>
+
+
+<{/foreach}>
+
+</div><{* ----- /rows *}>
+
+</div><{* ----- /dashboard-options *}>
+
+

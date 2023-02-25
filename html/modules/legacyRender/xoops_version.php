@@ -25,12 +25,12 @@ $modversion['cube_style']       = true;
 // $modversion['tables'][] = "legacyrender_theme";
 
 // Menu
-$modversion['hasMain']=0;
+$modversion['hasMain'] = 0;
 
 // Admin
-$modversion['hasAdmin']=1;
-$modversion['adminindex']= 'admin/index.php';
-$modversion['adminmenu']= 'admin/menu.php';
+$modversion['hasAdmin']   = 1;
+$modversion['adminindex'] = 'admin/index.php';
+$modversion['adminmenu']  = 'admin/menu.php';
 
 
 // Template
@@ -38,12 +38,45 @@ $modversion['templates'][1]['file']= 'legacy_render_dialog.html';
 
 // Preference
 $modversion['config'][]= [
+    'name'        => 'logotype',
+    'title'       => '_MI_LR_LOGO',
+    'description' => '_MI_LR_LOGO_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => XOOPS_URL . '/images/logo.png'
+];
+$modversion['config'][]= [
+    'name'        => 'favicon',
+    'title'       => '_MI_LR_FAVICON',
+    'description' => '_MI_LR_FAVICON_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => XOOPS_URL . '/favicon.svg'
+];
+
+$modversion['config'][]= [
+    'name'        => 'banners',
+    'title'       => '_MI_LEGACYRENDER_CONF_BANNERS',
+    'description' => '_MI_LEGACYRENDER_CONF_BANNERS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0
+];
+$modversion['config'][]= [
+    'name'        => 'pagetitle',
+    'title'       => '_MI_LR_PAGETITLE_FORMAT',
+    'description' => '_MI_LR_PAGETITLE_FORMAT_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => '{modulename} {action} [pagetitle]:[/pagetitle] {pagetitle}'
+];
+$modversion['config'][]= [
     'name'        => 'meta_keywords',
     'title'       => '_MI_LR_META_KEYWORDS',
     'description' => '_MI_LR_META_KEYWORDS_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => 'application, bootstrap, css, code, components, delegate, design, deploy, development, extension, frameworks, free, html, interface, internet, javascript, libraries, metro, modular architecture, module, object, plugin, query, soap, sql, theme, templates, ui, update, ux, website, wizard, wysiwyg'
+    'default'     => 'application, web, website, best, top, content, internet, free, news, components, design, development, frameworks, javascript, libraries'
 ];
 
 $modversion['config'][]= [
@@ -150,17 +183,10 @@ $modversion['config'][]= [
     'default'     => '<small>Theme by Nuno Luciano 
     <a href="https://github.com/gigamaster" target="_blank" rel="noopener">@gigamaster</a>  •  
     Built with <a href="https://picocss.com" target="_blank" rel="noopener">Pico CSS</a></small><br>
-    <small>Powered by XCL 2.3.1 © 2005-2022 <a href="https://github.com/xoopscube/" rel="noopener">The XOOPSCube Project</a></small>'
+    <small>Powered by XCL 2.3.1 © 2005-2023 <a href="https://github.com/xoopscube/" rel="noopener">The XOOPSCube Project</a></small>'
 ];
 
-$modversion['config'][]= [
-    'name'        => 'pagetitle',
-    'title'       => '_MI_LR_PAGETITLE_FORMAT',
-    'description' => '_MI_LR_PAGETITLE_FORMAT_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => '{modulename} {action} [pagetitle]:[/pagetitle] {pagetitle}'
-];
+
 
 $modversion['config'][]= [
     'name'        => 'css_file',
@@ -171,14 +197,6 @@ $modversion['config'][]= [
     'default'     => XOOPS_URL . '/common/js/jquery-ui.min.css'
 ];
 
-$modversion['config'][]= [
-    'name'        => 'feed_url',
-    'title'       => '_MI_LR_FEED_URL',
-    'description' => '_MI_LR_FEED_URL_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => ''
-];
 
 $modversion['config'][]= [
     'name'        => 'jquery_core',
@@ -199,9 +217,10 @@ $modversion['config'][]= [
 ];
 
 $modversion['config'][]= [
-    'name'      => 'banners',
-    'title'     => '_MI_LEGACYRENDER_CONF_BANNERS',
-    'formtype'  => 'yesno',
-    'valuetype' => 'int',
-    'default'   =>0
+    'name'        => 'feed_url',
+    'title'       => '_MI_LR_FEED_URL',
+    'description' => '_MI_LR_FEED_URL_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => ''
 ];

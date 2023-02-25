@@ -49,7 +49,7 @@ define( '_MD_MESSAGE_FAVORITES1' , 'Fail adding!');
 define( '_MD_MESSAGE_FAVORITES2' , 'Add');
 define( '_MD_MESSAGE_FAVORITES3' , 'Fail Updating!');
 define( '_MD_MESSAGE_FAVORITES4' , 'Update');
-define( '_MD_MESSAGE_FAVORITES5' , 'Delete');
+define( '_MD_MESSAGE_FAVORITES5' , 'Delete Favorite');
 
 define( '_MD_MESSAGE_SETTINGS' , 'Private Message Settings');
 define( '_MD_MESSAGE_SETTINGS_MSG1' , 'Use private message');
@@ -79,6 +79,7 @@ define( '_MD_MESSAGE_ADDBLACKLIST' , 'Blacklist User');
 
 define( '_MD_MESSAGE_DELETEMSG1' , 'The parameter is incorrect.');
 define( '_MD_MESSAGE_DELETEMSG2' , 'No Items Selected.');
+define( '_MD_MESSAGE_DELETE_CONFIRM' , 'Are you sure you want to delete?');
 
 define( '_MD_MESSAGE_SEARCH' , 'Search');
 

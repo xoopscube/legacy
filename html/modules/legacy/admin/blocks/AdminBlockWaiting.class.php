@@ -4,7 +4,7 @@
  * @version    XCL 2.3.1
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Kilica, 2008/09/25
- * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
  */
 
@@ -20,11 +20,11 @@ if (!defined('XOOPS_ROOT_PATH')) {
  *
  * @package legacy
  */
-class Legacy_AdminWaiting extends Legacy_AbstractBlockProcedure
+class Legacy_AdminBlockWaiting extends Legacy_AbstractBlockProcedure
 {
     public function getName()
     {
-        return 'waiting';
+        return 'block_waiting';
     }
 
     public function getTitle()
@@ -56,7 +56,7 @@ class Legacy_AdminWaiting extends Legacy_AbstractBlockProcedure
         //$root->mLanguageManager->loadBlockMessageCatalog('legacy');
 
         $modules = [];
-        XCube_DelegateUtils::call('Legacyblock.Wating.Show', new XCube_Ref($modules));
+        XCube_DelegateUtils::call('Legacyblock.Waiting.Show', new XCube_Ref($modules));
 
         $render->setAttribute('modules', $modules);
         $render->setAttribute('blockid', $this->getName());

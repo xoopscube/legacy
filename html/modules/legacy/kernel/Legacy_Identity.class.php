@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: Legacy_Identity.class.php,v 1.3 2008/09/25 15:12:02 kilica Exp $
- * @copyright Copyright 2005-2022 XOOPSCube Project
+ * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license GPL 2.0
  *
  */

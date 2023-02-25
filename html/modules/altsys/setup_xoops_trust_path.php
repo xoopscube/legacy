@@ -5,7 +5,7 @@
  * @version    2.3.1
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  Copyright 2005-2022 Gijoe (Peak.n.jp)
+ * @copyright  (c) 2005-2023 Gijoe (https://peak.ne.jp/)
  * @license    GPL v2.0
  */
 

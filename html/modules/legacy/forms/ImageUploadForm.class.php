@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: ImageUploadForm.class.php,v 1.4 2008/09/25 15:12:40 kilica Exp $
- * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
  *
  */

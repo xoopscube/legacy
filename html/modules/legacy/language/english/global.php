@@ -53,7 +53,7 @@ define( '_DATE' , 'Date');   // Posted date
 define( '_MAIN' , 'Main');
 define( '_MANUAL' , 'Manual');
 define( '_INFO' , 'Info');
-define( '_CPHOME' , 'Control Panel Home');
+define( '_CPHOME' , 'Control Panel');
 define( '_YOURHOME' , 'Home Page');
 
 //%%%%%%	File Name misc.php (who's-online popup)	%%%%%

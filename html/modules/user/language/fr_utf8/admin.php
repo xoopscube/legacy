@@ -152,6 +152,7 @@ define( '_AD_USER_MESSAGE_CONFIRM_UPDATE_USER' , "Confirmer la mise à jour de l
 define( '_AD_USER_MESSAGE_RECOUNT_SUCCESS' , "Recompté avec succès");
 
 // Tips
+define( '_AD_USER_ADMENU_USER_DATA_DOWNLOAD' , 'User Data Download');
 define( '_AD_USER_TIPS_AVATAR' , "Site members can optionally fashion their own online personae called avatars.<br />This option can be set off from module User preferences.");
 define( '_AD_USER_TIPS_AVATAR_UPLOAD' , "You can easily register many avatars by uploading Archive file including them! <br />This batch-upload doesn't check Length and File-Size of each avatar!<br />Please pre-adjust them before you archive them!<br />(Only tar.gz or zip archive)");
 define( '_AD_USER_TIPS_DATA_DOWNLOAD' , 'Vous ne pouvez obtenir les données CSV des utilisateurs que par ordre de user_id.');
@@ -165,7 +166,7 @@ define( '_AD_USER_TIPS_USER_EDIT' , "Pour changer le mot de passe, tapez la mêm
 define( '_AD_USER_TIPS_USER_NEW' , "Indiquez un nouveau nom d'utilisateur, 'Adresse Email' , 'Mot de Passe' et 'Vérifier Mot de Passe'.");
 define( '_AD_USER_TIPS_USER_SEARCH' , "Vous pouvez rechercher et trier les données de vos utilisateurs pour trouver les informations essentielles que vous recherchez.<br>La précision du résultat final sera directement liée au nombre de champs que vous remplissez.");
 define( '_AD_USER_TIPS1_DATA_UPLOAD' , 'Enregistrement par lot des utilisateurs possible avec un fichier CSV.');
-define( '_AD_USER_TIPS2_DATA_UPLOAD' , 'Utiliser le fichier CSV téléchargé à partir de <a href="?action=UserDataDownload" style="color:#941d55;font-weight:bold;">' . _MI_USER_ADMENU_USER_DATA_DOWNLOAD . '</a> Ne pas augmenter et diminuer les colonnes.');
+define( '_AD_USER_TIPS2_DATA_UPLOAD' , 'Utiliser le fichier CSV téléchargé à partir de <a href="?action=UserDataDownload" style="color:#941d55;font-weight:bold;">' . _AD_USER_ADMENU_USER_DATA_DOWNLOAD . '</a> Ne pas augmenter et diminuer les colonnes.');
 define( '_AD_USER_TIPS3_DATA_UPLOAD' , 'Veuillez indiquer seulement les utilisateurs qui doivent être mis à jour avec de nouvelles données dans le fichier CSV.');
 define( '_AD_USER_TIPS4_DATA_UPLOAD' , 'Lorsque la ligne de UID, tout à gauche, est vide (ou 0), un nouveau utilisateur est enregistré.');
 define( '_AD_USER_TIPS5_DATA_UPLOAD' , "L'information sur l'utilisateur est mise à jour lorsqu'il y a une valeur, tout à gauche de la ligne (UID).<br>Si vous définissez un mot de passe, il ne doit pas dépasser le maximum de caractères.");

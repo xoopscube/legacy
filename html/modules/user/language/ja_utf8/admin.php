@@ -151,6 +151,8 @@ define( '_AD_USER_LANG_USER_UPDATECONF' , 'ユーザーの更新を確認する'
 define( '_AD_USER_MESSAGE_CONFIRM_UPDATE_AVATAR' , '更新してもよろしいですか？');
 define( '_AD_USER_MESSAGE_CONFIRM_UPDATE_RANK' , 'ランクを更新してもよろしいですか？');
 define( '_AD_USER_MESSAGE_CONFIRM_UPDATE_USER' , 'ユーザーを更新してもよろしいですか？');
+
+define( '_AD_USER_ADMENU_USER_DATA_DOWNLOAD' , 'ユーザデータのダウンロード');
 define( '_AD_USER_TIPS_AVATAR' , 'サイトのメンバーに対応してオンライン中のファッションとして独自のアバターを表示します。<br>このオプションは、モジュールのユーザ設定からオフに設定することができます。');
 define( '_AD_USER_TIPS_AVATAR_UPLOAD' , 'アーカイブファイルに包みアップロードして、多くのアバターを簡単に登録することができます！<br>このアップロードは、アバター同士のサイズはチェックされません！<br>それらをアーカイブする前に事前に調整してください！<br>（tar.gzまたはzipアーカイブのみ）');
 define( '_AD_USER_TIPS_DATA_DOWNLOAD' , 'CSV形式のユーザーデータを取得できるのはuser_idからのみです。');
@@ -159,7 +161,7 @@ define( '_AD_USER_TIPS_RANK' , 'ユーザーのランキングシステムは貢
 define( '_AD_USER_TIPS_USER_ADMIN' , '"あなたのXOOPS CubeのWebサイトにアクセスするにはグループベースのシステムにより、モジュールとブロックのコンテンツにアクセスするグループ権限を割り当てられるユーザーかどうかです。最近、一部のモジュールはデフォルトのユーザ管理の役割を提供し、ユーザーのアクセス許可を割り当てるロールベースのシステムにより拡張可能にすることができます。<br>また、新しいフィールドを追加して、既定のユーザープロフィールを拡張することができます。詳細については、次のリンクをクリック："');
 define( '_AD_USER_TIPS_USER_SEARCH' , 'あなたが探している重要な情報を見つけるために、ユーザデータを検索したり並べ替える事ができます。<br>最終結果の精度は、入力フィールドの数に直接関連されます。');
 define( '_AD_USER_TIPS1_DATA_UPLOAD' , 'CSVファイルでユーザーの一括登録が可能です。');
-define( '_AD_USER_TIPS2_DATA_UPLOAD' , '<a href="?action=UserDataDownload" style="color:#941d55;font-weight:bold;">'._MI_USER_ADMENU_USER_DATA_DOWNLOAD.'</a> から、ダウンロードした CSV ファイルを使用してください。カラムの増減はしないでください。');
+define( '_AD_USER_TIPS2_DATA_UPLOAD' , '<a href="?action=UserDataDownload" style="color:#941d55;font-weight:bold;">'._AD_USER_ADMENU_USER_DATA_DOWNLOAD.'</a> から、ダウンロードした CSV ファイルを使用してください。カラムの増減はしないでください。');
 define( '_AD_USER_TIPS3_DATA_UPLOAD' , 'CSVファイル内へ新たに情報の登録や更新をしようとしたユーザーのみを記述してください。');
 define( '_AD_USER_TIPS4_DATA_UPLOAD' , '左端の行のUIDが空（または0）の時は、新しいユーザーとして登録。');
 define( '_AD_USER_TIPS5_DATA_UPLOAD' , 'ユーザー情報は左端の行（UID）の値があるときに更新されます。<br>パスワードを設定するなら３０バイト以内にして下さい。');

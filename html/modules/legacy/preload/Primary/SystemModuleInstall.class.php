@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: SystemModuleInstall.class.php,v 1.5 2008/09/25 15:12:38 kilica Exp $
- * @copyright Copyright 2005-2022 XOOPS Cube Project  <https://github.com/xoopscube/xcl>
+ * @copyright Copyright 2005-2023 XOOPS Cube Project  <https://github.com/xoopscube/>
  * @license   GPL 2.0
  *
  */

@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: Legacy_AdminControllerStrategy.class.php,v 1.5 2008/09/25 15:11:56 kilica Exp $
- * @copyright Copyright 2005-2022 XOOPS Cube Project  <https://github.com/xoopscube/xcl>
+ * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license   GPL 2.0
  *
  */
@@ -80,6 +80,10 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
         parent::setupModuleContext($context, $dirname);
     }
 
+	/**
+	 * Render Admin blocks directly without AdminDashboard settings 
+     * ActionSearch and Admin SideMenu
+	*/
     public function setupBlock()
     {
         require_once XOOPS_LEGACY_PATH . '/admin/blocks/AdminActionSearch.class.php';

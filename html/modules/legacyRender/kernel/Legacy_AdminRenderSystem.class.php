@@ -283,7 +283,7 @@ function Legacy_modifier_theme($string)
     $infoArr = Legacy_get_override_file($string);
     
     if (null != $infoArr['theme'] && null != $infoArr['dirname']) {
-        return XOOPS_THEME_URL . '/' . $infoArr['theme'] . '/modules/' . $infoArr['dirname'] . '/' . $string;
+        return XOOPS_THEME_URL . '/' . $infoArr['theme'] . '/templates/' . $infoArr['dirname'] . '/' . $string; // XCL 2.3.x changed /modules/ to /templates/
     } elseif (null != $infoArr['theme']) {
         return XOOPS_THEME_URL . '/' . $infoArr['theme'] . '/' . $string;
     } elseif (null != $infoArr['dirname']) {
@@ -319,7 +319,7 @@ function Legacy_function_stylesheet($params, &$smarty)
             $dirname=$infoArr['dirname'];
             $file='stylesheets/'.$file;
             if (!empty($theme) && !empty($dirname)) {
-                $url = XOOPS_THEME_URL . "/$theme/modules/$dirname/$file";
+                $url = XOOPS_THEME_URL . "/$theme/templates/$dirname/$file"; // XCL 2.3.x changed /modules/ to /templates/
             } elseif (!empty($theme)) {
                 $url = XOOPS_THEME_URL . "/$theme/$file";
             } elseif (!empty($infoArr['dirname'])) {

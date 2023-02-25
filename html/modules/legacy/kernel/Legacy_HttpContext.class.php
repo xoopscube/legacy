@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: Legacy_HttpContext.class.php,v 1.4 2008/09/25 15:12:00 kilica Exp $
- * @copyright (c) 2005-2022 XOOPSCube Project
+ * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license   GPL 2.0
  *
  */
@@ -48,7 +48,7 @@ class Legacy_HttpContext extends XCube_HttpContext
      * @brief [READ ONLY] Map Array - std::map<string, mixed>
      *
      *     This is string collection which indicates site configurations by a site owner.
-     *     Those configuration information are loaded by the controller, and set. This
+     *     Those configurations' information are loaded by the controller, and set. This
      *     configuration and the site configuration of XCube_Root are different.
      *
      *     The array for Xoops, which is configured in the preference of the base. This

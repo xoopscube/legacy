@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: Legacy_BlockProcedure.class.php,v 1.4 2008/09/25 15:11:56 kilica Exp $
- * @copyright Copyright 2005-2022 XOOPS Cube Project  <https://github.com/xoopscube/xcl>
+ * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license   GPL 2.0
  *
  */
@@ -254,6 +254,9 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
 
     public function execute()
     {
+
+
+
         $result =& $this->_mBlock->buildBlock();
 
         if (empty($result)) {
@@ -264,6 +267,8 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
         $render =& $this->getRenderTarget();
         $render->setAttribute('mid', $this->_mBlock->get('mid'));
         $render->setAttribute('bid', $this->_mBlock->get('bid'));
+
+
 
         if (null == $this->_mBlock->get('template')) {
             $render->setTemplateName('system_dummy.html');

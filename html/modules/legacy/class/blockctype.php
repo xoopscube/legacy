@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: blockctype.php,v 1.3 2008/09/25 15:11:21 kilica Exp $
- * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
  *
  */
@@ -17,7 +17,7 @@ class LegacyBlockctypeObject extends XoopsSimpleObject
     public function __construct()
     {
         $this->initVar('type', XOBJ_DTYPE_STRING, '', true);
-        $this->initVar('label', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('label', XOBJ_DTYPE_STRING, '', true, 191);
     }
 }
 

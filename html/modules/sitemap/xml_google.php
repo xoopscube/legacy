@@ -6,8 +6,8 @@
  * @version    2.3.1
  * @author     Gigamaster, 2020 XCL PHP7
  * @author     chanoir
- * @copyright  Copyright 2005-2022 Authors
- * @license    https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
+ * @copyright  (c) 2005-2023 Authors
+ * @license    GPL v2.0
  */
 
 if( ! defined( 'SITEMAP_ROOT_CONTROLLER_LOADED' ) ) {

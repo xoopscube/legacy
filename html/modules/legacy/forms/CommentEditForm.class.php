@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: CommentEditForm.class.php,v 1.4 2008/09/25 15:12:40 kilica Exp $
- * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
  *
  */
@@ -82,9 +82,9 @@ class Legacy_CommentEditForm extends XCube_ActionForm
 
         $this->mFieldProperties['com_title'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['com_title']->setDependsByArray(['required', 'maxlength']);
-        $this->mFieldProperties['com_title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TITLE, '255');
-        $this->mFieldProperties['com_title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_TITLE, '255');
-        $this->mFieldProperties['com_title']->addVar('maxlength', 255);
+        $this->mFieldProperties['com_title']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_TITLE, '191');
+        $this->mFieldProperties['com_title']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_TITLE, '191');
+        $this->mFieldProperties['com_title']->addVar('maxlength', 191);
 
         $this->mFieldProperties['com_text'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['com_text']->setDependsByArray(['required']);
@@ -92,9 +92,9 @@ class Legacy_CommentEditForm extends XCube_ActionForm
 
         $this->mFieldProperties['com_exparams'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['com_exparams']->setDependsByArray(['required', 'maxlength']);
-        $this->mFieldProperties['com_exparams']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_EXPARAMS, '255');
-        $this->mFieldProperties['com_exparams']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_EXPARAMS, '255');
-        $this->mFieldProperties['com_exparams']->addVar('maxlength', 255);
+        $this->mFieldProperties['com_exparams']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _MD_LEGACY_LANG_COM_EXPARAMS, '191');
+        $this->mFieldProperties['com_exparams']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _MD_LEGACY_LANG_COM_EXPARAMS, '191');
+        $this->mFieldProperties['com_exparams']->addVar('maxlength', 191);
     }
 
     public function load(&$obj)

@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: protectorLE.class.php,v 1.3 2008/09/25 15:12:45 kilica Exp $
- * @copyright Copyright 2005-2022 XOOPS Cube Project  <https://github.com/xoopscube/xcl>
+ * @copyright Copyright 2005-2023 XOOPS Cube Project  <https://github.com/xoopscube/>
  * @license   GPL 2.0
  *
  */

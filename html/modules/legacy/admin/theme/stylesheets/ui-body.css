@@ -1,7 +1,7 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL 2.3.1
-	Version : 1.1.1
+	Distribution : XOOPSCube XCL
+	Version : 2.3.1
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
@@ -94,7 +94,7 @@ a[name|=help] {
 blockquote {
     border-left     : 3px solid var(  --layer-4  );
     font-style      : italic;
-    font-size       : var(  --size-3   );
+    font-size       : var(  --size-2   );
     padding         : var(  --space-5   ) var(  --space-7  );
 }
 
@@ -103,7 +103,14 @@ code,kbd,pre,samp {
     overflow-wrap   : anywhere; /* normal | break-word | anywhere */
     white-space     : pre-wrap!important;/* <pre> tag doesn't support wrapping, by default. */
 }
-
+kbd {
+    background      : var(--layer-4);
+    border          : var(--border);
+    border-radius   : var(--border-radius);
+    box-shadow      : var(--shadow-3);
+    font-size       : 13px;
+    padding         : var(--space-1) var(--space-2);
+}
 pre {
     border-left     : 3px solid var( --layer-4 );
     padding         : var(--space-3) ;
@@ -142,7 +149,6 @@ h6 {
     text-transform  : uppercase;
     margin          : var(  --space-6  ) 0;
 }
-
 
 hr {
     border          : 0;
@@ -262,7 +268,7 @@ nav.pagination {
 /* -------------------- --------------------   Dashboard Options */
 
 .dashboard-options {
-    position:relative;
+    position        : relative;
     row-gap         : var(--space-3);
     margin-bottom   : 3em;
 }
@@ -272,7 +278,7 @@ nav.pagination {
     row-gap         : var(--space-6);
     text-align      : center;
 }
-.dashboard-options a.set-link {
+.dashboard-options .set-link {
     display         : block;
     font-size       : 1em;
     line-height     : 1.25em;
@@ -285,7 +291,7 @@ nav.pagination {
     padding         : var(--space-3);
     text-align      : center;
 }
-.dashboard-options a.set-link:hover {
+.dashboard-options .set-link:hover {
     background      : var(--layer-4)
 }
 .dashboard-options .set-icon {
@@ -308,7 +314,7 @@ nav.pagination {
     color           : var(--color-red) !important;
 }
 .not-available:hover {
-    cursor          :not-allowed;
+    cursor          : not-allowed;
 }
 
 /* ---------- ---------- ------- SCROLL TOP */

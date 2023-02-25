@@ -52,7 +52,7 @@
     display			: flex;
     justify-content	: space-between;
     margin			: var(--space-8) 0;
-
+    padding         : var(--space-6);
 }
 
 .ui-block-online-welcome {
@@ -124,7 +124,7 @@
     grid-template-columns : repeat(auto-fit, minmax(214px, 1fr));
     /* grid-auto-rows        : 74px; */
     grid-gap        : 16px;
-    margin          : 18px 0;
+    margin          : 0;
 
 }
 

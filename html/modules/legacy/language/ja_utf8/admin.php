@@ -101,6 +101,8 @@ define( '_AD_LEGACY_LANG_EDIT_FUNC' , '編集用コールバック関数');
 define( '_AD_LEGACY_LANG_FEATURE_SVC_INFO' , 'フューチャー機能情報');
 define( '_AD_LEGACY_LANG_FORCE_MODE' , '強制クリーンアップ:正常なアンインストールが不可能なケースでも、可能な限りアンインストールを続行し、データベースをクリーンにします');
 define( '_AD_LEGACY_LANG_FORMAT' , '形式');
+define( '_AD_LEGACY_LANG_FRAMEWORK_CSS' , 'Framework CSS');
+define( '_AD_LEGACY_LANG_FRAMEWORK_JS' , 'Framework JavaScript');
 define( '_AD_LEGACY_LANG_FUNC_FILE' , 'コールバック関数定義ファイル');
 define( '_AD_LEGACY_LANG_FUNC_NUM' , '関数ナンバ');
 define( '_AD_LEGACY_LANG_GET_THE_LATEST_VERSION' , '最新版を入手する');

@@ -16,8 +16,11 @@ define( '_MD_MESSAGE_ACTIONMSG8' , "Lamento, você ainda não tem as permissões
 define( '_MD_MESSAGE_ACTIONMSG9' , "O remetente não existe.");
 define( '_MD_MESSAGE_ADDBLACKLIST' , "Este associado foi acrescentado à lista de ignorados.");
 define( '_MD_MESSAGE_ADDFAVORITES' , "Acrescentar aos favoritos");
+
 define( '_MD_MESSAGE_DELETEMSG1' , "O parâmetro é considerado ilegal.");
 define( '_MD_MESSAGE_DELETEMSG2' , "Não está selecionado.");
+define( '_MD_MESSAGE_DELETE_CONFIRM' , 'Are you sure you want to delete?');
+
 define( '_MD_MESSAGE_FAVORITES0' , "Nenhum associado foi selecionado para ser acrescentado.");
 define( '_MD_MESSAGE_FAVORITES1' , "Houve uma falha ao acrescentar.");
 define( '_MD_MESSAGE_FAVORITES2' , "Acrescentar");

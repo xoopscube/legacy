@@ -53,9 +53,9 @@ class LegacyRenderThemeObject extends XoopsSimpleObject
 
 class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
 {
-    public $mTable = 'legacyrender_theme';
+    public $mTable   = 'legacyrender_theme';
     public $mPrimary = 'id';
-    public $mClass = 'LegacyRenderThemeObject';
+    public $mClass   = 'LegacyRenderThemeObject';
 
     public function &getByName($themeName)
     {

@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: image.php,v 1.3 2008/09/25 15:11:33 kilica Exp $
- * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
  *
  */
@@ -28,7 +28,7 @@ class LegacyImageObject extends XoopsSimpleObject
         }
         $this->initVar('image_id', XOBJ_DTYPE_INT, '', false);
         $this->initVar('image_name', XOBJ_DTYPE_STRING, '', true, 30);
-        $this->initVar('image_nicename', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('image_nicename', XOBJ_DTYPE_STRING, '', true, 191);
         $this->initVar('image_mimetype', XOBJ_DTYPE_STRING, '', true, 30);
         $this->initVar('image_created', XOBJ_DTYPE_INT, time(), true);
         $this->initVar('image_display', XOBJ_DTYPE_BOOL, '1', true);

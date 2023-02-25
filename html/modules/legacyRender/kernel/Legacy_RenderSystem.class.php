@@ -1,6 +1,10 @@
 <?php
 /**
- * @version $Id: Legacy_RenderSystem.class.php,v 1.4 2008/08/26 15:58:41 minahito Exp $
+ * Legacy_RenderSystem.class.php
+ * @package LegacyRender
+ * @version 2.3.2
+ * @author Nuno Luciano v.XCL23
+ * @author minahito v 1.4 2008/08/26 15:58:41
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -192,7 +196,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $mTpl->assign('xoops_slogan', $textFilter->toShow($context->getAttribute('legacy_slogan')));
 
         // --------------------------------------
-        // Meta tags
+        // Module - Banner
         // --------------------------------------
         $moduleHandler = xoops_gethandler('module');
         $legacyRender =& $moduleHandler->getByDirname('legacyRender');
@@ -202,19 +206,22 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             $configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
 
             //
-            // If this site has the setting of banner.
+            // If this site has banner set.
             // TODO this process depends on XOOPS 2.x Legacy.
             //
             $this->_mIsActiveBanner = $configs['banners'];
             if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE == true) {
                 if (1 == $configs['banners']) {
                     $mTpl->assign('xoops_banner', xoops_getbanner());
+                    $mTpl->assign('banner', xoops_getbanner()); // XCL 2.3.x
                 } else {
                     $mTpl->assign('xoops_banner', '&nbsp;');
+                    $mTpl->assign('banner', '&nbsp;'); // XCL 2.3.x
                 }
             }
         } else {
             $mTpl->assign('xoops_banner', '&nbsp;');
+            $mTpl->assign('banner', '&nbsp;'); // XCL 2.3.x
         }
 
         // --------------------------------------
@@ -389,6 +396,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         //
         $vars = $target->getAttributes();
         $vars['xoops_module_header'] = $moduleHeader;
+        $vars['module_header'] = $moduleHeader; // xcl 2.3.x
 
         $moduleHandler = xoops_gethandler('module');
         $legacyRender =& $moduleHandler->getByDirname('legacyRender');
@@ -415,10 +423,11 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 
         //
         // Banner Management Settings
-        // TODO this process depends on XOOPS Legacy.
+        // TODO this process depends on XOOPS2 Legacy.
         //
         if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE == false) {
             $vars['xoops_banner'] = (1 == $this->_mIsActiveBanner)?xoops_getbanner():'&nbsp;';
+            $vars['banner'] = (1 == $this->_mIsActiveBanner)?xoops_getbanner():'&nbsp;'; // XCL 2.3.x
         }
 
         $mTpl->assign($vars);
@@ -504,7 +513,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     /**
      * @deprecated
      */
-    public function sendHeader()
+    public function sendHeader() 
     {
         header('Content-Type:text/html; charset='._CHARSET);
         header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');

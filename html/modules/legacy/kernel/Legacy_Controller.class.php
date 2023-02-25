@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: Legacy_Controller.class.php,v 1.22 2008/11/14 09:45:23 mumincacao Exp $
- * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
  *
  */
@@ -406,7 +406,8 @@ class Legacy_Controller extends XCube_Controller
 
                 //
                 // If caching is enabled and the cache file exists, load and use it.
-                //
+                // Note : version 2.3.0
+                // @gigamaster added 'getTemplate' for block link in theme
                 if ($cacheInfo->isEnableCache() && $this->existActiveCacheFile($filepath, $blockProcedure->getCacheTime())) {
                     $content = $this->loadCache($filepath);
                     if ($blockProcedure->isDisplay() && !empty($content)) {
@@ -417,7 +418,7 @@ class Legacy_Controller extends XCube_Controller
                             'title'   => $blockProcedure->getTitle(),
                             'content' => $content,
                             'weight'  => $blockProcedure->getWeight(),
-                            'template'  => $blockProcedure->getTemplate(), //TODO gigamaster
+                            'template'  => $blockProcedure->getTemplate(),
                         ];
                     }
 
@@ -1241,8 +1242,9 @@ class Legacy_Controller extends XCube_Controller
                 }
             }
         }
+        // XCL 2.3.x
         //@gigamaster added theme_set, theme_url and theme_css (custom templates from theme)
-// TODO icon_set
+        //@gigamaster added icon_set
         if (!defined('XOOPS_CPFUNC_LOADED')) {
             require_once XOOPS_ROOT_PATH.'/class/template.php';
             $xoopsTpl = new XoopsTpl();
@@ -1253,6 +1255,7 @@ class Legacy_Controller extends XCube_Controller
                     'theme_set'        =>htmlspecialchars($xoopsConfig['theme_set'], ENT_QUOTES),
                     'theme_url'        =>XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'],
                     'theme_css'        =>getcss(),
+                    'icon_set'          =>XOOPS_URL . '/images/' . $xoopsConfig['icon_set'],
                     'langcode'         =>_LANGCODE,
                     'charset'          =>_CHARSET,
                     'time'             =>$time,

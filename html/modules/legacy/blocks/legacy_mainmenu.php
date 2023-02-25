@@ -1,7 +1,6 @@
 <?php
 /**
- * legacy_mainmenu.php
- * XOOPS2
+ * Module Legacy Block legacy_mainmenu.php
  * @package    Legacy
  * @version    XCL 2.3.1
  * @author     Other authors gigamaster, 2020 XCL/PHP7
@@ -42,7 +41,7 @@ function b_legacy_mainmenu_show($options)
             $blockm = &$block['modules'][$i];
             $blockm['name'] = $module->getVar('name');
             if (!empty($options[1])) {
-                $blockm['icon'] = $module->getInfo('icon'); // TODO @gigamaster icon option
+                $blockm['icon'] = $module->getInfo('icon'); // TODO @gigamaster XCL v2.3.x Module icon option
             }
             $moddir = XOOPS_URL.'/modules/';
             $moddir .= $blockm['directory'] = $module->getVar('dirname', 'N');

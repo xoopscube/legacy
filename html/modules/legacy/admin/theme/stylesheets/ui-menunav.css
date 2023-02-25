@@ -1,7 +1,7 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL 2.3.1
-	Version : 1.1.1
+	Distribution : XOOPSCube XCL
+	Version :  2.3.1
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2022-11-21
 	URL : https://github.com/xoopscube/
@@ -243,7 +243,7 @@ div.dropdown-content > a {
     transform       : translateX(-247px);
     transition      : all 0.6s ease-in-out;
     width           : 247px;
-    z-index         : var(--z-above);
+    z-index         : 300;
 }
 .nav-aside-active {
     transform       : translateX(0);
@@ -252,12 +252,13 @@ div.dropdown-content > a {
 /* -------------------- --------------------  NAV HELP  */
 
 nav#help-menu {
-    position: sticky;
-    position: -webkit-sticky;
+    align-self:flex-start;
+    /*position: sticky; ui-media.css tablet */
     width:100%;
-    top: 80px;
+    top: 130px;
     z-index: var(--z-above);
 }
+
 nav#help-menu a.button {
     display:block;
     min-width: 240px;

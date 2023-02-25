@@ -6,6 +6,7 @@
                 <li><a href="#help-features" class="button">Features</a>
                 <li><a href="#help-implement" class="button">Implement</a>
                 <li><a href="#help-customize" class="button">Customize</a>
+                <li><a href="#help-update" class="button">Update</a>
                 <li><a href="#help-license" class="button">License</a>
                 <li><a href="#help-development" class="button">Development</a>
             </ul>
@@ -27,10 +28,24 @@
 
 <hr>
 
-
     <section id="help-features">
 
     <h3>Main Features</h3>
+        <p>The XOOPSCube module CKEditor4 is released by default with a customized Full package bundle and provides out of the box:</p>
+
+        <ul>
+            <li><b>Control Panel</b> preferences settings e.g. toolbars, user group permissions, ui color.</li>
+            <li><b>Localization</b>languages installed by default : English, French, Japanese, Portuguese.</li>
+            <li><b>Template</b> a Single File Component for frontend and backend.</li>
+            <li><b>Automatic change of editor</b> HTML or BBCode depending on modules and user group permissions.</li>
+            <li><b>Automatic switch of ToolBar</b> based on modules preferences and user group permissions.</li>
+            <li><b>BBCode editor</b> extends the CKEditor standard bbcode plugin</li>
+            <li><b>HTML editor</b> with custom Toolbar for each user group</li>
+            <li><b>Extra Plugins</b> customized CodeMirror, oEmbed, Paste (raw text, formatted or code).</li>
+            <li><b>PHP mode</b> for PHP code blocks without the <code>&lt;?php</code> opening tag.</li>
+            <li><b>Smarty mode</b> for Smarty Template Engine code blocks.</li>
+            <li><b>elFinder</b> open-source web file manager with cloud storage settings.</li>
+        </ul>
 
     <p>CKEditor WYSIWYG editor brings to the web common editing features found on desktop editing applications
         like Microsoft Word and OpenOffice.</p>
@@ -113,7 +128,7 @@
 
         <p>The CKEditor toolbar can be fully customized.</p>
 
-        <p><a class="button" href="https://ckeditor.com/ckeditor-4/demo/" target="_blank">Demo ⭧</a></p>
+        <p><a class="button" href="https://xoopscube.github.io/ckeditor4/" target="_blank">xoopscube.github.io/ckeditor4 ⭧</a></p>
 
     </section>
 
@@ -146,6 +161,7 @@ CKEDITOR.editorConfig = function( config ) {
 ul.config-options {
     display: inline-flex;
     flex-flow: row wrap;
+    font-size:14px;
     gap: 12px;
     width: 100%;
     padding: 0;
@@ -822,9 +838,38 @@ ul.config-options {
 
     </section>
 
-
 <hr>
 
+    <section id="help-update">
+
+        <h3>Update CKEditor4 plugins</h3>
+
+        <p>This file was added automatically by CKEditor builder.
+        You may re-use it at any time to build CKEditor again.</p>
+
+        <p>If you would like to build CKEditor online again
+        (for example to upgrade), visit one the following links:</p>
+
+        <ol>
+        <li><a href="https://ckeditor.com/cke4/builder" target="_blank" rel="noopener">
+            https://ckeditor.com/cke4/builder</a> <br>
+            Visit online builder to build CKEditor from scratch.
+
+        <li><a href="https://ckeditor.com/cke4/builder/57716b5b5a8805ad4de22bb0e90b4f03" target="_blank" rel="noopener">
+            https://ckeditor.com/cke4/builder/57716b5b5a8805ad4de22bb0e90b4f03</a><br>
+            Visit online builder to build CKEditor, starting with the same setup as before.
+
+        <li><a href="https://ckeditor.com/cke4/builder/download/57716b5b5a8805ad4de22bb0e90b4f03" target="_blank" rel="noopener">
+            https://ckeditor.com/cke4/builder/download/57716b5b5a8805ad4de22bb0e90b4f03</a><br>
+            Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
+        </ol>
+
+        <div class="confirm">Note :<br>
+            After download of CkEditor4 plugins update, merge the new files with module/ckeditor4/ckeditor<br>
+            The required plugins must be present to run with core modules!
+        </div>
+
+    </section>
 
     <section id="help-license">
 

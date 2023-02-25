@@ -60,11 +60,11 @@ class Message_Preload extends XCube_ActionFilter
         }
 
         switch (ucfirst($actionFrame->mActionName)) {
-      case 'UserInfo':
+        case 'UserInfo':
         require XOOPS_MODULE_PATH.'/message/actions/userinfoAction.class.php';
         $actionFrame->mAction = new UserinfoAction();
         break;
-    }
+        }
     }
   
     public static function accessToReadpmsg()

@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: imagecategory.php,v 1.4 2008/09/25 15:11:28 kilica Exp $
- * @copyright (c) 2005-2022 XOOPS Cube Project
+ * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license   GPL 2.0
  *
  */

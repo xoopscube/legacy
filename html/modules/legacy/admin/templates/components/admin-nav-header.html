@@ -20,8 +20,8 @@
             <a class="btnav" href="<{$xoops_url}>/modules/xelfinder/manager.php?admin=1" target="_blank" accesskey="f" title="[f] File-Manager">
                 <img class="svg file-manager" src="<{'icons/icon-tree.svg'|theme}>" alt="file manager"></a>
         <li>
-            <a class="btnav" href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ThemeList" accesskey="t" title="[t] Theme">
-                <img class="svg theme" src="<{'icons/icon-theme.svg'|theme}>" alt="theme"></a>
+            <a class="btnav" href="<{$xoops_url}>/modules/legacyRender/admin/index.php" accesskey="r" title="[r] Render">
+                <img class="svg theme" src="<{'icons/icon-theme.svg'|theme}>" alt="Render"></a>
         <li>
             <a class="btnav" href="<{$xoops_url}>/modules/user/admin/index.php" accesskey="u" title="[u] Users">
                 <img class="svg users" src="<{'icons/icon-user-account.svg'|theme}>" alt="users"></a>
@@ -30,39 +30,12 @@
 
         <button id="themeToggle" class="btnav nav-icon" title="Color Mode"><span>&#x263C;</span></button>
 
-        <div class="dropdown user-top-nav">
-            <a href="#" class="dropdown-toggle btnav">
-                <img src="<{$uid|xoops_user_avatarize}>" width="20px" height="20px" data-self="centered radius-circle mt-4 ml-2" alt="">
-            </a>
-            <div class="dropdown-content">
+        <a class="btnav" href="<{$xoops_url}>/user.php?op=logout" target="_blank" title="<{$smarty.const._LOGOUT}>">
+            <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M14.08 15.59L16.67 13H7v-2h9.67l-2.59-2.59L15.5 7l5 5l-5 5l-1.42-1.41M19 3a2 2 0 0 1 2 2v4.67l-2-2V5H5v14h14v-2.67l2-2V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h14z" fill="currentColor"></path>
+            </svg> <{$smarty.const._LOGOUT}></a>
 
-                <a href="<{$xoops_url}>/" target="_blank" title="<{$smarty.const._YOURHOME}>" class="button button-small">
-                        <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" class="svg-ui-icon">
-                            <path d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8h5z" fill="currentColor"/>
-                    </svg> <{$smarty.const._YOURHOME}></a>
 
-                <a href="<{$xoops_url}>/edituser.php" target="_blank" title="Account Setting" class="button button-small">
-                    <svg role="img" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" class="svg-ui-icon">
-                        <path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z" fill="currentColor"></path>
-                    </svg> Account</a>
-
-                <a href="<{$xoops_url}>/viewpmsg.php" target="_blank" title="Inbox" class="button button-small">
-                    <svg role="img" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" class="svg-ui-icon">
-                        <path d="M2 6v14h18v2H2c-1.105 0-2-.89-2-2V6h2m22-2c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4m-2 0l-8 5l-8-5h16m0 12H6V6l8 5l8-5v10z" fill="currentColor"></path>
-                    </svg> Inbox</a>
-
-                <a href="<{$xoops_url}>/notifications.php" target="_blank" title="Notifications" class="button button-small">
-                    <svg role="img" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" class="svg-ui-icon">
-                        <path d="M16 17H7v-6.5C7 8 9 6 11.5 6S16 8 16 10.5m2 5.5v-5.5c0-3.07-2.14-5.64-5-6.32V3.5A1.5 1.5 0 0 0 11.5 2A1.5 1.5 0 0 0 10 3.5v.68c-2.87.68-5 3.25-5 6.32V16l-2 2v1h17v-1m-8.5 4a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2z" fill="currentColor"></path>
-                    </svg> Notifications</a>
-
-                <a href="<{$xoops_url}>/user.php?op=logout" target="_blank" title="<{$smarty.const._LOGOUT}>" class="button button-small">
-                    <svg role="img" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" class="svg-ui-icon">
-                        <path d="M14.08 15.59L16.67 13H7v-2h9.67l-2.59-2.59L15.5 7l5 5l-5 5l-1.42-1.41M19 3a2 2 0 0 1 2 2v4.67l-2-2V5H5v14h14v-2.67l2-2V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h14z" fill="currentColor"></path>
-                    </svg> <{$smarty.const._LOGOUT}></a>
-
-            </div>
-        </div>
 
     </ul>
 </nav>

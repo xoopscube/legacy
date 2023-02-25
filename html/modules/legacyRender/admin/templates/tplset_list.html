@@ -27,7 +27,7 @@
     <div class="control-view">
         <a class="button" href="./index.php?action=TplfileList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE}></a>
         <a class="button" href="./index.php?action=TplsetUpload"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></a>
-        <a class="button" href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ThemeList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_THEME_SETTING}></a>
+        <a class="button" href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ThemeList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_THEME_MANAGE}></a>
         <button class="help-admin button" type='button' data-module='legacyRender' data-help-article='#help-template' aria-label="<{$smarty.const._HELP}>">
             <b>?</b> </button>
     </div>
@@ -157,7 +157,7 @@
             </a>
             <{if $activeTemplateSet != $obj->get('tplset_name')}>
             <a href="index.php?action=TplsetDelete&amp;tplset_id=<{$obj->get('tplset_id')}>" aria-label="<{$smarty.const._DELETE}>" class="delete">
-                <span>🗙</span>
+                <span>?</span>
 <!--                <img class="svg" src="<{'icons/icon-file-delete.svg'|theme}>" alt="Delete">-->
             </a>
             <{/if}>

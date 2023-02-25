@@ -4,13 +4,16 @@
             <ul data-layout="rows">
                 <li><a href="#help-overview" class="button">Renderer</a>
                 <li><a href="#help-banner" class="button">Banner</a>
+                <li><a href="#help-bannerclient" class="button">Banner Client</a>
                 <li><a href="#help-htaccess" class="button">htaccess</a>
+                <li><a href="#help-cool-uri" class="button">Cool URI</a>
                 <li><a href="#help-template" class="button">Templates</a>
                 <li><a href="#help-themes" class="button">Themes</a>
                 <li><a href="#help-development" class="button">Development</a>
             </ul>
         </nav>
     </div>
+
 <article id="help-module">
 
     <section id="help-overview">
@@ -36,17 +39,16 @@
 
         <p>The <b>Template Management</b> allows you to enable a <b>Template Set</b> and check the list of <b>templates</b> that you can edit, copy, download or delete.
 
+        <p>For general instructions about the Smarty language, visit <a href="https://www.smarty.net/docsv2/en/" target="_blank" rel="noopener">https://www.smarty.net/docsv2/en/ ⭧</a>
     </section>
 
-
 <hr>
-
 
     <section id="help-banner">
 
     <h3>Banner Management</h3>
 
-        <p>Allows you to manage banner ads and display ads in your website.
+        <p>Allows you to manage banners and display ads in your website.
 
         <p>You can place a banner of any type, in any location of the page, and on any module.
 
@@ -60,7 +62,7 @@
 
         <p>The following tags can be added to Themes and Templates.
 
-        <p>Smarty tags will be processed and substituted with other code.
+        <p>Smarty tags will be processed and substituted with content.
 
     <h4>Random Banner display</h4>
 
@@ -101,9 +103,67 @@
         </ul>
     </section>
 
+    <section id="help-bannerclient">
+
+        <h3>Banner Client Management</h3>
+
+        <p>If you’re only going to have one or two banners, you may not need to create a banner client.
+            Assigning a banner to a particular client will help in the long run if you’re working with several clients (ie. customers).</p>
+        <h4>Steps for creating a new client</h4>
+        <p>To setup a new banner client, follow the steps below:</p>
+<ul>
+        <li>Log into your Joomla 3.0 dashboard
+    <li>In the top menu, click Components and then click Banners
+    <li>In the left menu, click Clients
+    <li>Click the New button in the top left of the page
+    <li>On this page you will enter all of the details for your new banner client.
+    <li>After doing so, click Save in the top left of the page.
+</ul>
+
+    <p>In our testing, we are creating a client, WordPress.org.<br>
+        We are only entering the :</p>
+
+        <table class="outer">
+            <thead>
+            <tr>
+                <th colspan="2">Banner Client Required Fields</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>name for the client</td>
+                <td>WordPress.org</td>
+            </tr>
+            <tr>
+                <td>Contact Name</td>
+                <td>name of a user as contact</td>
+            </tr>
+            <tr>
+                <td>Contact email</td>
+                <td>Enter a valid contact email</td>
+            </tr>
+            <tr>
+                <td>Login</td>
+                <td>Login</td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>Generate password</td>
+            </tr>
+            <tr>
+                <td>Extra info</td>
+                <td>Extra info</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+        <p>new-client-showing-in-list</p>
+
+        <p>After saving this new client, we can now use this client as a part of our setup when creating banner modules.</p>
+    </section>
 
 <hr>
-
 
     <section id="help-htaccess">
 
@@ -125,22 +185,25 @@
             They allow users to set directory level options without requiring access to the httpd.conf file,
             including www rewrite, hotlink prevention, custom error pages, caching, and redirects.<br>
             As such it is required that your server uses Apache, and a web host that allows htaccess files (the most popular hosts do).
+        </p>
+    </section>
 
+<hr>
+
+    <section id="help-cool-uri">
         <h3>The Cool URI</h3>
         <p>The term used to describe a Uniform Resource Identifier (URI) that does not change.
-        This enables resources that have been linked to, bookmarked, or referenced in other ways to remain valid links for many years to come.
+        This enables resources that have been linked to, bookmarked, or referenced in other ways to remain valid links over time.
         <p>A cool URI is considered to be a foundation requirement for the Semantic Web.
         As described by Tim Berners-Lee in “Cool URIs don’t change” (1998), URIs should be designed with three things in mind: simplicity, stability and manageability.
 
         <p>Learn more about Apache .htaccess file and Cool URIs :
-        <p><a href="https://www.askapache.com/htaccess/" target="_blank" >THE Ultimate Htaccess ⭧</a>
-        <p><a href="https://www.w3.org/TR/cooluris/" target="_blank"> W3C - Cool URIs for the Semantic Web ⭧</a>
+        <p><a href="https://www.askapache.com/htaccess/" target="_blank" rel="noopener">THE Ultimate Htaccess ⭧</a>
+        <p><a href="https://www.w3.org/TR/cooluris/" target="_blank" rel="noopener"> W3C - Cool URIs for the Semantic Web ⭧</a>
 
     </section>
 
-
 <hr>
-
 
     <section id="help-template">
 
@@ -168,9 +231,7 @@
 
     </section>
 
-
 <hr>
-
 
     <section id="help-themes">
 
@@ -204,13 +265,9 @@
 
         <p><a class="button" href="<{'index.php?action=Help&dirname=legacy'}>">Learn more about Themes ⭢</a></p>
 
-
-
     </section>
 
-
 <hr>
-
 
     <section id="help-development">
 

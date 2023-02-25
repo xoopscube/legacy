@@ -77,17 +77,17 @@
     --color-black   : hsl(0, 0%, 10%);
     --color-blue    : hsl(210, 74%, 45%);
     --color-green   : hsl(122, 40%, 48%);
-    --color-indigo  : hsl(275, 74%, 35%);
+    --color-indigo  : hsl(275, 74%, 40%);
     --color-orange  : hsl(38, 74%, 45%);
     --color-purple  : hsl(300, 74%, 40%);
     --color-red     : hsl(5, 74%, 50%);
     --color-red-op  : hsla(5, 74%, 50%, 0.74);
     --color-white   : hsl(0, 0%, 90%);
 
-    --layer-1       : hsl(227deg 27% 12%);
-    --layer-2       : hsl(227deg 25% 14%);
-    --layer-3       : hsl(227deg 25% 16%);
-    --layer-4       : hsl(227deg 25% 20%);
+    --layer-1       : hsl(227deg 27% 14%);
+    --layer-2       : hsl(227deg 27% 16%);
+    --layer-3       : hsl(227deg 27% 18%);
+    --layer-4       : hsl(227deg 27% 22%);
 
     --primary       : hsl(219, 15%, 80%);
     --secondary     : hsl(219, 15%, 70%);

@@ -154,6 +154,7 @@ define( '_AD_USER_MESSAGE_CONFIRM_UPDATE_USER' , 'Are you sure you want to updat
 define( '_AD_USER_MESSAGE_RECOUNT_SUCCESS' , 'Recalculate success');
 
 // Tips
+define( '_AD_USER_ADMENU_USER_DATA_DOWNLOAD' , 'User Data Download');
 define( '_AD_USER_TIPS_AVATAR' , 'Site members can optionally fashion their own online personae called avatars.<br>This option can be set off from module User preferences.');
 define( '_AD_USER_TIPS_AVATAR_UPLOAD' , 'You can easily register many avatars by uploading Archive file including them! <br>This batch-upload does not check Length and File-Size of each avatar!<br>Please pre-adjust them before you archive them!<br>(Only tar.gz or zip archive)');
 define( '_AD_USER_TIPS_DATA_DOWNLOAD' , 'You can export User Data (order by user_id) from your MySQL database in CSV format, which is a standard format with several benefits and usable by other tools and environments.');
@@ -169,7 +170,7 @@ define( '_AD_USER_TIPS_USER_EDIT' , 'To change the password, fill the input fiel
 define( '_AD_USER_TIPS_USER_NEW' , 'The following fields are required: User name = Email address and Password & Verify password.');
 define( '_AD_USER_TIPS_USER_SEARCH' , 'You can search and sort your users data to find the vital information you are looking for.<br>The accuracy of the end result will be directly related to the number of fields you fill.');
 define( '_AD_USER_TIPS1_DATA_UPLOAD' , 'You can register a batch of members with CSV file.');
-define( '_AD_USER_TIPS2_DATA_UPLOAD' , 'Use the CSV file downloaded from <a href="?action=UserDataDownload">'._MI_USER_ADMENU_USER_DATA_DOWNLOAD.'</a> - Do not increase and decrease columns.');
+define( '_AD_USER_TIPS2_DATA_UPLOAD' , 'Use the CSV file downloaded from <a href="?action=UserDataDownload">'._AD_USER_ADMENU_USER_DATA_DOWNLOAD.'</a> - Do not increase and decrease columns.');
 define( '_AD_USER_TIPS3_DATA_UPLOAD' , 'In CSV file, add only the new users information to update and to register.');
 define( '_AD_USER_TIPS4_DATA_UPLOAD' , 'When the row of leftmost UID is empty (or 0), it registers as a new user.');
 define( '_AD_USER_TIPS5_DATA_UPLOAD' , 'The user information is updated when there is a value in the leftmost row (UID).<br>If you set a password, set it within 30bytes.');

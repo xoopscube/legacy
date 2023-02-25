@@ -4,7 +4,7 @@
  * @package    CKEditor4
  * @version    2.3.1
  * @author     Naoki Sawada (aka nao-pon) https://xoops.hypweb.net/
- * @copyright  2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
  */
 

@@ -2,9 +2,10 @@
 
 define( '_MI_LEGACYRENDER_ADMENU_BANNER_MANAGE' , 'バナー管理');
 define( '_MI_LEGACYRENDER_ADMENU_TEMPLATE_MANAGE' , 'テンプレート管理');
-define( '_MI_LEGACYRENDER_ADMENU_THEME_SETTING' , 'テーマの設定');
+define( '_MI_LEGACYRENDER_ADMENU_THEME_MANAGE' , 'テーマの設定');
 define( '_MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE' , 'テンプレート管理');
 define( '_MI_LEGACYRENDER_CONF_BANNERS' , 'バナー広告を有効にする');
+define( '_MI_LEGACYRENDER_CONF_BANNERS_DESC' , 'Client Management, account and login []');
 define( '_MI_LEGACYRENDER_NAME' , 'レンダリングシステム');
 define( '_MI_LEGACYRENDER_NAME_DESC' , 'XOOPS JP 2.0.x のテーマエンジンと互換性のあるレンダーシステムです。XOOPS2テーマを使用可能です。');
 define( '_MI_LR_FOOTER' , 'フッタ');
@@ -40,3 +41,9 @@ define( '_MI_LR_JQUERY_CORE' , 'jQuery コアライブラリ');
 define( '_MI_LR_JQUERY_CORE_DESC' , 'Google Libraries APIを使う場合（推奨）、jQuery のバージョンを入れてください。ローカルの jQuery ファイルを使う場合は、そのURLを入れてください。');
 define( '_MI_LR_JQUERY_UI' , 'jQuery UI ライブラリ');
 define( '_MI_LR_JQUERY_UI_DESC' , 'Google Libraries APIを使う場合、jQuery UI のバージョンを入れてください。ローカルの jQuery UI ファイルを使う場合は、そのURLを入れてください。どちらを使うかはコアライブラリと同じでなければなりません。');
+define( '_MI_LR_ICONSET' , 'Directory for icon set files');
+define( '_MI_LR_ICONSET_DSC' , 'Relative path to public/common/images. Default: icons');
+define( '_MI_LR_FAVICON' , 'Directory for icon set files');
+define( '_MI_LR_FAVICON_DSC' , 'Relative path to public/common/images. Default: icons');
+define( '_MI_LR_LOGO' , 'Directory for icon set files');
+define( '_MI_LR_LOGO_DSC' , 'Relative path to public/common/images. Default: icons');

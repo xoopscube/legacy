@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: Legacy_LanguageManager.class.php,v 1.6 2008/09/25 15:11:57 kilica Exp $
- * @copyright (c) 2005-2022 XOOPSCube Project
+ * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license   GPL 2.0
  *
  */
@@ -37,6 +37,16 @@ class Legacy_LanguageManager extends XCube_LanguageManager
         }
     }
 
+    /**
+    * default_charset string
+    * "UTF-8" is the default value and its value is used as the default character encoding for 
+    * htmlentities(), html_entity_decode() and htmlspecialchars() 
+    * if the encoding parameter is omitted. The value of default_charset will also be used to set 
+    * the default character set for iconv functions if the iconv.input_encoding, iconv.output_encoding 
+    * and iconv.internal_encoding configuration options are unset, and for mbstring functions if the 
+    * mbstring.http_input mbstring.http_output mbstring.internal_encoding configuration option is unset.
+    * https://www.php.net/manual/en/ini.core.php#ini.default-charset
+    */
     public function _setupMbstring()
     {
         #ifdef _MBSTRING_LANGUAGE
@@ -65,16 +75,7 @@ class Legacy_LanguageManager extends XCube_LanguageManager
                 @ini_set('mbstring.internal_encoding', '');
                // @ini_set('mbstring.http_input', ''); deprecated
                // @ini_set('mbstring.http_output', ''); deprecated 
-/**
-* default_charset string
-* "UTF-8" is the default value and its value is used as the default character encoding for 
-* htmlentities(), html_entity_decode() and htmlspecialchars() 
-* if the encoding parameter is omitted. The value of default_charset will also be used to set 
-* the default character set for iconv functions if the iconv.input_encoding, iconv.output_encoding 
-* and iconv.internal_encoding configuration options are unset, and for mbstring functions if the 
-* mbstring.http_input mbstring.http_output mbstring.internal_encoding configuration option is unset.
-* https://www.php.net/manual/en/ini.core.php#ini.default-charset
-**/
+
            // }
         }
         #endif

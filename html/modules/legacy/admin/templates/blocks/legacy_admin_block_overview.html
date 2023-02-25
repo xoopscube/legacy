@@ -1,105 +1,142 @@
 <{* Modules Overview *}>
-<div class="ui-card-overview">
 
-	<div class="ui-card-small">
-		<div class="ui-card-small-icon ui-icon-blue">
+<style id="dynamicss">
+	div[chart-type="bar-compare"] .linebox-title-bar {
+		margin-top: 5px;
+		margin-bottom: 5px;
+		position: relative;
+	}
+	div[chart-type="bar-compare"] .linebox-title-bar span {
+		/*font-family: "Open Sans";
+		color: #616161;*/
+	}
+	div[chart-type="bar-compare"] .linebox-title-bar span.compare-num {
+		font-weight: bold;
+		font-size: 16px;
+		margin-left: 10px;
+	}
+	div[chart-type="bar-compare"] .linebox-title-bar span.compare-num-chart-title {
+		font-size: 13px;
+		position: absolute;
+		left: 80px;
+		top: 2px;
+	}
+	div[chart-type="bar-compare"] .line {
+		height: 8px;
+		width: 100%;
+		background: var(--layer-1);
+		border-color: var(--card-small-border-color);
+		border-radius: var(--card-small-border-radius);
+		border-style: var(--card-small-border-style);
+		border-width: var(--card-small-border-width);
+		box-shadow: var(--card-small-box-shadow);
+	}
+	div[chart-type="bar-compare"] .line div {
+		height: 98%;
+		border-radius: var(--card-small-border-radius);
+		color: #e72747;
+	}
 
-			<img src="<{'icons/icon-package.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>">
+</style>
+
+<div class="ui-card-overview" data-layout="column">
+
+	<{* ---------- ---------- Modules Overview *}>
+	<div class="ui-card-small" data-layout="column">
+		<div data-layout="row">
+			<div class="ui-card-small-icon ui-icon-blue">
+				<img src="<{'icons/icon-package.svg'|theme}>" class="svg" aria-label="Modules">
+			</div>
+			<div class="ui-card-small-info">
+				<h5 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_ALL_MODULES}></h5>
+			</div>
 		</div>
-		<div class="ui-card-small-info">
-			<h5 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>: <strong><{$ModuleTotal}></strong></h5>
+		<div id="status-module"
+			 style="width: 100%"
+			 chart-type="bar-compare"
+			 data-chart-max="<{$ModuleTotal}>"
+			 data-segments="[
+	 [&quot;<{$ModuleTotal}>&quot;,&quot;&lt;b&gt;<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>&lt;/b&gt;&quot;],
+	 [&quot;<{$activeModuleTotal}>&quot;,&quot;<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>&quot;],
+	 [&quot;<{$inactiveModuleTotal}>&quot;,&quot;<{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>&quot;]
+	 ]" data-colors="[&quot;var(--color-blue)&quot;,&quot;var(--color-green)&quot;,&quot;var(--color-red)&quot;]">
 		</div>
 	</div>
 
-	<div class="ui-card-small">
-		<div class="ui-card-small-icon ui-icon-green">
-			<img class="svg module-active" src="<{'icons/icon-module-active.svg'|theme}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>">
+	<{* ---------- ---------- Blocks Overview *}>
+	<div class="ui-card-small" data-layout="column">
+		<div data-layout="row">
+			<div class="ui-card-small-icon ui-icon-green">
+				<img class="svg blocks" src="<{'icons/icon-blocks.svg'|theme}>">
+	<!--			<img class="svg block-active" src="<{'icons/icon-block-active.svg'|theme}>">-->
+	<!--			<img class="svg block-inactive" src="<{'icons/icon-block-inactive.svg'|theme}>"> -->
+			</div>
+			<div class="ui-card-small-info">
+				<h5 class="ui-card-small-title"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></h5>
+			</div>
 		</div>
-		<div class="ui-card-small-info">
-			<h5 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_ACTIVE}>: <strong><{$activeModuleTotal}></strong></h5>
-			<p class="ui-card-small-subtitle"></p>
-		</div>
-	</div>
-
-	<div class="ui-card-small">
-		<div class="ui-card-small-icon ui-icon-red">
-			<img class="svg module-inactive" src="<{'icons/icon-module-inactive.svg'|theme}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>">
-
-		</div>
-		<div class="ui-card-small-info">
-			<h5 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>: <strong><{$inactiveModuleTotal}></strong></h5>
-			<p class="ui-card-small-subtitle"></p>
-		</div>
-	</div>
-
-
-<{* ---------- ---------- Block Overview *}>
-
-
-	<div class="ui-card-small">
-		<div class="ui-card-small-icon ui-icon-blue">
-        <img class="svg blocks" src="<{'icons/icon-blocks.svg'|theme}>">
-		</div>
-		<div class="ui-card-small-info">
-			<h5 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_BLOCK_TOTAL}>: <strong><{$BlockTotal}></strong></h5>
+		<div id="status-block"
+			 style="width: 100%"
+			 chart-type="bar-compare"
+			 data-chart-max="<{$BlockTotal}>"
+			 data-segments="[
+		 [&quot;<{$BlockTotal}>&quot;,&quot;&lt;b&gt;<{$smarty.const._AD_LEGACY_LANG_BLOCK_TOTAL}>&lt;/b&gt;&quot;],
+		 [&quot;<{$ActiveBlockTotal}>&quot;,&quot;<{$smarty.const._AD_LEGACY_LANG_BLOCK_ACTIVETOTAL}>&quot;],
+		 [&quot;<{$ActiveInstalledBlockTotal}>&quot;,&quot;<{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL}>&quot;],
+		 [&quot;<{$ActiveUninstalledBlockTotal}>&quot;,&quot;<{$smarty.const._AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL}>&quot;],
+		 [&quot;<{$InactiveBlockTotal}>&quot;,&quot;&lt;b&gt;<{$smarty.const._AD_LEGACY_LANG_BLOCK_TOTAL}> <{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>&lt;/b&gt;&quot;]
+		 ]" data-colors="[&quot;var(--color-blue)&quot;,&quot;var(--color-green)&quot;,&quot;var(--color-green)&quot;,&quot;var(--color-red)&quot;,&quot;var(--color-red-op)&quot;]">
 		</div>
 	</div>
 
-	<div class="ui-card-small">
-		<div class="ui-card-small-icon ui-icon-green">
-        <img class="svg block-active" src="<{'icons/icon-block-active.svg'|theme}>">
+	<{* ---------- ---------- Users Overview *}>
+	<div class="ui-card-small" data-layout="column">
+		<div data-layout="row">
+			<div class="ui-card-small-icon ui-icon-blue">
+				<img src="<{'icons/icon-user-group.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_TOTAL}>">
+			</div>
+			<div class="ui-card-small-info">
+				<h5 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_ALL_OF_USERS}></h5>
+			</div>
 		</div>
-		<div class="ui-card-small-info">
-			<h5 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_BLOCK_ACTIVETOTAL}>: <strong><{$ActiveBlockTotal}></strong></h5>
-			<p class="ui-card-small-subtitle"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL}>:
-				<strong><{$ActiveInstalledBlockTotal}></strong> &nbsp;|&nbsp;
-				<{$smarty.const._AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL}>: <strong><{$ActiveUninstalledBlockTotal}></strong></p>
-		</div>
-	</div>
-
-	<div class="ui-card-small">
-		<div class="ui-card-small-icon ui-icon-red">
-        <img class="svg block-inactive" src="<{'icons/icon-block-inactive.svg'|theme}>">
-		</div>
-		<div class="ui-card-small-info">
-			<h5 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>: <strong><{$InactiveBlockTotal}></strong></h5>
-			<p class="ui-card-small-subtitle"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL}>: <strong><{$InactiveInstalledBlockTotal}></strong> &nbsp;|&nbsp;
-				<{$smarty.const._AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL}>: <strong><{$InactiveUninstalledBlockTotal}></strong></p>
-		</div>
-	</div>
-
-<{* User Groups Overview *}>
-
-	<div class="ui-card-small">
-		<div class="ui-card-small-icon ui-icon-blue">
-			<img src="<{'icons/icon-user-group.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_TOTAL}>">
-		</div>
-		<div class="ui-card-small-info">
-			<h5 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_USER_TOTAL}>: <strong><{$UserTotal}></strong>
-			</h5>
-		</div>
-	</div>
-
-	<div class="ui-card-small">
-		<div class="ui-card-small-icon ui-icon-green">
-			<img src="<{'icons/icon-user-account.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>">
-		</div>
-		<div class="ui-card-small-info">
-			<h5 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>:
-				<strong><{$activeUserTotal}></strong></h5>
-			<!-- <p class="ui-card-small-subtitle"><a href="index.php?action=UserEdit"><{$smarty.const._AD_USER_LANG_USER_NEW}></a></p> -->
-		</div>
-	</div>
-
-	<div class="ui-card-small">
-		<div class="ui-card-small-icon ui-icon-red">
-			<img src="<{'icons/icon-user-inactive.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>">
-		</div>
-		<div class="ui-card-small-info">
-			<h5 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>: <strong><{$inactiveUserTotal}></strong>
-			</h5>
-			<!-- <p class="ui-card-small-subtitle"><a href="index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a></p> -->
-		</div>
+		<div id="status-user"
+				 style="width: 100%"
+				 chart-type="bar-compare"
+				 data-chart-max="<{$UserTotal}>"
+				 data-segments="[
+	 [&quot;<{$UserTotal}>&quot;,&quot;&lt;b&gt;<{$smarty.const._AD_USER_LANG_USER_TOTAL}>&lt;/b&gt;&quot;],
+	 [&quot;<{$activeUserTotal}>&quot;,&quot;<{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>&quot;],
+	 [&quot;<{$inactiveUserTotal}>&quot;,&quot;<{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>&quot;]
+	 ]" data-colors="[&quot;var(--color-blue)&quot;,&quot;var(--color-green)&quot;,&quot;var(--color-red)&quot;]">
+			</div>
 	</div>
 
 </div>
+
+<script>
+	$('div[chart-type="bar-compare"]').each(function(){
+		var chartbox = $(this);
+		var max = chartbox.data('chart-max');
+		var segments = chartbox.data('segments');
+		var colors = chartbox.data('colors');
+		var id = chartbox.attr('id');
+
+		var j = 0;
+		for(var i=0; i < segments.length; i++){
+			var linebox = $("<div class='linebox'></div>");
+			chartbox.append(linebox);
+			var s = segments[i];
+			var v = s[0];
+			var t = s[1];
+			var p = (v * 100 / max) + '%';
+
+			linebox.append("<div class='linebox-title-bar'><span class='compare-num'>" + v + "</span> <span class='compare-num-chart-title'>" + t + "</span></div>");
+			var line = $("<div class='line'></div>");
+			linebox.append(line);
+			var mainline = $("<div class='mainline' style='background-color:" + colors[j] + "; width:" + p + ";'></div>" );
+			j++;
+			if(j === colors.length) j = 0;
+			line.append(mainline);
+		}
+	});
+</script>
