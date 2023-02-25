@@ -6,8 +6,8 @@
  * @version    XCL 2.3.1
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Author
- * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @copyright  (c) 2005-2023 Authors
+ * @license    GPL v2.0
  */
 
 require_once dirname( __DIR__ ) . '/class/D3commentAbstract.class.php';
@@ -330,7 +330,8 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 		$post = [];
 
 		/**
-		 * DEFAULT VIEW (listposts_flat)
+         * Default View Comments
+         * Template listposts_flat
 		 **/
 	} else {
 		$this_template = 'db:' . $mydirname . '_comment_listposts_flat.html';
@@ -349,7 +350,7 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 			$postorder4sql = 'post_time ASC';
 		}
 
-		// post_hits ~ pagenavi //naao from
+		// post_hits ~ pagenavi // naao from
 		// count post
 		$sql = 'SELECT COUNT(post_id) FROM ' . $db->prefix( $mydirname . '_posts' ) . ' p LEFT JOIN ' . $db->prefix( $mydirname . '_topics' ) . " t ON p.topic_id=t.topic_id WHERE $sql_whr";
 
@@ -388,7 +389,7 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 			$pagenav = $pagenav_obj->getNav();
 		}
 
-		// post_hits ~ pagenavi //naao to
+		// post_hits ~ pagenavi // naao to
 
 		$sql = 'SELECT p.*,t.topic_locked FROM ' . $db->prefix( $mydirname . '_posts' ) . ' p LEFT JOIN ' . $db->prefix( $mydirname . '_topics' ) . " t ON p.topic_id=t.topic_id WHERE $sql_whr ORDER BY $postorder4sql LIMIT $pos,$num"; //naao
 
@@ -461,7 +462,7 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 
 		$topics = [];
 
-		// form elements or javascripts for anti-SPAM
+		// form elements or javascript for anti-SPAM
 		if ( d3forum_common_is_necessary_antispam( $xoopsUser, $xoopsModuleConfig ) ) {
 			$antispam_obj    =& d3forum_common_get_antispam_object( $xoopsModuleConfig );
 			$antispam4assign = $antispam_obj->getHtml4Assign();
@@ -510,8 +511,7 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 
 			$tree[] = [
 				'id'                  => (int) $post_row['post_id'],
-				'subject'             => $myts->makeTboxData4Show( $post_row['subject'], $post_row['number_entity'],
-					$post_row['special_entity'] ),
+				'subject'             => $myts->makeTboxData4Show( $post_row['subject'], $post_row['number_entity'], $post_row['special_entity'] ),
 				'post_time_formatted' => formatTimestamp( $post_row['post_time'], 'm' ),
 				'poster_uid'          => $topic_last_uid,
 				'poster_uname'        => $topic_last_uname,

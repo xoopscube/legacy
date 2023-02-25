@@ -6,8 +6,8 @@
  * @subpackage D3Forum
  * @version 2.3
  * @author Gijoe (Peak), Gigamaster (XCL)
- * @copyright  (c) 2005-2022 Author
- * @license https://github.com/xoopscube/legacy/blob/master/docs/GPL_V2.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @copyright  (c) 2005-2023 Authors
+ * @license GPL v2.0
  */
 
 if ( empty( $_POST['body_editor'] ) ) {

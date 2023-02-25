@@ -6,7 +6,7 @@
  * @version    XCL 2.3.1
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Authors
+ * @copyright  (c) 2005-2023 Authors
  * @license    GPL v2.0
  */
 
@@ -122,7 +122,9 @@ if ( empty( $tpl ) ) {
 		die( 'Not DB template' );
 	}
 
-	die( 'Invalid tpl_file.' );
+	//die( 'Invalid tpl_file.' ); // TODO Cannot edit newblock template - redirect to block management !
+   // redirect_header( $_SERVER['REQUEST_URI'], 1, $msg );
+    redirect_header( XOOPS_URL . '/modules/legacy/admin/index.php?action=BlockList', 2, 'Edit Template with Block Management ');
 }
 
 

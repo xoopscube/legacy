@@ -3,7 +3,7 @@
  * XCube Ini Handler
  * @package XCube
  * @version 2.3.1
- * @copyright  (c) 2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  * @brief  XCube_IniHandler.class.php,v 1.0
  */

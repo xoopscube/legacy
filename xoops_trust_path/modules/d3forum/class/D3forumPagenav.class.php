@@ -5,8 +5,8 @@
  * @version    XCL 2.3.1
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Author
- * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @copyright  (c) 2005-2023 Authors
+ * @license    GPL v2.0
  */
 
 class D3forumPageNav {
@@ -51,10 +51,10 @@ class D3forumPageNav {
 
 			$prev = $this->current - $this->perpage;
 
-            $ret .= '<ul class="pagenavi">';
+            $ret .= '<ul class="pagination pagenavi">';
 
             if ( $prev >= 0 ) {
-				$ret .= '<li><a href="' . $this->url . $prev . '">&laquo;</a></li>';
+				$ret .= '<li class="page-item"><a href="' . $this->url . $prev . '" class="page-link" aria-label="Previous">&laquo;</a></li>';
 			}
 			$i = 1;
 
@@ -62,14 +62,14 @@ class D3forumPageNav {
 
 			while ( $i <= $total_pages ) {
 				if ( $i === $current_page ) {
-					$ret .= '<li aria-label="page '. $i .'" aria-current="page"><b>' . $i . '</b></li>';
+					$ret .= '<li class="page-item active" aria-label="page '. $i .'" aria-current="page"><b>' . $i . '</b></li>';
 				} elseif ( ( $i > $current_page - $offset && $i < $current_page + $offset ) || 1 === $i || $i === $total_pages ) {
 					if ( $i === $total_pages && $current_page < $total_pages - $offset ) {
-						$ret .= '<li>...</li>';
+						$ret .= '<li class="page-item">...</li>';
 					}
-					$ret .= '<li><a href="' . $this->url . ( ( $i - 1 ) * $this->perpage ) . '">' . $i . '</a></li> ';
+					$ret .= '<li class="page-item"><a href="' . $this->url . ( ( $i - 1 ) * $this->perpage ) . '" class="page-link">' . $i . '</a></li> ';
 					if ( 1 === $i && $current_page > 1 + $offset ) {
-						$ret .= '<li>...</li>';
+						$ret .= '<li class="page-item">...</li>';
 					}
 				}
 				$i ++;
@@ -78,7 +78,7 @@ class D3forumPageNav {
 			$next = $this->current + $this->perpage;
 
 			if ( $this->total > $next ) {
-				$ret .= '<li><a href="' . $this->url . $next . '">&raquo;</a></li>';
+				$ret .= '<li class="page-item"><a href="' . $this->url . $next . '" class="page-link" aria-label="Next">&raquo;</a></li>';
 			}
             $ret .='</ul>';
 		}

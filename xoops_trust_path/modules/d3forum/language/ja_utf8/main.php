@@ -172,7 +172,7 @@ define( '_MD_D3FORUM_LASTVISIT' , '最終訪問日時');
 
 // topic attributes (done)
 define( '_MD_D3FORUM_TOPICLOCKED' , 'ロックされたトピック');
-define( '_MD_D3FORUM_TOPICLOCKED_DESC' , 'このトピックは管理者もしくはモデレータにより<em class="d3f_attn" aria-label="あたらしい書き込みや編集はできません">ロックされています</em>。');
+define( '_MD_D3FORUM_TOPICLOCKED_DESC' , 'このトピックは管理者もしくはモデレータにより<em>ロックされています</em>。あたらしい書き込みや編集はできません。');
 define( '_MD_D3FORUM_TOPICSTICKY' , '特別扱いされたトピック');
 define( '_MD_D3FORUM_TOPICPOPULAR' , '人気トピック');
 define( '_MD_D3FORUM_TOPICNEWPOSTS' , '新しい投稿があります');
@@ -328,6 +328,8 @@ define( '_MD_D3FORUM_SUFFIX_UNDERTHISFORUM' , '（このフォーラムの下に
 
 // batch actions
 define( '_MD_D3FORUM_BATCH_ACTIONS' , '一斉処理');
+Define( '_MD_D3FORUM_BATCH_ACTIONS_DESC' , 'Batch actions are actions triggered on a set of selected objects. 
+By default, Admins can run this action in several entries at once.');
 define( '_MD_D3FORUM_BA_TURNSOLVEDON' , '全トピックを解決済とする');
 define( '_MD_D3FORUM_BA_MSG_CONFIRM' , '送信前に、本当にこの一斉処理を行って良いか確認してください');
 

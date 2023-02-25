@@ -101,7 +101,7 @@ Define( '_MD_D3FORUM_A_BOTTOMOFTHETOPIC' , 'Derniers messages');
 // comment integration
 Define( '_MD_D3FORUM_POSTASCOMMENTTOP' , 'Poster un nouveau commentaire');
 Define( '_MD_D3FORUM_LINK_COMMENTSOURCE' , 'cible de ce commentaire');
-Define( '_MD_D3FORUM_LINK_RICHERCOMMENTFORM' , 'Afficher éditeur texte');
+Define( '_MD_D3FORUM_LINK_RICHERCOMMENTFORM' , 'Afficher éditeur texte - Démarrer un nouveau Sujet');
 Define( '_MD_D3FORUM_LINK_LISTALLCOMMENTS' , 'Voir tous les commentaires...');
 Define( '_MD_D3FORUM_FMT_COMMENTSUBJECT' , 'Re: %s');
 Define( '_MD_D3FORUM_COMMENTSLIST' , 'Liste commentaires');
@@ -176,7 +176,7 @@ Define( '_MD_D3FORUM_LASTVISIT' , 'Votre dernière visite');
 
 // topic attributes (done)
 Define( '_MD_D3FORUM_TOPICLOCKED' , 'Sujet verouillé');
-Define( '_MD_D3FORUM_TOPICLOCKED_DESC' , 'Ce sujet est <em class="d3f_attn" aria-label="Vous ne pouvez pas répondre ni éditer vos messages">VERROUILLE</em> par les admins ou modérateurs');
+Define( '_MD_D3FORUM_TOPICLOCKED_DESC' , 'Ce sujet est <em>VERROUILLE</em> par les admins ou modérateurs. Vous ne pouvez pas répondre ni éditer les messages.');
 Define( '_MD_D3FORUM_TOPICSTICKY' , 'Sujet : Post-it');
 Define( '_MD_D3FORUM_TOPICPOPULAR' , 'Sujet Populaire');
 Define( '_MD_D3FORUM_TOPICNEWPOSTS' , 'Sujet avec nouveaux messages');
@@ -306,7 +306,7 @@ Define( '_MD_D3FORUM_TH_FORUMWEIGHT' , 'Ordre du Forum');
 Define( '_MD_D3FORUM_TH_FORUMDESC' , 'Description du Forum');
 Define( '_MD_D3FORUM_TH_FORUMOPTIONS' , 'Options Forum');
 Define( '_MD_D3FORUM_TH_EXTERNALLINKFORMAT' , 'Format pour une intégration-commentaire');
-Define( '_MD_D3FORUM_HELP_EXTERNALLINKFORMAT' , 'laisser vide pour un Forum ordinaire. Si vous ajoutez URI avec %s commencé par {XOOPS_URL}/modules/ , ce sera relié aux templates sources. Les modules avec l\'intégration-commentaires régleront ce champ automatiquement.');
+Define( '_MD_D3FORUM_HELP_EXTERNALLINKFORMAT' , 'Laisser vide pour un Forum ordinaire. Les modules avec l\'intégration-commentaires régleront ce champ automatiquement. Si vous ajoutez URI avec %s commencé par {XOOPS_URL}/modules/ , ce sera relié aux templates sources. ');
 Define( '_MD_D3FORUM_BTN_MOVEFORUMTOOTHERFORUM' , 'Déplacer ce Forum dans l\'autre Forum');
 Define( '_MD_D3FORUM_BTN_COPYFORUMTOOTHERFORUM' , 'Copier ce Forum dans l\'autre Forum');
 
@@ -331,6 +331,8 @@ Define( '_MD_D3FORUM_SUFFIX_UNDERTHISFORUM' , '(sous ce Forum)');
 
 // batch actions
 Define( '_MD_D3FORUM_BATCH_ACTIONS' , 'Actions par lots');
+Define( '_MD_D3FORUM_BATCH_ACTIONS_DESC' , 'Batch actions are actions triggered on a set of selected objects. 
+By default, Admins can run this action in several entries at once.');
 Define( '_MD_D3FORUM_BA_TURNSOLVEDON' , 'Changer tous les Sujets en Résolu');
 Define( '_MD_D3FORUM_BA_MSG_CONFIRM' , 'Note: cette action affecte tous les Sujets et messages dans une catégorie/forum');
 

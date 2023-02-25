@@ -17,6 +17,8 @@ Define( '_MD_D3FORUM_LINK_FORUMRSS' , 'RSS of this forum');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-09-28 15:55:33
 Define( '_MD_D3FORUM_BATCH_ACTIONS' , 'Batch Actions');
+Define( '_MD_D3FORUM_BATCH_ACTIONS_DESC' , 'Batch actions are actions triggered on a set of selected objects. 
+By default, Admins can run this action in several entries at once.');
 Define( '_MD_D3FORUM_BA_TURNSOLVEDON' , 'Turn all topics as solved');
 Define( '_MD_D3FORUM_BA_MSG_CONFIRM' , 'Notice: this action effects all topics/posts inside the category/forum');
 
@@ -133,7 +135,7 @@ Define( '_MD_D3FORUM_FORUMASCOMMENT_DESC' , "Como este fórum é apenas para dis
 Define( '_MD_D3FORUM_FORUMMANAGER' , "Gerenciar fórum");
 Define( '_MD_D3FORUM_GUESTSCANNOTPOST_DESC' , "Visitantes anônimos não podem postar neste fórum");
 Define( '_MD_D3FORUM_GUESTSCANPOST_DESC' , "Visitantes anônimos podem postar neste fórum");
-Define( '_MD_D3FORUM_HELP_EXTERNALLINKFORMAT' , "Deixar o espaço em branco para fórums comuns. Se você escrever URI com %s, partindo {XOOPS_URL}/modules/, isto resultará em uma link origem. Os módulos nativos ajustarão o campo automaticamente com a integração de comentarios");
+Define( '_MD_D3FORUM_HELP_EXTERNALLINKFORMAT' , "Deixar o espaço em branco para fórums comuns. Se indicar URI com %s, partindo {XOOPS_URL}/modules/, resulta em link de origem. Os módulos nativos ajustarão o campo automaticamente com a integração de comentarios");
 Define( '_MD_D3FORUM_HOWTO_OVERRIDEOPTIONS' , "Se você exceder as preferências, escrever uma linha como:<br />(option name):(option value)<br />Exemplo:<br />show_breadcrumbs:1 <br /><br />Opções excedentes e valores atuais:");
 Define( '_MD_D3FORUM_JUMPTOBOTTOM' , "Ir ao fim");
 Define( '_MD_D3FORUM_JUMPTOTOP' , "Ir ao início");
@@ -176,7 +178,7 @@ Define( '_MD_D3FORUM_LINK_POSTORDERTREEASC' , "Ramificação");
 Define( '_MD_D3FORUM_LINK_POSTORDERTREEDESC' , "Inverter a ramificação");
 Define( '_MD_D3FORUM_LINK_PREVPOST' , "Postagem anterior");
 Define( '_MD_D3FORUM_LINK_PREVTOPIC' , "Tópico anterior");
-Define( '_MD_D3FORUM_LINK_RICHERCOMMENTFORM' , "Formulário avançado");
+Define( '_MD_D3FORUM_LINK_RICHERCOMMENTFORM' , "Formulário avançado - Iniciar un novo Tópico");
 Define( '_MD_D3FORUM_LISTALLTOPICS' , "Listar todos os tópicos");
 Define( '_MD_D3FORUM_LISTTOPICSINCATEGORIES' , "Listar tópicos nas categorias especificadas");
 Define( '_MD_D3FORUM_LISTTOPICSINCATEGORY' , "Listar tópicos na categoria");
@@ -283,7 +285,7 @@ Define( '_MD_D3FORUM_TOPIC' , "Tópico");
 Define( '_MD_D3FORUM_TOPICEXTERNALLINKID' , "N° do endereço externo (comentário)");
 Define( '_MD_D3FORUM_TOPICINVISIBLE' , "Tópico disponível apenas para administradores e moderadores.");
 Define( '_MD_D3FORUM_TOPICLOCKED' , "Tópico fechado");
-Define( '_MD_D3FORUM_TOPICLOCKED_DESC' , "Este tópico está FECHADO pelos administradores ou moderadores");
+Define( '_MD_D3FORUM_TOPICLOCKED_DESC' , "Este tópico está <em>FECHADO</em> pelos administradores ou moderadores");
 Define( '_MD_D3FORUM_TOPICMANAGER' , "Gestor de tópicos");
 Define( '_MD_D3FORUM_TOPICMANAGERDONE' , "O tópico foi modificado corretamente");
 Define( '_MD_D3FORUM_TOPICMANAGER_DESC' , "Você pode editar este fórum, e alterar as permissões de leitura, escrita, visibilidade, etc.");

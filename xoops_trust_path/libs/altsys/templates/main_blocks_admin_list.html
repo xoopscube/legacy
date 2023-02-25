@@ -100,7 +100,7 @@
 			<div data-layout="rows column">
 			<div class="ui-card-block-item" data-layout="rows">
 				<label for="weights[<{$block.bid}>]" aria-label="<{$smarty.const._MD_A_MYBLOCKSADMIN_WEIGHT}>">
-				<input type="text" name="weights[<{$block.bid}>]" value="<{$block.weight}>" size="1" maxlength="5">
+				<input type="number" size="1" maxlength="4" name="weights[<{$block.bid}>]" value="<{$block.weight}>">
 				</label>
 				<label for="titles[<{$block.bid}>]" aria-label="<{$smarty.const._MD_A_MYBLOCKSADMIN_NAME}>">
 				<input type="text" name="titles[<{$block.bid}>]" value="<{$block.title_raw|escape}>" size="19">
@@ -152,6 +152,9 @@
 
 </div><{* ui-data-render *}>
 
+	<div class="foot-sticky" style="display: none">
+		<input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+	</div>
 
 <div data-layout="row centered" class="adminnavi">
 	<input type="hidden" name="fct" value="blocksadmin">

@@ -6,8 +6,8 @@
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Naoki Sawada (aka Nao-pon)
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Author
- * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @copyright  (c) 2005-2023 Authors
+ * @license    GPL v2.0
  */
 
 function b_d3forum_list_forums_show( $options ) {

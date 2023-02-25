@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: function.xoops_explaceholder.php,v 1.3 2008/09/25 15:12:36 kilica Exp $
- * @copyright (c) 2005-2022 The XOOPS Cube Project
+ * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *
  */

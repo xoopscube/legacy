@@ -4,7 +4,7 @@
  * @package Legacy
  * @version $Id: function.xoops_dhtmltarea.php,v 1.3 2010/02/22 15:12:36 kilica Exp $
  * @copyright (c) 2005-2022 The XOOPS Cube Project
- * @license https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @license GPL v2.0
  *
  * [ToDo]
  * 1) We may have to move this file to other module with following namespace or

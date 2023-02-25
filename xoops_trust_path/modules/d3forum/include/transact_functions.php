@@ -2,13 +2,13 @@
 /**
  * D3Forum module for XCL
  * This file can be included from transaction procedures
+ * Call back for comment integration
  * @package    D3Forum
  * @version    XCL 2.3.1
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Author
- * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
- * @brief      Call back for comment integration
+ * @copyright  (c) 2005-2023 Authors
+ * @license    GPL_V2.txt
  */
 
 function d3forum_main_d3comment_callback( $mydirname, $topic_id, $mode = 'update', $post_id = 0 ) {

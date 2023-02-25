@@ -77,11 +77,11 @@ define( '_MD_D3FORUM_WHOLE' , 'Whole forum');
 define( '_MD_D3FORUM_ALT_MARKEDYES' , 'Marked');
 define( '_MD_D3FORUM_ALT_MARKEDNO' , 'Not marked');
 define( '_MD_D3FORUM_MARKEDYES_DESC' , 'You have checked this topic as MARKED topics are displayed in the top of list MARKED');
-define( '_MD_D3FORUM_MARKEDNO_DESC' , 'You can check this topic as MARKED topics are displayed in the top of list MARKED');
+define( '_MD_D3FORUM_MARKEDNO_DESC' , 'You can mark this topic. MARKED topics are displayed at the top of the list.');
 define( '_MD_D3FORUM_ALT_SOLVEDYES' , 'Solved topic');
 define( '_MD_D3FORUM_ALT_SOLVEDNO' , 'Unsolved topic');
-define( '_MD_D3FORUM_SOLVEDYES_DESC' , 'This topic is SOLVED topics are treated as closed topics by admins or moderators SOLVED');
-define( '_MD_D3FORUM_SOLVEDNO_DESC' , 'This topic is UNSOLVED - Responses are welcome');
+define( '_MD_D3FORUM_SOLVEDYES_DESC' , 'SOLVED topics are treated as closed topics by admins or moderators.');
+define( '_MD_D3FORUM_SOLVEDNO_DESC' , 'This topic is UNSOLVED. Responses are welcome');
 define( '_MD_D3FORUM_MARK_TURNON' , 'Sticky topic');
 define( '_MD_D3FORUM_MARK_TURNOFF' , 'Unsticky topic');
 define( '_MD_D3FORUM_SOLVED_TURNON' , 'Change the status to Solved');
@@ -93,7 +93,7 @@ define( '_MD_D3FORUM_A_BOTTOMOFTHETOPIC' , 'Bottom of the posts'); //jidaikobo
 // comment integration
 define( '_MD_D3FORUM_POSTASCOMMENTTOP' , 'Post a new comment');
 define( '_MD_D3FORUM_LINK_COMMENTSOURCE' , 'target of the comment');
-define( '_MD_D3FORUM_LINK_RICHERCOMMENTFORM' , 'Switch to Editor Mode');
+define( '_MD_D3FORUM_LINK_RICHERCOMMENTFORM' , 'Switch to Editor Mode - Start a new Topic');
 define( '_MD_D3FORUM_LINK_LISTALLCOMMENTS' , 'View more comments...');
 define( '_MD_D3FORUM_FMT_POSTHITSINFO' , '%d hits');
 define( '_MD_D3FORUM_FMT_POSTDISPLAYSINFO' , '%d displayed');
@@ -172,7 +172,7 @@ Define( '_MD_D3FORUM_LASTVISIT' , 'You last visited');
 
 // topic attributes (done)
 Define( '_MD_D3FORUM_TOPICLOCKED' , 'Locked topic');
-Define( '_MD_D3FORUM_TOPICLOCKED_DESC' , 'This topic is<em class="d3f_attn" aria-label="You cannot reply nor edit posts">LOCKED</em> by administrators or moderators');
+Define( '_MD_D3FORUM_TOPICLOCKED_DESC' , 'This topic is <em>LOCKED</em> by administrators or moderators. You cannot reply nor edit posts.');
 Define( '_MD_D3FORUM_TOPICSTICKY' , 'Sticky topic');
 Define( '_MD_D3FORUM_TOPICPOPULAR' , 'Popular topic');
 Define( '_MD_D3FORUM_TOPICNEWPOSTS' , 'Topic with new posts');
@@ -250,6 +250,11 @@ Define( '_MD_D3FORUM_TH_SOLVED' , 'Solved');
 Define( '_MD_D3FORUM_BTN_SYNCTHISTOPIC' , 'Sync this topic');
 Define( '_MD_D3FORUM_BTN_MOVETOPICTOOTHERFORUM' , 'Move this topic into another forum');
 Define( '_MD_D3FORUM_BTN_COPYTOPICTOOTHERFORUM' , 'Copy this topic into another forum');
+Define( '_MD_D3FORUM_TOPIC_EXPORT' , 'Export Manager');
+Define( '_MD_D3FORUM_TOPIC_EXPORT_DESC' , 'You can export the topic to another selected module, and then select the category or forum.
+This feature is only available when you have installed other instances of D3Forum renamed e.g. comments, module-name, etc.');
+Define( '_MD_D3FORUM_TOPIC_EXPORT_MODULE' , 'Select Module Instance');
+Define( '_MD_D3FORUM_TOPIC_EXPORT_TARGET' , 'Select Instance Target');
 
 // delete (check done)
 Define( '_MD_D3FORUM_DELNOTALLOWED' , 'You cannot delete this post');
@@ -302,7 +307,8 @@ Define( '_MD_D3FORUM_TH_FORUMWEIGHT' , 'Forum weight');
 Define( '_MD_D3FORUM_TH_FORUMDESC' , 'Forum description');
 Define( '_MD_D3FORUM_TH_FORUMOPTIONS' , 'Forum options');
 Define( '_MD_D3FORUM_TH_EXTERNALLINKFORMAT' , 'Format for comment-integration');
-Define( '_MD_D3FORUM_HELP_EXTERNALLINKFORMAT' , 'leave blank for ordinary forums. If you write URI with %s started from  {XOOPS_URL}/modules/ , it will be the template linking to the sources. Native comment-integrated modules will set this field automatically.');
+Define( '_MD_D3FORUM_HELP_EXTERNALLINKFORMAT' , 'Leave blank for a default forum. Modules with comment-integration will set this field automatically. 
+Note that if the URI is written with a format string %s starting from {APP_URL}/modules/, it redirects to the comment source.');
 Define( '_MD_D3FORUM_BTN_MOVEFORUMTOOTHERFORUM' , 'Move this forum into another forum');
 Define( '_MD_D3FORUM_BTN_COPYFORUMTOOTHERFORUM' , 'Copy this forum into another forum');
 
@@ -318,17 +324,19 @@ Define( '_MD_D3FORUM_MSG_CATEGORYDELETED' , 'The category has been deleted succe
 Define( '_MD_D3FORUM_TH_CATEGORYTITLE' , 'Category title');
 Define( '_MD_D3FORUM_TH_CATEGORYWEIGHT' , 'Category weight');
 Define( '_MD_D3FORUM_TH_CATEGORYPARENT' , 'Parent category');
-Define( '_MD_D3FORUM_TH_CATEGORYDESC' , 'Category desc');
+Define( '_MD_D3FORUM_TH_CATEGORYDESC' , 'Category desccription');
 Define( '_MD_D3FORUM_TH_CATEGORYOPTIONS' , 'Category options');
 Define( '_MD_D3FORUM_ONOFF' , 'ON/OFF');
-Define( '_MD_D3FORUM_HOWTO_OVERRIDEOPTIONS' , '<p>Override preferences by writing a new line for each option.<br><code><b>(option name)</b>:<u>(option value)</u></code><br>Example to show breadcrumbs (1=on, 0=off):<br><code><b>show_breadcrumbs</b>:<u>1</u></code></p><h5>Overridable options current values</h5>');
+Define( '_MD_D3FORUM_HOWTO_OVERRIDEOPTIONS' , '<p>Override preferences by writing a new line for each option.<br><code><b>(option name)</b>:<u>(option value)</u></code><br>Example to show breadcrumbs (1=on, 0=off):<br><code><b>show_breadcrumbs</b>:<u>1</u></code></p><p><b>Overridable options current values</b></p>');
 Define( '_MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY' , '(under this category)');
 Define( '_MD_D3FORUM_SUFFIX_UNDERTHISFORUM' , '(under this forum)');
 
 // batch actions
 Define( '_MD_D3FORUM_BATCH_ACTIONS' , 'Batch Actions');
+Define( '_MD_D3FORUM_BATCH_ACTIONS_DESC' , 'Batch actions are actions triggered on a set of selected objects. 
+By default, Admins can run this action in several entries at once.');
 Define( '_MD_D3FORUM_BA_TURNSOLVEDON' , 'Turn all topics as solved');
-Define( '_MD_D3FORUM_BA_MSG_CONFIRM' , 'Notice: this action affects all topics/posts inside the category/forum');
+Define( '_MD_D3FORUM_BA_MSG_CONFIRM' , 'Notice: this action affects all topics and posts inside the category or forum');
 
 // multi-byte spaces separated by ,
 // (don't define for single space languages)

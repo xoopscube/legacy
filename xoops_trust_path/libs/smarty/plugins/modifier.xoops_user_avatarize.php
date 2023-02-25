@@ -3,8 +3,8 @@
  *
  * @package Legacy
  * @version $Id: modifier.xoops_user_avatarize.php,v 1.3 2008/09/25 15:12:36 kilica Exp $
- * @copyright (c) 2005-2022 The XOOPS Cube Project
- * @license https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
+ * @copyright (c) 2005-2023 The XOOPSCube Project
+ * @license GPL v2.0
  *
  */
 
