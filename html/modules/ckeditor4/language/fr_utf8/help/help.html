@@ -2,10 +2,11 @@
     <div data-self="size-xxsmall">
         <nav id="help-menu">
             <ul data-layout="rows">
-                <li><a href ="#help-overview" class="button">CKEditor4</a>
+                <li><a href ="#help-overview" class="button">Overview</a>
                 <li><a href="#help-features" class="button">Features</a>
                 <li><a href="#help-implement" class="button">Implement</a>
                 <li><a href="#help-customize" class="button">Customize</a>
+                <li><a href="#help-update" class="button">Update</a>
                 <li><a href="#help-license" class="button">License</a>
                 <li><a href="#help-development" class="button">Development</a>
             </ul>
@@ -16,7 +17,7 @@
 
     <section id="help-overview">
 
-    <h3>CKEditor4 Module</h3>
+    <h3>CKEditor4 Overview</h3>
 
     <p>Proven, enterprise-grade WYSIWYG HTML editor with wide browser compatibility, including legacy browsers.
     <p>This module is the default WYSIWYG editor to create and manage your web content easily.
@@ -25,30 +26,51 @@
     </section>
 
 
-<hr>
-
-
     <section id="help-features">
 
     <h3>Main Features</h3>
+        <p>The XOOPSCube module CKEditor4 is released by default with a customized Full package bundle and provides out of the box:</p>
 
-    <p>CKEditor WYSIWYG editor brings to the web common editing features found on desktop editing applications
-        like Microsoft Word and OpenOffice.</p>
+        <ul>
+            <li><b>Control Panel</b> preferences settings e.g. toolbars, user group permissions, ui color.</li>
+            <li><b>Localization</b> languages installed by default : English, French, Japanese, Portuguese.</li>
+            <li><b>Template</b> a Single File Component for frontend and backend.</li>
+            <li><b>Automatic change of editor</b> HTML or BBCode depending on modules and user group permissions.</li>
+            <li><b>Automatic switch of ToolBar</b> based on modules preferences and user group permissions.</li>
+            <li><b>BBCode editor</b> extends the CKEditor standard bbcode plugin</li>
+            <li><b>HTML editor</b> with custom Toolbar for each user group</li>
+            <li><b>Extra Plugins</b> customized CodeMirror, oEmbed, Paste (raw text, formatted or code).</li>
+            <li><b>PHP mode</b> for PHP code blocks without the <code>&lt;?php</code> opening tag.</li>
+            <li><b>Smarty mode</b> for Smarty Template Engine code blocks.</li>
+            <li><b>elFinder</b> open-source web file manager with cloud storage settings.</li>
+        </ul>
 
-    <h5>CKEditor vs. Word</h5>
-    <P>CKEditor is not a desktop application like Microsoft Word or OpenOffice.
-    <P>It's a component to be used by developers to enhance their applications.
-    <P>It's an editor to be used inside web pages.</p>
+        <h4>CKEditor4 module Preferences</h4>
+
+        <ul>
+            <li>Toolbar for Admin : CKEditor's "config.toolbar" for admin.
+            <li>Toolbar UI Color : Setting Editor UI Color with hexadecimal color code eg. #405060
+            <li>Toolbar for registed user : CKEditor's "onfig.toolbar" for registed user.
+            <li>Toolbar for guest : CKEditor's "config.toolbar" for guest.
+            <li>Toolbar for BBcode plugin : CKEditor's "config.toolbar" for BBcode plugin.
+            <li>CSS URL of editing area : URL of external CSS applied to edit area is set up per line.
+                <br>* A special value "&lt;head&gt;" reads automatically CSS specified in &lt;head&gt; in HTML of a display page.
+            <li>Extra plugin : CKEditor's "config.extraPlugins" setting.
+            <li>Custom config URL : CKEditor's "config.customConfig" setting.
+            <li>Enter Mode : CKEditor's "config.enterMode" setting.
+            <li>Shift+Enter Mode : CKEditor's "config.shiftEnterMode" setting.
+            <li>Allow All Content : CKEditor's "config.allowedContent" setting.
+            <li>Auto Paragraph : CKEditor's "config.autoParagraph" setting.
+            <li>X-elFinder : Set X-elFinder directory name for server browser.
+        </ul>
+
     </section>
-
-
-<hr>
-
 
 
     <section id="help-implement">
 
-        <h3>Installation</h3>
+        <h3>Implement CKEditor to textarea.</h3>
+
         <ol>
             <li>Clone/Duplicate your <b>Templates</b> to create a new Set.
             <li>Edit any installed module's templates with a textarea and add a new parameter <strong><em>editor=html</em></strong>
@@ -64,68 +86,39 @@
     </section>
 
 
-<hr>
+    <section id="help-customize">
 
+        <h3>Customize CKEditor4</h3>
 
-    <section id="preferences">
-        <h3>Preferences</h3>
-        <p>Toolbar for Admin
-        <p>CKEditor's "config.toolbar" for admin.
+        <h4>User Interface color</h4>
 
-        <p>Toolbar UI Color
-        <p>Setting Editor UI Color with hexadecimal color code eg. #405060
+        <p>The CKEditor UI color can be adjusted from the module's preferences <strong> Admin > CKEditor > Preferences</strong> to match the look and feel of a website or an application.
+            In order to define the color of the user interface, use the config.uiColor configuration setting which accepts an RGB color code.</p>
+        <p>The editor instance UI color was set by default to the theme RGB value.</p>
 
-        <p>Toolbar for registed user
-        <p>CKEditor's "onfig.toolbar" for registed user.
+        <p>Please note that this configuration option can only be used for editor skins that are compatible with the so-called "chameleon" feature, for example:</p>
 
-        <p>Toolbar for guest
-        <p>CKEditor's "config.toolbar" for guest.
+        <ul>
+            <li>Moono-Lisa</li>
+            <li>Moono</li>
+            <li>Kama</li>
+        </ul>
 
-        <p>Toolbar for BBcode plugin
-        <p>CKEditor's "config.toolbar" for BBcode plugin.
+        <div class="tips">Note :<br>
+            Refer to the Setting Editor User Interface Color article to learn more about this feature :
+            <a href="https://ckeditor.com/docs/ckeditor4/latest/examples/uicolor.html" target="_blank">uicolor  ⭧</a>
+        </div>
 
-        <p>CSS URL of editing area
-        <p>URL of external CSS applied to edit area is set up per line.
-        <p>* A special value "&lt;head&gt;" reads automatically CSS specified in &lt;head&gt; in HTML of a display page.
-
-        <p>Extra plugin
-        <p>CKEditor's "config.extraPlugins" setting.
-
-        <p>Custom config URL
-        <p>CKEditor's "config.customConfig" setting.
-
-        <p>Enter Mode
-        <p>CKEditor's "config.enterMode" setting.
-
-        <p>Shift+Enter Mode
-        <p>CKEditor's "config.shiftEnterMode" setting.
-
-        <p>Allow All Content
-        <p>CKEditor's "config.allowedContent" setting.
-
-        <p>Auto Paragraph
-        <p>CKEditor's "config.autoParagraph" setting.
-
-        <p>X-elFinder
-        <p>Set X-elFinder directory name for server browser.
-
-        <h3>Implement CKEditor to textarea.</h3>
+        <h3>CKEditor4 Toolbar</h3>
 
         <p>The CKEditor toolbar can be fully customized.</p>
 
-        <p><a class="button" href="https://ckeditor.com/ckeditor-4/demo/" target="_blank">Demo ⭧</a></p>
-
-    </section>
-
-<hr>
-
-
-    <section id="customize">
+        <p><a class="button" href="https://xoopscube.github.io/ckeditor4/" target="_blank">xoopscube.github.io/ckeditor4 ⭧</a></p>
 
 
         <h3>Customize config.js</h3>
 
-<pre><code class="lang-javascript">
+        <pre><code class="lang-javascript">
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
@@ -138,48 +131,49 @@ CKEDITOR.editorConfig = function( config ) {
 };
 </code></pre>
 
-<h3>CKEDITOR.config</h3>
-<p>Stores default configuration settings. Changes to this object are reflected in all editor instances, if not specified otherwise for a particular instance.
-<p>Read more about setting CKEditor configuration in the <a href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html" target="_blank">documentation</a>.
+        <h3>CKEDITOR.config</h3>
+        <p>Stores default configuration settings. Changes to this object are reflected in all editor instances, if not specified otherwise for a particular instance.</p>
+        <p>Read more about setting CKEditor configuration in the <a href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html" target="_blank">documentation</a>.</p>
 
-<style>
-ul.config-options {
-    display: inline-flex;
-    flex-flow: row wrap;
-    gap: 12px;
-    width: 100%;
-    padding: 0;
-    margin:0;
-}
-/* Create four equal columns */
-.config-options li{
-    flex: 24%;
-    list-style: none;
-    padding: 0;
-}
+        <style>
+            ul.config-options {
+                display: inline-flex;
+                flex-flow: row wrap;
+                font-size:14px;
+                gap: 12px;
+                width: 100%;
+                padding: 0;
+                margin:0;
+            }
+            /* Create four equal columns */
+            .config-options li{
+                flex: 24%;
+                list-style: none;
+                padding: 0;
+            }
 
-/* On screens that are 992px wide or less, go from four columns to two columns */
-@media screen and (max-width: 992px) {
-    .config-options li {
-        flex: 48%;
-    }
-}
+            /* On screens that are 992px wide or less, go from four columns to two columns */
+            @media screen and (max-width: 992px) {
+                .config-options li {
+                    flex: 48%;
+                }
+            }
 
-/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-    ul.config-options {
-        flex-direction: column;
-    }
-}
-/*.config-options li {*/
-/*    flex-flow: row wrap;*/
-/*    */
-/*    display: flex;*/
-/*    min-width: calc(90% / 4);*/
-/*    line-height: 1.5rem;*/
-/*    padding:0;*/
-/*}*/
-</style>
+            /* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+            @media screen and (max-width: 600px) {
+                ul.config-options {
+                    flex-direction: column;
+                }
+            }
+            /*.config-options li {*/
+            /*    flex-flow: row wrap;*/
+            /*    */
+            /*    display: flex;*/
+            /*    min-width: calc(90% / 4);*/
+            /*    line-height: 1.5rem;*/
+            /*    padding:0;*/
+            /*}*/
+        </style>
 
         <ul class="config-options">
             <li><a class="api-member-name"
@@ -790,41 +784,39 @@ ul.config-options {
                    target="_blank">width</a>
         </ul>
 
-
     </section>
 
 
-<hr>
+    <section id="help-update">
 
+        <h3>Update CKEditor4 plugins</h3>
 
-    <section id="help-customize">
+        <p>This file was added automatically by CKEditor builder.
+        You may re-use it at any time to build CKEditor again.</p>
 
-        <h3>CKEditor User Interface color</h3>
+        <p>If you would like to build CKEditor online again
+        (for example to upgrade), visit one the following links:</p>
 
-        <p>The CKEditor UI color can be adjusted from the module's option preferences <strong> Admin > CKEditor > Preferences</strong> to match the look and feel of a website or an application.
-            In order to define the color of the user interface, use the config.uiColor configuration setting which accepts an RGB color code.</p>
-        <p>The editor instance UI color was set by default to the theme RGB value.</p>
+        <ol>
+        <li><a href="https://ckeditor.com/cke4/builder" target="_blank" rel="noopener">
+            https://ckeditor.com/cke4/builder</a> <br>
+            Visit online builder to build CKEditor from scratch.
 
-        <p>Please note that this configuration option can only be used for editor skins that are compatible with the so-called "chameleon" feature, for example:</p>
+        <li><a href="https://ckeditor.com/cke4/builder/57716b5b5a8805ad4de22bb0e90b4f03" target="_blank" rel="noopener">
+            https://ckeditor.com/cke4/builder/57716b5b5a8805ad4de22bb0e90b4f03</a><br>
+            Visit online builder to build CKEditor, starting with the same setup as before.
 
-        <ul>
-            <li>Moono-Lisa</li>
-            <li>Moono</li>
-            <li>Kama</li>
-        </ul>
+        <li><a href="https://ckeditor.com/cke4/builder/download/57716b5b5a8805ad4de22bb0e90b4f03" target="_blank" rel="noopener">
+            https://ckeditor.com/cke4/builder/download/57716b5b5a8805ad4de22bb0e90b4f03</a><br>
+            Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
+        </ol>
 
-        <pre><code class="lang-smarty">&lt;{xoops_dhtmltarea editor=html}&gt;</code></pre>
-
-        <div class="tips">Note :<br>
-            Refer to the Setting Editor User Interface Color article to learn more about this feature :
-            <a href="https://ckeditor.com/docs/ckeditor4/latest/examples/uicolor.html" target="_blank">uicolor  ⭧</a>
+        <div class="confirm">Note :<br>
+            After download of CkEditor4 plugins update, merge the new files with module/ckeditor4/ckeditor<br>
+            The required plugins must be present to run with core modules!
         </div>
 
     </section>
-
-
-<hr>
-
 
     <section id="help-license">
 
@@ -870,7 +862,7 @@ ul.config-options {
             </tr>
             <tr>
                 <td>? Repository URL</td>
-                <td><a href="https://github.com/xoopscube/legacy" target="_blank">https://github.com/xoopscube/legacy ⭧</a></td>
+                <td><a href="https://github.com/xoopscube/ckeditor4" target="_blank">https://github.com/xoopscube/ckeditor4 ⭧</a></td>
             </tr>
             </tbody>
         </table>

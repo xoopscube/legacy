@@ -5,7 +5,7 @@
  * @version    2.3.1
  * @author     Other authors Nuno Luciano (aka gigamaster), 2020, XCL PHP7
  * @author     Naoki Sawada (aka nao-pon) <https://xoops.hypweb.net/>
- * @copyright  2005-2022 The XOOPSCube Project
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
  */
 
@@ -16,8 +16,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 // Manifesto.
 $modversion['dirname']      = "ckeditor4";
 $modversion['name']         = _MI_CKEDITOR4_LANG_CKEDITOR4;
-$modversion['version']      = '4.19.1';
-$modversion['description']  = 'v4.19.1 [ 2021-05-25 ] '._MI_CKEDITOR4_DESC_CKEDITOR4;
+$modversion['version']      = '4.19.2';
+$modversion['description']  = 'XCL 2.3.1rc '._MI_CKEDITOR4_DESC_CKEDITOR4;
 $modversion['author']       = "Naoki Sawada (aka nao-pon) https://xoops.hypweb.net";
 $modversion['credits']      = "Naoki Sawada (aka nao-pon). Nuno Luciano (aka gigamaster) XCL PHP7 ";
 $modversion['license']      = "GPL";
@@ -39,9 +39,7 @@ $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "admin/index.php";
 $modversion['adminmenu'] = "admin/menu.php";
 
-//
 // Public side control setting
-//
 $modversion['hasMain'] = 0;
 // $modversion['sub'][]['name'] = "";
 // $modversion['sub'][]['url'] = "";

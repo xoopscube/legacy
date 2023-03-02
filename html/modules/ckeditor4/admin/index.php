@@ -21,7 +21,7 @@ if (defined('LEGACY_BASE_VERSION')) {
 }
 ?>
     <div class="adminnavi">
-        <a href="<?php echo $dash ?>">Dashboard</a>
+        <a href="<?php echo $dash ?>"><?php echo _CPHOME ?></a>
         »» <span class="adminnaviTitle" aria-current="page"><a href="./index.php">CKEditor</a></span>
     </div>
 
