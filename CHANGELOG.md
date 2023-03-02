@@ -8,6 +8,39 @@ All notable changes to this project will be documented in this file.
 
 Refer please to repository Legacy Commits  
 
+## [2.3.1rc] 2023-03-02
+
+### Added 
+
+- Admin icons
+- Admin alert
+- Admin Navbar dropdown 
+- Admin Notify onchange
+- Anchor ip ban, close site, cool uri
+- Bootstrap 5.3.1
+
+### Changed
+
+- Admin Navbar
+- Admin Blocks
+- Admin Notifications
+- Admin Templates
+- Core modules templates
+
+### Fixed
+
+- CKEditor4 (index, help)
+- Admin Control Panel
+- Admin Dashboard
+
+
+### Removed
+
+- Removed unused style
+- Removed unused components
+- Removed X-Update ThemeFinder
+
+
 ## [2.3.1] 2023-02-20
 
 ### Changed
