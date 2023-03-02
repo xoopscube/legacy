@@ -2,7 +2,7 @@
 
 
 <div class="adminnavi">
-    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
   &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=UserList"><{$smarty.const._AD_USER_LANG_USER_LIST}></a></span>
 </div>
@@ -14,7 +14,7 @@
 <h2 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_LIST}></h2>
 
 <div class="tips">
-    <p><{$smarty.const._AD_USER_TIPS_USER_ADMIN}></p>
+    <{$smarty.const._AD_USER_TIPS_USER_ADMIN}>
 </div>
 
 
@@ -86,10 +86,14 @@
         <{include file="./components/user-card.html"}>
         <{/foreach}>
     </div>
-
-    <div class="foot-sticky" style="display: none">
-        <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+    
+    <div class="alert-submit" style="display: none">
+        <div class="danger">
+            <{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_CHANGES}>
+            <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+        </div>
     </div>
+
     <div class="ui-card-2-col">
         <span><input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>"></span>
         <span><{include file="./components/pagenavi.html"}></span>

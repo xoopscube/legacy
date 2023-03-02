@@ -2,7 +2,7 @@
 
 
 <div class="adminnavi">
-    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
     &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=UserSearch"><{$smarty.const._MI_USER_ADMENU_USER_SEARCH}></a></span>
 </div>
@@ -15,10 +15,7 @@
 
 
 <div class="tips">
-    <ul>
-        <li><{$smarty.const._AD_USER_TIPS_USER_SEARCH}></li>
-        <li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=user"><{$smarty.const._HELP}></a></li>
-    </ul>
+    <{$smarty.const._AD_USER_TIPS_USER_SEARCH}>
 </div>
 
 
