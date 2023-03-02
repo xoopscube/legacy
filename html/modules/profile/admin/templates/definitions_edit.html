@@ -1,5 +1,5 @@
 <div class="adminnavi">
-    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_PROFILE_LANG_PROFILE}></a>
     &raquo;&raquo; <a href="./index.php?action=DefinitionsList"><{$smarty.const._MI_PROFILE_LANG_DEFINITIONS_LIST}></a>
     <{if $actionForm->get('field_id')}>
@@ -19,15 +19,13 @@
 
 
 <div class="tips">
-	<ul>
-		<li><{$smarty.const._MD_PROFILE_LANG_FIELD_TIP1}></li>
-		<li><{$smarty.const._MD_PROFILE_LANG_FIELD_TIP2}></li>
-		<li><{$smarty.const._MD_PROFILE_LANG_FIELD_TIP3}></li>
-		<li><{$smarty.const._MD_PROFILE_LANG_FIELD_TIP4}></li>
-		<li><{$smarty.const._MD_PROFILE_LANG_FIELD_TIP5}></li>
-		<li><{$smarty.const._MD_PROFILE_LANG_FIELD_TIP6}></li>
-		<li><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&dirname=profile"><{$smarty.const._HELP}></a></li>
-	</ul>
+	<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP1}><br>
+	<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP2}><br>
+	<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP3}><br>
+	<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP4}><br>
+	<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP5}><br>
+	<{$smarty.const._MD_PROFILE_LANG_FIELD_TIP6}><br>
+	<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&dirname=profile"><{$smarty.const._HELP}></a>
 </div>
 
 

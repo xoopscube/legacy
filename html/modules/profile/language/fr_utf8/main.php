@@ -21,7 +21,7 @@ define( '_MD_PROFILE_ERROR_REQUIRED' , '{0} est requis.');
 
 define( '_MD_PROFILE_LANG_ACCESS' , 'Groupes avec droit d\'accès');
 define( '_MD_PROFILE_LANG_ADD_A_NEW_DATA' , 'Ajouter données');
-define( '_MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS' , 'Ajouter un champ');
+define( '_MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS' , 'Ajouter champ');
 define( '_MD_PROFILE_LANG_CANCEL' , 'Annuler');
 define( '_MD_PROFILE_LANG_CONTROL' , 'Action');
 define( '_MD_PROFILE_LANG_DATA_EDIT' , 'Éditer profil');

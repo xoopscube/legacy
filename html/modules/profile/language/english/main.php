@@ -20,8 +20,8 @@ define( '_MD_PROFILE_ERROR_OBJECTEXIST' , 'Incorrect input on {0}.');
 define( '_MD_PROFILE_ERROR_REQUIRED' , '{0} is required.');
 
 define( '_MD_PROFILE_LANG_ACCESS' , 'Access groups');
-define( '_MD_PROFILE_LANG_ADD_A_NEW_DATA' , 'Add a New Data');
-define( '_MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS' , 'Add a New Field');
+define( '_MD_PROFILE_LANG_ADD_A_NEW_DATA' , 'New Data');
+define( '_MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS' , 'New Field');
 define( '_MD_PROFILE_LANG_CANCEL' , 'Cancel');
 define( '_MD_PROFILE_LANG_CONTROL' , 'Action');
 define( '_MD_PROFILE_LANG_DATA_EDIT' , 'Edit profile');
