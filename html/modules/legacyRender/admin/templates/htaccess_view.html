@@ -1,5 +1,5 @@
 <div class="adminnavi">
-    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
     &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_HTACCESS}></span>
 </div>
@@ -21,12 +21,11 @@
 </section>
 <{* ----- / CONTROL-ACTION *}>
 
+<div class="tips">
+    <{$smarty.const._AD_LEGACYRENDER_DESC_HTACCESS}> <span>⭧</span>
+</div>
+
 <div class="ui-card-full">
-
-    <div class="tips">
-        <{$smarty.const._AD_LEGACYRENDER_DESC_HTACCESS}>
-    </div>
-
     <div>
 <textarea name="htaccess" style="width: 100%;" rows="20">
 RewriteEngine On
@@ -42,5 +41,4 @@ RewriteRule ^(\w+)/(\w+)/(\d+)/(.+)$ <{$xoops_module_path}>/$1/index.php?<{$data
 RewriteRule ^(\w+)\?(\w+=\w+)$ <{$xoops_module_path}>/$1/index.php?$2 [L,QSA]
 </textarea>
     </div>
-
 </div>

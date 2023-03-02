@@ -11,7 +11,7 @@
 // Esta tradução encontra-se licenciada sob a licença Creative Commons Attribution 2.5 Brazil.
 // Para ler uma cópia da licença, visite: http://creativecommons.org/licenses/by/2.5/br/
 // ********************************************************************************** //
-define( '_AD_LEGACYRENDER_DESC_HTACCESS' , "Se o recurso <q>MOD_REWRITE</q> do Apache estiver disponível em seu servidor, você poderá utilizar o arquivo de configuração .htaccess abaixo para gerar endereços WEB mais amigáves, curtos e fáceis de lembrar. Para isto, também é necessário habilitar a opção <q>COOL URI</q> nas <q><u><a href='".XOOPS_URL."/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1'>configurações principais</a></u></q> do módulo <q>Sistema</q>.");
+define( '_AD_LEGACYRENDER_DESC_HTACCESS' , "Se o seu servidor pode lidar com Apache mod_rewrite, você pode usar URIs personalizados salvando a configuração abaixo em um arquivo em public/.htaccess. Para isto, também é necessário habilitar a opção <q>COOL URI</q> do módulo <q>Sistema</q> <a href='".XOOPS_URL."/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1#cool-uri'>🆒 Painel de controle > Preferencias ⭧</a>");
 define( '_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_IMAGESET' , "Lamento, não foi possível gravar o conjunto de imagens '{0}'.");
 define( '_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_IMAGE_FILE' , "Lamento, não foi possível gravar a imagem '{0}'");
 define( '_AD_LEGACYRENDER_ERROR_COULD_NOT_SAVE_LINKTPLSET' , "Lamento, não foi possível gravar a informação da entre o conjunto de imagens e o conjunto do modelos."); // conferir

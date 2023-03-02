@@ -103,4 +103,4 @@ define( '_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2' , "You can easily change the t
 define( '_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD' , "If you don't input a name for your new template set, the name will be taken from the uploaded file. Note that XCL generates a TAR.GZ and you need to extract and upload only the TAR file.");
 define( '_AD_LEGACYRENDER_LANG_HTACCESS' , '.htaccess');
 define( '_AD_LEGACYRENDER_DESC_HTACCESS' , 'If your server can handle Apache mod_rewrite, you can use custom URIs by saving the settings  to a file in public/.htaccess<br>
-Cool URI must be enabled in the <a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">🆒 Control Panel > Settings </a>');
+Cool URI must be enabled in the <a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1#cool-uri">🆒 Control Panel > Settings ⭧</a>');

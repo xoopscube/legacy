@@ -98,3 +98,6 @@ define( '_AD_LEGACYRENDER_MESSAGE_UPLOAD_TEMPLATE_SUCCESS' , "Template envoyé a
 define( '_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_1' , "Personnaliser votre site en modifiant les Templates (gabarits). La première étape est de faire une copie (le clone) de l'Ensemble de Templates utilisé, et ensuite, modifier les fichiers de votre nouveau Ensemble de Templates. Pour en savoir plus, consultez l'aide. ");
 define( '_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2' , "Vous pouvez changer facilement l'Ensemble de Templates de votre site en cliquant sur le bouton 'Sélectionner' approprié. Pour en savoir plus, consultez l'aide.");
 define( '_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD' , "Si vous n'entrez pas un nom pour votre nouveau Ensemble de Templates, le nom sera celui du dossier téléchargé. Veuillez noter que XCL génère un TAR.GZ et que vous devez extraire et télécharger uniquement le fichier TAR.");
+define( '_AD_LEGACYRENDER_LANG_HTACCESS' , '.htaccess');
+define( '_AD_LEGACYRENDER_DESC_HTACCESS' , 'Si votre serveur peut gérer Apache mod_rewrite, vous pouvez utiliser des URI personnalisés en enregistrant les paramètres dans un fichier public/.htaccess<br>
+Cool URI doit être activé dans le <a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1#cool-uri">🆒 Panneau de contrôle > Paramètres ⭧</a>');
