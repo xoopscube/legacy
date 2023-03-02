@@ -1,0 +1,31 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<div class="m-3">
+
+<{if $block.showgroups == true}>
+
+    <{foreach item=group from=$block.groups}>
+    <div class="d-flex justify-content-between mb-3"><{$group.name}></div>
+
+        <{foreach item=user from=$group.users}>
+        <div class="d-flex justify-content-between mb-3">
+            <img src="<{$user.avatar}>" width="24px" alt="avatar">
+            <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>"><{$user.name}></a>
+            <{$user.msglink}>
+        </div>
+        <{/foreach}>
+
+    <{/foreach}>
+
+<{/if}>
+    <div class="d-flex justify-content-between mb-3"><img src="<{$block.logourl}>" alt="logo"></div>
+
+<{if $block.recoomendtime !=0}>
+    <div class="d-flex justify-content-between mb-3">
+        <a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=friend&amp;op=sendform&amp;t=<{$block.recoomendtime}>','friend',<{$block.popup_width}>,<{$block.popup_height}>)">
+            <{$smarty.const._MB_LEGACY_RECO}></a>
+    </div>
+<{/if}>
+
+</div>

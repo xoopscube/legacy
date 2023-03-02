@@ -1,0 +1,23 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<div class="m-3 block-search">
+
+    <form action="<{$xoops_url}>/search.php" method="get">
+        <{xoops_input type=hidden name=andor value=AND}>
+        <{xoops_input type=hidden name=action value=results}>
+<{*       <input type="search" id="search" name="search" placeholder="Search"> *}>
+        <label for="query">
+        <{* xoops_input type=text id=query name=query *}>
+            <{xoops_input class="form-control" type=search id=query name=query placeholder="`$smarty.const._MB_LEGACY_SEARCH`"}>
+        </label>
+
+        <p>
+            <a href="<{$xoops_url}>/search.php"><{$smarty.const._MB_LEGACY_ADVS}></a>
+        </p>
+
+    <input type="submit" role="button" class="btn btn-primary btn-sm" name="submit" value="<{$smarty.const._MB_LEGACY_SEARCH}>">
+
+    </form>
+
+</div>

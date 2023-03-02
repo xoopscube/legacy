@@ -1,0 +1,34 @@
+  <div style="<{$div_style}>">
+
+    <{if $module.name}>
+      <div>
+        <img src="<{$xoops_url}>/modules/sitemap/images/main.gif">
+        <a class="menuMain" href="<{$xoops_url}>/modules/<{$module.directory}>/"><{$module.name}></a>
+      </div>
+
+      <{foreach item=parent from=$module.parent}>
+        <div>
+          <img src="<{$xoops_url}>/modules/sitemap/images/cat.gif">
+          <a class="menuSub" href="<{$xoops_url}>/modules/<{$module.directory}>/<{$parent.url}>"><{$parent.title}></a>
+        </div>
+
+        <{if $show_subcategoris}>
+          <{foreach item=child from=$parent.child}>
+            <div>
+              <img src="<{$xoops_url}>/modules/sitemap/images/cat<{$child.image}>.gif">
+              <a class="menuSub" href="<{$xoops_url}>/modules/<{$module.directory}>/<{$child.url}>"><{$child.title}></a></div>
+          <{/foreach}>
+        <{/if}>
+
+      <{/foreach}>
+
+      <{foreach item=sublink from=$module.sublinks}>
+        <div>
+          <img src="<{$xoops_url}>/modules/sitemap/images/sub.gif">
+          <a class="menuSub" href="<{$sublink.url}>"><{$sublink.name}></a>
+        </div>
+      <{/foreach}>
+
+    <{/if}>
+
+  </div>

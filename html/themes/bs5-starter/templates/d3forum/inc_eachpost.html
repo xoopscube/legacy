@@ -1,0 +1,293 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<div class="card my-4">
+
+    <div class="card-header d-flex flex-wrap justify-content-between">
+
+        <span class="fs-4">
+        <{if $post.invisible || ! $post.approval}>
+        <{if $post.invisible}><span class="mt-0 small"> invisible</span>
+        <{elseif !$post.approval}><span class="mt-0 small"> yetapproval</span><{/if}>
+        <{/if}>
+            <a class="mr-1" id="post_id<{$post.id}>" title="<{$icon_meanings[$post.icon]}>">
+                <img class="svg" src="<{$xoops_url}>/images/icons/posticon<{$post.icon}>.svg" width="1em" height="1em" alt=""></a>
+            <{if $caller == 'listposts'}>
+            <a href="<{$mod_url}>/index.php?post_id=<{$post.id}>" id="post_path<{$post.unique_path}>"><{$post.subject}></a>
+            <{else}>
+                <{$post.subject}>
+            <{/if}>
+        </span>
+
+        <{* ------- Date and history revision *}>
+
+        <div class="d-inline">
+            <span class="small me-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+            <path d="M15 13h1.5v2.82l2.44 1.41l-.75 1.3L15 16.69V13m4-5H5v11h4.67c-.43-.91-.67-1.93-.67-3a7 7 0 0 1 7-7c1.07 0 2.09.24 3 .67V8M5 21a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2H5m11-9.85A4.85 4.85 0 0 0 11.15 16c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 20.85 16c0-2.68-2.17-4.85-4.85-4.85z" fill="currentColor"/>
+            </svg> <{$smarty.const._MD_D3FORUM_ON}> <{$post.post_time_formatted}> </span>
+
+            <{if $post.post_time < $post.modified_time and $xoops_isadmin}>
+            <a tabindex="0" class="post_history"
+               role="button"
+               data-bs-toggle="popover"
+               data-bs-trigger="focus"
+               data-bs-placement="bottom"
+               data-bs-html="true"
+               data-bs-sanitize="false"
+               data-bs-title="<{$smarty.const._MD_D3FORUM_HISTORIES}>"
+               data-bs-content="<a href='<{$mod_url}>/admin/index.php?page=post_histories&amp;post_id=<{$post.id}>'}><{$smarty.const._MD_D3FORUM_LASTMODIFIED}><br><{$post.modified_time_formatted}></a>">
+                <svg class="clock-history" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+                    <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+                    <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+            </a>
+            <{/if}>
+
+        </div><{* ------- Date and history revision *}>
+
+    </div><{* -- /card header *}>
+
+    <div class="card-body">
+
+        <{* ------- POSTER - USER AVATAR *}>
+        <div class="row g-3 mb-3">
+
+            <div class="col-sm">
+                <div class="d-flex align-content-between flex-wrap">
+                <{if $post.poster_avatar}>
+                    <{if $post.poster_uid != 0}>
+                    <a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>" title="<{$post.poster_uname}>" class="me-2">
+                    <{/if}>
+                        <{if $post.poster_avatar.height > 80}>
+                        <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" height="24px" alt="<{$post.poster_uname}>" class="rounded-circle mr-3">
+                        <{elseif $post.poster_avatar.width > 1}>
+                        <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="<{$post.poster_uname}>" class="rounded-circle mr-3">
+                        <{else}>
+                        <img src="<{$xoops_url}>/uploads/no_avatar.gif" width="1em" alt="<{$post.poster_uname}>" class="rounded-circle mr-3">
+                        <{/if}>
+                    <{if $post.poster_uid != 0}>
+                    </a>
+                    <{/if}>
+                <{/if}>
+
+                <{* ------- poster info *}>
+                <div class="itemInfo">
+                    <{if $post.poster_uid !=0}>
+                    <a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>"><{/if}>
+                        <{$post.poster_uname}>
+                        <{if $post.poster_uid !=0}></a>
+                    <{/if}>
+
+                    <small>
+                    <{if $post.poster_uid !=0}>
+
+                    <{if $post.poster_rank_title}>
+                    <img src="<{$xoops_upload_url}>/<{$post.poster_rank_image}>" alt="<{$post.poster_rank_title}>" title="<{$post.poster_rank_title}>">
+                    <{/if}>
+
+                    <{* <{$smarty.const._MD_D3FORUM_POSTERJOINED}>: <span class="badge text-bg-secondary"><{$post.poster_regdate_formatted}></span> *}>
+
+                    <{if $post.poster_from}>
+                    <{$smarty.const._MD_D3FORUM_POSTERFROM}> <span class="badge text-bg-secondary"><{$post.poster_from}></span>
+                    <{/if}>
+
+                    <{$smarty.const._MD_D3FORUM_POSTERPOSTS}> <span class="badge text-bg-secondary"><{$post.poster_posts_count}></span>
+
+                    <{if $post.poster_is_online}>
+                    <span class="badge text-bg-secondary"><{$smarty.const._MD_D3FORUM_POSTERISONLINE}></span>
+                    <{/if}>
+
+                    <{else}>
+
+                        <{if $post.guest_url || $post.guest_trip}>
+                        <{$post.guest_email}>
+                        <{if $post.guest_url}><a href="<{$post.guest_url}>" title="<{$post.guest_url}>"><{$smarty.const._MD_D3FORUM_TH_GUESTURL}></a><{/if}>
+                        <{if $post.guest_trip}><{$smarty.const._MD_D3FORUM_TH_GUESTTRIP}>: <{$post.guest_trip}><{/if}>
+                        <{/if}>
+
+                        <{/if}>
+                    </small>
+                </div><{* ------- /poster info *}>
+
+                </div><{* ------- /d-flex *}>
+            </div><{* ------- /col-sm *}>
+
+            <div class="col-sm text-end">
+                <span class="badge text-bg-secondary"><{$smarty.const._MD_D3FORUM_UNIQUEPATHPREFIX}> <{$post.unique_path}></span>
+
+                <{if $postorder < 2 || $caller == 'viewpost'}>
+                <span class="badge text-bg-secondary d3f_head_tree_depth">depth: <{$post.depth_in_tree}></span>
+                <{/if}>
+            </div>
+
+        </div><{* ------- /poster avatar *}>
+
+
+    <hr class="my-4">
+
+
+    <{* ------- POST - COMMENT *}>
+    <div class="card-text"><{$post.post_text}></div>
+
+        <{if $post.signature}>
+        <div>-- <br><{$post.signature}></div>
+        <{/if}>
+
+
+    <hr class="my-3">
+
+
+    <{* ------- POST NAVIGATION : PARENT-CHILD & PREVIOUS-NEXT *}>
+    <div class="d-flex flex-row justify-content-end btn-toolbar" role="toolbar" aria-label="Toolbar with nav topic">
+
+        <{* ------- Previous and next *}>
+        <div class="btn-group btn-group-sm" role="group" aria-label="Previous and Next Post">
+
+            <{if $post.prev_id}>
+            <a class="btn btn-outline-secondary" href="<{$post.prev_id|string_format:$inner_link_format}>">
+                <svg class="arrow-left-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.354 10.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L6.207 7.5H11a.5.5 0 0 1 0 1H6.207l2.147 2.146z"/>
+                </svg> <span class="d-none d-xl-inline"><{$smarty.const._MD_D3FORUM_LINK_PREVPOST}></span></a>
+            <{else}>
+            <button type="button" class="btn btn-outline-secondary" disabled>
+                <svg class="arrow-left-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                    <path fill-rule="evenodd" d="M8.354 11.354a.5.5 0 0 0 0-.708L5.707 8l2.647-2.646a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708 0z"/>
+                    <path fill-rule="evenodd" d="M11.5 8a.5.5 0 0 0-.5-.5H6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5z"/>
+                </svg> <span class="d-none d-xl-inline"><{$smarty.const._MD_D3FORUM_LINK_PREVPOST}></span></button>
+            <{/if}>
+
+            <{if $post.next_id}>
+            <a class="btn btn-outline-secondary" href="<{$post.next_id|string_format:$inner_link_format}>">
+                <svg class="arrow-right-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm5.646 10.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L9.793 7.5H5a.5.5 0 0 0 0 1h4.793l-2.147 2.146z"/>
+                </svg> <span class="d-none d-xl-inline"><{$smarty.const._MD_D3FORUM_LINK_NEXTPOST}></span></a>
+            <{else}>
+            <button type="button" class="btn btn-outline-secondary" disabled>
+                <svg class="arrow-right-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                    <path fill-rule="evenodd" d="M7.646 11.354a.5.5 0 0 1 0-.708L10.293 8 7.646 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z"/>
+                    <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+                </svg> <span class="d-none d-xl-inline"><{$smarty.const._MD_D3FORUM_LINK_NEXTPOST}></span></button>
+            <{/if}>
+            <{* ------- / Previous and next *}>
+
+
+            <{* ------- PARENT AND CHILD
+                SHOW ONLY BUTTON + DROPDOWN IF POST ORDER = TREE ORDER
+                THE LINKS ARE NOT AVAILABLE IN OLDER VIEW NOR NEWEST VIEW
+                tree order   : $postorder==0
+                older first  : $postorder==2
+                newest first : $postorder==3
+                ------- *}>
+
+            <{if $postorder ==0}>
+                <{if $post.pid}>
+                <a class="btn btn-outline-secondary" href="<{$post.pid|string_format:$inner_link_format}>">
+                    <svg class="arrow-up-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
+                    </svg> <{$smarty.const._MD_D3FORUM_PARENTPOST}></a>
+                <{else}>
+                <button type="button" class="btn btn-outline-secondary" disabled>
+                    <svg class="arrow-up-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        <path fill-rule="evenodd" d="M4.646 8.354a.5.5 0 0 0 .708 0L8 5.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 0 0 0 .708z"/>
+                        <path fill-rule="evenodd" d="M8 11.5a.5.5 0 0 0 .5-.5V6a.5.5 0 0 0-1 0v5a.5.5 0 0 0 .5.5z"/>
+                    </svg> <{$smarty.const._MD_D3FORUM_PARENTPOST}></button>
+                <{/if}>
+
+                <{if $post.first_child_id}>
+                <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" id="post_<{$post.pid}>" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually--hidden"><svg class="arrow-down-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
+                        </svg> <{$smarty.const._MD_D3FORUM_CHILDPOSTS}></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="post_<{$post.pid}>">
+                    <{foreach from=$post.f1s key="f1_id" item="f1_leaf_number" name="f1_loop"}>
+                    <li><a class="dropdown-item" href="<{$f1_id|string_format:$inner_link_format}>">
+                        <{if $smarty.foreach.f1_loop.first}><{$smarty.const._MD_D3FORUM_CHILDPOSTS}><{/if}><{$f1_leaf_number}></a>
+                    </li>
+                    <{/foreach}>
+                </ul>
+
+                <{else}>
+                <button type="button" class="btn btn-outline-secondary" disabled>
+                    <svg class="arrow-down-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        <path fill-rule="evenodd" d="M4.646 7.646a.5.5 0 0 1 .708 0L8 10.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
+                        <path fill-rule="evenodd" d="M8 4.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5z"/>
+                    </svg> <{$smarty.const._MD_D3FORUM_NOCHILDPOSTS}></button>
+                <{/if}>
+            <{/if}>
+
+            </div><{* ------- /Previous-next post parent-child *}>
+
+        </div><{* ------- /Toolbar nav Topic *}>
+
+
+
+    </div><{* ------- /card body *}>
+
+    <div class="card-footer py-3">
+        <div class="d-flex justify-content-between align-items-center" aria-label="Post vote action">
+
+        <{* /////// INCLUDE VOTE \\\\\\\ *}>
+        <{if $post.can_vote || $mod_config.use_vote && ! $post.invisible && $post.approval}>
+        <{include file="db:`$mydirname`_inc_vote.html"}>
+        <{/if}>
+
+        <{* ------- Admin or Moderator *}>
+        <div class="tex-sm-end" aria-label="Post actions">
+
+            <{if $forum.isadminormod}>
+            <a class="btn btn-outline-secondary btn-sm" href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post.id}>">
+                <svg class="tools" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .419.815v.07a1 1 0 0 0 .293.708L10.5 9.5l.914-.305a1 1 0 0 1 1.023.242l3.356 3.356a1 1 0 0 1 0 1.414l-1.586 1.586a1 1 0 0 1-1.414 0l-3.356-3.356a1 1 0 0 1-.242-1.023L9.5 10.5 3.793 4.793a1 1 0 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z"/>
+                    <path fill-rule="evenodd" d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/>
+                </svg> <span class="d-none d-xl-inline"><{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}></span></a>
+            <{/if}>
+
+            <{if !$post.approval && $forum.isadminormod}>
+            <a class="btn btn-outline-secondary btn-sm" href="<{$mod_url}>/index.php?page=update_post_approval&amp;post_id=<{$post.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>">
+                <svg class="check2-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M15.354 2.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L8 9.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                    <path fill-rule="evenodd" d="M1.5 13A1.5 1.5 0 0 0 3 14.5h10a1.5 1.5 0 0 0 1.5-1.5V8a.5.5 0 0 0-1 0v5a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h8a.5.5 0 0 0 0-1H3A1.5 1.5 0 0 0 1.5 3v10z"/>
+                </svg> <span class="d-none d-xl-inline"><{$smarty.const._MD_D3FORUM_LABEL_DOAPPROVAL}></span></a>
+            <{/if}>
+
+            <{if $post.can_delete}>
+            <a class="btn btn-outline-danger btn-sm" href="<{$mod_url}>/index.php?page=delete&amp;post_id=<{$post.id}>">
+                <svg class="trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg> <span class="d-none d-xl-inline"><{$smarty.const._MD_D3FORUM_POSTDELETE}></span></a>
+            <{/if}>
+
+            <{if $post.can_edit}>
+            <a class="btn btn-outline-secondary btn-sm" href="<{$mod_url}>/index.php?page=edit&amp;post_id=<{$post.id}>">
+                <svg class="pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                </svg> <span class="d-none d-xl-inline"><{$smarty.const._MD_D3FORUM_POSTEDIT}></span></a>
+            <{/if}>
+
+            <{* ------- /Admin or Moderator *}>
+
+            <{* ------- Post Reply *}>
+            <{if $post.can_reply}>
+
+                <a class="btn btn-primary btn-sm" href="<{$mod_url}>/index.php?page=reply&amp;post_id=<{$post.id}>">
+                    <svg class="reply" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M9.502 5.013a.144.144 0 0 0-.202.134V6.3a.5.5 0 0 1-.5.5c-.667 0-2.013.005-3.3.822-.984.624-1.99 1.76-2.595 3.876C3.925 10.515 5.09 9.982 6.11 9.7a8.741 8.741 0 0 1 1.921-.306 7.403 7.403 0 0 1 .798.008h.013l.005.001h.001L8.8 9.9l.05-.498a.5.5 0 0 1 .45.498v1.153c0 .108.11.176.202.134l3.984-2.933a.494.494 0 0 1 .042-.028.147.147 0 0 0 0-.252.494.494 0 0 1-.042-.028L9.502 5.013zM8.3 10.386a7.745 7.745 0 0 0-1.923.277c-1.326.368-2.896 1.201-3.94 3.08a.5.5 0 0 1-.933-.305c.464-3.71 1.886-5.662 3.46-6.66 1.245-.79 2.527-.942 3.336-.971v-.66a1.144 1.144 0 0 1 1.767-.96l3.994 2.94a1.147 1.147 0 0 1 0 1.946l-3.994 2.94a1.144 1.144 0 0 1-1.767-.96v-.667z"/>
+                    </svg> <{$smarty.const._MD_D3FORUM_POSTREPLY}></a>
+
+            <{/if}>
+        </div>
+        <{* ------- /Post Reply *}>
+
+        </div>
+    </div><{* ------- /card footer *}>
+
+</div>

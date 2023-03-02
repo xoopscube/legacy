@@ -1,0 +1,53 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="house mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+            </svg></a></li>
+        <li class="breadcrumb-item"><{$smarty.const._MD_USER_LANG_PROFILE}></li>
+        <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._MD_USER_LANG_ALLABOUT|replace:"%s":$thisUser->getShow('uname')}></li>
+    </ol>
+</nav>
+
+
+<h4><{$smarty.const._MD_USER_LANG_ALLABOUT|replace:"%s":$thisUser->getShow('uname')}></h4>
+
+
+<div class="row">
+
+    <{* ------- User profile column with user-data *}>
+    <{include file="$xoops_theme/templates/user/inc_user_nav_left.html"}>
+
+
+    <{* ------- User profile column with tabs *}>
+    <div class="col-lg-8 col-md-7">
+
+        <div class="card">
+
+            <{* ------- Nav Tabs *}>
+            <{include file="$xoops_theme/templates/user/inc_user_nav_tabs.html"}>
+
+
+            <{* ------- User profile tab-panel *}>
+
+                <div class="tab-content" id="myTabContent">
+
+                <{* ------- Tab-panel User Home *}>
+                <{include file="$xoops_theme/templates/user/inc_user_tab_home.html"}>
+
+                <{* ------- Tab Profile *}>
+                <{include file="$xoops_theme/templates/user/inc_user_tab_profile.html"}>
+
+                </div>
+                <{* ------- /tab-content *}>
+
+
+        </div><{* ------- /card *}>
+
+    </div><{* ------- /Columns *}>
+
+</div><{* ------- /Row *}>

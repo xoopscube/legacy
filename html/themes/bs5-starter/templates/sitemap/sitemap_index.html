@@ -1,0 +1,34 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{strip}>
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="<{$xoops_url}>/"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt="index"></a>
+        </li>
+        <li class="breadcrumb-item" aria-current="page"><{$smarty.const._MI_SITEMAP_NAME}></li>
+    </ol>
+</nav>
+
+<article class="sitemap">
+    <h3><img class="svg" src="<{$xoops_url}>/modules/sitemap/images/sitemap.svg" width="1em" alt="<{$smarty.const._MD_SITEMAP_HOME}>"> <{$smarty.const._MI_SITEMAP_NAME}>
+        <{if $xoops_isadmin}><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&amp;dirname=sitemap" data-tooltip="<{$smarty.const._EDIT}>">
+        <img class="svg" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="1em" alt="edit">
+        </a><{/if}>
+    </h3>
+    <{$msgs}>
+</article>
+
+<p>
+
+    <a role="button" class="outline" href="<{$xoops_url}>/">
+        <span><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt="site map"></span> <{$smarty.const._MD_SITEMAP_HOME}></a>
+</p>
+
+
+<{foreach name=i item=module from=$sitemap.modules}>
+<{include file="db:sitemap_inc_eachmodule.html" div_style="width:30%;float:left;margin:10px;"}>
+<{/foreach}>
+
+<{/strip}>

@@ -1,0 +1,181 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{if $mod_config.show_breadcrumbs}>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt="home"></a>
+        <li class="breadcrumb-item"><a href="<{$mod_url}>/index.php"><{$xoops_dirname|ucfirst}></a>
+        <li class="breadcrumb-item"><{$smarty.const._MD_D3FORUM_CATEGORYMANAGER}></li>
+        <li class="breadcrumb-item active" aria-current="page"><{$category.title}></li>
+    </ol>
+</nav>
+<{/if}>
+
+<form name="categoryform" id="categoryform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>"
+      method="post"
+      class="needs-validation" novalidate>
+<{$gticket_hidden}>
+
+<div class="card my-4">
+
+    <div class="card-header">
+
+        <h3><{$smarty.const._MD_D3FORUM_CATEGORYMANAGER}> - <{$formtitle}></h3>
+
+        <{if $xoops_isadmin}>
+        <p><a class="btn btn-primary btn-sm" href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>">
+            <svg class="lock-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <rect width="11" height="9" x="2.5" y="7" rx="2"/>
+                <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+            </svg> <{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}></a></p>
+        <{/if}>
+    </div>
+
+    <div class="card-body m-2">
+
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                <label for="category_title" class="form-label"><{$smarty.const._MD_D3FORUM_TH_CATEGORYTITLE}></label>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="title" id="category_title" maxlength="191" value="<{$category.title}>" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                <label for="category_desc" class="form-label"><{$smarty.const._MD_D3FORUM_TH_CATEGORYDESC}></label>
+            </div>
+            <div class="col-sm-8">
+                <textarea name="desc" class="form-control" id="category_desc" rows="5" required><{$category.desc}></textarea>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                <label for="category_pid" class="form-label"><{$smarty.const._MD_D3FORUM_TH_CATEGORYPARENT}></label>
+            </div>
+            <div class="col-sm-8">
+                <select name="pid" id="category_pid" class="form-select">
+                    <option value="">(<{$smarty.const._MD_D3FORUM_TOP}>)</option>
+                    <{$cat_jumpbox_options}>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                <label for="category_weight" class="form-label"><{$smarty.const._MD_D3FORUM_TH_CATEGORYWEIGHT}></label>
+            </div>
+            <div class="col-sm-2">
+                <input type="number"  class="form-control" name="weight" id="category_weight" size="4" maxlength="4" value="<{$category.weight}>">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                <img class="svg" src="<{$xoops_url}>/images/icons/tree.svg" width="1em" alt="tree">
+                <{$smarty.const._MD_D3FORUM_CHILDREN_COUNT}>
+            </div>
+            <div class="col-sm-2">
+                <span class="badge text-bg-secondary px-2"><{$children_count}></span>
+            </div>
+        </div>
+
+        <{* ----- CATEGORY BATCH ACTION *}>
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved1.svg" width="1em" alt="topic-solved">
+                <{$smarty.const._MD_D3FORUM_BATCH_ACTIONS}>
+            </div>
+            <div class="col-sm-8">
+                <input type="checkbox" class="form-check-input" name="batch_action_turnsolvedon" id="batch_action_turnsolvedon" value="1" onclick="if(this.checked){alert('<{$smarty.const._MD_D3FORUM_BA_MSG_CONFIRM}>');}">
+                <label for="batch_action_turnsolvedon" class="form-label"><{$smarty.const._MD_D3FORUM_BA_TURNSOLVEDON}></label>
+                <br><small><{$smarty.const._MD_D3FORUM_BATCH_ACTIONS_DESC}></small>
+            </div>
+        </div>
+
+        <{* ----- CATEGORY OPTIONS *}>
+        <div class="accordion accordion-flush" id="accordionCategoryOptions">
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingCategoryOptions">
+                    <button class="accordion-button collapsed border rounded bg-light-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#categoryOptions" aria-expanded="false" aria-controls="categoryOptions">
+                        <{$smarty.const._MD_D3FORUM_TH_CATEGORYOPTIONS}>
+                    </button>
+                </h3>
+                <div id="categoryOptions" class="accordion-collapse collapse" aria-labelledby="headingCategoryOptions" data-bs-parent="#accordionCategoryOptions">
+                    <div class="accordion-body">
+                        <textarea class="form-control" name="options" id="category_options" rows="5"><{$category.options}></textarea>
+                        <br>
+                        <{* CONSTANT LANGUAGE WITH CUSTOM HTML
+                        trust_path/modules/d3forum/language/english/main-php
+                        ------- paragraph + code + br *}>
+                        <{$smarty.const._MD_D3FORUM_HOWTO_OVERRIDEOPTIONS}>
+                        <code class="category_option_desc"><{$category.option_desc}></code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card-footer py-3">
+
+        <div class="d-flex justify-content-between">
+            <{if $page == 'categorymanager' && $children_count == 0}>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                <svg class="trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg> <{$smarty.const._DELETE}>
+            </button>
+            <{/if}>
+            <button class="btn btn-primary" type="submit" name="categoryman_post">
+                <svg class="check" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+                </svg> <{$smarty.const._SUBMIT}></button>
+        </div>
+
+    </div>
+
+</div>
+
+<{* MODAL MUST BE WITHIN FORM *}>
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><{$smarty.const._DELETE}></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger" name="categoryman_delete">
+                    <svg class="trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg> <{$smarty.const._DELETE}></button>
+            </div>
+        </div>
+    </div>
+</div>
+<{* /MODAL MUST BE WITHIN FORM *}>
+
+</form>
+
+<!-- Start Form Vaidation JavaScript //-->
+<script type="text/javascript">
+<!--//
+function xoopsFormValidate_categoryform() {
+	myform = window.document.categoryform;
+	if ( myform.title.value == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_TH_CATEGORYTITLE|string_format:$smarty.const._FORM_ENTER}>"); myform.title.focus(); return false; }
+	return true;
+}
+//--></script>
+<!-- End Form Vaidation JavaScript //-->
+
+<!-- end module contents -->

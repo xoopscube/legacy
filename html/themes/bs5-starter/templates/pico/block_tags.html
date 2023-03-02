@@ -1,0 +1,10 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<ul class="pico_block_tags">
+	<{foreach from=$block.tags item=tag}>
+		<li style="<{if $tag.rank < $block.tagsnum/3.0}>font-size:larger;<{/if}>">
+			<a href="<{$block.mod_url}>/index.php?tag=<{$tag.label|escape:"url"}>"><{$tag.label|escape}></a>
+		</li>
+	<{/foreach}>
+</ul>

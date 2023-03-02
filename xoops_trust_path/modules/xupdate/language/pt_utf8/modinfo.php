@@ -43,7 +43,7 @@ define( '_MI_XUPDATE_INSTALL_MSG_UPDATE_FINISHED' , 'Module update is finished.'
 define( '_MI_XUPDATE_INSTALL_ERROR_UPDATE_FINISHED' , 'Module could not updated.');
 define( '_MI_XUPDATE_INSTALL_MSG_MODULE_UPDATED' , 'Module \'{0}\' is updated.');
 define( '_MI_XUPDATE_INSTALL_ERROR_MODULE_UPDATED' , 'Module \'{0}\' could not updated.');
-define( '_MI_XUPDATE_LANG_XUPDATE' , 'X-Update Store');
+define( '_MI_XUPDATE_LANG_XUPDATE' , 'X-Update');
 define( '_MI_XUPDATE_DESC_XUPDATE' , 'X-Update Manager is a user-friendly interface to deploy and manage the core system, modules, themes and preloads (plugin extension). You can add, update, disable and uninstall from a web interface to customize your web application platform.');
 define( '_MI_XUPDATE_LANG_AUTHOR' , 'Naao, Domifara, Nao-pon, Gigamaster(XCL2.3)');
 define( '_MI_XUPDATE_LANG_CREDITS' , 'CREDITS');

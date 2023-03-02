@@ -1,0 +1,30 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<input type="hidden" name="options[0]" value="<{$mydirname}>">
+
+<p>
+	<label for="limit"><{$smarty.const._MB_PICO_TAGSNUM}></label>:
+	<input type="text" size="20" name="options[1]" id="limit" value="<{$limit}>">
+</p>
+
+<p>
+	<label for="listorder"><{$smarty.const._MB_PICO_TAGSLISTORDER}></label>:
+	<select name="options[2]" id="listorder">
+		<{html_options options=$order_options selected=$listorder}>
+	</select>
+</p>
+
+<p>
+	<label for="sqlorder"><{$smarty.const._MB_PICO_TAGSSQLORDER}></label>:
+	<select name="options[3]" id="sqlorder">
+		<{html_options options=$order_options selected=$sqlorder}>
+	</select>
+</p>
+
+<p>
+	<label for="this_template"><{$smarty.const._MB_PICO_THISTEMPLATE}></label>:
+	<input type="text" size="60" name="options[4]" id="this_template" value="<{$this_template|escape}>">
+	<a href="<{$xoops_url}>/modules/<{$mydirname}>/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=<{$this_template|escape}>"><{$smarty.const._EDIT}></a>
+</p>
+

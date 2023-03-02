@@ -1,0 +1,60 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav role="breadcrumb">
+    <ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<{$xoops_url}>/">
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
+    <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._SR_SEARCH}>
+</ul>
+</nav>
+
+<form action="<{$smarty.const.XOOPS_URL}>/search.php" method="get">
+    <{xoops_input type=hidden name=action value=results}>
+
+<article class="search-form">
+<header>
+    <h2><{$smarty.const._SR_SEARCH}></h2>
+</header>
+    <{if $actionForm->hasError()}>
+    <div class="alert error">
+        <ul>
+            <{foreach item=message from=$actionForm->getErrorMessages()}>
+            <li><{$message|xoops_escape}></li>
+            <{/foreach}>
+        </ul>
+    </div>
+    <{/if}>
+
+    <label for="query">
+    <{$smarty.const._SR_KEYWORDS}>
+    <{xoops_input type=text id="query name=query size=32 maxlength=191 value=$actionForm->get('query')}>
+    </label>
+    <p><small aria-label="<{$smarty.const._SR_SEARCHRULE}>">* <{$searchRuleMessage}></small></p>
+
+
+    <label for="andor">
+    <{$smarty.const._SR_TYPE}>
+    <select name="andor">
+    <option id="andor_AND" value="AND" <{if $actionForm->get('andor') == 'AND'}>selected="selected"<{/if}>><{$smarty.const._SR_ALL}></option>
+    <option id="andor_OR" value="OR" <{if $actionForm->get('andor') == 'OR'}>selected="selected"<{/if}>><{$smarty.const._SR_ANY}></option>
+    <option id="andor_exact" value="exact" <{if $actionForm->get('andor') == 'exact'}>selected="selected"<{/if}>><{$smarty.const._SR_EXACT}></option>
+    </select>
+    </label>
+
+
+    <h4><{$smarty.const._SR_SEARCHIN}></h4>
+
+
+    <{foreach item=module from=$moduleArr}>
+        <label for="mids[]">
+            <input type="checkbox" name="mids[]" value="<{$module.mid|xoops_escape:plain}>" <{if in_array($module.mid, $selectedMidArr)}>checked="checked"<{/if}>><{$module.name|xoops_escape}>
+        </label>
+    <{/foreach}>
+
+    <footer>
+    <input type="submit" role="button" class="primary" value="<{$smarty.const._SR_SEARCH}>">
+    </footer>
+
+</article>
+</form>

@@ -1,0 +1,37 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav aria-label="breadcrumb">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/">
+            <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a></li>
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/user.php">Profile</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._NOT_ACTIVENOTIFICATIONS}></li>
+    </ul>
+</nav>
+
+<form action="notifications.php" method="post">
+    <{xoops_token form=$actionForm}>
+    <{xoops_input type=hidden name=delete value=1}>
+
+    <div class="card my-4 alert alert-danger">
+
+        <h3>
+            <img class="svg bell" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em"
+                 alt="notification"> <{$smarty.const._NOT_DELETINGNOTIFICATIONS}>
+        </h3>
+
+        <{foreach item=ids from=$actionForm->mNotifiyIds}>
+        <input type="hidden" name="del_not[<{$ids.modid|xoops_escape:plain}>][]" value="<{$ids.id|xoops_escape:plain}>">
+        <{/foreach}>
+
+        <hr class="my-4">
+
+        <p>
+        <input type="button" role="button" class="btn btn-secondary cancel" name="confirm_back" value="<{$smarty.const._CANCEL}>"
+               onclick="javascript:history.go(-1);">
+            <input type="submit" role="button" class="btn btn-danger delete" name="delete" value="<{$smarty.const._DELETE}>">
+        </p>
+
+    </div>
+</form>

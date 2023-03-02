@@ -1,0 +1,16 @@
+<{* ---------- Block-Right *}>
+<{foreach item=block from=$xoops_rblocks}>
+<{if !$block.title|strstr:"admin-" && !$block.title|strstr:"hero-" && !$block.title|strstr:"panel-"}>
+<div class="block-right my-4 b-<{$block.weight}>">
+    <h5 class="block-title d-flex justify-content-between">
+        <{if $xoops_isadmin}>
+        <{$block.title}>
+        <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+        <{else}>
+        <{if !$block.title|strstr:"none"}><{$block.title}><{/if}>
+        <{/if}>
+    </h5>
+    <div class="block-content"><{$block.content}></div>
+</div>
+<{/if}>
+<{/foreach}>

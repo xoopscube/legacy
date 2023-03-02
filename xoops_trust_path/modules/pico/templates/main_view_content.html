@@ -140,6 +140,10 @@
 
 
     <div id="<{$mydirname}>_body" class="page-body">
+        <{if $content.ef.image}>
+        <img class="card-img-top img-fluid" style="height: 200px" src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_1_<{$content.ef.image|escape}>" alt="<{$content.subject}>">
+        <br>
+        <{/if}>
         <{$content.body}>
     </div>
 

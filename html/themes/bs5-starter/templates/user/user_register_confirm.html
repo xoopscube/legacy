@@ -1,0 +1,35 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/">
+            <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/register.php"><{$smarty.const._MD_USER_LANG_PROFILE}></a>
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/user.php"><{$smarty.const._MD_USER_LANG_USERREG}></a>
+        <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._MD_USER_LANG_REGISTER}>
+    </ol>
+</nav>
+
+<form action="#" method="post">
+    <div class="card my-4">
+        <div class="card-header">
+            <h3><{$smarty.const._MD_USER_LANG_REGISTER}></h3>
+        </div>
+        <div class="card-body">
+            <div class="col-sm-8 mb-3">
+                <label class="form-label"><{$smarty.const._MD_USER_LANG_NICKNAME}></label>
+                <input type="text" class="form-control" value="<{$registForm->get('uname')|xoops_escape}>" aria-label="Disabled read only" disabled readonly>
+                <{$registForm->get('uname')|xoops_escape}>
+            </div>
+            <div class="col-sm-8 mb-3">
+                <label class="form-label"><{$smarty.const._MD_USER_LANG_EMAIL}></label>
+                <input type="text" class="form-control" value="<{$registForm->get('email')|xoops_escape}>" aria-label="Disabled read only" disabled readonly>
+            </div>
+        </div>
+        <div class="card-footer">
+            <input type="submit" class="btn btn-secondary" value="<{$smarty.const._CANCEL}>" name="_form_control_cancel">
+            <input type="submit" class="btn btn-primary" value="<{$smarty.const._MD_USER_LANG_FINISH}>">
+        </div>
+    </div>
+</form>

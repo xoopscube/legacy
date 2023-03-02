@@ -1,0 +1,229 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{* /////// INCLUDE BREADCRUMB \\\\\\\ *}>
+<{if $mod_config.show_breadcrumbs}>
+<{include file="db:`$mydirname`_inc_breadcrumb.html"}>
+<{/if}>
+
+<form name="forumform" id="forumform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>&amp;forum_id=<{$forum.id}>"
+      method="post"
+      class="needs-validation" novalidate>
+
+<{$gticket_hidden}>
+
+<div class="card g-0 my-4">
+
+    <div class="card-header">
+
+        <h3><{$smarty.const._MD_D3FORUM_FORUMMANAGER}> - <{$formtitle}></h3>
+
+        <{* -----PERMISSIONS  *}>
+        <{if $xoops_isadmin}>
+            <p><a class="btn btn-primary btn-sm" href="<{$mod_url}>/admin/index.php?page=forum_access&amp;cat_id=<{$forum.id}>">
+                <svg class="lock-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="11" height="9" x="2.5" y="7" rx="2"/>
+                    <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                </svg> <{$smarty.const._MD_D3FORUM_LINK_FORUMACCESS}></a></p>
+        <{/if}>
+    </div>
+
+    <div class="card-body m-2">
+
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                <label class="form-label" for="forum_title"><{$smarty.const._MD_D3FORUM_TH_FORUMTITLE}></label>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="title" id="forum_title" maxlength="191" value="<{$forum.title}>" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                <label class="form-label" for="forum_desc"><{$smarty.const._MD_D3FORUM_TH_FORUMDESC}></label>
+            </div>
+            <div class="col-sm-8">
+                <textarea class="form-control" name="desc" id="forum_desc" rows="5" required><{$forum.desc}></textarea>
+            </div>
+        </div>
+
+    <{if !$xoops_isadmin}>
+    <input name="weight" id="forum_weight" value="<{$forum.weight}>" type="hidden">
+    <{/if}>
+
+    <{if $xoops_isadmin}>
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                <label class="form-label" for="cat_id"><{$smarty.const._MD_D3FORUM_CATEGORY}></label>
+            </div>
+            <div class="col-sm-8">
+                <{if $cat_jumpbox_options}>
+                <select class="form-select" name="cat_id" id="cat_id"><{$cat_jumpbox_options}></select>
+                <{else}>
+                <{$category.title}>
+                <input type="hidden" name="cat_id" value="<{$category.id}>">
+                <{/if}>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                <label class="form-label" for="forum_weight"><{$smarty.const._MD_D3FORUM_TH_FORUMWEIGHT}></label>
+            </div>
+            <div class="col-sm-2">
+                <input type="number" class="form-control" name="weight" id="forum_weight" size="4" maxlength="4" value="<{$forum.weight}>">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-4">
+        <label class="form-label" for="forum_external_link_format"><{$smarty.const._MD_D3FORUM_TH_EXTERNALLINKFORMAT}></label>
+            </div>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="external_link_format" id="forum_external_link_format" maxlength="191" value="<{$forum.external_link_format}>">
+                <small><{$smarty.const._MD_D3FORUM_HELP_EXTERNALLINKFORMAT}></small>
+            </div>
+        </div>
+
+        <{* ----- FORUM OPTIONS *}>
+        <div class="accordion accordion-flush" id="accordionForumOptions">
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="forum-headingOne">
+                    <button class="accordion-button collapsed border rounded bg-light-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#forum-options" aria-expanded="false" aria-controls="forum-options">
+                        <{$smarty.const._MD_D3FORUM_TH_FORUMOPTIONS}>
+                    </button>
+                </h3>
+                <div id="forum-options" class="accordion-collapse collapse" aria-labelledby="forum-headingOne" data-bs-parent="#accordionForumOptions">
+                    <div class="accordion-body">
+                        <textarea class="form-control" name="options" id="forum_options" rows="5"><{$forum.options}></textarea>
+                        <br>
+                        <{* CONSTANT LANGUAGE WITH CUSTOM HTML
+                        trust_path/modules/d3forum/language/english/main-php
+                        ------- paragraph + code + br *}>
+                        <{$smarty.const._MD_D3FORUM_HOWTO_OVERRIDEOPTIONS}>
+                        <code class="forumoptiondesc"><{$forum.option_desc}></code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <{/if}>
+
+    </div><{* ----- /card-body *}>
+
+    <div class="card-footer py-3">
+
+        <div class="d-flex justify-content-between">
+            <{if $page == 'forummanager'}>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                <{$smarty.const._DELETE}>
+            </button>
+            <{/if}>
+            <button class="btn btn-primary" type="submit" name="forumman_post">
+                <svg class="check" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
+                </svg> <{$smarty.const._SUBMIT}></button>
+        </div>
+
+    </div><{* ----- /card-footer *}>
+
+
+</div><{* ----- /card *}>
+
+<{* MODAL MUST BE WITHIN FORM *}>
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><{$smarty.const._DELETE}></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger" name="forumman_delete"><{$smarty.const._DELETE}></button>
+            </div>
+        </div>
+    </div>
+</div>
+<{* /MODAL MUST BE WITHIN FORM *}>
+
+</form>
+
+<{* ------- EXPORT FORUM MANAGER ------- *}>
+<{if $forum.id > 0 && $xoops_isadmin}>
+<form name="forummanager_export" id="forummanager_export" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>&amp;forum_id=<{$forum.id}>" method="post">
+    <{$gticket_hidden}>
+
+<div class="card my-4">
+
+    <div class="card-body m-2">
+
+        <h4><{$smarty.const._MD_D3FORUM_TOPIC_EXPORT}></h4>
+
+        <div class="alert alert-info my-4">
+            <{$smarty.const._MD_D3FORUM_TOPIC_EXPORT_DESC}>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="export_mid" class="form-label"><{$smarty.const._MD_D3FORUM_TOPIC_EXPORT_MODULE}></label>
+                <select class="form-select" name="export_mid" id="export_mid" onchange="d3forum_showhide_category_select(this);">
+                    <{html_options options=$export_to_module_options}>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label for="export_cat_id_0" class="form-label"><{$smarty.const._MD_D3FORUM_TOPIC_EXPORT_TARGET}></label>
+                <select class="form-select" name="export_cat_id[0]" id="export_cat_id_0">
+                    <option value="0">----</option>
+                </select>
+                <{foreach from=$export_to_cat_options key="ex_cat_id" item="ex_options"}>
+                <select class="form-select" name="export_cat_id[<{$ex_cat_id}>]" id="export_cat_id_<{$ex_cat_id}>">
+                    <option value="0">----</option>
+                    <{$ex_options}>
+                </select>
+                <{/foreach}>
+            </div>
+        </div><{* /row *}>
+
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <button class="btn btn-outline-primary w-100" type="submit" name="forumman_export_move"
+                        onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/file-move.svg" width="1em" alt="move">
+                    <{$smarty.const._MD_D3FORUM_BTN_MOVEFORUMTOOTHERFORUM}>
+                </button>
+            </div>
+            <div class="col-sm-6">
+                <button class="btn btn-outline-primary w-100" type="submit" name="forumman_export_copy"
+                        onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/file-copy.svg" width="1em" alt="copy">
+                    <{$smarty.const._MD_D3FORUM_BTN_COPYFORUMTOOTHERFORUM}>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+</form>
+<script type="text/javascript">
+d3forum_showhide_category_select( document.getElementById("export_cat_id_0") ) ;
+function d3forum_showhide_category_select(select)
+{
+	selected_val = select.options[select.selectedIndex].value ;
+	form = select.form ;
+	for( i = 0 ; i < form.elements.length ; i ++ ) {
+		if( form.elements[i].name.match(/export_cat_id/) ) {
+			if( form.elements[i].id == "export_cat_id_" + selected_val ) {
+				form.elements[i].style.display = "inline" ;
+			} else {
+				form.elements[i].style.display = "none" ;
+			}
+		}
+	}
+}
+</script>
+<{/if}>
+<{* ------- EXPORT FORUM MANAGER ------- *}>

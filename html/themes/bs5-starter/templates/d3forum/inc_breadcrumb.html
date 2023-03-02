@@ -1,0 +1,16 @@
+<nav aria-label="breadcrumb">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt="home"></a>
+        <li class="breadcrumb-item"><a href="<{$mod_url}>/index.php"><{$xoops_dirname|ucfirst}></a>
+        <{foreach from=$xoops_breadcrumbs key="i" item="bc"}>
+        <{if $i > 0}>
+        <{if $bc.url}>
+        <li class="breadcrumb-item"><a href="<{$bc.url}>"><{$bc.name|truncate:25}></a>
+            <{else}>
+        <li class="breadcrumb-item active" aria-current="page"><{$bc.name|truncate:30}>
+        <{/if}>
+        <{/if}>
+        <{/foreach}>
+        </li>
+    </ul>
+</nav>

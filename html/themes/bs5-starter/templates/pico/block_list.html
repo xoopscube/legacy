@@ -1,0 +1,20 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<ul class="pico_block_menu">
+	<{foreach from=$block.contents item=content}>
+		<li>
+			<a href="<{$block.mod_url}>/<{$content.link}>">
+				<{$content.subject}>
+				&nbsp;
+				(<{$content.cat_title}>)
+				&nbsp;
+				<{$content.created_time_formatted}>
+			</a>
+			<{if $block.display_body && $content.body}>
+				<br>
+				<{$content.body|strip_tags|truncate:"100"}>
+			<{/if}>
+		</li>
+	<{/foreach}>
+</ul>

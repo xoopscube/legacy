@@ -1,0 +1,46 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<form action="<{$xoops_url}>/user.php" method="post">
+
+    <div class="my-3 px-3">
+        <label for="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX}>block_uname"><{$smarty.const._MB_USER_USERNAME}></label>
+        <{xoops_input type="text" class="form-control" name="uname" size="14" value="`$block.unamevalue`" maxlength="25" id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_uname"}>
+    </div>
+
+    <div class="mb-3 px-3">
+        <label for="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX}>block_pass"><{$smarty.const._MB_USER_PASSWORD}></label>
+        <{xoops_input type="password" class="form-control" name="pass" size="14" maxlength="32" id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_pass" placeholder="Password"}>
+    </div>
+
+    <div class="bg-dark text-white p-3">
+
+        <div class="form-check mb-3">
+            <{xoops_input class="form-check-input" type="checkbox" name="rememberme" id="rememberme" value="On"}>
+            <label class="form-check-label" for="rememberme">
+                <{$smarty.const._MB_USER_REMEMBERME}>
+            </label>
+        </div>
+
+        <span class="d-flex text-center mb-3">
+        <{xoops_input type="submit" class="w-75 btn btn-sm btn-primary mx-auto" name="submit" value="`$smarty.const._MB_USER_LOGIN`" id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_submit"}>
+        </span>
+
+        <{if $block.use_ssl == '1'}>
+        <p class="text-center mb-3">
+            <a href="javascript:openWithSelfMain('<{$block.sslloginlink}>', 'ssllogin', 300, 200);"><{$smarty.const._MB_USER_SECURE}></a>
+        </p>
+        <{/if}>
+
+        <p class="text-center mb-3">
+        <a href="<{$xoops_url}>/lostpass.php"><{$smarty.const._MB_USER_LOSTPASS}></a>
+        <{if $block.allow_register == '1'}>
+        &nbsp;|&nbsp; <a href="<{$xoops_url}>/register.php"><{$smarty.const._MB_USER_USERREG}></a>
+        </p>
+        <{/if}>
+
+
+    <input type="hidden" name="xoops_redirect" value="<{if $xoops_redirect}><{$xoops_redirect}><{else}><{$xoops_requesturi}><{/if}>">
+    <{xoops_input type=hidden name=op value=login id="`$smarty.const.XOOPS_INPUT_DEFID_PREFIX`block_op"}>
+    </div>
+</form>

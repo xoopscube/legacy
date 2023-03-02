@@ -1,0 +1,117 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="<{$xoops_url}>/userinfo.php?uid=<{$actionForm->get('uid')|xoops_escape}>">
+                    <svg class="folder mr-2" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z"/>
+                        <path fill-rule="evenodd" d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z"/>
+                    </svg> <{$smarty.const._MD_USER_LANG_PROFILE}></a>
+
+            <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}>( <{$actionForm->get('uid')|xoops_user:user_name}> )
+
+        </ol>
+    </nav>
+
+<div class="card">
+
+    <div class="card-header">
+        <h4><{$actionForm->get('uid')|xoops_user:user_name}> )<{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></h4>
+    </div>
+
+
+    <div class="card-body">
+
+        <{if $allowUpload}>
+
+        <form action="<{$xoops_url}>/edituser.php?op=avatarupload" method="post" enctype="multipart/form-data">
+            <{xoops_token form=$actionForm}>
+            <{xoops_input type=hidden name=uid value=$actionForm->get('uid')}>
+
+
+
+
+            <{if $actionForm->hasError()}>
+            <div class="alert alert-danger">
+                <ul>
+                    <{foreach item=message from=$actionForm->getErrorMessages()}>
+                    <li><{$message|xoops_escape}></li>
+                    <{/foreach}>
+                </ul>
+            </div>
+            <{/if}>
+
+
+            <{if $actionForm->get('uid')|xoops_user:user_avatar != "blank.gif"}>
+            <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$actionForm->get('uid')|xoops_user:user_avatar}>" alt="Avatar" title="Avatar">
+            <{else}>
+            <img src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" alt="No Avatar" title="No Avatar">
+            <{/if}>
+
+
+
+            <div class="alert alert-danger">
+                <p><{$smarty.const._MD_USER_MESSAGE_OLDDELETED}></p>
+            </div>
+
+            <p><{$smarty.const._MD_USER_LANG_AVATAR_WIDTH_HIGHT}>
+
+                <{$avatarWidth}> x <{$avatarHeight}> (px)</p>
+
+
+
+            <p><{$smarty.const._MD_USER_LANG_AVATAR_MAXFILESIZE}>
+
+                <{$avatarMaxfilesize|number_format}> (bytes)</p>
+
+
+
+            <p><{$smarty.const._MD_USER_LANG_AVATAR}>
+
+                <{xoops_input type=file name=uploadavatar size=30}></p>
+
+
+            <p><input type="submit" value="<{$smarty.const._SUBMIT}>" class="formButton"></p>
+
+
+        </form>
+        <{/if}>
+
+    </div>
+
+
+    <div class="card-footer py-3">
+        <form method="post" action="<{$xoops_url}>/edituser.php?op=avatarchoose">
+            <{xoops_token form=$avatarSelectForm}>
+            <{xoops_input type=hidden name=uid value=$avatarSelectForm->get('uid')}>
+            <table class="outer" style="text-align:center;">
+                <tr>
+                    <th colspan="4"><{$smarty.const._MD_USER_LANG_AVATAR_LIST}></th>
+                </tr>
+                <tr>
+                    <{foreach item=obj from=$systemAvatars}>
+                    <td class="<{cycle values="odd,even" name="class"}>" style="text-align:center;">
+                    <{if $obj->get('avatar_id') == 0}>
+                    <img src="<{$smarty.const.XOOPS_MODULE_URL}>/user/images/no_avatar.gif" alt="<{$obj->getShow('avatar_name')}>" title="<{$obj->getShow('avatar_name')}>"/><br />
+                    <{else}>
+                    <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('avatar_file')}>" alt="<{$obj->getShow('avatar_name')}>" title="<{$obj->getShow('avatar_name')}>"/><br />
+                    <{/if}>
+                    <{$obj->getShow('avatar_name')}><br />
+                    <input name="avatar_id[<{$obj->getShow('avatar_id')}>]" type="submit" value="<{$smarty.const._MD_USER_LANG_SELECT}>" />
+                    <{cycle name="table" values="</td>,</td>,</td>,</td></tr><tr>"}>
+                <{/foreach}>
+
+
+            </tr>
+            </table>
+
+
+        </form>
+    </div>
+
+</div>
+
+
+

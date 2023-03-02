@@ -1,0 +1,21 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/">
+            <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/register.php"><{$smarty.const._MD_USER_LANG_PROFILE}></a>
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/user.php"><{$smarty.const._MD_USER_LANG_USERREG}></a>
+        <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._MD_USER_LANG_REGISTER}>
+    </ol>
+</nav>
+
+<div class="card">
+    <div class="card-body">
+        <div class="alert alert-primary" role="alert">
+            <div><{$complete_message|xoops_escape}></div>
+        </div>
+    </div>
+</div>
+

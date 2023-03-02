@@ -43,7 +43,7 @@ define( '_MI_XUPDATE_INSTALL_MSG_UPDATE_FINISHED' , 'もじゅーるのあっぷ
 define( '_MI_XUPDATE_INSTALL_ERROR_UPDATE_FINISHED' , 'もじゅーるのあっぷでーとに失敗しました。');
 define( '_MI_XUPDATE_INSTALL_MSG_MODULE_UPDATED' , 'もじゅーる『{0}』をあっぷでーとしました。');
 define( '_MI_XUPDATE_INSTALL_ERROR_MODULE_UPDATED' , 'もじゅーる『{0}』があっぷでーとできませんでした。');
-define( '_MI_XUPDATE_LANG_XUPDATE' , '展開とアップデート');
+define( '_MI_XUPDATE_LANG_XUPDATE' , 'アップデート');
 define( '_MI_XUPDATE_DESC_XUPDATE' , 'モジュールの更新を手早く行えます');
 define( '_MI_XUPDATE_LANG_AUTHOR' , 'Naao, Domifara, Nao-pon, Gigamaster(XCL2.3)');
 define( '_MI_XUPDATE_LANG_CREDITS' , 'XCL Pack201X DISTRIBUTION TEAM, xoopscube.net');

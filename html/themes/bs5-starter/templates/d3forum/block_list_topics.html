@@ -1,0 +1,112 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{if $block.full_view == true}>
+<table class="table table-responsive table-hover">
+<thead>
+<tr class="text-center">
+	<th><{$block.lang_forum}></th>
+	<th><{$block.lang_topic}></th>
+	<th><{$block.lang_replies}></th>
+	<th><{$block.lang_views}></th>
+	<th colspan="2"><{$block.lang_lastpost}></th>
+</tr>
+</thead>
+<{foreach item=topic from=$block.topics}>
+<{strip}>
+<tr>
+	<td><a href="<{$block.mod_url}>/index.php?forum_id=<{$topic.forum_id}>"><{$topic.forum_title}></a></td>
+	<td>
+	<{if $block.current_topic_id == $topic.id}>
+    <span class="d3f_currenttopic">
+	<{else}>
+        <{* CUSTOM FORUMS ID *}>
+        <{* ----- <{if $topic.forum_id == 1}>
+            <a href="<{$xoops_url}>/modules/d3diary/detail.php?bid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+        <{elseif $topic.forum_id == 3}>
+            <a href="<{$xoops_url}>/modules/xpwiki/index.php?pgid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+        <{elseif $topic.forum_id == 8}>
+            <a href="<{$xoops_url}>/modules/pico/index.php?content_id=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+        <{elseif $topic.forum_id == 10}>
+            <a href="<{$xoops_url}>/modules/bulletin/index.php?page=article&storyid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+        <{else}> *}>
+            <a href="<{$block.mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>">
+        <{* <{/if}> ----- *}>
+	<{/if}>
+
+        <{* Display module block icon e.g. = <{$block.mod_imageurl}>//block_marked.svg *}>
+	<{if $topic.u2t_marked}><img class="svg me-1" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" alt="<{$block.lang_alt_marked}>"><{/if}>
+    <{if !$topic.solved}><img class="svg me-1" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" alt="<{$block.lang_alt_unsolved}>"><{/if}>
+
+	    <{* displays the last post's subject or topic title *}>
+	<{if $block.disp_last_subject }>
+	    <{$topic.last_subject}>
+	<{else}>
+	    <{$topic.title}>
+	<{/if}>
+	<{if $block.current_topic_id == $topic.id}></span><{else}></a><{/if}>
+
+	</td>
+	<td class="text-center"><{$topic.replies}></td>
+	<td class="text-center"><{$topic.views}></td>
+	<td class="text-center" nowrap="nowrap">
+	<{if $topic.guest_name}>
+		<{$topic.guest_name}>
+	<{else}>
+		<{$topic.last_uname}>
+	<{/if}>
+</td>
+    <td class="text-center" nowrap="nowrap"><small><{$topic.last_post_time_formatted}></small></td>
+</tr>
+<{/strip}>
+<{/foreach}>
+</table>
+
+<div style="text-align:right; padding: 5px;">
+<a href="<{$block.mod_url}>/index.php?page=search"><{$block.lang_linktosearch}></a>
+&nbsp;
+<{if is_numeric( $block.forums ) }>
+<a href="<{$block.mod_url}>/index.php?forum_id=<{$block.forums}>"><{$block.lang_linktolisttopics}></a>
+<{else}>
+<a href="<{$block.mod_url}>/index.php?cat_ids=<{$block.categories}>"><{$block.lang_linktolisttopics}></a>
+<{/if}>
+&nbsp;
+<{if is_numeric( $block.categories ) }>
+<a href="<{$block.mod_url}>/index.php?cat_id=<{$block.categories}>"><{$block.lang_linktolistforums}></a>
+&nbsp;
+<{/if}>
+<a href="<{$block.mod_url}>/index.php"><{$block.lang_linktolistcategories}></a>
+</div>
+
+
+<{else}>
+
+<ol style="padding:3px;margin:0;" class="d3f_eachbranch">
+<{foreach item=topic from=$block.topics}>
+	<li<{if $block.current_topic_id == $topic.id}> class="d3f_currenttopic d3f_block_currenttopic"<{/if}>>
+	<{if $block.current_topic_id != $topic.id}>
+    <{* <{if $topic.forum_id == 1}>
+        <a href="<{$xoops_url}>/modules/d3diary/detail.php?bid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+    <{elseif $topic.forum_id == 3}>
+        <a href="<{$xoops_url}>/modules/xpwiki/index.php?pgid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+    <{elseif $topic.forum_id == 8}>
+        <a href="<{$xoops_url}>/modules/pico/index.php?content_id=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+    <{elseif $topic.forum_id == 10}>
+        <a href="<{$xoops_url}>/modules/bulletin/index.php?page=article&storyid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
+    <{else}> *}>
+        <span><a href="<{$block.mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>">
+    <{* <{/if}> *}>
+    <{$topic.title}></a>(<{$topic.replies}>)
+    <{else}>
+    <span><{$topic.title}>(<{$topic.replies}>)
+    <{/if}>
+	<{if $topic.guest_name}>
+		<{$topic.guest_name}>
+	<{else}>
+		<{$topic.last_uname}>
+	<{/if}>
+ <{$topic.last_post_time_formatted}></span></li>
+<{/foreach}>
+</ol>
+
+<{/if}>

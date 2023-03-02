@@ -1,0 +1,18 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt="home"></a>
+        <li class="breadcrumb-item"><a href="<{$mod_url}>/index.php"><{$xoops_dirname|ucfirst}></a>
+        <{foreach from=$xoops_breadcrumbs key="i" item="bc"}>
+            <{if $i > 0}>
+                <{if $bc.url}>
+            <li class="breadcrumb-item"><a href="<{$bc.url}>"><{$bc.name}></a></li>
+                <{else}>
+            <li class="breadcrumb-item"><{$bc.name}></li>
+                <{/if}>
+            <{/if}>
+        <{/foreach}>
+    </ol>
+</nav>

@@ -1,0 +1,28 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<fieldset style="padding: 10px;">
+  <legend style="font-weight: bold;"><{$smarty.const._LOGIN}></legend>
+  <form action="<{$smarty.const.XOOPS_URL}>/user.php" method="post" >
+    <{$smarty.const._USERNAME}> <{xoops_input type=text name=uname size=26 maxlength=25 value=$usercookie}><br>
+    <{$smarty.const._PASSWORD}> <{xoops_input type=password name=pass size=21 maxlength=32}><br>
+    <{xoops_input type=hidden name=op value=login}>
+    <{xoops_input type=hidden name=xoops_redirect value=$redirect_page}>
+    <input type="submit" value="<{$smarty.const._LOGIN}>">
+  </form>
+  <a name="lost"></a>
+  <div><{$smarty.const._MD_USER_LANG_NOTREGISTERED}><br /></div>
+</fieldset>
+
+<br>
+
+<fieldset style="padding: 10px;">
+  <legend style="font-weight: bold;"><{$smarty.const._MD_USER_LANG_LOSTPASSWORD}></legend>
+  <div><br><{$smarty.const._MD_USER_LANG_NOPROBLEM}></div>
+  <form action="lostpass.php" method="post">
+    <{$smarty.const._MD_USER_LANG_YOUREMAIL}>
+    <{xoops_input type=text name=email size=26 maxlength=60}>&nbsp;&nbsp;
+    <{xoops_input type=hidden name=op value=mailpasswd}>
+    <input type="submit" value="<{$smarty.const._MD_USER_LANG_SENDPASSWORD}>">
+  </form>
+</fieldset>

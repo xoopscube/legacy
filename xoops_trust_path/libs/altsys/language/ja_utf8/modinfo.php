@@ -1,6 +1,6 @@
 <?php
 
-define( '_MI_ALTSYS_MODULENAME' , 'ALTSYS');
+define( '_MI_ALTSYS_MODULENAME' , 'コンポーネント');
 define( '_MI_ALTSYS_MODULEDESC' , 'もっと使いやすいシステム管理を！');
 
 // menus

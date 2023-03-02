@@ -1,6 +1,6 @@
 <?php
 
-define( '_MI_ALTSYS_MODULENAME' , 'UI Components');
+define( '_MI_ALTSYS_MODULENAME' , 'Components');
 define( '_MI_ALTSYS_MODULEDESC' , 'Management and translation editor for UI-Components : blocks, languages and templates .');
 
 // menus

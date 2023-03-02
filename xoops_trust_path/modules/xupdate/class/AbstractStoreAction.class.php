@@ -407,7 +407,7 @@ jQuery(function($){
 		$('body').on('click', '#rapidModuleInstallButton', clickRapidModuleInstallButton)
 		.on('click', '#rapidInstallCheckboxAll', checkAll);
 		$('body').on('click', '#rapidInstallCheckboxAll,input.rapidInstallCheckbox', function(){
-			var target = $('td.legacy_list_select:first');
+			var target = $('td.list_select:first');
 			if (! target.data('widthset')) {
 				target.data('widthset', true);
 				setTimeout(function(){target.css({width: '10em'});}, 100);

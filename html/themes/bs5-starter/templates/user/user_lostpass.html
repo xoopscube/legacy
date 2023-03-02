@@ -1,0 +1,45 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/">
+            <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/user.php"><{$smarty.const._MD_USER_LANG_PROFILE}></a>
+        <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._MD_USER_LANG_LOSTPASSWORD}>
+    </ol>
+</nav>
+
+<{if $actionForm->hasError()}>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <div class="alert alert-danger">
+      <{$message}>
+      </div>
+    <{/foreach}>
+<{/if}>
+
+<form action="#" method="post">
+<{xoops_token form=$actionForm}>
+
+    <div class="card my-4">
+        <card class="card-header">
+            <h3><{$smarty.const._MD_USER_LANG_LOSTPASSWORD}></h3>
+        </card>
+        <div class="card-body">
+            <div class="alert alert-primary" role="alert">
+                <{$smarty.const._MD_USER_LANG_NOPROBLEM}>
+            </div>
+            <div class="col-sm-8 mb-3">
+            <{* xoops_input class="form-control" name=email id="" maxlength=60 value=$actionForm->get('email') *}>
+                <label for="email" class="form-label"><{$smarty.const._MD_USER_LANG_EMAIL}></label>
+                <input type="text" class="form-control" name="email" id="email" maxlength="60" value="<{$actionForm->get('email')}>"
+                       autocomplete="email"
+                       pattern="^[\w]{1,}[\w.+-]{0,}@[\w-]{2,}([.][a-zA-Z]{2,}|[.][\w-]{2,}[.][a-zA-Z]{2,})$">
+            </div>
+        </div>
+        <div class="card-footer">
+            <input type="submit" class="btn btn-primary" value="<{$smarty.const._SEND}>">
+        </div>
+    </div>
+
+</form>

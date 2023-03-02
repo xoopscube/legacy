@@ -1,0 +1,211 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+
+<{* ----- ALERT TOASTER SETTINGS
+! DO NOT USE position-absolute !
+
+- "toast-container" for spacing between toasts
+- "position-fixed" for sticky position it on layout
+- "top-0" and "end-0" to position the toasts in the top right corner
+- ".p-3" to space toasts from the edge of the container
+
+TOAST
+If it’s an important message like an error, use role="alert" aria-live="assertive",
+otherwise use role="status" aria-live="polite" attributes
+data-bs-delay="3000" Delay in milliseconds before hiding the toast, default 5000.
+data-bs-autohide="false"
+When using autohide: false, you must add a close button to allow users to dismiss the toast.
+*}>
+
+<div class="toast-container position-fixed top-0 end-0 p-3">
+
+    <{if $forum.external_link_format}><!-- data-bs-autohide="false" -->
+    <div id="alertTopic" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+        <div class="toast-header text-warning">
+            <img class="svg me-2" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" alt="">
+            <strong class="me-auto"><{$smarty.const._MD_D3FORUM_TOPICLOCKED}></strong>
+            <small><{$forum.last_post_time_formatted}></small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body alert alert-warning mb-0">
+            <{$smarty.const._MD_D3FORUM_FORUMASCOMMENT_DESC}>
+            <progress value="0" max="100" class="progressTime"></progress>
+        </div>
+    </div>
+    <{/if}>
+
+    <{* Topic locked - Test using:  if ! $topic.locked  *}>
+    <{if $topic.locked}><!-- data-bs-autohide="false" -->
+    <div id="alertLocked" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+        <div class="toast-header text-warning">
+            <img class="svg me-2" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" alt="">
+            <strong class="me-auto"><{$smarty.const._MD_D3FORUM_TOPICLOCKED}></strong>
+            <small><{$forum.last_post_time_formatted}></small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body alert alert-warning mb-0">
+            <{$smarty.const._MD_D3FORUM_TOPICLOCKED_DESC}>
+            <progress value="0" max="100" class="progressTime" id="infoLocked"></progress>
+        </div>
+    </div>
+    <{/if}>
+
+    <{if $forum.isadminormod}>
+    <{* Topic locked - Test using:  if ! $topic.invisible  *}>
+    <{if $topic.invisible}>
+    <div id="topicLocked" class="toast bg-danger text-white border-0" role="status" aria-live="polite" aria-atomic="true" data-bs-delay="5000">
+        <div class="d-flex">
+            <div class="toast-body">
+                <div class="d-flex align-content-between">
+                    <span><{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></span>
+                    <button type="button" class="btn-close mt-1 me-3 " data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <progress value="0" max="100" class="progressTime" id="infoInvisible"></progress>
+            </div>
+        </div>
+    </div>
+    <{/if}>
+    <{/if}>
+
+
+    <{if $forum.isadminormod && $mod_config.use_solved}><!-- data-bs-autohide="false" and default time: data-bs-delay="5000"-->
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+        <div class="toast-body">
+            <{if $topic.solved}>
+            <{$smarty.const._MD_D3FORUM_SOLVEDYES_DESC}>
+            <div class="mt-2 pt-2 border-top">
+            <{* ----- ACTION LINK + BUTTON CLOSE ----- *}>
+            <a class="btn btn-primary btn-sm" role="button" href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>">
+                <{$smarty.const._MD_D3FORUM_SOLVED_TURNOFF}></a>
+            <{else}>
+            <{$smarty.const._MD_D3FORUM_SOLVEDNO_DESC}>
+            <div class="mt-2 pt-2 border-top">
+            <{* ----- ACTION LINK + BUTTON CLOSE ----- *}>
+            <a class="btn btn-primary btn-sm" role="button" href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>">
+                <{$smarty.const._MD_D3FORUM_SOLVED_TURNON}></a>
+            <{/if}>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+            </div>
+        </div>
+    </div>
+    <{/if}>
+
+</div><{* -----/toast-container *}>
+<{* ----- /ALERT TOASTER SETTINGS *}>
+
+
+<{strip}>
+
+<!-- D3Forum INC TOPICBAR -->
+<div class="card my-4">
+
+    <div class="card-body">
+
+        <h3><{$forum.title}></h3>
+
+        <{if $topic.locked}>
+        <div class="alert alert-warning"><strong><{$smarty.const._MD_D3FORUM_TOPICLOCKED_DESC}></strong></div>
+        <{/if}>
+
+        <{if $uid && $mod_config.allow_mark}>
+            <{if $topic.u2t_marked}>
+                <div class="alert alert-warning">
+                    <{$smarty.const._MD_D3FORUM_MARKEDYES_DESC}><br>
+                    <a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"><{$smarty.const._MD_D3FORUM_MARK_TURNOFF}></a>
+                </div>
+            <{else}>
+                <div class="alert alert-info">
+                    <{$smarty.const._MD_D3FORUM_MARKEDNO_DESC}><br>
+                    <a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"><{$smarty.const._MD_D3FORUM_MARK_TURNON}></a>
+                </div>
+            <{/if}>
+        <{/if}>
+
+        <{if $forum.isadminormod && $mod_config.use_solved}>
+            <{if $topic.solved}>
+            <div class="alert alert-info">
+                <{$smarty.const._MD_D3FORUM_SOLVEDYES_DESC}><br>
+                <a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"><{$smarty.const._MD_D3FORUM_SOLVED_TURNOFF}></a>
+            </div>
+            <{else}>
+                <div class="alert alert-info">
+                    <{$smarty.const._MD_D3FORUM_SOLVEDNO_DESC}><br>
+                    <a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>"><{$smarty.const._MD_D3FORUM_SOLVED_TURNON}></a>
+                </div>
+            <{/if}>
+        <{/if}>
+
+
+        <{* ------- Not user! Check if guest can post! *}>
+        <{* ------- if !$xoops_isuser}>
+            <{if $forum.can_post}>
+                <p><{$smarty.const._MD_D3FORUM_GUESTSCANPOST_DESC}></p>
+            <{else}>
+                <p><{$smarty.const._MD_D3FORUM_GUESTSCANNOTPOST_DESC}></p>
+            <{/if}>
+        <{/if ------- *}>
+
+        <{* ------- TOPIC - DESCRIPTION *}>
+        <div class="card-text"><{$forum.desc}></div>
+
+        <{* ------- TOPIC - ACTIVITY *}>
+        <div class="d-flex align-items-center justify-content-between small">
+
+            <{* ///// INCLUDE MODERATORS \\\\\ *}>
+            <div class="d-inline"><{include file="db:`$mydirname`_inc_moderators.html" target=$forum}></div>
+
+            <{* ----- LAST POST TIME *}>
+            <div class="d-inline text-sm-end">
+                <{if $forum.last_post_time}>
+                    <{$smarty.const._MD_D3FORUM_LASTPOST}> <span class="badge text-bg-secondary"><{$forum.last_post_time_formatted}></span>
+                <{/if}>
+
+                <{if $mod_config.show_rss}>
+                <a class="ms-2" href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>&amp;odr=1" title="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+                        <g fill="darkorange"><path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5a1 1 0 0 0 0 2a8 8 0 0 1 8 8a1 1 0 1 0 2 0c0-5.523-4.477-10-10-10zm0 4a1 1 0 0 0 0 2a4 4 0 0 1 4 4a1 1 0 1 0 2 0a6 6 0 0 0-6-6zm.5 7a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3z"/></g>
+                    </svg>
+                </a>
+                <{/if}>
+            </div>
+        </div>
+        <{* ------- /TOPIC - ACTIVITY *}>
+
+    </div>
+
+
+    <div class="card-footer py-3">
+
+        <div class="d-flex justify-content-between">
+            <{if $forum.isadminormod}>
+            <div class="btn-group btn-group-sm" role="group" aria-label="Admin Category">
+                <a class="btn btn-outline-primary btn-sm" href="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$topic.id}>" title="<{$smarty.const._MD_D3FORUM_TOPICMANAGER_DESC}>">
+                    <img class="svg me-2" src="<{$xoops_url}>/images/icons/tools.svg" width="1em" alt=""> <{$smarty.const._MD_D3FORUM_TOPICMANAGER}></a>
+                <{* ----- TOPIC HISTOY REVISION *}>
+                <{if $xoops_isadmin}>
+                <a class="btn btn-outline-primary btn-sm" href="<{$mod_url}>/admin/index.php?page=post_histories&amp;topic_id=<{$topic.id}>">
+                    <{$smarty.const._MD_D3FORUM_LINK_TOPICHISTORIES}></a>
+                <{/if}>
+            </div>
+            <{/if}>
+            <div class="col-sm text-end">
+                <{if !$forum.external_link_format && $forum.can_post}>
+
+                <{* ----- REMOVE THIS CONDITION ALLOWS ADMIN NEW POST *}>
+                <{if !$topic.locked}>
+                <a class="btn btn-primary btn-sm" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>"><{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}></a>
+                <{/if}>
+                <{* ----- REMOVE TO ALLOW ADMIN POST IF LOCKED *}>
+
+                <{else}>
+                <button class="btn btn-warning btn-sm" disabled><{$smarty.const._MD_D3FORUM_CANTCREATENEWTOPICTHISFORUM}></button>
+
+                <{/if}>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<{/strip}>

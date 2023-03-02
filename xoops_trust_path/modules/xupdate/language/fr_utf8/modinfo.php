@@ -43,7 +43,7 @@ define( '_MI_XUPDATE_INSTALL_MSG_UPDATE_FINISHED' , 'La mise à jour du module e
 define( '_MI_XUPDATE_INSTALL_ERROR_UPDATE_FINISHED' , 'Le module n\'a pas pu être mis à jour.');
 define( '_MI_XUPDATE_INSTALL_MSG_MODULE_UPDATED' , 'Le module \'{0}\' est mis à jour.');
 define( '_MI_XUPDATE_INSTALL_ERROR_MODULE_UPDATED' , 'Le module \'{0}\' n\'a pas pu être mis à jour.');
-define( '_MI_XUPDATE_LANG_XUPDATE' , 'Gestionnaire X-Update');
+define( '_MI_XUPDATE_LANG_XUPDATE' , 'X-Update');
 define( '_MI_XUPDATE_DESC_XUPDATE' , 'X-Update Manager est une interface conviviale pour déployer et gérer le système central, les modules, les thèmes et les préchargements (extension du plugin). Vous pouvez ajouter, mettre à jour, désactiver et désinstaller à partir d\'une interface Web pour personnaliser votre plate-forme d\'applications Web.');
 define( '_MI_XUPDATE_LANG_AUTHOR' , 'Naao, Domifara, Nao-pon, Gigamaster(XCL2.3)');
 define( '_MI_XUPDATE_LANG_CREDITS' , 'Crédits');

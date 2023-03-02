@@ -1,0 +1,30 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<ol>
+<{foreach item=post from=$block.posts}>
+
+	<li style="margin:1px;">
+    <{* <{if $post.forum_id == 1}>
+        <a href="<{$xoops_url}>/modules/d3diary/detail.php?bid=<{$post.external_link_id}>#post_id<{$post.id}>">
+    <{elseif $post.forum_id == 2}>
+        <a href="<{$xoops_url}>/modules/xpwiki/index.php?pgid=<{$post.external_link_id}>#post_id<{$post.id}>">
+    <{elseif $post.forum_id == 3}>
+        <a href="<{$xoops_url}>/modules/pico/index.php?content_id=<{$post.external_link_id}>#post_id<{$post.id}>">
+    <{elseif $post.forum_id == 4}>
+        <a href="<{$xoops_url}>/modules/bulletin/index.php?page=article&storyid=<{$post.external_link_id}>#post_id<{$post.id}>">
+    <{else}> *}>
+        <a href="<{$block.mod_url}>/index.php?post_id=<{$post.id}>">
+    <{* <{/if}> *}>
+	<{$post.subject}></a>
+	<{if $post.guest_name}>
+		<{$post.guest_name}>
+	<{else}>
+		<{$post.uname}>
+	<{/if}>
+ <{$post.post_time_formatted}></li>
+
+<{/foreach}>
+</ol>
+
+<{* $post.forum_id, $post.forum_title *}>

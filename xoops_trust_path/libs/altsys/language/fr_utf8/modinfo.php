@@ -1,7 +1,7 @@
 <?php
 
-define( '_MI_ALTSYS_MODULENAME' , 'ALTSYS');
-define( '_MI_ALTSYS_MODULEDESC' , 'Gestion simplifiée du système');
+define( '_MI_ALTSYS_MODULENAME' , 'Composants');
+define( '_MI_ALTSYS_MODULEDESC' , 'Gestion simplifiée de composants système');
 
 // menus
 define( '_MI_ALTSYS_MENU_CUSTOMBLOCKS' , 'Blocs personnalisés');

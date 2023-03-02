@@ -44,10 +44,10 @@ define( '_MD_A_MYBLOCKSADMIN_BTN_CLONE' , 'Copy');
 define( '_MD_A_MYBLOCKSADMIN_BTN_NEW' , 'Create');
 define( '_MD_A_MYBLOCKSADMIN_BTN_EDIT' , 'Update');
 
-define( '_MD_A_MYBLOCKSADMIN_CTYPE_HTML' , 'Custom (plain HTML)');
-define( '_MD_A_MYBLOCKSADMIN_CTYPE_NOSMILE' , 'Custom (HTML+BBCODE+AutoLink)');
-define( '_MD_A_MYBLOCKSADMIN_CTYPE_SMILE' , 'Custom (HTML+BBCODE+AutoLink+Smiley)');
-define( '_MD_A_MYBLOCKSADMIN_CTYPE_PHP' , 'Custom (PHP eval())');
+define( '_MD_A_MYBLOCKSADMIN_CTYPE_HTML' , 'Custom HTML');
+define( '_MD_A_MYBLOCKSADMIN_CTYPE_NOSMILE' , 'Custom Auto-Format');
+define( '_MD_A_MYBLOCKSADMIN_CTYPE_SMILE' , 'Custom Smilies');
+define( '_MD_A_MYBLOCKSADMIN_CTYPE_PHP' , 'Custom PHP');
 
 define( '_MD_A_MYBLOCKSADMIN_NOTICE4COMMONFCK' , 'If you want to use WYSIWYG editor, install common/fckeditor');
 

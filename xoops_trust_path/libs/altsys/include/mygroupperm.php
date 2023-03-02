@@ -56,7 +56,7 @@ if ( 1 == $modid ) {
 		$module = $module_handler->getByDirname( 'system' );
 		if ( ! is_object( $module ) ) {
 
-			die( 'there is no UI Components nor base system.' );
+			die( 'there is no AltSys UI Components nor base system.' );
 		}
 	}
 

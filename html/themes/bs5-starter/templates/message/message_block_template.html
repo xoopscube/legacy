@@ -1,0 +1,56 @@
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+<ul id="privatemessages" class="list-group list-group-flush shadow-sm">
+    <li class="list-group-item">
+
+    <{if $block>0}>
+            <a class="highlight d-flex justify-content-between align-items-center" href="<{$message_url}>?action=index">
+            <span><svg width="1em" height="1em" viewBox="0 0 16 16" class="download mr-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M.5 8a.5.5 0 0 1 .5.5V12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8.5a.5.5 0 0 1 1 0V12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8.5A.5.5 0 0 1 .5 8z"/>
+            <path fill-rule="evenodd" d="M5 7.5a.5.5 0 0 1 .707 0L8 9.793 10.293 7.5a.5.5 0 1 1 .707.707l-2.646 2.647a.5.5 0 0 1-.708 0L5 8.207A.5.5 0 0 1 5 7.5z"/>
+            <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0v-8A.5.5 0 0 1 8 1z"/>
+            </svg> <{$smarty.const._MD_MESSAGE_TEMPLATE15}></span>
+            <span class="badge text-bg-secondary px-2"><span style="color:orange; font-weight: bold;"><{$block}></span>/<{$incount}></span>
+        </a>
+          <{else}>
+        <a href="<{$message_url}>?action=index">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="download mr-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M.5 8a.5.5 0 0 1 .5.5V12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8.5a.5.5 0 0 1 1 0V12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8.5A.5.5 0 0 1 .5 8z"/>
+                <path fill-rule="evenodd" d="M5 7.5a.5.5 0 0 1 .707 0L8 9.793 10.293 7.5a.5.5 0 1 1 .707.707l-2.646 2.647a.5.5 0 0 1-.708 0L5 8.207A.5.5 0 0 1 5 7.5z"/>
+                <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0v-8A.5.5 0 0 1 8 1z"/>
+            </svg>
+            <{$smarty.const._MD_MESSAGE_TEMPLATE15}> <span class="badge text-bg-secondary px-2"><{$incount}></span></a>
+    <{/if}>
+
+
+    <li class="list-group-item">
+    <a class="highlight d-flex justify-content-between align-items-center" href="<{$message_url}>?action=send">
+        <span><svg width="1em" height="1em" viewBox="0 0 16 16" class="upload mr-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M.5 8a.5.5 0 0 1 .5.5V12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8.5a.5.5 0 0 1 1 0V12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8.5A.5.5 0 0 1 .5 8zM5 4.854a.5.5 0 0 0 .707 0L8 2.56l2.293 2.293A.5.5 0 1 0 11 4.146L8.354 1.5a.5.5 0 0 0-.708 0L5 4.146a.5.5 0 0 0 0 .708z"/>
+            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0v-8A.5.5 0 0 1 8 2z"/>
+        </svg> <{$smarty.const._MD_MESSAGE_TEMPLATE7}></span> <span class="badge text-bg-secondary px-2"> <{$outcount}></span></a>
+
+    <li class="list-group-item">
+    <a href="<{$message_url}>?action=new">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="envelope mr-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
+        </svg> <{$smarty.const._MD_MESSAGE_TEMPLATE8}></a>
+
+    <li class="list-group-item">
+    <a href="<{$message_url}>?action=settings">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="ui-radios mr-3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM0 12a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm7-1.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1z"/>
+            <path fill-rule="evenodd" d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zM3 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0 4.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+        </svg> <{$smarty.const._MI_MESSAGE_SUB_SETTINGS}></a>
+
+        <{if $UserSearch}>
+            <li class="list-group-item">
+            <a href="<{$message_url}>?action=search">
+                <img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_edit.png" alt="">
+                <{$smarty.const._MI_MESSAGE_SUB_SEARCH}></a>
+
+            <li class="list-group-item">
+            <a href="<{$message_url}>?action=favorites">
+                <img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_edit.png" alt="">
+                <{$smarty.const._MI_MESSAGE_SUB_FAVORITES}></a>
+        <{/if}>
+</ul>

@@ -80,6 +80,11 @@
 		</div>
 		<{/if}>
 
+	<{* ------- subject *}>
+	<label for="subject">
+		<{$smarty.const._MD_PICO_TH_SUBJECT}>
+		<input type="text" name="subject" id="subject" maxlength="191" value="<{$content.subject}>">
+	</label>
 
 	<{* ------- category *}>
 
@@ -108,11 +113,16 @@
 		<{/if}>
 	<{/if}>
 
-
-	<{* ------- subject *}>
-	<label for="subject">
-		<{$smarty.const._MD_PICO_TH_SUBJECT}>
-		<input type="text" name="subject" id="subject" maxlength="191" value="<{$content.subject}>">
+	<{* ------- image upload *}>
+	<label for="ei_image">
+		Image
+		<input type="file" id="ei_image" name="ei_image">
+		<input type="hidden" name="ef_image" value="<{$content.ef.image|escape}>">
+		<{if $content.ef.image}>
+		<a href="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_0_<{$content.ef.image|escape}>">
+			<img src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_1_<{$content.ef.image|escape}>">
+		</a>
+		<{/if}>
 	</label>
 
 

@@ -1,0 +1,79 @@
+<{php}>
+ob_start();
+header('HTTP/1.1 503 Service Temporarily Unavailable');
+header('Status: 503 Service Temporarily Unavailable');
+header('Retry-After: 3600');
+header('X-Powered-By: XOOPSCube');
+ob_end_clean();
+ob_end_flush();
+<{/php}>
+<!DOCTYPE html>
+<html class="no-js" lang="<{$xoops_langcode}>">
+<head>
+    <meta charset="<{$xoops_charset}>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><{$xoops_sitename}></title>
+    <meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>">
+    <meta http-equiv="content-language" content="<{$xoops_langcode}>">
+    <meta name="generator" content="XOOPSCube">
+    <link rel="stylesheet" href="<{$xoops_imageurl}>css/pico.min.css">
+    <link rel="stylesheet" href="<{$theme_css}>">
+</head>
+<body>
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<nav class="container">
+    <ul>
+        <li><a href="<{$xoops_url}>/"><img src="<{$xoops_url}>/images/logo.png" alt="<{$xoops_sitename}>" aria-label="<{$xoops_sitename}>"></a></li>
+    </ul>
+    <ul>
+        <li>
+            <details role="list" dir="rtl">
+                <summary aria-haspopup="listbox" role="link" class="contrast">Theme</summary>
+                <ul role="listbox">
+                    <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                    <li><a href="#" data-theme-switcher="light">Light</a></li>
+                    <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+                </ul>
+            </details>
+        </li>
+
+    </ul>
+</nav>
+
+<section aria-label="login">
+    <div class="container">
+        <article>
+
+
+        <{if $xoops_isuser}>
+            <h2><a href="<{$xoops_url}>/user.php?op=logout"><{$smarty.const._LOGOUT}></a></h2>
+        <{else}>
+            <hgroup>
+                <h2><{$lang_login}></h2>
+                <h3><{$lang_siteclosemsg}></h3>
+            </hgroup>
+        <hr>
+            <form action="<{$xoops_url}>/user.php" method="post" class="grid-3">
+                <input type="text" id="uname" name="uname" placeholder="<{$lang_username}>" aria-label="<{$lang_username}>" required>
+                <input type="password" id="password" name="pass" placeholder="<{$lang_password}>" aria-label="<{$lang_password}>" required>
+                <input type="hidden" name="xoops_login" value="1">
+                <button type="submit" value="<{$lang_login}>"><{$lang_login}></button>
+            </form>
+            <{/if}>
+
+        </article>
+    </div>
+</section>
+
+<hr>
+
+<footer class="container">
+<p><{$xoops_sitename}></p>
+</footer>
+
+<{* ---------- Theme Switcher *}>
+<script src="<{$xoops_imageurl}>js/minimal-theme-switcher.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<div class="block-waiting">
+
+<ul>
+    <{foreach item=module from=$block.modules}>
+        <li><a href="<{$module.adminlink}>"><{$module.lang_linkname}> <span class="badge text-bg-secondary"><{$module.pendingnum}></span></a></li>
+    <{/foreach}>
+</ul>
+
+</div>

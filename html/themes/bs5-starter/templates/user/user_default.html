@@ -1,0 +1,63 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/">
+            <img class="svg home" src="<{$icon_set}>/home.svg" width="1em" height="1em" alt="home">
+        </a>
+        <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._LOGIN}>
+    </ol>
+</nav>
+
+<form action="<{$xoops_url}>/user.php" method="post">
+    <{xoops_input type=hidden name=op value=login}>
+    <{xoops_input type=hidden name=xoops_redirect value=$redirect_page}>
+
+<div class="card my-4user-login">
+
+    <div class="card-header">
+    <h3><{$smarty.const._LOGIN}></h3>
+    </div>
+
+    <div class="card-body">
+
+        <div class="col-sm-6 mb-3">
+            <label for="legacy_xoopsform_uname" class="form-label"> <{$smarty.const._MD_USER_LANG_NICKNAME}></label>
+            <{xoops_input type=text class="form-control" name=uname size=25 maxlength=25 value=$usercookie}>
+        </div>
+
+        <div class="col-sm-6 mb-3">
+        <label for="pass" class="form-label"><{$smarty.const._PASSWORD}></label>
+
+            <input type="password"  class="form-control" name="pass" id="pass" placeholder="<{$smarty.const._PASSWORD}>">
+            <{* xoops_input type=password name=pass id="pass" size=25 maxlength=32 placeholder=$smarty.const._PASSWORD  *}>
+        </div>
+
+        <div class="row g-3">
+        <div class="col-sm-4">
+            <a href="<{$xoops_url}>/lostpass.php"><{$smarty.const._MB_USER_LOSTPASS}></a>
+        </div>
+        <{if $allowRegister}>
+        <div class="col-sm-4">
+            <a href="<{$xoops_url}>/register.php"><{$smarty.const._MD_USER_LANG_NOTREGISTERED}></a>
+        </div>
+        <{/if}>
+        </div>
+    </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary" role="button" value="<{$smarty.const._LOGIN}>">
+                <img class="svg" src="<{$icon_set}>/login.svg"width="1em" alt="<{$smarty.const._LOGIN}>" >
+                <{$smarty.const._MB_USER_LOGIN}>
+            </button>
+        </div>
+
+</div>
+
+</form>
+
+
+
+
+

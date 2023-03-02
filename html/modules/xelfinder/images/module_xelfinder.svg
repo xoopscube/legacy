@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" 
 width="100%" height="100%" viewBox="0 0 240 100">
 <g id="xelfinder">
-<path class="module-icon" d="M3 3h6v4H3V3m12 7h6v4h-6v-4m0 7h6v4h-6v-4m-2-4H7v5h6v2H5V9h2v2h6v2z" fill="currentColor"/>
+<path class="module-icon" fill="currentColor" d="M14 13h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-3l-1-1h-2a1 1 0 0 0-1 1v1H8V7h2a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H7L6 1H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2v13h7v1a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-3l-1-1h-2a1 1 0 0 0-1 1v1H8v-7h5v1a1 1 0 0 0 1 1Z"/>
 <text class="module-name" x="120px" y="50px" fill="currentColor">
 <tspan><![CDATA[Xelfinder]]></tspan>
 </text>

@@ -152,11 +152,14 @@
 
 </div><{* ui-data-render *}>
 
-	<div class="foot-sticky" style="display: none">
+	<div class="alert-submit" style="display: none">
+		<div class="danger">
+		<{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_CHANGES}>
 		<input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+		</div>
 	</div>
 
-<div data-layout="row centered" class="adminnavi">
+<div data-layout="row centered" class="ui-card-full">
 	<input type="hidden" name="fct" value="blocksadmin">
 	<input type="hidden" name="op" value="order">
 	<{$gticket_hidden}>

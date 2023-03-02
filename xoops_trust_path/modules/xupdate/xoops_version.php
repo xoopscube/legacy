@@ -111,13 +111,13 @@ $modversion['adminmenu'] = [
 		'show'     => true,
 		'absolute' => false
 	],
-	[
-		'title'    => _MI_XUPDATE_ADMENU_THEMEFINDER,
-		'link'     => 'admin/index.php?action=ThemeFinder',
-		'keywords' => _MI_XUPDATE_ADMENU_THEMEFINDER,
-		'show'     => true,
-		'absolute' => false
-	],
+//	[
+//		'title'    => _MI_XUPDATE_ADMENU_THEMEFINDER,
+//		'link'     => 'admin/index.php?action=ThemeFinder',
+//		'keywords' => _MI_XUPDATE_ADMENU_THEMEFINDER,
+//		'show'     => true,
+//		'absolute' => false
+//	],
 	[
 		'title'    => _MI_XUPDATE_ADMENU_PRELOAD,
 		'link'     => 'admin/index.php?action=PreloadStore',
@@ -337,15 +337,15 @@ $modversion['config'] = [
 		'default'     => 0,
 		'options'     => [],
 	],
-	[
-		'name'        => 'Theme_download_Url_format',
-		'title'       => '_MI_XUPDATE_FTP_THEME_URL',
-		'description' => '',
-		'formtype'    => 'text',
-		'valuetype'   => 'string',
-		'default'     => 'http://cmsthemefinder.com/modules/lica/index.php?controller=download&id=%u',
-		'options'     => [],
-	],
+//	[
+//		'name'        => 'Theme_download_Url_format',
+//		'title'       => '_MI_XUPDATE_FTP_THEME_URL',
+//		'description' => '',
+//		'formtype'    => 'text',
+//		'valuetype'   => 'string',
+//		'default'     => 'http://cmsthemefinder.com/modules/lica/index.php?controller=download&id=%u',
+//		'options'     => [],
+//	],
 	[
 		'name'        => 'stores_json_url',
 		'title'       => '_MI_XUPDATE_FTP_STORE_URL',

@@ -1,0 +1,35 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+
+<{if $topic.comment_link}>
+
+	<p class="head">
+        <a href="<{$topic.comment_link}>"><{$smarty.const._MD_D3FORUM_LINK_COMMENTSOURCE}></a>
+    </p>
+    <{elseif is_array($topic.comment_description)}>
+
+    <div class="card my-4">
+        <div class="card-header">
+        <h3>
+            <a href="<{$xoops_url}>/modules/<{$topic.comment_description.dirname}>/" title="<{$smarty.const._MD_D3FORUM_COM_TARGETMODULE}>">
+                <{$topic.comment_description.module_name|ucfirst}>
+            </a>
+            - <a href="<{$topic.comment_description.uri}>" title="<{$smarty.const._MD_D3FORUM_COM_SUBJECT}>"><{$topic.comment_description.subject}>
+            </a>
+        </h3>
+        <div class="description">
+            <{$smarty.const._MD_D3FORUM_COM_SUMMARY}><br>
+            <{$topic.comment_description.summary}></div>
+        </div>
+        <{if $topic.external_link_id}>
+        <div class="card-footer">
+            <{$posts|@count|string_format:$smarty.const._MD_D3FORUM_FMT_POSTDISPLAYSINFO}>
+            <a role="button" class="btn btn-outline-secondary btn-sm" href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>&amp;external_link_id=<{$topic.external_link_id|escape:'url'}>">
+                <{$smarty.const._MD_D3FORUM_LINK_LISTALLCOMMENTS}></a>
+        </div>
+        <{/if}>
+    </div>
+    <{elseif $topic.comment_description}>
+        <div class="description"><{$topic.comment_description}></div>
+<{/if}>

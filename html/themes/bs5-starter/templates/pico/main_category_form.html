@@ -1,0 +1,139 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{* /////// INCLUDE BREADCRUMB \\\\\\\ *}>
+<{if $mod_config.show_breadcrumbs}>
+<{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
+<{/if}>
+
+<form name="categoryform" id="categoryform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>" method="post" onsubmit="return xoopsFormValidate_categoryform();">
+    <{$gticket_hidden}>
+
+<div class="card my-4" id="<{$mydirname}>_container">
+
+    <div class="card-header">
+        <{* <h2><{$smarty.const._MD_PICO_CATEGORYMANAGER}></h2> *}>
+
+        <h2><{$formtitle}></h2>
+    </div>
+
+    <div class="card-body">
+
+        <div class="mb-3">
+            <label for="category_title" class="form-label"><{$smarty.const._MD_PICO_TH_CATEGORYTITLE}></label>
+            <input class="form-control" type="text" name="cat_title" id="category_title" size="50" maxlength="191" value="<{$category.title}>">
+        </div>
+
+        <div class="mb-3">
+            <label for="category_pid" class="form-label"><{$smarty.const._MD_PICO_TH_CATEGORYPARENT}></label>
+            <{if $category.id == 0}>
+            <input class="form-control" type="text" placeholder="<{$smarty.const._MD_PICO_TOP}>" aria-label="Disabled readonly" disabled readonly>
+            <{else}>
+            <select class="form-select" name="pid" id="category_pid">
+                <{html_options options=$categories_can_makesubcategory selected=$category.pid}>
+            </select>
+            <{/if}>
+        </div>
+
+        <{if $mod_config.use_wraps_mode && $category.id != 0}>
+            <div class="mb-3">
+                <label for="category_vpath" class="form-label"><{$smarty.const._MD_PICO_TH_VIRTUALPATH}></label>
+                <input class="form-control" type="text" name="cat_vpath" id="category_vpath" size="60" value="<{$category.vpath}>">
+            </div>
+            <{if $xoops_isadmin}>
+            <div class="mb-3">
+                <select class="form-select" name="wraps_target" onchange="xoopsGetElementById('category_vpath').value=this.value;">
+                <{html_options options=$category.wraps_directories selected=$category.vpath}>
+                </select>
+            </div>
+            <{/if}>
+        <{/if}>
+
+        <div class="mb-3">
+            <label for="category_desc" class="form-label"><{$smarty.const._MD_PICO_TH_CATEGORYDESC}></label>
+            <textarea class="form-control" name="cat_desc" id="category_desc" cols="50" rows="5"><{$category.desc}></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="category_weight" class="form-label"><{$smarty.const._MD_PICO_TH_CATEGORYWEIGHT}></label>
+            <input class="form-control" type="number" name="cat_weight" id="category_weight" size="4" maxlength="4" value="<{$category.weight}>">
+        </div>
+
+        <div class="mb-3">
+            <span class="badge text-bg-secondary"><{$category.children_count}></span> <{$smarty.const._MD_PICO_SUBCATEGORY_COUNT}>
+        </div>
+
+
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input"
+                       type="checkbox"
+                       role="switch"
+                       id="category_option_controller"
+                       data-bs-toggle="collapse"
+                       data-bs-target="#category-options"
+                       aria-expanded="false"
+                       aria-controls="category-options">
+                <label for="category_option_controller" title="<{$smarty.const._MD_PICO_TH_CATEGORYOPTIONS}> <{$smarty.const._MD_PICO_ONOFF}>">
+                    <{$smarty.const._MD_PICO_TH_CATEGORYOPTIONS}></label>
+        </div>
+
+            <div class="collapse" id="category-options">
+                <textarea class="form-control mb-3" name="cat_options" id="category_options" cols="50" rows="5"><{$category.options}></textarea>
+
+                <div class="tips">
+                    <{$smarty.const._MD_PICO_HOWTO_OVERRIDEOPTIONS}>
+                    <span class="categoryoptiondesc"><{$category.option_desc}></span>
+                </div>
+
+	        </div>
+    </div>
+
+    </div><{* -------/card-body *}>
+
+    <div class="card-footer py-3">
+
+        <{if $page == 'categorymanager' && $children_count == 0}>
+        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="trash-fill mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+            </svg> <{$smarty.const._DELETE}>
+        </button>
+        <{/if}>
+
+	    <input class="btn btn-primary" type="submit" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
+
+    </div>
+
+</div><{* -------/card-body *}>
+
+    <{* MODAL MUST BE WITHIN FORM *}>
+    <div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteCategoryModalLabel"><{$smarty.const._DELETE}></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <{$smarty.const._MD_PICO_MSG_CONFIRMDELETECATEGORY}>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" name="categoryman_delete"><{$smarty.const._DELETE}></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <{* /MODAL MUST BE WITHIN FORM *}>
+
+</form>
+
+<script type="text/javascript">
+function xoopsFormValidate_categoryform() {
+	myform = window.document.categoryform;
+	if ( myform.title.value == "" ) { window.alert("<{$smarty.const._MD_PICO_TH_CATEGORYTITLE|string_format:$smarty.const._FORM_ENTER}>"); myform.title.focus(); return false; }
+	return true;
+}
+</script>
+

@@ -1,0 +1,72 @@
+<head>
+    <meta charset="utf-8">
+    <!--  <meta charset="<{$xoops_charset}>">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> -->
+    <title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+    <meta name="description" content="<{$meta_description}>">
+    <meta name="robots" content="<{$meta_robots}>">
+    <meta name="keywords" content="<{$meta_keywords}>">
+    <meta name="rating" content="<{$meta_rating}>">
+    <meta name="author" content="<{$meta_author}>">
+    <meta name="copyright" content="<{$meta_copyright}>">
+    <meta name="generator" content="XOOPSCube">
+    <!-- Meta Webmaster Tools-->
+    <meta name="msvalidate.01" content="<{$meta_bing}>">
+    <meta name="google-site-verification" content="<{$meta_google}>">
+    <meta name="yandex-verification" content="<{$meta_yandex}>">
+    <!-- Facebook App -->
+    <meta property="fb:app_id" content="<{$meta_fb_app}>">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="<{$meta_twitter_site}>"><!-- @site_account -->
+    <meta name="twitter:creator" content="@<{$meta_author}>">
+    <!-- Open Graph data -->
+
+    <meta property="og:url" content="//<{$smarty.server.HTTP_HOST}><{$xoops_requesturi}>">
+    <meta property="og:title" content="<{$xoops_pagetitle}>">
+    <meta property="og:description" content="<{$meta_description}>">
+    <{if $mytrustdirname == 'pico' && $content.ef.myphoto}>
+    <meta property="og:image" content="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/myphoto_1_<{$content.ef.myphoto|escape}>">
+    <{else}>
+    <meta property="og:image" content="<{$theme_url}>img/tile.png">
+    <{/if}>
+
+    <!-- Favicon SVG located in the root directory -->
+    <link rel="icon" href="<{$favicon}>" type="image/svg+xml">
+    <!-- Favicon.ico older -->
+    <link  rel="alternate icon" type="image/x-icon" href="<{$theme_url}>assets/favicon.ico" />
+    <!-- HTML5 valid Data URI for fake favicon requests by Browsers -->
+    <link rel="alternate icon" href="data:;base64,iVBORw0KGgo=">
+
+    <!-- Resquesturi $xoops_requesturi : /module/dirname/id -->
+    <link rel="canonical" href="<{$SCRIPT_NAME}>">
+    <!-- Mobile App Manifest -->
+<!--    <link rel="manifest" href="<{$xoops_imageurl}>site.webmanifest">-->
+
+    <!-- Bootstrap style - Local first -->
+    <link href="<{$xoops_url}>/common/bootstrap5/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap icons - Local first -->
+    <link href="<{$xoops_url}>/common/bootstrap5/bootstrap-icons.css" rel="stylesheet" />
+
+    <{* Bootstrap5 core JS bundle *}>
+<!--    <script src="<{$xoops_url}>/common/bootstrap5/bootstrap.bundle.min.js"></script>-->
+
+    <!-- Theme default style.css -->
+    <link rel="stylesheet" href="<{$theme_css}>">
+    <!-- Theme default module.css -->
+    <link href="<{$theme_url}>css/module.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="<{$xoops_url}>/common/prismjs/prism.css">
+    <!-- Modules javascript -->
+<!--    <script defer><{$xoops_js|regex_replace:"/(\/\/\-\->|<!\-\-)/":""}></script>-->
+    <!-- RMV: added module header -->
+    <{if $xoops_isuser}>
+    <{$module_header}>
+    <{/if}>
+    <!-- RMV: added block header -->
+    <{* $xoops_block_header *}>
+
+    <{* Custom styles for this theme *}>
+<!--    <link rel="stylesheet" href="<{$xoops_url}>/common/js/jquery-ui.theme.css">-->
+</head>

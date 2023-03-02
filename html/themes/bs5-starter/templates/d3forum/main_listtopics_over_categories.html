@@ -1,0 +1,209 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{* /////// INCLUDE BREADCRUMB \\\\\\\ *}>
+<{if $mod_config.show_breadcrumbs}>
+<{include file="db:`$mydirname`_inc_breadcrumb.html"}>
+<{/if}>
+
+<div class="card my-4">
+    <div class="card-header">
+
+    <h3><{$pagetitle}></h3>
+
+</div>
+<div class="card-body">
+
+    <{* ------- SEARCH FILTER *}>
+    <form action="<{$mod_url}>/index.php" method="get" class="form-inline">
+        <{$forum_selection_sort}>
+        <input type="hidden" name="cat_ids" value="<{$cat_ids}>">
+
+        <div class="row g-3 my-1">
+
+            <div class="col-sm-5">
+                <div class="input-group mb-3">
+            <span class="input-group-text" id="forum-filter">
+                <svg class="filter" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+            </span>
+                    <input type="text" class="form-control" size="12" name="txt" value="<{$query.txt}>" aria-label="Filter" aria-describedby="forum-filter">
+                </div>
+            </div>
+            <{if $mod_config.use_solved}>
+            <div class="col-sm">
+                <select name="solved" class="form-select mr-sm-2">
+                    <{html_options options=$solved_options selected=$query.solved}>
+                </select>
+            </div>
+            <{/if}>
+            <div class="col-sm">
+                <select name="odr" class="form-select mr-sm-4">
+                    <{html_options options=$odr_options selected=$query.odr}>
+                </select>
+            </div>
+
+            <div class="col-sm">
+                <button class="btn btn-primary" type="submit" value="<{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}>">
+                    <svg class="arrow-repeat" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <title><{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}></title>
+                        <path fill-rule="evenodd" d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z"/>
+                        <path fill-rule="evenodd" d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z"/>
+                    </svg>
+                    <{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}></button>
+            </div>
+        </div>
+    </form>
+    <{* ------- /SEARCH FILTER *}>
+
+<{* ------- FORUM MAIN TABLE *}>
+<table class="table shadow-sm mb-4">
+
+    <thead class="thead-dark">
+        <tr class="head small">
+            <th abbr="<{$smarty.const._MD_D3FORUM_TOPIC}>"><{$topic_hits|string_format:$smarty.const._MD_D3FORUM_FMT_TOPICHITS}></th>
+            <th abbr="<{$smarty.const._MD_D3FORUM_FORUM}>"><{$smarty.const._MD_D3FORUM_FORUM}></th>
+            <th class="text-center" abbr="<{$smarty.const._MD_D3FORUM_REPLIES}>"><{$smarty.const._MD_D3FORUM_REPLIES}></th>
+            <th class="text-center" abbr="<{$smarty.const._MD_D3FORUM_VIEWS}>"><{$smarty.const._MD_D3FORUM_VIEWS}></th>
+            <th abbr="<{$smarty.const._MD_D3FORUM_LASTPOST}>"><{$smarty.const._MD_D3FORUM_LASTPOST}></th>
+        </tr>
+    </thead>
+
+<{* ------- Smarty assign images to forum topic *}>
+<{foreach item=topic from=$topics}>
+<{if $topic.sticky}>
+    <{assign var="topic_icon_src" value="`$xoops_url`/images/icons/topic_sticky`$topic.bit_new`.svg"}>
+    <{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_TOPICSTICKY}>
+<{elseif $topic.invisible}>
+    <{assign var="topic_icon_src" value="`$xoops_url`/images/icons/topic_invisible.svg"}>
+    <{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_ALT_INVISIBLE}>
+<{else}>
+    <{assign var="topic_icon_src" value="`$xoops_url`/images/icons/topic_`$topic.bit_new``$topic.bit_hot`.svg"}>
+    <{assign var="topic_icon_alt" value="Hot Topic"}>
+<{/if}>
+
+    <tr>
+    <{strip}>
+        <td>
+            <span data-bs-toggle="tooltip" data-bs-placement="top"
+                  data-bs-custom-class="custom-tooltip"
+                  data-bs-title="<{$topic_icon_alt}>"
+                  class="me-1">
+                <img class="svg" src="<{$topic_icon_src}>" width="1em" alt="">
+            </span>
+        <{if $topic.locked}>
+            <span title="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>" class="me-1">
+            <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" width="1em" alt="lock">
+            </span>
+        <{/if}>
+        <{if !$topic.solved}>
+            <{if $topic.forum_isadminormod}>
+                <a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=cat_ids&amp;ret_val=<{$cat_ids}>"
+                   data-bs-toggle="tooltip" data-bs-placement="top"
+                   data-bs-custom-class="custom-tooltip"
+                   data-bs-title="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}> - <{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>"
+                   class="me-1">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" alt="">
+                </a>
+            <{else}>
+                <img class="svg me-1" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1"
+                     data-bs-toggle="tooltip" data-bs-placement="top"
+                     data-bs-custom-class="custom-tooltip"
+                     data-bs-title="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>"
+                     alt="">
+            <{/if}>
+        <{/if}>
+        <{if $uid && $topic.u2t_marked}>
+            <a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=cat_ids&amp;ret_val=<{$cat_ids}>"
+               data-bs-toggle="tooltip" data-bs-placement="top"
+               data-bs-custom-class="custom-tooltip"
+               data-bs-title="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}> - <{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>"
+               class="me-1">
+                <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" alt=""></a>
+        <{/if}>
+        <a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>"><{$topic.title}></a><{$topic.topic_page_jump}>
+        <br>
+        <{if $topic.votes_count > 0}>
+            <small><{$smarty.const._MD_D3FORUM_VOTECOUNT}></small>
+            <span class="badge text-bg-secondary mx-1"><{$topic.votes_count}></span>&nbsp;
+            <small><{$smarty.const._MD_D3FORUM_VOTEPOINTAVG}></small>
+            <span class="badge text-bg-secondary mx-1"><{$topic.votes_avg|string_format:"%.2f"}></span>&nbsp;
+        <{/if}>
+        </td>
+
+        <td><a href="<{$mod_url}>/index.php?forum_id=<{$topic.forum_id}>"><{$topic.forum_title}></a></td>
+
+        <td class="text-center" ><{$topic.replies}></td>
+
+        <td class="text-center" ><{$topic.views}></td>
+
+        <td class="small">
+        <{if $topic.replies>0}><{$topic.last_post_time_formatted}><br>
+            <{if $topic.last_post_gname}>
+                <{$topic.last_post_gname}>
+            <{else}>
+                <{$topic.last_post_uname}>
+            <{/if}>
+        <a href="<{$mod_url}>/index.php?post_id=<{$topic.last_post_id}>"
+           data-bs-toggle="tooltip" data-bs-placement="top"
+           data-bs-custom-class="custom-tooltip"
+           data-bs-title="<{$topic.last_post_subject}>">
+        <img class="svg" src="<{$xoops_url}>/images/icons/posticon<{$topic.last_post_icon}>.svg" width="1em" alt="">
+        </a>
+        <{/if}>
+        </td>
+    <{/strip}>
+    </tr>
+
+    <{/foreach}>
+</table>
+
+<{* ------- PAGINATION *}>
+<{if $pagenav}>
+<{* ----- include file="db:`$mydirname`_inc_pagination.html" ----- PHP warning! *}>
+<nav class="d-flex align-items-center justify-content-end"><{$pagenav}></nav>
+<{/if}>
+
+    </div>
+
+</div><{* -------/card *}>
+
+
+<{* /////// NOTIFICATION \\\\\\\ *}>
+<{if $xoops_isuser}>
+<{include file='db:system_notification_select.html'}>
+<{/if}>
+
+
+<{* ------- ICON LEGEND *}>
+<div class="my-4">
+<ul class="icon-legend">
+    <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_11.svg" width="1em" alt="new-post"> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
+    <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_01.svg" width="1em" alt="new-post"> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>
+    <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_invisible.svg" width="1em" alt="invisible"> = <{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></li>
+    <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_sticky0.svg" width="1em" alt="sticky"> = <{$smarty.const._MD_D3FORUM_TOPICSTICKY}></li>
+    <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" width="1em" alt="locked"> = <{$smarty.const._MD_D3FORUM_TOPICLOCKED}></li>
+    <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" alt="unsolved"> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}></li>
+    <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" alt="marked"> = <{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}></li>
+</ul>
+</div>
+
+
+<{* ----- NAV JUMPBOX FORUM *}>
+<form name="forum_jump_box" action="<{$mod_url}>/index.php" method="get">
+    <input type="hidden" name="page" value="forum_access">
+    <div class="row g-3 px-2 py-4 mx-1 my-4">
+        <div class="col-sm-5 my-1">
+            <select name="forum_id" id="select_forum_id" class="form-select"><{$forum_jumpbox_options}></select>
+        </div>
+        <div class="col-sm-4 my-1">
+            <button type="submit" class="btn btn-outline-primary" value="<{$smarty.const._MD_D3FORUM_BTN_JUMPTOFORUM}>"><{$smarty.const._MD_D3FORUM_BTN_JUMPTOFORUM}></button>
+        </div>
+        <div class="col-sm-3 my-1 text-sm-end">
+            <a class="btn btn-outline-primary" href="<{$mod_url}>/index.php?page=search"><{$smarty.const._MD_D3FORUM_LINK_ADVSEARCH}></a>
+        </div>
+    </div>
+</form>
+
+

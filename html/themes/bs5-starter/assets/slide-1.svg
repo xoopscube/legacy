@@ -1,0 +1,43 @@
+<svg width="640" height="480" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg">
+
+  <rect y="150" width="290" height="80" style="fill: rgb(33, 37, 41); stroke: rgb(0, 0, 0);" x="330"/>
+  <rect y="280" width="290" height="80" style="fill: rgb(33, 37, 41); stroke: rgb(0, 0, 0);" x="330"/>
+  <rect y="280" width="290" height="80" style="fill: rgb(33, 37, 41); stroke: rgb(0, 0, 0);" x="20"/>
+  <rect y="150" width="290" height="80" style="fill: rgb(33, 37, 41); stroke: rgb(0, 0, 0);" x="20"/>
+  <rect x="20" y="49.52" width="600" height="50.48" style="fill: rgb(37, 42, 46); stroke: rgb(0, 0, 0);">
+    <title>navbar</title>
+  </rect>
+  <path d="M -465 -80.84 L -460 -71 L -470 -71 L -465 -80.84 Z" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" transform="matrix(-1, 0, 0, -1, 0, 0)">
+    <title>dropdown</title>
+  </path>
+  <path d="M -575 -79.95 L -570 -70 L -580 -70 L -575 -79.95 Z" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" transform="matrix(-1, 0, 0, -1, 0, 0)">
+    <title>dropdown</title>
+  </path>
+  <text style="fill: rgb(173, 181, 189); font-size: 24px; line-height: 42px; white-space: pre;" transform="matrix(0.521806, 0, 0, 0.521807, 380.000031, 77.952148)"><title>main-menu</title>Main Menu</text>
+  <text style="white-space: pre; fill: rgb(173, 181, 189); font-family: Arial, sans-serif; font-size: 24px;" transform="matrix(0.521806, 0, 0, 0.521807, 488.555237, 77.689606)"><title>user-menu</title>User Menu</text>
+  <text style="fill: rgb(173, 181, 189); font-family: Arial, sans-serif; font-size: 47.9104px; line-height: 91.9879px; white-space: pre;" transform="matrix(0.417444, 0, 0, 0.417446, 120.000015, 320.036011)"><tspan>Component Hero</tspan><tspan x="0" dy="1em">​</tspan><tspan>Modal &amp; Carousel</tspan></text>
+  <g transform="matrix(3, 0, 0, 3, 33.997063, 154)" style="">
+    <path d="M8.25541 8.99986C9.22191 8.99986 10.0054 9.78336 10.0054 10.7499V20.25C10.0054 21.2165 9.22191 22 8.25541 22H3.75098C2.78448 22 2.00098 21.2165 2.00098 20.25V10.7499C2.00098 9.78336 2.78448 8.99986 3.75098 8.99986H8.25541ZM8.25541 10.4999H3.75098C3.61291 10.4999 3.50098 10.6118 3.50098 10.7499V20.25C3.50098 20.3881 3.61291 20.5 3.75098 20.5H8.25541C8.39348 20.5 8.50541 20.3881 8.50541 20.25V10.7499C8.50541 10.6118 8.39348 10.4999 8.25541 10.4999ZM6.25035 18C6.66456 18 7.00035 18.3358 7.00035 18.75C7.00035 19.1297 6.7182 19.4435 6.35212 19.4932L6.25035 19.5H5.75035C5.33614 19.5 5.00035 19.1642 5.00035 18.75C5.00035 18.3703 5.28251 18.0565 5.64858 18.0068L5.75035 18H6.25035ZM19.7504 2C20.9412 2 21.916 2.92516 21.9952 4.09595L22.0004 4.25V13.25C22.0004 14.4409 21.0752 15.4156 19.9044 15.4948L19.7504 15.5H16.0044V17.5H17.2504C17.6646 17.5 18.0004 17.8358 18.0004 18.25C18.0004 18.6297 17.7182 18.9435 17.3521 18.9932L17.2504 19H11.0004V17.5H14.5044V15.5H11.0004V14H19.7504C20.13 14 20.4438 13.7178 20.4935 13.3518L20.5004 13.25V4.25C20.5004 3.83579 20.1646 3.5 19.7504 3.5H6.25035C5.87066 3.5 5.55686 3.78215 5.5072 4.14823L5.50035 4.25V8H4.00035V4.25C4.00035 3.05914 4.92551 2.08436 6.0963 2.00519L6.25035 2H19.7504Z" fill="#212121" style="fill: rgb(13, 110, 253);"></path>
+  </g>
+  <g transform="matrix(2.916665, 0, 0, 2.916665, 34.765091, 286.000031)">
+    <g>
+      <path fill="none" d="M0 0h24v24H0z"></path>
+      <path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm17 7H4v9h16v-9zm-5-4v2h4V6h-4z" style="fill: rgb(13, 110, 253);"></path>
+    </g>
+  </g>
+  <g transform="matrix(2.610925, 0, 0, 2.610925, 350.319641, 290.029633)">
+    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12 20.5V3.5C16.6944 3.5 20.5 7.30558 20.5 12C20.5 16.6944 16.6944 20.5 12 20.5Z" fill="#212121" style="fill: rgb(173, 181, 189);"></path>
+  </g>
+  <text style="fill: rgb(173, 181, 189); font-family: sans-serif; font-size: 20px; line-height: 30px;" transform="matrix(1, 0, 0, 1.000004, 120, 185)"><tspan>Responsive Layout</tspan><tspan x="0" dy="1em">​</tspan><tspan>Modules Templates</tspan></text>
+  <text style="fill: rgb(173, 181, 189); font-family: sans-serif; font-size: 20px; line-height: 30px;" transform="matrix(1, 0, 0, 1.000004, 440, 185)"><tspan>Navbar Menu with<tspan x="0" dy="1em">​</tspan>Block-Title  Prefix</tspan><tspan x="0" dy="1em">​</tspan></text>
+  <text style="fill: rgb(173, 181, 189); font-family: sans-serif; font-size: 20px; line-height: 30px" transform="matrix(1, 0, 0, 1.000004, 430, 321.420868)"><tspan>Light - Dark Mode</tspan><tspan x="0" dy="1em">​</tspan><tspan>with LocalStorage</tspan></text>
+  <g transform="matrix(6.633322, 0, 0, 6.633322, 519.920837, 65.404152)">
+    <g>
+      <path d="M -68.87 -0.7 L -71.92 -0.7 C -72.15 -0.7 -72.35 -0.5 -72.35 -0.27 L -72.35 2.78 C -72.35 3.02 -72.15 3.21 -71.92 3.21 L -68.87 3.21 C -68.63 3.21 -68.44 3.02 -68.44 2.78 L -68.44 -0.27 C -68.44 -0.5 -68.63 -0.7 -68.87 -0.7 Z M -70.9 0.21 L -69.81 1.08 L -69.45 0.06 L -69.14 0.37 L -69.6 1.91 L -70.68 0.82 L -71.12 1.69 L -71.64 1.6 L -70.9 0.21 Z M -71.92 2.13 L -71.54 2.13 L -71.92 2.5 L -71.92 2.13 Z M -71.73 2.78 L -71.08 2.13 L -70.68 2.13 L -71.34 2.78 L -71.73 2.78 Z M -70.87 2.78 L -70.22 2.13 L -69.87 2.13 L -70.52 2.78 L -70.87 2.78 Z M -70.06 2.78 L -69.41 2.13 L -69.06 2.13 L -69.71 2.78 L -70.06 2.78 Z M -68.87 2.78 L -69.25 2.78 L -68.87 2.4 L -68.87 2.78 Z" style="fill: rgb(173, 181, 189);"></path>
+    </g>
+  </g>
+  <g transform="matrix(3.157895, 0, 0, 3.157895, 345.450928, 150.526321)">
+    <path d="M10 8h11V5c0-1.1-.9-2-2-2h-9v5zM3 8h5V3H5c-1.1 0-2 .9-2 2v3zm2 13h3V10H3v9c0 1.1.9 2 2 2zm8 1l-4-4 4-4zm1-9l4-4 4 4z" style="fill: rgb(13, 110, 253);"></path>
+    <path d="M14.58 19H13v-2h1.58c1.33 0 2.42-1.08 2.42-2.42V13h2v1.58c0 2.44-1.98 4.42-4.42 4.42z" style="fill: rgb(173, 181, 189);"></path>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{foreach item=category from=$block.categories}>
+<dl>
+<dt><a href="<{$block.mod_url}>/index.php?cat_id=<{$category.id}>"><{$category.title}></a></dt>
+	<dd style="margin:0;"><ul>
+	<{foreach item=forum from=$category.forums}>
+		<li><a href="<{$block.mod_url}>/index.php?forum_id=<{$forum.id}>" title="<{$block.lang_lastupdated}>:<{$forum.last_post_time_formatted}>"><{$forum.title}></a></li>
+	<{/foreach}>
+	</ul></dd>
+</dl>
+<{/foreach}>

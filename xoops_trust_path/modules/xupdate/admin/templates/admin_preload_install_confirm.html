@@ -94,13 +94,14 @@
             </tr>
             <{if $target_type == 'TrustModule'}>
             <tr>
-                <td class="legacy_list_select"><{$smarty.const._AD_XUPDATE_HTML_ONLY}></td>
-                <td class="legacy_list_select">
+                <td class="list_select"><{$smarty.const._AD_XUPDATE_HTML_ONLY}></td>
+                <td class="list_select">
                     <table>
                         <tr>
-                            <td class='even'><label for="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX}>html_only_1"><{$smarty.const._AD_XUPDATE_HTML_ONLY_DESC}></label>
+                            <td>
+                                <label for="<{$smarty.const.XOOPS_INPUT_DEFID_PREFIX}>html_only_1"><{$smarty.const._AD_XUPDATE_HTML_ONLY_DESC}></label>
                             </td>
-                            <td class="even"><{xoops_input type=checkbox name=html_only value=1}></td>
+                            <td><{xoops_input type=checkbox name=html_only value=1}></td>
                         </tr>
                     </table>
                 </td>

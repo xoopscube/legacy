@@ -1,0 +1,10 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{$smarty.const._MD_D3FORUM_MODERATOR}>:
+<{foreach from=$target.moderate_groups item=moderator}>
+	<{$moderator.gname}>
+<{/foreach}>
+<{foreach from=$target.moderate_users item=moderator}>
+	<a href="<{$xoops_url}>/userinfo.php?uid=<{$moderator.uid}>"><{$moderator.uname}></a>
+<{/foreach}>

@@ -1,0 +1,267 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{* /////// INCLUDE BREADCRUMB \\\\\\\ *}>
+<{if $mod_config.show_breadcrumbs}>
+<{include file="db:`$mydirname`_inc_breadcrumb.html"}>
+<{/if}>
+
+<form name="topicmanager_update" id="topicmanager_update" action="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$topic.id}>"
+      method="post"
+      class="needs-validation" novalidate>
+    <{$gticket_hidden}>
+
+<div class="card my-4">
+
+    <div class="card-header">
+        <h3><img class="svg me-2" src="<{$xoops_url}>/images/icons/tools.svg" width="1em" alt=""><{$smarty.const._MD_D3FORUM_TOPICMANAGER}></h3>
+    </div>
+
+    <div class="card-body m-2">
+
+    <div class="alert alert-warning">
+        <p aria-label="target-topic">
+            <img class="svg" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" alt="folder"> <{$category.title}><br>
+            <img class="svg" src="<{$xoops_url}>/images/icons/forum_1.svg" width="1em" alt="forum"> <{$forum.title}><br>
+            <img class="svg" src="<{$xoops_url}>/images/icons/topic_01.svg" width="1em" alt="topic"> <{$topic.title}></p>
+    </div>
+
+
+
+        <div class="row my-3">
+            <label for="topic_title" class="col-sm-4 col-form-label"><{$smarty.const._MD_D3FORUM_TOPICTITLE}></label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" name="topic_title" id="topic_title" size="50" value="<{$topic.title4edit}>">
+            </div>
+        </div>
+
+
+        <div class="row mb-3">
+            <label for="forum_id" class="col-sm-4 col-form-label"><{$smarty.const._MD_D3FORUM_FORUM}></label>
+            <div class="col-sm-7">
+                <select name="forum_id" id="forum_id" class="form-select mr-sm-4" ><{$forum_jumpbox_options}></select>
+            </div>
+        </div>
+
+
+	<{if $forum.external_link_format}>
+        <div class="row mb-3">
+            <label for="topic_external_link_id" class="col-sm-4 col-form-label"><{$smarty.const._MD_D3FORUM_TOPICEXTERNALLINKID}></label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" name="topic_external_link_id" id="topic_external_link_id" size="20" value="<{$topic.external_link_id}>">
+            </div>
+        </div>
+	<{/if}>
+
+        <div class="row mb-3">
+            <div class="col-sm-4"><{$smarty.const._MD_D3FORUM_REPLIES}></div>
+            <div class="col-sm-6"><span class="badge text-bg-secondary"><{$topic.replies}></span></div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-4"><{$smarty.const._MD_D3FORUM_VIEWS}></div>
+            <div class="col-sm-6"><span class="badge text-bg-secondary"><{$topic.views}></span></div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-4"><{$smarty.const._MD_D3FORUM_FIRSTPOST}></div>
+            <div class="col-sm-3"><input class="form-control" type="text" value="<{$topic.first_post_time_formatted}>" disabled readonly></div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-4"><{$smarty.const._MD_D3FORUM_LASTPOST}></div>
+            <div class="col-sm-3"><input class="form-control" type="text" value="<{$topic.last_post_time_formatted}>" disabled readonly></div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="topic_sticky" class="col-sm-4 col-form-label"><{$smarty.const._MD_D3FORUM_TH_STICKY}></label>
+            <div class="col-2">
+                <input type="number" class="form-control" name="topic_sticky" id="topic_sticky" size="3" value="<{$topic.sticky}>">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-6">
+                <input class="form-check-input" type="checkbox" name="topic_locked" id="topic_locked" value="1" <{if $topic.locked}>checked="checked"<{/if}>>
+                <label for="topic_locked"><{$smarty.const._MD_D3FORUM_TH_LOCK}></label>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-6">
+                <input class="form-check-input" type="checkbox" name="topic_invisible" id="topic_invisible" value="1" <{if $topic.invisible}>checked="checked"<{/if}>>
+                <label for="topic_invisible"><{$smarty.const._MD_D3FORUM_TH_INVISIBLE}></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-6">
+                <input class="form-check-input" type="checkbox" name="topic_solved" id="topic_solved" value="1" <{if $topic.solved}>checked="checked"<{/if}>>
+                <label for="topic_solved"><{$smarty.const._MD_D3FORUM_TH_SOLVED}></label>
+            </div>
+        </div>
+
+    </div><{* -----/card-body *}>
+
+    <div class="card-footer py-3">
+
+            <button type="submit" class="btn btn-primary px-3" name="topicman_post" value="<{$smarty.const._MD_D3FORUM_BTN_UPDATE}>">
+                <img class="svg" src="<{$xoops_url}>/images/icons/update.svg" width="1em" alt="update"> <{$smarty.const._MD_D3FORUM_BTN_UPDATE}> </button>
+
+            <button type="submit" class="btn btn-outline-primary px-3" name="topicman_sync" value="<{$smarty.const._MD_D3FORUM_BTN_SYNCTHISTOPIC}>">
+                <img class="svg" src="<{$xoops_url}>/images/icons/sync.svg" width="1em" alt="sync"> <{$smarty.const._MD_D3FORUM_BTN_SYNCTHISTOPIC}></button>
+
+    </div><{* -----/card-footer *}>
+
+</div><{* -----/card *}>
+
+</form>
+
+
+<{* ------- EXPORT TOPIC MANAGER ------- *}>
+<{if $forum.isadminormod}>
+<form name="topicmanager_export" id="topicmanager_export" action="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$topic.id}>"
+      method="post"
+      class="needs-validation" novalidate>
+    <{$gticket_hidden}>
+
+<div class="card my-4">
+
+    <div class="card-body m-2">
+
+        <h4><{$smarty.const._MD_D3FORUM_TOPIC_EXPORT}></h4>
+
+        <div class="alert alert-info my-4">
+            <{$smarty.const._MD_D3FORUM_TOPIC_EXPORT_DESC}>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="export_mid" class="form-label"><{$smarty.const._MD_D3FORUM_TOPIC_EXPORT_MODULE}></label>
+                <select class="form-select" name="export_mid" id="export_mid" onchange="d3forum_showhide_forum_select(this);" required>
+                    <{html_options options=$export_to_module_options}>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label for="export_forum_id_0" class="form-label"><{$smarty.const._MD_D3FORUM_TOPIC_EXPORT_TARGET}></label>
+                <select class="form-select" name="export_forum_id[0]" id="export_forum_id_0" required>
+                    <option selected disabled value="0">----</option>
+                </select>
+                <{foreach from=$export_to_forum_options key="ex_forum_id" item="ex_options"}>
+                <select class="form-select" name="export_forum_id[<{$ex_forum_id}>]" id="export_forum_id_<{$ex_forum_id}>" required>
+                    <option selected disabled value="0">----</option>
+                    <{$ex_options}>
+                </select>
+                <{/foreach}>
+            </div>
+        </div><{* /row *}>
+
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <button type="button" class="btn btn-outline-primary w-100" id="btnMove" data-bs-toggle="modal" data-bs-target="#exportModal">
+                    <{$smarty.const._MD_D3FORUM_BTN_MOVETOPICTOOTHERFORUM}>
+                </button>
+            </div>
+            <div class="col-sm-6">
+                <button type="button" class="btn btn-outline-primary w-100" id="btnCopy" data-bs-toggle="modal" data-bs-target="#exportModal">
+                <{$smarty.const._MD_D3FORUM_BTN_COPYTOPICTOOTHERFORUM}>
+            </button>
+            </div>
+        </div>
+
+    </div><{* /card-body *}>
+</div><{* /card *}>
+
+<{* MODAL MUST BE WITHIN FORM *}>
+<div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exportModalLabel"><{$smarty.const._MD_D3FORUM_TOPIC_EXPORT}></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="actionName"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-warning" id="btnAction" name="topicman_export_move"><{$smarty.const._SUBMIT}></button>
+            </div>
+        </div>
+    </div>
+</div>
+<{* /MODAL MUST BE WITHIN FORM *}>
+
+</form>
+
+<script type="text/javascript">
+
+d3forum_showhide_forum_select( document.getElementById("export_forum_id_0") ) ;
+
+function d3forum_showhide_forum_select(select) {
+    selected_val = select.options[select.selectedIndex].value ;
+    form = select.form ;
+    for (i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].name.match(/export_forum_id/)) {
+            if (form.elements[i].id == "export_forum_id_" + selected_val) {
+                form.elements[i].style.display = "inline";
+                form.elements[i].required = true;
+                var idSet = form.elements[i].id;
+            } else {
+                form.elements[i].style.display = "none";
+            }
+        }
+    }
+    // Toggle btn Move and Copy
+    var btnMC =  document.querySelectorAll('#btnMove, #btnCopy');
+    if (idSet == 'export_forum_id_0') {
+        btnMC.forEach(item => {item.disabled = true;})
+    } else {
+        btnMC.forEach(item => {item.disabled = false;})
+    }
+}
+
+    let actionName = document.getElementById("actionName")
+    let btnAction = document.getElementById("btnAction")
+
+    function btnReset () {
+        // Remove all classes from elements
+        actionName.className = '';
+        btnAction.className = '';
+    }
+    /*
+     * Warning: textContent vs innerText
+     * Setting 'textContent' on a node removes everything and replaces with a single text node with the given string value.
+     * Avoid 'innerText' because it takes CSS styles into account and triggers a reflow to ensure up-to-date computed styles.
+     */
+    document.getElementById("btnMove").addEventListener("click", e => {
+        btnReset()
+        // find the required event source element
+        actionName.textContent = "<{$smarty.const._MD_D3FORUM_BTN_MOVETOPICTOOTHERFORUM}>. <{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>";
+        actionName.classList.add('alert', 'alert-danger');
+        // Add required form name  + button text
+        btnAction.setAttribute("name", "topicman_export_move");
+        //btnAction.textContent = "Move";
+        // Add multiple classes
+        btnAction.classList.add('btn', 'btn-danger');
+    })
+    document.getElementById("btnCopy").addEventListener("click", e => {
+        // Remove all classes from element
+        btnReset ()
+
+        // find the required event source element
+        actionName.textContent = "<{$smarty.const._MD_D3FORUM_BTN_COPYTOPICTOOTHERFORUM}>. <{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>";
+        actionName.classList.add('alert', 'alert-warning');
+
+        btnAction.setAttribute("name", "topicman_export_copy");
+        //btnAction.textContent = "Copy";
+        // Add multiple classes
+        btnAction.classList.add('btn', 'btn-warning');
+    })
+
+</script>
+<{/if}>
+<{* ------- EXPORT TOPIC MANAGER ------- *}>
