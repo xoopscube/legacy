@@ -1,25 +1,47 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL
-	Version :  2.3.1
+	Distribution : XOOPSCube XCL 2.3.1
+	Version : 2.3.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2022-11-21
+	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
 */
-
 /*  -------------------- --------------------  Media Queries */
-    /*
-    * Screen Mode Portrait -> Invite To Turn Device
-    *
-    /* -------------------- --------------------  Screen Portrait */
 
-@media only screen and (min-width: 320px) and (orientation:portrait) {
+/* -------------------- Mobile Devices */
 
+@media (max-width: 480px) {
+
+    .layout-grid {
+        grid-template-areas:
+        "header header"
+        "main main";
+    }
     .layout-grid,
     .ondemand,
     .ondemand-button  {
         left        : -30px;
         grid-template-columns: 1fr;
+    }
+
+    main {
+        max-width: 100%;
+        padding: 0 .5rem;
+    }
+
+    .btnav {
+        min-width: 30px;
+        max-width: 30px;
+    }
+
+    .nav-side-menu {
+        margin      : 0;
+    }
+    nav#help-menu {
+        position :initial;
+    }
+    div.adminavi-sub{
+             top: 107px;
     }
     .ui-block-online-stats {
         display: grid;
@@ -33,72 +55,40 @@
     .dashboard-options a.set-link {
         max-width: calc(100% / 4);
     }
-
-    nav ul li.nav-logo {
-        padding: 0;
-    }
-    .btnav {
-        min-width: 30px;
-        max-width: 30px;
-    }
-        nav ul li.ui-color-mode {
-            margin: 0;
-        }
-    main.main {
-    padding: 0 .5rem;
-    max-width: 100%;
-    }
     .ui-card-2-col {
         column-count    : 1;
         display         : block;
         list-style      : none;
         margin          : 0;
     }
-    .tips, .error, .confirm, .success, .confirmMsg, .resultMsg {
-        margin:1rem auto;padding: .5rem .5rem .5rem 2.5rem;width:100%;
-    }
-        nav#help-menu {
-            position :initial;
-        }
-}
-
-
-/* -------------------- --------------------  Screen max 420px */
-
-@media only screen and (min-width: 420px) and (orientation:portrait) {
-
-    .layout-grid {
-        grid-template-areas:
-            "header header"
-            "main main";
-    }
-
-    main {
-        max-width: 100%;
-        padding: 0 2rem;
-    }
-    .nav-side-menu {
-        margin      : 0;
-    }
-
     .ui-card-small {
         margin      : 0;
     }
 
     .ui-card-overview {
         grid-template-areas	:
-            "header"
-            "main"
-            "footer";
+        "header"
+        "main"
+        "footer";
         width       : 100%;
-   }
-
+    }
+    .tips, .error, .confirm, .success, .confirmMsg, .resultMsg {
+        margin:1rem auto;padding: .5rem .5rem .5rem 2.5rem;width:100%;
+    }
 }
 
 
 /* -------------------- --------------------  Tablet Hor. 736 px*/
 
-@media only screen and (min-width: 46.875em) {
+@media (min-width: 46.875em) {
+    .layout-grid {
+        grid-template-areas:
+        "header header"
+        "main main";
+    }
+    nav ul li.nav-logo {
+        display: inline-block ;
+    }
     .ui-block-online-stats {
         display: grid;
         grid-auto-flow: column;
@@ -146,7 +136,6 @@
 
 }
 
-
 /* -------------------- --------------------  Tablet Hor. 1024px*/
 
 @media screen and (min-width: 64em) {
@@ -191,7 +180,7 @@
     }
 
     #container > main {
-        max-width               : calc(100vw - 360px);
+        max-width               : calc(100vw - 340px);
     }
     .nav-mobile {
         visibility              : hidden;

@@ -1,7 +1,7 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div class="adminnavi" aria-label="breadcrumb">
-  <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+<div class="adminnavi">
+  <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
   &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ImagecategoryList"><{$smarty.const._MI_LEGACY_MENU_IMAGE_MANAGE}></a>
   &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}> (<{$category->getShow('imgcat_name')}>)</span>
@@ -12,12 +12,7 @@
 
 
 <div class="tips">
-    <ul>
-        <li><{$smarty.const._AD_LEGACY_LANG_IMAGE_TOTAL}>: <{$ImageTotal}>&nbsp;&nbsp;
-            ( <{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAYTOTAL}>: <{$displayImageTotal}>&nbsp;&nbsp;&nbsp;<{$smarty.const._AD_LEGACY_LANG_IMAGE_NOTDISPLAYTOTAL}>: <{$notdisplayImageTotal}> )
-        </li>
-        <li><{$smarty.const._AD_LEGACY_TIPS_IMAGE}></li>
-    </ul>
+    <{$smarty.const._AD_LEGACY_TIPS_IMAGE}>
 </div>
 
 

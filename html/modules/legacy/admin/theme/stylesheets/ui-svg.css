@@ -1,166 +1,116 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XOOPSCube XCL 2.3.1
-	Version : 1.1.1
+	Version : 2.3.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2022-11-21
+	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
 */
-
 /* -------------------- -------------------- SVG Default Settings */
 
-    /* SVG Filter drop-shadow
-    * similar syntax to box-shadow :
-    * right, down, blur, opacity
-    */
-    svg {
+svg {
+    -webkit-user-select : none;
+    -moz-user-select    : none;
+    -ms-user-select     : none;
+    user-select         : none;
+    -webkit-tap-highlight-color : rgba(255, 255, 255, 0);
+}
 
-        /* filter              : drop-shadow( 0px 1px 0px var( --link)); */
-        -webkit-user-select : none;
-        -moz-user-select    : none;
-        -ms-user-select     : none;
-        user-select         : none;
+svg[class|="icon"]{
+    color               : var(  --link   );
+    font-size           : var(--icon-size);
+}
 
-        -webkit-tap-highlight-color : rgba(255, 255, 255, 0);
+/* SVG Default Position and Path Color
+* .block-icon
+* .module-icon
+*/
+svg path.block-icon,
+svg path.module-icon {
+    color              	: var(--link);
+    transform          	: translate(12px, 12px); /* eq. padding */
+    transition         	: all 1s;
+}
+/*
+* .block-name
+* .module-name
+*/
+svg text.block-name,
+svg text.module-name {
+    color              	: var(--link);
+    text-anchor        	: middle; /* align center */
+    dominant-baseline  	: middle; /* vertical alignment fix */
+    font-size          	: 20px;
+    transition         	: all 1s;
+}
 
-    }
+/* -------------------- -------------------- Block Type Color */
 
-    svg[class|="icon"]{
-        color               : var(  --link   );
-        font-size           : 24px;
-    }
+svg.ui-block-module {
+    background      : var(  --color-blue );
+}
 
-    /* SVG Default Path Color
-    * .block-icon
-    * .module-icon
-    */
-    svg path.block-icon,
-    svg path.module-icon {
+svg.ui-block-html  {
+    background      : var(  --color-blue );
+}
 
-        color              	: var(--link);
-        transform          	: translate(12px, 12px); /* eq. padding */
-        transition         	: all 1s;
+svg.ui-block-html path.block-icon {
+    color           : var(  --secondary );
+    transform       : translate(10px, 20px);
+}
 
-    }
+svg.ui-block-php  {
+    background      : var(  --color-indigo );
+}
 
-    /* SVG Default Text Color
-    * .block-name
-    * .module-name
-    */
-    svg text.block-name,
-    svg text.module-name {
+/*svg.ui-block-smilies {*/
+/*    background      : var(  --color-orange );*/
+/*}*/
 
-        color              	: var(--link);
-        text-anchor        	: middle; /* align center */
-        dominant-baseline  	: middle; /* vertical alignment fix */
-        font-size          	: 20px;
-        transition         	: all 1s;
-
-    }
-
-    /* SVG default text hover color
-    * .block-name:hover
-    * .module-name:hover
-    */
-    svg text.block-name:hover,
-    svg text.module-name:hover {
-
-        color           : var(  --color-amber	);
-
-    }
-
-/* -------------------- -------------------- Block Type Icon Color */
-
-    svg.ui-block-module {
-        background      : var(  --color-blue );
-    }
-
-    svg.ui-block-html  {
-        background      : var(  --color-blue );
-    }
-
-    svg.ui-block-html path.block-icon {
-        color           : var(  --secondary );
-        transform       : translate(10px, 20px);
-    }
-
-    svg.ui-block-php  {
-        background      : var(  --color-indigo );
-    }
-
-    svg.ui-block-smilies {
-        background      : var(  --color-orange );
-    }
-
-    svg.ui-block-no-smilies {
-        background      : var(  --color-blue );
-    }
+/*svg.ui-block-no-smilies {*/
+/*    background      : var(  --color-blue );*/
+/*}*/
 
 /* -------------------- -------------------- Icons Colors */
 
-    .ui-icon-amber {
-        background      : var(  --color-amber );
-        color           : var(  --color-white );
-    }
+.ui-icon-amber {
+    background      : var(  --color-amber );
+    color           : var(  --color-white );
+}
 
-    .ui-icon-blue {
-        background      : var(  --color-blue );
-        color           : var(  --color-white );
-    }
+.ui-icon-blue {
+    background      : var(  --color-blue );
+    color           : var(  --color-white );
+}
 
-    .ui-icon-green {
-        background      : var(  --color-green );
-        color           : var(  --color-white );
-    }
+.ui-icon-green {
+    background      : var(  --color-green );
+    color           : var(  --color-white );
+}
 
-    .ui-icon-indigo {
-        background      : var(  --color-indigo );
-        color           : var(  --color-white );
-    }
+.ui-icon-indigo {
+    background      : var(  --color-indigo );
+    color           : var(  --color-white );
+}
 
-    .ui-icon-orange {
-        background      : var(  --color-orange );
-        color           : var(  --color-white );
-    }
+.ui-icon-orange {
+    background      : var(  --color-orange );
+    color           : var(  --color-white );
+}
 
-    .ui-icon-purple {
-        background      : var(  --color-purple );
-        color           : var(  --color-white );
-    }
+.ui-icon-purple {
+    background      : var(  --color-purple );
+    color           : var(  --color-white );
+}
 
-    .ui-icon-red {
-        background      : var(  --color-red );
-        color           : var(  --color-white );
-    }
+.ui-icon-red {
+    background      : var(  --color-red );
+    color           : var(  --color-white );
+}
 
 /* -------------------- -------------------- SVG Custom Settings */
 
-    svg[data-value] {
-        /* Attribute exists */
-    }
-
-    svg[class="ui-block-module"] {
-        /* Attribute has this exact value */
-        background      : var(  --color-block-module);
-    }
-
-    svg text[class*="block"] {
-        /* Attribute value contains this value somewhere in it */
-        /* color          	: var(--color-orange); */
-    }
-
-    svg[data-value~="foo"] {
-        /* Attribute has this value in a space-separated list somewhere */
-    }
-
-    svg[data-value^="block"] {
-        /* Attribute value starts with this */
-    }
-
-    svg[data-value|="foo"] {
-        /* Attribute value starts with this in a dash-separated list */
-    }
-
-    svg[data-value$="foo"] {
-        /* Attribute value ends with this */
-    }
+svg[class="ui-block-module"] {
+    background      : var(  --color-block-module);
+    color           : var(  --color-white );
+}

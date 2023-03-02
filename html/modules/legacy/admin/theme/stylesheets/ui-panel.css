@@ -1,12 +1,11 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XOOPSCube XCL 2.3.1
-	Version : 1.1.1
+	Version : 2.3.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2022-11-21
+	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
 */
-
 /* -------------------- --------------------  XCL Panel */
 
 .right-sidebar {
@@ -33,8 +32,8 @@
     background      : inherit;
     color           : inherit;
     display         : block;
-    font-size       : 15px;
-    padding         : 15px 20px;
+    font-size       : var(--space-6);
+    padding         : var(--space-6) var(--space-7);
     position        : sticky;
     text-transform  : uppercase;
     top             : 2px;
@@ -43,7 +42,7 @@
 .right-sidebar .right-panel-title span {
     cursor          : pointer;
     float           : right;
-    font-size       : 18px;
+    font-size       : var(--icon-size);
 }
 .right-sidebar .right-panel-title span:hover {
     color           : var(--link-hover)
@@ -53,7 +52,7 @@
     direction       : ltr; /* used for content on the left*/
     display         : block;
     height          : auto;
-    padding         : 15px;
+    padding         : var(--space-6);
     width           : 100%;
     z-index         : 10;
 }
@@ -63,9 +62,8 @@
 }
 .right-sidebar .right-panel-block ul li {
     list-style      : none;
-    padding         : 5px 0;
+    padding         : var(--space-2) 0;
 }
-
 .right-panel-show {
     display         : block;
     right           : 0;
@@ -92,19 +90,12 @@
 }
 
 .theme-options {
-
     background      : transparent;
-
-    border-top-left-radius : 2px;
-    border-bottom-left-radius : 2px;
-    box-shadow      : -5px 0px 5px 1px rgba(0,0,0,0.27);
-
     color           : #abc;
-    line-height     : 30px;
     position        : fixed;
     top             : 30%;
     right           : 2px;
-    z-index         : 900;
+    z-index         : 100;
     padding         : 1px;
     margin          : 3px;
 
@@ -113,22 +104,14 @@
     -khtml-user-select: none; /* Konqueror HTML */
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+    user-select: none; /* Currently supported by Chrome, Edge, Opera and Firefox */
 }
-
 .theme-options-close {
-    box-shadow      : none;
+    background      : var(--layer-2);
     color           : var(--link);
     position        : relative;
-    padding         : 10px;
-    top             : -18px;
+    top             : -8px;
     right           : -20px;
-}
-
-.theme-options-close:hover {
-    color           : var(--link-hover);
-    box-shadow      : none;
-    /*filter          : drop-shadow(1px 1px 0px rgba(10, 10, 10, 0.7));*/
 }
 
 /* -------------------- --------------------  XCL CUBE */
@@ -160,8 +143,7 @@
 .qube.faces>:nth-child(6),.qube>.bottom{-webkit-transform:translateY(50%) rotateX(-90deg);-moz-transform:translateY(50%) rotateX(-90deg);transform:translateY(50%) rotateX(-90deg)}
 .qube.faces>:nth-child(6):after,.qube>.bottom:after{background:rgba(0,0,0,.7)}
 .qube.textured.faces>:nth-child(6),.qube.textured>.bottom{background-position:-200% -100%}
-/* Quintessential Responsive 3D CSS Cube, MIT License @zacharyjohnson, edited by Nuno Luciano #gigamaster */
-
+/* Quintessential Responsive 3D CSS Cube, MIT License @zacharyjohnson, Edited by Nuno Luciano #gigamaster */
 .xcl-cube {
     width           : 40px;
     height          : 40px;
@@ -177,18 +159,10 @@
     text-align      : center;
     cursor          : pointer;
 }
-.xcl-cube > .front {
-    background      : rgba(84,110,127,0.27);
-}
-.xcl-cube > .left {
-    background      : rgba(70,90,100,0.27);
-}
-.xcl-cube > .back {
-    background      : rgba(55,70,80,0.27);
-}
-.xcl-cube > .right {
-    background      : rgba(40,52,60,0.27);
-}
+.xcl-cube > .front {background : rgba(84,110,127,0.27)}
+.xcl-cube > .left {background  : rgba(70,90,100,0.27)}
+.xcl-cube > .back {background  : rgba(55,70,80,0.27)}
+.xcl-cube > .right {background : rgba(40,52,60,0.27)}
 
 /* -------------------- --------------------  COLOR SCHEME */
 

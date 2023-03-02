@@ -1,5 +1,5 @@
 <div class="adminnavi" aria-label="breadcrumb">
-    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     <{if $module != null}>
     &raquo;&raquo; <a href="<{$smarty.const.XOOPS_URL}>/modules/<{$module->getVar('dirname')}>/<{$module->getInfo('adminindex')|xoops_escape}>"><{$module->getVar('name')}></a>
     <{if $category != null}>
@@ -41,7 +41,7 @@
     <{xoops_token form=$actionForm}>
     <{xoops_input type=hidden name=$actionForm->mKeyName value=$actionForm->mKeyValue}>
 
-    <table class="outer">
+    <table class="outer" style="scroll-padding-top: 140px!important">
         <thead>
         <tr>
             <th colspan="2">

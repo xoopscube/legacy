@@ -1,9 +1,9 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL 2.3
-	Version : 1.0.0
+	Distribution : XOOPSCube XCL 2.3.1
+	Version : 2.3.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2021-10-28
+	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
 */
 
@@ -25,6 +25,11 @@
             $(".right-sidebar").slideDown(50), $(".right-sidebar").toggleClass("right-panel-show");
         });
 
+        // Alert Notify e.g. install and mainfile
+        $(".alert-close").on("click", function () {
+            $(this).parent("div").fadeOut();
+        });
+
         // Select Multiple
         // without keyboard
         // CSS ui-form.css
@@ -36,7 +41,7 @@
             var self = this;
             $(this).parent().focus();
             $(this).parent().closest(".ui-card-block").addClass('ui-update-change');
-            $('div.foot-sticky').addClass("sticky-view");
+            $('div.alert-submit').addClass("alert-view");
             setTimeout(function() {
                 $(self).parent().scrollTop(originalScrollTop);
             }, 0);
@@ -78,28 +83,17 @@
         //console.log(rest);
         $('#tab3').load(rest +'modules/legacy/admin/index.php?action=Help&dirname=legacy #help-overview');
 
-
-        // Module is not available with this distribution !
-        var target = $("a.set-link[href*='#no'] ")
-        target.addClass('not-available')
-
-
-        $("a").click(function () {
-            $("a").removeClass("selected");
-            $(this).addClass("selected");
-        });
-
         // Visual notice for all ui-card-block
         // Change the background color and notify
         $(function(){
             $("body").on("change","input,select", function() {
                 $(this).parent().closest(".ui-card-block").addClass('ui-update-change');
-                $('div.foot-sticky').addClass("sticky-view");
+                $('div.alert-submit').addClass("alert-view");
             });
         });
 
         $('input[name^=delete]').on('change', function () {
-            $('div.foot-sticky').addClass("sticky-view");
+            $('div.alert-submit').addClass("alert-view");
         });
 
         /* Code block Soure */
@@ -132,27 +126,19 @@
 
     // Function Side Nav Control
     function sideNavControl() {
-
         sideNavBlock.each((i, sideMenuTitleToggle) => {
-
             $(sideMenuTitleToggle).on('click', (e) => {
-
                 const SIDE_MENU_LINK = $(sideMenuTitleToggle).siblings();
-
                 // Toggle class of side menu title
                 if (sideMenuTitleToggle) {
                     toggleClass($(sideMenuTitleToggle), SIDE_MENU_BLOCK_OPEN);
                 }
-
                 // Switch view of side menu
                 if (SIDE_MENU_LINK && SIDE_MENU_LINK.length === 1) {
                     toggleClass($(SIDE_MENU_LINK), SIDE_MENU_BLOCK_CLOSE);
                 }
-
             });
-
         });
-
     }
 
     // Function toggle nav-aside

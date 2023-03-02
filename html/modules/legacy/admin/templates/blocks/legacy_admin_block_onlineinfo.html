@@ -65,7 +65,7 @@
                     // Open Help
                     $( "#open-online" ).on( "click", function() {
                         $( "#dialog-online" ).dialog( "open" );
-                        $('#online-users').load('<{$xoops_url}>/misc.php?type=online #online-users', function() {
+                        $('#view-online-users').load('<{$xoops_url}>/misc.php?type=online #online-users', function() {
                             console.log('Load was performed.');
                         })
                     });
@@ -80,9 +80,9 @@
 					<img class="svg user-online" src="<{'icons/icon-user-online.svg'|theme}>"> <{$smarty.const._MB_USER_MORE}></div>
 				</a>
 			</div>
-                    <div class="display:none ui-widget-shadow" id="dialog-online" title="<{$smarty.const._WHOSONLINE}>">
-                        <div id="online-users"></div>
-                    </div>
+			<div class="display:none ui-widget-shadow" id="dialog-online" title="<{$smarty.const._WHOSONLINE}>">
+				<div id="view-online-users"></div>
+			</div>
 		</div><{* ui-block-online-stats *}>
 
 	</div><{* ui-block-online-content- *}>

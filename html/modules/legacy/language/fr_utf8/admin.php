@@ -331,6 +331,7 @@ define( '_AD_LEGACY_MESSAGE_UNINSTALLATION_BLOCK_SUCCESSFUL' , "La désinstallat
 define( '_AD_LEGACY_MESSAGE_UNINSTALLATION_MODULE_SUCCESSFUL' , "Le module a été désinstallé avec succès.");
 define( '_AD_LEGACY_MESSAGE_UPDATE_STARTED' , "Début de la mise à jour.");
 define( '_AD_LEGACY_MESSAGE_UPDATING_MODULE_SUCCESSFUL' , "Le module '{0}' a été mis à jour avec succès.");
+define( '_AD_LEGACY_MESSAGE_CONFIRM_CHANGES' , "Save changes to database.");
 
 // TIPS
 define( '_AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK' , "<a href=\"index.php?action=BlockInstallList\">Installer de nouveaux blocs</a>, et configurez votre site selon vos besoins!<br/>Si vous voulez afficher du contenu autre que celui de vos modules, créez tout simplement <a href=\"index.php?action=CustomBlockEdit\">un bloc personnalisé</a> avec votre message.");
@@ -345,7 +346,7 @@ define( '_AD_LEGACY_TIPS_IMGCAT' , "Manage categories of images and users permis
 define( '_AD_LEGACY_TIPS_IMGCAT_STORETYPE' , "Please choose either the file or the database storage scheme for your image files. <strong>This setting cannot be changed later.</strong><br/>Keep in mind that if you select the database as the storage destination, image files will be stored as BLOB type data which may not be suitable for backup purposes.");
 define( '_AD_LEGACY_TIPS_INSTALL_BLOCK' , "You can customize your site by installing your favorite blocks.");
 define( '_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE' , "You may need to upgrade this module to the latest release. This step will make your package upgrade correctly. ");
-define( '_AD_LEGACY_TIPS_MOD' , "If you install a new module, remember to setup module preferences, blocks and users permissions!");
+define( '_AD_LEGACY_TIPS_MOD' , 'Modifiez les modules ou installez-en de nouveaux, personnalisez les noms et les préférences, définissez le cache et les autorisations des utilisateurs!');
 define( '_AD_LEGACY_TIPS_SMILES' , "Display, rename, delete or upload an archive with your custom smilies.");
 define( '_AD_LEGACY_TIPS_SMILES_UPLOAD' , "You can easily register many smiles by uploading a compressed archive!<br />This batch-upload doesn't check Length and File-Size of each smiles!<br />Pre-adjust them before you archive!<br />(Only tar.gz or zip archive)");
 define( '_AD_LEGACY_TIPS_THEME_ADMIN' , "Choose the look and feel of your site by clicking the 'select' button next to your favourite theme.<br/> You can let your users choose their favourite theme for your site. Check the boxes to add a theme to the theme selection block. For more details, read module Help.");
@@ -369,7 +370,7 @@ define( '_MD_AM_CENSORRPLCDSC' , "Les mots censurés seront remplacés par les c
 define( '_MD_AM_CENSORWRD' , "Mots à censurer'");
 define( '_MD_AM_CENSORWRDDSC' , "Entrez les mots qui seront censurés dans les envois utilisateurs.<br />Les séparer par un <b>|</b>, casse insensible.");
 define( '_MD_AM_CHNGUTHEME' , "Change le theme de tous les utilisateurs");
-define( '_MD_AM_CLOSESITE' , "Mode maintenance - Fermer votre site ?");
+define( '_MD_AM_CLOSESITE' , '<a id="close-site">🚧 Mode maintenance - Fermer votre site ?</a>');
 define( '_MD_AM_CLOSESITEDSC' , "Choisissez oui pour fermer votre site au public et limiter l'accès au groupe d'utilisateurs choisis.");
 define( '_MD_AM_CLOSESITEOK' , "Mode maintenance - Groupes autorisés");
 define( '_MD_AM_CLOSESITEOKDSC' , "Sélectionnez les groupes autorisés à accéder au site. Le groupe d'administrateurs ont accès par défaut.");
@@ -377,14 +378,14 @@ define( '_MD_AM_CLOSESITETXT' , "Mode maintenance - Message");
 define( '_MD_AM_CLOSESITETXTDSC' , "Message présenté lors de la fermeture du site, par exemple: Mise-à-jour, ouverture prochaine, etc.");
 define( '_MD_AM_COMMODE' , "💬 Mode d'affichage par défaut des commentaires.");
 define( '_MD_AM_COMORDER' , "💬 Ordre d'affichage par défaut des commentaires");
-define( '_MD_AM_DEBUGMODE' , "🐞 Mode de mise au point (Debug)");
+define( '_MD_AM_DEBUGMODE' , '<b id="debug-mode">🐞 Mode de mise au point (Debug)</b>');
 define( '_MD_AM_DEBUGMODE0' , "Inactif");
 define( '_MD_AM_DEBUGMODE1' , "Mise au point PHP");
 define( '_MD_AM_DEBUGMODE2' , "Mise au point MySQL/Blocs");
 define( '_MD_AM_DEBUGMODE3' , "Mise au point des Templates Smarty");
 define( '_MD_AM_DEBUGMODEDSC' , "Vous pouvez choisir entre plusieurs options de débogage. Un site Web courant doit avoir cette option désactivée, pour éviter l'affichage public des messages d'erreurs.");
 define( '_MD_AM_DEFAULTTZ' , "Fuseau horaire par défaut");
-define( '_MD_AM_DOBADIPS' , "<a id='ip_ban'>⛔ Activer le bannissement d'IP ?</a>");
+define( '_MD_AM_DOBADIPS' , '<a id="ip_ban">⛔ Activer le bannissement IP ?</a>');
 define( '_MD_AM_DOBADIPSDSC' , "Les utilisateurs des adresses IP indiquées seront bannis de votre site");
 define( '_MD_AM_DOCENSOR' , "Activer la censure des mots indésirables ?");
 define( '_MD_AM_DOCENSORDSC' , "Les mots qui doivent être censurés si cette option est activée. Cette option peut être arrêtée pour accroÃ®tre la vitesse de votre site.");
@@ -463,6 +464,6 @@ define( '_MD_AM_USEMYSESS' , "🔐 Utiliser une session personnalisée");
 define( '_MD_AM_USEMYSESSDSC' , "Choisissez OUI pour personnaliser la session des valeurs liées.");
 define( '_MD_AM_USESSL' , "🔐 Utiliser le SSL pour se connecter ?");
 define( '_MD_AM_YES' , "Oui");
-define( '_MD_AM_COOLURI' , '🆒 Use Cool URI ?');
-define( '_MD_AM_COOLURIDSC' , 'If your server can handle apache mod_rewrite, you may use this option. See also <a href="'.XOOPS_URL.'/modules/legacyRender/admin/index.php?action=HtaccessView">.htaccess setting</a>');
+define( '_MD_AM_COOLURI' , '<a id="cool-uri">🆒 Utiliser Cool URI ?</a>');
+define( '_MD_AM_COOLURIDSC' , 'Si votre serveur peut gérer apache mod_rewrite, vous pouvez utiliser cette option. Voir également <a href="'.XOOPS_URL.'/modules/legacyRender/admin/index.php?action=HtaccessView">.htaccess setting ⭧</a>');
 

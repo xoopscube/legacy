@@ -1,71 +1,57 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XOOPSCube XCL 2.3.1
-	Version : 1.1.1
+	Version : 2.3.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2022-11-21
+	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
 */
-
 /* -------------------- -------------------- ROOT SETTINGS */
 
     /* Theme customization
 
     - ROOT Motion
-
-    - Color Scheme Dark
-    - Color Link Dark
-
+    - Color Theme Dark
     - Color Theme Light
-    - Color Scheme Light
-    - Color Link Light
-
     - ROOT DEFAULT
-    - Grid template
-    - BORDER style [default]
-    - CUSTOMIZE UI-WIDGET
-    - ACCORDION
+    - GRID LAYOUT
+    - ACCORDION ( customize UI-widget)
     - ACTION-CONTROL
+    - BORDER style [default]
     - BREADCRUMBS
     - BUTTON style [default]
     - CARD-BLOCK
     - CARD-FULL
     - CARD-SMALL
-    - Color Block Type SVG TODO refactor and rename
+    - COLOR BLOCK - TODO Block Type SVG refactor and rename
     - DROPDOWN
     - FILTER
-    - FORM input
-    - JQUERY
-    - - BUTTON
-    - - DIALOG / MODAL
+    - FOOTER
+    - INPUT
     - NAV HEADER
     - NAV SIDE
     - NAV SIDE BLOCK
     - NOTIFICATION
-    - TAB
-    - TABLE
     - SHADOW
-    - SORT TODO refactor and rename
-    - SCALABLE SPACE relative margin & padding
-    - SCALABLE SIZE TEXT TODO refactor and rename
-    - @UTILS
+    - SORT - TODO refactor and rename
+    - SPACE
     - SCROLLBAR FIREFOX
-    - WEBKIT SCROLLBAR
+    - TABS
+    - TABLE
+    - @UTILS jQuery-UI
 */
 /* -------------------- --------------------  ROOT Motion */
 
-    /* This removes all animations and transitions	for users who prefer reduced motion ! */
-    /* 	@media (prefers-reduced-motion: reduce) {
-        body {
-            scroll-behavior     : auto;
-        }
-        * {
-                animation-duration          : 0.01ms !important;
-                animation-iteration-count   : 1 !important;
-                transition-duration         : 0.01ms !important;
-                scroll-behavior             : auto !important;
-            }
-    } */
+/* This removes all animations and transitions	for users who prefer reduced motion ! */
+@media (prefers-reduced-motion: reduce) {
+    body { scroll-behavior     : auto;}
+    * {
+        animation-duration          : 0.01ms !important;
+        animation-iteration-count   : 1 !important;
+        transition-duration         : 0.01ms !important;
+        scroll-behavior             : auto !important;
+    }
+}
 
 @media (prefers-color-scheme: dark) {
 
@@ -84,16 +70,18 @@
     --color-red-op  : hsla(5, 74%, 50%, 0.74);
     --color-white   : hsl(0, 0%, 90%);
 
-    --layer-1       : hsl(227deg 27% 14%);
-    --layer-2       : hsl(227deg 27% 16%);
-    --layer-3       : hsl(227deg 27% 18%);
-    --layer-4       : hsl(227deg 27% 22%);
+    --h : 221deg;
+    --s : 15%;
+    --layer-1       : hsl(var(--h) var(--s) 14%);
+    --layer-2       : hsl(var(--h) var(--s) 16%);
+    --layer-3       : hsl(var(--h) var(--s) 18%);
+    --layer-4       : hsl(var(--h) var(--s) 22%);
 
-    --primary       : hsl(219, 15%, 80%);
-    --secondary     : hsl(219, 15%, 70%);
-    --active        : hsl(219, 15%, 70%);
-    --disable       : hsl(219, 15%, 70%);
-    --contrast      : hsl(219, 15%, 70%);
+    --primary       : hsl(var(--h) var(--s) 80%);
+    --secondary     : hsl(var(--h) var(--s) 70%);
+    --active        : hsl(var(--h) var(--s) 70%);
+    --disable       : hsl(var(--h) var(--s) 70%);
+    --contrast      : hsl(var(--h) var(--s) 70%);
 
     --body-bg       : var( --layer-2  );
     --body-color    : var( --secondary  );
@@ -102,7 +90,7 @@
     --link-hover    : #face74;
     --link-visited  : var( --primary  );
 
-    --trackBG       : hsl(228, 10%, 10%);
+    --trackBG       : hsl(227, 10%, 10%);
     --thumbBG       : hsl(219, 15%, 25%);
 
     }
@@ -122,6 +110,7 @@
     --color-orange  : hsl(38, 75%, 35%);
     --color-purple  : hsl(300, 70%, 35%);
     --color-red     : hsl(5, 70%, 45%);
+    --color-red-op  : hsla(5, 70%, 45%, 0.8);
     --color-white   : hsl(0, 0%, 90%);
 
     --layer-1       : hsl(219, 25%, 84%);
@@ -144,12 +133,11 @@
 
 }
 
-
 /* -------------------- --------------------  ROOT DEFAULT */
 
 :root {
 
-    /* Development Mode Display Smarty Template Name : block / none */
+    /* Development Mode Displays Smarty Template Name : block / none */
     --dev-mode          : none;
 
     --font-family       : 'Avenir', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif;
@@ -157,11 +145,12 @@
     --font-serif        : serif;
     --font-size         : 16px;
     --font-weight       : 400;
+    /* SVG ICON [buttons, cards] */
+    --icon-size         : 20px;
     /* SCROLLBAR */
     --trackBG           : var( --layer-1 );
     --thumbBG           : var( --layer-4 );
     --thumbLinear       : linear-gradient(left, #272727, rgba(255, 147, 5, 0.5));
-
 
     /* -------------------- --------------------  LAYOUT Grid template */
 
@@ -188,8 +177,6 @@
     --adminnavi          : rgba(74, 74, 74, 0.8);
     --adminmenu          : rgba(74, 74, 74, 0.8);
     --breadcrumbs        : rgba(74, 74, 74, 0.8);
-
-
 
     /* -------------------- --------------------  ACCORDION */
 
@@ -246,11 +233,11 @@
     --button-bg                 : var( --layer-4 );
     --button-border             : 1px solid var( --layer-4 );
     --button-color              : var( --link );
-    --button-font-size          : var( --size-3 );
+    --button-font-size          : 16px;
     --button-margin             : var( --space-1 ) var( --space-2 ); /* 0.75rem 1rem; */
     --button-padding            : var( --space-3 ) var( --space-5 );
     --button-radius             : var( --border-radius );
-    --button-shadow             : var( --shadow-2 );
+    --button-shadow             : var( --shadow-1 );
     --button-bg-hover           : var( --layer-4 );
     --button-color-hover        : var( --link-hover);
     --button-shadow-on          : var( --shadow-3);
@@ -352,10 +339,10 @@
     --footer-border         : none;
     --footer-radius         : none;
     --footer-color          : var( --secondary );
-    --footer-font           : var( --size-2 );
+    --footer-font           : .9rem;
     --footer-link           : var( --link );
-    --footer-margin         : var( --space-8 ) auto 0;
-    --footer-padding        : var( --space-8 );
+    --footer-margin         : var( --space-6 ) auto 0;
+    --footer-padding        : var( --space-6 );
     --footer-shadow         : none;
 
     /* -------------------- --------------------  FORM input */
@@ -418,7 +405,7 @@
 
     /* -------------------- --------------------  NOTIFICATION */
 
-    --notify-bg             : var( --layer-2 );
+    --notify-bg             : var( --layer-1 );
     --notify-border-color   : var( --layer-4 );
     --notify-border-radius  : var( --border-radius );
     --notify-border-style   : var( --border-style );
@@ -454,10 +441,10 @@
     --sort-padding          : var( --space-6 ) var( --space-8 );
 
     /* -------------------- --------------------  SPACE : relative margin and padding */
-    /* Exmple : margin : var(--sp4); // = --sp-unit x 'value' = space
-            '--sp4' = 15px * 0.5 = 7.5px'
+    /* --space-unit x 'value' = space
+       Example for margin : var(--space-4);
+       --space-4 = 16px * 0.5 = 8px'
     */
-
     --space-unit : 16px;
 
     --space-0   : 0;
@@ -470,39 +457,20 @@
     --space-7   : calc(var(--space-unit) * 2);
     --space-8   : calc(var(--space-unit) * 3.25);
 
-    /* -------------------- --------------------  SCALABLE TEXT typography */
-    /* Example :
-            '--size-1' = 16px / 1.6 = 10px
-            '--size-2' = 10px x 'ui-size-scale-ratio' = 16px
-            '--size-3' = 16px x 'ui-size-scale-ratio' = 25,6px
-    */
-    --size-scale-ratio	: 1.6;
-
-    --size-1    : calc((1rem / var(--size-scale-ratio)) );
-    --size-2    : calc(var(--size-1) * var(--size-scale-ratio));
-    --size-3    : calc(var(--size-2) * var(--size-scale-ratio));
-    --size-4    : calc(var(--size-3) * var(--size-scale-ratio));
-    --size-5    : calc(var(--size-4) * var(--size-scale-ratio));
-    --size-6    : calc(var(--size-5) * var(--size-scale-ratio));
-    --size-7    : calc(var(--size-6) * var(--size-scale-ratio));
-    --size-8    : calc(var(--size-7) * var(--size-scale-ratio));
-
-
     /* -------------------- --------------------  SCROLLBAR FIREFOX */
     /* Firefox Scrollbar */
-    /* Copy values to element */
+    /* Latest test : It required a copy of these vars to each HTML element */
     scrollbar-color         : var(--thumbBG) var( --trackBG ); /* thumb-color track-color */
     scrollbar-width         : thin;
 
-    /* -------------------- --------------------  TAB */
-
+    /* -------------------- --------------------  TABS ( Dashboard, X-Update) */
     --tabs-bg               : var(--layer-2);
     --tabs-border           : none;
     --tabs-radius           : var(--border-radius);
     --tabs-padding          : none;
 
     --tabs-nav-bg           : var(--layer-3);
-    --tabs-nav-border       : none;
+    --tabs-nav-border       : 1px solid transparent;
     --tabs-nav-radius       : var(--border-radius);
     --tabs-nav-margin       : var(--space-4) var(--space-4) 0;
     --tabs-nav-padding      : var(--space-5) var(--space-5) 0;
@@ -523,7 +491,7 @@
     /* state action */
     --tabs-anchor-bg-on     : var(--layer-4);
     --tabs-anchor-color-on  : var(--link-hover);
-    --tabs-anchor-border-on : 1px solid var(--layer-4);
+    --tabs-anchor-border-on : 0px solid var(--layer-4);
     --tabs-anchor-shadow-on : var(--shadow-2);
 
     /* tab panel */
@@ -589,7 +557,7 @@
 
     /* -------------------- --------------------  CUSTOMIZE UI-WIDGET */
 
-    --ui-widget-content-bg      : var( --layer-3 );
+    --ui-widget-content-bg      : var( --layer-2 );
     --ui-widget-content-color   : var( --body-color );
     --ui-widget-content-border  : var( --layer-4 );
     --ui-widget-content-link    : var( --link );

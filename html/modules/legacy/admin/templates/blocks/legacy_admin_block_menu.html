@@ -18,10 +18,11 @@
 		background: var(--ui-dialog-bg );
 		box-shadow: var(--ui-dialog-shadow );
 		margin: 10% auto;
-		padding: var(--space-6);
+		padding: var(--space-6) var(--space-4);
 		position: relative;
 		top: -1500px;
 		width: 320px;
+        overscroll-behavior: contain;
 	}
 
 	.menu-overlay:target {
@@ -60,12 +61,13 @@
 		flex-flow: column;	max-height: 420px;
 		list-style: none;
 		margin:0;
-		padding: var(--space-6);
+		padding: var(--space-2);
 		overflow-y: auto;
 	}
 	ul.module-menu li { text-align: left;}
 	ul.module-menu li svg { margin-right:1em;}
 </style>
+
 <div data-layout="column" class="dashboard-options">
 
 <div data-layout="rows">
@@ -81,7 +83,7 @@
 	<a href="#m_<{$mid}>">
 	<div class="set-link">
 		<{if $module->mXoopsModule->getInfo('icon')}>
-		<span class="set-icon"><img class="svg" src="<{$xoops_url}>/modules/<{$dirname}>/<{$icon}>"></span>
+		<span class="set-icon"><img class="svg" src="<{$xoops_url}>/modules/<{$dirname}>/<{$icon}>" width="24px" height="24px" role="img"></span>
 		<{/if}>
 		<span class="set-name t<{$mid}>"><{$module->mXoopsModule->getVar('name')}></span>
 	</div>
@@ -115,29 +117,29 @@
 			</li>
 
 			<{* ---------- ---------- ---------- ---------- ---------- Module Blocks *}>
-
-			<{if $module->mXoopsModule->getInfo('blocks') && $dirname !="legacy" && $dirname !="altsys" && $dirname !="system"}>
+			<{* REMOVE FOR MODULES : if $module->mXoopsModule->getInfo('blocks') && $dirname !="legacy" && $dirname !="altsys" *}>
+			<{if $module->mXoopsModule->getInfo('blocks') && $dirname !="altsys"}>
 			<li class="button module-link">
 			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList&amp;dirname=<{$dirname}>">
-				<img class="svg block-active" src="<{'icons/icon-block-active.svg'|theme}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}>
+				<img class="svg" src="<{'icons/icon-block-active.svg'|theme}>" width="16px" height="16px" role="img"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}>
 			</a>
 			</li>
 
 			<li class="button module-link">
 			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockInstallList&amp;dirname=<{$dirname}>">
-				<img class="svg block-install" src="<{'icons/icon-block-install.svg'|theme}>"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}>
+				<img class="svg" src="<{'icons/icon-block-install.svg'|theme}>" width="16px" height="16px" role="img"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}>
 			</a>
 			</li>
 			<{/if}>
 
 			<{* ---------- ---------- ---------- ---------- ---------- Module Templates *}>
-
-			<{if $dirname !="legacyRender" && $dirname !="altsys" && $dirname !="system"}>
+			<{* REMOVE FOR MODULES : if $dirname !="legacyRender" && $dirname !="altsys" && $dirname !="system" *}>
+			<{if $dirname !="altsys"}>
 			<{foreach item=tplmodule from=$tplmodules}>
 			<{if $dirname == $tplmodule}>
 			<li class="button module-link">
 			<a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$dirname}>&amp;sort=-9">
-				<img class="svg file-view" src="<{'icons/icon-file-view.svg'|theme}>"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}>
+				<img class="svg" src="<{'icons/icon-file-view.svg'|theme}>" width="16px" height="16px" role="img"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}>
 			</a>
 			</li>
 			<{/if}>
@@ -149,7 +151,7 @@
 			<{if $module->mXoopsModule->getInfo('hasComments')}>
 			<li class="button module-link">
 			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CommentList&amp;com_modid=<{$mid}>&amp;sort=-8">
-				<img class="svg comments" src="<{'icons/icon-comments.svg'|theme}>"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}>
+				<img class="svg" src="<{'icons/icon-comments.svg'|theme}>" width="16px" height="16px" role="img"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}>
 			</a>
 			</li>
 			<{/if}>
@@ -159,13 +161,13 @@
 			<{if $module->mXoopsModule->hasNeedUpdate()}>
 			<li class="button module-link">
 			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$dirname}>">
-				<img class="svg update" src="<{'icons/icon-package-update.svg'|theme}>"><{$smarty.const._AD_LEGACY_LANG_UPGRADE}>
+				<img class="svg" src="<{'icons/icon-package-update.svg'|theme}>" width="16px" height="16px" role="img"><{$smarty.const._AD_LEGACY_LANG_UPGRADE}>
 			</a>
 			</li>
 			<{else}>
 			<li class="button module-link">
 			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleUpdate&amp;dirname=<{$dirname}>">
-				<img class="svg update" src="<{'icons/icon-update.svg'|theme}>"><{$smarty.const._AD_LEGACY_LANG_UPGRADE}>
+				<img class="svg" src="<{'icons/icon-update.svg'|theme}>" width="16px" height="16px" role="img"><{$smarty.const._AD_LEGACY_LANG_UPGRADE}>
 			</a>
 			</li>
 			<{/if}>
@@ -174,7 +176,7 @@
 
 			<li class="button module-link">
 			<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleInfo&amp;dirname=<{$dirname}>">
-				<img class="svg info" src="<{'icons/icon-info.svg'|theme}>"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}>
+				<img class="svg" src="<{'icons/icon-info.svg'|theme}>" width="16px" height="16px" role="img"><{$smarty.const._AD_LEGACY_LANG_INFORMATION}>
 			</a>
 			</li>
 

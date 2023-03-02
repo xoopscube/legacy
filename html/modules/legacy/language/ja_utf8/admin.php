@@ -268,7 +268,7 @@ define( '_MD_AM_CENSORRPLCDSC' , '禁止用語がこのテキストボックス�
 define( '_MD_AM_CENSORWRD' , '禁止用語');
 define( '_MD_AM_CENSORWRDDSC' , 'ユーザが投稿する際に使用を禁止ｓする文字列を入力してください。文字列と文字列の間は <br> | で区切り、大文字小文字は区別しません。');
 define( '_MD_AM_CHNGUTHEME' , '全てのユーザのテーマを変更する');
-define( '_MD_AM_CLOSESITE' , 'メンテナンスモードです。 サイトを閉鎖する');
+define( '_MD_AM_CLOSESITE' , '<a id="close-site">🚧 メンテナンスモードです。 サイトを閉鎖する</a>');
 define( '_MD_AM_CLOSESITEDSC' , '特定グループ以外はサイトにアクセスすることができないようにします。');
 define( '_MD_AM_CLOSESITEOK' , 'メンテナンスモードです。 サイト閉鎖時でもアクセスが認められているグループ');
 define( '_MD_AM_CLOSESITEOKDSC' , 'デフォルトの管理者グループは常にアクセスできます');
@@ -276,7 +276,7 @@ define( '_MD_AM_CLOSESITETXT' , 'メンテナンスモードです。 サイト�
 define( '_MD_AM_CLOSESITETXTDSC' , 'サイト閉鎖時に表示します。 メンテナンスモード、近日公開、など。');
 define( '_MD_AM_COMMODE' , '💬 デフォルトのコメント表示モード');
 define( '_MD_AM_COMORDER' , '💬 デフォルトのコメント表示順');
-define( '_MD_AM_DEBUGMODE' , '🐞 デバッグモードを有効にする');
+define( '_MD_AM_DEBUGMODE' , '<b id="debug-mode">🐞 デバッグモードを有効にする</b>');
 define( '_MD_AM_DEBUGMODE0' , 'オフ');
 define( '_MD_AM_DEBUGMODE1' , 'PHPデバグ');
 define( '_MD_AM_DEBUGMODE2' , 'MySQL/Blocksデバグ');
@@ -437,6 +437,7 @@ define( '_AD_LEGACY_LANG_SMILES_DISPLAYTOTAL' , 'スマイリーを表示');
 define( '_AD_LEGACY_LANG_SMILES_NOTDISPLAYTOTAL' , 'スマイリーを非表示');
 define( '_AD_LEGACY_LANG_SMILES_UPDATECONF' , 'スマイリーの更新を確認');
 define( '_AD_LEGACY_LANG_UPLOAD' , 'アップロード');
+
 define( '_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_IMGCAT' , 'カテゴリーを更新してもよろしいですか？');
 define( '_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_BLOCK' , 'ブロックを更新してもよろしいですか？');
 define( '_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_COMMENT' , 'コメントを更新してもよろしいですか？');
@@ -444,16 +445,18 @@ define( '_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_IMAGE' , '画像を更新してもよ
 define( '_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_MODULE' , 'モジュールをアップデートしてもよろしいですか？');
 define( '_AD_LEGACY_MESSAGE_CONFIRM_UPDATE_SMILES' , 'スマイリーを更新してもよろしいですか？');
 define( '_AD_LEGACY_MESSAGE_EXTEND_CONFIG_TITLE_SIZE_SUCCESSFUL' , 'テーブル {0} はタイトルサイズを設定変更されました。');
+define( '_AD_LEGACY_MESSAGE_CONFIRM_CHANGES' , "Save changes to database.");
+
 define( '_AD_LEGACY_TIPS_BLOCK' , '<a href=\"index.php?action=CustomBlockEdit?\">カスタムブロックを作成し、簡単にコンテンツを追加します。</a>');
 define( '_AD_LEGACY_TIPS_BLOCK2' , 'ブロックをインストールするときは、オプションを編集することができます。');
 define( '_AD_LEGACY_TIPS_COMMENT' , '表示、保留中、非表示のコメントを任意のモジュール上の任意のユーザから検索や管理する');
 define( '_AD_LEGACY_TIPS_IMAGE' , '圧縮したアーカイブをアップロードして、多くのスマイリーを簡単に登録できます！');
 define( '_AD_LEGACY_TIPS_IMAGE_UPLOAD' , '圧縮したアーカイブをアップロードして、多くの画像を簡単に登録できます！<br>このアップロードは、各画像のサイズは確認されません！<br>アーカイブする前に事前に調整してください！<br>（tar.gzまたはzipアーカイブのみ）');
 define( '_AD_LEGACY_TIPS_IMGCAT' , '画像のカテゴリやユーザーのアクセス許可を管理します。');
-define( '_AD_LEGACY_TIPS_MOD' , '新しいモジュールをインストールするなら、忘れずにブロックとユーザーアクセス許可の設定を優先して行ってください！');
+define( '_AD_LEGACY_TIPS_MOD' , 'モジュールの編集や新規インストール、名前と環境設定のカスタマイズ、キャッシュとユーザー権限の設定!！');
 define( '_AD_LEGACY_TIPS_SMILES' , 'カスタムスマイリーのアーカイブを表示、名前変更、削除、またはアップロードします。');
 define( '_AD_LEGACY_TIPS_SMILES_UPLOAD' , '圧縮されたアーカイブをアップロードして、多くのスマイリーを簡単に登録することができます！<br>このアップロードは、各スマイリーのサイズは確認されません！<br>アーカイブする前に事前に調整してください！<br>（tar.gzまたはzipアーカイブのみ）');
 define( '_AD_LEGACY_ERROR_COULD_NOT_ADD_TRUST_DIRNAME' , 'trust_dirname フィールドを {0} に追加できませんでした');
 define( '_AD_LEGACY_MESSAGE_ADD_TRUST_DIRNAME_SUCCESSFUL' , '{0} テーブルへの trust_dirname が追加されました。');
-define( '_MD_AM_COOLURI' , '🆒 Cool URI を利用する');
-define( '_MD_AM_COOLURIDSC' , 'お使いのサーバが apache の mod_reweite に対応していれば、このオプションを使うことが出来ます。mod_rewrite による .htaccess の設定については、<a href="'.XOOPS_URL.'/modules/legacyRender/admin/index.php?action=HtaccessView">.htaccess 設定</a> を参照ください');
+define( '_MD_AM_COOLURI' , '<a id="cool-uri">🆒 Cool URI を利用する</a>');
+define( '_MD_AM_COOLURIDSC' , 'お使いのサーバが apache の mod_reweite に対応していれば、このオプションを使うことが出来ます。mod_rewrite による .htaccess の設定については、<a href="'.XOOPS_URL.'/modules/legacyRender/admin/index.php?action=HtaccessView">.htaccess 設定 ⭧</a> を参照ください');

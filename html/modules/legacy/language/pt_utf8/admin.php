@@ -274,6 +274,7 @@ define( '_AD_LEGACY_LANG_UPLOAD' , "Enviar");
 define( '_AD_LEGACY_LANG_VERSION' , "Versão");
 define( '_AD_LEGACY_LANG_VISIBLE' , "Mostrar");
 define( '_AD_LEGACY_LANG_WEIGHT' , "Altura");
+
 define( '_AD_LEGACY_MESSAGE_ADD_TRUST_DIRNAME_SUCCESSFUL' , "O Diretório Protegido foi corretamente definido na tabela '{0}'.");
 define( '_AD_LEGACY_MESSAGE_BLOCK_HAS_BEEN_UNINSTALLED' , "O bloco {0} foi desinstalado...");
 define( '_AD_LEGACY_MESSAGE_BLOCK_INSTALLED' , "O bloco {0} foi instalado...");
@@ -298,6 +299,8 @@ define( '_AD_LEGACY_MESSAGE_UNINSTALLATION_BLOCK_SUCCESSFUL' , "O bloco {0} foi 
 define( '_AD_LEGACY_MESSAGE_UNINSTALLATION_MODULE_SUCCESSFUL' , "O módulo {0} foi desinstalado corretamente.");
 define( '_AD_LEGACY_MESSAGE_UPDATE_STARTED' , "Atualizando...");
 define( '_AD_LEGACY_MESSAGE_UPDATING_MODULE_SUCCESSFUL' , "O módulo {0} foi atualizado corretamente.");
+define( '_AD_LEGACY_MESSAGE_CONFIRM_CHANGES' , "Save changes to database.");
+
 define( '_AD_LEGACY_MYSQLVERSION' , "Versão do MySQL");
 define( '_AD_LEGACY_OS' , "Sistema Operacional");
 define( '_AD_LEGACY_PHPSETTING' , "Configuração do PHP");
@@ -331,6 +334,7 @@ define( '_AD_LEGACY_PHPSETTING_ZLIB' , "Zlib ativado");
 define( '_AD_LEGACY_PHPVERSION' , "Versão do PHP");
 define( '_AD_LEGACY_SERVER' , "Servidor");
 define( '_AD_LEGACY_SYSTEMINFO' , "Sistema de Informação");
+
 define( '_AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK' , "<a href='./index.php?action=BlockInstallList'>Install new blocks</a>, and set your <i>site</i> just the way you want it!<br/>If you want to have a block with free content that is not part of a module, simply <a href='index.php?action=CustomBlockEdit'>create a custom block</a> and write your message in it.");
 define( '_AD_LEGACY_TIPS_BLOCK' , "Ou simplesmente <a href='./index.php?action=CustomBlockEdit'>crie um bloco personalizado</a> com seu próprio conteúdo");
 define( '_AD_LEGACY_TIPS_BLOCK2' , "You can edit each block's options when you install the block.");
@@ -342,7 +346,7 @@ define( '_AD_LEGACY_TIPS_IMAGE_UPLOAD' , "Você pode facilmente registrar muitas
 define( '_AD_LEGACY_TIPS_IMGCAT' , "Gestor do banco de imagens interno do portal, e de suas respectivas permissões.");
 define( '_AD_LEGACY_TIPS_IMGCAT_STORETYPE' , "Please choose either the file or the database storage scheme for your image files. <strong>This setting cannot be changed later.</strong><br/>Do keep in mind that if you select the database as the storage destination, image files will be stored as BLOB type data which may not be suitable for backup purposes.");
 define( '_AD_LEGACY_TIPS_INSTALL_BLOCK' , "Você pode personalizar o seu portal instalando e personalizando novos blocos.");
-define( '_AD_LEGACY_TIPS_MOD' , "Ao instalar um novo módulo, lembre-se de que ele deverá ter as suas próprias permissões, preferências e aparência configuradas!");
+define( '_AD_LEGACY_TIPS_MOD' , "Editar ou instalar novos módulos, personalizar o nome e as preferências, cache e permissões de utilizador!");
 define( '_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE' , "This is Phased Upgrade Mode. You may need to upgrade this module some times for the latest version. By phased upgrade, you can upgrade this module correctly.");
 define( '_AD_LEGACY_TIPS_SMILES' , "Mostra, renomeia, remove ou envia arquivos com os seus próprios ícones emotivos.");
 define( '_AD_LEGACY_TIPS_SMILES_UPLOAD' , "You can easily register many smiles by uploading a compressed archive!<br />This batch-upload doesn't check Length and File-Size of each smiles!<br />Pre-adjust them before you archive!<br />(Only tar.gz or zip archive)");
@@ -369,7 +373,7 @@ define( '_MD_AM_CENSORRPLCDSC' , "As palavras censuradas serão substitu죡s por
 define( '_MD_AM_CENSORWRD' , "Palavras a serem censuradas");
 define( '_MD_AM_CENSORWRDDSC' , "Escreva as mensagens para serem censuradas nas mensagens dos associados.<br />Separar cada um por uma barra certical ( <strong>|</strong> ), é indiferente o uso de maiúsculas ou minúsculas.");
 define( '_MD_AM_CHNGUTHEME' , "Editar o tema de todos os associados");
-define( '_MD_AM_CLOSESITE' , "Modo de manutenção. Fechar temporariamente o portal?");
+define( '_MD_AM_CLOSESITE' , '<a id="close-site">🚧 Modo de manutenção. Fechar temporariamente o portal?</a>');
 define( '_MD_AM_CLOSESITEDSC' , "Fechando o portal, somente os grupos com permissão de acesso poderão mostrar o conteúdo do mesmo.");
 define( '_MD_AM_CLOSESITEOK' , "Grupos com acesso ao <i>site</i> bloqueado.");
 define( '_MD_AM_CLOSESITEOKDSC' , "Escolha os grupos que poderão acessar o portal enquanto este estiver bloqueado (administradores não precisam de permissão).");
@@ -377,7 +381,7 @@ define( '_MD_AM_CLOSESITETXT' , "Motivo para o fechamento temporário do portal.
 define( '_MD_AM_CLOSESITETXTDSC' , "Esta informação será mostrada quando o portal estiver fechado.");
 define( '_MD_AM_COMMODE' , "💬 Aparência padrão dos comentários");
 define( '_MD_AM_COMORDER' , "💬 Ordem padrão da aparência dos comentários");
-define( '_MD_AM_DEBUGMODE' , "🐞 Modo de depuração (Debug)");
+define( '_MD_AM_DEBUGMODE' , '<b id="debug-mode">🐞🐞 Modo de depuração (Debug)</b>');
 define( '_MD_AM_DEBUGMODE0' , "Desligado");
 define( '_MD_AM_DEBUGMODE1' , "Depurar PHP");
 define( '_MD_AM_DEBUGMODE2' , "Depurar MySQL");
@@ -455,13 +459,13 @@ define( '_MD_AM_SSLPOST' , "Nome da variável SSL Post");
 define( '_MD_AM_STARTPAGE' , "📦 Módulo para página inicial. Se nenhum, usar modelo definido: legacy_app_start_page.html");
 define( '_MD_AM_THEMEFILE' , "Utilizar o conjunto de modelos HTML definido pelo tema selecionado? Se existirem, esses arquivos podem ser encontrados no diretório <q>/themes/{<em>TemaSelecionado<em>}/templates/</q>");
 define( '_MD_AM_THEMEFILEDSC' , "Os arquivos dos temas poderão ser atualizados sempre que houver alterações no diretório /themes. Habilite somente se o portal estiver em desenvolvimento.");
-define( '_MD_AM_THEMEOK' , "🎨 Temas habilitados");
-define( '_MD_AM_THEMEOKDSC' , "Escolha os temas que os associados poderão utilizar além do tema padrão.");
-define( '_MD_AM_THEMESET' , "🎨 Tema");
-define( '_MD_AM_USEGZIP' , "⚡ Compressão GZIP");
-define( '_MD_AM_USEMYSESS' , "🔐 Sessão personalizada");
-define( '_MD_AM_USEMYSESSDSC' , "Escolha Sim para personalizar os valores relativos às sessões.");
+define( '_MD_AM_THEMEOK' , '🎨 Temas habilitados');
+define( '_MD_AM_THEMEOKDSC' , 'Escolha os temas que os associados poderão utilizar além do tema padrão.');
+define( '_MD_AM_THEMESET' , '🎨 Tema');
+define( '_MD_AM_USEGZIP' , '⚡ Compressão GZIP');
+define( '_MD_AM_USEMYSESS' , '🔐 Sessão personalizada');
+define( '_MD_AM_USEMYSESSDSC' , 'Escolha Sim para personalizar os valores relativos às sessões.');
 define( '_MD_AM_USESSL' , "🔐 Utilizar <abbr lang='pt' aria-label='O objetivo principal do SSL é permitir transações financeiras eletrônicas seguras na WWW, mas também pode ser utilizado no sistema de entrada dos portais em XOOPS Cube.'>conexão segura</abbr> via <acronym lang='pt' aria-label='SSL é o acrônimo para Secure Sockets Layer, um padrão aberto para estabelecer um canal de comunicação seguro, de forma a evitar a interceptação de informações críticas, como números de cartão de crédito, senhas, etc.'>SSL</acronym> ao entrar no portal?");
-define( '_MD_AM_YES' , "Sim");
-define( '_MD_AM_COOLURI' , "🆒 Habilitar a opção Cool URI?");
-define( '_MD_AM_COOLURIDSC' , "If your server can handle apache mod_rewrite, you may use this option. See also <a href='".XOOPS_URL."/modules/legacyRender/admin/index.php?action=HtaccessView'>.htaccess setting</a>");
+define( '_MD_AM_YES' , 'Sim');
+define( '_MD_AM_COOLURI' , '<a id="cool-uri">🆒 Habilitar a opção Cool URI?</a>');
+define( '_MD_AM_COOLURIDSC' , "Se o seu servidor pode lidar com o apache mod_rewrite, você pode usar esta opção. Veja também <a href='".XOOPS_URL."/modules/legacyRender/admin/index.php?action=HtaccessView'>.htaccess setting ⭧</a>");

@@ -2,20 +2,17 @@
 
 
 <div class="adminnavi" aria-label="breadcrumb">
-    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
     &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=SmilesList"><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></a></span>
 </div>
 
 
-<h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></h2>
+<h3 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></h3>
 
 
 <div class="tips">
-    <ul>
-        <li><{$smarty.const._AD_LEGACY_TIPS_SMILES}></li>
-        </li>
-    </ul>
+    <{$smarty.const._AD_LEGACY_TIPS_SMILES}>
 </div>
 
 
@@ -57,7 +54,7 @@
             <div class="dropdown" id="filter-sort">
 
                 <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                    <img class="svg" src="<{$xoops_url}>/images/icons/list-tree.svg" width="24px" height="24px" alt="options">
+                    <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="24px" height="24px" alt="options">
                 </a>
 
                 <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">

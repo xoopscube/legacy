@@ -2,7 +2,7 @@
 
 
 <div class="adminnavi" aria-label="breadcrumb">
-    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=BlockList"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a>
     &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></span>
@@ -16,10 +16,8 @@
 
 
 <div class="tips">
-    <ul>
-        <li><{$smarty.const._AD_LEGACY_TIPS_INSTALL_BLOCK}></li>
-        <li><{$smarty.const._AD_LEGACY_TIPS_BLOCK2}></li>
-    </ul>
+        <{$smarty.const._AD_LEGACY_TIPS_INSTALL_BLOCK}><br>
+        <{$smarty.const._AD_LEGACY_TIPS_BLOCK2}>
 </div>
 
 
@@ -131,7 +129,7 @@
             <{else}>
             <a href="./index.php?action=BlockInstallEdit&amp;bid=<{$obj->getShow('bid')}>"
                aria-label="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
-                <img class="svg block-install" src="<{"icons/icon-block-install.svg"|theme}>" width="1em" height="1em" alt="install">
+                <img class="svg block-install" src="<{'icons/icon-block-install.svg'|theme}>" width="1em" height="1em" alt="install">
             </a>
             <{/if}>
         </td>

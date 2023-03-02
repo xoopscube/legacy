@@ -1,7 +1,7 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 <div class="adminnavi" aria-label="breadcrumb">
-    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
     &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=BlockList" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></span>
 </div>
@@ -14,7 +14,7 @@
 
 
 <div class="tips">
-    <p><{$smarty.const._AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK}> <{$smarty.const._AD_LEGACY_TIPS_BLOCK}></p>
+    <{$smarty.const._AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK}> <{$smarty.const._AD_LEGACY_TIPS_BLOCK}>
 </div>
 
 
@@ -82,24 +82,21 @@
 <form id="blockform" name="blockform" method="post" action="./index.php?action=BlockList">
     <{xoops_token form=$actionForm}>
 
-    <{* ---------- ---------- ---------- ---------- ---------- ui-data-render *}>
+    <{* ---------- ---------- ui-data-render *}>
     <div class="ui-data-render view">
-
-
-        <{foreach item=obj from=$objects}>
-
+    <{foreach item=obj from=$objects}>
         <{include file="./components/block-card.html"}>
-
-        <{/foreach}>
-
-
+    <{/foreach}>
     </div>
-    <{* ui-data-render *}>
+    <{* ----- ui-data-render *}>
 
     <hr>
 
-    <div class="ui-card-full foot-sticky">
+    <div class="alert-submit" style="display: none">
+        <div class="danger">
+        <{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_CHANGES}>
         <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+        </div>
     </div>
 
     <div class="ui-card-full" data-layout="row center-justify sm-column">

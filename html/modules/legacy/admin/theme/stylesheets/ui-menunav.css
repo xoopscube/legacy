@@ -1,19 +1,12 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL
-	Version :  2.3.1
+	Distribution : XOOPSCube XCL 2.3.1
+	Version : 2.3.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2022-11-21
+	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
 */
-
-/* -------------------- --------------------  NAV IMPORT */
-
-
-@import "./ui-nav-header.css";/*      Nav-header  */
-@import "./ui-panel.css";    /*      Nav-header  */
-
-    /* -------------------- --------------------  NAV ADMIN */
+/* -------------------- --------------------  NAV ADMIN */
 
 .admintitle {
     border-bottom   : 3px solid var(--border);
@@ -24,19 +17,21 @@
 .adminavi-sub {
     background      : var(--layer-3);
     border          : 1px solid var(--layer-3);
+    border-radius   : var(--border-radius);
     box-shadow      : var(--shadow-2);
     display         : grid;
     justify-content : center;
     grid-gap        : 0.25em;
-    grid-template-columns: repeat(auto-fit, 13em);
-    /*grid-template-columns: repeat(auto-fit, minmax(Min(9em, 100%), 1fr)); */
+    grid-template-columns: repeat(auto-fit, minmax(Min(10em, 100%), 1fr));
     grid-auto-flow  : row;
     margin          : 2em 0;
-    /*max-width: 57em; container */
-    padding         : var(--space-2);
-    position: sticky;
-    top: 119px;
-    z-index: var(--z-above);
+    /* max-width: 57em; container */
+    padding         : var(--space-3);
+    position        : sticky;
+    top             : 110px;
+    z-index         : var(--z-above);
+}
+.adminavi-sub {
 }
 
 .adminavi .adminavi-item,
@@ -45,7 +40,7 @@
     color           : var(--link);
     display         : block;
     max-width       : 100%;
-    padding         : var(--space-2) var(--space-4);
+    padding         : var(--space-3) var(--space-4);
 }
 
 .adminavi .adminavi-item:first-child {
@@ -75,9 +70,7 @@
 
 div.dropdown {
     position        : relative;
-    display         : inline-block;
 }
-
 /* Selects any dropdown inside a header nac */
 :where(header, nav, footer) div.dropdown {
     position        : inherit;
@@ -126,15 +119,6 @@ div.dropdown-content {
 div.dropdown-content > a {
     margin          : 0 0 var(--space-2) 0;
     width           : 100%;
-}
-:where(div.dropdown.isopen) div.drop-left {
-    left            : 1px; /* Fix device Viewport */
-}
-:where(div.dropdown.isopen) div.drop-right {
-    right           : 1px; /* Fix device Viewport */
-}
-:where(div.dropdown.isopen) div.drop-top {
-    top             : -100%; /* Fix device Viewport */
 }
 :where(div.dropdown-content)  h6 {
     font-size       : 12px;
@@ -197,11 +181,105 @@ div.dropdown-content > a {
 /* Badge with icon */
 :where(div.dropdown-content) .btn > i[class^="i-"]{
     mask-size       : 1.5em 1.5em;
-    -webkit-mask-size   : 1.5em 1.5em;
+    -webkit-mask-size: 1.5em 1.5em;
 }
 :where(div.dropdown-content) .btn:hover {
     background      : var(  --button-bg-hover  );
 }
+
+/* DROPDOWN POSITION + FIX DEVICE VIEWPORT */
+:where(div.dropdown.isopen) div.drop-left {
+    left            : 1px;
+}
+:where(div.dropdown.isopen) div.drop-right {
+    right           : 1px;
+}
+:where(div.dropdown.isopen) div.drop-top {
+    top             : -100%;
+}
+
+/* ------- DROPDOWN HEADER DROP-NAV */
+:where(div.dropdown.isopen) div.drop-nav {
+    animation: open-down .2s cubic-bezier(.39,.575,.565,1) both;
+    background      : var(--aside-panel-bg);
+    transform       : translate3d(0px, 40px, 0px);
+    width           : 100vw;
+    position        : absolute;
+    left            : 0;
+    right           : auto!important;
+    top             : 1rem;
+    will-change     : transform;
+}
+@keyframes open-down {
+    0% {
+        margin-top  : -50px;
+        visibility  : hidden;
+        opacity     : 0
+    }
+    100% {
+        margin-top  : 0;
+        visibility  : visible;
+        opacity     : 1
+    }
+}
+/* ---------- Tablet Hor. 736 px*/
+@media only screen and (min-width: 46.875em) {
+    :where(div.dropdown.isopen) div.drop-nav {
+        max-width   : 24rem; /* 384px */
+        transform   : translate3d(255px, 40px, 0px);
+        width       : 100%;
+    }
+}
+.navbar-options,
+.dashboard-options {
+    display         : grid;
+    position        : relative;
+    row-gap         : var(--space-2);
+}
+.navbar-options div[data-layout^=row]{
+    gap             : var(--space-2);
+    justify-content : space-between;
+}
+.dashboard-options div[data-layout^=row]{
+    gap             : var(--space-3);
+}
+
+:is(.navbar-options,.dashboard-options) .set-link {
+    /*display         : block;*/
+    font-size       : 1em;
+    line-height     : 1.25em;
+    min-width       : 85px;
+    max-width       : calc(100% / 4 );
+    background      : var(--card-block-bg);
+    border          : 1px solid var(--card-block-border-color);
+    border-radius   : var(--border-radius);
+    margin-bottom   : var(--space-2);
+    padding         : var(--space-2) 0;
+    text-align      : center;
+}
+:is(.navbar-options,.dashboard-options) .set-link:hover {
+    background      : var(--layer-4)
+}
+:is(.navbar-options,.dashboard-options) .set-icon {
+    display         : block;
+    margin          : var(--space-3) auto;
+}
+:is(.navbar-options,.dashboard-options) .set-icon svg {
+    height          : 24px;
+    width           : 24px;
+}
+:is(.navbar-options,.dashboard-options) .set-name {
+    display         : block;
+    font-size       : 13px;
+    margin          : 0;
+}
+.close-site, .debug-mode {
+    border          : 1px solid var(--color-orange) !important;
+    color           : var(--color-orange);
+}
+:is(.close-site, .debug-mode) .set-icon { color:var(--color-orange) }
+.close-site:hover .set-icon{ color:var(--color-red) }
+.debug-mode:hover .set-icon{ color:var(--color-green) }
 
 /* -------------------- --------------------  NAV MOBILE */
 
@@ -219,7 +297,7 @@ div.dropdown-content > a {
     width           : 42px;
     transition      : all 0.6s ease-in-out;
     top             : 127px;
-    z-index         : var(--z-sticky);
+    z-index         : var(--z-overlay);
 }
 .nav-mobile-close {
     left            : 237px;
@@ -230,7 +308,7 @@ div.dropdown-content > a {
 
 .nav-aside {
     background      : var( --aside-bg   );
-    bottom          : 0;/* fix overflow-y scroll*/
+    bottom          : 0; /* fix overflow-y scroll*/
     color           : var(  --primary );
     grid-area       : nav-aside;
     display         : flex;
@@ -252,21 +330,21 @@ div.dropdown-content > a {
 /* -------------------- --------------------  NAV HELP  */
 
 nav#help-menu {
-    align-self:flex-start;
+    align-self      : flex-start;
     /*position: sticky; ui-media.css tablet */
-    width:100%;
-    top: 130px;
+    width           : 100%;
+    top             : 130px;
     z-index: var(--z-above);
 }
 
 nav#help-menu a.button {
-    display:block;
-    min-width: 240px;
+    display         : block;
+    min-width       : 240px;
 }
 
 article#help-module section {
     /*max-width: 80%;*/
-    overflow-wrap: anywhere;
+    overflow-wrap   : anywhere;
     /*border:1px dotted red;*/
 }
 
@@ -274,8 +352,6 @@ article#help-module section {
 
 .nav-side-menu {
     background      : var( --nav-side-background );
-    /*border-top-right-radius: 5px;*/
-    /*border-bottom-right-radius: 5px;*/
     box-shadow      : var( --nav-side-box-shadow );
     overflow-x      : hidden;
     overflow-y      : auto;
@@ -290,9 +366,10 @@ article#help-module section {
 /* -------------------- --------------------  NAV-SIDE - Module Block */
 
 .nav-block {
+    align-items     : center;
     border-left     : 3px solid transparent;
     color           : var(  --link   );
-    display: flex;
+    display         : flex;
     padding         : 10px 10px;
     position        : relative;
     text-transform	: capitalize;
@@ -316,9 +393,7 @@ article#help-module section {
 
 .nav-block:hover {
     background      : var( --nav-block-background );
-    border-left     : var( --nav-block-border-color )
-    var( --nav-block-border-style )
-    var( --nav-block-border-width );
+    border-left     : var( --nav-block-border-color ) var( --nav-block-border-style ) var( --nav-block-border-width );
     color           : var( --link-hover );
 }
 
@@ -326,14 +401,12 @@ article#help-module section {
     border-bottom-right-radius: var( --border-radius );
 }
 
-/* .nav-block:first-child:hover{
-    border-top-right-radius: 5px;
-    } */
-
 .nav-module-icon {
-    align-items     : flex-start;
-    display         : flex;
-    justify-content : center;
+    font-size       : 20px;
+}
+.nav-module-icon svg {
+    height          : 1em;
+    width           : 1em;
 }
 
 /* -------------------- --------------------  NAV-SIDE - Module Name */
@@ -376,9 +449,7 @@ article#help-module section {
 
 .nav-module-link {
     align-items     : center;
-    border-left     : var( --nav-block-border-color )
-    var( --nav-block-border-style )
-    var( --nav-block-border-width );
+    border-left     : var( --nav-block-border-color ) var( --nav-block-border-style ) var( --nav-block-border-width );
     display         : flex;
     line-height     : 2.5rem;
 }

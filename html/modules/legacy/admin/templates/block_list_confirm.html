@@ -1,7 +1,7 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 <div class="adminnavi">
-    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=BlockList"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a>
     &raquo;&raquo; <span class="adminnaviTitle"
@@ -44,15 +44,15 @@
         <tbody>
         <{foreach item=bid from=$bids}>
         <tr>
-            <td class="legacy_list_id"><{$bid}></td>
-            <td class="legacy_list_name">
+            <td class="list_id"><{$bid}></td>
+            <td class="list_name">
                 <{if $actionForm->get('title',$bid) == $blockObjects[$bid]->get('title')}>
                 <{$actionForm->get('title',$bid)|xoops_escape}>
                 <{else}>
                 (<{$blockObjects[$bid]->getShow('title')}>) &raquo; <b class="message-warning"><{$actionForm->get('title',$bid)|xoops_escape}></b>
                 <{/if}>
             </td>
-            <td class="legacy_list_name">
+            <td class="list_name">
                 <{assign var="formside" value=$actionForm->get('side',$bid)}>
                 <{assign var="formside_obj" value=$columnSideArr.$formside}>
                 <{if $actionForm->get('side',$bid) == $blockObjects[$bid]->get('side')}>
@@ -61,14 +61,14 @@
                 (<{$blockObjects[$bid]->mColumn->getShow('name')}>) &raquo; <br><b class="message-warning"><{$formside_obj->getShow('name')}></b>
                 <{/if}>
             </td>
-            <td class="legacy_list_order">
+            <td class="list_order">
                 <{if $actionForm->get('weight',$bid) == $blockObjects[$bid]->get('weight')}>
                 <{$actionForm->get('weight',$bid)|xoops_escape}>
                 <{else}>
                 (<{$blockObjects[$bid]->getShow('weight')}>) &raquo; <b class="message-warning"><{$actionForm->get('weight',$bid)|xoops_escape}></b>
                 <{/if}>
             </td>
-            <td class="legacy_list_name">
+            <td class="list_name">
                 <{assign var="formcache" value=$actionForm->get('bcachetime',$bid)}>
                 <{assign var="formcache_obj" value=$cachetimeArr.$formcache}>
                 <{if $actionForm->get('bcachetime',$bid) == $blockObjects[$bid]->get('bcachetime')}>
@@ -84,15 +84,15 @@
                 <input type="hidden" name="bcachetime[<{$bid}>]"
                        value="<{$actionForm->get('bcachetime',$bid)|xoops_escape:edit}>">
             </td>
-            <td class="legacy_list_select">
+            <td class="list_select">
 
                 <{if $actionForm->get('uninstall',$bid) == 1}>
                 <b class="message-warning">
                     <{$smarty.const._YES}>
-                    <{else}>
-                    <b class="message-warning">
-                        <{$smarty.const._NO}>
-                        <{/if}></b>
+                </b>
+                <{else}>
+                    <{$smarty.const._NO}>
+                <{/if}>
                     <{if $actionForm->get('uninstall',$bid)}>
                     <input type="hidden" name="uninstall[<{$bid}>]" value="1">
                     <{else}>

@@ -1,226 +1,217 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XOOPSCube XCL 2.3.1
-	Version : 1.1.1
+	Version : 2.3.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2022-11-21
+	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
-*/
 
-/*  -------------------- --------------------  Admin utils */
-    /*
-    * Customize
-    * BLOCK SECTION FILTER SEARCH
-    * BLOCK SECTION SORT
-    * BLOCK STATE SWITCH ( ! TODO : change image and icon background color
-    * Module STATE SWITCH
-    * BLOCK PREVIEW & TEMPLATES FINGERPRINT
-    */
+    - AlSYS BLOCK ACTIVE PREVIEW & FINGERPRINT
+    - COPY TO CLIPBOARD
+    - ARIA-LABEL TOOLTIP
+    - DIALOG ONLINE USERS
+    - HELP SCROLL MARGIN
+    - X-UPDATE STORE
+    - SECTION BLOCK FILTER SEARCH
+    - SECTION BLOCK SORT
+    - RENDER TEMPLATE SOURCE
 
-/* Copy to clipboard */
+ */
+/* -------------------- --------------------  AlTSYS BLOCK PREVIEW & TEMPLATES */
+/* Selected Template */
+.active,
+.dbtplset_active {
+    color       : var(  --color-green  );
+}
+/* Blocks and Templates */
+.ui-block-admin-preview,
+.ui-block-permissions {
+    transition  : all 1s;
+}
+.fingerprint1 { color: var( --color-red ) }
+.fingerprint2 { color: var( --color-blue ) }
+.fingerprint3 { color: var( --color-green ) }
+.fingerprint4 { color: var( --color-orange ) }
+.fingerprint5 { color: var( --color-purple ) }
+.fingerprint6 { color: var( --color-amber ) }
+.fingerprint7 { color: var( --link ) }
+
+/* -------------------- -------------------- COPY TO CLIPBOARD */
 
 .textarea-wrap {
-    position: relative;
-    padding: 0em;
+    position    : relative;
+    padding     : 0;
 }
 .textarea-wrap > textarea {
-    width: 100%;
-    min-height: 180px;
-    padding: 1rem;
-    margin: 1rem auto;
+    width       : 100%;
+    min-height  : 180px;
+    padding     : 1rem;
+    margin      : 1rem auto;
 }
 .clipboard.icon {
-    position: absolute;
-    top: 2em;
-    right: 2em;
-    margin-top: 1px;
-    margin-left: 1px;
-    width: 15px;
-    height: 16px;
-    border: solid 1px #ffc107;
-    border-top: none;
+    position    : absolute;
+    top         : 2em;
+    right       : 2em;
+    margin-top  : 1px;
+    margin-left : 1px;
+    width       : 15px;
+    height      : 16px;
+    border      : solid 1px #ffc107;
+    border-top  : none;
     border-radius: 2px;
-    cursor: pointer;
+    cursor      : pointer;
 }
 .clipboard.icon:before {
-    top: -1px;
-    left: 2px;
-    width: 10px;
-    height: 3px;
-    border: solid 1px #ffc107;
+    top         : -1px;
+    left        : 2px;
+    width       : 10px;
+    height      : 3px;
+    border      : solid 1px #ffc107;
     border-radius: 2px;
-    background: #ffc107;
+    background  : #ffc107;
 }
 .icon:before {
-    content: '';
-    position: absolute;
-    display: block;
+    content     : '';
+    position    : absolute;
+    display     : block;
 }
 
 /* -------------------- --------------------  ARIA-LABEL TOOLTIP */
 
-    [aria-label]:before {
-        /* Required ! - do not touch */
-        content: attr(aria-label);
-        opacity: 0;
-        position: absolute;
-        /* customizable */
-        color: #fff;
-        border-radius: 7px;
-        box-shadow: 1px 2px 8px hsla(219, 10%, 10%, 0.8);
-        margin-top: -42px;
-        margin-left: 1px;
-        padding: 1em;
-        pointer-events: none;
-        transition: all 0.15s ease;
-        transform-style: preserve-3d;
-        z-index:var(--z-above);
-        overflow: visible;
-    }
-    [aria-label]:hover:before {
-        /* Required ! - do not touch */
-        opacity: 1;
-        /* customizable */
-        background: hsla(219, 14%, 10%, 0.8);
-        border: 1px solid hsla(219, 10%, 18%, 0.9);
-        font-size: 13px;
-        max-width: 280px;
-        z-index: var(--z-above);
-    }
+[aria-label]::before {
+    /* Required ! - do not touch */
+    content     : attr(aria-label);
+    opacity     : 0;
+    position    : absolute;
+    /* customizable */
+    color       : #fff;
+    border-radius: 7px;
+    box-shadow  : 1px 2px 8px hsla(219, 10%, 10%, 0.8);
+    margin-top  : -42px;
+    margin-left : 1px;
+    padding     : 1em;
+    pointer-events: none;
+    transition  : all 0.15s ease;
+    transform-style: preserve-3d;
+    z-index     : var(--z-above);
+    overflow    : visible;
+}
+[aria-label]:hover::before {
+    /* Required ! - do not touch */
+    opacity     : 1;
+    /* customizable */
+    background  : hsla(219, 14%, 10%, 0.8);
+    border      : 1px solid hsla(219, 10%, 18%, 0.9);
+    font-size   : 13px;
+    max-width   : 280px;
+    z-index     : var(--z-above);
+}
 
-    #dialog-online {
-        background: var(--layer-3);
-    }
+.adminnavi::before{
+    content     : attr(aria-label);
+    opacity     : 0;
+    display     : none}
+/* -------------------- -------------------- DIALOG ONLINE USERS */
 
+#dialog-online {
+    background  : var(--layer-3);
+}
 
-/* -------------------- -------------------- HELP DOCUMENTATION */
+/* -------------------- -------------------- HELP SCROLL MARGIN */
 
-    div.help section[id|="help"] {
-        padding         : var(--space-6);
-        scroll-margin-top: 6em; /* property should be applied to each anchor section to leave a margin at the top */
-    }
+div.help section[id|="help"] {
+    padding     : var(--space-6);
+    scroll-margin-top: 6em; /* property should be applied to each anchor section to leave a margin at the top */
+}
 
 /* -------------------- --------------------  X-UPDATE STORE */
 
-    /* UL - LI vertical scroll eg. Module Update */
-    .scroll-y {
-        background:var(--bg-gradient);
-        /*background: var(--layer-1 );*/
-        border: var(--border);
-        border-radius: var(--border-radius);
-        display:block;
-        height: 24ch;
-        margin: var(--space-6) var(--space-1);
-        padding: var(--space-2);
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        overflow-x: hidden;
-    }
-    .scroll-y > li > a {
-        background: var(--layer-3);
-        display: block;
-        margin-bottom: 2px;
-        padding: .5em 1.5em;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-        position:relative; /*if position is set, the block contains the tooltip ! */
-    }
-    .scroll-y > li > a:focus,
-    .scroll-y > li > a:hover{
-        background: hsla(219, 14%, 20%, 0.8);
-        color: var(--link-hover);
-    }
+/* UL - LI vertical scroll eg. Module Update */
+.scroll-y {
+    background  : var(--bg-gradient);
+    border      : var(--border);
+    border-radius: var(--border-radius);
+    display     :block;
+    height      : 24ch;
+    margin      : var(--space-6) var(--space-1);
+    padding     : var(--space-2);
+    overflow-y  : auto;
+    overscroll-behavior: contain;
+    overflow-x  : hidden;
+}
+.scroll-y > li > a {
+    background  : var(--layer-3);
+    display     : block;
+    margin-bottom: 2px;
+    padding     : .5em 1.5em;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    position: relative; /*if position is set, the block contains the tooltip ! */
+}
+.scroll-y > li > a:focus,
+.scroll-y > li > a:hover{
+    background  : hsla(219, 14%, 20%, 0.8);
+    color       : var(--link-hover);
+}
+.scroll-h {
+    max-height  : 25vh;
+    overflow-x  : auto;
+    width       : 100%;
+}
 
-    .scroll-h {
-        max-height: 25vh;
-        overflow-x: auto;
-        width: 100%;
-    }
+/* -------------------- -------------------- SECTION BLOCK FILTER SEARCH */
 
-    /* -------------------- -------------------- BLOCK SECTION FILTER SEARCH */
+section.filter {
+    align-items     : center;
+    background      : var(  --filter-background      );
+    border-color    : var(  --filter-border-color    );
+    border-radius   : var(  --filter-border-radius   );
+    border-style    : var(  --filter-border-radius   );
+    border-width    : var(  --filter-border-width    );
+    box-shadow      : var(  --filter-box-shadow      );
+    display         : flex;
+    flex-direction  : row;
+    flex-wrap       : wrap;
+    padding         : var(  --filter-padding  );
+    margin          : var(  --filter-margin   );
+    width           : 100%;
+}
 
-    section.filter {
+section.filter article {
+    flex            : 1;
+    padding-right   : var(  --space-2  );
+}
 
-        align-items     : center;
-        background      : var(  --filter-background      );
-        border-color    : var(  --filter-border-color    );
-        border-radius   : var(  --filter-border-radius   );
-        border-style    : var(  --filter-border-radius   );
-        border-width    : var(  --filter-border-width    );
-        box-shadow      : var(  --filter-box-shadow      );
-        display         : flex;
-        flex-direction  : row;
-        flex-wrap       : wrap;
-        padding         : var(  --filter-padding  );
-        margin          : var(  --filter-margin   );
-        width           : 100%;
-    }
+section .search-button {
+    flex-basis      : 100%;
+    padding-top     : 1rem;
+}
 
-    section.filter article {
-        flex            : 1;
-        padding-right   : var(  --space-2  );
-    }
+/* -------------------- --------------------  SECTION BLOCK SORT */
 
-    section .search-button {
-        flex-basis      : 100%;
-        padding-top     : 1rem;
-    }
-
-    /* -------------------- --------------------  BLOCK SECTION SORT */
-
-    section.sort {
-        align-items     : center;
-        background      : var(  --sort-background    );
-        border-color  	: var(  --sort-border-color  );
-        border-radius 	: var(  --sort-border-radius );
-        border-style  	: var(  --sort-border-style  );
-        border-width  	: var(  --sort-border-width  );
-        box-shadow    	: var(  --sort-box-shadow    );
-        padding       	: var(  --sort-padding       );
-        margin        	: var(  --sort-margin        );
-        display         : flex;
-        flex-direction  : row;
-        flex-wrap       : wrap;
-        justify-content : space-evenly;
-        max-width       : 95%;
-    }
-
-    /* -------------------- --------------------  BLOCK STATE SWITCH */
+section.sort {
+    align-items     : center;
+    background      : var(  --sort-background    );
+    border-color  	: var(  --sort-border-color  );
+    border-radius 	: var(  --sort-border-radius );
+    border-style  	: var(  --sort-border-style  );
+    border-width  	: var(  --sort-border-width  );
+    box-shadow    	: var(  --sort-box-shadow    );
+    padding       	: var(  --sort-padding       );
+    margin        	: var(  --sort-margin        );
+    display         : flex;
+    flex-direction  : row;
+    flex-wrap       : wrap;
+    justify-content : space-evenly;
+    max-width       : 95%;
+}
 
 
-    /* Block Switch Off - color indicator */
-    .ui-update-change {
-        background      : var(--color-red-op);
-        transition      : all 1s;
-    }
-
-    /* -------------------- --------------------  AlSYS BLOCK PREVIEW & TEMPLATES */
-
-    /* AltSys UI components Blocks and Templates */
-    .ui-block-admin-preview,
-    .ui-block-permissions {
-        transition      : all 1s;
-    }
-
-    .fingerprint1 { color: var( --color-red ) }
-    .fingerprint2 { color: var( --color-blue ) }
-    .fingerprint3 { color: var( --color-green ) }
-    .fingerprint4 { color: var( --color-orange ) }
-    .fingerprint5 { color: var( --color-purple ) }
-    .fingerprint6 { color: var( --color-amber ) }
-    .fingerprint7 { color: var( --link ) }
-
-/* -------------------- --------------------  ALtSYS ACTIVE TEMPLATE SET */
-
-    .active,
-    .dbtplset_active {
-        color       : var(  --color-green  );
-    }
-/* -------------------- --------------------  Render Template Source */
+/* -------------------- --------------------  RENDER TEMPLATE SOURCE */
 
 .legacyRender_TemplateManager_textarea {
-    width:600px;
-    height:400px;
+    height          : 400px;
+    width           : 600px;
 }

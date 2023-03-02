@@ -1,26 +1,21 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XOOPSCube XCL 2.3.1
-	Version : 1.1.1
+	Version : 2.3.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2022-11-21
+	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
 */
-
 /*-------------------- --------------------  UI-CARD-FULL */
 
 .ui-card-2-col,
 .ui-card-full {
-
     background    	: var( --card-full-bg		);
-
     border-color  	: var( --card-full-border-color	);
-    border-radius 	: var( --card-full-border-radius	);
-    border-style  	: var( --card-full-border-radius );
+    border-radius 	: var( --card-full-border-radius);
+    border-style  	: var( --card-full-border-radius);
     border-width  	: var( --card-full-border-width	);
-
     box-shadow    	: var( --card-full-box-shadow);
-
     padding       	: var( --card-full-padding);
     margin        	: var( --card-full-margin);
     /* Adjust the offset of HTML anchor for the fixed header
@@ -37,18 +32,15 @@
 }
 
 .ui-block-online-content {
-
     align-items     : center;
     display			: flex;
     flex			: 1;
     flex-direction	: column;
     letter-spacing	: 1px;
     justify-content	: space-between;
-
 }
 
 .ui-block-online {
-
     display			: flex;
     justify-content	: space-between;
     margin			: var(--space-8) 0;
@@ -56,112 +48,83 @@
 }
 
 .ui-block-online-welcome {
-
     align-items		: center;
     display			: flex;
     flex-direction	: column;
-
 }
 
 .ui-block-online-title {
-
-    font-size		: var(--size-4);
+    font-size		: 24px;
     margin-bottom	: var(--space-6);
-
 }
 
 .ui-block-online-text {
-
-    font-size		: var(--size-2);
-
+    font-size		: 16px;
 }
 
 /* -------------------- --------------------  UI-CARD-BLOCK STATS */
 
 .ui-block-online-stats {
-
     display			: grid;
     grid-auto-flow	: column;
     grid-gap		: 42px;
-
 }
 
 .ui-block-online-stats-info {
-
     align-items		: center;
     display			: flex;
     flex-direction	: column;
-
 }
 
 .ui-block-online-stats-total {
-
-    font-size		: var(--size-3);
+    font-size		: 24px;
     margin-bottom	: var(--space-6);
-
 }
 
 .ui-block-online-stats-title {
-
-    font-size		: var(--size-3);
+    font-size		: 24px;
     margin-bottom	: var(--space-6);
-
 }
 
 .ui-block-online-stats-text {
-
-    font-size		: var(--size-2);
+    font-size		: 16px;
     text-align		: center;
-
 }
 
 /* -------------------- -------------------- UI-CARD-OVERVIEW */
 
 .ui-card-overview {
-
     display			: grid;
-
     grid-template-columns : repeat(auto-fit, minmax(214px, 1fr));
     /* grid-auto-rows        : 74px; */
     grid-gap        : 16px;
     margin          : 0;
-
 }
 
 .ui-card-small {
-
     align-items     : center;
-
     background      : var(--card-small-bg);
-
     border-color    : var(--card-small-border-color);
     border-radius   : var(--card-small-border-radius);
     border-style    : var(--card-small-border-style);
     border-width    : var(--card-small-border-width);
-
     box-shadow      : var(--card-small-box-shadow);
-
     display         : flex;
     justify-content : flex-start;
-
     padding         : var(--card-small-padding);
-
     transform       : translateY(0);
     transition      : all 0.3s;
-
 }
 
 .ui-card-small-icon {
-
     align-items     : center;
     border-radius   : 50%;
     color           : var(--secondary);
     display         : flex;
-    font-size       : var(--size-3);
+    font-size       : 24px;
     height          : 32px;
     justify-content : center;
     width           : 32px;
-
 }
 
 .ui-card-small-info {
@@ -170,31 +133,23 @@
 }
 
 .ui-card-small-title {
-
     /*font-size       : var(--size-3);*/
     margin          : 0 0 0 1rem;
-
 }
 
 .ui-card-small-subtitle {
-
     margin          : 0 0 0 1rem;
-
 }
 
 .ui-card-small:hover {
-
     box-shadow      : var(--card-small-box-hover);
-
     transform       : translateY(-3px);
-
 }
 
 
 /* -------------------- --------------------  UI--BLOCKS-GRID */
 
 .ui-data-render  {
-
     display				 : grid;
     grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
     grid-auto-rows       : auto;
@@ -203,7 +158,6 @@
     place-items			 : center;
     will-change          : transform;
     -webkit-transform    : translate3d(0,0,0);
-
 }
 
 .list {
@@ -247,27 +201,22 @@
 /* -------------------- --------------------  UI-CARD-BLOCK  */
 
 .ui-card-block {
-
     background      : var( --card-block-bg );
     background-image: var( --card-block-image );
     border-color    : var( --card-block-border-color );
     border-radius   : var( --card-block-border-radius);
     border-style    : var( --card-block-border-style );
     border-width    : var( --card-block-border-width );
-
     box-shadow      : var( --card-block-box-shadow   );
-
     display         : flex;
     flex-direction  : column;
     margin-bottom   : 1.5rem;
     min-width       : 295px;
     max-width       : 310px;
-
     /* Avoid Grid Break Margin Issues */
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
     break-inside: avoid;
-
     transition      : var( --shadow-transition  );
     will-change     : transform;
     -webkit-transform: translate3d(0,0,0);
@@ -279,7 +228,6 @@
 }
 
 .ui-card-block-header {
-
     align-items: center;
     background      : var( --card-block-header-bg      );
     border			: var( --card-block-header-border  );
@@ -296,7 +244,6 @@ a.ui-block-type {
     display         : block;
 }
 .ui-card-block-content {
-
     align-items     : center;
     background      : var( --card-block-content-bg     );
     border          : var( --card-block-content-border );
@@ -354,7 +301,12 @@ img.ui-avatar-card {
 .ui-module-state .ui-update-change .module-icon{
     border:1px solid red;
 }
-
+/* -------------------- --------------------  BLOCK STATE SWITCH */
+/* Block Switch Off - color indicator */
+.ui-update-change {
+    background      : var(--color-red-op)!important;
+    transition      : all 1s;
+}
 .module-icon {
     border:1px solid green;
 }
@@ -362,19 +314,15 @@ img.ui-avatar-card {
 .ui-module-update,
 .ui-module-version,
 .ui-module-date {
-
     align-items     : center;
     display         : flex;
-
 }
 .ui-module-update,
 .ui-module-update svg,
 .ui-module-version svg,
 .ui-module-date svg {
-
     color           : var(--color-green) !important;
     /* margin		: var(  --space-6			); */
-
 }
 
 /* -------------------- --------------------  UI-BLOCK-ADMIN  */

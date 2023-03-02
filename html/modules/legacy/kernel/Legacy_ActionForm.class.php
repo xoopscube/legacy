@@ -32,7 +32,8 @@ class Legacy_ActionForm extends XCube_ActionForm
      */
     public function __construct()
     {
-    	 //parent::__construct();
-        parent::XCube_ActionForm();
+// version 2.3.1
+    	 parent::__construct();
+        //parent::XCube_ActionForm();
     }
 }

@@ -1,12 +1,11 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XOOPSCube XCL 2.3.1
-	Version : 1.1.1
+	Version : 2.3.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2022-11-21
+	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
 */
-
 /*-------------------- --------------------  ICONS */
 
     /* Icons color and size */
@@ -45,7 +44,7 @@
         background      : var( --button-bg );
         border          : none;
         border-radius   : var(--border-radius);
-        box-shadow      : var( --button-shadow );
+        /*box-shadow      : var( --button-shadow );*/
         color           : var( --primary);
         display         : inline-block;
         font-size       : 0.74rem;
@@ -99,253 +98,153 @@
 
 
 /* -------------------- --------------------  button + jQueryUI */
+/* Overwrite jQuery Components */
 
-    /* Overwrite jQuery Components */
+/*.button,*/
+.button {
+    background-color    : var( --button-bg     );
+    border              : var( --button-border );
+    border-radius       : var( --button-radius );
+    box-shadow          : var( --button-shadow );
+    color               : var( --button-color  );
+    cursor              : pointer;
+    display             : inline-block;
+    font-size           : 16px;
+    line-height         : 1.5;
+    padding             : var( --button-padding );
+    position            : relative;
+    margin              : var( --button-margin  );
+    min-width           : 4ch;
+    text-align          : center;
+    text-decoration     : none;
+    touch-action        : manipulation;
+    transition          : all 0.3s ease 0s;
+    user-select         : none;
+}
+.button:active {
+/*[class*="button"]:active {*/
+    box-shadow          : var( --button-shadow-on );
+}
 
-    /*.button,*/
-    .button {
-        background-color    : var( --button-bg     );
-        border              : var( --button-border );
-        border-radius       : var( --button-radius );
-        box-shadow          : var( --button-shadow );
-        color               : var( --button-color  );
-        cursor              : pointer;
-        display             : inline-block;
-        /* font-size        : 0.875rem;
-        font-family         : sans-serif;
-        font-style          : normal;
-        letter-spacing      : 0.08rem;*/
-        line-height         : 1.5;
-        padding             : var( --button-padding );
-        position            : relative;
-        margin              : var( --button-margin  );
-        min-width           : 4ch;
-        text-align          : center;
-        text-decoration     : none;
-        touch-action        : manipulation;
-        transition          : all 0.3s ease 0s;
-        user-select         : none;
-        /*vertical-align      : middle;*/
-        white-space         : nowrap;
-        /*width: min-content;*/
-    }
-    .button:active {
-    /*[class*="button"]:active {*/
-        box-shadow          : var( --button-shadow-on );
-    }
+/* -------------------- ui-card-block-item */
 
-    .button-small {
-    /*[class*="button-"].button-small {*/
-        color               : var( --button-color );
-        font-size           : inherit;
-        padding             : var(--space-2) var(--space-5) var(--space-2) var(--space-3);
-        /* padding             : var(  --button-padding ); */
-    }
+.button-small {
+    color               : var( --button-color );
+    font-size           : inherit;
+    padding             : var(--space-2) var(--space-5) var(--space-2) var(--space-3);
+}
 
-    a.button > svg.svg-ui-icon,
-    a.button.button-small > svg.svg-ui-icon,
-    [class*="button-"]> svg.svg-ui-icon {
-        color               : var( --button-color );
-        font-size           : 1rem;
-        padding-right       : 0.25em;
-        vertical-align      : middle;            /* Align icon = text  */
-        width               : 1.4em !important; /* Size icon + text   */
-    }
+a.button > svg.svg-ui-icon,
+a.button.button-small > svg.svg-ui-icon,
+[class*="button-"]> svg.svg-ui-icon {
+    color               : var( --button-color );
+    font-size           : 1rem;
+    padding-right       : 0.25em;
+    vertical-align      : middle;            /* Align icon = text  */
+    width               : 1.4em !important; /* Size icon + text   */
+}
 
-    .button:hover,
-    .button:focus,
-    .button.button-small:hover,
-    .button.button-small:focus {
-        background          : var( --button-bg-hover );
-        color               : var( --button-color-hover );
-        box-shadow          : var( --button-shadow-on );
-    }
+.button:hover,
+.button:focus,
+.button.button-small:hover,
+.button.button-small:focus {
+    background          : var( --button-bg-hover );
+    color               : var( --button-color-hover );
+    box-shadow          : var( --button-shadow-on );
+}
 
 /* -------------------- --------------------  BTNVAV */
 
-    .btnav {
-        background      : none;
-        border          : var( --button-border );
-        border          : transparent;
-        color           : var( --link );
-        font-size       : 20px;
-        height          : 40px;
-        line-height     : 40px;
-        margin          : var( --space-1 );
-        padding         : 0;
-        position        : relative;
-        text-align      : center;
-        touch-action    : manipulation;
-        transition      : color 0.3s;
-        min-width       : 40px;   /* icon */
-        max-width       : 240px; /* text */
-        z-index         : 1;
-        backface-visibility: hidden;
-    }
-    .btnav::before {
-        box-shadow      : inset 0 0 0 35px transparent;
-        border-radius   : inherit;
-        content         : '';
-        height          : 100%;
-        left            : 0;
-        position        : absolute;
-        top             : 0;
-        transform       : scale3d(0.9, 0.9, 1);
-        transition      : box-shadow 0.3s, transform 0.3s;
-        width           : 100%;
-        z-index         : -1;
-    }
-    .btnav.btn-round {
-        border-radius   : 50%;
-    }
-    .btnav > span {
-        position        : absolute;
-        pointer-events  : none;
-        opacity         : 0;
-    }
-    .btnav:hover {
-        color           : var( --link-hover  );
-    }
-    .btnav:hover::before {
-        box-shadow      : inset 0 0 0 1px var( --link-hover  );
-        transform       : scale3d(1, 1, 1);
-    }
+.btnav {
+    background      : none;
+    border          : var( --button-border );
+    border          : transparent;
+    border-radius : var(--border-radius);
+    color           : var( --link );
+    font-size       : 20px;
+    height          : 40px;
+    line-height     : 40px;
+    margin          : 0 var( --space-1 );
+    padding         : 0;
+    position        : relative;
+    text-align      : center;
+    touch-action    : manipulation;
+    transition      : color 0.3s;
+    min-width       : 40px;   /* icon */
+    max-width       : 240px; /* text */
+    z-index         : 1;
+    backface-visibility: hidden;
+}
+.btnav::before {
+    box-shadow      : inset 0 0 0 35px transparent;
+    border-radius   : inherit;
+    content         : '';
+    height          : 100%;
+    left            : 0;
+    position        : absolute;
+    top             : 0;
+    transform       : scale3d(0.9, 0.9, 1);
+    transition      : box-shadow 0.3s, transform 0.3s;
+    width           : 100%;
+    z-index         : -1;
+}
+.btnav > span {
+    position        : absolute;
+    pointer-events  : none;
+    opacity         : 0;
+}
+.btnav:hover {
+    color           : var( --link-hover  );
+}
+.btnav:hover::before {
+    box-shadow      : inset 0 0 0 1px var( --link-hover  );
+    transform       : scale3d(1, 1, 1);
+}
 
 /* -------------------- --------------------  BUTTON COLOR */
 
-    .bg-amber {
-        border: 1px solid var(  --color-amber	);
-        color:var(  --color-amber	);
-    }
-    .bg-black {
-        background      : var(  --color-black	);
-        color           : var(  --color-white	);
-    }
-    .bg-blue {
-        background      : var( --color-blue );
-        color           : var( --color-white );
-    }
-    .bg-green {
-        background      : var( --color-green );
-        color           : var( --color-white );
-    }
-    .bg-indigo {
-        background      : var( --color-indigo );
-        color           : var( --color-white );
-    }
-    .bg-orange {
-        background      : var( --color-orange );
-        color           : var( --color-white );
-    }
-    .bg-purple {
-        background      : var( --color-purple );
-        color           : var( --color-white ) !important;
-    }
-    .bg-red {
-        background      : var( --color-red );
-        color           : var( --color-white );
-    }
-    .bg-white {
-        background      : var( --color-white );
-        color           : var( --color-black );
-    }
-    /* button icon with color black */
-    button[class^="btn-ico"].btn-white > i {
-        background-color: var( --color-black );
-    }
-
-    /* Background Colors */
-    .color-green { background: var( --color-green ); }
-    .color-red { background: var( --color-red );}
-    .color-orange {background: var( --color-orange ); }
-
-a.round{
-    border-radius: 50%;
-    line-height: 50px;
-    font-size: 13px;
-    height: 50px;
-    width: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.bg-amber {
+    border: 1px solid var(  --color-amber	);
+    color:var(  --color-amber	);
 }
-/* -------------------- --------------------  BUTTON COLOR */
-
-.outline {
-    position: relative;
-    display: inline-block;
-    height: 36px;
-    padding: 0 16px;
-    margin: 10px 4px;
-    color: hsl(230deg 70% 70%) !important;
-    border: var(--border);
-    border-radius: 2px;
-    box-shadow: var(--shadow-2);
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 13px;
-    line-height: 36px;
-    vertical-align: middle;
-    overflow: hidden;
-    cursor: pointer;
-    outline: 0;
-    z-index: 1;
-    -webkit-transition: all .15s ease-in;
-    transition: all .15s ease-in;
-    max-width: 200px;
+.bg-black {
+    background      : var(  --color-black	);
+    color           : var(  --color-white	);
 }
-.outline:hover,
-.outline:focus {
-    opacity: .9;
+.bg-blue {
+    background      : var( --color-blue );
+    color           : var( --color-white );
+}
+.bg-green {
+    background      : var( --color-green );
+    color           : var( --color-white );
+}
+.bg-indigo {
+    background      : var( --color-indigo );
+    color           : var( --color-white );
+}
+.bg-orange {
+    background      : var( --color-orange );
+    color           : var( --color-white );
+}
+.bg-purple {
+    background      : var( --color-purple );
+    color           : var( --color-white ) !important;
+}
+.bg-red {
+    background      : var( --color-red );
+    color           : var( --color-white );
+}
+.bg-white {
+    background      : var( --color-white );
+    color           : var( --color-black );
+}
+/* button icon with color black */
+button[class^="btn-ico"].btn-white > i {
+    background-color: var( --color-black );
 }
 
-/* -------------------- -------------------- RIPPLE */
-
-.ripple:before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background-color: currentColor;
-    visibility: hidden;
-    z-index: 2;
-}
-.ripple:not(:active):before {
-    -webkit-animation: ripple 0.4s cubic-bezier(0, 0, 0.2, 1);
-    animation: ripple 0.4s cubic-bezier(0, 0, 0.2, 1);
-    -webkit-transition: visibility .4s step-end;
-    transition: visibility .4s step-end;
-}
-.ripple:active:before {
-    visibility: visible;
-}
-
-@-webkit-keyframes ripple {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: .5;
-    }
-    100% {
-        width: 150px;
-        height: 150px;
-        opacity: 0;
-    }
-}
-
-@keyframes ripple {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: .5;
-    }
-    100% {
-        width: 150px;
-        height: 150px;
-        opacity: 0;
-    }
-}
+/* Background Colors */
+.color-green { background: var( --color-green ); }
+.color-red { background: var( --color-red );}
+.color-orange {background: var( --color-orange ); }

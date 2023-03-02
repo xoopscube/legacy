@@ -1,10 +1,22 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL
+	Distribution : XOOPSCube XCL 2.3.1
 	Version : 2.3.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2022-11-21
+	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
+
+	- HTML BODY
+	- BROWSER SPECS ( Text Selection, Scrollbar )
+	- HTML Elements
+	- LAYOUT GRID
+	- LAYOUT HEADER
+	- HEADER NAV
+	- LAYOUT Main
+	- LAYOUT Footer
+	- PAGINATION ( adminnavi, breadcrumbs )
+	- SCROLL TOP
+
 */
 /* -------------------- -------------------- HTML BODY */
 
@@ -12,15 +24,8 @@ html,
 body {
     margin          : var(  --space-0    );
     padding         : var(  --space-0    );
-    /*overflow-x      : hidden;*/
     text-rendering	: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-}
-
-html { /*:not(.elfinder) */
-    /* Scroll to page anchors [id]:target padding-top = height of theme sticky header */
-    /*scroll-padding-top: 70px;*/
-    /*scroll-behavior: smooth;*/
 }
 body {
     background      : var( --body-bg     );
@@ -36,16 +41,13 @@ body {
     margin: 0 auto 2rem;*/
 }
 
-
-/*	-------------------- --------------------  Text Selection */
-
+/*	-------------------- --------------------  BROWSER SPECS */
+/* Text Selection */
 ::selection {
     background-color: var( --blue-opacity-5 );
     color           : var(  --secondary	 );
 }
-
-/* -------------------- --------------------  Webkit Scrollbar */
-
+/* Webkit Scrollbar */
 ::-webkit-scrollbar {
     width           : 9px;
     height          : 9px;
@@ -60,8 +62,9 @@ body {
     background-color: var( --trackBG );
 }
 textarea::-webkit-resizer {
-    background-color: var( --layer-1 );
+    background-color: var( --layer-2 );
 }
+
 /* -------------------- -------------------- HTML Elements */
 
 a:link, a:visited {
@@ -87,14 +90,19 @@ a[href^="https://"]:not([href*="example.com"]):after{
     text-decoration : none;
 }*/
 
+/* ----- ANCHOR link
+   scroll-margin-top : value equal to header height */
 a[name|=help] {
     scroll-margin-top: 4em;
+}
+a[id|=close-site],
+a[id|=debug-mode] {
+    scroll-margin-top: 120px;
 }
 
 blockquote {
     border-left     : 3px solid var(  --layer-4  );
     font-style      : italic;
-    font-size       : var(  --size-2   );
     padding         : var(  --space-5   ) var(  --space-7  );
 }
 
@@ -121,9 +129,7 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-    font-size       : var(  --size-5   );
     margin          : 0 0 var(  --space-3  );
-
 }
 h2 {
     font-size       : 32px;
@@ -159,11 +165,10 @@ hr {
 }
 
 p {
-    font-size       : var( --size-2 );
     margin          : var( --space-5 ) 0;
     line-height     : 1.5;
 }
-/*  -------------------- --------------------  LAYOUT GRID FLEX */
+/*  -------------------- --------------------  LAYOUT GRID */
 
 .layout-grid {
     align-content   : space-around;
@@ -173,23 +178,66 @@ p {
     grid-template-rows    : 55px 1fr 80px;
     grid-template-areas   : "header  header"
                             "nav-aside main";
-    /*justify-content : space-between;*/
 }
 
 /* -------------------- --------------------  LAYOUT HEADER */
 
-.header {
+header.header {
     align-items     : center;
     background      : var( --header-bg     );
     border          : var( --header-border );
     border-radius   : var( --header-radius );
     box-shadow      : var( --header-shadow );
     grid-area       : header;
+    font-size       : 20px;
     position        : var( --header-position);
     width           : 100%;
     z-index         : var(--z-overlay);
 }
+/* -------------------- --------------------  HEADER NAV */
 
+header > nav {
+    height          : 50px;
+    margin          : 0;
+    overflow        : hidden;
+    padding         : 0;
+    width           : 100vw;
+}
+
+nav ul {
+    display         : flex;
+    margin          : 0;
+    padding         : 0;
+}
+
+nav ul li {
+    list-style      : none;
+    transition      : all 0.2s;
+}
+
+nav ul li.nav-logo {
+    display: none; /* display inline-block tablet */
+    width       : 247px;
+}
+
+nav ul li.ui-color-mode {
+    display         : flex;
+    margin-left     : auto;
+    padding         : 0;
+}
+
+nav > ul > li > a {
+    /*padding         : 0 var(  --space-5  );*/
+}
+nav ul li .ui-nav-icon {
+    /*font-size: 1.25em;*/
+    background: var( --layer-3);
+    color: var( --secondary);
+    cursor: pointer;
+    text-align: center;
+    margin: 0 1em;
+    /*line-height: 50px;*/
+}
 /* -------------------- --------------------  LAYOUT Main */
 
 .main {
@@ -229,7 +277,7 @@ footer .links {
     cursor          : pointer;
 }
 
-/* -------------------- --------------------   BREADCRUMBS + PAGINATION */
+/* -------------------- --------------------  PAGINATION */
 .ui-breadcrumbs,
 .adminnavi {
     background      : var( --breadcrumbs-bg     );
@@ -244,11 +292,17 @@ footer .links {
     top             : 50px;
     z-index         : var(--z-sticky);
 }
+.adminnavi::before{
+    content: attr(aria-label);
+    opacity: 0;
+    display:none
+}
 nav.pagination {
     display         : flex;
     justify-content : center;
 }
 .pagenavi {
+    list-style:none;
 }
 .ui-breadcrumbs a,
 .adminnavi a,
@@ -263,58 +317,6 @@ nav.pagination {
     padding         : var( --breadcrumbs-padding       );
     margin          : var( --breadcrumbs-margin        );
     transition      : all 0.3s ease;
-}
-
-/* -------------------- --------------------   Dashboard Options */
-
-.dashboard-options {
-    position        : relative;
-    row-gap         : var(--space-3);
-    margin-bottom   : 3em;
-}
-.dashboard-options div[data-layout^=row]{
-    flex-wrap       : wrap;
-    column-gap      : var(--space-3);
-    row-gap         : var(--space-6);
-    text-align      : center;
-}
-.dashboard-options .set-link {
-    display         : block;
-    font-size       : 1em;
-    line-height     : 1.25em;
-    min-width       : 5.75em;
-    max-width       : calc(100% / 7 );
-    /*width           : 5.75em;*/
-    background      : var(--card-block-bg);
-    border          : 1px solid var(--card-block-border-color);
-    border-radius   : var(--border-radius);
-    padding         : var(--space-3);
-    text-align      : center;
-}
-.dashboard-options .set-link:hover {
-    background      : var(--layer-4)
-}
-.dashboard-options .set-icon {
-    display         : block;
-    font-size       : 2rem;
-    height          : 1em;
-    margin          : var(--space-4) auto;
-}
-.dashboard-options .set-icon svg {
-    height          : 24px;
-    width           : 24px;
-}
-.dashboard-options .set-name {
-    display         : block;
-    font-size       : 13px;
-    margin          : 0;
-}
-.not-available {
-    border          : 1px dotted var(--color-red) !important;;
-    color           : var(--color-red) !important;
-}
-.not-available:hover {
-    cursor          : not-allowed;
 }
 
 /* ---------- ---------- ------- SCROLL TOP */
@@ -366,3 +368,4 @@ nav.pagination {
 @media print {
     .scroll-top { display: none !important; }
 }
+

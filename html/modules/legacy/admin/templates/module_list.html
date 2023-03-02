@@ -1,7 +1,7 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 <div class="adminnavi">
-    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
     &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a></span>
 </div>
@@ -14,7 +14,7 @@
 
 
 <div class="tips">
-    <p><{$smarty.const._AD_LEGACY_TIPS_MOD}></p>
+    <{$smarty.const._AD_LEGACY_TIPS_MOD}>
 </div>
 
 
@@ -84,8 +84,11 @@
 
 </div>
 
-    <div class="foot-sticky" style="display: none">
+    <div class="alert-submit" style="display: none">
+        <div class="danger">
+        <{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_CHANGES}>
         <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+        </div>
     </div>
 
     <div class="ui-card-full" data-layout="row centered sm-column">

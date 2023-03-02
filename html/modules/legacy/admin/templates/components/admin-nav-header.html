@@ -2,40 +2,44 @@
     <ul>
         <li class="nav-logo">
             <a href="<{$xoops_url}>/admin.php" title="<{$smarty.const._CPHOME}>">
-                <img src="<{'design/logo.png'|theme}>" alt="<{$legacy_sitename|xoops_escape}>">
+                <svg xmlns="http://www.w3.org/2000/svg" width="248"  height="48" viewBox="0 0 248 48">
+                    <text x="124" y="24" text-anchor="middle" alignment-baseline="central"><{$legacy_sitename|xoops_escape}></text>
+                </svg>
             </a>
+        </li>
+
         <li>
-        <a class="btnav" href="<{$xoops_url}>/" target="_blank" title="<{$smarty.const._YOURHOME}>">
-            <img class="svg home" src="<{'icons/icon-home.svg'|theme}>" alt="home"></a></a>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle btnav" title="<{$smarty.const._CPHOME}>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
+                </a>
+                <div class="dropdown-content drop-nav">
+                    <div class="navbar-options">
+                    <{include file="`$xoops_rootpath`/modules/legacy/admin/templates/components/navbar-options.html"}>
+                    </div>
+                </div>
+            </div>
+        </li>
+
         <li>
-            <a class="btnav" href="<{$xoops_url}>/admin.php" arial-label="Admin Dashboard">
-                <img class="svg dashboard" src="<{'icons/dashboard.svg'|theme}>" alt="dashboard"></a>
+            <a class="btnav" href="<{$xoops_url}>/index.php" target="_blank" title="<{$smarty.const._YOURHOME}>">
+            <img class="svg dashboard" src="<{'icons/icon-home.svg'|theme}>" width="1em" height="1em" alt="Home"> </a>
+        </li>
+
+        <{* Display date_format modifier to show current date and time *}>
         <li>
-            <a class="btnav" href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleList" accesskey="m" title="[m] Modules">
-                <img class="svg package" src="<{'icons/icon-modules.svg'|theme}>" alt="package"></a>
-        <li>
-            <a class="btnav" href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList" accesskey="b" title="[b] Blocks">
-                <img class="svg block-plus" src="<{'icons/icon-block-plus.svg'|theme}>" alt="block"></a>
-        <li>
-            <a class="btnav" href="<{$xoops_url}>/modules/xelfinder/manager.php?admin=1" target="_blank" accesskey="f" title="[f] File-Manager">
-                <img class="svg file-manager" src="<{'icons/icon-tree.svg'|theme}>" alt="file manager"></a>
-        <li>
-            <a class="btnav" href="<{$xoops_url}>/modules/legacyRender/admin/index.php" accesskey="r" title="[r] Render">
-                <img class="svg theme" src="<{'icons/icon-theme.svg'|theme}>" alt="Render"></a>
-        <li>
-            <a class="btnav" href="<{$xoops_url}>/modules/user/admin/index.php" accesskey="u" title="[u] Users">
-                <img class="svg users" src="<{'icons/icon-user-account.svg'|theme}>" alt="users"></a>
+            <span class="badge" style="line-height: 24px;">
+                <img class="svg" src="<{'icons/icon-date-time.svg'|theme}>" width="1em" alt="date-time"> <{$smarty.now|date_format:'%Y-%m-%d %H:%M:%S'}>
+            </span>
+        </li>
 
         <li class="ui-color-mode">
+            <button id="themeToggle" class="btnav nav-icon" title="Color Mode"><span>&#x263C;</span></button>
 
-        <button id="themeToggle" class="btnav nav-icon" title="Color Mode"><span>&#x263C;</span></button>
-
-        <a class="btnav" href="<{$xoops_url}>/user.php?op=logout" target="_blank" title="<{$smarty.const._LOGOUT}>">
-            <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M14.08 15.59L16.67 13H7v-2h9.67l-2.59-2.59L15.5 7l5 5l-5 5l-1.42-1.41M19 3a2 2 0 0 1 2 2v4.67l-2-2V5H5v14h14v-2.67l2-2V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h14z" fill="currentColor"></path>
-            </svg> <{$smarty.const._LOGOUT}></a>
-
-
+            <a class="btnav" href="<{$xoops_url}>/user.php?op=logout" target="_blank" title="<{$smarty.const._LOGOUT}>">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path d="M16 17v-3H9v-4h7V7l5 5l-5 5M14 2a2 2 0 0 1 2 2v2h-2V4H5v16h9v-2h2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9z" fill="currentColor"></path></svg>
+            </a>
+        </li>
 
     </ul>
 </nav>

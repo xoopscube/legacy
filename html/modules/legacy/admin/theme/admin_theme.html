@@ -2,10 +2,10 @@
 <html class="no-js" lang="<{$xoops_langcode}>" data-theme="dark">
 <!-- ===========================
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL 2.3.2
-	Version : 1.1.1
+	Distribution : XOOPSCube XCL 2.3.1
+	Version : 2.3.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2022-11-21
+	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
 =========================== -->
 <head>
@@ -42,29 +42,25 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
     <{* ---------- ---------- Admin Style *}>
-
-    <!-- !TODO Check This -->
-    <{stylesheet file='style.css' static='true'}>
     <!-- XCL Layout -->
-    <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/modules/legacy/admin/theme/style.css">
     <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/css/x-layout.css">
-
-
-
+    <!-- ADMIN THEME STYLE -->
+    <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/modules/legacy/admin/theme/style.css">
+    <!-- PRISMJS -->
     <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/prismjs/prism.css">
     <{* prism.js included before closing /body }>
 
     <{* ---------- ---------- Module Header *}>
-    <!-- module script -->
+    <!-- Modules scripts and styles -->
     <{if $xoops_module_header}>
         <{$xoops_module_header}>
     <{/if}>
     <{if $xoops_block_header}>
-    <{$xoops_block_header}>
+        <{$xoops_block_header}>
     <{/if}>
 
-	<{* ---------- ---------- CSS & JS *}>
-	<!-- <script type="text/javascript" src="<{$xoops_url}>/include/xoops.js"></script> -->
+	<{* ---------- ---------- Override CSS Styles [jQuery, Notify Plugin] *}>
+    <link type="text/css" rel="stylesheet" href="<{'stylesheets/ui-notification.css'|theme}>">
     <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/js/jquery-ui-custom-var.css">
 </head>
 
@@ -93,18 +89,17 @@
     </div>
 
 
-    <{* ---------- ---------- Nav RIGHT *}>
-    <{* ---------- ---------- Aside Navigation *}>
+    <{* ---------- ---------- Nav Aside Menu *}>
 
     <aside class="nav-aside">
 
         <ul class="nav-side-menu">
 
-        <{* ---------- ---------- Module Block *}>
+        <{* ---------- ---------- Block Side Menu *}>
 
         <{$xoops_lblocks.sidemenu.content}>
 
-        </ul><{* /nav-side-menu *}>
+        </ul>
 
     </aside>
 
@@ -116,16 +111,16 @@
         <{* /if *}>
         <{* /foreach * }>
 
-        <{* ---------- ---------- Admin Dashboard Info *}>
-        <{if $smarty.server.SCRIPT_FILENAME|basename == "admin.php"}>
+    <{* ---------- ---------- Admin Dashboard Info *}>
+    <{if $smarty.server.SCRIPT_FILENAME|basename == "admin.php"}>
 
         <div class="adminnavi">
-            <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+            <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
             &raquo;&raquo; <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceList"><{$smarty.const._MI_LEGACY_NAME}></a>
             &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._CPHOME}></span>
         </div>
 
-        <{* Admin Blocks management from /legacy/admin/preload/AdminDashboard.php
+        <{* Admin Blocks from file: /legacy/admin/preload/AdminDashboard.php
             Disable (0) or Enable (1) block render *}>
 
         <{$xoops_lblocks.block_online.content}>
@@ -136,6 +131,7 @@
 
                 <{$xoops_lblocks.block_menu.content}>
 
+                <h3><{$xoops_lblocks.block_server.title}></h3>
                 <{$xoops_lblocks.block_server.content}>
 
                 <{$xoops_lblocks.block_php.content}>
@@ -148,15 +144,15 @@
 
         </div>
 
-        <{/if}>
+    <{/if}>
 
-        <{* ---------- ---------- Module Content *}>
+    <{* ---------- ---------- Module Content *}>
 
         <{$xoops_contents}>
 
-        <hr>
+    <hr>
 
-        <{* ---------- ---------- Footer*}>
+    <{* ---------- ---------- Footer*}>
         <footer class="credits">
             <p><span>Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}> &copy;</span> 2005-2023 <a href="https://github.com/xoopscube/" target="_blank" rel="external">The XOOPS Cube Project</a></p>
         </footer>
@@ -177,6 +173,7 @@
     </div>
 
 </div><{* /Layout Grid *}>
+
 <{* ---------- ---------- Javascript plugin *}>
 <script type="module">
     import {ThemeManager} from '<{$xoops_url}>/common/js/x-theme-manager.js';

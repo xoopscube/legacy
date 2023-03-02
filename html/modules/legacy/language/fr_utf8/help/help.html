@@ -1,8 +1,9 @@
 <div data-layout="row sm-column">
     <div data-self="size-xxsmall">
         <nav id="help-menu">
-            <ul data-layout="rows">
+            <ul data-layout="column">
                 <li><a href="#help-overview" class="button">Get started</a>
+                <li><a href="#accesskey" class="button">Accesskey</a>
                 <li><a href="#help-search" class="button">Action Search</a>
                 <li><a href="#help-blocks" class="button">Blocks</a>
                 <li><a href="#help-comments" class="button">Comments</a>
@@ -15,6 +16,7 @@
             </ul>
         </nav>
     </div>
+
 <article id="help-module">
 
     <section class="help" id="help-overview">
@@ -72,9 +74,91 @@
 
     </section>
 
-
 <hr>
 
+    <section class="help" id="accesskey">
+
+    <h3>Accesskey</h3>
+
+    <table class="outer">
+        <thead>
+        <tr>
+            <th>Browser</th>
+            <th>Windows</th>
+            <th>Linux</th>
+            <th>Mac</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Firefox</td>
+            <td><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd><em>key</em></kbd></td>
+            <td><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd><em>key</em></kbd></td>
+            <td>
+                <kbd>Control</kbd> + <kbd>Option</kbd> + <kbd><em>key</em></kbd><br>
+                <kbd>Control</kbd> + <kbd>Alt</kbd> + <kbd><em>key</em></kbd>
+            </td>
+        </tr>
+        <tr>
+            <td>Internet Explorer</td>
+            <td><kbd>Alt</kbd> + <kbd><em>key</em></kbd><br><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd><em>key</em></kbd></td>
+            <td>N/A</td>
+            <td>N/A</td>
+        </tr>
+        <tr>
+            <td>Edge</td>
+            <td><kbd>Alt</kbd> + <kbd><em>key</em></kbd><br><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd><em>key</em></kbd></td>
+            <td>N/A</td>
+            <td>
+                <kbd>Control</kbd> + <kbd>Option</kbd> + <kbd><em>key</em></kbd><br><kbd>Control</kbd> + <kbd>Option</kbd> + <kbd>Shift</kbd> +
+                <kbd><em>key</em></kbd>
+            </td>
+        </tr>
+        <tr>
+            <td>Google Chrome</td>
+            <td><kbd>Alt</kbd> + <kbd><em>key</em></kbd><br><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd><em>key</em></kbd></td>
+            <td><kbd>Alt</kbd> + <kbd><em>key</em></kbd></td>
+            <td>
+                <kbd>Control</kbd> + <kbd>Option</kbd> + <kbd><em>key</em></kbd><br><kbd>Control</kbd> + <kbd>Option</kbd> + <kbd>Shift</kbd> +
+                <kbd><em>key</em></kbd>
+            </td>
+        </tr>
+        <tr>
+            <td>Safari</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>
+                <kbd>Control</kbd> + <kbd>Option</kbd> + <kbd><em>key</em></kbd><br>
+                <kbd>Control</kbd> + <kbd>Option</kbd> + <kbd>Shift</kbd> +
+                <kbd><em>key</em></kbd>
+            </td>
+        </tr>
+        <tr>
+            <td>Opera 15+</td>
+            <td><kbd>Alt</kbd> + <kbd><em>key</em></kbd></td>
+            <td><kbd>Alt</kbd> + <kbd><em>key</em></kbd></td>
+            <td><kbd>Control</kbd> + <kbd>Alt</kbd> + <kbd><em>key</em></kbd></td>
+        </tr>
+        <tr>
+            <td>Opera 12</td>
+            <td colspan="3">
+                <kbd>Shift</kbd> + <kbd>Esc</kbd> opens a contents list which are
+                accessible by accesskey, then, can choose an item by pressing
+                <kbd><em>key</em></kbd>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="confirm">
+        <strong>Accessibility concerns</strong><br>
+        <p>In addition to poor browser support, there are numerous concerns with the accesskey attribute:
+            An accesskey value can conflict with a system or browser keyboard shortcut, or assistive technology functionality.</p>
+    </div>
+
+</section>
+
+<hr>
 
     <section id="help-search">
 
@@ -86,9 +170,7 @@
 
     </section>
 
-
 <hr>
-
 
     <section id="help-blocks">
 
@@ -120,9 +202,7 @@
 
     </section>
 
-
 <hr>
-
 
     <section id="help-comments">
 
@@ -136,9 +216,7 @@
 
     </section>
 
-
 <hr>
-
 
     <section id="help-images">
 
@@ -192,7 +270,6 @@
 
     </section>
 
-
 <hr>
 
 
@@ -240,7 +317,6 @@
 
 <hr>
 
-
     <section id="help-smilies">
 
         <h3>Smilies Management</h3>
@@ -264,9 +340,7 @@
 
     </section>
 
-
 <hr>
-
 
     <section id="help-word-censor">
 
@@ -306,9 +380,7 @@
 
     </section>
 
-
 <hr>
-
 
     <section id="help-development">
 
@@ -369,6 +441,7 @@
         </table>
 
     </section>
+
 
 
 </article>
