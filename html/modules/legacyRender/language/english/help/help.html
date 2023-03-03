@@ -5,8 +5,7 @@
                 <li><a href="#help-overview" class="button">Renderer</a>
                 <li><a href="#help-banner" class="button">Banner</a>
                 <li><a href="#help-bannerclient" class="button">Banner Client</a>
-                <li><a href="#help-htaccess" class="button">htaccess</a>
-                <li><a href="#help-cool-uri" class="button">Cool URI</a>
+                <li><a href="#help-htaccess" class="button">Cool URI htaccess</a>
                 <li><a href="#help-template" class="button">Templates</a>
                 <li><a href="#help-themes" class="button">Themes</a>
                 <li><a href="#help-development" class="button">Development</a>
@@ -29,20 +28,21 @@
 
         <p>Smarty Template Engine is used for rendering and cache management, it has neither override nor fall-back mechanism.
 
-        <p>The Render engine (renderer) ensures compatibility with legacy themes of XOOPS2 and XOOPS2-JP.
+        <p>The Render engine ensures compatibility with legacy themes of XOOPS2 and XOOPS2-JP.
 
         <p>Templates are built with HTML, CSS, JavaScript and Smarty tags<br>
         — Smarty is used with custom delimiters very similar to HTML markup language that make it easier to design and develop components.</p>
 
-        <p>The Renderer module allows you to manage files more easily, even when they’re not all stored in one central folder or directory.
-            Although, some Themes have a template directory including most, if not all template files to meet an organization's needs for customization and personalization.
+        <div class="tips">The Renderer implementation of Smarty uses custom delimiters <b class="badge">&lt;{</b> ... <b class="badge">}&gt;</b><br>
+            instead of Smarty code enclosed in curly brace tag delimiters {$var} of the official documentation.</div>
 
         <p>The <b>Template Management</b> allows you to enable a <b>Template Set</b> and check the list of <b>templates</b> that you can edit, copy, download or delete.
+        You can manage files more easily, even when they’re not all stored in one central folder or directory.
+        Although, some Themes have a template directory including most, if not all template files to meet an organization's needs for customization and personalization.
 
         <p>For general instructions about the Smarty language, visit <a href="https://www.smarty.net/docsv2/en/" target="_blank" rel="noopener">https://www.smarty.net/docsv2/en/ ⭧</a>
     </section>
 
-<hr>
 
     <section id="help-banner">
 
@@ -56,37 +56,37 @@
 
         <p>An impression is a metric used to quantify the number of digital views of a client banner.
 
-        <h3>Smarty Tags</h3>
+        <h4>Banner Smarty Tags</h4>
 
         <p>Smarty generates web content through the placement of special Smarty tags within a document.
 
-        <p>The following tags can be added to Themes and Templates.
+        <p>The Banner tags can be added to Themes, Templates or Blocks.
 
         <p>Smarty tags will be processed and substituted with content.
 
-    <h4>Random Banner display</h4>
+    <h5>Banner Random Display</h5>
 
     <pre><code class="lang-smarty">
     &lt;{$xoops_banner}&gt;
     </code></pre>
 
-    <h4>Display Banner if not empty</h4>
+    <h5>Display Banner if not empty</h5>
     <pre><code class="lang-smarty">
     &lt;{if $xoops_banner and $xoops_banner!=&quot;&quot;}&gt;&lt;{$xoops_banner}&gt;&lt;{/if}&gt;
     </code></pre>
 
-    <h4>Display a specific Banner Id (bid)</h4>
+    <h5>Display a specific Banner Id (bid)</h5>
     <pre><code class="lang-smarty">
     &lt;{if $xoops_banner &amp;&amp; bid=2}&gt;&lt;{$xoops_banner}&gt;&lt;{/if}&gt;
     </code></pre>
 
-    <h3>Client login</h3>
+    <h3>Banner Client login</h3>
 
-    <pre><code class="lang-smarty">
+    <code>
     <{$smarty.const.XOOPS_URL}>/banners.php
-    </code></pre>
+    </code>
 
-    <p>Features</p>
+    <p>Banner Features</p>
         <ul>
             <li>List of Banner Clients
             <li>List of Banners
@@ -107,20 +107,21 @@
 
         <h3>Banner Client Management</h3>
 
-        <p>If you’re only going to have one or two banners, you may not need to create a banner client.
-            Assigning a banner to a particular client will help in the long run if you’re working with several clients (ie. customers).</p>
+        <p>Assigning a banner to a particular client will help in the long run if you’re working with several clients (i.e. customers).
+        If you’re only going to have one or two banners, you may not need to create a banner client.
+
         <h4>Steps for creating a new client</h4>
         <p>To setup a new banner client, follow the steps below:</p>
-<ul>
-        <li>Log into your Joomla 3.0 dashboard
-    <li>In the top menu, click Components and then click Banners
-    <li>In the left menu, click Clients
-    <li>Click the New button in the top left of the page
-    <li>On this page you will enter all of the details for your new banner client.
-    <li>After doing so, click Save in the top left of the page.
-</ul>
 
-    <p>In our testing, we are creating a client, WordPress.org.<br>
+        <ul>
+            <li>Click the button New Banner Client
+            <li>Enter all the details for your new banner client:
+            <li>Name and Contact
+            <li>Client Email and Password (only access Banners impression)
+            <li>After doing so, click Submit.
+        </ul>
+
+    <p>In our testing, we are creating a client, company.com<br>
         We are only entering the :</p>
 
         <table class="outer">
@@ -132,7 +133,7 @@
             <tbody>
             <tr>
                 <td>name for the client</td>
-                <td>WordPress.org</td>
+                <td>company.com</td>
             </tr>
             <tr>
                 <td>Contact Name</td>
@@ -144,7 +145,7 @@
             </tr>
             <tr>
                 <td>Login</td>
-                <td>Login</td>
+                <td>Login only to banner views</td>
             </tr>
             <tr>
                 <td>Password</td>
@@ -152,18 +153,21 @@
             </tr>
             <tr>
                 <td>Extra info</td>
-                <td>Extra info</td>
+                <td>Any customised information, address, phone, etc.</td>
             </tr>
             </tbody>
         </table>
 
+        <h3>Create a New Banner</h3>
+        <p>select the banner client</p>
+        <p>Set the total number of Impressions Allowed
+        <p>Image URL
+        <p>Click URL (where to redirect users)
+        <p>HTML code (check the box to confirm it is code and not an image).
 
-        <p>new-client-showing-in-list</p>
-
-        <p>After saving this new client, we can now use this client as a part of our setup when creating banner modules.</p>
     </section>
 
-<hr>
+
 
     <section id="help-htaccess">
 
@@ -173,11 +177,11 @@
 
         <p>1. Copy the generated code
 
-        <p>2. Create a file /html/.htaccess
+        <p>2. Create a file /public_html/.htaccess
 
         <p>3. Past the generated code into .htaccess</p>
 
-        <p>4. Enable "Cool URI" i the Control Panel System  <a href="../../legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">🆒 Settings ⭢</a>
+        <p>4. Enable "Cool URI" in the Control Panel System  <a href="../../legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">🆒 Settings ⭢</a>
 
         <h3>The .htaccess File</h3>
 
@@ -188,22 +192,7 @@
         </p>
     </section>
 
-<hr>
 
-    <section id="help-cool-uri">
-        <h3>The Cool URI</h3>
-        <p>The term used to describe a Uniform Resource Identifier (URI) that does not change.
-        This enables resources that have been linked to, bookmarked, or referenced in other ways to remain valid links over time.
-        <p>A cool URI is considered to be a foundation requirement for the Semantic Web.
-        As described by Tim Berners-Lee in “Cool URIs don’t change” (1998), URIs should be designed with three things in mind: simplicity, stability and manageability.
-
-        <p>Learn more about Apache .htaccess file and Cool URIs :
-        <p><a href="https://www.askapache.com/htaccess/" target="_blank" rel="noopener">THE Ultimate Htaccess ⭧</a>
-        <p><a href="https://www.w3.org/TR/cooluris/" target="_blank" rel="noopener"> W3C - Cool URIs for the Semantic Web ⭧</a>
-
-    </section>
-
-<hr>
 
     <section id="help-template">
 
@@ -231,22 +220,9 @@
 
     </section>
 
-<hr>
+
 
     <section id="help-themes">
-
-        <h3>Theme Design</h3>
-
-        <h3>Additional Themes</h3>
-
-        <p>Themes can be installed from Xupdate Store or from theme-developers' websites etc.
-
-        <h3>Uploading Themes</h3>
-
-        <p>Distributed themes are mostly compressed.
-            To use a theme, the uncompressed files must be uploaded into the directory public_html/themes/.
-
-        <p>The Theme folder must include theme.html and manifesto.ini.php
 
         <h3>Theme Selection</h3>
 
@@ -256,6 +232,15 @@
         <p>Any theme that is "checked" in the "Control" column, will be available to users in the block "Themes".
 
         <p>If you install the "Themes" block and grant users permission, they can then select their favorite theme and customize the look and feel of the website.
+
+        <h3>Install a Theme</h3>
+
+        <p>Distributed themes are mostly compressed.
+            To use a theme, the uncompressed files must be uploaded into the directory public_html/themes/.
+
+        <p>The Theme folder must include theme.html and manifesto.ini.php
+
+        <p>Additional Themes can be installed from X-Update Store, from theme-developers' websites or custom design.
 
         <h3>Uninstall a Theme</h3>
 
@@ -267,7 +252,7 @@
 
     </section>
 
-<hr>
+
 
     <section id="help-development">
 
@@ -275,7 +260,6 @@
 
         <p>Todo : Write some information.</p>
         <ul>
-            <li> and tips</li>
             <li>Tutorial - How to create Custom Templates
             <li>How to creat Single File Component</li>
             <li>Smarty Tags list</li>
@@ -285,7 +269,7 @@
             <thead>
             <tr>
                 <th>Module name</th>
-                <th>Renderer  [ core system ]</th>
+                <th>Render  [ core system ]</th>
             </tr>
             </thead>
             <tbody>

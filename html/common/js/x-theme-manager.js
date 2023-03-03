@@ -1,6 +1,6 @@
 /**
  * Theme Changer
- *
+ * XCL version 2.3.1
  * How To Use
  *
  * 1) Add the script to the head of your theme.html
@@ -67,11 +67,11 @@ export class ThemeManager {
 
     /**
      * Private _applyTheme sets documentElement and localStorage 'data-theme' attribute
-     * Icon Moon : &#x1F317
-     * Icon Sun  : &#x263C;
+     * Icon Moon ? : &#127767;
+     * Icon Sun ☼ : &#x263C; or &#9728; : ☀
      */
     _applyTheme = () => {
-        this.themeToggle.innerHTML = (this.theme === 'light' ? '&#x1F317' : '&#x263C;');
+        this.themeToggle.innerHTML = (this.theme === 'light' ? '?' : '☀');
         document.documentElement.setAttribute('data-theme', this.theme);
         localStorage.setItem('data-theme', this.theme);
     }

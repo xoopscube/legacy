@@ -410,10 +410,10 @@
     --notify-border-radius  : var( --border-radius );
     --notify-border-style   : var( --border-style );
     --notify-border-width   : var( --border-width );
-    --notify-box-shadow     : var(	--shadow-2 );
+    --notify-box-shadow     : var( --shadow-2 );
     --notification-color    : var( --primary );
     --notify-margin         : var(--space-8) auto;
-    --notify-padding        : var(--space-6) var(--space-6) var(--space-6) var(--space-9);
+    --notify-padding        : 1rem 1rem 1rem 3rem;
     --notify-max-width      : 90%;
 
     /* -------------------- --------------------  SHADOW */

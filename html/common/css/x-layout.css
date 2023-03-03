@@ -147,7 +147,6 @@ html{scroll-behavior: smooth;}
 [data-layout~=inline],[data-self~=inline] {display:inline-flex}
 [data-layout*=column][data-layout*=nowrap-],[data-layout*=row][data-layout*=-nowrap] {flex-wrap:nowrap}
 [data-layout~=nowrap],[data-self~=inline] {flex-wrap:nowrap}
-[data-self] {display:flex}
 [data-self~=center] {align-self:center;align-items:center}
 [data-self~=centered] {align-items:center;justify-content:center}
 [data-layout*=column]:not([data-layout*=row]) [data-self*=right],[data-layout*=row]:not([data-layout*=column]) [data-self*=bottom] {align-self:flex-end}

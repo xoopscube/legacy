@@ -1,8 +1,6 @@
 <div class="adminnavi" aria-label="breadcrumb">
-	<a href="<{$xoops_url}>/admin.php">Dashboard</a>
-
+	<a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
 	&raquo;&raquo; <a href="./index.php"><{$dirname|ucfirst}></a>
-
 	<{foreach from=$adminmenu item="menuitem"}>
 	<{if $menuitem.selected}>
 	&raquo;&raquo; <a href="<{$menuitem.link|escape}>" class="selected<unselected"><{$menuitem.title|escape}></a>

@@ -189,7 +189,6 @@ header.header {
     border-radius   : var( --header-radius );
     box-shadow      : var( --header-shadow );
     grid-area       : header;
-    font-size       : 20px;
     position        : var( --header-position);
     width           : 100%;
     z-index         : var(--z-overlay);
@@ -197,10 +196,11 @@ header.header {
 /* -------------------- --------------------  HEADER NAV */
 
 header > nav {
+    font-size       : var(--icon-size);
     height          : 50px;
     margin          : 0;
     overflow        : hidden;
-    padding         : 0;
+    padding         : var(--space-2);
     width           : 100vw;
 }
 
@@ -230,7 +230,6 @@ nav > ul > li > a {
     /*padding         : 0 var(  --space-5  );*/
 }
 nav ul li .ui-nav-icon {
-    /*font-size: 1.25em;*/
     background: var( --layer-3);
     color: var( --secondary);
     cursor: pointer;

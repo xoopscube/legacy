@@ -180,10 +180,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_FOOTER_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => '<small>Theme by Nuno Luciano 
-    <a href="https://github.com/gigamaster" target="_blank" rel="noopener">@gigamaster</a>  •  
-    Built with <a href="https://picocss.com" target="_blank" rel="noopener">Pico CSS</a></small><br>
-    <small>Powered by XCL 2.3.1 © 2005-2023 <a href="https://github.com/xoopscube/" rel="noopener">The XOOPSCube Project</a></small>'
+    'default'     => 'Powered by XCL 2.3.1 © 2005-2023 <a href="https://github.com/xoopscube/" rel="noopener">The XOOPSCube Project</a>'
 ];
 
 
