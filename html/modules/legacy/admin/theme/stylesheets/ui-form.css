@@ -56,15 +56,15 @@ input[type="tel"],
 input[type="text"],
 input[type="url"],
 textarea {
-    background      : var(  --input-bg     );
-    border-color    : var(  --input-border-color   );
-    border-radius   : var(  --input-border-radius  );
-    border-style    : var(  --input-border-style   );
-    border-width    : var(  --input-border-width   );
+    background      : var( --input-bg );
+    border-color    : var( --input-border-color );
+    border-radius   : var( --input-border-radius);
+    border-style    : var( --input-border-style );
+    border-width    : var( --input-border-width );
     /* box-shadow        : var(  --input-shadow		); */
-    color           : var(  --input-color  );
-    padding         : var(  --space-3      );
-    margin          : var(  --space-0     ) var(  --space-1     );
+    color           : var(  --input-color );
+    padding         : var( --space-4 );
+    margin          : var( --space-0 ) var( --space-1 );
 }
 input[type="number"] {
     max-width: 8ch;
@@ -125,7 +125,6 @@ input[type="image"] svg path {
     color           : var( --link )
 }
 
-
 [type="submit"],
 [type="submit"].button-cancel {
     background-color    : var( --button-bg     );
@@ -140,7 +139,7 @@ input[type="image"] svg path {
     font-style          : normal;
     letter-spacing      : 0.08rem;
     line-height         : 1; */
-    padding             : var( --space-3 );
+    padding             : var( --space-4 );
     position            : relative;
     margin              : var( --button-margin );
     text-align          : center;
@@ -203,18 +202,18 @@ input[type=search]:focus,
 input[type=password]:focus,
 select:focus,
 textarea:focus {
-    background      : var(--input-bg-on);
-    border          : var(--input-border-on);
-    box-shadow      : var(--input-shadow-on);
-    color           : var(--input-color-on);
+    background      : var(--input-bg-on );
+    border          : var(--input-border-on );
+    box-shadow      : var(--input-shadow-on );
+    color           : var(--input-color-on );
     transition      : 0.2s ease-in;
 }
 
 select:focus-visible,
 :focus-visible {
-    border          : var(--input-border-on);
-    background      : var(--input-bg-on);
-    box-shadow      : var(--input-shadow-on);
+    border          : var(--input-border-on );
+    background      : var(--input-bg-on );
+    box-shadow      : var(--input-shadow-on );
     outline         : none;
 }
 
@@ -227,8 +226,8 @@ select {
     border-radius   : var( --input-border-radius );
     border-style    : var( --input-border-style );
     border-width    : var( --input-border-width );
-    margin          : var( --space-0 ) var( --space-1 );
-    padding         : var( --space-3 );
+    margin          : 0 var( --space-1 );
+    padding         : var( --space-4 );
 }
 
 select option {
@@ -241,8 +240,8 @@ select option:hover,
 select option:focus,
 select option:active,
 select option:checked {
-    background      : var(--color-blue) ;
-    color           : var( --color-white ) ;
+    background      : var( --color-blue );
+    color           : var( --color-white );
 }
 
 /*
@@ -250,13 +249,13 @@ Select Multiple
 JavaScript required to avoid keyboard [ctrl]
 */
 select[multiple] option::before {
-    content: "\2610";
-    width: 1.3em;
-    text-align: center;
-    display: inline-block;
+    content         : "\2610";
+    width           : 1.3em;
+    text-align      : center;
+    display         : inline-block;
 }
 select[multiple] option:checked::before {
-    content: "\2611";
+    content         : "\2611";
 }
 
 /* 	textarea {
@@ -272,10 +271,10 @@ select[multiple] option:checked::before {
 } */
 
 textarea::-webkit-resizer {
-    background			: transparent;
-    border-width        : 8px;
-    border-style        : solid;
-    border-color        : transparent hsl(215, 15%, 25%) hsl(216, 17%, 17%) transparent;
+    background		: transparent;
+    border-width    : 8px;
+    border-style    : solid;
+    border-color    : transparent hsl(215, 15%, 25%) hsl(216, 17%, 17%) transparent;
 }
 
 /*option:checked {*/
@@ -291,7 +290,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    transition          : background-color 5000s ease-in-out 0s;
+    transition      : background-color 5000s ease-in-out 0s;
 }
 /* Autofill text */
 input:-webkit-autofill{

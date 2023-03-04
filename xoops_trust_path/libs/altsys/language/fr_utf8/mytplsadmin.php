@@ -1,8 +1,8 @@
 <?php
 
-define( '_MYTPLSADMIN_TIPS' , 'Le fichier de modèle original est en lecture seule pour des raisons de sécurité.<br>
+define( '_MYTPLSADMIN_TIPS' , 'Le modèle original est en lecture seule pour des raisons de sécurité.<br>
 Créez un nouveau jeu de modèles et copiez les fichiers modèles à personnaliser.<br>
-Dans le rendu, vous pouvez sélectionner un jeu de modèles, modifier, copier, télécharger ou supprimer.');
+<b>Render</b> vous permet de sélectionner, modifier, copier, télécharger ou supprimer un jeu de modèles.');
 define( '_MYTPLSADMIN_CREATE_NEW_TPLSET' , 'Créer une nouvelle série');
 define( '_MYTPLSADMIN_CAPTION_BASE' , 'Base');
 define( '_MYTPLSADMIN_CAPTION_SETNAME' , 'Nom');

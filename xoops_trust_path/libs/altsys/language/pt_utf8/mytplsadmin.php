@@ -2,9 +2,9 @@
 
 // $Id: mytplsadmin.php 1040 2011-11-06 05:24:00Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
-define( '_MYTPLSADMIN_TIPS' , 'O ficheiro modelo original serve apenas de leitura por razões de segurança.<br
-Criar um novo conjunto de modelos e copiar os modelos a serem personalizados.<br
-Em Render, pode seleccionar conjunto de modelos, editar copiar, descarregar, ou suprimir.');
+define( '_MYTPLSADMIN_TIPS' , 'O ficheiro modelo original serve apenas de leitura por razões de segurança.<br>
+Criar um novo conjunto de modelos e copiar os modelos a serem personalizados.<br>
+<b>Render</b> permite seleccionar, editar copiar, descarregar, ou suprimir um conjunto de modelos.');
 define( '_MYTPLSADMIN_BTN_COPY' , "Copiar");
 define( '_MYTPLSADMIN_BTN_NEWTPLSET' , "Criar");
 define( '_MYTPLSADMIN_CAPTION_BASE' , "Base");

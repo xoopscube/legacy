@@ -2,7 +2,7 @@
 
 define( '_MYTPLSADMIN_TIPS' , 'オリジナルテンプレートファイルは、セキュリティ上の理由から読み取り専用となっています。<br>
 新しいテンプレートセットを作成し、カスタマイズするテンプレートをコピーします。<br>
-Renderでは、新しいTemplateを選択し、編集、コピー、ダウンロード、削除することができます。');
+<b>Render</b> では、テンプレート セットを選択、編集、コピー、ダウンロード、または削除できます。');
 define( '_MYTPLSADMIN_CREATE_NEW_TPLSET' , '新規にテンプレートセットを作成する');
 define( '_MYTPLSADMIN_CAPTION_BASE' , 'ベース');
 define( '_MYTPLSADMIN_CAPTION_SETNAME' , 'セット名');

@@ -1,8 +1,8 @@
 <?php
 
-define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Custom blocks can be created using HTML, BBCode, PHP and Smarty variables.<br>
-Thus allowing to create reusable Components and act as building block for your app.<br> A single component contains HTML, JavaScript and CSS.<br>
-Modules have several pre-built blocks that offer specific functionality and favor composition over inheritance.<br>The editor will change according to the type of content.');
+define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Custom blocks can be created using HTML, BBCode or PHP.
+The block <b>editor</b> will change according to the selected <b>Custom Type</b><br>
+Thus allowing to create a reusable Component with PHP or HTML, JavaScript and CSS.');
 define( '_MD_A_MYBLOCKSADMIN_PERMUPDATED' , 'Permissions updated successfully');
 define( '_MD_A_MYBLOCKSADMIN_BLOCKADMIN' , 'Blocks management');
 define( '_MD_A_MYBLOCKSADMIN_NAME' , 'Name');

@@ -287,7 +287,7 @@
     --card-small-border-width   : var(--border-width);
     --card-small-box-shadow     : var(--shadow-1);
     --card-small-box-hover      : var(--shadow-3);
-    --card-small-padding        : var(--space-7) var(--space-6);
+    --card-small-padding        : var(--space-6);
     --card-small-margin         : var(--space-6);
 
     /* -------------------- --------------------  Color Block Type SVG !Todo : Refactor and rename */
@@ -348,7 +348,7 @@
     /* -------------------- --------------------  FORM input */
 
     --input-bg              : var( --layer-1 );
-    --input-border-color    : var( --layer-2 );
+    --input-border-color    : var( --layer-3 );
     --input-border-radius   : var( --border-radius );
     --input-border-style    : var( --border-style );
     --input-border-width    : var( --border-width );

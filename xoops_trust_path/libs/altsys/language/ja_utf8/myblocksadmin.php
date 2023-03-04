@@ -1,9 +1,8 @@
 <?php
 
-define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'カスタムブロックはHTML、BBCode、PHP、Smarty変数を使用して作成することができます。<br>
-一つのコンポーネントはHTML、JavaScript、CSSを含んでいます。<br>
-モジュールは、特定の機能を提供し、継承よりも構成を優先するいくつかの事前構築されたブロックを持ちます。<br>
-エディタは、コンテンツの種類に応じて変化します。');
+define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'カスタム ブロックは、HTML、BBCode、または PHP を使用して作成できます。
+ブロック エディターは、選択したカスタム タイプに応じて変化します。<br>
+したがって、PHP または HTML、JavaScript、および CSS を使用して再利用可能なコンポーネントを作成できます。');
 define( '_MD_A_MYBLOCKSADMIN_PERMUPDATED' , '権限を更新しました');
 define( '_MD_A_MYBLOCKSADMIN_BLOCKADMIN' , 'ブロック管理');
 define( '_MD_A_MYBLOCKSADMIN_NAME' , '名称');

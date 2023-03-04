@@ -1,10 +1,8 @@
 <?php
 
-define( '_MD_A_MYBLOCKSADMIN_TIPS' , "Les blocs personnalisés peuvent être créés à l'aide de variables HTML, BBCode, PHP et Smarty, 
-ce qui permet de créer des composants réutilisables et de les utiliser comme éléments de base de votre application.<br> 
-Un composant unique contient du HTML, du JavaScript et du CSS.<br>
-Les modules sont constitués de plusieurs blocs prédéfinis offrant des fonctionnalités spécifiques et privilégiant la composition plutôt que l'héritage.<br>
-L'éditeur change en fonction du type de contenu.");
+define( '_MD_A_MYBLOCKSADMIN_TIPS' , "Les blocs personnalisés peuvent être créés en utilisant HTML, BBCode ou PHP. 
+L'éditeur de bloc changera en fonction du type personnalisé sélectionné.<br>
+Permettant ainsi de créer un composant réutilisable avec PHP ou HTML, JavaScript et CSS.");
 define( '_MD_A_MYBLOCKSADMIN_PERMUPDATED' , 'Permissions mises à jour avec succès');
 define( '_MD_A_MYBLOCKSADMIN_BLOCKADMIN' , 'Gestion des blocs');
 define( '_MD_A_MYBLOCKSADMIN_NAME' , 'Nom');

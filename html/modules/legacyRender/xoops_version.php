@@ -123,7 +123,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_META_COPYRIGHT_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'Copyright &copy; 2001-2022'
+    'default'     => 'Copyright &copy; 2002-2023'
 ];
 
 

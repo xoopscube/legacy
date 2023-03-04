@@ -1,11 +1,9 @@
 <?php
 // $Id: myblocksadmin.php 1040 2011-11-06 05:24:00Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
-define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Os blocos personalizados podem ser criados usando HTML, BBCode, PHP e variáveis Smarty, 
-permitindo assim criar Componentes reutilizáveis e agir como bloco de construção para a sua aplicação.<br>
-Um único componente contém HTML, JavaScript e CSS.<br> 
-Os módulos têm vários blocos pré-construídos que oferecem funcionalidades específicas e favorecem a composição em detrimento da herança.<br>
-O editor muda de acordo com o tipo de conteúdo.');
+define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Os Blocos personalizados podem ser criados usando HTML, BBCode ou PHP. 
+O editor de blocos mudará de acordo com o tipo personalizado selecionado.<br>
+Permitindo assim criar um Componente reutilizável com PHP ou HTML, JavaScript e CSS.');
 define( '_MD_A_MYBLOCKSADMIN_ACTION' , "Ação");
 define( '_MD_A_MYBLOCKSADMIN_ALLPAGES' , "Todas as páginas");
 define( '_MD_A_MYBLOCKSADMIN_BCACHETIME' , "Tempo do Cache");

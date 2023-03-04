@@ -153,6 +153,7 @@
 
     <div data-layout="row sm-column">
         <div data-self="column size-3of4 sm-full">
+            <p>Theme specifies areas and appearance, module templates specify shape.</p>
             <p>Smarty template files are regular HTML documents, with additional Smarty-specific tags.<br>
                 Thus allowing the easy implementation of custom design, consistent user interface and user experience.</p>
 
@@ -331,14 +332,29 @@ module-name
         <td><{$favicon}></td>
     </tr>
     <tr>
-        <td><pre><code class="lang-smarty">&lt;{$xoops_url}&gt;</code></pre></td>
-        <td><pre><code class="lang-smarty">&lt;{$app_url}&gt;</code></pre></td>
-        <td><{$xoops_url}></td>
+        <td> </td>
+        <td><pre><code class="lang-smarty">&lt;{$logotype}&gt;</code></pre></td>
+        <td><{$logotype}></td>
+    </tr>
+    <tr>
+        <td><pre><code class="lang-smarty">&lt;{$xoops_module_header}&gt;</code></pre></td>
+        <td></td>
+        <td>CSS style and JavaScript added by module header</td>
+    </tr>
+    <tr>
+        <td><pre><code class="lang-smarty">&lt;{$xoops_block_header}&gt;</code></pre></td>
+        <td></td>
+        <td>CSS style and JavaScript added by block</td>
     </tr>
     <tr>
         <td><pre><code class="lang-smarty">&lt;{$xoops_rootpath}&gt;</code></pre></td>
         <td><pre><code class="lang-smarty">&lt;{$root_path}&gt;</code></pre></td>
         <td><{$xoops_rootpath}></td>
+    </tr>
+    <tr>
+        <td><pre><code class="lang-smarty">&lt;{$xoops_url}&gt;</code></pre></td>
+        <td><pre><code class="lang-smarty">&lt;{$app_url}&gt;</code></pre></td>
+        <td><{$xoops_url}></td>
     </tr>
     <tr>
         <td><pre><code class="lang-smarty">&lt;{$xoops_version}&gt;</code></pre></td>
@@ -353,7 +369,7 @@ module-name
     <tr>
         <td><pre><code class="lang-smarty">&lt;{$xoops_banner}&gt;</code></pre></td>
         <td><pre><code class="lang-smarty">&lt;{$banner}&gt;</code></pre></td>
-        <td><{$banner}></td>
+        <td>Output an image or HTML with a link.</td>
     </tr>
     </tbody>
     <tfoot>
@@ -368,14 +384,31 @@ module-name
 
 <div class="ui-card-full">
 
-    <h3>References to Components</h3>
+    <h3>Include Components and Templates</h3>
 
-    <p>To include references to components on your template, you can refer to database or use the theme variable, relative path for the component.</p>
+    <p>You can easily include customized components and templates using relative path, theme variable, or refer to database.</p>
+
+    <h5>Relative path</h5>
+    <pre><code class="lang-smarty">&lt;{include file=&quot;./components/panel-todo.html&quot;}&gt;</code></pre>
+
+    <h5>Theme variable</h5>
+    <pre><code class="lang-smarty">&lt;{include file=&quot;$xoops_theme/components/panel-todo.html&quot;}&gt;</code></pre>
+
+    <h5>Database</h5>
+    <p>Example from D3 module</p>
+    <pre><code class="lang-smarty">&lt;{include file=&quot;db:`$mydirname`_inc_breadcrumbs.html&quot;}&gt;</code></pre>
 
     <h3>Block</h3>
 
-    <p>Block loop</p>
+    <p>The block loop indicates a position, however it is just a legacy code convention to identify areas in the theme layout.<br>
+        XCL Themes can provide multiple options based on block id, name or title. Example of basic block-left loop:</p>
 
+    <pre><code class="lang-smarty">
+    &lt;{foreach item=block from=$xoops_lblocks}&gt;
+        &lt;{$block.title}&gt;
+        &lt;{$block.content}&gt;
+    &lt;{/foreach}&gt;
+    </code></pre>
     <h3>Functions and modifiers</h3>
 
     <p>Most of the plugins come from the standard scope of Smarty template engine. However, several plugins are specific to the core and modules.<br>

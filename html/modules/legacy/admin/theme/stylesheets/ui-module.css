@@ -26,7 +26,13 @@
 /* Blocks and Templates */
 .ui-block-admin-preview,
 .ui-block-permissions {
-    transition  : all 1s;
+    background      : var(--layer-2);
+    border          : var(--border);
+    border-radius   : var(--border-radius);
+    box-shadow      : var(--shadow-3);
+    margin-bottom   : var(--space-7);
+    padding         : var(--space-6);
+    transition      : all 1s;
 }
 .fingerprint1 { color: var( --color-red ) }
 .fingerprint2 { color: var( --color-blue ) }

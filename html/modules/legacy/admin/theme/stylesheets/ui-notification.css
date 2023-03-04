@@ -51,14 +51,13 @@
     opacity: 1;
 }
 .alert-submit .button-submit {
-background      : #ff5722;
-border-color    : #ff5722;
-/*box-shadow      : 0 14px 26px -12px hsla(14, 100%, 57%, 0.42), 0 4px 23px 0 hsla(0, 0%, 0%, 0.12), 0 8px 10px -5px hsla(14, 100%, 57%, 0.2);*/
-box-shadow      : 0 14px 26px -12px hsla(14, 80%, 45%, 0.42), 0 4px 23px 0 hsla(14, 100%, 49%, 0.42), 0 8px 10px -5px hsla(14, 100%, 49%, 0.42);
-color           : #ffffff;
+    background      : #ff5722;
+    border-color    : #ff5722;
+    box-shadow      : 0 14px 26px -12px hsla(14, 100%, 57%, 0.42), 0 4px 23px 0 hsla(0, 0%, 0%, 0.12), 0 8px 10px -5px hsla(14, 100%, 57%, 0.2);
+    /*box-shadow      : 0 14px 26px -12px hsla(14, 80%, 45%, 0.42), 0 4px 23px 0 hsla(14, 100%, 49%, 0.42), 0 8px 10px -5px hsla(14, 100%, 49%, 0.42);*/
+    color           : #ffffff;
 }
 .alert-view {
-    border:2px solid red;
     display: block !important;
 }
 
