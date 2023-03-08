@@ -6,6 +6,12 @@
 
 # XOOPSCube Legacy :: XCL 2.3.x
 
+  
+<P><a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
+<img src="https://repository-images.githubusercontent.com/4779266/2956517f-c3ea-4177-bd08-e11b6e30f17c" alt="xcl-admin-render" title="XCL Admin version 2.3.x" width="100%">
+</a></p>
+  
+  
 **Active branches in GitHub**  
 Use active branches for all new features and bug fixes (PHP74, PHP8).  
 Keep a tested high quality, up-to-date master/main branch for releases.  
