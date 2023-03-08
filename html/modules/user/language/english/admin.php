@@ -73,7 +73,7 @@ define( '_AD_USER_LANG_GROUP_LIST' , 'Group Management');
 define( '_AD_USER_LANG_GROUP_NAME' , 'Name');
 define( '_AD_USER_LANG_GROUP_NEW' , 'Add new group');
 define( '_AD_USER_LANG_GROUP_NOASSIN_MEMBERS' , 'Site users who are not members of this group');
-define( '_AD_USER_LANG_GROUP_PERMISSION' , 'Permissions');
+define( '_AD_USER_LANG_GROUP_PERMISSION' , 'Group Permissions');
 define( '_AD_USER_LANG_GROUP_PROPERTY' , 'Properties');
 define( '_AD_USER_LANG_GROUP_TYPE' , 'Type');
 define( '_AD_USER_LANG_IS_MAIL' , 'Mail');
@@ -155,16 +155,18 @@ define( '_AD_USER_MESSAGE_RECOUNT_SUCCESS' , 'Recalculate success');
 
 // Tips
 define( '_AD_USER_ADMENU_USER_DATA_DOWNLOAD' , 'User Data Download');
-define( '_AD_USER_TIPS_AVATAR' , 'Site members can optionally fashion their own online personae called avatars.<br>This option can be set off from module User preferences.');
+
+define( '_AD_USER_TIPS_AVATAR' , 'Site members can optionally fashion their own online personae called avatars.<br>This option can be set off from module <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=4#avatar-active">User preferences ⭧</a>');
 define( '_AD_USER_TIPS_AVATAR_UPLOAD' , 'You can easily register many avatars by uploading Archive file including them! <br>This batch-upload does not check Length and File-Size of each avatar!<br>Please pre-adjust them before you archive them!<br>(Only tar.gz or zip archive)');
 define( '_AD_USER_TIPS_DATA_DOWNLOAD' , 'You can export User Data (order by user_id) from your MySQL database in CSV format, which is a standard format with several benefits and usable by other tools and environments.');
 define( '_AD_USER_TIPS_DELETE_AVATAR' , 'Users who are using this avatar will have the image file "blank.gif" as avatar.');
 define( '_AD_USER_TIPS_MAILJOB_LIST' , 'Set up mail, private message or both to complete sending the mail to all users.');
-define( '_AD_USER_TIPS_MAILJOB_LINK' , 'Select users to remove from the mailjob ⚠ ADD NEW constant TIP to admin.');
+define( '_AD_USER_TIPS_MAILJOB_LINK' , 'In Mail Job, messages that cannot be successfully delivered are subject to various retry. The Mail Job expires after all delivery. In case of a delivery failure, it can be deleted from the queue.');
 define( '_AD_USER_TIPS_MAILJOB_SEND' , 'If there are too many users to send a mail, the server may not respond as expected (blank page etc.). In that case, reload the browser several times to complete sending the mail to all users.');
 define( '_AD_USER_TIPS_RANK' , 'A social user ranking system is helpfull to identify contributors. You can define your own policy by editing default ranks.');
 define( '_AD_USER_TIPS_RECOUNT_POSTS' , 'You may recalculate the number of posts for the user by clicking on the "Recalculate" button below.');
-define( '_AD_USER_TIPS_USER_ADMIN' , 'Access to your XOOPS Cube web site is controlled through a group-based system by which users are assigned to groups that authorize their access to Modules and blocks content. Some recent modules can extend default User Management providing a role-based system which allows you to assign permissions by User.
+define( '_AD_USER_TIPS_USER_ADMIN' , 'Access to your web site is controlled through a group-based system. Create new groups based on default groups. 
+Assign users to groups that authorize their access to Modules and blocks content.
 You can also extend default User Profile by adding new fields.');
 define( '_AD_USER_TIPS_USER_EDIT' , 'To change the password, fill the input fields "Password" and "Verify password" with a new value.');
 define( '_AD_USER_TIPS_USER_NEW' , 'The following fields are required: User name = Email address and Password & Verify password.');

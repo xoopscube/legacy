@@ -51,7 +51,7 @@ define( '_AD_USER_LANG_GROUP_LIST' , 'ユーザーグループ管理');
 define( '_AD_USER_LANG_GROUP_NAME' , '名前');
 define( '_AD_USER_LANG_GROUP_NEW' , 'ユーザーグループ新規追加');
 define( '_AD_USER_LANG_GROUP_NOASSIN_MEMBERS' , 'このグループに登録されていないユーザー一覧');
-define( '_AD_USER_LANG_GROUP_PERMISSION' , 'パーミッション');
+define( '_AD_USER_LANG_GROUP_PERMISSION' , 'グループの権限');
 define( '_AD_USER_LANG_GROUP_PROPERTY' , 'プロパティ');
 define( '_AD_USER_LANG_GROUP_TYPE' , 'タイプ');
 define( '_AD_USER_LANG_IS_MAIL' , 'メール送信');
@@ -118,7 +118,10 @@ define( '_AD_USER_LANG_VPASS' , 'パスワード確認');
 define( '_AD_USER_MESSAGE_CONFIRM_DELETE' , '本当に削除しますか？');
 define( '_AD_USER_MESSAGE_CONFIRM_DELETE_RANK' , 'このユーザーランクを本当に削除しますか？');
 define( '_AD_USER_MESSAGE_RECOUNT_SUCCESS' , '再集計に成功しました');
+
 define( '_AD_USER_TIP_DELETE_AVATAR' , 'このアバターを使用しているユーザーのアバターはブランクに変更されます');
+define( '_AD_USER_TIPS_MAILJOB_LIST' , 'Set up mail, private message or both to complete sending the mail to all users.');
+define( '_AD_USER_TIPS_MAILJOB_LINK' , 'In Mail Job, messages that cannot be successfully delivered are subject to various retry. The Mail Job expires after all delivery. In case of a delivery failure, it can be deleted from the queue.');
 define( '_AD_USER_TIPS_MAILJOB_SEND' , '送信対象ユーザー数が多すぎる場合、反応が返ってこないケース（真っ白になるなど）があります。<br/>その場合はブラウザでリロード（再読込）操作を行ってください。操作を繰り返すことで全ユーザーへ送信できます。');
 define( '_AD_USER_TIPS_RECOUNT_POSTS' , 'もし投稿数が間違っているようであれば、再計算することができます。');
 define( '_AD_USER_TIPS_USER_EDIT' , 'パスワードを変更したいときだけ、パスワードとパスワード確認を入力してください');
@@ -153,12 +156,14 @@ define( '_AD_USER_MESSAGE_CONFIRM_UPDATE_RANK' , 'ランクを更新してもよ
 define( '_AD_USER_MESSAGE_CONFIRM_UPDATE_USER' , 'ユーザーを更新してもよろしいですか？');
 
 define( '_AD_USER_ADMENU_USER_DATA_DOWNLOAD' , 'ユーザデータのダウンロード');
-define( '_AD_USER_TIPS_AVATAR' , 'サイトのメンバーに対応してオンライン中のファッションとして独自のアバターを表示します。<br>このオプションは、モジュールのユーザ設定からオフに設定することができます。');
+define( '_AD_USER_TIPS_AVATAR' , 'サイトのメンバーに対応してオンライン中のファッションとして独自のアバターを表示します。<br>このオプションは、<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=4#avatar-active">モジュールのユーザ設定からオフに設定することができます ⭧</a>');
 define( '_AD_USER_TIPS_AVATAR_UPLOAD' , 'アーカイブファイルに包みアップロードして、多くのアバターを簡単に登録することができます！<br>このアップロードは、アバター同士のサイズはチェックされません！<br>それらをアーカイブする前に事前に調整してください！<br>（tar.gzまたはzipアーカイブのみ）');
 define( '_AD_USER_TIPS_DATA_DOWNLOAD' , 'CSV形式のユーザーデータを取得できるのはuser_idからのみです。');
 define( '_AD_USER_TIPS_DELETE_AVATAR' , 'ユーザーの誰かがこのアバターを使用していると、blank.gifはアバターの画像ファイルとして必要があります。');
 define( '_AD_USER_TIPS_RANK' , 'ユーザーのランキングシステムは貢献者を識別するために役立ちます。既定のランクを編集する事によって、独自のポリシーを定義することができます。');
-define( '_AD_USER_TIPS_USER_ADMIN' , '"あなたのXOOPS CubeのWebサイトにアクセスするにはグループベースのシステムにより、モジュールとブロックのコンテンツにアクセスするグループ権限を割り当てられるユーザーかどうかです。最近、一部のモジュールはデフォルトのユーザ管理の役割を提供し、ユーザーのアクセス許可を割り当てるロールベースのシステムにより拡張可能にすることができます。<br>また、新しいフィールドを追加して、既定のユーザープロフィールを拡張することができます。詳細については、次のリンクをクリック："');
+define( '_AD_USER_TIPS_USER_ADMIN' , 'Web サイトへのアクセスは、グループ ベースのシステムを通じて制御されます。 デフォルトのグループに基づいて新しいグループを作成します。
+モジュールへのアクセスを許可し、コンテンツをブロックするグループにユーザーを割り当てます。
+新しいフィールドを追加して、デフォルトのユーザー プロファイルを拡張することもできます。');
 define( '_AD_USER_TIPS_USER_SEARCH' , 'あなたが探している重要な情報を見つけるために、ユーザデータを検索したり並べ替える事ができます。<br>最終結果の精度は、入力フィールドの数に直接関連されます。');
 define( '_AD_USER_TIPS1_DATA_UPLOAD' , 'CSVファイルでユーザーの一括登録が可能です。');
 define( '_AD_USER_TIPS2_DATA_UPLOAD' , '<a href="?action=UserDataDownload" style="color:#941d55;font-weight:bold;">'._AD_USER_ADMENU_USER_DATA_DOWNLOAD.'</a> から、ダウンロードした CSV ファイルを使用してください。カラムの増減はしないでください。');

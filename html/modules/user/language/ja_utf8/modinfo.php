@@ -28,7 +28,7 @@ define( '_MI_USER_CONF_AVATAR_MAXSIZE' , 'アバター画像の最大ファイ�
 define( '_MI_USER_CONF_AVATAR_MINPOSTS' , 'アバターアップロード権を得るための発言数');
 define( '_MI_USER_CONF_AVT_MIN_DESC' , 'ユーザが自分で作成したアバターをアップロードするために必要な最低投稿数を設定してください。');
 define( '_MI_USER_CONF_AVATAR_WIDTH' , 'アバター画像の最大幅(ピクセル)');
-define( '_MI_USER_CONF_AVTR_ALLOW_UP' , 'アバター画像のアップロードを許可する');
+define( '_MI_USER_CONF_AVTR_ALLOW_UP' , '<a id="avatar-active">アバター画像のアップロードを許可する</a>');
 define( '_MI_USER_CONF_BAD_EMAILS' , 'ユーザのemailアドレスとして使用できない文字列');
 define( '_MI_USER_CONF_BAD_EMAILS_DESC' , 'それぞれの文字列の間は|で区切ってください。大文字小文字は区別しません。正規表現が使用可能です。');
 define( '_MI_USER_CONF_BAD_UNAMES' , 'ユーザ名として使用できない文字列');

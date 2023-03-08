@@ -8,7 +8,6 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 
 if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) ) {
 
-
     define( $constpref . '_COM_ORDER', 'Ordre des commentaires-intégrés' );
     define( $constpref . '_COM_POSTSNUM', 'Nombre maximum de commentaires-intégrés affichés' );
     define( $constpref . '_AUTOREGISTCLASS', 'Nom de la classe pour ajouter/extraire les fichiers HTML intégrés (wrap)' );
@@ -42,11 +41,10 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 
     define( $constpref . '_ADMENU_EXTRAS', 'Extra' );
     define( $constpref . '_HTMLPR_EXCEPT', 'Les groupes qui peuvent éviter la correction par HTMLPurifier' );
-    define( $constpref . '_HTMLPR_EXCEPTDSC', 'Les publications des utilisateurs qui ne sont pas dans ces groupes seront
-forcément corrigés et le HTML filtré par HTMLPurifier du module Protector.' );
+    define( $constpref . '_HTMLPR_EXCEPTDSC', 'Les publications des utilisateurs qui ne sont pas dans les groupes cibles seront filtrées par HTMLPurifier et le module Protector.' );
     define( $constpref . '_BNAME_MYWAITINGS', 'Mes publications en attente' );
     define( $constpref . '_BNAME_SUBCATEGORIES', 'Sous-catégories' );
-    define( $constpref . '_NOTIFY_GLOBAL_NEWCONTENT', 'nouveau contenu' );
+    define( $constpref . '_NOTIFY_GLOBAL_NEWCONTENT', 'Nouveau contenu' );
     define( $constpref . '_NOTIFY_GLOBAL_NEWCONTENTCAP', 'Notifier si une nouvelle publication a lieu. (contenu approuvé seulement)' );
     define( $constpref . '_NOTIFY_GLOBAL_NEWCONTENTSBJ', '[{X_SITENAME}] {X_MODULE} : Nouvelle Publication' );
     define( $constpref . '_COM_VIEW', 'Affichage des Commentaires-Intégrés' );

@@ -66,8 +66,8 @@ Alternative data display
     box-shadow      : var( --button-shadow );
     color           : var( --primary);
     display         : inline-block;
-    margin          : 0 var( --space-1 );
-    min-width       : 4ch; /* width of UTF8 icons */
+    margin          : var( --space-1 );
+    min-width       : 4ch; /* width for UTF8 icons */
     padding         : var( --space-2 );
     text-align      : center;
     transition      : all ease-in-out 0.2s;
@@ -104,8 +104,7 @@ table td.foot,
 .list_select,
 .list_control,
 .list_install,
-.list_batch
-{
+.list_batch {
     text-align      : center;
 }
 .list_control {white-space: nowrap;}
@@ -177,9 +176,7 @@ table.outer tbody tr:hover,
 } */
 
 div.disabled {
-
     background      : var( --color-red );
-
 }
 
 /* ---------- RESPONSIVE TABLE */

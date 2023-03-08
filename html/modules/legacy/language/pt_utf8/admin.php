@@ -71,7 +71,7 @@ define( '_AD_LEGACY_LANG_BID' , "N°");
 define( '_AD_LEGACY_LANG_BLOCKS_INFO' , "Info");
 define( '_AD_LEGACY_LANG_BLOCK_ACTIVETOTAL' , "Total de blocos ativos");
 define( '_AD_LEGACY_LANG_BLOCK_EDIT' , "Editar");
-define( '_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL' , "Total de blocos inativos");
+define( '_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL' , "Módulo desativado");
 define( '_AD_LEGACY_LANG_BLOCK_INSTALL' , "Instalar");
 define( '_AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL' , "Blocos instalados");
 define( '_AD_LEGACY_LANG_BLOCK_KEY' , "Chave");

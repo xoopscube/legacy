@@ -22,7 +22,7 @@ define( '_MD_PICO_ERR_NOCONTENTMATCHED' , "Le contenu ou la ressource demandée 
 
 define( '_MD_PICO_CSVENCODING' , 'UTF-8');
 
-define( '_MD_PICO_ERR_LOCKEDCONTENT' , 'Le contenu est verrouillé');
+define( '_MD_PICO_ERR_LOCKEDCONTENT' , 'Contenu verrouillé');
 define( '_MD_PICO_LABEL_LOCKED' , 'Vérrouillé (seulement les modérateurs peuvent éditer/supprimer)');
 define( '_MD_PICO_WAITINGRELEASE' , 'en attente de publication');
 define( '_MD_PICO_EXPIRED' , 'Expiré');

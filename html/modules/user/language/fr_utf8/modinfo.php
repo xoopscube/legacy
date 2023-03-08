@@ -30,7 +30,7 @@ define( '_MI_USER_CONF_AVATAR_MAXSIZE' , "Taille maxi de l'image avatar (Octets)
 define( '_MI_USER_CONF_AVATAR_MINPOSTS' , "Contributions minimum requises");
 define( '_MI_USER_CONF_AVT_MIN_DESC' , "Indiquer le nombre minimum decontributions requises pour permettre le téléchargement de l'avatar personnalisé.");
 define( '_MI_USER_CONF_AVATAR_WIDTH' , "Largeur maxi de l'image avatar (pixels))");
-define( '_MI_USER_CONF_AVTR_ALLOW_UP' , "Autoriser l'utilisateur a envoyer un avatar personnalisé?");
+define( '_MI_USER_CONF_AVTR_ALLOW_UP' , '<a id="avatar-active">Autoriser les avatars personnalisés?</a>');
 define( '_MI_USER_CONF_BAD_EMAILS' , "Entrez les e-mails qui ne doivent pas être employés dans les profils utilisateurs");
 define( '_MI_USER_CONF_BAD_EMAILS_DESC' , "Les séparer par un <b>|</b>, case insensible, regex activé.");
 define( '_MI_USER_CONF_BAD_UNAMES' , "Entrez les noms qui ne doivent pas être utilisés par les les utilisateurs");

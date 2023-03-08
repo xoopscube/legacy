@@ -9,7 +9,7 @@
 </div>
 
 
-<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_DELETE}></h2>
+<h2><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_DELETE}></h2>
 
 <div class="confirm"><{$smarty.const._AD_LEGACYRENDER_MESSAGE_CONFIRM_DELETE}></div>
 
@@ -46,8 +46,8 @@
         </tr>
         <tr>
             <td class="foot" colspan="2">
-                <input class="formButton" type="submit" value="<{$smarty.const._DELETE}>">
-                <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+                <input class="button" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+                <button class="button delete" type="submit"><img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="delete"> <{$smarty.const._DELETE}></button>
             </td>
         </tr>
     </table>

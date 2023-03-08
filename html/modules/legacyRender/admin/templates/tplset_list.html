@@ -7,7 +7,7 @@
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_LIST}></h2>
+<h2><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_LIST}></h2>
 
 
 <{if count($objects) == 1 }>
@@ -65,37 +65,29 @@
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_ID}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_ID}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLSET_SORT_KEY_TPLSET_ID}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_ID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLSET_SORT_KEY_TPLSET_ID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_NAME}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLSET_SORT_KEY_TPLSET_NAME}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_NAME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLSET_SORT_KEY_TPLSET_NAME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREDITS}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREDITS}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREDITS}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREDITS}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREDITS}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREATED}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREATED}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREATED}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREATED}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.TPLSET_SORT_KEY_TPLSET_CREATED}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
             </div><{* ----- /Dropdown-content *}>
@@ -132,7 +124,7 @@
         </td>
         <td class="list_control">
             <{if $activeTemplateSet == $obj->get('tplset_name')}>
-            <button class="button bg-green" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_ACTIVE}>"><{$smarty.const._AD_LEGACYRENDER_LANG_ACTIVE}></button>
+            <button class="button action-active bg-green" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_ACTIVE}>"><{$smarty.const._AD_LEGACYRENDER_LANG_ACTIVE}></button>
             <br>
             <{else}>
             <form method="post" action="./index.php?action=TplsetList">
@@ -141,27 +133,26 @@
                 <input type="submit" value="<{$smarty.const._SELECT}>" class="formButton">
             </form>
             <{/if}>
-            <a href="index.php?action=TplsetDownload&amp;tplset_id=<{$obj->get('tplset_id')}>&amp;method=tar" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
-                <span>⭳</span>
-<!--                <img class="svg" src="<{'icons/icon-file-download.svg'|theme}>" alt="Download">-->
+
+            <a class="action-download" href="index.php?action=TplsetDownload&amp;tplset_id=<{$obj->get('tplset_id')}>&amp;method=tar" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
+                <img class="svg" src="<{'icons/icon-download.svg'|theme}>" alt="download">
             </a>
-            <a href="index.php?action=TplsetClone&amp;tplset_id=<{$obj->get('tplset_id')}>" aria-label="<{$smarty.const._CLONE}>">
-                <span>⧉</span>
-<!--                <img class="svg" src="<{'icons/icon-file-duplicate.svg'|theme}>" alt="Copy">-->
+            <a class="action-copy" href="index.php?action=TplsetClone&amp;tplset_id=<{$obj->get('tplset_id')}>" aria-label="<{$smarty.const._CLONE}>">
+                <img class="svg" src="<{'icons/icon-copy.svg'|theme}>" alt="copy">
             </a>
             <br>
-            <{if $obj->get('tplset_name') != "default"}>
-            <a href="index.php?action=TplsetEdit&amp;tplset_id=<{$obj->get('tplset_id')}>" aria-label="<{$smarty.const._EDIT}>">
-                <span>✐</span>
-<!--                <img class="svg" src="<{'icons/icon-file-edit.svg'|theme}>" alt="Edit">-->
+
+            <{if $obj->get('tplset_name') !="default"}>
+            <a class="action-edit" href="index.php?action=TplsetEdit&amp;tplset_id=<{$obj->get('tplset_id')}>" aria-label="<{$smarty.const._EDIT}>">
+                <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="edit">
             </a>
-            <{if $activeTemplateSet != $obj->get('tplset_name')}>
-            <a href="index.php?action=TplsetDelete&amp;tplset_id=<{$obj->get('tplset_id')}>" aria-label="<{$smarty.const._DELETE}>" class="delete">
-                <span>?</span>
-<!--                <img class="svg" src="<{'icons/icon-file-delete.svg'|theme}>" alt="Delete">-->
-            </a>
+                <{if $activeTemplateSet !=$obj->get('tplset_name')}>
+                <a class="action-delete" href="index.php?action=TplsetDelete&amp;tplset_id=<{$obj->get('tplset_id')}>" aria-label="<{$smarty.const._DELETE}>">
+                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="delete">
+                </a>
+                <{/if}>
             <{/if}>
-            <{/if}>
+
         </td>
     </tr>
     <{/foreach}>
@@ -177,7 +168,7 @@
 
 <hr>
 
-<h3 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_RECENT_MODIFY_FILES}></h3>
+<h3><{$smarty.const._AD_LEGACYRENDER_LANG_RECENT_MODIFY_FILES}></h3>
 
 <table class="outer">
     <thead>
@@ -220,12 +211,12 @@
         <td class="list_type"><{$obj->getShow('tpl_type')}></td>
         <td class="list_control">
             <{if $obj->get('tpl_tplset') == "default"}>
-            <a href="index.php?action=TplfileView&amp;tpl_id=<{$obj->get('tpl_id')}>" title="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
-                <img class="svg" src="<{'icons/icon-file-view.svg'|theme}>" alt="View">
+            <a class="action-view" href="index.php?action=TplfileView&amp;tpl_id=<{$obj->get('tpl_id')}>" title="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
+                <img class="svg" src="<{'icons/icon-view.svg'|theme}>" alt="View">
             </a>
             <{else}>
-            <a href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->get('tpl_id')}>" title="<{$smarty.const._EDIT}>">
-                <img class="svg" src="<{'icons/icon-file-edit.svg'|theme}>" alt="Edit">
+            <a class="action-edit" href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->get('tpl_id')}>" title="<{$smarty.const._EDIT}>">
+                <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="Edit">
             </a>
             <{/if}>
         </td>

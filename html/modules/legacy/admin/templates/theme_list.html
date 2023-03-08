@@ -8,7 +8,7 @@
 </div>
 
 
-<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_THEME_ADMIN}></h2>
+<h2><{$smarty.const._AD_LEGACY_LANG_THEME_ADMIN}></h2>
 
 
 <div class="tips">
@@ -41,10 +41,8 @@
 <section data-layout="row center-justify" class="action-control">
 
     <div>
-    <a class="button" href="<{$xoops_url}>/modules/legacyRender/admin/index.php">
-        <img class="svg" src="<{'icons/icon-layout.svg'|theme}>" width="1em" height="1em" alt="options"> Render</a>
-    <a class="button" href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplsetList">
-        <img class="svg" src="<{'icons/icon-layout.svg'|theme}>" width="1em" height="1em" alt="options"> Templates</a>
+    <a class="button" href="<{$xoops_url}>/modules/legacyRender/admin/index.php">Render</a>
+    <a class="button" href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplsetList">Templates</a>
     </div>
     
     <div class="control-view">
@@ -134,7 +132,7 @@
                    value="<{$smarty.const._SELECT}>"
                    aria-label="<{$smarty.const._MD_AM_DTHEME}>">
             <{else}>
-            <button class="button bg-green" aria-label="<{$smarty.const._AD_LEGACY_LANG_SELECTED}>">
+            <button class="button action-active" aria-label="<{$smarty.const._AD_LEGACY_LANG_SELECTED}>">
                 <img class="svg" src="<{'icons/icon-check.svg'|theme}>">
             </button>
             <{/if}>

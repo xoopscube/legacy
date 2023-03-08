@@ -164,13 +164,13 @@ foreach ( $groups as $group ) {
 
 	$group_trs .= "
 		<tr>
-			<td class='even'>" . $group->getVar( 'name' ) . "</td>
-			<td class='even'><input type='checkbox' name='can_reads[$gid]' id='gcol_1_{$gid}' value='1' $can_read_checked></td>
-			<td class='even'><input type='checkbox' name='can_posts[$gid]' id='gcol_2_{$gid}' value='1' $can_post_checked></td>
-			<td class='even'><input type='checkbox' name='can_edits[$gid]' id='gcol_3_{$gid}' value='1' $can_edit_checked></td>
-			<td class='even'><input type='checkbox' name='can_deletes[$gid]' id='gcol_4_{$gid}' value='1' $can_delete_checked></td>
-			<td class='even'><input type='checkbox' name='post_auto_approveds[$gid]' id='gcol_5_{$gid}' value='1' $post_auto_approved_checked></td>
-			<td class='even'><input type='checkbox' name='is_moderators[$gid]' id='gcol_6_{$gid}' value='1' $is_moderator_checked></td>
+			<td>" . $group->getVar( 'name' ) . "</td>
+			<td><input type='checkbox' name='can_reads[$gid]' id='gcol_1_{$gid}' value='1' $can_read_checked></td>
+			<td><input type='checkbox' name='can_posts[$gid]' id='gcol_2_{$gid}' value='1' $can_post_checked></td>
+			<td><input type='checkbox' name='can_edits[$gid]' id='gcol_3_{$gid}' value='1' $can_edit_checked></td>
+			<td><input type='checkbox' name='can_deletes[$gid]' id='gcol_4_{$gid}' value='1' $can_delete_checked></td>
+			<td><input type='checkbox' name='post_auto_approveds[$gid]' id='gcol_5_{$gid}' value='1' $post_auto_approved_checked></td>
+			<td><input type='checkbox' name='is_moderators[$gid]' id='gcol_6_{$gid}' value='1' $is_moderator_checked></td>
 		</tr>\n";
 }
 

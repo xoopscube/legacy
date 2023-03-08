@@ -9,7 +9,7 @@
     &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$module->modinfo.name|xoops_escape}> <{$smarty.const._AD_LEGACY_LANG_INFORMATION}></span>
 </div>
 
-<h2 class="admintitle">
+<h2>
     <img class="svg" src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.icon}>" width="1em" height="1em" alt="<{$module->getShow('name')}>" aria-label="<{$module->getShow('name')}>">
     <{$module->modinfo.name|xoops_escape}> &raquo; <{$smarty.const._AD_LEGACY_LANG_INFORMATION}></h2>
 
@@ -17,7 +17,7 @@
 <!-- ui-card-full -->
 <div class="ui-card-full">
 
-<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MOD_BASIC_INFO}></h4>
+<h4><{$smarty.const._AD_LEGACY_LANG_MOD_BASIC_INFO}></h4>
 <h3></h3>
 
 <table class="outer">
@@ -80,7 +80,7 @@
 
 <hr>
 
-<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MOD_LICENSE_INFO}></h4>
+<h4><{$smarty.const._AD_LEGACY_LANG_MOD_LICENSE_INFO}></h4>
 
 <table class="outer">
     <tr>
@@ -104,7 +104,7 @@
 
 <hr>
 
-<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SQL_INFO}></h4>
+<h4><{$smarty.const._AD_LEGACY_LANG_SQL_INFO}></h4>
 
 <{if $module->modinfo.tables}>
 
@@ -151,7 +151,7 @@
 
 <hr>
 
-<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MAINMENU_INFO}></h4>
+<h4><{$smarty.const._AD_LEGACY_LANG_MAINMENU_INFO}></h4>
 
 <{if $module->get('hasmain')}>
 
@@ -192,7 +192,7 @@
 
 <hr>
 
-<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_ADMIN_MENU}></h4>
+<h4><{$smarty.const._AD_LEGACY_LANG_ADMIN_MENU}></h4>
 
 <{if $module->get('hasadmin')}>
 <table class="outer">
@@ -243,7 +243,7 @@
 
 <hr>
 
-<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></h4>
+<h4><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></h4>
 
 <{if $module->modinfo.templates}>
 <table class="outer">
@@ -291,7 +291,7 @@
 
 <hr>
 
-<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_BLOCKS_INFO}></h4>
+<h4><{$smarty.const._AD_LEGACY_LANG_BLOCKS_INFO}></h4>
 
 <{foreach from=$module->modinfo.blocks item=block key=block_num}>
 <table class="outer">
@@ -323,7 +323,7 @@
 
 <hr>
 
-<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_CONFIG_INFO}></h4>
+<h4><{$smarty.const._AD_LEGACY_LANG_CONFIG_INFO}></h4>
 
 <{foreach from=$module->modinfo.config item=config key=conf_num}>
 <table class="outer">
@@ -360,7 +360,7 @@
 <{* -----
 <div class="return_top"><a href="#container" class="button"><{$smarty.const._RETURN_TOP}></a></div>
 <hr>
-<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_FEATURE_SVC_INFO}></h4>
+<h4><{$smarty.const._AD_LEGACY_LANG_FEATURE_SVC_INFO}></h4>
 <table class="outer">
 <{if $module->get('hassearch')}>
     <tr>

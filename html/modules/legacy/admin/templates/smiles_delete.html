@@ -6,7 +6,7 @@
 </div>
 
 
-<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_SMILES_DELETE}></h2>
+<h2><{$smarty.const._AD_LEGACY_LANG_SMILES_DELETE}></h2>
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
@@ -16,9 +16,12 @@
     <{xoops_token form=$actionForm}>
     <{xoops_input type=hidden name=id value=$actionForm->get('id')}>
     <table class="outer">
+        <thead>
         <tr>
             <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_SMILES_DELETE}></th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <td class="head"><{$smarty.const._AD_LEGACY_LANG_ID}></td>
             <td><{$object->getShow('id')}></td>
@@ -48,11 +51,16 @@
             <{/if}>
             </td>
         </tr>
+        </tbody>
+        <tfoot>
         <tr>
-            <td colspan="2" class="foot">
-                <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
-                <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>">
+            <td colspan="2">
+                <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+                <button class="button delete" type="submit">
+                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" width="1em" height="1em" role="img" alt="delete"> <{$smarty.const._DELETE}>
+                </button>
             </td>
         </tr>
+        </tfoot>
     </table>
 </form>

@@ -7,7 +7,7 @@
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_DELETE}></h2>
+<h2><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_DELETE}></h2>
 
 
 <div class="error"><{$smarty.const._AD_LEGACYRENDER_MESSAGE_CONFIRM_DELETE}></div>
@@ -27,7 +27,7 @@
                 <{if $object->get('htmlbanner')}>
                 <{$object->get('htmlcode')}>
                 <{else}>
-                <a href="<{$object->getShow('clickurl')}>" rel="external"><img src="<{$object->getShow('imageurl')}>" alt="Banner"></a>
+                <a href="<{$object->getShow('clickurl')}>" rel="external"><img src="<{$object->getShow('imageurl')}>" alt="banner"></a>
                 <{/if}>
             </td>
         </tr>
@@ -82,7 +82,7 @@
         <tr>
             <td class="foot" colspan="2">
                 <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
-                <input class="button delete" type="submit" value="<{$smarty.const._DELETE}>">
+                <button class="button delete" type="submit" value=""><img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="delete"> <{$smarty.const._DELETE}></button>
             </td>
         </tr>
         </tfoot>

@@ -1,5 +1,4 @@
 <?php
-
 // DATA
 define( '_AD_USER_DATA_DOWNLOAD_DO' , 'Télécharger CSV');
 define( '_AD_USER_DATA_NUM' , '%d utilisateurs sont enregistrés.');
@@ -72,7 +71,7 @@ define( '_AD_USER_LANG_GROUP_LIST' , "Gestion des Groupes");
 define( '_AD_USER_LANG_GROUP_NAME' , "Nom");
 define( '_AD_USER_LANG_GROUP_NEW' , "Ajouter un nouveau groupe");
 define( '_AD_USER_LANG_GROUP_NOASSIN_MEMBERS' , "Utilisateurs du site qui ne font pas partis de ce groupe");
-define( '_AD_USER_LANG_GROUP_PERMISSION' , "Permissions");
+define( '_AD_USER_LANG_GROUP_PERMISSION' , "Autorisations du groupe");
 define( '_AD_USER_LANG_GROUP_PROPERTY' , "Propriétés");
 define( '_AD_USER_LANG_GROUP_TYPE' , "Type");
 define( '_AD_USER_LANG_IS_MAIL' , "Email");
@@ -153,15 +152,18 @@ define( '_AD_USER_MESSAGE_RECOUNT_SUCCESS' , "Recompté avec succès");
 
 // Tips
 define( '_AD_USER_ADMENU_USER_DATA_DOWNLOAD' , 'User Data Download');
-define( '_AD_USER_TIPS_AVATAR' , "Site members can optionally fashion their own online personae called avatars.<br />This option can be set off from module User preferences.");
-define( '_AD_USER_TIPS_AVATAR_UPLOAD' , "You can easily register many avatars by uploading Archive file including them! <br />This batch-upload doesn't check Length and File-Size of each avatar!<br />Please pre-adjust them before you archive them!<br />(Only tar.gz or zip archive)");
+define( '_AD_USER_TIPS_AVATAR' , 'Les membres du site peuvent créer leurs propres personas en ligne appelés avatars.<br>Cette option peut être activée à partir du module <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=4#avatar-active">Préférences Utilisateurs ⭧</a>');
+define( '_AD_USER_TIPS_AVATAR_UPLOAD' , "Vous pouvez facilement enregistrer de nombreux avatars en téléchargeant des fichiers d'archive!<br />Ce téléchargement par lots ne vérifie pas les dimensions et le poids du fichier de chaque avatar!<br>Veuillez les pré-ajuster avant de les archiver ( archive tar.gz ou zip)");
 define( '_AD_USER_TIPS_DATA_DOWNLOAD' , 'Vous ne pouvez obtenir les données CSV des utilisateurs que par ordre de user_id.');
 define( '_AD_USER_TIPS_DELETE_AVATAR' , "Les utilisateurs qui emploient cet avatar auront blank.gif comme image d'avatar.");
-define( '_AD_USER_TIPS_MAILJOB_SEND' , "S'il y a trop d'utilisateurs pour envoyer du courrier, le serveur peut ne pas répondre comme prévu (page blanche, etc.). In that case, reload the browser several times to complete sending mail to all users.");
+define( '_AD_USER_TIPS_MAILJOB_LIST' , 'Set up mail, private message or both to complete sending the mail to all users.');
+define( '_AD_USER_TIPS_MAILJOB_LINK' , "Dans Mail Job, les messages qui ne peuvent pas être livrés avec succès sont soumis à plusieurs nouvelles tentatives. Le Mail Job expire après toute livraison. En cas d'échec de livraison, il peut être supprimé de la file d'attente.");
+define( '_AD_USER_TIPS_MAILJOB_SEND' , "S'il y a trop d'utilisateurs pour envoyer du courrier, le serveur peut ne pas répondre comme prévu (page blanche, etc.). Dans ce cas, rechargez le navigateur plusieurs fois pour terminer l'envoi du courrier à tous les utilisateurs.");
 define( '_AD_USER_TIPS_RANK' , "A social user ranking system is helpfull to identify contributors. You can define your own policy by editing default ranks.");
 define( '_AD_USER_TIPS_RECOUNT_POSTS' , "Vous pouvez recalculer le nombre de messages de l'utilisateur en cliquant sur le bouton 'Recalculer' ci-dessous.");
-define( '_AD_USER_TIPS_USER_ADMIN' , "L'accès à votre site web XOOPS Cube est contrôlé par un système basé sur les groupes par lequel les utilisateurs sont assignés à des groupes qui autorisent leur accès aux modules et aux blocs de contenu. Certains modules récents peuvent étendre la gestion des utilisateurs par défaut en fournissant un système basé sur les rôles qui vous permet d'attribuer des permissions par utilisateur.<br>
-Vous pouvez également étendre le profil utilisateur par défaut en ajoutant de nouveaux champs. Pour en savoir plus, cliquez sur le lien suivant :");
+define( '_AD_USER_TIPS_USER_ADMIN' , "L'accès à votre site Web est contrôlé par un système de groupe.
+Assignez des utilisateurs à des groupes qui autorisent leur accès aux modules et aux blocs de contenu.
+Vous pouvez également étendre le profil utilisateur par défaut en ajoutant de nouveaux champs.");
 define( '_AD_USER_TIPS_USER_EDIT' , "Pour changer le mot de passe, tapez la même valeur sur les champs 'Mot de Passe' et 'Vérifier Mot de Passe'.");
 define( '_AD_USER_TIPS_USER_NEW' , "Indiquez un nouveau nom d'utilisateur, 'Adresse Email' , 'Mot de Passe' et 'Vérifier Mot de Passe'.");
 define( '_AD_USER_TIPS_USER_SEARCH' , "Vous pouvez rechercher et trier les données de vos utilisateurs pour trouver les informations essentielles que vous recherchez.<br>La précision du résultat final sera directement liée au nombre de champs que vous remplissez.");

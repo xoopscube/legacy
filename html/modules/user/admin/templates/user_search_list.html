@@ -9,7 +9,7 @@
 </div>
 
 
-<h2 class="admintitle"><{$smarty.const._AD_USER_LANG_USER_SEARCH_LIST}></h2>
+<h2><{$smarty.const._AD_USER_LANG_USER_SEARCH_LIST}></h2>
 
 
 <div class="confirm">
@@ -77,73 +77,58 @@
             <div class="dropdown" id="filter-sort">
 
                 <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                    <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="24px" height="24px" alt="options">
+                    <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
                 </a>
 
                 <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
                     <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_MAILJOB_ID}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UID}>"
-                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_UID}>"
-                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_UID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
                     <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._MD_USER_LANG_UNAME}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UNAME}>"
-                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_UNAME}>"
-                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UNAME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_UNAME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
                     <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._MD_USER_LANG_NAME}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_NAME}>"
-                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_NAME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
 
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_NAME}>"
-                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_NAME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
                     <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_REGDATE}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_USER_REGDATE}>"
-                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_USER_REGDATE}>"
-                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_USER_REGDATE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_USER_REGDATE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
                     <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_LASTLOGIN}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LAST_LOGIN}>"
-                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_LAST_LOGIN}>"
-                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LAST_LOGIN}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_LAST_LOGIN}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
                     <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._MD_USER_LANG_POSTS}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_POSTS}>"
-                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_POSTS}>"
-                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_POSTS}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_POSTS}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
                     <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._MD_USER_LANG_LEVEL}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LEVEL}>"
-                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_LEVEL}>"
-                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LEVEL}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_LEVEL}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
                 </div><{* ----- /Dropdown-content *}>
@@ -165,7 +150,7 @@
         <{foreach item=user from=$objects}>
         <tr>
             <td class="list_image">
-                <img class="svg" src="<{'icons/icon-user-account.svg'|theme}>" alt="<{$smarty.const._AD_USER_LANG_USER}>" aria-label="<{$smarty.const._AD_USER_LANG_USER}>">
+                <img class="svg" src="<{'icons/icon-user-account.svg'|theme}>" width="1em" alt="<{$smarty.const._AD_USER_LANG_USER}>" aria-label="<{$smarty.const._AD_USER_LANG_USER}>">
                 <{$user->getShow('avatar')}>
             </td>
             <td class="list_id"><{$user->getShow('uid')}></td>
@@ -175,14 +160,14 @@
             <td class="list_date"><{$user->get('last_login')|xoops_formattimestamp:l}></td>
             <td class="list_number">
                 <{if $user->get('uid') != 1}>
-                <input type="text" size="4" maxlength="6" name="posts[<{$user->getShow('uid')}>]" value="<{$user->getShow('posts')}>" class="list_number">
+                <input type="text" size="4" maxlength="6" name="posts[<{$user->getShow('uid')}>]" value="<{$user->getShow('posts')}>">
                 <{else}>
                 <{$user->getShow('posts')}>
                 <{/if}>
             </td>
             <td class="list_order" style="text-align: center">
                 <{if $user->get('uid') != 1}>
-                <input type="text" size="2" maxlength="4" name="level[<{$user->getShow('uid')}>]" value="<{$user->getShow('level')}>" class="list_number">
+                <input type="text" size="2" maxlength="4" name="level[<{$user->getShow('uid')}>]" value="<{$user->getShow('level')}>">
                 <{else}>
                 <{$user->getShow('level')}>
                 <{/if}>
@@ -193,15 +178,15 @@
                 <{/if}>
             </td>
             <td class="list_control">
-                <a href="./index.php?action=UserView&amp;uid=<{$user->getShow('uid')}>" aria-label="<{$smarty.const._VIEW}>">
-                    <img class="svg" src="<{'icons/icon-user-online.svg'|theme}>" alt="<{$smarty.const._VIEW}>">
+                <a class="action-edit" href="./index.php?action=UserEdit&amp;uid=<{$user->getShow('uid')}>" aria-label="<{$smarty.const._EDIT}>">
+                    <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" width="1em" height="1em" alt="<{$smarty.const._EDIT}>">
                 </a>
-                <a href="./index.php?action=UserEdit&amp;uid=<{$user->getShow('uid')}>" aria-label="<{$smarty.const._EDIT}>">
-                    <img class="svg" src="<{'icons/icon-user-edit.svg'|theme}>" alt="<{$smarty.const._EDIT}>">
+                <a class="action-view" href="./index.php?action=UserView&amp;uid=<{$user->getShow('uid')}>" aria-label="<{$smarty.const._VIEW}>">
+                    <img class="svg" src="<{'icons/icon-view.svg'|theme}>" width="1em" height="1em" alt="<{$smarty.const._VIEW}>">
                 </a>
                 <{if $user->get('uid') != 1}>
-                <a href="index.php?action=UserDelete&amp;uid=<{$user->getShow('uid')}>" aria-label="<{$smarty.const._DELETE}>">
-                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="<{$smarty.const._DELETE}>">
+                <a class="action-delete" href="index.php?action=UserDelete&amp;uid=<{$user->getShow('uid')}>" aria-label="<{$smarty.const._DELETE}>">
+                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" width="1em" height="1em" alt="<{$smarty.const._DELETE}>">
                 </a>
                 <{/if}>
             </td>

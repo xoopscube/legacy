@@ -7,7 +7,7 @@
 
     <{include file="admin_menunavi.html"}>
 
-    <h2 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_THEMES}><{if $storeObject}> » <{$storeObject->getShow('name')}><{/if}></h2>
+    <h2><{$smarty.const._AD_XUPDATE_LANG_THEMES}><{if $storeObject}> » <{$storeObject->getShow('name')}><{/if}></h2>
 
 
     <{include file="admin_tips.html"}>
@@ -241,7 +241,7 @@
                 <{if $xupdate_writable.result==true}>
                 <{if $module->getVar('isactive') > 0}>
                 <a href="<{$module->get_StoreUrl()}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
-                    <img src="<{"icons/icon-package-update.svg"|theme}>" class="svg" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>"></a>
+                    <img class="svg" src="<{'icons/icon-install.svg'|theme}>" width="24px" height="24px" alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>"></a>
                 <a href="<{$module->get_UpdateUrl()}>"></a>
                 <{else}>
                 <a href="<{$module->get_StoreUrl()}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">

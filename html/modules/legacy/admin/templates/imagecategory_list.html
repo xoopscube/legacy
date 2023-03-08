@@ -11,7 +11,7 @@
 <{include file="./components/image-overview.html"}>
 
 
-<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_LIST}></h2>
+<h2><{$smarty.const._AD_LEGACY_LANG_IMAGECATEGORY_LIST}></h2>
 
 
 <div class="tips">
@@ -70,70 +70,90 @@
     <table class="outer">
         <thead>
         <tr>
-            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_ID}>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_ID}>">
-                    <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
-                </a>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_ID}>">
-                    <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
-                </a>
+            <th>
+                <{* ////— DROPDOWN SORT —\\\\ *}>
+                <div class="dropdown" id="filter-sort">
+
+                    <a href="#" class="dropdown-toggle button" aria-label="sort filter">
+                        <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="24px" height="24px" alt="options">
+                    </a>
+
+                    <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
+
+                        <div data-layout="row center-justify inline">
+                            <h6><{$smarty.const._AD_LEGACY_LANG_IMGCAT_ID}></h6>
+                            <div>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_ID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_ID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            </div>
+                        </div>
+
+                        <div data-layout="row center-justify inline">
+                            <h6><{$smarty.const._AD_LEGACY_LANG_IMGCAT_NAME}></h6>
+                            <div>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_NAME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_NAME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            </div>
+                        </div>
+
+                        <div data-layout="row center-justify inline">
+                            <h6><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXSIZE}></h6>
+                            <div>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_MAXSIZE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_MAXSIZE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            </div>
+                        </div>
+
+                        <div data-layout="row center-justify inline">
+                            <h6><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXWIDTH}></h6>
+                            <div>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_MAXWIDTH}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_MAXWIDTH}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            </div>
+                        </div>
+
+                        <div data-layout="row center-justify inline">
+                            <h6><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXHEIGHT}></h6>
+                            <div>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_MAXHEIGHT}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_MAXHEIGHT}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            </div>
+                        </div>
+
+                        <div data-layout="row center-justify inline">
+                            <h6><{$smarty.const._AD_LEGACY_LANG_IMGCAT_DISPLAY}></h6>
+                            <div>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_DISPLAY}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_DISPLAY}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            </div>
+                        </div>
+
+                        <div data-layout="row center-justify inline">
+                            <h6><{$smarty.const._AD_LEGACY_LANG_IMGCAT_WEIGHT}></h6>
+                            <div>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_WEIGHT}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_WEIGHT}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            </div>
+                        </div>
+
+                        <div data-layout="row center-justify inline">
+                            <h6><{$smarty.const._AD_LEGACY_LANG_IMGCAT_STORETYPE}></h6>
+                            <div>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_STORETYPE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_STORETYPE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </th>
-            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_NAME}>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_NAME}>">
-                    <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
-                </a>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_NAME}>">
-                    <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
-                </a>
-            </th>
-            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXSIZE}>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_MAXSIZE}>">
-                    <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
-                </a>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_MAXSIZE}>">
-                    <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
-                </a>
-            </th>
-            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXWIDTH}>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_MAXWIDTH}>">
-                    <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
-                </a>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_MAXWIDTH}>">
-                    <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
-                </a>
-            </th>
-            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXHEIGHT}>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_MAXHEIGHT}>">
-                    <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
-                </a>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_MAXHEIGHT}>">
-                    <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
-                </a>
-            </th>
-            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_DISPLAY}>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_DISPLAY}>">
-                    <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
-                </a>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_DISPLAY}>">
-                    <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
-                </a>
-            </th>
-            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_WEIGHT}>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_WEIGHT}>">
-                    <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
-                </a>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_WEIGHT}>">
-                    <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
-                </a>
-            </th>
-            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_STORETYPE}>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_STORETYPE}>">
-                    <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
-                </a>
-                <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGECATEGORY_SORT_KEY_IMGCAT_STORETYPE}>">
-                    <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
-                </a>
-            </th>
+            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_NAME}></th>
+            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXSIZE}></th>
+            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXWIDTH}></th>
+            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_MAXHEIGHT}></th>
+            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_DISPLAY}></th>
+            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_WEIGHT}></th>
+            <th><{$smarty.const._AD_LEGACY_LANG_IMGCAT_STORETYPE}></th>
             <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_COUNT}></th>
             <th><{$smarty.const._DELETE}><br>
                 <input name="allbox" id="allbox" onclick="with(document.imagecategorylistform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('delete')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All">
@@ -153,16 +173,17 @@
                 <input type="text" size="12" name="name[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_name')}>">
             </td>
             <td class="list_number">
-                <input type="text" size="6" maxlength="10" name="maxsize[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_maxsize')}>" class="list_number"></td>
+                <input type="text" size="6" maxlength="10" name="maxsize[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_maxsize')}>"></td>
             <td class="list_number">
-                <input type="text" size="4" maxlength="6" name="maxwidth[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_maxwidth')}>" class="list_number"></td>
+                <input type="text" size="4" maxlength="6" name="maxwidth[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_maxwidth')}>"></td>
             <td class="list_number">
-                <input type="text" size="4" maxlength="6" name="maxheight[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_maxheight')}>" class="list_number"></td>
+                <input type="text" size="4" maxlength="6" name="maxheight[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_maxheight')}>"></td>
             <td class="list_select">
                 <input type="checkbox" name="display[<{$obj->getShow('imgcat_id')}>]" value="1" <{if $obj->getShow('imgcat_display')}>checked="checked"<{/if}>>
             </td>
             <td class="legacy_list_order">
-                <input type="text" size="4" maxlength="6" name="weight[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_weight')}>" class=legacy_list_number></td>
+                <input type="number" size="4" maxlength="6" name="weight[<{$obj->getShow('imgcat_id')}>]" value="<{$obj->getShow('imgcat_weight')}>">
+            </td>
             <td class="legacy_list_type">
                 <{$obj->getShow('imgcat_storetype')}></td>
             <td class="legacy_list_number">
@@ -170,18 +191,19 @@
             <td class="legacy_list_select">
                 <input type="checkbox" name="delete[<{$obj->getShow('imgcat_id')}>]" value="1">
             </td>
-            <td class="legacy_list_control">
-                <a href="./index.php?action=ImageList&amp;imgcat_id=<{$obj->getShow('imgcat_id')}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_LIST}>">
-                    <img src="<{"icons/icon-image-view.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_LIST}>">
+            <td class="list_control">
+
+                <a class="action-new" href="./index.php?action=ImageCreate&amp;imgcat_id=<{$obj->getShow('imgcat_id')}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_IMAGE_NEW}>">
+                    <img src="<{'icons/icon-add.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_IMAGE_NEW}>">
                 </a>
-                <a href="./index.php?action=ImageCreate&amp;imgcat_id=<{$obj->getShow('imgcat_id')}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_IMAGE_NEW}>">
-                    <img src="<{"icons/icon-image-new.svg"|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_IMAGE_NEW}>">
+                <a class="action-view" href="./index.php?action=ImageList&amp;imgcat_id=<{$obj->getShow('imgcat_id')}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_LIST}>">
+                    <img src="<{'icons/icon-view.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_LIST}>">
                 </a>
-                <a href="./index.php?action=ImagecategoryEdit&amp;imgcat_id=<{$obj->getShow('imgcat_id')}>" aria-label="<{$smarty.const._EDIT}>">
-                    <img src="<{"icons/icon-image-edit.svg"|theme}>" class="svg" aria-label="<{$smarty.const._EDIT}>">
+                <a class="action-edit" href="./index.php?action=ImagecategoryEdit&amp;imgcat_id=<{$obj->getShow('imgcat_id')}>" aria-label="<{$smarty.const._EDIT}>">
+                    <img src="<{'icons/icon-edit.svg'|theme}>" class="svg" aria-label="<{$smarty.const._EDIT}>">
                 </a>
-                <a href="./index.php?action=ImagecategoryDelete&amp;imgcat_id=<{$obj->getShow('imgcat_id')}>" aria-label="<{$smarty.const._DELETE}>">
-                    <img src="<{"icons/icon-delete.svg"|theme}>" class="svg" aria-label="<{$smarty.const._DELETE}>">
+                <a class="action-delete" href="./index.php?action=ImagecategoryDelete&amp;imgcat_id=<{$obj->getShow('imgcat_id')}>" aria-label="<{$smarty.const._DELETE}>">
+                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" width="1em" role="img" alt="<{$smarty.const._DELETE}>">
                 </a>
             </td>
         </tr>
@@ -189,12 +211,13 @@
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="11" class="foot">
-                <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+            <td colspan="10">
+                <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+            </td>
+            <td colspan="1">
+                <{include file="./components/pagenavi.html"}>
             </td>
         </tr>
         </tfoot>
     </table>
 </form>
-
-<{include file="./components/pagenavi.html"}>

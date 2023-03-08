@@ -34,7 +34,7 @@ define( '_MD_PICO_ERR_NOCONTENTMATCHED' , 'A informação solicitada não está 
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-09-22 03:55:48
 define( '_MD_PICO_CSVENCODING' , 'UTF-8');
-define( '_MD_PICO_ERR_LOCKEDCONTENT' , 'O conteúdo está bloqueado');
+define( '_MD_PICO_ERR_LOCKEDCONTENT' , 'Conteúdo bloqueado');
 define( '_MD_PICO_LABEL_LOCKED' , 'Bloquear (só os moderadores podem editar/apagar)');
 
 define( '_MD_PICO_TOP' , "Principal");

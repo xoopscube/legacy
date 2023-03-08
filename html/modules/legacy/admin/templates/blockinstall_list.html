@@ -12,7 +12,7 @@
 <{include file="./components/block-overview.html"}>
 
 
-<h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></h2>
+<h2><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></h2>
 
 
 <div class="tips">
@@ -118,18 +118,15 @@
         </td>
         <td class="list_control">
             <{if $obj->get('block_type') == 'C'}>
-            <a href="./index.php?action=CustomBlockEdit&amp;bid=<{$obj->getShow('bid')}>"
-               aria-label="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
-                <img class="svg edit" src="<{"icons/icon-edit.svg"|theme}>" width="1em" height="1em" alt="edit">
+            <a class="action-edit" href="./index.php?action=CustomBlockEdit&amp;bid=<{$obj->getShow('bid')}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
+                <img class="svg edit" src="<{'icons/icon-edit.svg'|theme}>" width="1em" height="1em" alt="edit">
             </a>
-            <a href="./index.php?action=CustomBlockDelete&amp;bid=<{$obj->getShow('bid')}>"
-               aria-label="<{$smarty.const._DELETE}>" class="bg-red">
+            <a class="action-delete" href="./index.php?action=CustomBlockDelete&amp;bid=<{$obj->getShow('bid')}>" aria-label="<{$smarty.const._DELETE}>" class="bg-red">
                 <img class="svg delete" src="<{'icons/icon-delete.svg'|theme}>" width="1em" height="1em" alt="delete">
             </a>
             <{else}>
-            <a href="./index.php?action=BlockInstallEdit&amp;bid=<{$obj->getShow('bid')}>"
-               aria-label="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
-                <img class="svg block-install" src="<{'icons/icon-block-install.svg'|theme}>" width="1em" height="1em" alt="install">
+            <a class="action-add" href="./index.php?action=BlockInstallEdit&amp;bid=<{$obj->getShow('bid')}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
+                <img class="svg block-install" src="<{'icons/icon-add.svg'|theme}>" width="1em" height="1em" alt="install">
             </a>
             <{/if}>
         </td>

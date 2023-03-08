@@ -7,13 +7,14 @@
 	URL : https://github.com/xoopscube/
 */
 /* -------------------- --------------------  Form elements  */
-
+.admin-revision-list,
 .action-search-records,
 .admin-theme-list {
     list-style      : none;
     margin          : 0;
     padding         : 0
 }
+.admin-revision-list li,
 .action-search-records li,
 .admin-theme-list li,
 .action-search-records-desc {
@@ -27,6 +28,7 @@
     padding         : var( --space-4 );
     scroll-padding-top: 70px;
 }
+.admin-revision-list li,
 .admin-theme-list li {
     font-size       : 13px;
     margin          : var( --space-1 );
@@ -139,7 +141,7 @@ input[type="image"] svg path {
     font-style          : normal;
     letter-spacing      : 0.08rem;
     line-height         : 1; */
-    padding             : var( --space-4 );
+    padding             : var(--button-padding );
     position            : relative;
     margin              : var( --button-margin );
     text-align          : center;

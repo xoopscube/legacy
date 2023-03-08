@@ -30,7 +30,7 @@ define( '_MI_USER_CONF_AVATAR_MAXSIZE' , 'Avatar image max filesize 1 Megabytes 
 define( '_MI_USER_CONF_AVATAR_MINPOSTS' , 'Minimum posts required');
 define( '_MI_USER_CONF_AVT_MIN_DESC' , 'Enter the minimum number of posts required to upload a custom avatar.');
 define( '_MI_USER_CONF_AVATAR_WIDTH' , 'Avatar image max width (pixel)');
-define( '_MI_USER_CONF_AVTR_ALLOW_UP' , 'Allow custom avatar upload?');
+define( '_MI_USER_CONF_AVTR_ALLOW_UP' , '<a id="avatar-active">Allow custom avatars upload?</a>');
 define( '_MI_USER_CONF_BAD_EMAILS' , 'Enter emails that should not be used in user profile');
 define( '_MI_USER_CONF_BAD_EMAILS_DESC' , 'Separate each with a |, case insensitive, regex enabled.');
 define( '_MI_USER_CONF_BAD_UNAMES' , 'Enter names that should not be selected as username');

@@ -19,7 +19,7 @@ define( '_MD_A_D3FORUM_TH_CAN_MAKEFORUM' , 'Créer forums');
 define( '_MD_A_D3FORUM_TH_UID' , 'uid');
 define( '_MD_A_D3FORUM_TH_UNAME' , 'uname');
 define( '_MD_A_D3FORUM_TH_GROUPNAME' , 'groupname');
-define( '_MD_A_D3FORUM_NOTICE_ADDUSERS' , 'Ajoutez au choix : uid ou uname.');
+define( '_MD_A_D3FORUM_NOTICE_ADDUSERS' , "Vous pouvez accorder ou refuser des autorisations à des utilisateurs spécifiques.<br>Ajoutez le <b>uid</b> ou <b>uname</b> de l'utilisateur, puis attribuez des autorisations.");
 define( '_MD_A_D3FORUM_ERR_CREATECATEGORYFIRST' , 'Créez premièrement une Catégorie');
 define( '_MD_A_D3FORUM_ERR_CREATEFORUMFIRST' , 'Créez premièrement un Forum');
 

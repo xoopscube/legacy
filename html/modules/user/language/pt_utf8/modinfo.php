@@ -34,7 +34,7 @@ define( '_MI_USER_CONF_AVATAR_MAXSIZE' , "Tamanho máximo dos avatares (em <em>b
 define( '_MI_USER_CONF_AVATAR_MINPOSTS' , "Mínimo de contribuições necessárias");
 define( '_MI_USER_CONF_AVATAR_WIDTH' , "Largura máxima dos avatares (em <em>pixels</em>)");
 define( '_MI_USER_CONF_AVT_MIN_DESC' , "Escreva o número mínimo de contribuições necessário para que o associado possa enviar o seu próprio avatar.");
-define( '_MI_USER_CONF_AVTR_ALLOW_UP' , "Permitir o envio de avatares personalizados?");
+define( '_MI_USER_CONF_AVTR_ALLOW_UP' , '<a id="avatar-active">Permitir o envio de avatares personalizados?</a>');
 define( '_MI_USER_CONF_BAD_EMAILS' , "Escreva os tipos de <i>e-mail</i> que não poderão ser utilizados no cadastro dos visitantes");
 define( '_MI_USER_CONF_BAD_EMAILS_DESC' , "Separe cada um com uma barra vertical ( | ). Caixa-alta ou caixa-baixa, tanto faz. Sistema REGEX habilitado.");
 define( '_MI_USER_CONF_BAD_UNAMES' , "Escreva os tipos de <i>e-mail</i> que NÃO poderão ser utilizados no cadastro dos visitantes");

@@ -9,7 +9,7 @@
 </div>
 
 
-<h2 class="admintitle"><{$smarty.const._AD_USER_LANG_MAILJOB_LINK_LIST}></h2>
+<h2><{$smarty.const._AD_USER_LANG_MAILJOB_LINK_LIST}></h2>
 
 <div class="tips">
     <{$smarty.const._AD_USER_TIPS_MAILJOB_LINK}>
@@ -37,35 +37,29 @@
             <div class="dropdown" id="filter-sort">
 
                 <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                    <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="24px" height="24px" alt="options">
+                    <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
                 </a>
 
                 <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
                     <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._MD_USER_LANG_UID}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_LINK_SORT_KEY_UID}>"
-                                class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_LINK_SORT_KEY_UID}>"
-                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_LINK_SORT_KEY_UID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_LINK_SORT_KEY_UID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
                     <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_RETRY}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_LINK_SORT_KEY_RETRY}>"
-                                class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_LINK_SORT_KEY_RETRY}>"
-                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_LINK_SORT_KEY_RETRY}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_LINK_SORT_KEY_RETRY}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
                     <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_USER_LANG_MESSAGE}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_LINK_SORT_KEY_MESSAGE}>"
-                                class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_LINK_SORT_KEY_MESSAGE}>"
-                                class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_LINK_SORT_KEY_MESSAGE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_LINK_SORT_KEY_MESSAGE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
                 </div><{* ----- /Dropdown-content *}>
@@ -92,13 +86,14 @@
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="5" class="foot">
+            <td colspan="4" class="foot">
                 <input class="button cancel" type="submit" name="confirm_back" value="<{$smarty.const._CANCEL}>" onclick="javascript:history.go(-1);">
                 <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>
+            <td><nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav></td>
         </tr>
         </tfoot>
     </table>
 </form>
 
-<nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
+

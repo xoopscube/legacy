@@ -18,7 +18,7 @@ define( '_MD_A_PICO_TH_CONTENTSFILTERS' , 'フィルター');
 define( '_MD_A_PICO_TH_CONTENTSACTIONS' , 'アクション');
 define( '_MD_A_PICO_LEGEND_CONTENTSTHS' , '表示:表示する &nbsp; Navi:ページナビに表示する &nbsp; Menu:メニューに表示する &nbsp; Com:コメント可能');
 define( '_MD_A_PICO_BTN_MOVE' , '移動');
-define( '_MD_A_PICO_LABEL_CONTENTSRIGHTCHECKED' , '右端がチェックされた記事を:');
+define( '_MD_A_PICO_LABEL_CONTENTSRIGHTCHECKED' , '選択したアイテムのバッチ アクション');
 define( '_MD_A_PICO_MSG_CONTENTSMOVED' , '移動しました');
 define( '_MD_A_PICO_LABEL_MAINDISP' , '表示');
 define( '_MD_A_PICO_BTN_DELETE' , '削除');
@@ -68,7 +68,7 @@ define( '_MD_A_PICO_LINK_DETAIL' , '詳細');
 define( '_MD_A_PICO_LINK_EXTRACT' , '絞込');
 define( '_MD_A_PICO_LABEL_SEARCHBYPHRASE' , '文字列検索');
 define( '_MD_A_PICO_TH_EXTRASACTIONS' , 'アクション');
-define( '_MD_A_PICO_LABEL_EXTRASRIGHTCHECKED' , '右端がチェックされた項目を:');
+define( '_MD_A_PICO_LABEL_EXTRASRIGHTCHECKED' , '選択したアイテムのバッチ アクション');
 define( '_MD_A_PICO_BTN_CSVOUTPUT' , 'CSV出力');
 define( '_MD_A_PICO_MSG_DELETED' , '削除しました');
 

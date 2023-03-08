@@ -7,7 +7,7 @@
 
     <{include file="admin_menunavi.html"}>
 
-    <h2 class="admintitle"><{$smarty.const._AD_XUPDATE_LANG_MODULES}><{if $storeObject}> » <{$storeObject->getShow('name')}><{/if}></h2>
+    <h2><{$smarty.const._AD_XUPDATE_LANG_MODULES}><{if $storeObject}> » <{$storeObject->getShow('name')}><{/if}></h2>
 
 
     <{include file="admin_tips.html"}>
@@ -265,7 +265,7 @@
         <{if $module->mModule && $module->mModule->getVar('mid') > 0}>
         <{if $module->mModule->getVar('isactive')}>
         <a href="<{$module->get_StoreUrl()}>" aria-label="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
-            <img class="svg" src="<{'icons/icon-package-update.svg'|theme}>"
+            <img class="svg" src="<{'icons/icon-install.svg'|theme}>"
             width="24px"
             height="24px"
             alt="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
@@ -279,10 +279,10 @@
         <{/if}>
         <{else}>
         <span class="uninstall" aria-label="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>">
-            <img class="svg" src="<{'icons/icon-package-open.svg'|theme}>"
-             alt="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>"
-             width="24px"
-             height="24px">
+            <img class="svg" src="<{'icons/icon-module-open.svg'|theme}>"
+                 width="24px"
+                 height="24px"
+                 alt="<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>">
         </span>
         <{/if}>
         <{else}>

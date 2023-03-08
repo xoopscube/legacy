@@ -22,7 +22,7 @@ define( '_MD_A_D3FORUM_TH_CAN_MAKEFORUM' , 'Criar forums');
 define( '_MD_A_D3FORUM_TH_UID' , 'ID de usuario');
 define( '_MD_A_D3FORUM_TH_UNAME' , 'Nome de usuario');
 define( '_MD_A_D3FORUM_TH_GROUPNAME' , 'Nome do grupo');
-define( '_MD_A_D3FORUM_NOTICE_ADDUSERS' , ' Digite o nome de usuario ou ID de usuario.');
+define( '_MD_A_D3FORUM_NOTICE_ADDUSERS' , 'Você pode conceder ou negar permissões a usuários específicos.<br>Adicione o <b>uid</b> ou <b>uname</b> do usuário e atribua as permissões.');
 define( '_MD_A_D3FORUM_ERR_CREATECATEGORYFIRST' , 'Crie uma categoria primeiro');
 define( '_MD_A_D3FORUM_ERR_CREATEFORUMFIRST' , 'Crie um forum primeiro');
 // advanced

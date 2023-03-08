@@ -112,7 +112,7 @@ define( '_AD_LEGACY_LANG_BLOCK_TOTAL' , "Total de Blocs");
 define( '_AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL' , "Installé");
 define( '_AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL' , "Desinstallé");
 define( '_AD_LEGACY_LANG_BLOCK_ACTIVETOTAL' , "Actif");
-define( '_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL' , "Inactif");
+define( '_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL' , "Module désactivé");
 define( '_AD_LEGACY_LANG_BLOCK_UPDATECONF' , "Confirmer la mise à jour du bloc");
 define( '_AD_LEGACY_LANG_C_TYPE' , "Type");
 define( '_AD_LEGACY_LANG_CENTER_BLOCK_CENTER' , "Bloc Centre-Centre");

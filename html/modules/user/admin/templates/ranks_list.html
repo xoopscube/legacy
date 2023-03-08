@@ -13,7 +13,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-blue">
-        <img src="<{'icons/icon-ranks.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_RANK_TOTAL}>">
+        <img class="svg" src="<{'icons/icon-ranks.svg'|theme}>"  width="1em" height="1em" alt="rank-total">
 		</div>
 		<div class="ui-card-small-info">
 			<h4 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_RANK_TOTAL}>: <strong><{$rankTotal}></strong></h4>
@@ -23,7 +23,7 @@
 
 	<div class="ui-card-small">
 		<div class="ui-card-small-icon ui-icon-green">
-        <img src="<{'icons/icon-rank-special.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_RANK_SPECIAL}>">
+        <img class="svg" src="<{'icons/icon-rank-special.svg'|theme}>" width="1em" height="1em" alt="rank">
 		</div>
 		<div class="ui-card-small-info">
 			<h4 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_RANK_SPECIAL}>: <strong><{$rankTotal_S}></strong></h4>
@@ -33,7 +33,7 @@
 
 	<div class="ui-card-small">
       <div class="ui-card-small-icon ui-icon-orange">
-          <img src="<{'icons/icon-rank-new.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_CREATE_NEW}>">
+          <img class="svg" src="<{'icons/icon-rank-new.svg'|theme}>" width="1em" height="1em" alt="new-rank">
       </div>
       <div class="ui-card-small-info">
         <h4 class="ui-card-small-title"><a href="index.php?action=RanksEdit"><{$smarty.const._AD_USER_LANG_CREATE_NEW}></a></h4>
@@ -44,7 +44,7 @@
 </div>
 
 
-<h2 class="admintitle"><{$smarty.const._AD_USER_LANG_RANK_LIST}></h2>
+<h2><{$smarty.const._AD_USER_LANG_RANK_LIST}></h2>
 
 
 <div class="tips">
@@ -194,11 +194,11 @@
                 <input type="checkbox" name="delete[<{$obj->getShow('rank_id')}>]" value="1">
             </td>
             <td class="list_control">
-                <a href="index.php?action=RanksEdit&amp;rank_id=<{$obj->getShow('rank_id')}>" aria-label="<{$smarty.const._EDIT}>">
-                    <img src="<{'icons/icon-edit.svg'|theme}>" class="svg">
+                <a  class="action-edit" href="index.php?action=RanksEdit&amp;rank_id=<{$obj->getShow('rank_id')}>" aria-label="<{$smarty.const._EDIT}>">
+                    <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" width="1em" role="img" alt="<{$smarty.const._EDIT}>">
                 </a>
-                <a href="index.php?action=RanksDelete&amp;rank_id=<{$obj->getShow('rank_id')}>" aria-label="<{$smarty.const._DELETE}>" class="bg-red">
-                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>">
+                <a class="action-delete" href="index.php?action=RanksDelete&amp;rank_id=<{$obj->getShow('rank_id')}>" aria-label="<{$smarty.const._DELETE}>">
+                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" width="1em" role="img" alt="<{$smarty.const._DELETE}>">
                 </a>
             </td>
         </tr>
@@ -207,7 +207,7 @@
         <tfoot>
         <tr>
             <td colspan="7">
-                <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+                <input class="button action-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>
             <td><{include file="./components/pagenavi.html"}></td>
         </tr>

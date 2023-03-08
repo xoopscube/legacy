@@ -409,7 +409,7 @@ define( '_AD_LEGACY_LANG_BLOCK_TOTAL' , 'ブロックの合計');
 define( '_AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL' , 'インストール済');
 define( '_AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL' , 'アンインストール');
 define( '_AD_LEGACY_LANG_BLOCK_ACTIVETOTAL' , 'アクティブ');
-define( '_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL' , '非アクティブ');
+define( '_AD_LEGACY_LANG_BLOCK_INACTIVETOTAL' , 'モジュール無効');
 define( '_AD_LEGACY_LANG_BLOCK_UPDATECONF' , 'ブロックの更新を確認');
 define( '_AD_LEGACY_LANG_COMMENT_TOTAL' , 'コメントの合計');
 define( '_AD_LEGACY_LANG_COMMENT_UPDATECONF' , 'コメントの更新を確認');

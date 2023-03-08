@@ -20,8 +20,8 @@ class D3commentUserinfo extends D3commentAbstract {
 			return '
 			<table class="outer">
 				<tr>
-					<td style="width:20%;" class="head">' . _MD_D3FORUM_LINK_COMMENTSOURCE . '
-					<td class="even"><a href="' . XOOPS_URL . '/userinfo.php?uid=' . $link_id . '">' . $user->getVar( 'uname' ) . '</a></td>
+					<td style="width:20%;">' . _MD_D3FORUM_LINK_COMMENTSOURCE . '
+					<td><a href="' . XOOPS_URL . '/userinfo.php?uid=' . $link_id . '">' . $user->getVar( 'uname' ) . '</a></td>
 				</tr>
 			</table>
 		';

@@ -7,7 +7,7 @@
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_FILE_LIST}>
+<h2><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_FILE_LIST}>
     <{if is_object($filterForm->mTplset)}>
     » [ <{$filterForm->mTplset->get('tplset_name')}> ]
     <{/if}>
@@ -57,7 +57,7 @@
         <select name="tpl_module">
             <{foreach from=$modules item=module}>
             <{if is_object($filterForm->mModule)}>
-            <option value="<{$module->getShow('dirname')}>" <{if $filterForm->mModule->get('dirname') == $module->get('dirname')}>selected="selected"<{/if}> >
+            <option value="<{$module->getShow('dirname')}>" <{if $filterForm->mModule->get('dirname') == $module->get('dirname')}>selected="selected"<{/if}>>
             <{$module->getShow('name')}>(<{$module->getShow('dirname')}>)</option>
             <{else}>
             <option value="<{$module->getShow('dirname')}>">
@@ -164,7 +164,7 @@
             <th class="list_center"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_LASTIMPORTED}></th>
             <th class="list_control"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TYPE}></th>
 
-            <{* if $targetTplset != null && $targetTplset != 'default' *}>
+            <{* if $targetTplset !=null && $targetTplset !='default' *}>
 <!--            <th colspan="2">-->
             <{* else *}>
             <th class="list_control">
@@ -228,60 +228,51 @@
 
             <td class="list_control">
                 <{if $targetTplset == 'default'}>
-                <a href="index.php?action=TplfileView&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
-                    <span>?</span>
-<!--                    <img class="svg" src="<{'icons/icon-file-view.svg'|theme}>" alt="View">-->
+                <a class="action-view" href="index.php?action=TplfileView&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
+                    <img class="svg" src="<{'icons/icon-view.svg'|theme}>" alt="view">
                 </a>
-                <a href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
-                    <span>⭳</span>
-<!--                    <img class="svg" src="<{'icons/icon-file-download.svg'|theme}>" alt="Download">-->
+                <a class="action-download" href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
+                    <img class="svg" src="<{'icons/icon-download.svg'|theme}>" alt="download">
                 </a>
 
                 <{elseif $obj->mOverride != null}>
 
-                <a href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._EDIT}>">
-                    <span>?</span>
-<!--                    ✐ <img class="svg" src="<{'icons/icon-file-edit.svg'|theme}>" alt="Edit">-->
+                <a class="action-edit" href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._EDIT}>">
+                    <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="edit">
                 </a>
-                <a href="index.php?action=TplfileDelete&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._DELETE}>" class="bg-red">
-                    <span>⮾</span>
-<!--                   ⮿ ? ⛔ ☒ ? <img class="svg" src="<{'icons/icon-file-delete.svg'|theme}>" alt="Delete">-->
+                <a class="action-download" href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
+                    <img class="svg" src="<{'icons/icon-download.svg'|theme}>" alt="download">
                 </a>
-                <a href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
-                    <span>⭳</span>
-<!--                    <img class="svg" src="<{'icons/icon-file-download.svg'|theme}>" alt="Download">-->
+                <a class="action-delete" href="index.php?action=TplfileDelete&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._DELETE}>">
+                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="delete">
                 </a>
 
                 <{* ----- Customized Input File *}>
                 <label for="<{$obj->mOverride->get('tpl_id')}>">Choose a file</label>
-                <{xoops_input type=file name=upload key=$obj->mOverride->get('tpl_id')}>
-                <input type=file name=upload id="<{$obj->mOverride->get('tpl_id')}>" data-label=<{$obj->mOverride->get('tpl_id')}> aria-label="Upload">
+                <{xoops_input type=file class="action-copy" name="upload" key="$obj->mOverride->get('tpl_id')"}>
+                <input type=file class="action-upload" name="upload" id="<{$obj->mOverride->get('tpl_id')}>" data-label="Upload">
                 <{* ----- / Customized Input File *}>
 
                 <{elseif $obj->mOverride == null && $targetTplset != null && $targetTplset != 'default'}>
 
-                <a href="index.php?action=TplfileClone&amp;tpl_id=<{$obj->getShow('tpl_id')}>&amp;tpl_tplset=<{$targetTplset|xoops_escape:link}>" aria-label="<{$smarty.const._CLONE}>">
-                    <span>⧉</span>
-<!--                    <img class="svg" src="<{'icons/icon-file-duplicate.svg'|theme}>" alt="Copy">-->
+                <a class="action-copy" href="index.php?action=TplfileClone&amp;tpl_id=<{$obj->getShow('tpl_id')}>&amp;tpl_tplset=<{$targetTplset|xoops_escape:link}>" aria-label="<{$smarty.const._CLONE}>">
+                    <img class="svg" src="<{'icons/icon-copy.svg'|theme}>" alt="copy">
                 </a>
 
                 <{else}>
 
                 <{if $obj->get('tpl_tplset') == 'default'}>
-                <a href="index.php?action=TplfileView&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
-                    <span>?</span>
-<!--                    <img class="svg" src="<{'icons/icon-file-view.svg'|theme}>" alt="View">-->
+                <a class="action-view" href="index.php?action=TplfileView&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
+                    <img class="svg" src="<{'icons/icon-view.svg'|theme}>" alt="view">
                 </a>
                 <{else}>
-                <a href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->getShow('tpl_id')}>&amp;tpl_tplset=<{$obj->getShow('tpl_tplset')|xoops_escape:link}>" aria-label="<{$smarty.const._EDIT}>">
-                    <span>✐</span>
-<!--                    <img class="svg" src="<{'icons/icon-file-edit.svg'|theme}>" alt="Edit">-->
+                <a class="action-edit" href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->getShow('tpl_id')}>&amp;tpl_tplset=<{$obj->getShow('tpl_tplset')|xoops_escape:link}>" aria-label="<{$smarty.const._EDIT}>">
+                    <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="edit">
                 </a>
                 <{/if}>
 
-                <a href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
-                    <span>⭳</span>
-<!--                    <img class="svg" src="<{'icons/icon-file-download.svg'|theme}>" alt="Download">-->
+                <a class="action-download" href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
+                    <img class="svg" src="<{'icons/icon-download.svg'|theme}>" alt="download">
                 </a>
                 <{/if}>
             </td>

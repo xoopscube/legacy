@@ -73,7 +73,7 @@ define( '_AD_USER_LANG_GROUP_LIST' , "Grupos");
 define( '_AD_USER_LANG_GROUP_NAME' , "Nome");
 define( '_AD_USER_LANG_GROUP_NEW' , "Adicionar novo grupo");
 define( '_AD_USER_LANG_GROUP_NOASSIN_MEMBERS' , "Associados que não fazem parte deste grupo");
-define( '_AD_USER_LANG_GROUP_PERMISSION' , "Permissões");
+define( '_AD_USER_LANG_GROUP_PERMISSION' , "Permissões do grupo");
 define( '_AD_USER_LANG_GROUP_PROPERTY' , "Propriedades");
 define( '_AD_USER_LANG_GROUP_TYPE' , "Tipo");
 define( '_AD_USER_LANG_IS_MAIL' , "Email");
@@ -150,21 +150,26 @@ define( '_AD_USER_MESSAGE_CONFIRM_UPDATE_AVATAR' , "Tem certeza de que deseja at
 define( '_AD_USER_MESSAGE_CONFIRM_UPDATE_RANK' , "Tem certeza de que deseja atualizar a graduação?");
 define( '_AD_USER_MESSAGE_CONFIRM_UPDATE_USER' , "Tem certeza de que deseja atualizar esse associado?");
 define( '_AD_USER_MESSAGE_RECOUNT_SUCCESS' , "Valores recalculados corretamente...");
+define( '_AD_USER_ADMENU_USER_DATA_DOWNLOAD' , 'User Data Download');
+
+// define( '_AD_USER_TIPS_AVATAR' , "Avatares são imagens que representam as personalidades dos associados. Podem ser desde figuras <q>nonsense</q> a ícones de nossas culturas; ou mesmo suas próprias fotos. A palavra <q>Avatar</q> tem o origem indiana e significa, segundo a crença hinduísta, a descida de um ser divino à terra, em forma materializada, podendo assumir a forma humana ou a de um animal. Também significa <q>processo metamórfico</q>; <q>transformação</q>, como a de um artista ao entrar no palco ou a de um visitante ao acessar um bate-papo ou fórum da internet. Resumindo: escolha a imagem que tenha mais a ver com a sua personalidade. Se desejar, escolha um dos avatares disponíveis em nossa galeria ou, se desejar, utilize alguma imagem do seu computador.");
+define( '_AD_USER_TIPS_AVATAR' , 'Os membros do site podem, opcionalmente, criar suas próprias personas online chamadas avatares.<br>Esta opção pode ser desativada no módulo <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=4#avatar-active">Preferências Usuários ⭧</a>');
+define( '_AD_USER_TIPS_AVATAR_UPLOAD' , "You can easily register many avatars by uploading Archive file including them! <br />This batch-upload doesn't check Length and File-Size of each avatar!<br />Please pre-adjust them before you archive them!<br />(Only tar.gz or zip archive)");
+define( '_AD_USER_TIPS_DATA_DOWNLOAD' , "O arquivo CSV com os dados dos associados só está disponível em ordem de cadastro (user_id).");
+define( '_AD_USER_TIPS_DELETE_AVATAR' , "Qualquer associado que por ventura estiver usando este avatar passará a ter o arquivo de imagem <q>blank.gif</q> como novo avatar.");
+define( '_AD_USER_TIPS_MAILJOB_LIST' , 'Set up mail, private message or both to complete sending the mail to all users.');
+define( '_AD_USER_TIPS_MAILJOB_LINK' , 'In Mail Job, messages that cannot be successfully delivered are subject to various retry. The Mail Job expires after all delivery. In case of a delivery failure, it can be deleted from the queue.');
+define( '_AD_USER_TIPS_MAILJOB_SEND' , "Se houver muitos destinatários, o servidor poderá não responder como esperado (página em branco, etc.) Neste caso, recarregue o navegador diversas vezes para contornar este problema e completar o envio das cartas-eletrônicas para todos os associados.");
+define( '_AD_USER_TIPS_RANK' , "A social user ranking system is helpfull to identify contributors. You can define your own policy by editing default ranks.");
+define( '_AD_USER_TIPS_RECOUNT_POSTS' , "Você pode recalcular o número de contribuições dos associados clicando no botão <q>Recalcular</q> abaixo.");
+define( '_AD_USER_TIPS_USER_ADMIN' , "O acesso ao seu site é controlado por meio de um sistema baseado em grupo.
+Atribua usuários a grupos que autorizem seu acesso aos Módulos e blocos de conteúdo.
+Você também pode estender o perfil de usuário padrão adicionando novos campos.");
+define( '_AD_USER_TIPS_USER_EDIT' , "Se você deseja mudar de senha, complete os campos <q>Senha</q> e <q>Confirmar senha</q> do formulário.");
+define( '_AD_USER_TIPS_USER_NEW' , "É necessário completar os campos <q>Codinome</q>, <q>Endereço de correio-eletrônico</q>, <q>Senha</q> e <q>Confirmar senha</q>.");
+define( '_AD_USER_TIPS_USER_SEARCH' , "Você pode pesquisar e classificar os dados dos associados cadastrados para encontrar informações relevantes aos seus objetivos.<br /> A precisão do resultado final das pesquisas será diretamente relacionada ao número de campos que você criar.");
 define( '_AD_USER_TIPS1_DATA_UPLOAD' , "A inclusão em lote de associados é possível via arquivos CSV.");
 define( '_AD_USER_TIPS2_DATA_UPLOAD' , "Utilize um arquivo CSV no mesmo formato da opção <q><a href='?action=UserDataDownload'>Exportar Dados</a></q>, sem alterar o número de colunas.");
 define( '_AD_USER_TIPS3_DATA_UPLOAD' , "Por favor, descreva apenas o associado que deseja atualizar e registrar as novas informações no arquivo CSV.");
 define( '_AD_USER_TIPS4_DATA_UPLOAD' , "When the row of leftmost UID is emptied(or 0), it registers as a new user.");
 define( '_AD_USER_TIPS5_DATA_UPLOAD' , "As informações do perfil são atualizadas quando há um valor da linha da extrema esquerda (UID). Se você definir a senha, defina um prazo de 30 bytes."); // Muito estranho...
-
-define( '_AD_USER_ADMENU_USER_DATA_DOWNLOAD' , 'User Data Download');
-define( '_AD_USER_TIPS_AVATAR' , "Avatares são imagens que representam as personalidades dos associados. Podem ser desde figuras <q>nonsense</q> a ícones de nossas culturas; ou mesmo suas próprias fotos. A palavra <q>Avatar</q> tem o origem indiana e significa, segundo a crença hinduísta, a descida de um ser divino à terra, em forma materializada, podendo assumir a forma humana ou a de um animal. Também significa <q>processo metamórfico</q>; <q>transformação</q>, como a de um artista ao entrar no palco ou a de um visitante ao acessar um bate-papo ou fórum da internet. Resumindo: escolha a imagem que tenha mais a ver com a sua personalidade. Se desejar, escolha um dos avatares disponíveis em nossa galeria ou, se desejar, utilize alguma imagem do seu computador.");
-define( '_AD_USER_TIPS_AVATAR_UPLOAD' , "You can easily register many avatars by uploading Archive file including them! <br />This batch-upload doesn't check Length and File-Size of each avatar!<br />Please pre-adjust them before you archive them!<br />(Only tar.gz or zip archive)");
-define( '_AD_USER_TIPS_DATA_DOWNLOAD' , "O arquivo CSV com os dados dos associados só está disponível em ordem de cadastro (user_id).");
-define( '_AD_USER_TIPS_DELETE_AVATAR' , "Qualquer associado que por ventura estiver usando este avatar passará a ter o arquivo de imagem <q>blank.gif</q> como novo avatar.");
-define( '_AD_USER_TIPS_MAILJOB_SEND' , "Se houver muitos destinatários, o servidor poderá não responder como esperado (página em branco, etc.) Neste caso, recarregue o navegador diversas vezes para contornar este problema e completar o envio das cartas-eletrônicas para todos os associados.");
-define( '_AD_USER_TIPS_RANK' , "A social user ranking system is helpfull to identify contributors. You can define your own policy by editing default ranks.");
-define( '_AD_USER_TIPS_RECOUNT_POSTS' , "Você pode recalcular o número de contribuições dos associados clicando no botão <q>Recalcular</q> abaixo.");
-define( '_AD_USER_TIPS_USER_ADMIN' , "Access to your XOOPS Cube web <i>site</i> is controlled through a group-based system by which users are assigned to groups that authorize their access to Modules and blocks content. Some recent modules can extend default User Management providing a role-based system which allows you to assign permissions by User.<br />You can also extend default User Profile by adding new fields. To learn more, click the following link :");
-define( '_AD_USER_TIPS_USER_EDIT' , "Se você deseja mudar de senha, complete os campos <q>Senha</q> e <q>Confirmar senha</q> do formulário.");
-define( '_AD_USER_TIPS_USER_NEW' , "É necessário completar os campos <q>Codinome</q>, <q>Endereço de correio-eletrônico</q>, <q>Senha</q> e <q>Confirmar senha</q>.");
-define( '_AD_USER_TIPS_USER_SEARCH' , "Você pode pesquisar e classificar os dados dos associados cadastrados para encontrar informações relevantes aos seus objetivos.<br /> A precisão do resultado final das pesquisas será diretamente relacionada ao número de campos que você criar.");

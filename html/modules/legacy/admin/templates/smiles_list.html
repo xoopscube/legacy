@@ -7,8 +7,9 @@
     &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=SmilesList"><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></a></span>
 </div>
 
+<{include file="./components/smilies-overview.html"}>
 
-<h3 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></h3>
+<h3><{$smarty.const._MI_LEGACY_MENU_SMILES_MANAGE}></h3>
 
 
 <div class="tips">
@@ -54,45 +55,37 @@
             <div class="dropdown" id="filter-sort">
 
                 <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                    <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="24px" height="24px" alt="options">
+                    <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
                 </a>
 
                 <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
                     <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._AD_LEGACY_LANG_ID}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_ID}>"
-                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_ID}>"
-                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_ID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_ID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
                     <div data-layout="row center-justify inline">
                         <h6><{$smarty.const._MD_LEGACY_LANG_CODE}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_CODE}>"
-                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_CODE}>"
-                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_CODE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_CODE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;
                             </a>
                         </div>
                     </div>
                     <div data-layout="row center-justify">
                         <h6><{$smarty.const._MD_LEGACY_LANG_EMOTION}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_EMOTION}>"
-                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_EMOTION}>"
-                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_EMOTION}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_EMOTION}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
                     <div data-layout="row center-justify">
                         <h6><{$smarty.const._AD_LEGACY_LANG_DISPLAY}></h6>
                         <div>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_DISPLAY}>"
-                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_DISPLAY}>"
-                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_DISPLAY}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_DISPLAY}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                         </div>
                     </div>
                 </div><{* ----- /Dropdown-content *}>
@@ -134,11 +127,11 @@
                 <input type="checkbox" name="delete[<{$obj->getShow('id')}>]" value="1">
             </td>
             <td class="list_control">
-                <a href="./index.php?action=SmilesEdit&amp;id=<{$obj->getShow('id')}>" aria-label="<{$smarty.const._EDIT}>">
-                    <img class="svg" src="<{"icons/icon-edit.svg"|theme}>">
+                <a class="action-edit" href="./index.php?action=SmilesEdit&amp;id=<{$obj->getShow('id')}>" aria-label="<{$smarty.const._EDIT}>">
+                    <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" width="1em" height="1em" role="img" alt="<{$smarty.const._EDIT}>">
                 </a>
-                <a href="./index.php?action=SmilesDelete&amp;id=<{$obj->getShow('id')}>" aria-label="<{$smarty.const._DELETE}>">
-                    <img class="svg" src="<{"icons/icon-delete.svg"|theme}>">
+                <a class="action-delete" href="./index.php?action=SmilesDelete&amp;id=<{$obj->getShow('id')}>" aria-label="<{$smarty.const._DELETE}>">
+                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" width="1em" height="1em" role="img" alt="<{$smarty.const._DELETE}>">
                 </a>
             </td>
         </tr>
@@ -146,8 +139,8 @@
    </tbody>
    <tfoot>
     <tr>
-        <td colspan="6" class="foot">
-            <input type="submit" value="<{$smarty.const._SUBMIT}>">
+        <td colspan="6">
+            <input class="button action-submit"  type="submit" value="<{$smarty.const._SUBMIT}>">
         </td>
         <td><{include file="./components/pagenavi.html"}></td>
     </tr>

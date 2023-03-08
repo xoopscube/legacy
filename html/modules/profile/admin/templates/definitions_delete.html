@@ -10,7 +10,7 @@
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div class="confirm"><{$smarty.const._MD_PROFILE_MESSAGE_CONFIRM_DELETE}></div>
+<div class="danger"><{$smarty.const._MD_PROFILE_MESSAGE_CONFIRM_DELETE}></div>
 
 <form action="./index.php?action=DefinitionsDelete" method="POST">
     <{xoops_token form=$actionForm}>
@@ -71,7 +71,7 @@
         <tr>
             <td colspan="2">
                 <input class="button cancel" type="submit" value="<{$smarty.const._MD_PROFILE_LANG_CANCEL}>" name="_form_control_cancel">
-                <input class="button delete" type="submit" value="<{$smarty.const._DELETE}>">
+                <button class="button delete" type="submit" value=""><img class="svg" src="<{'icons/icon-delete.svg'|theme}>" width="1em" height="1em" alt="delete"> <{$smarty.const._DELETE}></button>
             </td>
         </tr>
         </tfoot>

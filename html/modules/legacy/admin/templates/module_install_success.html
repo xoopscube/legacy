@@ -7,11 +7,11 @@
     &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_SUCCESS}></span>
 </div>
 
-<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_SUCCESS}></h2>
+<h2><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_SUCCESS}></h2>
 
 <div class="ui-card-full">
 
-<h4 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_LOG}></h4>
+<h4><{$smarty.const._AD_LEGACY_LANG_MODINSTALL_LOG}></h4>
 
 <ul style="max-height: 340px; overflow-y:auto;">
     <{foreach item=msg from=$log}>
@@ -36,31 +36,31 @@
 <div class="legacy_module_return">
 
 	<a href="index.php?action=ModuleEdit&amp;mid=<{$module->getShow('mid')}>" class="button">
-		<img src="<{'icons/icon-edit.svg'|theme}>" class="svg"> <{$smarty.const._AD_LEGACY_LANG_MOD_EDIT}>
+		<img class="svg" src="<{'icons/icon-edit.svg'|theme}>" width="1em" height="1em" alt="edit"> <{$smarty.const._AD_LEGACY_LANG_MOD_EDIT}>
 	</a>
 
     <a href="index.php?action=ModuleInfo&amp;dirname=<{$module->getShow('dirname')}>" class="button">
-        <img src="<{'icons/icon-info.svg'|theme}>" class="svg"> <{$smarty.const._AD_LEGACY_LANG_INFORMATION}>
+        <img class="svg" src="<{'icons/icon-info.svg'|theme}>" width="1em" height="1em" alt="info"> <{$smarty.const._AD_LEGACY_LANG_INFORMATION}>
     </a>
 
 <{if $module->getInfo('blocks')}>
 	<a href="index.php?action=BlockInstallList&amp;dirname=<{$module->getShow('dirname')}>" class="button">
-		<img src="<{'icons/icon-block-install.svg'|theme}>" class="svg"> <{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}>
+		<img class="svg" src="<{'icons/icon-block-install.svg'|theme}>" width="1em" height="1em" alt="block-install"> <{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}>
 	</a>
 <{/if}>
 
 <{if $module->getInfo('templates')}>
 	<a href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplfileList&amp;tpl_module=<{$module->getShow('dirname')}>&amp;sort=-9" class="button">
-		<img src="<{'icons/icon-file-view.svg'|theme}>" class="svg"> <{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}>
+		<img class="svg" src="<{'icons/icon-view.svg'|theme}>" width="1em" height="1em" alt="view"> <{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}>
 	</a>
 <{/if}>
 
 	<a href="index.php?action=ModuleList" class="button">
-        <img class="svg" src="<{'icons/icon-package.svg'|theme}>" width="1em" height="1em" alt="module"> <{$smarty.const._AD_LEGACY_LANG_MODLIST}>
+        <img class="svg" src="<{'icons/icon-module.svg'|theme}>" width="1em" height="1em" alt="module"> <{$smarty.const._AD_LEGACY_LANG_MODLIST}>
     </a>
 
 	<a href="index.php?action=InstallList" class="button">
-        <img class="svg" src="<{'icons/icon-package-update.svg'|theme}>" width="1em" height="1em" alt="update"> <{$smarty.const._AD_LEGACY_LANG_MODINSTALL}>
+        <img class="svg" src="<{'icons/icon-install.svg'|theme}>" width="1em" height="1em" alt="update"> <{$smarty.const._AD_LEGACY_LANG_MODINSTALL}>
     </a>
 
 </div>

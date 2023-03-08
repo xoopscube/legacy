@@ -2,26 +2,26 @@
 
 // Altsys admin menu and breadcrumbs
 define( '_MD_A_MYMENU_MYTPLSADMIN' , 'Templates');
-define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Blocks ');
+define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Blocks');
 define( '_MD_A_MYMENU_MYPREFERENCES' , 'Preferences');
 
 // contents list admin
 define( '_MD_A_PICO_H2_CONTENTS' , 'Content list');
 define( '_MD_A_PICO_TH_CONTENTSID' , 'ID');
 define( '_MD_A_PICO_TH_CONTENTSSUBJECT' , 'Subject');
-define( '_MD_A_PICO_TH_CONTENTSWEIGHT' , 'weight');
+define( '_MD_A_PICO_TH_CONTENTSWEIGHT' , 'Order');
 define( '_MD_A_PICO_TH_CONTENTSVISIBLE' , 'VIS');
 define( '_MD_A_PICO_TH_CONTENTSSHOWINNAVI' , 'NAVI');
 define( '_MD_A_PICO_TH_CONTENTSSHOWINMENU' , 'MENU');
 define( '_MD_A_PICO_TH_CONTENTSALLOWCOMMENT' , 'COM');
 define( '_MD_A_PICO_TH_CONTENTSFILTERS' , 'Filters');
-define( '_MD_A_PICO_TH_CONTENTSACTIONS' , 'Actions');
+define( '_MD_A_PICO_TH_CONTENTSACTIONS' , 'Action');
 define( '_MD_A_PICO_LEGEND_CONTENTSTHS' , 'VIS: visible &nbsp; NAVI:show in page navigation &nbsp; MENU:show in menu &nbsp; COM:commentable');
-define( '_MD_A_PICO_BTN_MOVE' , 'Moved');
-define( '_MD_A_PICO_LABEL_CONTENTSRIGHTCHECKED' , 'Checked items will be:');
+define( '_MD_A_PICO_BTN_MOVE' , 'Move');
+define( '_MD_A_PICO_LABEL_CONTENTSRIGHTCHECKED' , 'Batch action for selected items');
 define( '_MD_A_PICO_MSG_CONTENTSMOVED' , 'Contents have been moved');
 define( '_MD_A_PICO_LABEL_MAINDISP' , 'View');
-define( '_MD_A_PICO_BTN_DELETE' , 'delete');
+define( '_MD_A_PICO_BTN_DELETE' , 'Delete');
 define( '_MD_A_PICO_CONFIRM_DELETE' , 'Are you sure to delete them?');
 define( '_MD_A_PICO_MSG_CONTENTSDELETED' , 'Deleted successfully');
 define( '_MD_A_PICO_BTN_EXPORT' , 'Export');
@@ -67,8 +67,8 @@ define( '_MD_A_PICO_TH_SUMMARY' , 'Summary');
 define( '_MD_A_PICO_LINK_DETAIL' , 'Detail');
 define( '_MD_A_PICO_LINK_EXTRACT' , 'Extract');
 define( '_MD_A_PICO_LABEL_SEARCHBYPHRASE' , 'Search by phrase');
-define( '_MD_A_PICO_TH_EXTRASACTIONS' , 'Actions');
-define( '_MD_A_PICO_LABEL_EXTRASRIGHTCHECKED' , 'selected items will be:');
+define( '_MD_A_PICO_TH_EXTRASACTIONS' , 'Action');
+define( '_MD_A_PICO_LABEL_EXTRASRIGHTCHECKED' , 'Batch action for selected items');
 define( '_MD_A_PICO_BTN_CSVOUTPUT' , 'CSV output');
 define( '_MD_A_PICO_MSG_DELETED' , 'Deleted successfully');
 
@@ -77,3 +77,8 @@ define( '_MD_A_PICO_H2_TAGS' , 'Tag Manager');
 define( '_MD_A_PICO_TH_TAG' , 'Tag');
 define( '_MD_A_PICO_TH_USED' , 'Used');
 define( '_MD_A_PICO_LABEL_ORDER' , 'Order');
+
+// tips
+define( '_MD_A_PICO_TIPS_CONTENTS' , 'Content Tips');
+define( '_MD_A_PICO_TIPS_TAGS' , 'Tags Tips');
+define( '_MD_A_PICO_TIPS_EXTRAS' , 'Extras Tips');

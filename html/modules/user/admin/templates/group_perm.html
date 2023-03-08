@@ -9,7 +9,7 @@
 </div>
 
 
-<h2 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}> &raquo; <{$group->getShow('name')}></h2>
+<h2><{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}> &raquo; <{$group->getShow('name')}></h2>
 
 
 <table class="outer">
@@ -26,38 +26,41 @@
     </thead>
     <tbody>
     <tr class="odd">
-        <td class="list_image"><i aria-label="<{$smarty.const._AD_USER_LANG_GROUP}>"><img src="<{'icons/icon-user-group.svg'|theme}>" class="svg"></i></td>
+        <td class="list_image"><i aria-label="<{$smarty.const._AD_USER_LANG_GROUP}>"><img class="svg" src="<{'icons/icon-user-group.svg'|theme}>" width="1em" alt="group"></i></td>
         <td class="list_id"><{$group->getShow('groupid')}></td>
         <td class="list_title"><{$group->getShow('name')}></td>
         <td class="list_description"><{$group->getShow('description')}></td>
         <td class="list_type"><{$group->getShow('group_type')}></td>
         <td class="list_number"><{$group->getUserCount()|xoops_escape}></td>
         <td class="list_control">
-            <a href="index.php?action=GroupEdit&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._EDIT}>">
-                <img src="<{'icons/icon-user-edit.svg'|theme}>" class="svg">
+            <a class="action-add" href="index.php?action=GroupMember&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}>">
+                <img class="svg" src="<{'icons/icon-add.svg'|theme}>" width="1em" alt="add">
             </a>
+
+            <a class="action-edit" href="index.php?action=GroupEdit&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._EDIT}>">
+                <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" width="1em" alt="edit">
+            </a>
+
+            <a class="action-view" href="index.php?action=GroupProperty&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}>">
+                <img class="svg" src="<{'icons/icon-view.svg'|theme}>" width="1em" alt="view">
+            </a>
+            <a class="action-lock" href="index.php?action=GroupPerm&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}>">
+                <img class="svg" src="<{'icons/icon-lock.svg'|theme}>" width="1em" alt="lock">
+            </a>
+
             <{if $group->get('groupid') > $smarty.const.XOOPS_GROUP_ANONYMOUS }>
-            <a href="index.php?action=GroupDelete&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._DELETE}>" class="bg-red">
-                <img class="svg" src="<{'icons/icon-user-delete.svg'|theme}>">
+            <a class="action-delete" href="index.php?action=GroupDelete&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._DELETE}>">
+                <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" width="1em" alt="delete">
             </a>
             <{/if}>
-            <a href="index.php?action=GroupProperty&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}>">
-                <img class="svg" src="<{'icons/icon-user-check.svg'|theme}>">
-            </a>
-            <a href="index.php?action=GroupPerm&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}>">
-                <img class="svg" src="<{'icons/icon-user-permission.svg'|theme}>">
-            </a>
-            <a href="index.php?action=GroupMember&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}>">
-                <img class="svg" src="<{'icons/icon-user-assign.svg'|theme}>">
-            </a>
         </td>
     </tr>
     </tbody>
 </table>
 
-<h3 class="admintitle"><{$smarty.const._AD_USER_LANG_PERM_ACCESS_ADMIN}></h3>
+<h3><{$smarty.const._AD_USER_LANG_PERM_ACCESS_ADMIN}></h3>
 
-<h4 class="admintitle"><{$smarty.const._AD_USER_LANG_PERM_MODULE_ACCESS}></h4>
+<h4><{$smarty.const._AD_USER_LANG_PERM_MODULE_ACCESS}></h4>
 
 <{if $actionForm->hasError()}>
 <div class="error">
@@ -81,8 +84,8 @@
         <tbody>
         <tr>
             <{foreach item=perm from=$systemPermissions key="perm_key" name="SysPer"}>
-            <td class="head" style="width:35%;">&nbsp;<{$perm->mItem->getName()|xoops_escape}></td>
-            <td class="even"><{assign var="getId" value=$perm->getId() }>
+            <td style="width:35%;">&nbsp;<{$perm->mItem->getName()|xoops_escape}></td>
+            <td><{assign var="getId" value=$perm->getId() }>
                 <label><{$smarty.const._AD_USER_LANG_PERM_ADMIN}></label>
                 <input type="checkbox" name="system[<{$getId}>]" value="2" <{if $perm->mValue==2}>checked="checked"<{/if}>>
             </td>
@@ -107,8 +110,8 @@
         <tbody>
         <tr>
             <{foreach item=perm from=$modulePermissions name="ModPer"}>
-            <td class="head" style="width:25%;">&nbsp;<{$perm->mItem->getName()|xoops_escape}></td>
-            <td class="even"><{assign var="getId" value=$perm->getId() }>
+            <td style="width:25%;">&nbsp;<{$perm->mItem->getName()|xoops_escape}></td>
+            <td ><{assign var="getId" value=$perm->getId() }>
 
                 <{$smarty.const._AD_USER_LANG_PERM_ACCESS}>
 
@@ -131,7 +134,7 @@
 
 <br>
 
-    <h3 class="admintitle"><{$smarty.const._AD_USER_LANG_PERM_BLOCK_ACCESS}></h3>
+    <h3><{$smarty.const._AD_USER_LANG_PERM_BLOCK_ACCESS}></h3>
 
     <{foreach key=i item=permissions from=$blockPermissions}>
     <table class="outer">
@@ -152,7 +155,7 @@
         <tbody>
         <tr>
             <{foreach item=perm from=$permissions name=$i}>
-            <td class="head" style="width:35%;">&nbsp;
+            <td style="width:35%;">&nbsp;
                 <{if $perm->mItem->isActive()}>
                 <{if $perm->mItem->mBlock->get('block_type') == 'C'}>
                 <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=CustomBlockEdit&amp;bid=<{$perm->mItem->mBlock->getShow('bid')}>"><{$perm->mItem->getName()|xoops_escape}></a>

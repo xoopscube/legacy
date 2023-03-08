@@ -40,84 +40,72 @@
 
 <form name="contents" action="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$cat_id}>" method="post">
     <{$gticket_hidden}>
-    <div align="<{$smarty.const._ALIGN_END}>">
-        <label for="pico-legend"> Display hints </label>
-        <input class="switch"
-               type="checkbox"
-               id="pico-legend"
-               onclick="slideToggle('.pico-legend', this)"
-               value="0"></div>
 
-    <div align="<{$smarty.const._ALIGN_END}>" class="pico-legend" style="display: none">
-
-    </div>
 
     <table class="outer">
         <thead>
         <tr>
-            <th>
+            <th class="list_id">
                 <{$smarty.const._MD_A_PICO_TH_CONTENTSID}>
             </th>
             <th>
-                <{$smarty.const._MD_PICO_TH_SUBJECT}>
-            </th>
-            <th>
+                <{$smarty.const._MD_PICO_TH_SUBJECT}> /
+<!--            </th>-->
+<!--            <th>-->
                 <{$smarty.const._MD_PICO_TH_VIRTUALPATH}>
             </th>
-            <th>
+            <th class="list_order">
                 <{$smarty.const._MD_A_PICO_TH_CONTENTSWEIGHT}>
             </th>
-            <th>
+            <th class="list_visible">
                 <{$smarty.const._MD_A_PICO_TH_CONTENTSVISIBLE}>
                 <br>
-                <input type="checkbox"
-                       onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_visible_')>=0){elements[i].checked=this.checked;}}}">
+                <input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_visible_')>=0){elements[i].checked=this.checked;}}}">
             </th>
             <th>
                 <{$smarty.const._MD_A_PICO_TH_CONTENTSSHOWINNAVI}>
                 <br>
-                <input type="checkbox"
-                       onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_show_in_navi_')>=0){elements[i].checked=this.checked;}}}">
+                <input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_show_in_navi_')>=0){elements[i].checked=this.checked;}}}">
             </th>
             <th>
                 <{$smarty.const._MD_A_PICO_TH_CONTENTSSHOWINMENU}>
                 <br>
-                <input type="checkbox"
-                       onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_show_in_menu_')>=0){elements[i].checked=this.checked;}}}">
+                <input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_show_in_menu_')>=0){elements[i].checked=this.checked;}}}">
             </th>
             <th>
                 <{$smarty.const._MD_A_PICO_TH_CONTENTSALLOWCOMMENT}>
                 <br>
-                <input type="checkbox"
-                       onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_allow_comment_')>=0){elements[i].checked=this.checked;}}}">
+                <input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_allow_comment_')>=0){elements[i].checked=this.checked;}}}">
+            </th>
+            <th>Revision</th>
+            <th class="list_batch">
+                batch<br>
+                <input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_action_')>=0){elements[i].checked=this.checked;}}}">
+
             </th>
             <th style="text-align:<{$smarty.const._ALIGN_END}>">
                 <{$smarty.const._MD_A_PICO_TH_CONTENTSACTIONS}>
-                <input type="checkbox"
-                       onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_action_')>=0){elements[i].checked=this.checked;}}}">
             </th>
         </tr>
         </thead>
         <tbody>
         <{foreach from=$contents item="content"}>
         <tr>
-        <td style="text-align:<{$smarty.const._ALIGN_END}>;">
-            <{$content.id}>
+        <td class="list_id"><{$content.id}>
             <{if $cat_id == $smarty.const.SPECIAL_CAT_ID_ALL}>
             <br>
             <span class="badge" aria-label="<{"--"|str_repeat:$content.cat_depth_in_tree}><{$content.cat_title}>"><{$content.cat_id}></span>
             <{/if}>
         </td>
-        <td align="<{$smarty.const._ALIGN_START}>">
+        <td class="list_center">
             <input type="text"
-                   size="24"
+                   size="27"
                    name="subjects[<{$content.id}>]"
                    id="col_subject_<{$content.id}>"
                    value="<{$content.subject}>">
-        </td>
-        <td align="center">
+            <br>
             <input type="text"
-                   size="24"
+                   size="27"
                    name="vpaths[<{$content.id}>]"
                    id="col_vpath_<{$content.id}>"
                    value="<{$content.vpath}>">
@@ -128,7 +116,7 @@
             (<{$content.wrap_file.size}> <{$smarty.const._MD_PICO_BYTE}>)
             <{/if}>
         </td>
-        <td align="center">
+        <td class="list_order">
             <input type="number"
                    size="3"
                    name="weights[<{$content.id}>]"
@@ -136,107 +124,111 @@
                    value="<{$content.weight}>"
                    style="max-width: 8ch;">
         </td>
-        <td align="center">
+        <td class="list_visible">
             <input type="checkbox"
                    name="visibles[<{$content.id}>]"
                    id="col_visible_<{$content.id}>"
-                   value="1" <{if $content.visible}>checked="checked"<{/if}>>
+                   value="1" aria-label="Visible" <{if $content.visible}>checked="checked"<{/if}>>
         </td>
-        <td align="center">
+        <td class="list_nav">
             <input type="checkbox"
                    name="show_in_navis[<{$content.id}>]"
                    id="col_show_in_navi_<{$content.id}>"
                    value="1" <{if $content.show_in_navi}>checked="checked"<{/if}>>
         </td>
-        <td align="center">
+        <td class="list_menu">
             <input type="checkbox"
                    name="show_in_menus[<{$content.id}>]"
                    id="col_show_in_menu_<{$content.id}>"
                    value="1" <{if $content.show_in_menu}>checked="checked"<{/if}>>
         </td>
-        <td align="center">
+        <td class="list_comments">
             <input type="checkbox"
                    name="allow_comments[<{$content.id}>]"
                    id="col_allow_comment_<{$content.id}>"
                    value="1" <{if $content.allow_comment}>checked="checked"<{/if}>>
         </td>
-        <td class="list_control" nowrap="nowrap" style="text-align:<{$smarty.const._ALIGN_END}>;">
-            <{if $content.is_deleted}>
-            <ul class="pico_content_history_list">
-                <{foreach from=$content.histories item="history"}>
-                <li>
-                    <{$history.modified_time_formatted}>
-                    -
-                    <{$history.modifier_uname}>
-                    (<{$history.body_size|number_format}><{$smarty.const._MD_PICO_BYTE}>)
-                    <br>
-                    &nbsp;
-                    <a href="<{$mod_url}>/index.php?page=viewhistory&amp;content_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_REFERIT}></a>
-                    -
-                    <a href="<{$mod_url}>/index.php?page=downloadhistory&amp;content_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_DOWNLOADIT}></a>
-                    <{if $history.prev_id}>
-                    -
-                    <a href="<{$mod_url}>/index.php?page=diffhistory&amp;older_history_id=<{$history.prev_id}>&amp;newer_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_DIFFFROMPREV}></a>
-                    <{/if}>
-                </li>
-                <{/foreach}>
-            </ul>
+        <td class="list_date">
+        <{if $content.is_deleted}>
+        <ul class="admin-revision-list">
+            <{foreach from=$content.histories item="history"}>
+            <li>
+                <{$history.modified_time_formatted}>
+                -
+                <{$history.modifier_uname}>
+                (<{$history.body_size|number_format}><{$smarty.const._MD_PICO_BYTE}>)
+                <br>
+                &nbsp;
+                <a class="action-view" href="<{$mod_url}>/index.php?page=viewhistory&amp;content_history_id=<{$history.id}>" aria-label="<{$smarty.const._MD_PICO_REFERIT}>"><i class="i-view"></i></a>
+                -
+                <a class="action-download" href="<{$mod_url}>/index.php?page=downloadhistory&amp;content_history_id=<{$history.id}>" aria-label="<{$smarty.const._MD_PICO_DOWNLOADIT}>"><i class="i-download"></i></a>
+                <{if $history.prev_id}>
+                -
+                <a class="action-diff" href="<{$mod_url}>/index.php?page=diffhistory&amp;older_history_id=<{$history.prev_id}>&amp;newer_history_id=<{$history.id}>" aria-label="<{$smarty.const._MD_PICO_DIFFFROMPREV}>"><i class="i-download"></i></a>
+                <{/if}>
+            </li>
+            <{/foreach}>
+        </ul>
             <{else}>
             <{if ! $content.approval}>
             <strong style="color:#F44336;"><{$smarty.const._MD_PICO_WAITINGAPPROVAL}></strong>
             <{/if}>
+
             <{if ! $content.visible}>
-            <strong style="color:#3F51B5;"><{$smarty.const._MD_PICO_INVISIBLE}></strong>
+            <strong style="color:var(--color-amber,#3F51B5);"><{$smarty.const._MD_PICO_INVISIBLE}></strong>
+            <{/if}>
+
+            <{if $content.locked}>
+            <strong style="color:#F44336;"><{$smarty.const._MD_PICO_ERR_LOCKEDCONTENT}></strong>
             <{/if}>
             <{if $content.created_time >= time()}>
             <strong style="color:#2196F3;"><{$smarty.const._MD_PICO_WAITINGRELEASE}></strong>
             <{/if}>
+
             <{if $content.expiring_time < time()}>
-            <strong style="color:#607D8B;"><{$smarty.const._MD_PICO_EXPIRED}></strong>
+            <strong style="color:var(--color-red,#607D8B);"><{$smarty.const._MD_PICO_EXPIRED}></strong>
             <{/if}>
-            <a href="<{$mod_url}>/<{$content.link}>"><{$smarty.const._MD_A_PICO_LABEL_MAINDISP}></a>
-            <a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=ac<{$cat_id}>"><{$smarty.const._EDIT}></a>
-            <input type="checkbox"
-                   name="action_selects[<{$content.id}>]"
-                   id="col_action_<{$content.id}>"
-                   value="1">
             <br>
-            <span class="badge"><{$content.modifier_uname}> <{$content.modified_time_formatted}></span>
+            <img src="<{$content.modifier_uname|xoops_user_avatarize}>" width="20px" height="20px" data-self="radius-circle" alt="avatar"> <{$content.modifier_uname}>
+            <br>
+                <small>    <span class="badge" aria-label="<{$smarty.const._MD_PICO_MODIFIED}>"><{$content.modified_time_formatted}></span></small>
+        <{/if}>
+        </td>
+            <td class="list_batch">
+                <input type="checkbox"
+                       name="action_selects[<{$content.id}>]"
+                       id="col_action_<{$content.id}>"
+                       value="1">
+            </td>
+        <td class="list_control" nowrap="nowrap" style="text-align:<{$smarty.const._ALIGN_END}>;">
+            <{if !$content.is_deleted}>
+            <a class="action-view" href="<{$mod_url}>/<{$content.link}>"><{$smarty.const._MD_A_PICO_LABEL_MAINDISP}></a>
+            <a class="action-edit" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=ac<{$cat_id}>"><{$smarty.const._EDIT}></a>
             <{/if}>
         </td>
         </tr>
         <{/foreach}>
-        <tr>
-            <td colspan="9" align="center" class="foot">
-                <input type="submit" name="contents_update" value="<{$smarty.const._SUBMIT}>" tabindex="0">
-            </td>
-        </tr>
         </tbody>
         <tfoot>
         <tr>
-            <th colspan="9" style="text-align:<{$smarty.const._ALIGN_END}>;">
+            <td colspan="2"><input class="button" type="submit" name="contents_update" value="<{$smarty.const._SUBMIT}>" tabindex="0"></td>
+            <td colspan="8">
                 <{$smarty.const._MD_A_PICO_LABEL_CONTENTSRIGHTCHECKED}>
-                <input type="submit"
-                       name="contents_delete"
-                       value="<{$smarty.const._MD_A_PICO_BTN_DELETE}>"
-                       onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_DELETE}>');">
-                <input type="submit"
-                       name="contents_move"
-                       value="<{$smarty.const._MD_A_PICO_BTN_MOVE}>">
+                <button class="button delete" type="submit" name="contents_delete" onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_DELETE}>');">
+                    <i class="i-delete"></i> <{$smarty.const._MD_A_PICO_BTN_DELETE}></button>
+                <button class="button move" type="submit" name="contents_move"><i class="i-move"></i> <{$smarty.const._MD_A_PICO_BTN_MOVE}></button>
                 <select name="dest_cat_id"
                         id="select_dest_cat_id">
                         <{html_options options=$cat_options4move selected=$cat_id}>
                 </select>
                 <br>
-                <input type="submit"
-                       name="contents_export"
-                       value="<{$smarty.const._MD_A_PICO_BTN_EXPORT}>"
-                       onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_EXPORT}>');">
+                <button type="submit" name="contents_export" onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_EXPORT}>');">
+                    <i class="i-move"></i> <{$smarty.const._MD_A_PICO_BTN_EXPORT}></button>
                 <select name="export_mid"
                         id="select_export_mid">
                         <{html_options options=$module_options}>
                 </select>
-            </th>
+            </td>
         </tr>
         </tfoot>
     </table>

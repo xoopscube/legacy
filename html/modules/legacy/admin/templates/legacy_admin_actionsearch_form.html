@@ -6,7 +6,7 @@
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<h2 class="admintitle"><{$smarty.const._MI_LEGACY_MENU_ACTIONSEARCH}></h2>
+<h2><{$smarty.const._MI_LEGACY_MENU_ACTIONSEARCH}></h2>
 
 <div class="tips">
     <{$smarty.const._AD_LEGACY_LANG_ACTIONSEARCH_INFO}>
@@ -20,7 +20,7 @@
             <{xoops_token form=$actionForm}>
             <input type="text" size="40" name="keywords" <{if $actionForm}>value="<{$actionForm->get('keywords')|xoops_escape:edit}>"<{/if}>>
             <button class="button-search" type="submit">
-                <img class="svg" src="<{'icons/icon-search-feature.svg'|theme}>" alt="search" width="1em" height="1em">
+                <img class="svg" src="<{'icons/icon-search.svg'|theme}>" width="1em" height="1em" alt="search">
                 <{$smarty.const._SEARCH}></button>
         </form>
     </div>

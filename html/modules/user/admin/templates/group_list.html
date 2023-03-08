@@ -6,7 +6,7 @@
 
 <{include file="./components/user-overview.html"}>
 
-<h2 class="admintitle"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></h2>
+<h2><{$smarty.const._AD_USER_LANG_GROUP_LIST}></h2>
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
@@ -14,7 +14,7 @@
 <{* ////— ACTION-CONTROL —\\\\ *}>
 <section data-layout="row center-justify" class="action-control">
 
-    <a class="button" href="index.php?action=GroupEdit"><{$smarty.const._AD_USER_LANG_GROUP_NEW}></a>
+    <a class="button" href="index.php?action=GroupEdit"><i class="i-add"></i> <{$smarty.const._AD_USER_LANG_GROUP_NEW}></a>
 
     <div class="control-view">
 
@@ -35,45 +35,37 @@
         <div class="dropdown" id="filter-sort">
 
             <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="24px" height="24px" alt="options">
+                <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
             </a>
 
             <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_USER_LANG_GROUP_GID}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_GROUPID}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GROUP_SORT_KEY_GROUPID}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_GROUPID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GROUP_SORT_KEY_GROUPID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_USER_LANG_GROUP_NAME}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_NAME}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GROUP_SORT_KEY_NAME}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_NAME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GROUP_SORT_KEY_NAME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;
                         </a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_USER_LANG_GROUP_DESC}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_DESCRIPTION}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GROUP_SORT_KEY_DESCRIPTION}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_DESCRIPTION}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GROUP_SORT_KEY_DESCRIPTION}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_USER_LANG_GROUP_TYPE}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_GROUP_TYPE}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GROUP_SORT_KEY_GROUP_TYPE}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.GROUP_SORT_KEY_GROUP_TYPE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.GROUP_SORT_KEY_GROUP_TYPE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
             </div><{* ----- /Dropdown-content *}>
@@ -98,23 +90,27 @@
         <td class="list_type"><{$group->getShow('group_type')}></td>
         <td class="list_number"><{$group->getUserCount()|xoops_escape}></td>
         <td class="list_control">
-            <a href="index.php?action=GroupEdit&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._EDIT}>">
-                <img src="<{'icons/icon-user-edit.svg'|theme}>" class="svg">
+
+            <a class="action-add" href="index.php?action=GroupMember&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}>">
+                <img class="svg" src="<{'icons/icon-add.svg'|theme}>" width="1em" height="1em" alt="add">
             </a>
-            <{if $group->get('groupid') > $smarty.const.XOOPS_GROUP_ANONYMOUS }>
-            <a href="index.php?action=GroupDelete&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._DELETE}>" class="bg-red">
-                <img class="svg" src="<{'icons/icon-user-delete.svg'|theme}>">
+
+            <a class="action-edit" href="index.php?action=GroupEdit&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._EDIT}>">
+                <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" width="1em" height="1em" alt="edit">
+            </a>
+
+            <a class="action-view" href="index.php?action=GroupProperty&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}>">
+                <img class="svg" src="<{'icons/icon-view.svg'|theme}>" width="1em" height="1em" alt="view">
+            </a>
+            <a class="action-lock" href="index.php?action=GroupPerm&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}>">
+                <img class="svg" src="<{'icons/icon-lock.svg'|theme}>" width="1em" height="1em" alt="lock">
+            </a>
+            <{if $group->get('groupid') > $smarty.const.XOOPS_GROUP_ANONYMOUS}>
+            <a class="action-delete" href="index.php?action=GroupDelete&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._DELETE}>">
+                <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" width="1em" height="1em" alt="delete">
             </a>
             <{/if}>
-            <a href="index.php?action=GroupProperty&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}>">
-                <img class="svg" src="<{'icons/icon-user-check.svg'|theme}>">
-            </a>
-            <a href="index.php?action=GroupPerm&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}>">
-                <img class="svg" src="<{'icons/icon-user-permission.svg'|theme}>">
-            </a>
-            <a href="index.php?action=GroupMember&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}>">
-                <img class="svg" src="<{'icons/icon-user-assign.svg'|theme}>">
-            </a>
+
         </td>
     </tr>
     <{/foreach}>

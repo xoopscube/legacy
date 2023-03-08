@@ -5,8 +5,110 @@
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
+
+	- action-control
+	- badge, badge-count
+	- button
+	- button-small
+	- btnav
 */
-/*-------------------- --------------------  ICONS */
+/* -------------------- -------------------- ACTION CONTROL
+
+    button border or colored e.g.:
+    background: var(--color-red );
+    color: var(--color-white );
+*/
+:is(button.action-active),
+.action-active {
+    border: 1px solid var(  --color-green	)
+}
+.action-select {}
+
+a.action-add,
+a.action-new {
+    border: 1px solid var(  --color-green	);
+}
+a.action-cancel {
+    border: 1px solid var(  --border-color	);
+}
+a.action-copy {
+    border: 1px solid var(  --color-amber	);
+}
+:is(button.delete),
+a.action-delete,
+.action-diff {
+    border: 1px solid var(  --color-red	);
+}
+a.action-download {
+    border: 1px solid var(  --color-blue	);
+}
+a.action-lock {
+    border: 1px solid var(  --color-red	);
+}
+.action-send {}
+
+:is(button.upload),
+a.action-upload {
+    border: 1px solid var(  --color-amber	);
+}
+:is(button.edit),
+a.action-edit {
+    border: 1px solid var(  --color-blue	);
+}
+a.action-submit {
+    border: 1px solid var(  --color-blue	);
+}
+a.action-view {
+    border: 1px solid var(  --color-amber	);
+}
+
+
+
+.bg-amber {
+    border: 1px solid var(  --color-amber	);
+    color:var(  --color-amber	);
+}
+.bg-black {
+    background      : var(  --color-black	);
+    color           : var(  --color-white	);
+}
+
+.bg-blue {
+    background      : var( --color-blue );
+    color           : var( --color-white )!important;
+}
+.bg-green {
+    background      : var( --color-green );
+    color           : var( --color-white );
+}
+.bg-indigo {
+    background      : var( --color-indigo );
+    color           : var( --color-white );
+}
+.bg-orange {
+    background      : var( --color-orange );
+    color           : var( --color-white );
+}
+.bg-purple {
+    background      : var( --color-purple );
+    color           : var( --color-white ) !important;
+}
+
+.bg-red {
+    background      : var( --color-red );
+    color           : var( --color-white )!important;
+}
+.bg-white {
+    background      : var( --color-white );
+    color           : var( --color-black );
+}
+/* Background Colors */
+.color-green { background: var( --color-green ); }
+.color-red { background: var( --color-red );}
+
+.color-orange {background: var( --color-orange ); var( --color-white )}
+
+/* -------------------- --------------------  ICONS */
 
     /* Icons color and size */
     i[class^="i-"] {
@@ -153,6 +255,11 @@ a.button.button-small > svg.svg-ui-icon,
     box-shadow          : var( --button-shadow-on );
 }
 
+/* button icon with color black */
+button[class^="btn-ico"].btn-white > i {
+    background-color: var( --color-black );
+}
+
 /* -------------------- --------------------  BTNVAV */
 
 .btnav {
@@ -200,51 +307,3 @@ a.button.button-small > svg.svg-ui-icon,
     box-shadow      : inset 0 0 0 1px var( --link-hover  );
     transform       : scale3d(1, 1, 1);
 }
-
-/* -------------------- --------------------  BUTTON COLOR */
-
-.bg-amber {
-    border: 1px solid var(  --color-amber	);
-    color:var(  --color-amber	);
-}
-.bg-black {
-    background      : var(  --color-black	);
-    color           : var(  --color-white	);
-}
-.bg-blue {
-    background      : var( --color-blue );
-    color           : var( --color-white );
-}
-.bg-green {
-    background      : var( --color-green );
-    color           : var( --color-white );
-}
-.bg-indigo {
-    background      : var( --color-indigo );
-    color           : var( --color-white );
-}
-.bg-orange {
-    background      : var( --color-orange );
-    color           : var( --color-white );
-}
-.bg-purple {
-    background      : var( --color-purple );
-    color           : var( --color-white ) !important;
-}
-.bg-red {
-    background      : var( --color-red );
-    color           : var( --color-white );
-}
-.bg-white {
-    background      : var( --color-white );
-    color           : var( --color-black );
-}
-/* button icon with color black */
-button[class^="btn-ico"].btn-white > i {
-    background-color: var( --color-black );
-}
-
-/* Background Colors */
-.color-green { background: var( --color-green ); }
-.color-red { background: var( --color-red );}
-.color-orange {background: var( --color-orange ); }

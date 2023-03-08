@@ -45,7 +45,7 @@
 	<div class="ui-card-small" data-layout="column">
 		<div data-layout="row">
 			<div class="ui-card-small-icon ui-icon-blue">
-				<img src="<{'icons/icon-package.svg'|theme}>" class="svg" aria-label="Modules">
+				<img class="svg" src="<{'icons/icon-module.svg'|theme}>" width="1em" height="1em" alt="modules">
 			</div>
 			<div class="ui-card-small-info">
 				<h5 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_ALL_MODULES}></h5>
@@ -67,9 +67,7 @@
 	<div class="ui-card-small" data-layout="column">
 		<div data-layout="row">
 			<div class="ui-card-small-icon ui-icon-green">
-				<img class="svg blocks" src="<{'icons/icon-blocks.svg'|theme}>">
-	<!--			<img class="svg block-active" src="<{'icons/icon-block-active.svg'|theme}>">-->
-	<!--			<img class="svg block-inactive" src="<{'icons/icon-block-inactive.svg'|theme}>"> -->
+				<img class="svg" src="<{'icons/icon-blocks.svg'|theme}>" width="1em" height="1em" alt="blocks">
 			</div>
 			<div class="ui-card-small-info">
 				<h5 class="ui-card-small-title"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></h5>
@@ -84,7 +82,7 @@
 		 [&quot;<{$ActiveBlockTotal}>&quot;,&quot;<{$smarty.const._AD_LEGACY_LANG_BLOCK_ACTIVETOTAL}>&quot;],
 		 [&quot;<{$ActiveInstalledBlockTotal}>&quot;,&quot;<{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALLEDTOTAL}>&quot;],
 		 [&quot;<{$ActiveUninstalledBlockTotal}>&quot;,&quot;<{$smarty.const._AD_LEGACY_LANG_BLOCK_UNINSTALLEDTOTAL}>&quot;],
-		 [&quot;<{$InactiveBlockTotal}>&quot;,&quot;&lt;b&gt;<{$smarty.const._AD_LEGACY_LANG_BLOCK_TOTAL}> <{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>&lt;/b&gt;&quot;]
+		 [&quot;<{$InactiveBlockTotal}>&quot;,&quot;<{$smarty.const._AD_LEGACY_LANG_BLOCK_INACTIVETOTAL}>&quot;]
 		 ]" data-colors="[&quot;var(--color-blue)&quot;,&quot;var(--color-green)&quot;,&quot;var(--color-green)&quot;,&quot;var(--color-red)&quot;,&quot;var(--color-red-op)&quot;]">
 		</div>
 	</div>
@@ -93,7 +91,7 @@
 	<div class="ui-card-small" data-layout="column">
 		<div data-layout="row">
 			<div class="ui-card-small-icon ui-icon-blue">
-				<img src="<{'icons/icon-user-group.svg'|theme}>" class="svg" aria-label="<{$smarty.const._AD_USER_LANG_USER_TOTAL}>">
+				<img class="svg" src="<{'icons/icon-user-group.svg'|theme}>" width="1em" height="1em" alt="user-groups">
 			</div>
 			<div class="ui-card-small-info">
 				<h5 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_ALL_OF_USERS}></h5>
@@ -114,29 +112,27 @@
 </div>
 
 <script>
-	$('div[chart-type="bar-compare"]').each(function(){
-		var chartbox = $(this);
-		var max = chartbox.data('chart-max');
-		var segments = chartbox.data('segments');
-		var colors = chartbox.data('colors');
-		var id = chartbox.attr('id');
-
-		var j = 0;
-		for(var i=0; i < segments.length; i++){
-			var linebox = $("<div class='linebox'></div>");
-			chartbox.append(linebox);
-			var s = segments[i];
-			var v = s[0];
-			var t = s[1];
-			var p = (v * 100 / max) + '%';
-
-			linebox.append("<div class='linebox-title-bar'><span class='compare-num'>" + v + "</span> <span class='compare-num-chart-title'>" + t + "</span></div>");
-			var line = $("<div class='line'></div>");
-			linebox.append(line);
-			var mainline = $("<div class='mainline' style='background-color:" + colors[j] + "; width:" + p + ";'></div>" );
-			j++;
-			if(j === colors.length) j = 0;
-			line.append(mainline);
-		}
-	});
+$('div[chart-type="bar-compare"]').each(function(){
+	var chartbox = $(this);
+	var max = chartbox.data('chart-max');
+	var segments = chartbox.data('segments');
+	var colors = chartbox.data('colors');
+	var id = chartbox.attr('id');
+	var j = 0;
+	for(var i=0; i < segments.length; i++){
+		var linebox = $("<div class='linebox'></div>");
+		chartbox.append(linebox);
+		var s = segments[i];
+		var v = s[0];
+		var t = s[1];
+		var p = (v * 100 / max) + '%';
+		linebox.append("<div class='linebox-title-bar'><span class='compare-num'>" + v + "</span> <span class='compare-num-chart-title'>" + t + "</span></div>");
+		var line = $("<div class='line'></div>");
+		linebox.append(line);
+		var mainline = $("<div class='mainline' style='background-color:" + colors[j] + "; width:" + p + ";'></div>" );
+		j++;
+		if(j === colors.length) j = 0;
+		line.append(mainline);
+	}
+});
 </script>

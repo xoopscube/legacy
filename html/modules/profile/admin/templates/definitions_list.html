@@ -31,71 +31,57 @@
         <div class="dropdown" id="filter-sort">
 
             <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="24px" height="24px" alt="options">
+                <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
             </a>
 
             <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_FIELD_NAME}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_FIELD_NAME}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_FIELD_NAME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_FIELD_NAME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._MD_PROFILE_LANG_LABEL}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_LABEL}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_LABEL}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_LABEL}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_LABEL}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._MD_PROFILE_LANG_TYPE}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_TYPE}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_TYPE}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_TYPE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_TYPE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._MD_PROFILE_LANG_VALIDATION}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_VALIDATION}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_VALIDATION}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_VALIDATION}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_VALIDATION}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._MD_PROFILE_LANG_REQUIRED}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_REQUIRED}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_REQUIRED}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_REQUIRED}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_REQUIRED}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._MD_PROFILE_LANG_SHOW_FORM}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_SHOW_FORM}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_SHOW_FORM}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_SHOW_FORM}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_SHOW_FORM}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._MD_PROFILE_LANG_WEIGHT}></h6>
                     <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_WEIGHT}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_WEIGHT}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_WEIGHT}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DEFINITIONS_SORT_KEY_WEIGHT}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
             </div><{* ----- /Dropdown-content *}>
@@ -121,14 +107,14 @@
     <td><{$obj->getShow('show_form')}></td>
     <td><{$obj->getShow('weight')}></td>
     <td class="list_control">
-        <a href="./index.php?action=DefinitionsView&amp;field_id=<{$obj->getShow('field_id')}>" aria-label="<{$smarty.const._VIEW}>">
-            <img src="<{"icons/icon-file-view.svg"|theme}>" class="svg">
+        <a class="action-view" href="./index.php?action=DefinitionsView&amp;field_id=<{$obj->getShow('field_id')}>" aria-label="<{$smarty.const._VIEW}>">
+            <img class="svg" src="<{'icons/icon-view.svg'|theme}>" width="1em" height="1em" alt="view">
         </a>
-        <a href="./index.php?action=DefinitionsEdit&amp;field_id=<{$obj->getShow('field_id')}>" aria-label="<{$smarty.const._EDIT}>">
-            <img src="<{"icons/icon-file-edit.svg"|theme}>" class="svg">
+        <a class="action-edit" href="./index.php?action=DefinitionsEdit&amp;field_id=<{$obj->getShow('field_id')}>" aria-label="<{$smarty.const._EDIT}>">
+            <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" width="1em" height="1em" alt="edit">
         </a>
-        <a href="./index.php?action=DefinitionsDelete&amp;field_id=<{$obj->getShow('field_id')}>" aria-label="<{$smarty.const._DELETE}>">
-            <img src="<{"icons/icon-file-delete.svg"|theme}>" class="svg">
+        <a class="action-delete" href="./index.php?action=DefinitionsDelete&amp;field_id=<{$obj->getShow('field_id')}>" aria-label="<{$smarty.const._DELETE}>">
+            <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" width="1em" height="1em" alt="delete">
         </a>
     </td>
     </tr>

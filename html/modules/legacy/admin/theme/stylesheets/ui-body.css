@@ -90,11 +90,12 @@ a[href^="https://"]:not([href*="example.com"]):after{
     text-decoration : none;
 }*/
 
-/* ----- ANCHOR link
+/* ----- ANCHOR LINK SCROLL MARGIN
    scroll-margin-top : value equal to header height */
 a[name|=help] {
     scroll-margin-top: 4em;
 }
+a[id|=avatar-active],
 a[id|=close-site],
 a[id|=cool-uri],
 a[id|=ip-ban],

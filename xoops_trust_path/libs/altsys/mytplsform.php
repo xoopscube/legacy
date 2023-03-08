@@ -25,6 +25,7 @@ $module_handler     =& xoops_gethandler( 'module' );
 $module             =& $module_handler->getByDirname( 'altsys' );
 $moduleperm_handler =& xoops_gethandler( 'groupperm' );
 if ( ! is_object( @$xoopsUser ) || ! $moduleperm_handler->checkRight( 'module_admin', $module->getVar( 'mid' ), $xoopsUser->getGroups() ) ) {
+    // TODO redirect
 	die( 'only admin of altsys can access this area' );
 }
 

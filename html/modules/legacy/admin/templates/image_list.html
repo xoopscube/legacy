@@ -8,7 +8,7 @@
 </div>
 
 
-<h2 class="admintitle"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}> (<{$category->getShow('imgcat_name')}>)</h2>
+<h2><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}> (<{$category->getShow('imgcat_name')}>)</h2>
 
 
 <div class="tips">
@@ -67,55 +67,71 @@
 <table class="outer">
     <thead>
     <tr>
-        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_ID}>
-            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_ID}>" aria-label="<{$smarty.const._ASCENDING}>">
-                <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" >
-            </a>
-            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_ID}>" aria-label="<{$smarty.const._DESCENDING}>">
-                <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>">
-            </a>
+        <th>
+            <{* ////— DROPDOWN SORT —\\\\ *}>
+            <div class="dropdown" id="filter-sort">
+
+                <a href="#" class="dropdown-toggle button" aria-label="sort filter">
+                    <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="24px" height="24px" alt="options">
+                </a>
+
+                <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
+                    <div data-layout="row center-justify inline">
+                        <h6><{$smarty.const._AD_LEGACY_LANG_IMAGE_ID}></h6>
+                        <div>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_ID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_ID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        </div>
+                    </div>
+                    <div data-layout="row center-justify inline">
+                        <h6 aria-label="<{$smarty.const._MD_LEGACY_LANG_IMAGE_NICENAME}>"><{$smarty.const._AD_LEGACY_LANG_IMAGE_NAME}></h6>
+                        <div>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_NICENAME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_NICENAME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        </div>
+                    </div>
+
+                    <div data-layout="row center-justify inline">
+                        <h6><{$smarty.const._MD_LEGACY_LANG_IMAGE_MIMETYPE}></h6>
+                        <div>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_MIMETYPE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_MIMETYPE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        </div>
+                    </div>
+
+                    <div data-layout="row center-justify inline">
+                        <h6><{$smarty.const._AD_LEGACY_LANG_IMAGE_CREATED}></h6>
+                        <div>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_CREATED}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_CREATED}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        </div>
+                    </div>
+
+                    <div data-layout="row center-justify inline">
+                        <h6><{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAY}></h6>
+                        <div>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_DISPLAY}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_DISPLAY}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        </div>
+                    </div>
+
+                    <div data-layout="row center-justify inline">
+                        <h6><{$smarty.const._AD_LEGACY_LANG_IMAGE_WEIGHT}></h6>
+                        <div>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_WEIGHT}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_WEIGHT}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
         </th>
-        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_NAME}>
-            <{$smarty.const._MD_LEGACY_LANG_IMAGE_NICENAME}>
-            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_NICENAME}>" aria-label="<{$smarty.const._ASCENDING}>">
-                <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>">
-            </a>
-            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_NICENAME}>" aria-label="<{$smarty.const._DESCENDING}>">
-                <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>">
-            </a>
-        </th>
-        <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_MIMETYPE}>
-            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_MIMETYPE}>">
-                <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
-            </a>
-            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_MIMETYPE}>">
-                <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
-            </a>
-        </th>
-        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_CREATED}>
-            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_CREATED}>">
-                <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
-            </a>
-            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_CREATED}>">
-                <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
-            </a>
-        </th>
-        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAY}>
-            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_DISPLAY}>">
-                <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
-            </a>
-            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_DISPLAY}>">
-                <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
-            </a>
-        </th>
-        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_WEIGHT}>
-            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.IMAGE_SORT_KEY_IMAGE_WEIGHT}>">
-                <img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>">
-            </a>
-            <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.IMAGE_SORT_KEY_IMAGE_WEIGHT}>">
-                <img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>">
-            </a>
-        </th>
+        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_NAME}></th>
+        <th><{$smarty.const._MD_LEGACY_LANG_IMAGE_MIMETYPE}></th>
+        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_CREATED}></th>
+        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAY}></th>
+        <th><{$smarty.const._AD_LEGACY_LANG_IMAGE_WEIGHT}></th>
         <th><{$smarty.const._DELETE}><br>
             <input name="allbox" id="allbox" onclick="with(document.imagelistform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('delete')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All"></th>
         <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
@@ -124,7 +140,7 @@
     <tbody>
     <{foreach item=obj from=$objects}>
     <{if $obj->get('image_display') == 1}>
-    <tr class="<{cycle values='odd,even'}> active">
+    <tr class="active">
         <{else}>
         <tr>
     <{/if}>
@@ -132,9 +148,15 @@
     <td class="ui-card-block-image">
     <{if $obj->mImageCategory != null}>
     <{if $obj->mImageCategory->get('imgcat_storetype') == 'file'}>
-        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>" alt="<{$obj->getShow('image_nicename')}>" aria-label="<{$obj->getShow('image_nicename')}>" style="max-width: 70%;">
+        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>"
+             alt="<{$obj->getShow('image_nicename')}>"
+             aria-label="<{$obj->getShow('image_nicename')}>"
+             style="max-width: 240px;">
         <{else}>
-        <img src="<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>" alt="<{$obj->getShow('image_nicename')}>" aria-label="<{$obj->getShow('image_nicename')}>" style="max-width: 70%;">
+        <img src="<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>"
+             alt="<{$obj->getShow('image_nicename')}>"
+             aria-label="<{$obj->getShow('image_nicename')}>"
+             style="max-width: 240px;">
         <{/if}>
     <{/if}>
     <div class="list_imagetitle"><input type="text" size="12" name="nicename[<{$obj->getShow('image_id')}>]" value="<{$obj->getShow('image_nicename')}>"></div>
@@ -144,16 +166,16 @@
         <td class="list_select">
             <input type="checkbox" name="display[<{$obj->getShow('image_id')}>]" value="1" <{if $obj->getShow('image_display')}>checked="checked"<{/if}>>
         </td>
-        <td class="list_number"><input type="text" size="4" maxlength="6" name="weight[<{$obj->getShow('image_id')}>]" value="<{$obj->getShow('image_weight')}>" class=list_number /></td>
+        <td class="list_number"><input type="number" size="4" maxlength="6" name="weight[<{$obj->getShow('image_id')}>]" value="<{$obj->getShow('image_weight')}>" class=list_number></td>
         <td class="list_select">
             <input type="checkbox" name="delete[<{$obj->getShow('image_id')}>]" value="1">
         </td>
         <td class="list_control">
-            <a href="./index.php?action=ImageEdit&amp;image_id=<{$obj->getShow('image_id')}>" aria-label="<{$smarty.const._EDIT}>">
-                <img src="<{"icons/icon-image-edit.svg"|theme}>" class="svg" alt="<{$smarty.const._EDIT}>">
+            <a class="action-edit" href="./index.php?action=ImageEdit&amp;image_id=<{$obj->getShow('image_id')}>" aria-label="<{$smarty.const._EDIT}>">
+                <img src="<{'icons/icon-edit.svg'|theme}>" class="svg" alt="<{$smarty.const._EDIT}>">
             </a>
-            <a href="./index.php?action=ImageDelete&amp;image_id=<{$obj->getShow('image_id')}>" aria-label="<{$smarty.const._EDIT}>">
-                <img src="<{"icons/icon-delete.svg"|theme}>" class="svg" alt="<{$smarty.const._DELETE}>">
+            <a class="action-delete" href="./index.php?action=ImageDelete&amp;image_id=<{$obj->getShow('image_id')}>" aria-label="<{$smarty.const._EDIT}>">
+                <img src="<{'icons/icon-delete.svg'|theme}>" class="svg" alt="<{$smarty.const._DELETE}>">
             </a>
         </td>
     </tr>

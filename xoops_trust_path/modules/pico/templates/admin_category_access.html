@@ -84,11 +84,10 @@
                        onclick="with(document.groupperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('_gid<{$group.gid}>_')>=0){elements[i].checked=this.checked;}}}">
             </td>
             <{foreach from=$permissions item=perm_title key=perm_name name=group_td}>
-            <td class="<{cycle values=" odd,even
-            "}>">
+            <td>
             <input type="checkbox" name="<{$perm_name}>[<{$group.gid}>]"
-                   id="gcol_<{$smarty.foreach.group_td.iteration}>_gid<{$group.gid}>_" value="1" <{if
-            $group.perms.$perm_name}>checked="checked"<{/if}>>
+                   id="gcol_<{$smarty.foreach.group_td.iteration}>_gid<{$group.gid}>_"
+                   value="1" <{if $group.perms.$perm_name}>checked="checked"<{/if}>>
             </td>
             <{/foreach}>
         </tr>
@@ -161,8 +160,7 @@
                        onclick="with(document.userperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('_nid<{$user.nid}>_')>=0){elements[i].checked=this.checked;}}}">
             </td>
             <{foreach from=$permissions item=perm_title key=perm_name name=user_td}>
-            <td class="<{* cycle values=" odd,even
-            " *}>">
+            <td>
             <input type="checkbox" name="new_<{$perm_name}>[<{$user.nid}>]"
                    id="ucol_<{$smarty.foreach.user_td.iteration}>_nid<{$user.nid}>_" value="1" <{if
             $user.perms.$perm_name}>checked="checked"<{/if}>>

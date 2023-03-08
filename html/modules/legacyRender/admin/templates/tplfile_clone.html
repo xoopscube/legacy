@@ -6,22 +6,20 @@
 </div>
 
 
-<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_FILE_EDIT}></h2>
+<h2><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_FILE_EDIT}></h2>
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 <script type="text/javascript">
-    <!--
-    function expandEditor( id, width, height )
-    {
-        var element = document.getElementById( id );
-        if( element ) {
-            element.style.width = width + "px";
-            element.style.height = height + "px";
-        }
-        return false;
+function expandEditor( id, width, height )
+{
+    var element = document.getElementById( id );
+    if( element ) {
+        element.style.width = width + "px";
+        element.style.height = height + "px";
     }
-    // -->
+    return false;
+}
 </script>
 
 <{if $actionForm->hasError()}>
@@ -79,8 +77,8 @@
         </tr>
         <tr>
             <td class="foot" colspan="2">
-                <input class="button" type="submit" value="<{$smarty.const._EDIT}>">
                 <input class="button" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+                <input class="button" type="submit" value="<{$smarty.const._EDIT}>">
             </td>
         </tr>
     </table>

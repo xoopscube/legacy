@@ -6,7 +6,7 @@
 </div>
 
 
-<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_EDIT}> (<{$object->getShow('tplset_name')}>)</h2>
+<h2><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_EDIT}> (<{$object->getShow('tplset_name')}>)</h2>
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
@@ -45,8 +45,9 @@
         </tr>
         <tr>
             <td class="foot" colspan="2">
-                <input class="formButton" type="submit" value="<{$smarty.const._EDIT}>">
-                <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+                <input class="button" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+                <button class="button edit" type="submit">
+                    <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="edit"> <{$smarty.const._EDIT}></button>
             </td>
         </tr>
     </table>

@@ -6,7 +6,7 @@
 </div>
 
 
-<h2 class="admintitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></h2>
+<h2><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></h2>
 
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
@@ -53,7 +53,9 @@
         <tr>
             <td class="foot" colspan="2">
                 <input class="button" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
-                <input class="button" type="submit" value="<{$smarty.const._AD_LEGACYRENDER_LANG_UPLOAD}>">
+                <button class="button upload" type="submit">
+                    <img class="svg" src="<{'icons/icon-upload.svg'|theme}>" width="1em" height="1em" alt="upload"> <{$smarty.const._AD_LEGACYRENDER_LANG_UPLOAD}>
+                </button>
             </td>
         </tr>
         </tfoot>

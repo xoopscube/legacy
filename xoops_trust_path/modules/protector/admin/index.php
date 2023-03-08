@@ -131,7 +131,7 @@ echo "<h2>" . $xoopsModule->name() . "</h2>\n";
 echo '<section data-layout"row center-justify" class="action-control">
 <div><!-- Filters --></div>
     <div class="control-view">
-        <a class="button" href="'. XOOPS_URL .'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1#ip-ban">'. _AM_TH_IP_BAN .'</a>
+        <a class="button" href="'. XOOPS_URL .'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1#ip-ban">⛔ '. _AM_TH_IP_BAN .'</a>
         <button class="help-admin button" type="button" data-module="protector" data-help-article="#help-blacklist" aria-label="'._HELP .'">
             <b>?</b>
         </button>
@@ -166,16 +166,16 @@ echo "<form name='ConfigForm' action='' method='POST'>"
     <table class='outer'>
     <tbody>
     <tr>
-        <td class='head'>" . _AM_TH_BADIPS . "</td>
-        <td class='even'>
+        <td>" . _AM_TH_BADIPS . "</td>
+        <td>
         <textarea name='bad_ips' id='bad_ips' rows='4' style='width:200px;'>$bad_ips4disp</textarea>
         <br>
         " . htmlspecialchars( $protector->get_filepath4badips() ) . "
         </td>
     </tr>
     <tr>
-        <td class='head'>" . _AM_TH_GROUP1IPS . "</td>
-        <td class='even'>
+        <td>" . _AM_TH_GROUP1IPS . "</td>
+        <td>
         <textarea name='group1_ips' id='group1_ips' rows='4' style='width:200px;'>$group1_ips4disp</textarea>
         <br>
         " . htmlspecialchars( $protector->get_filepath4group1ips() ) . "
@@ -184,7 +184,7 @@ echo "<form name='ConfigForm' action='' method='POST'>"
     </tbody>
     <tfoot>
     <tr>
-        <td colspan='2'><input type='submit' value='" . _GO . "'></td>
+        <td colspan='2'><input class='button' type='submit' value='" . _GO . "'></td>
     </tr>
     </tfoot>
 </table>
@@ -192,7 +192,7 @@ echo "<form name='ConfigForm' action='' method='POST'>"
 
 // LOG Pagination
 echo "<form action='' method='GET'>
-<div data-layout'row center-justify my-6'>
+<div data-layout='row center-justify my-6'>
     <div>
     <select name='num' onchange='submit();'>$num_options</select>
     <input type='submit' value='" . _SUBMIT . "'>
@@ -250,15 +250,13 @@ while ( list( $lid, $uid, $ip, $agent, $type, $description, $timestamp, $uname )
 // footer of log listing
 echo "<tfoot>
     <tr>
-    <td colspan='3'> 
-    <input type='button' value='" . _AM_BUTTON_REMOVE . "' onclick='if(confirm(\"" . _AM_JS_REMOVECONFIRM . "\")){document.MainForm.action.value=\"delete\"; submit();}'>
-    " . _AM_LABEL_REMOVE . "
-    </td>
-    <td colspan='5'> 
-    <input type='button' value='" . _AM_BUTTON_COMPACTLOG . "' onclick='if(confirm(\"" . _AM_JS_COMPACTLOGCONFIRM . "\")){document.MainForm.action.value=\"compactlog\"; submit();}'>
-    " . _AM_LABEL_COMPACTLOG . " 
-    <input type='button' value='" . _AM_BUTTON_REMOVEALL . "' onclick='if(confirm(\"" . _AM_JS_REMOVEALLCONFIRM . "\")){document.MainForm.action.value=\"deleteall\"; submit();}'>
-    " . _AM_LABEL_REMOVEALL . " 
+    <td colspan='9'> 
+    <button class='button delete' type='button' onclick='if(confirm(\"" . _AM_JS_REMOVECONFIRM . "\")){document.MainForm.action.value=\"delete\"; submit();}' aria-label='" . _AM_LABEL_REMOVE . "'>
+    <i class='i-delete'></i>" . _AM_BUTTON_REMOVE . "</button> 
+    <button class='button delete' type='button' onclick='if(confirm(\"" . _AM_JS_REMOVEALLCONFIRM . "\")){document.MainForm.action.value=\"deleteall\"; submit();}' aria-label='" . _AM_LABEL_REMOVEALL . " '>
+    <i class='i-delete'></i>" . _AM_BUTTON_REMOVEALL . "</button>
+    <button class='button' type='button' value='' onclick='if(confirm(\"" . _AM_JS_COMPACTLOGCONFIRM . "\")){document.MainForm.action.value=\"compactlog\"; submit();}' aria-label='" . _AM_LABEL_COMPACTLOG . "'>
+    <i class='i-tar'></i>" . _AM_BUTTON_COMPACTLOG . "</button>
     </td>
   </tr>
   </tfoot>
