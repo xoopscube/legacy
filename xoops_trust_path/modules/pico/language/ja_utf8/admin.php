@@ -77,3 +77,8 @@ define( '_MD_A_PICO_H2_TAGS' , 'タグ管理');
 define( '_MD_A_PICO_TH_TAG' , 'タグ');
 define( '_MD_A_PICO_TH_USED' , '利用数');
 define( '_MD_A_PICO_LABEL_ORDER' , '並び順');
+
+// tips
+define( '_MD_A_PICO_TIPS_CONTENTS' , 'Content Tips');
+define( '_MD_A_PICO_TIPS_TAGS' , 'Tags Tips');
+define( '_MD_A_PICO_TIPS_EXTRAS' , 'Extras Tips');

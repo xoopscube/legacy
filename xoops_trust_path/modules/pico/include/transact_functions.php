@@ -251,7 +251,7 @@ function pico_sync_tags( $mydirname ) {
 
 	while ( list( $content_id, $tags ) = $db->fetchRow( $result ) ) {
 		foreach ( explode( ' ', $tags ) as $tag ) {
-			if ( '' == trim( $tag ) ) {
+			if ( trim( $tag ) == '' ) {
 				continue;
 			}
 			$all_tags_array[ $tag ][] = $content_id;
@@ -262,10 +262,12 @@ function pico_sync_tags( $mydirname ) {
 	foreach ( $all_tags_array as $tag => $content_ids ) {
 		$label4sql       = $db->quoteString( $tag );
 		$content_ids4sql = implode( ',', $content_ids );
-		$count           = count( $content_ids );
+		$count           = $count = sizeof( $content_ids ) ; // Gigamaster fix refactor count( $content_ids );
         // @todo @gigamaster replace INSERT INTO (results Duplicate entry for key 'PRIMARY')
         // Using INSERT IGNORE INTO ref. https://www.tutorialspoint.com/mysql/mysql-handling-duplicates.htm
-		$result          = $db->queryF( "INSERT IGNORE INTO " . $db->prefix( $mydirname . "_tags" ) . " SET label=$label4sql,weight=0,count='$count',content_ids='$content_ids4sql',created_time=UNIX_TIMESTAMP(),modified_time=UNIX_TIMESTAMP()" );
+		//$result  = $db->queryF( "INSERT IGNORE INTO " . $db->prefix( $mydirname . "_tags" ) . " SET label=$label4sql,weight=0,count='$count',content_ids='$content_ids4sql',created_time=UNIX_TIMESTAMP(),modified_time=UNIX_TIMESTAMP()" );
+        // WONT FIX - with 'ignore' the tags are not updated ! And without, output errors : duplicated and LIMIT error syntax
+		$result    = $db->queryF( "INSERT INTO ".$db->prefix($mydirname."_tags" )." SET label=$label4sql,weight=0,count='$count',content_ids='$content_ids4sql',created_time=UNIX_TIMESTAMP(),modified_time=UNIX_TIMESTAMP()" ) ;
 
 		if ( ! $result ) {
 			$db->queryF( "UPDATE " . $db->prefix( $mydirname . "_tags" ) . " SET count=$count,content_ids='$content_ids4sql',modified_time=UNIX_TIMESTAMP() WHERE label=$label4sql" );

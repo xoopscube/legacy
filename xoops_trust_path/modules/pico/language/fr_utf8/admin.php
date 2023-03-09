@@ -71,3 +71,8 @@ define( '_MD_A_PICO_H2_SYNCALL' , 'Synchroniser les informations superflues');
 define( '_MD_A_PICO_BTN_DOSYNCALL' , 'Synchroniser');
 define( '_MD_A_PICO_MSG_SYNCALLDONE' , 'Synchronisé avec succès');
 define( '_MD_A_PICO_HELP_SYNCALL' , 'Exécuter cette opération si les catégories ou les contenus affichent des données contradictoires.');
+
+// tips
+define( '_MD_A_PICO_TIPS_CONTENTS' , 'Content Tips');
+define( '_MD_A_PICO_TIPS_TAGS' , 'Tags Tips');
+define( '_MD_A_PICO_TIPS_EXTRAS' , 'Extras Tips');

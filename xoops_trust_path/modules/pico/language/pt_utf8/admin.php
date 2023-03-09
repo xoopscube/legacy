@@ -79,3 +79,8 @@ define( '_MD_A_PICO_TH_CONTENTSWEIGHT' , "Posição");
 define( '_MD_A_PICO_TH_GROUPNAME' , "Grupo");
 define( '_MD_A_PICO_TH_UID' , "Número");
 define( '_MD_A_PICO_TH_UNAME' , "Codinome");
+
+// tips
+define( '_MD_A_PICO_TIPS_CONTENTS' , 'Content Tips');
+define( '_MD_A_PICO_TIPS_TAGS' , 'Tags Tips');
+define( '_MD_A_PICO_TIPS_EXTRAS' , 'Extras Tips');

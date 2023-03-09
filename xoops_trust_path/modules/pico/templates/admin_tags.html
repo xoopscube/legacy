@@ -2,6 +2,9 @@
 
 <h3><{$mod_name|ucfirst}> » <{$smarty.const._MD_A_PICO_H2_TAGS}></h3>
 
+<div class="tips">
+    <{$smarty.const._MD_A_PICO_TIPS_TAGS}>
+</div>
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
 <section data-layout="row center-justify" class="action-control">
@@ -11,7 +14,7 @@
         <label>
             <{$smarty.const._MD_PICO_NUM}>
             <select name="num">
-                <{assign var="nums" value=","|explode:"10,30,100,300,1000"}>
+                <{assign var="nums" value=","|explode:"10,20,30,40,50"}>
                 <{html_options values=$nums output=$nums selected=$num}>
             </select>
         </label>
@@ -42,66 +45,49 @@
     <table class="outer">
         <thead>
         <tr>
-            <th>
-                <{$smarty.const._MD_A_PICO_TH_TAG}>
-            </th>
-            <th>
-                <{$smarty.const._MD_PICO_TH_WEIGHT}>
-            </th>
-            <th>
-                <{$smarty.const._MD_A_PICO_TH_USED}>
-            </th>
-            <th>
-                <{$smarty.const._MD_A_PICO_TH_SUMMARY}>
-            </th>
-            <th>
-                <{$smarty.const._MD_PICO_CREATED}>
-            </th>
-            <th>
-                <{$smarty.const._MD_A_PICO_TH_EXTRASACTIONS}>
-                <input type="checkbox"
-                       onclick="with(document.tags){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_action_')>=0){elements[i].checked=this.checked;}}}">
-            </th>
+            <th><{$smarty.const._MD_A_PICO_TH_TAG}></th>
+            <th><{$smarty.const._MD_PICO_TH_WEIGHT}></th>
+            <th><{$smarty.const._MD_A_PICO_TH_USED}></th>
+            <th><{$smarty.const._MD_A_PICO_TH_SUMMARY}></th>
+            <th><{$smarty.const._MD_PICO_CREATED}></th>
+            <th><input type="checkbox" onclick="with(document.tags){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_action_')>=0){elements[i].checked=this.checked;}}}" aria-label="<{$smarty.const._MD_A_PICO_TH_EXTRASACTIONS}>"></th>
         </tr>
         </thead>
         <tbody>
         <{foreach from=$tags item="tag"}>
-        <tr class="<{cycle values=" even,odd
-        "}>">
+        <tr>
         <td>
             <input type="text" size="10" name="labels[<{$tag.label_raw|escape}>]" value="<{$tag.label_raw|escape}>">
         </td>
+        <td class="list_order"><input type="number" size="3" name="weights[<{$tag.label_raw|escape}>]" value="<{$tag.weight}>"></td>
+        <td class="list_center"><{$tag.count}></td>
         <td>
-            <input type="text" size="3" name="weights[<{$tag.label_raw|escape}>]" value="<{$tag.weight}>">
-        </td>
-        <td>
-            <{$tag.count}>
-        </td>
-        <td>
-            <{foreach from=$tag.contents item="content"}>
-            <!--<a href="<{$mod_url}>/<{$content.link}>"><{$content.subject}></a>-->
-            <a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>"><{$content.subject}></a>
+        <{if !$tag.count == 0}>
+            <{foreach from=$tag.contents key=k item=content}>
+           <a class="badge" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>" aria-label="<{$content.subject}>"><{$content.id}></a>
             <{/foreach}>
+            <{else}>
+            <span class="message-warning"><{$smarty.const._MD_PICO_DELETEDCONTENTS}></span>
+        <{/if}>
+
         </td>
-        <td>
-            <{$tag.created_time|formatTimestamp}>
-        </td>
-        <td align="<{$smarty.const._ALIGN_START}>">
-            <input type="checkbox" name="action_selects[<{$tag.label}>]" id="col_action_<{$tag.id}>" value="1">
+        <td class="list_date"><span class="badge"><{$tag.created_time|formatTimestamp}></span></td>
+        <td class="list_control"><input type="checkbox" name="action_selects[<{$tag.label}>]" id="col_action_<{$tag.id}>" value="1">
         </td>
         </tr>
         <{/foreach}>
         </tbody>
         <tfoot>
         <tr>
-            <th colspan="4">
+            <th colspan="3" class="list_center">
                 <input type="submit"
                        name="tags_update"
                        value="<{$smarty.const._SUBMIT}>">
             </th>
-            <th colspan="2">
+            <th colspan="3" class="list_right">
                 <{$smarty.const._MD_A_PICO_LABEL_EXTRASRIGHTCHECKED}>
                 <input type="submit"
+                       class="button delete"
                        name="tags_delete"
                        value="<{$smarty.const._MD_A_PICO_BTN_DELETE}>"
                        onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_DELETE}>');">

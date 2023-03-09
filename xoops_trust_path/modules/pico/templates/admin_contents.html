@@ -3,7 +3,7 @@
 <h2><{$mod_name|ucfirst}> » <{$smarty.const._MD_PICO_CATEGORY}> » <{$cat_title}></h2>
 
 <div class="tips">
-    <{$smarty.const._MD_A_PICO_LEGEND_CONTENTSTHS}>
+    <{$smarty.const._MD_A_PICO_TIPS_CONTENTS}>
 </div>
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
@@ -35,8 +35,10 @@
 </section>
 
 
-<!-- contents form -->
-<h3 class="head"><{$smarty.const._MD_A_PICO_H2_CONTENTS}></h3>
+<{* ----- contents list and checkbox legend
+<h3><{$smarty.const._MD_A_PICO_H2_CONTENTS}></h3>
+<p><{$smarty.const._MD_A_PICO_LEGEND_CONTENTSTHS}></p>
+----- *}>
 
 <form name="contents" action="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$cat_id}>" method="post">
     <{$gticket_hidden}>

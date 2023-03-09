@@ -98,7 +98,7 @@ define( '_MD_PICO_TH_BODY_WAITING' , 'Waiting body');
 define( '_MD_PICO_TH_FILTERS' , 'Filters');
 define( '_MD_PICO_TH_TAGS' , 'Tags');
 define( '_MD_PICO_TH_TAGSDSC' , 'multiple tags separated by space');
-define( '_MD_PICO_TH_WEIGHT' , 'Order weight');
+define( '_MD_PICO_TH_WEIGHT' , 'Order');
 define( '_MD_PICO_TH_CONTENTOPTIONS' , 'Options');
 define( '_MD_PICO_LABEL_USECACHE' , 'Use cache');
 define( '_MD_PICO_NOTE_USECACHEDSC' , 'Enable only for static content');
