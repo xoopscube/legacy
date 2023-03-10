@@ -72,6 +72,14 @@
         "footer";
         width       : 100%;
     }
+    .alert-notify,
+    .alert-submit {
+        /*position: fixed;*/
+        right: -.5rem;
+        top: 3rem;
+        width: 100%;
+        /*z-index: var(--z-sticky);*/
+    }
     .tips, .error, .confirm, .success, .confirmMsg, .resultMsg {
         margin:1rem auto;padding: .5rem .5rem .5rem 2.5rem;width:100%;
     }
@@ -133,18 +141,24 @@
     nav#help-menu {
         position :sticky;
     }
+    .alert-notify,
+    .alert-submit {
+        right: 0;
+        top: 3em;
+        width: 480px;
+    }
 
 }
 
 /* -------------------- --------------------  Tablet Hor. 1024px*/
 
 @media screen and (min-width: 64em) {
-        .layout-grid {
-            grid-template-columns: auto;
-            grid-template-areas:
-            "header header"
-            "main main";
-        }
+    .layout-grid {
+        grid-template-columns: auto;
+        grid-template-areas:
+        "header header"
+        "main main";
+    }
 
     #container > main {
         padding: 0 1rem;

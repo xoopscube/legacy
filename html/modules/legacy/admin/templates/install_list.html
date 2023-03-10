@@ -36,8 +36,7 @@
                 <path d="M16 5v6h5V5m-11 6h5V5h-5m6 13h5v-6h-5m-6 6h5v-6h-5m-6 6h5v-6H4m0-1h5V5H4v6z" fill="currentColor"/></svg>
         </button>
 
-        <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-modules' aria-label="<{$smarty.const._HELP}>">
-            <b>?</b> </button>
+        <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-modules' aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
     </div>
 
 </section>
@@ -72,7 +71,7 @@
 
 
 		<div class="ui-card-block-image">
-			<img class="svg" src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" width="1em" height="1em" alt="<{$module->getShow('name')}>">
+			<img class="svg" src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" width="100%" height="100%" alt="<{$module->getShow('name')}>">
 		</div>
 
 
@@ -100,10 +99,10 @@
 			</a>
 		</div>
 
-    </div><{* / ui-card-block-content *}>
+    </div><{* /ui-card-block-content *}>
 
 
-	</div><{* / ui-card-block *}>
+	</div><{* /ui-card-block *}>
 
 	<{/foreach}>
 

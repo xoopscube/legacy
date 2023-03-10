@@ -17,6 +17,10 @@ Alternative data display
     margin        	: 0 0 1em 0;
 }
 
+.control-view {
+    display : flex
+}
+
 :where(table, table.outer, table:not([class^="cke_"])) {
     background      : var(  --table-background );
     border-collapse : collapse;

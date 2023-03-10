@@ -299,8 +299,8 @@
 
     /* -------------------- --------------------  DROPDOWN */
 
-    --d-toggle-bg           : var(--layer-3);
-    --d-toggle-border       : var(--layer-4);
+    --d-toggle-bg           : var( --layer-4 );
+    --d-toggle-border       : 1px solid var( --layer-4 );
     --d-toggle-color        : var(--link);
     --d-toggle-font         : inherit;
     --d-toggle-padding      : var(--space-2 ) var(--space-2);

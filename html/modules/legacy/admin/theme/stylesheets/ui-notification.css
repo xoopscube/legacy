@@ -26,9 +26,9 @@
 .alert-notify,
 .alert-submit {
     position        : fixed;
-    right           : 4rem;
-    top             : 3rem;
-    width           : 480px;
+    /*right           : 4rem;*/
+    /*top             : 3rem;*/
+    /*width           : 480px;*/
     z-index         : var(--z-sticky);
 }
 .alert-close {

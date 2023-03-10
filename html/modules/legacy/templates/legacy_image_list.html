@@ -65,13 +65,13 @@ return;
       <td><{$obj->getShow('image_mimetype')}></td>
       <td>
         <{if $obj->mImageCategory->get('imgcat_storetype') == 'file'}>
-          <a href="#" onclick="javascript:appendCode('[img align=left]<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignleft.gif" alt="Left" /></a>
-          <a href="#" onclick="javascript:appendCode('[img]<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/aligncenter.gif" alt="Center" /></a>
-          <a href="#" onclick="javascript:appendCode('[img align=right]<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignright.gif" alt="Left" /></a>
+          <a href="#" onclick="javascript:appendCode('[img align=left]<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/icons/alignleft.svg" width="1em" height="1em" alt="Left"></a>
+          <a href="#" onclick="javascript:appendCode('[img]<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/icons/aligncenter.svg" width="1em" height="1em" alt="Center"></a>
+          <a href="#" onclick="javascript:appendCode('[img align=right]<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$obj->getShow('image_name')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/icons/alignright.svg" width="1em" height="1em" alt="Left"></a>
         <{else}>
-          <a href="#" onclick="javascript:appendCode('[img align=left]<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignleft.gif" alt="Left" /></a>
-          <a href="#" onclick="javascript:appendCode('[img]<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/aligncenter.gif" alt="Center" /></a>
-          <a href="#" onclick="javascript:appendCode('[img align=right]<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/alignright.gif" alt="Left" /></a>
+          <a href="#" onclick="javascript:appendCode('[img align=left]<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/icons/alignleft.svg" width="1em" height="1em" alt="Left"></a>
+          <a href="#" onclick="javascript:appendCode('[img]<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/icons/aligncenter.svg" width="1em" height="1em" alt="Center"></a>
+          <a href="#" onclick="javascript:appendCode('[img align=right]<{$smarty.const.XOOPS_URL}>/image.php?id=<{$obj->getShow('image_id')}>[/img]');"><img src="<{$smarty.const.XOOPS_URL}>/images/icons/alignright.svg" width="1em" height="1em" alt="Left"></a>
         <{/if}>
       </td>
     </tr>

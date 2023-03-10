@@ -104,9 +104,9 @@ a[id|=debug-mode] {
 }
 
 blockquote {
-    border-left     : 3px solid var(  --layer-4  );
+    border-left     : 3px solid var(--layer-4);
     font-style      : italic;
-    padding         : var(  --space-5   ) var(  --space-7  );
+    padding         : var(--space-5) var(--space-7);
 }
 
 code,kbd,pre,samp {
@@ -123,7 +123,7 @@ kbd {
     padding         : var(--space-1) var(--space-2);
 }
 pre {
-    border-left     : 3px solid var( --layer-4 );
+    border-left     : 3px solid var(--layer-4);
     padding         : var(--space-3) ;
 }
 
@@ -132,7 +132,7 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-    margin          : 0 0 var(  --space-3  );
+    margin          : 0 0 var(--space-3);
 }
 h2 {
     font-size       : 32px;
@@ -150,25 +150,25 @@ h5 {
     font-size       : 16px;
     letter-spacing  : 1px;
     text-transform  : uppercase;
-    margin          : var(  --space-6  ) 0;
+    margin          : var(--space-6) 0;
 }
 h6 {
     font-size       : 14px;
     letter-spacing  : 1px;
     text-transform  : uppercase;
-    margin          : var(  --space-6  ) 0;
+    margin          : var(--space-6) 0;
 }
 
 hr {
     border          : 0;
-    border-top      : 1px solid var( --layer-3 );
+    border-top      : 1px solid var(--layer-3);
     margin          : 1.5em 0;
     height          : 5px;
-    background-image: linear-gradient(90deg, transparent, var( --layer-3 ), transparent);
+    background-image: linear-gradient(90deg, transparent, var(--layer-3), transparent);
 }
 
 p {
-    margin          : var( --space-5 ) 0;
+    margin          : var(--space-5) 0;
     line-height     : 1.5;
 }
 /*  -------------------- --------------------  LAYOUT GRID */
@@ -176,9 +176,10 @@ p {
 .layout-grid {
     align-content   : space-around;
     display         : grid;
-    grid-gap        : 1px;
+    /*grid-gap        : 1px;*/
     grid-template-columns : 200px auto;
-    grid-template-rows    : 55px 1fr 80px;
+    /*grid-template-columns: 1fr;*/
+    grid-template-rows    : 55px 1fr 55px;
     grid-template-areas   : "header  header"
                             "nav-aside main";
 }
@@ -204,7 +205,7 @@ header > nav {
     margin          : 0;
     overflow        : hidden;
     padding         : var(--space-2);
-    width           : 100vw;
+    width           : 100%;
 }
 
 nav ul {
@@ -219,7 +220,7 @@ nav ul li {
 }
 
 nav ul li.nav-logo {
-    display: none; /* display inline-block tablet */
+    display     : none; /* display inline-block tablet */
     width       : 247px;
 }
 
@@ -233,11 +234,11 @@ nav > ul > li > a {
     /*padding         : 0 var(  --space-5  );*/
 }
 nav ul li .ui-nav-icon {
-    background: var( --layer-3);
-    color: var( --secondary);
-    cursor: pointer;
-    text-align: center;
-    margin: 0 1em;
+    background      : var( --layer-3);
+    color           : var( --secondary);
+    cursor          : pointer;
+    text-align      : center;
+    margin          : 0 1em;
     /*line-height: 50px;*/
 }
 /* -------------------- --------------------  LAYOUT Main */
@@ -252,8 +253,9 @@ nav ul li .ui-nav-icon {
     grid-area       : main;
     /* padding         : 0 4rem 2rem; */
     /* Set according to device screen-width */
-    width           : 100%;
+    /*width           : 1174px; 100vw; */
     max-width       : 1174px; /* fixed */
+    width:98vw;
     /*max-width       : calc(90vw - 400px);*/
     margin          : 0 auto;
 }
@@ -274,8 +276,8 @@ nav ul li .ui-nav-icon {
 
 footer .credits,
 footer .links {
-    font-size       : var( --footer-font);
-    color           : var(  --footer-link    ) !important;
+    font-size       : var(--footer-font);
+    color           : var(--footer-link) !important;
     cursor          : pointer;
 }
 
