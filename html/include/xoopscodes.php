@@ -17,17 +17,17 @@ function xoopsCodeTarea($textarea_id, $cols=60, $rows=15, $suffix=null)
 {
     $hiddentext = isset($suffix) ? 'xoopsHiddenText'.trim($suffix) : 'xoopsHiddenText';
     //Hack for url, email ...., the anchor is for having a link on [_More...]
-    echo "<a name='moresmiley'></a><img src='".XOOPS_URL."/images/url.gif' alt='url' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeUrl(\"$textarea_id\", \"".htmlspecialchars(_ENTERURL, ENT_QUOTES) . '", "'
+    echo "<a name='moresmiley'></a><img src='".XOOPS_URL."/images/icons/url.svg' width='1em' height='1em' alt='url' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeUrl(\"$textarea_id\", \"".htmlspecialchars(_ENTERURL, ENT_QUOTES) . '", "'
          . htmlspecialchars(_ENTERWEBTITLE, ENT_QUOTES) . "\");'/>
-    &nbsp;<img src='".XOOPS_URL."/images/mail.svg' alt='email' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeEmail(\"$textarea_id\", \"".htmlspecialchars(_ENTEREMAIL, ENT_QUOTES)."\");'>
-    &nbsp;<img src='".XOOPS_URL."/images/imgsrc.gif' alt='imgsrc' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeImg(\"$textarea_id\", \"".htmlspecialchars(_ENTERIMGURL, ENT_QUOTES) . '", "'
+    &nbsp;<img src='".XOOPS_URL."/images/icons/mail.svg' width='1em' height='1em' alt='email' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeEmail(\"$textarea_id\", \"".htmlspecialchars(_ENTEREMAIL, ENT_QUOTES)."\");'>
+    &nbsp;<img src='".XOOPS_URL."/images/icons/imgsrc.svg' width='1em' height='1em' alt='imgsrc' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeImg(\"$textarea_id\", \"".htmlspecialchars(_ENTERIMGURL, ENT_QUOTES) . '", "'
          . htmlspecialchars(_ENTERIMGPOS, ENT_QUOTES) . '", "'
          . htmlspecialchars(_IMGPOSRORL, ENT_QUOTES) . '", "'
          . htmlspecialchars(_ERRORIMGPOS, ENT_QUOTES) . "\");' />
-    &nbsp;<img src='".XOOPS_URL."/images/image.gif' alt='image' onmouseover='style.cursor=\"hand\"' onclick='openWithSelfMain(\"".XOOPS_URL . '/imagemanager.php?target='
+    &nbsp;<img src='".XOOPS_URL."/images/icons/image.svg' width='1em' height='1em' alt='image' onmouseover='style.cursor=\"hand\"' onclick='openWithSelfMain(\"".XOOPS_URL . '/imagemanager.php?target='
          . $textarea_id . "\",\"imgmanager\",400,430);' />
-    &nbsp;<img src='".XOOPS_URL."/images/code.svg' alt='code' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeCode(\"$textarea_id\", \"".htmlspecialchars(_ENTERCODE, ENT_QUOTES)."\");'>
-    &nbsp;<img src='".XOOPS_URL."/images/quote.svg' alt='quote' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeQuote(\"$textarea_id\");'/><br>\n";
+    &nbsp;<img src='".XOOPS_URL."/images/icons/code.svg' width='1em' height='1em' alt='code' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeCode(\"$textarea_id\", \"".htmlspecialchars(_ENTERCODE, ENT_QUOTES)."\");'>
+    &nbsp;<img src='".XOOPS_URL."/images/icons/quote.svg' width='1em' height='1em' alt='quote' onmouseover='style.cursor=\"hand\"' onclick='xoopsCodeQuote(\"$textarea_id\");'/><br>\n";
 
     $sizearray = ['xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'];
     echo "<select id='".$textarea_id."Size' onchange='setVisible(\"xoopsHiddenText\");setElementSize(\"".$hiddentext."\",this.options[this.selectedIndex].value);'>\n";
@@ -60,12 +60,12 @@ function xoopsCodeTarea($textarea_id, $cols=60, $rows=15, $suffix=null)
     echo "<br>\n";
     //Hack smilies move for bold, italic ...
     $areacontent = isset($GLOBALS[$textarea_id]) ? $GLOBALS[$textarea_id] : '';
-    echo "<img src='".XOOPS_URL."/images/bold.gif' alt='bold' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"".$hiddentext . '");makeBold("'
-         . $hiddentext . "\");' />&nbsp;<img src='" . XOOPS_URL . "/images/italic.gif' alt='italic' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"" . $hiddentext . '");makeItalic("'
-         . $hiddentext . "\");' />&nbsp;<img src='" . XOOPS_URL . "/images/underline.gif' alt='underline' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"" . $hiddentext . '");makeUnderline("'
-         . $hiddentext . "\");'/>&nbsp;<img src='" . XOOPS_URL . "/images/linethrough.gif' alt='linethrough' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"" . $hiddentext . '");makeLineThrough("'
-         . $hiddentext . "\");' />&nbsp;<input type='text' id='" . $textarea_id . "Addtext' size='20' />&nbsp;<input type='button' onclick='xoopsCodeText(\"$textarea_id\", \"" . $hiddentext . '", "'
-         . htmlspecialchars(_ENTERTEXTBOX, ENT_QUOTES) . "\")' value='" . _ADD . "' /><br><br><textarea id='" . $textarea_id . "' name='" . $textarea_id . "' cols='$cols' rows='$rows'>" . $areacontent . "</textarea><br>\n";
+    echo "<img src='".XOOPS_URL."/images/icons/bold.svg' width='1em' height='1em' alt='bold' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"".$hiddentext . '");makeBold("'
+         . $hiddentext . "\");' />&nbsp;<img src='" . XOOPS_URL . "/images/icons/italic.svg' width='1em' height='1em' alt='italic' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"" . $hiddentext . '");makeItalic("'
+         . $hiddentext . "\");' />&nbsp;<img src='" . XOOPS_URL . "/images/icons/underline.svg' width='1em' height='1em' alt='underline' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"" . $hiddentext . '");makeUnderline("'
+         . $hiddentext . "\");'/>&nbsp;<img src='" . XOOPS_URL . "/images/icons/linethrough.svg' width='1em' height='1em' alt='linethrough' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"" . $hiddentext . '");makeLineThrough("'
+         . $hiddentext . "\");' />&nbsp;<input type='text' id='" . $textarea_id . "Addtext' size='20'>&nbsp;<input type='button' onclick='xoopsCodeText(\"$textarea_id\", \"" . $hiddentext . '", "'
+         . htmlspecialchars(_ENTERTEXTBOX, ENT_QUOTES) . "\")' value='" . _ADD . "'><br><br><textarea id='" . $textarea_id . "' name='" . $textarea_id . "' cols='$cols' rows='$rows'>" . $areacontent . "</textarea><br>\n";
     //Fin du hack
 }
 

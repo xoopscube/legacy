@@ -267,7 +267,7 @@ function OpenWaitBox()
     echo '<div id="waitDiv" style="position:absolute;left:40%;top:50%;visibility:hidden;text-align: center;">
     <table class="table outer">
       <tr>
-        <td align="center"><b>' ._FETCHING.'</b><br><img src="'.XOOPS_URL.'/images/await.gif" alt=""><br>' ._PLEASEWAIT.'</td>
+        <td align="center"><b>' ._FETCHING.'</b><br><img src="'.XOOPS_URL.'/images/icons/info.svg" width="1em" height="1em" alt=""><br>' ._PLEASEWAIT.'</td>
       </tr>
     </table>
     </div>
