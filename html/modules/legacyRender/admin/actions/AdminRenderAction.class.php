@@ -33,7 +33,7 @@ class LegacyRender_AdminRenderAction extends LegacyRender_Action
 
         $textFilter =& $mRoot->getTextFilter();
         $headerScript = $mContext->getAttribute('headerScript');
-
+        // Meta
         $render->setAttribute('xoops_meta_keywords',$textFilter->toShow($headerScript->getMeta('keywords') ?: $configs['meta_keywords']));
         $render->setAttribute('xoops_meta_description',$textFilter->toShow($headerScript->getMeta('description') ?: $configs['meta_description']));
         $render->setAttribute('xoops_meta_robots',$textFilter->toShow($headerScript->getMeta('robots') ?: $configs['meta_robots']));
@@ -77,6 +77,7 @@ class LegacyRender_AdminRenderAction extends LegacyRender_Action
         $render->setAttribute('theme_set',$xoopsConfig['theme_set']);
         $render->setAttribute('page_title' ,$textFilter->toShow($mContext->getAttribute('legacy_pagetitle')) );
         $render->setAttribute('slogan',$textFilter->toShow($mContext->getAttribute('legacy_slogan')) );
+        // XOOPS2
         $render->setAttribute('xoops_sitename', htmlspecialchars($xoopsConfig['sitename']));
         $render->setAttribute('xoops_themecss', xoops_getcss());
         $render->setAttribute('xoops_imageurl', XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/');

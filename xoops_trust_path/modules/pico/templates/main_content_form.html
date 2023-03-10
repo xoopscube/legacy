@@ -271,6 +271,63 @@
 		<input type="text" name="tags" id="tags" size="60" maxlength="191" value="<{$content.tags}>">
 	</label>
 
+	<{* ------- CONTENT OPTIONS *}>
+	<h5>
+		<label for='options'>
+			<input class='switch' type='checkbox' id='options' onclick="slideToggle('.content_options', this)" value='0'>
+			<img class="svg tree" src="<{$xoops_url}>/images/icons/view.svg" width="1em" alt="options">
+			<{$smarty.const._MD_PICO_TH_CONTENTOPTIONS}>
+		</label>
+	</h5>
+
+	<div class="content_options" style="display:none;">
+
+		<fieldset>
+			<{* ------- visible *}>
+			<label for="visible">
+				<input type="checkbox" name="visible" id="visible" value="1" <{if $content.visible}>checked="checked"<{/if}>>
+				<{$smarty.const._MD_PICO_LABEL_VISIBLE}>
+			</label>
+
+
+			<{* ------- show in nav *}>
+			<label for="show_in_navi">
+				<input type="checkbox" name="show_in_navi" id="show_in_navi" value="1" <{if $content.show_in_navi}>checked="checked"<{/if}>>
+				<{$smarty.const._MD_PICO_LABEL_SHOWINNAVI}>
+			</label>
+
+
+			<{* ------- show in menu *}>
+			<label for="show_in_menu">
+				<input type="checkbox" name="show_in_menu" id="show_in_menu" value="1" <{if $content.show_in_menu}>checked="checked"<{/if}>>
+				<{$smarty.const._MD_PICO_LABEL_SHOWINMENU}>
+			</label>
+
+
+			<{* ------- allow comment *}>
+			<label for="allow_comment">
+				<input type="checkbox" name="allow_comment" id="allow_comment" value="1" <{if $content.allow_comment}>checked="checked"<{/if}>>
+				<{$smarty.const._MD_PICO_LABEL_ALLOWCOMMENT}>
+			</label>
+
+
+			<{* ------- use body cache *}>
+			<label for="use_cache">
+				<input type="checkbox" name="use_cache" id="use_cache" value="1" <{if $content.use_cache}>checked="checked"<{/if}>>
+				<span><{$smarty.const._MD_PICO_LABEL_USECACHE}> <small><{$smarty.const._MD_PICO_NOTE_USECACHEDSC}></small></span>
+			</label>
+
+			<{* ------- locked *}>
+			<{if $category.isadminormod}>
+			<label for="locked">
+				<input type="checkbox" name="locked" id="locked" value="1" <{if $content.locked}>checked="checked"<{/if}>>
+				<{$smarty.const._MD_PICO_LABEL_LOCKED}>
+			</label>
+			<{/if}>
+
+		</fieldset>
+	</div>
+
 	<{* ------- FILTERS *}>
     <h5>
 	<label for='filters_onoff'>
@@ -302,65 +359,6 @@
 			<{/foreach}>
 		</div>
 	</div>
-
-
-	<{* ------- CONTENT OPTIONS *}>
-	<h5>
-        <label for='options'>
-		<input class='switch' type='checkbox' id='options' onclick="slideToggle('.content_options', this)" value='0'>
-		<img class="svg tree" src="<{$xoops_url}>/images/icons/view.svg" width="1em" alt="options">
-		<{$smarty.const._MD_PICO_TH_CONTENTOPTIONS}>
-	    </label>
-    </h5>
-
-	<div class="content_options" style="display:none;">
-
-		<fieldset>
-		<{* ------- visible *}>
-		<label for="visible">
-			<input type="checkbox" name="visible" id="visible" value="1" <{if $content.visible}>checked="checked"<{/if}>>
-			<{$smarty.const._MD_PICO_LABEL_VISIBLE}>
-		</label>
-
-
-		<{* ------- show in nav *}>
-		<label for="show_in_navi">
-			<input type="checkbox" name="show_in_navi" id="show_in_navi" value="1" <{if $content.show_in_navi}>checked="checked"<{/if}>>
-			<{$smarty.const._MD_PICO_LABEL_SHOWINNAVI}>
-		</label>
-
-
-		<{* ------- show in menu *}>
-		<label for="show_in_menu">
-			<input type="checkbox" name="show_in_menu" id="show_in_menu" value="1" <{if $content.show_in_menu}>checked="checked"<{/if}>>
-			<{$smarty.const._MD_PICO_LABEL_SHOWINMENU}>
-		</label>
-
-
-		<{* ------- allow comment *}>
-		<label for="allow_comment">
-			<input type="checkbox" name="allow_comment" id="allow_comment" value="1" <{if $content.allow_comment}>checked="checked"<{/if}>>
-			<{$smarty.const._MD_PICO_LABEL_ALLOWCOMMENT}>
-		</label>
-
-
-		<{* ------- use body cache *}>
-		<label for="use_cache">
-			<input type="checkbox" name="use_cache" id="use_cache" value="1" <{if $content.use_cache}>checked="checked"<{/if}>>
-			<span><{$smarty.const._MD_PICO_LABEL_USECACHE}> <small><{$smarty.const._MD_PICO_NOTE_USECACHEDSC}></small></span>
-		</label>
-
-		<{* ------- locked *}>
-		<{if $category.isadminormod}>
-		<label for="locked">
-			<input type="checkbox" name="locked" id="locked" value="1" <{if $content.locked}>checked="checked"<{/if}>>
-			<{$smarty.const._MD_PICO_LABEL_LOCKED}>
-		</label>
-		<{/if}>
-
-		</fieldset>
-	</div>
-
 
 	<{* ------- CONTENT TIME *}>
 

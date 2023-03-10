@@ -1,9 +1,9 @@
-			<{foreach item=def from=$defArr}>
-			<tr valign="top">
-			  <td class="head"><{$def->getShow('label')}></td>
-			  <td>
-			  	<h4><{assign var="defkey" value=$def->getShow('field_name')}></h4>
-			    <p><{$profile->showField($defkey)}></p>
-			  </td>
-			</tr>
-			<{/foreach}>
+<{foreach item=def from=$defArr}>
+<tr>
+    <td class="head"><{$def->getShow('label')}></td>
+    <td>
+        <h4><{assign var="defkey" value=$def->getShow('field_name')}></h4>
+        <p><{$profile->showField($defkey)}></p>
+    </td>
+</tr>
+<{/foreach}>

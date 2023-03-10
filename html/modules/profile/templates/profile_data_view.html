@@ -5,9 +5,10 @@
 </p>
 <br>
 <table class="outer">
-<th><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}></th>
-<th><{$smarty.const._MD_PROFILE_LANG_OPTIONS}></th>
-
+    <tr>
+        <th><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}></th>
+        <th><{$smarty.const._MD_PROFILE_LANG_OPTIONS}></th>
+    </tr>
 	<{foreach item=field from=$fields}>
     <tr>
       <td><{$field->getShow('label')}></td>

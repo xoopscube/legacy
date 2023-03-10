@@ -102,7 +102,7 @@ class Profile_ActionFrame
     
         if ($this->mAction->isSecure() && !is_object($controller->mRoot->mContext->mXoopsUser)) {
             //
-            // error
+            // TODO error redirect
             //
 
             $controller->executeForward(XOOPS_URL . '/');
@@ -112,7 +112,7 @@ class Profile_ActionFrame
     
         if (!$this->mAction->hasPermission($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModuleConfig)) {
             //
-            // error
+            // TODO error redirect
             //
 
             $controller->executeForward(XOOPS_URL . '/');
