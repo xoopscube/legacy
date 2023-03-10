@@ -13,59 +13,43 @@
 -->
 <{include file="$xoops_theme/component/head.html"}>
 
-    <body class="d-flex flex-column h-100 <{$xoops_dirname}>">
+<body class="d-flex flex-column h-100 <{$xoops_dirname}>">
 
-        <main class="flex-shrink-0">
-            <!-- Navigation-->
-            <{include file="$xoops_theme/component/nav-theme-mode.html"}>
+    <main class="flex-shrink-0">
+        <{* ----- Navigation ----- *}>
+        <{include file="$xoops_theme/component/nav-theme-mode.html"}>
 
+        <{if $xoops_is_top}>
+        <{include file="$xoops_theme/component/hero.html"}>
+        <{/if}>
 
-            <{if $xoops_is_top}>
-            <{include file="$xoops_theme/component/hero.html"}>
-            <{/if}>
+        <{* ----- Left-Block and content ----- *}>
+        <{include file="$xoops_theme/component/left_content.html"}>
 
-            <!-- Left-Block and content -->
-            <{include file="$xoops_theme/component/left_content.html"}>
+        <{* ----- Features section ----- *}>
+        <{* include file="$xoops_theme/component/features.html *"}>
 
-            <!-- Features section-->
-            <{* include file="$xoops_theme/component/features.html *"}>
+        <{* ----- Testimonial section ----- *}>
+        <{* include file="$xoops_theme/component/testimonial.html" *}>
 
-            <!-- Testimonial section-->
-            <{* include file="$xoops_theme/component/testimonial.html" *}>
+        <{* ----- Center Block section ----- *}>
+        <{if $xoops_showcblock==1}>
+        <{include file="$xoops_theme/component/center_block.html"}>
+        <{/if}>
 
-            <!-- Blog preview section-->
-            <{if $xoops_showcblock==1}>
-            <{include file="$xoops_theme/component/center_block.html"}>
-            <{/if}>
+    </main>
 
+<{* ----- Customized Center Block using prefix "bottom-" in block title ----- *}>
+<{if $xoops_showcblock==1}>
+<{include file="$xoops_theme/component/center_block_bottom.html"}>
+<{/if}>
 
-        </main>
-
-            <!-- Blog preview section-->
-            <{if $xoops_showcblock==1}>
-            <{include file="$xoops_theme/component/center_block_bottom.html"}>
-            <{/if}>
-
-<!-- Advertise Banner if not equal to empty -->
+<{* ----- Advertise Banner if not equal to &nbsp (empty space) ----- *}>
 <{if $xoops_banner ne "&nbsp;"}>
 <{include file="$xoops_theme/component/banner.html"}>
 <{/if}>
 
-
-<button class="theme-options border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-    <div class="qube-perspective">
-        <ul class="qube xcl-cube">
-            <li class="front">X
-            <li class="left">L
-            <li class="back">C
-            <li class="right">L
-            <li class="top">
-            <li class="bottom">
-        </ul>
-    </div>
-</button>
-
-<{* Scroll to top *}>
+<{* ----- Scroll to top ----- *}>
 <div class="scroll-top">
     <a href="#" aria-label="Scroll to top" class="scroll-top border rounded shadow-sm">
         <svg width="48px" height="48px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -75,41 +59,41 @@
     </a>
 </div>
 
-<{include file="$xoops_theme/component/panel-right.html"}>
+<{if $xoops_isadmin}>
+<{* include file="$xoops_theme/component/panel-right.html" *}>
+        <{* include file="$xoops_theme/component/admin-panel.html" *}>
+<{/if}>
 
+<{* ----- Footer Customized with Component ----- *}>
 <{include file="$xoops_theme/component/footer.html"}>
 
-        <{if $xoops_isadmin}>
-
-        <{/if}>
-        <{* include file="$xoops_theme/component/admin-panel.html" *}>
 
 <{* ----- Bootstrap5
-    Remove Smarty comment to include Popper and our JS separately
+    Remove Smarty comment to include Popper and Bootstrap JS separately
 <script src="<{$xoops_url}>/common/bootstrap5/popover.min.js"></script>
 <script src="<{$xoops_url}>/common/bootstrap5/bootstrap.min.js"></script>
-*}>
-        <{* Bootstrap5 core JS bundle *}>
-        <script src="<{$xoops_url}>/common/bootstrap5/bootstrap.bundle.min.js"></script>
-        <{* PrismJS *}>
-        <script defer src="<{$xoops_url}>/common/prismjs/prism.js"></script>
-<!-- Core theme JS-->
+----- *}>
+
+<{* ----- Bootstrap5 core JS bundle ----- *}>
+<script src="<{$xoops_url}>/common/bootstrap5/bootstrap.bundle.min.js"></script>
+<{* ----- PrismJS ----- *}>
+<script defer src="<{$xoops_url}>/common/prismjs/prism.js"></script>
+<{* ----- Theme JS ----- *}>
 <script src="<{$xoops_imageurl}>js/scripts.js"></script>
 
-<!-- Inline images. -->
-<script defer>
+<{* ----- Inline SVG images ----- *}>
+<script>
+    // $('.svg').inlineSvg();
+    // $('[data-inline-svg]').inlineSvg();
+    inlineSVG.init({
+        svgSelector: 'img.svg', // the class attached to all images that should be inlined
+        initClass: 'icon-svg', // class added to <html>
+    }, function () {
+        console.log('All SVGs inlined');
+    });
 
-        // $('.svg').inlineSvg();
-        // $('[data-inline-svg]').inlineSvg();
-
-        inlineSVG.init({
-            svgSelector: 'img.svg', // the class attached to all images that should be inlined
-            initClass: 'icon-svg', // class added to <html>
-        }, function () {
-            console.log('All SVGs inlined');
-        });
-        // const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-        // const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    // const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+    // const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 </script>
 
     </body>

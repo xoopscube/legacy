@@ -10,6 +10,25 @@ All notable changes to XCL Theme Bootstrap 5.3 Starter will be documented in thi
 
 Git Repository : Refer please to [Branch Legacy ](https://github.com/xoopscube/legacy/)
 
+## [231rc] 2023-03-02
+
+### Added
+  
+- Components
+- Code comments
+- Profile templates
+- Render compatibility
+  
+### Fixed
+
+- Banner section
+- Logo ( navbar )
+- JavaScript 
+- Theme color mode
+- Side Panel Right (admin)
+- Smarty syntax
+- User templates ( tabs )
+  
 ## [alpha] 2023-02-17
 
 - Alert color-scheme

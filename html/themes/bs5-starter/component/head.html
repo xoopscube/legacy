@@ -3,39 +3,54 @@
     <!--  <meta charset="<{$xoops_charset}>">-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> -->
+
     <title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
-    <meta name="description" content="<{$meta_description}>">
-    <meta name="robots" content="<{$meta_robots}>">
-    <meta name="keywords" content="<{$meta_keywords}>">
-    <meta name="rating" content="<{$meta_rating}>">
-    <meta name="author" content="<{$meta_author}>">
-    <meta name="copyright" content="<{$meta_copyright}>">
+    <meta name="description" content="<{$xoops_meta_description}>">
+    <meta name="robots" content="<{$xoops_meta_robots}>">
+    <meta name="keywords" content="<{$xoops_meta_keywords}>">
+    <meta name="rating" content="<{$xoops_meta_rating}>">
+    <meta name="author" content="<{$xoops_meta_author}>">
+    <meta name="copyright" content="<{$xoops_meta_copyright}>">
     <meta name="generator" content="XOOPSCube">
     <!-- Meta Webmaster Tools-->
-    <meta name="msvalidate.01" content="<{$meta_bing}>">
-    <meta name="google-site-verification" content="<{$meta_google}>">
-    <meta name="yandex-verification" content="<{$meta_yandex}>">
+    <meta name="msvalidate.01" content="<{$xoops_meta_bing}>">
+    <meta name="google-site-verification" content="<{$xoops_meta_google}>">
+    <meta name="yandex-verification" content="<{$xoops_meta_yandex}>">
     <!-- Facebook App -->
-    <meta property="fb:app_id" content="<{$meta_fb_app}>">
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="<{$meta_twitter_site}>"><!-- @site_account -->
-    <meta name="twitter:creator" content="@<{$meta_author}>">
+    <meta property="fb:app_id" content="<{$xoops_meta_fb_app}>">
     <!-- Open Graph data -->
-
-    <meta property="og:url" content="//<{$smarty.server.HTTP_HOST}><{$xoops_requesturi}>">
-    <meta property="og:title" content="<{$xoops_pagetitle}>">
-    <meta property="og:description" content="<{$meta_description}>">
+    <meta property="og:url" content="<{$xoops_url}>"><meta property="og:url" content="//<{$smarty.server.HTTP_HOST}><{$xoops_requesturi}>">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<{$xoops_meta_og_title}>"><meta property="og:title" content="<{$xoops_pagetitle}>">
     <{if $mytrustdirname == 'pico' && $content.ef.myphoto}>
     <meta property="og:image" content="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/myphoto_1_<{$content.ef.myphoto|escape}>">
     <{else}>
     <meta property="og:image" content="<{$theme_url}>img/tile.png">
     <{/if}>
+    <meta property="og:description" content="<{$xoops_meta_description}>">
+    <meta property="og:site_name" content="<{$xoops_sitename}>">
+    <meta property="article:author" content="<{$xoops_meta_author}>">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="<{$xoops_meta_twitter_site}>"><!-- @site_account -->
+    <meta name="twitter:creator" content="@<{$xoops_meta_author}>">
+
+
+    <!-- Mobile App favicon.ico Place in the root directory -->
+
+
+    <!-- HTML5 valid Data URI for fake favicon requests by Browsers -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <!-- Resquesturi $xoops_requesturi : /module/dirname/id -->
+    <link rel="canonical" href="<{$SCRIPT_NAME}>">
+
 
     <!-- Favicon SVG located in the root directory -->
-    <link rel="icon" href="<{$favicon}>" type="image/svg+xml">
-    <!-- Favicon.ico older -->
-    <link  rel="alternate icon" type="image/x-icon" href="<{$theme_url}>assets/favicon.ico" />
+    <link rel="icon" href="<{$xoops_url}>/favicon.svg" type="image/svg+xml">
+    <!-- Favicon.png root images' directory -->
+    <link rel="alternate icon" href="<{$xoops_url}>/images/favicon.png" type="image/png">
+    <!-- Favicon.ico older in theme's directory -->
+    <link  rel="alternate icon" type="image/x-icon" href="<{$xoops_imageurl}>assets/favicon.ico">
     <!-- HTML5 valid Data URI for fake favicon requests by Browsers -->
     <link rel="alternate icon" href="data:;base64,iVBORw0KGgo=">
 
@@ -53,9 +68,9 @@
 <!--    <script src="<{$xoops_url}>/common/bootstrap5/bootstrap.bundle.min.js"></script>-->
 
     <!-- Theme default style.css -->
-    <link rel="stylesheet" href="<{$theme_css}>">
+    <link rel="stylesheet" href="<{$xoops_themecss}>">
     <!-- Theme default module.css -->
-    <link href="<{$theme_url}>css/module.css" rel="stylesheet" />
+    <link href="<{$xoops_imageurl}>css/module.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="<{$xoops_url}>/common/prismjs/prism.css">
     <!-- Modules javascript -->

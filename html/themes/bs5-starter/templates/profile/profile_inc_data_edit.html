@@ -1,0 +1,33 @@
+<{foreach item=def from=$defArr}>
+<div class="mb-3">
+    <label for="<{$def->get('label')}>" class="form-label"><{$def->get('label')}></label>
+
+    	<{if $def->get('type')=="string"}>
+            <{xoops_input type=text class="form-control" name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) size=40 maxlength=191}>
+        <{elseif $def->get('type')=="int" || $def->get('type')=="float"}>
+            <{xoops_input type=text class="form-control" name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) size=15 maxlength=11}>
+        <{elseif $def->get('type')=="text"}>
+            <{if $def->mFieldType->getOption($def)=="bbcode"}>
+                <{xoops_dhtmltarea type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) editor=bbcode}>
+        <{elseif $def->mFieldType->getOption($def)=="html"}>
+            <{xoops_dhtmltarea type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) editor=html}>
+        <{else}>
+            <{xoops_dhtmltarea type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) editor=none}>
+        <{/if}>
+        <{elseif $def->get('type')=="date"}>
+            <{xoops_input class="datepicker" type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name')) size=20 maxlength=10}>
+        <{elseif $def->get('type')=="checkbox"}>
+            <{xoops_input type=checkbox class="form-check-input" name=$def->getShow('field_name') value=1 default=$profileForm->get($def->getShow('field_name'))}>
+        <{elseif $def->get('type')=="selectbox"}>
+            <select name="<{$def->getShow('field_name')}>" id="legacy_xoopsform_<{$def->getShow('field_name')}>">
+                <{foreach item=option from=$def->mFieldType->getOption($def)}>
+                <option value="<{$option}>"<{if $profileForm->get($def->getShow('field_name'))==$option}> selected="selected"<{/if}>><{$option}></option>
+                <{/foreach}>
+            </select>
+        <{elseif $def->get('type')=="uri"}>
+            <{xoops_input type=text class="form-control" name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name'), 1)}>
+        <{/if}>
+        <{if $def->getShow('description')}><div class="description"><{$def->getShow('description')}></div><{/if}>
+
+</div>
+<{/foreach}>

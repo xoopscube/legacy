@@ -1,3 +1,13 @@
+/*
+ * XCL Theme Bootstrap5 Starter
+ *
+ * @version   2.3.2
+ * @author    Nuno Luciano ( https://github.com/gigamaster )
+ * @copyright (c) 2005-2023 The XOOPSCube Project, author
+ * @license   BSD
+ * @link      https://github.com/xoopscube
+ */
+
 // Use this file to add JavaScript to your project
 
 // Browser support dark-mode
@@ -6,13 +16,12 @@ if (window.matchMedia('(prefers-color-scheme)').media !== 'not all') {
 }
 
 /*
- * Theme mode sample
+ * Theme mode switch saving user preference to localstorage
  * 1 - The document.documentElement property gives you the html element
- * Note that Bootstrap5.3 refers to html, here a simple theme switch
- * saving user preference to localstorage
+ * Note that XCL Bootstrap5.3 starter refers to <html>
  */
 
-// 1 - Theme mode set in html element
+// 1 - Theme mode set in html element ( data-theme also used by admin )
 let theme = localStorage.getItem("data-bs-theme");
 
 // Navbar
@@ -35,8 +44,11 @@ const changeThemeToLight = () =>{
 if(theme === "dark"){
     changeThemeToDark()
 }
-// array
-[ checkbox, inputheme ].forEach(function(element) {
+/*
+ * Note : All elements (const) of array [ checkbox, inputheme ]
+ * must exist in the DOM !
+ */
+[ checkbox ].forEach(function(element) {
     element.addEventListener("input", function() {
         let theme = localStorage.getItem("data-bs-theme");
         if (theme === "dark"){
@@ -54,12 +66,9 @@ if(theme === "dark"){
  * Refer to theme guide for settings
  */
 window.onload = (event)=> {
-
     Array.from(document.querySelectorAll('.toast')).forEach(toastNode => new bootstrap.Toast(toastNode).show());
-
     const progressTime = document.getElementsByClassName('progressTime');
     const timeInvisible = document.getElementById("progressInvisible");
-
     if (progressTime.length) {
         var timealert = 100;
         var displayTimer = setInterval(function () {
@@ -74,7 +83,6 @@ window.onload = (event)=> {
             timealert -= 1;
         }, 50); // smooth progress animation
     }
-
 };
 
 
@@ -92,10 +100,8 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
  */
 (() => {
     'use strict'
-
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     const forms = document.querySelectorAll('.needs-validation')
-
     // Loop over them and prevent submission
     Array.from(forms).forEach(form => {
         form.addEventListener('submit', event => {
@@ -103,7 +109,6 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
                 event.preventDefault()
                 event.stopPropagation()
             }
-
             form.classList.add('was-validated')
         }, false)
     })
@@ -119,9 +124,9 @@ const offcanvasList = [...offcanvasElementList].map(offcanvasEl => new bootstrap
 
 /*
  * Enable popovers
+ * 1. You must initialize popovers before they can be used.
+ * 2. One way to initialize all popovers on a page would be to select them by their data-bs-toggle attribute, like so
  */
-// You must initialize popovers before they can be used.
-// One way to initialize all popovers on a page would be to select them by their data-bs-toggle attribute, like so
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
@@ -145,7 +150,7 @@ function toggleModal() {
 !function(a,b)
 {"function"==typeof define&&define.amd?define([],b(a)):"object"==typeof exports?module.exports=b(a):a.inlineSVG=b(a)}
 ("undefined"!=typeof global?global:this.window||this.global,function(a){
-var b,c={},d=!!document.querySelector&&!!a.addEventListener,e={initClass:"inlinesvg",svgSelector:"img.svg"},
+var b,c={},d=!!document.querySelector&&!!a.addEventListener,e={initClass:"inlineSVG",svgSelector:"img.svg"},
 f=function(a,b){return function(){if(--a<1)return b.apply(this,arguments)}},
 g=function(){var a={},b=!1,c=0,d=arguments.length;
 "[object Boolean]"===Object.prototype.toString.call(arguments[0])&&(b=arguments[0],c++);

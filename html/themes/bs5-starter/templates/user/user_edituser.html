@@ -42,57 +42,57 @@
 
         <div class="card">
 
-            <{* ------- Nav Tabs *}>
+        <{* ------- Nav Tabs *}>
 
-            <ul class="nav nav-tabs edit-tab" role="tablist">
+        <ul class="nav nav-tabs edit-tab" role="tablist">
 
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="<{$xoops_url}>/userinfo.php">Profile</a>
-                </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" href="<{$xoops_url}>/userinfo.php">Profile</a>
+            </li>
 
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active"
-                       data-toggle="tab"
-                       href="#"
-                       id="edit-tab"
-                       data-bs-toggle="tab"
-                       data-bs-target="#edit-tab-pane"
-                       type="button"
-                       role="tab"
-                       aria-controls="edit-tab-pane"
-                       aria-selected="true">
-                        <svg class="edit" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
-                            <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
-                        </svg> <{$smarty.const._MD_USER_LANG_EDITPROFILE}></a>
-                </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active"
+                   data-toggle="tab"
+                   href="#"
+                   id="edit-tab"
+                   data-bs-toggle="tab"
+                   data-bs-target="#edit-tab-pane"
+                   type="button"
+                   role="tab"
+                   aria-controls="edit-tab-pane"
+                   aria-selected="true">
+                    <svg class="edit" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                        <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                    </svg> <{$smarty.const._MD_USER_LANG_EDITPROFILE}></a>
+            </li>
 
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" href="<{$xoops_url}>/notifications.php">
-                        <svg class="bell" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z"/>
-                            <path fill-rule="evenodd" d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-                        </svg> <{$smarty.const._MD_USER_LANG_NOTIFY}></a>
-                </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" href="<{$xoops_url}>/notifications.php">
+                    <svg class="bell" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z"/>
+                        <path fill-rule="evenodd" d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                    </svg> <{$smarty.const._MD_USER_LANG_NOTIFY}></a>
+            </li>
 
-                <{if $user_ownpage == true && $enableSelfDelete == true && $xoops_isadmin == false}>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link text-danger" href="<{$xoops_url}>/user.php?op=delete" title="<{$smarty.const._MD_USER_LANG_DELACCOUNT}>">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="user-x">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/>
-                        </svg></a>
-                </li>
-                <{elseif $xoops_isadmin == true}>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link text-danger" href="<{$xoops_url}>/modules/user/admin/index.php?action=UserDelete&amp;uid=<{$thisUser->getShow('uid')}>"  title="<{$smarty.const._MD_USER_LANG_DELACCOUNT}>">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="user-x">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/>
-                        </svg></a>
-                </li>
-                <{/if}>
+            <{if $user_ownpage == true && $enableSelfDelete == true && $xoops_isadmin == false}>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link text-danger" href="<{$xoops_url}>/user.php?op=delete" title="<{$smarty.const._MD_USER_LANG_DELACCOUNT}>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="user-x">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/>
+                    </svg></a>
+            </li>
+            <{elseif $xoops_isadmin == true}>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link text-danger" href="<{$xoops_url}>/modules/user/admin/index.php?action=UserDelete&amp;uid=<{$thisUser->getShow('uid')}>"  title="<{$smarty.const._MD_USER_LANG_DELACCOUNT}>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="user-x">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/>
+                    </svg></a>
+            </li>
+            <{/if}>
 
-            </ul>
-            <{* ------- /Nav Tabs *}>
+        </ul>
+        <{* ------- /Nav Tabs *}>
 
         <form action="#" method="post" autocomplete="off">
         <{xoops_token form=$actionForm}>
@@ -101,264 +101,261 @@
         <{* ------- User Edit Profile and Preferences *}>
         <div class="tab-content m-3" id="myTabContent">
 
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-form-label col-form-label-sm"><{$smarty.const._MD_USER_LANG_NICKNAME}></label>
-                    <{$thisUser->getShow('uname')}>
-                </div>
-
-                <div class="form-group">
-                    <label class="sr-only" for="username"><{$smarty.const._MD_USER_LANG_NICKNAME}></label>
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                </svg></div>
-                        </div>
-                        <input type="text" class="form-control form-control-sm" id="username" placeholder="<{$thisUser->getShow('uname')}>" readonly>
+            <div class="form-group mb-3">
+                <label class="sr-only" for="username"><{$smarty.const._MD_USER_LANG_NICKNAME}></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            </svg></div>
                     </div>
+                    <input style="cursor: not-allowed;" type="text" class="form-control form-control-sm" id="username" placeholder="<{$thisUser->getShow('uname')}>" readonly>
                 </div>
+            </div>
 
-                <div class="form-group mb-4">
-                    <label for="realnaame" class="col-form-label col-form-label-sm">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="person-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM6 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm6.854.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                        </svg>
-                        <{$smarty.const._MD_USER_LANG_NAME}></label>
-                    <{xoops_input name=name id="realname" class="form-control form-control-sm" size=30 maxlength=60 value=$actionForm->get('name') }>
-                </div>
+            <div class="form-group mb-3">
+                <label for="realnaame" class="col-form-label col-form-label-sm">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="person-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM6 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm6.854.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                    <{$smarty.const._MD_USER_LANG_NAME}></label>
+                <{xoops_input name=name id="realname" class="form-control form-control-sm" size=30 maxlength=60 value=$actionForm->get('name')}>
+            </div>
 
-                <div class="form-group">
-                    <label class="sr-only" for="email"><{$smarty.const._MD_USER_LANG_EMAIL}></label>
-                    <div class="input-group">
-                        <div class="input-group-prepend ">
-                            <div class="input-group-text">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="mail-at" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <{if $allow_chgmail}>
-                        <{xoops_input class="form-control form-control-sm" name=email size=30 maxlength=60 value=$actionForm->get('email')}>
-                        <{else}>
-                        <input type="text" class="form-control form-control-sm" id="email" placeholder="<{$thisUser->getShow('email')}>" readonly>
-                        <{/if}>
-                    </div>
-                </div>
-
-                <div class="col-auto mb-2">
-                    <div class="form-control form-checkbox mr-sm-2">
-                        <input class="form-control-input" type=checkbox name=user_viewemail id="uid<{$thisUser->getShow('uid')}>" value="1" default="<{$actionForm->get('user_viewemail')}>">
-                        <{* ------- Custom control needs to append the uid *}>
-                        <label for="uid<{$thisUser->getShow('uid')}>" class="form-control-label">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="eye mb-1 mx-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z"/>
-                                <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-                            </svg> <{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="userurl" class="col-form-label col-form-label-sm"><{$smarty.const._MD_USER_LANG_WEBSITE}></label>
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="web-site" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M1.018 7.5h2.49c.037-1.07.189-2.087.437-3.008a9.124 9.124 0 0 1-1.565-.667A6.964 6.964 0 0 0 1.018 7.5zM3.05 3.049c.362.184.763.349 1.198.49.142-.384.304-.744.481-1.078a6.7 6.7 0 0 1 .597-.933A7.01 7.01 0 0 0 3.051 3.05zM8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm-.5 1.077c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.473.257 2.282.287V1.077zm0 4.014c-.91-.03-1.783-.145-2.591-.332a12.344 12.344 0 0 0-.4 2.741H7.5V5.091zm1 2.409V5.091c.91-.03 1.783-.145 2.591-.332.223.827.364 1.754.4 2.741H8.5zm-1 1H4.51c.035.987.176 1.914.399 2.741A13.596 13.596 0 0 1 7.5 10.91V8.5zm1 2.409V8.5h2.99a12.343 12.343 0 0 1-.399 2.741A13.596 13.596 0 0 0 8.5 10.91zm-1 1c-.81.03-1.577.13-2.282.287.12.312.252.604.395.872.552 1.035 1.218 1.65 1.887 1.855V11.91zm-2.173 2.563a6.695 6.695 0 0 1-.597-.933 8.857 8.857 0 0 1-.481-1.078 8.356 8.356 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.52zM2.38 12.175c.47-.258.995-.482 1.565-.667A13.36 13.36 0 0 1 3.508 8.5h-2.49a6.964 6.964 0 0 0 1.362 3.675zm8.293 2.297a7.01 7.01 0 0 0 2.275-1.521 8.353 8.353 0 0 0-1.197-.49 8.859 8.859 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zm.11-2.276A12.63 12.63 0 0 0 8.5 11.91v3.014c.67-.204 1.335-.82 1.887-1.855.143-.268.276-.56.395-.872zm1.272-.688c.57.185 1.095.409 1.565.667A6.964 6.964 0 0 0 14.982 8.5h-2.49a13.355 13.355 0 0 1-.437 3.008zm.437-4.008h2.49a6.963 6.963 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008zm-.74-3.96a8.854 8.854 0 0 0-.482-1.079 6.692 6.692 0 0 0-.597-.933c.857.355 1.63.875 2.275 1.521a8.368 8.368 0 0 1-1.197.49zm-.97.264c-.705.157-1.473.257-2.282.287V1.077c.67.204 1.335.82 1.887 1.855.143.268.276.56.395.872z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <{xoops_input name=url class="form-control form-control-sm" id="userurl" size=30 maxlength=100 value=$actionForm->get('url')}>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="timezone_offset" class="col-form-label col-form-label-sm"><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}></label>
-                    <select name="timezone_offset" class="form-select form-select-sm">
-                        <{xoops_optionsArray id="timezone_offset" label="zone_name" value="offset" from=$timezones default=$actionForm->get('timezone_offset')}>
-                    </select>
-                </div>
-
-
-                <{legacy_profile template=profile_inc_data_edit.html action=edit actionForm=$actionForm}>
-
-
-                <{* XCL default fields disabled (also edit 'userinfo.html' and remove comments) -------
-                <div data-class="disable">
-
-                    <div class="form-group">
-                        <label for="user_icq" class="col-form-label col-form-label-sm"><{$smarty.const._MD_USER_LANG_USER_ICQ}></label>
-                        <div class="col-sm-10">
-                            <{xoops_input class="form-control" name=user_icq size=15 maxlength=15 value=$actionForm->get('user_icq')}>
+            <div class="form-group mb-3">
+                <label class="sr-only" for="email"><{$smarty.const._MD_USER_LANG_EMAIL}></label>
+                <div class="input-group">
+                    <div class="input-group-prepend ">
+                        <div class="input-group-text">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="mail-at" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"/>
+                            </svg>
                         </div>
                     </div>
+                    <{if $allow_chgmail}>
+                    <{xoops_input class="form-control form-control-sm" name=email size=30 maxlength=60 value=$actionForm->get('email')}>
+                    <{else}>
+                    <input type="text" class="form-control form-control-sm" id="email" placeholder="<{$thisUser->getShow('email')}>" readonly>
+                    <{/if}>
+                </div>
+            </div>
 
-                    <div class="form-group">
-                        <label for="user_aim" class="col-form-label col-form-label-sm"><{$smarty.const._MD_USER_LANG_USER_AIM}></label>
-                        <div class="col-sm-10">
-                            <{xoops_input class="form-control" name=user_aim size=18 maxlength=18 value=$actionForm->get('user_aim')}>
+            <div class="col-auto mb-3">
+                <div class="form-check">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="eye mb-1 mx-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z"/>
+                        <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                    </svg>
+                    <input class="form-check-input" type=checkbox name=user_viewemail id="uid<{$thisUser->getShow('uid')}>" value="1" default="<{$actionForm->get('user_viewemail')}>">
+                    <{* ------- Custom control needs to append the uid *}>
+                    <label for="uid<{$thisUser->getShow('uid')}>" class="form-check-label">
+                         <{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></label>
+                </div>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="userurl" class="col-form-label col-form-label-sm"><{$smarty.const._MD_USER_LANG_WEBSITE}></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="web-site" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M1.018 7.5h2.49c.037-1.07.189-2.087.437-3.008a9.124 9.124 0 0 1-1.565-.667A6.964 6.964 0 0 0 1.018 7.5zM3.05 3.049c.362.184.763.349 1.198.49.142-.384.304-.744.481-1.078a6.7 6.7 0 0 1 .597-.933A7.01 7.01 0 0 0 3.051 3.05zM8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm-.5 1.077c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.473.257 2.282.287V1.077zm0 4.014c-.91-.03-1.783-.145-2.591-.332a12.344 12.344 0 0 0-.4 2.741H7.5V5.091zm1 2.409V5.091c.91-.03 1.783-.145 2.591-.332.223.827.364 1.754.4 2.741H8.5zm-1 1H4.51c.035.987.176 1.914.399 2.741A13.596 13.596 0 0 1 7.5 10.91V8.5zm1 2.409V8.5h2.99a12.343 12.343 0 0 1-.399 2.741A13.596 13.596 0 0 0 8.5 10.91zm-1 1c-.81.03-1.577.13-2.282.287.12.312.252.604.395.872.552 1.035 1.218 1.65 1.887 1.855V11.91zm-2.173 2.563a6.695 6.695 0 0 1-.597-.933 8.857 8.857 0 0 1-.481-1.078 8.356 8.356 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.52zM2.38 12.175c.47-.258.995-.482 1.565-.667A13.36 13.36 0 0 1 3.508 8.5h-2.49a6.964 6.964 0 0 0 1.362 3.675zm8.293 2.297a7.01 7.01 0 0 0 2.275-1.521 8.353 8.353 0 0 0-1.197-.49 8.859 8.859 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zm.11-2.276A12.63 12.63 0 0 0 8.5 11.91v3.014c.67-.204 1.335-.82 1.887-1.855.143-.268.276-.56.395-.872zm1.272-.688c.57.185 1.095.409 1.565.667A6.964 6.964 0 0 0 14.982 8.5h-2.49a13.355 13.355 0 0 1-.437 3.008zm.437-4.008h2.49a6.963 6.963 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008zm-.74-3.96a8.854 8.854 0 0 0-.482-1.079 6.692 6.692 0 0 0-.597-.933c.857.355 1.63.875 2.275 1.521a8.368 8.368 0 0 1-1.197.49zm-.97.264c-.705.157-1.473.257-2.282.287V1.077c.67.204 1.335.82 1.887 1.855.143.268.276.56.395.872z"/>
+                            </svg>
                         </div>
                     </div>
+                    <{xoops_input name=url class="form-control form-control-sm" id="userurl" size=30 maxlength=100 value=$actionForm->get('url')}>
+                </div>
+            </div>
 
-                    <div class="form-group">
-                        <label for="user_yim" class="col-form-label col-form-label-sm"><{$smarty.const._MD_USER_LANG_USER_YIM}></label>
-                        <div class="col-sm-10">
-                            <{xoops_input class="form-control" name=user_yim size=25 maxlength=25 value=$actionForm->get('user_yim')}>
+            <div class="form-group mb-3">
+                <label for="timezone_offset" class="col-form-label col-form-label-sm"><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}></label>
+                <select name="timezone_offset" class="form-select form-select-sm">
+                    <{xoops_optionsArray id="timezone_offset" label="zone_name" value="offset" from=$timezones default=$actionForm->get('timezone_offset')}>
+                </select>
+            </div>
+
+            <{* ----- PROFILE EXTRA FIELDS ----- *}>
+            <{legacy_profile template=profile_inc_data_edit.html action=edit actionForm=$actionForm}>
+
+
+            <{* XCL default fields disabled ! Also requires edit 'userinfo.html' to remove Smarty comments) -------
+            <div data-class="disable">
+
+                <div class="form-group">
+                    <label for="user_icq" class="col-form-label col-form-label-sm"><{$smarty.const._MD_USER_LANG_USER_ICQ}></label>
+                    <div class="col-sm-10">
+                        <{xoops_input class="form-control" name=user_icq size=15 maxlength=15 value=$actionForm->get('user_icq')}>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="user_aim" class="col-form-label col-form-label-sm"><{$smarty.const._MD_USER_LANG_USER_AIM}></label>
+                    <div class="col-sm-10">
+                        <{xoops_input class="form-control" name=user_aim size=18 maxlength=18 value=$actionForm->get('user_aim')}>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="user_yim" class="col-form-label col-form-label-sm"><{$smarty.const._MD_USER_LANG_USER_YIM}></label>
+                    <div class="col-sm-10">
+                        <{xoops_input class="form-control" name=user_yim size=25 maxlength=25 value=$actionForm->get('user_yim')}>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="user_msnm" class="col-form-label col-form-label-sm"><{$smarty.const._MD_USER_LANG_USER_MSNM}></label>
+                    <div class="col-sm-10">
+                        <{xoops_input class="form-control" name=user_msnm size=30 maxlength=100 value=$actionForm->get('user_msnm')}>
+                    </div>
+                </div>
+
+            </div>
+            ------- XCL default fields disabled  *}>
+
+
+            <div class="form-group mb-3">
+                <label for="user_from" class="col-form-label col-form-label-sm">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="geo-alt" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    </svg>
+                    <{$smarty.const._MD_USER_LANG_USER_FROM}></label>
+                <{xoops_input class="form-control form-control-sm" name=user_from id=user_from size=30 maxlength=100 value=$actionForm->get('user_from')}>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="user_occ" class="col-form-label col-form-label-sm">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="diagram-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3 11.5A1.5 1.5 0 0 1 4.5 10h1A1.5 1.5 0 0 1 7 11.5v1A1.5 1.5 0 0 1 5.5 14h-1A1.5 1.5 0 0 1 3 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1A1.5 1.5 0 0 1 9 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6h-1A1.5 1.5 0 0 1 6 4.5v-1zM7.5 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
+                        <path fill-rule="evenodd" d="M8 5a.5.5 0 0 1 .5.5V7H11a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 5 7h2.5V5.5A.5.5 0 0 1 8 5z"/>
+                    </svg> <{$smarty.const._MD_USER_LANG_USER_OCC}></label>
+                <{xoops_input class="form-control form-control-sm" name=user_occ id=user_occ size=30 maxlength=100 value=$actionForm->get('user_occ')}>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="bio" class="col-form-label col-form-label-sm">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="person-lines-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm2 9a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+                    </svg> <{$smarty.const._MD_USER_LANG_BIO}></label>
+                <{xoops_textarea name=bio id=bio value=$actionForm->get('bio') rows=5 cols=50 class="form-control"}>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="user_intrest" class="col-form-label col-form-label-sm">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                    </svg> <{$smarty.const._MD_USER_LANG_USER_INTREST}></label>
+                <{xoops_input class="form-control form-control-sm" name=user_intrest id=user_intrest size=30 maxlength=150 value=$actionForm->get('user_intrest')}>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="user_sig" class="col-form-label col-form-label-sm">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="pen" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.707 13.707a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391L10.086 2.5a2 2 0 0 1 2.828 0l.586.586a2 2 0 0 1 0 2.828l-7.793 7.793zM3 11l7.793-7.793a1 1 0 0 1 1.414 0l.586.586a1 1 0 0 1 0 1.414L5 13l-3 1 1-3z"/>
+                        <path fill-rule="evenodd" d="M9.854 2.56a.5.5 0 0 0-.708 0L5.854 5.855a.5.5 0 0 1-.708-.708L8.44 1.854a1.5 1.5 0 0 1 2.122 0l.293.292a.5.5 0 0 1-.707.708l-.293-.293z"/>
+                        <path d="M13.293 1.207a1 1 0 0 1 1.414 0l.03.03a1 1 0 0 1 .03 1.383L13.5 4 12 2.5l1.293-1.293z"/>
+                    </svg>
+                    <{$smarty.const._MD_USER_LANG_USER_SIG}></label>
+                <{xoops_dhtmltarea class="form-control" name=user_sig id=user_sig rows=3 value=$actionForm->get('user_sig')}>
+            </div>
+
+            <div class="col-auto mb-3">
+                <div class="form-control form-checkbox mr-sm-2">
+                    <{xoops_input class="form-control-input" type=checkbox name=attachsig id=attachsig value=1 default=$actionForm->get('attachsig')}>
+                    <label for="attachsig" class="form-control-label"><{$smarty.const._MD_USER_LANG_ATTACHSIG}></label>
+                </div>
+            </div>
+
+            <h4>Preferences</h4>
+
+            <div class="form-group mb-3">
+                <label for="umode" class="col-form-label col-form-label-sm">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="read-mode" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4.5 11.5A.5.5 0 0 1 5 11h10a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 1 3h10a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5z"/>
+                    </svg> <{$smarty.const._MD_USER_LANG_UMODE}></label>
+                <{html_options name=umode class="form-select form-select-sm" options=$umodeOptions selected=$actionForm->get('umode')}>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="uorder" class="col-form-label col-form-label-sm">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="read-order" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M11 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
+                        <path fill-rule="evenodd" d="M10.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L11 3.707 8.354 6.354a.5.5 0 1 1-.708-.708l3-3zm-9 7a.5.5 0 0 1 .708 0L5 12.293l2.646-2.647a.5.5 0 1 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
+                        <path fill-rule="evenodd" d="M5 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
+                    </svg> <{$smarty.const._MD_USER_LANG_UORDER}></label>
+                <{html_options name=uorder class="form-select form-select-sm" options=$uorderOptions selected=$actionForm->get('uorder')}>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="notify_method" class="col-form-label col-form-label-sm">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="read-bell" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z"/>
+                        <path fill-rule="evenodd" d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                    </svg> <{$smarty.const._MD_USER_LANG_NOTIFY_METHOD}></label>
+                <{html_options name=notify_method class="form-select form-select-sm" options=$notify_methodOptions selected=$actionForm->get('notify_method')}>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="notify_mode" class="col-form-label col-form-label-sm">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="clock-history" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+                        <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+                    </svg> <{$smarty.const._MD_USER_LANG_NOTIFY_MODE}></label>
+                <{html_options name=notify_mode class="form-select form-select-sm" options=$notify_modeOptions selected=$actionForm->get('notify_mode')}>
+            </div>
+
+            <div class="form-group mb-3">
+
+                <label for="pass" class="col-form-label col-form-label-sm">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="unlock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M9.655 8H2.333c-.264 0-.398.068-.471.121a.73.73 0 0 0-.224.296 1.626 1.626 0 0 0-.138.59V14c0 .342.076.531.14.635.064.106.151.18.256.237a1.122 1.122 0 0 0 .436.127l.013.001h7.322c.264 0 .398-.068.471-.121a.73.73 0 0 0 .224-.296 1.627 1.627 0 0 0 .138-.59V9c0-.342-.076-.531-.14-.635a.658.658 0 0 0-.255-.237A1.122 1.122 0 0 0 9.655 8zm.012-1H2.333C.5 7 .5 9 .5 9v5c0 2 1.833 2 1.833 2h7.334c1.833 0 1.833-2 1.833-2V9c0-2-1.833-2-1.833-2zM8.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                    </svg> <{$smarty.const._MD_USER_LANG_PASSWORD}><br>
+                    <{$smarty.const._MD_USER_LANG_TYPEPASSTWICE}>
+                </label>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                                <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                            </svg>
                         </div>
                     </div>
+                    <{xoops_input type=password name=pass id=pass class="form-control form-control-sm" size=10 maxlength=32 value=$actionForm->get('pass')}>
+                </div>
 
-                    <div class="form-group">
-                        <label for="user_msnm" class="col-form-label col-form-label-sm"><{$smarty.const._MD_USER_LANG_USER_MSNM}></label>
-                        <div class="col-sm-10">
-                            <{xoops_input class="form-control" name=user_msnm size=30 maxlength=100 value=$actionForm->get('user_msnm')}>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="key-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                            </svg>
                         </div>
                     </div>
-
-                </div>
-                ------- XCL default fields disabled  *}>
-
-
-                <div class="form-group">
-                    <label for="user_from" class="col-form-label col-form-label-sm">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="geo-alt" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                        </svg>
-                        <{$smarty.const._MD_USER_LANG_USER_FROM}></label>
-                    <{xoops_input class="form-control form-control-sm" name=user_from id=user_from size=30 maxlength=100 value=$actionForm->get('user_from')}>
+                    <{xoops_input type=password name=vpass class="form-control form-control-sm" size=10 maxlength=32 value=$actionForm->get('vpass')}>
                 </div>
 
-                <div class="form-group">
-                    <label for="user_occ" class="col-form-label col-form-label-sm">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="diagram-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M3 11.5A1.5 1.5 0 0 1 4.5 10h1A1.5 1.5 0 0 1 7 11.5v1A1.5 1.5 0 0 1 5.5 14h-1A1.5 1.5 0 0 1 3 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1A1.5 1.5 0 0 1 9 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6h-1A1.5 1.5 0 0 1 6 4.5v-1zM7.5 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
-                            <path fill-rule="evenodd" d="M8 5a.5.5 0 0 1 .5.5V7H11a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 5 7h2.5V5.5A.5.5 0 0 1 8 5z"/>
-                        </svg> <{$smarty.const._MD_USER_LANG_USER_OCC}></label>
-                    <{xoops_input class="form-control form-control-sm" name=user_occ id=user_occ size=30 maxlength=100 value=$actionForm->get('user_occ')}>
-                </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="bio" class="col-form-label col-form-label-sm">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="person-lines-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm2 9a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
-                        </svg> <{$smarty.const._MD_USER_LANG_BIO}></label>
-                    <{xoops_textarea name=bio id=bio value=$actionForm->get('bio') rows=5 cols=50 class="form-control"}>
-                </div>
+            <div class="form-control form-switch mb-3">
+                <input type="checkbox" class="form-control-input" id="usercookie" name="usercookie" value=1 default="<{$actionForm->get('usercookie')}>">
+                <label for="usercookie" class="form-control-label">
+                    <{$smarty.const._MD_USER_LANG_USERCOOKIE}>
+                </label>
+            </div>
 
-                <div class="form-group">
-                    <label for="user_intrest" class="col-form-label col-form-label-sm">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                        </svg> <{$smarty.const._MD_USER_LANG_USER_INTREST}></label>
-                    <{xoops_input class="form-control form-control-sm" name=user_intrest id=user_intrest size=30 maxlength=150 value=$actionForm->get('user_intrest')}>
-                </div>
+            <div class="form-control form-switch mb-3">
+                <input type="checkbox" class="form-control-input" id="user_mailok" name="user_mailok" value=1 default="<{$actionForm->get('user_mailok')}>">
+                <label for="user_mailok" class="form-control-label">
+                    <{$smarty.const._MD_USER_LANG_USER_MAILOK}>
+                </label>
+            </div>
 
-                <div class="form-group">
-                    <label for="user_sig" class="col-form-label col-form-label-sm">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="pen" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M5.707 13.707a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391L10.086 2.5a2 2 0 0 1 2.828 0l.586.586a2 2 0 0 1 0 2.828l-7.793 7.793zM3 11l7.793-7.793a1 1 0 0 1 1.414 0l.586.586a1 1 0 0 1 0 1.414L5 13l-3 1 1-3z"/>
-                            <path fill-rule="evenodd" d="M9.854 2.56a.5.5 0 0 0-.708 0L5.854 5.855a.5.5 0 0 1-.708-.708L8.44 1.854a1.5 1.5 0 0 1 2.122 0l.293.292a.5.5 0 0 1-.707.708l-.293-.293z"/>
-                            <path d="M13.293 1.207a1 1 0 0 1 1.414 0l.03.03a1 1 0 0 1 .03 1.383L13.5 4 12 2.5l1.293-1.293z"/>
-                        </svg>
-                        <{$smarty.const._MD_USER_LANG_USER_SIG}></label>
-                    <{xoops_dhtmltarea class="form-control" name=user_sig id=user_sig rows=3 value=$actionForm->get('user_sig')}>
-                </div>
-
-                <div class="col-auto mb-4">
-                    <div class="form-control form-checkbox mr-sm-2">
-                        <{xoops_input class="form-control-input" type=checkbox name=attachsig id=attachsig value=1 default=$actionForm->get('attachsig')}>
-                        <label for="attachsig" class="form-control-label"><{$smarty.const._MD_USER_LANG_ATTACHSIG}></label>
-                    </div>
-                </div>
-                <h4>Preferences</h4>
-
-                <div class="form-group">
-                    <label for="umode" class="col-form-label col-form-label-sm">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="read-mode" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M4.5 11.5A.5.5 0 0 1 5 11h10a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 1 3h10a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5z"/>
-                        </svg> <{$smarty.const._MD_USER_LANG_UMODE}></label>
-                    <{html_options name=umode class="form-select form-select-sm" options=$umodeOptions selected=$actionForm->get('umode')}>
-                </div>
-
-                <div class="form-group">
-                    <label for="uorder" class="col-form-label col-form-label-sm">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="read-order" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M11 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-                            <path fill-rule="evenodd" d="M10.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L11 3.707 8.354 6.354a.5.5 0 1 1-.708-.708l3-3zm-9 7a.5.5 0 0 1 .708 0L5 12.293l2.646-2.647a.5.5 0 1 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-                            <path fill-rule="evenodd" d="M5 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-                        </svg> <{$smarty.const._MD_USER_LANG_UORDER}></label>
-                    <{html_options name=uorder class="form-select form-select-sm" options=$uorderOptions selected=$actionForm->get('uorder')}>
-                </div>
-
-                <div class="form-group">
-                    <label for="notify_method" class="col-form-label col-form-label-sm">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="read-bell" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z"/>
-                            <path fill-rule="evenodd" d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
-                        </svg> <{$smarty.const._MD_USER_LANG_NOTIFY_METHOD}></label>
-                    <{html_options name=notify_method class="form-select form-select-sm" options=$notify_methodOptions selected=$actionForm->get('notify_method')}>
-                </div>
-
-                <div class="form-group">
-                    <label for="notify_mode" class="col-form-label col-form-label-sm">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="clock-history" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
-                            <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
-                            <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
-                        </svg> <{$smarty.const._MD_USER_LANG_NOTIFY_MODE}></label>
-                    <{html_options name=notify_mode class="form-select form-select-sm" options=$notify_modeOptions selected=$actionForm->get('notify_mode')}>
-                </div>
-
-                <div class="form-group">
-
-                    <label for="pass" class="col-form-label col-form-label-sm">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="unlock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M9.655 8H2.333c-.264 0-.398.068-.471.121a.73.73 0 0 0-.224.296 1.626 1.626 0 0 0-.138.59V14c0 .342.076.531.14.635.064.106.151.18.256.237a1.122 1.122 0 0 0 .436.127l.013.001h7.322c.264 0 .398-.068.471-.121a.73.73 0 0 0 .224-.296 1.627 1.627 0 0 0 .138-.59V9c0-.342-.076-.531-.14-.635a.658.658 0 0 0-.255-.237A1.122 1.122 0 0 0 9.655 8zm.012-1H2.333C.5 7 .5 9 .5 9v5c0 2 1.833 2 1.833 2h7.334c1.833 0 1.833-2 1.833-2V9c0-2-1.833-2-1.833-2zM8.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
-                        </svg> <{$smarty.const._MD_USER_LANG_PASSWORD}><br>
-                        <{$smarty.const._MD_USER_LANG_TYPEPASSTWICE}>
-                    </label>
-
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="key" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
-                                    <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <{xoops_input type=password name=pass id=pass class="form-control form-control-sm" size=10 maxlength=32 value=$actionForm->get('pass')}>
-                    </div>
-
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="key-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <{xoops_input type=password name=vpass class="form-control form-control-sm" size=10 maxlength=32 value=$actionForm->get('vpass')}>
-                    </div>
-
-                </div>
-
-                <div class="form-control form-switch my-4">
-                    <input type="checkbox" class="form-control-input" id="usercookie" name="usercookie" value=1 default="<{$actionForm->get('usercookie')}>">
-                    <label for="usercookie" class="form-control-label">
-                        <{$smarty.const._MD_USER_LANG_USERCOOKIE}>
-                    </label>
-                </div>
-
-                <div class="form-control form-switch my-4">
-                    <input type="checkbox" class="form-control-input" id="user_mailok" name="user_mailok" value=1 default="<{$actionForm->get('user_mailok')}>">
-                    <label for="user_mailok" class="form-control-label">
-                        <{$smarty.const._MD_USER_LANG_USER_MAILOK}>
-                    </label>
-                </div>
-
-                <div class="card-footer py-3">
-                    <button type="submit" class="btn btn-primary btn-sm" value="<{$smarty.const._MD_USER_LANG_SAVECHANGES}>"><{$smarty.const._MD_USER_LANG_SAVECHANGES}></button>
-                </div>
+            <div class="card-footer py-3">
+                <button type="submit" class="btn btn-primary btn-sm" value="<{$smarty.const._MD_USER_LANG_SAVECHANGES}>"><{$smarty.const._MD_USER_LANG_SAVECHANGES}></button>
+            </div>
 
         </div><{* ------- /tab-content *}>
 
