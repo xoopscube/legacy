@@ -24,7 +24,7 @@ function b_legacy_mainmenu_show($options)
 
     $block = [];
     $block['_display_'] = true;
-    $block['icon'] = $options[1];
+    $block['icon'] = isset($options[1])?$options[1]:'';
     $module_handler =& xoops_gethandler('module');
     $criteria = new CriteriaCompo(new Criteria('hasmain', 1));
     $criteria->add(new Criteria('isactive', 1));
