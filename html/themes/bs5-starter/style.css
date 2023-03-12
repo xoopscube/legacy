@@ -1,10 +1,20 @@
+/*
+* Theme XCL Bootstrap5 Starter
+*
+* @version   2.3.2
+* @author    Nuno Luciano ( https://github.com/gigamaster )
+* @copyright (c) 2023 The XOOPSCube Project, author
+* @license   MIT license for Bootstrap
+* @license   BSD license for XOOPSCube XCL Theme
+* @link      https://github.com/xoopscube
+*/
 :root{
     /* ------------------ Development Mode */
     --dev-mode: none; /*  Display Smarty Template Name : block, none */
 
     --bs-form-control-bg : var(--bs-light-bg-subtle)!important; /* Input background color override to enhance contrast */
 
-    --trackBG       : var( --color-2 ); /* hsl(228, 10%, 10%);*/
+    --trackBG       : var(--bs-dark-rgb); /* hsl(228, 10%, 10%);*/
     --thumbBG       : hsl(219, 15%, 25%); /*  hsl(229, 20%, 21%);  */
     /* FIREFOX SCROLLBAR */
     scrollbar-color : var(--thumbBG) var( --trackBG ); /* thumb-color track-color */
@@ -12,13 +22,14 @@
 }
 @media only screen and (prefers-color-scheme:dark) {
 
-    :root[data-bs-theme="dark"] {
+    :root html[data-bs-theme="dark"] {
         /* -------------------- THEME COLOR */
         color-scheme: dark;
         --ntop-bg: var(--bs-btn-bg);
         --ntop-bg-hover:var(--bs-btn-hover-bg);
         --ntop-arrow:var(--bs-btn-color);
         --ntop-arrow-hover:var(--bs-btn-hover-color);
+
     }
     /* CHROME Autofill dark theme */
     :-webkit-autofill,
@@ -36,6 +47,8 @@
     }
 
 }
+
+
 /* Development Mode */
 .ui-dev-mode {
     background          : rgb(10, 10, 10);

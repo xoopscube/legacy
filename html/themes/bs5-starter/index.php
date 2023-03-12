@@ -1,12 +1,14 @@
 ﻿<?php
 /*
- * Theme XCL DEFAULT
- * @version   2.3.2
- * @author    Nuno Luciano ( https://github.com/gigamaster )
- * @copyright (c) 2005-2023 The XOOPSCube Project
- * @license   BSD
- * @link      https://github.com/xoopscube
- */
+* Theme XCL Bootstrap5 Starter
+*
+* @version   2.3.2
+* @author    Nuno Luciano ( https://github.com/gigamaster )
+* @copyright (c) 2023 The XOOPSCube Project, author
+* @license   MIT license for Bootstrap
+* @license   BSD license for XOOPSCube XCL Theme
+* @link      https://github.com/xoopscube
+*/
 
 // Process Script start getrusage — Gets the current resource usages
 $rustart = getrusage();
@@ -115,13 +117,3 @@ echo '<div class="toast-container position-fixed top-0 end-0 p-3"><div id="runTi
 .'<div class="d-flex"><div class="toast-body"><h6>Running Process Time</h6><span class="badge bg-dark-subtle text-info-emphasis">';
 echo rutime($ru, $rustart, "utime") . " ms</span> computations<br><span class=\"badge  bg-dark-subtle text-info-emphasis\">" . rutime($ru, $rustart, "stime") . " ms</span> system calls";
 echo '<progress value="0" max="100" class="progressTime" id="progressInvisible" style="position:relative;width:348px;height:4px;bottom:-14px;left:-12px"></progress></div></div></div></div>';
-
-
-//<button type="button" class="btn-close mt-1 me-3 " data-bs-dismiss="toast" aria-label="Close"></button>
-
-
-
-
-
-// jquery
-//echo '<script>$(function() {$( "div.runtime" ).fadeIn( 750 ).delay( 3000 ).fadeOut( 500 );});</script>';

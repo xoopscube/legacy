@@ -255,6 +255,21 @@
             <div class="list-group">
             <strong><{$smarty.const._MD_D3FORUM_TH_FORUMOPTIONS}></strong>
             <br>
+
+            <{if $allow_sig}>
+            <div class="list-group-item">
+                <input class="form-check-input" type="checkbox" name="attachsig" id="attachsig" value="1" <{$attachsig_checked}>>
+                <label for="attachsig"><{$smarty.const._MD_D3FORUM_LABEL_ATTACHSIG}></label>
+            </div>
+            <{/if}>
+
+            <{if $allow_notify}>
+            <div class="list-group-item">
+                <input class="form-check-input" type="checkbox" name="notify" id="notify" value="1" <{$notify_checked}>>
+                <label for="notify"><{$smarty.const._MD_D3FORUM_LABEL_NEWPOSTNOTIFY}></label>
+            </div>
+            <{/if}>
+
             <div class="list-group-item">
                 <input class="form-check-input" type="checkbox" name="smiley" id="smiley" value="1" <{$smiley_checked}>>
                 <label for="smiley"><{$smarty.const._MD_D3FORUM_ENABLESMILEY}></label>
@@ -284,20 +299,6 @@
             <div class="list-group-item">
                 <input class="form-check-input" type="checkbox" name="hide_uid" id="hide_uid" value="1" <{$hide_uid_checked}>>
                 <label for="hide_uid"><{$smarty.const._MD_D3FORUM_LABEL_HIDEUID}></label>
-            </div>
-            <{/if}>
-
-            <{if $allow_sig}>
-            <div class="list-group-item">
-                <input class="form-check-input" type="checkbox" name="attachsig" id="attachsig" value="1" <{$attachsig_checked}>>
-                <label for="attachsig"><{$smarty.const._MD_D3FORUM_LABEL_ATTACHSIG}></label>
-            </div>
-            <{/if}>
-
-            <{if $allow_notify}>
-            <div class="list-group-item">
-                <input class="form-check-input" type="checkbox" name="notify" id="notify" value="1" <{$notify_checked}>>
-                <label for="notify"><{$smarty.const._MD_D3FORUM_LABEL_NEWPOSTNOTIFY}></label>
             </div>
             <{/if}>
 

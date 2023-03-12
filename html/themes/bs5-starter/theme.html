@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html class="no-js" lang="<{$xoops_langcode}>" data-bs-theme="light">
 <!--
-   /*
-    * XCL Theme Bootstrap5 Company
+    /*
+    * Theme XCL Bootstrap5 Starter
     *
     * @version   2.3.2
     * @author    Nuno Luciano ( https://github.com/gigamaster )
-    * @copyright (c) 2005-2023 The XOOPSCube Project, author
-    * @license   BSD
+    * @copyright (c) 2023 The XOOPSCube Project, author
+    * @license   MIT license for Bootstrap
+    * @license   BSD license for XOOPSCube XCL Theme
     * @link      https://github.com/xoopscube
     */
 -->
@@ -83,17 +84,13 @@
 
 <{* ----- Inline SVG images ----- *}>
 <script>
-    // $('.svg').inlineSvg();
-    // $('[data-inline-svg]').inlineSvg();
     inlineSVG.init({
-        svgSelector: 'img.svg', // the class attached to all images that should be inlined
+    // the class attached to all images that should be inlined
+        svgSelector: 'img.svg', // Use i.bi for Bootstrap icons
         initClass: 'icon-svg', // class added to <html>
     }, function () {
-        console.log('All SVGs inlined');
+        console.log('All SVG icons inlined');
     });
-
-    // const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-    // const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 </script>
 
     </body>

@@ -1,5 +1,5 @@
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" lang="<{$xoops_langcode}>">
     <!--  <meta charset="<{$xoops_charset}>">-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> -->
@@ -35,15 +35,8 @@
     <meta name="twitter:site" content="<{$xoops_meta_twitter_site}>"><!-- @site_account -->
     <meta name="twitter:creator" content="@<{$xoops_meta_author}>">
 
-
-    <!-- Mobile App favicon.ico Place in the root directory -->
-
-
-    <!-- HTML5 valid Data URI for fake favicon requests by Browsers -->
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <!-- Resquesturi $xoops_requesturi : /module/dirname/id -->
     <link rel="canonical" href="<{$SCRIPT_NAME}>">
-
 
     <!-- Favicon SVG located in the root directory -->
     <link rel="icon" href="<{$xoops_url}>/favicon.svg" type="image/svg+xml">
@@ -60,17 +53,16 @@
 <!--    <link rel="manifest" href="<{$xoops_imageurl}>site.webmanifest">-->
 
     <!-- Bootstrap style - Local first -->
-    <link href="<{$xoops_url}>/common/bootstrap5/bootstrap.min.css" rel="stylesheet" />
+    <link href="<{$xoops_url}>/common/bootstrap5/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap icons - Local first -->
-    <link href="<{$xoops_url}>/common/bootstrap5/bootstrap-icons.css" rel="stylesheet" />
+    <link href="<{$xoops_url}>/common/bootstrap5/bootstrap-icons.css" rel="stylesheet">
 
-    <{* Bootstrap5 core JS bundle *}>
-<!--    <script src="<{$xoops_url}>/common/bootstrap5/bootstrap.bundle.min.js"></script>-->
+    <{* Bootstrap5 core JS bundle, refer to footer *}>
 
     <!-- Theme default style.css -->
     <link rel="stylesheet" href="<{$xoops_themecss}>">
     <!-- Theme default module.css -->
-    <link href="<{$xoops_imageurl}>css/module.css" rel="stylesheet" />
+    <link href="<{$xoops_imageurl}>css/module.css" rel="stylesheet">
 
     <link rel="stylesheet" href="<{$xoops_url}>/common/prismjs/prism.css">
     <!-- Modules javascript -->

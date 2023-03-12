@@ -18,6 +18,7 @@ Git Repository : Refer please to [Branch Legacy ](https://github.com/xoopscube/l
 - Code comments
 - Profile templates
 - Render compatibility
+- Theme about, samples
   
 ### Fixed
 
