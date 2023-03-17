@@ -42,7 +42,7 @@ define( '_MD_PICO_HISTORY' , 'Historique');
 define( '_MD_PICO_REFERIT' , 'En référer');
 define( '_MD_PICO_TOP' , 'Index');
 define( '_MD_PICO_ALLCONTENTS' , 'Tout le contenu');
-define( '_MD_PICO_MENU' , 'MENU');
+define( '_MD_PICO_MENU' , 'Menu');
 define( '_MD_PICO_CREATED' , 'Créé');
 define( '_MD_PICO_MODIFIED' , 'Modifié');
 define( '_MD_PICO_VIEWED' , 'Lectures');

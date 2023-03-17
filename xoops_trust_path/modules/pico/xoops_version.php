@@ -27,8 +27,8 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = $mydirname;
-$modversion['version']          = '2.42';
-$modversion['detailed_version'] = '2.42.1';
+$modversion['version']          = '2.43';
+$modversion['detailed_version'] = '2.43.1';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'GIJ=CHECKMATE PEAK Corp. - peak.ne.jp';
 $modversion['credits']          = 'PEAK Corp. Update by XOOPS-X (10) and refactoring by @gigamaster (XCL PHP7)';
@@ -488,7 +488,6 @@ $modversion['config'][] = [
 	'default'     => 'uploads/' . $mydirname,
 	'options'     => []
 ];
-
 $modversion['config'][] = [
 	'name'        => 'extra_images_size',
 	'title'       => $constpref . '_EFIMAGES_SIZE',
@@ -498,7 +497,15 @@ $modversion['config'][] = [
 	'default'     => '1200x627 820x312 640x360',
 	'options'     => []
 ];
-
+$modversion['config'][] = [
+    'name'        => $constpref . '_EFIMAGES_QUALITY',
+    'title'       => $constpref . '_EFIMAGES_QUALITYDSC',
+    'description' => 'set the quality for generated images',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 50,
+    'options'     => []
+];
 $modversion['config'][] = [
 	'name'        => 'image_magick_path',
 	'title'       => $constpref . '_IMAGICK_PATH',

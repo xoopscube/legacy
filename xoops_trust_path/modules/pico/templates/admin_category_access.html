@@ -5,7 +5,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section data-layout="row center-justify" class="action-control">
+<section data-layout="row center-justify sm-column" class="action-control">
 
     <!-- category selection -->
     <form name="selectcategory" action="<{$mod_url}>/admin/index.php" method="get">
@@ -15,18 +15,22 @@
         <input type="submit" value="<{$smarty.const._SUBMIT}>">
     </form>
 
-    <div class="control-view">
-
-        <a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>" class="button"><{$smarty.const._EDIT}></a>
-
-        <a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$cat_id}>" class="button"><{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a>
-
-        <a href="<{$mod_url}>/<{$cat_link}>" class="button"><{$smarty.const._MD_PICO_LINK_PUBLICCATEGORYINDEX}></a>
-
-        <button class="help-admin button" type='button' data-id='4' data-module='legacy' data-help-article='#help-permission' aria-label="<{$smarty.const._HELP}>">
-            <b>?</b>
-        </button>
-
+    <div class="control-view" data-self="right sm-full">
+        <{* ////— DROPDOWN SORT —\\\\ *}>
+        <div class="dropdown" id="action-contents">
+            <a href="#" class="dropdown-toggle action-menu button" aria-label="action">
+                <{$smarty.const._MENU}><svg class="icon-dropmenu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
+            </a>
+            <div class="dropdown-content" style="min-width: 240px; padding:.5em;">
+                <div data-layout="row justify-center">
+                    <h6 data-self="center size-x1"><{$mydirname|ucfirst}> <{$smarty.const._ACTION}></h6>
+                    <button class="help-admin button" type="button" data-module="pico" data-help-article="#help-content" aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
+                </div>
+                <a class="button" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>"><i class="i-edit"></i><{$smarty.const._EDIT}></a>
+                <a class="button" href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$cat_id}>"><i class="i-add"></i><{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a>
+                <a class="button" href="<{$mod_url}>/<{$cat_link}>"><i class="i-view"></i><{$smarty.const._MD_PICO_LINK_PUBLICCATEGORYINDEX}></a>
+            </div>
+        </div>
     </div>
 
 </section>

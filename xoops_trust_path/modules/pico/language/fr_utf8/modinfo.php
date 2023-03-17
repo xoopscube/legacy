@@ -21,8 +21,10 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_EF_CLASSDSC', 'Change it if you want to override the handler for extra_fields. default value is PicoExtraFields' );
     define( $constpref . '_EFIMAGES_DIR', 'Répertoire pour les champs supplémentaires (extra_fields)' );
     define( $constpref . '_EFIMAGES_DIRDSC', 'set relative path from XOOPS_ROOT_PATH. Create and chmod 777 the directory first. default) uploads/(module dirname)' );
-    define( $constpref . '_EFIMAGES_SIZE', 'pixels for extra images' );
-    define( $constpref . '_EFIMAGES_SIZEDSC', '(main_width)x(main_height) (small_width)x(small_height) defaut) 480x480 150x150' );
+    define( $constpref . '_EFIMAGES_SIZE', 'Extra images generated from the upload file' );
+    define( $constpref . '_EFIMAGES_SIZEDSC', 'Used in article header and theme Open Graph. Default values in pixels, width x height : 1200x627 820x312 640x360' );
+    define( $constpref . '_EFIMAGES_QUALITY', 'Extra Image quality compression' );
+    define( $constpref . '_EFIMAGES_QUALITYDSC', 'minimize' );
     define( $constpref . '_IMAGICK_PATH', 'Chemin pour ImageMagick binaries' );
     define( $constpref . '_IMAGICK_PATHDSC', 'Laisser vide normal, ou définissez par ex. /usr/X11R6/bin/' );
     define( $constpref . '_NOTCAT_CATEGORY', 'catégorie' );

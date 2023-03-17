@@ -7,7 +7,7 @@ define( '_MD_PICO_NUM' , 'Items per page');
 define( '_MD_PICO_TOP' , 'TOP');
 define( '_MD_PICO_ALLCONTENTS' , 'All contents');
 define( '_MD_PICO_DELETEDCONTENTS' , 'Deleted contents');
-define( '_MD_PICO_MENU' , 'MENU');
+define( '_MD_PICO_MENU' , 'Menu');
 define( '_MD_PICO_CREATED' , 'Created');
 define( '_MD_PICO_MODIFIED' , 'Modified');
 define( '_MD_PICO_EXPIRING' , 'Expiring');

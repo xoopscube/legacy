@@ -79,8 +79,10 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_URIM_CLASSDSC', 'URIマッパーをオーバーライドしたい時に指定。デフォルトはPicoUriMapper' );
     define( $constpref . '_EFIMAGES_DIR', 'extra_fields画像ファイルのパス' );
     define( $constpref . '_EFIMAGES_DIRDSC', 'XOOPS_ROOT_PATHからの相対パスを指定する。この機能を利用する場合には、指定されたフォルダを先に作っておき、さらに書込可能としておく必要がある。デフォルトは uploads/(モジュールdirname)' );
-    define( $constpref . '_EFIMAGES_SIZE', 'extra_fields画像ファイルのサイズ(pixel)' );
-    define( $constpref . '_EFIMAGES_SIZEDSC', '(メイン画像横幅)x(メイン画像高さ) (サムネイル横幅)x(サムネイル高さ) というフォーマットで記入。デフォルトは 480x480 150x150' );
+    define( $constpref . '_EFIMAGES_SIZE', 'アップロード ファイルから生成された余分な画像' );
+    define( $constpref . '_EFIMAGES_SIZEDSC', '記事のヘッダーとテーマ Open Graph で使用される画像。 ピクセル単位のデフォルト値、幅 x 高さ: 1200x627 820x312 640x360' );
+    define( $constpref . '_EFIMAGES_QUALITY', '余分な画像の品質圧縮' );
+    define( $constpref . '_EFIMAGES_QUALITYDSC', 'minimize' );
     define( $constpref . '_IMAGICK_PATH', 'ImageMagick実行ファイルのパス' );
     define( $constpref . '_IMAGICK_PATHDSC', '空欄では動かない時のみ、実行ファイルのパスを指定する 例) /usr/X11R6/bin/' );
     define( $constpref . '_COM_DIRNAME', 'コメント統合するd3forumのdirname' );

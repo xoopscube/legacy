@@ -3,12 +3,12 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.1
+ * @version    XCL 2.43.1
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
  * @license    GPL v2.0
- * @brief      you can override this class by specifying your sub class into the preferences
+ * @brief      you can override this class by specifying your sub-class into the preferences
  */
 
 define( 'PICO_EXTRA_FIELDS_PREFIX', 'extra_fields_' );
@@ -29,6 +29,7 @@ class PicoExtraFields {
 	public $content_id;
 	public $images_path;
 	public $image_sizes;
+    public $image_quality; // since XCL 2.3.x
 
 	public function __construct( $mydirname, $mod_config, $auto_approval, $isadminormod, $content_id ) {
 		$this->mydirname     = $mydirname;
@@ -37,6 +38,7 @@ class PicoExtraFields {
 		$this->isadminormod  = $isadminormod;
 		$this->content_id    = $content_id;
 		$this->images_path   = XOOPS_ROOT_PATH . '/' . $mod_config['extra_images_dir'];
+        $this->image_quality = $this->mod_config['extra_images_quality'];
 		$this->image_sizes   = [];
 		$size_combos         = preg_split( '/\s+/', $this->mod_config['extra_images_size'] );
 		foreach ( $size_combos as $size_combo ) {
@@ -57,7 +59,7 @@ class PicoExtraFields {
 			}
 		}
 
-		// process $_FILES (only adminormod )
+		// process $_FILES (only admin or moderator )
 		if ( $this->canUploadImages() && ! empty( $_FILES ) && is_array( $_FILES ) ) {
 			$this->uploadImages( $ret );
 		}
@@ -108,7 +110,8 @@ class PicoExtraFields {
 		// create temp file name
 		$tmp_image = $this->images_path . '/tmp_' . $id;
 
-		// set mask
+		// set mask - 0022  sets default write permissions
+        // lets the owner both read and write all newly created files, but everybody else can only read them
 		$prev_mask = @umask( 0022 );
 
 		// move temporary
@@ -123,16 +126,17 @@ class PicoExtraFields {
 		$check_result = @getimagesize( $tmp_image );
 		if ( ! is_array( $check_result ) || empty( $check_result['mime'] ) ) {
 			@unlink( $tmp_image );
+            // TODO ALERT / REDIRECT MESSAGE
 			die( 'An invalid image file is uploaded' );
 		}
 
 		// set image_id ( = $id . $ext )
 		$image_id = $id . '.' . $this->getExtFromMime( $check_result['mime'] );
 
-		// resize loop
+		// resize loop - image_magick_path - crop the image source preserving the height {$sizes[0]}x{$sizes[1]}
 		foreach ( $this->image_sizes as $size_key => $sizes ) {
 			$image_path = $this->getImageFullPath( $field_name, $size_key, $image_id );
-			exec( $this->mod_config['image_magick_path'] . "convert -geometry {$sizes[0]}x{$sizes[1]} $tmp_image $image_path" );
+			exec( $this->mod_config['image_magick_path'] . "convert -geometry {$sizes[0]}x{$sizes[1]} -quality $this->image_quality $tmp_image $image_path" );
 			@chmod( $image_path, 0644 );
 		}
 
