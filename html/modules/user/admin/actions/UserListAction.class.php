@@ -16,12 +16,19 @@ class User_UserListAction extends User_AbstractListAction
 {
     public $mUserObjects = [];
     public $mActionForm = null;
-    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
+    public $mpageArr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 0];
+    private $mAvatarWidth;
+    private $mAvatarHeight;
+    private $mAvatarMaxfilesize;
 
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mActionForm =new User_UserListForm();
         $this->mActionForm->prepare();
+        // Since XCL 2.3.x @gigamaster added avatar info
+        $this->mAvatarWidth = $moduleConfig['avatar_width'];
+        $this->mAvatarHeight = $moduleConfig['avatar_height'];
+        $this->mAvatarMaxfilesize = $moduleConfig['avatar_maxsize'];
     }
 
     public function &_getHandler()
@@ -69,6 +76,11 @@ class User_UserListAction extends User_AbstractListAction
         $render->setAttribute('activeUserTotal', $active_total);
         $render->setAttribute('inactiveUserTotal', $inactive_total);
         $render->setAttribute('UserTotal', $active_total+$inactive_total);
+
+        // Since XCL 2.3.x @gigamaster added avatar info
+        $render->setAttribute('avatar_width', $this->mAvatarWidth);
+        $render->setAttribute('avatar_height', $this->mAvatarHeight);
+        $render->setAttribute('avatar_maxsize', $this->mAvatarMaxfilesize);
     }
 
     public function execute(&$controller, &$xoopsUser)
@@ -130,27 +142,27 @@ class User_UserListAction extends User_AbstractListAction
             }//if
         }//foreach
 
-                foreach (array_keys($levelArr) as $uid) {
-                    if ((1 == $this->mActionForm->get('delete', $uid)) && (1 != $uid)) {
-                        $user =& $userHandler->get($uid);
-                        if (is_object($user)) {
-                            XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete', new XCube_Ref($user));
-                            $memberhandler =& xoops_gethandler('member');
-                            if ($memberhandler->delete($user)) {
-                                XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete.Success', new XCube_Ref($user));
-                            } else {
-                                XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete.Fail', new XCube_Ref($user));
-                                return USER_FRAME_VIEW_ERROR;
-                            }
-                        }//object
-                    }//delete == 1
-                }//foreach
+        foreach (array_keys($levelArr) as $uid) {
+            if ((1 == $this->mActionForm->get('delete', $uid)) && (1 != $uid)) {
+                $user =& $userHandler->get($uid);
+                if (is_object($user)) {
+                    XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete', new XCube_Ref($user));
+                    $memberhandler =& xoops_gethandler('member');
+                    if ($memberhandler->delete($user)) {
+                        XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete.Success', new XCube_Ref($user));
+                    } else {
+                        XCube_DelegateUtils::call('Legacy.Admin.Event.UserDelete.Fail', new XCube_Ref($user));
+                        return USER_FRAME_VIEW_ERROR;
+                    }
+                }//object
+            }//delete == 1
+        }//foreach
 
         return USER_FRAME_VIEW_SUCCESS;
     }
 
     /**
-     * To support a template writer, this send the list of mid that actionForm kept.
+     * To support a template writer, this sends the list of mid that actionForm kept.
      * @param $controller
      * @param $xoopsUser
      * @param $render
@@ -162,7 +174,7 @@ class User_UserListAction extends User_AbstractListAction
         $render->setAttribute('actionForm', $this->mActionForm);
         
         //
-        // To support a template writer, this send the list of mid that
+        // To support a template writer, this sends the list of mid that
         // actionForm kept.
         //
         $t_arr = $this->mActionForm->get('level');

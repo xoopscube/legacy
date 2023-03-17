@@ -6,7 +6,7 @@
 $modversion['dirname']          = 'user';
 $modversion['name']             = _MI_USER_NAME;
 $modversion['version']          = '2.32';
-$modversion['detailed_version'] = '2.32.1';
+$modversion['detailed_version'] = '2.32.2';
 $modversion['description']      = _MI_USER_NAME_DESC;
 $modversion['author']           = 'The XOOPSCube Project';
 $modversion['credits']          = 'Minahito, The XOOPSCube Project';
@@ -170,7 +170,7 @@ $modversion['config'][]= [
     'title'     => '_MI_USER_CONF_AVATAR_WIDTH',
     'formtype'  => 'textbox',
     'valuetype' => 'int',
-    'default'   =>120
+    'default'   => '128'
 ];
 
 $modversion['config'][]= [
@@ -178,7 +178,7 @@ $modversion['config'][]= [
     'title'     => '_MI_USER_CONF_AVATAR_HEIGHT',
     'formtype'  => 'textbox',
     'valuetype' => 'int',
-    'default'   =>120
+    'default'   => '128'
 ];
 
 $modversion['config'][]= [

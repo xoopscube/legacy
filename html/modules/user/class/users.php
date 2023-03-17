@@ -143,8 +143,8 @@ class UserUsersHandler extends XoopsObjectGenericHandler
     }
 
     /**
-     * Return the array which consists of an integer as the uid. This member
-     * function is more speedy than getObjects().
+     * Return the array which consists of an integer as the uid.
+     * This member function is faster than getObjects().
      *
      * @param null $criteria
      * @param null $limit
@@ -194,7 +194,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
 
     public function insert(&$user, $force = false)
     {
-        // check pass colmun length of users table
+        // check pass column length of users table
         if (!defined('XCUBE_CORE_USER_PASS_LEN_FIXED') && is_callable('User_Utils::checkUsersPassColumnLength')) {
             User_Utils::checkUsersPassColumnLength();
         }

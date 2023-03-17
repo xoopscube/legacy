@@ -17,12 +17,17 @@ class User_AvatarListAction extends User_AbstractListAction
 
     public $mAvatarObjects = [];
     public $mActionForm = null;
-    public $mpageArr = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100, 0];
+    public $mpageArr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 0];
 
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->mActionForm =new User_AvatarListForm();
         $this->mActionForm->prepare();
+
+        // Since XCL 2.3.x @gigamaster added avatar info
+        $this->mAvatarWidth = $moduleConfig['avatar_width'];
+        $this->mAvatarHeight = $moduleConfig['avatar_height'];
+        $this->mAvatarMaxfilesize = $moduleConfig['avatar_maxsize'];
     }
 
 
@@ -71,6 +76,11 @@ class User_AvatarListAction extends User_AbstractListAction
         $render->setAttribute('savatarTotal', $savatar_total);
         $render->setAttribute('cavatarTotal', $cavatar_total);
         $render->setAttribute('avatarTotal', $savatar_total+$cavatar_total);
+
+        // Since XCL 2.3.x @gigamaster added avatar info
+        $render->setAttribute('avatar_width', $this->mAvatarWidth);
+        $render->setAttribute('avatar_height', $this->mAvatarHeight);
+        $render->setAttribute('avatar_maxsize', $this->mAvatarMaxfilesize);
     }
 
     public function execute(&$controller, &$xoopsUser)
