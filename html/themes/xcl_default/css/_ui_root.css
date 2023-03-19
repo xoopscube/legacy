@@ -1,11 +1,12 @@
 /*
- * XCL Theme PicoCSS
+ * XCL Theme PicoCSS 157
  *
- * @version   2.3.2
+ * @version   1.5.7
+ * @date      2023-03-20
  * @author    Nuno Luciano ( https://github.com/gigamaster )
  * @copyright (c) 2005-2023 The XOOPSCube Project, authors
- * @license   BSD
- * @link      https://github.com/xoopscube
+ * @license   MIT
+ * @link      https://github.com/xoopscube-themes/xcl-picocss-157
  */
 /* Global CSS variables */
 /* -------------------- -------------------- COLOR */
@@ -110,7 +111,7 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
     --line-height: 1.5;
-
+    --font-16: 16px;
     --font-size: 18px;
     --font-weight: 400;
     --tooltip-background-color: var(--contrast);

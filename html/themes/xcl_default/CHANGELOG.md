@@ -2,17 +2,40 @@
 
 ## XCL Theme PicoCSS
 
-#### Version 2.3.x
+#### Version XCL Theme 2.3.x
 
 All notable changes to XCL Theme PicoCSS will be documented in this file.
 
 ### The XOOPSCube Project
 
-Git Repository : Refer please to [Branch Legacy ](https://github.com/xoopscube/legacy/)
+Git Repository : Refer please to [ xcl-picocss-157 ](https://github.com/xoopscube-themes/xcl-picocss-157)
+
+## [XCL Pico 157 ] 2023-03-20
+
+- Accordion and Dropdown
+- Defer and Preload
+- Fixed user menu
+- Side Panel
+
+## [XCL Pico 157 ] 2023-03-18
+
+- Alert admin in side panel
+- Avatar letter --primary
+- Screenshot layout wireframe
+- CKEditor prevent button shadow
+- Enhanced SVG
+- Fix XMLNS
+- Nav user menu
+- Open Graph
+- Pico image
+
+## [XCL Pico 157 ] 2023-01-18
+
+- Update to PicoCSS 157
 
 ## [XCL Package ] 2021-11-21
 
-- Merge to XCL Bundle Package  
+- Merge to XCL Bundle Package
   Replace Bootstrap Framework
 
 ## [unreleased] 2021-11-15
@@ -59,8 +82,8 @@ Git Repository : Refer please to [Branch Legacy ](https://github.com/xoopscube/l
 - Removed theme render function
 - Removed unused element tags
 
-## [unreleased] 2022-11-11
+## [unreleased] 2021-11-11
 
-- Port from subsystem XFury3 to Legacy 2.3.x
+- Port from subsystem XCL XFury3 to Legacy 2.3.x
 - Smarty Template Engine theme compatible
 - Default layout and documentation

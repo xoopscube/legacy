@@ -1,11 +1,12 @@
 /*
- * XCL Theme PicoCSS
+ * XCL Theme PicoCSS 157
  *
- * @version   2.3.2
+ * @version   1.5.7
+ * @date      2023-03-20
  * @author    Nuno Luciano ( https://github.com/gigamaster )
  * @copyright (c) 2005-2023 The XOOPSCube Project, authors
- * @license   BSD
- * @link      https://github.com/xoopscube
+ * @license   MIT
+ * @link      https://github.com/xoopscube-themes/xcl-picocss-157
  */
 /*  SUMMARY
     - Dev-Mode, HTML and Body
@@ -67,10 +68,6 @@ body {
     border-radius   : var(--border-radius);
     display         : block;
     padding         : calc( var(--spacing) / 2);
-    /*position        : relative;*/
-    /*top             : 1rem;*/
-    /*left            : -2rem;*/
-    /*writing-mode    : vertical-rl;*/
 }
 .banner {
     padding         : var(--spacing);
@@ -186,6 +183,15 @@ article {
     margin: var(--block-spacing-vertical) 0;
     padding: var(--block-spacing-vertical) var(--block-spacing-horizontal);
 }
+article .header-image {
+    display:inline-block;
+    box-shadow: var(--card-box-shadow);
+    height:240px;
+    margin-top: calc(var(--block-spacing-vertical) * -1.25);
+    margin-bottom: var(--block-spacing-vertical);
+    object-fit: cover;
+    width: 100%;
+}
 article header h2 {
     margin-bottom:0;
 }
@@ -207,30 +213,6 @@ header .headings > :last-child {
     justify-content : space-between;
     width           : 100%;
 }
-
-/* Fix for Firefox */
-/*:is(article > div.headings > h3) a { font-size:1.5rem; }*/
-
-/*:is(article hgroup ) > :first-child { !* TODO test this *!*/
-/*    font-size: 1.5rem;*/
-/*}*/
-/* FORUM Topic and Post */
-/*.headings, hgroup {*/
-/*    margin-bottom: var(--typography-spacing-vertical);*/
-/*}*/
-
-/*.headings>:last-child, hgroup>:last-child {*/
-/*    --color: var(--muted-color);*/
-/*    --font-weight: unset;*/
-/*    font-size: 1rem;*/
-/*    font-family: unset;*/
-/*}*/
-/*:is(.headings, hgroup, .description, .content-tags) p:only-child, p:last-child {*/
-/*    margin-bottom: 0;*/
-/*    border: 1px dotted limegreen;*/
-/*}*/
-
-
 
 header.post-header > h3.post-title {
     margin-bottom: 1rem;
@@ -321,9 +303,8 @@ form > footer.action-control {
     border-top: var(--border-width) solid var(--card-border-color);
     border-bottom-right-radius: var(--border-radius);
     border-bottom-left-radius: var(--border-radius);
-    margin: var(--block-spacing-vertical) calc(var(--block-spacing-horizontal) * -2); /* calc(0px - var(--block-spacing-vertical)); */
+    margin: var(--block-spacing-vertical) calc(var(--block-spacing-horizontal) * -2);
     margin-bottom: calc(var(--block-spacing-horizontal) * -2);
-    /*padding: calc(var(--block-spacing-vertical) * .66) var(--block-spacing-horizontal) 0;*/
     padding: calc(var(--block-spacing-vertical) * .6) var(--block-spacing-horizontal)  1rem
 }
 /* ---------- BLOCK MENU CSS TOGGLE - MOBILE  */
@@ -351,13 +332,10 @@ form > footer.action-control {
         max-height: 42rem; /* higher value */
         opacity:1;
         transition: max-height 0.3s cubic-bezier(1,0,1,0), opacity 300ms 300ms ease-in;
-    /*transform-origin:top;*/
     }
     article footer .action-control {
-        /*row-gap: 1rem;*/
         display: flex;
         flex-wrap: wrap;
-        /*border:1px solid green;*/
     }
    /* NOTE : form must wrap the footer class action-control to apply negative margin */
     .ui-tab-content  footer.action-control{
@@ -365,11 +343,6 @@ form > footer.action-control {
         padding: calc(var(--block-spacing-vertical) * .66) var(--block-spacing-horizontal) 0;
     }
     .ui-widget.ui-widget-content {
-        /*border: var(--ui-widget-content-border);*/
-        /*background: var(--card-background-color);*/
-        /*border-radius: var(--border-radius);*/
-        /*box-shadow: var(--card-box-shadow);*/
-        /*margin: var(--block-spacing-vertical) 0;*/
         padding: calc(var(--block-spacing-horizontal) * 1);
     }
     section.block-center {
@@ -458,6 +431,7 @@ form > footer.action-control {
 }
 
 /* BUTTON CKEditor fix button revert */
+.cke_button,.cke_combo_button { box-shadow: none!important}
 a.cke_button[role="button"]{
     opacity: revert;
     pointer-events: revert;
@@ -474,6 +448,7 @@ a.cke_button[role="button"]{
 .cke_toolbox[role="group"]{
     display: inherit;
 }
+
 /* -------------------- -------------------- -- BUTTON INPUT SEARCH */
 
 /* Add a cancel button to Search */
@@ -497,12 +472,7 @@ input[type="number"].ui-spinner-input {margin:0;padding:.5rem; border: 1px solid
     height: 25%;
     border-radius:0;
 }
-/*.ui-spinner-input,*/
-/*.ui-spinner a.ui-spinner-button {margin:0; padding:0; border:1px solid red; border-radius:0}*/
-/*.ui-borderno {*/
-/*    */
-/*    padding:0;*/
-/*}*/
+
 .ui-spinner.ui-borderno.ui-widget.ui-widget-content {
     padding:0;
     margin:0;
@@ -522,7 +492,6 @@ i[class^="i-"],
     padding-right   : .5rem;
 }
 
-
 /* -------------------- -------------------- -- Module FORUM */
 /* POST TREE */
 ul.d3f_eachbranch li {
@@ -541,31 +510,19 @@ ul.icon-list li {
     margin-bottom:0;
 }
 
-
 /*div.category-sub:not(:last-child) ,*/
 :is(div.list-content):not(:only-of-type),
 :is(div.list-content):not(:last-of-type),
 :is(div.category-sub, div.category-forum):not(:only-of-type),
 :is(div.category-sub, div.category-forum):not(:last-of-type){
     margin-bottom:var(--typography-spacing-vertical);
-    /*border:1px solid darkorange;*/
 }
-:is(div.list-content):last-of-type {
-    /*border-bottom:3px solid darkcyan;*/
-}
-
+:is(div.list-content):last-of-type {}
 .topic-sort {}
-
-.topics-list {
-    /*border:1px dotted darkcyan;*/
-}
-.topic-last-post {
-}
-.post {
-    margin-bottom: 1em;
-}
-.post-author {
-}
+.topics-list {}
+.topic-last-post {}
+.post {margin-bottom: 1em;}
+.post-author {}
 .post-author-info {
     padding: 0 1rem 1rem; /* for Dropdown */
 }
@@ -575,10 +532,8 @@ ul.icon-list li {
     line-height: 42px;
 }
 .post-content {
-    /*background: var(--color-2);*/
     border-radius: var(--border-radius);
     border: var(--border);
-    /*padding: var(--space-6);*/
     border: var(--border);
     min-height: 90px;
 }
@@ -591,8 +546,7 @@ ul.icon-list li {
 
 .description {}
 
-.activity {
-}
+.activity {}
 ul.post-tree {
     background: var(--card-background-color);
     border-radius: var(--border-radius);
@@ -661,7 +615,6 @@ li.post-tree-item > span {
 .mail-from {}
 .mail-date {}
 .mail-content{}
-
 
 /* -------------------- -------------------- Module PICO */
 
@@ -739,7 +692,7 @@ summary[role="link"].contrast:is([aria-current],:hover,:active,:focus) {
 /* -------------------- -------------------- -- PAGINATION */
 :is(ul.pagenavi) {
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     display: flex;
     margin: 0;
     padding: 0;
@@ -773,8 +726,6 @@ summary[role="link"].contrast:is([aria-current],:hover,:active,:focus) {
     color           : var(--primary-inverse);
 }
 
-
-
 /* -------------------- -------------------- -- PROFILE USER AVATAR */
 /* Generate CSS Avatar Letter */
 .user-tab-avatar #avatar {
@@ -786,21 +737,20 @@ summary[role="link"].contrast:is([aria-current],:hover,:active,:focus) {
     text-align      : center;
     width           : var(--avatar-size);
 }
+/* Avatar Letter */
 .user-tab-avatar #username {
     font-size       : 0;
     display         : block;
-    color           : var(--link-color );
+    color           : var(--primary );
     position        : relative;
     line-height     : 1;
     text-transform  : uppercase;
     top             : calc(var(--avatar-size) / 4); /* 25% of parent */
     transition      : font-size 0.3s ease-in;
-    /* drop-shadow(offset-x offset-y blur-radius color) */
-    filter          : drop-shadow(2px 2px 5px #010);
+    filter          : drop-shadow(2px 2px 5px #010); /* drop-shadow(offset-x offset-y blur-radius color) */
 }
 .user-tab-avatar #username::first-letter {
-    /* 50% of parent  */
-    font-size       : calc(var(--avatar-size) / 2);
+    font-size       : calc(var(--avatar-size) / 2); /* 50% of parent  */
 }
 /* -------------------- -------------------- PROFILE USER */
 :is(div.user-data, div.user-tab-timeline) h6 {
@@ -809,7 +759,6 @@ summary[role="link"].contrast:is([aria-current],:hover,:active,:focus) {
 
 /* ---------- ---------- ------- SCROLL TOP */
 .scroll-top {
-    /*box-sizing: border-box;*/
     position: absolute;
     top: 12rem;
     right: 2rem;

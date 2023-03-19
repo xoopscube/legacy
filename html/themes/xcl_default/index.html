@@ -1,13 +1,14 @@
 <!doctype html>
 <html lang="en">
-<!-- 
+<!--
    /*
     * XCL Theme PicoCSS
     *
     * @version   2.3.2
+    * @date      2023-03-20
     * @author    Nuno Luciano ( https://github.com/gigamaster )
     * @copyright (c) 2005-2023 The XOOPSCube Project, authors
-    * @license   BSD
+    * @license   MIT
     * @link      https://github.com/xoopscube
     */
 -->
@@ -16,13 +17,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--  <meta charset="<{$xoops_charset}>">-->
     <title>XCL Theme built with PicoCSS for XOOPSCube</title>
-    <meta name="description" content="XCL Theme built with PicoCSS for XOOPSCube Web Application Platform and Content Management System">
+    <meta name="description" content="XCL Theme built with PicoCSS 1.5.7 for XOOPSCube Web Application Platform and Content Management System">
     <!--  <meta name="description" content="A classic company or blog layout with a sidebar. Built with Pico CSS.">-->
     <meta name="robots" content="index,follow">
     <meta name="keywords" content="free, theme, template, css, code, component, design, html, single file component, open source, free templates, ui, update, ux, website, wizard, wysiwyg">
     <meta name="rating" content="general">
     <meta name="author" content="Nuno Luciano">
-    <meta name="copyright" content="Copyright © 2022">
+    <meta name="copyright" content="Copyright © 2023">
     <meta name="generator" content="XOOPSCube">
     <!-- Meta Webmaster Tools-->
     <meta name="msvalidate.01" content="">
@@ -30,9 +31,9 @@
     <meta name="yandex-verification" content="">
     <!-- Facebook Open Graph data -->
     <meta property="fb:app_id" content="">
-    <meta property="og:url" content="https://xoopscube-themes.github.io/xcl-picocss/">
+    <meta property="og:url" content="https://xoopscube-themes.github.io/xcl-picocss-157/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="XCL Theme built with PicoCSS for XOOPSCube">
+    <meta property="og:title" content="XCL Theme built with PicoCSS 1.5.7 for XOOPSCube">
     <meta property="og:image" content="picocss-screenshot.png">
     <meta property="og:description" content="XCL Theme built with PicoCSS for XOOPSCube">
     <meta property="og:site_name" content="XCL Theme built with PicoCSS">
@@ -41,17 +42,16 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="XCL Theme built with PicoCSS"><!-- @site_account -->
     <meta name="twitter:creator" content="@nunoluciano">
-    <meta name="twitter:url" content="https://xoopscube-themes.github.io/xcl-picocss/">
+    <meta name="twitter:url" content="https://xoopscube-themes.github.io/xcl-picocss-157/">
     <meta name="twitter:title" content="XCL Theme built with PicoCSS">
-    <meta name="twitter:description" content="XCL Theme built with PicoCSS for XOOPSCube">
+    <meta name="twitter:description" content="XCL Theme built with PicoCSS 1.5.7 for XOOPSCube">
     <meta name="twitter:image" content="picocss-screenshot.png">
-    <meta name="twitter:image:alt" content="XCL Theme built with PicoCSS">
+    <meta name="twitter:image:alt" content="XCL Theme built with PicoCSS 1.5.7">
     <!-- HTML5 valid Data URI for fake favicon requests by Browsers -->
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <!-- Mobile App favicon.ico Place in the root directory -->
-    <link rel="icon" href="https://xoopscube-themes.github.io/xcl-picocss/favicon.svg" type="image/svg+xml">
-    <link rel="alternate icon" href="https://xoopscube-themes.github.io/xcl-picocss/favicon.png" type="image/png">
-    <link rel="shortcut icon" href="https://picocss.com/favicon.ico">
+<!--    <link rel="icon" href="https://xoopscube-themes.github.io/xcl-picocss/favicon.svg" type="image/svg+xml">-->
+<!--    <link rel="alternate icon" href="https://xoopscube-themes.github.io/xcl-picocss/favicon.png" type="image/png">-->
     <!-- Request uri -->
     <link rel="canonical" href="https://xoopscube-themes.github.io/xcl-picocss/">
     <!-- Pico.css -->
@@ -60,72 +60,69 @@
     <!-- Custom styles for this example -->
     <link rel="stylesheet" href="./style.css">
     <style>
-        section.content {grid-area: content;}
-        aside {grid-area:side;}
-        :where(.grid,.grid-2,.grid-3,.grid-left,.grid-right) > div {
-            background: var(--card-background-color);
-            border:1px solid var(--muted-border-color);
-            border-radius: var(--border-radius);
-            padding:1rem;
-        }
-        :where(.container-fluid .grid-3) > div {background: transparent;border:none}
-        :where(.theme-info) > div {padding:.5rem 1rem;font-size: 16px}
-        main div.grid {grid-template-areas:"content side";}
-        .grid-custom {display:grid;column-gap: calc(var(--spacing) * 3);grid-template-areas:"side content";}
-        @media (max-width: 768px){
-            .grid,.grid-2,.grid-3,.grid-left,.grid-right,.grid-custom {grid-template-columns: 1fr;}
-            main > div.grid-custom {grid-template-columns: 1fr;grid-template-areas:"side" "content";}
-        }
-        #customization figure~article {
-            margin-top: 0;
-            border-top-right-radius: 0;
-            border-top-left-radius: 0;
-        }
-        #customization figure {
-            display: grid;
-            grid-template-rows: 1fr;
-            grid-template-columns: repeat(18,1fr);
-            border-top-right-radius: var(--border-radius);
-            border-top-left-radius: var(--border-radius);
-            margin: 0;
-            padding: 0;
-        }
-        #customization figure button {
-            margin-bottom: 0;
-            padding: 0;
-            padding-top: 100%;
-            border: none;
-            border-radius: 0;
-        }
-        #customization figure button.picked {
-            --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(255, 255, 255)' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
-            --icon-check-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(0, 0, 0, 0.75)' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
-            background-image: var(--icon-check);
-            background-position: center;
-            background-size: 0.66rem auto;
-            background-repeat: no-repeat;
-            box-shadow: inset 0 0 1rem 0 rgb(0 0 0 / 25%);
-        }
-        p>code {vertical-align: bottom;}
-        ul.check li {margin-left: 1.5rem;list-style: none}
-        header hgroup > :last-child, header .headings > :last-child {color: var(--primary-inverse);}
-        ul.check li::before {
-            display: block;
-            position: absolute;
-            width: 1rem;
-            height: 1rem;
-            margin-top: .25rem;
-            margin-left: -1.5rem;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(16, 149, 193, 0.999)' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
-            background-size: 100%;
-            content: ""
-        }
+    section.content {grid-area: content;}
+    aside {grid-area:side;}
+    :where(.grid,.grid-2,.grid-3,.grid-left,.grid-right) > div {
+        background: var(--card-background-color);
+        border:1px solid var(--muted-border-color);
+        border-radius: var(--border-radius);
+        padding:1rem;
+    }
+    :where(.container-fluid .grid-3) > div {background: transparent;border:none}
+    :where(.theme-info) > div {padding:.5rem 1rem;font-size: 16px}
+    main div.grid {grid-template-areas:"content side";}
+    .grid-custom {display:grid;column-gap: calc(var(--spacing) * 3);grid-template-areas:"side content";}
+    @media (max-width: 768px){
+        .grid,.grid-2,.grid-3,.grid-left,.grid-right,.grid-custom {grid-template-columns: 1fr;}
+        main > div.grid-custom {grid-template-columns: 1fr;grid-template-areas:"side" "content";}
+    }
+    #customization figure~article {
+        margin-top: 0;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+    }
+    #customization figure {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: repeat(18,1fr);
+        border-top-right-radius: var(--border-radius);
+        border-top-left-radius: var(--border-radius);
+        margin: 0;
+        padding: 0;
+    }
+    #customization figure button {
+        margin-bottom: 0;
+        padding: 0;
+        padding-top: 100%;
+        border: none;
+        border-radius: 0;
+    }
+    #customization figure button.picked {
+        --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(255, 255, 255)' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+        --icon-check-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(0, 0, 0, 0.75)' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+        background-image: var(--icon-check);
+        background-position: center;
+        background-size: 0.66rem auto;
+        background-repeat: no-repeat;
+        box-shadow: inset 0 0 1rem 0 rgb(0 0 0 / 25%);
+    }
+    p>code {vertical-align: bottom;}
+    ul.check li {margin-left: 1.5rem;list-style: none}
+    header hgroup > :last-child, header .headings > :last-child {color: var(--primary-inverse);}
+    ul.check li::before {
+        display: block;
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        margin-top: .25rem;
+        margin-left: -1.5rem;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(16, 149, 193, 0.999)' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+        background-size: 100%;
+        content: ""
+    }
     </style>
-
 </head>
-
 <body>
-
 <!-- Hero -->
 <div class="hero" data-theme="dark">
     <nav class="container-fluid">
@@ -295,7 +292,6 @@
 
         <p>You can find all the PicoCSS variables used in the default theme here: <a href="https://github.com/picocss/pico/blob/master/css/themes/default.css" target="_blank" rel="noopener">css/themes/default.css</a></p>
 
-
         </article>
 
         <h2 id="components">CSS Variables and Components</h2>
@@ -351,12 +347,9 @@
             </figure>
         </article>
 
-
-
         <article id="theme-group">
             <h3>Button Group - primary</h3>
             <p>Group is used with <code>&lt;<b>div</b> <i>role</i>="<u>group</u>"&gt;</code> for <code><i>class</i>="<u>action-control</u>"</code> and style of ui-tabs.</p>
-
 
             <div role="group" aria-label="Action Control">
                 <a role="button" class="primary new" href="#!" title="Edit">New</a>
@@ -405,7 +398,7 @@
                                 <path d="M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z" fill="currentColor"></path>
                                 <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)"></rect>
                             </svg> Clone Block</a>
-                        <a href="#">
+                        <a href="#!">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                                 <path d="M12.89 3l1.96.4L11.11 21l-1.96-.4L12.89 3m6.7 9L16 8.41V5.58L22.42 12L16 18.41v-2.83L19.59 12M1.58 12L8 5.58v2.83L4.41 12L8 15.58v2.83L1.58 12z" fill="currentColor"></path>
                                 <rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)"></rect>
@@ -417,7 +410,6 @@
         </article>
 
         <article id="theme-grid">
-
         <h3>Grid</h3>
         <p>The default grid creates a column for each child div in the parent element.</p>
         <div class="grid">
@@ -464,8 +456,6 @@
         </div>
         </article>
 
-
-
         <article id="theme-pagination">
         <header><div class="headings">
             <h3>Pagination</h3>
@@ -491,8 +481,8 @@
 
     <aside>
 
-        <h2 id="theme-pico">XCL Theme PicoCSS</h2>
-        <p>Theme built with PicoCSS including templates for modules of XCL bundle package.</p>
+        <h2 id="theme-pico">XCL Theme PicoCSS 1.5.7</h2>
+        <p>Theme built with PicoCSS 1.5.7 including templates for modules of XCL bundle package.</p>
 
         <div class="grid-left theme-info">
             <div>
@@ -685,7 +675,7 @@
                 <h4 data-layout="row center-justify" class="block-title">
                     Menu
                     <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" aria-label="Edit">
+                        <a href="#!" class="dropdown-toggle" aria-label="Edit">
                             <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1.25em" height="1.25em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                                 <path d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2z" fill="currentColor"></path>
                             </svg>
@@ -770,11 +760,11 @@
 <!-- Footer -->
 <footer class="container">
     <small>Built with <a href="https://picocss.com" target="_blank" rel="noopener nofollow">Pico CSS</a> • <a href="https://github.com/picocss/examples/tree/master/company/">Source code</a></small><br>
-    <small>Powered by XCL 2.3.1 © 2005-2022 <a href="https://github.com/xoopscube/" rel="external">The XOOPSCube Project</a> | <a href="https://xoopscube.github.io/legacy/">Web Installation Wizard</a></small>
+    <small>Powered by XCL 2.3.1 © 2005-2023 <a href="https://github.com/xoopscube/" rel="external">The XOOPSCube Project</a> | <a href="https://xoopscube.github.io/legacy/">Web Installation Wizard</a></small>
 </footer>
 
 <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
-<script src="./js/minimal-theme-switcher.js"></script>
+<script src="./js/plugins.js"></script>
 <script>
     $(".dropdown").on("click", ".dropdown-toggle", function (event) {
         event.preventDefault();

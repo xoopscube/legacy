@@ -396,7 +396,7 @@ function xoops_getbanner()
             $bannerobject .= '</a></div>';
         } else {
             $bannerobject = '<div class="banner"><a href="'.XOOPS_URL.'/banners.php?op=click&amp;bid='.$bid.'" rel="noopener">';
-            $bannerobject .= '<img src="' . $imageurl . '" alt="">';
+            $bannerobject .= '<img src="' . $imageurl . '" alt="banner" loading="lazy">';
             $bannerobject .= '</a></div>';
         }
         return $bannerobject;

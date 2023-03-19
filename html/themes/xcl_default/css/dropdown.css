@@ -1,11 +1,12 @@
 /*
- * X-LAYOUT Component Dropdown
- * requires jquery 3.6.x
- * @version   2.3.2
+ * XCL Theme PicoCSS 157
+ *
+ * @version   1.5.7
+ * @date      2023-03-20
  * @author    Nuno Luciano ( https://github.com/gigamaster )
- * @copyright (c) 2005-2023 The XOOPSCube Project
- * @license   BSD
- * @link      https://github.com/xoopscube
+ * @copyright (c) 2005-2023 The XOOPSCube Project, authors
+ * @license   MIT
+ * @link      https://github.com/xoopscube-themes/xcl-picocss-157
  */
 /* -------------------- Dropdown Menu */
 
@@ -54,7 +55,7 @@ div.dropdown-content {
 }
 @media (min-width: 992px) {
     .dropdown-content {
-        right               : 1px; /* Fix device Viewport */
+        right           : 1px; /* Fix device Viewport */
     }
 }
 div.dropdown div.dropdown-content ul {
