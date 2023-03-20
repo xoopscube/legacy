@@ -30,8 +30,8 @@ $xoopsOption['template_main'] = $mydirname . '_main.html';
 
 $_xoops_header = $xoopsTpl->get_template_vars( 'xoops_module_header' );
 
-$_xoops_header .= '<link rel="stylesheet" href="' . XOOPS_MODULE_URL . '/' . $mydirname . '/include/css/main.css" type="text/css" media="all" />';
-$_xoops_header .= '<script type="text/javascript" src="' . XOOPS_MODULE_URL . '/' . $mydirname . '/include/js/openWithSelfMain_iframe.js"></script>';
+$_xoops_header .= '<link rel="stylesheet" href="' . XOOPS_MODULE_URL . '/' . $mydirname . '/include/css/main.css" type="text/css" media="all">';
+$_xoops_header .= '<script defer src="' . XOOPS_MODULE_URL . '/' . $mydirname . '/include/js/openWithSelfMain_iframe.js"></script>';
 
 $xoopsTpl->assign( [
 		'xoops_module_header' => $_xoops_header,

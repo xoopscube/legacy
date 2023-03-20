@@ -110,9 +110,9 @@ function altsys_admin_in_theme_in_last( $contents = null ) {
 
 	$xoops_module_header = '';
 	if ( ALTSYS_CORE_TYPE_XCL21 == altsys_get_core_type() ) {
-		$xoops_module_header .= '<link rel="stylesheet" type="text/css" media="all" href="' . XOOPS_URL . '/modules/legacyRender/admin/css.php?file=style.css" />' . "\n";
+		$xoops_module_header .= '<link rel="stylesheet" type="text/css" media="all" href="' . XOOPS_URL . '/modules/legacyRender/admin/css.php?file=style.css">' . "\n";
 		if ( is_object( @$xoopsModule ) ) {
-			$xoops_module_header .= '<link rel="stylesheet" type="text/css" media="all" href="' . XOOPS_URL . '/modules/legacyRender/admin/css.php?file=module.css&amp;dirname=' . $xoopsModule->getVar( 'dirname' ) . '" />' . "\n";
+			$xoops_module_header .= '<link rel="stylesheet" type="text/css" media="all" href="' . XOOPS_URL . '/modules/legacyRender/admin/css.php?file=module.css&amp;dirname=' . $xoopsModule->getVar( 'dirname' ) . '">' . "\n";
 		}
 	}
 
@@ -125,7 +125,7 @@ function altsys_admin_in_theme_in_last( $contents = null ) {
 			'xoops_requesturi'      => htmlspecialchars( $GLOBALS['xoopsRequestUri'], ENT_QUOTES ),
 			'xoops_sitename'        => htmlspecialchars( $xoopsConfig['sitename'], ENT_QUOTES ),
 			'xoops_showlblock'      => 1,
-			'xoops_js'              => '//--></script><script type="text/javascript" src="' . XOOPS_URL . '/include/xoops.js"></script><script type="text/javascript"><!--' . "\n",
+			'xoops_js'              => '</script><script type="text/javascript" src="' . XOOPS_URL . '/include/xoops.js"></script><script type="text/javascript">' . "\n",
 			'xoops_runs_admin_side' => 1,
 			'xoops_breadcrumbs'     => $xoops_breadcrumbs,
 			'xoops_slogan'          => htmlspecialchars( $xoopsConfig['slogan'], ENT_QUOTES ),

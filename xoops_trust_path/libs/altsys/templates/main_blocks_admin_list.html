@@ -11,11 +11,7 @@
 <{* ////— ACTION-CONTROL —\\\\ *}>
 <section data-layout="row center-justify" class="action-control">
 
-    <a class="button" href="index.php?mode=admin&lib=altsys&page=myblocksadmin&dirname=__CustomBlocks__&op=edit">
-		<svg class="icon-block-plus" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-			<path d="M13 3v8h8V3h-8M3 21h8v-8H3v8M3 3v8h8V3H3m10 13h3v-3h2v3h3v2h-3v3h-2v-3h-3v-2z" fill="currentColor">
-			</path>
-		</svg> <{$smarty.const._MI_ALTSYS_MENU_NEWCUSTOMBLOCK}></a>
+    <a class="button" href="index.php?mode=admin&lib=altsys&page=myblocksadmin&dirname=__CustomBlocks__&op=edit"><i class="i-edit"></i><{$smarty.const._MI_ALTSYS_MENU_NEWCUSTOMBLOCK}></a>
 
     <div class="control-view">
         <button id="list" class="button" data-id="1" type="button" aria-label="View List">
@@ -54,32 +50,28 @@
 
 	<div class="ui-card-block">
 
-		<div class="ui-card-block-header">
+		<div class="ui-card-block-header" data-layout="row center-justify">
 
-			<div class="ui-card-block-info">
-				<a href="#" aria-label="<{$block.bid}> - <{$block.name_raw|escape}>">
-					<svg class="icon-info" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-						<path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2z" fill="currentColor"></path>
-					</svg>
-				</a>
-			</div>
+			<a href="#" aria-label="<{$block.bid}> - <{$block.name_raw|escape}>" style="cursor: help;">
+				<svg class="icon-info" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+					<path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2z" fill="currentColor"></path>
+				</svg>
+			</a>
 
-			<div class="ui-card-block-settings">
-				<{if $block.can_delete}>
-				<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=delete&amp;bid=<{$block.bid}>" aria-label="<{$smarty.const._DELETE}>">
-					<svg class="icon-delete" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-						<path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12m2.46-7.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14l-2.13-2.12M15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z" fill="currentColor"></path>
-					</svg>
-				</a>
-				<{/if}>
-			</div>
+			<{if $block.can_delete}>
+			<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=delete&amp;bid=<{$block.bid}>" aria-label="<{$smarty.const._DELETE}>">
+				<svg class="icon-delete" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+					<path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12m2.46-7.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14l-2.13-2.12M15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z" fill="currentColor"></path>
+				</svg>
+			</a>
+			<{/if}>
 
 		</div><{* /ui-card-block-header *}>
 
 
 		<div class="ui-card-block-image">
 
-				<a href="#" class="ui-block-type" aria-label="<{$block.name_raw|escape}>">
+				<a href="#" class="ui-block-type" aria-label="<{$block.name_raw|escape}>" style="cursor: help;">
 				<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-module">
 					<g id="ui-block-module">
 					<path class="block-icon" d="M2 10.96a.985.985 0 0 1-.37-1.37L3.13 7c.11-.2.28-.34.47-.42l7.83-4.4c.16-.12.36-.18.57-.18c.21 0 .41.06.57.18l7.9 4.44c.19.1.35.26.44.46l1.45 2.52c.28.48.11 1.09-.36 1.36l-1 .58v4.96c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18c-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-5.54c-.3.17-.68.18-1 0m10-6.81v6.7l5.96-3.35L12 4.15M5 15.91l6 3.38v-6.71L5 9.21v6.7m14 0v-3.22l-5 2.9c-.33.18-.7.17-1 .01v3.69l6-3.38m-5.15-2.55l6.28-3.63l-.58-1.01l-6.28 3.63l.58 1.01z" fill="currentColor"></path>
@@ -92,10 +84,10 @@
 
 		</div><{* /ui-card-block-image *}>
 
-
 		<div class="ui-card-block-content">
 
-			<div data-layout="rows column">
+			<div data-layout="rows">
+
 			<div class="ui-card-block-item" data-layout="rows">
 				<label for="weights[<{$block.bid}>]" aria-label="<{$smarty.const._MD_A_MYBLOCKSADMIN_WEIGHT}>">
 				<input type="number" size="1" maxlength="4" name="weights[<{$block.bid}>]" value="<{$block.weight}>">
@@ -108,6 +100,7 @@
 			<div class="ui-card-block-item">
 				<{$block.cell_position}>
 			</div>
+
 			</div>
 
 			<div class="ui-card-block-item">
@@ -125,17 +118,16 @@
 			<div class="ui-card-block-item">
 			<{if $block.can_edit}>
 			<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=edit&amp;bid=<{$block.bid}>"
-			   class="button button-small" aria-label="<{$smarty.const._EDIT}>">
-				<img src="<{$xoops_url}>/modules/legacy/admin/theme/icons/icon-edit.svg" class="svg"> <{$smarty.const._EDIT}>
+			   class="button">
+				<img src="<{$xoops_url}>/modules/legacy/admin/theme/icons/icon-edit.svg" width="1em" height="1em" class="svg" alt="edit"> <{$smarty.const._EDIT}>
 			</a>
 			<{/if}>
 
 
 			<{if $block.can_clone}>
-			<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=clone&amp;bid=<{$block.bid}>" class="button button-small"
-			   aria-label="<{if $block.can_clone == 2}><{$smarty.const._CLONE}><{else}><{$smarty.const._MD_A_MYBLOCKSADMIN_LINK_FORCECLONE}><{/if}>">
-				<img src="<{$xoops_url}>/modules/legacy/admin/theme/icons/icon-duplicate.svg"
-					 class="svg"> <{if $block.can_clone == 2}><{$smarty.const._CLONE}><{else}><{$smarty.const._MD_A_MYBLOCKSADMIN_LINK_FORCECLONE}><{/if}>
+			<a href="?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=<{$target_dirname}>&amp;op=clone&amp;bid=<{$block.bid}>" class="button">
+				<img src="<{$xoops_url}>/modules/legacy/admin/theme/icons/icon-copy.svg"
+					 class="svg" title="copy"> <{if $block.can_clone == 2}><{$smarty.const._CLONE}><{else}><{$smarty.const._MD_A_MYBLOCKSADMIN_LINK_FORCECLONE}><{/if}>
 			</a>
 			<{/if}>
 			</div>
@@ -150,12 +142,13 @@
 
 </div><{* ui-data-render *}>
 
-	<div class="alert-submit" style="display: none">
-		<div class="danger">
-		<{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_CHANGES}>
-		<input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
-		</div>
+<{* Admin alert dialog *}>
+<div class="alert-submit" style="display: none">
+	<div class="danger">
+	<{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_CHANGES}>
+	<input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
 	</div>
+</div>
 
 <div data-layout="row centered" class="ui-card-full">
 	<input type="hidden" name="fct" value="blocksadmin">

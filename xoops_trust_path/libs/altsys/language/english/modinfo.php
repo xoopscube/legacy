@@ -5,7 +5,7 @@ define( '_MI_ALTSYS_MODULEDESC' , 'Management and translation editor for UI Comp
 
 // menus
 define( '_MI_ALTSYS_MENU_CUSTOMBLOCKS' , 'Custom Blocks');
-define( '_MI_ALTSYS_MENU_NEWCUSTOMBLOCK' , 'New Block');
+define( '_MI_ALTSYS_MENU_NEWCUSTOMBLOCK' , 'New Custom Block');
 define( '_MI_ALTSYS_MENU_MYBLOCKSADMIN' , 'Modules Blocks');
 define( '_MI_ALTSYS_MENU_MYTPLSADMIN' , 'Templates');
 define( '_MI_ALTSYS_MENU_COMPILEHOOKADMIN' , 'Advanced Templates');

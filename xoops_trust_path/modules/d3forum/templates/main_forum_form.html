@@ -82,10 +82,8 @@
 
         <label for="forum_option_controller_onoff">
             <input type="checkbox" id="forum_option_controller_onoff"
-                   onclick="if(this.checked){xoopsGetElementById('forum_option_controller').style.display='block';
-                       } else {
-                           xoopsGetElementById('forum_option_controller').style.display='none';
-                       }" <{if $forum.options}>checked="checked"<{/if}>><{$smarty.const._MD_D3FORUM_ONOFF}>
+                   onclick="if(this.checked){document.getElementById('forum_option_controller').style.display='block';}else{document.getElementById('forum_option_controller').style.display='none';}" <{if $forum.options}>checked="checked"<{/if}>>
+            <{$smarty.const._MD_D3FORUM_ONOFF}>
         </label>
 
 
@@ -131,15 +129,13 @@
 
 <!-- Start Form Validation JavaScript //-->
 <script type="text/javascript">
-<!--//
 function xoopsFormValidate_forumform() {
 	myform = window.document.forumform;
 	if ( myform.title.value == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_TH_FORUMTITLE|string_format:$smarty.const._FORM_ENTER}>"); myform.title.focus(); return false; }
 	return true;
 }
-//--></script>
+</script>
 <!-- End Form Validation JavaScript //-->
-
 
 
 <{if $forum.id > 0 && $xoops_isadmin}>
@@ -205,24 +201,22 @@ function xoopsFormValidate_forumform() {
 
     </article>
 
-    <script type="text/javascript">
-    <!--//
-    d3forum_showhide_category_select( xoopsGetElementById("export_cat_id_0") ) ;
-    function d3forum_showhide_category_select(select)
-    {
-        selected_val = select.options[select.selectedIndex].value ;
-        form = select.form ;
-        for( i = 0 ; i < form.elements.length ; i ++ ) {
-            if( form.elements[i].name.match(/export_cat_id/) ) {
-                if( form.elements[i].id == "export_cat_id_" + selected_val ) {
-                    form.elements[i].style.display = "inline" ;
-                } else {
-                    form.elements[i].style.display = "none" ;
-                }
+<script type="text/javascript">
+d3forum_showhide_category_select( document.getElementById("export_cat_id_0") ) ;
+function d3forum_showhide_category_select(select)
+{
+    selected_val = select.options[select.selectedIndex].value ;
+    form = select.form ;
+    for( i = 0 ; i < form.elements.length ; i ++ ) {
+        if( form.elements[i].name.match(/export_cat_id/) ) {
+            if( form.elements[i].id == "export_cat_id_" + selected_val ) {
+                form.elements[i].style.display = "inline" ;
+            } else {
+                form.elements[i].style.display = "none" ;
             }
         }
     }
-    //-->
-    </script>
+}
+</script>
 
 <{/if}>

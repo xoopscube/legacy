@@ -1,12 +1,12 @@
-<div class="adminnavi" aria-label="breadcrumb">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
 	<a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
 	&raquo;&raquo; <a href="./index.php"><{$dirname|ucfirst}></a>
 	<{foreach from=$adminmenu item="menuitem"}>
 	<{if $menuitem.selected}>
-	&raquo;&raquo; <a href="<{$menuitem.link|escape}>" class="selected<unselected"><{$menuitem.title|escape}></a>
+	&raquo;&raquo; <a class="page-title selected<unselected" href="<{$menuitem.link|escape}>"><{$menuitem.title|escape}></a>
 	<{/if}>
 	<{/foreach}>
-</div>
+</nav>
 
 <nav class="adminavi">
 	<{foreach from=$adminmenu item="menuitem"}>

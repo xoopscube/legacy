@@ -188,7 +188,7 @@ if ( 'showmod' == $op ) {
 
 	// Heading Title
     // Module Name
-	echo "<h3 class='admintitle'>" . $module->getvar( 'name' ) . ' &nbsp; ' . _PREFERENCES . "</h3>\n";
+	echo "<h3>" . $module->getvar( 'name' ) . ' &nbsp; ' . _PREFERENCES . "</h3>\n";
 
 	$form->display();
 

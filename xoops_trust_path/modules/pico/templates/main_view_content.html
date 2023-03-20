@@ -8,6 +8,13 @@
 <article id="<{$mydirname}>_container">
 
     <header>
+        <{* REFER TO MODULE PREFERENCES
+            Extra images generated from the upload file
+            default images size prefix : image_0_ (larger), image_1_ (small) image_2_ (middle)
+        *}>
+        <{if $content.ef.image}>
+        <img class="header-image" src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_2_<{$content.ef.image|escape}>" alt="<{$content.subject}>">
+        <{/if}>
         <div class="headings">
             <h2>
                 <{if !$content.approval}>
@@ -140,10 +147,6 @@
 
 
     <div id="<{$mydirname}>_body" class="page-body">
-        <{if $content.ef.image}>
-        <img class="card-img-top img-fluid" style="height: 200px" src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_1_<{$content.ef.image|escape}>" alt="<{$content.subject}>">
-        <br>
-        <{/if}>
         <{$content.body}>
     </div>
 
@@ -225,29 +228,23 @@
 
     <nav class="page-nav">
 
-        <ul class="pagenavi <{$smarty.const._ALIGN_START}>">
+        <ul class="pagenavi">
         <{if $prev_content.id}>
-            <li>
+            <li class="<{$smarty.const._ALIGN_START}>">
             <a href="<{$mod_url}>/<{$prev_content.link}>" accesskey="P" aria-label="<{$smarty.const._MD_PICO_PREV}>">
                 <img class="svg arrow-left" src="<{$xoops_url}>/images/icons/arrow-left.svg" width="1em" height="1em" alt="previous">
                 <span><{$prev_content.subject}></span>
             </a>
             </li>
         <{/if}>
-        </ul>
-
-        <ul>
             <li>
             <a href="<{$mod_url}>/<{$category.link}>" accesskey="T" aria-label="<{$smarty.const._MD_PICO_CATEGORYINDEX}>">
                 <img class="svg arrow-up" src="<{$xoops_url}>/images/icons/arrow-up.svg" width="1em" height="1em" alt="up">
                 <span data-self="sm-hide"><{$category.title}></span>
             </a>
             </li>
-        </ul>
-
-        <ul class="<{$smarty.const._ALIGN_END}>">
         <{if $next_content.id}>
-            <li><a href="<{$mod_url}>/<{$next_content.link}>" accesskey="F" aria-label="<{$smarty.const._MD_PICO_NEXT}>">
+            <li class="<{$smarty.const._ALIGN_END}>"><a href="<{$mod_url}>/<{$next_content.link}>" accesskey="F" aria-label="<{$smarty.const._MD_PICO_NEXT}>">
                 <span><{$next_content.subject}></span>
                 <img class="svg arrow-right" src="<{$xoops_url}>/images/icons/arrow-right.svg" width="1em" height="1em" alt="next">
             </a>

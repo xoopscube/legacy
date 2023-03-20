@@ -239,7 +239,7 @@ $breadcrumbsObj->appendPath( XOOPS_URL . '/modules/altsys/admin/index.php?mode=a
 
 // Heading Title
 echo "
-<h2 class='admintitle'>" . _MI_ALTSYS_MENU_COMPILEHOOKADMIN . "</h2>
+<h2>" . _MI_ALTSYS_MENU_COMPILEHOOKADMIN . "</h2>
 
 	<style>
 		dl	{ margin: 10px; }

@@ -17,8 +17,6 @@
 </nav>
 <{/if}>
 
-
-
 <form name="postform" id="postform" action="<{$mod_url}>/index.php?page=post" method="post">
 
     <input type="hidden" name="mode" id="mode" value="<{$mode}>">
@@ -41,10 +39,6 @@
     </header>
 
 <{include file="db:`$mydirname`_inc_d3comment_summary.html"}>
-
-
-
-
 
 	 <label for="subject">
          <{$smarty.const._MD_D3FORUM_SUBJECT}>
@@ -174,72 +168,73 @@
                    onclick="if(this.checked){xoopsGetElementById('d3f_post_advanced_options').style.display='block';
                    }else{xoopsGetElementById('d3f_post_advanced_options').style.display='none';}">
             <{$smarty.const._MD_D3FORUM_LABEL_ADVANCEDOPTIONS}>
-        </label></h5>
+        </label>
+        </h5>
 
-            <fieldset id="d3f_post_advanced_options" style="display:none;">
+        <fieldset id="d3f_post_advanced_options" style="display:none;">
 
-                <!-- smiley -->
-                <label for="smiley">
-                    <input type="checkbox" name="smiley" id="smiley" value="1" <{$smiley_checked}>>
-                    <{$smarty.const._MD_D3FORUM_ENABLESMILEY}>
-                </label>
+            <!-- signature -->
+            <{if $allow_sig}>
+            <label for="attachsig">
+                <input type="checkbox" name="attachsig" id="attachsig" value="1" <{$attachsig_checked}>>
+                <{$smarty.const._MD_D3FORUM_LABEL_ATTACHSIG}>
+            </label>
+            <{/if}>
 
-                <!-- xcode -->
-                <label for="xcode">
-                    <input type="checkbox" name="xcode" id="xcode" value="1" <{$xcode_checked}>>
-                    <{$smarty.const._MD_D3FORUM_ENABLEXCODE}>
-                </label>
+            <!-- notification thread-new_post -->
+            <{if $allow_notify}>
+            <label for="notify">
+                <input type="checkbox" name="notify" id="notify" value="1" <{$notify_checked}>>
+                <{$smarty.const._MD_D3FORUM_LABEL_NEWPOSTNOTIFY}>
+            </label>
+            <{/if}>
 
-                <!-- br -->
-                <label for="br">
-                    <input type="checkbox" name="br" id="br" value="1" <{$br_checked}>>
-                    <{$smarty.const._MD_D3FORUM_ENABLEBR}>
-                </label>
+            <!-- smiley -->
+            <label for="smiley">
+                <input type="checkbox" name="smiley" id="smiley" value="1" <{$smiley_checked}>>
+                <{$smarty.const._MD_D3FORUM_ENABLESMILEY}>
+            </label>
 
-                <!-- number_entity -->
-                <label for="number_entity">
-                    <input type="checkbox" name="number_entity" id="number_entity" value="1" <{$number_entity_checked}>>
-                    <{$smarty.const._MD_D3FORUM_ENABLENUMBERENTITY}>
-                </label>
+            <!-- xcode -->
+            <label for="xcode">
+                <input type="checkbox" name="xcode" id="xcode" value="1" <{$xcode_checked}>>
+                <{$smarty.const._MD_D3FORUM_ENABLEXCODE}>
+            </label>
 
-                <!-- special_entity -->
-                <label for="special_entity">
-                    <input type="checkbox" name="special_entity" id="special_entity" value="1" <{$special_entity_checked}>>
-                    <{$smarty.const._MD_D3FORUM_ENABLESPECIALENTITY}>
-                </label>
+            <!-- br -->
+            <label for="br">
+                <input type="checkbox" name="br" id="br" value="1" <{$br_checked}>>
+                <{$smarty.const._MD_D3FORUM_ENABLEBR}>
+            </label>
 
-                <!-- hide_uid -->
-                <{if $allow_hideuid}>
-                <label for="hide_uid">
-                    <input type="checkbox" name="hide_uid" id="hide_uid" value="1" <{$hide_uid_checked}>>
-                    <{$smarty.const._MD_D3FORUM_LABEL_HIDEUID}>
-                </label>
-                <{/if}>
+            <!-- number_entity -->
+            <label for="number_entity">
+                <input type="checkbox" name="number_entity" id="number_entity" value="1" <{$number_entity_checked}>>
+                <{$smarty.const._MD_D3FORUM_ENABLENUMBERENTITY}>
+            </label>
 
-                <!-- signature -->
-                <{if $allow_sig}>
-                <label for="attachsig">
-                    <input type="checkbox" name="attachsig" id="attachsig" value="1" <{$attachsig_checked}>>
-                    <{$smarty.const._MD_D3FORUM_LABEL_ATTACHSIG}>
-                </label>
-                <{/if}>
+            <!-- special_entity -->
+            <label for="special_entity">
+                <input type="checkbox" name="special_entity" id="special_entity" value="1" <{$special_entity_checked}>>
+                <{$smarty.const._MD_D3FORUM_ENABLESPECIALENTITY}>
+            </label>
 
-                <!-- notification thread-new_post -->
-                <{if $allow_notify}>
-                <label for="notify">
-                    <input type="checkbox" name="notify" id="notify" value="1" <{$notify_checked}>>
-                    <{$smarty.const._MD_D3FORUM_LABEL_NEWPOSTNOTIFY}>
-                </label>
-                <{/if}>
+            <!-- hide_uid -->
+            <{if $allow_hideuid}>
+            <label for="hide_uid">
+                <input type="checkbox" name="hide_uid" id="hide_uid" value="1" <{$hide_uid_checked}>>
+                <{$smarty.const._MD_D3FORUM_LABEL_HIDEUID}>
+            </label>
+            <{/if}>
 
-                <!-- invisible -->
-                <{if $forum.isadminormod}>
-                <label for="invisible">
-                    <input type="checkbox" name="invisible" id="invisible" value="1" <{$invisible_checked}>>
-                    <{$smarty.const._MD_D3FORUM_LABEL_POSTINVISIBLE}>
-                </label>
-                <{/if}>
-            </fieldset>
+            <!-- invisible -->
+            <{if $forum.isadminormod}>
+            <label for="invisible">
+                <input type="checkbox" name="invisible" id="invisible" value="1" <{$invisible_checked}>>
+                <{$smarty.const._MD_D3FORUM_LABEL_POSTINVISIBLE}>
+            </label>
+            <{/if}>
+        </fieldset>
 
         <{if $mode == "reply"}>
         <blockquote id="post_reference" class="outer" <{if $ispreview}>style="display:none;"<{/if}>>

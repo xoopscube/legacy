@@ -14,14 +14,14 @@ if ( ! defined( 'XOOPS_ROOT_PATH' ) ) {
 }
 
 $adminmenu = [
-	[
+    [
+        'title' => _MI_ALTSYS_MENU_NEWCUSTOMBLOCK,
+        'link'  => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin&dirname=__CustomBlocks__&op=edit',
+        'show'  => false,
+    ],
+    [
 		'title' => _MI_ALTSYS_MENU_CUSTOMBLOCKS,
 		'link'  => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin&dirname=__CustomBlocks__',
-	],
-	[
-		'title' => _MI_ALTSYS_MENU_NEWCUSTOMBLOCK,
-		'link'  => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin&dirname=__CustomBlocks__&op=edit',
-		'show'  => false,
 	],
 	[
 		'title' => _MI_ALTSYS_MENU_MYBLOCKSADMIN,

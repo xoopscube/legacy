@@ -79,14 +79,14 @@
         <h5><{$smarty.const._MD_D3FORUM_TH_CATEGORYOPTIONS}></h5>
         <label for="category_option_controller_onoff">
             <input type="checkbox" id="category_option_controller_onoff"
-                   onclick="if(this.checked){xoopsGetElementById('category_option_controller').style.display='block';}else{xoopsGetElementById('category_option_controller').style.display='none';};"
+                   onclick="if(this.checked){document.getElementById('category_option_controller').style.display='block';}else{document.getElementById('category_option_controller').style.display='none';};"
             <{if $category.options}>checked="checked"<{/if}>>
             <{$smarty.const._MD_D3FORUM_ONOFF}>
         </label>
 
         <div id="category_option_controller" <{if !$category.options}>style="display:none;"<{/if}> name="options">
             <textarea name="options" id="category_options" cols="50" rows="5"><{$category.options}></textarea>
-            <{* CUSTOM HTML <p> language *}>
+            <{* NOTE : Language constant with custom HTML paragraph/code *}>
             <{$smarty.const._MD_D3FORUM_HOWTO_OVERRIDEOPTIONS}>
             <code class="category_option_desc"><{$category.option_desc}></code>
         </div>

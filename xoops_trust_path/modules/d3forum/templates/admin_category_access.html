@@ -18,13 +18,11 @@
 
     <div class="control-view">
 
-        <a class="button" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>"><{$smarty.const._EDIT}></a>
-        <a class="button" href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$cat_id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></a>
-        <a class="button" href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$cat_id}>"><{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></a>
+        <a class="button" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>"><i class="i-edit"></i><{$smarty.const._EDIT}></a>
+        <a class="button" href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$cat_id}>"><i class="i-add"></i><{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></a>
+        <a class="button" href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$cat_id}>"><i class="i-add"></i><{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></a>
 
-        <button class="help-admin button" type="button" data-id="4" data-module="<{$mydirname}>" data-help-article="#help-forum-start" aria-label="<{$smarty.const._HELP}>">
-            <b>?</b>
-        </button>
+        <button class="help-admin button" type="button" data-id="4" data-module="<{$mydirname}>" data-help-article="#help-forum-start" aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
     </div>
 
 </section>
@@ -37,9 +35,7 @@
 	<table class="outer">
 		<thead>
 		<tr>
-			<th>
-				<{$smarty.const._MD_A_D3FORUM_TH_GROUPNAME}>
-			</th>
+			<th><{$smarty.const._MD_A_D3FORUM_TH_GROUPNAME}></th>
 			<th>
 				<{$smarty.const._MD_A_D3FORUM_TH_CAN_READ}>
 				<input type="checkbox" onclick="with(document.groupperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('gcol_1_')>=0){elements[i].checked=this.checked;}}}">

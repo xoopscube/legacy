@@ -73,7 +73,7 @@ function b_altsys_admin_menu_show($options)
         $dirname = $mod->getVar('dirname');
 
         // TODO gigamaster add module icon
-        $moduleIcon = '<img class="svg" src="'.XOOPS_URL.'/modules/'.$dirname.'/images/module_icon.svg" width="1em" height="1em">';
+        $moduleIcon = '<img class="svg" src="'.XOOPS_URL.'/modules/'.$dirname.'/images/module_icon.svg" width="1em" height="1em" alt="module-icon">';
         $modinfo = $mod->getInfo();
 
         $submenus4assign = [];

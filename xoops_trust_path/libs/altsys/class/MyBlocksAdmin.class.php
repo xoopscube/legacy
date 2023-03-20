@@ -407,29 +407,29 @@ class MyBlocksAdmin {
 
     // Block-Side Render View
     return "
-    <div aria-label='Block-Left'>
+    <label aria-label='Block-Left'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_LEFT . "' class='blockposition' $ssel0 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_LEFT . ";'>
-    </div>
+    </label>
     <div>-</div>
-    <div aria-label='Center-Block-Left'>
+    <label aria-label='Center-Block-Left'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_LEFT . "' class='blockposition' $ssel2 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_LEFT . ";'>
-    </div>
-    <div aria-label='Center-Block-Center'>
+    </label>
+    <label aria-label='Center-Block-Center'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_CENTER . "' class='blockposition' $ssel3 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_CENTER . ";'>
-    </div>
-    <div aria-label='Center-Block-Right'>
+    </label>
+    <label aria-label='Center-Block-Right'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_RIGHT . "' class='blockposition' $ssel4 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_RIGHT . ";'>
-    </div>
+    </label>
     <div>-</div>
-    <div aria-label='Block-Right'>
+    <label aria-label='Block-Right'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_RIGHT . "' class='blockposition' $ssel1 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_RIGHT . ";'>
-    </div>
+    </label>
 
     <input type='hidden' name='extra_sides[$bid]' value='" . $value4extra_side . "' class='block-extra-side' id='extra_side_$bid'>
 
-    <div aria-label='" . _NONE . "'>
+    <label aria-label='" . _NONE . "'>
         <input type='radio' name='sides[$bid]' value='-1' class='blockposition ui-input-red' $sseln onclick='document.getElementById(\"extra_side_$bid\").value=-1;'>
-    </div>
+    </label>
 	";
 	}
 
