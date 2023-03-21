@@ -20,10 +20,10 @@ if (defined('LEGACY_BASE_VERSION')) {
 	$help = XOOPS_MODULE_URL . '/legacy/admin/index.php?action=Help&amp;dirname=ckeditor4';
 }
 ?>
-    <div class="adminnavi">
+    <nav class="ui-breadcrumbs" aria-label="breadcrumb">
         <a href="<?php echo $dash ?>"><?php echo _CPHOME ?></a>
-        »» <span class="adminnaviTitle" aria-current="page"><a href="./index.php">CKEditor</a></span>
-    </div>
+        »» <span class="page-title" aria-current="page"><a href="./index.php">CKEditor</a></span>
+    </nav>
 
     <nav class="adminavi">
         <a href="<?php echo $pref . $mid ?>" class="adminavi-item"><?php echo _PREFERENCES ?></a>

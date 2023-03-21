@@ -71,10 +71,6 @@ if (!defined('XC_ADMIN_BLOCK_PHP')) {
 if (!defined('XC_ADMIN_BLOCK_SERVER')) {
     define('XC_ADMIN_BLOCK_SERVER', 1);
 }
-// Smarty : <{$xoops_lblocks.block_system.content}>
-if (!defined('XC_ADMIN_BLOCK_SYSTEM')) {
-    define('XC_ADMIN_BLOCK_SYSTEM', 0);
-}
 // Smarty : <{$xoops_lblocks.block_waiting.content}>
 if (!defined('XC_ADMIN_BLOCK_WAITING')) {
     define('XC_ADMIN_BLOCK_WAITING', 0);
@@ -247,11 +243,6 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
         if (XC_ADMIN_BLOCK_SERVER) {
             require_once XOOPS_LEGACY_PATH . '/admin/blocks/AdminBlockServer.class.php';
             $this->mController->_mBlockChain[] = new Legacy_AdminBlockServer();
-        }
-
-        if (XC_ADMIN_BLOCK_SYSTEM) {
-            require_once XOOPS_LEGACY_PATH . '/admin/blocks/AdminBlockSystem.class.php';
-            $this->mController->_mBlockChain[] = new Legacy_AdminBlockSystem();
         }
 
         if (XC_ADMIN_BLOCK_WAITING) {

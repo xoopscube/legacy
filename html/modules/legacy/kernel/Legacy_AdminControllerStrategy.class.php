@@ -27,7 +27,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
 
     /**
      *  If this array includes current action, getVirtualCurrentModule() returns
-     * the module object that specified by dirname.
+     * the module object that is specified by dirname.
      *
      * @access private
      */
@@ -49,7 +49,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
         $controller->mRoot->mContext->mBaseRenderSystemName = 'Legacy_AdminRenderSystem';
 
         //
-        // Cover the spec of admin.php of the system module, for the compatibility.
+        // Cover the spec of admin.php of the system module, for compatibility.
         //
         if (isset($_REQUEST['fct']) && 'users' == $_REQUEST['fct']) {
             $GLOBALS['xoopsOption']['pagetype'] = 'user';
@@ -82,7 +82,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
 
 	/**
 	 * Render Admin blocks directly without AdminDashboard settings 
-     * ActionSearch and Admin SideMenu
+     * Blocks : ActionSearch and Admin SideMenu
 	*/
     public function setupBlock()
     {
@@ -165,7 +165,6 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
             } elseif (defined('_LEGACY_ALLOW_ACCESS_FROM_ANY_ADMINS_')) {
                 return $this->mController->mRoot->mContext->mXoopsUser->isAdmin(0);
             }
-
             return $principal->isInRole("Module.${dirname}.Admin");
         } else {
             return $principal->isInRole('Site.Administrator');
@@ -174,7 +173,7 @@ class Legacy_AdminControllerStrategy extends Legacy_AbstractControllerStrategy
         return false;
     }
 
-    // TODO @gigamaster TRUST PATH lang catalog
+    // TODO TRUST PATH lang catalog
     public function setupModuleLanguage()
     {
         $root =& XCube_Root::getSingleton();

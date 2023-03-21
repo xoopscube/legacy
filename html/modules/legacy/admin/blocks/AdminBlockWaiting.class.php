@@ -29,7 +29,7 @@ class Legacy_AdminBlockWaiting extends Legacy_AbstractBlockProcedure
 
     public function getTitle()
     {
-        return 'TEST: AdminWaiting';
+        return 'Admin Waiting';
     }
 
     public function getEntryIndex()

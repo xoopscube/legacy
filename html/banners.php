@@ -143,12 +143,12 @@ function bannerstats($login, $pass)
                 $clickurl = htmlspecialchars($clickurl, ENT_QUOTES);
                 echo "This Banner points to <a href='$clickurl'>this URL</a><br>
                     <form action='banners.php' method='post'>
-                    Change URL: <input class='textbox' type='text' name='url' size='50' maxlength='200' value='$clickurl' />
-                    <input class='textbox' type='hidden' name='login' value='$login' />
-                    <input class='textbox' type='hidden' name='bid' value='$bid' />
-                    <input class='textbox' type='hidden' name='pass' value='$pass' />
-                    <input class='textbox' type='hidden' name='cid' value='$cid' />
-                    <input type='submit' name='op' value='Change' />";
+                    Change URL: <input class='textbox' type='text' name='url' size='50' maxlength='200' value='$clickurl'>
+                    <input class='textbox' type='hidden' name='login' value='$login'>
+                    <input class='textbox' type='hidden' name='bid' value='$bid'>
+                    <input class='textbox' type='hidden' name='pass' value='$pass'>
+                    <input class='textbox' type='hidden' name='cid' value='$cid'>
+                    <input type='submit' name='op' value='Change'>";
                 echo $token->getHtml();
                 echo '</form>';
             }

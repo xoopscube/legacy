@@ -3,14 +3,14 @@
 
 <{* Display Block Title <h3><{$blockid}></h3> *}>
 
-<ul data-layout="column" id="user-menu">
-    <li>
+<ul class="nav-module-admin" id="user-menu">
+    <li class="nav-module-link">
         <a href="<{$xoops_url}>/" target="_blank" class="button">
-            <span class="icon"><img class="svg home" src="<{'icons/icon-home.svg'|theme}>" width="1em" alt="home"></span>
-            <{$smarty.server.SERVER_NAME}></a>
+            <span class="icon"><img class="svg home" src="<{'icons/icon-home.svg'|theme}>" width="1em" height="1em" alt="<{$smarty.server.SERVER_NAME}>"></span>
+            <{$smarty.const._YOURHOME}></a>
     </li>
     <{if $block.flagShowInbox}>
-    <li>
+    <li class="nav-module-link">
         <a href="<{$block.inbox_url}>" target="_blank" class="button">
             <span class="icon"><img class="svg mail" src="<{$xoops_url}>/images/icons/mail.svg" width="1em" height="1em" alt="<{$smarty.const._MB_LEGACY_INBOX}>"></span>
             <{$smarty.const._MB_LEGACY_INBOX}>
@@ -18,42 +18,42 @@
         </a>
     </li>
     <{/if}>
-    <li>
+    <li class="nav-module-link">
         <a href="<{$xoops_url}>/notifications.php" target="_blank" class="button">
             <span class="icon"><img class="svg bell" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="<{$smarty.const._MB_LEGACY_NOTIF}>"></span>
             <{$smarty.const._MB_LEGACY_NOTIF}>
         </a>
     </li>
-    <li>
+    <li class="nav-module-link">
         <a href="<{$xoops_url}>/user.php" target="_blank" class="button">
-            <span class="icon"><img class="svg inbox" src="<{$xoops_url}>/images/icons/user-details.svg"></span>
+            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/user-details.svg" width="1em" height="1em" alt="account"></span>
             <{$smarty.const._MB_LEGACY_VACNT}></a></li>
-    <li>
+    <li class="nav-module-link">
         <a href="<{$xoops_url}>/edituser.php" target="_blank" class="button">
-            <span class="icon"><img class="svg inbox" src="<{$xoops_url}>/images/icons/user-edit.svg"></span>
+            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/user-edit.svg" width="1em" height="1em" alt="edit"></span>
             <{$smarty.const._MB_LEGACY_EACNT}>
         </a>
     </li>
     <{if $block.show_adminlink}>
-    <li>
+    <li class="nav-module-link">
         <a href="<{$xoops_url}>/admin.php" class="button">
-            <span class="icon"><img class="svg inbox" src="<{$xoops_url}>/images/icons/settings.svg"></span>
+            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/settings.svg" width="1em" height="1em" alt="settings"></span>
             <{$smarty.const._MB_LEGACY_ADMENU}>
         </a>
     </li>
     <{/if}>
-    <li>
+    <li class="nav-module-link">
         <a href="<{$xoops_url}>/user.php?op=logout" target="_blank" class="button">
-            <span class="icon"><img class="svg inbox" src="<{$xoops_url}>/images/icons/logout.svg"></span>
+            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/logout.svg" width="1em" height="1em" alt="logout"></span>
             <{$smarty.const._MB_LEGACY_LOUT}>
         </a>
     </li>
 </ul>
 
-<h6><{$smarty.const._AD_LEGACY_USERAGENT}></h6>
+<{*  <!--<h6><{$smarty.const._AD_LEGACY_USERAGENT}></h6>-->
 
-<p>
-    <span class="badge"><img class="svg" src="<{'icons/icon-user-time.svg'|theme}>" width="1em" height="1em" alt="options"> <{$uid|xoops_user:"uname"}><br>
-    <{$uid|xoops_user:"last_login"|xoops_formattimestamp:l}><br>
-    <{$uid|xoops_user:"email"}></span></p>
-<p><span class="badge" style="white-space:revert;"><{$useragent}></span></p>
+<!--<p>-->
+<!--    <span class="badge"><img class="svg" src="<{'icons/icon-user-time.svg'|theme}>" width="1em" height="1em" alt="options"> <{$uid|xoops_user:"uname"}><br>-->
+<!--    <{$uid|xoops_user:"last_login"|xoops_formattimestamp:l}><br>-->
+<!--    <{$uid|xoops_user:"email"}></span></p>-->
+<!--<p><span class="badge" style="white-space:revert;"><{$useragent}></span></p>--> *}>

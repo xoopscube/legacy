@@ -183,7 +183,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             [
             'xoops_requesturi' => htmlspecialchars($GLOBALS['xoopsRequestUri'], ENT_QUOTES),    //@todo ?????????????
             //@todo set JavaScript/Weird, but need extra <script> tags for Xoops Legacy 2.x themes
-            'xoops_js' => '//--></script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript"><!--'
+            'xoops_js' => '</script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript">'
             ]
         );
 
@@ -382,7 +382,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     {
         $this->_commonPrepareRender();
 
-        //jQuery Ready functions
+        // jQuery Ready functions
         $mRoot = $this->mController->mRoot;
         $mContext = $mRoot->mContext;
         XCube_DelegateUtils::call('Site.JQuery.AddFunction', new XCube_Ref($mContext->mAttributes['headerScript']));

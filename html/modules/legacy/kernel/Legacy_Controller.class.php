@@ -106,7 +106,7 @@ class Legacy_Controller extends XCube_Controller
      * @var XoopsLogger
      */
     public $mLogger = null;
-    //@todo @gigamaster added
+    //@todo added
     //public $mDebugger = null;
 
     public function __construct()
@@ -232,7 +232,7 @@ class Legacy_Controller extends XCube_Controller
 
     /**
      * Subset of executeCommon() Method
-     * It'll be used when process starts with $xoopsOption['nocommon'] and
+     * It will be used when process starts with $xoopsOption['nocommon'] and
      * This process requires connecting XOOPS Database or LEGACY constant values
      * But it won't do any other initial settings
      *	(e.g. Session start, Permission handling)

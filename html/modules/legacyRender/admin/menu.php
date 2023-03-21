@@ -1,6 +1,6 @@
 <?php
 
-$adminmenu[7]['title']= _CPHOME;
+$adminmenu[7]['title']= 'Render ' ._CPHOME;
 $adminmenu[7]['link']= 'admin/index.php';
 $adminmenu[7]['show']=true;
 

@@ -40,11 +40,6 @@ class Legacy_AdminBlockLogInfo extends Legacy_AbstractBlockProcedure
         $root =& XCube_Root::getSingleton();
         $root->mLanguageManager->loadBlockMessageCatalog('legacy');
 
-        //loadBlockMessageCatalog
-        //$langMgr =& $root->mLanguageManager;
-        //$langMgr->loadModuleAdminMessageCatalog('legacy');
-        //$langMgr->loadBlockMessageCatalog('user');
-        //$root->mLanguageManager->loadBlockMessageCatalog('user');
         $xoopsUser =& $root->mController->mRoot->mContext->mXoopsUser;
         require_once XOOPS_ROOT_PATH . '/modules/legacy/blocks/legacy_usermenu.php';
 
