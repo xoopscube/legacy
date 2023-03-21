@@ -170,7 +170,7 @@ to {
     height          : 50px;
     left            : unset;
     margin          : 0 calc( 50% - 200px );
-    position: absolute;
+    position        : fixed;
     top: 0;
     width           : 400px;
     z-index         : 2000;
@@ -178,7 +178,7 @@ to {
 .sticky a, .floated a, .fixed a, .ondemand a {
     color           : #fff;
     float           : none;
-    margin          : 5px 10px 0px 0px;
+    margin          : 5px 10px 0 0;
 }
 .ondemand-button {
     background      : var(  --layer-4      );
@@ -194,7 +194,7 @@ to {
     left            : unset!important;
     margin          : 0 50% !important;
     padding         : 0 5px;
-    position        : absolute;
+    position        : fixed;
     top             : 0;
     width           : 32px !important;
     z-index         : 1999;

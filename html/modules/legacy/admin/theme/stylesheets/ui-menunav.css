@@ -23,7 +23,7 @@
     /* max-width: 57em; container */
     padding         : var(--space-4);
     position        : sticky;
-    top             : 110px;
+    top             : 105px;
     z-index         : var(--z-above);
 }
 .adminavi .adminavi-item {
@@ -433,13 +433,13 @@ article#help-module section {
 /* -------------------- NAV-Module-Admin */
 
 .nav-module-admin {
-    background:none;
-    border-left: 3px solid var(--theme-color);
-    display: block;
+    background      :none;
+    border-left     : var(--nav-block-border-on);
+    display         : block;
     background      : var( --nav-block-bg );
     list-style-type : none;
-    padding: 0;
-    margin: 0 0.5em;
+    padding         : 0;
+    margin          : 0 0.5em;
     overflow        : hidden;
 
     transition      : all 0.4s ease-in-out;
@@ -449,7 +449,7 @@ article#help-module section {
 .nav-module-link {
     align-items     : center;
 
-    /*border-left     : var( --nav-block-border );*/
+    border-left     : var( --nav-block-border );
     display         : flex; /* icons options*/
     line-height     : 2.5rem;
 }

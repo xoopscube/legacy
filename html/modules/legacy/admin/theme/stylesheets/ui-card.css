@@ -188,8 +188,8 @@
 }
 .list .ui-card-block-content {
     align-items         : center;
-    background          : var(--card-block-content-bg);
-    border              : var(--card-block-content-border);
+    background          : var(--card-content-bg);
+    border              : var(--card-content-border);
     display             : flex;
     flex-direction      : inherit;
     will-change         : transform;
@@ -199,11 +199,11 @@
 /* -------------------- --------------------  UI-CARD-BLOCK  */
 
 .ui-card-block {
-    background      : var( --card-block-bg );
-    background-image: var( --card-block-image );
-    border          : var( --card-block-border );
-    border-radius   : var( --card-block-radius );
-    box-shadow      : var( --card-block-shadow);
+    background      : var( --card-bg );
+    background-image: var( --card-image );
+    border          : var( --card-border );
+    border-radius   : var( --card-radius );
+    box-shadow      : var( --card-shadow);
     display         : flex;
     flex-direction  : column;
     margin-bottom   : 1.5rem;
@@ -219,18 +219,18 @@
 }
 
 .ui-card-block:hover  {
-    background      : var( --card-block-hover );
-    box-shadow      : var( --card-block-box-shadow-on );
+    background      : var( --card-hover );
+    box-shadow      : var( --card-box-shadow-on );
 }
 
 .ui-card-block-header {
     align-items: center;
-    background      : var( --card-block-header-bg      );
-    border			: var( --card-block-header-border  );
+    background      : var( --card-header-bg      );
+    border			: var( --card-header-border  );
     display         : flex;
-    height          : var( --card-block-header-height  );
+    height          : var( --card-header-height  );
     justify-content : space-between;
-    padding         : var( --card-block-header-padding );
+    padding         : var( --card-header-padding );
 }
 
 
@@ -241,12 +241,12 @@ a.ui-block-type {
 }
 .ui-card-block-content {
     align-items     : center;
-    background      : var( --card-block-content-bg     );
-    border          : var( --card-block-content-border );
+    background      : var( --card-content-bg     );
+    border          : var( --card-content-border );
     /* display         : flex; */
     flex-direction	: column;
     justify-content	: center;
-    padding         : var( --card-block-content-padding );
+    padding         : var( --card-content-padding );
 }
 
 .ui-card-block-image {
@@ -272,8 +272,8 @@ img.ui-avatar-card {
     align-items     : center;
     display         : flex;
     justify-content	: space-between;
-    padding         : var(  --card-block-item-padding );
-    width           : var(  --card-block-item-width   );
+    padding         : var(  --card-item-padding );
+    width           : var(  --card-item-width   );
     min-width: 0;
 }
 

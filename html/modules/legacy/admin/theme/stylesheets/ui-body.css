@@ -32,6 +32,7 @@ body {
     font-family     : var( --font-family );
     font-size       : var( --font-size   );
     font-weight     : var( --font-weight );
+    scrollbar-gutter: stable both-edges; /* reserve space for the scrollbar */
     /* Removed Background white Flash transition */
     transition      : background 500ms ease-in-out, color 200ms ease;
     /* Keyword values */
@@ -77,7 +78,7 @@ a:hover, a:visited:hover {
     color           : var(  --link-hover   );
 }
 a:link, a:visited {
-    color           : var(  --theme-color, var(--link) );
+    color           : var(  --theme-link, var(--link) );
     cursor          : pointer;
     display         : inline-block;
     text-decoration : none;

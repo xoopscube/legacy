@@ -98,20 +98,14 @@
             <{* ---------- Block Side Menu *}>
             <li>
                 <div class="nav-block">
-                    <span class="nav-module-icon"><img class="svg" src="<{'icons/icon-home.svg'|theme}>" width="1em" height="1em" alt="<{$smarty.const._CPHOME}>"></span>
-                    <span class="nav-module-name t<{$mid}>"><{$smarty.const._CPHOME}></span>
+                    <span class="nav-module-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                        </span>
+                    <span class="nav-module-name t<{$mid}>">Admin <{$smarty.const._CPHOME}></span>
                 </div>
-                <ul class="nav-module-admin nav-block-close">
-                    <li class="nav-module-link">
-                        <a href="<{$xoops_url}>/index.php" target="_blank" title="<{$smarty.const._YOURHOME}>"><{$smarty.const._YOURHOME}></a>
-                    </li>
-                </ul>
+                <{* ----------Block LogInfo Menu *}>
                 <{$xoops_lblocks.block_loginfo.content}>
             </li>
-<!--            <li class="nav-module-link">-->
-<!--                -->
-<!--                    <img class="svg" src="<{'icons/icon-home.svg'|theme}>" width="1em" height="1em" alt="Home"> -->
-<!--            </li>-->
         <{* ---------- Block Module Menu *}>
 
         <{$xoops_lblocks.sidemenu.content}>

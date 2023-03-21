@@ -203,24 +203,16 @@ nav.ui-breadcrumbs a,
     user-select         : none;
 }
 .button:active {
-/*[class*="button"]:active {*/
     box-shadow          : var( --button-shadow-on );
 }
 
 /* -------------------- ui-card-block-item */
 
-/*a.button > svg.svg-ui-icon,*/
-/*[class*="button-"]> svg.svg-ui-icon {*/
-/*    color               : currentColor;*/
-/*    font-size           : 1rem;*/
-/*    padding-right       : 0.25em;*/
-/*    vertical-align      : middle;            !* Align icon = text  *!*/
-/*    width               : 1.4em !important; !* Size icon + text   *!*/
-/*}*/
 a.button:hover,
 a.button:focus,
 nav.ui-breadcrumbs a:hover,
 nav.ui-breadcrumbs a:focus,
+
 .button:hover,
 .button:focus {
     background          : var( --button-bg-on );
