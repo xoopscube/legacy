@@ -71,7 +71,7 @@ export class ThemeManager {
      * Icon Sun ☼ : &#x263C; or &#9728; : ☀
      */
     _applyTheme = () => {
-        this.themeToggle.innerHTML = (this.theme === 'light' ? '?' : '☀');
+        this.themeToggle.innerHTML = (this.theme === 'light' ? '<i class="i-dark"></i>' : '<i class="i-light"></i>');
         document.documentElement.setAttribute('data-theme', this.theme);
         localStorage.setItem('data-theme', this.theme);
     }

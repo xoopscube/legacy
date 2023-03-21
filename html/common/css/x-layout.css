@@ -12,7 +12,7 @@
  * @License    MIT license
  * @license    XCube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  * @link       https://github.com/xoopscube/xcl
- * @version    2.3.1 Release: @package_231@
+ * @version    2.3.2
  */
 /* @import "./reset-new.css";   UI Default icons */
 /* @import "./reset-custom.css"; /*  Reset custom and minimized */
@@ -152,7 +152,7 @@ html{scroll-behavior: smooth;}
 [data-layout*=column]:not([data-layout*=row]) [data-self*=right],[data-layout*=row]:not([data-layout*=column]) [data-self*=bottom] {align-self:flex-end}
 [data-self*=stretch] {align-self:stretch}
 [data-layout][data-self*=center] {margin-left:auto;margin-right:auto}
-[data-layout][data-self*=right] {margin-right:0}
+[data-layout][data-self*=right] {display:flex;justify-content: flex-end;}
 [data-layout][data-self*=left] {margin-left:0}
 [data-layout*=column][data-self*=bottom] {margin-top:auto}
 [data-layout*=column][data-self*=top],[data-layout*=row][data-self*=-top] {margin-bottom:auto}
@@ -413,7 +413,7 @@ Stats Jan 2020 – Jan 2021
     [data-self*=sm-half] {flex:1 1 50% !important;width:50%;max-width:50%}
     [data-self~=sm-first] {order:-1}
     [data-self~=sm-last] {order:999}
-    [data-self~="sm-hide"] {display:none}
+    [data-self~="sm-hide"] {display:none!important}
     [data-self~="sm-show"] {display:inherit!important}
     [data-layout*=sm-p],[data-self*=sm-p] {padding:.25em !important;}
     [data-layout*=sm-m],[data-self*=sm-m] {margin:auto !important;}
