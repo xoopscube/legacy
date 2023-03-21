@@ -202,8 +202,21 @@ define( '_DEBUG_MODE_SQL' , 'SQL');
 define( '_DEBUG_MODE_SMARTY' , 'Smarty');
 define( '_DEBUG_MODE_DESC' , 'Disable debug mode in production. Admin > Settings > Debug mode [Off].');
 
+//%%%%% System Control Panel %%%%%
+define( '_ACCOUNT' , 'Account');
+define( '_BANNERS' , 'Banners');
+define( '_BLOCKS' , 'Blocks');
+define( '_GROUPS' , 'Groups');
+define( '_MAILING', 'Mailing');
+define( '_MODULES' , 'Modules');
+define( '_RANKS' , 'Ranks');
+define( '_TRANSLATION' , 'Translation');
+define( '_USERS' , 'Users');
+
 define( '_SYS_OS' , 'OS');
 define( '_SYS_SERVER' , 'Server');
 define( '_SYS_USERAGENT' , 'User agent');
 define( '_SYS_PHPVERSION' , 'PHP version');
 define( '_SYS_MYSQLVERSION' , 'MySQL version');
+
+

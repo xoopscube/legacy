@@ -50,7 +50,7 @@ define( '_AD_USER_LANG_AVATAR_USING_COUNT' , "Associado");
 define( '_AD_USER_LANG_AVATAR_WEIGHT' , "Posição");
 define( '_AD_USER_LANG_BODY' , "Corpo");
 define( '_AD_USER_LANG_COMPLETED' , "Terminado");
-define( '_AD_USER_LANG_CONTROL' , "Controle");
+define( '_AD_USER_LANG_CONTROL' , "Ação");
 define( '_AD_USER_LANG_CREATE_NEW' , "Adicionar");
 define( '_AD_USER_LANG_CREATE_UNIXTIME' , "Data de criação");
 define( '_AD_USER_LANG_DELETE_RANK' , "Remover graduação");

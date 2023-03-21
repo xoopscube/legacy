@@ -48,7 +48,7 @@ define( '_AD_USER_LANG_AVATAR_USING_COUNT' , "Utilisateur");
 define( '_AD_USER_LANG_AVATAR_WEIGHT' , "Poids");
 define( '_AD_USER_LANG_BODY' , "Message");
 define( '_AD_USER_LANG_COMPLETED' , "terminé");
-define( '_AD_USER_LANG_CONTROL' , "Contrôle");
+define( '_AD_USER_LANG_CONTROL' , "Action");
 define( '_AD_USER_LANG_CREATE_NEW' , "Nouveau");
 define( '_AD_USER_LANG_CREATE_UNIXTIME' , "Date Création");
 define( '_AD_USER_LANG_DELETE_RANK' , "Supprimer un rang");

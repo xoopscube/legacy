@@ -367,7 +367,7 @@ define( '_MD_AM_BADIPSDSC' , "^aaa.bbb.ccc bannira les visiteurs dont l'IP comme
 define( '_MD_AM_CENSOR' , "Censure des mots indésirables");
 define( '_MD_AM_CENSORRPLC' , "Les mots censurés seront remplacés par :");
 define( '_MD_AM_CENSORRPLCDSC' , "Les mots censurés seront remplacés par les caractères entrés dans cette zone de texte");
-define( '_MD_AM_CENSORWRD' , "Mots à censurer'");
+define( '_MD_AM_CENSORWRD' , "Mots censurés");
 define( '_MD_AM_CENSORWRDDSC' , "Entrez les mots qui seront censurés dans les envois utilisateurs.<br />Les séparer par un <b>|</b>, casse insensible.");
 define( '_MD_AM_CHNGUTHEME' , "Change le theme de tous les utilisateurs");
 define( '_MD_AM_CLOSESITE' , '<a id="close-site">🚧 Mode maintenance - Fermer votre site ?</a>');
@@ -403,7 +403,7 @@ define( '_MD_AM_INVLDUCOOK' , "Valeur invalide pour le nom du cookie utilisateur
 define( '_MD_AM_IPBAN' , "IP Interdites");
 define( '_MD_AM_LANGUAGE' , "🌐 Langage");
 define( '_MD_AM_LOADINGIMG' , "Afficher l'image : Chargement...?");
-define( '_MD_AM_MAILER' , "Paramètres email");
+define( '_MD_AM_MAILER' , "Email");
 define( '_MD_AM_MAILER_' , "");
 define( '_MD_AM_MAILER_MAIL' , "");
 define( '_MD_AM_MAILER_SENDMAIL' , "");
@@ -464,6 +464,6 @@ define( '_MD_AM_USEMYSESS' , "🔐 Utiliser une session personnalisée");
 define( '_MD_AM_USEMYSESSDSC' , "Choisissez OUI pour personnaliser la session des valeurs liées.");
 define( '_MD_AM_USESSL' , "🔐 Utiliser le SSL pour se connecter ?");
 define( '_MD_AM_YES' , "Oui");
-define( '_MD_AM_COOLURI' , '<a id="cool-uri">🆒 Utiliser Cool URI ?</a>');
+define( '_MD_AM_COOLURI' , '<a id="cool-uri">🆒 Cool URI</a>');
 define( '_MD_AM_COOLURIDSC' , 'Si votre serveur peut gérer apache mod_rewrite, vous pouvez utiliser cette option. Voir également <a href="'.XOOPS_URL.'/modules/legacyRender/admin/index.php?action=HtaccessView">.htaccess setting ⭧</a>');
 

@@ -4,7 +4,7 @@
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
     &raquo;&raquo; <span class="page-title"><a href="./index.php?action=MailjobList"><{$smarty.const._AD_USER_LANG_MAILJOB_LIST}></a></span>
-</div>
+</nav>
 
 
 <h2><{$smarty.const._AD_USER_LANG_MAILJOB_LIST}></h2>
@@ -89,7 +89,7 @@
     <tbody>
     <{foreach item=obj from=$objects}>
     <tr>
-        <td class="list_id" style="text-align: center"><{$obj->getShow('mailjob_id')}></td>
+        <td class="list_id list_center"><{$obj->getShow('mailjob_id')}></td>
         <td class="list_title">
             <{if $obj->getUserCount() > 0}>
             <a href="./index.php?action=MailjobSend&amp;mailjob_id=<{$obj->getShow('mailjob_id')}>"><{$obj->getShow('title')}></a>
@@ -112,7 +112,7 @@
             <{/if}>
         </td>
         <td class="list_date"><{$obj->get('create_unixtime')|date_format:"%Y/%m/%d %H:%M"}></td>
-        <td class="list_number">
+        <td class="list_number list_center">
             <{if $obj->getUserCount() > 0}>
             <span class="user_mailjob_count"><{$obj->mUserCount|xoops_escape}></span>
             <{else}>

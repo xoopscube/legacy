@@ -78,7 +78,23 @@
         <h2 class="card-title bg-black bg-gradient text-white bg-opacity-50 rounded p-3"><{$content.subject}></h2>
         <div class="card-text bg-black bg-gradient text-white bg-opacity-50 rounded p-3 w-50"><small><{$content.poster_uname|ucfirst}> <{$smarty.const._MD_PICO_CREATED}>: <{$content.created_time_formatted}></small></div>
     </div>
-    <{/if}>
+    <div class="card-header">
+        <{* ------- WORKFLOW *}>
+        <{if $smarty.capture.workflow ne ""}>
+        <span class="workflow"><{$smarty.capture.workflow}></span>
+        <{/if}>
+        <{* ------- VIEWS + TAGS *}>
+        <{if $content.tags_array}>
+        <div class="tags mt-2">
+            <{$smarty.const._MD_PICO_VIEWED}>: <span class="badge text-bg-secondary"><{$content.viewed}></span>
+            <{foreach from=$content.tags_array item="tag"}>
+            <span class="badge text-bg-secondary text-decoration-none"><{$tag}></span>
+            <{/foreach}>
+        </div>
+        <{/if}>
+    </div>
+    <{else}>
+
     <div class="card-header">
 
         <h3><{$content.subject}> </h3>
@@ -114,7 +130,7 @@
         <{/if}>
 
     </div>
-
+    <{/if}>
 
     <{* ------- BODY CONTENT *}>
     <div class="card-body" id="<{$mydirname}>_body">

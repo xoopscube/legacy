@@ -19,7 +19,7 @@ class D3forumCommonCss extends XCube_ActionFilter
         $filename = XOOPS_URL . '/common/css/d3forum_common.css';
         $filepath = XOOPS_ROOT_PATH . '/common/css/d3forum_common.css';
         if (file_exists($filepath)) {
-            $xoops_module_header = '<link rel="stylesheet" type="text/css" media="screen" href="' . $filename . '" />';
+            $xoops_module_header = '<link rel="stylesheet" type="text/css" media="screen" href="' . $filename . '">';
             $xoopsTpl->assign('xoops_module_header', $xoops_module_header . "\n" . $xoopsTpl->get_template_vars('xoops_module_header'));
         }
     }

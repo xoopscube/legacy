@@ -24,7 +24,8 @@
 .action-select {}
 
 a.action-add,
-a.action-new {
+a.action-new,
+a.action-send {
     border: 1px solid var(  --color-green	);
 }
 a.action-cancel {

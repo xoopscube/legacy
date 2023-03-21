@@ -27,7 +27,7 @@ define( '_MI_LEGACY_MENU_BLOCKINSTALL' , "Installer un Bloc");
 define( '_MI_LEGACY_MENU_BLOCKLIST' , "Gestion des Blocs");
 define( '_MI_LEGACY_MENU_COMMENT_MANAGE' , "Commentaires");
 define( '_MI_LEGACY_MENU_CREATE_SMILES' , "Créer émoticônes");
-define( '_MI_LEGACY_MENU_GENERAL_SETTINGS' , "Paramètres Généraux");
+define( '_MI_LEGACY_MENU_GENERAL_SETTINGS' , "Paramètres");
 define( '_MI_LEGACY_MENU_IMAGE_MANAGE' , "Images");
 define( '_MI_LEGACY_MENU_MODULEINSTALL' , "Installer un Module");
 define( '_MI_LEGACY_MENU_MODULELIST' , "Gestion des Modules");

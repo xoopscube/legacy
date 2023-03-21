@@ -50,7 +50,7 @@ define( '_AD_USER_LANG_AVATAR_USING_COUNT' , 'User');
 define( '_AD_USER_LANG_AVATAR_WEIGHT' , 'Weight');
 define( '_AD_USER_LANG_BODY' , 'Body');
 define( '_AD_USER_LANG_COMPLETED' , 'Completed');
-define( '_AD_USER_LANG_CONTROL' , 'Control');
+define( '_AD_USER_LANG_CONTROL' , 'Action');
 define( '_AD_USER_LANG_CREATE_NEW' , 'Create new');
 define( '_AD_USER_LANG_CREATE_UNIXTIME' , 'Date Created');
 define( '_AD_USER_LANG_DELETE_RANK' , 'Delete a rank');

@@ -512,10 +512,10 @@ TODO : https://api.jquery.com/first/
  when the <a href="#option-collapsible"><code>collapsible</code> option</a> is set */
 .ui-tabs {
 	position        : relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
-    /*border          : var(--tabs-border) !important;*/ border: 1px solid var(--border-color);
-    border-radius   : var(--tabs-radius);
+    /*border          : var(--ui-tabs-border) !important;*/ border: 1px solid var(--border-color);
+    border-radius   : var(--ui-tabs-radius);
     margin          : 0;
-    padding         : var(--tabs-padding); padding:0.875rem;
+    padding         : var(--ui-tabs-padding); padding:0.875rem;
     list-style      : none;
 }
 .ui-tabs .ui-tabs-nav {
@@ -525,16 +525,16 @@ TODO : https://api.jquery.com/first/
 
 /* The list of tabs */
 .ui-tabs .ui-tabs-nav {
-    background              : var(--tabs-nav-bg);
-    border                  : var(--tabs-nav-border) !important;
-    border-top-left-radius  : var(--tabs-nav-radius);
-    border-top-right-radius : var(--tabs-nav-radius);
-    box-shadow              : var(--tabs-nav-shadow);
+    background              : var(--ui-tabs-nav-bg);
+    border                  : var(--ui-tabs-nav-border) !important;
+    border-top-left-radius  : var(--ui-tabs-nav-radius);
+    border-top-right-radius : var(--ui-tabs-nav-radius);
+    box-shadow              : var(--ui-tabs-nav-shadow);
     cursor                  : pointer;
     display                 : inline-block;
     line-height             : 1.25;
-    margin                  : var(--tabs-nav-margin);
-    padding                 : var(--tabs-nav-padding);
+    margin                  : var(--ui-tabs-nav-margin);
+    padding                 : var(--ui-tabs-nav-padding);
 }
 
 .ui-tabs .ui-tabs-nav li {
@@ -542,7 +542,7 @@ TODO : https://api.jquery.com/first/
 	float: left;
 	position: relative;
 	top: 0;
-	margin: var(--tabs-nav-li-margin);
+	margin: var(--ui-tabs-nav-li-margin);
 	border-bottom-width: 0;
     /*padding: 0 !important;  Override padding-bottom -1px */
     /*padding:var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);*/
@@ -561,13 +561,13 @@ TODO : https://api.jquery.com/first/
 
 /* The anchors used to switch panels. */
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
-    background              : var(--tabs-anchor-bg);
-    border                  : var(--tabs-anchor-border);
-    border-radius           : var(--tabs-anchor-radius);
-    box-shadow              : var(--tabs-anchor-shadow); /*    : 0 5px 5px hsla(210, 10%, 12%, 0.9);*/
-    color                   : var(--tabs-anchor-color);
+    background              : var(--ui-tabs-anchor-bg);
+    border                  : var(--ui-tabs-anchor-border);
+    border-radius           : var(--ui-tabs-anchor-radius);
+    box-shadow              : var(--ui-tabs-anchor-shadow); /*    : 0 5px 5px hsla(210, 10%, 12%, 0.9);*/
+    color                   : var(--ui-tabs-anchor-color);
     float                   : left;
-    padding                 : var(--tabs-anchor-padding); /*    : var(--space-2) var(--space-4);*/
+    padding                 : var(--ui-tabs-anchor-padding); /*    : var(--space-2) var(--space-4);*/
     padding:var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
     text-decoration         : none;
 }
@@ -589,26 +589,26 @@ TODO : https://api.jquery.com/first/
 /* CUSTOMIZED ? The active item will have the <code>ui-tabs-active</code> class.*/
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor:hover,
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
-    background              : var(--tabs-anchor-bg-on);
-    border                  : var(--tabs-anchor-border-on);
-    box-shadow              : var(--tabs-anchor-shadow-on);
-    color                   : var(--tabs-anchor-color-on);
+    background              : var(--ui-tabs-anchor-bg-on);
+    border                  : var(--ui-tabs-anchor-border-on);
+    box-shadow              : var(--ui-tabs-anchor-shadow-on);
+    color                   : var(--ui-tabs-anchor-color-on);
 }
 
 .ui-tabs .ui-tabs-panel {
-    background              : var(--tab-panel-bg);
+    background              : var(--ui-tab-panel-bg);
 	display                 : block;
-	border                  : var(--tab-panel-border);
-	padding                 : var(--tab-panel-padding);
+	border                  : var(--ui-tab-panel-border);
+	padding                 : var(--ui-tab-panel-padding);
 }
 
 /* CUSTOMIZED The panels associated with the tabs. Only the panel whose corresponding tab is active will be visible.
 .ui-tabs .ui-tabs-panel:not(.elfinder-preference-tabs) {
-    background              : var(--tab-panel-bg);
-    border                  : var(--tab-panel-border);
-    color                   : var(--tab-panel-color) !important;
+    background              : var(--ui-tab-panel-bg);
+    border                  : var(--ui-tab-panel-border);
+    color                   : var(--ui-tab-panel-color) !important;
     /*display                 : none;*/
-   /* padding                 : var(--tab-panel-padding);
+   /* padding                 : var(--ui-tab-panel-padding);
     margin-top              : -1px;
 }*/
 
