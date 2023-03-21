@@ -14,7 +14,7 @@
 	- HEADER NAV
 	- LAYOUT Main
 	- LAYOUT Footer
-	- PAGINATION ( adminnavi, breadcrumbs )
+	- PAGINATION ( breadcrumbs )
 	- SCROLL TOP
 
 */
@@ -24,8 +24,7 @@ html,
 body {
     margin          : var(  --space-0    );
     padding         : var(  --space-0    );
-    text-rendering	: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
+
 }
 body {
     background      : var( --body-bg     );
@@ -35,16 +34,18 @@ body {
     font-weight     : var( --font-weight );
     /* Removed Background white Flash transition */
     transition      : background 500ms ease-in-out, color 200ms ease;
-    /* Prevent Scrollbar Layout Shift
-    scrollbar-gutter: stable both-edges;
-    position: relative;
-    margin: 0 auto 2rem;*/
+    /* Keyword values */
+    -webkit-font-smoothing: antialiased;
+    /*text-rendering: auto;*/
+    /*text-rendering: optimizeSpeed;*/
+    /*text-rendering: optimizeLegibility;*/
+    text-rendering: geometricPrecision;
 }
 
 /*	-------------------- --------------------  BROWSER SPECS */
 /* Text Selection */
 ::selection {
-    background-color: var( --blue-opacity-5 );
+    background-color: var( --op5 );
     color           : var(  --secondary	 );
 }
 /* Webkit Scrollbar */
@@ -56,7 +57,7 @@ body {
     background      : var( --thumbBG );
 }
 ::-webkit-scrollbar-thumb:hover {
-    background      : #686c7e;
+    background      : var(--theme-color, #686c7e);
 }
 ::-webkit-scrollbar-track {
     background-color: var( --trackBG );
@@ -67,12 +68,6 @@ textarea::-webkit-resizer {
 
 /* -------------------- -------------------- HTML Elements */
 
-a:link, a:visited {
-    color           : var(  --link );
-    cursor          : pointer;
-    display         : inline-block;
-    text-decoration : none;
-}
 
 a:active, a:focus {
     color           : var(  --link-active  );
@@ -81,6 +76,13 @@ a:active, a:focus {
 a:hover, a:visited:hover {
     color           : var(  --link-hover   );
 }
+a:link, a:visited {
+    color           : var(  --theme-color, var(--link) );
+    cursor          : pointer;
+    display         : inline-block;
+    text-decoration : none;
+}
+
 /* ----- Add icon to external link
 a[href^="http://"]:not([href*="example.com"]):after,
 a[href^="https://"]:not([href*="example.com"]):after{
@@ -128,7 +130,7 @@ pre {
 }
 
 h1, h2, h3, h4, h5 {
-    font-weight     : 400;
+    font-weight     : 300;
 }
 
 h1 {
@@ -174,38 +176,47 @@ p {
 /*  -------------------- --------------------  LAYOUT GRID */
 
 .layout-grid {
-    align-content   : space-around;
-    display         : grid;
-    /*grid-gap        : 1px;*/
-    grid-template-columns : 200px auto;
-    /*grid-template-columns: 1fr;*/
-    grid-template-rows    : 55px 1fr 55px;
-    grid-template-areas   : "header  header"
-                            "nav-aside main";
+    /* ui-media.css */
 }
 
 /* -------------------- --------------------  LAYOUT HEADER */
 
-header.header {
-    align-items     : center;
+header.nav-top {
     background      : var( --header-bg     );
     border          : var( --header-border );
     border-radius   : var( --header-radius );
     box-shadow      : var( --header-shadow );
     grid-area       : header;
     position        : var( --header-position);
+    min-width       : 0;
+    height          : 50px;
     width           : 100%;
     z-index         : var(--z-overlay);
 }
 /* -------------------- --------------------  HEADER NAV */
 
-header > nav {
-    font-size       : var(--icon-size);
-    height          : 50px;
+header.nav-top > nav {
     margin          : 0;
-    overflow        : hidden;
-    padding         : var(--space-2);
-    width           : 100%;
+    min-width       : 0;
+    padding         : 0;
+}
+header.nav-top ul {
+    display         : flex;
+    place-items     : center;
+    padding         : 0;
+    margin          : 0;
+}
+header.nav-top ul li {
+    display         : inline-block;
+    font-size       : var(--icon-size);
+    padding         : 2px;
+}
+header.nav-top svg.site-name{
+    color: var(--theme-hover, var(--primary) )
+}
+header.nav-top ul li.ui-color-mode {
+    display         : inline-block;
+    margin-left     : auto;
 }
 
 nav ul {
@@ -219,45 +230,13 @@ nav ul li {
     transition      : all 0.2s;
 }
 
-nav ul li.nav-logo {
-    display     : none; /* display inline-block tablet */
-    width       : 247px;
-}
-
-nav ul li.ui-color-mode {
-    display         : flex;
-    margin-left     : auto;
-    padding         : 0;
-}
-
-nav > ul > li > a {
-    /*padding         : 0 var(  --space-5  );*/
-}
-nav ul li .ui-nav-icon {
-    background      : var( --layer-3);
-    color           : var( --secondary);
-    cursor          : pointer;
-    text-align      : center;
-    margin          : 0 1em;
-    /*line-height: 50px;*/
-}
 /* -------------------- --------------------  LAYOUT Main */
 
 .main {
     background      : var( --main-background);
-    border-color    : var( --border-none    );
-    border-radius   : var( --border-none    );
-    border-style    : var( --border-none    );
-    border-width    : var( --border-none    );
-    box-shadow      : var( --border-none    );
     grid-area       : main;
-    /* padding         : 0 4rem 2rem; */
-    /* Set according to device screen-width */
-    /*width           : 1174px; 100vw; */
-    max-width       : 1174px; /* fixed */
-    width:98vw;
-    /*max-width       : calc(90vw - 400px);*/
     margin          : 0 auto;
+    padding-top     : 2rem;
 }
 
 /* -------------------- --------------------  LAYOUT Footer */
@@ -269,38 +248,32 @@ nav ul li .ui-nav-icon {
     box-shadow      : var( --footer-shadow );
     color           : var( --footer-color  );
     display         : inline-block;
+    font-size       : var(--footer-font);
     padding         : var( --footer-padding);
     width           : 100%;
     text-align      : center;
 }
 
-footer .credits,
-footer .links {
-    font-size       : var(--footer-font);
-    color           : var(--footer-link) !important;
-    cursor          : pointer;
+footer.credits a:link {
+    color           : var(--footer-link);
 }
-
+footer.credits a:hover {
+    color           : var(--link-hover);
+}
 /* -------------------- --------------------  PAGINATION */
-.ui-breadcrumbs,
+nav.ui-breadcrumbs,
 .adminnavi {
     background      : var( --breadcrumbs-bg     );
-    border-color    : var( --breadcrumbs-border-color   );
-    border-radius   : var( --breadcrumbs-border-radius  );
-    border-style    : var( --breadcrumbs-border-radius  );
-    border-width    : var( --breadcrumbs-border-width   );
-    box-shadow      : var( --breadcrumbs-box-shadow     );
-    padding         : var( --breadcrumbs-padding        );
-    margin          : var( --breadcrumbs-margin         );
+    border          : var( --breadcrumbs-border );
+    border-radius   : var( --breadcrumbs-radius );
+    box-shadow      : var( --breadcrumbs-shadow );
+    padding         : var( --breadcrumbs-padding);
+    margin          : var( --breadcrumbs-margin );
     position        : sticky;
     top             : 50px;
     z-index         : var(--z-sticky);
 }
-.adminnavi::before{
-    content: attr(aria-label);
-    opacity: 0;
-    display:none
-}
+
 nav.pagination {
     display         : flex;
     justify-content : center;
@@ -308,18 +281,16 @@ nav.pagination {
 .pagenavi {
     list-style:none;
 }
-.ui-breadcrumbs a,
+
 .adminnavi a,
 .pagenavi a,
 .pagenavi [aria-current] {
-    background      : var( --breadcrumbs-bg-link       );
-    border-color    : var( --breadcrumbs-border-color  );
-    border-radius   : var( --breadcrumbs-border-radius );
-    border-style    : var( --breadcrumbs-border-radius );
-    border-width    : var( --breadcrumbs-border-width  );
-    box-shadow      : var( --breadcrumbs-box-shadow    );
-    padding         : var( --breadcrumbs-padding       );
-    margin          : var( --breadcrumbs-margin        );
+    background      : var( --breadcrumbs-bg-link );
+    border-color    : var( --breadcrumbs-border  );
+    border-radius   : var( --breadcrumbs-radius  );
+    box-shadow      : var( --breadcrumbs-shadow  );
+    padding         : var( --breadcrumbs-padding );
+    margin          : var( --breadcrumbs-margin  );
     transition      : all 0.3s ease;
 }
 
@@ -332,9 +303,9 @@ nav.pagination {
     pointer-events  : none;
     z-index         : 9000;
 }
-.scroll-top #ntop-bg {fill: var( --input-bg )}
-.scroll-top #ntop-arrow {fill: var( --link );}
-.scroll-top a:hover #ntop-bg {fill: var( --color-blue );}
+.scroll-top #ntop-bg {fill: var( --layer-4 )}
+.scroll-top #ntop-arrow {fill: var( --theme-color, var( --link ));}
+.scroll-top a:hover #ntop-bg {fill: var( --theme-color, var(--link) )}
 .scroll-top a:hover #ntop-arrow {fill: var( --color-white );}
 .scroll-top a {
     position        : fixed;
@@ -354,7 +325,7 @@ nav.pagination {
 }
 .scroll-top a:hover {
     border-color    : var(--border);
-    box-shadow      : 0 12px 24px -12px var(--blue-opacity-5), 0 4px 20px 0 var(--blue-opacity-5), 0 8px 8px -5px var(--blue-opacity-5);
+    box-shadow      : 0 12px 24px -12px var(--op5), 0 4px 20px 0 var(--op5), 0 8px 8px -5px var(--op5);
 }
 .scroll-top a svg {
     display         : block;

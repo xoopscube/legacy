@@ -57,7 +57,7 @@ define( '_CPHOME' , 'Control Panel');
 define( '_YOURHOME' , 'Home Page');
 
 //%%%%%%	File Name misc.php (who's-online popup)	%%%%%
-define( '_WHOSONLINE' , "Who's Online");
+define( '_WHOSONLINE' , "Users Online");
 define( '_GUESTS' , 'Guests');
 define( '_MEMBERS' , 'Members');
 define( '_ONLINEPHRASE' , '%s user(s) are online');
@@ -173,7 +173,9 @@ define( '_DAYS' , '%s days');
 define( '_WEEK' , '1 week');
 define( '_MONTH' , '1 month');
 
+define( '_ACTION' , 'Action');
 define( '_HELP' , 'Help');
+define( '_MENU' , 'Menu');
 
 //%%%%%		   %%%%%
 define( '_CATEGORY' , 'Category');

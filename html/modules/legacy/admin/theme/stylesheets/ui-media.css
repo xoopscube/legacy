@@ -13,23 +13,30 @@
 @media (max-width: 480px) {
 
     .layout-grid {
+        display: grid;
+
+        grid-template-columns: minmax(0, 1fr); /* 1fr; */
         grid-template-areas:
-        "header header"
-        "main main";
+        /*"header header"*/
+        /*"main main";*/
+        "header"
+        "main"
+        "footer";
     }
-    .layout-grid,
+
     .ondemand,
     .ondemand-button  {
         left        : -30px;
-        grid-template-columns: 1fr;
     }
 
     main {
-        max-width: 100%;
+        min-width: 0;
+        /*max-width: 100%;*/
+        /*width:calc(100% - 6em);*/
         padding: 0 .5rem;
     }
 
-    .btnav {
+    .nav-btn {
         min-width: 30px;
         max-width: 30px;
     }
@@ -87,12 +94,19 @@
 
 
 /* -------------------- --------------------  Tablet Hor. 736 px*/
-
-@media (min-width: 46.875em) {
+@media (min-width: 481px) {
+/*@media (min-width: 46.875em) {*/
     .layout-grid {
         grid-template-areas:
-        "header header"
-        "main main";
+        /*"header header"*/
+        /*"main main";*/
+        "header"
+        "main"
+        "footer";
+    }
+    main {
+        max-width: 100%;
+        padding: 0 .5rem;
     }
     nav ul li.nav-logo {
         display: inline-block ;
@@ -161,12 +175,13 @@
     }
 
     #container > main {
-        padding: 0 1rem;
-        max-width: 100%;
+        /*padding: 0 1rem;*/
+        min-width: 0;
+        width: 90vw;
     }
 
     .ui-card-overview {
-        grid-template-columns   : repeat(auto-fit, minmax(214px, 1fr));
+        grid-template-columns   : repeat(auto-fit, minmax(214px, auto));
     }
 
     .ui-card-2-col {
@@ -188,13 +203,15 @@
 
     .layout-grid {
         display                 : grid;
-        grid-template-columns   : 230px calc(100% - 230px);
-        grid-template-rows      : 50px 1fr;
+        grid-template-columns   : 260px calc(100% - 260px);
+        /*grid-template-rows      : 50px 1fr;*/
         grid-template-areas     : "header header" "nav-aside main";
     }
 
     #container > main {
-        max-width               : calc(100vw - 340px);
+        min-width: 0;
+        max-width               : calc(100vw - 342px);
+        /*width: calc(98vw - 312px);*/
     }
     .nav-mobile {
         visibility              : hidden;
@@ -206,10 +223,11 @@
     }
 }
 
-/* device 1440px */
+/* device 1408 -> 1440px */
 @media screen and (min-width:88em) {
     #container > main {
-        /*max-width               : calc(84vw - 140px);*/
-        max-width: 1279px;
+        min-width:0;
+        max-width               : calc(1380px - 1rem);
+        /*max-width: 1279px;*/
     }
 }

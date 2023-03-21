@@ -1,11 +1,13 @@
-<div class="adminnavi" aria-label="breadcrumb">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_SUCCESS}></span>
-</div>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_SUCCESS}></span>
+</nav>
 
-<div class="ui-dev-mode"><{$smarty.template}></div>
+
 <h2><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_SUCCESS}></h2>
 
 
@@ -38,7 +40,7 @@
     <div class="legacy_module_return">
 
         <a href="index.php?action=ModuleList" class="button">
-            <img class="svg" src="<{'icons/icon-package-open.svg'|theme}>" width="1em" height="1em" alt="module-list"> <{$smarty.const._AD_LEGACY_LANG_MODLIST}>
+            <img class="svg" src="<{'icons/icon-module-open.svg'|theme}>" width="1em" height="1em" alt="module-list"> <{$smarty.const._AD_LEGACY_LANG_MODLIST}>
         </a>
 
     </div>

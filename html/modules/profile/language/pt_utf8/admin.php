@@ -8,7 +8,7 @@ define( '_AD_PROFILE_LANG_DEFINITIONS_EDIT' , "Editar campo");
 define( '_AD_PROFILE_LANG_DEFINITIONS_DELETE' , "Remover campo");
 define( '_AD_PROFILE_LANG_DEFINITIONS_VIEW' , "Mostrar campo");
 define( '_AD_PROFILE_TIPS_DATA_DOWNLOAD' , "Os dados exportados em CSV são ordenados pelo número do cadastro do associado (<i>user_id</i>).");
-define( '_AD_PROFILE_DATA_NUM' , "%d associados no banco de dados.");
+define( '_AD_PROFILE_DATA_NUM' , "<strong> %d </strong> associados no banco de dados.");
 define( '_MI_PROFILE_ADMENU_DATA_DOWNLOAD' , 'Download Profiles');
 define( '_AD_PROFILE_DATA_DOWNLOAD_DO' , "Exportar em CSV");
 
@@ -30,5 +30,5 @@ define( '_AD_PROFILE_DATA_UPLOAD_SELECT_CSVFILE' , "Por favor, selecione o arqui
 define( '_AD_PROFILE_DATA_UPLOAD_CONF' , "Confirme a inclusão do conteúdo.");
 define( '_AD_PROFILE_DATA_UPLOAD_DO' , "Cadastre-se");
 
-define( '_AD_USER_DATA_UPLOAD_BACK' , "Selecione o arquivo CSV de novo.");
-define( '_AD_USER_DATA_UPLOAD_CHECK_USER_CSVFILE' , "Por favor, confirme a inclusão dos dados.");
+//define( '_AD_USER_DATA_UPLOAD_BACK' , "Selecione o arquivo CSV de novo.");
+//define( '_AD_USER_DATA_UPLOAD_CHECK_USER_CSVFILE' , "Por favor, confirme a inclusão dos dados.");

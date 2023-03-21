@@ -121,21 +121,43 @@
         </div>
     </div>
 
-	<{if $xoops_isadmin}>
-    <div class="row mb-3">
-        <div class="col-sm-3">
-            <label for="wraps_target"></label>
+	    <{if $xoops_isadmin}>
+        <div class="row mb-3">
+            <div class="col-sm-3">
+                <label for="wraps_target"></label>
+            </div>
+            <div class="col-sm-8">
+                <select class="form-select" id="wraps_target" onchange="document.getElementById('vpath').value=this.value;">
+                    <{html_options options=$content.wraps_files selected=$content.vpath}>
+                </select>
+            </div>
         </div>
-        <div class="col-sm-8">
-			<select class="form-select" id="wraps_target" onchange="document.getElementById('vpath').value=this.value;">
-				<{html_options options=$content.wraps_files selected=$content.vpath}>
-			</select>
-        </div>
-    </div>
         <{/if}>
 	<{/if}>
 
-
+    <!-- extra images sample -->
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <label for="ei_pico_img">Image</label>
+        </div>
+        <div class="col-sm-8">
+            <input type="file" id="ei_pico_img" name="ei_pico_img">
+            <input type="hidden" name="ef_pico_img" value="<{$content.ef.pico_img|escape}>">
+            <{if $content.ef.pico_img}>
+            <a href="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/pico_img_0_<{$content.ef.pico_img|escape}>">
+                <img src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/pico_img_1_<{$content.ef.pico_img|escape}>">
+            </a>
+            <{/if}>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <label for="pronunciation">Pronunciation</label>
+        </div>
+        <div class="col-sm-8">
+            <input type="text" name="ef_pronunciation" id="pronunciation" size="80" maxlength="191" value="<{$content.ef.pronunciation|escape}>">
+        </div>
+    </div>
 <{* ------- extra fields sample (TEXTBOX) -------
     <div class="row mb-3">
         <div class="col-sm-3">

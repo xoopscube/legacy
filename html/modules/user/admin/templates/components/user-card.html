@@ -1,14 +1,10 @@
 <div class="ui-card-block">
 
-    <div class="ui-card-block-header">
+    <div class="ui-card-block-header" data-layout="row center-justify">
 
-        <div class="ui-card-block-info">
             <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$user->getShow('uid')}>" aria-label="<{$user->getShow('uid')}> - <{$smarty.const._AD_USER_LANG_USER}> <{$user->getShow('uname')}>">
                 <img src="<{'icons/icon-user-account.svg'|theme}>" class="svg">
             </a>
-        </div>
-
-        <div class="ui-card-block-settings">
 
             <{if $user->get('uid') != 1}>
             <input type="checkbox" name="delete[<{$user->getShow('uid')}>]" value="1" aria-label="<{$smarty.const._DELETE}>">
@@ -16,15 +12,13 @@
             <input type="checkbox" disabled>
             <{/if}>
 
-        </div><{* /ui-card-block-settings *}>
-
     </div><{* /ui-card-header *}>
 
     <div class="ui-card-block-image">
         <{if $user->get('user_avatar') != "blank.gif"}>
-        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$user->getShow('user_avatar')}>" class="ui-avatar-card" alt="<{$user->getShow('uname')}>" aria-label="<{$user->getShow('uname')}>">
+        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$user->getShow('user_avatar')}>" width="<{$avatar_width}>" height="<{$avatar_height}>" class="ui-avatar-card" alt="avatar">
         <{else}>
-        <img src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" class="ui-avatar-card" alt="<{$user->getShow('uname')}> - Avatar" aria-label="<{$user->getShow('uname')}> - Avatar">
+        <img src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" class="ui-avatar-card" alt="avatar">
         <{/if}>
     </div><{* /ui-card-block-image avatar *}>
 
@@ -38,20 +32,20 @@
         </div>
 
         <div class="ui-card-block-item">
-            <svg role="img" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" aria-hidden="true" viewBox="0 0 24 24" class="svg-ui-icon">
+            <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24">
                 <path d="M15 13h1.5v2.82l2.44 1.41l-.75 1.3L15 16.69V13m4-5H5v11h4.67c-.43-.91-.67-1.93-.67-3a7 7 0 0 1 7-7c1.07 0 2.09.24 3 .67V8M5 21a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2H5m11-9.85A4.85 4.85 0 0 0 11.15 16c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 20.85 16c0-2.68-2.17-4.85-4.85-4.85z" fill="currentColor"></path>
             </svg> <small><{$smarty.const._AD_USER_LANG_REGDATE}> <{$user->get('user_regdate')|xoops_formattimestamp}></small>
         </div>
 
         <div class="ui-card-block-item">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" aria-hidden="true" viewBox="0 0 24 24"  class="svg-ui-icon">
+            <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24">
                 <path d="M10.63 14.1a6.998 6.998 0 0 1 9.27-3.47a6.998 6.998 0 0 1 3.47 9.27A6.98 6.98 0 0 1 17 24c-2.7 0-5.17-1.56-6.33-4H1v-2c.06-1.14.84-2.07 2.34-2.82S6.72 14.04 9 14c.57 0 1.11.05 1.63.1M9 4c1.12.03 2.06.42 2.81 1.17S12.93 6.86 12.93 8c0 1.14-.37 2.08-1.12 2.83c-.75.75-1.69 1.12-2.81 1.12s-2.06-.37-2.81-1.12C5.44 10.08 5.07 9.14 5.07 8c0-1.14.37-2.08 1.12-2.83C6.94 4.42 7.88 4.03 9 4m8 18a5 5 0 0 0 5-5a5 5 0 0 0-5-5a5 5 0 0 0-5 5a5 5 0 0 0 5 5m-1-8h1.5v2.82l2.44 1.41l-.75 1.3L16 17.69V14z" fill="currentColor"></path>
             </svg> <small><{$smarty.const._AD_USER_LANG_LASTLOGIN}> <{$user->get('last_login')|xoops_formattimestamp:l}></small>
         </div>
 
         <div class="ui-card-block-item">
 			<span class="list_number" aria-label="<{$smarty.const._MD_USER_LANG_POSTS}>">
-				<svg role="img" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24px" height="24px" viewBox="0 0 24 24" class="svg-ui-icon">
+				<svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24">
 					<path d="M12 23a1 1 0 0 1-1-1v-3H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4.1l-3.7 3.71c-.2.18-.44.29-.7.29H12m-9-8H1V3a2 2 0 0 1 2-2h16v2H3v12z" fill="currentColor"></path>
 				</svg>
 				<{if $user->get('uid') != 1}>
@@ -72,28 +66,28 @@
 
         <div class="ui-card-block-item">
 
-            <a href="./index.php?action=UserView&amp;uid=<{$user->getShow('uid')}>" role="button" class="button button-small">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="svg-ui-icon">
+            <a href="./index.php?action=UserView&amp;uid=<{$user->getShow('uid')}>" role="button" class="button">
+                <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24">
                     <path d="M21.1 12.5l1.4 1.41l-6.53 6.59L12.5 17l1.4-1.41l2.07 2.08l5.13-5.17M10 17l3 3H3v-2c0-2.21 3.58-4 8-4l1.89.11L10 17m1-13a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4z" fill="currentColor">
                     </path>
                 </svg> <{$smarty.const._VIEW}>
             </a>
-            <a href="./index.php?action=UserEdit&amp;uid=<{$user->getShow('uid')}>" role="button" class="button button-small">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="svg-ui-icon">
+            <a href="./index.php?action=UserEdit&amp;uid=<{$user->getShow('uid')}>" role="button" class="button">
+                <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24">
                     <path d="M21.7 13.35l-1 1l-2.05-2.05l1-1a.55.55 0 0 1 .77 0l1.28 1.28c.21.21.21.56 0 .77M12 18.94l6.06-6.06l2.05 2.05L14.06 21H12v-2.06M12 14c-4.42 0-8 1.79-8 4v2h6v-1.89l4-4c-.66-.08-1.33-.11-2-.11m0-10a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4a4 4 0 0 0-4-4z" fill="currentColor">
                     </path>
                 </svg> <{$smarty.const._EDIT}>
             </a>
             <{if $user->get('uid') != 1 }>
-            <a href="index.php?action=UserDelete&amp;uid=<{$user->getShow('uid')}>" role="button" class="button button-small" aria-label="<{$smarty.const._DELETE}>">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="svg-ui-icon">
+            <a href="index.php?action=UserDelete&amp;uid=<{$user->getShow('uid')}>" role="button" class="button" aria-label="<{$smarty.const._DELETE}>">
+                <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24">
                     <path d="M15 14c-2.67 0-8 1.33-8 4v2h16v-2c0-2.67-5.33-4-8-4M1 10v2h8v-2m6 2a4 4 0 0 0 4-4a4 4 0 0 0-4-4a4 4 0 0 0-4 4a4 4 0 0 0 4 4z" fill="currentColor">
                     </path>
                 </svg>
             </a>
             <{else}>
-            <a role="button" aria-label="<{$smarty.const._DELETE}> disabled" class="button disabled button-small">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="svg-ui-icon">
+            <a role="button" aria-label="<{$smarty.const._DELETE}> disabled" class="button disabled">
+                <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24">
                     <path d="M15 14c-2.67 0-8 1.33-8 4v2h16v-2c0-2.67-5.33-4-8-4M1 10v2h8v-2m6 2a4 4 0 0 0 4-4a4 4 0 0 0-4-4a4 4 0 0 0-4 4a4 4 0 0 0 4 4z" fill="currentColor">
                     </path>
                 </svg>

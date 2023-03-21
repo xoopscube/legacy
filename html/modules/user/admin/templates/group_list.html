@@ -1,14 +1,16 @@
-<div class="adminnavi">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
   <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
   &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a></span>
-</div>
+  &raquo;&raquo; <span class="page-title"><a href="./index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a></span>
+</nav>
 
 <{include file="./components/user-overview.html"}>
 
 <h2><{$smarty.const._AD_USER_LANG_GROUP_LIST}></h2>
 
-<div class="ui-dev-mode"><{$smarty.template}></div>
+
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
@@ -18,10 +20,9 @@
 
     <div class="control-view">
 
-        <a class="button" href="index.php"><{$smarty.const._AD_USER_LANG_USER_LIST}></a>
+        <a class="button" href="index.php"><i class="i-view"></i><{$smarty.const._AD_USER_LANG_USER_LIST}></a>
 
-        <button class="help-admin button" type='button' data-id='4' data-module='user' data-help-article='#help-groups' aria-label="<{$smarty.const._HELP}>">
-            <b>?</b> </button>
+        <button class="help-admin button" type='button' data-id='4' data-module='user' data-help-article='#help-groups' aria-label="<{$smarty.const._HELP}>"><i class="i-help"></i></button>
     </div>
 
 </section>

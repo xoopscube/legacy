@@ -1,14 +1,14 @@
-<div class="adminnavi" aria-label="breadcrumb">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
-  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></span>
-</div>
+  &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></span>
+</nav>
 
 
 <h2><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></h2>
-
-<div class="ui-dev-mode"><{$smarty.template}></div>
 
 
 <div class="confirm"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_ADVICE|replace:"_%s_":$module->getShow('name')}></div>

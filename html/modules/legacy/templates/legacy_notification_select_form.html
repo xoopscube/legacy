@@ -23,7 +23,7 @@
         <thead>
         <tr>
             <th class="head"><{$smarty.const._NOT_CATEGORY}></th>
-            <th class="head"><input name="allbox" id="allbox" onclick="xoopsCheckAll('notification_select','allbox');" type="checkbox" value="<{$smarty.const._NOT_CHECKALL}>"></th>
+            <th class="head"><input name="allbox" id="allbox" onclick="checkAll('notification_select','allbox');" type="checkbox" value="<{$smarty.const._NOT_CHECKALL}>"></th>
             <th class="head"><{$smarty.const._NOT_EVENT}></th>
         </tr>
         </thead>
@@ -65,4 +65,16 @@
 </article>
 
 </form>
+<script>
+    function checkAll(formname, switchid) {
+        var ele = document.forms[formname].elements;
+        var switch_cbox = document.getElementById(switchid);
+        for (var i = 0; i < ele.length; i++) {
+            var e = ele[i];
+            if ( (e.name != switch_cbox.name) && (e.type == 'checkbox') ) {
+                e.checked = switch_cbox.checked;
+            }
+        }
+    }
+</script>
 <{/if}>

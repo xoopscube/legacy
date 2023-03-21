@@ -1,11 +1,11 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div class="adminnavi">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_BANNER_MANAGE}></a>
-    &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=BannerclientList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a></span>
-</div>
+    &raquo;&raquo; <span class="page-title"><a href="./index.php?action=BannerclientList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a></span>
+</nav>
 
 
 <h2><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></h2>
@@ -19,10 +19,9 @@
 <section data-layout="row center-justify" class="action-control">
 
     <div>
-        <a href="index.php?action=BannerList" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}></a>
-        <a href="index.php?action=BannerfinishList" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a>
-        <a href="index.php?action=BannerclientEdit" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW}></a>
-<!--        <a href="index.php?action=BannerclientEdit" class="button button-small"><{$smarty.const._AD_LEGACYRENDER_LANG_CREATE_NEW}></a>-->
+        <a href="index.php?action=BannerclientEdit" class="button"><i class="i-add"></i><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW}></a>
+        <a href="index.php?action=BannerList" class="button"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}></a>
+        <a href="index.php?action=BannerfinishList" class="button"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a>
     </div>
 
     <div class="control-view">

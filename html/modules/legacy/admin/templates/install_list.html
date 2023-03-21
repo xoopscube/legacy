@@ -1,12 +1,11 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="adminnavi" aria-label="breadcrumb">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
 	<a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
 	&raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
   &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
-  &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></span>
-</div>
+  &raquo;&raquo; <span class="page-title" aria-current="page"><a href="./index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></span>
+</nav>
 
 
 <{* include file="./components/module-overview.html" *}>
@@ -23,7 +22,7 @@
 <{* ////— ACTION-CONTROL —\\\\ *}>
 <section data-layout="row center-justify" class="action-control">
 
-    <a class="button" href="index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
+    <a class="button" href="index.php?action=ModuleList"><i class="i-edit"></i><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
 
     <div class="control-view">
         <button id="list" class="button" data-id="1" type="button" aria-label="View List">

@@ -39,7 +39,7 @@ define( '_AD_LEGACYRENDER_LANG_CLICKS' , 'Clicks');
 define( '_AD_LEGACYRENDER_LANG_CLICKURL' , 'Click URL');
 define( '_AD_LEGACYRENDER_LANG_CLIENT_NAME' , 'Client name');
 define( '_AD_LEGACYRENDER_LANG_CONTACT' , 'Contact');
-define( '_AD_LEGACYRENDER_LANG_CONTROL' , 'Control');
+define( '_AD_LEGACYRENDER_LANG_CONTROL' , 'Action');
 define( '_AD_LEGACYRENDER_LANG_CREATE_NEW' , 'Create new');
 define( '_AD_LEGACYRENDER_LANG_DATE' , 'Reg. Date');
 define( '_AD_LEGACYRENDER_LANG_DATEEND' , 'Exp. date');

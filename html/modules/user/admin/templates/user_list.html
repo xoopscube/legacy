@@ -1,11 +1,10 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="adminnavi">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
-  &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=UserList"><{$smarty.const._AD_USER_LANG_USER_LIST}></a></span>
-</div>
+  &raquo;&raquo; <span class="page-title"><a href="./index.php?action=UserList"><{$smarty.const._AD_USER_LANG_USER_LIST}></a></span>
+</nav>
 
 
 <{include file="./components/user-overview.html"}>
@@ -14,7 +13,10 @@
 <h2><{$smarty.const._AD_USER_LANG_USER_LIST}></h2>
 
 <div class="tips">
-    <{$smarty.const._AD_USER_TIPS_USER_ADMIN}>
+    <{$smarty.const._AD_USER_TIPS_USER_ADMIN}><br>
+    <{$smarty.const._MD_USER_LANG_AVATAR_WIDTH_HEIGHT}> <span class="badge"><{$avatar_width}> x <{$avatar_height}></span>
+    <{$smarty.const._MD_USER_LANG_AVATAR_MAXFILESIZE}> <span class="badge"><{$avatar_maxsize}></span>
+    <a href="index.php?action=AvatarList"><{$smarty.const._MI_USER_ADMENU_AVATAR_MANAGE}> ⭧</a>
 </div>
 
 
@@ -33,9 +35,9 @@
 <section data-layout="row center-justify" class="action-control">
 
     <div>
-        <a class="button button small" href="index.php?action=UserEdit"><{$smarty.const._AD_USER_LANG_USER_NEW}></a>
-        <a class="button button small" href="<{$smarty.const.XOOPS_URL}>/modules/profile/admin/index.php?action=DefinitionsList"><{$smarty.const._AD_USER_LANG_USER_NEW_FIELD}></a>
-        <a class="button button small" href="index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a>
+        <a class="button button small" href="index.php?action=UserEdit"><i class="i-add"></i><{$smarty.const._AD_USER_LANG_USER_NEW}></a>
+        <a class="button button small" href="<{$smarty.const.XOOPS_URL}>/modules/profile/admin/index.php?action=DefinitionsList"><i class="i-edit"></i><{$smarty.const._AD_USER_LANG_USER_NEW_FIELD}></a>
+        <a class="button button small" href="index.php?action=GroupList"><i class="i-view"></i><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a>
     </div>
 
     <div class="control-view">
@@ -94,9 +96,13 @@
         </div>
     </div>
 
-    <div class="ui-card-2-col">
-        <span><input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>"></span>
-        <span><{include file="./components/pagenavi.html"}></span>
+    <div class="ui-card-full" data-layout="row center-justify sm-column">
+        <div data-self="size-x1 centered">
+            <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+        </div>
+        <nav class="pagination" data-self="center-right">
+            <{include file="./components/pagenavi.html"}>
+        </nav>
     </div>
 
 </form>

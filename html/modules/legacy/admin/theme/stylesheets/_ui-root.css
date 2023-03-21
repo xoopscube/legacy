@@ -53,48 +53,66 @@
     }
 }
 
+/*
+Colors must be RGB to be used with opacity
+Store the alpha component in its own custom property:
+:root {
+    --color: 240, 240, 240;
+    --op-5: 0.5;
+}
+Usage with color var:
+
+#element {
+    background-color: rgba(var(--color-red), var(--op-5));
+}
+*/
 @media (prefers-color-scheme: dark) {
 
-:root[data-theme="dark"] {
+    :root[data-theme="dark"] {
 
-    --color-mode    : 'dark';
+        --color-mode: 'dark';
 
-    --color-amber   : hsl(45, 74%, 45%);
-    --color-black   : hsl(0, 0%, 10%);
-    --color-blue    : hsl(210, 74%, 45%);
-    --color-green   : hsl(122, 40%, 48%);
-    --color-indigo  : hsl(275, 74%, 40%);
-    --color-orange  : hsl(38, 74%, 45%);
-    --color-purple  : hsl(300, 74%, 40%);
-    --color-red     : hsl(5, 74%, 50%);
-    --color-red-op  : hsla(5, 74%, 50%, 0.74);
-    --color-white   : hsl(0, 0%, 90%);
+        --color-amber: hsl(45, 74%, 35%);
+        --color-black: hsl(0, 0%, 10%);
+        --color-blue: hsl(210, 74%, 35%);
+        --color-green: hsl(122, 40%, 35%);
+        --color-indigo: hsl(244, 55%, 50%);
+        --color-orange: hsl(38, 74%, 35%);
+        --color-purple: #450b56;
+        --color-indigo2: indigo;
+        --color-red: hsl(5, 74%, 55%);
+        --color-red-op: hsla(5, 74%, 55%, 0.74);
+        --color-white: hsl(0, 0%, 90%);
 
-    --h : 221deg;
-    --s : 15%;
-    --layer-1       : hsl(var(--h) var(--s) 14%);
-    --layer-2       : hsl(var(--h) var(--s) 16%);
-    --layer-3       : hsl(var(--h) var(--s) 18%);
-    --layer-4       : hsl(var(--h) var(--s) 22%);
+        --h: 221deg;
+        --s: 15%;
+        --layer-1: hsl(var(--h) var(--s) 14%);
+        --layer-2: hsl(var(--h) var(--s) 16%);
+        --layer-3: hsl(var(--h) var(--s) 18%);
+        --layer-4: hsl(var(--h) var(--s) 22%);
 
-    --primary       : hsl(var(--h) var(--s) 80%);
-    --secondary     : hsl(var(--h) var(--s) 70%);
-    --active        : hsl(var(--h) var(--s) 70%);
-    --disable       : hsl(var(--h) var(--s) 70%);
-    --contrast      : hsl(var(--h) var(--s) 70%);
+        --primary: hsl(var(--h) var(--s) 80%);
+        --secondary: hsl(var(--h) var(--s) 70%);
+        --active: hsl(var(--h) var(--s) 70%);
+        --disable: hsl(var(--h) var(--s) 70%);
+        --contrast: hsl(var(--h) var(--s) 70%);
 
-    --body-bg       : var( --layer-2  );
-    --body-color    : var( --secondary  );
-    --link          : var( --primary );
-    --link-active   : #face74;
-    --link-hover    : #face74;
-    --link-visited  : var( --primary  );
+        --body-bg: var(--layer-2);
+        --body-color: var(--secondary);
+        --link: var(--primary);
+        --link-active: #face74;
+        --link-hover: #face74;
+        --link-visited: var(--primary);
 
-    --trackBG       : hsl(227, 10%, 10%);
-    --thumbBG       : hsl(219, 15%, 25%);
+        /*--theme-color: var(--layer-2);*/
+        /*--theme-link: var(--link);*/
+
+        --trackBG: hsl(227, 10%, 10%);
+        --thumbBG: hsl(219, 15%, 25%);
+
 
     }
- }
+}
 
 /* -------------------- --------------------  Light Mode */
 
@@ -102,14 +120,14 @@
 
     --color-mode    : 'light';
 
-    --color-amber   : hsl(45, 70%, 45%);
-    --color-black   : hsl(0, 0%, 6%);
-    --color-blue    : hsl(210, 74%, 40%);
-    --color-green   : hsl(126, 70%, 35%);
-    --color-indigo  : hsl(275, 70%, 35%);
+    --color-amber   : hsl(45, 74%, 35%);
+    --color-black   : hsl(0, 0%, 5%);
+    --color-blue    : hsl(210, 74%, 35%);
+    --color-green   : hsl(126, 74%, 35%);
+    --color-indigo  : hsl(244, 50%, 45%);
     --color-orange  : hsl(38, 75%, 35%);
     --color-purple  : hsl(300, 70%, 35%);
-    --color-red     : hsl(5, 70%, 45%);
+    --color-red     : hsl(5, 74%, 40%);
     --color-red-op  : hsla(5, 70%, 45%, 0.8);
     --color-white   : hsl(0, 0%, 90%);
 
@@ -117,8 +135,9 @@
     --layer-2       : hsl(219, 25%, 88%);
     --layer-3       : hsl(219, 25%, 92%);
     --layer-4       : hsl(219, 25%, 94%);
+    --layer-5       : hsl(219, 25%, 55%); /* USED FOR THEME-COLOR BACKGROUND */
 
-    --primary       : hsl(219, 15%, 7%);
+    --primary       : hsl(0, 0%, 27%);
     --secondary     : hsl(219, 15%, 10%);
     --active        : var(--color-red);
     --disable       : hsl(219, 15%, 70%);
@@ -126,17 +145,24 @@
 
     --body-bg       : var( --layer-2 );
     --body-color    : var( --primary );
-    --link          : var( --color-blue );
+    /*--header-bg     : #212121;*/
+    --link          : var( --color-black );
     --link-active   : var( --color-red );
     --link-hover    : var( --color-orange );
     --link-visited  : var( --color-blue );
-
+    --notify-bg: var(--layer-4 );
+    /*--theme-color : var(--layer-2);*/
+    /*--theme-link : var(--color-white);*/
 }
 
 /* -------------------- --------------------  ROOT DEFAULT */
 
 :root {
 
+    color-scheme: dark light; /* preference dark first <meta name="color-scheme" content="dark light"> */
+
+    /*--theme-color : var(--layer-4);*/
+    /*--theme-link : var(--color-white);*/
     /* Development Mode Displays Smarty Template Name : block / none */
     --dev-mode          : none;
 
@@ -154,19 +180,21 @@
 
     /* -------------------- --------------------  LAYOUT Grid template */
 
-    --blue-opacity-5    : hsla(210, 74%, 40%, 0.5);
-    --blue-opacity-7    : hsla(210, 74%, 40%, 0.7);
+    --op3    : hsla(210, 74%, 40%, 0.5);
+    --op5    : hsla(210, 74%, 40%, 0.5);
+    --op7    : hsla(210, 74%, 40%, 0.7);
+
     --bg-linear         : linear-gradient(360deg, hsla(219, 15%, 25%, 0.70), hsla(0, 0%, 0%, 0.90));
     --bg-gradient       : linear-gradient(360deg, var(--layer-1), var(--layer-2));
 
-    --aside-bg          : var( --layer-1 );
+    --aside-bg          : var( --layer-3 );
 
     --aside-panel-bg    : var( --layer-1 );
     --aside-panel-shadow: var( --shadow-5 );
 
-    --header-bg         : var( --layer-2 );
+    --header-bg         : var( --theme-color, var(--layer-2) );
     --header-border     : none;
-    --header-radius     : none;
+    --header-radius     : 0;
     --header-shadow     : var( --shadow-3 );
     --header-position   : fixed;
 
@@ -200,7 +228,7 @@
     --action-bg                 : var(--layer-2);
     --action-border             : var(--border);
     --action-cursor             : pointer;
-    --ation-font                : 300 16px var(--font-family);
+    --action-font               : 300 16px var(--font-family);
     --action-margin             : 2px 0 0 0;
     --action-radius             : var(--border-radius);
     --action-shadow             : var(--shadow-2);
@@ -218,38 +246,35 @@
     /* -------------------- --------------------  BREADCRUMBS */
 
     --breadcrumbs-bg   	        : var( --layer-3 );
-    --breadcrumbs-border-color 	: var( --layer-3 );
-    --breadcrumbs-border-radius	: var( --border-radius );
-    --breadcrumbs-border-style 	: var( --border-style );
-    --breadcrumbs-border-width 	: var( --border-width );
-    --breadcrumbs-box-shadow    : var( --shadow-2 );
+    --breadcrumbs-border 	    : 1px solid transparent; /* var( --layer-3 ); */
+    --breadcrumbs-color         : var( --theme-color, var( --link ) );
+    --breadcrumbs-radius	    : var( --border-radius );
+    --breadcrumbs-shadow        : var( --shadow-2 );
     --breadcrumbs-padding       : var( --space-3 ) var( --space-4 );
     --breadcrumbs-margin        : var( --space-3 ) 0; /* Top & Bottom, '0' for Left & Right*/
-    --breadcrumbs-bg-link       : var( --layer-4 );
+    --breadcrumbs-bg-link       : var( --button-bg); /* var( --button-bg ); */
 
     /* -------------------- --------------------  BUTTON style [default]  */
 
     --button-active             : 0;
     --button-bg                 : var( --layer-4 );
-    --button-border             : 1px solid var( --layer-4 );
-    --button-color              : var( --link );
+    --button-border             : 1px solid var( --theme-color, var( --layer-4 ) );
+    --button-color              : var( --theme-link, var(--link ) );
     --button-font-size          : 16px;
     --button-margin             : var( --space-1 ) var( --space-2 ); /* 0.75rem 1rem; */
     --button-padding            : var( --space-3 ) var( --space-5 );
     --button-radius             : var( --border-radius );
     --button-shadow             : var( --shadow-1 );
-    --button-bg-hover           : var( --layer-4 );
-    --button-color-hover        : var( --link-hover);
+    --button-bg-on           : var(--theme-color, var( --layer-4 ) );
+    --button-color-on        :  var(--theme-hover, var( --link-hover) );
     --button-shadow-on          : var( --shadow-3);
 
     /* -------------------- --------------------  CARD-BLOCK */
 
     --card-block-bg    	        : var( --layer-3 );
-    --card-block-border-color  	: var( --layer-4 );
-    --card-block-border-radius 	: var( --border-radius );
-    --card-block-border-style  	: var( --border-style );
-    --card-block-border-width  	: var( --border-width );
-    --card-block-box-shadow     : var( --shadow-2 );
+    --card-block-border  	: var( --layer-4 );
+    --card-block-radius 	: var( --border-radius );
+    --card-block-shadow     : var( --shadow-2 );
     --card-block-hover          : var( --layer-4 );
     --card-block-padding        : var( --space-6 );
     --card-block-margin         : var( --space-6 );
@@ -270,23 +295,19 @@
     /* -------------------- --------------------  CARD-FULL */
 
     --card-full-bg              : var( --layer-3 );
-    --card-full-border-color    : var( --layer-4);
-    --card-full-border-radius   : var( --border-radius );
-    --card-full-border-style    : var( --border-style );
-    --card-full-border-width    : var( --border-width );
+    --card-full-border    : var( --layer-4);
+    --card-full-radius   : var( --border-radius );
     --card-full-padding         : var( --space-6 );
     --card-full-margin          : var( --space-6 ) auto;
-    --card-full-box-shadow      : var( --shadow-1 );
+    --card-full-shadow      : var( --shadow-1 );
 
     /* -------------------- --------------------  CARD-SMALL */
 
     --card-small-bg             : var(--layer-3);
-    --card-small-border-color   : var(--layer-4);
-    --card-small-border-radius  : var(--border-radius);
-    --card-small-border-style   : var(--border-style);
-    --card-small-border-width   : var(--border-width);
-    --card-small-box-shadow     : var(--shadow-1);
-    --card-small-box-hover      : var(--shadow-3);
+    --card-small-border   : var(--layer-4);
+    --card-small-radius  : var(--border-radius);
+    --card-small-shadow     : var(--shadow-1);
+    --card-small-shadow-on      : var(--shadow-3);
     --card-small-padding        : var(--space-6);
     --card-small-margin         : var(--space-6);
 
@@ -299,9 +320,9 @@
 
     /* -------------------- --------------------  DROPDOWN */
 
-    --d-toggle-bg           : var( --layer-4 );
-    --d-toggle-border       : 1px solid var( --layer-4 );
-    --d-toggle-color        : var(--link);
+    --d-toggle-bg           : var(--layer-4);
+    --d-toggle-border       : 1px solid var( --theme-color, var(--layer-4) );
+    --d-toggle-color        : var(--theme-color);
     --d-toggle-font         : inherit;
     --d-toggle-padding      : var(--space-2 ) var(--space-2);
     --d-toggle-radius       : var(--border-radius);
@@ -312,7 +333,7 @@
     --d-toggle-bg-on        : var(--layer-4); /* link [div][a] */
 
     --dropdown-bg           : var(--layer-2);
-    --dropdown-border       : var(--border);
+    --dropdown-border       : var( --theme-color, var(--border));
     --dropdown-font         : 100 14px/2 sans-serif;
 
     --dropdown-shadow       : var(--shadow-4);
@@ -324,12 +345,10 @@
 
     /* -------------------- --------------------  FILTER / SORT */
 
-    --filter-background     : var( --layer-3 );
-    --filter-border-color   : var( --layer-4);
-    --filter-border-radius  : var( --border-radius );
-    --filter-border-style   : var( --border-style );
-    --filter-border-width   : var( --border-width );
-    --filter-box-shadow     : var( --shadow-1 );
+    --filter-bg            : var( --layer-3 );
+    --filter-border   : var( --layer-4);
+    --filter-radius  : var( --border-radius );
+    --filter-shadow     : var( --shadow-1 );
     --filter-margin         : var( --space-6 ) auto;
     --filter-padding        : var( --space-6 );
 
@@ -338,37 +357,35 @@
     --footer-bg             : inherit;
     --footer-border         : none;
     --footer-radius         : none;
-    --footer-color          : var( --secondary );
+    --footer-color          : var( --theme-color, var(--secondary) );
     --footer-font           : .9rem;
-    --footer-link           : var( --link );
+    --footer-link           : var( --theme-link, var( --link ) );
     --footer-margin         : var( --space-6 ) auto 0;
     --footer-padding        : var( --space-6 );
     --footer-shadow         : none;
 
     /* -------------------- --------------------  FORM input */
 
-    --input-bg              : var( --layer-1 );
-    --input-border-color    : var( --layer-3 );
-    --input-border-radius   : var( --border-radius );
-    --input-border-style    : var( --border-style );
-    --input-border-width    : var( --border-width );
+    --input-bg              : var( --layer-2 );
+    --input-border          : 1px solid var( --theme-color, var( --layer-3 ) );
+    --input-radius          : var( --border-radius );
     --input-border-hover    : 1px solid var( --link-active );
     --input-border-focus    : 1px solid var( --layer-4 );
-    --input-color           : var( --secondary );
+    --input-color           : var( --secondary ); /* var( --theme-color, var( --secondary )); */
     --input-shadow          : none;
 
     /* input checkbox */
-    --input-check-active    : var( --color-blue );
+    --input-check-active    : var(--theme-color, var( --color-blue ) );
     --input-check-active-in : var(--color-white);
     --input-check-animation : var( --color-blue );
-    --input-check-bg        : var( --layer-2 );
-    --input-check-border    : 1px solid var( --color-blue );
-    --input-check-border-on : 1px solid var( --color-blue );
+    --input-check-bg        : var( --layer-1 );
+    --input-check-border    : 1px solid var( --theme-color, var(--color-blue ) );
+    --input-check-border-on : 1px solid var(--theme-link, var( --color-blue ) );
     --input-check-disabled  : var( --layer-1 );
     --input-check-disabled-in: var( --disable );
     --input-check-shadow-in : var( --color-white );
-    --input-padding         : var( --space-4 );
-    --input-margin          : var( --space-0 );
+    --input-padding         : var( --space-3 ) var( --space-4 );
+    --input-margin          : var( --space-0 ) var( --space-1 );
 
     /* state action */
     --input-bg-on           : var(--layer-2);
@@ -378,7 +395,6 @@
 
     /* -------------------- --------------------  NAV HEADER */
 
-    --nav-hover             : rgba(255, 255, 255, .2);
     --nav-open              : rgba(0, 0, 0, 0.05);
     --nav-admin-bg          : rgba(15, 15, 15, 0.75);
     --nav-link-color        : orange;
@@ -386,8 +402,8 @@
 
     /* -------------------- --------------------  NAV SIDE */
 
-    --nav-side-background   : transparent;
-    --nav-side-box-shadow   : none;
+    --nav-side-bg   : transparent;
+    --nav-side-shadow   : none;
     --nav-side-color        : var( --primary);
     --nav-side-margin       : 0;
     --nav-side-padding      : 60px 0;
@@ -395,23 +411,24 @@
 
     /* -------------------- --------------------  NAV SIDE BLOCK */
 
-    --nav-block-background  : var( --layer-4 );
-    --nav-block-border-color: var( --link-hover );
-    --nav-block-border-style: solid;
-    --nav-block-border-width: 3px;
-    --nav-block-color-link  : var( --link );
+    --nav-block-bg          : transparent ; /*var( --layer-4 ); */
+    --nav-block-border      : 3px solid transparent; /* var( --link-hover ); */
+    --mav-block-radius      : var( --border-radius);
+    --nav-block-color       : var( --button-color );
+    /* Active / Hover */
+    --nav-block-bg-on       : var( --button-bg-on);
+    --nav-block-border-on   : 3px solid var( --theme-color, var( --link-hover ) );
+    --nav-block-color-on    : var( --button-color-on, var( --link ) );
     --nav-set-height        : 8px;
     --nav-set-width         : 8px;
 
     /* -------------------- --------------------  NOTIFICATION */
 
     --notify-bg             : var( --layer-1 );
-    --notify-border-color   : var( --layer-4 );
-    --notify-border-radius  : var( --border-radius );
-    --notify-border-style   : var( --border-style );
-    --notify-border-width   : var( --border-width );
-    --notify-box-shadow     : var( --shadow-2 );
-    --notification-color    : var( --primary );
+    --notify-border   : 1px solid var( --layer-4 );
+    --notify-radius  : var( --border-radius );
+    --notify-shadow     : var( --shadow-2 );
+    --notify-color    : var( --primary );
     --notify-margin         : var(--space-8) auto;
     --notify-padding        : 1rem 1rem 1rem 3rem;
     --notify-max-width      : 90%;
@@ -480,11 +497,11 @@
     --tabs-nav-li-margin    : 0 1px;
 
     /* TODO */
-    --ui-tabs-loading       : var(--red-1);
+    --ui-tabs-loading       : var(--button-color);
 
     --tabs-anchor-bg        : var(--layer-3);
     --tabs-anchor-border    : 1px solid var(--layer-2);
-    --tabs-anchor-color     : var(--link-color);
+    --tabs-anchor-color     : var( --theme-link);
     --tabs-anchor-padding   : var( --space-4 ) var( --space-6 );
     --tabs-anchor-radius    : var(--border-radius) var(--border-radius) 0 0;
     --tabs-anchor-shadow    : var(--shadow-1);
@@ -527,11 +544,11 @@
     --ui-button-padding     : var(--button-padding);
     --ui-button-radius      : 5px;
     --ui-button-transition  : all .5s var(--transition-cube);
-    --ui-button-bg-on       : var(--button-bg-hover);
+    --ui-button-bg-on       : var(--button-bg-on);
     --ui-button-border-on   : var(--button-border );
     --ui-button-color-on    : var( --link );
     --ui-button-shadow-on   : 0 0 4px 2px rgba(44, 93, 247, .85);
-    --ui-button-bg-active    : var(--button-bg-hover);
+    --ui-button-bg-active    : var(--button-bg-on);
     --ui-button-border-active: 1px solid var(--link);
     --ui-button-color-active : var( --link );
     --ui-button-shadow-active: 0 0 4px 2px rgba(44, 93, 247, .85);
@@ -549,7 +566,7 @@
     --ui-state-default-color: var(--link);
     --ui-state-default-font : var(--font-family );
     --ui-state-default-link : var(--link); /*text-decoration : none;*/
-    --ui-state-hover-bg     : var(--button-bg-hover);
+    --ui-state-hover-bg     : var(--button-bg-on);
     --ui-state-hover-border : 1px solid var(--layer-4);
     --ui-state-hover-color  : var(--link-hover);
     --ui-state-hover-font   : inherit;
@@ -568,3 +585,80 @@
     --ui-widget-font-family     : var( --font-family );
     --ui-widget-font-size       : var( --font-size );
 }
+/*
+    <option value="amber">Amber</option>
+    <option value="black">Black</option>
+    <option value="blue">Blue</option>
+    <option value="green">Green</option>
+    <option value="indigo">Indigo</option>
+    <option value="orange">Orange</option>
+    <option value="purple">Purple</option>
+    <option value="red">Red</option>
+ chocolate
+ brown (like firebrick)
+ indianred
+ darkkhaki
+ darkolivegreen
+ darkgoldenrod
+ darklateblue
+ dimgrey ( currentColor )
+ dodgerblue
+ deepskyblue
+ firebrick
+ forestgreen
+ royalblue
+ sienna
+ steelblue
+
+
+*/
+
+:root.default {
+    /* Used to fallback to theme light or dark mode or unset vars */
+}
+:root.amber {
+    --theme-color : var(--color-amber);
+    --theme-link  : var(--color-amber);
+    --theme-hover : hsl(0 60% 90% / 1);
+    --body-color  : var(--color-amber);
+}
+:root.chocolate {
+    --theme-color : chocolate;
+    --theme-link  : chocolate;
+    --theme-hover : hsl(0 60% 90% / 1);
+    --body-color  : chocolate;
+}
+:root.firebrick {
+    --theme-color : firebrick;
+    /*--theme-link  : #b33e3e;*/
+    --theme-link  : hsl(0 90% 60% / 1);
+    --theme-hover : hsl(0 60% 90% / 1);
+    --body-color  : firebrick;
+}
+
+:root.blue {
+    --theme-color : var(--color-blue);
+    --theme-link  : hsl(210 74% 50% / 1);
+    --theme-hover : hsl(210 74% 74% / 1);
+    --body-color  : hsl(210 74% 50% / 1);
+}
+:root.forestgreen {
+    --theme-color : forestgreen;
+    --theme-link  : hsl(122 40% 40% / 1);
+    --theme-hover : hsl(0 50% 90% / 1);
+    --body-color  : forestgreen;
+}
+:root.indigo[data-theme="dark"]  {
+    --theme-color : var(--color-indigo);
+    --theme-link  : orange;
+    --theme-hover : hsl(0 60% 90% / 1);
+    --body-color  : mediumslateblue;
+}
+:root.indigo[data-theme="light"] {
+    --theme-color : var(--color-indigo);
+    --theme-link  : forestgreen;
+    --theme-hover : hsl(0 60% 90% / 1);
+    --body-color  : mediumslateblue;
+}
+
+

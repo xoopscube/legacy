@@ -1,16 +1,16 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div class="adminnavi">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=ImagecategoryList"><{$smarty.const._MI_LEGACY_MENU_IMAGE_MANAGE}></a>
     &raquo;&raquo; <a href="./index.php?action=ImageList&amp;imgcat_id=<{$actionForm->get('imgcat_id')}>"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}></a>
     <{if $actionForm->get('image_id')}>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_IMAGE_EDIT}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_IMAGE_EDIT}></span>
     <{else}>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_IMAGE_NEW}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_IMAGE_NEW}></span>
     <{/if}>
-</div>
+</nav>
 
 
 <{if $actionForm->get('image_id')}>

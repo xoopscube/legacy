@@ -172,7 +172,10 @@ define( '_DAYS' , '%s jours');
 define( '_WEEK' , '1 semaine');
 define( '_MONTH' , '1 mois');
 
+define( '_ACTION' , 'Action');
 define( '_HELP' , "Aide");
+define( '_MENU' , 'Menu');
+
 // Added interface Enum
 
 //%%%%%		   %%%%%

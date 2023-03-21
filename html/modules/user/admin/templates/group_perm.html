@@ -1,12 +1,11 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="adminnavi">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a>
-    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}></span>
-</div>
+    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}></span>
+</nav>
 
 
 <h2><{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}> &raquo; <{$group->getShow('name')}></h2>

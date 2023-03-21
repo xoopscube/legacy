@@ -99,7 +99,7 @@ define( '_MD_USER_LANG_USERKEYFOR' , 'User activation key for %s');
 define( '_MD_USER_LANG_USERREG' , 'User Registration');
 define( '_MD_USER_LANG_VERIFYPASS' , 'Verify Password');
 define( '_MD_USER_LANG_WEBSITE' , 'Website');
-define( '_MD_USER_LANG_WHOSONLINE' , "Who's Online");
+define( '_MD_USER_LANG_WHOSONLINE' , "Users Online");
 define( '_MD_USER_LANG_YOURACCOUNT' , 'Your account at %s');
 define( '_MD_USER_LANG_YOUREMAIL' , 'Your Email: ');
 define( '_MD_USER_MESSAGE_ACONTACT' , 'Selected account is already activated!');

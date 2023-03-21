@@ -1,13 +1,12 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="adminnavi">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=ImagecategoryList"><{$smarty.const._MI_LEGACY_MENU_IMAGE_MANAGE}></a>
     &raquo;&raquo; <a href="./index.php?action=ImageList&amp;imgcat_id=<{$object->getShow('imgcat_id')}>"><{$smarty.const._AD_LEGACY_LANG_IMAGE_LIST}></a>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_IMAGE_DELETE}></span>
-</div>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_IMAGE_DELETE}></span>
+</nav>
 
 
 <h2><{$smarty.const._AD_LEGACY_LANG_IMAGE_DELETE}></h2>

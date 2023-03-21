@@ -58,7 +58,12 @@ define( '_GROUP_RANK_OWNER' , "Proprietário");
 define( '_GROUP_RANK_REGULAR' , "Regular");
 define( '_GROUP_RANK_STAFF' , "Equipe");
 define( '_GUESTS' , "Anônimos");
+
+define( '_ACTION' , 'Ação');
 define( '_HELP' , "Ajuda");
+define( '_MENU' , 'Menu');
+
+
 define( '_HOUR' , "Uma hora");
 define( '_HOURS' , "%s horas");
 define( '_IFNOTRELOAD' , "Se esta página não recarregar automaticamente,<br /><a href='%s'>clique aqui</a> para continuar...");

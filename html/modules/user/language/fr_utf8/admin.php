@@ -152,7 +152,7 @@ define( '_AD_USER_MESSAGE_RECOUNT_SUCCESS' , "Recompté avec succès");
 
 // Tips
 define( '_AD_USER_ADMENU_USER_DATA_DOWNLOAD' , 'User Data Download');
-define( '_AD_USER_TIPS_AVATAR' , 'Les membres du site peuvent créer leurs propres personas en ligne appelés avatars.<br>Cette option peut être activée à partir du module <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=4#avatar-active">Préférences Utilisateurs ⭧</a>');
+define( '_AD_USER_TIPS_AVATAR' , 'Les membres du site peuvent créer leurs propres personas en ligne appelés avatars.<br>Cette option peut être activée à partir du module <a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=4#avatar-active">Préférences Utilisateurs ⭧</a>');
 define( '_AD_USER_TIPS_AVATAR_UPLOAD' , "Vous pouvez facilement enregistrer de nombreux avatars en téléchargeant des fichiers d'archive!<br />Ce téléchargement par lots ne vérifie pas les dimensions et le poids du fichier de chaque avatar!<br>Veuillez les pré-ajuster avant de les archiver ( archive tar.gz ou zip)");
 define( '_AD_USER_TIPS_DATA_DOWNLOAD' , 'Vous ne pouvez obtenir les données CSV des utilisateurs que par ordre de user_id.');
 define( '_AD_USER_TIPS_DELETE_AVATAR' , "Les utilisateurs qui emploient cet avatar auront blank.gif comme image d'avatar.");

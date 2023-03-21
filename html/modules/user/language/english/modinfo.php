@@ -14,7 +14,7 @@ define( '_MI_USER_BLOCK_LOGIN_NAME' , 'Login');
 define( '_MI_USER_BLOCK_NEWUSERS_DESC' , 'Shows most recent users');
 define( '_MI_USER_BLOCK_NEWUSERS_NAME' , 'New Members');
 define( '_MI_USER_BLOCK_ONLINE_DESC' , 'Displays users/guests currently online');
-define( '_MI_USER_BLOCK_ONLINE_NAME' , "Who's Online");
+define( '_MI_USER_BLOCK_ONLINE_NAME' , "Users Online");
 define( '_MI_USER_BLOCK_TOPUSERS_DESC' , 'Top posters');
 define( '_MI_USER_BLOCK_TOPUSERS_NAME' , 'Top Posters');
 define( '_MI_USER_CONF_ACTV_ADMIN' , 'Activation by administrators');

@@ -5,7 +5,7 @@ define( '_AD_PROFILE_LANG_DEFINITIONS_EDIT' , 'Edit field');
 define( '_AD_PROFILE_LANG_DEFINITIONS_DELETE' , 'Remove field');
 define( '_AD_PROFILE_LANG_DEFINITIONS_VIEW' , 'Display field');
 define( '_AD_PROFILE_TIPS_DATA_DOWNLOAD' , 'User data is only available in CSV format order by user_id.');
-define( '_AD_PROFILE_DATA_NUM' , '%d users registered.');
+define( '_AD_PROFILE_DATA_NUM' , '<strong> %d </strong> users registered.');
 define( '_MI_PROFILE_ADMENU_DATA_DOWNLOAD' , 'Download Profiles');
 define( '_AD_PROFILE_DATA_DOWNLOAD_DO' , 'Download CSV');
 
@@ -26,6 +26,3 @@ define( '_AD_PROFILE_DATA_UPLOAD_DONE' , 'The profile information was updated ac
 define( '_AD_PROFILE_DATA_UPLOAD_SELECT_CSVFILE' , 'Please select the CSV file.');
 define( '_AD_PROFILE_DATA_UPLOAD_CONF' , 'Confirm the data to register');
 define( '_AD_PROFILE_DATA_UPLOAD_DO' , 'Register');
-
-//define( '_AD_USER_DATA_UPLOAD_BACK' , 'Select the CSV file again');
-//define( '_AD_USER_DATA_UPLOAD_CHECK_USER_CSVFILE' , 'Please confirm the user data to register.');

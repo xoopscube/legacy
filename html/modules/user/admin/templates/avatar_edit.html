@@ -1,17 +1,16 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="adminnavi">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=AvatarList"><{$smarty.const._MI_USER_ADMENU_AVATAR_MANAGE}></a>
     &raquo;&raquo;
     <{if $actionForm->get('avatar_id')}>
-    <span class="adminnaviTitle"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></span>
+    <span class="page-title"><{$smarty.const._MD_USER_LANG_AVATAR_EDIT}></span>
     <{else}>
-    <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_AVATAR_NEW}></span>
+    <span class="page-title"><{$smarty.const._AD_USER_LANG_AVATAR_NEW}></span>
     <{/if}>
-</div>
+</nav>
 
 
 <{if $actionForm->get('avatar_id')}>

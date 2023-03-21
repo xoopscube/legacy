@@ -176,7 +176,9 @@ define( '_DAYS' , '%s日');
 define( '_WEEK' , '1週間');
 define( '_MONTH' , '1ヶ月');
 
+define( '_ACTION' , 'アクション');
 define( '_HELP' , 'ヘルプ');
+define( '_MENU' , 'メニュー');
 
 define( '_CATEGORY' , 'カテゴリ');
 define( '_TAG' , 'タグ');

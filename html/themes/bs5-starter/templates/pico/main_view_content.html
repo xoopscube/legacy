@@ -72,7 +72,13 @@
 
 
 <div class="card my-4">
-
+    <{if $content.ef.pico_img}>
+    <img class="card-img-top img-fluid" style="height: 240px; object-fit: cover;" src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/pico_img_1_<{$content.ef.pico_img|escape}>" alt="<{$content.subject}>">
+    <div class="card-img-overlay">
+        <h2 class="card-title bg-black bg-gradient text-white bg-opacity-50 rounded p-3"><{$content.subject}></h2>
+        <div class="card-text bg-black bg-gradient text-white bg-opacity-50 rounded p-3 w-50"><small><{$content.poster_uname|ucfirst}> <{$smarty.const._MD_PICO_CREATED}>: <{$content.created_time_formatted}></small></div>
+    </div>
+    <{/if}>
     <div class="card-header">
 
         <h3><{$content.subject}> </h3>
@@ -93,6 +99,9 @@
         </div>
         <{* /if *}><{* ------- SMARTY COMMENT to make information visible only to admins *}>
 
+        <p><{if $content.ef.address1}><b><{$content.ef.address1}></b><{/if}>
+        <{if $content.ef.pronunciation|escape}><i><{$content.ef.pronunciation|escape}></i><{/if}>
+            <{if $content.ef.gender}><{$content.ef.gender}><{/if}></p>
 
         <{* ------- VIEWS + TAGS *}>
         <{if $content.tags_array}>

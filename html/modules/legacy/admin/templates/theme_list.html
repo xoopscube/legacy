@@ -1,11 +1,10 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="adminnavi" aria-label="breadcrumb">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=ThemeList"><{$smarty.const._AD_LEGACY_LANG_THEME_ADMIN}></a></span>
-</div>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><a href="./index.php?action=ThemeList"><{$smarty.const._AD_LEGACY_LANG_THEME_ADMIN}></a></span>
+</nav>
 
 
 <h2><{$smarty.const._AD_LEGACY_LANG_THEME_ADMIN}></h2>
@@ -28,7 +27,7 @@
 <style>
     .zoomA {
         /* SCREENSHOT DIMENSIONS (  OPTIONAL ) */
-        width: 340px;
+        width: 320px;
         height: auto;
         /* ANIMATE ZOOM ease | ease-in | ease-out | linear */
         transition: transform ease-in-out 0.3s;
@@ -94,7 +93,7 @@
         <td class="ui-card-block-image">
             <{if $theme->get('screenshot')}>
             <img class="zoomA" src="<{$smarty.const.XOOPS_THEME_URL}>/<{$theme->getShow('dirname')}>/<{$theme->getShow('screenshot')}>"
-                width="120" height="90" alt="<{$theme->getShow('name')}>" aria-label="<{$theme->getShow('name')}>">
+                width="320" height="auto" alt="<{$theme->getShow('name')}>">
             <{/if}>
             <div class="list_imagetitle"><{$theme->getShow('name')}></div>
         </td>

@@ -31,7 +31,7 @@ define( '_MD_USER_LANG_AVATAR_ID' , "N°");
 define( '_MD_USER_LANG_AVATAR_LIST' , "Avatares disponíveis");
 define( '_MD_USER_LANG_AVATAR_MAXFILESIZE' , "Tamanho máximo");
 define( '_MD_USER_LANG_AVATAR_WIDTH' , "Largura");
-define( '_MD_USER_LANG_AVATAR_WIDTH_HIGHT' , "avatar largura altura");
+define( '_MD_USER_LANG_AVATAR_WIDTH_HEIGHT' , "Avatar largura altura");
 define( '_MD_USER_LANG_BIO' , "Informações complementares");
 define( '_MD_USER_LANG_DELACCOUNT' , "Remover cadastro");
 define( '_MD_USER_LANG_DELETE' , "Remover");

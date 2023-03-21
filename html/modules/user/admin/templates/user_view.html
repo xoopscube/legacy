@@ -1,12 +1,11 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="adminnavi">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=UserList"><{$smarty.const._AD_USER_LANG_USER_LIST}></a>
-    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_USER_VIEW}></span>
-</div>
+    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_USER_LANG_USER_VIEW}></span>
+</nav>
 
 
 <h2><{$smarty.const._AD_USER_LANG_USER_VIEW}> &raquo; <{$object->getShow('uname')}></h2>
@@ -196,7 +195,7 @@
         <td colspan="2">
             <input class="button" type="submit" name="confirm_back" value="<{$smarty.const._BACK}>" onclick="javascript:history.go(-1);">
             <a href="./index.php?action=UserEdit&amp;uid=<{$object->getShow('uid')}>" class="button" aria-label="<{$smarty.const._EDIT}>" aria-label="<{$smarty.const._EDIT}>">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24" class="svg-ui-icon">
+                <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 24 24">
                     <path d="M21.7 13.35l-1 1l-2.05-2.05l1-1a.55.55 0 0 1 .77 0l1.28 1.28c.21.21.21.56 0 .77M12 18.94l6.06-6.06l2.05 2.05L14.06 21H12v-2.06M12 14c-4.42 0-8 1.79-8 4v2h6v-1.89l4-4c-.66-.08-1.33-.11-2-.11m0-10a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4a4 4 0 0 0-4-4z" fill="currentColor">
                     </path>
                 </svg> <{$smarty.const._EDIT}>

@@ -1,14 +1,15 @@
-<div class="adminnavi">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php">Dashboard</a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=TplsetList"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_MANAGE}></a>
-    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_CLONE}></span>
-</div>
+    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_CLONE}></span>
+</nav>
 
 
 <h2><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_CLONE}></h2>
 
-<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <{if $actionForm->hasError()}>
 <div class="error">

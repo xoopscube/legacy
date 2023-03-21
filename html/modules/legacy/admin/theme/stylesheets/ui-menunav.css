@@ -8,11 +8,6 @@
 */
 /* -------------------- --------------------  NAV ADMIN */
 
-.admintitle {
-    border-bottom   : 3px solid var(--border);
-    margin-bottom   : 1em;
-}
-
 .adminavi,
 .adminavi-sub {
     background      : var(--layer-3);
@@ -22,47 +17,43 @@
     display         : grid;
     justify-content : center;
     grid-gap        : 0.25em;
-    grid-template-columns: repeat(auto-fit, minmax(Min(10em, 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(Min(11em, 100%), 1fr));
     grid-auto-flow  : row;
     margin          : 2em 0;
     /* max-width: 57em; container */
-    padding         : var(--space-3);
+    padding         : var(--space-4);
     position        : sticky;
     top             : 110px;
     z-index         : var(--z-above);
 }
-.adminavi-sub {
+.adminavi .adminavi-item {
+    text-align: center;
 }
-
 .adminavi .adminavi-item,
 .adminavi-sub .adminavi-item {
     border          : 1px solid var(--layer-3);
-    color           : var(--link);
+    border-radius   : var(--border-radius);
+    color           : var(--button-color);
     display         : block;
     max-width       : 100%;
-    padding         : var(--space-4);
-}
-
-.adminavi .adminavi-item:first-child {
-    border-top-left-radius: var(--border-radius);
-    border-bottom-left-radius: var(--border-radius);
+    padding         : var(--space-3);
 }
 
 .adminavi-sub .adminavi-item > svg {
-    margin-right    : var(--space-2);
+    margin-right    : var(--space-1);
 }
 
 .adminavi-item:not(.selected) {
-    /*background      : var(--layer-3);*/
+    color           : var(--button-color);
 }
 
 .adminavi-item.selected,
 .adminavi-item:not(.selected):hover,
 .adminavi-item.selected:active {
-    background      : var(--layer-2);
+    background      : var(--button-bg-on, var(--layer-2) );
     border          : 1px solid var( --layer-3 );
     border-radius   : var(--border-radius);
-    color           : var( --link-hover );
+    color           : var(--button-color-on, var(--link-hover) );
     outline-width   : 0;
 }
 
@@ -87,15 +78,21 @@ div.dropdown a.dropdown-toggle {
     transition      : var(--d-toggle-transition);
     width           : min-content;
     font-size       : 20px;
-    height          : 40px;
-    line-height     : 40px;
-    margin          : var( --space-1 );
-    padding         : 0;
+    /*height          : 40px;*/
+    /*line-height     : 40px;*/
+    margin          : var(--button-margin );
+    padding         : var(--button-padding);
     position        : relative
+}
+:where(header.nav-top) div.dropdown a.dropdown-toggle {line-height: 40px;margin:0 var( --space-1 );padding: var(--space-0);}
+div.dropdown a.dropdown-toggle.action-menu {
+    font-size       : var(--font-size);
+    line-height     : 1.5;
+    width           : auto;
 }
 div.dropdown a.dropdown-toggle:hover {
     background      : var(--d-toggle-bg-on);
-    box-shadow      : var(--d-toggle-shadow);
+    /*box-shadow      : var(--d-toggle-shadow);*/
     color           : var(--d-toggle-color-on);
 }
 div.dropdown.isopen div.dropdown-content {
@@ -177,14 +174,16 @@ div.dropdown-content > a {
     vertical-align  : baseline;
     white-space     : nowrap;
 }
-
+:where(div.dropdown-content) a.button {
+    text-align: left;
+}
 /* Badge with icon */
 :where(div.dropdown-content) .btn > i[class^="i-"]{
     mask-size       : 1.5em 1.5em;
     -webkit-mask-size: 1.5em 1.5em;
 }
 :where(div.dropdown-content) .btn:hover {
-    background      : var(  --button-bg-hover  );
+    background      : var(  --button-bg-on  );
 }
 
 /* DROPDOWN POSITION + FIX DEVICE VIEWPORT */
@@ -201,7 +200,7 @@ div.dropdown-content > a {
 /* ------- DROPDOWN HEADER DROP-NAV */
 :where(div.dropdown.isopen) div.drop-nav {
     animation: open-down .2s cubic-bezier(.39,.575,.565,1) both;
-    background      : var(--aside-panel-bg);
+    background      : var(--dropdown-bg);
     transform       : translate3d(0px, 40px, 0px);
     width           : 100vw;
     position        : absolute;
@@ -250,8 +249,8 @@ div.dropdown-content > a {
     line-height     : 1.25em;
     min-width       : 85px;
     max-width       : calc(100% / 4 );
-    background      : var(--card-block-bg);
-    border          : 1px solid var(--card-block-border-color);
+    background      : var(--layer-4);
+    border          : 1px solid var(--border);
     border-radius   : var(--border-radius);
     margin-bottom   : var(--space-2);
     padding         : var(--space-2) 0;
@@ -351,26 +350,29 @@ article#help-module section {
 /* -------------------- -------------------- NAV-SIDE-MENU */
 
 .nav-side-menu {
-    background      : var( --nav-side-background );
-    box-shadow      : var( --nav-side-box-shadow );
+    display         : block;
+    background      : var( --nav-side-bg );
+    box-shadow      : var( --nav-side-shadow );
     overflow-x      : hidden;
     overflow-y      : auto;
     height          : 100%;
     list-style-type : none;
-    padding         : var( --nav-side-padding ) 0 0;
+    padding         : var( --nav-side-padding );
     margin          : var( --nav-side-margin );
     width           : var( --nav-side-width );
 }
-
 
 /* -------------------- --------------------  NAV-SIDE - Module Block */
 
 .nav-block {
     align-items     : center;
     border-left     : 3px solid transparent;
-    color           : var(  --link   );
+    border-radius   : var(--mav-block-radius);
+    color           : var( --nav-block-color );
     display         : flex;
-    padding         : 10px 10px;
+    /*padding         : 10px 10px;*/
+    padding: var(--space-2);
+    margin: 0 var(--space-2);
     position        : relative;
     text-transform	: capitalize;
 }
@@ -379,7 +381,7 @@ article#help-module section {
 .nav-block:after {
     border-width    : 1px 0 0 1px;
     border-style    : solid;
-    border-color    : var(  --link   );
+    border-color    : var(  --nav-block-color );
     content         : "";
     height          : var(  --nav-set-height   );
     position        : absolute;
@@ -390,17 +392,27 @@ article#help-module section {
     transform-origin: top;
     width           : var(  --nav-set-width    );
 }
-
+.nav-block:hover:after{
+    border-color    : var(  --nav-block-color-on   );
+}
+.nav-block-open {border-bottom-left-radius: initial;}
+.nav-block-open,
 .nav-block:hover {
-    background      : var( --nav-block-background );
-    border-left     : var( --nav-block-border-color ) var( --nav-block-border-style ) var( --nav-block-border-width );
-    color           : var( --link-hover );
+    background      : var( --nav-block-bg-on );
+    border-left     : var( --nav-block-border-on );
+    color           : var( --nav-block-color-on );
 }
-
-.nav-side-menu li:last-child .nav-block:hover {
-    border-bottom-right-radius: var( --border-radius );
+.nav-block-open:after {
+    border-color    : var(  --nav-block-color-on   );
+    transform       : rotate(-135deg) translate(0, -50%); /* Animation */
 }
-
+/*.nav-side-menu li:last-child .nav-block:hover {*/
+/*    border-bottom-right-radius: var( --border-radius );*/
+/*}*/
+.nav-side-menu .nav-block-close {
+    max-height      : 0;
+    visibility      : hidden;
+}
 .nav-module-icon {
     font-size       : 20px;
 }
@@ -409,61 +421,50 @@ article#help-module section {
     width           : 1em;
 }
 
-/* -------------------- --------------------  NAV-SIDE - Module Name */
+/* -------------------- NAV-SIDE - Module Name */
 
 .nav-module-name {
+    background      : var( --nav-block-bg );
+    border-left     : 3px solid transparent;
+    border-radius   : var( --mav-block-radius);
     margin          : 0 10px;
-    border-left     : 3px solid transparent;
 }
 
-.nav-block-open {
-    background      : var( --nav-block-background );
-    border-left     : 3px solid transparent;
-    color           : var( --link-hover );
-}
-
-.nav-block:hover {
-    border-color    : var( --nav-block-border-color );
-}
-
-.nav-block-open:after {
-    transform       : rotate(-135deg) translate(0, -50%); /* Animation */
-}
-
-.nav-side-menu .nav-block-close {
-    max-height      : 0;
-    visibility      : hidden;
-}
-
-/* -------------------- --------------------  NAV-Module-Admin */
+/* -------------------- NAV-Module-Admin */
 
 .nav-module-admin {
-    background      : var( --nav-block-background );
+    background:none;
+    border-left: 3px solid var(--theme-color);
+    display: block;
+    background      : var( --nav-block-bg );
     list-style-type : none;
-    margin          : 0;
+    padding: 0;
+    margin: 0 0.5em;
     overflow        : hidden;
-    padding         : 0;
+
     transition      : all 0.4s ease-in-out;
     visibility      : visible;
 }
 
 .nav-module-link {
     align-items     : center;
-    border-left     : var( --nav-block-border-color ) var( --nav-block-border-style ) var( --nav-block-border-width );
-    display         : flex;
+
+    /*border-left     : var( --nav-block-border );*/
+    display         : flex; /* icons options*/
     line-height     : 2.5rem;
 }
 
-.nav-module-link a,
-.nav-module-link a:hover {
-    color           : var( --nav-block-color-link );
-    padding         : 0 0 0 1.5rem;
+.nav-module-link a {
+
+    color           : var( --nav-block-color );
+    padding-left    : 2rem;
     width           : 100%;
 }
-
+.nav-module-link a:hover,
 .nav-module-link:hover {
-    background      : var( --nav-hover );
-    color           : var( --nav-link-color );
+    background      : var( --nav-block-bg-on );    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    color           : var( --nav-block-color-on );
 }
 
 /* -------------------- --------------------  NAV-Module-Options Icons */
@@ -473,6 +474,6 @@ article#help-module section {
     align-items     : center;
     display         : flex;
     justify-content : center;
-    padding         : var(  --space-4  ) 0;
+    padding         : 0; /*var(  --space-4  ) 0; */
     width           : 100%;
 }

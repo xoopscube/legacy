@@ -103,7 +103,7 @@ define( '_AD_LEGACY_LANG_CONFIG_INFO' , "Configurações dos módulos");
 define( '_AD_LEGACY_LANG_CONFIG_KEY' , "Chave");
 define( '_AD_LEGACY_LANG_CONFIG_VAL' , "Valor");
 define( '_AD_LEGACY_LANG_CONTENT' , "Conteúdo");
-define( '_AD_LEGACY_LANG_CONTROL' , "Controle");
+define( '_AD_LEGACY_LANG_CONTROL' , "A#ão");
 define( '_AD_LEGACY_LANG_CREATE_NEW' , "Novo");
 define( '_AD_LEGACY_LANG_CTYPE_HTML' , "HTML");
 define( '_AD_LEGACY_LANG_CTYPE_PHP' , "PHP");

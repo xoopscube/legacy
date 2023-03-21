@@ -1,16 +1,15 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="adminnavi" aria-label="breadcrumb">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=CommentList"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a>
     <{if $actionForm->get('com_id')}>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_COMMENT_EDIT}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_COMMENT_EDIT}></span>
     <{else}>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_COMMENT_NEW}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_COMMENT_NEW}></span>
     <{/if}>
-</div>
+</nav>
 
 
 <h2>

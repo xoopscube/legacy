@@ -309,34 +309,33 @@
 </code></pre>
 </div>
 
-<div class="display-5 mb-3">Include Custom Components</div>
+<div class="display-5 mb-3">Custom Components & Templates</div>
 
 <div class=" text-justify">
 
 <p>The render engine provides several ways to create and access custom components and named templates.
-    It is flexible enough to include one custom component  from within another template
-    You can also import one Single File Component and all the resources needed in order to output the final layout.</p>
+    It is flexible enough to include one custom component from within another template.
+    You can also import a Single File Component and all the resources needed in order to output the final layout.</p>
 
 <p>Custom Components are a type of template that are not part of a core module. However, these components can
     be created with a base amount of Smarty logic that you can insert into your template and global theme.</p>
 
 
-
-<pre><code class="lang-smarty">&lt;{* ----- Navigation ----- *}&gt;
+<pre class="mb-3"><code class="lang-smarty">&lt;{* ----- Navigation ----- *}&gt;
 &lt;{include file=&quot;$xoops_theme/component/nav-theme-mode.html&quot;}&gt;
 </code></pre>
 
-<p>For example, you can add, replace, or remove user interface components. Smart conditional statements make it easy to include custom components.
+<p>For example, you can add, replace, or remove user interface components. Smarty conditional statements make it easy to include custom components.
 A few basic examples should give you an idea of the syntax and format of Smarty conditions.</p>
 
 </div>
 
-<p class="fs-4 mt-3 pt-2">Example of component features</p>
+<p class="fs-4 mt-3 pt-2">1. Include the component features</p>
 
 <pre><code class="lang-smarty">&lt;{* ----- Features ----- *}&gt;
 &lt;{include file=&quot;$xoops_theme/component/features.html&quot;}&gt;
 </code></pre>
-<p class="fs-4 mt-3 pt-2">Output component features</p>
+<p class="fs-4 mt-3 pt-2">2. Render of component features</p>
 <{include file="$xoops_theme/component/features.html"}>
 
 <p class="fs-4">Example of Accordion with CSS custom properties (variables)</p>

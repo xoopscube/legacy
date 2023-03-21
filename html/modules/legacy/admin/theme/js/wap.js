@@ -7,7 +7,24 @@
 	URL : https://github.com/xoopscube/
 */
 
+// const setTheme = theme => document.documentElement.className = theme;
+const setTheme = (theme) => {
+    document.documentElement.className = theme;
+    localStorage.setItem('theme-select', theme);
+}
+document.getElementById('theme-select').addEventListener('change', function() {
+    setTheme(this.value);
+
+});
     $(function () {
+
+
+
+        const getTheme = () => {
+            const theme = localStorage.getItem('theme-select');
+            theme && setTheme(theme);
+        }
+        getTheme();
 
         sideNavControl();
         mobileNavControl();
@@ -30,8 +47,7 @@
             $(this).parent("div").fadeOut();
         });
 
-        // Select Multiple
-        // without keyboard
+        // Select Multiple options without keyboard
         // CSS ui-form.css
         $('select[multiple] option').mousedown(function(e) {
             e.preventDefault();
@@ -84,7 +100,7 @@
         $('#tab3').load(rest +'modules/legacy/admin/index.php?action=Help&dirname=legacy #help-overview');
 
         // Visual notice for all ui-card-block
-        // Change the background color and notify
+        // Change the background color and notify admin
         $(function(){
             $("body").on("change","input,select", function() {
                 $(this).parent().closest(".ui-card-block").addClass('ui-update-change');

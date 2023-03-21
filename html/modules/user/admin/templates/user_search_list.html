@@ -1,12 +1,11 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="adminnavi">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=UserSearch"><{$smarty.const._MI_USER_ADMENU_USER_SEARCH}></a>
-    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_USER_LANG_USER_SEARCH_LIST}></span>
-</div>
+    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_USER_LANG_USER_SEARCH_LIST}></span>
+</nav>
 
 
 <h2><{$smarty.const._AD_USER_LANG_USER_SEARCH_LIST}></h2>
@@ -53,10 +52,10 @@
         </form>
     </div>
     <div class="control-view">
-        <a class="button button-small" href="<{xoops_explaceholder control=UserPagenaviOtherUrl pagenavi=$pageNavi url='./index.php?action=UserSearch'}>">
+        <a class="button" href="<{xoops_explaceholder control=UserPagenaviOtherUrl pagenavi=$pageNavi url='./index.php?action=UserSearch'}>">
             <{$smarty.const._AD_USER_LANG_SEARCH_AGAIN}>
         </a>
-        <a class="button button-small" href="<{xoops_explaceholder control=UserPagenaviOtherUrl pagenavi=$pageNavi url='./index.php?action=MailjobEdit'}>">
+        <a class="button" href="<{xoops_explaceholder control=UserPagenaviOtherUrl pagenavi=$pageNavi url='./index.php?action=MailjobEdit'}>">
             <{$smarty.const._AD_USER_LANG_SEND_MAIL_BY_THIS_CONDITION}>
         </a>
         <button class="help-admin button" type='button' data-id='4' data-module='user' data-help-article='#help-ranks' aria-label="<{$smarty.const._HELP}>">

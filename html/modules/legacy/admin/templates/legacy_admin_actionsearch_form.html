@@ -1,10 +1,11 @@
-<div class="adminnavi" aria-label="breadcrumb">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><a href="./index.php?action=ActSearch"><{$smarty.const._MI_LEGACY_MENU_ACTIONSEARCH}></a></span>
-</div>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><a href="./index.php?action=ActSearch"><{$smarty.const._MI_LEGACY_MENU_ACTIONSEARCH}></a></span>
+</nav>
 
-<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <h2><{$smarty.const._MI_LEGACY_MENU_ACTIONSEARCH}></h2>
 
@@ -20,8 +21,8 @@
             <{xoops_token form=$actionForm}>
             <input type="text" size="40" name="keywords" <{if $actionForm}>value="<{$actionForm->get('keywords')|xoops_escape:edit}>"<{/if}>>
             <button class="button-search" type="submit">
-                <img class="svg" src="<{'icons/icon-search.svg'|theme}>" width="1em" height="1em" alt="search">
-                <{$smarty.const._SEARCH}></button>
+<!--                <img class="svg" src="<{'icons/icon-search.svg'|theme}>" width="1em" height="1em" alt="search">-->
+                <i class="i-action-search"></i> <{$smarty.const._SEARCH}></button>
         </form>
     </div>
 

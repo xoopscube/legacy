@@ -14,13 +14,13 @@
     <meta name="color-scheme" content="dark light">
     <title>Admin : <{$legacy_sitename|xoops_escape}> : <{$smarty.const._CPHOME}> : <{$legacy_pagetitle|xoops_escape}></title>
 
-    <{* ---------- ---------- PRELOAD *}>
+<{* ---------- ---------- PRELOAD *}>
     <link rel="preload" href="<{$xoops_url}>/modules/legacy/admin/theme/style.css" as="style">
     <link rel="preload" href="<{$xoops_url}>/common/css/x-layout.css" as="style">
     <link rel="preload" href="<{$xoops_url}>/common/js/x-utils.js" as="script">
     <link rel="preload" href="<{'js/wap.js'|theme}>" as="script">
 
-    <{* ---------- ---------- PRERENDER *}>
+<{* ---------- ---------- PRERENDER *}>
     <link rel="prerender" href="<{$xoops_url}>/admin.php">
     <link rel="prerender" href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList">
     <link rel="prerender" href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleList">
@@ -28,20 +28,20 @@
     <link rel="prerender" href="<{$xoops_url}>/modules/altsys/admin/index.php?mode=admin&lib=altsys&page=mytplsadmin">
     <link rel="prerender" href="<{$xoops_url}>/modules/altsys/admin/index.php?mode=admin&lib=altsys&page=mylangadmin">
 
-    <{* ---------- ---------- META TAGS *}>
+<{* ---------- ---------- META TAGS *}>
     <meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>">
     <meta http-equiv="content-language" content="<{$xoops_langcode}>">
     <meta name="description" content="Admin Dashboard">
     <meta name="author" content="Nuno Luciano aka Gigamaster">
     <meta name="generator" content="XOOPSCube">
 
-    <{* ---------- ---------- GOOGLEBOT *}>
+<{* ---------- ---------- GOOGLEBOT *}>
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="noindex">
     <!-- HTML5 valid Data URI for fake favicon requests by Browsers -->
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
-    <{* ---------- ---------- Admin Style *}>
+<{* ---------- ---------- Admin Style *}>
     <!-- XCL Layout -->
     <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/css/x-layout.css">
     <!-- ADMIN THEME STYLE -->
@@ -50,7 +50,7 @@
     <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/prismjs/prism.css">
     <{* prism.js included before closing /body }>
 
-    <{* ---------- ---------- Module Header *}>
+<{* ---------- ---------- Module Header *}>
     <!-- Modules scripts and styles -->
     <{if $xoops_module_header}>
         <{$xoops_module_header}>
@@ -73,7 +73,7 @@
 
     <{* ---------- ---------- Header *}>
 
-    <header class="header">
+    <header class="nav-top">
 
         <{include file="../templates/components/admin-nav-header.html"}>
 
@@ -95,7 +95,24 @@
 
         <ul class="nav-side-menu">
 
-        <{* ---------- ---------- Block Side Menu *}>
+            <{* ---------- Block Side Menu *}>
+            <li>
+                <div class="nav-block">
+                    <span class="nav-module-icon"><img class="svg" src="<{'icons/icon-home.svg'|theme}>" width="1em" height="1em" alt="<{$smarty.const._CPHOME}>"></span>
+                    <span class="nav-module-name t<{$mid}>"><{$smarty.const._CPHOME}></span>
+                </div>
+                <ul class="nav-module-admin nav-block-close">
+                    <li class="nav-module-link">
+                        <a href="<{$xoops_url}>/index.php" target="_blank" title="<{$smarty.const._YOURHOME}>"><{$smarty.const._YOURHOME}></a>
+                    </li>
+                </ul>
+                <{$xoops_lblocks.block_loginfo.content}>
+            </li>
+<!--            <li class="nav-module-link">-->
+<!--                -->
+<!--                    <img class="svg" src="<{'icons/icon-home.svg'|theme}>" width="1em" height="1em" alt="Home"> -->
+<!--            </li>-->
+        <{* ---------- Block Module Menu *}>
 
         <{$xoops_lblocks.sidemenu.content}>
 
@@ -114,11 +131,11 @@
     <{* ---------- ---------- Admin Dashboard Info *}>
     <{if $smarty.server.SCRIPT_FILENAME|basename == "admin.php"}>
 
-        <div class="adminnavi">
+        <nav class="ui-breadcrumbs" aria-label="breadcrumb">
             <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
             &raquo;&raquo; <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceList"><{$smarty.const._MI_LEGACY_NAME}></a>
-            &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._CPHOME}></span>
-        </div>
+            &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._CPHOME}></span>
+        </nav>
 
         <{* Admin Blocks from file: /legacy/admin/preload/AdminDashboard.php
             Disable (0) or Enable (1) block render *}>
@@ -128,14 +145,11 @@
         <div data-layout="row sm-column" data-self="sm-full">
 
             <div data-layout="column px-3" data-self="size-x1">
-
                 <{$xoops_lblocks.block_menu.content}>
-
                 <h3><{$xoops_lblocks.block_server.title}></h3>
                 <{$xoops_lblocks.block_server.content}>
-
+                <h3><{$xoops_lblocks.block_php.title}></h3>
                 <{$xoops_lblocks.block_php.content}>
-
             </div>
 
             <div data-layout="column px-3" data-self="size-xsmall sm-full">
@@ -156,21 +170,23 @@
         <footer class="credits">
             <p><span>Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}> &copy;</span> 2005-2023 <a href="https://github.com/xoopscube/" target="_blank" rel="external">The XOOPS Cube Project</a></p>
         </footer>
+
+        <{* ---------- ---------- Admin Panel and Help *}>
+        <{include file="../templates/components/admin-panel.html"}>
+        <{include file="../templates/components/admin-help.html"}>
+
+        <{* ---------- ---------- Scroll to top *}>
+        <div class="scroll-top">
+            <a href="#">
+                <svg width="42px" height="42px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path id="ntop-bg" d="M0 0h48v48h-48z"></path>
+                    <path id="ntop-arrow" d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z"></path>
+                </svg>
+            </a>
+        </div>
     </main>
 
-    <{* ---------- ---------- Admin Panel and Help *}>
-    <{include file="../templates/components/admin-panel.html"}>
-    <{include file="../templates/components/admin-help.html"}>
 
-    <{* ---------- ---------- Scroll to top *}>
-    <div class="scroll-top">
-        <a href="#">
-            <svg width="42px" height="42px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                <path id="ntop-bg" d="M0 0h48v48h-48z"></path>
-                <path id="ntop-arrow" d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z"></path>
-            </svg>
-        </a>
-    </div>
 
 </div><{* /Layout Grid *}>
 

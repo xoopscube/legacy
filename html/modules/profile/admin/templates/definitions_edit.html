@@ -1,15 +1,16 @@
-<div class="adminnavi">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_PROFILE_LANG_PROFILE}></a>
     &raquo;&raquo; <a href="./index.php?action=DefinitionsList"><{$smarty.const._MI_PROFILE_LANG_DEFINITIONS_LIST}></a>
     <{if $actionForm->get('field_id')}>
-    &raquo;&raquo; <{$smarty.const._AD_PROFILE_LANG_DEFINITIONS_EDIT}>
+    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_PROFILE_LANG_DEFINITIONS_EDIT}></span>
     <{else}>
-    &raquo;&raquo; <{$smarty.const._MI_PROFILE_LANG_ADD_A_NEW_DEFINITIONS}>
+    &raquo;&raquo; <span class="page-title"><{$smarty.const._MI_PROFILE_LANG_ADD_A_NEW_DEFINITIONS}></span>
     <{/if}>
-</div>
+</nav>
 
-<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <{if $actionForm->get('field_id')}>
 <h2><{$smarty.const._AD_PROFILE_LANG_DEFINITIONS_EDIT}></h2>

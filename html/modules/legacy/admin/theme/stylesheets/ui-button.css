@@ -9,8 +9,7 @@
 	- action-control
 	- badge, badge-count
 	- button
-	- button-small
-	- btnav
+	- nav-btn
 */
 /* -------------------- -------------------- ACTION CONTROL
 
@@ -111,33 +110,11 @@ a.action-view {
 /* -------------------- --------------------  ICONS */
 
     /* Icons color and size */
-    i[class^="i-"] {
-        /* color for mask */
-        background-color    : var(--button-color);
-        /* set max or overwrite with container btn */
-        height              : 18px;
-        width               : 18px;
-        /* container btn with position:relative */
-        margin              : auto;
-        position            : relative;
-        opacity             : 0.74;
-        top                 : 0;
-        left                : 0;
-        mask-repeat         : no-repeat;
-        -webkit-mask-repeat : no-repeat;
-        /*mask-size           : 20px 20px;*/
-        /*-webkit-mask-size   : 20px 20px;*/
-        mask-size           : 100%;
-        -webkit-mask-size   : 100%;
-        vertical-align      : -0.125em;
-    }
-
-
-    i[class|="i-"]:hover{
-        background-color    : var( --button-color-hover );
-        /*box-shadow          : 0 8px 6px -6px green;*/
-    }
-
+/* Icons color and size */
+/* margin-right if button text */
+:where(.button, .ui-button):not(.button-icon) i[class^="i-"] {
+    margin-right: var(--space-4) !important;
+}
 /* -------------------- --------------------  BADGE */
 
     /* Badge default */
@@ -186,7 +163,7 @@ a.action-view {
         filter: invert(100%);
     }
     .badge:hover {
-        background      : var(  --button-bg-hover  );
+        background      : var(  --button-bg-on  );
     }
 
     button > .badge {
@@ -203,16 +180,18 @@ a.action-view {
 /* Overwrite jQuery Components */
 
 /*.button,*/
+a.button,
+nav.ui-breadcrumbs a,
 .button {
     background-color    : var( --button-bg     );
     border              : var( --button-border );
     border-radius       : var( --button-radius );
     box-shadow          : var( --button-shadow );
-    color               : var( --button-color  );
+    color               : var( --button-color  )!important;
     cursor              : pointer;
     display             : inline-block;
     font-size           : 16px;
-    line-height         : 1.5;
+    line-height         : 1.5; /* 24px*/
     padding             : var( --button-padding );
     position            : relative;
     margin              : var( --button-margin  );
@@ -230,80 +209,22 @@ a.action-view {
 
 /* -------------------- ui-card-block-item */
 
-.button-small {
-    color               : var( --button-color );
-    font-size           : inherit;
-    padding             : var(--space-2) var(--space-5) var(--space-2) var(--space-3);
-}
-
-a.button > svg.svg-ui-icon,
-a.button.button-small > svg.svg-ui-icon,
-[class*="button-"]> svg.svg-ui-icon {
-    color               : var( --button-color );
-    font-size           : 1rem;
-    padding-right       : 0.25em;
-    vertical-align      : middle;            /* Align icon = text  */
-    width               : 1.4em !important; /* Size icon + text   */
-}
-
+/*a.button > svg.svg-ui-icon,*/
+/*[class*="button-"]> svg.svg-ui-icon {*/
+/*    color               : currentColor;*/
+/*    font-size           : 1rem;*/
+/*    padding-right       : 0.25em;*/
+/*    vertical-align      : middle;            !* Align icon = text  *!*/
+/*    width               : 1.4em !important; !* Size icon + text   *!*/
+/*}*/
+a.button:hover,
+a.button:focus,
+nav.ui-breadcrumbs a:hover,
+nav.ui-breadcrumbs a:focus,
 .button:hover,
-.button:focus,
-.button.button-small:hover,
-.button.button-small:focus {
-    background          : var( --button-bg-hover );
-    color               : var( --button-color-hover );
+.button:focus {
+    background          : var( --button-bg-on );
+    color               : var( --button-color-on )!important;
     box-shadow          : var( --button-shadow-on );
 }
 
-/* button icon with color black */
-button[class^="btn-ico"].btn-white > i {
-    background-color: var( --color-black );
-}
-
-/* -------------------- --------------------  BTNVAV */
-
-.btnav {
-    background      : none;
-    border          : var( --button-border );
-    border          : transparent;
-    border-radius : var(--border-radius);
-    color           : var( --link );
-    font-size       : 20px;
-    height          : 40px;
-    line-height     : 40px;
-    margin          : 0 var( --space-1 );
-    padding         : 0;
-    position        : relative;
-    text-align      : center;
-    touch-action    : manipulation;
-    transition      : color 0.3s;
-    min-width       : 40px;   /* icon */
-    max-width       : 240px; /* text */
-    z-index         : 1;
-    backface-visibility: hidden;
-}
-.btnav::before {
-    box-shadow      : inset 0 0 0 35px transparent;
-    border-radius   : inherit;
-    content         : '';
-    height          : 100%;
-    left            : 0;
-    position        : absolute;
-    top             : 0;
-    transform       : scale3d(0.9, 0.9, 1);
-    transition      : box-shadow 0.3s, transform 0.3s;
-    width           : 100%;
-    z-index         : -1;
-}
-.btnav > span {
-    position        : absolute;
-    pointer-events  : none;
-    opacity         : 0;
-}
-.btnav:hover {
-    color           : var( --link-hover  );
-}
-.btnav:hover::before {
-    box-shadow      : inset 0 0 0 1px var( --link-hover  );
-    transform       : scale3d(1, 1, 1);
-}

@@ -9,13 +9,12 @@
 	-------------------- -------------------- -------------------- ----- IMPORT   */
 @import "./stylesheets/_ui-root.css";       /*  UI Default Settings        */
 @import "./stylesheets/ui-body.css";        /*  Elements Grid-Flex        */
-@import "./stylesheets/ui-button.css";      /*  Buttons                 */
-@import "./stylesheets/ui-card.css";        /*  Card elements          */
-@import "./stylesheets/ui-form.css";        /*  Form Elements         */
-@import "./stylesheets/ui-menunav.css";	  	/*  Menu Navigation      */
-@import "./stylesheets/ui-module.css";	   	/*  Media Queries       */
-@import "./stylesheets/ui-panel.css";       /*  Panel Right        */
-@import "./stylesheets/ui-svg.css";         /*  SVG settings      */
-@import "./stylesheets/ui-table.css";       /*  Tables           */
-@import "./stylesheets/ui-media.css";       /*  Modules CSS     */
+@import "./stylesheets/ui-button.css";      /*  Buttons                  */
+@import "./stylesheets/ui-card.css";        /*  Card elements           */
+@import "./stylesheets/ui-form.css";        /*  Form Elements          */
+@import "./stylesheets/ui-menunav.css";	  	/*  Menu Navigation       */
+@import "./stylesheets/ui-module.css";	   	/*  Media Queries        */
+@import "./stylesheets/ui-panel.css";       /*  Panel Right         */
+@import "./stylesheets/ui-table.css";       /*  Tables             */
+@import "./stylesheets/ui-media.css";       /*  Modules CSS       */
 /*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

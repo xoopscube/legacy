@@ -6,17 +6,16 @@ var XOOPS_URL = XELFINDER_URL.split( '/' ).slice( 0, -3 ).join( '/' );
 // console.log("XOOPS_URL: " + XOOPS_URL);
 
 // Requires xScriptLoader util
-	var ScriptLoader = new xScriptLoader([
-		// XOOPS_URL+"/common/elfinder/js/elfinder.min.js",
-		XOOPS_URL+"/common/js/simplemodal/css/basic.css",
-		XOOPS_URL+"/common/js/simplemodal/js/jquery.simplemodal.js",
-		XOOPS_URL+"/common/js/simplemodal/js/basic.js",
-	]);
+var ScriptLoader = new xScriptLoader([
+	// XOOPS_URL+"/common/elfinder/js/elfinder.min.js",
+	XOOPS_URL+"/common/js/simplemodal/css/basic.css",
+	XOOPS_URL+"/common/js/simplemodal/js/jquery.simplemodal.js",
+	XOOPS_URL+"/common/js/simplemodal/js/basic.js",
+]);
 
 ScriptLoader.loadFiles();
 
 function openWithSelfMain(url, name, w, h, returnwindow) {
-
 
 	var $ = jQuery;
 	var margin = $.mobile? 0 : 60;

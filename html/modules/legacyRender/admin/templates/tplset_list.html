@@ -1,11 +1,12 @@
-<div class="adminnavi">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=TplsetList"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_MANAGE}></a>
-    &raquo;&raquo; <span class="adminnaviTitle"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_LIST}></span>
-</div>
+    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_LIST}></span>
+</nav>
 
-<div class="ui-dev-mode"><{$smarty.template}></div>
 
 <h2><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_LIST}></h2>
 
@@ -18,18 +19,28 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section data-layout="row center-justify" class="action-control">
+<section data-layout="row center-justify sm-column" class="action-control">
     <form method="get" action="index.php"><{$smarty.const._AD_LEGACYRENDER_LANG_SEARCH_TEMPLATE}> :
         <input type="hidden" name="action" value="TplfileList">
         <input type="text" name="tpl_file">
         <input class="button" type="submit" value="<{$smarty.const._SEARCH}>">
     </form>
-    <div class="control-view">
-        <a class="button" href="./index.php?action=TplfileList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE}></a>
-        <a class="button" href="./index.php?action=TplsetUpload"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></a>
-        <a class="button" href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ThemeList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_THEME_MANAGE}></a>
-        <button class="help-admin button" type='button' data-module='legacyRender' data-help-article='#help-template' aria-label="<{$smarty.const._HELP}>">
-            <b>?</b> </button>
+    <div class="control-view" data-self="right sm-full">
+        <{* ////— DROPDOWN SORT —\\\\ *}>
+        <div class="dropdown" id="action-contents">
+            <a href="#" class="dropdown-toggle action-menu button" aria-label="action">
+                <{$smarty.const._MENU}><svg class="icon-dropmenu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
+            </a>
+            <div class="dropdown-content" style="min-width: 240px; padding:.5em;">
+                <div data-layout="row justify-center">
+                    <h6 data-self="center size-x1"><{$smarty.const._MI_LEGACYRENDER_NAME}> <{$smarty.const._ACTION}></h6>
+                    <button class="help-admin button" type="button" data-module="legacyRender" data-help-article="#help-template" aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
+                </div>
+                <a class="button" href="./index.php?action=TplfileList"><i class="i-edit"></i><{$smarty.const._MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE}></a>
+                <a class="button" href="./index.php?action=TplsetUpload"><i class="i-upload"></i><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></a>
+                <a class="button" href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ThemeList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_THEME_MANAGE}></a>
+            </div>
+        </div>
     </div>
 </section>
 <{* ----- / CONTROL-ACTION *}>

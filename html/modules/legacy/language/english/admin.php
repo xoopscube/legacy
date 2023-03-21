@@ -136,7 +136,7 @@ define( '_AD_LEGACY_LANG_CONFIG_INFO' , 'Module Preferences');
 define( '_AD_LEGACY_LANG_CONFIG_KEY' , 'Key');
 define( '_AD_LEGACY_LANG_CONFIG_VAL' , 'Value');
 define( '_AD_LEGACY_LANG_CONTENT' , 'Content');
-define( '_AD_LEGACY_LANG_CONTROL' , 'Control');
+define( '_AD_LEGACY_LANG_CONTROL' , 'Action');
 define( '_AD_LEGACY_LANG_CREATE_NEW' , 'Add a new');
 define( '_AD_LEGACY_LANG_CTYPE_HTML' , 'HTML');
 define( '_AD_LEGACY_LANG_CTYPE_PHP' , 'PHP');

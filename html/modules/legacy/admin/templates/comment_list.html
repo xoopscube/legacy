@@ -1,13 +1,12 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="adminnavi">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page">
+    &raquo;&raquo; <span class="page-title" aria-current="page">
     <a href="./index.php?action=CommentList"><{$smarty.const._MI_LEGACY_MENU_COMMENT_MANAGE}></a>
     </span>
-</div>
+</nav>
 
 
 <{include file="./components/comment-overview.html"}>

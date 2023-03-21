@@ -35,7 +35,7 @@ define( '_AD_USER_LANG_AVATAR_CREATED' , "Criado");
 define( '_AD_USER_LANG_AVATAR_DELETE' , "Remover avatar");
 define( '_AD_USER_LANG_AVATAR_DISPLAY' , "Mostrar");
 define( '_AD_USER_LANG_AVATAR_FILE' , "Arquivo");
-define( '_AD_USER_LANG_AVATAR_MIMETYPE' , "Formato Mimetype");
+define( '_AD_USER_LANG_AVATAR_MIMETYPE' , "Mimetype");
 define( '_AD_USER_LANG_AVATAR_NAME' , "Nome");
 define( '_AD_USER_LANG_AVATAR_NEW' , "Acrescentar um avatar");
 define( '_AD_USER_LANG_AVATAR_TOTAL' , "Total de avatares");
@@ -153,7 +153,7 @@ define( '_AD_USER_MESSAGE_RECOUNT_SUCCESS' , "Valores recalculados corretamente.
 define( '_AD_USER_ADMENU_USER_DATA_DOWNLOAD' , 'User Data Download');
 
 // define( '_AD_USER_TIPS_AVATAR' , "Avatares são imagens que representam as personalidades dos associados. Podem ser desde figuras <q>nonsense</q> a ícones de nossas culturas; ou mesmo suas próprias fotos. A palavra <q>Avatar</q> tem o origem indiana e significa, segundo a crença hinduísta, a descida de um ser divino à terra, em forma materializada, podendo assumir a forma humana ou a de um animal. Também significa <q>processo metamórfico</q>; <q>transformação</q>, como a de um artista ao entrar no palco ou a de um visitante ao acessar um bate-papo ou fórum da internet. Resumindo: escolha a imagem que tenha mais a ver com a sua personalidade. Se desejar, escolha um dos avatares disponíveis em nossa galeria ou, se desejar, utilize alguma imagem do seu computador.");
-define( '_AD_USER_TIPS_AVATAR' , 'Os membros do site podem, opcionalmente, criar suas próprias personas online chamadas avatares.<br>Esta opção pode ser desativada no módulo <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=4#avatar-active">Preferências Usuários ⭧</a>');
+define( '_AD_USER_TIPS_AVATAR' , 'Os membros do site podem, opcionalmente, criar suas próprias personas online chamadas avatares.<br>Esta opção pode ser desativada no módulo <a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=4#avatar-active">Preferências Usuários ⭧</a>');
 define( '_AD_USER_TIPS_AVATAR_UPLOAD' , "You can easily register many avatars by uploading Archive file including them! <br />This batch-upload doesn't check Length and File-Size of each avatar!<br />Please pre-adjust them before you archive them!<br />(Only tar.gz or zip archive)");
 define( '_AD_USER_TIPS_DATA_DOWNLOAD' , "O arquivo CSV com os dados dos associados só está disponível em ordem de cadastro (user_id).");
 define( '_AD_USER_TIPS_DELETE_AVATAR' , "Qualquer associado que por ventura estiver usando este avatar passará a ter o arquivo de imagem <q>blank.gif</q> como novo avatar.");

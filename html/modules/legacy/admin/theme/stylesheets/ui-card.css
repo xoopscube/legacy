@@ -10,14 +10,12 @@
 
 .ui-card-2-col,
 .ui-card-full {
-    background    	: var( --card-full-bg		);
-    border-color  	: var( --card-full-border-color	);
-    border-radius 	: var( --card-full-border-radius);
-    border-style  	: var( --card-full-border-radius);
-    border-width  	: var( --card-full-border-width	);
-    box-shadow    	: var( --card-full-box-shadow);
+    background    	: var( --card-full-bg	  );
+    border  	    : var( --card-full-border );
+    border-radius 	: var( --card-full-radius );
+    box-shadow    	: var( --card-full-shadow );
     padding       	: var( --card-full-padding);
-    margin        	: var( --card-full-margin);
+    margin        	: var( --card-full-margin );
     /* Adjust the offset of HTML anchor for the fixed header
        Scroll to page anchors [id]:target eg.:
        padding-top = height of theme sticky header */
@@ -98,17 +96,17 @@
     grid-template-columns : repeat(auto-fit, minmax(214px, 1fr));
     /* grid-auto-rows        : 74px; */
     grid-gap        : 16px;
-    margin          : 0;
+
+    margin: 4em auto 0;
+
 }
 
 .ui-card-small {
     align-items     : center;
     background      : var(--card-small-bg);
-    border-color    : var(--card-small-border-color);
-    border-radius   : var(--card-small-border-radius);
-    border-style    : var(--card-small-border-style);
-    border-width    : var(--card-small-border-width);
-    box-shadow      : var(--card-small-box-shadow);
+    border-color    : var(--card-small-border);
+    border-radius   : var(--card-small-radius);
+    box-shadow      : var(--card-small-shadow);
     display         : flex;
     justify-content : flex-start;
     padding         : var(--card-small-padding);
@@ -142,7 +140,7 @@
 }
 
 .ui-card-small:hover {
-    box-shadow      : var(--card-small-box-hover);
+    box-shadow      : var(--card-small-shadow-on);
     transform       : translateY(-3px);
 }
 
@@ -151,9 +149,9 @@
 
 .ui-data-render  {
     display				 : grid;
-    grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
     grid-auto-rows       : auto;
-    grid-gap             : 15px;
+    /*grid-gap             : 15px;*/
     margin 				 : 1.5em 0;
     place-items			 : center;
     will-change          : transform;
@@ -203,15 +201,13 @@
 .ui-card-block {
     background      : var( --card-block-bg );
     background-image: var( --card-block-image );
-    border-color    : var( --card-block-border-color );
-    border-radius   : var( --card-block-border-radius);
-    border-style    : var( --card-block-border-style );
-    border-width    : var( --card-block-border-width );
-    box-shadow      : var( --card-block-box-shadow   );
+    border          : var( --card-block-border );
+    border-radius   : var( --card-block-radius );
+    box-shadow      : var( --card-block-shadow);
     display         : flex;
     flex-direction  : column;
     margin-bottom   : 1.5rem;
-    min-width       : 295px;
+    min-width       : 290px;
     max-width       : 310px;
     /* Avoid Grid Break Margin Issues */
     -webkit-column-break-inside: avoid;
@@ -265,8 +261,10 @@ img.ui-avatar-card {
     border-style    : var(  --border-style   );
     border-width    : 5px;
     height          : 128px;
+    width           : 128px;
     margin          : 1em auto;
     text-align      : center;
+    object-fit: cover;
 }
 
 .ui-card-block-item {
@@ -276,6 +274,7 @@ img.ui-avatar-card {
     justify-content	: space-between;
     padding         : var(  --card-block-item-padding );
     width           : var(  --card-block-item-width   );
+    min-width: 0;
 }
 
 /* input[size=] width depend using fonts,
@@ -348,4 +347,110 @@ img.ui-avatar-card {
 
 .ui-block-date svg {
     margin-right    : var(  --space-6  );
+}
+/* -------------------- -------------------- SVG Default Settings */
+
+svg {
+    -webkit-user-select : none;
+    -moz-user-select    : none;
+    -ms-user-select     : none;
+    user-select         : none;
+    -webkit-tap-highlight-color : rgba(255, 255, 255, 0);
+}
+
+svg[class|="icon"]{
+    /*color               : svg-ui-icon;*/
+    font-size           : var(--icon-size);
+}
+
+/* SVG Default Position and Path Color
+* .block-icon
+* .module-icon
+*/
+svg path.block-icon,
+svg path.module-icon {
+    color              	: currentColor;
+    transform          	: translate(12px, 12px); /* eq. padding */
+    transition         	: all 1s;
+}
+/*
+* .block-name
+* .module-name
+*/
+svg text.block-name,
+svg text.module-name {
+    color              	: var(--link);
+    text-anchor        	: middle; /* align center */
+    dominant-baseline  	: middle; /* vertical alignment fix */
+    font-size          	: 20px;
+    transition         	: all 1s;
+}
+
+/* -------------------- -------------------- Block Type Color */
+
+svg.ui-block-module {
+    background      : var(  --color-blue );
+}
+
+svg.ui-block-html  {
+    background      : var(  --color-blue );
+}
+
+svg.ui-block-html path.block-icon {
+    color           : var(  --secondary );
+    transform       : translate(10px, 20px);
+}
+
+svg.ui-block-php  {
+    background      : var(  --color-indigo );
+}
+
+/*svg.ui-block-smilies {*/
+/*    background      : var(  --color-orange );*/
+/*}*/
+
+/*svg.ui-block-no-smilies {*/
+/*    background      : var(  --color-blue );*/
+/*}*/
+/* -------------------- -------------------- SVG Custom Settings */
+
+svg[class="ui-block-module"] {
+    background      : var(  --color-block-module);
+    color           : var(  --color-white );
+}
+/* -------------------- -------------------- Icons Colors */
+
+.ui-icon-amber {
+    background      : var(  --color-amber );
+    color           : var(  --color-white );
+}
+
+.ui-icon-blue {
+    background      : var(  --color-blue );
+    color           : var(  --color-white );
+}
+
+.ui-icon-green {
+    background      : var(  --color-green );
+    color           : var(  --color-white );
+}
+
+.ui-icon-indigo {
+    background      : var(  --color-indigo );
+    color           : var(  --color-white );
+}
+
+.ui-icon-orange {
+    background      : var(  --color-orange );
+    color           : var(  --color-white );
+}
+
+.ui-icon-purple {
+    background      : var(  --color-purple );
+    color           : var(  --color-white );
+}
+
+.ui-icon-red {
+    background      : var(  --color-red );
+    color           : var(  --color-white );
 }

@@ -156,7 +156,7 @@ define( '_AD_USER_MESSAGE_CONFIRM_UPDATE_RANK' , 'ランクを更新してもよ
 define( '_AD_USER_MESSAGE_CONFIRM_UPDATE_USER' , 'ユーザーを更新してもよろしいですか？');
 
 define( '_AD_USER_ADMENU_USER_DATA_DOWNLOAD' , 'ユーザデータのダウンロード');
-define( '_AD_USER_TIPS_AVATAR' , 'サイトのメンバーに対応してオンライン中のファッションとして独自のアバターを表示します。<br>このオプションは、<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=4#avatar-active">モジュールのユーザ設定からオフに設定することができます ⭧</a>');
+define( '_AD_USER_TIPS_AVATAR' , 'サイトのメンバーに対応してオンライン中のファッションとして独自のアバターを表示します。<br>このオプションは、<a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=4#avatar-active">モジュールのユーザ設定からオフに設定することができます ⭧</a>');
 define( '_AD_USER_TIPS_AVATAR_UPLOAD' , 'アーカイブファイルに包みアップロードして、多くのアバターを簡単に登録することができます！<br>このアップロードは、アバター同士のサイズはチェックされません！<br>それらをアーカイブする前に事前に調整してください！<br>（tar.gzまたはzipアーカイブのみ）');
 define( '_AD_USER_TIPS_DATA_DOWNLOAD' , 'CSV形式のユーザーデータを取得できるのはuser_idからのみです。');
 define( '_AD_USER_TIPS_DELETE_AVATAR' , 'ユーザーの誰かがこのアバターを使用していると、blank.gifはアバターの画像ファイルとして必要があります。');

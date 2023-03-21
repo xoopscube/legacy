@@ -1,12 +1,11 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="adminnavi" aria-label="breadcrumb">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
-    &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
-    &raquo;&raquo; <a href="./index.php?action=BlockList"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></span>
-</div>
+    &raquo;&raquo; <a  href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+    &raquo;&raquo; <a  href="./index.php?action=BlockList"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_BLOCKINSTALL}></span>
+</nav>
 
 
 <{include file="./components/block-overview.html"}>
@@ -27,7 +26,7 @@
     <{include file="./components/block-search-install.html"}>
 
     <div class="control-view">
-        <a class="button" href="index.php?action=CustomBlockEdit"><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></a>
+        <a class="button" href="index.php?action=CustomBlockEdit"><i class="i-edit"></i><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></a>
         <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-blocks' aria-label="<{$smarty.const._HELP}>">
             <b>?</b> </button>
     </div>

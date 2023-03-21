@@ -1,4 +1,6 @@
-<div class="adminnavi" aria-label="breadcrumb">
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     <{if $module != null}>
     &raquo;&raquo; <a href="<{$smarty.const.XOOPS_URL}>/modules/<{$module->getVar('dirname')}>/<{$module->getInfo('adminindex')|xoops_escape}>"><{$module->getVar('name')}></a>
@@ -6,14 +8,14 @@
     &raquo;&raquo; <a href="<{$smarty.const.XOOPS_URL}>/modules/<{$module->getVar('dirname')}>/admin/index.php?action=PreferenceList"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></a>
     &raquo;&raquo; <{$category->getName()|xoops_escape}>
     <{else}>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></span>
     <{/if}>
     <{else}>
     &raquo;&raquo; <a href="<{$smarty.const.XOOPS_URL}>/modules/legacy/admin/index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=PreferenceList"><{$smarty.const._MI_LEGACY_MENU_PREFERENCE}></a>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$category->getName()|xoops_escape}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$category->getName()|xoops_escape}></span>
     <{/if}>
-</div>
+</nav>
 
 
 <h2>
@@ -24,7 +26,7 @@
     <{/if}>
 </h2>
 
-<div class="ui-dev-mode"><{$smarty.template}></div>
+
 
 
 <{if $actionForm->hasError()}>

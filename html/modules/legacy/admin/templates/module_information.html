@@ -1,29 +1,29 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div class="adminnavi">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=ModuleList"><{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
     <{if !$installed}>
-    &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></span>
+    &raquo;&raquo; <span class="page-title"><a href="./index.php?action=InstallList"><{$smarty.const._AD_LEGACY_LANG_MODINSTALL}></a></span>
     <{/if}>
-    &raquo;&raquo; <span class="adminnaviTitle" aria-current="page"><{$module->modinfo.name|xoops_escape}> <{$smarty.const._AD_LEGACY_LANG_INFORMATION}></span>
-</div>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$module->modinfo.name|xoops_escape}> <{$smarty.const._AD_LEGACY_LANG_INFORMATION}></span>
+</nav>
 
 <h2>
     <img class="svg" src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.icon}>" width="1em" height="1em" alt="<{$module->getShow('name')}>" aria-label="<{$module->getShow('name')}>">
     <{$module->modinfo.name|xoops_escape}> &raquo; <{$smarty.const._AD_LEGACY_LANG_INFORMATION}></h2>
 
 
-<!-- ui-card-full -->
-<div class="ui-card-full">
+<!-- ui-card-full  class="ui-card-full" -->
+<div>
 
 <h4><{$smarty.const._AD_LEGACY_LANG_MOD_BASIC_INFO}></h4>
-<h3></h3>
 
 <table class="outer">
-    <tr>
-        <th colspan="3"><{$smarty.const._AD_LEGACY_LANG_MOD_BASIC_INFO}></th>
-    </tr>
+    <thead>
+    <tr><th colspan="3"><{$smarty.const._AD_LEGACY_LANG_MOD_BASIC_INFO}></th></tr>
+    </thead>
+    <tbody>
     <tr>
         <td class="head ui-card-block-image" rowspan="6">
             <{if $installed && $module->get('hasmain')}>
@@ -74,18 +74,18 @@
         <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
         <td><{$module->modinfo.description}></td>
     </tr>
+    </tbody>
 </table>
-
-<div class="return_top"><a href="#container" class="button"><{$smarty.const._RETURN_TOP}></a></div>
 
 <hr>
 
 <h4><{$smarty.const._AD_LEGACY_LANG_MOD_LICENSE_INFO}></h4>
 
 <table class="outer">
-    <tr>
-        <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_MOD_LICENSE_INFO}></th>
-    </tr>
+    <thead>
+    <tr><th colspan="2"><{$smarty.const._AD_LEGACY_LANG_MOD_LICENSE_INFO}></th></tr>
+    </thead>
+    <tbody>
     <tr>
         <td class="head"><{$smarty.const._AD_LEGACY_LANG_MODULE_LICENSE}></td>
         <td><{$module->modinfo.license}></td>
@@ -98,9 +98,8 @@
         <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_CREDITS}></td>
         <td><{$module->modinfo.credits}></td>
     </tr>
+    </tbody>
 </table>
-
-<div class="return_top"><a href="#container" class="button"><{$smarty.const._RETURN_TOP}></a></div>
 
 <hr>
 
@@ -109,9 +108,10 @@
 <{if $module->modinfo.tables}>
 
 <table class="outer">
-    <tr>
-        <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_SQL_INFO}></th>
-    </tr>
+    <thead>
+    <tr><th colspan="2"><{$smarty.const._AD_LEGACY_LANG_SQL_INFO}></th></tr>
+    </thead>
+    <tbody>
     <tr>
         <td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_SQL_HAS_MAIN}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
@@ -124,16 +124,20 @@
         <td class="head"><{$smarty.const._AD_LEGACY_LANG_SQL_FILE_NAME}></td>
         <td><{$module->modinfo.sqlfile.mysql}></td>
     </tr>
+    </tbody>
 </table>
 
 <br>
 
 <table class="outer">
+    <thead>
     <tr>
         <th><{$smarty.const._AD_LEGACY_LANG_TABLE_NUM}></th>
         <th><{$smarty.const._AD_LEGACY_LANG_TABLE_NAME}></th>
         <th><{$smarty.const._AD_LEGACY_LANG_TABLE_PROPERTIES}></th>
     </tr>
+    </thead>
+    <tbody>
     <{foreach from=$module->modinfo.tables item=table key=table_key}>
     <tr>
         <td class="head legacy_list_id"><{$table_key}></td>
@@ -141,13 +145,12 @@
         <td></td>
     </tr>
     <{/foreach}>
+    </tbody>
 </table>
 
     <{else}>
-    <div class="legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_SQL}></div>
+    <div class="confirm legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_SQL}></div>
     <{/if}>
-
-<div class="return_top"><a href="#container" class="button"><{$smarty.const._RETURN_TOP}></a></div>
 
 <hr>
 
@@ -156,22 +159,27 @@
 <{if $module->get('hasmain')}>
 
 <table class="outer">
-    <tr>
-        <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_MAINMENU_INFO}></th>
-    </tr>
+    <thead>
+    <tr><th colspan="2"><{$smarty.const._AD_LEGACY_LANG_MAINMENU_INFO}></th></tr>
+    </thead>
+    <tbody>
     <tr>
         <td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_MAINMENU_HAS_MAIN}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
     </tr>
+    </tbody>
 </table>
 
 <br>
 
 <table class="outer">
+    <thead>
     <tr>
         <th><{$smarty.const._AD_LEGACY_LANG_SUBMENU_NAME}></th>
         <th><{$smarty.const._AD_LEGACY_LANG_SUBMENU_URL}></th>
     </tr>
+    </thead>
+    <tbody>
     <{foreach from=$module->modinfo.sub item=sub}>
     <tr>
         <td><{$sub.name}></td>
@@ -182,13 +190,12 @@
         <td colspan="2"><{$smarty.const._AD_LEGACY_LANG_NO_SUBMENU}></td>
     </tr>
     <{/foreach}>
+    </tbody>
 </table>
 
 <{else}>
-<div class="legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_MAINMENU}></div>
+<div class="confirm legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_MAINMENU}></div>
 <{/if}>
-
-<div class="return_top"><a href="#container" class="button"><{$smarty.const._RETURN_TOP}></a></div>
 
 <hr>
 
@@ -196,9 +203,10 @@
 
 <{if $module->get('hasadmin')}>
 <table class="outer">
-    <tr>
-        <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_ADMIN_MENU}></th>
-    </tr>
+    <thead>
+    <tr><th colspan="2"><{$smarty.const._AD_LEGACY_LANG_ADMIN_MENU}></th></tr>
+    </thead>
+    <tbody>
     <tr>
         <td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_HAS_MAIN}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
@@ -215,16 +223,20 @@
         <td class="head"><{$smarty.const._HELP}></td>
         <td><{$module->modinfo.help|xoops_escape}></td>
     </tr>
+    </tbody>
 </table>
 
 <{if $module->adminmenu}>
 <br>
 <table class="outer">
+    <thead>
     <tr>
         <th><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_KEY}></th>
         <th><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_NAME}></th>
         <th><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_URL}></th>
     </tr>
+    </thead>
+    <tbody>
     <{foreach from=$module->adminmenu item=admin key=admin_key}>
     <tr>
         <td class="head legacy_list_id"><{$admin_key|xoops_escape}></td>
@@ -232,14 +244,13 @@
         <td><{$admin.link|xoops_escape}></td>
     </tr>
     <{/foreach}>
+    </tbody>
 </table>
 <{/if}>
 
 <{else}>
-<div class="legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_ADMINMENU}></div>
+<div class="confirm legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_ADMINMENU}></div>
 <{/if}>
-
-<div class="return_top"><a href="#container" class="button"><{$smarty.const._RETURN_TOP}></a></div>
 
 <hr>
 
@@ -247,9 +258,10 @@
 
 <{if $module->modinfo.templates}>
 <table class="outer">
-    <tr>
-        <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></th>
-    </tr>
+    <thead>
+    <tr><th colspan="2"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_INFO}></th></tr>
+    </thead>
+    <tbody>
     <tr>
         <td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_HAS_MAIN}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
@@ -258,16 +270,20 @@
         <td class="head"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_ENGINE}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_SMARTY}></td>
     </tr>
+    </tbody>
 </table>
 
 <br>
 
 <table class="outer">
+    <thead>
     <tr>
         <th><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_KEY}></th>
         <th><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_FILE}></th>
         <th><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_DESC}></th>
     </tr>
+    </thead>
+    <tbody>
     <{foreach from=$module->modinfo.templates item=template key=template_key}>
     <tr>
         <td class="head legacy_list_id"><{$template_key}></td>
@@ -281,13 +297,12 @@
         <td><{$template.description|xoops_escape}></td>
     </tr>
     <{/foreach}>
+    </tbody>
 </table>
 
 <{else}>
-    <div class="legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_TEMPLATE}></div>
+    <div class="confirm legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_TEMPLATE}></div>
 <{/if}>
-
-<div class="return_top"><a href="#container" class="button"><{$smarty.const._RETURN_TOP}></a></div>
 
 <hr>
 
@@ -295,10 +310,13 @@
 
 <{foreach from=$module->modinfo.blocks item=block key=block_num}>
 <table class="outer">
+    <thead>
     <tr>
         <th><{$smarty.const._AD_LEGACY_LANG_BLOCK_KEY}> (<{$block_num|xoops_escape}>)</th>
         <th><{$smarty.const._AD_LEGACY_LANG_BLOCK_VAL}></th>
     </tr>
+    </thead>
+    <tbody>
     <{foreach from=$block key=block_key item=block_val name=block}>
     <tr class="<{cycle values='odd,even' name=block}>">
         <td class="head legacy_list_name" style="width:30%;"><{$block_key|xoops_escape}></td>
@@ -311,15 +329,14 @@
         <{/if}>
     </tr>
     <{/foreach}>
+    </tbody>
 </table>
 
 <br>
 
 <{foreachelse}>
-    <div class="legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_BLOCK}></div>
+    <div class="confirm legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_BLOCK}></div>
 <{/foreach}>
-
-<div class="return_top"><a href="#container" class="button"><{$smarty.const._RETURN_TOP}></a></div>
 
 <hr>
 
@@ -327,10 +344,13 @@
 
 <{foreach from=$module->modinfo.config item=config key=conf_num}>
 <table class="outer">
+    <thead>
     <tr>
         <th><{$smarty.const._AD_LEGACY_LANG_CONFIG_KEY}> (<{$conf_num}>)</th>
         <th><{$smarty.const._AD_LEGACY_LANG_CONFIG_VAL}></th>
     </tr>
+    </thead>
+    <tbody>
     <{foreach from=$config key=config_key item=config_val name=config}>
     <tr class="<{cycle values='odd,even' name=config}>">
         <td class="head legacy_list_name" style="width:30%;"><{$config_key|xoops_escape}></td>
@@ -347,18 +367,18 @@
         </td>
     </tr>
     <{/foreach}>
+    </tbody>
 </table>
 
 <br>
 
     <{foreachelse}>
-    <div class="legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_CONFIG}></div>
+    <div class="confirm legacy_modinfo_notmounted"><{$smarty.const._AD_LEGACY_LANG_NO_CONFIG}></div>
     <{/foreach}>
 
 </div>
 
 <{* -----
-<div class="return_top"><a href="#container" class="button"><{$smarty.const._RETURN_TOP}></a></div>
 <hr>
 <h4><{$smarty.const._AD_LEGACY_LANG_FEATURE_SVC_INFO}></h4>
 <table class="outer">

@@ -1,11 +1,10 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="adminnavi">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
-    &raquo;&raquo; <span class="adminnaviTitle addRank"><a href="./index.php?action=RanksList"><{$smarty.const._AD_USER_LANG_RANK_LIST}></a></span>
-</div>
+    &raquo;&raquo; <span class="page-title"><a href="./index.php?action=RanksList"><{$smarty.const._AD_USER_LANG_RANK_LIST}></a></span>
+</nav>
 
 
 <{* ----- Ranks - Overview ----- *}>
@@ -93,9 +92,8 @@
         <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
     </form>
     <div class="control-view">
-        <a class="button" href="index.php?action=RanksEdit"><{$smarty.const._AD_USER_LANG_RANK_NEW}></a>
-        <button class="help-admin button" type='button' data-id='4' data-module='user' data-help-article='#help-ranks' aria-label="<{$smarty.const._HELP}>">
-            <b>?</b> </button>
+        <a class="button" href="index.php?action=RanksEdit"><i class="i-add"></i><{$smarty.const._AD_USER_LANG_RANK_NEW}></a>
+        <button class="help-admin button" type='button' data-id='4' data-module='user' data-help-article='#help-ranks' aria-label="<{$smarty.const._HELP}>"><i class="i-help"></i></button>
     </div>
 </section>
 <{* ----- / CONTROL-ACTION *}>

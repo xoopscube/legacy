@@ -5,23 +5,23 @@
     background: transparent !important;
 }
 :where(.accordion ) h3 {
-    background: var(--color-6) !important;
-    border:none !important;
+    background: none !important;
+    border:1px solid transparent none !important;
     box-shadow:none!important;
 }
 :is(.accordion) h3.ui-state-active{
-    border-bottom: 1px solid var(--color-blue)!important;
-    color: var(--color-blue) !important;
+    border-bottom: 1px solid var(--theme-color, var(--color-blue) )!important;
+    color: var(--theme-link, var(--color-blue) ) !important;
 }
 
 #tabs ul{margin: 0;padding: 0;list-style: none;}
 #tabs ul li {
     line-height: 24px;
-    background: var(--color-6);
-    border: 1px solid var(--color-5);
-    border-left: 1px solid var(--color-5) !important;
+    background: var(--theme-color);
+    border: 1px solid transparent;
+    border-left:  var(--theme-color, var(--layer-4) )!important;
     border-right: medium none;
-    color: var(--color-2);
+    color: var(--theme-color, var(--secondary) );
     display: inline-block;
     padding: 10px 20px;
     cursor: pointer;
@@ -30,18 +30,21 @@
 #tabs ul li.ui-tabs-active{
     background: none;
     color: #007fff;
-    border-bottom: 1px solid var(--color-6);
+    border: 1px solid transparent;
+    border-bottom: 1px solid var(--theme-color);
     border-top: 3px solid #007fff;
     padding-top: 8px;
     position: sticky;
 }
+.ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor,
+.ui-tabs-nav .ui-tabs-anchor:hover { --tabs-anchor-border-on:1px solid transparent; border:1px solid transparent!important;}
 #tabs .ui-tabs-panel,
 #tabs .ui-accordion-content{
-    background: var(--color-6);
-    border: 1px solid var(--color-5);
+    background: var(--layer-4);
+    border: 1px solid var(--theme-color);
     padding: 15px;
     margin-top: -1px;
-    box-shadow: inset 0px 8px 10px #1a1d23, 0 8px 12px var(--color-5);
+    box-shadow: inset 0px 8px 10px #1a1d23, 0 8px 12px var(--theme-color);
 }
 .xcl-beta-anim,
 .accordion {display:inline-block; width:50%;}

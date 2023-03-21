@@ -1,11 +1,10 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="adminnavi">
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
-    &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=AvatarList"><{$smarty.const._MI_USER_ADMENU_AVATAR_MANAGE}></a></span>
-</div>
+    &raquo;&raquo; <span class="page-title"><a href="./index.php?action=AvatarList"><{$smarty.const._MI_USER_ADMENU_AVATAR_MANAGE}></a></span>
+</nav>
 
 
 <{* ////—  Avatars - Overview  —\\\\ *}>
@@ -48,7 +47,9 @@
 
 
 <div class="tips">
-    <{$smarty.const._AD_USER_TIPS_AVATAR}>
+    <{$smarty.const._AD_USER_TIPS_AVATAR}><br>
+    <{$smarty.const._MD_USER_LANG_AVATAR_WIDTH_HEIGHT}> <span class="badge"><{$avatar_width}> x <{$avatar_height}></span>
+    <{$smarty.const._MD_USER_LANG_AVATAR_MAXFILESIZE}> <span class="badge"><{$avatar_maxsize}></span>
 </div>
 
 
@@ -109,10 +110,9 @@
         <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
     </div>
     <div class="control-view">
-        <a class="button" href="index.php?action=AvatarEdit"><{$smarty.const._AD_USER_LANG_AVATAR_NEW}></a>
-        <a class="button" href="index.php?action=AvatarUpload"><{$smarty.const._AD_USER_LANG_AVATAR_UPLOAD}></a>
-        <button class="help-admin button" type='button' data-id='4' data-module='user' data-help-article='#help-avatars' aria-label="<{$smarty.const._HELP}>">
-            <b>?</b> </button>
+        <a class="button" href="index.php?action=AvatarEdit"><i class="i-add"></i><{$smarty.const._AD_USER_LANG_AVATAR_NEW}></a>
+        <a class="button" href="index.php?action=AvatarUpload"><i class="i-upload"></i><{$smarty.const._AD_USER_LANG_AVATAR_UPLOAD}></a>
+        <button class="help-admin button" type='button' data-id='4' data-module='user' data-help-article='#help-avatars' aria-label="<{$smarty.const._HELP}>"><i class="i-help"></i></button>
     </div>
 </section>
 <{* ----- / CONTROL-ACTION *}>

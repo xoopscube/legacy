@@ -156,7 +156,7 @@ define( '_AD_USER_MESSAGE_RECOUNT_SUCCESS' , 'Recalculate success');
 // Tips
 define( '_AD_USER_ADMENU_USER_DATA_DOWNLOAD' , 'User Data Download');
 
-define( '_AD_USER_TIPS_AVATAR' , 'Site members can optionally fashion their own online personae called avatars.<br>This option can be set off from module <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=4#avatar-active">User preferences ⭧</a>');
+define( '_AD_USER_TIPS_AVATAR' , 'Site members can optionally fashion their own online personae called avatars.<br>This option can be set off from module <a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=4#avatar-active">User preferences ⭧</a>');
 define( '_AD_USER_TIPS_AVATAR_UPLOAD' , 'You can easily register many avatars by uploading Archive file including them! <br>This batch-upload does not check Length and File-Size of each avatar!<br>Please pre-adjust them before you archive them!<br>(Only tar.gz or zip archive)');
 define( '_AD_USER_TIPS_DATA_DOWNLOAD' , 'You can export User Data (order by user_id) from your MySQL database in CSV format, which is a standard format with several benefits and usable by other tools and environments.');
 define( '_AD_USER_TIPS_DELETE_AVATAR' , 'Users who are using this avatar will have the image file "blank.gif" as avatar.');

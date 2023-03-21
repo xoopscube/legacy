@@ -1,10 +1,10 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<div class="adminnavi" aria-label="breadcrumb">
-    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
-    &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
-    &raquo;&raquo; <span class="adminnaviTitle"><a href="./index.php?action=BlockList" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></span>
-</div>
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
+    <a class="button" href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
+    &raquo;&raquo; <a class="button" href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
+    &raquo;&raquo; <span class="page-title"><a href="./index.php?action=BlockList" aria-current="page"><{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}></a></span>
+</nav>
 
 
 <{include file="./components/block-overview.html"}>
@@ -33,8 +33,8 @@
 <section data-layout="row center-justify" class="action-control">
 
     <div>
-        <a class="button" href="index.php?action=BlockInstallList"><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALL}></a>
-        <a class="button" href="index.php?action=CustomBlockEdit"><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></a>
+        <a class="button" href="index.php?action=BlockInstallList"><i class="i-add"></i><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALL}></a>
+        <a class="button" href="index.php?action=CustomBlockEdit"><i class="i-edit"></i><{$smarty.const._AD_LEGACY_LANG_ADD_CUSTOM_BLOCK}></a>
     </div>
 
     <div class="control-view">
@@ -92,8 +92,9 @@
 
     <hr>
 
+    <{* Alert Dialog *}>
     <div class="alert-submit" style="display: none">
-        <div class="danger">
+        <div class="danger" data-layout="row center-justify">
         <{$smarty.const._AD_LEGACY_MESSAGE_CONFIRM_CHANGES}>
         <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
         </div>

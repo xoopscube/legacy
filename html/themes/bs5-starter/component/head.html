@@ -22,8 +22,8 @@
     <meta property="og:url" content="<{$xoops_url}>"><meta property="og:url" content="//<{$smarty.server.HTTP_HOST}><{$xoops_requesturi}>">
     <meta property="og:type" content="website">
     <meta property="og:title" content="<{$xoops_meta_og_title}>"><meta property="og:title" content="<{$xoops_pagetitle}>">
-    <{if $mytrustdirname == 'pico' && $content.ef.myphoto}>
-    <meta property="og:image" content="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/myphoto_1_<{$content.ef.myphoto|escape}>">
+    <{if $mytrustdirname == 'pico' && $content.ef.pico_img}>
+    <meta property="og:image" content="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/pico_img_0_<{$content.ef.pico_img|escape}>">
     <{else}>
     <meta property="og:image" content="<{$theme_url}>img/tile.png">
     <{/if}>
@@ -36,7 +36,7 @@
     <meta name="twitter:creator" content="@<{$xoops_meta_author}>">
 
     <!-- Resquesturi $xoops_requesturi : /module/dirname/id -->
-    <link rel="canonical" href="<{$SCRIPT_NAME}>">
+    <link rel="canonical" href="<{$xoops_url}><{$SCRIPT_NAME}>">
 
     <!-- Favicon SVG located in the root directory -->
     <link rel="icon" href="<{$xoops_url}>/favicon.svg" type="image/svg+xml">

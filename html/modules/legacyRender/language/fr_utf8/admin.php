@@ -37,7 +37,7 @@ define( '_AD_LEGACYRENDER_LANG_CLICKS' , "Clics");
 define( '_AD_LEGACYRENDER_LANG_CLICKURL' , "URL du clic");
 define( '_AD_LEGACYRENDER_LANG_CLIENT_NAME' , "Nom du Client");
 define( '_AD_LEGACYRENDER_LANG_CONTACT' , "Contact");
-define( '_AD_LEGACYRENDER_LANG_CONTROL' , "Contrôle");
+define( '_AD_LEGACYRENDER_LANG_CONTROL' , "Action");
 define( '_AD_LEGACYRENDER_LANG_CREATE_NEW' , "Ajouter un Nouveau Annonceur");
 define( '_AD_LEGACYRENDER_LANG_DATE' , "Date Reg.");
 define( '_AD_LEGACYRENDER_LANG_DATEEND' , "Date fin");
