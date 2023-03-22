@@ -23,7 +23,7 @@ $modversion['description']      = _MI_ALTSYS_MODULEDESC;
 $modversion['author']           = 'GIJ=CHECKMATE<br>PEAK Corp.(https://www.peak.ne.jp/)';
 $modversion['credits']          = 'PEAK Corp., Gigamaster (XCL/PHP7)';
 $modversion['license']          = 'GPL see LICENSE';
-$modversion['image']            = 'images/module_ui_components.svg';
+$modversion['image']            = 'images/module_components.svg';
 $modversion['icon']             = 'images/module_icon.svg';
 $modversion['help']             = "help.html";
 $modversion['official']         = 0;

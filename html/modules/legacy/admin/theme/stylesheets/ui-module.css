@@ -127,7 +127,7 @@
 /* -------------------- -------------------- HELP SCROLL MARGIN */
 
 div.help section[id|="help"] {
-    padding     : var(--space-6);
+    padding     : var(--space-4);
     scroll-margin-top: 6em; /* property should be applied to each anchor section to leave a margin at the top */
 }
 

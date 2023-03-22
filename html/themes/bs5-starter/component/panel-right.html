@@ -37,7 +37,8 @@
 
 
             <{* ------- BLOCK-RIGHT PANEL
-                Only renders blocks with prefix panel- in block-title *}>
+                Only renders blocks with prefix "panel-" in block-title *}>
+
             <{foreach item=block from=$xoops_rblocks}>
             <{if $block.title|strstr:"panel-"}>
             <div class="block-right b-<{$block.weight}> my-4">

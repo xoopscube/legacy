@@ -27,16 +27,16 @@
         <{* ----- Left-Block and content ----- *}>
         <{include file="$xoops_theme/component/left_content.html"}>
 
+        <{* ----- Center Block section ----- *}>
+        <{if $xoops_showcblock==1}>
+        <{include file="$xoops_theme/component/center_block.html"}>
+        <{/if}>
+
         <{* ----- Features section ----- *}>
         <{* include file="$xoops_theme/component/features.html *"}>
 
         <{* ----- Testimonial section ----- *}>
         <{* include file="$xoops_theme/component/testimonial.html" *}>
-
-        <{* ----- Center Block section ----- *}>
-        <{if $xoops_showcblock==1}>
-        <{include file="$xoops_theme/component/center_block.html"}>
-        <{/if}>
 
     </main>
 
@@ -61,8 +61,7 @@
 </div>
 
 <{if $xoops_isadmin}>
-<{* include file="$xoops_theme/component/panel-right.html" *}>
-        <{* include file="$xoops_theme/component/admin-panel.html" *}>
+<{include file="$xoops_theme/component/panel-right.html"}>
 <{/if}>
 
 <{* ----- Footer Customized with Component ----- *}>

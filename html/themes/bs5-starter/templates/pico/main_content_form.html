@@ -34,7 +34,7 @@
 
 	<div class="card-header">
 
-        <h3><img class="svg" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" alt="edit"> <{$formtitle}>: <{$content.subject}></h3>
+        <h3><img class="svg" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="1em" alt="edit"> <{$formtitle}>: <{$content.subject}></h3>
 
         <{if !$content.approval}>
         <strong class="badge text-bg-warning">
@@ -150,21 +150,14 @@
             <{/if}>
         </div>
     </div>
-    <div class="row mb-3">
-        <div class="col-sm-3">
-            <label for="pronunciation">Pronunciation</label>
-        </div>
-        <div class="col-sm-8">
-            <input type="text" name="ef_pronunciation" id="pronunciation" size="80" maxlength="191" value="<{$content.ef.pronunciation|escape}>">
-        </div>
-    </div>
+
 <{* ------- extra fields sample (TEXTBOX) -------
     <div class="row mb-3">
         <div class="col-sm-3">
             <label for="pronunciation">Pronunciation</label>
         </div>
         <div class="col-sm-8">
-            <input type="text" name="ef_pronunciation" id="pronunciation" size="80" maxlength="191" value="<{$content.ef.pronunciation|escape}>">
+            <input type="text" class="form-control" name="ef_pronunciation" id="pronunciation" size="80" maxlength="191" value="<{$content.ef.pronunciation|escape}>">
         </div>
     </div>
 	<!-- extra fields sample (RADIO) -->
@@ -174,14 +167,13 @@
         </div>
         <div class="col-sm-8">
             <p class="even">
-                <input type="radio" name="ef_gender" id="gender_male" value="1"<{if $content.ef.gender == 1}> checked="checked"<{/if}>>
+                <input type="radio" class="form-check-input" name="ef_gender" id="gender_male" value="1"<{if $content.ef.gender == 1}> checked="checked"<{/if}>>
                 <label for="gender_male">male</label>
-                <input type="radio" name="ef_gender" id="gender_female" value="2"<{if $content.ef.gender == 2}> checked="checked"<{/if}>>
+                <input type="radio" class="form-check-input" name="ef_gender" id="gender_female" value="2"<{if $content.ef.gender == 2}> checked="checked"<{/if}>>
                 <label for="gender_female">female</label>
             </p>
         </div>
     </div>
-
 
 	<!-- extra fields sample (SELECT) -->
 	<{assign var="countries" value=","|explode:"---,USA,UK,France,Japan"}>
@@ -190,27 +182,9 @@
             <label for="address1">country</label>
         </div>
         <div class="col-sm-8">
-            <select id="address1" name="ef_address1">
+            <select class="form-select" id="address1" name="ef_address1">
                 <{html_options values=$countries output=$countries selected=$content.ef.address1}>
             </select>
-        </div>
-    </div>
-
-
-
-	<!-- extra images sample -->
-    <div class="row mb-3">
-        <div class="col-sm-3">
-            <label for="ei_myphoto">My photo</label>
-        </div>
-        <div class="col-sm-8">
-            <input type="file" id="ei_myphoto" name="ei_myphoto">
-            <input type="hidden" name="ef_myphoto" value="<{$content.ef.myphoto|escape}>">
-            <{if $content.ef.myphoto}>
-			<a href="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/myphoto_0_<{$content.ef.myphoto|escape}>">
-				<img src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/myphoto_1_<{$content.ef.myphoto|escape}>">
-            </a>
-            <{/if}>
         </div>
     </div>
 
@@ -237,10 +211,14 @@
 			<{if ! $mod_config.allow_each_htmlheader}>
 				<{$smarty.const._MD_PICO_LABEL_HTMLHEADERCONFIGALERT}>
 			<{/if}>
-		    <br>
-		    <textarea class="form-control" rows="3" name="htmlheader" id="htmlheader" style="display:<{if $content.htmlheader}>block<{else}>none<{/if}>"><{$content.htmlheader}></textarea>
         </div>
     </div>
+    <div class="row mb-3" id="htmlheader" style="display:<{if $content.htmlheader}>block<{else}>none<{/if}>">
+        <div class="col-sm-12">
+        <textarea class="form-control" rows="3" name="htmlheader"><{$content.htmlheader}></textarea>
+        </div>
+    </div>
+
 		<{* ------- html header reference for waiting content *}>
 		<{if $content.htmlheader_waiting && $page !='makecontent'}>
 		<p class="head pico_waiting"><{$smarty.const._MD_PICO_TH_HTMLHEADER_WAITING}></p>
@@ -255,10 +233,10 @@
 		<{assign var=xcl22 value=1}>
 	<{/if}>
     <div class="row mb-3">
-        <div class="col-sm-3">
-	<label for="htmlheader"><{$smarty.const._MD_PICO_TH_BODY}></label>
-        </div>
-        <div class="col-sm-8">
+
+<!--	<label for="htmlheader"><{$smarty.const._MD_PICO_TH_BODY}></label>-->
+
+    <div class="col-sm-12">
 	<{if $body_wysiwyg && !$content.filter_infos.eval.enabled}>
 		<{$body_wysiwyg}>
 	<{else}>
@@ -288,9 +266,9 @@
 
 			<{* ---------- CONTENT WAITING else NEW CONTENT *}>
 			<{if $content.body_waiting && $page !='makecontent'}>
-				<{xoops_dhtmltarea class="$editor$cssClass" name=body cols=60 rows=15 value=$content.body_waiting|htmlspecialchars_decode:$smarty.const.ENT_QUOTES editor=$editor}>
+				<{xoops_dhtmltarea class="$editor$cssClass" name=body cols=60 rows=25 value=$content.body_waiting|htmlspecialchars_decode:$smarty.const.ENT_QUOTES editor=$editor}>
 			<{else}>
-				<{xoops_dhtmltarea class="$editor$cssClass" name=body cols=60 rows=15 value=$content.body|htmlspecialchars_decode:$smarty.const.ENT_QUOTES editor=$editor}>
+				<{xoops_dhtmltarea class="$editor$cssClass" name=body cols=60 rows=25 value=$content.body|htmlspecialchars_decode:$smarty.const.ENT_QUOTES editor=$editor}>
 			<{/if}>
 
 			<{if $legacy_module == 'legacy'}>
@@ -307,14 +285,14 @@
                        document.getElementById('body_bbcode_buttons_post').style.display='none'}">
 			<{$smarty.const._MD_PICO_LABEL_INPUTHELPER}></label>
 
-			<{xoopsdhtmltarea name="body" rows="15" value=$content.body pre_style="display:none;" post_style="display:none;"}>
+			<{xoopsdhtmltarea name="body" rows="25" value=$content.body pre_style="display:none;" post_style="display:none;height:400px"}>
 		<{/if}>
 
 	<{/if}>
-        </div>
+
     </div>
 
-
+    </div>
 	<{* ------- ORDER / WEIGHT *}>
     <div class="row mb-3">
         <div class="col-sm-3">

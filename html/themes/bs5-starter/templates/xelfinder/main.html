@@ -1,0 +1,59 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav aria-label="breadcrumb">
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<{$xoops_url}>/"><img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="Home"></a></li>
+    <li class="breadcrumb-item active" aria-current="page"><img class="svg tree" src="<{$xoops_url}>/images/icons/tree.svg" width="1em" height="1em" alt="<{$mod_name}>"><{$mod_name}></li>
+</ol>
+</nav>
+
+<article class="xelfinder">
+
+<header>
+    <div class="row mb-4" id="category-top">
+        <h2><img class="svg tree" src="<{$xoops_url}>/images/icons/tree.svg" width="1em" height="1em" alt="<{$mod_name}>"> <{$smarty.const._MD_FINDER_TITLE}></h2>
+        <p><{$smarty.const._MD_FINDER_DESC}></p>
+    </div>
+</header>
+
+    <div class="row g-3 mb-5 p-4 border border-1">
+        <div class="col-sm-6">
+            <a role="button" class="btn btn-primary w-100" href="#" onclick="openWithSelfMain('<{$finder_open}>','<{$finder_title}>','<{$popup_width}>','<{$popup_height}>')">
+            <svg xmlns="http://www.w3.org/2000/svg" class="window-open" width="1.25em" height="1.25em" viewBox="0 0 24 24"><path d="M9.5 8.5L11 10l-3 3l3 3l-1.5 1.5L5 13l4.5-4.5m5 9L13 16l3-3l-3-3l1.5-1.5L19 13l-4.5 4.5M21 2H3a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2m0 18H3V6h18v14z" fill="currentColor"/>
+            </svg> <{$smarty.const._MD_OPEN_WINDOW}></a>
+        </div>
+        <div class="col-sm-6">
+            <a role="button" class="btn btn-primary w-100" href="<{$mod_url}>/manager.php" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" class="window-full" width="1.25em" height="1.25em" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h10v4h8v10z" fill="currentColor"/>
+            </svg> <{$smarty.const._MD_OPEN_FULL}></a>
+        </div>
+    </div>
+
+    <{if $xoops_isadmin}>
+    <hr class="my-4">
+
+    <div class="row g-3 mb-5 p-4 border border-1">
+        <div class="col-sm-6">
+            <a role="button" class="btn btn-info w-100" href="#" onclick="openWithSelfMain('<{$admin_open}>','<{$finder_title}>',<{$popup_width}>,<{$popup_height}>)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="window-open" width="1.25em" height="1.25em" viewBox="0 0 24 24"><path d="M9.5 8.5L11 10l-3 3l3 3l-1.5 1.5L5 13l4.5-4.5m5 9L13 16l3-3l-3-3l1.5-1.5L19 13l-4.5 4.5M21 2H3a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2m0 18H3V6h18v14z" fill="currentColor"/>
+            </svg> <{$smarty.const._MD_OPEN_WINDOW_ADMIN}></a>
+        </div>
+        <div class="col-sm-6">
+            <a role="button" class="btn btn-info w-100" href="<{$mod_url}>/manager.php?admin=1" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" class="window-full" width="1.25em" height="1.25em" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h10v4h8v10z" fill="currentColor"/>
+            </svg></span> <{$smarty.const._MD_OPEN_FULL_ADMIN}></a>
+        </div>
+    </div>
+
+    <footer class="action-control row row-cols-1 row-cols-sm-2 mb-4 p-4 border border-1">
+        <a role="button" class="primary" href="<{$mod_url}>/admin/index.php">
+            <span><svg class="tools" xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 24 24">
+                <path d="M21.71 20.29l-1.42 1.42a1 1 0 0 1-1.41 0L7 9.85A3.81 3.81 0 0 1 6 10a4 4 0 0 1-3.78-5.3l2.54 2.54l.53-.53l1.42-1.42l.53-.53L4.7 2.22A4 4 0 0 1 10 6a3.81 3.81 0 0 1-.15 1l11.86 11.88a1 1 0 0 1 0 1.41M2.29 18.88a1 1 0 0 0 0 1.41l1.42 1.42a1 1 0 0 0 1.41 0l5.47-5.46l-2.83-2.83M20 2l-4 2v2l-2.17 2.17l2 2L18 8h2l2-4z" fill="currentColor"/><rect x="0" y="0" width="1em" height="1em" fill="rgba(0, 0, 0, 0)" />
+            </svg></span>
+            <{$smarty.const._MD_ADMIN_PANEL}>
+        </a>
+    </footer>
+    <{/if}>
+
+</article>
