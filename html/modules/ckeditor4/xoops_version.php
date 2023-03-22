@@ -16,8 +16,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 // Manifesto.
 $modversion['dirname']      = "ckeditor4";
 $modversion['name']         = _MI_CKEDITOR4_LANG_CKEDITOR4;
-$modversion['version']      = '4.19.2';
-$modversion['description']  = 'XCL 2.3.1rc '._MI_CKEDITOR4_DESC_CKEDITOR4;
+$modversion['version']      = '4.20.2';
+$modversion['description']  = _MI_CKEDITOR4_DESC_CKEDITOR4;
 $modversion['author']       = "Naoki Sawada (aka nao-pon) https://xoops.hypweb.net";
 $modversion['credits']      = "Naoki Sawada (aka nao-pon). Nuno Luciano (aka gigamaster) XCL PHP7 ";
 $modversion['license']      = "GPL";

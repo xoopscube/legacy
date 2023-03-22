@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license/
  */
 
@@ -13,10 +13,10 @@
  * (1) https://ckeditor.com/cke4/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) https://ckeditor.com/cke4/builder/e83db83b859af6f8f4cf1aefdd6b84d9
+ * (2) https://ckeditor.com/cke4/builder/069129c9382503296cffba6b1b154b95
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) https://ckeditor.com/cke4/builder/download/e83db83b859af6f8f4cf1aefdd6b84d9
+ * (3) https://ckeditor.com/cke4/builder/download/069129c9382503296cffba6b1b154b95
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -56,6 +56,7 @@ var CKBUILDER_CONFIG = {
 	plugins : {
 		'a11yhelp' : 1,
 		'autocomplete' : 1,
+		'autoembed' : 1,
 		'autolink' : 1,
 		'basicstyles' : 1,
 		'blockquote' : 1,
@@ -67,14 +68,12 @@ var CKBUILDER_CONFIG = {
 		'dialogadvtab' : 1,
 		'div' : 1,
 		'elementspath' : 1,
-		'embedsemantic' : 1,
 		'enterkey' : 1,
 		'entities' : 1,
 		'filebrowser' : 1,
 		'find' : 1,
 		'font' : 1,
 		'format' : 1,
-		'forms' : 1,
 		'horizontalrule' : 1,
 		'htmlwriter' : 1,
 		'iframe' : 1,

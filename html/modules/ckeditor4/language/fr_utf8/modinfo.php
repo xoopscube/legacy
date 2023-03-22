@@ -16,7 +16,7 @@ define( '_MI_CKEDITOR4_TOOLBAR_SPECIAL_GROUP' , 'Toolbar for special group');
 define( '_MI_CKEDITOR4_TOOLBAR_SPECIAL_GROUP_DESC' , 'CKEditor\'s "config.toolbar" for special group.');
 
 define( '_MI_CKEDITOR4_TOOLBAR_USER' , 'Toolbar for registed user');
-define( '_MI_CKEDITOR4_TOOLBAR_USER_DESC' , 'CKEditor\'s "onfig.toolbar" for registed user.');
+define( '_MI_CKEDITOR4_TOOLBAR_USER_DESC' , 'CKEditor\'s "Config.toolbar" for registed user.');
 
 define( '_MI_CKEDITOR4_TOOLBAR_GUEST' , 'Toolbar for guest');
 define( '_MI_CKEDITOR4_TOOLBAR_GUEST_DESC' , 'CKEditor\'s "config.toolbar" for guest.');

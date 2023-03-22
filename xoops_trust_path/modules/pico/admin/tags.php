@@ -123,7 +123,8 @@ $tags4assign = [];
 while ( $tag_row = $db->fetchArray( $trs ) ) {
 	// get contents
 	$contents4assign = [];
-	$ors             = $db->query( "SELECT content_id,vpath,subject FROM " . $db->prefix( $mydirname . "_contents" ) . " WHERE content_id IN (" . $tag_row['content_ids'] . ") LIMIT 10" );
+    //$ors             = $db->query( "SELECT content_id,vpath,subject FROM " . $db->prefix( $mydirname . "_contents" ) . " WHERE content_id IN (" . $tag_row['content_ids'] . ") " );
+    $ors             = $db->query( "SELECT content_id,vpath,subject FROM " . $db->prefix( $mydirname . "_contents" ) . " WHERE content_id IN (" . $tag_row['content_ids'] . ") LIMIT 10" );
 	while ( $content_row = $db->fetchArray( $ors ) ) {
 		$contents4assign[] = [
 			                     'id'      => (int) $content_row['content_id'],

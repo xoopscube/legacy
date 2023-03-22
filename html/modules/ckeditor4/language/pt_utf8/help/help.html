@@ -50,11 +50,11 @@
         <ul>
             <li>Toolbar for Admin : CKEditor's "config.toolbar" for admin.
             <li>Toolbar UI Color : Setting Editor UI Color with hexadecimal color code eg. #405060
-            <li>Toolbar for registed user : CKEditor's "onfig.toolbar" for registed user.
+            <li>Toolbar for registered user : CKEditor's "config.toolbar" for registed user.
             <li>Toolbar for guest : CKEditor's "config.toolbar" for guest.
             <li>Toolbar for BBcode plugin : CKEditor's "config.toolbar" for BBcode plugin.
             <li>CSS URL of editing area : URL of external CSS applied to edit area is set up per line.
-                <br>* A special value "&lt;head&gt;" reads automatically CSS specified in &lt;head&gt; in HTML of a display page.
+                <br>* A special value "&lt;head&gt;" reads automatically CSS specified in HTML &lt;head&gt; of a page.
             <li>Extra plugin : CKEditor's "config.extraPlugins" setting.
             <li>Custom config URL : CKEditor's "config.customConfig" setting.
             <li>Enter Mode : CKEditor's "config.enterMode" setting.
@@ -110,8 +110,31 @@
         </div>
 
         <h3>CKEditor4 Toolbar</h3>
+        <p>There are several approaches to CKEditor 4 toolbar configuration to choose from:</p>
+        <ul>
+            <li><a href="https://ckeditor.com/docs/ckeditor4/latest/features/toolbar.html#toolbar-configurator" target="_blank" rel="noopener nofollow">Using the toolbar configurator</a> — the most recommended and easy to use solution.</li>
+            <li><a href="https://ckeditor.com/docs/ckeditor4/latest/features/toolbarconcepts.html#toolbar-groups-configuration" target="_blank" rel="noopener nofollow">Toolbar groups configuration</a> — requires manual toolbar configuration (for advanced users only)</li>
+            <li><a href="https://ckeditor.com/docs/ckeditor4/latest/features/toolbarconcepts.html#item-by-item-configuration" target="_blank" rel="noopener nofollow">“Item by item” configuration</a> — requires manual toolbar configuration (for advanced users only)</li>
+        </ul>
+        <p>Most important settings can be defined in CKeditor preferences, including Toolbar customization for each group.</p>
+        <ol>
+            <li>Select a special group (checkbox)</li>
+            <li>Example of toolbar for special group :</li>
+        </ol>
 
-        <p>The CKEditor toolbar can be fully customized.</p>
+<pre><code class="lang-json">[["Source","-","Templates"],
+["Cut","Copy","Paste","PasteText","-","Undo","Redo"],
+["Find","Replace","-","SelectAll"],
+["UIColor","Maximize","ShowBlocks"],
+["Bold","Italic","Underline","Strike","Subscript","Superscript","-","CopyFormatting","RemoveFormat"],
+["NumberedList","BulletedList","-","Outdent","Indent","-","Blockquote","CreateDiv","-","JustifyLeft","JustifyCenter","JustifyRight","JustifyBlock","-","Language"],
+["Link","Unlink","Anchor"],["TextColor","BGColor"],
+["Image","Table","HorizontalRule","Smiley","Iframe" ],
+["Styles","Format","Font","FontSize"]]</code></pre>
+        <div class="confirm">JSON is purely a string with a specified data format — it contains only properties, no methods. JSON requires double quotes to be used around strings and property names. Single quotes are not valid other than surrounding the entire JSON string.</div>
+
+
+
 
         <p><a class="button" href="https://xoopscube.github.io/ckeditor4/" target="_blank">xoopscube.github.io/ckeditor4 ⭧</a></p>
 
@@ -151,28 +174,18 @@ CKEDITOR.editorConfig = function( config ) {
                 list-style: none;
                 padding: 0;
             }
-
             /* On screens that are 992px wide or less, go from four columns to two columns */
             @media screen and (max-width: 992px) {
                 .config-options li {
                     flex: 48%;
                 }
             }
-
             /* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
             @media screen and (max-width: 600px) {
                 ul.config-options {
                     flex-direction: column;
                 }
             }
-            /*.config-options li {*/
-            /*    flex-flow: row wrap;*/
-            /*    */
-            /*    display: flex;*/
-            /*    min-width: calc(90% / 4);*/
-            /*    line-height: 1.5rem;*/
-            /*    padding:0;*/
-            /*}*/
         </style>
 
         <ul class="config-options">

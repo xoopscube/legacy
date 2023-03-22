@@ -32,7 +32,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
  *     function setParams(& $params) {}
  *
  *     // ckeditor.config customized
- *     // (Before Params interpretation: Toolbar specified in Smarty plug-in and management screen: General config config cannot be overwritten)
+ *     // (Before Params interpretation: Toolbar specified in Smarty plug-in and management screen: General config cannot be overwritten)
  *     function preSetConfig(& $config, $params) {}
  *
  *     // ckeditor.config customized
