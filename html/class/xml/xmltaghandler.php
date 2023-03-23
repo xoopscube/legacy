@@ -3,7 +3,7 @@
  * Xml Tag Handler
  * @package    kernel
  * @subpackage xml
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors Minahito, 2007/05/15 
  * @author     Ken Egervari, Remi Michalski
  * @copyright  2001 eXtremePHP

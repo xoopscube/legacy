@@ -4,7 +4,7 @@
  * if the class has not been instantiated yet, this will also take care of that
  * @package    kernel
  * @subpackage database
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Kazumi Ono (aka onokazu)
  * @copyright  (c) 2000-2003 XOOPS.org

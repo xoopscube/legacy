@@ -3,7 +3,7 @@
  * Form input color
  * @package    kernel
  * @subpackage form
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0

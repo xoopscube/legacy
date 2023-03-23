@@ -3,7 +3,7 @@
  * send email through PHP's "mail()" function
  * @package    class
  * @subpackage mail
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Other authors Minahito, 2008/09/21
  * @author     Jochen Buennagel

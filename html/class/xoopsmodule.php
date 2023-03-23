@@ -4,7 +4,7 @@
  * Load the new object class
  * @package    kernel
  * @subpackage core
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Minahito, 2007/05/15
  * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
