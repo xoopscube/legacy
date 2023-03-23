@@ -4,6 +4,7 @@
  * This file can be included only from main or admin (not from blocks)
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2022 Author
@@ -65,8 +66,7 @@ function d3forum_make_treeinformations( $data ) {
 function d3forum_get_forum_permissions_of_current_user( $mydirname ) {
 	global $xoopsUser;
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ( is_object( $xoopsUser ) ) {
 		$uid    = (int) $xoopsUser->getVar( 'uid' );
@@ -102,8 +102,7 @@ function d3forum_get_forum_permissions_of_current_user( $mydirname ) {
 function d3forum_get_category_permissions_of_current_user( $mydirname ) {
 	global $xoopsUser;
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ( is_object( $xoopsUser ) ) {
 
@@ -140,8 +139,7 @@ function d3forum_get_category_permissions_of_current_user( $mydirname ) {
 
 // check done
 function d3forum_get_users_can_read_forum( $mydirname, $forum_id, $cat_id = null ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$forum_id = (int) $forum_id;
 
@@ -196,8 +194,7 @@ function d3forum_get_users_can_read_forum( $mydirname, $forum_id, $cat_id = null
 
 // check done
 function d3forum_get_forum_moderate_groups4show( $mydirname, $forum_id ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$forum_id = (int) $forum_id;
 
@@ -222,8 +219,7 @@ function d3forum_get_forum_moderate_groups4show( $mydirname, $forum_id ) {
 function d3forum_get_forum_moderate_users4show( $mydirname, $forum_id ) {
 	global $xoopsUser, $xoopsModuleConfig;    // naao edited
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$forum_id = (int) $forum_id;
 
@@ -251,8 +247,7 @@ function d3forum_get_forum_moderate_users4show( $mydirname, $forum_id ) {
 
 // check done
 function d3forum_get_category_moderate_groups4show( $mydirname, $cat_id ) {
-	// $db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$cat_id = (int) $cat_id;
 
@@ -277,8 +272,7 @@ function d3forum_get_category_moderate_groups4show( $mydirname, $cat_id ) {
 function d3forum_get_category_moderate_users4show( $mydirname, $cat_id ) {
 	global $xoopsUser, $xoopsModuleConfig;    // naao edited
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$cat_id = (int) $cat_id;
 
@@ -309,8 +303,7 @@ function d3forum_get_category_moderate_users4show( $mydirname, $cat_id ) {
 function d3forum_make_jumpbox_options( $mydirname, $whr4cat, $whr4forum, $forum_selected = 0 ) {
 	global $myts;
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$ret = '';
 
@@ -333,8 +326,7 @@ function d3forum_make_jumpbox_options( $mydirname, $whr4cat, $whr4forum, $forum_
 function d3forum_make_cat_jumpbox_options( $mydirname, $whr4cat, $cat_selected = 0 ) {
 	global $myts;
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$ret = '';
 
@@ -433,8 +425,7 @@ function d3forum_main_get_categoryoptions4edit( $d3forum_configs_can_be_override
 
 // hook topic_id/external_link_id into $_POST['mode'] = 'reply' , $_POST['post_id']
 function d3forum_main_posthook_sametopic( $mydirname ) {
-	// $db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ( ! empty( $_POST['external_link_id'] ) ) {
 

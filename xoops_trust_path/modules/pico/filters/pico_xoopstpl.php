@@ -22,7 +22,7 @@ function pico_xoopstpl( $mydirname, $text, $content4assign ) {
 			$context   = &$root->getContext();
 			$themeName = $context->getThemeName();
 			$tpl->assign( 'xoops_theme', $themeName );
-			$tpl->assign( 'xoops_imageurl', XOOPS_THEME_URL . "/${themeName}/" );
+			$tpl->assign( 'xoops_imageurl', XOOPS_THEME_URL . "/{$themeName}/" );
 			$tpl->assign( 'xoops_themecss', xoops_getcss( $themeName ) );
 		}
 	}

@@ -3,6 +3,7 @@
  * D3Forum module for XCL
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -24,7 +25,7 @@ class D3forumAntispamDefaultmobilesmart extends D3forumAntispamDefault {
 	public function isMobile() {
 		if ( class_exists( 'Wizin_User' ) ) {
 			// WizMobile (gusagi)
-			$user =& Wizin_User::getSingleton();
+			$user = Wizin_User::getSingleton();
 
 			return $user->bIsMobile;
 		}

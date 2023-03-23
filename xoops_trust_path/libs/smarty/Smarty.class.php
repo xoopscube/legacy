@@ -3,6 +3,7 @@
 /**
  * Project:     Smarty: the PHP compiling template engine
  * File:        Smarty.class.php
+ * @author     Nobuhiro YASUTOMI, PHP8
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -81,6 +82,7 @@ class Smarty
      * @var string
      */
     var $template_dir    =  'templates';
+    var $_cache_include_info = array();
 
     /**
      * The directory where compiled templates are located.

@@ -3,6 +3,7 @@
  * group of users
  * @package    kernel
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Other authors Minahito, 2007/05/15
  * @author     Kazumi Ono (aka onokazu)
@@ -455,10 +456,10 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         $usersTable = $db->prefix('users');
         $linkTable = $db->prefix('groups_users_link');
 
-        $sql = "SELECT u.uid FROM ${usersTable} u LEFT JOIN ${linkTable} g ON u.uid=g.uid," .
-                "${usersTable} u2 LEFT JOIN ${linkTable} g2 ON u2.uid=g2.uid AND g2.groupid=${groupid} " .
-                "WHERE (g.groupid != ${groupid} OR g.groupid IS NULL) " .
-                "AND (g2.groupid = ${groupid} OR g2.groupid IS NULL) " . 'AND u.uid = u2.uid AND g2.uid IS NULL GROUP BY u.uid';
+        $sql = "SELECT u.uid FROM {$usersTable} u LEFT JOIN {$linkTable} g ON u.uid=g.uid," .
+                "{$usersTable} u2 LEFT JOIN {$linkTable} g2 ON u2.uid=g2.uid AND g2.groupid={$groupid} " .
+                "WHERE (g.groupid != {$groupid} OR g.groupid IS NULL) " .
+                "AND (g2.groupid = {$groupid} OR g2.groupid IS NULL) " . 'AND u.uid = u2.uid AND g2.uid IS NULL GROUP BY u.uid';
 
         $result = $db->query($sql, $limit, $start);
         if (!$result) {

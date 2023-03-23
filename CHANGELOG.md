@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
 
 Refer please to repository Legacy Commits  
 
+## [2.3.3 rc PHP8] 2023-03-23
+
+Merge backend, frontend and branch PHP8 
+
 ## [2.3.1rc] 2023-03-02
 
 ### Added 

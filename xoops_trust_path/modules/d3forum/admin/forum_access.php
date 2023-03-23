@@ -3,6 +3,7 @@
  * D3Forum module for XCL
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -14,10 +15,9 @@ require_once dirname( __DIR__ ) . '/include/common_functions.php';
 require_once dirname( __DIR__ ) . '/class/d3forum.textsanitizer.php';
 require_once dirname( __DIR__ ) . '/class/gtickets.php';
 
-$myts =& D3forumTextSanitizer::sGetInstance();
+$myts = D3forumTextSanitizer::sGetInstance();
 
-//$db =& Database::getInstance();
-$db = &XoopsDatabaseFactory::getDatabaseConnection();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 // get right $forum_id
 $forum_id = (int) @$_GET['forum_id'];
@@ -103,7 +103,7 @@ if ( ! empty( $_POST['user_update'] ) && empty( $invaild_forum_id ) ) {
 		}
 	}
 
-	$member_hander =& xoops_gethandler( 'member' );
+	$member_hander = xoops_gethandler( 'member' );
 
 	if ( is_array( @$_POST['new_uids'] ) ) {
 
@@ -118,7 +118,7 @@ if ( ! empty( $_POST['user_update'] ) && empty( $invaild_forum_id ) ) {
 				$criteria = new Criteria( 'uname', addslashes( @$_POST['new_unames'][ $i ] ) );
 				[ $user ] = $member_handler->getUsers( $criteria );
 			} else {
-				$user =& $member_handler->getUser( (int) $uid );
+				$user = $member_handler->getUser( (int) $uid );
 			}
 			if ( is_object( $user ) ) {
 				$db->query( 'INSERT INTO ' . $db->prefix( $mydirname . '_forum_access' ) . " SET forum_id=$forum_id, uid=" . $user->getVar( 'uid' ) . ", can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved, is_moderator=$is_moderator" );
@@ -136,9 +136,9 @@ if ( ! empty( $_POST['user_update'] ) && empty( $invaild_forum_id ) ) {
 //
 
 // create group form
-$group_handler =& xoops_gethandler( 'group' );
+$group_handler = xoops_gethandler( 'group' );
 
-$groups =& $group_handler->getObjects();
+$groups = $group_handler->getObjects();
 
 $group_trs = '';
 

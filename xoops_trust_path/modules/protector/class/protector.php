@@ -4,6 +4,7 @@
  *
  * @package    Protector
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2022 Authors
@@ -337,7 +338,8 @@ class protector {
 	}
 
 	public function get_bad_ips( $with_jailed_time = false ) {
-		list( $bad_ips_serialized ) = @file( self::get_filepath4badips() );
+		$fbadips = self::get_filepath4badips();
+		list( $bad_ips_serialized ) = file_exists($fbadips)?file( $fbadips ):null;
 		$bad_ips = empty( $bad_ips_serialized ) ? [] : @unserialize( $bad_ips_serialized );
 		if ( ! is_array( $bad_ips ) || isset( $bad_ips[0] ) ) {
 			$bad_ips = [];
@@ -1152,7 +1154,7 @@ class protector {
 			}
 
 			// security bug of class/criteria.php 2005/6/27
-			if ( '0' === $_POST['uname'] || '0' === $_COOKIE['autologin_pass'] ) {
+			if ( (isset($_POST['uname']) && '0' === $_POST['uname']) || (isset($_COOKIE['autologin_pass']) && '0' === $_COOKIE['autologin_pass']) ) {
 				$this->output_log( 'CRITERIA' );
 				exit;
 			}

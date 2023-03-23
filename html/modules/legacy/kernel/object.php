@@ -198,10 +198,7 @@ class XoopsSimpleObject extends AbstractXoopsObject
      *
      * @return	string
     **/
-// TODO version 2.3.0
-//     public function getPurifiedHtml(/*** string ***/ $key, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null)
-
-    public function getPurifiedHtml( string $key, string $encoding=null, string $doctype=null)
+    public function getPurifiedHtml(/*** string ***/ $key, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null)
     {
         $root = XCube_Root::getSingleton();
         $textFilter = $root->getTextFilter();

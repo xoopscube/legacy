@@ -2,6 +2,7 @@
 /**
  *
  * @package Legacy
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @version $Id: Legacy_LanguageManager.class.php,v 1.6 2008/09/25 15:11:57 kilica Exp $
  * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license   GPL 2.0
@@ -228,12 +229,12 @@ class Legacy_LanguageManager extends XCube_LanguageManager
      */
     public function getFilepath(string $section, string $filename)
     {
-        $filepath = XOOPS_ROOT_PATH . '/languages/' . $this->mLanguageName . ($section?"/${section}/${filename}":"/${filename}");
+        $filepath = XOOPS_ROOT_PATH . '/languages/' . $this->mLanguageName . ($section?"/{$section}/{$filename}":"/{$filename}");
 
         if (file_exists($filepath)) {
             return $filepath;
         } else {
-            return XOOPS_ROOT_PATH . '/languages/' . $this->getFallbackLanguage() . ($section?"/${section}/${filename}":"/${filename}");
+            return XOOPS_ROOT_PATH . '/languages/' . $this->getFallbackLanguage() . ($section?"/{$section}/{$filename}":"/{$filename}");
         }
     }
 

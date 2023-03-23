@@ -4,6 +4,7 @@
  *
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -22,7 +23,7 @@ $sql = 'SELECT COUNT(*) FROM ' . $db->prefix( $mydirname . '_posts' );
 
 // get last visit
 if ( $uid > 0 ) {
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$lv_result = $db->query( 'SELECT MAX(u2t_time) FROM ' . $db->prefix( $mydirname . '_users2topics' ) . " WHERE uid='$uid'" );
 

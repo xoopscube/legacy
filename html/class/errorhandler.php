@@ -4,6 +4,7 @@
  * @package    kernel
  * @subpackage core
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Other authors nobunobu, 2007/06/24
  * @author     Michael van Dam
@@ -143,9 +144,6 @@ class XoopsErrorHandler
                     break;
                 case E_USER_DEPRECATED:
                     $out = 'Deprecated [Xoops]: ';
-                    break;
-                case E_USER_STRICT:
-                    $out = 'Strict [Xoops]: ';
                     break;
                 case E_NOTICE:
                     $out = 'Notice [PHP]: ';

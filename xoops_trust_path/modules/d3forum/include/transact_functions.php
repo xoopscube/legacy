@@ -5,6 +5,7 @@
  * Call back for comment integration
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -12,7 +13,7 @@
  */
 
 function d3forum_main_d3comment_callback( $mydirname, $topic_id, $mode = 'update', $post_id = 0 ) {
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$topic_id = (int) $topic_id;
 
@@ -37,8 +38,7 @@ function d3forum_main_d3comment_callback( $mydirname, $topic_id, $mode = 'update
 
 // delete posts recursively
 function d3forum_delete_post_recursive( $mydirname, $post_id ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$post_id = (int) $post_id;
 
@@ -75,8 +75,7 @@ function d3forum_delete_post_recursive( $mydirname, $post_id ) {
 function d3forum_delete_topic( $mydirname, $topic_id, $delete_also_posts = true ) {
 	global $xoopsModule;
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$topic_id = (int) $topic_id;
 
@@ -95,7 +94,7 @@ function d3forum_delete_topic( $mydirname, $topic_id, $delete_also_posts = true 
 	}
 
 	// delete notifications about this topic
-	$notification_handler =& xoops_gethandler( 'notification' );
+	$notification_handler = xoops_gethandler( 'notification' );
 
 	$notification_handler->unsubscribeByItem( $xoopsModule->getVar( 'mid' ), 'topic', $topic_id );
 
@@ -115,8 +114,7 @@ function d3forum_delete_topic( $mydirname, $topic_id, $delete_also_posts = true 
 function d3forum_delete_forum( $mydirname, $forum_id, $delete_also_topics = true ) {
 	global $xoopsModule;
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$forum_id = (int) $forum_id;
 
@@ -135,7 +133,7 @@ function d3forum_delete_forum( $mydirname, $forum_id, $delete_also_topics = true
 	}
 
 	// delete notifications about this forum
-	$notification_handler =& xoops_gethandler( 'notification' );
+	$notification_handler = xoops_gethandler( 'notification' );
 
 	$notification_handler->unsubscribeByItem( $xoopsModule->getVar( 'mid' ), 'forum', $forum_id );
 
@@ -155,8 +153,7 @@ function d3forum_delete_forum( $mydirname, $forum_id, $delete_also_topics = true
 function d3forum_delete_category( $mydirname, $cat_id, $delete_also_forums = true ) {
 	global $xoopsModule;
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$cat_id = (int) $cat_id;
 
@@ -175,7 +172,7 @@ function d3forum_delete_category( $mydirname, $cat_id, $delete_also_forums = tru
 	}
 
 	// delete notifications about this category
-	$notification_handler =& xoops_gethandler( 'notification' );
+	$notification_handler = xoops_gethandler( 'notification' );
 
 	$notification_handler->unsubscribeByItem( $xoopsModule->getVar( 'mid' ), 'category', $cat_id );
 
@@ -193,8 +190,7 @@ function d3forum_delete_category( $mydirname, $cat_id, $delete_also_forums = tru
 
 // store redundant informations to a category from its forums
 function d3forum_sync_category( $mydirname, $cat_id ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$cat_id = (int) $cat_id;
 
@@ -258,8 +254,7 @@ function d3forum_sync_category( $mydirname, $cat_id ) {
 
 
 function d3forum_sync_cattree( $mydirname ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	// rebuild tree informations
 	$tree_array = d3forum_makecattree_recursive( $db->prefix( $mydirname . '_categories' ), 0 );
@@ -296,8 +291,7 @@ function d3forum_sync_cattree( $mydirname ) {
 
 
 function d3forum_makecattree_recursive( $tablename, $cat_id, $order = 'cat_weight', $parray = [], $depth = 0, $cat_title = '' ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$parray[] = [ 'cat_id' => $cat_id, 'depth' => $depth, 'cat_title' => $cat_title ];
 
@@ -318,8 +312,7 @@ function d3forum_makecattree_recursive( $tablename, $cat_id, $order = 'cat_weigh
 
 // store redundant informations to a forum from its topics
 function d3forum_sync_forum( $mydirname, $forum_id, $sync_also_category = true ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$forum_id = (int) $forum_id;
 
@@ -359,8 +352,7 @@ function d3forum_sync_forum( $mydirname, $forum_id, $sync_also_category = true )
 // store redundant informations to a topic from its posts
 // and rebuild tree informations (depth, order_in_tree)
 function d3forum_sync_topic( $mydirname, $topic_id, $sync_also_forum = true, $sync_topic_title = false ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$topic_id = (int) $topic_id;
 
@@ -436,8 +428,7 @@ function d3forum_sync_topic( $mydirname, $topic_id, $sync_also_forum = true, $sy
 
 // store redundant informations to a topic from its posts
 function d3forum_sync_topic_votes( $mydirname, $topic_id ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$topic_id = (int) $topic_id;
 
@@ -464,8 +455,7 @@ function d3forum_sync_topic_votes( $mydirname, $topic_id ) {
 
 // store redundant informations to a post from its post_votes
 function d3forum_sync_post_votes( $mydirname, $post_id, $sync_also_topic_votes = true ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$post_id = (int) $post_id;
 
@@ -498,8 +488,7 @@ function d3forum_sync_post_votes( $mydirname, $post_id, $sync_also_topic_votes =
 
 
 function d3forum_maketree_recursive( $tablename, $post_id, $order = 'post_id', $parray = [], $depth = 0, $unique_path = '.1' ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$parray[] = [ 'post_id' => $post_id, 'depth' => $depth, 'unique_path' => $unique_path ];
 
@@ -542,8 +531,7 @@ function d3forum_maketree_recursive( $tablename, $post_id, $order = 'post_id', $
 
 
 function d3forum_cutpasteposts( $mydirname, $post_id, $pid, $new_forum_id, $forum_permissions, $isadmin ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$post_id = (int) $post_id;
 
@@ -653,8 +641,7 @@ function d3forum_cutpasteposts( $mydirname, $post_id, $pid, $new_forum_id, $foru
 function d3forum_update_topic_from_post( $mydirname, $topic_id, $forum_id, $forum_permissions, $isadmin ) {
 	global $myts;
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$sql4set = '';
 
@@ -709,8 +696,7 @@ function d3forum_update_topic_from_post( $mydirname, $topic_id, $forum_id, $foru
 function d3forum_get_requests4sql_forum( $mydirname ) {
 	global $myts, $xoopsModuleConfig;
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	include dirname( __DIR__ ) . '/include/constant_can_override.inc.php';
 
@@ -762,8 +748,7 @@ function d3forum_get_requests4sql_forum( $mydirname ) {
 
 // create a forum
 function d3forum_makeforum( $mydirname, $cat_id, $isadmin ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$requests = d3forum_get_requests4sql_forum( $mydirname );
 
@@ -788,8 +773,7 @@ function d3forum_makeforum( $mydirname, $cat_id, $isadmin ) {
 
 // update a forum
 function d3forum_updateforum( $mydirname, $forum_id, $isadmin ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$requests = d3forum_get_requests4sql_forum( $mydirname );
 
@@ -807,8 +791,7 @@ function d3forum_updateforum( $mydirname, $forum_id, $isadmin ) {
 function d3forum_get_requests4sql_category( $mydirname ) {
 	global $myts, $xoopsModuleConfig;
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	include dirname( __DIR__ ) . '/include/constant_can_override.inc.php';
 
@@ -865,8 +848,7 @@ function d3forum_get_requests4sql_category( $mydirname ) {
 function d3forum_makecategory( $mydirname ) {
 	global $xoopsUser;
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$requests = d3forum_get_requests4sql_category( $mydirname );
 
@@ -915,8 +897,7 @@ function d3forum_makecategory( $mydirname ) {
 
 // update a category
 function d3forum_updatecategory( $mydirname, $cat_id ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$requests = d3forum_get_requests4sql_category( $mydirname );
 
@@ -947,8 +928,7 @@ function d3forum_updatecategory( $mydirname, $cat_id ) {
 
 // make a new history entry for a post
 function d3forum_transact_make_post_history( $mydirname, $post_id, $full_backup = false ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$post_id = (int) $post_id;
 
@@ -990,8 +970,7 @@ function d3forum_transact_make_post_history( $mydirname, $post_id, $full_backup 
 
 // turning topic_solved of all topics in the category on (batch action)
 function d3forum_transact_turnsolvedon_in_category( $mydirname, $cat_id ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$cat_id = (int) $cat_id;
 
@@ -1007,8 +986,7 @@ function d3forum_transact_turnsolvedon_in_category( $mydirname, $cat_id ) {
 
 // turning topic_solved of all topics in the forum on (batch action)
 function d3forum_transact_turnsolvedon_in_forum( $mydirname, $forum_id ) {
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	$forum_id = (int) $forum_id;
 

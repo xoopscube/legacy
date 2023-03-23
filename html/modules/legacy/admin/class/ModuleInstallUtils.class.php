@@ -3,6 +3,7 @@
  * ModuleInstallUtils.class.php
  * @package    Legacy
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7 , XCL 2020 PHP7
  * @author     Minahito, 2008/10/26
  * @copyright  (c) 2005-2023 The XOOPSCube Project
@@ -119,7 +120,10 @@ class Legacy_ModuleInstallUtils
     {
         $info = [];
 
-        $filepath = XOOPS_MODULE_PATH . "/${dirname}/xoops_version.php";
+        $root =& XCube_Root::getSingleton();
+        $root->mLanguageManager->loadModinfoMessageCatalog($dirname);
+        $filepath = XOOPS_MODULE_PATH . "/{$dirname}/xoops_version.php";
+
         if (file_exists($filepath)) {
             @include $filepath;
             $info = $modversion;
@@ -130,11 +134,11 @@ class Legacy_ModuleInstallUtils
 
             $className = $updateInfo['class'];
             // @gimaster
-            $filePath = $updateInfo['filepath'] ?? XOOPS_MODULE_PATH . "/${dirname}/admin/class/${className}.class.php";
+            $filePath = $updateInfo['filepath'] ?? XOOPS_MODULE_PATH . "/{$dirname}/admin/class/{$className}.class.php";
             $namespace = $updateInfo['namespace'] ?? ucfirst($dirname);
 
             if (null != $namespace) {
-                $className = "${namespace}_${className}";
+                $className = "{$namespace}_{$className}";
             }
 
             if (!XC_CLASS_EXISTS($className) && file_exists($filePath)) {
@@ -176,7 +180,7 @@ class Legacy_ModuleInstallUtils
         }
 
         $sqlfile = $sqlfileInfo[$dbType];
-        $sqlfilepath = XOOPS_MODULE_PATH . "/${dirname}/${sqlfile}";
+        $sqlfilepath = XOOPS_MODULE_PATH . "/{$dirname}/{$sqlfile}";
 
         if (isset($module->modinfo['cube_style']) && true == $module->modinfo['cube_style']) {
             require_once XOOPS_MODULE_PATH . '/legacy/admin/class/Legacy_SQLScanner.class.php';
@@ -223,7 +227,7 @@ class Legacy_ModuleInstallUtils
                 // [4] contains unprefixed table name
                 $prefixed_query = SqlUtility::prefixQuery($piece, $db->prefix());
                 if (!$prefixed_query) {
-                    $log->addError("${piece} is not a valid SQL!");
+                    $log->addError("{$piece} is not a valid SQL!");
                     return;
                 }
 
@@ -1302,10 +1306,10 @@ class Legacy_ModuleInstallUtils
 
         foreach ($sqlArr as $sql) {
             if ($root->mController->mDB->query($sql)) {
-                $log->addReport("Success: ${sql}");
+                $log->addReport("Success: {$sql}");
                 $successFlag &= true;
             } else {
-                $log->addError("Failure: ${sql}");
+                $log->addError("Failure: {$sql}");
                 $successFlag = false;
             }
         }

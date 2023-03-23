@@ -1,7 +1,8 @@
 <?php
 /**
  * @package    profile
- * @version    2.3.1
+ * @version    2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
  * @author     Kilica
  * @copyright  (c) 2005-2023 The XOOPSCube Project
@@ -69,9 +70,9 @@ class Profile_ActionFrame
         $className = 'Profile_' . ucfirst($actionFrame->mActionName) . 'Action';
         $fileName = ucfirst($actionFrame->mActionName) . 'Action';
         if ($actionFrame->mAdminFlag) {
-            $fileName = XOOPS_MODULE_PATH . "/profile/admin/actions/${fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/profile/admin/actions/{$fileName}.class.php";
         } else {
-            $fileName = XOOPS_MODULE_PATH . "/profile/actions/${fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/profile/actions/{$fileName}.class.php";
         }
     
         if (!file_exists($fileName)) {

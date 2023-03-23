@@ -3,6 +3,7 @@
  * HelpAction.class.php
  * @package    Legacy
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Kilica, 2008/09/25
  * @copyright  (c) 2005-2023 The XOOPSCube Project
@@ -104,7 +105,7 @@ function Legacy_modifier_helpurl($file, $dirname = null)
     // TODO We should check file_exists.
     //
 
-    $url = XOOPS_MODULE_URL . "/legacy/admin/index.php?action=Help&amp;dirname=${dirname}&amp;file=${file}";
+    $url = XOOPS_MODULE_URL . "/legacy/admin/index.php?action=Help&amp;dirname={$dirname}&amp;file={$file}";
 
     return $url;
 }
@@ -120,9 +121,9 @@ function Legacy_modifier_helpimage($file)
     $language = $root->mContext->getXoopsConfig('language');
     $dirname = $root->mContext->getAttribute('legacy_help_dirname');
 
-    $path = "/${dirname}/language/${language}/help/images/${file}";
+    $path = "/{$dirname}/language/{$language}/help/images/{$file}";
     if (!file_exists(XOOPS_MODULE_PATH . $path) && 'english' !== $language) {
-        $path = "/${dirname}/language/english/help/images/${file}";
+        $path = "/{$dirname}/language/english/help/images/{$file}";
     }
 
     return XOOPS_MODULE_URL . $path;
@@ -200,7 +201,7 @@ class Legacy_HelpAction extends Legacy_Action
         //
         // TODO We should not access files in language directory directly.
         //
-        $template_dir = XOOPS_MODULE_PATH . '/' . $this->_mDirname . "/language/${language}/help";
+        $template_dir = XOOPS_MODULE_PATH . '/' . $this->_mDirname . "/language/{$language}/help";
         if (!file_exists($template_dir . '/' . $helpfile)) {
             $template_dir = XOOPS_MODULE_PATH . '/' . $this->_mDirname . '/language/english/help';
             if (!file_exists($template_dir . '/' . $helpfile)) {

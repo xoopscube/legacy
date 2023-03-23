@@ -1,7 +1,8 @@
 <?php
 /**
  * @package    profile
- * @version    2.3.1
+ * @version    2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
  * @author     Kilica
  * @copyright  (c) 2005-2023 The XOOPSCube Project
@@ -92,10 +93,10 @@ class Profile_Module extends Legacy_ModuleAdapter
         $fileName = ucfirst($this->mActionName) . 'Action';
         if ($this->mAdminFlag) {
             $className = 'Profile_Admin_' . ucfirst($this->mActionName) . 'Action';
-            $fileName = XOOPS_MODULE_PATH . "/profile/admin/actions/${fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/profile/admin/actions/{$fileName}.class.php";
         } else {
             $className = 'Profile_' . ucfirst($this->mActionName) . 'Action';
-            $fileName = XOOPS_MODULE_PATH . "/profile/actions/${fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/profile/actions/{$fileName}.class.php";
         }
     
         if (!file_exists($fileName)) {

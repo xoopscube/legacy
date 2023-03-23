@@ -1,6 +1,7 @@
 <?php
 /**
  * @package Legacy
+ * @author     Nobuhiro YASUTOMI, PHP8
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
@@ -28,6 +29,7 @@ require_once SMARTY_DIR.'/Smarty.class.php';
 class Legacy_AdminSmarty extends Smarty
 {
     public $mModulePrefix = null;
+    var $_canUpdateFromFile;
 
     //
     // If you don't intend to override the theme, set false.
@@ -332,7 +334,7 @@ function Legacy_function_stylesheet($params, &$smarty)
                 $request = [];
                 foreach ($infoArr as $key => $value) {
                     if (null != $value) {
-                        $request[] = "${key}=${value}";
+                        $request[] = "{$key}={$value}";
                     }
                 }
             }

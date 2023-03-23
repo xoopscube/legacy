@@ -1,10 +1,11 @@
 <?php
 /**
  *
- * @package Legacy
- * @version $Id: Legacy_ActionForm.class.php,v 1.4 2008/09/25 15:11:58 kilica Exp $
- * @copyright (c) 2005-2023 The XOOPSCube Project
- * @license GPL 2.0
+ * @package    Legacy
+ * @author     Nobuhiro YASUTOMI, PHP8
+ * @version    $Id: Legacy_ActionForm.class.php,v 1.4 2008/09/25 15:11:58 kilica Exp $
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
+ * @license    GPL 2.0
  *
  */
 
@@ -32,8 +33,8 @@ class Legacy_ActionForm extends XCube_ActionForm
      */
     public function __construct()
     {
-// version 2.3.1
-    	 parent::__construct();
-        //parent::XCube_ActionForm();
+         // version 2.3.1
+    	 // parent::__construct();
+        parent::XCube_ActionForm();
     }
 }

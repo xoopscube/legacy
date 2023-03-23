@@ -2,6 +2,7 @@
 /**
  *
  * @package Legacy
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @version $Id: Legacy_Controller.class.php,v 1.22 2008/11/14 09:45:23 mumincacao Exp $
  * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
@@ -778,7 +779,7 @@ class Legacy_Controller extends XCube_Controller
         }
 
         $this->mSetupDebugger->call(new XCube_Ref($this->mDebugger), $debug_mode);
-        $this->mDebugger->prepare();
+        $this->mDebugger && $this->mDebugger->prepare();
 
         $GLOBALS['xoopsDebugger']=&$this->mDebugger;
     }

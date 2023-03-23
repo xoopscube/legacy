@@ -4,6 +4,7 @@
  *
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -27,8 +28,8 @@ if ( $post_row['invisible'] || ! $post_row['approval'] ) {
 }
 
 // get this poster's object
-$user_handler =& xoops_gethandler( 'user' );
-$poster_obj   =& $user_handler->get( (int) $post_row['uid'] );
+$user_handler = xoops_gethandler( 'user' );
+$poster_obj   = $user_handler->get( (int) $post_row['uid'] );
 if ( is_object( $poster_obj ) ) {
 	// active user's post
 	// naao from
