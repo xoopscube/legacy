@@ -2,6 +2,7 @@
 /**
  *
  * @package Legacy
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @version $Id: Legacy_PublicControllerStrategy.class.php,v 1.7 2008/11/14 09:45:23 mumincacao Exp $
  * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license   GPL 2.0
@@ -15,6 +16,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
 {
     public $mStatusFlag = LEGACY_CONTROLLER_STATE_PUBLIC;
+    public $_mLoadedFilterNames = array();
 
     public function __construct(&$controller)
     {
@@ -107,7 +109,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
         if (null != $this->mController->mRoot->mContext->mModule) {
             $dirname = $this->mController->mRoot->mContext->mXoopsModule->get('dirname');
 
-            return $this->mController->mRoot->mContext->mUser->isInRole("Module.${dirname}.Visitor");
+            return $this->mController->mRoot->mContext->mUser->isInRole("Module.{$dirname}.Visitor");
         }
 
         return true;

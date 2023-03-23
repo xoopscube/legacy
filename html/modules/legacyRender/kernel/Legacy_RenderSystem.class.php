@@ -2,7 +2,8 @@
 /**
  * Legacy_RenderSystem.class.php
  * @package LegacyRender
- * @version 2.3.2
+ * @version 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author Nuno Luciano v.XCL23
  * @author minahito v 1.4 2008/08/26 15:58:41
  */
@@ -175,7 +176,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $mTpl->xoops_setCaching(0);
 
         // If debugger request debugging, send debug mode signal by any methods.
-        if ($controller->mDebugger->isDebugRenderSystem()) {
+        if ($controller->mDebugger && $controller->mDebugger->isDebugRenderSystem()) {
             $mTpl->xoops_setDebugging(true);
         }
 
@@ -266,11 +267,12 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $themeName = $context->getThemeName();
         $vars = [
             'xoops_theme'     =>$themeName,
-            'xoops_imageurl'  =>XOOPS_THEME_URL . "/${themeName}/",
+            'xoops_imageurl'  =>XOOPS_THEME_URL . "/{$themeName}/",
             'xoops_themecss'  =>xoops_getcss($themeName),
             'xoops_sitename'  =>$textFilter->toShow($context->getAttribute('legacy_sitename')),
             'xoops_pagetitle' =>$textFilter->toShow($context->getAttribute('legacy_pagetitle')),
-            'xoops_slogan'    =>$textFilter->toShow($context->getAttribute('legacy_slogan'))
+	    'xoops_slogan'    =>$textFilter->toShow($context->getAttribute('legacy_slogan')),
+	    'xoops_dirname'   => ''
         ];
 
         //

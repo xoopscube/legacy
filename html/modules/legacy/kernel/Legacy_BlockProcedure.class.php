@@ -1,10 +1,11 @@
 <?php
 /**
  *
- * @package Legacy
- * @version $Id: Legacy_BlockProcedure.class.php,v 1.4 2008/09/25 15:11:56 kilica Exp $
- * @copyright (c) 2005-2023 The XOOPSCube Project
- * @license   GPL 2.0
+ * @package    Legacy
+ * @author     Nobuhiro YASUTOMI, PHP8
+ * @version    $Id: Legacy_BlockProcedure.class.php,v 1.4 2008/09/25 15:11:56 kilica Exp $
+ * @copyright  (c) 2005-2023 The XOOPSCube Project
+ * @license    GPL 2.0
  *
  */
 
@@ -328,7 +329,7 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
             $options = explode('|', $this->_mBlock->get('options'));
             foreach ($options as $val) {
                 $val = $textFilter->ToEdit($val);
-                $buf .= "<input type='hidden' name='options[]' value='${val}'/>";
+                $buf .= "<input type='hidden' name='options[]' value='{$val}'>";
             }
 
             return $buf;

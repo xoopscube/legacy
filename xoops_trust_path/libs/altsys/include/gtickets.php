@@ -4,6 +4,7 @@
  * Ticket Class (based on Marijuana's Oreteki XOOPS)
  * @package    Altsys
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -130,7 +131,7 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
          * @throws Exception
          */
 
-		public function getTicketParamString(string $salt = '', bool $noamp, int $timeout = 1800, string $area = '' ) {
+		public function getTicketParamString(string $salt = '', bool $noamp = false, int $timeout = 1800, string $area = '' ) {
 			return ( $noamp ? '' : '&amp;' ) . 'XOOPS_G_TICKET=' . $this->issue( $salt, $timeout, $area );
 		}
 

@@ -4,6 +4,7 @@
  *
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -15,9 +16,9 @@ require_once __DIR__ . '/common_functions.php';
 
 require_once dirname( __DIR__ ) . '/class/d3forum.textsanitizer.php';
 
-$myts =& D3forumTextSanitizer::sGetInstance();
+$myts = D3forumTextSanitizer::sGetInstance();
 
-$db = &XoopsDatabaseFactory::getDatabaseConnection();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 // GET $uid
 $uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar( 'uid' ) : 0;

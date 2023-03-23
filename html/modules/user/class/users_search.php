@@ -15,7 +15,7 @@ class UserUsers_searchHandler extends UserUsersHandler
         $uTable = $this->db->prefix('users') . ' as u';
         $gTable = $this->db->prefix('groups_users_link') . ' as g';
 
-        $sql = "SELECT DISTINCT u.* FROM ${uTable} LEFT JOIN ${gTable} ON u.uid=g.uid";
+        $sql = "SELECT DISTINCT u.* FROM {$uTable} LEFT JOIN {$gTable} ON u.uid=g.uid";
 
         if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
@@ -95,7 +95,7 @@ class UserUsers_searchHandler extends UserUsersHandler
         $uTable = $this->db->prefix('users') . ' as u';
         $gTable = $this->db->prefix('groups_users_link') . ' as g';
 
-        $sql = "SELECT DISTINCT u.uid FROM ${uTable} LEFT JOIN ${gTable} ON u.uid=g.uid";
+        $sql = "SELECT DISTINCT u.uid FROM {$uTable} LEFT JOIN {$gTable} ON u.uid=g.uid";
 
         if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
@@ -149,7 +149,7 @@ class UserUsers_searchHandler extends UserUsersHandler
         $uTable = $this->db->prefix('users') . ' as u';
         $gTable = $this->db->prefix('groups_users_link') . ' as g';
 
-        $sql = "SELECT COUNT(DISTINCT u.uid) c FROM ${uTable} LEFT JOIN ${gTable} ON u.uid=g.uid";
+        $sql = "SELECT COUNT(DISTINCT u.uid) c FROM {$uTable} LEFT JOIN {$gTable} ON u.uid=g.uid";
         if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
 

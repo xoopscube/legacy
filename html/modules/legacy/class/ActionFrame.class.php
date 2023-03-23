@@ -2,6 +2,7 @@
 /**
  *
  * @package     Legacy
+ * @author      Nobuhiro YASUTOMI, PHP8
  * @version     $Id: ActionFrame.class.php,v 1.3 2008/09/25 15:11:25 kilica Exp $
  * @copyright   (c) 2005-2023 The XOOPSCube Project
  * @license     GPL 2.0
@@ -98,9 +99,9 @@ class Legacy_ActionFrame
         $className = 'Legacy_' . ucfirst($actionFrame->mActionName) . 'Action';
         $fileName = ucfirst($actionFrame->mActionName) . 'Action';
         if ($actionFrame->mAdminFlag) {
-            $fileName = XOOPS_MODULE_PATH . "/legacy/admin/actions/${fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/legacy/admin/actions/{$fileName}.class.php";
         } else {
-            $fileName = XOOPS_MODULE_PATH . "/legacy/actions/${fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/legacy/actions/{$fileName}.class.php";
         }
 
         if (!file_exists($fileName)) {

@@ -4,6 +4,7 @@
  * This file can be included from transaction procedures
  * @package    Pico
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -251,7 +252,7 @@ function pico_sync_tags( $mydirname ) {
 
 	while ( list( $content_id, $tags ) = $db->fetchRow( $result ) ) {
 		foreach ( explode( ' ', $tags ) as $tag ) {
-			if ( trim( $tag ) == '' ) {
+			if ( '' == trim( $tag ) ) {
 				continue;
 			}
 			$all_tags_array[ $tag ][] = $content_id;

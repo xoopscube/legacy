@@ -4,6 +4,7 @@
  * @package    XCL
  * @subpackage core
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL PHP7
  * @author     Other authors Mumincacao, 2008/10/03
  * @author     Community
@@ -495,7 +496,7 @@ function xoops_getenv($key)
         case 'PHP_SELF':
         case 'PATH_INFO':
         case 'PATH_TRANSLATED':
-            $ret = htmlspecialchars($ret, ENT_QUOTES);
+            if ($ret) $ret = htmlspecialchars($ret, ENT_QUOTES);
             break;
     }
 

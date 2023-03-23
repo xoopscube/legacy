@@ -1,8 +1,9 @@
 <?php
 /**
  *
- * @package Legacy
- * @version $Id: Legacy_Utils.class.php,v 1.5 2008/09/25 15:11:21 kilica Exp $
+ * @package    Legacy
+ * @author     Nobuhiro YASUTOMI, PHP8
+ * @version    $Id: Legacy_Utils.class.php,v 1.5 2008/09/25 15:11:21 kilica Exp $
  * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
  *
@@ -73,7 +74,7 @@ class Legacy_Utils
         //
         $className = ucfirst($dirname) . '_Module';
         if (!XC_CLASS_EXISTS($className)) {
-            $filePath = XOOPS_ROOT_PATH . "/modules/${dirname}/class/Module.class.php";
+            $filePath = XOOPS_ROOT_PATH . "/modules/{$dirname}/class/Module.class.php";
             if (file_exists($filePath)) {
                 require_once $filePath;
             }

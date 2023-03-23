@@ -3,7 +3,7 @@
 /**
  * Simple elFinder driver for BoxDrive
  * Box.com API v2.0.
- *
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author Dmitry (dio) Levashov
  * @author Cem (discofever)
  **/
@@ -377,7 +377,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
                     if (strpos($url, 'offset=') === false) {
                         $url .= '&offset=' . $offset;
                     } else {
-                        $url = preg_replace('/^(.+?offset=)\d+(.*)$/', '${1}' . $offset . '$2', $url);
+                        $url = preg_replace('/^(.+?offset=)\d+(.*)$/', '$1' . $offset . '$2', $url);
                     }
                     $more = $this->_bd_fetch($url);
                     if (is_array($more)) {

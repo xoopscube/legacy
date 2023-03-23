@@ -4,6 +4,7 @@
  *
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Author
@@ -29,7 +30,7 @@ if ( ! empty( $_GET['post_id'] ) ) {
 
 // form elements or javascripts for anti-SPAM
 if ( d3forum_common_is_necessary_antispam( $xoopsUser, $xoopsModuleConfig ) ) {
-	$antispam_obj    =& d3forum_common_get_antispam_object( $xoopsModuleConfig );
+	$antispam_obj    = d3forum_common_get_antispam_object( $xoopsModuleConfig );
 	$antispam4assign = $antispam_obj->getHtml4Assign();
 } else {
 	$antispam4assign = [];
@@ -57,7 +58,7 @@ if ( $d3forum_meta_description ) {
 
 	if ( defined( 'LEGACY_MODULE_VERSION' ) && version_compare( LEGACY_MODULE_VERSION, '2.2', '>=' ) ) {
 
-		$xclRoot =& XCube_Root::getSingleton();
+		$xclRoot = XCube_Root::getSingleton();
 
 		$headerScript = $xclRoot->mContext->getAttribute( 'headerScript' );
 

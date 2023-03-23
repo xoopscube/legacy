@@ -1,6 +1,7 @@
 <?php
 /**
  * @package legacyRender
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @version $Id: TplfileEditAction.class.php,v 1.1 2007/05/15 02:34:17 minahito Exp $
  */
 
@@ -65,7 +66,7 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
 
         $tplset = $this->mObject->get('tpl_tplset');
         $module = $this->mObject->get('tpl_module');
-        $controller->executeForward("./index.php?action=TplfileList&tpl_tplset=${tplset}&tpl_module=${module}");
+        $controller->executeForward("./index.php?action=TplfileList&tpl_tplset={$tplset}&tpl_module={$module}");
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
@@ -77,6 +78,6 @@ class LegacyRender_TplfileEditAction extends LegacyRender_AbstractEditAction
     {
         $tplset = $this->mObject->get('tpl_tplset');
         $module = $this->mObject->get('tpl_module');
-        $controller->executeForward("./index.php?action=TplfileList&tpl_tplset=${tplset}&tpl_module=${module}");
+        $controller->executeForward("./index.php?action=TplfileList&tpl_tplset={$tplset}&tpl_module={$module}");
     }
 }

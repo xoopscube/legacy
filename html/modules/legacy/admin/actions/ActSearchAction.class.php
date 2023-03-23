@@ -137,9 +137,9 @@ class Legacy_ActSearchAction extends Legacy_Action
         $perm = $db->prefix('group_permission');
         $groups = implode(',', $xoopsUser->getGroups());
 
-        $sql = "SELECT DISTINCT ${mod}.weight, ${mod}.mid FROM ${mod},${perm} " .
-               "WHERE ${mod}.isactive=1 AND ${mod}.mid=${perm}.gperm_itemid AND ${perm}.gperm_name='module_admin' AND ${perm}.gperm_groupid IN (${groups}) " .
-               "ORDER BY ${mod}.weight, ${mod}.mid";
+        $sql = "SELECT DISTINCT {$mod}.weight, {$mod}.mid FROM {$mod},{$perm} " .
+               "WHERE {$mod}.isactive=1 AND {$mod}.mid={$perm}.gperm_itemid AND {$perm}.gperm_name='module_admin' AND {$perm}.gperm_groupid IN ({$groups}) " .
+               "ORDER BY {$mod}.weight, {$mod}.mid";
 
         $result=$db->query($sql);
 

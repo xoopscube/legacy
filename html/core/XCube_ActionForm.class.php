@@ -648,7 +648,7 @@ class XCube_DependClassFactory {
 				$_cache[ $dependName ] = new $class_name();
 			} else {
 				// FIXME:: use delegate?
-				die( "This is an error message of Alpha or Beta series. ${dependName} Validator is not found." );
+				die( "This is an error message of Alpha or Beta series. {$dependName} Validator is not found." );
 			}
 		}
 

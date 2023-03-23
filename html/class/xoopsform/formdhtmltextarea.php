@@ -4,6 +4,7 @@
  * @package    kernel
  * @subpackage form
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Other authors Minahito, 2007/05/15
  * @author     Kazumi Ono (aka onokazu)
@@ -29,7 +30,7 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
      * @var string
      * @access  private
      */
-    public $_hiddenText;
+    public $_xoopsHiddenText;
 
     /**
      * Editor type
@@ -60,10 +61,6 @@ class XoopsFormDhtmlTextArea extends XoopsFormTextArea
     {
         parent::__construct($caption, $name, $value, $rows, $cols);
         $this->_xoopsHiddenText = $hiddentext;
-    }
-    public function XoopsFormDhtmlTextArea($caption, $name, $value, $rows=5, $cols=50, $hiddentext= 'xoopsHiddenText')
-    {
-        return self::__construct($caption, $name, $value, $rows, $cols, $hiddentext);
     }
 
     /**

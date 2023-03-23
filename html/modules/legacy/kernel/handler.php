@@ -1,8 +1,9 @@
 <?php
 /**
  *
- * @package Legacy
- * @version $Id: handler.php,v 1.7 2008/11/14 10:46:37 mumincacao Exp $
+ * @package    Legacy
+ * @author     Nobuhiro YASUTOMI, PHP8
+ * @version    $Id: handler.php,v 1.7 2008/11/14 10:46:37 mumincacao Exp $
  * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
  *
@@ -275,7 +276,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
         $arr = $this->_makeVars4sql($obj);
 
         foreach ($arr as $_name => $_value) {
-            $fields[] = "`${_name}`";
+            $fields[] = "`{$_name}`";
             $values[] = $_value;
         }
 
@@ -298,9 +299,9 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
         foreach ($arr as $_name => $_value) {
             if ($_name == $this->mPrimary) {
-                $where = "`${_name}`=${_value}";
+                $where = "`{$_name}`={$_value}";
             } else {
-                $set_lists[] = "`${_name}`=${_value}";
+                $set_lists[] = "`{$_name}`={$_value}";
             }
         }
 

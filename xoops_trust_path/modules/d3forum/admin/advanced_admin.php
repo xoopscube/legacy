@@ -3,6 +3,7 @@
  * D3Forum module for XCL
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -18,17 +19,16 @@ require_once dirname( __DIR__ ) . '/class/gtickets.php';
 
 $myts = D3forumTextSanitizer::sGetInstance();
 
-//$db =& Database::getInstance();
-$db = &XoopsDatabaseFactory::getDatabaseConnection();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 
 $importable_modules = d3forum_import_getimportablemodules( $mydirname );
 
-$module_handler =& xoops_gethandler( 'module' );
+$module_handler = xoops_gethandler( 'module' );
 
 $modules = $module_handler->getObjects( new Criteria( 'hascomments', 1 ) );
 
-$comment_handler =& xoops_gethandler( 'comment' );
+$comment_handler = xoops_gethandler( 'comment' );
 
 $comimportable_modules = [];
 

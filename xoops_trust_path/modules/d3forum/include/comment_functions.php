@@ -4,6 +4,7 @@
  *
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -16,14 +17,14 @@ require_once dirname( __DIR__ ) . '/include/common_functions.php';
 
 
 // old interface
-function d3forum_display_comment_topicscount( $mydirname, $forum_id, $params, $mode = 'post', &$smarty ) {
+function d3forum_display_comment_topicscount( $mydirname, $forum_id, $params, $mode = 'post', &$smarty = null) {
 	global $xoopsUser, $xoopsConfig;
 
 	$mydirpath = XOOPS_ROOT_PATH . '/modules/' . $mydirname;
 
 	$mytrustdirpath = dirname( __DIR__ );
 
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	// external_link_id
 	if ( ! empty( $params['link_id'] ) ) {
@@ -41,16 +42,16 @@ function d3forum_display_comment_topicscount( $mydirname, $forum_id, $params, $m
 	}
 
 	// check the d3forum exists and is active
-	$module_hanlder =& xoops_gethandler( 'module' );
+	$module_hanlder = xoops_gethandler( 'module' );
 
-	$module =& $module_hanlder->getByDirname( $mydirname );
+	$module = $module_hanlder->getByDirname( $mydirname );
 
 	if ( ! is_object( $module ) || ! $module->getVar( 'isactive' ) ) {
 		return;
 	}
 
 	// check permission of "module_read"
-	$moduleperm_handler =& xoops_gethandler( 'groupperm' );
+	$moduleperm_handler = xoops_gethandler( 'groupperm' );
 
 	$groups = is_object( $xoopsUser ) ? $xoopsUser->getGroups() : [ XOOPS_GROUP_ANONYMOUS ];
 
@@ -84,14 +85,14 @@ function d3forum_display_comment( $mydirname, $forum_id, $params ) {
 	global $xoopsUser, $xoopsConfig, $xoopsModule;
 
 	// check the d3forum exists and is active
-	$module_hanlder =& xoops_gethandler( 'module' );
-	$module         =& $module_hanlder->getByDirname( $mydirname );
+	$module_hanlder = xoops_gethandler( 'module' );
+	$module         = $module_hanlder->getByDirname( $mydirname );
 	if ( ! is_object( $module ) || ! $module->getVar( 'isactive' ) ) {
 		return;
 	}
 
 	// check permission of "module_read"
-	$moduleperm_handler =& xoops_gethandler( 'groupperm' );
+	$moduleperm_handler = xoops_gethandler( 'groupperm' );
 	$groups             = is_object( $xoopsUser ) ? $xoopsUser->getGroups() : [ XOOPS_GROUP_ANONYMOUS ];
 
 	if ( ! $moduleperm_handler->checkRight( 'module_read', $module->getVar( 'mid' ), $groups ) ) {
@@ -147,7 +148,7 @@ function d3forum_display_comment( $mydirname, $forum_id, $params ) {
 
 		if ( class_exists( $class_name ) ) {
 
-			$obj =& D3commentObj::getInstance( $m_params );
+			$obj = D3commentObj::getInstance( $m_params );
 
 			$external_link_id = $obj->d3comObj->external_link_id( $params );
 		}
@@ -191,8 +192,7 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 
 	$mytrustdirpath = dirname( __DIR__ );
 
-	//$db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	// extract $external_* from $parms
 	$external_link_id = $params['external_link_id'];
@@ -215,10 +215,10 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 	$langman->read( 'main.php', $mydirname, $mytrustdirname );
 
 	// local $xoopsModuleConfig
-	$module_hanlder    =& xoops_gethandler( 'module' );
-	$module            =& $module_hanlder->getByDirname( $mydirname );
-	$config_handler    =& xoops_gethandler( 'config' );
-	$xoopsModuleConfig =& $config_handler->getConfigsByCat( 0, $module->getVar( 'mid' ) );
+	$module_hanlder    = xoops_gethandler( 'module' );
+	$module            = $module_hanlder->getByDirname( $mydirname );
+	$config_handler    = xoops_gethandler( 'config' );
+	$xoopsModuleConfig = $config_handler->getConfigsByCat( 0, $module->getVar( 'mid' ) );
 
 	include __DIR__ . '/common_prepend.php';
 
@@ -288,10 +288,10 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 			$topic_id = (int) $topic_row['topic_id'];
 
 			// get last poster's object
-			$user_handler          =& xoops_gethandler( 'user' );
-			$last_poster_obj       =& $user_handler->get( (int) $topic_row['topic_last_uid'] );
+			$user_handler          = xoops_gethandler( 'user' );
+			$last_poster_obj       = $user_handler->get( (int) $topic_row['topic_last_uid'] );
 			$last_post_uname4html  = is_object( $last_poster_obj ) ? $last_poster_obj->getVar( 'uname' ) : $xoopsConfig['anonymous'];
-			$first_poster_obj      =& $user_handler->get( (int) $topic_row['topic_first_uid'] );
+			$first_poster_obj      = $user_handler->get( (int) $topic_row['topic_first_uid'] );
 			$first_post_uname4html = is_object( $first_poster_obj ) ? $first_poster_obj->getVar( 'uname' ) : $xoopsConfig['anonymous'];
 
 			// topics array
@@ -350,7 +350,7 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 			$postorder4sql = 'post_time ASC';
 		}
 
-		// post_hits ~ pagenavi // naao from
+		// post_hits ~ pagenavi //naao from
 		// count post
 		$sql = 'SELECT COUNT(post_id) FROM ' . $db->prefix( $mydirname . '_posts' ) . ' p LEFT JOIN ' . $db->prefix( $mydirname . '_topics' ) . " t ON p.topic_id=t.topic_id WHERE $sql_whr";
 
@@ -464,7 +464,7 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 
 		// form elements or javascript for anti-SPAM
 		if ( d3forum_common_is_necessary_antispam( $xoopsUser, $xoopsModuleConfig ) ) {
-			$antispam_obj    =& d3forum_common_get_antispam_object( $xoopsModuleConfig );
+			$antispam_obj    = d3forum_common_get_antispam_object( $xoopsModuleConfig );
 			$antispam4assign = $antispam_obj->getHtml4Assign();
 		} else {
 			$antispam4assign = [];

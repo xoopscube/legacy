@@ -4,6 +4,7 @@
  *
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -17,16 +18,16 @@ $mytrustdirpath = __DIR__;
 // environment
 require_once XOOPS_ROOT_PATH . '/class/template.php';
 
-$module_handler =& xoops_gethandler( 'module' );
+$module_handler = xoops_gethandler( 'module' );
 
-$xoopsModule =& $module_handler->getByDirname( $mydirname );
+$xoopsModule = $module_handler->getByDirname( $mydirname );
 
-$config_handler =& xoops_gethandler( 'config' );
+$config_handler = xoops_gethandler( 'config' );
 
-$xoopsModuleConfig =& $config_handler->getConfigsByCat( 0, $xoopsModule->getVar( 'mid' ) );
+$xoopsModuleConfig = $config_handler->getConfigsByCat( 0, $xoopsModule->getVar( 'mid' ) );
 
 // check permission of 'module_admin' of this module
-$moduleperm_handler =& xoops_gethandler( 'groupperm' );
+$moduleperm_handler = xoops_gethandler( 'groupperm' );
 
 if ( ! is_object( @$xoopsUser ) || ! $moduleperm_handler->checkRight( 'module_admin', $xoopsModule->getVar( 'mid' ), $xoopsUser->getGroups() ) ) {
 	die( 'only admin can access this area' );

@@ -4,6 +4,7 @@
  *
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -22,7 +23,7 @@ if ( ! function_exists( 'd3forum_onuninstall_base' ) ) {
 		// for Cube 2.1
 		if ( defined( 'XOOPS_CUBE_LEGACY' ) ) {
 
-			$root =& XCube_Root::getSingleton();
+			$root = XCube_Root::getSingleton();
 
 			$root->mDelegateManager->add( 'Legacy.Admin.Event.ModuleUninstall.' . ucfirst( $mydirname ) . '.Success', 'd3forum_message_append_onuninstall' );
 
@@ -34,7 +35,7 @@ if ( ! function_exists( 'd3forum_onuninstall_base' ) ) {
 			}
 		}
 
-		$db = &XoopsDatabaseFactory::getDatabaseConnection();
+		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 		$mid = $module->getVar( 'mid' );
 

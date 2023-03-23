@@ -4,6 +4,7 @@
  *
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -36,9 +37,9 @@ if ( ! $isadminormod ) {
 
 
 // get all of d3forum module instances
-$module_handler =& xoops_gethandler( 'module' );
+$module_handler = xoops_gethandler( 'module' );
 
-$modules =& $module_handler->getObjects();
+$modules = $module_handler->getObjects();
 
 $exportable_modules = [ 0 => '----' ];
 

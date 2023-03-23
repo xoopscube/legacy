@@ -4,6 +4,7 @@
  *
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -51,7 +52,7 @@ if ( isset( $_POST['forumman_post'] ) ) {
 	];
 
 	// Notify for new forum
-	$notification_handler =& xoops_gethandler( 'notification' );
+	$notification_handler = xoops_gethandler( 'notification' );
 
 	$users2notify = d3forum_get_users_can_read_forum( $mydirname, $forum_id, $cat_id );
 

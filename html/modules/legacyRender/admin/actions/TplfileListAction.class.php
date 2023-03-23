@@ -1,6 +1,7 @@
 <?php
 /**
  * @package legacyRender
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @version $Id: TplfileListAction.class.php,v 1.1 2007/05/15 02:34:17 minahito Exp $
  */
 
@@ -139,7 +140,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         // Not a good example ;)
         // Because some local variables are used, jump directly without the return value of view status.
         //
-        $controller->executeRedirect("index.php?action=TplfileList&tpl_tplset=${last_tplset}&tpl_module=${last_module}", 1, $errorMessage);
+        $controller->executeRedirect("index.php?action=TplfileList&tpl_tplset={$last_tplset}&tpl_module={$last_module}", 1, $errorMessage);
     }
 
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
@@ -191,7 +192,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
             foreach ($navi->mExtra as $key => $value) {
                 if ($key != $mask) {
                     $value = htmlspecialchars($value, ENT_QUOTES);
-                    $buf .= "<input type=\"hidden\" name=\"${key}\" value=\"${value}\" />";
+                    $buf .= "<input type=\"hidden\" name=\"{$key}\" value=\"{$value}\" />";
                 }
             }
         }

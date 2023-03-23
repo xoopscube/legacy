@@ -3,6 +3,7 @@
  * /core/XCube_Root.class.php
  * @package    XCube
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Minahito, 2008/11/20
  * @copyright  (c) 2005-2023 The XOOPSCube Project
@@ -21,7 +22,7 @@ require_once XCUBE_CORE_PATH . '/XCube_HttpContext.class.php';
 
 if ( PHP_VERSION_ID >= 50000 ) {
 	function XC_CLASS_EXISTS( $className ) {
-		return class_exists( $className, false );
+		return $className && class_exists( $className, false );
 	}
 } else {
 	function XC_CLASS_EXISTS( $className ) {

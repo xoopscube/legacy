@@ -1,5 +1,6 @@
 <?php
 /*
+ * @author     Nobuhiro YASUTOMI, PHP8
  * Created on 2012/01/20 by nao-pon http://xoops.hypweb.net/
  * $Id: xoops_elFinder.class.php,v 1.1 2012/01/20 13:32:02 nao-pon Exp $
  */
@@ -591,7 +592,7 @@ class xoops_elFinder {
 				$head = <<<EOD
 USER: $uname
 UID: $uid
-IP: ${_SERVER['REMOTE_ADDR']}
+IP: {$_SERVER['REMOTE_ADDR']}
 CMD: $cmd
 DATE: $date
 EOD;

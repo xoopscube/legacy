@@ -4,6 +4,7 @@
  *
  * @package    Altsys
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -28,6 +29,7 @@ function altsys_set_module_config() {
 	}
 
 	// for RTL users
+	if (!defined("_ADM_USE_RTL")) define("_ADM_USE_RTL", 0);
 	@define( '_GLOBAL_LEFT', 1 == @_ADM_USE_RTL ? 'right' : 'left' );
 	@define( '_GLOBAL_RIGHT', 1 == @_ADM_USE_RTL ? 'left' : 'right' );
 }

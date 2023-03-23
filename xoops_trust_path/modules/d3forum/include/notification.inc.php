@@ -4,6 +4,7 @@
  *
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2022 Author
@@ -11,11 +12,10 @@
  */
 
 function d3forum_notify_iteminfo( $mydirname, $category, $item_id ) {
-	// $db =& Database::getInstance();
-	$db = &XoopsDatabaseFactory::getDatabaseConnection();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-	$module_handler =& xoops_gethandler( 'module' );
-	$module         =& $module_handler->getByDirname( $mydirname );
+	$module_handler = xoops_gethandler( 'module' );
+	$module         = $module_handler->getByDirname( $mydirname );
 
 	if ( 'global' === $category ) {
 		$item['name'] = '';

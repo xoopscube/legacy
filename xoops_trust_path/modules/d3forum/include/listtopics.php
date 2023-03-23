@@ -4,6 +4,7 @@
  *
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2022 Author
@@ -87,9 +88,9 @@ while ( $topic_row = $db->fetchArray( $trs ) ) {
 	$topic_id = (int) $topic_row['topic_id'];
 
 	// get last poster's object
-	$user_handler     = &xoops_gethandler( 'user' );
-	$last_poster_obj  = &$user_handler->get( (int) $topic_row['topic_last_uid'] );
-	$first_poster_obj = &$user_handler->get( (int) $topic_row['topic_first_uid'] );
+	$user_handler     = xoops_gethandler( 'user' );
+	$last_poster_obj  = $user_handler->get( (int) $topic_row['topic_last_uid'] );
+	$first_poster_obj = $user_handler->get( (int) $topic_row['topic_first_uid'] );
 	// naao from
 	//$last_post_uname4html = is_object( $last_poster_obj ) ? $last_poster_obj->getVar( 'uname' ) : $xoopsConfig['anonymous'] ;
 	if ( is_object( $last_poster_obj ) ) {

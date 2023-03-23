@@ -1,6 +1,7 @@
 <?php
 /**
  * @package user
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @version $Id: AdminPreload.class.php,v 1.1 2007/05/15 02:35:34 minahito Exp $
  */
 
@@ -29,7 +30,7 @@ class User_AdminPreload extends XCube_ActionFilter
             $t_conds[] = 'theme <> ' . $db->quoteString($theme);
         }
         
-        $sql = "UPDATE ${table} SET theme=${mainTheme} WHERE " . implode(' AND ', $t_conds);
+        $sql = "UPDATE {$table} SET theme={$mainTheme} WHERE " . implode(' AND ', $t_conds);
 
         $db->query($sql);
     }

@@ -4,6 +4,7 @@
  *
  * @package    D3Forum
  * @version    XCL 2.3.3
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -38,7 +39,7 @@ if ( $uid > 0 ) {
 		if ( isset( $notify ) ) {
 			$notify = (int) $notify;
 		} else {
-			$notification_handler =& xoops_gethandler( 'notification' );
+			$notification_handler = xoops_gethandler( 'notification' );
 			if ( ! empty( $topic_id ) && $notification_handler->isSubscribed( 'topic', $topic_id, 'newpost', $xoopsModule->getVar( 'mid' ), $uid ) ) {
 				$notify = 1;
 			} else {
@@ -65,7 +66,7 @@ if ( ! empty( $xoopsModuleConfig['use_solved'] ) && $isadminormod ) {
 
 // form elements or javascript for anti-SPAM
 if ( d3forum_common_is_necessary_antispam( $xoopsUser, $xoopsModuleConfig ) ) {
-	$antispam_obj    =& d3forum_common_get_antispam_object( $xoopsModuleConfig );
+	$antispam_obj    = d3forum_common_get_antispam_object( $xoopsModuleConfig );
 	$antispam4assign = $antispam_obj->getHtml4Assign();
 } else {
 	$antispam4assign = [];

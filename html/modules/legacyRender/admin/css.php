@@ -58,13 +58,13 @@ $smarty->register_function('stylesheet', 'Legacy_function_stylesheet');
     $smarty->force_compile = true;
 
     if (null !== $theme && null !== $dirname) {
-        //$path = XOOPS_THEME_PATH . "/${theme}/modules/${dirname}";
+        //$path = XOOPS_THEME_PATH . "/{$theme}/modules/{$dirname}";
         //!Todo Check XCL path : theme/templates/dirname
-        $path = XOOPS_THEME_PATH . "/${theme}/templates/${dirname}";
+        $path = XOOPS_THEME_PATH . "/{$theme}/templates/{$dirname}";
     } elseif (null !== $theme) {
         $path = XOOPS_THEME_PATH . '/' . $theme;
     } elseif (null !== $dirname) {
-        $path = XOOPS_MODULE_PATH . "/${dirname}/admin/templates";
+        $path = XOOPS_MODULE_PATH . "/{$dirname}/admin/templates";
     } else {
         $path = LEGACY_ADMIN_RENDER_FALLBACK_PATH;
     }
