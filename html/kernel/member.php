@@ -4,7 +4,7 @@
  * This class provides simple interface (a facade class) for handling groups/users/
  * membership data
  * @package    kernel
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Other authors Minahito, 2007/05/15
  * @author     Kazumi Ono (aka onokazu)

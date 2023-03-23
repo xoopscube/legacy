@@ -2,7 +2,7 @@
 /**
  * user class object
  * @package    kernel
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Other authors Minahito, 2008/10/26
  * @author     Kazumi Ono (aka onokazu)
