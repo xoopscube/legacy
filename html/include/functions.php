@@ -3,7 +3,7 @@
  * Xoops functions (compatibility)
  * @package    XCL
  * @subpackage core
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors gigamaster, 2020 XCL PHP7
  * @author     Other authors Mumincacao, 2008/10/03
  * @author     Community
