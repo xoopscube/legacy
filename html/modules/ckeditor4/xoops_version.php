@@ -2,7 +2,7 @@
 /**
  * CKEditor4 module for XCL
  * @package    CKEditor4
- * @version    2.3.1
+ * @version    2.3.3
  * @author     Other authors Nuno Luciano (aka gigamaster), 2020, XCL PHP7
  * @author     Naoki Sawada (aka nao-pon) <https://xoops.hypweb.net/>
  * @copyright  (c) 2005-2023 The XOOPSCube Project

@@ -18,8 +18,8 @@ $mydirpath = basename(__DIR__) ;
 // Manifesto
 $modversion['dirname']          = 'profile';
 $modversion['name']             = _MI_PROFILE_LANG_PROFILE;
-$modversion['version']          = '2.32';
-$modversion['detailed_version'] = '2.32.1';
+$modversion['version']          = '2.33';
+$modversion['detailed_version'] = '2.33.0';
 $modversion['description']      = _MI_PROFILE_DESC_PROFILE;
 $modversion['author']           = 'Kilica. Gigamaster (XCL23/PHP7';
 $modversion['credits']          = 'Kilica, The XOOPSCube Project';

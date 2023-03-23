@@ -10,8 +10,8 @@
 
 $modversion['dirname']          = 'legacy';
 $modversion['name']             = _MI_LEGACY_NAME;
-$modversion['version']          = '2.32';
-$modversion['detailed_version'] = '2.32.1';
+$modversion['version']          = '2.33';
+$modversion['detailed_version'] = '2.33.0';
 $modversion['description']      = _MI_LEGACY_NAME_DESC;
 $modversion['author']           = 'The XOOPSCube Project Team';
 $modversion['credits']          = 'The XOOPSCube Project Team';
