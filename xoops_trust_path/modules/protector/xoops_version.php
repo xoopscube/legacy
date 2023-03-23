@@ -2,7 +2,7 @@
 /**
  * Protector module for XCL
  * @package    Protector
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Authors
@@ -21,7 +21,8 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 // Manifesto
 $modversion['dirname']          = $mydirname;
 $modversion['name']             = constant( $constpref . '_NAME' );
-$modversion['version']          = file_get_contents(dirname(__FILE__).'/include/version.txt');
+$modversion['version']          = '3.58';
+$modversion['detailed_version'] = '3.58.0';
 $modversion['detailed_version'] = $modversion['version'].'.1';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'GIJ=CHECKMATE PEAK Corp.(https://www.peak.ne.jp/) ';

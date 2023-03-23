@@ -2,7 +2,7 @@
 /**
  * mymenu for D3 modules always require altsys
  * @package    D3Forum
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2023 Author

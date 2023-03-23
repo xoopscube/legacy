@@ -2,7 +2,7 @@
 /**
  * X-elFinder module for XCL
  * @package    XelFinder
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Naoki Sawada (aka Nao-pon) <https://github.com/nao-pon>
  * @copyright  (c) 2005-2022 Author
@@ -23,8 +23,8 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = 'xelFinder';
-$modversion['version']          = '2.62';
-$modversion['detailed_version'] = '2.62.1';
+$modversion['version']          = '2.63';
+$modversion['detailed_version'] = '2.63.0';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'Naoki Sawada (aka Nao-pon) <Hypweb.net>';
 $modversion['credits']          = 'Naoki Sawada (aka Nao-pon). Nuno Luciano (aka gigamaster) 2020 XCL PHP7';
