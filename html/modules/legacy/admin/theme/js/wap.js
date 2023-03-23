@@ -14,17 +14,20 @@ const setTheme = (theme) => {
 }
 document.getElementById('theme-select').addEventListener('change', function() {
     setTheme(this.value);
-
 });
+const getTheme = () => {
+    const theme = localStorage.getItem('theme-select');
+    theme && setTheme(theme);
+}
+getTheme();
+
+/*
+ * Inline SVG icons with the class "svg" ex.:
+ * <img class="svg" src="..." width="24px" height="24px" alt="...">
+ */
+$('.svg').renderClassSvg();
+
     $(function () {
-
-
-
-        const getTheme = () => {
-            const theme = localStorage.getItem('theme-select');
-            theme && setTheme(theme);
-        }
-        getTheme();
 
         sideNavControl();
         mobileNavControl();
@@ -33,7 +36,7 @@ document.getElementById('theme-select').addEventListener('change', function() {
          * Inline SVG icons with the class "svg" ex.:
          * <img class="svg" src="..." width="24px" height="24px" alt="...">
          */
-        $('.svg').renderClassSvg();
+        //$('.svg').renderClassSvg();
 
         // Sidebar - Theme Options
         // .theme-options .theme-options-close

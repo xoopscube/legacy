@@ -49,13 +49,16 @@
         </button>
 
         <{* ////— DROPDOWN SORT —\\\\ *}>
-        <div class="dropdown" id="filter-sort" aria-label="sort filter">
+        <div class="dropdown" id="filter-sort">
 
-            <a href="#" class="dropdown-toggle button">
+            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
                 <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
             </a>
 
-        </div>
+            <div class="dropdown-content" style="min-width: 280px; padding:.5em">
+                <{include file="./components/module-filter.html"}>
+            </div><{* ----- /Dropdown-content *}>
+        </div><{* ----- /Dropdown *}>
 
 <!--        <button id="filter" class="button" type="button" data-id="3" onclick="slideToggle('.module-filter', this)" aria-label="View Filter">-->
 <!--            <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24">-->
@@ -75,10 +78,6 @@
 <{* ----- FILTER - SORT ----- *}>
 <form method="post" action="" role="search">
     <{xoops_token form=$actionForm}>
-
-<div class="module-filter" style="display: none">
-<{include file="./components/module-filter.html"}>
-</div>
 
 
 <{* ----- MODULE LIST ----- *}>
@@ -104,6 +103,6 @@
         <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
     </div>
 
-</form>
-
 <{include file="./components/pagenavi.html"}>
+
+</form>

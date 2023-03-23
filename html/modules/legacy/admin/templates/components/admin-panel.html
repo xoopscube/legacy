@@ -36,6 +36,19 @@
                 <{$xoops_lblocks.action_search.content}>
             </div>
 
+            <h6>Select Theme </h6>
+            <div data-self="size-1of1 px-3 p-5" style="background: var(--layer-3);border:var(--border);border-radius: 5px;">
+            <select name="theme-select" id="theme-select" data-self="size-1of1">
+                <option value="default">-- Default</option>
+                <option value="amber">Amber</option>
+                <option value="chocolate">chocolate</option>
+                <option value="firebrick">firebrick</option>
+                <option value="blue">Blue</option>
+                <option value="forestgreen">forestgreen</option>
+                <option value="indigo">Indigo</option>
+            </select>
+            </div>
+
             <{* Admin Module Help *}>
             <{* assign var="helpAdmin" value="`$xoops_dirname` article#help-overview" *}>
             <h6><{$smarty.const._HELP}></h6>
@@ -46,23 +59,14 @@
                 </button>
             </div>
 
-            <{* $uid|xoops_user:"name" *}>
+            <{* ----- $uid|xoops_user:"name"
             <h6><{$smarty.const._PROFILE}> <{$smarty.const._INFO}></h6>
             <div data-layout="column">
                 <{$xoops_lblocks.block_loginfo.content}>
-
-
             </div>
-            <h6>Select Theme </h6>
-            <select name="theme-select" id="theme-select">
-                <option value="default">-- Default</option>
-                <option value="amber">Amber</option>
-                <option value="chocolate">chocolate</option>
-                <option value="firebrick">firebrick</option>
-                <option value="blue">Blue</option>
-                <option value="forestgreen">forestgreen</option>
-                <option value="indigo">Indigo</option>
-            </select>
+                ----- *}>
+
+
             <{* ----- ADMIN PREVIEW ----- *}>
             <h6>Preview Layout</h6>
 

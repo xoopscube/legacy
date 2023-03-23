@@ -1,36 +1,61 @@
 <{* ---------- ---------- ---------- ---------- ---------- Block Filter *}>
-<section class="sort">
-    <{$smarty.const._AD_LEGACY_LANG_BID}>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_BID}>"><img src="<{'icons/up.png'|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_BID}>"><img src="<{'icons/down.png'|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-
-    <{$smarty.const._AD_LEGACY_LANG_BLOCK_MOD}>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_MID}>"><img src="<{'icons/up.png'|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_MID}>"><img src="<{'icons/down.png'|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-
-    <{$smarty.const._AD_LEGACY_LANG_TITLE}>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_TITLE}>"><img src="<{'icons/up.png'|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_TITLE}>"><img src="<{'icons/down.png'|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-
-    <{$smarty.const._AD_LEGACY_LANG_SIDE}>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_SIDE}>"><img src="<{'icons/up.png'|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_SIDE}>"><img src="<{'icons/down.png'|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-
-    <{$smarty.const._AD_LEGACY_LANG_LCR}>
-
-    <{$smarty.const._AD_LEGACY_LANG_WEIGHT}>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_WEIGHT}>"><img src="<{'icons/up.png'|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_WEIGHT}>"><img src="<{'icons/down.png'|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-
-    <{$smarty.const._AD_LEGACY_LANG_BCACHETIME}>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_BCACHETIME}>"><img src="<{'icons/up.png'|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_BCACHETIME}>"><img src="<{'icons/down.png'|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-
-    <{$smarty.const._AD_LEGACY_LANG_LAST_MODIFIED}>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_LAST_MODIFIED}>"><img src="<{'icons/up.png'|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-    <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_LAST_MODIFIED}>"><img src="<{'icons/down.png'|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-
-    <{$smarty.const._AD_LEGACY_LANG_UNINSTALL}> <{$smarty.const._AD_LEGACY_LANG_CONTROL}><br>
-    <input name="allbox" id="allbox" onclick="with(document.blockform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('uninstall')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All">
-
-</section>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._AD_LEGACY_LANG_BID}></h6>
+<div>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_BID}>">&uarr;</a>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_BID}>">&darr;</a>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._AD_LEGACY_LANG_BLOCK_MOD}></h6>
+<div>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_MID}>">&uarr;</a>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_MID}>">&darr;</a>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._AD_LEGACY_LANG_TITLE}></h6>
+<div>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_TITLE}>">&uarr;</a>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_TITLE}>">&darr;</a>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._AD_LEGACY_LANG_SIDE}></h6>
+<div>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_SIDE}>">&uarr;</a>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_SIDE}>">&darr;</a>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._AD_LEGACY_LANG_LCR}></h6>
+<div>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._AD_LEGACY_LANG_WEIGHT}></h6>
+<div>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_WEIGHT}>">&uarr;</a>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_WEIGHT}>">&darr;</a>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._AD_LEGACY_LANG_BCACHETIME}></h6>
+<div>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_BCACHETIME}>">&uarr;</a>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_BCACHETIME}>">&darr;</a>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._AD_LEGACY_LANG_LAST_MODIFIED}></h6>
+<div>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_LAST_MODIFIED}>">&uarr;</a>
+<a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_LAST_MODIFIED}>">&darr;</a>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._AD_LEGACY_LANG_UNINSTALL}> <{$smarty.const._AD_LEGACY_LANG_CONTROL}></h6>
+<div>
+<input name="allbox" id="allbox" onclick="with(document.blockform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('uninstall')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All">
+</div>
+</div>
