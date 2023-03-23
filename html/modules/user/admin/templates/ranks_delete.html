@@ -25,35 +25,35 @@
         </thead>
         <tbody>
         <tr>
-            <td class="head"><{$smarty.const._MD_USER_LANG_RANK_ID}></td>
+            <td><{$smarty.const._MD_USER_LANG_RANK_ID}></td>
             <td><{$object->getShow('rank_id')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_RANK_TITLE}></td>
+            <td><{$smarty.const._AD_USER_LANG_RANK_TITLE}></td>
             <td><{$object->getShow('rank_title')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_RANK_MIN}></td>
+            <td><{$smarty.const._AD_USER_LANG_RANK_MIN}></td>
             <td><{$object->getShow('rank_min')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_RANK_MAX}></td>
+            <td><{$smarty.const._AD_USER_LANG_RANK_MAX}></td>
             <td><{$object->getShow('rank_max')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_RANK_SPECIAL}></td>
+            <td><{$smarty.const._AD_USER_LANG_RANK_SPECIAL}></td>
             <td><{$object->getShow('rank_special')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_RANK_IMAGE}></td>
-            <td class="odd">
+            <td><{$smarty.const._AD_USER_LANG_RANK_IMAGE}></td>
+            <td>
                 <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('rank_image')}>" alt="<{$object->getShow('rank_title')}>" aria-label="<{$object->getShow('rank_title')}>">
             </td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button delete" type="submit" value="<{$smarty.const._DELETE}>">
             </td>

@@ -313,14 +313,14 @@
     </tr>
     <{/foreach}>
     </tbody>
-    <tfoot class="foot">
+    <tfoot>
     <tr>
         <td colspan="<{if $sid}>4<{else}>4<{/if}>">
             <{xoops_token form=$actionForm}>
             <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
             <input class="button" type="submit" value="<{$smarty.const._AD_XUPDATE_LANG_MODULE_RENAME}>">
         </td>
-        <td class="foot" colspan="2">
+        <td colspan="2">
             <{if $xupdate_writable.result==true}>
             <input class="button" type="submit" value="<{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}>" id="rapidModuleInstallButton">
             <{/if}>

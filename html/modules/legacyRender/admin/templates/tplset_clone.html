@@ -29,26 +29,26 @@
             <th colspan="2"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_CLONE}></th>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}></td>
             <td>
             <b><{$object->getShow('tplset_name')}></b> &raquo; &raquo;
             <{xoops_input type=text name=tplset_name value=$actionForm->get('tplset_name') size=30 maxlength=50}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DESC}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DESC}></td>
             <td>
             <{xoops_input type=text name=tplset_desc value=$object->get('tplset_desc') size=50 maxlength=255}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREDITS}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREDITS}></td>
             <td>
             <{xoops_textarea name=tplset_credits rows=5 cols=50 value=$actionForm->get('tplset_credits')}>
             </td>
         </tr>
         <tr>
-            <td colspan="2" class="foot">
+            <td colspan="2">
                 <input class="formButton" type="submit" value="<{$smarty.const._CLONE}>">
                 <input class="formButton" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
             </td>

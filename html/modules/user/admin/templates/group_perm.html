@@ -24,7 +24,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="odd">
+    <tr>
         <td class="list_image"><i aria-label="<{$smarty.const._AD_USER_LANG_GROUP}>"><img class="svg" src="<{'icons/icon-user-group.svg'|theme}>" width="1em" alt="group"></i></td>
         <td class="list_id"><{$group->getShow('groupid')}></td>
         <td class="list_title"><{$group->getShow('name')}></td>
@@ -165,7 +165,7 @@
                 <span class="inactive"><{$perm->mItem->getName()|xoops_escape}></span>
                 <{/if}>
             </td>
-            <td class="even">
+            <td>
                 <{assign var="getId" value=$perm->getId()}>
                 <{$smarty.const._AD_USER_LANG_PERM_ACCESS}>
                 <input type="checkbox" name="block[<{$getId}>]" value="1" <{if $perm->mValue==1}>checked="checked"<{/if}>>

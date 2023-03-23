@@ -44,7 +44,7 @@
         <tbody>
         <{foreach item=uid from=$uids}>
         <{if $uid != 1}>
-        <tr class="even">
+        <tr>
             <td class="list_id"><{$uid}></td>
             <td class="list_title"><{$userObjects[$uid]->getShow('uname')}></td>
             <td class="list_name"><{$userObjects[$uid]->get('name')}></td>
@@ -84,7 +84,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="6">
+            <td colspan="6">
                 <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>

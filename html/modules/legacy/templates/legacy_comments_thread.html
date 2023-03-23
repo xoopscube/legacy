@@ -25,9 +25,9 @@
   </tr>
   <{foreach item=reply from=$comments[i].replies}>
   <tr>
-    <td class="even"><{$reply.prefix}> <a href="<{$comment_url}>&amp;com_id=<{$reply.id}>&amp;com_rootid=<{$reply.root_id}>"><{$reply.title}></a></td>
-    <td class="odd" align="center"><{$reply.poster.uname}></td>
-    <td class="even" align="right"><{$reply.date_posted}></td>
+    <td><{$reply.prefix}> <a href="<{$comment_url}>&amp;com_id=<{$reply.id}>&amp;com_rootid=<{$reply.root_id}>"><{$reply.title}></a></td>
+    <td align="center"><{$reply.poster.uname}></td>
+    <td align="right"><{$reply.date_posted}></td>
   </tr>
   <{/foreach}>
 </table>

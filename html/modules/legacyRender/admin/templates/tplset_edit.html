@@ -30,23 +30,23 @@
             <th colspan="2"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_EDIT}> (<{$object->getShow('tplset_name')}>)</th>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}></td>
             <td><{$object->getShow('tplset_name')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DESC}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DESC}></td>
             <td>
             <{xoops_input type=text name=tplset_desc value=$actionForm->get('tplset_desc') size=50 maxlength=255}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREDITS}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREDITS}></td>
             <td>
             <{xoops_textarea name=tplset_credits rows=5 cols=50 value=$actionForm->get('tplset_credits')}>
             </td>
         </tr>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <button class="button edit" type="submit">
                     <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="edit"> <{$smarty.const._EDIT}></button>

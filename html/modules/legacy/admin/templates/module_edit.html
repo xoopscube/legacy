@@ -33,19 +33,19 @@
 <!--    </thead>-->
     <tbody>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_NAME}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_NAME}></td>
         <td><{xoops_input type=text name=name value=$actionForm->get('name') size=50 maxlength=191}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
         <td><{$object->getShow('dirname')}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
         <td><{$object->modinfo.description}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
         <td><{math equation="v/100" v=$object->get('version') format="%.2f"}>
             <{if $object->get('version')/100 != $object->modinfo.version}>
             &raquo; <b class="message-warning"><{math equation=$object->modinfo.version format="%.2f"}></b>
@@ -53,7 +53,7 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
         <td>
             <{if $object->get('mid')}>
             <{$object->getShow('mid')}>
@@ -63,7 +63,7 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
         <td>
             <{if $object->get('last_update')}>
             <{$object->get('last_update')|xoops_formattimestamp:l}>
@@ -73,13 +73,13 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_WEIGHT}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_WEIGHT}></td>
         <td>
         <{xoops_input type=text name=weight value=$actionForm->get('weight') size=5 class=list_number}>
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_ADMINGROUP}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_ADMINGROUP}></td>
         <td>
         <select size='5' name='admin_groupid[]' multiple='multiple'>
             <{xoops_optionsArray id=admin_groupid[] from=$groupArr value=groupid label=name default=$admingroupidArr}>
@@ -87,7 +87,7 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_READGROUP}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_READGROUP}></td>
         <td>
         <select  size='5' name='read_groupid[]' multiple='multiple'>
             <{xoops_optionsArray id=read_groupid[] from=$groupArr value=groupid label=name default=$readgroupidArr}>
@@ -95,7 +95,7 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_AM_MODCACHE}></td>
+        <td><{$smarty.const._MD_AM_MODCACHE}></td>
         <td>
         <{if $object->get('hasmain')}>
         <select name='module_cache'>
@@ -109,7 +109,7 @@
     </tbody>
     <tfoot>
     <tr>
-        <td class="foot" colspan="2">
+        <td colspan="2">
             <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
             <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
         </td>

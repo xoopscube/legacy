@@ -39,19 +39,19 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
             <td><{$module->getShow('name')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
             <td><{$module->getShow('dirname')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
             <td><{$currentVersion}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
             <td>
                 <{if $module->get('mid')}>
                 <{$module->getShow('mid')}>
@@ -61,7 +61,7 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
             <td>
                 <{if $module->get('last_update')}>
                 <{$module->get('last_update')|xoops_formattimestamp:l}>
@@ -71,13 +71,13 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
             <td><{$module->modinfo.description|xoops_escape}></td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button-install" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
             </td>

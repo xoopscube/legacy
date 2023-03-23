@@ -39,13 +39,13 @@
 
         <tbody>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD_FILE}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_IMAGE_UPLOAD_FILE}></td>
             <td>
             <{xoops_input type=file name=upload}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_ID}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_IMGCAT_ID}></td>
             <td>
             <select name="imgcat_id">
                 <{if $category}>
@@ -60,7 +60,7 @@
 
         <tfoot>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="nutton-upload" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPLOAD}>">
             </td>

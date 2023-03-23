@@ -62,31 +62,31 @@
         </tr>
         <{/if}>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMAGE_NAME}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_IMAGE_NAME}></td>
             <td>
             <{xoops_input type=file name=image_name}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_IMAGE_NICENAME}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_IMAGE_NICENAME}></td>
             <td>
             <{xoops_input type=text name=image_nicename value=$actionForm->get('image_nicename') size=30 maxlength=191}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAY}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_IMAGE_DISPLAY}></td>
             <td>
                 <{xoops_input type=checkbox name=image_display value=1 default=$actionForm->get('image_display') size=45}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMAGE_WEIGHT}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_IMAGE_WEIGHT}></td>
             <td>
             <{xoops_input type=text name=image_weight value=$actionForm->get('image_weight') size=5}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_IMGCAT_ID}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_IMGCAT_ID}></td>
             <td>
             <select name="imgcat_id">
                 <{xoops_optionsArray id=imgcat_id from=$categoryArr value=imgcat_id label=imgcat_name default=$actionForm->get('imgcat_id')}>
@@ -97,7 +97,7 @@
 
         <tfoot>
         <tr>
-            <td colspan="2" class="foot">
+            <td colspan="2">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>

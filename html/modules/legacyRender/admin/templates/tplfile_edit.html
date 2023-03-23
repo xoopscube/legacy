@@ -44,23 +44,23 @@ function expandEditor( id, width, height )
             <th colspan="2"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_FILE_EDIT}></th>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TPLSET}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TPLSET}></td>
             <td><b><{$object->getShow('tpl_tplset')}></b></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_MODULE}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_MODULE}></td>
             <td><b><{$object->getShow('tpl_module')}></b></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_FILE}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_FILE}></td>
             <td><b><{$object->getShow('tpl_file')}></b></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_DESC}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_DESC}></td>
             <td><{xoops_input type=text name=tpl_desc size=80 value=$actionForm->get('tpl_desc')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_SOURCE}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_SOURCE}></td>
             <td>
             <div class="legacyRender_TemplateManager_sizenavi">
                 <{$smarty.const._AD_LEGACYRENDER_LANG_MORE_SMALL}>
@@ -81,7 +81,7 @@ function expandEditor( id, width, height )
             </td>
     </tr>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button" type="submit" value="<{$smarty.const._EDIT}>">
             </td>

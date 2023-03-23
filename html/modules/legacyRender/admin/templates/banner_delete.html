@@ -35,15 +35,15 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_BID}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_BID}></td>
             <td><{$object->getShow('bid')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_CLIENT_NAME}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_CLIENT_NAME}></td>
             <td><{$object->mClient->getShow('name')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_IMPTOTAL}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_IMPTOTAL}></td>
             <td>
                 <{if $object->get('imptotal') > 0}>
                 <{$object->getShow('imptotal')}>
@@ -53,37 +53,37 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_IMPMADE}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_IMPMADE}></td>
             <td><{$object->getShow('impmade')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKS}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKS}></td>
             <td><{$object->getShow('clicks')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_IMAGEURL}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_IMAGEURL}></td>
             <td><{$object->getShow('imageurl')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKURL}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKURL}></td>
             <td><{$object->getShow('clickurl')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_DATE}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_DATE}></td>
             <td><{$object->get('date')|xoops_formattimestamp}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLBANNER}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLBANNER}></td>
             <td><{if $object->getShow('htmlbanner') ==1}><{$smarty.const._YES}><{else}><{$smarty.const._NO}><{/if}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLCODE}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLCODE}></td>
             <td><{$object->getShow('htmlcode')}></td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <button class="button delete" type="submit" value=""><img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="delete"> <{$smarty.const._DELETE}></button>
             </td>

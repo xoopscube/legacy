@@ -24,19 +24,19 @@
             <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_COMMENT_DELETE}></th>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_ID}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_ID}></td>
             <td><{$object->getShow('com_id')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_PID}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_PID}></td>
             <td><{$object->getShow('com_pid')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_ROOTID}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_ROOTID}></td>
             <td><{$object->getShow('com_rootid')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_MODID}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_MODID}></td>
             <td>
             <{if $object->mModule}>
             <{$object->mModule->getShow('name')}>
@@ -47,11 +47,11 @@
 
         <tbody>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_ITEMID}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_ITEMID}></td>
             <td><{$object->getShow('com_itemid')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_ICON}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_ICON}></td>
             <td>
             <{if $object->getShow('com_icon')}>
             <img class="svg" src="<{$smarty.const.XOOPS_URL}>/images/subject/<{$object->getShow('com_icon')}>">
@@ -61,15 +61,15 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_COM_CREATED}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_COM_CREATED}></td>
             <td><{$object->get('com_created')|xoops_formattimestamp:l}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_COM_MODIFIED}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_COM_MODIFIED}></td>
             <td><{$object->get('com_modified')|xoops_formattimestamp:l}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_COM_UID}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_COM_UID}></td>
             <td>
             <{if $object->mUser != null}>
             <{$object->mUser->getShow('uname')}>
@@ -79,34 +79,34 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_IP}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_IP}></td>
             <td><{$object->getShow('com_ip')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></td>
             <td><{$object->getShow('com_title')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_TEXT}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_TEXT}></td>
             <td><{$object->getShow('com_text')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_COM_SIG}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_COM_SIG}></td>
             <td>
             <label><{xoops_input type=radio name=com_sig value=1 default=$object->get('com_sig') disabled=true}><{$smarty.const._YES}></label>
             <label><{xoops_input type=radio name=com_sig value=0 default=$object->get('com_sig') disabled=true}><{$smarty.const._NO}></label>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_COM_STATUS}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_COM_STATUS}></td>
             <td><{$object->mStatus->getShow('name')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_EXPARAMS}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_EXPARAMS}></td>
             <td><{$object->getShow('com_exparams')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_CONTROL}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_CONTROL}></td>
             <td>
 
             <label>
@@ -127,7 +127,7 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._CM_DELETESELECT}></td>
+            <td><{$smarty.const._CM_DELETESELECT}></td>
             <td>
             <label><{xoops_input type=radio name=delete_mode value=delete_one}><{$smarty.const._CM_DELETEONE}></label><br>
             <label><{xoops_input type=radio name=delete_mode value=delete_all default=delete_all}><{$smarty.const._CM_DELETEALL}></label><br>
@@ -137,7 +137,7 @@
 
         <tfoot>
         <tr>
-            <td colspan="2" class="foot">
+            <td colspan="2">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>">
             </td>

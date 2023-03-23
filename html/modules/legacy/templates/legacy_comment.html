@@ -1,7 +1,7 @@
 <{* ----- start comment post ----- *}>
   <tr>
-    <td class="head"><a id="comment<{$comment.id}>"></a> <{$comment.poster.uname}></td>
-    <td class="head">
+    <td><a id="comment<{$comment.id}>"></a> <{$comment.poster.uname}></td>
+    <td>
       <div class="comDate">
         <span class="comDateCaption"><{$lang_posted}>:</span> <{$comment.date_posted}>&nbsp;&nbsp;
         <span class="comDateCaption"><{$lang_updated}>:</span> <{$comment.date_modified}>
@@ -10,7 +10,7 @@
   </tr>
   <tr>
     <{if $comment.poster.id != 0}>
-      <td class="odd">
+      <td>
         <div class="comUserRank">
           <div class="comUserRankText"><{$comment.poster.rank_title}></div>
           <img class="comUserRankImg" src="<{$xoops_upload_url}>/<{$comment.poster.rank_image}>" alt="">
@@ -22,43 +22,43 @@
         <div class="comUserStatus"><{$comment.poster.status}></div>
       </td>
     <{else}>
-      <td class="odd"> </td>
+      <td> </td>
     <{/if}>
 
-    <td class="odd">
+    <td>
       <div class="comTitle"><{$comment.image}><{$comment.title}></div>
       <div class="comText"><{$comment.text}></div>
     </td>
   </tr>
   <tr>
     <{if $xoops_iscommentadmin == true}>
-      <td class="even">
+      <td>
         <a class="ui-button" href="<{$editcomment_link}>&amp;com_id=<{$comment.id}>">
           <img class="svg" src="<{$xoops_url}>/images/icons/edit.svg" alt="<{$lang_edit}>" aria-label="<{$lang_edit}>"></a>
         <a class="ui-button" href="<{$deletecomment_link}>&amp;com_id=<{$comment.id}>">
           <img class="svg" src="<{$xoops_url}>/images/icons/delete.svg" alt="<{$lang_delete}>" aria-label="<{$lang_delete}>"></a>
       </td>
-      <td class="even" align="right">
+      <td align="right">
         <a class="ui-button" href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>">
           <img class="svg" src="<{$xoops_url}>/images/icons/reply.svg" alt="<{$lang_reply}>" aria-label="<{$lang_reply}>"> <{$lang_reply}></a>
       </td>
     <{elseif $xoops_isuser == true && $xoops_userid == $comment.poster.id}>
-      <td class="even">
+      <td>
         <a class="ui-button" href="<{$editcomment_link}>&amp;com_id=<{$comment.id}>">
           <img class="svg" src="<{$xoops_url}>/images/icons/edit.svg" alt="<{$lang_edit}>" aria-label="<{$lang_edit}>"></a>
       </td>
-      <td class="even" align="right">
+      <td align="right">
         <a class="ui-button" href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>">
           <img class="svg" src="<{$xoops_url}>/images/icons/reply.svg" alt="<{$lang_reply}>" aria-label="<{$lang_reply}>"> <{$lang_reply}></a>
       </td>
     <{elseif $xoops_isuser == true || ($xoops_isuser == false && $com_anonpost == true)}>
-      <td class="even"></td>
-      <td class="even" align="right">
+      <td></td>
+      <td align="right">
         <a class="ui-button" href="<{$replycomment_link}>&amp;com_id=<{$comment.id}>">
           <img class="svg" src="<{$xoops_url}>/images/icons/reply.svg" alt="<{$lang_reply}>" aria-label="<{$lang_reply}>"> <{$lang_reply}></a>
       </td>
     <{else}>
-      <td class="even"> </td>
+      <td> </td>
     <{/if}>
   </tr>
 <{* ----- end comment post ----- *}>

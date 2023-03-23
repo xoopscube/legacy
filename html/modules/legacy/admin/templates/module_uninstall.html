@@ -38,21 +38,21 @@
                 <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" class="svg" aria-label="<{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>">
                 <div class="list_imagetitle"><{$module->modinfo.name|xoops_escape}></div>
             </td>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
             <td><{$module->getShow('name')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
             <td><{$module->getShow('dirname')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
             <td>
                 <{$currentVersion}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
             <td>
                 <{if $module->get('mid')}>
                 <{$module->getShow('mid')}>
@@ -62,7 +62,7 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
             <td>
                 <{if $module->get('last_update')}>
                 <{$module->get('last_update')|xoops_formattimestamp:l}>
@@ -72,11 +72,11 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
             <td><{$module->modinfo.description|xoops_escape}></td>
         </tr>
         <tr>
-            <td class="foot" colspan="3">
+            <td colspan="3">
                 <input type="checkbox" name="force" value="1"><{$smarty.const._AD_LEGACY_LANG_FORCE_MODE}>
             </td>
         </tr>
@@ -84,7 +84,7 @@
 
         <tfoot>
         <tr>
-            <td class="foot" colspan="3">
+            <td colspan="3">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <button class="button uninstall" type="submit">
                     <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="uninstall" width="1em" height="1em">

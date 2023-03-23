@@ -29,7 +29,7 @@
     <table class="outer">
         <tbody>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COMMENT_RULE}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COMMENT_RULE}></td>
             <td>
             <{if $xoopsModuleConfig.com_rule == XOOPS_COMMENT_APPROVEALL}>
                 <{$smarty.const._CM_COMAPPROVEALL}>
@@ -41,29 +41,29 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></td>
             <td>
             <{xoops_input type=text name=com_title value=$actionForm->get('com_title') size=50 maxlength=191}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_ICON}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_ICON}></td>
             <td>
             <{foreach item=icon from=$subjectIcons}>
             <label><{xoops_input type=radio name=com_icon value=$icon->get('filename') default=$actionForm->get('filename')}>
-                <img src="<{$xoops_url}>/images/subject/<{$icon->getShow('filename')}>">
+                <img src="<{$xoops_url}>/images/subject/<{$icon->getShow('filename')}>" width="1em" height="1em" alt="subject">
             </label>
             <{/foreach}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_TEXT}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_TEXT}></td>
             <td>
             <{xoops_dhtmltarea type=text rows=15 cols=60 name=com_text value=$actionForm->get('com_text')}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_OPTION}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_OPTION}></td>
             <td>
             <{if $xoops_isadmin}>
             <label><{xoops_input type=checkbox name=dohtml value=1 default=$actionForm->get('dohtml')}> <{$smarty.const._MD_LEGACY_LANG_DOHTML}></label>
@@ -78,7 +78,7 @@
         </tr>
         </tbody>
         <tfoot>
-        <tr class="foot">
+        <tr>
             <td colspan="2">
                 <input role="button" class="outline" type="button" value="<{$smarty.const._BACK}>" onclick="javascript:history.back()">
                 <input role="button" class="primary" type="submit" name="com_dopost" value="<{$smarty.const._SUBMIT}>">

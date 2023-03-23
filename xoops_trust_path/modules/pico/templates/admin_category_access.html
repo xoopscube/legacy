@@ -38,7 +38,7 @@
 <{if $cat_id != 0 }>
 <div class="ui-card-full">
     <!-- cat_permission_id == cat_id -->
-    <h3 class="head"><{$smarty.const._MD_A_PICO_H2_INDEPENDENTPERMISSION}></h3>
+    <h3><{$smarty.const._MD_A_PICO_H2_INDEPENDENTPERMISSION}></h3>
     <form name="independentpermission" action="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" method="post">
         <{$gticket_hidden}>
         <label for="independentpermission"><{$smarty.const._MD_A_PICO_LABEL_INDEPENDENTPERMISSION}></label>
@@ -60,7 +60,7 @@
 
 
 <!-- group form -->
-<h2 class="head"><{$smarty.const._MD_A_PICO_H2_GROUPPERMS}></h2>
+<h2><{$smarty.const._MD_A_PICO_H2_GROUPPERMS}></h2>
 
 <form name="groupperms" action="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_id}>" method="post">
     <{$gticket_hidden}>
@@ -82,8 +82,8 @@
         <tbody>
         <{foreach from=$groups item=group}>
         <tr align="center">
-            <td class="head"><{$group.name}></td>
-            <td class="head">
+            <td><{$group.name}></td>
+            <td>
                 <input type="checkbox"
                        onclick="with(document.groupperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('_gid<{$group.gid}>_')>=0){elements[i].checked=this.checked;}}}">
             </td>
@@ -108,7 +108,7 @@
 
 
 <!-- user form -->
-<h2 class="head"><{$smarty.const._MD_A_PICO_H2_USERPERMS}></h2>
+<h2><{$smarty.const._MD_A_PICO_H2_USERPERMS}></h2>
 
 <div class="tips">
     <{$smarty.const._MD_A_PICO_NOTICE_ADDUSERS}>
@@ -134,9 +134,9 @@
         <!-- edit user -->
         <{foreach from=$users item=user}>
         <tr>
-            <td class="head"><{$user.uid}></td>
-            <td class="head"><{$user.name}></td>
-            <td class="head">
+            <td><{$user.uid}></td>
+            <td><{$user.name}></td>
+            <td>
                 <input type="checkbox"
                        onclick="with(document.userperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('_uid<{$user.uid}>_')>=0){elements[i].checked=this.checked;}}}">
             </td>
@@ -153,13 +153,13 @@
         <!-- new user -->
         <{foreach from=$new_users item=user}>
         <tr align="center">
-            <td class="head">
+            <td>
                 <input type="text" size="4" name="new_uids[<{$user.nid}>]" value="">
             </td>
-            <td class="head">
+            <td>
                 <input type="text" size="12" name="new_unames[<{$user.nid}>]" value="">
             </td>
-            <td class="head">
+            <td>
                 <input type="checkbox"
                        onclick="with(document.userperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('_nid<{$user.nid}>_')>=0){elements[i].checked=this.checked;}}}">
             </td>

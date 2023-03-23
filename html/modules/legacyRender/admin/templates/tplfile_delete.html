@@ -20,43 +20,43 @@
             <th colspan="2"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLFILE_DELETE}></th>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_ID}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_ID}></td>
             <td><{$object->getShow('tpl_id')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_REFID}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_REFID}></td>
             <td><{$object->getShow('tpl_refid')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_MODULE}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_MODULE}></td>
             <td><{$object->getShow('tpl_module')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TPLSET}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TPLSET}></td>
             <td><{$object->getShow('tpl_tplset')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_FILE}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_FILE}></td>
             <td><{$object->getShow('tpl_file')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_DESC}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_DESC}></td>
             <td><{$object->getShow('tpl_desc')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_LASTMODIFIED}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_LASTMODIFIED}></td>
             <td><{$object->get('tpl_lastmodified')|xoops_formattimestamp:l}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_LASTIMPORTED}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_LASTIMPORTED}></td>
             <td><{$object->get('tpl_lastimported')|xoops_formattimestamp:l}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TYPE}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TYPE}></td>
             <td><{$object->getShow('tpl_type')}></td>
         </tr>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <{xoops_input type=hidden name=tpl_id value=$actionForm->get('tpl_id')}>
                 <input class="button button-delete" type="submit" value="<{$smarty.const._DELETE}>">
                 <input class="button" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">

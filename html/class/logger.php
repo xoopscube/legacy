@@ -130,7 +130,7 @@ class XoopsLogger
             }
             $class = ('odd' == $class) ? 'even' : 'odd';
         }
-        $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->queries).'</span> queries</td></tr></table><br>';
+        $ret .= '<tr><td>Total: <span style="color:#ff0000;">'.count($this->queries).'</span> queries</td></tr></table><br>';
         return $ret;
     }
 
@@ -151,7 +151,7 @@ class XoopsLogger
             }
             $class = ('odd' == $class) ? 'even' : 'odd';
         }
-        $ret .= '<tr class="foot"><td>Total: <span style="color:#ff0000;">'.count($this->blocks).'</span> blocks</td></tr></table><br>';
+        $ret .= '<tr><td>Total: <span style="color:#ff0000;">'.count($this->blocks).'</span> blocks</td></tr></table><br>';
         return $ret;
     }
 

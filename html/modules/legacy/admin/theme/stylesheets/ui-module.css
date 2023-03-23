@@ -24,8 +24,7 @@
     color       : var(  --color-green  );
 }
 /* Blocks and Templates */
-.ui-block-admin-preview,
-.ui-block-permissions {
+.ui-block-admin-preview {
     background      : var(--layer-2);
     border          : var(--border);
     border-radius   : var(--border-radius);

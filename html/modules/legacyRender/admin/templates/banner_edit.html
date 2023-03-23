@@ -58,27 +58,27 @@
         </tr>
         <{/if}>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_CID}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_CID}></td>
             <td><select name="cid"><{xoops_optionsArray id=cid from=$bannerclientArr label=name value=cid default=$actionForm->get('cid')}></select></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_IMPTOTAL}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_IMPTOTAL}></td>
             <td><{xoops_input type=text name=imptotal value=$actionForm->get('imptotal') class=list_number}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_IMAGEURL}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_IMAGEURL}></td>
             <td><{xoops_input type=text name=imageurl value=$actionForm->get('imageurl') size=70 maxlength=191}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKURL}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKURL}></td>
             <td><{xoops_input type=text name=clickurl value=$actionForm->get('clickurl') size=70 maxlength=191}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLCODE}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLCODE}></td>
             <td><{xoops_textarea name=htmlcode cols=50 rows=10 value=$actionForm->get('htmlcode')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLBANNER}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLBANNER}></td>
             <td>
                 <label class="ui-checkbox" aria-label="HTML Banner"><{xoops_input type=checkbox name=htmlbanner value=1 default=$actionForm->get('htmlbanner')}>
                 <span class="ui-checkbox-custom"></span>
@@ -88,7 +88,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>

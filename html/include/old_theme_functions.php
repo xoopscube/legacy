@@ -22,7 +22,7 @@
 if (!function_exists('opentable')) {
     function OpenTable($width='100%')
     {
-        echo '<table width="'.$width.'" cellspacing="0" class="outer"><tr><td class="even">';
+        echo '<table width="'.$width.'" cellspacing="0" class="outer"><tr><td>';
     }
 }
 
@@ -36,6 +36,6 @@ if (!function_exists('closetable')) {
 if (!function_exists('themecenterposts')) {
     function themecenterposts($title, $content)
     {
-        echo '<table cellpadding="4" cellspacing="1" width="98%" class="outer"><tr><td class="head">'.$title.'</td></tr><tr><td><br>'.$content.'<br></td></tr></table>';
+        echo '<table cellpadding="4" cellspacing="1" width="98%" class="outer"><tr><td>'.$title.'</td></tr><tr><td><br>'.$content.'<br></td></tr></table>';
     }
 }

@@ -226,7 +226,7 @@ class XoopsGroupFormCheckBox extends XoopsFormElement
      */
     public function render()
     {
-        $ret = '<table class="outer"><tr><td class="odd"><table><tr>';
+        $ret = '<table class="outer"><tr><td><table><tr>';
         $cols = 1;
 
         if ($this->_hasChildren()) {
@@ -242,7 +242,7 @@ class XoopsGroupFormCheckBox extends XoopsFormElement
                 $cols++;
             }
         }
-        $ret .= '</tr></table></td><td class="even">';
+        $ret .= '</tr></table></td><td>';
         $option_ids = [];
         foreach (array_keys($this->_optionTree) as $id) {
             if (!empty($id)) {

@@ -25,45 +25,45 @@
         </thead>
         <tbody>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_BID}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_BID}></td>
             <td><{$object->getShow('bid')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_BLOCK_MOD}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_BLOCK_MOD}></td>
             <td><{$object->getShow('mid')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_FUNC_NUM}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_FUNC_NUM}></td>
             <td><{$object->getShow('func_num')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_OPTIONS}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_OPTIONS}></td>
             <td><{$object->getShow('options')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
             <td><{$object->getShow('name')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_TITLE}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_TITLE}></td>
             <td><{$object->getShow('title')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_CONTENT}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_CONTENT}></td>
             <td><{$object->getShow('content')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_SIDE}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_SIDE}></td>
             <td>
             <{if $object->mColumn}><{$object->mColumn->getShow('name')}><{/if}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_WEIGHT}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_WEIGHT}></td>
             <td><{$object->getShow('weight')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_VISIBLE}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_VISIBLE}></td>
             <td>
             <{if $object->getShow('visible') == 1}>
             <{$smarty.const._YES}>
@@ -73,15 +73,15 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_BLOCK_TYPE}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_BLOCK_TYPE}></td>
             <td><{$object->getShow('block_type')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_C_TYPE}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_C_TYPE}></td>
             <td><{$object->getShow('c_type')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_ISACTIVE}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_ISACTIVE}></td>
             <td>
             <{if $object->getShow('isactive') == 1}>
             <{$smarty.const._YES}>
@@ -91,39 +91,39 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_DIRNAME}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_DIRNAME}></td>
             <td><{$object->getShow('dirname')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_FUNC_FILE}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_FUNC_FILE}></td>
             <td><{$object->getShow('func_file')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_SHOW_FUNC}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_SHOW_FUNC}></td>
             <td><{$object->getShow('show_func')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_EDIT_FUNC}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_EDIT_FUNC}></td>
             <td><{$object->getShow('edit_func')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_TEMPLATE}></td>
             <td><{$object->getShow('template')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_BCACHETIME}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_BCACHETIME}></td>
             <td>
             <{if $object->mCachetime}><{$object->mCachetime->getShow('label')}><{/if}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_LAST_MODIFIED}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_LAST_MODIFIED}></td>
             <td><{$object->get('last_modified')|xoops_formattimestamp:l}></td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button-delete" type="submit" value="<{$smarty.const._DELETE}>">
             </td>

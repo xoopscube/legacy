@@ -269,12 +269,12 @@
         <{/foreach}>
     </tbody>
 
-    <tfoot class="foot">
+    <tfoot>
         <tr>
             <td colspan="5">
             <{xoops_token form=$actionForm}>
             </td>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <{if $xupdate_writable.result==true}>
                 <input class="formButton" type="submit"
                        value="<{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}>"

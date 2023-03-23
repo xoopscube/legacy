@@ -38,37 +38,37 @@
         </thead>
         <tbody>
         <tr>
-            <td class="head"><{$smarty.const._MD_USER_LANG_UID}></td>
+            <td><{$smarty.const._MD_USER_LANG_UID}></td>
             <td><{$object->getShow('uid')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_USER_LANG_UNAME}></td>
+            <td><{$smarty.const._MD_USER_LANG_UNAME}></td>
             <td><{$object->getShow('uname')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_USER_LANG_NAME}></td>
+            <td><{$smarty.const._MD_USER_LANG_NAME}></td>
             <td><{$object->getShow('name')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_REGDATE}></td>
+            <td><{$smarty.const._AD_USER_LANG_REGDATE}></td>
             <td><{$object->get('user_regdate')|xoops_formattimestamp}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_LASTLOGIN}></td>
+            <td><{$smarty.const._AD_USER_LANG_LASTLOGIN}></td>
             <td><{$object->get('last_login')|xoops_formattimestamp:l}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_USER_LANG_POSTS}></td>
+            <td><{$smarty.const._MD_USER_LANG_POSTS}></td>
             <td><{$object->getShow('posts')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_USER_LANG_LEVEL}></td>
+            <td><{$smarty.const._MD_USER_LANG_LEVEL}></td>
             <td><{$object->getShow('level')}></td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="2" class="foot">
+            <td colspan="2">
                 <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button delete" type="submit" value="<{$smarty.const._DELETE}>">
             </td>

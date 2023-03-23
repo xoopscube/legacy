@@ -35,15 +35,15 @@
             <{/if}>
             <div class="list_imagetitle"><{$module->modinfo.name|xoops_escape}></div>
         </td>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
         <td><{$module->getShow('name')}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
         <td><{$module->getShow('dirname')}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
         <td><{math equation="v/100" v=$module->get('version') format="%.2f"}>
             <{if $module->get('version')/100 != $module->modinfo.version}>
             &raquo; <b class="message-warning"><{math equation=$module->modinfo.version format="%.2f"}></b>
@@ -51,7 +51,7 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
         <td>
             <{if $module->get('mid')}>
             <{$module->getShow('mid')}>
@@ -61,7 +61,7 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
         <td>
             <{if $module->get('last_update')}>
             <{$module->get('last_update')|xoops_formattimestamp:l}>
@@ -71,7 +71,7 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
         <td><{$module->modinfo.description}></td>
     </tr>
     </tbody>
@@ -87,15 +87,15 @@
     </thead>
     <tbody>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MODULE_LICENSE}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MODULE_LICENSE}></td>
         <td><{$module->modinfo.license}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_AUTHOR}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_AUTHOR}></td>
         <td><{$module->modinfo.author}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_CREDITS}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_CREDITS}></td>
         <td><{$module->modinfo.credits}></td>
     </tr>
     </tbody>
@@ -113,15 +113,15 @@
     </thead>
     <tbody>
     <tr>
-        <td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_SQL_HAS_MAIN}></td>
+        <td style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_SQL_HAS_MAIN}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_SQL_ENGINE}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_SQL_ENGINE}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_SQL_MYSQL}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_SQL_FILE_NAME}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_SQL_FILE_NAME}></td>
         <td><{$module->modinfo.sqlfile.mysql}></td>
     </tr>
     </tbody>
@@ -164,7 +164,7 @@
     </thead>
     <tbody>
     <tr>
-        <td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_MAINMENU_HAS_MAIN}></td>
+        <td style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_MAINMENU_HAS_MAIN}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
     </tr>
     </tbody>
@@ -208,19 +208,19 @@
     </thead>
     <tbody>
     <tr>
-        <td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_HAS_MAIN}></td>
+        <td style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_HAS_MAIN}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_INDEX}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_INDEX}></td>
         <td><{$module->modinfo.adminindex|xoops_escape}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_MENU}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_ADMINMENU_MENU}></td>
         <td><{$module->modinfo.adminmenu|xoops_escape}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._HELP}></td>
+        <td><{$smarty.const._HELP}></td>
         <td><{$module->modinfo.help|xoops_escape}></td>
     </tr>
     </tbody>
@@ -263,11 +263,11 @@
     </thead>
     <tbody>
     <tr>
-        <td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_HAS_MAIN}></td>
+        <td style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_HAS_MAIN}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_ENGINE}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_TEMPLATE_ENGINE}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_SMARTY}></td>
     </tr>
     </tbody>
@@ -384,19 +384,19 @@
 <table class="outer">
 <{if $module->get('hassearch')}>
     <tr>
-        <td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_SEARCH_SVC}></td>
+        <td style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_SEARCH_SVC}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
     </tr>
 <{/if}>
 <{if $module->get('hascomments')}>
     <tr>
-        <td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_COMMENT_SVC}></td>
+        <td style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_COMMENT_SVC}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
     </tr>
 <{/if}>
 <{if $module->get('hasnotification')}>
     <tr>
-        <td class="head" style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_NOTIF_SVC}></td>
+        <td style="width:30%;"><{$smarty.const._AD_LEGACY_LANG_NOTIF_SVC}></td>
         <td><{$smarty.const._AD_LEGACY_LANG_ACTIVE}></td>
     </tr>
 <{/if}>

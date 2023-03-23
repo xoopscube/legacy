@@ -49,37 +49,37 @@
         <tbody>
         <{if $actionForm->get('avatar_id')}>
         <tr>
-            <td class="head"><{$smarty.const._MD_USER_LANG_AVATAR_ID}></td>
+            <td><{$smarty.const._MD_USER_LANG_AVATAR_ID}></td>
             <td><{$actionForm->get('avatar_id')}></td>
         </tr>
         <{/if}>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_NAME}></td>
+            <td><{$smarty.const._AD_USER_LANG_AVATAR_NAME}></td>
             <td>
             <{xoops_input type=text name=avatar_name value=$actionForm->get('avatar_name') size=15 maxlength=100}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_FILE}></td>
+            <td><{$smarty.const._AD_USER_LANG_AVATAR_FILE}></td>
             <td>
             <{xoops_input type=file name=avatar_file size=30}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_DISPLAY}></td>
+            <td><{$smarty.const._AD_USER_LANG_AVATAR_DISPLAY}></td>
             <td>
             <label><{xoops_input type=radio name=avatar_display value=1 default=$actionForm->get('avatar_display')}><{$smarty.const._YES}></label>
             <label><{xoops_input type=radio name=avatar_display value=0 default=$actionForm->get('avatar_display')}><{$smarty.const._NO}></label>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_WEIGHT}></td>
+            <td><{$smarty.const._AD_USER_LANG_AVATAR_WEIGHT}></td>
             <td>
             <{xoops_input type=text name=avatar_weight value=$actionForm->get('avatar_weight')}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_TYPE}></td>
+            <td><{$smarty.const._AD_USER_LANG_AVATAR_TYPE}></td>
             <td>
             <{if $object->getShow('avatar_type') == "C"}>
             <{$smarty.const._AD_USER_LANG_AVATAR_TYPE_C}>
@@ -91,7 +91,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>

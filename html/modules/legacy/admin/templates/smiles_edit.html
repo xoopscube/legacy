@@ -48,18 +48,18 @@
         <tbody>
         <{if $actionForm->get('id')}>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_ID}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_ID}></td>
             <td><{$actionForm->get('id')}></td>
         </tr>
         <{/if}>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_CODE}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_CODE}></td>
             <td>
             <{xoops_input type=text name=code value=$actionForm->get('code') size=15 maxlength=50}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_SMILE_URL}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_SMILE_URL}></td>
             <td>
             <{if $actionForm->get('id')}>
             <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('smile_url')}>"
@@ -70,13 +70,13 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_EMOTION}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_EMOTION}></td>
             <td>
             <{xoops_input type=text name=emotion value=$actionForm->get('emotion') size=30 maxlength=75}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_DISPLAY}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_DISPLAY}></td>
             <td>
             <label>
                 <{xoops_input type=radio name=display value=1 default=$actionForm->get('display')}><{$smarty.const._YES}>
@@ -89,7 +89,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="2" class="foot">
+            <td colspan="2">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>

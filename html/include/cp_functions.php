@@ -50,7 +50,7 @@ function CloseTable()
 
 function themecenterposts($title, $content)
 {
-    echo '<table class="outer"><thead><tr><td class="head">'.$title.'</td></tr></thead><tbody><tr><td><br>'.$content.'<br></td></tr></tbody></table>';
+    echo '<table class="outer"><thead><tr><td>'.$title.'</td></tr></thead><tbody><tr><td><br>'.$content.'<br></td></tr></tbody></table>';
 }
 
 function myTextForm($url, $value)

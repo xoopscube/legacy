@@ -27,7 +27,7 @@
     </thead>
     <tbody>
     <tr>
-        <td class="head" style="width: 50%"><{$smarty.const._MD_USER_LANG_USER_AVATAR}></td>
+        <td style="width: 50%"><{$smarty.const._MD_USER_LANG_USER_AVATAR}></td>
         <td>
             <{if $object->getShow('user_avatar') != "blank.gif"}>
             <img class="user-avatar" src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('user_avatar')}>" alt="Avatar" aria-label="Avatar">
@@ -37,19 +37,19 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_UNAME}></td>
+        <td><{$smarty.const._MD_USER_LANG_UNAME}></td>
         <td>
             <{$object->getShow('uname')}>
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_NAME}></td>
+        <td><{$smarty.const._MD_USER_LANG_NAME}></td>
         <td>
             <{$object->getShow('name')}>
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_RANK}></td>
+        <td><{$smarty.const._MD_USER_LANG_RANK}></td>
         <td>
             <{if $rank}>
             <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$rank->getShow('rank_image')}>" alt="<{$rank->getShow('rank_title')}>" aria-label="<{$rank->getShow('rank_title')}>">
@@ -58,7 +58,7 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_LEVEL}></td>
+        <td><{$smarty.const._MD_USER_LANG_LEVEL}></td>
         <td>
             <{if $object->get('level') == 0}>
             <{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>
@@ -70,19 +70,19 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_USER_REGDATE}></td>
+        <td><{$smarty.const._MD_USER_LANG_USER_REGDATE}></td>
         <td>
             <{$object->get('user_regdate')|xoops_formattimestamp:l}>
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_LAST_LOGIN}></td>
+        <td><{$smarty.const._MD_USER_LANG_LAST_LOGIN}></td>
         <td>
             <{$object->get('last_login')|xoops_formattimestamp:l}>
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_POSTS}></td>
+        <td><{$smarty.const._MD_USER_LANG_POSTS}></td>
         <td>
             <form action="./index.php?action=UserView" method="post">
                 <span class="badge"><{$object->getShow('posts')}></span>
@@ -93,7 +93,7 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}></td>
+        <td><{$smarty.const._MD_USER_LANG_TIMEZONE_OFFSET}></td>
         <td>
             <{if $timezone}>
             <{$timezone->getShow('zone_name')}>
@@ -103,7 +103,7 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_URL}></td>
+        <td><{$smarty.const._MD_USER_LANG_URL}></td>
         <td>
             <{if $object->getShow('url')}>
             <a href="<{$object->getShow('url')}>" rel="external"><{$object->getShow('url')}></a>
@@ -111,13 +111,13 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
+        <td><{$smarty.const._MD_USER_LANG_EMAIL}></td>
         <td>
             <{$object->getShow('email')}>
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></td>
+        <td><{$smarty.const._MD_USER_LANG_USER_VIEWEMAIL}></td>
         <td>
             <{if $object->getShow('user_viewemail') == 1}>
             <{$smarty.const._YES}>
@@ -127,7 +127,7 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_USER_MAILOK}></td>
+        <td><{$smarty.const._MD_USER_LANG_USER_MAILOK}></td>
         <td>
             <{if $object->getShow('user_mailok') == 1}>
             <{$smarty.const._YES}>
@@ -137,13 +137,13 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
+        <td><{$smarty.const._MD_USER_LANG_USER_SIG}></td>
         <td>
             <{$object->getShow('user_sig')}>
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_ATTACHSIG}></td>
+        <td><{$smarty.const._MD_USER_LANG_ATTACHSIG}></td>
         <td>
             <{if $object->get('attachesig')}>
             <{$smarty.const._YES}>
@@ -153,37 +153,37 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_THEME}></td>
+        <td><{$smarty.const._MD_USER_LANG_THEME}></td>
         <td>
             <{$object->getShow('theme')}>
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_UMODE}></td>
+        <td><{$smarty.const._MD_USER_LANG_UMODE}></td>
         <td>
             <{$umode|xoops_escape}>
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_UORDER}></td>
+        <td><{$smarty.const._MD_USER_LANG_UORDER}></td>
         <td>
             <{$uorder|xoops_escape}>
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_NOTIFY_METHOD}></td>
+        <td><{$smarty.const._MD_USER_LANG_NOTIFY_METHOD}></td>
         <td>
             <{$notify_method|xoops_escape}>
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_NOTIFY_MODE}></td>
+        <td><{$smarty.const._MD_USER_LANG_NOTIFY_MODE}></td>
         <td>
             <{$notify_mode|xoops_escape}>
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_BIO}></td>
+        <td><{$smarty.const._MD_USER_LANG_BIO}></td>
         <td>
             <{$object->getShow('bio')}>
         </td>

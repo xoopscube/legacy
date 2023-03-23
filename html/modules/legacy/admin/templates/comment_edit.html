@@ -40,13 +40,13 @@
 
         <tbody>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></td>
             <td>
             <{xoops_input type=text name=com_title value=$actionForm->get('com_title') size=60 maxlength=191}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_ICON}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_ICON}></td>
             <td>
             <{foreach item=icon from=$subjectIconArr}>
             <label><{xoops_input type=radio name=com_icon value=$icon->get('filename') default=$actionForm->get('com_icon')}><img src="<{$xoops_url}>/images/subject/<{$icon->getShow('filename')}>"></label>
@@ -54,20 +54,20 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_COM_TEXT}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_COM_TEXT}></td>
             <td>
             <{xoops_dhtmltarea type=text rows=15 cols=60 name=com_text value=$actionForm->get('com_text')}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_COM_SIG}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_COM_SIG}></td>
             <td>
             <{xoops_input type=radio name=com_sig value=1 default=$actionForm->get('com_sig')}><{$smarty.const._YES}>
             <{xoops_input type=radio name=com_sig value=0 default=$actionForm->get('com_sig')}><{$smarty.const._NO}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_COM_STATUS}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_COM_STATUS}></td>
             <td>
             <select name="com_status">
                 <{xoops_optionsArray id=com_status label=name value=id from=$statusArr default=$actionForm->get('com_status')}>
@@ -75,7 +75,7 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_CONTROL}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_CONTROL}></td>
             <td>
             <label><{xoops_input type=checkbox name=dohtml value=1 default=$actionForm->get('dohtml')}> <{$smarty.const._MD_LEGACY_LANG_DOHTML}></label><br>
             <label><{xoops_input type=checkbox name=dosmiley value=1 default=$actionForm->get('dosmiley')}> <{$smarty.const._MD_LEGACY_LANG_DOSMILEY}></label><br>
@@ -86,7 +86,7 @@
         </tr>
         </tbody>
 
-        <tfoot class="foot">
+        <tfoot>
         <tr>
             <td colspan="2">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">

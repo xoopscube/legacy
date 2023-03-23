@@ -97,7 +97,7 @@ Usage with color var:
         --disable       : hsl(var(--h) var(--s) 70%);
         --contrast      : hsl(var(--h) var(--s) 70%);
 
-        --body-bg       : var(--layer-2);
+        --body-bg       : var(--layer-1);
         --body-color    : var(--secondary);
         --link          : var(--primary);
         --link-active   : #face74;
@@ -139,7 +139,7 @@ Usage with color var:
     --disable       : hsl(219, 15%, 70%);
     --contrast      : hsl(219, 15%, 70%);
 
-    --body-bg       : var( --layer-2 );
+    --body-bg       : var( --layer-1 );
     --body-color    : var( --primary );
     /*--header-bg     : #212121;*/
     --link          : var( --color-black );

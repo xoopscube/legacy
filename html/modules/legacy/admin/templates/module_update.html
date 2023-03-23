@@ -42,18 +42,18 @@
             <div style="max-width: 80%;"><img class="svg" src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" aria-label="<{$module->getShow('name')}>"></div>
             <!-- <div class="list_imagetitle"><{$module->modinfo.name|xoops_escape}></div> -->
         </td>
-        <!-- <td class="head"></td> -->
+        <!-- <td></td> -->
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
         <td><{$module->getShow('name')}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_DIR_NAME}></td>
         <td><{$module->getShow('dirname')}></td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_VERSION}></td>
         <td><{$currentVersion|string_format:"%01.2f"}>
             <{if $currentVersion != $targetVersion}>
             &raquo; <span class="ui-module-update-now"><{$targetVersion|string_format:"%01.2f"}></span>
@@ -62,7 +62,7 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_MID}></td>
         <td>
             <{if $module->get('mid')}>
             <{$module->getShow('mid')}>
@@ -72,7 +72,7 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></td>
         <td>
             <{if $module->get('last_update')}>
             <{$module->get('last_update')|xoops_formattimestamp:l}>
@@ -82,11 +82,11 @@
         </td>
     </tr>
     <tr>
-        <td class="head"><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
+        <td><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
         <td><{$module->modinfo.description|xoops_escape}></td>
     </tr>
     <tr>
-        <td class="foot" colspan="2">
+        <td colspan="2">
             <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
             <button class="button-update" type="submit">
                 <img class="svg" src="<{'icons/icon-update.svg'|theme}>" width="1em" height="1em" alt="update">

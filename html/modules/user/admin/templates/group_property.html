@@ -24,7 +24,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="odd">
+    <tr>
         <td class="list_image"><i aria-label="<{$smarty.const._AD_USER_LANG_GROUP}>"><img class="svg" src="<{'icons/icon-user-group.svg'|theme}>" width="1em" alt="group"></i></td>
         <td class="list_id"><{$group->getShow('groupid')}></td>
         <td class="list_title"><{$group->getShow('name')}></td>
@@ -110,7 +110,7 @@
 <{if $systemPermissions}>
 <table class="outer">
     <thead>
-    <tr class="head">
+    <tr>
         <th colspan="4"><{$smarty.const._AD_USER_LANG_PERM_SYSTEM_PERM_MODULE}></th>
     </tr>
     </thead>
@@ -144,8 +144,8 @@
     <tbody>
     <tr>
     <{foreach item=perm from=$modulePermissions name="ModPer"}>
-        <td class="head" style="width:25%;">&nbsp;<{$perm->mItem->getName()|xoops_escape}></td>
-        <td class="even">
+        <td style="width:25%;">&nbsp;<{$perm->mItem->getName()|xoops_escape}></td>
+        <td>
             <{assign var="getId" value=$perm->getId() }>
             <{if $perm->mValue & 1}>
             <{$smarty.const._AD_USER_LANG_PERM_ACCESS}>
@@ -190,14 +190,14 @@
     <tbody>
     <tr>
     <{foreach item=perm from=$permissions name=$i}>
-        <td class="head" style="width:35%;">&nbsp;
+        <td style="width:35%;">&nbsp;
             <{if $perm->mItem->isActive()}>
             <{$perm->mItem->getName()|xoops_escape}>
             <{else}>
             <span class="inactive"><{$perm->mItem->getName()|xoops_escape}></span>
             <{/if}>
         </td>
-        <td class="even">
+        <td>
             <{assign var="getId" value=$perm->getId()}>
             <{if $perm->mValue==1}>
             <{$smarty.const._AD_USER_LANG_PERM_ACCESS}>

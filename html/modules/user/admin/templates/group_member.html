@@ -24,7 +24,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="odd">
+    <tr>
         <td class="list_image"><i aria-label="<{$smarty.const._AD_USER_LANG_GROUP}>"><img class="svg" src="<{'icons/icon-user-group.svg'|theme}>" width="1em" alt="group"></i></td>
         <td class="list_id"><{$group->getShow('groupid')}></td>
         <td class="list_title"><{$group->getShow('name')}></td>
@@ -127,7 +127,7 @@
         </tbody>
         <tbody>
         <tr>
-            <td class="foot" colspan="9">
+            <td colspan="9">
                 <input class="button" type="submit" value="<{$smarty.const._MD_USER_LANG_ASSIGN}>">
             </td>
             <td><{include file="./components/pagenavi.html"}></td>
@@ -189,7 +189,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="9">
+            <td colspan="9">
                 <input class="button" type="submit" value="<{$smarty.const._MD_USER_LANG_UNASSIGN}>">
             </td>
             <td><{include file="./components/pagenavi.html"}></td>

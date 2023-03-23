@@ -27,29 +27,29 @@
         </thead>
         <tbody>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_ID}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_ID}></td>
             <td><{$object->getShow('tplset_id')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}></td>
             <td><{$object->getShow('tplset_name')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DESC}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DESC}></td>
             <td><{$object->getShow('tplset_desc')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREDITS}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREDITS}></td>
             <td><{$object->get('tplset_credits')|xoops_escape|nl2br}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREATED}></td>
+            <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREATED}></td>
             <td><{$object->get('tplset_created')|xoops_formattimestamp:l}></td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <button class="button delete" type="submit" value="<{$smarty.const._DELETE}>">
                     <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="delete"> <{$smarty.const._DELETE}></button>

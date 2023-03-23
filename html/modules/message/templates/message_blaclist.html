@@ -53,13 +53,13 @@
                 <tbody>
                 <{foreach item=uname key=uid from=$blackuser}>
                 <tr>
-                    <td class="odd">
+                    <td>
                         <div data-layout="row centered">
                             <input type="checkbox" id="<{$uid}>" name="deluid[]" value="<{$uid}>">
                             <label for="<{$uid}>"></label>
                         </div>
                     </td>
-                    <td class="even">
+                    <td>
                         <div data-layout="row centered">
                             <img src="<{$uid|xoops_user_avatarize}>" width="24px" data-self="radius-circle"> <{$uname}>
                         </div>

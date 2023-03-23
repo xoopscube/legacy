@@ -37,29 +37,29 @@
         </thead>
         <tbody>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_GID}></td>
+            <td><{$smarty.const._AD_USER_LANG_GROUP_GID}></td>
             <td><{$object->getShow('groupid')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_NAME}></td>
+            <td><{$smarty.const._AD_USER_LANG_GROUP_NAME}></td>
             <td><{$object->getShow('name')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_DESC}></td>
+            <td><{$smarty.const._AD_USER_LANG_GROUP_DESC}></td>
             <td><{$object->getShow('description')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_TYPE}></td>
+            <td><{$smarty.const._AD_USER_LANG_GROUP_TYPE}></td>
             <td><{$object->getShow('group_type')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_GROUP_AMMO}></td>
+            <td><{$smarty.const._AD_USER_LANG_GROUP_AMMO}></td>
             <td><{$object->getUserCount()|xoops_escape}></td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button delete" type="submit" value="<{$smarty.const._DELETE}>">
             </td>

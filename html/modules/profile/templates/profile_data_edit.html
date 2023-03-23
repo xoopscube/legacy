@@ -20,7 +20,7 @@
         </tr>
         <{foreach item=field from=$fields}>
         <tr>
-            <td class="head"><{$field->getShow('label')}></td>
+            <td><{$field->getShow('label')}></td>
             <td>
                 <{if $field->get('type')=="string"}>
                 <{xoops_input type=text name=$field->get('field_name') value=$actionForm->get($field->get('field_name'))  size=40 maxlength=191}>
@@ -43,7 +43,7 @@
         </tr>
         <{/foreach}>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>
         </tr>

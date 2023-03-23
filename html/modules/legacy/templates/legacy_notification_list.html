@@ -34,7 +34,7 @@
         <{foreach item=module from=$modules}>
         <tr>
             <td class="list_center"><input name="del_mod[<{$module.id}>]" id="del_mod_<{$module.id}>" onclick="xoopsCheckGroup('notificationlist', 'del_mod_<{$module.id|escape}>', 'del_not_<{$module.id|escape}>');" type="checkbox" value="<{$module.id}>"></td>
-            <td class="head" colspan="4"><{$smarty.const._NOT_MODULE}>: <{$module.name}></td>
+            <td colspan="4"><{$smarty.const._NOT_MODULE}>: <{$module.name}></td>
         </tr>
         <{foreach item=category from=$module.categories}>
         <{foreach item=item from=$category.items}>

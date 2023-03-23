@@ -1,7 +1,7 @@
 <{foreach item=def from=$defArr}>
 <{if $def->get('required')===1}>
 	<tr>
-    <td class="head"><{$def->get('label')}></td>
+    <td><{$def->get('label')}></td>
     <td>
     <{if $def->get('type')=="string"}>
         <{xoops_input type=text name=$def->getShow('field_name') value=$profileForm->get($def->getShow('field_name'))  size=40 maxlength=191}>

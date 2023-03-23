@@ -7,7 +7,7 @@
     <{foreach from=$form->getElements() item=element}>
     <{if !$element->isHidden()}>
     <tr>
-        <td class="head" style="text-align:left; vertical-align:top;">
+        <td style="text-align:left; vertical-align:top;">
             <{$element->getCaption()}>
             <{if $element->getDescription() != ''}>
             <br>

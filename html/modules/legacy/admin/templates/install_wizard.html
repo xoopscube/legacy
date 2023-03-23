@@ -27,7 +27,7 @@
             <td class="head ui-card-block-image">
                 <img src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.installer.image|xoops_escape:link}>" alt="<{$module->getShow('name')}>" aria-label="<{$module->getShow('name')}>">
             </td>
-            <td class="even">
+            <td>
                 <h4><{$module->getShow('name')}></h4>
                 <ul>
                     <{foreach item=item from=$module->modinfo.installer.description}>
@@ -37,7 +37,7 @@
             </td>
         </tr>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button-install" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_INSTALL}>">
             </td>
         </tr>

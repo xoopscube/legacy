@@ -42,7 +42,7 @@
         </thead>
         <tbody>
         <{foreach item=icid from=$icids}>
-        <tr class="even">
+        <tr>
             <td class="list_id"><{$icid}></td>
             <td class="list_title">
                 <{if $actionForm->get('name',$icid) == $imagecategoryObjects[$icid]->get('imgcat_name')}>
@@ -132,7 +132,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="8">
+            <td colspan="8">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>

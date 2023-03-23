@@ -44,7 +44,7 @@
         </thead>
         <tbody>
         <{foreach item=aid from=$aids}>
-        <tr class="even">
+        <tr>
             <td class="list_id"><{$aid}></td>
             <td class="list_title">
                 <{if $actionForm->get('name',$aid) == $avatarObjects[$aid]->get('avatar_name')}>
@@ -116,7 +116,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="7">
+            <td colspan="7">
                 <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>

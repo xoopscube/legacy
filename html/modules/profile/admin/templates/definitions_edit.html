@@ -59,20 +59,20 @@
         </thead>
         <tbody>
         <tr>
-            <td class="head"><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}><br>
+            <td><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}><br>
                 <{$smarty.const._MD_PROFILE_LANG_FIELD_NAME_DESC}></td>
             <td>
                 <{xoops_input type=text name=field_name value=$actionForm->get('field_name') size=15 maxlength=32}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_PROFILE_LANG_LABEL}></td>
+            <td><{$smarty.const._MD_PROFILE_LANG_LABEL}></td>
             <td>
                 <{xoops_input type=text name=label value=$actionForm->get('label') size=15 maxlength=191}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_PROFILE_LANG_TYPE}></td>
+            <td><{$smarty.const._MD_PROFILE_LANG_TYPE}></td>
             <td>
                 <{if $actionForm->get('field_id')}>
                 <{$object->getShow('type')}>
@@ -86,7 +86,7 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_PROFILE_LANG_VALIDATION}></td>
+            <td><{$smarty.const._MD_PROFILE_LANG_VALIDATION}></td>
             <td>
                 <select name="validation" id="legacy_xoopsform_validation">
                     <option value="<{$validation}>"<{if ! $actionForm->get('validation')}> selected="selected"<{/if}>></option>
@@ -97,32 +97,32 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_PROFILE_LANG_REQUIRED}></td>
+            <td><{$smarty.const._MD_PROFILE_LANG_REQUIRED}></td>
             <td>
                 <{xoops_input type=checkbox name=required value=1 default=$actionForm->get('required')}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_PROFILE_LANG_SHOW_FORM}><br>
+            <td><{$smarty.const._MD_PROFILE_LANG_SHOW_FORM}><br>
                 <{$smarty.const._MD_PROFILE_LANG_SHOW_FORM_DESC}></td>
             <td>
                 <{xoops_input type=checkbox name=show_form value=1 default=$actionForm->get('show_form')}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_PROFILE_LANG_WEIGHT}></td>
+            <td><{$smarty.const._MD_PROFILE_LANG_WEIGHT}></td>
             <td>
                 <{xoops_input type=text name=weight value=$actionForm->get('weight')}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_PROFILE_LANG_DESCRIPTION}></td>
+            <td><{$smarty.const._MD_PROFILE_LANG_DESCRIPTION}></td>
             <td>
                 <{xoops_dhtmltarea type=text name=description value=$actionForm->get('description')}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_PROFILE_LANG_ACCESS}></td>
+            <td><{$smarty.const._MD_PROFILE_LANG_ACCESS}></td>
             <td>
                 <select name="access[]" id="legacy_xoopsform_access" size='3' multiple="multiple">
                     <{foreach item=group from=$groupArr}>
@@ -136,7 +136,7 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_PROFILE_LANG_OPTIONS}></td>
+            <td><{$smarty.const._MD_PROFILE_LANG_OPTIONS}></td>
             <td>
                 <div id="fieldtype_string" class="optionField">
                     <input type="text" name="options" id="legacy_xoopsform_options" value="<{$actionForm->get('options')}>">
@@ -179,7 +179,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button cancel" type="submit" value="<{$smarty.const._MD_PROFILE_LANG_CANCEL}>" name="_form_control_cancel">
                 <input class="button" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>

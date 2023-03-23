@@ -29,30 +29,30 @@
         </thead>
         <tbody>
         <tr>
-            <td class="head"><{$smarty.const._MD_USER_LANG_AVATAR_ID}></td>
+            <td><{$smarty.const._MD_USER_LANG_AVATAR_ID}></td>
             <td><{$object->getShow('avatar_id')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_FILE}></td>
+            <td><{$smarty.const._AD_USER_LANG_AVATAR_FILE}></td>
             <td>
             <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('avatar_file')}>" alt="<{$object->getShow('avatar_name')}>" aria-label="<{$object->getShow('avatar_name')}>">
             <br><{$object->getShow('avatar_file')}>
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_NAME}></td>
+            <td><{$smarty.const._AD_USER_LANG_AVATAR_NAME}></td>
             <td><{$object->getShow('avatar_name')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_MIMETYPE}></td>
+            <td><{$smarty.const._AD_USER_LANG_AVATAR_MIMETYPE}></td>
             <td><{$object->getShow('avatar_mimetype')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_CREATED}></td>
+            <td><{$smarty.const._AD_USER_LANG_AVATAR_CREATED}></td>
             <td><{$object->get('avatar_created')|xoops_formattimestamp:l}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_DISPLAY}></td>
+            <td><{$smarty.const._AD_USER_LANG_AVATAR_DISPLAY}></td>
             <td>
             <{if $object->get('avatar_display') == 1 }>
             <{$smarty.const._YES}>
@@ -62,11 +62,11 @@
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_WEIGHT}></td>
+            <td><{$smarty.const._AD_USER_LANG_AVATAR_WEIGHT}></td>
             <td><{$object->getShow('avatar_weight')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_USER_LANG_AVATAR_TYPE}></td>
+            <td><{$smarty.const._AD_USER_LANG_AVATAR_TYPE}></td>
             <td>
             <{if $object->getShow('avatar_type') == "C"}>
             <{$smarty.const._AD_USER_LANG_AVATAR_TYPE_C}>
@@ -78,7 +78,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td class="foot" colspan="2">
+            <td colspan="2">
                 <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button delete" type="submit" value="<{$smarty.const._DELETE}>">
             </td>

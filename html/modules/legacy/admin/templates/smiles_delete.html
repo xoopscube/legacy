@@ -25,26 +25,26 @@
         </thead>
         <tbody>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_ID}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_ID}></td>
             <td><{$object->getShow('id')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_CODE}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_CODE}></td>
             <td><{$object->getShow('code')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_SMILE_URL}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_SMILE_URL}></td>
             <td>
             <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$object->getShow('smile_url')}>" alt="<{$object->getShow('emotion')}>" aria-label="<{$object->getShow('emotion')}>">
             ( <{$object->getShow('smile_url')}> )
             </td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._MD_LEGACY_LANG_EMOTION}></td>
+            <td><{$smarty.const._MD_LEGACY_LANG_EMOTION}></td>
             <td><{$object->getShow('emotion')}></td>
         </tr>
         <tr>
-            <td class="head"><{$smarty.const._AD_LEGACY_LANG_DISPLAY}></td>
+            <td><{$smarty.const._AD_LEGACY_LANG_DISPLAY}></td>
             <td>
             <{if $object->get('display') == 1}>
             <{$smarty.const._YES}>

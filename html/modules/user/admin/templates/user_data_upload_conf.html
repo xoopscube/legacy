@@ -38,14 +38,14 @@
 	}
 	</style>
 	<table class="outer">
-		<tr class="head">
+		<tr>
 			<th>&nbsp;</th>
 			<{foreach from=$user_fields item=field}>
 			<th style="border-right:1px solid #7775bc;"><{$field}></th><
 			{/foreach}>
 		</tr>
 		<{foreach from=$csv_data item=d}>
-		<tr class="<{cycle values=odd,even}>">
+		<tr>
 			<td class="<{if $d.update}>update<{elseif $d.is_new}>new<{/if}>"><{if $d.update}>Update!<{elseif $d.is_new}>New!<{/if}></td>
 			<{foreach from=$d.value item=dd}>
 			<td <{if $dd.update}>class="update"<{/if}>>

@@ -20,14 +20,14 @@
         </tr>
         <{foreach item=user from=$fuser}>
         <tr>
-        <td class="even"><a href="index.php?action=new&to_userid=<{$user.userobj->get('uid')}>"><{$user.userobj->get('uname')}></a></td>
-        <td class="odd"><input type="text" name="weight[<{$user.fobj->get('id')}>]" value="<{$user.fobj->get('weight')}>" /></td>
-        <td class="even">
+        <td><a href="index.php?action=new&to_userid=<{$user.userobj->get('uid')}>"><{$user.userobj->get('uname')}></a></td>
+        <td><input type="text" name="weight[<{$user.fobj->get('id')}>]" value="<{$user.fobj->get('weight')}>" /></td>
+        <td>
             <input type="checkbox" name="delid[]" value="<{$user.fobj->get('id')}>">
         </td>
         </tr>
         <{/foreach}>
-        <tr><td class="odd">
+        <tr><td>
             <input type="submit" class="ui-button" value="<{$smarty.const._SUBMIT}>">
         </td>
         </tr>

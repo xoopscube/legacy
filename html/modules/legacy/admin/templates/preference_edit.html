@@ -60,7 +60,7 @@
         <{assign var=rconf_name value=$config->get('conf_name')}>
         <{assign var=conf_formtype value=$config->get('conf_formtype')}>
         <tr>
-            <td class="head">
+            <td>
                 <div class="list_title"><{$config->getTitle()}>
                     <{if $mcrypt_enabled && $config->get('conf_valuetype') == 'encrypt'}>
                     <img src="<{'icons/textfield_key.png'|theme}>" alt="Encrypted">
@@ -297,7 +297,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="2" class="foot">
+            <td colspan="2">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>
