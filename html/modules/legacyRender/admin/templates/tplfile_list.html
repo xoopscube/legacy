@@ -40,9 +40,10 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section data-layout="row center-justify" class="action-control">
+<section data-layout="rows center-justify" class="action-control">
     <form action="./index.php" method="get">
         <input type="hidden" name="action" value="TplfileList">
+        <div data-self="small-full">
         <{$smarty.const._AD_LEGACYRENDER_LANG_TPL_TPLSET}> :
         <select name="tpl_tplset">
             <{foreach from=$tplsets item=tplset}>
@@ -55,6 +56,8 @@
             <{/if}>
             <{/foreach}>
         </select>
+        </div>
+        <div data-self="small-full">
         <{$smarty.const._AD_LEGACYRENDER_LANG_TPL_MODULE}> :
         <select name="tpl_module">
             <{foreach from=$modules item=module}>
@@ -68,6 +71,7 @@
             <{/foreach}>
         </select>
         <input class="formButton" type="submit" value="<{$smarty.const._SUBMIT}>">
+        </div>
     </form>
     <div class="control-view">
         <a class="button" href="./index.php?action=TplsetList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_TEMPLATE_MANAGE}></a>
