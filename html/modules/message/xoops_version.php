@@ -14,8 +14,8 @@ $mydirpath = basename(dirname(__DIR__)) ;
 // Manifesto
 $modversion['dirname']          = basename(__DIR__);
 $modversion['name']             = _MI_MESSAGE_NAME;
-$modversion['version']          = '2.40';
-$modversion['detailed_version'] = '2.41.1';
+$modversion['version']          = '2.42';
+$modversion['detailed_version'] = '2.42.0';
 $modversion['description']      = _MI_MESSAGE_DESC;
 $modversion['author']           = 'Marijuana';
 $modversion['credits']          = 'The XOOPSCube Project, Gigamaster (XCL23)';
