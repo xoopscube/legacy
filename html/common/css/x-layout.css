@@ -179,7 +179,7 @@ html{scroll-behavior: smooth;}
 [data-self~=size-x8] {flex:8 0 0 !important}
 [data-self~=size-x9] {flex:9 0 0 !important}
 [data-self*=size-auto] {flex:1 1 auto}
-[data-self*=size-x0] {-ms-flex:0 0 auto;flex:0 0 auto}
+[data-self*=size-x0] {flex:0 0 auto}
 [data-self~=size-xxlarge] {max-width:90rem;width:100%}  /* 90rem x 16 = 1440px */
 [data-self~=size-xlarge] {max-width:78rem;width:100%}   /* 78rem x 16 = 1248px */
 [data-self~=size-large] {max-width:60rem;width:100%}    /* 60rem x 16 = 960px */
@@ -189,7 +189,7 @@ html{scroll-behavior: smooth;}
 [data-self~=size-small] {max-width:30rem;width:100%}    /* 30rem x 16 = 480 */
 [data-self~=size-xsmall] {max-width:20rem;width:100%}   /* 20rem x 16 = 320 */
 [data-self~=size-xxsmall] {max-width:16rem;width:100%}  /* 16rem x 16 = 256 */
-[data-self*=size-x]:not([data-self*=small]):not([data-self*=large]) {flex-shrink:1}
+[data-self*=size-shrink]:not([data-self*=small]):not([data-self*=large]) {flex-shrink:1}
 [data-self~=first] {order:-1}
 [data-self~=order-1] {order:1}
 [data-self~=order-2] {order:2}

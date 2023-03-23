@@ -3,7 +3,7 @@
  * Provides basic functionality to read and parse XML documents
  * @package    kernel
  * @subpackage xml
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors Minahito, 2007/05/15
  * @author     Ken Egervari
  * @copyright  2001 eXtremePHP

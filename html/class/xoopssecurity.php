@@ -3,7 +3,7 @@
  * Class for xoops2 compatibility
  * @package    Legacy
  * @subpackage core
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Kilica
  * @copyright  (c) 2005-2023 The XOOPSCube Project

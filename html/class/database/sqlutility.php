@@ -3,7 +3,7 @@
  * Removes comment and splits large sql files into individual queries
  * Function from phpMyAdmin (https://phpwizard.net/projects/phpMyAdmin/)
  * @package    database
- * @version    XCL 2.3.1
+ * @version    XCL 2.3.3
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Other authors Minahito, 2007/05/15
  * @author     Other authors Kazumi Ono (aka onokazu)
