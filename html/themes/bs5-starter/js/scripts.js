@@ -1,12 +1,12 @@
 /*
-* Theme XCL Bootstrap5 Starter
-*
-* @version   2.3.2
-* @author    Nuno Luciano ( https://github.com/gigamaster )
-* @copyright (c) 2023 The XOOPSCube Project, author
-* @license   MIT license for Bootstrap
-* @license   BSD license for XOOPSCube XCL Theme
-* @link      https://github.com/xoopscube
+ * Theme XCL Bootstrap 5 Starter
+ *
+ * @version   5.3.0
+ * @author    Nuno Luciano ( https://github.com/gigamaster )
+ * @copyright (c) 2023 The XOOPSCube Project, author
+ * @license   MIT license for Bootstrap
+ * @license   BSD license for XOOPSCube XCL Theme
+ * @link      https://github.com/xoopscube
 */
 
 // Use this file to add JavaScript to your project
@@ -59,8 +59,6 @@ if(theme === "dark"){
         }
     });
 });
-
-
 
 /**
  * TOASTER
@@ -131,16 +129,7 @@ const offcanvasList = [...offcanvasElementList].map(offcanvasEl => new bootstrap
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
-// let popover = null;
-// function getModal() {
-//     if (!popover) {
-//         popover = new $bootstrap.Popover('.post_history');
-//     }
-//     return popover
-// }
-
 function toggleModal() {
-    // modal.toggle();
     getModal().show()
 }
 /*

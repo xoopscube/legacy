@@ -53,13 +53,13 @@
 
             <{foreach item=uname key=uid from=$blackuser}>
             <tr>
-                <td class="odd">
+                <td>
                     <div class="form-control form-checkbox my-1 mr-sm-2">
                         <input type="checkbox" class="form-check-input" id="<{$uid}>" name="deluid[]" value="<{$uid}>">
                         <label class="form-control-label" for="<{$uid}>"></label>
                     </div>
                 </td>
-                <td class="even">
+                <td>
 
                     <img src="<{$uid|xoops_user_avatarize}>" width="24px" class="rounded-circle mr-3"> <{$uname}></td>
             </tr>

@@ -8,7 +8,14 @@ All notable changes to XCL Theme Bootstrap 5.3 Starter will be documented in thi
 
 ### The XOOPSCube Project
 
-Git Repository : Refer please to [Branch Legacy ](https://github.com/xoopscube/legacy/)
+Git Repository : Refer please to [Branch Legacy ](https://github.com/xoopscube-themes/xcl-bootstrap5)
+
+## [231rc] 2023-03-23  
+
+- add code samples
+- add block settings
+- fixed templates
+- removed unused elements
 
 ## [231rc] 2023-03-02
 

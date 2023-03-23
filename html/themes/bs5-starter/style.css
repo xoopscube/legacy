@@ -1,12 +1,12 @@
 /*
-* Theme XCL Bootstrap5 Starter
-*
-* @version   2.3.2
-* @author    Nuno Luciano ( https://github.com/gigamaster )
-* @copyright (c) 2023 The XOOPSCube Project, author
-* @license   MIT license for Bootstrap
-* @license   BSD license for XOOPSCube XCL Theme
-* @link      https://github.com/xoopscube
+ * Theme XCL Bootstrap 5 Starter
+ *
+ * @version   5.3.0
+ * @author    Nuno Luciano ( https://github.com/gigamaster )
+ * @copyright (c) 2023 The XOOPSCube Project, author
+ * @license   MIT license for Bootstrap
+ * @license   BSD license for XOOPSCube XCL Theme
+ * @link      https://github.com/xoopscube
 */
 :root{
     /* ------------------ Development Mode */
@@ -47,7 +47,6 @@
     }
 
 }
-
 
 /* Development Mode */
 .ui-dev-mode {
@@ -293,10 +292,6 @@ Scrollbars Module Level 1 draft and are currently only supported in Firefox
     border-radius       : var(--border-radius);
     background          : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
     /*box-shadow          : inset 2px 2px 4px 1px rgba(0, 0, 0, 0.4),*/
-    /*2px 2px 5px 2px rgb(35, 45, 47),*/
-    /*inset -2px -2px 4px 0 rgba(45,55, 65, 0.4),*/
-    /*inset -1px -2px 2px 0 rgba(35, 45, 47, 0.4),*/
-    /*-2px -2px 4px 2px rgba(45, 55, 55, 0.4);*/
 }
 ::-webkit-scrollbar-thumb:horizontal{
     /*background: #000;*/

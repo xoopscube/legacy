@@ -5,15 +5,39 @@
 *
 * @version   2.3.2
 * @author    Nuno Luciano ( https://github.com/gigamaster )
-* @copyright (c) 2023 The XOOPSCube Project, author
-* @license   MIT license for Bootstrap
-* @license   BSD license for XOOPSCube XCL Theme
+* @copyright (c) 2023 The XOOPSCube Project, authors
+* @license   MIT
 * @link      https://github.com/xoopscube
 */
 *}>
+<style>
+    div[id|="anchor"] {scroll-margin-top: 2em;} /* property applied to each anchor for a margin at the top */
+    .icon-color {fill: rgb(13, 110, 253);}
+    .cssvar.accordion {
+        --bs-accordion-bg : hsl(227, 28%, 15%);
+        --bs-accordion-active-bg : hsl(227deg 28% 20%);
+        --bs-accordion-active-color: hsl(227deg 28% 74%);
+        --bs-accordion-border-color: hsl(227, 28%, 25%);
+        --bs-accordion-btn-color:hsl(227deg 28% 74%);
+        --bs-accordion-color:hsl(227deg 28% 74%);
+    }
+    .cssvar.accordion .btn-primary
+    {
+        --bs-btn-bg: tomato;
+        --bs-btn-border-color: tomato;
+    }
+    p, .text-justify {text-align: justify;text-justify: distribute}
+    i.bi { font-size:2.5em;}
+    i.yellow { color:yellow}
+    i.orange { color:orange}
+    i.darkorange { color:darkorange}
+    i.orangered { color:orangered}
+    i.red { color:red}
+    i.darkred { color:darkred}
+</style>
 
 <{* ////— Breadcrumbs —\\\\ *}>
-<nav aria-label="breadcrumb">
+<nav aria-label="breadcrumb" id="anchor-top">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<{$xoops_url}>/"><img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a></li>
         <li class="breadcrumb-item"><a href="<{$xoops_imageurl}>index.php"><img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="category"> Theme Guide</a></li>
@@ -35,13 +59,15 @@
     <div class="col-md-7">
         <{* Theme Credits *}>
         <div class="theme-credits">
-            <h3>Theme <{$theme.name.value}></h3>
+            <h4>Theme <{$theme.name.value}></h4>
                 <p>Version : <{$theme.version.value}><br>
-                Author : <{$theme.author.value}></p>
+                Author : <{$theme.author.value}><br>
+                Date : 23-03-2023</p>
             <h5>Description</h5>
-            <p><{$theme.description.value}></p>
+            <p class="text-justify"><{$theme.description.value}></p>
         </div>
     </div>
+
 </section>
 
 <{* Theme App and Platform *}>
@@ -56,17 +82,15 @@
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-
-                        <p>Theme Manifesto.</p>
-                        <ul>
-                            <li>Dirname : <{$theme.dirname.value}></li>
-                            <li>Theme options : <{$theme.themeoptions.value}></li>
-                            <li>Format : <{$theme.format.value}></li>
-                            <li>Render system : <{$theme.render_system.value}></li>
-                            <li>URL : <{$theme.url.value}></li>
-                            <li>License : <{$theme.license.value}></li>
-                        </ul>
-
+                    <p>Theme Manifesto.</p>
+                    <ul>
+                        <li>Dirname : <{$theme.dirname.value}></li>
+                        <li>Theme options : <{$theme.themeoptions.value}></li>
+                        <li>Format : <{$theme.format.value}></li>
+                        <li>Render system : <{$theme.render_system.value}></li>
+                        <li>URL : <{$theme.url.value}></li>
+                        <li>License : <{$theme.license.value}></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -119,29 +143,15 @@
         </div>
     </div>
 </section>
+<hr class="mb-5">
 <{/if}>
 
-<hr class="mb-6">
-
-<style>
-    .icon-color {
-        fill: rgb(13, 110, 253);
-    }
-    .cssvar.accordion {
-        --bs-accordion-bg : hsl(227, 28%, 15%);
-        --bs-accordion-active-bg : hsl(227deg 28% 20%);
-        --bs-accordion-active-color: hsl(227deg 28% 74%);
-        --bs-accordion-border-color: hsl(227, 28%, 25%);
-        --bs-accordion-btn-color:hsl(227deg 28% 74%);
-        --bs-accordion-color:hsl(227deg 28% 74%);
-    }
-    .cssvar.accordion .btn-primary
-    {
-        --bs-btn-bg: tomato;
-        --bs-btn-border-color: tomato;
-    }
-    .text-justify {text-align: justify;text-justify: distribute}
-</style>
+<div class="sticky-top row row-gap-2 column-gap-sm-2 bg-dark-subtle bg-opacity-50 rounded-3 p-3">
+    <a class="col btn btn-primary btn-sm" href="#anchor-custom">Customization</a>
+    <a class="col btn btn-primary btn-sm" href="#anchor-blocks">Blocks Position</a>
+    <a class="col btn btn-primary btn-sm" href="#anchor-components">Custom Components</a>
+    <a class="col btn btn-primary btn-sm" href="#anchor-icons">Bootstrap Icons</a>
+</div>
 
 
 <div class="container my-5">
@@ -153,14 +163,11 @@
         </div>
         <div class="col-sm-9 text-justify">
             <div class="display-5 mb-3">Pre-Built Theme</div>
-            <p>The render engine is framework-agnostic. This means you can simply "Select" the theme you want to use in <b>Theme Management</b> as the default theme for your website.
-                Any checked theme will also be available in the block "Themes" for user groups with permissions.
-                Users can then select their favorite theme and customize the look and feel of the website.</p>
+            <p>XCL render engine is framework-agnostic. This means you can simply "Select" the theme you want to use in <b>Theme Management</b> as the default theme for your website.
+                Any checked theme will also be available in the block "Themes", so user groups with permissions can then select their favorite theme and customize the look and feel of the website.</p>
         </div>
     </div>
 </div>
-
-
 
 <div class="container my-5">
     <div class="row">
@@ -178,7 +185,6 @@
     </div>
 </div>
 
-
 <div class="container my-5">
     <div class="row">
         <div class="col-sm-3 text-center">
@@ -195,7 +201,6 @@
     </div>
 </div>
 
-<!--<hr class="mb-5">-->
 
 <div class="display-5 mb-3">Components and Templates</div>
 
@@ -244,10 +249,292 @@
     </div>
 </div>
 
-<div class="display-5 mt-5 mb-3">Bootstrap Icons</div>
+<div class="display-5 mt-5 mb-3" id="anchor-custom">Customization</div>
+
+<p class="mb-4"><em>Customization, by definition, is the process, or action by users of changing or making changes to meet their needs or requirements, by contrast,
+    personalization is using users data to provide a user experience tailored to the user's individual needs and preferences.</em></p>
+<p>
+    The rendering engine incorporates the concept of flexibility. That is to say, the capability of being used by both experienced and novice designers,
+    thus having crucial effects on the development of creativity in the design process.
+    Among the obvious advantages is the ease of adapting and updating to meet changing needs —
+    implementing simple yet practical incremental updates can help any business or website
+    keep up with the times and have a positive impact on the user experience.
+</p>
+
+<p>Let's take the block position and how to include a custom component as an example to customize your website.</p>
+
+<div class="display-5 mt-5 mb-3" id="anchor-blocks">Block Position</div>
+
+<p>XCL themes have custom block positions in various places. Theme Bootstrap 5 Starter features :</p>
+<ul>
+    <li><b>Block-left</b> with prefix <code>"navbar-"</code> for header navigation </li>
+    <li><b>Center-Block</b> with prefix <code>"bottom-"</code> for extra center blocks </li>
+    <li><b>Block-right</b> with prefix <code>"panel-"</code> for off-canvas sidebar </li>
+</ul>
+
+<p>The "side" position of block is just a legacy code convention for identifying areas in the theme layout.
+    If you were to change themes later, the block management system ensures a fallback to default positions.
+    It's simple and secure, so you won't lose visibility of your content.
+</p>
+
+<div class="alert alert-warning my-4" role="alert">
+    Some Block elements might require utility classes for navs to avoid the list-based menu.<br>
+    Check <a href="https://getbootstrap.com/docs/5.3/components/navbar/" target="_blank" rel="nofollow noopener">Bootstrap documentation</a>
+    how it works and what you need to know before getting started with the navbar.
+</div>
+
+<p class="fs-4 mt-3 pt-2">Example of "Main Menu" in header navigation bar</p>
+
+<div class="container my-5 text-justify">
+    <div class="row g-sm-4">
+
+        <div class="col-sm-12">
+            <div class="text-center bg-dark-subtle bg-opacity-50 rounded-3 p-4" style="resize: both;overflow: auto; max-width:100%;min-height: 310px">
+                <!-- navbar example -->
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="container px-2">
+                        <a class="navbar-brand" href="#!"><img src="<{$xoops_url}>/images/logo.svg" width="24px" height="24px" alt="logo"> Web Application Platform</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li class="nav-item"><a class="nav-link" href="#!">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#!">Forum</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#!">Pico</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown-527" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                                        Main Menu
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="navbarDropdown-527" data-bs-popper="static">
+                                        <li>
+                                            <style>
+                                                #main-menu a.menu-top {
+                                                    color: var(--bs-list-group-active-color);
+                                                    background-color: var(--bs-list-group-active-bg);
+                                                    border-color: var(--bs-list-group-active-border-color);
+                                                    color: #fff;
+                                                    background: #0d6efd;
+                                                    border-color: #0d6efd;
+                                                }
+                                            </style>
+                                            <div id="main-menu" class="list-group list-group-flush">
+                                                <a class="list-group-item list-group-item-action menu-top" href="#!">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" role="img"><path d="M19 21H5a1 1 0 0 1-1-1v-9H1l10.327-9.388a1 1 0 0 1 1.346 0L23 11h-3v9a1 1 0 0 1-1 1zm-6-2h5V9.157l-6-5.454l-6 5.454V19h5v-6h2v6z" fill="currentColor"></path></svg>
+                                                    Home</a>
+                                                <a class="list-group-item list-group-item-action message" href="#!">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" width="1em" aria-hidden="true"><path fill="currentColor" d="M2 20V4h20v16Zm10-7l8-5V6l-8 5l-8-5v2Z"></path></svg>
+                                                    Message</a>
+                                                <a class="list-group-item list-group-item-action pico" href="#!">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" width="1em" aria-hidden="true"><path fill="currentColor" d="M4 22V2h10l6 6v3.1l-8 7.975V22Zm10 0v-2.125l5.15-5.175l2.15 2.1l-5.175 5.2Zm8.025-5.9L19.9 13.975l1.425-1.425l2.075 2.175ZM13 9h5l-5-5Z"></path></svg></span>
+                                                    Pico</a>
+                                                <a class="list-group-item list-group-item-action d3forum" href="#!">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" width="1em" aria-hidden="true"><path fill="currentColor" d="M2 17V2h15v11H6Zm4 1v-3h13V6h3v16l-4-4Z"></path></svg>
+                                                    D3forum</a>
+                                                <a class="list-group-item list-group-item-action xelfinder" href="#!">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" role="presentation" viewBox="0 0 24 24" width="1em" aria-hidden="true"><path fill="currentColor" d="M14 13h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-3l-1-1h-2a1 1 0 0 0-1 1v1H8V7h2a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H7L6 1H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2v13h7v1a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-3l-1-1h-2a1 1 0 0 0-1 1v1H8v-7h5v1a1 1 0 0 0 1 1Z"></path></svg>
+                                                    XelFinder</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item admin-action">
+                                    <div class="dropdown">
+                                        <a href="#" class="dropdown-toggle" aria-label="Edit" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24"><path d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2z" fill="currentColor"></path>
+                                            </svg>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li>
+                                                <a class="dropdown-item" href="#!">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path></rect>
+                                                </svg> Edit <span class="badge">B-29</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#!">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M14 12h5.5L14 6.5V12M8 5h7l6 6v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-3h5v2l4-3l-4-3v2H6V7a2 2 0 0 1 2-2m5.5-2H4v13h2v2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h7.5l2 2z" fill="currentColor"></path>
+                                                </svg> Clone Block</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#!">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M12.89 3l1.96.4L11.11 21l-1.96-.4L12.89 3m6.7 9L16 8.41V5.58L22.42 12L16 18.41v-2.83L19.59 12M1.58 12L8 5.58v2.83L4.41 12L8 15.58v2.83L1.58 12z" fill="currentColor"></path>
+                                                </svg> Edit template</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- container -->
+                </nav>
+
+<pre><code class="lang-bash">1. Install the block "Main Menu" in side position "block-left"
+2. Add the prefix "navbar-" to the block title : "navbar-Main Menu"
+3. Select target modules and target groups
+</code></pre>
+            </div>
+        </div><!-- col 12 -->
+
+        <div class="display-5 mt-5 mb-3">Block Management</div>
+
+        <p>Browse to block management where you can configure the Block and add the prefix of theme's position.</p>
+        <p><span class="badge bg-secondary">Control Panel</span> »» <span class="badge bg-secondary">System</span> »» <span class="badge bg-secondary">Block Management</span></p>
+
+        <div class="col-sm-5">
+            <div class="bg-dark-subtle bg-opacity-50 rounded-3 p-4">
+                <h5><i class="bi bi-grid-1x2 me-3" style="font-size:1em;"></i>Block Settings</h5>
+                <p>Block Title with <b>prefix</b> e.g. <code>navbar-</code><br>
+                    Block Position ( or side area )</p>
+                <p><b>Select multiple options :</b></p>
+                <p>Target Modules ( where to show the block )<br>
+                Target Groups ( grant permissions )</p>
+            </div>
+        </div><!-- col-5 -->
+        <div class="col-sm-7">
+            <div class="bg-dark-subtle bg-opacity-50 rounded-3 p-4">
+
+                <div class="hstack gap-3 mb-3">
+                    <label class="form-label col-sm-3">Title</label>
+                    <input type="text" class="form-control" placeholder="navbar-Menu Title">
+                </div>
+
+                <div class="hstack gap-3 mb-3">
+                    <label class="form-label col-sm-3">Block Position</label>
+                    <select name="side" class="form-select">
+                        <option id="side_0" value="0" selected>Side-Block-Left</option>
+                        <option id="side_1" value="1">Side-Block-Right</option>
+                        <option id="side_3" value="3">Center-Block-Left</option>
+                        <option id="side_4" value="4">Center-Block-Right</option>
+                        <option id="side_5" value="5">Center-Block-Center</option>
+                    </select>
+                </div>
+
+                <div class="hstack gap-3 mb-3">
+                    <label class="form-label col-sm-3">Target Modules</label>
+                    <select size="5" name="bmodule[]" multiple="multiple" class="form-select">
+                        <option id="bmodule[]_-1" value="-1">Toppage</option>
+                        <option id="bmodule[]_0" value="0" selected>All modules</option>
+                        <option id="bmodule[]_7" value="7">Components</option>
+                        <option id="bmodule[]_8" value="8">Message</option>
+                        <option id="bmodule[]_11" value="11">pico</option>
+                        <option id="bmodule[]_12" value="12">d3forum</option>
+                        <option id="bmodule[]_14" value="14">xelFinder</option>
+                    </select>
+                </div>
+
+                <div class="hstack gap-3 mb-3">
+                    <label class="form-label col-sm-3">Target Groups</label>
+                    <select size="5" name="groupid[]" multiple="multiple" class="form-select">
+                        <option id="legacy_xoopsform_groupid[]_1" value="1" selected>Webmasters</option>
+                        <option id="legacy_xoopsform_groupid[]_2" value="2" selected>Registered Users</option>
+                        <option id="legacy_xoopsform_groupid[]_3" value="3">Anonymous Users</option>
+                        <option id="legacy_xoopsform_groupid[]_6" value="4" selected>Moderators</option>
+                    </select>
+                </div>
+
+            </div>
+        </div><!-- col-7 -->
+    </div>
+</div><!-- container -->
+
+
+<div class="display-5 mb-3" id="anchor-components">Custom Components & Templates</div>
+
+<div class=" text-justify">
+
+<p>The render engine provides several ways to create and access custom components and named templates.
+    It is flexible enough to include one custom component from within another template.
+    You can also import a Single File Component and all the resources needed in order to output the final layout.</p>
+
+<p>Custom Components are a type of template that are not part of a core module. However, these components can
+    be created with a base amount of Smarty logic that you can insert into your template and global theme.</p>
+
+
+<pre class="rounded-3 my-4"><code class="lang-smarty">&lt;{* ----- Navigation ----- *}&gt;
+&lt;{include file=&quot;$xoops_theme/component/nav-theme-mode.html&quot;}&gt;
+</code></pre>
+
+<p>For example, you can add, replace, or remove user interface components. Smarty conditional statements make it easy to include custom components.
+A few basic examples should give you an idea of the syntax and format of Smarty conditions.</p>
+
+</div>
+
+<p class="fs-4 mt-3 pt-2">1. Include the component features</p>
+
+<pre class="rounded-3 my-4"><code class="lang-smarty">&lt;{* ----- Features ----- *}&gt;
+&lt;{include file=&quot;$xoops_theme/component/features.html&quot;}&gt;
+</code></pre>
+
+<p class="fs-4 mt-3 pt-2">2. Render of component features</p>
+<{include file="$xoops_theme/component/features.html"}>
+
+<p class="fs-4">1. Example of Accordion with CSS custom properties (variables)</p>
+
+<pre class="rounded-3 my-4"><code class="lang-css">/* Local CSS variables for enhanced real-time customization of accordion */
+.cssvar .accordion {
+    --bs-accordion-bg : hsl(227, 28%, 15%);
+    --bs-accordion-active-bg : hsl(227deg 28% 20%);
+    --bs-accordion-active-color: hsl(227deg 28% 74%);
+    --bs-accordion-border-color: hsl(227, 28%, 25%);
+    --bs-accordion-btn-color:hsl(227deg 28% 74%);
+    --bs-accordion-color:hsl(227deg 28% 74%);
+}
+.cssvar .accordion .btn-primary {
+    --bs-btn-bg: tomato;
+    --bs-btn-border-color: tomato;
+}
+</code></pre>
+<p class="fs-4 mt-3 pt-2">2. Output Accordion CSS with custom properties</p>
+<div class="cssvar accordion mb-5" id="accordionCSSvarExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="cssvar-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cssvar-collapseOne" aria-expanded="false" aria-controls="cssvar-collapseOne">
+                CSS var Accordion Item #1
+            </button>
+        </h2>
+        <div id="cssvar-collapseOne" class="accordion-collapse collapse" aria-labelledby="cssvar-headingOne" data-bs-parent="#accordionCSSvarExample">
+            <div class="accordion-body">
+                <p>Placeholder content for this accordion, which is intended to demonstrate the customized CSS variables.</p>
+                <p>This is the first item's accordion body.</p>
+                <p><button class="btn btn-primary">Button Primary</button></p>
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="cssvar-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cssvar-collapseTwo" aria-expanded="false" aria-controls="cssvar-collapseTwo">
+                CSS var Accordion Item #2
+            </button>
+        </h2>
+        <div id="cssvar-collapseTwo" class="accordion-collapse collapse" aria-labelledby="cssvar-headingTwo" data-bs-parent="#accordionCSSvarExample">
+            <div class="accordion-body">
+                <p>Placeholder content for this accordion, which is intended to demonstrate the customized CSS variables.</p>
+                <p>This is the second item's accordion body. Let's imagine this being filled with some actual content.</p>
+                <p><button class="btn btn-primary">Button</button></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="display-5 mt-5 mb-3" id="anchor-icons">Bootstrap Icons</div>
 
 <p>Free, high quality, open source icon library with over 1,800 icons. Include them anyway you like—SVGs, SVG sprite, or web fonts.
     Use them with or without Bootstrap in any project.</p>
+
+<p class="fs-4 mt-3 pt-2">1. Example of Customized Bootstrap Icons</p>
+<div class="row row-cols-2 g-sm-4 mb-5">
+    <pre class="bg-dark-subtle bg-opacity-50 rounded-3 p-3">
+    <code class="col-sm-6 lang-html">&lt;i class=&quot;bi bi-image-fill orange&quot;&gt;</code>
+    </pre>
+    <pre class="bg-dark-subtle bg-opacity-50 rounded-3 p-3"><code class="col-sm-6 lang-css">i.bi { font-size:2.5em }
+    i.yellow    { color:yellow }
+    i.orange    { color:orange }
+    i.darkorange{ color:darkorange }
+    i.orangered { color:orangered }
+    i.red       { color:red }
+    i.darkred   { color:darkred }
+</code></pre>
+</div>
+
+<p class="fs-4 mt-3 pt-2">2. Output customized Bootstrap Icons</p>
 
 <div class="container my-5 text-justify">
     <div class="row g-sm-4">
@@ -284,106 +571,9 @@
     </div>
 </div>
 
+<hr class="my-4">
 
-<style>
-    i.bi { font-size:2.5em;}
-    i.yellow { color:yellow}
-    i.orange { color:orange}
-    i.darkorange { color:darkorange}
-    i.orangered { color:orangered}
-    i.red { color:red}
-    i.darkred { color:darkred}
-</style>
-<p class="fs-4 mt-3 pt-2">Example of Customized Bootstrap Icons</p>
-<div class="row row-cols-2 g-sm-4 mb-5">
-    <pre class="bg-dark-subtle bg-opacity-50 rounded-3 p-3">
-    <code class="col-sm-6 lang-html">&lt;i class=&quot;bi bi-image-fill orange&quot;&gt;</code>
-    </pre>
-<pre class="bg-dark-subtle bg-opacity-50 rounded-3 p-3"><code class="col-sm-6 lang-css">i.bi { font-size:2.5em }
-    i.yellow    { color:yellow }
-    i.orange    { color:orange }
-    i.darkorange{ color:darkorange }
-    i.orangered { color:orangered }
-    i.red       { color:red }
-    i.darkred   { color:darkred }
-</code></pre>
-</div>
+<p class="fs-4 mt-3 pt-2">Documentation and resources</p>
 
-<div class="display-5 mb-3">Custom Components & Templates</div>
-
-<div class=" text-justify">
-
-<p>The render engine provides several ways to create and access custom components and named templates.
-    It is flexible enough to include one custom component from within another template.
-    You can also import a Single File Component and all the resources needed in order to output the final layout.</p>
-
-<p>Custom Components are a type of template that are not part of a core module. However, these components can
-    be created with a base amount of Smarty logic that you can insert into your template and global theme.</p>
-
-
-<pre class="mb-3"><code class="lang-smarty">&lt;{* ----- Navigation ----- *}&gt;
-&lt;{include file=&quot;$xoops_theme/component/nav-theme-mode.html&quot;}&gt;
-</code></pre>
-
-<p>For example, you can add, replace, or remove user interface components. Smarty conditional statements make it easy to include custom components.
-A few basic examples should give you an idea of the syntax and format of Smarty conditions.</p>
-
-</div>
-
-<p class="fs-4 mt-3 pt-2">1. Include the component features</p>
-
-<pre><code class="lang-smarty">&lt;{* ----- Features ----- *}&gt;
-&lt;{include file=&quot;$xoops_theme/component/features.html&quot;}&gt;
-</code></pre>
-<p class="fs-4 mt-3 pt-2">2. Render of component features</p>
-<{include file="$xoops_theme/component/features.html"}>
-
-<p class="fs-4">Example of Accordion with CSS custom properties (variables)</p>
-
-<pre class="rounded-3 my-4"><code class="lang-css">/* Local CSS variables for enhanced real-time customization of accordion */
-.cssvar .accordion {
-    --bs-accordion-bg : hsl(227, 28%, 15%);
-    --bs-accordion-active-bg : hsl(227deg 28% 20%);
-    --bs-accordion-active-color: hsl(227deg 28% 74%);
-    --bs-accordion-border-color: hsl(227, 28%, 25%);
-    --bs-accordion-btn-color:hsl(227deg 28% 74%);
-    --bs-accordion-color:hsl(227deg 28% 74%);
-}
-.cssvar .accordion .btn-primary {
-    --bs-btn-bg: tomato;
-    --bs-btn-border-color: tomato;
-}
-</code></pre>
-<p class="fs-4 mt-3 pt-2">Output Accordion CSS with custom properties</p>
-<div class="cssvar accordion mb-5" id="accordionCSSvarExample">
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="cssvar-headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cssvar-collapseOne" aria-expanded="false" aria-controls="cssvar-collapseOne">
-                CSS var Accordion Item #1
-            </button>
-        </h2>
-        <div id="cssvar-collapseOne" class="accordion-collapse collapse" aria-labelledby="cssvar-headingOne" data-bs-parent="#accordionCSSvarExample">
-            <div class="accordion-body">
-                <p>Placeholder content for this accordion, which is intended to demonstrate the customized CSS variables.</p>
-                <p>This is the first item's accordion body.</p>
-                <p><button class="btn btn-primary">Button Primary</button></p>
-            </div>
-        </div>
-    </div>
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="cssvar-headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cssvar-collapseTwo" aria-expanded="false" aria-controls="cssvar-collapseTwo">
-                CSS var Accordion Item #2
-            </button>
-        </h2>
-        <div id="cssvar-collapseTwo" class="accordion-collapse collapse" aria-labelledby="cssvar-headingTwo" data-bs-parent="#accordionCSSvarExample">
-            <div class="accordion-body">
-                <p>Placeholder content for this accordion, which is intended to demonstrate the customized CSS variables.</p>
-                <p>This is the second item's accordion body. Let's imagine this being filled with some actual content.</p>
-                <p><button class="btn btn-primary">Button</button></p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<article>
+<p><a href="https://getbootstrap.com/" target="_blank" rel="nofollow noopener">Learn more about Bootstrap 5</a></p>
+<p><a href="https://icons.getbootstrap.com/" target="_blank" rel="nofollow noopener">Find more Bootstrap Icons</a></p>

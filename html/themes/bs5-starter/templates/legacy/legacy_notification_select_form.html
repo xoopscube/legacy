@@ -28,17 +28,17 @@
                         </th>
                     </tr>
                     <tr>
-                        <td class="head"><{$smarty.const._NOT_CATEGORY}></td>
-                        <td class="head"><input class="form-check-input" name="allbox" id="allbox" onclick="checkAll('notification_select','allbox');" type="checkbox" value="<{$smarty.const._NOT_CHECKALL}>"></td>
-                        <td class="head"><{$smarty.const._NOT_EVENT}></td>
+                        <td><{$smarty.const._NOT_CATEGORY}></td>
+                        <td><input class="form-check-input" name="allbox" id="allbox" onclick="checkAll('notification_select','allbox');" type="checkbox" value="<{$smarty.const._NOT_CHECKALL}>"></td>
+                        <td><{$smarty.const._NOT_EVENT}></td>
                     </tr>
                     <{foreach name=outer item=category from=$xoops_notification.categories}>
                     <{foreach name=inner item=event from=$category.events}>
                     <tr>
                         <{if $smarty.foreach.inner.first}>
-                        <td class="even" rowspan="<{$smarty.foreach.inner.total}>"><{$category.title}></td>
+                        <td rowspan="<{$smarty.foreach.inner.total}>"><{$category.title}></td>
                         <{/if}>
-                        <td class="odd">
+                        <td>
                             <{counter assign=index}>
                             <input type="hidden" name="not_list[<{$index}>][params]" value="<{$category.name}>,<{$category.itemid}>,<{$event.name}>">
                             <input type="checkbox"
@@ -47,12 +47,12 @@
                                    name="not_list[<{$index}>][status]"
                                    value="1" <{if $event.subscribed}>checked="checked"<{/if}>>
                         </td>
-                        <td class="odd"><{$event.caption}></td>
+                        <td><{$event.caption}></td>
                     </tr>
                     <{/foreach}>
                     <{/foreach}>
                     <tr>
-                        <td class="foot" colspan="3">
+                        <td colspan="3">
                             <button type="submit" class="btn btn-primary btn-sm" name="not_submit" value="<{$smarty.const._NOT_UPDATENOW}>"><{$smarty.const._NOT_UPDATENOW}></button></td>
                     </tr>
                 </table>

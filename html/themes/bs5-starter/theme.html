@@ -1,46 +1,48 @@
 <!DOCTYPE html>
 <html class="no-js" lang="<{$xoops_langcode}>" data-bs-theme="light">
 <!--
-    /*
-    * Theme XCL Bootstrap5 Starter
-    *
-    * @version   2.3.2
-    * @author    Nuno Luciano ( https://github.com/gigamaster )
-    * @copyright (c) 2023 The XOOPSCube Project, author
-    * @license   MIT license for Bootstrap
-    * @license   BSD license for XOOPSCube XCL Theme
-    * @link      https://github.com/xoopscube
-    */
+/*
+ * Theme XCL Bootstrap 5 Starter
+ *
+ * @version   5.3.0
+ * @author    Nuno Luciano ( https://github.com/gigamaster )
+ * @copyright (c) 2023 The XOOPSCube Project, author
+ * @license   MIT license for Bootstrap
+ * @license   BSD license for XOOPSCube XCL Theme
+ * @link      https://github.com/xoopscube
+*/
 -->
 <{include file="$xoops_theme/component/head.html"}>
 
 <body class="d-flex flex-column h-100 <{$xoops_dirname}>">
 
     <main class="flex-shrink-0">
-        <{* ----- Navigation ----- *}>
-        <{include file="$xoops_theme/component/nav-theme-mode.html"}>
 
-        <{if $xoops_is_top}>
-        <{include file="$xoops_theme/component/hero.html"}>
-        <{/if}>
+    <{* ----- Navigation ----- *}>
+    <{* ----- Custom Block-Left using prefix "navbar-" in block title ----- *}>
+    <{include file="$xoops_theme/component/nav-theme-mode.html"}>
 
-        <{* ----- Left-Block and content ----- *}>
-        <{include file="$xoops_theme/component/left_content.html"}>
+    <{if $xoops_is_top}>
+    <{include file="$xoops_theme/component/hero.html"}>
+    <{/if}>
 
-        <{* ----- Center Block section ----- *}>
-        <{if $xoops_showcblock==1}>
-        <{include file="$xoops_theme/component/center_block.html"}>
-        <{/if}>
+    <{* ----- Left-Block and content ----- *}>
+    <{include file="$xoops_theme/component/left_content.html"}>
 
-        <{* ----- Features section ----- *}>
-        <{* include file="$xoops_theme/component/features.html *"}>
+    <{* ----- Center Block section ----- *}>
+    <{if $xoops_showcblock==1}>
+    <{include file="$xoops_theme/component/center_block.html"}>
+    <{/if}>
 
-        <{* ----- Testimonial section ----- *}>
-        <{* include file="$xoops_theme/component/testimonial.html" *}>
+    <{* ----- Features section ----- *}>
+    <{* include file="$xoops_theme/component/features.html *"}>
+
+    <{* ----- Testimonial section ----- *}>
+    <{* include file="$xoops_theme/component/testimonial.html" *}>
 
     </main>
 
-<{* ----- Customized Center Block using prefix "bottom-" in block title ----- *}>
+<{* ----- Custom Center Block using prefix "bottom-" in block title ----- *}>
 <{if $xoops_showcblock==1}>
 <{include file="$xoops_theme/component/center_block_bottom.html"}>
 <{/if}>
@@ -49,6 +51,14 @@
 <{if $xoops_banner ne "&nbsp;"}>
 <{include file="$xoops_theme/component/banner.html"}>
 <{/if}>
+
+
+    <{if $xoops_isadmin}>
+    <{include file="$xoops_theme/component/panel-right.html"}>
+    <{/if}>
+
+    <{* ----- Footer Customized with Component ----- *}>
+    <{include file="$xoops_theme/component/footer.html"}>
 
 <{* ----- Scroll to top ----- *}>
 <div class="scroll-top">
@@ -60,12 +70,7 @@
     </a>
 </div>
 
-<{if $xoops_isadmin}>
-<{include file="$xoops_theme/component/panel-right.html"}>
-<{/if}>
 
-<{* ----- Footer Customized with Component ----- *}>
-<{include file="$xoops_theme/component/footer.html"}>
 
 
 <{* ----- Bootstrap5

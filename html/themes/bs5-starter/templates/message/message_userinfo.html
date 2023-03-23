@@ -37,13 +37,13 @@
       </tr>
       <{if $user_ownpage == true}>
       <tr>
-        <td class="head" colspan="2" style="text-align:center;">
+        <td colspan="2" style="text-align:center;">
           <a href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>"><{$smarty.const._MD_USER_LANG_EDITPROFILE}></a>
         </td>
       </tr>
       <{/if}>
       <tr valign="top">
-        <td class="head"><{$smarty.const._MD_USER_LANG_AVATAR}></td>
+        <td><{$smarty.const._MD_USER_LANG_AVATAR}></td>
         <td class="<{cycle values='odd,even'}>" style="text-align:center;">
           <{if $thisUser->get('user_avatar') != "blank.gif" }>
             <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$thisUser->getShow('user_avatar')}>" alt="Avatar" title="Avatar" />
@@ -56,16 +56,16 @@
         </td>
       </tr>
       <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_NAME}></td>
+        <td><{$smarty.const._MD_USER_LANG_NAME}></td>
         <td class="<{cycle values='odd,even'}>" style="text-align:center;"><{$thisUser->getShow('name')}></td>
       </tr>
       <tr>
-        <td class="head"><{$smarty.const._MD_USER_LANG_WEBSITE}></td>
+        <td><{$smarty.const._MD_USER_LANG_WEBSITE}></td>
         <td class="<{cycle values='odd,even'}>"><a href="<{$thisUser->getShow('url')}>" rel="external"><{$thisUser->getShow('url')}></a></td>
       </tr>
       <{if $thisUser->get('user_viewemail') == 1 || $user_ownpage == true || $xoops_isadmin == true }>
         <tr valign="top">
-          <td class="head"><{$smarty.const._MD_USER_LANG_EMAIL}></td>
+          <td><{$smarty.const._MD_USER_LANG_EMAIL}></td>
           <td class="<{cycle values='odd,even'}>">
             <{mailto address=$thisUser->get('email') encode="javascript"}>
           </td>
@@ -73,7 +73,7 @@
       <{/if}>
       <{if $xoops_isuser == true && $pmliteUrl != ''}>
         <tr valign="top">
-          <td class="head"><{$smarty.const._MD_USER_LANG_PM}></td>
+          <td><{$smarty.const._MD_USER_LANG_PM}></td>
           <td class="<{cycle values='odd,even'}>">
             <a href="<{$pmliteUrl|xoops_escape:link}>">
             <img src="<{$smarty.const.XOOPS_URL}>/images/icons/email.svg" alt="<{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}>" title="<{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}>" /></a>
@@ -91,12 +91,12 @@
         <th colspan="2" style="text-align:center;"><{$smarty.const._MD_USER_LANG_STATISTICS}></th>
       </tr>
       <tr valign="top">
-        <td class="head"><{$smarty.const._MD_USER_LANG_USER_REGDATE}></td>
+        <td><{$smarty.const._MD_USER_LANG_USER_REGDATE}></td>
         <td class="<{cycle values='odd,even'}>" style="text-align:center;"><{$thisUser->get('user_regdate')|xoops_formattimestamp:l}></td>
       </tr>
       <{if $rank != null}>
         <tr valign="top">
-          <td class="head"><{$smarty.const._MD_USER_LANG_RANK}></td>
+          <td><{$smarty.const._MD_USER_LANG_RANK}></td>
           <td class="<{cycle values='odd,even'}>" style="text-align:center;">
             <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$rank->getShow('rank_image')}>" alt="<{$rank->getShow('rank_title')}>" title="<{$rank->getShow('rank_title')}>" /><br>
             <{$rank->getShow('rank_title')}>
@@ -104,11 +104,11 @@
         </tr>
       <{/if}>
       <tr valign="top">
-        <td class="head"><{$smarty.const._MD_USER_LANG_POSTS}></td>
+        <td><{$smarty.const._MD_USER_LANG_POSTS}></td>
         <td class="<{cycle values='odd,even'}>" style="text-align:center;"><{$thisUser->getShow('posts')}></td>
       </tr>
       <tr valign="top">
-        <td class="head"><{$smarty.const._MD_USER_LANG_LAST_LOGIN}></td>
+        <td><{$smarty.const._MD_USER_LANG_LAST_LOGIN}></td>
         <td class="<{cycle values='odd,even'}>" style="text-align:center;"><{$thisUser->get('last_login')|xoops_formattimestamp:l}></td>
       </tr>
     </table>

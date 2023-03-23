@@ -56,13 +56,13 @@
 
             <{foreach item=val from=$ListData}>
             <tr>
-                <td class="odd">
+                <td>
                     <input class="form-check-input" type="checkbox" name="delmsg[]" value="<{$val.outbox_id}>">
                 </td>
 
-                <td class="odd"><img src="<{$val.to_uid|xoops_user_avatarize}>" width="24px" class="rounded-circle"> <{$val.fromname}></td>
+                <td><img src="<{$val.to_uid|xoops_user_avatarize}>" width="24px" class="rounded-circle"> <{$val.fromname}></td>
 
-            <td class="even"><a href="index.php?action=view&amp;inout=out&amp;outbox=<{$val.outbox_id}>"><{$val.title|truncate:50:"..."}></a></td>
+            <td><a href="index.php?action=view&amp;inout=out&amp;outbox=<{$val.outbox_id}>"><{$val.title|truncate:50:"..."}></a></td>
 
             <td class="even small"><{$val.utime|xoops_formattimestamp:l}></td>
 

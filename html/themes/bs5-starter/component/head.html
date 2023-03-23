@@ -1,8 +1,6 @@
 <head>
     <meta charset="utf-8" lang="<{$xoops_langcode}>">
-    <!--  <meta charset="<{$xoops_charset}>">-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> -->
 
     <title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
     <meta name="description" content="<{$xoops_meta_description}>">
@@ -19,9 +17,9 @@
     <!-- Facebook App -->
     <meta property="fb:app_id" content="<{$xoops_meta_fb_app}>">
     <!-- Open Graph data -->
-    <meta property="og:url" content="<{$xoops_url}>"><meta property="og:url" content="//<{$smarty.server.HTTP_HOST}><{$xoops_requesturi}>">
+    <meta property="og:url" content="//<{$smarty.server.HTTP_HOST}><{$xoops_requesturi}>">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="<{$xoops_meta_og_title}>"><meta property="og:title" content="<{$xoops_pagetitle}>">
+    <meta property="og:title" content="<{$xoops_pagetitle}>">
     <{if $mytrustdirname == 'pico' && $content.ef.pico_img}>
     <meta property="og:image" content="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/pico_img_0_<{$content.ef.pico_img|escape}>">
     <{else}>
@@ -35,20 +33,11 @@
     <meta name="twitter:site" content="<{$xoops_meta_twitter_site}>"><!-- @site_account -->
     <meta name="twitter:creator" content="@<{$xoops_meta_author}>">
 
-    <!-- Resquesturi $xoops_requesturi : /module/dirname/id -->
-    <link rel="canonical" href="<{$xoops_url}><{$SCRIPT_NAME}>">
+    <link rel="canonical" href="//<{$smarty.server.SERVER_NAME}><{$SCRIPT_NAME}>">
 
     <!-- Favicon SVG located in the root directory -->
     <link rel="icon" href="<{$xoops_url}>/favicon.svg" type="image/svg+xml">
-    <!-- Favicon.png root images' directory -->
-    <link rel="alternate icon" href="<{$xoops_url}>/images/favicon.png" type="image/png">
-    <!-- Favicon.ico older in theme's directory -->
-    <link  rel="alternate icon" type="image/x-icon" href="<{$xoops_imageurl}>assets/favicon.ico">
-    <!-- HTML5 valid Data URI for fake favicon requests by Browsers -->
-    <link rel="alternate icon" href="data:;base64,iVBORw0KGgo=">
 
-    <!-- Resquesturi $xoops_requesturi : /module/dirname/id -->
-    <link rel="canonical" href="<{$SCRIPT_NAME}>">
     <!-- Mobile App Manifest -->
 <!--    <link rel="manifest" href="<{$xoops_imageurl}>site.webmanifest">-->
 
@@ -56,8 +45,6 @@
     <link href="<{$xoops_url}>/common/bootstrap5/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap icons - Local first -->
     <link href="<{$xoops_url}>/common/bootstrap5/bootstrap-icons.css" rel="stylesheet">
-
-    <{* Bootstrap5 core JS bundle, refer to footer *}>
 
     <!-- Theme default style.css -->
     <link rel="stylesheet" href="<{$xoops_themecss}>">
@@ -74,6 +61,4 @@
     <!-- RMV: added block header -->
     <{* $xoops_block_header *}>
 
-    <{* Custom styles for this theme *}>
-<!--    <link rel="stylesheet" href="<{$xoops_url}>/common/js/jquery-ui.theme.css">-->
 </head>

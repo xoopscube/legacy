@@ -2,11 +2,11 @@
 /**
 
 [Manifesto]
-Name="BS5 Starter"
+Name="Bootstrap 5 Starter"
 Depends=Legacy_RenderSystem,legacy
 ThemeOptions="index.php"
 Url="https://github.com/xoopscube/legacy"
-Version="2.3.1"
+Version="5.3.0"
 
 [Theme]
 RenderSystem=Legacy_RenderSystem

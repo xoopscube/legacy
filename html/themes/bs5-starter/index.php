@@ -1,13 +1,13 @@
 ﻿<?php
 /*
-* Theme XCL Bootstrap5 Starter
-*
-* @version   2.3.2
-* @author    Nuno Luciano ( https://github.com/gigamaster )
-* @copyright (c) 2023 The XOOPSCube Project, author
-* @license   MIT license for Bootstrap
-* @license   BSD license for XOOPSCube XCL Theme
-* @link      https://github.com/xoopscube
+ * Theme XCL Bootstrap 5 Starter
+ *
+ * @version   5.3.0
+ * @author    Nuno Luciano ( https://github.com/gigamaster )
+ * @copyright (c) 2023 The XOOPSCube Project, author
+ * @license   MIT license for Bootstrap
+ * @license   BSD license for XOOPSCube XCL Theme
+ * @link      https://github.com/xoopscube
 */
 
 // Process Script start getrusage — Gets the current resource usages
