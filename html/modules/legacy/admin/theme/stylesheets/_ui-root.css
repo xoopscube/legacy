@@ -267,6 +267,7 @@ Usage with color var:
 
     --card-bg               : var( --layer-3 );
     --card-border           : var( --layer-4 );
+    --card-bg-image         : none; /**/
     --card-margin           : var( --space-6 );
     --card-padding          : var( --space-6 );
     --card-radius           : var( --border-radius );
@@ -466,22 +467,22 @@ Usage with color var:
     /* -------------------- --------------------  SCROLLBAR FIREFOX */
     /* Firefox Scrollbar */
     /* Latest test : It required a copy of these vars to each HTML element */
-    scrollbar-color         : var(--thumbBG) var( --trackBG ); /* thumb-color track-color */
-    scrollbar-width         : thin;
+    scrollbar-color             : var(--thumbBG) var( --trackBG ); /* thumb-color track-color */
+    scrollbar-width             : thin;
 
     /* -------------------- --------------------  TABLE */
 
-    --table-background      : var( --layer-1 );
-    --table-border-bottom   : 1px solid var( --layer-1);
-    --table-padding         : var( --space-5 );
-    --table-thead           : inherit;
-    --table-tbody           : inherit;
-    --table-tfoot           : inherit;
-    --table-even            : var( --layer-3 );
-    --table-odd             : var( --layer-3 );
+    --table-background          : var( --layer-1 );
+    --table-border-bottom       : 1px solid var( --layer-1);
+    --table-padding             : var( --space-5 );
+    --table-thead               : inherit;
+    --table-tbody               : inherit;
+    --table-tfoot               : inherit;
+    --table-even                : var( --layer-3 );
+    --table-odd                 : var( --layer-3 );
     /* ACTION */
-    --table-hover           : var( --layer-4 );
-    --table-hover-text      : var( --secondary );
+    --table-hover               : var( --layer-4 );
+    --table-hover-text          : var( --secondary );
 
     /* -------------------- --------------------  JQUERY-UI */
 
@@ -523,41 +524,41 @@ Usage with color var:
     --ui-state-link-hover       : var( --link-hover );
 
     /* -------------------- --------------------  UI TABS ( Dashboard, X-Update) */
-    --ui-tabs-bg               : var(--layer-2);
-    --ui-tabs-border           : none;
-    --ui-tabs-radius           : var(--border-radius);
-    --ui-tabs-padding          : none;
+    --ui-tabs-bg                : var(--layer-2);
+    --ui-tabs-border            : none;
+    --ui-tabs-radius            : var(--border-radius);
+    --ui-tabs-padding           : none;
 
-    --ui-tabs-nav-bg           : var(--layer-3);
-    --ui-tabs-nav-border       : 1px solid transparent;
-    --ui-tabs-nav-radius       : var(--border-radius);
-    --ui-tabs-nav-margin       : var(--space-4) var(--space-4) 0;
-    --ui-tabs-nav-padding      : var(--space-5) var(--space-5) 0;
-    --ui-tabs-nav-shadow       : none;
-
-    /* TODO */
-    --ui-tabs-nav-li-margin    : 0 1px;
+    --ui-tabs-nav-bg            : var(--layer-3);
+    --ui-tabs-nav-border        : 1px solid transparent;
+    --ui-tabs-nav-radius        : var(--border-radius);
+    --ui-tabs-nav-margin        : var(--space-4) var(--space-4) 0;
+    --ui-tabs-nav-padding       : var(--space-5) var(--space-5) 0;
+    --ui-tabs-nav-shadow        : none;
 
     /* TODO */
-    --ui-tabs-loading       : var(--button-color);
+    --ui-tabs-nav-li-margin     : 0 1px;
 
-    --ui-tabs-anchor-bg        : var(--layer-3);
-    --ui-tabs-anchor-border    : 1px solid var(--layer-2);
-    --ui-tabs-anchor-color     : var( --theme-link);
-    --ui-tabs-anchor-padding   : var( --space-4 ) var( --space-6 );
-    --ui-tabs-anchor-radius    : var(--border-radius) var(--border-radius) 0 0;
-    --ui-tabs-anchor-shadow    : var(--shadow-1);
+    /* TODO */
+    --ui-tabs-loading           : var(--button-color);
+
+    --ui-tabs-anchor-bg         : var(--layer-3);
+    --ui-tabs-anchor-border     : 1px solid var(--layer-2);
+    --ui-tabs-anchor-color      : var( --theme-link);
+    --ui-tabs-anchor-padding    : var( --space-4 ) var( --space-6 );
+    --ui-tabs-anchor-radius     : var(--border-radius) var(--border-radius) 0 0;
+    --ui-tabs-anchor-shadow     : var(--shadow-1);
     /* ACTION */
-    --ui-tabs-anchor-bg-on     : var(--layer-4);
-    --ui-tabs-anchor-color-on  : var(--link-hover);
-    --ui-tabs-anchor-border-on : 0px solid var(--layer-4);
-    --ui-tabs-anchor-shadow-on : var(--shadow-2);
+    --ui-tabs-anchor-bg-on      : var(--layer-4);
+    --ui-tabs-anchor-color-on   : var(--link-hover);
+    --ui-tabs-anchor-border-on  : 0px solid var(--layer-4);
+    --ui-tabs-anchor-shadow-on  : var(--shadow-2);
 
     /* tab panel */
-    --ui-tab-panel-bg          : var(--layer-3);
-    --ui-tab-panel-border      : none;
-    --ui-tab-panel-color       : var(--primary);
-    --ui-tab-panel-padding     : var(--space-6);
+    --ui-tab-panel-bg           : var(--layer-3);
+    --ui-tab-panel-border       : none;
+    --ui-tab-panel-color        : var(--primary);
+    --ui-tab-panel-padding      : var(--space-6);
 
     /* -------------------- --------------------  UI-WIDGET */
 

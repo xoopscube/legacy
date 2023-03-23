@@ -1,57 +1,51 @@
 <{* ---------- ---------- ---------- ---------- ---------- Block Search *}>
-<form action="./index.php" method="get" role="search">
-  <input type="hidden" name="action" value="BlockList">
 
-<section class="filter">
+<form action="./index.php" method="get" role="search" data-layout="column">
+    <input type="hidden" name="action" value="BlockList">
 
-    <article class="search-input">
-        <{$smarty.const._SEARCH}><br>
+    <div data-layout="rows">
+        <span><{$smarty.const._SEARCH}></span>
         <input type="text" name="search" value="<{$filterForm->mKeyword}>">
+    </div>
 
-    </article>
-
-    <article>
-        <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}><br>
+    <div data-layout="rows">
+        <span><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></span>
         <select name="dirname">
             <option value="0"><{$smarty.const._ALL}></option>
             <{foreach from=$modules item=module}>
               <{if is_object($filterForm->mModule)}>
-                <option value="<{$module->getVar('dirname')}>" <{if $filterForm->mModule->getVar('dirname') == $module->getVar('dirname')}>selected="selected"<{/if}> >
-                <{$module->getVar('name')}></option>
+                <option value="<{$module->getVar('dirname')}>" <{if $filterForm->mModule->getVar('dirname') == $module->getVar('dirname')}>selected="selected"<{/if}>><{$module->getVar('name')}></option>
               <{else}>
-                <option value="<{$module->getVar('dirname')}>">
-                <{$module->getVar('name')}></option>
+                <option value="<{$module->getVar('dirname')}>"><{$module->getVar('name')}></option>
               <{/if}>
             <{/foreach}>
              <option value="-1"  <{if $filterForm->mModule == "cblock"}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_CUSTOMBLOCK_EDIT}></option>
           </select>
-    </article>
+    </div>
 
-    <article>
-        <{$smarty.const._AD_LEGACY_LANG_TARGET_MODULES}><br>
+    <div data-layout="rows">
+        <span><{$smarty.const._AD_LEGACY_LANG_TARGET_MODULES}></span>
         <select name="selmid">
             <option value="0"><{$smarty.const._AD_LEGACY_LANG_ALL_MODULES}></option>
             <option value="-1" <{if $selectedMid == -1}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_TOPPAGE}></option>
             <{foreach from=$view_modules item=module}>
-                <option value="<{$module->getVar('mid')}>" <{if $module->getVar('mid') == $selectedMid}>selected="selected"<{/if}>>
-                <{$module->getVar('name')}></option>
+                <option value="<{$module->getVar('mid')}>" <{if $module->getVar('mid') == $selectedMid}>selected="selected"<{/if}>><{$module->getVar('name')}></option>
             <{/foreach}>
           </select>
-    </article>
+    </div>
 
-    <article>
-        <{$smarty.const._AD_LEGACY_LANG_TARGET_GROUPS}> <br>
+    <div data-layout="rows">
+        <span><{$smarty.const._AD_LEGACY_LANG_TARGET_GROUPS}></span>
         <select name="selgid">
-          <option value="0"><{$smarty.const._ALL}></option>
-          <{foreach from=$groupArr item=groups}>
-              <option value="<{$groups->getVar('groupid')}>" <{if $groups->getVar('groupid') == $selectedGid}>selected="selected"<{/if}>>
-              <{$groups->getVar('name')}></option>
+            <option value="0"><{$smarty.const._ALL}></option>
+            <{foreach from=$groupArr item=groups}>
+            <option value="<{$groups->getVar('groupid')}>" <{if $groups->getVar('groupid') == $selectedGid}>selected="selected"<{/if}>> <{$groups->getVar('name')}></option>
           <{/foreach}>
         </select>
-    </article>
+    </div>
 
-    <article>
-        <{$smarty.const._AD_LEGACY_LANG_SIDE}> <br>
+    <div data-layout="rows">
+        <span><{$smarty.const._AD_LEGACY_LANG_SIDE}></span>
         <select name="option_field">
         <{if $filterForm->mOptionField == "all"}>
         <option value="all" selected="selected"><{$smarty.const._ALL}></option>
@@ -61,35 +55,32 @@
         <{else}>
         <option value="all"><{$smarty.const._ALL}></option>
         <{foreach from=$columnSideArr item=columnSide}>
-        <option value="<{$columnSide->getShow('id')}>" <{if $filterForm->mOptionField == $columnSide->getShow('id')}>selected="selected"<{/if}> >
-        <{$columnSide->getShow('name')}></option>
+        <option value="<{$columnSide->getShow('id')}>" <{if $filterForm->mOptionField == $columnSide->getShow('id')}>selected="selected"<{/if}>><{$columnSide->getShow('name')}></option>
         <{/foreach}>
         <{/if}>
         </select>
-    </article>
+    </div>
 
-    <article>
-        <{$smarty.const._VIEW}> <br>
+    <div data-layout="rows">
+        <span><{$smarty.const._VIEW}></span>
         <select name="perpage">
-          <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
-          <{foreach item=page from=$pageArr}>
+            <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
+            <{foreach item=page from=$pageArr}>
             <{if $pageNavi->mPerpage == $page && $page != 0}>
-              <option value="<{$page}>" selected="selected"><{$page}></option>
+            <option value="<{$page}>" selected="selected"><{$page}></option>
             <{elseif $pageNavi->mPerpage == $page && $page == 0}>
-              <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
+            <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
             <{elseif $pageNavi->mPerpage != $page && $page == 0}>
-              <option value="<{$page}>"><{$smarty.const._ALL}></option>
+            <option value="<{$page}>"><{$smarty.const._ALL}></option>
             <{else}>
-              <option value="<{$page}>"><{$page}></option>
+            <option value="<{$page}>"><{$page}></option>
             <{/if}>
           <{/foreach}>
         </select>
-    </article>
+    </div>
 
-    <article class="search-button">
+    <div data-layout="row centered">
         <input class="button-search" type="submit" value="<{$smarty.const._SEARCH}>">
-    </article>
+    </div>
 
-
-</section>
 </form>

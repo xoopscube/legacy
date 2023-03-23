@@ -30,7 +30,7 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section data-layout="row center-justify" class="action-control">
+<section data-layout="rows center-justify" class="action-control">
 
     <div>
         <a class="button" href="index.php?action=BlockInstallList"><i class="i-add"></i><{$smarty.const._AD_LEGACY_LANG_BLOCK_INSTALL}></a>
@@ -48,16 +48,41 @@
                 <path d="M16 5v6h5V5m-11 6h5V5h-5m6 13h5v-6h-5m-6 6h5v-6h-5m-6 6h5v-6H4m0-1h5V5H4v6z" fill="currentColor"/></svg>
         </button>
 
-        <button id="filter" class="button" type="button" data-id="3" onclick="slideToggle('.block-filter', this)" aria-label="View Filter">
-            <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24">
-                <path d="M7 11h10v2H7zM4 7h16v2H4zm6 8h4v2h-4z" fill="currentColor"/></svg>
-        </button>
+        <{* ////— DROPDOWN BLOCK FILTER —\\\\ *}>
+        <div class="dropdown" id="block-search">
+            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M19.31 18.9l3.08 3.1L21 23.39l-3.12-3.07c-.69.43-1.51.68-2.38.68c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5s4.5 2 4.5 4.5c0 .88-.25 1.71-.69 2.4m-3.81.1a2.5 2.5 0 0 0 0-5a2.5 2.5 0 0 0 0 5M21 4v2H3V4h18M3 16v-2h6v2H3m0-5V9h18v2h-2.03c-1.01-.63-2.2-1-3.47-1s-2.46.37-3.47 1H3z" fill="currentColor"/></svg>
+            </a>
+            <{* TODO DROPDOWN POSITION - TEST : drop-left, drop-right, drop-top *}>
+            <div class="dropdown-content drop-top" style="--dropdown-bg:var(--layer-1);min-width: 300px; padding:var(--space-6);">
+                <{include file="./components/block-filter.html"}>
+            </div><{* ----- /Dropdown-content *}>
+        </div><{* ----- /Dropdown *}>
 
-        <button id="search" class="button" type="button" data-id="4" onclick="slideToggle('.block-search', this)" aria-label="Block Search">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-                <path d="M19.31 18.9l3.08 3.1L21 23.39l-3.12-3.07c-.69.43-1.51.68-2.38.68c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5s4.5 2 4.5 4.5c0 .88-.25 1.71-.69 2.4m-3.81.1a2.5 2.5 0 0 0 0-5a2.5 2.5 0 0 0 0 5M21 4v2H3V4h18M3 16v-2h6v2H3m0-5V9h18v2h-2.03c-1.01-.63-2.2-1-3.47-1s-2.46.37-3.47 1H3z" fill="currentColor"/>
-                <rect x="0" y="0" width="24" height="24" fill="rgba(0, 0, 0, 0)" /></svg>
-        </button>
+<!--        <button id="filter" class="button" type="button" data-id="3" onclick="slideToggle('.block-filter', this)" aria-label="View Filter">-->
+<!--            <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24">-->
+<!--                <path d="M7 11h10v2H7zM4 7h16v2H4zm6 8h4v2h-4z" fill="currentColor"/></svg>-->
+<!--        </button>-->
+
+        <{* ////— DROPDOWN BLOCK SEARCH —\\\\ *}>
+        <style>
+            :where(#block-search, .dropdown-content) :is(span, select, input[type=text]) {
+                width:100%;
+                margin: 0 0 var(--space-5);
+            }
+        </style>
+        <div class="dropdown" id="block-search">
+            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M19.31 18.9l3.08 3.1L21 23.39l-3.12-3.07c-.69.43-1.51.68-2.38.68c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5s4.5 2 4.5 4.5c0 .88-.25 1.71-.69 2.4m-3.81.1a2.5 2.5 0 0 0 0-5a2.5 2.5 0 0 0 0 5M21 4v2H3V4h18M3 16v-2h6v2H3m0-5V9h18v2h-2.03c-1.01-.63-2.2-1-3.47-1s-2.46.37-3.47 1H3z" fill="currentColor"/></svg>
+            </a>
+            <{* TODO DROPDOWN POSITION - TEST : drop-left, drop-right, drop-top *}>
+            <div class="dropdown-content drop-top" style="--dropdown-bg:var(--layer-1);min-width: 300px; padding:var(--space-6);">
+                <{include file="./components/block-search.html"}>
+            </div><{* ----- /Dropdown-content *}>
+        </div><{* ----- /Dropdown *}>
+
+<!--        <button id="search" class="button" type="button" data-id="4" onclick="slideToggle('.block-search', this)" aria-label="Block Search">-->
+<!--        </button>-->
 
         <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-blocks' aria-label="<{$smarty.const._HELP}>">
             <b>?</b> </button>

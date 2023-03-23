@@ -96,6 +96,7 @@ div.dropdown a.dropdown-toggle:hover {
     color           : var(--d-toggle-color-on);
 }
 div.dropdown.isopen div.dropdown-content {
+    animation: open-down .2s cubic-bezier(.39,.575,.565,1) both;
     display         : block;
     z-index         : var(--z-above);
 }
@@ -197,7 +198,9 @@ div.dropdown-content > a {
     top             : -100%;
 }
 
-/* ------- DROPDOWN HEADER DROP-NAV */
+/* ------- DROPDOWN HEADER DROP-NAV -------*/
+/* ------- SHOW MENU navbar-options -------*/
+
 :where(div.dropdown.isopen) div.drop-nav {
     animation: open-down .2s cubic-bezier(.39,.575,.565,1) both;
     background      : var(--dropdown-bg);

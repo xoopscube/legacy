@@ -28,7 +28,6 @@
     column-gap		: 5px;
     display         : block;
 }
-
 .ui-block-online-content {
     align-items     : center;
     display			: flex;
@@ -37,25 +36,21 @@
     letter-spacing	: 1px;
     justify-content	: space-between;
 }
-
 .ui-block-online {
     display			: flex;
     justify-content	: space-between;
     margin			: var(--space-8) 0;
     padding         : var(--space-6);
 }
-
 .ui-block-online-welcome {
     align-items		: center;
     display			: flex;
     flex-direction	: column;
 }
-
 .ui-block-online-title {
     font-size		: 24px;
     margin-bottom	: var(--space-6);
 }
-
 .ui-block-online-text {
     font-size		: 16px;
 }
@@ -67,23 +62,19 @@
     grid-auto-flow	: column;
     grid-gap		: 42px;
 }
-
 .ui-block-online-stats-info {
     align-items		: center;
     display			: flex;
     flex-direction	: column;
 }
-
 .ui-block-online-stats-total {
     font-size		: 24px;
     margin-bottom	: var(--space-6);
 }
-
 .ui-block-online-stats-title {
     font-size		: 24px;
     margin-bottom	: var(--space-6);
 }
-
 .ui-block-online-stats-text {
     font-size		: 16px;
     text-align		: center;
@@ -94,13 +85,9 @@
 .ui-card-overview {
     display			: grid;
     grid-template-columns : repeat(auto-fit, minmax(214px, 1fr));
-    /* grid-auto-rows        : 74px; */
     grid-gap        : 16px;
-
     margin: 4em auto 0;
-
 }
-
 .ui-card-small {
     align-items     : center;
     background      : var(--card-small-bg);
@@ -113,7 +100,6 @@
     transform       : translateY(0);
     transition      : all 0.3s;
 }
-
 .ui-card-small-icon {
     align-items     : center;
     border-radius   : 50%;
@@ -124,26 +110,18 @@
     justify-content : center;
     width           : 32px;
 }
-
 .ui-card-small-info {
-    /* display      : flex;
-    flex-direction  : column; */
 }
-
 .ui-card-small-title {
-    /*font-size       : var(--size-3);*/
     margin          : 0 0 0 1rem;
 }
-
 .ui-card-small-subtitle {
     margin          : 0 0 0 1rem;
 }
-
 .ui-card-small:hover {
     box-shadow      : var(--card-small-shadow-on);
     transform       : translateY(-3px);
 }
-
 
 /* -------------------- --------------------  UI--BLOCKS-GRID */
 
@@ -151,7 +129,6 @@
     display				 : grid;
     grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
     grid-auto-rows       : auto;
-    /*grid-gap             : 15px;*/
     margin 				 : 1.5em 0;
     place-items			 : center;
     will-change          : transform;
@@ -165,42 +142,61 @@
     will-change         : transform;
     -webkit-transform   : translate3d(0,0,0);
 }
-
 .list .ui-card-block {
+    align-items         : center;
+    align-content       : center;
+    display             : flex;
     flex-direction      : row;
+    flex-wrap           : nowrap;
+    justify-content     : center;
     max-width           : 100%;
+    width               : 100%;
+    will-change         : transform;
+}
+.list .ui-card-block-header {
+    flex-shrink: 1;
+    width: auto;
+}
+.list .ui-card-block-header a {
+    margin-right: .5rem;
+}
+.list .ui-card-block-image {
+    will-change         : transform;
+}
+.list .ui-card-block-image.ui-card-avatar {
+    width               : 7%;
+}
+.list .ui-card-block-header.card-header-altsys,
+.list .ui-card-block-image.card-block-svg,
+.list .ui-card-block-image.card-module-svg {
+    display             : none;
+}
+.list img.ui-avatar-card {
+    height              : 48px;
+    width               : 48px;
     will-change         : transform;
 }
 .list .ui-card-block-item {
-    /*align-items         : start;*/
-}
-
-.list .ui-card-block-image {
-    margin              : 0;
-    text-align          : center;
-    max-width           : 14%;
-    will-change         : transform;
-}
-
-.list img.ui-avatar-card {
-    height              : 48px;
-    will-change         : transform;
-}
-.list .ui-card-block-content {
     align-items         : center;
-    background          : var(--card-content-bg);
-    border              : var(--card-content-border);
-    display             : flex;
-    flex-direction      : inherit;
-    will-change         : transform;
+    min-width           : auto;
+    width               : auto;
 }
-
+.list .ui-card-block-item.username {
+    width               : 17%;
+}
+.list .card-user-datetime{
+    width               : 21%;
+}
+.list .ui-card-block-item:last-of-type {
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
 
 /* -------------------- --------------------  UI-CARD-BLOCK  */
 
 .ui-card-block {
     background      : var( --card-bg );
-    background-image: var( --card-image );
+    background-image: var( --card-bg-image );
     border          : var( --card-border );
     border-radius   : var( --card-radius );
     box-shadow      : var( --card-shadow);
@@ -234,7 +230,6 @@
 }
 
 
-
 /* TODO : change altsys templates "ui-block-type" */
 a.ui-block-type {
     display         : block;
@@ -243,22 +238,20 @@ a.ui-block-type {
     align-items     : center;
     background      : var( --card-content-bg     );
     border          : var( --card-content-border );
-    /* display         : flex; */
     flex-direction	: column;
     justify-content	: center;
     padding         : var( --card-content-padding );
 }
 
 .ui-card-block-image {
-    margin : 0 auto;
-    text-align      : center;
+    margin          : 0 auto;
 }
 
 .user-avatar,
 img.ui-avatar-card {
-    border-color    : var(  --secondary      );
+    border-color    : var( --secondary );
     border-radius   : 50%;
-    border-style    : var(  --border-style   );
+    border-style    : var( --border-style );
     border-width    : 5px;
     height          : 128px;
     width           : 128px;
@@ -268,13 +261,11 @@ img.ui-avatar-card {
 }
 
 .ui-card-block-item {
-
     align-items     : center;
     display         : flex;
     justify-content	: space-between;
     padding         : var(  --card-item-padding );
     width           : var(  --card-item-width   );
-    min-width: 0;
 }
 
 /* input[size=] width depend using fonts,
@@ -283,7 +274,6 @@ img.ui-avatar-card {
     /* width: 12em; */
     width           : 74%;
 }
-
 .ui-card-block-item.pad-left {
     padding-left    : 2em;
 }
@@ -321,7 +311,6 @@ img.ui-avatar-card {
 .ui-module-version svg,
 .ui-module-date svg {
     color           : var(--color-green) !important;
-    /* margin		: var(  --space-6			); */
 }
 
 /* -------------------- --------------------  UI-BLOCK-ADMIN  */
@@ -330,24 +319,21 @@ img.ui-avatar-card {
     display         : flex;
     justify-content	: space-evenly;
     align-items     : center;
-    /* max-width    : 420px; */
     flex-basis      : 100%
 }
-
 .block-extra-side {
     max-width       : 35px;
 }
-
 .ui-block-cache,
 .ui-block-date {
     display         : flex;
     justify-content	: center;
-    padding         :  var(  --space-6 ) 0;
+    padding         :  var( --space-6 ) 0;
+}
+.ui-block-date svg {
+    margin-right    : var( --space-6  );
 }
 
-.ui-block-date svg {
-    margin-right    : var(  --space-6  );
-}
 /* -------------------- -------------------- SVG Default Settings */
 
 svg {
@@ -359,7 +345,6 @@ svg {
 }
 
 svg[class|="icon"]{
-    /*color               : svg-ui-icon;*/
     font-size           : var(--icon-size);
 }
 
@@ -405,13 +390,6 @@ svg.ui-block-php  {
     background      : var(  --color-indigo );
 }
 
-/*svg.ui-block-smilies {*/
-/*    background      : var(  --color-orange );*/
-/*}*/
-
-/*svg.ui-block-no-smilies {*/
-/*    background      : var(  --color-blue );*/
-/*}*/
 /* -------------------- -------------------- SVG Custom Settings */
 
 svg[class="ui-block-module"] {
