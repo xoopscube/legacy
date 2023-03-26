@@ -4,7 +4,7 @@
 <{if $mod_config.show_breadcrumbs}>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="<{$xoops_url}>/"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt="home"></a>
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
         <li class="breadcrumb-item"><a href="<{$mod_url}>/index.php"><{$xoops_dirname|ucfirst}></a>
         <li class="breadcrumb-item"><{$smarty.const._MD_D3FORUM_CATEGORYMANAGER}></li>
         <li class="breadcrumb-item active" aria-current="page"><{$category.title}></li>
@@ -75,7 +75,7 @@
 
         <div class="row mb-3">
             <div class="col-sm-4">
-                <img class="svg" src="<{$xoops_url}>/images/icons/tree.svg" width="1em" alt="tree">
+                <img class="svg" src="<{$xoops_url}>/images/icons/tree.svg" width="1em" height="1em" alt="tree">
                 <{$smarty.const._MD_D3FORUM_CHILDREN_COUNT}>
             </div>
             <div class="col-sm-2">
@@ -86,7 +86,7 @@
         <{* ----- CATEGORY BATCH ACTION *}>
         <div class="row mb-3">
             <div class="col-sm-4">
-                <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved1.svg" width="1em" alt="topic-solved">
+                <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved1.svg" width="1em" height="1em" alt="topic-solved">
                 <{$smarty.const._MD_D3FORUM_BATCH_ACTIONS}>
             </div>
             <div class="col-sm-8">

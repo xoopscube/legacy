@@ -27,7 +27,7 @@ data-bs-autohide="false" using autohide: false, you must add a close button to a
 <div class="toast-container position-fixed top-0 end-0 p-3">
     <div id="alertTopic" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
         <div class="toast-header text-warning">
-            <img class="svg me-2" src="<{$xoops_url}>/images/icons/info.svg" width="1em" alt="Info">
+            <img class="svg me-2" src="<{$xoops_url}>/images/icons/info.svg" width="1em" height="1em" alt="Info">
             <strong class="me-auto"><{$smarty.const._MD_D3FORUM_TOPICLOCKED}></strong>
             <small><{$forum.last_post_time_formatted}></small>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -147,13 +147,13 @@ data-bs-autohide="false" using autohide: false, you must add a close button to a
             <{* ------- FORUM TOPIC *}>
             <tr>
                 <td class="main-icon">
-                    <img class="svg" src="<{$topic_icon_src}>" width="1em" alt="<{$topic_icon_alt}>">
+                    <img class="svg" src="<{$topic_icon_src}>" width="1em" height="1em" alt="<{$topic_icon_alt}>">
                 </td>
                 <td class="topic-title">
                     <div>
                         <{if $topic.locked}>
                         <span title="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>">
-                            <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" width="1em" alt="lock">
+                            <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" width="1em" height="1em" alt="lock">
                         </span>
                         <{/if}>
 
@@ -161,11 +161,11 @@ data-bs-autohide="false" using autohide: false, you must add a close button to a
                             <{if $forum.isadminormod}>
                             <a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>"
                                title="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>">
-                                <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>">
+                                <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" height="1em" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>">
                             </a>
                             <{else}>
                             <span title="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>">
-                                <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" alt="solve">
+                                <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" height="1em" alt="solve">
                             </span>
                             <{/if}>
                         <{/if}>
@@ -173,7 +173,7 @@ data-bs-autohide="false" using autohide: false, you must add a close button to a
                         <{if $mod_config.allow_mark && $uid && $topic.u2t_marked}>
                         <a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>"
                            title="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>">
-                            <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>">
+                            <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" height="1em" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>">
                         </a>
                         <{/if}>
 
@@ -190,7 +190,7 @@ data-bs-autohide="false" using autohide: false, you must add a close button to a
                             <{$topic.last_post_uname}>
                         <{/if}>
                         <a href="<{$mod_url}>/index.php?post_id=<{$topic.last_post_id}>">
-                            <img class="svg" src="<{$xoops_url}>/images/icons/posticon<{$topic.last_post_icon}>.svg" width="1em" alt="<{$topic.last_post_subject}>">
+                            <img class="svg" src="<{$xoops_url}>/images/icons/posticon<{$topic.last_post_icon}>.svg" width="1em" height="1em" alt="<{$topic.last_post_subject}>">
                         </a>
                         <{/if}>
                     </div>
@@ -283,13 +283,13 @@ data-bs-autohide="false" using autohide: false, you must add a close button to a
 <{* ------- Forum ICON LEGEND *}>
 <div class="my-4">
     <ul class="icon-legend">
-        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_11.svg" width="1em" alt="new-post"> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
-        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_01.svg" width="1em" alt="new-post"> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>
-        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_invisible.svg" width="1em" alt="invisible"> = <{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></li>
-        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_sticky0.svg" width="1em" alt="sticky"> = <{$smarty.const._MD_D3FORUM_TOPICSTICKY}></li>
-        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" width="1em" alt="locked"> = <{$smarty.const._MD_D3FORUM_TOPICLOCKED}></li>
-        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" alt="unsolved"> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}></li>
-        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" alt="marked"> = <{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}></li>
+        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_11.svg" width="1em" height="1em" alt="new-post"> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
+        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_01.svg" width="1em" height="1em" alt="new-post"> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>
+        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_invisible.svg" width="1em" height="1em" alt="invisible"> = <{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></li>
+        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_sticky0.svg" width="1em" height="1em" alt="sticky"> = <{$smarty.const._MD_D3FORUM_TOPICSTICKY}></li>
+        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" width="1em" height="1em" alt="locked"> = <{$smarty.const._MD_D3FORUM_TOPICLOCKED}></li>
+        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" height="1em" alt="unsolved"> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}></li>
+        <li><img class="svg" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" height="1em" alt="marked"> = <{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}></li>
     </ul>
 </div>
 
