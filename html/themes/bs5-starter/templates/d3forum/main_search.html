@@ -127,7 +127,7 @@
             <tr>
                 <td><a href="<{$mod_url}>/index.php?forum_id=<{$post.forum_id}>"><{$post.forum_title}></a></td>
                 <td><a href="<{$mod_url}>/index.php?post_id=<{$post.post_id}>">
-                    <img class="svg" src="<{$xoops_url}>/images/icons/posticon<{$post.icon}>.svg" width="1em" alt="post-icon"><{$post.subject}></a>
+                    <img class="svg" src="<{$xoops_url}>/images/icons/posticon<{$post.icon}>.svg" width="1em" height="1em" alt="post-icon"><{$post.subject}></a>
                     <{$post.body_length|string_format:$smarty.const._MD_D3FORUM_FMT_BYTE}></td>
                 <td><a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>"><{$post.poster_uname}></a></td>
                 <td>

@@ -4,12 +4,12 @@
 <nav class="block-user-menu list-group list-group-flush" id="user-menu">
     <{if $block.flagShowInbox}>
         <a href="<{$block.inbox_url}>" class="list-group-item list-group-item-action user-menu-email">
-            <span class="icon"><img class="svg mail" src="<{$xoops_url}>/images/icons/mail.svg" width="1em" height="1em" alt="<{$smarty.const._MB_LEGACY_INBOX}>"></span>
+            <span class="icon"><img class="svg mail" src="<{$xoops_url}>/images/icons/mail.svg" width="1em" height="1em" alt="inbox"></span>
                 <{$smarty.const._MB_LEGACY_INBOX}>
             <{if $block.new_messages > 0}><span class="badge text-bg-secondary new-messages"><{$block.new_messages}></span><{/if}></a>
     <{/if}>
         <a href="<{$xoops_url}>/notifications.php" class="list-group-item list-group-item-action">
-            <span class="icon"><img class="svg bell" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" alt="<{$smarty.const._MB_LEGACY_NOTIF}>"></span>
+            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="notify"></span>
             <{$smarty.const._MB_LEGACY_NOTIF}></a>
         <a href="<{$xoops_url}>/user.php" class="list-group-item list-group-item-action">
             <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/user-details.svg" width="1em" height="1em" alt="account"></span>

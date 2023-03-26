@@ -16,7 +16,7 @@
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" id="navbarMain" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <{if $block.icon == true}>
-        <i class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt=""></i>
+        <i class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></i>
         <{/if}>
         <{$smarty.const._MB_LEGACY_HOME}>
     </a>
@@ -31,7 +31,7 @@
     <{foreach item=module from=$block.modules}>
 
         <li><a class="dropdown-item <{$module.directory}>" href="<{$xoops_url}>/modules/<{$module.directory}>/">
-        <{if $module.icon}><span class="icon"><img class="svg" src="<{$xoops_url}>/modules/<{$module.directory}>/<{$module.icon}>" width="1em"></span><{/if}>
+        <{if $module.icon}><span class="icon"><img class="svg" src="<{$xoops_url}>/modules/<{$module.directory}>/<{$module.icon}>" width="1em" height="1em" alt="module"></span><{/if}>
             <{* |ucfirst - Modifier makes a string's first character uppercase *}>
             <{$module.name|ucfirst}>
         </a></li>

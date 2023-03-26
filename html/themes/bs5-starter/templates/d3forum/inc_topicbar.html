@@ -23,7 +23,7 @@ When using autohide: false, you must add a close button to allow users to dismis
     <{if $forum.external_link_format}><!-- data-bs-autohide="false" -->
     <div id="alertTopic" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
         <div class="toast-header text-warning">
-            <img class="svg me-2" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" alt="">
+            <img class="svg me-2" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="notify">
             <strong class="me-auto"><{$smarty.const._MD_D3FORUM_TOPICLOCKED}></strong>
             <small><{$forum.last_post_time_formatted}></small>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -39,7 +39,7 @@ When using autohide: false, you must add a close button to allow users to dismis
     <{if $topic.locked}><!-- data-bs-autohide="false" -->
     <div id="alertLocked" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
         <div class="toast-header text-warning">
-            <img class="svg me-2" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" alt="">
+            <img class="svg me-2" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="notify">
             <strong class="me-auto"><{$smarty.const._MD_D3FORUM_TOPICLOCKED}></strong>
             <small><{$forum.last_post_time_formatted}></small>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -181,7 +181,7 @@ When using autohide: false, you must add a close button to allow users to dismis
             <{if $forum.isadminormod}>
             <div class="btn-group btn-group-sm" role="group" aria-label="Admin Category">
                 <a class="btn btn-outline-primary btn-sm" href="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$topic.id}>" title="<{$smarty.const._MD_D3FORUM_TOPICMANAGER_DESC}>">
-                    <img class="svg me-2" src="<{$xoops_url}>/images/icons/tools.svg" width="1em" alt=""> <{$smarty.const._MD_D3FORUM_TOPICMANAGER}></a>
+                    <img class="svg me-2" src="<{$xoops_url}>/images/icons/tools.svg" width="1em" height="1em" alt="tools"> <{$smarty.const._MD_D3FORUM_TOPICMANAGER}></a>
                 <{* ----- TOPIC HISTOY REVISION *}>
                 <{if $xoops_isadmin}>
                 <a class="btn btn-outline-primary btn-sm" href="<{$mod_url}>/admin/index.php?page=post_histories&amp;topic_id=<{$topic.id}>">

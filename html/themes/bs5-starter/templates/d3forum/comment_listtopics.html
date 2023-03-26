@@ -65,15 +65,15 @@
 <{strip}>
 	<td><img src="<{$topic_icon_src}>" alt="<{$topic_icon_alt}>"></td>
 	<td><{if $topic.locked}>
-		<img class="svg" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" width="1em" alt="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>">
+		<img class="svg" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" width="1em" height="1em" alt="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>">
 	<{/if}>
 	<{if $mod_config.use_solved && $forum.isadminormod && ! $topic.solved}>
 		<a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>">
-            <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>"></a>
+            <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" height="1em" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>"></a>
 	<{/if}>
 	<{if $mod_config.allow_mark && $uid && $topic.u2t_marked}>
 		<a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>">
-            <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>"></a>
+            <img class="svg" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" height="1em" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>"></a>
 	<{/if}>
 	<a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a><{$topic.topic_page_jump}>
     </td>
@@ -84,12 +84,12 @@
 	<td><{$topic.first_post_time_formatted}><br>
         <{$topic.first_post_uname}>
         <a href="<{$mod_url}>/index.php?post_id=<{$topic.first_post_id}>">
-        <img class="svg" src="<{$xoops_url}>/images/icons/posticon<{$topic.first_post_icon}>.svg" width="1em" alt="<{$topic.first_post_subject}>"></a>
+        <img class="svg" src="<{$xoops_url}>/images/icons/posticon<{$topic.first_post_icon}>.svg" width="1em" height="1em" alt="<{$topic.first_post_subject}>"></a>
     </td>
 	<td><{if $topic.replies>0}><{$topic.last_post_time_formatted}><br>
         <{$topic.last_post_uname}>
         <a href="<{$mod_url}>/index.php?post_id=<{$topic.last_post_id}>">
-            <img class="svg" src="<{$xoops_url}>/images/icons/posticon<{$topic.last_post_icon}>.svg" width="1em" alt="<{$topic.last_post_subject}>">
+            <img class="svg" src="<{$xoops_url}>/images/icons/posticon<{$topic.last_post_icon}>.svg" width="1em" height="1em" alt="<{$topic.last_post_subject}>">
         </a>
         <{/if}>
     </td>
