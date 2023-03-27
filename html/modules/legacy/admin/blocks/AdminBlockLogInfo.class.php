@@ -38,31 +38,58 @@ class Legacy_AdminBlockLogInfo extends Legacy_AbstractBlockProcedure
     public function execute()
     {
         $root =& XCube_Root::getSingleton();
+        $xoopsUser =& $root->mController->mRoot->mContext->mXoopsUser;
+
+        // Language catalog
         $root->mLanguageManager->loadBlockMessageCatalog('legacy');
 
-        $xoopsUser =& $root->mController->mRoot->mContext->mXoopsUser;
-        require_once XOOPS_ROOT_PATH . '/modules/legacy/blocks/legacy_usermenu.php';
+        if (is_object($xoopsUser)) {
 
-        $contents = b_legacy_usermenu_show();
+            $uid = $xoopsUser->get('uid');
+            $uname =$xoopsUser->get('uname');
+            $flagShowInbox = false;
 
-        $uid = $xoopsUser->get('uid');
+            //
+            // Check does this system have PrivateMessage feature.
+            //
+            $url = null;
+            $service =& $root->mServiceManager->getService('privateMessage');
+            if (null != $service) {
+                $client =& $root->mServiceManager->createClient($service);
+                $url = $client->call('getPmInboxUrl', ['uid' => $xoopsUser->get('uid')]);
+
+                if (null != $url) {
+                    $inbox_url = $url;
+                    $new_messages = $client->call('getCountUnreadPM', ['uid' => $xoopsUser->get('uid')]);
+                    $flagShowInbox = true;
+                }
+            }
+
+        //    $show_adminlink = $root->mContext->mUser->isInRole('Site.Administrator');
+
+
         $useragent  = xoops_getenv('HTTP_USER_AGENT');
 
-        $render =& $this->getRenderTarget();
+        // XCube RenderTarget
+        $render = $this->getRenderTarget();
 
-        // Load theme template ie fallback
+        // Load theme template i.e. fallback
         $render->setAttribute('legacy_module', 'legacy');
-
+        // Attributes Smarty vars
         $render->setAttribute('uid', $uid);
+        $render->setAttribute('uname', $uname);
+        $render->setAttribute('inbox_url', $inbox_url);
+        $render->setAttribute('new_messages', $new_messages);
+        $render->setAttribute('flagShowInbox', $flagShowInbox);
         $render->setAttribute('useragent', $useragent);
-        $render->setAttribute('contents', $contents);
         $render->setAttribute('blockid', $this->getName());
-
+        // Render Template
         $render->setTemplateName('legacy_admin_block_loginfo.html');
-
-        $renderSystem =& $root->getRenderSystem($this->getRenderSystemName());
-
+        // Render Template
+        $renderSystem = $root->getRenderSystem($this->getRenderSystemName());
+        // Render Template
         $renderSystem->renderBlock($render);
+        }
     }
 
     public function hasResult()

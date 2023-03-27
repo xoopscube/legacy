@@ -37,23 +37,33 @@ class Legacy_AdminBlockOnline extends Legacy_AbstractBlockProcedure
 
     public function execute()
     {
-        $render =& $this->getRenderTarget();
-
-        // Load theme template ie fallback
-        $render->setAttribute('legacy_module', 'legacy');
-        $render->setTemplateName('legacy_admin_block_onlineinfo.html');
-
         $root =& XCube_Root::getSingleton();
+        $xoopsUser =& $root->mController->mRoot->mContext->mXoopsUser;
+
+        // Language catalog
         $root->mLanguageManager->loadBlockMessageCatalog('user');
 
         require_once XOOPS_ROOT_PATH . '/modules/user/blocks/user_online.php';
-
+        // vars
         $contents = b_user_online_show();
+        $uid = $xoopsUser->get('uid');
+        $uname = $xoopsUser->get('uname');
 
+        // XCube RenderTarget
+        $render =& $this->getRenderTarget();
+
+        // Load theme template i.e. fallback
+        $render->setAttribute('legacy_module', 'legacy');
+        $render->setAttribute('uid', $uid);
+        $render->setAttribute('uname', $uname);
+        // Attributes Smarty vars
         $render->setAttribute('contents', $contents);
         $render->setAttribute('blockid', $this->getName());
-
+        // Render Template
+        $render->setTemplateName('legacy_admin_block_onlineinfo.html');
+        // Render System
         $renderSystem =& $root->getRenderSystem($this->getRenderSystemName());
+        // Render Block
         $renderSystem->renderBlock($render);
     }
 

@@ -1,47 +1,62 @@
 <{* ---------- Admin Block Loginfo *}>
-<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
-
-<{* Display Block Title <h3><{$blockid}></h3> *}>
-
+<{* ---------- Block Side Menu *}>
+<li>
+    <div class="nav-block">
+    <span class="nav-module-icon"><img src="<{$uid|xoops_user_avatarize}>" width="20px" height="20px" data-self="radius-circle"></span>
+        <span class="nav-module-name t01"><{$uname}></span>
+    </div>
+<{* ---------- Admin Block Loginfo *}>
 <ul class="nav-module-admin nav-block-close" id="user-menu">
     <li class="nav-module-link">
-        <a href="<{$xoops_url}>/" target="_blank">
-            <span class="icon"><img class="svg" src="<{'icons/icon-home.svg'|theme}>" width="1em" height="1em" alt="<{$smarty.server.SERVER_NAME}>"></span>
-            <{$smarty.const._YOURHOME}></a>
+        <a href="<{$xoops_url}>/admin.php" title="<{$smarty.server.SERVER_NAME}>">
+            <span class="nav-module-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+            </span>
+            <span class="nav-module-name"><{$smarty.const._CPHOME}></span>
+        </a>
     </li>
-    <{if $block.flagShowInbox}>
     <li class="nav-module-link">
-        <a href="<{$block.inbox_url}>" target="_blank">
-            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/mail.svg" width="1em" height="1em" alt="mail>"></span>
-            <{$smarty.const._MB_LEGACY_INBOX}>
-            <{if $block.new_messages > 0}><span class="badge new-messages"><{$block.new_messages}></span><{/if}>
+        <a href="<{$xoops_url}>/" target="_blank">
+            <span class="nav-module-icon"><img class="svg" src="<{'icons/icon-home.svg'|theme}>" width="1em" height="1em" alt="<{$smarty.server.SERVER_NAME}>"></span>
+            <span class="nav-module-name t7"><{$smarty.const._YOURHOME}></span>
+        </a>
+    </li>
+    <{if $flagShowInbox}>
+    <li class="nav-module-link">
+        <a href="<{$inbox_url}>" target="_blank">
+            <span class="nav-module-icon"><img class="svg" src="<{$xoops_url}>/images/icons/mail.svg" width="1em" height="1em" alt="mail>"></span>
+            <span class="nav-module-name"><{$smarty.const._MB_LEGACY_INBOX}></span>
+            <{if $new_messages > 0}><span class="badge-count"><{$new_messages}></span><{/if}>
         </a>
     </li>
     <{/if}>
     <li class="nav-module-link">
         <a href="<{$xoops_url}>/notifications.php" target="_blank">
-            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="notify"></span>
-            <{$smarty.const._MB_LEGACY_NOTIF}>
+            <span class="nav-module-icon"><img class="svg" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="notify"></span>
+            <span class="nav-module-name"><{$smarty.const._MB_LEGACY_NOTIF}></span>
         </a>
     </li>
     <li class="nav-module-link">
         <a href="<{$xoops_url}>/user.php" target="_blank">
-            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/user-details.svg" width="1em" height="1em" alt="account"></span>
-            <{$smarty.const._MB_LEGACY_VACNT}></a></li>
+            <span class="nav-module-icon"><img class="svg" src="<{$xoops_url}>/images/icons/user-details.svg" width="1em" height="1em" alt="account"></span>
+            <span class="nav-module-name"><{$smarty.const._MB_LEGACY_VACNT}></span>
+        </a>
+    </li>
     <li class="nav-module-link">
         <a href="<{$xoops_url}>/edituser.php" target="_blank">
-            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/user-edit.svg" width="1em" height="1em" alt="edit"></span>
-            <{$smarty.const._MB_LEGACY_EACNT}>
+            <span class="nav-module-icon"><img class="svg" src="<{$xoops_url}>/images/icons/user-edit.svg" width="1em" height="1em" alt="edit"></span>
+            <span class="nav-module-name"><{$smarty.const._MB_LEGACY_EACNT}></span>
         </a>
     </li>
     <li class="nav-module-link">
         <a href="<{$xoops_url}>/user.php?op=logout" target="_blank">
-            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/logout.svg" width="1em" height="1em" alt="logout"></span>
-            <{$smarty.const._MB_LEGACY_LOUT}>
+            <span class="nav-module-icon"><img class="svg" src="<{$xoops_url}>/images/icons/logout.svg" width="1em" height="1em" alt="logout"></span>
+            <span class="nav-module-name"><{$smarty.const._MB_LEGACY_LOUT}></span>
         </a>
     </li>
 </ul>
 
+</li><{* ---------- /Block Side Menu *}>
 <{*  <!--<h6><{$smarty.const._AD_LEGACY_USERAGENT}></h6>-->
 
 <!--<p>-->

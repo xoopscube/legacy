@@ -44,7 +44,7 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 
     public function getTitle()
     {
-        return 'TEST: AdminSideMenu';
+        return 'AdminSideMenu';
     }
 
     public function getEntryIndex()
