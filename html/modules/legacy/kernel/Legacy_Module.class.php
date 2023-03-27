@@ -2,7 +2,8 @@
 /**
  *
  * @package Legacy
- * @version $Id: Legacy_Module.class.php,v 1.6 2008/09/25 15:11:59 kilica Exp $
+ * @version XCL 2.3.x PHP8 gigamaster 
+ * @Id: Legacy_Module.class.php,v 1.6 2008/09/25 15:11:59 kilica Exp $
  * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license   GPL 2.0
  *
@@ -455,19 +456,25 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                     break;
                 }
             }
-
+			// Since XCL 2.3.x PHP8 Check if constant is defined 
             if (!$findFlag) {
                 $configInfos= [];
                 foreach ($this->mXoopsModule->modinfo['config'] as $config) {
                     if (isset($config['title'])) {
-                        $configInfos[]= @constant($config['title']);
+                        if (defined($config['title'])) {
+                            $configInfos[]= @constant($config['title']);
+                        }
                     }
                     if (isset($config['description'])) {
-                        $configInfos[]= @constant($config['description']);
+                        if (defined($config['description'])) {
+                            $configInfos[]= @constant($config['description']);
+                        }
                     }
                     if (isset($config['options']) && count($config['options']) > 0 ) {
                         foreach ($config['options'] as $key=>$val) {
-                            $configInfos[]= ( @constant($key) ?: $key );
+                            if (defined($key)) {
+                                $configInfos[]= ( constant($key) ?? $key ?? '' );
+                            }
                         }
                     }
                 }
