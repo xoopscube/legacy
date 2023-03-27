@@ -55,9 +55,9 @@
     <{if $xoops_module_header}>
         <{$xoops_module_header}>
     <{/if}>
-    <{if $xoops_block_header}>
+    <{* if $xoops_block_header}>
         <{$xoops_block_header}>
-    <{/if}>
+    <{/if *}>
 
 	<{* ---------- ---------- Override CSS Styles [jQuery, Notify Plugin] *}>
     <link type="text/css" rel="stylesheet" href="<{'stylesheets/ui-notification.css'|theme}>">
@@ -92,22 +92,13 @@
     <{* ---------- ---------- Nav Aside Menu *}>
 
     <aside class="nav-aside">
-
+        <{* ---------- Nav Side Menu *}>
         <ul class="nav-side-menu">
 
-            <{* ---------- Block Side Menu *}>
-            <li>
-                <div class="nav-block">
-                    <span class="nav-module-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
-                        </span>
-                    <span class="nav-module-name t<{$mid}>">Admin <{$smarty.const._CPHOME}></span>
-                </div>
-                <{* ----------Block LogInfo Menu *}>
-                <{$xoops_lblocks.block_loginfo.content}>
-            </li>
-        <{* ---------- Block Module Menu *}>
+        <{* ----------Block LogInfo Menu *}>
+        <{$xoops_lblocks.block_loginfo.content}>
 
+        <{* ---------- Block Side Menu *}>
         <{$xoops_lblocks.sidemenu.content}>
 
         </ul>
