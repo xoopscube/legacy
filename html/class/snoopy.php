@@ -909,7 +909,6 @@ class snoopy
 
         if (PHP_VERSION_ID > 50000) {
             if($this->scheme == 'http'){
-                $port = 80;
                 $host = "tcp://" . $host;
             }
 
