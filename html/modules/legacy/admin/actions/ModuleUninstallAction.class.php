@@ -91,11 +91,6 @@ class Legacy_ModuleUninstallAction extends Legacy_Action
      */
     public $mInstaller = null;
 
-    public function Legacy_ModuleUninstallAction($flag)
-    {
-        self::__construct($flag);
-    }
-
     public function __construct($flag)
     {
         parent::__construct($flag);

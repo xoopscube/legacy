@@ -16,9 +16,9 @@
     box-shadow    	: var( --card-full-shadow );
     padding       	: var( --card-full-padding);
     margin        	: var( --card-full-margin );
-    /* Adjust the offset of HTML anchor for the fixed header
-       Scroll to page anchors [id]:target eg.:
-       padding-top = height of theme sticky header */
+/*  Adjust the offset of HTML anchor for the fixed header
+    Scroll to page anchors [id]:target eg.:
+    padding-top = height of theme sticky header */
     scroll-padding-top: 70px;
     width: 100%;
 }
@@ -154,22 +154,18 @@
     will-change         : transform;
 }
 .list .ui-card-block-header {
-    flex-shrink: 1;
-    width: auto;
+    width               : auto
 }
-.list .ui-card-block-header a {
-    margin-right: .5rem;
-}
-.list .ui-card-block-image {
-    will-change         : transform;
-}
-.list .ui-card-block-image.ui-card-avatar {
-    width               : 7%;
-}
-.list .ui-card-block-header.card-header-altsys,
+.list .card-header-altsys .block-info-icon,
 .list .ui-card-block-image.card-block-svg,
 .list .ui-card-block-image.card-module-svg {
     display             : none;
+}
+.list .ui-card-block-image {
+     will-change         : transform;
+ }
+.list .ui-card-block-image.ui-card-avatar {
+    width               : 7%;
 }
 .list img.ui-avatar-card {
     height              : 48px;
@@ -181,15 +177,20 @@
     min-width           : auto;
     width               : auto;
 }
+.list .ui-card-block-item .ui-card-data {
+    border:1px solid red;
+}
 .list .ui-card-block-item.username {
     width               : 17%;
 }
 .list .card-user-datetime{
     width               : 21%;
 }
-.list .ui-card-block-item:last-of-type {
+.list  .ui-card-block > .ui-card-block-item:last-child {
+/*.list .ui-card-block-item:last-of-type {*/
     justify-content: flex-end;
     flex-shrink: 0;
+    margin-right: 0;
 }
 
 /* -------------------- --------------------  UI-CARD-BLOCK  */
@@ -244,7 +245,10 @@ a.ui-block-type {
 }
 
 .ui-card-block-image {
-    margin          : 0 auto;
+    margin          : 0;
+}
+.ui-card-block-image.ui-card-avatar {
+    margin: 0 auto;
 }
 
 .user-avatar,

@@ -79,6 +79,9 @@
         "footer";
         width       : 100%;
     }
+    .list .card-header-altsys .card-header-altsys {
+        display:none
+    }
     .alert-notify,
     .alert-submit {
         /*position: fixed;*/
@@ -86,6 +89,11 @@
         top: 3rem;
         width: 100%;
         /*z-index: var(--z-sticky);*/
+    }
+    .dropdown-content {
+        left: calc(-100vw + 250px);
+        top: 100%!important;
+        margin: 0 auto
     }
     .tips, .error, .confirm, .success, .confirmMsg, .resultMsg {
         margin:1rem auto;padding: .5rem .5rem .5rem 2.5rem;width:100%;
@@ -124,6 +132,18 @@
         flex    : 2
     }
 
+    .list .ui-card-block,
+    .list .card-header-altsys,
+    .list .ui-card-block-item {
+         padding: var(--space-2);
+     }
+    .list .card-header-altsys {
+        display: none;
+    }
+    .list .ui-card-block-item {
+        margin:0 auto
+    }
+
     table {
         border              : 0;
         overflow-x          : auto;
@@ -131,16 +151,13 @@
         -ms-overflow-style  : -ms-autohiding-scrollbar;
         width               : 100%;
     }
-
     table tr {
         padding         : 0.5rem;
     }
-
     table tbody td.legacy_blockside {
         display         : flex;
         justify-content : center;
     }
-
     .table-responsive {
         display             : block;
         overflow-x          : auto;
@@ -148,13 +165,14 @@
         -ms-overflow-style  : -ms-autohiding-scrollbar;
         width               : 100%;
     }
-
     .table-responsive > .table-bordered {
         border          : 0;
     }
+
     nav#help-menu {
         position :sticky;
     }
+
     .alert-notify,
     .alert-submit {
         right: 0;
@@ -180,6 +198,14 @@
         width: 90vw;
     }
 
+    /* TODO - this is a quick fix to scroll the table */
+    table {
+        border: 0;
+        display: table;
+        overflow-x: auto;
+        white-space: unset;
+    }
+
     .ui-card-overview {
         grid-template-columns   : repeat(auto-fit, minmax(214px, auto));
     }
@@ -198,7 +224,7 @@
     }
 
 }
-/* device 1360px */
+/* -------------------- --------------------  device 1360px */
 @media screen and (min-width:85em) {
 
     .layout-grid {
@@ -221,6 +247,20 @@
         visibility              : unset;
         transform               : translateX(0);
     }
+
+    .list .ui-card-block,
+    .list .card-header-altsys,
+    .list .ui-card-block-item {
+        padding: var(--space-4);
+    }
+    .list .card-header-altsys {
+        display: initial;
+    }
+    .list .ui-card-block-item {
+        margin:0 auto
+    }
+
+
 }
 
 /* device 1408 -> 1440px */

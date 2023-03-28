@@ -1,25 +1,49 @@
-<section class="sort">
-    <{$smarty.const._MD_USER_LANG_UID}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UID}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_UID}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-    <{$smarty.const._MD_USER_LANG_UNAME}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UNAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_UNAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-    <{$smarty.const._MD_USER_LANG_NAME}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_NAME}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_NAME}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-    <{$smarty.const._AD_USER_LANG_REGDATE}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_USER_REGDATE}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_USER_REGDATE}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-    <{$smarty.const._AD_USER_LANG_LASTLOGIN}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LAST_LOGIN}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_LAST_LOGIN}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-    <{$smarty.const._MD_USER_LANG_POSTS}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_POSTS}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_POSTS}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-    <{$smarty.const._MD_USER_LANG_LEVEL}>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LEVEL}>"><img src="<{"icons/up.png"|theme}>" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
-      <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_LEVEL}>"><img src="<{"icons/down.png"|theme}>" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a>
-    <{$smarty.const._DELETE}> <{$smarty.const._AD_USER_LANG_CONTROL}>
-      <input name="allbox" id="allbox" onclick="with(document.userlistform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('delete')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All">
-</section>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._MD_USER_LANG_UID}></h6>
+<div>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_UID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._MD_USER_LANG_UNAME}></h6>
+<div>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_UNAME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_UNAME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._MD_USER_LANG_NAME}></h6>
+<div>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_NAME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_NAME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._AD_USER_LANG_REGDATE}></h6>
+<div>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_USER_REGDATE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_USER_REGDATE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._AD_USER_LANG_LASTLOGIN}></h6>
+<div>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LAST_LOGIN}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_LAST_LOGIN}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._MD_USER_LANG_POSTS}></h6>
+<div>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_POSTS}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_POSTS}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+</div>
+</div>
+<div data-layout="row center-justify inline">
+<h6><{$smarty.const._MD_USER_LANG_LEVEL}></h6>
+<div>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.USER_SORT_KEY_LEVEL}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+<a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.USER_SORT_KEY_LEVEL}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+</div>
+</div>

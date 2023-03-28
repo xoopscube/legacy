@@ -2,6 +2,7 @@
 <form method="get" action="./index.php">
 <{strip}>
     <input type="hidden" name="action" value="CommentList">
+    <div data-layout="rows">
     <label for="search_field"><{$smarty.const._SEARCH}></label>
     <select name="search_field" id="search_field">
         <option value="com_title" <{if $filterForm->mSearchField == 'com_title'}>selected="selected"<{/if}>><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></option>
@@ -9,7 +10,11 @@
         <option value="com_both" <{if $filterForm->mSearchField == 'com_both'}>selected="selected"<{/if}>><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}>,<{$smarty.const._MD_LEGACY_LANG_COM_TEXT}></option>
         <option value="com_uid" <{if $filterForm->mSearchField == 'com_uid'}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_COM_UID}></option>
     </select>
+    </div>
+    <div data-layout="rows">
     <input type="text" name="keyword" value="<{$filterForm->mKeyword}>" placeholder="<{$smarty.const._AD_LEGACY_LANG_COMMENT_SVC}>...">
+    </div>
+    <div data-layout="rows">
     <label for="com_modid"><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></label>
     <select name="com_modid" id="com_modid">
         <option value="0"><{$smarty.const._AD_LEGACY_LANG_ALL_MODULES}></option>
@@ -21,6 +26,8 @@
         <{/if}>
         <{/foreach}>
     </select>
+    </div>
+    <div data-layout="rows">
     <label for="com_status"><{$smarty.const._AD_LEGACY_LANG_COM_STATUS}></label>
     <select name="com_status" id="com_status">
         <option value="0"><{$smarty.const._AD_LEGACY_LANG_ALL_STATUS}></option>
@@ -32,21 +39,26 @@
         <{/if}>
         <{/foreach}>
     </select>
+    </div>
+    <div data-layout="rows">
     <label for="perpage"><{$smarty.const._VIEW}></label>
     <select name="perpage"id="perpage">
-            <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
-            <{foreach item=page from=$pageArr}>
-            <{if $pageNavi->mPerpage == $page && $page != 0}>
-            <option value="<{$page}>" selected="selected"><{$page}></option>
-            <{elseif $pageNavi->mPerpage == $page && $page == 0}>
-            <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
-            <{elseif $pageNavi->mPerpage != $page && $page == 0}>
-            <option value="<{$page}>"><{$smarty.const._ALL}></option>
-            <{else}>
-            <option value="<{$page}>"><{$page}></option>
-            <{/if}>
-            <{/foreach}>
-        </select>
+        <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
+        <{foreach item=page from=$pageArr}>
+        <{if $pageNavi->mPerpage == $page && $page != 0}>
+        <option value="<{$page}>" selected="selected"><{$page}></option>
+        <{elseif $pageNavi->mPerpage == $page && $page == 0}>
+        <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
+        <{elseif $pageNavi->mPerpage != $page && $page == 0}>
+        <option value="<{$page}>"><{$smarty.const._ALL}></option>
+        <{else}>
+        <option value="<{$page}>"><{$page}></option>
+        <{/if}>
+        <{/foreach}>
+    </select>
+    </div>
+    <div data-layout="rows">
     <input class="button" type="submit" value="<{$smarty.const._SUBMIT}>">
+    </div>
 <{/strip}>
 </form>

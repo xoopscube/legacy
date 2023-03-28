@@ -10,36 +10,21 @@
 
 <h2><{$smarty.const._AD_USER_LANG_GROUP_LIST}></h2>
 
-
-
-
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section data-layout="row center-justify" class="action-control">
+<section data-layout="rows center-justify" class="action-control">
 
+<div>
     <a class="button" href="index.php?action=GroupEdit"><i class="i-add"></i> <{$smarty.const._AD_USER_LANG_GROUP_NEW}></a>
+    <a class="button" href="index.php"><i class="i-view"></i><{$smarty.const._AD_USER_LANG_USER_LIST}></a>
+</div>
 
     <div class="control-view">
 
-        <a class="button" href="index.php"><i class="i-view"></i><{$smarty.const._AD_USER_LANG_USER_LIST}></a>
-
-        <button class="help-admin button" type='button' data-id='4' data-module='user' data-help-article='#help-groups' aria-label="<{$smarty.const._HELP}>"><i class="i-help"></i></button>
-    </div>
-
-</section>
-
-
-<table class="outer">
-    <thead>
-    <tr>
-    <th>
-        <{* ////— DROPDOWN SORT —\\\\ *}>
+        <{* ////— DROPDOWN FILTER-SORT —\\\\ *}>
         <div class="dropdown" id="filter-sort">
+            <a href="#" class="dropdown-toggle button" aria-label="filter sort"><img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options"></a>
 
-            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
-            </a>
-
-            <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
+            <div class="dropdown-content drop-top">
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_USER_LANG_GROUP_GID}></h6>
                     <div>
@@ -70,16 +55,25 @@
                     </div>
                 </div>
             </div><{* ----- /Dropdown-content *}>
-
         </div><{* ----- /Dropdown *}>
-    </th>
-        <th><{$smarty.const._AD_USER_LANG_GROUP_GID}></th>
-        <th><{$smarty.const._AD_USER_LANG_GROUP_NAME}></th>
-        <th><{$smarty.const._AD_USER_LANG_GROUP_DESC}></th>
-        <th><{$smarty.const._AD_USER_LANG_GROUP_TYPE}></th>
-        <th style="text-align: center"><{$smarty.const._AD_USER_LANG_GROUP_AMMO}></th>
-        <th style="text-align: center"><{$smarty.const._AD_USER_LANG_CONTROL}></th>
-    </tr>
+
+        <button class="help-admin button" type='button' data-id='4' data-module='user' data-help-article='#help-groups' aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
+    </div>
+
+</section>
+
+
+<table class="outer">
+<thead>
+<tr>
+    <th>-</th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_GID}></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_NAME}></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_DESC}></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_TYPE}></th>
+    <th><{$smarty.const._AD_USER_LANG_GROUP_AMMO}></th>
+    <th><{$smarty.const._AD_USER_LANG_CONTROL}></th>
+</tr>
 </thead>
     <tbody>
     <{foreach item=group from=$objects}>

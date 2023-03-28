@@ -36,11 +36,6 @@ class Legacy_BackendAction extends Legacy_Action
      */
     public $mGetRSSItems = null;
 
-    public function Legacy_BackendAction($flag)
-    {
-        self::__construct($flag);
-    }
-
     public function __construct($flag)
     {
         parent::__construct($flag);

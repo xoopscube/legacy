@@ -24,7 +24,7 @@
 		<{if $module->getAdminMenu()}>
 
 
-			<{* ---------- ---------- ---------- ---------- ---------- Module Admin Links *}>
+			<{* -------------------- -------------------- Module Admin Links *}>
 
 
 			<{foreach item=menu from=$module->getAdminMenu()}>
@@ -34,21 +34,21 @@
 			<{/foreach}>
 
 
-			<{* ---------- ---------- ---------- ---------- ---------- Module Admin Options *}>
+			<{* -------------------- -------------------- Module Admin Options *}>
 
 			<li class="nav-module-link nav-module-options">
 
 
-				<{* ---------- ---------- ---------- ---------- ---------- Module Edit *}>
+				<{* -------------------- -------------------- Module Edit *}>
 
 				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ModuleEdit&amp;mid=<{$mid}>" aria-label="<{$smarty.const._EDIT}>">
 					<img class="svg" src="<{'icons/icon-edit.svg'|theme}>" width="1em" height="1em" alt="edit">
 				</a>
 
 
-				<{* ---------- ---------- ---------- ---------- ---------- Module Blocks *}>
+				<{* -------------------- -------------------- Module Blocks *}>
 
-				<{if $module->mXoopsModule->getInfo('blocks') && $dirname != "legacy" && $dirname != "altsys"  && $dirname != "system"}>
+				<{if $module->mXoopsModule->getInfo('blocks') && $dirname !="legacy" && $dirname !="altsys"  && $dirname !="system"}>
 
 				<a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList&amp;dirname=<{$dirname}>" aria-label="<{$smarty.const._MI_LEGACY_MENU_BLOCKLIST}>">
 					<img class="svg" src="<{'icons/icon-block-active.svg'|theme}>" width="1em" height="1em" alt="block-active">

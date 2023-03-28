@@ -227,7 +227,7 @@ $(function () {
          </div>
          </div>
     */
-    $(".dropdown").on("click", ".dropdown-toggle", function (event) {
+    $(".dropdown").on('click', '.dropdown-toggle', function (event) {
         event.preventDefault();
         $('.dropdown').removeClass('isopen');
         $(this).parent().toggleClass('isopen');
@@ -243,7 +243,7 @@ $(function () {
 
     // Copy source to clipboard
     $('.clipboard').click(function(){
-        $(this).parents(".textarea-wrap").find("textarea").elcopy();
+        $(this).parents('.textarea-wrap').find('textarea').elcopy();
     });
 
     /**

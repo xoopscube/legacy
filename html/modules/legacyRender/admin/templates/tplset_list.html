@@ -19,60 +19,20 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section data-layout="row center-justify sm-column" class="action-control">
-    <form method="get" action="index.php"><{$smarty.const._AD_LEGACYRENDER_LANG_SEARCH_TEMPLATE}> :
+<section data-layout="rows center-justify sm-column" class="action-control">
+    <form method="get" action="index.php">
+        <{$smarty.const._AD_LEGACYRENDER_LANG_SEARCH_TEMPLATE}> :
         <input type="hidden" name="action" value="TplfileList">
         <input type="text" name="tpl_file">
         <input class="button" type="submit" value="<{$smarty.const._SEARCH}>">
     </form>
-    <div class="control-view" data-self="right sm-full">
-        <{* ////— DROPDOWN SORT —\\\\ *}>
-        <div class="dropdown" id="action-contents">
-            <a href="#" class="dropdown-toggle action-menu button" aria-label="action">
-                <{$smarty.const._MENU}><svg class="icon-dropmenu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
-            </a>
-            <div class="dropdown-content" style="min-width: 240px; padding:.5em;">
-                <div data-layout="row justify-center">
-                    <h6 data-self="center size-x1"><{$smarty.const._MI_LEGACYRENDER_NAME}> <{$smarty.const._ACTION}></h6>
-                    <button class="help-admin button" type="button" data-module="legacyRender" data-help-article="#help-template" aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
-                </div>
-                <a class="button" href="./index.php?action=TplfileList"><i class="i-edit"></i><{$smarty.const._MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE}></a>
-                <a class="button" href="./index.php?action=TplsetUpload"><i class="i-upload"></i><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></a>
-                <a class="button" href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ThemeList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_THEME_MANAGE}></a>
-            </div>
-        </div>
-    </div>
-</section>
-<{* ----- / CONTROL-ACTION *}>
 
+    <div class="control-view" data-self="sm-full center right mr-0">
 
-<{if $actionForm->hasError()}>
-<div class="error">
-    <ul>
-        <{foreach item=message from=$actionForm->getErrorMessages()}>
-        <li><{$message|xoops_escape}></li>
-        <{/foreach}>
-    </ul>
-</div>
-<{/if}>
-
-
-<{assign var=tokenName value=$actionForm->getTokenName()}>
-<{assign var=token value=$actionForm->getToken()}>
-
-
-<table class="outer">
-    <thead>
-    <tr>
-        <th>
-        <{* ////— DROPDOWN SORT —\\\\ *}>
+        <{* ////— DROPDOWN FILTER-SORT —\\\\ *}>
         <div class="dropdown" id="filter-sort">
-
-            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="24px" height="24px" alt="options">
-            </a>
-
-            <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
+            <a href="#" class="dropdown-toggle button" aria-label="sort filter"><img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options"></a>
+            <div class="dropdown-content drop-top">
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_ID}></h6>
                     <div>
@@ -103,7 +63,44 @@
                 </div>
             </div><{* ----- /Dropdown-content *}>
         </div><{* ----- /Dropdown *}>
-        </th>
+
+        <{* ////— DROPDOWN MENU —\\\\ *}>
+        <div class="dropdown" id="action-contents">
+            <a href="#" class="dropdown-toggle action-menu button" aria-label="action" style="font-size: var(--d-toggle-font);">
+                <{$smarty.const._MENU}><svg class="icon-dropmenu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
+            </a>
+            <div class="dropdown-content" style="min-width: 240px; padding:.5em;">
+                <div data-layout="row justify-center">
+                    <h6 data-self="center size-x1"><{$smarty.const._MI_LEGACYRENDER_NAME}> <{$smarty.const._ACTION}></h6>
+                    <button class="help-admin button" type="button" data-module="legacyRender" data-help-article="#help-template" aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
+                </div>
+                <a class="button" href="./index.php?action=TplfileList"><i class="i-edit"></i><{$smarty.const._MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE}></a>
+                <a class="button" href="./index.php?action=TplsetUpload"><i class="i-upload"></i><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_UPLOAD}></a>
+                <a class="button" href="<{$xoops_url}>/modules/legacy/admin/index.php?action=ThemeList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_THEME_MANAGE}></a>
+            </div>
+        </div>
+    </div>
+</section>
+<{* ----- / CONTROL-ACTION *}>
+
+
+<{if $actionForm->hasError()}>
+<div class="error">
+    <ul>
+        <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li><{$message|xoops_escape}></li>
+        <{/foreach}>
+    </ul>
+</div>
+<{/if}>
+
+<{assign var=tokenName value=$actionForm->getTokenName()}>
+<{assign var=token value=$actionForm->getToken()}>
+
+<table class="outer">
+    <thead>
+    <tr>
+        <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_ID}></th>
         <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}> <{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DESC}></th>
         <th><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREDITS}></th>
         <th class="list_center"><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_CREATED}></th>

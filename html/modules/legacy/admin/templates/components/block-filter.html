@@ -1,4 +1,4 @@
-<{* ---------- ---------- ---------- ---------- ---------- Block Filter *}>
+<{* -------------------- -------------------- Block Filter *}>
 <div data-layout="row center-justify inline">
 <h6><{$smarty.const._AD_LEGACY_LANG_BID}></h6>
 <div>
@@ -51,11 +51,5 @@
 <div>
 <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.NEWBLOCKS_SORT_KEY_LAST_MODIFIED}>">&uarr;</a>
 <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.NEWBLOCKS_SORT_KEY_LAST_MODIFIED}>">&darr;</a>
-</div>
-</div>
-<div data-layout="row center-justify inline">
-<h6><{$smarty.const._AD_LEGACY_LANG_UNINSTALL}> <{$smarty.const._AD_LEGACY_LANG_CONTROL}></h6>
-<div>
-<input name="allbox" id="allbox" onclick="with(document.blockform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('uninstall')>=0){elements[i].checked=this.checked;}}}" type="checkbox" value="Check All">
 </div>
 </div>

@@ -19,35 +19,19 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section data-layout="row center-justify" class="action-control">
+<section data-layout="rows center-justify" class="action-control">
 
     <div>
         <a href="index.php?action=BannerEdit" class="button"><i class="i-add"></i><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_NEW}></a>
-    <a href="index.php?action=BannerclientList" class="button"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a>
-    <a href="index.php?action=BannerfinishList" class="button"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a>
+        <a href="index.php?action=BannerclientList" class="button"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a>
+        <a href="index.php?action=BannerfinishList" class="button"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a>
     </div>
 
     <div class="control-view">
-        <button class="help-admin button" type='button' data-module='legacyRender' data-help-article='#help-banner' aria-label="<{$smarty.const._HELP}>">
-            <b>?</b> </button>
-    </div>
-
-</section>
-<{* ----- / CONTROL-ACTION *}>
-
-
-<table class="outer">
-    <thead>
-    <tr>
-        <th>
-        <{* ////— DROPDOWN SORT —\\\\ *}>
+        <{* ////— DROPDOWN FILTER-SORT —\\\\ *}>
         <div class="dropdown" id="filter-sort">
-
-            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
-            </a>
-
-            <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
+            <a href="#" class="dropdown-toggle button" aria-label="filter sort"><img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options"></a>
+            <div class="dropdown-content drop-top">
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_BID}></h6>
                     <div>
@@ -100,7 +84,18 @@
                 </div>
             </div><{* ----- /Dropdown-content *}>
         </div><{* ----- /Dropdown *}>
-        </th>
+
+        <button class="help-admin button" type='button' data-module='legacyRender' data-help-article='#help-banner' aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
+    </div>
+
+</section>
+<{* ----- / CONTROL-ACTION *}>
+
+
+<table class="outer">
+    <thead>
+    <tr>
+        <th><{$smarty.const._AD_LEGACYRENDER_LANG_BID}></th>
         <th><{$smarty.const._AD_LEGACYRENDER_LANG_CID}></th>
         <th><{$smarty.const._AD_LEGACYRENDER_LANG_IMPTOTAL}></th>
         <th><{$smarty.const._AD_LEGACYRENDER_LANG_IMPMADE}></th>

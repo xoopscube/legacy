@@ -309,8 +309,8 @@ class XCube_Delegate {
 
 					case 'bool':
 						if ( ! empty( $arg ) ) {
-                            //$args[ $i ] = $arg ? true : false; gigamaster replaced with (bool)
-							$args[ $i ] = (bool)$arg;
+                            $args[ $i ] = $arg ? true : false;
+							// $args[ $i ] = (bool)$arg; // Test replace with (bool)
 						}
 						break;
 
@@ -450,8 +450,8 @@ class XCube_DelegateManager {
 	 *
 	 * @param string $name - Registration name.
 	 * @param        $callback
-	 * @param null $param3
-	 * @param null $param4
+	 * @param null   $param3
+	 * @param null   $param4
 	 *
 	 * @return void
 	 *
@@ -460,7 +460,7 @@ class XCube_DelegateManager {
 	 *
 	 * @see   XCube_Delegate::add()
 	 */
-	public function add( $name, $callback, $param3 = null, $param4 = null ) {
+	public function add(string $name, $callback, $param3 = null, $param4 = null ) {
 		if ( isset( $this->_mDelegates[ $name ] ) ) {
 			foreach ( $this->_mDelegates[ $name ] as $func ) {
 				$func->add( $callback, $param3, $param4 );
@@ -479,7 +479,7 @@ class XCube_DelegateManager {
 	 * @brief Disconnects a function from the delegate that have the specified name.
 	 * @see   XCube_Delegate::delete()
 	 */
-	public function delete( $name, $delcallback ) {
+	public function delete(string $name, $delcallback ) {
 		if ( isset( $this->_mDelegates[ $name ] ) ) {
 			foreach ( array_keys( $this->_mDelegates[ $name ] ) as $key ) {
 				$this->_mDelegates[ $name ][ $key ]->delete( $delcallback );
@@ -503,7 +503,7 @@ class XCube_DelegateManager {
 	 *
 	 * @see XCube_Delegate::reset()
 	 */
-	public function reset( $name ) {
+	public function reset(string $name ) {
 		if ( isset( $this->_mDelegates[ $name ] ) ) {
 			foreach ( array_keys( $this->_mDelegates[ $name ] ) as $key ) {
 				$this->_mDelegates[ $name ][ $key ]->reset();
@@ -522,7 +522,7 @@ class XCube_DelegateManager {
 	 *
 	 * @return bool
 	 */
-	public function isEmpty( $name ) {
+	public function isEmpty(string $name ) {
 		if ( isset( $this->_mDelegates[ $name ] ) ) {
 			return $this->_mDelegates[ $name ]->isEmpty();
 		}
@@ -646,9 +646,9 @@ class XCube_DelegateUtils {
 	/**
 	 * @public
 	 *
-	 * @param 1st string - Delaget Name
+	 * @param 1st string - Delegate Name
 	 * @param 2nd string
-	 * @param 3rd and more - Optional function paramaters
+	 * @param 3rd and more - Optional function parameters
 	 *
 	 * @return string
 	 * @internal
