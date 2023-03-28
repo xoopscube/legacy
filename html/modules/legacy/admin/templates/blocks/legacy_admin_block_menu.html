@@ -116,7 +116,7 @@
 
 			<{* ---------- ---------- ---------- ---------- ---------- Module Admin Links *}>
 			<{foreach item=menu from=$module->getAdminMenu()}>
-			<{if $menu.show !== false}>
+			<{if $menu.show|default:true}>
 			<li class="module-link"><a class="button" href="<{$menu.link|xoops_escape:link}>"><{$menu.title|xoops_escape}></a></li>
 			<{/if}>
 			<{/foreach}>
