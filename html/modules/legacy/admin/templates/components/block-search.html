@@ -4,12 +4,12 @@
     <input type="hidden" name="action" value="BlockList">
 
     <div data-layout="rows">
-        <span><{$smarty.const._SEARCH}></span>
+        <label><{$smarty.const._SEARCH}></label>
         <input type="text" name="search" value="<{$filterForm->mKeyword}>">
     </div>
 
     <div data-layout="rows">
-        <span><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></span>
+        <label><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></label>
         <select name="dirname">
             <option value="0"><{$smarty.const._ALL}></option>
             <{foreach from=$modules item=module}>
@@ -19,12 +19,12 @@
                 <option value="<{$module->getVar('dirname')}>"><{$module->getVar('name')}></option>
               <{/if}>
             <{/foreach}>
-             <option value="-1"  <{if $filterForm->mModule == "cblock"}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_CUSTOMBLOCK_EDIT}></option>
+             <option value="-1" <{if $filterForm->mModule == "cblock"}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_CUSTOMBLOCK_EDIT}></option>
           </select>
     </div>
 
     <div data-layout="rows">
-        <span><{$smarty.const._AD_LEGACY_LANG_TARGET_MODULES}></span>
+        <label><{$smarty.const._AD_LEGACY_LANG_TARGET_MODULES}></label>
         <select name="selmid">
             <option value="0"><{$smarty.const._AD_LEGACY_LANG_ALL_MODULES}></option>
             <option value="-1" <{if $selectedMid == -1}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_TOPPAGE}></option>
@@ -35,7 +35,7 @@
     </div>
 
     <div data-layout="rows">
-        <span><{$smarty.const._AD_LEGACY_LANG_TARGET_GROUPS}></span>
+        <label><{$smarty.const._AD_LEGACY_LANG_TARGET_GROUPS}></label>
         <select name="selgid">
             <option value="0"><{$smarty.const._ALL}></option>
             <{foreach from=$groupArr item=groups}>
@@ -45,7 +45,7 @@
     </div>
 
     <div data-layout="rows">
-        <span><{$smarty.const._AD_LEGACY_LANG_SIDE}></span>
+        <label><{$smarty.const._AD_LEGACY_LANG_SIDE}></label>
         <select name="option_field">
         <{if $filterForm->mOptionField == "all"}>
         <option value="all" selected="selected"><{$smarty.const._ALL}></option>
@@ -62,7 +62,7 @@
     </div>
 
     <div data-layout="rows">
-        <span><{$smarty.const._VIEW}></span>
+        <label><{$smarty.const._VIEW}></label>
         <select name="perpage">
             <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
             <{foreach item=page from=$pageArr}>

@@ -22,6 +22,18 @@ define( '_MI_LR_META_RATING' , 'METAタグ(RATING)');
 define( '_MI_LR_META_RATING_DESC' , '閲覧対象年齢層の指定');
 define( '_MI_LR_META_ROBOTS' , 'METAタグ(ROBOTS)');
 define( '_MI_LR_META_ROBOTS_DESC' , 'ロボット型検索エンジンへの対応');
+// META WEBMASTER TOOLS
+define( '_MI_LR_META_BING' , 'Bing meta ta');
+define( '_MI_LR_META_BING_DESC' , 'Log into Bing Webmaster Tools and get the meta tag option to verify your site.');
+define( '_MI_LR_META_FB_APP' , 'Facebook Ap');
+define( '_MI_LR_META_FB_APP_DESC' , 'Get your Facebook App ID');
+define( '_MI_LR_META_GOOGLE' , 'Webmaster Google');
+define( '_MI_LR_META_GOOGLE_DESC' , 'Log into Google Search Console and get the meta tag verification');
+define( '_MI_LR_META_TWITTER' , 'Twitter site user');
+define( '_MI_LR_META_TWITTER_DESC' , 'Get your Twitter site ID');
+define( '_MI_LR_META_YANDEX' , 'Webmaster Yandex');
+define( '_MI_LR_META_YANDEX_DESC' , 'Log into Yandex search console and get the meta tag verification');
+
 define( '_MI_LR_ROBOT_INDEXFOLLOW' , 'Index, Follow');
 define( '_MI_LR_ROBOT_INDEXNOFOLLOW' , 'Index, No Follow');
 define( '_MI_LR_ROBOT_METAO14YRS' , '14 years');
@@ -42,8 +54,8 @@ define( '_MI_LR_JQUERY_CORE_DESC' , 'Google Libraries APIを使う場合（推�
 define( '_MI_LR_JQUERY_UI' , 'jQuery UI ライブラリ');
 define( '_MI_LR_JQUERY_UI_DESC' , 'Google Libraries APIを使う場合、jQuery UI のバージョンを入れてください。ローカルの jQuery UI ファイルを使う場合は、そのURLを入れてください。どちらを使うかはコアライブラリと同じでなければなりません。');
 define( '_MI_LR_ICONSET' , 'Directory for icon set files');
-define( '_MI_LR_ICONSET_DSC' , 'Relative path to public/common/images. Default: icons');
+define( '_MI_LR_ICONSET_DESC' , 'Relative path to public/common/images. Default: icons');
 define( '_MI_LR_FAVICON' , 'Directory for icon set files');
-define( '_MI_LR_FAVICON_DSC' , 'Relative path to public/common/images. Default: icons');
+define( '_MI_LR_FAVICON_DESC' , 'Relative path to public/common/images. Default: icons');
 define( '_MI_LR_LOGO' , 'Directory for icon set files');
-define( '_MI_LR_LOGO_DSC' , 'Relative path to public/common/images. Default: icons');
+define( '_MI_LR_LOGO_DESC' , 'Relative path to public/common/images. Default: icons');

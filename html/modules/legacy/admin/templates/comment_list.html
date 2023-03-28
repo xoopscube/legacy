@@ -21,13 +21,86 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section data-layout="row center-justify" class="action-control">
+<section data-layout="rows center-justify" class="action-control">
 
-    <{include file="./components/comment-search.html"}>
+<div><a class="button" href="<{$xoops_url}>/modules/d3forum/admin/index.php"><i class="i-view"></i>D3Forum Integration</a></div>
 
     <div class="control-view">
-        <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-comments' aria-label="<{$smarty.const._HELP}>">
-            <b>?</b> </button>
+        <{* ////— DROPDOWN SORT —\\\\ *}>
+        <div class="dropdown" id="filter-sort">
+            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
+                <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
+            </a>
+            <div class="dropdown-content drop-top">
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_LEGACY_LANG_ID}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_ID}>" class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_ID}>" class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._MD_LEGACY_LANG_COM_MODID}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_MODID}>" class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_MODID}>" class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;
+                        </a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify">
+                    <h6><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_TITLE}>" class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_TITLE}>" class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify">
+                    <h6><{$smarty.const._AD_LEGACY_LANG_COM_CREATED}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_CREATED}>" class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_CREATED}>" class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify">
+                    <h6><{$smarty.const._AD_LEGACY_LANG_COM_MODIFIED}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_MODIFIED}>" class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_MODIFIED}>" class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify">
+                    <h6><{$smarty.const._AD_LEGACY_LANG_COM_UID}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_UID}>" class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_UID}>" class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify">
+                    <h6><{$smarty.const._MD_LEGACY_LANG_COM_IP}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_IP}>" class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_IP}>" class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify">
+                    <h6><{$smarty.const._AD_LEGACY_LANG_COM_STATUS}></h6>
+                    <div>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_STATUS}>" class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_STATUS}>" class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+            </div><{* ----- /Dropdown-content *}>
+        </div><{* ----- /Dropdown *}>
+        <{* ////— DROPDOWN SEARCH —\\\\ *}>
+        <div class="dropdown" id="drop-search">
+            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M19.31 18.9l3.08 3.1L21 23.39l-3.12-3.07c-.69.43-1.51.68-2.38.68c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5s4.5 2 4.5 4.5c0 .88-.25 1.71-.69 2.4m-3.81.1a2.5 2.5 0 0 0 0-5a2.5 2.5 0 0 0 0 5M21 4v2H3V4h18M3 16v-2h6v2H3m0-5V9h18v2h-2.03c-1.01-.63-2.2-1-3.47-1s-2.46.37-3.47 1H3z" fill="currentColor"/></svg>
+            </a>
+            <div class="dropdown-content drop-top">
+                <{include file="./components/comment-search.html"}>
+            </div><{* ----- /Dropdown-content *}>
+        </div><{* ----- /Dropdown *}>
+        <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-comments' aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
     </div>
 
 </section>
@@ -40,91 +113,7 @@
 <table class="outer">
     <thead>
     <tr>
-        <th>
-        <{* ////— DROPDOWN SORT —\\\\ *}>
-        <div class="dropdown" id="filter-sort">
-
-            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="24px" height="24px" alt="options">
-            </a>
-
-            <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._AD_LEGACY_LANG_ID}></h6>
-                    <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_ID}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_ID}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-                <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._MD_LEGACY_LANG_COM_MODID}></h6>
-                    <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_MODID}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_MODID}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;
-                        </a>
-                    </div>
-                </div>
-                <div data-layout="row center-justify">
-                    <h6><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></h6>
-                    <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_TITLE}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_TITLE}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-                <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_LEGACY_LANG_COM_CREATED}></h6>
-                    <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_CREATED}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_CREATED}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-                <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_LEGACY_LANG_COM_MODIFIED}></h6>
-                    <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_MODIFIED}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_MODIFIED}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-                <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_LEGACY_LANG_COM_UID}></h6>
-                    <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_UID}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_UID}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-                <div data-layout="row center-justify">
-                    <h6><{$smarty.const._MD_LEGACY_LANG_COM_IP}></h6>
-                    <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_IP}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_IP}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-                <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_LEGACY_LANG_COM_STATUS}></h6>
-                    <div>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.COMMENT_SORT_KEY_COM_STATUS}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.COMMENT_SORT_KEY_COM_STATUS}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-            </div><{* ----- /Dropdown-content *}>
-        </div><{* ----- /Dropdown *}>
-        </th>
+        <th><{$smarty.const._AD_LEGACY_LANG_ID}></th>
         <th><{$smarty.const._MD_LEGACY_LANG_COM_MODID}></th>
         <th><{$smarty.const._MD_LEGACY_LANG_COM_TITLE}></th>
         <th><{$smarty.const._AD_LEGACY_LANG_COM_CREATED}></th>
@@ -132,12 +121,11 @@
         <th><{$smarty.const._AD_LEGACY_LANG_COM_UID}></th>
         <th><{$smarty.const._MD_LEGACY_LANG_COM_IP}></th>
         <th><{$smarty.const._AD_LEGACY_LANG_COM_STATUS}></th>
-
-        <th style="text-align: center"><{$smarty.const._DELETE}><br>
+        <th><{$smarty.const._DELETE}><br>
             <input name="allbox" id="allbox"
                    onclick="with(document.smilesform){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].disabled==false&&elements[i].name.indexOf('delete')>=0){elements[i].checked=this.checked;}}}"
                    type="checkbox" value="Check All"></th>
-        <th style="text-align: center"><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
+        <th><{$smarty.const._AD_LEGACY_LANG_CONTROL}></th>
     </tr>
     </thead>
     <tbody>
@@ -179,7 +167,7 @@
         <td class="legacy_list_select">
             <input type="checkbox" name="delete[<{$obj->getShow('com_id')}>]" value="1">
         </td>
-        <td class="legacy_list_control">
+        <td class="list_control">
             <a class="action-view" href="./index.php?action=CommentView&amp;com_id=<{$obj->getShow('com_id')}>" aria-label="<{$smarty.const._VIEW}>">
                 <img class="svg" src="<{'icons/icon-view.svg'|theme}>" width="1em" height="1em" alt="<{$smarty.const._VIEW}>">
             </a>

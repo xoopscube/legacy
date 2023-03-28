@@ -28,8 +28,8 @@
 </div>
 
 <div class="ui-card-full">
-    <div>
-<textarea name="htaccess" style="width: 100%;" rows="20">
+<div class="textarea-wrap">
+<textarea id="output-source" rows="12" readonly>
 RewriteEngine On
 RewriteBase <{$rewrite_base}>
 RewriteRule ^modules/(\w+)/(\w+\.php)(/.*)$ <{$xoops_module_path}>/$1/$2 [L,QSA,E=PATH_INFO:$3]
@@ -40,7 +40,7 @@ RewriteRule ^(\w+)/(\w+)$ <{$xoops_module_path}>/$1/index.php?<{$data_name}>=$2 
 RewriteRule ^(\w+)/(\w+)/(\d+)$ <{$xoops_module_path}>/$1/index.php?<{$data_name}>=$2&<{$data_id}>=$3 [L,QSA]
 RewriteRule ^(\w+)/(\w+)/(\w+)$ <{$xoops_module_path}>/$1/index.php?<{$data_name}>=$2&<{$action_name}>=$3 [L,QSA]
 RewriteRule ^(\w+)/(\w+)/(\d+)/(.+)$ <{$xoops_module_path}>/$1/index.php?<{$data_name}>=$2&<{$action_name}>=$4&<{$data_id}>=$3 [L,QSA]
-RewriteRule ^(\w+)\?(\w+=\w+)$ <{$xoops_module_path}>/$1/index.php?$2 [L,QSA]
-</textarea>
-    </div>
+RewriteRule ^(\w+)\?(\w+=\w+)$ <{$xoops_module_path}>/$1/index.php?$2 [L,QSA]</textarea>
+<div id="copyToClipboard" class="clipboard icon" title="Copy To Clipboard"></div>
+</div><{* textarea wrapper *}>
 </div>

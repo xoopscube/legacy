@@ -83,11 +83,6 @@ class Legacy_ModuleUpdateAction extends Legacy_Action
 
     public $mInstaller = null;
 
-    public function  Legacy_ModuleUpdateAction($flag)
-    {
-        self::__construct($flag);
-    }
-
     public function __construct($flag)
     {
         parent::__construct($flag);

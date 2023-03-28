@@ -99,6 +99,7 @@ a[name|=help] {
     scroll-margin-top: 4em;
 }
 a[id|=avatar-active],
+a[id|=block-permission],
 a[id|=close-site],
 a[id|=cool-uri],
 a[id|=ip-ban],
@@ -116,6 +117,12 @@ code,kbd,pre,samp {
     padding         : var(--space-4);
     overflow-wrap   : anywhere; /* normal | break-word | anywhere */
     white-space     : pre-wrap!important;/* <pre> tag doesn't support wrapping, by default. */
+}
+fieldset {
+    border: var(--border);
+}
+legend {
+    color : var(--secondary);
 }
 kbd {
     background      : var(--layer-4);

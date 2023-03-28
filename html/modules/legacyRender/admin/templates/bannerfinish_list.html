@@ -17,34 +17,21 @@
 
 
 <div class="tips">
-Add link to : https://xyz.local/xcl/html/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=3
-    <br> and "id" to language
+    <{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST_TIPS}>
 </div>
 
-
-<p>
-    <a href="index.php?action=BannerList" class="button"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}></a>
-    <a href="index.php?action=BannerclientList" class="button"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a>
-</p>
-
-<!-- <ul class="toptab">
-  <li class="addBannerList"><a href="index.php?action=BannerList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}></a></li>
-  <li class="addBannerClientList"><a href="index.php?action=BannerclientList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a></li>
-</ul> -->
-
-<table class="outer">
-    <thead>
-    <tr>
-        <th>
-        <{* ////— DROPDOWN SORT —\\\\ *}>
+<{* ////— ACTION-CONTROL —\\\\ *}>
+<section data-layout="rows center-justify" class="action-control">
+    <div>
+        <a href="index.php?action=BannerList" class="button"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST}></a>
+        <a href="index.php?action=BannerclientList" class="button"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a>
+    </div>
+    <div class="control-view">
+        <{* ////— DROPDOWN FILTER-SORT —\\\\ *}>
         <div class="dropdown" id="filter-sort">
 
-            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
-            </a>
-
-            <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-
+            <a href="#" class="dropdown-toggle button" aria-label="filter sort"><img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options"></a>
+            <div class="dropdown-content drop-top">
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_BID}></h6>
                     <div>
@@ -52,7 +39,6 @@ Add link to : https://xyz.local/xcl/html/modules/legacy/admin/index.php?action=P
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_BID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_CLIENT_NAME}></h6>
                     <div>
@@ -61,7 +47,6 @@ Add link to : https://xyz.local/xcl/html/modules/legacy/admin/index.php?action=P
                         </a>
                     </div>
                 </div>
-
                 <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_IMPRESSIONS}></h6>
                     <div>
@@ -69,7 +54,6 @@ Add link to : https://xyz.local/xcl/html/modules/legacy/admin/index.php?action=P
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_IMPRESSIONS}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-
                 <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKS}></h6>
                     <div>
@@ -77,7 +61,6 @@ Add link to : https://xyz.local/xcl/html/modules/legacy/admin/index.php?action=P
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_CLICKS}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-
                 <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_DATESTART}></h6>
                     <div>
@@ -85,7 +68,6 @@ Add link to : https://xyz.local/xcl/html/modules/legacy/admin/index.php?action=P
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_DATESTART}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-
                 <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_DATEEND}></h6>
                     <div>
@@ -93,10 +75,15 @@ Add link to : https://xyz.local/xcl/html/modules/legacy/admin/index.php?action=P
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_DATEEND}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-
             </div><{* ----- /Dropdown-content *}>
         </div><{* ----- /Dropdown *}>
-        </th>
+    </div>
+</section>
+
+<table class="outer">
+    <thead>
+    <tr>
+        <th><{$smarty.const._AD_LEGACYRENDER_LANG_BID}></th>
         <th><{$smarty.const._AD_LEGACYRENDER_LANG_CLIENT_NAME}></th>
         <th><{$smarty.const._AD_LEGACYRENDER_LANG_IMPRESSIONS}></th>
         <th><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKS}></th>

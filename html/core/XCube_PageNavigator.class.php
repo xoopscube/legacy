@@ -204,7 +204,7 @@ class XCube_PageNavigator {
 			if ( 0 === count( $tarr ) ) {
 				return $this->mUrl;
 			}
-
+            // TODO XCL 2.3.x 'strpos' call can be converted to 'str_contains'
 			if ( false !== strpos( $this->mUrl, '?' ) ) {
 				return $this->mUrl . '&amp;' . implode( '&amp;', $tarr );
 			}
@@ -216,7 +216,7 @@ class XCube_PageNavigator {
 	}
 
 	/**
-	 * Returns a url string for navigation. The return value has lost the starting value.
+	 * Returns url string for navigation. The return value has lost the starting value.
 	 * The user need to add a start value. For example, It is "$navi->getRenderUrl().'20'".
 	 * NOTE : This method name is bad. This must be renamed!
 	 * @return string
@@ -228,7 +228,7 @@ class XCube_PageNavigator {
 
 		$delimiter = '?';
 		$url       = $this->getRenderBaseUrl( $mask );
-
+        // TODO XCL 2.3.x 'strpos' call can be converted to 'str_contains'
 		if ( false !== strpos( $url, '?' ) ) {
 			$delimiter = '&amp;';
 		}
@@ -246,7 +246,7 @@ class XCube_PageNavigator {
 			}
 
 			$tarr[] = $this->getPerpageKey() . '=' . $this->mPerpage;
-
+            // TODO XCL 2.3.x 'strpos' call can be converted to 'str_contains'
 			if ( false !== strpos( $this->mUrl, '?' ) ) {
 				return $this->mUrl . '&amp;' . implode( '&amp;', $tarr );
 			}
@@ -274,7 +274,7 @@ class XCube_PageNavigator {
 		if ( null !== $page ) {
 			$tarr[] = $this->getStartKey() . '=' . (int) $page;
 		}
-
+        // TODO XCL 2.3.x 'strpos' call can be converted to 'str_contains'
 		if ( false !== strpos( $this->mUrl, '?' ) ) {
 			return $this->mUrl . '&amp;' . implode( '&amp;', $tarr );
 		}

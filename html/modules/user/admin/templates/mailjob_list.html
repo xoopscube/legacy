@@ -18,11 +18,54 @@
 <{* ////— ACTION-CONTROL —\\\\ *}>
 <section data-layout="row center-justify" class="action-control">
 
-    <a class="button" href="index.php?action=UserSearch"><{$smarty.const._AD_USER_LANG_CREATE_NEW}></a>
+    <a class="button" href="index.php?action=UserSearch"><i class="i-add"></i> <{$smarty.const._AD_USER_LANG_CREATE_NEW}></a>
 
     <div class="control-view">
-        <button class="help-admin button" type='button' data-id='4' data-module='user' data-help-article='#help-mailjob' aria-label="<{$smarty.const._HELP}>">
-            <b>?</b> </button>
+
+        <{* ////— DROPDOWN FILTER-SORT —\\\\ *}>
+        <div class="dropdown" id="drop-filter">
+            <a href="#" class="dropdown-toggle button" aria-label="filter sort">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="filter" role="img"><path d="M18 21l-4-4h3V7h-3l4-4l4 4h-3v10h3M2 19v-2h10v2M2 13v-2h7v2M2 7V5h4v2H2z" fill="currentColor"></path></svg>            </a>
+            <div class="dropdown-content drop-top">
+        <div data-layout="row center-justify inline">
+            <h6><{$smarty.const._AD_USER_LANG_MAILJOB_ID}></h6>
+            <div>
+                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_MAILJOB_ID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_MAILJOB_ID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+            </div>
+        </div>
+        <div data-layout="row center-justify inline">
+            <h6><{$smarty.const._AD_USER_LANG_TITLE}></h6>
+            <div>
+                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_TITLE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_TITLE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+            </div>
+        </div>
+        <div data-layout="row center-justify inline">
+            <h6><{$smarty.const._AD_USER_LANG_IS_PM}></h6>
+            <div>
+                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_IS_PM}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_IS_PM}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+            </div>
+        </div>
+        <div data-layout="row center-justify inline">
+            <h6><{$smarty.const._AD_USER_LANG_IS_MAIL}></h6>
+            <div>
+                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_IS_MAIL}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_IS_MAIL}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+            </div>
+        </div>
+        <div data-layout="row center-justify inline">
+            <h6><{$smarty.const._AD_USER_LANG_CREATE_UNIXTIME}></h6>
+            <div>
+                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_CREATE_UNIXTIME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_CREATE_UNIXTIME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+            </div>
+        </div>
+    </div><{* ----- /Dropdown-content *}>
+    </div><{* ----- /Dropdown *}>
+
+        <button class="help-admin button" type='button' data-id='4' data-module='user' data-help-article='#help-mailjob' aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
     </div>
 
 </section>
@@ -31,53 +74,7 @@
 <table class="outer">
     <thead>
     <tr>
-        <th>
-        <{* ////— DROPDOWN SORT —\\\\ *}>
-        <div class="dropdown" id="filter-sort">
-
-            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
-            </a>
-
-            <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._AD_USER_LANG_MAILJOB_ID}></h6>
-                    <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_MAILJOB_ID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_MAILJOB_ID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-                <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._AD_USER_LANG_TITLE}></h6>
-                    <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_TITLE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_TITLE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-                <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._AD_USER_LANG_IS_PM}></h6>
-                    <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_IS_PM}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_IS_PM}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-                <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._AD_USER_LANG_IS_MAIL}></h6>
-                    <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_IS_MAIL}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_IS_MAIL}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-                <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._AD_USER_LANG_CREATE_UNIXTIME}></h6>
-                    <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.MAILJOB_SORT_KEY_CREATE_UNIXTIME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.MAILJOB_SORT_KEY_CREATE_UNIXTIME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-            </div><{* ----- /Dropdown-content *}>
-        </div><{* ----- /Dropdown *}>
-        </th>
+        <th><{$smarty.const._AD_USER_LANG_MAILJOB_ID}></th>
         <th><{$smarty.const._AD_USER_LANG_TITLE}></th>
         <th><{$smarty.const._AD_USER_LANG_IS_PM}></th>
         <th><{$smarty.const._AD_USER_LANG_IS_MAIL}></th>

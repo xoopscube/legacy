@@ -254,7 +254,7 @@ Usage with color var:
     --button-border         : 1px solid var( --theme-color, var( --layer-4 ) );
     --button-color          : var( --theme-link, var(--link ) );
     --button-font-size      : 16px;
-    --button-margin         : var( --space-1 ) var( --space-2 ); /* 0.75rem 1rem; */
+    --button-margin         : var(--space-0 ) var(--space-1 ); /* 0.75rem 1rem; */
     --button-padding        : var( --space-3 ) var( --space-5 );
     --button-radius         : var( --border-radius );
     --button-shadow         : var( --shadow-1 );
@@ -320,7 +320,7 @@ Usage with color var:
     --d-toggle-bg           : var(--layer-4);
     --d-toggle-border       : 1px solid var( --theme-color, var(--layer-4) );
     --d-toggle-color        : var(--theme-color);
-    --d-toggle-font         : inherit;
+    --d-toggle-font         : var(--icon-size);
     --d-toggle-padding      : var(--space-2 ) var(--space-2);
     --d-toggle-radius       : var(--border-radius);
     --d-toggle-shadow       : 0 0 3px 1px rgba(44, 98, 246, .5);
@@ -365,8 +365,8 @@ Usage with color var:
     --input-bg              : var( --layer-2 );
     --input-border          : 1px solid var( --theme-color, var( --layer-3 ) );
     --input-color           : var( --secondary ); /* var( --theme-color, var( --secondary )); */
-    --input-margin          : var( --space-0 ) var( --space-1 );
-    --input-padding         : var( --space-3 ) var( --space-4 );
+    --input-margin          : var( --button-margin );
+    --input-padding         : var( --button-padding );
     --input-radius          : var( --border-radius );
     --input-shadow          : none;
     /* Active - Hover */
@@ -512,7 +512,9 @@ Usage with color var:
     /*--ui-icon-background-border : var(--link-hover);*/
     --ui-icon-width             : 16px;
     --ui-icon-height            : 16px;
+
     --ui-state-default-bg       : var(--button-bg);
+    --ui-state-default-border : 1px solid transparent;
     /*--ui-state-default-border   : 1px solid var(--layer-4);*/
     --ui-state-default-color    : var(--link);
     --ui-state-default-font     : var(--font-family );
@@ -523,6 +525,12 @@ Usage with color var:
     --ui-state-hover-font       : inherit;
     --ui-state-link-hover       : var( --link-hover );
 
+    --ui-state-check-bg : var(--input-check-bg);
+    --ui-state-check-border :var(--input-check-border);
+    --ui-state-check-radius :var(--input-radius);
+    --ui-state-check-shadow :var(--input-check-shadow);
+    --ui-state-check-height :1em;
+    --ui-state-check-width :1em;
     /* -------------------- --------------------  UI TABS ( Dashboard, X-Update) */
     --ui-tabs-bg                : var(--layer-2);
     --ui-tabs-border            : none;

@@ -109,13 +109,17 @@ a.action-view {
 .color-orange {background: var( --color-orange ); var( --color-white )}
 
 /* -------------------- --------------------  ICONS */
-
-    /* Icons color and size */
+/* Icons color and size */
 /* Icons color and size */
 /* margin-right if button text */
 :where(.button, .ui-button):not(.button-icon) i[class^="i-"] {
     margin-right: var(--space-4) !important;
 }
+.button-icon,
+button[type="button"].button-icon {
+    font-size: var(--icon-size);
+}
+
 /* -------------------- --------------------  BADGE */
 
     /* Badge default */
@@ -130,25 +134,27 @@ a.action-view {
         font-size       : 0.74rem;
         font-family     : sans-serif;
         font-style      : normal;
-        letter-spacing  : 0.1rem;
+        /*letter-spacing  : 0.1rem;*/
         line-height     : 1em;
         margin          : var( --button-margin );
-        padding         : var( --space-4 ) var( --space-6 );
+        padding         : var( --space-4 );
         position        : relative;
         text-align      : center;
         /*text-transform      : uppercase;*/
         transition      : all ease-in-out 0.2s;
         vertical-align  : baseline;
-        white-space     : nowrap;
+        /*white-space     : nowrap;*/
     }
 
     .badge-count {
         background      : var( --layer-2 );
         font-size       : 13px;
+        height          : fit-content;
         margin          : 0 var( --space-2 );
         padding         : var( --space-1 ) var( --space-2 );
         min-width       : 4ch;
         text-align      : right;
+
     }
 
     /* Badge with icon background mask */

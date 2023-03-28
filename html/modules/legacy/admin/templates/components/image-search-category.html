@@ -1,53 +1,48 @@
 <form action="./index.php" method="get" role="search">
-  <input type="hidden" name="action" value="ImagecategoryList">
+    <input type="hidden" name="action" value="ImagecategoryList">
 
-<section class="filter">
+    <div data-layout="rows">
+        <label><{$smarty.const._SEARCH}></label>
+        <input type="text" name="search" value="<{$filterForm->mKeyword}>">
+    </div>
 
-  <article>
-    <{$smarty.const._SEARCH}><br>
-    <input type="text" name="search" value="<{$filterForm->mKeyword}>">
-  </article>
+    <div data-layout="rows">
+        <label><{$smarty.const._AD_LEGACY_LANG_IMGCAT_DISPLAY}></label>
+        <select name="option_field">
+            <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
+            <option value="visible" <{if $filterForm->mOptionField == 'visible'}>selected="selected"<{/if}>><{$smarty.const._YES}></option>
+            <option value="invisible" <{if $filterForm->mOptionField == 'invisible'}>selected="selected"<{/if}>><{$smarty.const._NO}></option>
+        </select>
+    </div>
 
-  <article>
-    <{$smarty.const._AD_LEGACY_LANG_IMGCAT_DISPLAY}><br>
-    <select name="option_field">
-      <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
-      <option value="visible" <{if $filterForm->mOptionField == 'visible'}>selected="selected"<{/if}>><{$smarty.const._YES}></option>
-      <option value="invisible" <{if $filterForm->mOptionField == 'invisible'}>selected="selected"<{/if}>><{$smarty.const._NO}></option>
-    </select>
-  </article>
+    <div data-layout="rows">
+        <label><{$smarty.const._AD_LEGACY_LANG_IMGCAT_STORETYPE}></label>
+        <select name="option_field2">
+            <option value="all" <{if $filterForm->mOptionField2 == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
+            <option value="file" <{if $filterForm->mOptionField2 == 'file'}>selected="selected"<{/if}>>FILE</option>
+            <option value="db" <{if $filterForm->mOptionField2 == 'db'}>selected="selected"<{/if}>>DB</option>
+        </select>
+    </div>
 
-  <article>
-    <{$smarty.const._AD_LEGACY_LANG_IMGCAT_STORETYPE}><br>
-    <select name="option_field2">
-      <option value="all" <{if $filterForm->mOptionField2 == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
-      <option value="file" <{if $filterForm->mOptionField2 == 'file'}>selected="selected"<{/if}>>FILE</option>
-      <option value="db" <{if $filterForm->mOptionField2 == 'db'}>selected="selected"<{/if}>>DB</option>
-    </select>
-  </article>
+    <div data-layout="rows">
+        <label><{$smarty.const._VIEW}></label>
+        <select name="perpage">
+            <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
+            <{foreach item=page from=$pageArr}>
+            <{if $pageNavi->mPerpage == $page && $page != 0}>
+            <option value="<{$page}>" selected="selected"><{$page}></option>
+            <{elseif $pageNavi->mPerpage == $page && $page == 0}>
+            <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
+            <{elseif $pageNavi->mPerpage != $page && $page == 0}>
+            <option value="<{$page}>"><{$smarty.const._ALL}></option>
+            <{else}>
+            <option value="<{$page}>"><{$page}></option>
+            <{/if}>
+            <{/foreach}>
+        </select>
+    </div>
 
-  <article>
-    <{$smarty.const._VIEW}><br>
-    <select name="perpage">
-      <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
-      <{foreach item=page from=$pageArr}>
-        <{if $pageNavi->mPerpage == $page && $page != 0}>
-          <option value="<{$page}>" selected="selected"><{$page}></option>
-        <{elseif $pageNavi->mPerpage == $page && $page == 0}>
-          <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
-        <{elseif $pageNavi->mPerpage != $page && $page == 0}>
-          <option value="<{$page}>"><{$smarty.const._ALL}></option>
-        <{else}>
-          <option value="<{$page}>"><{$page}></option>
-        <{/if}>
-      <{/foreach}>
-    </select>
-  </article>
-
-  <article>
-    <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
-  </article>
-
-</section>
-
+    <div data-layout="rows">
+        <input class="button-submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+    </div>
 </form>

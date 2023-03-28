@@ -130,8 +130,8 @@ $modversion['config'][]= [
 // Meta Webmaster Tools
 $modversion['config'][]= [
     'name'        => 'meta_bing',
-    'title'       => 'Bing meta tag',
-    'description' => 'Log into Bing Webmaster Tools and get the meta tag option to verify your site.',
+    'title'       => '_MI_LR_META_BING',
+    'description' => '_MI_LR_META_BING_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => ''
@@ -139,8 +139,8 @@ $modversion['config'][]= [
 
 $modversion['config'][]= [
     'name'        => 'meta_google',
-    'title'       => 'Webmaster Google',
-    'description' => 'Log into Google Search Console and get the meta tag verification',
+    'title'       => '_MI_LR_META_GOOGLE',
+    'description' => '_MI_LR_META_GOOGLE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => ''
@@ -148,8 +148,8 @@ $modversion['config'][]= [
 
 $modversion['config'][]= [
     'name'        => 'meta_yandex',
-    'title'       => 'Webmaster Yandex',
-    'description' => 'Log into Yandex search console and get the meta tag verification',
+    'title'       => '_MI_LR_META_YANDEX',
+    'description' => '_MI_LR_META_YANDEX_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => ''
@@ -157,8 +157,8 @@ $modversion['config'][]= [
 
 $modversion['config'][]= [
     'name'        => 'meta_fb_app',
-    'title'       => 'Facebook App',
-    'description' => 'Get your Facebook App ID',
+    'title'       => '_MI_LR_META_FB_APP',
+    'description' => '_MI_LR_META_FB_APP_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => ''
@@ -166,8 +166,8 @@ $modversion['config'][]= [
 
 $modversion['config'][]= [
     'name'        => 'meta_twitter_site',
-    'title'       => 'Twitter site user',
-    'description' => 'Get your Twitter site ID',
+    'title'       => '_MI_LR_META_TWITTER',
+    'description' => '_MI_LR_META_TWITTER_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
     'default'     => '@cubson'
@@ -180,7 +180,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_FOOTER_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => 'Powered by XCL 2.3.1 © 2005-2023 <a href="https://github.com/xoopscube/" rel="noopener">The XOOPSCube Project</a>'
+    'default'     => 'Powered by XCL 2.3.3 © 2005-2023 <a href="https://github.com/xoopscube/" rel="noopener">The XOOPSCube Project</a>'
 ];
 
 
