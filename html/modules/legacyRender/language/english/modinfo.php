@@ -2,7 +2,7 @@
 
 define( '_MI_LEGACYRENDER_ADMENU_BANNER_MANAGE' , 'Banner Management');
 define( '_MI_LEGACYRENDER_ADMENU_TEMPLATE_MANAGE' , 'Template Management');
-define( '_MI_LEGACYRENDER_ADMENU_THEME_MANAGE' , 'Theme Management');
+define( '_MI_LEGACYRENDER_ADMENU_THEME_MANAGE' , 'Themes');
 define( '_MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE' , 'Templates Files');
 define( '_MI_LEGACYRENDER_ADMENU_HTACCESS_VIEW' , 'htaccess setting');
 define( '_MI_LEGACYRENDER_CONF_BANNERS' , 'Activate banner ads?');
@@ -23,6 +23,18 @@ define( '_MI_LR_META_RATING' , 'Meta Rating');
 define( '_MI_LR_META_RATING_DESC' , 'The rating meta tag defines your site age and content rating');
 define( '_MI_LR_META_ROBOTS' , 'Meta Robots');
 define( '_MI_LR_META_ROBOTS_DESC' , 'The Robots Tag declares to search engines what content to index and spider');
+// META WEBMASTER TOOLS
+define( '_MI_LR_META_BING' , 'Bing meta ta');
+define( '_MI_LR_META_BING_DESC' , 'Log into Bing Webmaster Tools and get the meta tag option to verify your site.');
+define( '_MI_LR_META_FB_APP' , 'Facebook Ap');
+define( '_MI_LR_META_FB_APP_DESC' , 'Get your Facebook App ID');
+define( '_MI_LR_META_GOOGLE' , 'Webmaster Google');
+define( '_MI_LR_META_GOOGLE_DESC' , 'Log into Google Search Console and get the meta tag verification');
+define( '_MI_LR_META_TWITTER' , 'Twitter site user');
+define( '_MI_LR_META_TWITTER_DESC' , 'Get your Twitter site ID');
+define( '_MI_LR_META_YANDEX' , 'Webmaster Yandex');
+define( '_MI_LR_META_YANDEX_DESC' , 'Log into Yandex search console and get the meta tag verification');
+
 define( '_MI_LR_ROBOT_INDEXFOLLOW' , 'Index, Follow');
 define( '_MI_LR_ROBOT_INDEXNOFOLLOW' , 'Index, No Follow');
 define( '_MI_LR_ROBOT_METAO14YRS' , '14 years');
@@ -42,8 +54,8 @@ define( '_MI_LR_JQUERY_CORE_DESC' , 'If you use Google Libraries API, set the jQ
 define( '_MI_LR_JQUERY_UI' , 'jQuery UI Library');
 define( '_MI_LR_JQUERY_UI_DESC' , 'If you use Google Libraries API, set the jQuery UI version. If you use local jQuery UI file, set the url. You must choose the same way of jQuery Core Library.');
 define( '_MI_LR_ICONSET' , 'Directory for icon set files');
-define( '_MI_LR_ICONSET_DSC' , 'Relative path to public/common/images. Default: icons');
+define( '_MI_LR_ICONSET_DESC' , 'Relative path to public/common/images. Default: icons');
 define( '_MI_LR_FAVICON' , 'Directory for icon set files');
-define( '_MI_LR_FAVICON_DSC' , 'Relative path to public/common/images. Default: icons');
+define( '_MI_LR_FAVICON_DESC' , 'Relative path to public/common/images. Default: icons');
 define( '_MI_LR_LOGO' , 'Directory for icon set files');
-define( '_MI_LR_LOGO_DSC' , 'Relative path to public/common/images. Default: icons');
+define( '_MI_LR_LOGO_DESC' , 'Relative path to public/common/images. Default: icons');

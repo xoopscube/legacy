@@ -1,35 +1,46 @@
 <{* ////— Block Search Install —\\\\ *}>
 <form action="./index.php" method="get" role="search">
 <input type="hidden" name="action" value="BlockInstallList">
-<div class="filter">
-    <{$smarty.const._SEARCH}> <input type="text" name="search" value="<{$filterForm->mKeyword}>">
-    <{$smarty.const._AD_LEGACY_LANG_MOD_NAME}>
-    <select name="dirname">
-        <option value="0"><{$smarty.const._ALL}></option>
-        <{foreach from=$modules item=module}>
-            <{if is_object($filterForm->mModule)}>
-            <option value="<{$module->getShow('dirname')}>" <{if $filterForm->mModule->get('dirname') == $module->get('dirname')}>selected="selected"<{/if}>><{$module->getShow('name')}></option>
+
+    <div data-layout="rows">
+        <label><{$smarty.const._SEARCH}></label>
+        <input type="text" name="search" value="<{$filterForm->mKeyword}>">
+    </div>
+
+    <div data-layout="rows">
+        <label><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></label>
+        <select name="dirname">
+            <option value="0"><{$smarty.const._ALL}></option>
+            <{foreach from=$modules item=module}>
+                <{if is_object($filterForm->mModule)}>
+                <option value="<{$module->getShow('dirname')}>" <{if $filterForm->mModule->get('dirname') == $module->get('dirname')}>selected="selected"<{/if}>><{$module->getShow('name')}></option>
+                <{else}>
+                <option value="<{$module->getShow('dirname')}>"><{$module->getShow('name')}></option>
+                <{/if}>
+            <{/foreach}>
+            <option value="-1" <{if $filterForm->mModule == "cblock"}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_CUSTOMBLOCK_EDIT}></option>
+        </select>
+    </div>
+
+    <div data-layout="rows">
+        <label><{$smarty.const._VIEW}></label>
+        <select name="perpage">
+            <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
+            <{foreach item=page from=$pageArr}>
+            <{if $pageNavi->mPerpage == $page && $page != 0}>
+            <option value="<{$page}>" selected="selected"><{$page}></option>
+            <{elseif $pageNavi->mPerpage == $page && $page == 0}>
+            <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
+            <{elseif $pageNavi->mPerpage != $page && $page == 0}>
+            <option value="<{$page}>"><{$smarty.const._ALL}></option>
             <{else}>
-            <option value="<{$module->getShow('dirname')}>"><{$module->getShow('name')}></option>
+            <option value="<{$page}>"><{$page}></option>
             <{/if}>
-        <{/foreach}>
-        <option value="-1" <{if $filterForm->mModule == "cblock"}>selected="selected"<{/if}>><{$smarty.const._AD_LEGACY_LANG_CUSTOMBLOCK_EDIT}></option>
-    </select>
-    <{$smarty.const._VIEW}>
-    <select name="perpage">
-        <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
-        <{foreach item=page from=$pageArr}>
-        <{if $pageNavi->mPerpage == $page && $page != 0}>
-        <option value="<{$page}>" selected="selected"><{$page}></option>
-        <{elseif $pageNavi->mPerpage == $page && $page == 0}>
-        <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
-        <{elseif $pageNavi->mPerpage != $page && $page == 0}>
-        <option value="<{$page}>"><{$smarty.const._ALL}></option>
-        <{else}>
-        <option value="<{$page}>"><{$page}></option>
-        <{/if}>
-        <{/foreach}>
-    </select>
-    <input class="button" type="submit" value="<{$smarty.const._SUBMIT}>">
-</div>
+            <{/foreach}>
+        </select>
+    </div>
+
+    <div data-layout="rows">
+        <input class="button" type="submit" value="<{$smarty.const._SUBMIT}>">
+    </div>
 </form>

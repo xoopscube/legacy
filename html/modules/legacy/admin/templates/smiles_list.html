@@ -28,17 +28,63 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section data-layout="row center-justify md-column" class="action-control">
+<section data-layout="rows center-justify md-column" class="action-control">
     <div>
-    <{include file="./components/smilies-search.html"}>
-    </div>
-    <div class="control-view">
         <a class="button" href="index.php?action=SmilesEdit"><i class="i-add"></i><{$smarty.const._AD_LEGACY_LANG_SMILES_NEW}></a>
         <a class="button" href="index.php?action=SmilesUpload">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M3 21V5.8L5.3 3h13.4L21 5.8V21ZM5.4 6h13.2l-.85-1H6.25ZM11 17h2v-4.2l1.6 1.6L16 13l-4-4l-4 4l1.4 1.4l1.6-1.6Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M3 21V5.8L5.3 3h13.4L21 5.8V21ZM5.4 6h13.2l-.85-1H6.25ZM11 17h2v-4.2l1.6 1.6L16 13l-4-4l-4 4l1.4 1.4l1.6-1.6Z"/></svg>
             <{$smarty.const._AD_LEGACY_LANG_SMILES_UPLOAD}></a>
-        <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-smilies' aria-label="<{$smarty.const._HELP}>">
-            <b>?</b> </button>
+    </div>
+    <div class="control-view">
+
+        <{* ////— DROPDOWN SORT —\\\\ *}>
+        <div class="dropdown" id="filter-sort">
+            <a href="#" class="dropdown-toggle button" aria-label="filter sort">
+                <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
+            </a>
+            <div class="dropdown-content drop-top">
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_LEGACY_LANG_ID}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_ID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_ID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._MD_LEGACY_LANG_CODE}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_CODE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_CODE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;
+                        </a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify">
+                    <h6><{$smarty.const._MD_LEGACY_LANG_EMOTION}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_EMOTION}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_EMOTION}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify">
+                    <h6><{$smarty.const._AD_LEGACY_LANG_DISPLAY}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_DISPLAY}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_DISPLAY}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+            </div><{* ----- /Dropdown-content *}>
+        </div><{* ----- /Dropdown *}>
+
+        <{* ////— DROPDOWN BLOCK SEARCH —\\\\ *}>
+        <div class="dropdown" id="drop-search">
+            <a href="#" class="dropdown-toggle button" aria-label="search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M19.31 18.9l3.08 3.1L21 23.39l-3.12-3.07c-.69.43-1.51.68-2.38.68c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5s4.5 2 4.5 4.5c0 .88-.25 1.71-.69 2.4m-3.81.1a2.5 2.5 0 0 0 0-5a2.5 2.5 0 0 0 0 5M21 4v2H3V4h18M3 16v-2h6v2H3m0-5V9h18v2h-2.03c-1.01-.63-2.2-1-3.47-1s-2.46.37-3.47 1H3z" fill="currentColor"/></svg>
+            </a>
+            <div class="dropdown-content drop-top">
+                <{include file="./components/smilies-search.html"}>
+            </div><{* ----- /Dropdown-content *}>
+        </div><{* ----- /Dropdown *}>
+        <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-smilies' aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
     </div>
 
 </section>
@@ -51,47 +97,7 @@
 <table class="outer">
    <thead>
     <tr>
-        <th>
-            <{* ////— DROPDOWN SORT —\\\\ *}>
-            <div class="dropdown" id="filter-sort">
-
-                <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                    <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
-                </a>
-
-                <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                    <div data-layout="row center-justify inline">
-                        <h6><{$smarty.const._AD_LEGACY_LANG_ID}></h6>
-                        <div>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_ID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_ID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                        </div>
-                    </div>
-                    <div data-layout="row center-justify inline">
-                        <h6><{$smarty.const._MD_LEGACY_LANG_CODE}></h6>
-                        <div>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_CODE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_CODE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;
-                            </a>
-                        </div>
-                    </div>
-                    <div data-layout="row center-justify">
-                        <h6><{$smarty.const._MD_LEGACY_LANG_EMOTION}></h6>
-                        <div>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_EMOTION}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_EMOTION}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                        </div>
-                    </div>
-                    <div data-layout="row center-justify">
-                        <h6><{$smarty.const._AD_LEGACY_LANG_DISPLAY}></h6>
-                        <div>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.SMILES_SORT_KEY_DISPLAY}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.SMILES_SORT_KEY_DISPLAY}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                        </div>
-                    </div>
-                </div><{* ----- /Dropdown-content *}>
-            </div><{* ----- /Dropdown *}>
-        </th>
+        <th><{$smarty.const._AD_LEGACY_LANG_ID}></th>
         <th><{$smarty.const._MD_LEGACY_LANG_CODE}></th>
         <th><{$smarty.const._AD_LEGACY_LANG_SMILE_URL}></th>
         <th><{$smarty.const._MD_LEGACY_LANG_EMOTION}></th>

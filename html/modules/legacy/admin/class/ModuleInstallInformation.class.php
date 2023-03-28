@@ -35,11 +35,6 @@ class Legacy_BlockInformation
     public $mEditFunc = '';
     public $mTemplate = '';
 
-    public function Legacy_BlockInformation($funcNum, $name, $funcFile, $showFunc, $editFunc, $template, $options = null)
-    {
-        $this->__construct($funcNum, $name, $funcFile, $showFunc, $editFunc, $template, $options);
-    }
-
     public function __construct($funcNum, $name, $funcFile, $showFunc, $editFunc, $template, $options = null)
     {
         $this->mFuncNum = (int)$funcNum;

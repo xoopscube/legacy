@@ -14,7 +14,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 }
 
 /**
- * The class for blocks which has interfaces to exchange informations with the
+ * The class for blocks which has interfaces to exchange information with the
  * controller. The sub-class must implement these interfaces with helper
  * functions, to be called back by the controller.
  */
@@ -62,7 +62,7 @@ class Legacy_AbstractBlockProcedure
     }
 
     /**
-     * Creates a instance of the render buffer, and set it to the property.
+     * Creates an instance of the render buffer, and set it to the property.
      * This is a helper function for sub-classes.
      * @access protected
      */
@@ -75,7 +75,7 @@ class Legacy_AbstractBlockProcedure
     }
 
     /**
-     * Gets a number as ID.
+     * Gets the ID number.
      * @return void
      */
     public function getId()
@@ -83,7 +83,7 @@ class Legacy_AbstractBlockProcedure
     }
 
     /**
-     * Gets a name of this block.
+     * Gets the name of this block.
      * @return string
      */
     public function getName()
@@ -159,8 +159,8 @@ class Legacy_AbstractBlockProcedure
 
 /**
  * This class extends the base class to exchange of information with the
- * controller. And, it has a XoopsBlock instance, and some public methods for
- * the public side and the control panel side.
+ * controller. And, it has a XoopsBlock instance, and some public methods
+ * for the public side and the control panel side.
  */
 class Legacy_BlockProcedure extends Legacy_AbstractBlockProcedure
 {

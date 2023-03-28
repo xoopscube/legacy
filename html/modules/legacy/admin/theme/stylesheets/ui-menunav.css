@@ -74,15 +74,12 @@ div.dropdown a.dropdown-toggle {
     color           : var(--d-toggle-color);
     cursor          : pointer;
     display         : block;
-    font            : var(--d-toggle-font);
+    font-size       : var(--d-toggle-font);
     transition      : var(--d-toggle-transition);
-    width           : min-content;
-    font-size       : 20px;
-    /*height          : 40px;*/
-    /*line-height     : 40px;*/
     margin          : var(--button-margin );
     padding         : var(--button-padding);
-    position        : relative
+    position        : relative;
+    width           : min-content;
 }
 :where(header.nav-top) div.dropdown a.dropdown-toggle {line-height: 40px;margin:0 var( --space-1 );padding: var(--space-0);}
 div.dropdown a.dropdown-toggle.action-menu {
@@ -198,6 +195,10 @@ div.dropdown-content > a {
     top             : -100%;
 }
 
+/* TODO DROPDOWN POSITION - TEST : class="dropdown-content drop-left", class="dropdown-content drop-top" */
+div.dropdown-content.drop-top { --dropdown-bg:var(--layer-1);min-width: 300px; padding:var(--space-6); }
+div.dropdown-content.drop-top :is(span, select, input[type=text]) {width:100%;margin: 0 0 var(--space-4);}
+
 /* ------- DROPDOWN HEADER DROP-NAV -------*/
 /* ------- SHOW MENU navbar-options -------*/
 
@@ -302,6 +303,7 @@ div.dropdown-content > a {
     z-index         : var(--z-overlay);
 }
 .nav-mobile-close {
+    color           : var(--theme-hover, var(--link-hover) );
     left            : 237px;
     top             : 127px;
 }

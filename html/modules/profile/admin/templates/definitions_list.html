@@ -11,30 +11,19 @@
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section data-layout="row center-justify" class="action-control">
-
-    <a class="button" href="index.php?action=DefinitionsEdit"><i class="i-add"></i><{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS}></a>
+<section data-layout="rows center-justify" class="action-control">
+    <div>
+        <a class="button" href="index.php?action=DefinitionsEdit"><i class="i-add"></i><{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DEFINITIONS}></a>
+        <a class="button" href="../../user/admin/index.php"><i class="i-view"></i><{$smarty.const._AD_PROFILE_LANG_USERS}></a>
+    </div>
 
     <div class="control-view">
-        <a class="button" href="../../user/admin/index.php"><i class="i-view"></i><{$smarty.const._AD_PROFILE_LANG_USERS}></a>
-        <button class="help-admin button" type='button' data-module='profile' data-help-article='#help-overview' aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
-    </div>
-</section>
-<{* ----- / CONTROL-ACTION *}>
-
-
-<table class="outer">
-    <thead>
-    <tr>
-        <th>
-        <{* ////— DROPDOWN SORT —\\\\ *}>
-        <div class="dropdown" id="filter-sort">
-
-            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
+        <{* ////— DROPDOWN FILTER-SORT —\\\\ *}>
+        <div class="dropdown" id="drop-filter">
+            <a href="#" class="dropdown-toggle button" aria-label="filter sort">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="filter" role="img"><path d="M18 21l-4-4h3V7h-3l4-4l4 4h-3v10h3M2 19v-2h10v2M2 13v-2h7v2M2 7V5h4v2H2z" fill="currentColor"></path></svg>
             </a>
-
-            <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
+            <div class="dropdown-content drop-top">
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}></h6>
                     <div>
@@ -86,7 +75,17 @@
                 </div>
             </div><{* ----- /Dropdown-content *}>
         </div><{* ----- /Dropdown *}>
-        </th>
+
+        <button class="help-admin button" type='button' data-module='profile' data-help-article='#help-overview' aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
+    </div>
+</section>
+<{* ----- / CONTROL-ACTION *}>
+
+
+<table class="outer">
+    <thead>
+    <tr>
+        <th><{$smarty.const._MD_PROFILE_LANG_FIELD_NAME}></th>
         <th><{$smarty.const._MD_PROFILE_LANG_LABEL}></th>
         <th><{$smarty.const._MD_PROFILE_LANG_TYPE}></th>
         <th><{$smarty.const._MD_PROFILE_LANG_VALIDATION}></th>

@@ -63,61 +63,142 @@
 </div>
 <{/if}>
 
-<form action="./index.php" method="get">
-    <input type="hidden" name="action" value="AvatarList">
-    <p>
-        <label><{$smarty.const._SEARCH}></label> <input type="text" name="search" value="<{$filterForm->mKeyword}>">
-    </p>
+
 
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
-<section data-layout="row center-justify sm-column" class="action-control">
+<section data-layout="rows center-justify sm-column" class="action-control">
+
     <div>
-        <label for="option_field"><{$smarty.const._AD_USER_LANG_AVATAR_TYPE}></label>
-        <select id="option_field">
-            <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
-            <option value="system" <{if $filterForm->mOptionField == 'system'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_AVATAR_TYPE_S}></option>
-            <option value="custom" <{if $filterForm->mOptionField == 'custom'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_AVATAR_TYPE_C}></option>
-        </select>
-        <label for="option_field2"><{$smarty.const._AD_USER_LANG_AVATAR_DISPLAY}></label>
-        <select id="option_field2">
-            <option value="all" <{if $filterForm->mOptionField2 == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
-            <option value="visible" <{if $filterForm->mOptionField2 == 'visible'}>selected="selected"<{/if}>><{$smarty.const._YES}></option>
-            <option value="invisible" <{if $filterForm->mOptionField2 == 'invisible'}>selected="selected"<{/if}>><{$smarty.const._NO}></option>
-        </select>
-        <label for="option_field3"><{$smarty.const._AD_USER_LANG_AVATAR_MIMETYPE}></label>
-        <select id="option_field3">
-            <option value="all" <{if $filterForm->mOptionField3 == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
-            <option value="gif" <{if $filterForm->mOptionField3 == 'gif'}>selected="selected"<{/if}>>image/gif</option>
-            <option value="png" <{if $filterForm->mOptionField3 == 'png'}>selected="selected"<{/if}>>image/png</option>
-            <option value="jpeg" <{if $filterForm->mOptionField3 == 'jpeg'}>selected="selected"<{/if}>>image/jpeg</option>
-        </select>
-        <label for="perpage"><{$smarty.const._VIEW}></label>
-        <select id="perpage">
-            <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
-            <{foreach item=page from=$pageArr}>
-            <{if $pageNavi->mPerpage == $page && $page != 0}>
-            <option value="<{$page}>" selected="selected"><{$page}></option>
-            <{elseif $pageNavi->mPerpage == $page && $page == 0}>
-            <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
-            <{elseif $pageNavi->mPerpage != $page && $page == 0}>
-            <option value="<{$page}>"><{$smarty.const._ALL}></option>
-            <{else}>
-            <option value="<{$page}>"><{$page}></option>
-            <{/if}>
-            <{/foreach}>
-        </select>
-        <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
-    </div>
-    <div class="control-view">
         <a class="button" href="index.php?action=AvatarEdit"><i class="i-add"></i><{$smarty.const._AD_USER_LANG_AVATAR_NEW}></a>
         <a class="button" href="index.php?action=AvatarUpload"><i class="i-upload"></i><{$smarty.const._AD_USER_LANG_AVATAR_UPLOAD}></a>
+    </div>
+
+    <div class="control-view">
+
+        <{* ////— DROPDOWN FILTER-SORT —\\\\ *}>
+        <div class="dropdown" id="drop-filter">
+            <a href="#" class="dropdown-toggle button" aria-label="filter sort">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="filter" role="img"><path d="M18 21l-4-4h3V7h-3l4-4l4 4h-3v10h3M2 19v-2h10v2M2 13v-2h7v2M2 7V5h4v2H2z" fill="currentColor"></path></svg>
+            </a>
+            <div class="dropdown-content drop-top">
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._MD_USER_LANG_AVATAR_ID}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_ID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_ID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_USER_LANG_AVATAR_FILE}> <{$smarty.const._AD_USER_LANG_AVATAR_NAME}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_NAME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_NAME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_USER_LANG_AVATAR_MIMETYPE}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_MIMETYPE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_MIMETYPE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_USER_LANG_AVATAR_CREATED}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_CREATED}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_CREATED}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_USER_LANG_AVATAR_DISPLAY}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_DISPLAY}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_DISPLAY}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_USER_LANG_AVATAR_WEIGHT}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_WEIGHT}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_WEIGHT}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_USER_LANG_AVATAR_TYPE}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_TYPE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_TYPE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+            </div><{* ----- /Dropdown-content *}>
+        </div><{* ----- /Dropdown *}>
+
+        <{* ////— DROPDOWN SEARCH —\\\\ *}>
+        <div class="dropdown" id="drop-search">
+            <a href="#" class="dropdown-toggle button" aria-label="search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M19.31 18.9l3.08 3.1L21 23.39l-3.12-3.07c-.69.43-1.51.68-2.38.68c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5s4.5 2 4.5 4.5c0 .88-.25 1.71-.69 2.4m-3.81.1a2.5 2.5 0 0 0 0-5a2.5 2.5 0 0 0 0 5M21 4v2H3V4h18M3 16v-2h6v2H3m0-5V9h18v2h-2.03c-1.01-.63-2.2-1-3.47-1s-2.46.37-3.47 1H3z" fill="currentColor"/></svg>
+            </a>
+            <div class="dropdown-content drop-top">
+                <form action="./index.php" method="get">
+                    <input type="hidden" name="action" value="AvatarList">
+                    <div data-layout="rows">
+                        <label><{$smarty.const._SEARCH}></label>
+                        <input type="text" name="search" value="<{$filterForm->mKeyword}>">
+                    </div>
+                    <div data-layout="rows">
+                        <label for="option_field"><{$smarty.const._AD_USER_LANG_AVATAR_TYPE}></label>
+                        <select id="option_field">
+                            <option value="all" <{if $filterForm->mOptionField == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
+                            <option value="system" <{if $filterForm->mOptionField == 'system'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_AVATAR_TYPE_S}></option>
+                            <option value="custom" <{if $filterForm->mOptionField == 'custom'}>selected="selected"<{/if}>><{$smarty.const._AD_USER_LANG_AVATAR_TYPE_C}></option>
+                        </select>
+                    </div>
+                    <div data-layout="rows">
+                        <label for="option_field2"><{$smarty.const._AD_USER_LANG_AVATAR_DISPLAY}></label>
+                        <select id="option_field2">
+                            <option value="all" <{if $filterForm->mOptionField2 == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
+                            <option value="visible" <{if $filterForm->mOptionField2 == 'visible'}>selected="selected"<{/if}>><{$smarty.const._YES}></option>
+                            <option value="invisible" <{if $filterForm->mOptionField2 == 'invisible'}>selected="selected"<{/if}>><{$smarty.const._NO}></option>
+                        </select>
+                    </div>
+                    <div data-layout="rows">
+                        <label for="option_field3"><{$smarty.const._AD_USER_LANG_AVATAR_MIMETYPE}></label>
+                        <select id="option_field3">
+                            <option value="all" <{if $filterForm->mOptionField3 == 'all'}>selected="selected"<{/if}>><{$smarty.const._ALL}></option>
+                            <option value="gif" <{if $filterForm->mOptionField3 == 'gif'}>selected="selected"<{/if}>>image/gif</option>
+                            <option value="png" <{if $filterForm->mOptionField3 == 'png'}>selected="selected"<{/if}>>image/png</option>
+                            <option value="jpeg" <{if $filterForm->mOptionField3 == 'jpeg'}>selected="selected"<{/if}>>image/jpeg</option>
+                        </select>
+                    </div>
+                    <div data-layout="rows">
+                        <label for="perpage"><{$smarty.const._VIEW}></label>
+                        <select id="perpage">
+                            <option value="<{$smarty.const.XCUBE_PAGENAVI_DEFAULT_PERPAGE}>"><{$smarty.const._SELECT}></option>
+                            <{foreach item=page from=$pageArr}>
+                            <{if $pageNavi->mPerpage == $page && $page != 0}>
+                            <option value="<{$page}>" selected="selected"><{$page}></option>
+                            <{elseif $pageNavi->mPerpage == $page && $page == 0}>
+                            <option value="<{$page}>" selected="selected"><{$smarty.const._ALL}></option>
+                            <{elseif $pageNavi->mPerpage != $page && $page == 0}>
+                            <option value="<{$page}>"><{$smarty.const._ALL}></option>
+                            <{else}>
+                            <option value="<{$page}>"><{$page}></option>
+                            <{/if}>
+                            <{/foreach}>
+                        </select>
+                    </div>
+                    <div data-layout="rows">
+                        <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+                    </div>
+                </form><{* Form Search includes filters and view! *}>
+            </div><{* ----- /Dropdown-content *}>
+        </div><{* ----- /Dropdown *}>
+
         <button class="help-admin button" type='button' data-id='4' data-module='user' data-help-article='#help-avatars' aria-label="<{$smarty.const._HELP}>"><i class="i-help"></i></button>
     </div>
 </section>
 <{* ----- / CONTROL-ACTION *}>
-
-</form><{* Form Search includes filters and view! *}>
 
 
 <form name="avatarlistform" method="post" action="./index.php?action=AvatarList">
@@ -125,67 +206,7 @@
     <table class="outer">
         <thead>
         <tr>
-        <th>
-            <{* ////— DROPDOWN SORT —\\\\ *}>
-            <div class="dropdown" id="filter-sort">
-
-                <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                    <img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options">
-                </a>
-
-                <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-                    <div data-layout="row center-justify inline">
-                        <h6><{$smarty.const._MD_USER_LANG_AVATAR_ID}></h6>
-                        <div>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_ID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_ID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                        </div>
-                    </div>
-                    <div data-layout="row center-justify inline">
-                        <h6><{$smarty.const._AD_USER_LANG_AVATAR_FILE}> <{$smarty.const._AD_USER_LANG_AVATAR_NAME}></h6>
-                        <div>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_NAME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_NAME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                        </div>
-                    </div>
-                    <div data-layout="row center-justify inline">
-                        <h6><{$smarty.const._AD_USER_LANG_AVATAR_MIMETYPE}></h6>
-                        <div>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_MIMETYPE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_MIMETYPE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                        </div>
-                    </div>
-                    <div data-layout="row center-justify inline">
-                        <h6><{$smarty.const._AD_USER_LANG_AVATAR_CREATED}></h6>
-                        <div>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_CREATED}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_CREATED}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                        </div>
-                    </div>
-                    <div data-layout="row center-justify inline">
-                        <h6><{$smarty.const._AD_USER_LANG_AVATAR_DISPLAY}></h6>
-                        <div>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_DISPLAY}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_DISPLAY}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                        </div>
-                    </div>
-                    <div data-layout="row center-justify inline">
-                        <h6><{$smarty.const._AD_USER_LANG_AVATAR_WEIGHT}></h6>
-                        <div>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_WEIGHT}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_WEIGHT}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                        </div>
-                    </div>
-                    <div data-layout="row center-justify inline">
-                        <h6><{$smarty.const._AD_USER_LANG_AVATAR_TYPE}></h6>
-                        <div>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.AVATAR_SORT_KEY_AVATAR_TYPE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                            <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.AVATAR_SORT_KEY_AVATAR_TYPE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                        </div>
-                    </div>
-                </div><{* ----- /Dropdown-content *}>
-            </div><{* ----- /Dropdown *}>
-            </th>
+            <th><{$smarty.const._MD_USER_LANG_AVATAR_ID}></th>
             <th><{$smarty.const._AD_USER_LANG_AVATAR_FILE}> <{$smarty.const._AD_USER_LANG_AVATAR_NAME}></th>
             <th><{$smarty.const._AD_USER_LANG_AVATAR_MIMETYPE}></th>
             <th><{$smarty.const._AD_USER_LANG_AVATAR_CREATED}></th>

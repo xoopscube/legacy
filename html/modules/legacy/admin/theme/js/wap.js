@@ -42,7 +42,8 @@ $('.svg').renderClassSvg();
         // .theme-options .theme-options-close
         // $(".right-side-toggle").click(function() {
         $(".theme-options").click(function () {
-            $(".right-sidebar").slideDown(50), $(".right-sidebar").toggleClass("right-panel-show");
+            $(".right-sidebar").slideDown(50);
+            $(".right-sidebar").toggleClass("right-panel-show");
         });
 
         // Alert Notify e.g. install and mainfile
