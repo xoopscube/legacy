@@ -43,6 +43,7 @@ function b_legacy_themes_show($options)
             if ($name === $xoopsConfig['theme_set']) {
                 $theme_option['selected'] = 'selected="selected"';
                 $block['theme_selected_screenshot'] = $theme->getShow('screenshot');
+                $block['theme_selected_name'] = $name;
             } else {
                 $theme_option['selected'] = '';
             }

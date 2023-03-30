@@ -2,7 +2,7 @@
 
 define( '_MI_LEGACYRENDER_ADMENU_BANNER_MANAGE' , 'Banner Management');
 define( '_MI_LEGACYRENDER_ADMENU_TEMPLATE_MANAGE' , 'Template Management');
-define( '_MI_LEGACYRENDER_ADMENU_THEME_MANAGE' , 'Themes');
+define( '_MI_LEGACYRENDER_ADMENU_THEME_MANAGE' , 'Theme management');
 define( '_MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE' , 'Templates Files');
 define( '_MI_LEGACYRENDER_ADMENU_HTACCESS_VIEW' , 'htaccess setting');
 define( '_MI_LEGACYRENDER_CONF_BANNERS' , 'Activate banner ads?');

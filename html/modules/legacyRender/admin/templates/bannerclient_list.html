@@ -4,7 +4,7 @@
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_BANNER_MANAGE}></a>
-    &raquo;&raquo; <span class="page-title"><a href="./index.php?action=BannerclientList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a></span>
+    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></span>
 </nav>
 
 
@@ -50,13 +50,7 @@
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERCLIENT_SORT_KEY_CONTACT}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
-                <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKS}></h6>
-                    <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_CLICKS}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_CLICKS}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
+
                 <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_EMAIL}></h6>
                     <div>

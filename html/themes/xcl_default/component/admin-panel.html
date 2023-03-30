@@ -193,7 +193,8 @@
     <{* ----- RIGHT-PANEL-BLOCK ----- *}>
     <div class="right-panel-block">
 
-        <{* ---------- Block-Right *}>
+    <{* ---------- Block-Right *}>
+    <{if $xoops_showrblock==1}>
         <{foreach item=block from=$xoops_rblocks}>
         <{if $block.title|strstr:"admin"}>
         <div class="block-right b-<{$block.weight}>">
@@ -211,7 +212,7 @@
             Add block with position <code><u>block-right</u></code><br>
             and block-title with prefix <code><i>admin-</i></code></div>
         <{/foreach}>
-
+    <{/if}>
         <{* ----- ADMIN PREVIEW ----- *}>
         <h5>Preview Layout</h5>
         <div class="btn-group" role="group" aria-label="Basic example">

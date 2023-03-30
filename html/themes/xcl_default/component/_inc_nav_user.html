@@ -4,7 +4,7 @@
     <summary aria-haspopup="listbox" role="link" class="contrast">
         <img class="avatar" src="<{$xoops_uname|xoops_user_avatarize}>" alt="<{$xoops_uname}>" width="20px" height="20px" data-self="radius-circle"/> <{$xoops_uname}></summary>
     <ul tabindex="-1">
-    <{if $block.flagShowInbox}>
+    <{if !empty($block.flagShowInbox)}>
         <li class="user-menu-email" tabindex="0">
             <a class="highlight" href="<{$block.inbox_url}>">
                 <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/mail.svg" width="1em" height="1em" alt="inbox"></span>
@@ -29,7 +29,7 @@
             <{$smarty.const._MB_LEGACY_EACNT}>
         </a>
     </li>
-    <{if $block.show_adminlink}>
+    <{if !empty($block.show_adminlink)}>
         <li class="user-menu-admin" role="menuitem" tabindex="-1">
             <a href="<{$xoops_url}>/admin.php">
                 <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/settings.svg" width="1em" height="1em" alt="settings"></span>
