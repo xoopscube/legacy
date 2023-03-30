@@ -340,16 +340,16 @@ define( '_AD_LEGACY_TIPS_BLOCK' , "Or simply <a href=\"index.php?action=CustomBl
 define( '_AD_LEGACY_TIPS_BLOCK2' , "You can edit each block's options when you install the block.");
 define( '_AD_LEGACY_TIPS_COMMENT' , "Search and manage active, pending or hidden comments from any user on any module.");
 define( '_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL' , "Even if you uninstall the custom block, the configuration of the block isn't deleted. The block is simply removed from view. You can re-install or delete it from the database from the <a href=\"index.php?action=BlockInstallList\">'install block' page</a>.");
-define( '_AD_LEGACY_TIPS_IMAGE' , "You can easily register many smiles by uploading a compressed archive!)");
-define( '_AD_LEGACY_TIPS_IMAGE_UPLOAD' , "You can easily register many images by uploading a compressed archive!<br />This batch-upload doesn't check Length and File-Size of each image!<br />Please pre-adjust them before you archive!<br />(Only tar.gz or zip archive)");
-define( '_AD_LEGACY_TIPS_IMGCAT' , "Manage categories of images and users permissions.");
-define( '_AD_LEGACY_TIPS_IMGCAT_STORETYPE' , "Please choose either the file or the database storage scheme for your image files. <strong>This setting cannot be changed later.</strong><br/>Keep in mind that if you select the database as the storage destination, image files will be stored as BLOB type data which may not be suitable for backup purposes.");
+define( '_AD_LEGACY_TIPS_IMAGE' , "You can easily register many images by uploading a compressed archive!)");
+define( '_AD_LEGACY_TIPS_IMAGE_UPLOAD' , "You can easily register many images by uploading a compressed archive!<br />This batch-upload doesn't check Length and File-Size of each image!<br>Please pre-adjust them before you archive!<br />(Only tar.gz or zip archive)");
+define( '_AD_LEGACY_TIPS_IMGCAT' , "Gérez les catégories d'images et les autorisations des utilisateurs. Notez que X-elFinder remplace la gestion d'image par défaut.");
+define( '_AD_LEGACY_TIPS_IMGCAT_STORETYPE' , "Vous pouvez choisir le schéma de stockage, fichier ou base de données, pour vos fichiers image. <strong>Ce paramètre ne peut pas être modifié ultérieurement.</strong><br>Gardez à l'esprit que si vous sélectionnez la base de données comme destination de stockage, les fichiers image seront stockés en tant que données de type BLOB,  qui ne convient pas forcément à des fins de sauvegarde.");
 define( '_AD_LEGACY_TIPS_INSTALL_BLOCK' , "You can customize your site by installing your favorite blocks.");
-define( '_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE' , "You may need to upgrade this module to the latest release. This step will make your package upgrade correctly. ");
+define( '_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE' , "C'est le mode de mise à jour progressive. Vous devrez peut-être mettre à jour ce module plusieurs fois vers la dernière version. Ce mode garantit une mise à jour correcte du module.");
 define( '_AD_LEGACY_TIPS_MOD' , 'Modifiez les modules ou installez-en de nouveaux, personnalisez les noms et les préférences, définissez le cache et les autorisations des utilisateurs!');
-define( '_AD_LEGACY_TIPS_SMILES' , "Display, rename, delete or upload an archive with your custom smilies.");
-define( '_AD_LEGACY_TIPS_SMILES_UPLOAD' , "You can easily register many smiles by uploading a compressed archive!<br />This batch-upload doesn't check Length and File-Size of each smiles!<br />Pre-adjust them before you archive!<br />(Only tar.gz or zip archive)");
-define( '_AD_LEGACY_TIPS_THEME_ADMIN' , "Choose the look and feel of your site by clicking the 'select' button next to your favourite theme.<br/> You can let your users choose their favourite theme for your site. Check the boxes to add a theme to the theme selection block. For more details, read module Help.");
+define( '_AD_LEGACY_TIPS_SMILES' , "Vous pouvez utiliser un code personnalisé pour vos propres émoticônes et par exemple des mots-clés et des logos.");
+define( '_AD_LEGACY_TIPS_SMILES_UPLOAD' , "Vous pouvez facilement enregistrer plusieurs Smilies en téléchargeant un fichier compressé!<br>Le téléchargement par lots ne vérifie pas les dimensions ni la taille de chaque image!<br>Pré-ajustez vos images avant d'archiver au format tar.gz ou .zip");
+define( '_AD_LEGACY_TIPS_THEME_ADMIN' , "Choisissez l'apparence de votre site en cliquant sur le bouton Sélectionner à côté de votre thème préféré.<br>Vous pouvez également laisser vos utilisateurs choisir leur thème préféré pour votre site en cochant les thèmes pour le Bloc Thèmes.");
 
 // MODULE ADMIN
 define( '_MD_AM_ADMINML' , "Admin mail address");
