@@ -9,7 +9,7 @@
 
 
 <h2><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}>
-    <{if $currentClient}>
+    <{if isset($currentClient)}>
     ( <{$currentClient->getShow('name')}> )
     <{/if}>
 </h2>
