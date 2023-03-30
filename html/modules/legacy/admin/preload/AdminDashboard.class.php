@@ -163,7 +163,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
 
                     $template = XOOPS_LEGACY_PATH. '/admin/templates/dashboard.html';
 
-                    self::display_message($attributes, $template, $return = false);
+                    self::display_message($attributes, $template, false);
 
                 }
             }
@@ -198,7 +198,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
 
             $template = XOOPS_LEGACY_PATH. '/templates/legacy_dummy.html';
 
-            self::display_message($attributes, $template, $return = false);
+            self::display_message($attributes, $template, false);
         }
 
     }
@@ -266,9 +266,9 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
      * @param array $attributes
      * @param string $template
      * @param bool $return
-     * @return mixed
+     * @return void
      */
-    public static function display_message(array $attributes = [], string $template= '', bool $return)
+    public static function display_message( bool $return, array $attributes = [], string $template= '')
     {
         $root =& XCube_Root::getSingleton();
 
