@@ -83,14 +83,20 @@ const cache = {};
  * admin Usage line 190
  */
 $.fn.elcopy = function() {
-    $('span[id^="success-alert"]').remove();
+    $('div[class^="alert-notify"]').remove();
     this.select();
     $(this).focus();
     document.execCommand("copy");
     document.getSelection().removeAllRanges();
-    $(this).after('<span id="success-alert"><br>Copied to clipboard</span>');
-    $('#alert-success').css( "color", "green" );
+    $(this).after('<div class="alert-notify"><div class="success">Copied to clipboard</div></div>').fadeIn( 500 );
+    $('div.alert-notify').delay( 3000 ).fadeOut("500", function() {
+        $(this).remove();
+    });
 };
+// Copy source to clipboard
+$('.clipboard').click(function(){
+    $(this).parents('.textarea-wrap').find('textarea').elcopy();
+});
 
 /* Reusable Toggle
     - How To Use
@@ -239,11 +245,6 @@ $(function () {
         if ($trigger !== event.target && !$trigger.has(event.target).length) {
             $(".dropdown").removeClass("isopen");
         }
-    });
-
-    // Copy source to clipboard
-    $('.clipboard').click(function(){
-        $(this).parents('.textarea-wrap').find('textarea').elcopy();
     });
 
     /**
