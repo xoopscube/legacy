@@ -32,11 +32,11 @@
     <!-- Open Graph data -->
     <meta property="og:url" content="<{$xoops_url}>"><meta property="og:url" content="//<{$smarty.server.HTTP_HOST}><{$xoops_requesturi}>">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="<{$xoops_meta_og_title}>"><meta property="og:title" content="<{$xoops_pagetitle}>">
-    <{if $mytrustdirname == 'pico' && $content.ef.pico_img}>
+    <meta property="og:title" content="<{$xoops_pagetitle}>">
+    <{if $xoops_dirname == 'pico' && isset($content.ef.pico_img)}>
     <meta property="og:image" content="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/pico_img_0_<{$content.ef.pico_img|escape}>">
     <{else}>
-    <meta property="og:image" content="<{$theme_url}>img/tile.png">
+    <meta property="og:image" content="<{$xoops_url}>/images/tile.png">
     <{/if}>
     <meta property="og:description" content="<{$xoops_meta_description}>">
     <meta property="og:site_name" content="<{$xoops_sitename}>">
@@ -50,25 +50,23 @@
 
     <{* ----- Favicon SVG located in the root directory ----- *}>
     <link rel="icon" href="<{$xoops_url}>/favicon.svg" type="image/svg+xml">
-    <{* ----- Favicon.png root images' directory
-    <link rel="alternate icon" href="<{$xoops_url}>/images/favicon.png" type="image/png">  ----- *}>
 
-    <!-- Resquesturi $xoops_requesturi : /module/dirname/id -->
+    <{* ----- Favicon.png root images' directory
+    <link rel="alternate icon" href="<{$xoops_url}>/images/favicon.png" type="image/png">
 
     <!-- Mobile App Manifest -->
 <!--    <link rel="manifest" href="<{$xoops_imageurl}>site.webmanifest">-->
+    ----- *}>
 
     <{* ----- CSS - Picocss ----- *}>
-    <link rel="preload" href="<{$xoops_imageurl}>css/pico.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="<{$xoops_imageurl}>css/pico.min.css"></noscript>
+    <link rel="preload" href="<{$xoops_url}>/common/picocss/pico.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="<{$xoops_url}>/common/css/pico.min.css"></noscript>
     <{* ----- CSS - Theme ----- *}>
     <link rel="preload" href="<{$xoops_themecss}>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="<{$xoops_themecss}>"></noscript>
 
     <!-- RMV: added module header -->
     <{$xoops_module_header}>
-    <!-- RMV: added block header -->
-    <{$xoops_block_header}>
     <!-- Defer JavaScript -->
     <{* ----- Defer preload of custom styles for jQuery UI, PrismJS ----- *}>
     <link rel="preload" href="<{$xoops_imageurl}>css/jquery-ui.theme.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -100,7 +98,7 @@
             <li><{include file="$xoops_theme/component/_inc_nav_theme.html"}></li>
         </ul>
     </nav>
-    <{if $xoops_is_top}>
+
     <header class="container">
 
             <h1><{$xoops_sitename}></h1>
@@ -108,9 +106,7 @@
 
         <p><a href="#" role="button" onclick="event.preventDefault()">Call to action</a></p>
     </header>
-    <{else}>
-    <{* Place a custom block for modules pages ! *}>
-    <{/if}>
+
 </div>
 
 <{* Main *}>
@@ -145,6 +141,7 @@
 <section class="container-fluid block-center">
 <div class="grid-3">
     <div><{* ---------- BLOCK Center-Left *}>
+        <{if !empty($xoops_clblocks)}>
         <{foreach item=block from=$xoops_clblocks}>
         <{if !$block.title|strstr:"admin"}>
         <div class="block-center-left b-<{$block.weight}>">
@@ -160,8 +157,10 @@
         </div>
         <{/if}>
         <{/foreach}>
+        <{/if}>
     </div>
     <div><{* ---------- BLOCK Center-Center *}>
+        <{if !empty($xoops_ccblocks)}>
         <{foreach item=block from=$xoops_ccblocks}>
         <{if !$block.title|strstr:"admin"}>
         <div class="block-center-center b-<{$block.weight}>">
@@ -177,8 +176,10 @@
         </div>
         <{/if}>
         <{/foreach}>
+        <{/if}>
     </div>
     <div><{* ---------- BLOCK Center-Right *}>
+        <{if !empty($xoops_crblocks)}>
         <{foreach item=block from=$xoops_crblocks}>
         <{if !$block.title|strstr:"admin"}>
         <div class="block-center-right b-<{$block.weight}>">
@@ -194,6 +195,7 @@
         </div>
         <{/if}>
         <{/foreach}>
+        <{/if}>
     </div>
 </div>
 </section>

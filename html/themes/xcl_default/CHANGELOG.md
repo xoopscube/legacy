@@ -10,6 +10,14 @@ All notable changes to XCL Theme PicoCSS will be documented in this file.
 
 Git Repository : Refer please to [ xcl-picocss-157 ](https://github.com/xoopscube-themes/xcl-picocss-157)
 
+## [XCL Pico 157 ] 2023-03-30
+
+- common/picocss
+- PHP8 warning :
+- Admin panel
+- Block loop
+- Header menu
+
 ## [XCL Pico 157 ] 2023-03-20
 
 - Accordion and Dropdown
