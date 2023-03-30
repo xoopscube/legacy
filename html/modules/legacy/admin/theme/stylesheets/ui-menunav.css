@@ -23,7 +23,7 @@
     /* max-width: 57em; container */
     padding         : var(--space-4);
     position        : sticky;
-    top             : 105px;
+    top             : 102px;
     z-index         : var(--z-above);
 }
 .adminavi .adminavi-item {

@@ -24,14 +24,11 @@
 .alert-notify,
 .alert-submit {
     position        : fixed;
-    /*right           : 4rem;*/
-    /*top             : 3rem;*/
-    /*width           : 480px;*/
     z-index         : var(--z-sticky);
 }
 .alert-close {
-    color: var(--link);
     background:var(--button-bg);
+    color: var(--link);
     float: right;
     font-size: 21px;
     font-weight: bold;
@@ -41,6 +38,8 @@
 }
 .alert-notify > div,
 .alert-submit > div {
+    display: flex;
+    justify-content: space-between;
     margin : 1rem!important;
 }
 .alert-close:hover, .alert-close:focus {
