@@ -3,7 +3,7 @@
 <nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACY_NAME}></a>
-    &raquo;&raquo; <span class="page-title" aria-current="page"><a href="./index.php?action=ThemeList"><{$smarty.const._AD_LEGACY_LANG_THEME_ADMIN}></a></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_LEGACY_LANG_THEME_ADMIN}></span>
 </nav>
 
 
@@ -40,34 +40,16 @@
 <section data-layout="row center-justify" class="action-control">
 
     <div>
-    <a class="button" href="<{$xoops_url}>/modules/legacyRender/admin/index.php">Render</a>
-    <a class="button" href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplsetList">Templates</a>
+    <a class="button" href="<{$xoops_url}>/modules/legacyRender/admin/index.php">
+        <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="icon"><path fill="currentColor" d="M8 10v11H4a1 1 0 0 1-1-1V10h5zm13 0v10a1 1 0 0 1-1 1H10V10h11zm-1-7a1 1 0 0 1 1 1v4H3V4a1 1 0 0 1 1-1h16z"></path></svg>
+        Render</a>
+    <a class="button" href="<{$xoops_url}>/modules/legacyRender/admin/index.php?action=TplsetList">
+        <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="icon"><g fill="currentColor"><path d="M20 4v12h2V2H8v2h12Z"></path><path fill-rule="evenodd" d="M2 8v14h14V8H2Zm12 2H4v10h10V10Z" clip-rule="evenodd"></path><path d="M17 7H5V5h14v14h-2V7Z"></path></g></svg>
+        Templates</a>
     </div>
     
     <div class="control-view">
-        <{* <button id="list" class="button" data-id="1" type="button" aria-label="View List">
-            <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24">
-                <path d="M9 5v4h12V5M9 19h12v-4H9m0-1h12v-4H9M4 9h4V5H4m0 14h4v-4H4m0-1h4v-4H4v4z" fill="currentColor"/>
-            </svg>
-        </button>
-
-        <button id="grid" class="button" data-id="2" type="button" aria-label="View Grid">
-            <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24">
-                <path d="M16 5v6h5V5m-11 6h5V5h-5m6 13h5v-6h-5m-6 6h5v-6h-5m-6 6h5v-6H4m0-1h5V5H4v6z"
-                      fill="currentColor"/>
-            </svg>
-        </button>
-
-        <button id="filter" class="button" type="button" data-id="3" onclick="slideToggle('.module-filter', this)"
-                aria-label="View Filter">
-            <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em"
-                 viewBox="0 0 24 24">
-                <path d="M7 11h10v2H7zM4 7h16v2H4zm6 8h4v2h-4z" fill="currentColor"/>
-            </svg>
-        </button> *}>
-
-        <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-themes' aria-label="<{$smarty.const._HELP}>">
-            <b>?</b> </button>
+        <button class="help-admin button" type='button' data-module='legacy' data-help-article='#help-themes' aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
     </div>
 
 </section>
@@ -95,14 +77,14 @@
             <img class="zoomA" src="<{$smarty.const.XOOPS_THEME_URL}>/<{$theme->getShow('dirname')}>/<{$theme->getShow('screenshot')}>"
                 width="320" height="auto" alt="<{$theme->getShow('name')}>">
             <{/if}>
-            <div class="list_imagetitle"><{$theme->getShow('name')}></div>
         </td>
         <td class="list_text">
-            <p class="list_description"><{$theme->getShow('description') != null}></p>
+            <h5><{$theme->getShow('name')}></h5>
+            <p class="list_description"><{$theme->getShow('description') !=null}></p>
             <ul class="admin-theme-list">
-                <{if $theme->get('themeoptions') != null}>
+                <{if $theme->get('themeoptions') !=null}>
                 <li><a href="<{$smarty.const.XOOPS_THEME_URL}>/<{$theme->getShow('dirname')}>/<{$theme->getShow('themeoptions')}>">
-                    Theme Options - Custom Parameters</a></li>
+                    Theme Options - Custom Parameters ⭧</a></li>
                 <{/if}>
                 <li><{$smarty.const._AD_LEGACY_LANG_VERSION}> : <{$theme->getShow('version')}></li>
                 <li><{$smarty.const._AD_LEGACY_LANG_RENDER}> : <{$theme->getShow('render_system')}></li>
@@ -111,29 +93,26 @@
                 <{if $theme->get('license')}>
                 <li><{$smarty.const._AD_LEGACY_LANG_LICENCE}> : <{$theme->getShow('license')}></li>
                 <{/if}>
-                <{if $theme->get('url') != null}>
-                <li><a href="<{$theme->getShow('url')}>"><{$smarty.const._AD_LEGACY_LANG_GET_THE_LATEST_VERSION}></a>
+                <{if $theme->get('url') !=null}>
+                <li><a href="<{$theme->getShow('url')}>"><{$smarty.const._AD_LEGACY_LANG_GET_THE_LATEST_VERSION}> ⭧</a>
                 </li>
                 <{/if}>
             </ul>
         </td>
         <td class="list_select">
-            <input type="checkbox"
-                   name="select[<{$theme->getShow('dirname')}>]"
-                   value="1" <{if $actionForm->get('select', $theme->get('dirname'))}>checked="checked"<{/if}>
-                   aria-label="<{$smarty.const._MD_AM_ALLOWTHEME}>">
+            <span aria-label="<{$smarty.const._MD_AM_ALLOWTHEME}>">
+                <input type="checkbox" name="select[<{$theme->getShow('dirname')}>]" value="1" <{if $actionForm->get('select', $theme->get('dirname'))}>checked="checked"<{/if}>>
+            </span>
         </td>
         <td class="list_control">
-            <{if $currentThemeName != $theme->get('dirname')}>
+            <{if $currentThemeName !=$theme->get('dirname')}>
             <input class="button select"
                    name="choose[<{$theme->getShow('dirname')}>]"
                    type="submit"
                    value="<{$smarty.const._SELECT}>"
                    aria-label="<{$smarty.const._MD_AM_DTHEME}>">
             <{else}>
-            <button class="button action-active" aria-label="<{$smarty.const._AD_LEGACY_LANG_SELECTED}>">
-                <img class="svg" src="<{'icons/icon-check.svg'|theme}>">
-            </button>
+            <button class="button action-active"><{$smarty.const._AD_LEGACY_LANG_SELECTED}></button>
             <{/if}>
         </td>
         </tr>
@@ -142,7 +121,7 @@
         <tfoot>
         <tr>
             <td colspan="4">
-                <input class="button-submit" type="submit"  name="submit" value="<{$smarty.const._SUBMIT}>">
+                <input class="button-submit" type="submit" name="submit" value="<{$smarty.const._SUBMIT}>">
             </td>
         </tr>
         </tfoot>

@@ -341,16 +341,16 @@ define( '_AD_LEGACY_TIPS_BLOCK' , 'Or simply <a href="index.php?action=CustomBlo
 define( '_AD_LEGACY_TIPS_BLOCK2' , "You can edit each block's options when you install the block.");
 define( '_AD_LEGACY_TIPS_COMMENT' , 'Search and manage active, pending or hidden comments from any user on any module.');
 define( '_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL' , "Even if you uninstall the custom block, the configuration of the block isn't deleted. The block is simply removed from view. You can re-install or delete it from the database from the <a href=\"index.php?action=BlockInstallList\">'install block' page</a>.");
-define( '_AD_LEGACY_TIPS_IMAGE' , 'You can easily register many smiles by uploading a compressed archive!)');
+define( '_AD_LEGACY_TIPS_IMAGE' , 'You can easily register many smilies by uploading a compressed archive!)');
 define( '_AD_LEGACY_TIPS_IMAGE_UPLOAD' , "You can easily register many images by uploading a compressed archive!<br>This batch-upload doesn't check Length and File-Size of each image!<br>Please pre-adjust them before you archive!<br>(Only tar.gz or zip archive)");
-define( '_AD_LEGACY_TIPS_IMGCAT' , 'Manage categories of images and users permissions. Set maximun upload size in Bytes, width and height in Pixels.');
+define( '_AD_LEGACY_TIPS_IMGCAT' , 'Manage categories of images and users permissions. Set maximun upload size in Bytes, width and height in Pixels. Note that X-elFinder overrides the default image management.');
 define( '_AD_LEGACY_TIPS_IMGCAT_STORETYPE' , 'Please choose either the file or the database storage scheme for your image files. <strong>This setting cannot be changed later.</strong><br/>Keep in mind that if you select the database as the storage destination, image files will be stored as BLOB type data which may not be suitable for backup purposes.');
 define( '_AD_LEGACY_TIPS_INSTALL_BLOCK' , 'You can customize your site by installing your favorite blocks.');
-define( '_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE' , 'You may need to upgrade this module to the latest release. This step will make your package upgrade correctly. ');
+define( '_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE' , 'This is the phased update mode. You may need to update this module several times to the latest version. This mode guarantees a correct module update.');
 define( '_AD_LEGACY_TIPS_MOD' , 'Edit modules or install new ones, customize names and preferences, set cache and user permissions!');
-define( '_AD_LEGACY_TIPS_SMILES' , 'Display, rename, delete or upload an archive with your custom smilies.');
-define( '_AD_LEGACY_TIPS_SMILES_UPLOAD' , "You can easily register many smiles by uploading a compressed archive!<br>This batch-upload doesn't check Length and File-Size of each smiles!<br>Pre-adjust them before you archive!<br>(Only tar.gz or zip archive)");
-define( '_AD_LEGACY_TIPS_THEME_ADMIN' , "Choose the look and feel of your site by clicking the 'select' button next to your favourite theme.<br/> You can let your users choose their favourite theme for your site. Check the boxes to add a theme to the theme selection block. For more details, read module Help.");
+define( '_AD_LEGACY_TIPS_SMILES' , 'You can use custom code for your own emoticons and for example keywords and logos.');
+define( '_AD_LEGACY_TIPS_SMILES_UPLOAD' , "You can easily register multiple smiles by uploading a compressed file!<br>This batch-upload doesn't check Length and size of each image!<br>Pre-adjust you images before you archive a tar.gz or .zip");
+define( '_AD_LEGACY_TIPS_THEME_ADMIN' , "Choose the look and feel of your site by clicking the 'select' button next to your favourite theme.<br>You can also let your users choose their favourite theme for your site by checking themes for the Block Themes.");
 
 // MODULE ADMIN
 define( '_MD_AM_ADMINML' , '🔔 Admin email address');

@@ -320,7 +320,7 @@ Usage with color var:
     --d-toggle-bg           : var(--layer-4);
     --d-toggle-border       : 1px solid var( --theme-color, var(--layer-4) );
     --d-toggle-color        : var(--theme-color);
-    --d-toggle-font         : var(--icon-size);
+    --d-toggle-font         : inherit; /* var(--icon-size); only for nav header */
     --d-toggle-padding      : var(--space-2 ) var(--space-2);
     --d-toggle-radius       : var(--border-radius);
     --d-toggle-shadow       : 0 0 3px 1px rgba(44, 98, 246, .5);
