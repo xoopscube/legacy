@@ -21,7 +21,6 @@ $db =& XoopsDatabaseFactory::getDatabaseConnection();
 // get custom templates
 list( $count ) = $db->fetchRow( $db->query( 'SELECT COUNT(t.tpl_module) AS tpl_count FROM ' . $db->prefix( 'tplfile' ) . " t WHERE t.tpl_type='custom'" ) );
 if ( '_custom' == $current_dirname ) {
-	//	$GLOBALS['altsysXoopsBreadcrumbs'][] = array( 'name' => _MYTPLSADMIN_CUSTOMTEMPLATE );
 	$custom_selected = true;
 } else {
 	$custom_selected = false;

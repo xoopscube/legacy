@@ -1,6 +1,12 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-<h2><{$smarty.const._MD_A_MYBLOCKSADMIN_BLOCKADMIN}> » <{$target_mname|ucfirst}></h2>
+<h2><{$smarty.const._MD_A_MYBLOCKSADMIN_BLOCKADMIN}> <{if $target_mname_bread}>» <{$target_mname_bread|ucfirst}><{else}>» <{$target_mname|ucfirst}><{/if}></h2>
+
+<{if $smarty.get.dirname eq '__CustomBlocks__'}>
+<div class="tips">
+	<{$smarty.const._MD_A_MYBLOCKSADMIN_CUSTOM_TIPS}>
+</div>
+<{/if}>
 
 <article id="admin-block">
 

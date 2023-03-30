@@ -25,4 +25,4 @@ define( '_MYTPLSADMIN_H3_MODULE' , 'Module');
 define( '_MYTPLSADMIN_BTN_NEWTPLSET' , 'Créer');
 define( '_MYTPLSADMIN_DBUPDATED' , 'Mise à jour avec succés des Templates');
 define( '_MYTPLSADMIN_CUSTOMTEMPLATE' , 'Template personnalisé');
-define( '_MYTPLSADMIN_CREATENEWCUSTOMTEMPLATE' , 'Créer un nouveau template personnalisé');
+define( '_MYTPLSADMIN_CREATENEWCUSTOMTEMPLATE' , 'Nouveau template personnalisé');

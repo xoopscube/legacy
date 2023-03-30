@@ -4,18 +4,24 @@
 <h2><{$smarty.const._MYLANGADMIN_H3_MODULE}> » <{$target_mname}> » <{$target_lang|escape}> » <{$target_file|escape}></h2>
 
 
-<div class="tips">
-	<dl class="altsys_langman_information">
+<div class="confirm">
+	<div class="altsys_langman_information">
 		<{if $use_my_language}>
-		<dt><{$smarty.const._MYLANGADMIN_DT_MYLANGFILENAME}></dt>
-		<dd><{$mylang_file_name}></dd>
+		    <{$smarty.const._MYLANGADMIN_DT_MYLANGFILENAME}><br>
+		    <pre class="badge"><{$mylang_file_name}></pre><br>
 		<{/if}>
-		<dt><{$smarty.const._MYLANGADMIN_DT_CACHEFILENAME}></dt>
-		<dd><{$cache_file_name}></dd>
-		<dt><{$smarty.const._MYLANGADMIN_DT_CACHESTATUS}></dt>
-		<dd><{if $cache_file_mtime}><{$smarty.const._MYLANGADMIN_CREATED}> (<{"Y-m-d H:i:s"|date:$cache_file_mtime+$timezone_offset}>)<{else}><{$smarty.const._MYLANGADMIN_NOTCREATED}><{/if}></dd>
-		<dt><{$notice}></dt>
-	</dl>
+		<{$smarty.const._MYLANGADMIN_DT_CACHEFILENAME}><br>
+		<pre class="badge"><{$cache_file_name}></pre>
+		<br><{$smarty.const._MYLANGADMIN_DT_CACHESTATUS}><br>
+		<{if $cache_file_mtime}>
+		    <span class="badge"><{"Y-m-d H:i:s"|date:$cache_file_mtime+$timezone_offset}></span>
+		    <{$smarty.const._MYLANGADMIN_CREATED}>
+		    <{$notice}>
+		<{else}>
+		    <{$smarty.const._MYLANGADMIN_NOTCREATED}>
+		<{/if}>
+
+	</div>
 </div>
 
 

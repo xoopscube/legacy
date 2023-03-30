@@ -26,7 +26,8 @@ $module             =& $module_handler->getByDirname( 'altsys' );
 $moduleperm_handler =& xoops_gethandler( 'groupperm' );
 if ( ! is_object( @$xoopsUser ) || ! $moduleperm_handler->checkRight( 'module_admin', $module->getVar( 'mid' ), $xoopsUser->getGroups() ) ) {
     // TODO redirect
-	die( 'only admin of altsys can access this area' );
+	// die( 'only admin of altsys can access this area' );
+    redirect_header( XOOPS_URL . '/user.php', 1, _NOPERM );
 }
 
 
@@ -188,7 +189,8 @@ $mymenu_fake_uri = 'index.php?mode=admin&lib=altsys&page=mytplsadmin&dirname=' .
 // Menu
 altsys_include_mymenu();
 
-echo '<h2 style="text-align:' . _GLOBAL_LEFT . ';">' . _MD_A_MYTPLSFORM_EDIT . '</h2>';
+echo '<h2>' . _MD_A_MYTPLSFORM_EDIT . '</h2>';
+echo '<div class="">' . _MD_A_MYBLOCKSADMIN_CUSTOM_TIPS . '</div>';
 
 // Template Set, Name, Type
 echo '<table class="outer">

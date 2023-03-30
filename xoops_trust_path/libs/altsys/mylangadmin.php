@@ -55,8 +55,7 @@ if ( ! empty( $target_module ) && is_object( $target_module ) ) {
 	$target_mid         = $target_module->getVar( 'mid' );
 	$target_dirname     = $target_module->getVar( 'dirname' );
 	$target_dirname4sql = addslashes( $target_dirname );
-	//$target_mname       = $target_module->getVar( 'name' ) . '&nbsp;' . sprintf( '(%2.2f)', $target_module->getVar( 'version' ) / 100.0 );
-    $target_mname       = $target_module->getVar( 'name' ) . sprintf( '<span class="badge-count" style="font-size:16px;position:relative;bottom:.5em">v %2.2f </span>', $target_module->getVar( 'version' ) / 100.0 );
+	$target_mname       = $target_module->getVar( 'name' ) . sprintf( '<span class="badge-count" style="font-size:14px;position:relative;bottom:.5em">v %2.2f </span>', $target_module->getVar( 'version' ) / 100.0 );
 	//$query4redirect = '?dirname='.urlencode(strip_tags($_GET['dirname'])) ;
 } else {
 	// not specified by dirname (for 3rd party modules as mylangadmin)

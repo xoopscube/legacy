@@ -1,8 +1,7 @@
 <?php
-
-define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'カスタム ブロックは、HTML、BBCode、または PHP を使用して作成できます。
-ブロック エディターは、選択したカスタム タイプに応じて変化します。<br>
-したがって、PHP または HTML、JavaScript、および CSS を使用して再利用可能なコンポーネントを作成できます。');
+define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'サイド、ターゲット モジュール、ユーザー グループのアクセス許可、およびキャッシュ時間を選択して、ブロックを管理します。');
+define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , 'まず、<b>ブロック タイトル</b>に名前を付けて、<b>カスタム タイプ</b>を選択します。 新しいブロックを保存して編集します。<br><b>エディタ</b>は、選択した<b>カスタム タイプ</b>に応じて変化します。<br>
+したがって、BBcode と PHP または HTML、JavaScript、CSS を使用して再利用可能なコンポーネントを作成できます。');
 define( '_MD_A_MYBLOCKSADMIN_PERMUPDATED' , '権限を更新しました');
 define( '_MD_A_MYBLOCKSADMIN_BLOCKADMIN' , 'ブロック管理');
 define( '_MD_A_MYBLOCKSADMIN_NAME' , '名称');

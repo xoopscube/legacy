@@ -1,6 +1,6 @@
 <?php
 /**
- * Altsys library (UI-Components) for D3 modules
+ * Altsys library (UI-Components) Admin Menu Block
  *
  * @package    Altsys
  * @version    XCL 2.3.3
@@ -26,7 +26,7 @@ if ( '__CustomBlocks__' == $current_dirname ) {
 $module_handler4menu = xoops_gethandler( 'module' );
 $criteria4menu       = new CriteriaCompo( new Criteria( 'isactive', 1 ) );
 
-//$criteria4menu->add(new Criteria('hasmain', 1));
+// criteria4menu;
 $criteria4menu->add( new Criteria( 'mid', '1', '>' ) );
 $modules4menu  = $module_handler4menu->getObjects( $criteria4menu, true );
 $system_module = $module_handler4menu->get( 1 );

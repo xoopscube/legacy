@@ -1,8 +1,7 @@
 <?php
-
-define( '_MD_A_MYBLOCKSADMIN_TIPS' , "Les blocs personnalisés peuvent être créés en utilisant HTML, BBCode ou PHP. 
-L'éditeur de bloc changera en fonction du type personnalisé sélectionné.<br>
-Permettant ainsi de créer un composant réutilisable avec PHP ou HTML, JavaScript et CSS.");
+define( '_MD_A_MYBLOCKSADMIN_TIPS' , "Gérez les blocs en sélectionnant le côté, les modules cibles, les autorisations des groupes d'utilisateurs et le temps de cache.");
+define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , "Tout d'abord, donnez un nom au <b>Titre du bloc</b> et sélectionnez un <b>Type personnalisé</b>. Enregistrez et modifiez votre nouveau bloc.<br>
+L'<b>éditeur</b> changera en fonction du <b>type personnalisé</b> sélectionné.<br> Vous permettant ainsi de créer un composant réutilisable avec BBcode et PHP ou HTML, JavaScript et CSS.");
 define( '_MD_A_MYBLOCKSADMIN_PERMUPDATED' , 'Permissions mises à jour avec succès');
 define( '_MD_A_MYBLOCKSADMIN_BLOCKADMIN' , 'Gestion des blocs');
 define( '_MD_A_MYBLOCKSADMIN_NAME' , 'Nom');

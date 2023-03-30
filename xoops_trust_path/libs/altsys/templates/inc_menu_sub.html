@@ -3,7 +3,7 @@
 <div class="adminavi-sub">
 	<{foreach from=$adminmenu item="menuitem"}>
 		<a href="<{$menuitem.link|escape}>" class="adminavi-item <{if $menuitem.selected}>selected<{else}>unselected<{/if}>">
-			<{$menuitem.icon}> <{$menuitem.title}>
+			<{$menuitem.icon|default:''}> <{$menuitem.title}>
 		</a>
 	<{/foreach}>
 </div>

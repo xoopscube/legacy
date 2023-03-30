@@ -1,6 +1,6 @@
 <?php
 /**
- * Altsys library (UI-Components) for D3 modules
+ * Altsys library (UI-Components) Admin blocks and permissions
  * Class MyBlocksAdmin
  * @package    Altsys
  * @version    XCL 2.3.3
@@ -97,7 +97,7 @@ class MyBlocksAdmin {
 		$moduleperm_handler =& xoops_gethandler( 'groupperm' );
 
 		if ( ! is_object( @$GLOBALS['xoopsUser'] ) || ! $moduleperm_handler->checkRight( 'module_admin', $module->getVar( 'mid' ), $GLOBALS['xoopsUser']->getGroups() ) ) {
-			die( 'only admin of UI Components can access this area' );
+            redirect_header( XOOPS_URL . '/', 3, _NOPERM );
 		}
 	}
 
@@ -124,8 +124,9 @@ class MyBlocksAdmin {
 
 				$this->target_mid = $target_module->getVar( 'mid' );
 
-				$this->target_mname = $target_module->getVar( 'name' ) . '&nbsp;' . sprintf( '(%2.2f)', $target_module->getVar( 'version' ) / 100.0 );
-                //$this->target_mname = $target_module->getVar( 'name' ) . sprintf( '<span class="badge-count" style="font-size:16px;position:relative;bottom:.5em">v %2.2f </span>', $target_module->getVar( 'version' ) / 100.0 );
+				$this->target_mname = $target_module->getVar( 'name' ) . '&nbsp;' . sprintf( '<b>v. %2.2f </b>', $target_module->getVar( 'version' ) / 100.0 );
+                // Since XCL 2.3.x target_mname_bread ( avoid conflict with input hidden of permissions )
+                $this->target_mname_bread = $target_module->getVar( 'name' ) . sprintf( '<span class="badge-count" style="font-size:16px;position:relative;bottom:.5em">v %2.2f </span>', $target_module->getVar( 'version' ) / 100.0 );
 
 				$this->target_dirname = $target_module->getVar( 'dirname' );
 
@@ -136,8 +137,10 @@ class MyBlocksAdmin {
 
 				$breadcrumbsObj->appendPath( XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin', '_MI_ALTSYS_MENU_MYBLOCKSADMIN' );
 
-				$breadcrumbsObj->appendPath( XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=' . $this->target_dirname, $this->target_mname );
-			} else {
+				// Since XCL 2.3.x target_mname_bread ( avoid conflict with input hidden of permissions )
+                $breadcrumbsObj->appendPath( XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin&amp;dirname=' . $this->target_dirname, $this->target_mname_bread );
+
+            } else {
 				// custom blocks
 				$this->target_mid = 0;
 
@@ -157,7 +160,10 @@ class MyBlocksAdmin {
 			$this->target_mid = $xoopsModule->getVar( 'mid' );
 
 			$this->target_mname = $xoopsModule->getVar( 'name' ) . '&nbsp;' . sprintf( '(%2.2f)', $xoopsModule->getVar( 'version' ) / 100.0 );
-            //$this->target_mname = $xoopsModule->getVar( 'name' ) . sprintf( '<span class="badge-count" style="font-size:16px;position:relative;bottom:.5em">v %2.2f </span>', $xoopsModule->getVar( 'version' ) / 100.0 );
+
+            // Since XCL 2.3.x target_mname_bread ( avoid conflict with input hidden of permissions )
+            $this->target_mname_bread = $xoopsModule->getVar( 'name' ) . sprintf( '<span class="badge-count" style="font-size:16px;position:relative;bottom:.5em">v %2.2f </span>', $xoopsModule->getVar( 'version' ) / 100.0 );
+
             $this->target_dirname = $xoopsModule->getVar( 'dirname' );
 
 			$mod_url = XOOPS_URL . '/modules/' . $xoopsModule->getVar( 'dirname' );
@@ -166,7 +172,8 @@ class MyBlocksAdmin {
 
 			$breadcrumbsObj = AltsysBreadcrumbs::getInstance();
 
-			$breadcrumbsObj->appendPath( $mod_url . '/' . @$modinfo['adminindex'], $this->target_mname );
+            // Since XCL 2.3.x target_mname_bread ( avoid conflict with input hidden of permissions )
+            $breadcrumbsObj->appendPath( $mod_url . '/' . @$modinfo['adminindex'], $this->target_mname_bread );
 
 			$breadcrumbsObj->appendPath( $mod_url . '/admin/index.php?mode=admin&amp;lib=altsys&amp;page=myblocksadmin', _MD_A_MYBLOCKSADMIN_BLOCKADMIN );
 		}
@@ -484,6 +491,7 @@ class MyBlocksAdmin {
 		}
 
 		// display
+        // Since XCL 2.3.x target_mname_bread ( avoid conflict with input hidden of permissions )
 		require_once XOOPS_TRUST_PATH . '/libs/altsys/class/D3Tpl.class.php';
 		$tpl = new D3Tpl();
 		$tpl->assign(
@@ -491,6 +499,7 @@ class MyBlocksAdmin {
 				'target_mid'        => $this->target_mid,
 				'target_dirname'    => $this->target_dirname,
 				'target_mname'      => $this->target_mname,
+                'target_mname_bread'=> $this->target_mname_bread,
 				'language'          => $this->lang,
 				'cachetime_options' => $this->cachetime_options,
 				'blocks'            => $blocks4assign,
@@ -542,7 +551,7 @@ class MyBlocksAdmin {
 		}
 
         // ADMIN BLOCKS PERMISSIONS
-		$form = new MyXoopsGroupPermForm( '<h2>'._MD_A_MYBLOCKSADMIN_PERMFORM.'</h2>', 1, 'block_read', '' );
+		$form = new MyXoopsGroupPermForm( '<h2 id="block-permissions">'._MD_A_MYBLOCKSADMIN_PERMFORM.'</h2>', 1, 'block_read', '' );
 		// skip system (TODO)
 		if ( $this->target_mid > 1 ) {
 			$form->addAppendix( 'module_admin', $this->target_mid, $this->target_mname . ' ' . _MD_A_MYBLOCKSADMIN_PERM_MADMIN );
@@ -1041,11 +1050,12 @@ class MyBlocksAdmin {
 		} else {
 			$tpl->assign( 'xoops_cube_legacy', false );
 		}
-
+        // Since XCL 2.3.x target_mname_bread ( avoid conflict with input hidden of permissions )
 		$tpl->assign(
 			[
 				'target_dirname'    => $this->target_dirname,
 				'target_mname'      => $this->target_mname,
+                'target_mname_bread'=> $this->target_mname_bread,
 				'language'          => $this->lang,
 				'cachetime_options' => $this->cachetime_options,
 				'ctype_options'     => $this->ctype_options,
@@ -1083,7 +1093,7 @@ class MyBlocksAdmin {
 		}
 
 		//HACK by domifara
-		//TODO : need no hook block at this
+		//TODO : No need to hook block here
 		$block = new XoopsBlock( $bid );
 		/*
 			$handler =& xoops_gethandler('block');
@@ -1153,7 +1163,7 @@ class MyBlocksAdmin {
 			// edit ok
 			$msg = $this->do_edit( $bid );
 		} elseif ( ! empty( $_POST['submit'] ) ) {
-			// update module_admin,module_read,block_read
+			// update module_admin, module_read, block_read
 			include dirname( __DIR__ ) . '/include/mygroupperm.php';
 			$msg = _MD_A_MYBLOCKSADMIN_PERMUPDATED;
 		}
