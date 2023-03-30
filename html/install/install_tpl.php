@@ -120,7 +120,7 @@
         color: #D3D7DEFF;
         display: none;
         margin:1rem auto;
-        padding: .25rem .5rem;
+        padding: .5rem .75rem;
         text-align: center;
 
         position: fixed;
