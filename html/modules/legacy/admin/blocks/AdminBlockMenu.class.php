@@ -16,8 +16,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 define('LEGACY_ADMIN_BLOCK_MENU_CACHEPREFIX', XOOPS_CACHE_PATH.'/'.urlencode(XOOPS_URL).'_admin_block_menu_');
 
 /**
- * This is test menu block for control panel of legacy module.
- * This loads module objects by a permission of the current user.
+ * This is dashboard menu block for control panel of legacy module.
+ * This loads module objects by permissions of the current user.
  * Then this load module's adminmenu and module's information.
  *
  * [ASSIGN]
@@ -66,10 +66,12 @@ class Legacy_AdminBlockMenu extends Legacy_AbstractBlockProcedure
         // load info 'modinfo' message catalog
         $langMgr->loadModinfoMessageCatalog('legacy');
 
+        // User Group
         $controller =& $root->mController;
         $user =& $root->mContext->mXoopsUser;
         $groups = implode(',', $user->getGroups());
         $cachePath = LEGACY_ADMIN_BLOCK_MENU_CACHEPREFIX . md5(XOOPS_SALT . "($groups)". $langMgr->mLanguageName).'.html';
+        // Render target & cache
         $render =& $this->getRenderTarget();
         if (file_exists($cachePath)) {
             $render->mRenderBuffer = file_get_contents($cachePath);
@@ -87,6 +89,7 @@ class Legacy_AdminBlockMenu extends Legacy_AbstractBlockProcedure
             }
         }
 
+        // DB & Permissions
         $db=&$controller->getDB();
 
         $mod = $db->prefix('modules');
@@ -96,12 +99,12 @@ class Legacy_AdminBlockMenu extends Legacy_AbstractBlockProcedure
         // Users who belong to the ADMIN group have full permissions, so we need to prepare two types of SQL.
         //
         if ($root->mContext->mUser->isInRole('Site.Owner')) {
-            $sql = "SELECT DISTINCT weight, mid FROM ${mod} WHERE isactive=1 AND hasadmin=1 ORDER BY weight, mid";
+            $sql = "SELECT DISTINCT weight, mid FROM {$mod} WHERE isactive=1 AND hasadmin=1 ORDER BY weight, mid";
         } else {
-            $sql = "SELECT DISTINCT ${mod}.weight, ${mod}.mid FROM ${mod},${perm} " .
-                   "WHERE ${mod}.isactive=1 AND ${mod}.mid=${perm}.gperm_itemid AND ${perm}.gperm_name='module_admin' AND ${perm}.gperm_groupid IN (${groups}) " .
-                   "AND ${mod}.hasadmin=1 " .
-                   "ORDER BY ${mod}.weight, ${mod}.mid";
+            $sql = "SELECT DISTINCT {$mod}.weight, {$mod}.mid FROM {$mod},{$perm} " .
+                   "WHERE {$mod}.isactive=1 AND {$mod}.mid={$perm}.gperm_itemid AND {$perm}.gperm_name='module_admin' AND {$perm}.gperm_groupid IN ({$groups}) " .
+                   "AND {$mod}.hasadmin=1 " .
+                   "ORDER BY {$mod}.weight, {$mod}.mid";
         }
 
 
@@ -116,23 +119,24 @@ class Legacy_AdminBlockMenu extends Legacy_AbstractBlockProcedure
             $this->mModules[] =& $module;
             unset($module);
         }
-        //
+        // Template
         $tpl = $db->prefix('tplfile');
         $tpl_modules = [];
-        $sql = "SELECT DISTINCT tpl_module FROM ${tpl}";
+        $sql = "SELECT DISTINCT tpl_module FROM {$tpl}";
         $result = $db->query($sql);
         while ($row = $db->fetchArray($result)) {
             $tpl_modules[] = $row['tpl_module'];
         }
         $render->setAttribute('tplmodules', $tpl_modules);
-        //
 
+        // Set Template & attributes
         $render->setTemplateName('legacy_admin_block_menu.html');
         $render->setAttribute('modules', $this->mModules);
         $render->setAttribute('currentModule', $this->mCurrentModule);
 
+        // Render System
         $renderSystem =& $root->getRenderSystem($this->getRenderSystemName());
-
+        // Render as Block
         $renderSystem->renderBlock($render);
         file_put_contents($cachePath, $render->mRenderBuffer);
     }

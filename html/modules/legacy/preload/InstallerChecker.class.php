@@ -47,28 +47,6 @@ class Legacy_InstallerChecker extends XCube_ActionFilter
             $btn_delete     = 'Delete';
             $btn_preload    = 'Activate';
 
-
-
-
-            /**
-             * Recursively delete directory /install
-             *
-             * @param string $install_path
-             */
-            /*             function recursiveRemove( string $install_path ) {
-                            if (is_dir( $install_path )) {
-                                foreach (scandir( $install_path) as $entry ) {
-                                    if (!in_array( $entry, ['.', '..'], true )) {
-                                        recursiveRemove( $install_path . DIRECTORY_SEPARATOR . $entry );
-                                    }
-                                }
-                            rmdir( $install_path );
-                            } else {
-                            unlink( $install_path );
-                            }
-                        } */
-
-
             $permissions = fileperms( $mainfile );
             $fperm = substr(sprintf( '%o', $permissions), -4 ); //output 0777
             if ( is_writable( $mainfile ) ) {
@@ -76,8 +54,6 @@ class Legacy_InstallerChecker extends XCube_ActionFilter
             } else{
                 $is_chmod = false;
             }
-
-
 
             // PRELOAD
             // Copy preload from disabled directory
@@ -101,6 +77,7 @@ class Legacy_InstallerChecker extends XCube_ActionFilter
 
             if( isset( $_POST[$btn_delete] ) ) {
                 (new XCube_Utils)->recursiveRemove( $delete_path );
+                header("Refresh: 0");
             }
 
             if( isset( $_POST[$btn_preload] ) ) {
