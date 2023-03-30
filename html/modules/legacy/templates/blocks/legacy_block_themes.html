@@ -10,10 +10,7 @@
         <{if $block.mode==1}>
         <img id="xoops_theme_img"
              src="<{$xoops_imageurl}><{$block.theme_selected_screenshot}>"
-	     <{if $theme_option.name}>
-             alt="<{$theme_option.name}>"
-	     <{/if}>
-             aria-label="<{$theme_option.name}>"
+             alt="<{$block.theme_selected_name}>"
              width="<{$block.width}>"
              height="auto">
 
@@ -34,4 +31,6 @@
         </label>
     </form>
 </div>
+
 <{/if}>
+
