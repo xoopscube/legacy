@@ -1,7 +1,7 @@
 <?php
 /**
- * Altsys library (UI-Components) for D3 modules
- * Templates admin for each modules
+ * Altsys library (UI-Components)
+ * Admin Templates for each module
  * @package    Altsys
  * @version    XCL 2.3.3
  * @author     Other authors Gigamaster, 2020 XCL PHP7
@@ -17,7 +17,7 @@ include_once __DIR__ . '/include/altsys_functions.php';
 include_once __DIR__ . '/include/tpls_functions.php';
 
 
-// only groups have 'module_admin' of 'altsys' can do that.
+// only groups with permissions 'module_admin' for 'altsys'
 $module_handler = xoops_gethandler( 'module' );
 $module         = $module_handler->getByDirname( 'altsys' );
 if ( ! is_object( $module ) ) {
@@ -53,7 +53,7 @@ if ( ! empty( $target_module ) && is_object( $target_module ) ) {
 	$target_mid         = $target_module->getVar( 'mid' );
 	$target_dirname     = $target_module->getVar( 'dirname' );
 	$target_dirname4sql = addslashes( $target_dirname );
-	$target_mname       = $target_module->getVar( 'name' ) . sprintf( '<span class="badge-count" style="font-size:16px;position:relative;bottom:.5em">v %2.2f </span>', $target_module->getVar( 'version' ) / 100.0 );
+	$target_mname       = $target_module->getVar( 'name' ) . sprintf( '<span class="badge-count" style="font-size:14px;position:relative;bottom:.5em">v %2.2f </span>', $target_module->getVar( 'version' ) / 100.0 );
 	//$query4redirect = '?dirname='.urlencode(strip_tags($_GET['dirname'])) ;
 } elseif ( @$_GET['dirname'] == '_custom' ) {
 	// custom template
@@ -135,7 +135,7 @@ if ( is_array( @$_POST['copy_do'] ) ) {
 	}
 }
 
-// File to DB template copy (checked templates)
+// File to DB template - copy checked templates
 if ( ! empty( $_POST['copyf2db_do'] ) ) {
 	// Ticket Check
 	if ( ! $xoopsGTicket->check() ) {
@@ -160,7 +160,7 @@ if ( ! empty( $_POST['copyf2db_do'] ) ) {
 	exit;
 }
 
-// DB template remove (checked templates)
+// DB template remove - checked templates
 if ( is_array( @$_POST['del_do'] ) ) {
 	foreach ( $_POST['del_do'] as $tplset_from_tmp => $val ) {
 		if ( ! empty( $val ) ) {
@@ -254,7 +254,7 @@ foreach ( $tplsets as $tplset ) {
     // Active Template Set
 	$active      = $th_attr = '';
 	if ( $tplset == $xoopsConfig['template_set'] ) {
-		$th_attr = "class='list_left active dbtplset_active'";
+		$th_attr = "class='list_control active dbtplset_active'";
 		$active  = '<sup>*</sup>';
 	}
 	$tplsets_th4disp .= "<th $th_attr>"
@@ -317,8 +317,7 @@ echo '<section data-layout="row center-justify" class="action-control">
         echo '<a class="button" href="index.php?mode=admin&lib=altsys&page=mytplsform&tpl_tplset=default">' . _MYTPLSADMIN_CREATENEWCUSTOMTEMPLATE . '</a>';
     }
 echo '<a class="button" href="' .XOOPS_URL . '/modules/legacyRender/admin/index.php?action=TplsetList">Render</a>
-        <button class="help-admin button" type="button" data-id="4" data-module="altsys" data-help-article="#help-templates" aria-label="'._HELP.'">
-            <b>?</b> </button>
+        <button class="help-admin button" type="button" data-id="4" data-module="altsys" data-help-article="#help-templates" aria-label="'._HELP.'"><b>?</b></button>
     </div>
     </section>';
 
@@ -354,13 +353,17 @@ while ( list( $tpl_file, $tpl_desc, $type, $count ) = $db->fetchRow( $frs ) ) {
 
 	$fingerprints = [];
 
-	// information about the template
+    /**
+     * information about the template
+     * type  = module
+     * count = total of templates
+     */
     echo "<tr>
         <td>
             " . htmlspecialchars( $tpl_file, ENT_QUOTES ) . "<br>
             <em>" . htmlspecialchars( $tpl_desc, ENT_QUOTES ) . "</em>
         </td>
-        <td>" . $type . " <span class='badge-count'>" . $count . "</span></td>\n";
+        <td><span aria-label='"._MYTPLSADMIN_TH_SET." : " . $count . "'>" . $type . "</span></td>\n";
 
 	// the base file template column
 	$basefilepath = tplsadmin_get_basefilepath( $target_dirname, $type, $tpl_file );
@@ -396,25 +399,29 @@ while ( list( $tpl_file, $tpl_desc, $type, $count ) = $db->fetchRow( $frs ) ) {
 		$numrows = $db->getRowsNum( $drs );
 		$tpl     = $db->fetchArray( $drs );
 		if ( empty( $tpl['tpl_id'] ) ) {
-			echo "<td>($numrows)</td>";
+			echo "<td class='list_control'>($numrows)</td>";
 		} else {
 			$fingerprint = tplsadmin_get_fingerprint( explode( "\n", $tpl['tpl_source'] ) );
 			if ( isset( $fingerprints[ $fingerprint ] ) ) {
 				$class = $fingerprints[ $fingerprint ];
 			} else {
-				//$fingerprint_class_count ++ ;
+				// increase  fingerprint class count ++
 				$class                        = $fingerprint_classes[ ++ $fingerprint_class_count ];
 				$fingerprints[ $fingerprint ] = $class;
 			}
 			echo "
-                <td class='{$class}'>
+                <td class='list_control {$class}'>
                 <input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1'> 
-                <a href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=" . htmlspecialchars( $tpl['tpl_file'], ENT_QUOTES ) . "&amp;tpl_tplset=" . htmlspecialchars( $tpl['tpl_tplset'], ENT_QUOTES ) . "&amp;dirname=" . htmlspecialchars( $target_dirname, ENT_QUOTES ) . "'>"
-                . _EDIT
-                . "</a> 
-                <span class='badge-count'>$numrows</span><br>"
+                <a class='action-edit' href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file="
+                . htmlspecialchars( $tpl['tpl_file'], ENT_QUOTES )
+                . "&amp;tpl_tplset="
+                . htmlspecialchars( $tpl['tpl_tplset'], ENT_QUOTES )
+                . "&amp;dirname=" . htmlspecialchars( $target_dirname, ENT_QUOTES )
+                . " aria-label='"._EDIT."'>"
+                . "<i class='i-edit'></i></a><br>"
+                . "<span aria-label='Template : $numrows'>"
                 . formatTimestamp( $tpl['tpl_lastmodified'], 'm' )
-                . '<br><small>'
+                . '</span><br><small>'
                 . substr( $fingerprint, 0, 16 )
                 . "</small></td>\n";
 		}

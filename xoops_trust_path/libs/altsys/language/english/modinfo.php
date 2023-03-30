@@ -1,7 +1,7 @@
 <?php
 
 define( '_MI_ALTSYS_MODULENAME' , 'Components');
-define( '_MI_ALTSYS_MODULEDESC' , 'Management and translation editor for UI Components : blocks, languages and templates .');
+define( '_MI_ALTSYS_MODULEDESC' , 'Quick management of blocks, templates, translation and localization.');
 
 // menus
 define( '_MI_ALTSYS_MENU_CUSTOMBLOCKS' , 'Custom Blocks');

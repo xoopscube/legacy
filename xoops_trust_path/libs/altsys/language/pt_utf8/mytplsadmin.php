@@ -13,7 +13,7 @@ define( '_MYTPLSADMIN_CAPTION_SETNAME' , "Nome");
 define( '_MYTPLSADMIN_CNF_COPY_SELECTED_TEMPLATES' , "Todos os modelos marcados nesta configuração (coluna) serão copiados ou sobreescritos na configuração selecionada. Você confirma?");
 define( '_MYTPLSADMIN_CNF_DELETE_SELECTED_TEMPLATES' , "Todos os modelos marcados nesta configuração (coluna) serão removidos. Você confirma?");
 define( '_MYTPLSADMIN_CREATE_NEW_TPLSET' , "Criar um novo Conjunto de Modelos");
-define( '_MYTPLSADMIN_CREATENEWCUSTOMTEMPLATE' , "Criar um novo modelo padronizado");
+define( '_MYTPLSADMIN_CREATENEWCUSTOMTEMPLATE' , "Novo modelo padronizado");
 define( '_MYTPLSADMIN_CUSTOMTEMPLATE' , "Modelos personalizados");
 define( '_MYTPLSADMIN_DBUPDATED' , "Os modelos foram atualizados corretamente.");
 define( '_MYTPLSADMIN_ERR_CANTREMOVEDEFAULT' , "Você não pode remover o Conjunto de Modelos Padrão.");

@@ -1,6 +1,6 @@
 <?php
 /**
- * Altsys library (UI-Components) for D3 modules
+ * Altsys library (UI-Components) Admin menu Language
  *
  * @package    Altsys
  * @version    XCL 2.3.3
