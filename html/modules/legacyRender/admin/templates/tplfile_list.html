@@ -226,22 +226,22 @@
             <td class="list_control">
                 <{if $targetTplset == 'default'}>
                 <a class="action-view" href="index.php?action=TplfileView&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
-                    <img class="svg" src="<{'icons/icon-view.svg'|theme}>" alt="view">
+                    <img class="svg" src="<{'icons/icon-view.svg'|theme}>" width="1em" height="1em" alt="view">
                 </a>
                 <a class="action-download" href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
-                    <img class="svg" src="<{'icons/icon-download.svg'|theme}>" alt="download">
+                    <img class="svg" src="<{'icons/icon-download.svg'|theme}>" width="1em" height="1em" alt="download">
                 </a>
 
                 <{elseif $obj->mOverride != null}>
 
                 <a class="action-edit" href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._EDIT}>">
-                    <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="edit">
+                    <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" width="1em" height="1em" alt="edit">
                 </a>
                 <a class="action-download" href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
-                    <img class="svg" src="<{'icons/icon-download.svg'|theme}>" alt="download">
+                    <img class="svg" src="<{'icons/icon-download.svg'|theme}>" width="1em" height="1em" alt="download">
                 </a>
                 <a class="action-delete" href="index.php?action=TplfileDelete&amp;tpl_id=<{$obj->mOverride->getShow('tpl_id')}>" aria-label="<{$smarty.const._DELETE}>">
-                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="delete">
+                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" width="1em" height="1em" alt="delete">
                 </a>
 
                 <{* ----- Customized Input File *}>
@@ -253,23 +253,23 @@
                 <{elseif $obj->mOverride == null && $targetTplset != null && $targetTplset != 'default'}>
 
                 <a class="action-copy" href="index.php?action=TplfileClone&amp;tpl_id=<{$obj->getShow('tpl_id')}>&amp;tpl_tplset=<{$targetTplset|xoops_escape:link}>" aria-label="<{$smarty.const._CLONE}>">
-                    <img class="svg" src="<{'icons/icon-copy.svg'|theme}>" alt="copy">
+                    <img class="svg" src="<{'icons/icon-copy.svg'|theme}>" width="1em" height="1em" alt="copy">
                 </a>
 
                 <{else}>
 
                 <{if $obj->get('tpl_tplset') == 'default'}>
                 <a class="action-view" href="index.php?action=TplfileView&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
-                    <img class="svg" src="<{'icons/icon-view.svg'|theme}>" alt="view">
+                    <img class="svg" src="<{'icons/icon-view.svg'|theme}>" width="1em" height="1em" alt="view">
                 </a>
                 <{else}>
                 <a class="action-edit" href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->getShow('tpl_id')}>&amp;tpl_tplset=<{$obj->getShow('tpl_tplset')|xoops_escape:link}>" aria-label="<{$smarty.const._EDIT}>">
-                    <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="edit">
+                    <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" width="1em" height="1em" alt="edit">
                 </a>
                 <{/if}>
 
                 <a class="action-download" href="index.php?action=TplfileDownload&amp;tpl_id=<{$obj->getShow('tpl_id')}>" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
-                    <img class="svg" src="<{'icons/icon-download.svg'|theme}>" alt="download">
+                    <img class="svg" src="<{'icons/icon-download.svg'|theme}>" width="1em" height="1em" alt="download">
                 </a>
                 <{/if}>
             </td>

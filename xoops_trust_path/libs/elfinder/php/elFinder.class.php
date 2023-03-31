@@ -792,7 +792,8 @@ class elFinder
             foreach ($opts['bind'] as $cmd => $handlers) {
                 $doRegist = (strpos($cmd, '*') !== false);
                 if (!$doRegist) {
-                    $doRegist = ($_reqCmd && in_array($_reqCmd, array_map('self::getCmdOfBind', explode(' ', $cmd))));
+                    $doRegist = ($_reqCmd && in_array($_reqCmd, array_map('elFinder::getCmdOfBind', explode(' ', $cmd)))); /* PHP 8.2 */
+
                 }
                 if ($doRegist) {
                     // for backward compatibility
@@ -2082,9 +2083,9 @@ class elFinder
         }
 
         if ($args['cpath'] && $args['reqid']) {
-            setcookie('elfdl' . $args['reqid'], '1', 0, $args['cpath']);
+            setcookie('elfdl' . $args['reqid'], '1', 0, urlencode($args['cpath']));
         }
-
+        
         $result = array(
             'volume' => $volume,
             'pointer' => $fp,

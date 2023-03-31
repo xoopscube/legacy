@@ -16,13 +16,13 @@
     </form>
 
     <div class="control-view" data-self="right sm-full">
-        <{* ////— DROPDOWN SORT —\\\\ *}>
+        <{* ////— DROPDOWN MENU —\\\\ *}>
         <div class="dropdown" id="action-contents">
             <a href="#" class="dropdown-toggle action-menu button" aria-label="action">
                 <{$smarty.const._MENU}><svg class="icon-dropmenu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
             </a>
             <div class="dropdown-content" style="min-width: 240px; padding:.5em;">
-                <div data-layout="row justify-center">
+                <div data-layout="row justify-center mb-4">
                     <h6 data-self="center size-x1"><{$mydirname|ucfirst}> <{$smarty.const._ACTION}></h6>
                     <button class="help-admin button" type="button" data-module="pico" data-help-article="#help-content" aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
                 </div>
@@ -35,7 +35,7 @@
 
 </section>
 
-<{if $cat_id != 0 }>
+<{if $cat_id !=0}>
 <div class="ui-card-full">
     <!-- cat_permission_id == cat_id -->
     <h3><{$smarty.const._MD_A_PICO_H2_INDEPENDENTPERMISSION}></h3>
@@ -51,7 +51,7 @@
 <{/if}>
 
 
-<{if $cat_id != $cat_permission_id && $cat_id != 0 }>
+<{if $cat_id !=$cat_permission_id && $cat_id !=0}>
     <!-- link to the parent for the permission -->
     <div class="tips">
     <a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_permission_id}>" target="_blank"><{$smarty.const._MD_A_PICO_LINK_CATPERMISSIONID}></a>
@@ -81,7 +81,7 @@
         </thead>
         <tbody>
         <{foreach from=$groups item=group}>
-        <tr align="center">
+        <tr class="list_center">
             <td><{$group.name}></td>
             <td>
                 <input type="checkbox"
@@ -143,8 +143,7 @@
             <{foreach from=$permissions item=perm_title key=perm_name name=user_td}>
             <td>
                 <input type="checkbox" name="<{$perm_name}>[<{$user.uid}>]"
-                       id="ucol_<{$smarty.foreach.user_td.iteration}>_uid<{$user.uid}>_" value="1" <{if
-                $user.perms.$perm_name}>checked="checked"<{/if}>>
+                       id="ucol_<{$smarty.foreach.user_td.iteration}>_uid<{$user.uid}>_" value="1" <{if $user.perms.$perm_name}>checked="checked"<{/if}>>
             </td>
             <{/foreach}>
         </tr>
@@ -152,7 +151,7 @@
 
         <!-- new user -->
         <{foreach from=$new_users item=user}>
-        <tr align="center">
+        <tr class="list_center">
             <td>
                 <input type="text" size="4" name="new_uids[<{$user.nid}>]" value="">
             </td>
@@ -166,8 +165,7 @@
             <{foreach from=$permissions item=perm_title key=perm_name name=user_td}>
             <td>
             <input type="checkbox" name="new_<{$perm_name}>[<{$user.nid}>]"
-                   id="ucol_<{$smarty.foreach.user_td.iteration}>_nid<{$user.nid}>_" value="1" <{if
-            $user.perms.$perm_name}>checked="checked"<{/if}>>
+                   id="ucol_<{$smarty.foreach.user_td.iteration}>_nid<{$user.nid}>_" value="1" <{if $user.perms.$perm_name}>checked="checked"<{/if}>>
             </td>
             <{/foreach}>
         </tr>

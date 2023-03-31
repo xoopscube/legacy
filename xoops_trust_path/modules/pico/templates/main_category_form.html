@@ -26,7 +26,7 @@
 			<{/if}>
 		</label>
 
-		<{if $mod_config.use_wraps_mode && $category.id != 0}>
+		<{if $mod_config.use_wraps_mode && $category.id !=0}>
 			<label for="category_vpath">
 				<{$smarty.const._MD_PICO_TH_VIRTUALPATH}>
 				<input type="text" name="cat_vpath" id="category_vpath" size="50" value="<{$category.vpath}>" class="pico_ascii_only">

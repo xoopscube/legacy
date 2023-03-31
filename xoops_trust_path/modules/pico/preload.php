@@ -53,7 +53,7 @@ if ( ! class_exists( 'PicoPreloadBase' ) ) {
 
 				$params['allowhtml'] = true;
 
-				if ( ! isset( $params['switcher'] ) ) {
+				if ( !isset( $params['switcher'] ) ) {
 					$id                 = $params['id'];
 					$params['switcher'] = <<<EOD
 (function(){
