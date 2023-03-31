@@ -1,11 +1,11 @@
 <ul>
-    <li class="<{$inboxView}>">
+    <li class="<{$inboxView|default:''}>">
         <a href="index.php" target="_self">
         <img class="svg inbox-in" src="<{$xoops_url}>/images/icons/inbox-in.svg">
         <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></span></a>
     </li>
 
-    <li class="<{$outboxView}>">
+    <li class="<{$outboxView|default:''}>">
         <a href="index.php?action=send" target="_self">
         <img class="svg inbox-out" src="<{$xoops_url}>/images/icons/inbox-out.svg">
         <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></span></a>
@@ -27,7 +27,7 @@
 
             <div class="dropdown-content">
                 <ul>
-                    <{if $msgdata.inbox_id}>
+                    <{if $msgdata.inbox_id|default:''}>
                     <li>
                         <a class="dropdown-item" href="#" onclick="location.href='index.php?action=new&amp;res=<{$msgdata.inbox_id}>'">
                         <img class="svg reply" src="<{$xoops_url}>/images/icons/reply.svg" width="1em" height="1em" alt="reply"> <{$smarty.const._MD_MESSAGE_TEMPLATE13}></a>
@@ -42,7 +42,7 @@
                                 <img class="svg mail-forward" src="<{$xoops_url}>/images/icons/mail-send.svg" width="1em" height="1em" alt="Forward"> <{$smarty.const._MD_MESSAGE_TEMPLATE21}></a>
                         </form>
                     </li>
-                    <{elseif $msgdata.outbox_id}>
+                    <{elseif $msgdata.outbox_id|default:''}>
                     <li>
                         <a class="dropdown-item" onclick="document.getElementById('message-delete').submit();">
                             <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"> <{$smarty.const._MD_MESSAGE_TEMPLATE14}></a>
@@ -75,14 +75,14 @@
                         <img class="svg user-block" src="<{$xoops_url}>/images/icons/user-lock.svg" width="1em" height="1em" alt="user block"> <{$smarty.const._MD_MESSAGE_SETTINGS_MSG10}></a>
                     </li>
 
-                    <{if $UserSearch}>
+                    <{if isset($UserSearch)}>
                     <li>
-                        <a class="dropdown-item"  href="<{$message_url}>?action=search">
+                        <a class="dropdown-item" href="<{$message_url}>?action=search">
                         <img class="svg user-search" src="<{$xoops_url}>/images/icons/search-adv.svg" width="1em" height="1em" alt="user search">
                         <{$smarty.const._MI_MESSAGE_SUB_SEARCH}></a>
                     </li>
                     <li>
-                        <a class="dropdown-item"  href="<{$message_url}>?action=favorites">
+                        <a class="dropdown-item" href="<{$message_url}>?action=favorites">
                         <img class="svg user-search" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" height="1em" alt="favorites">
                         <{$smarty.const._MI_MESSAGE_SUB_FAVORITES}></a>
                     </li>
