@@ -22,7 +22,7 @@
 
         <div class="ui-tab-content">
 
-            <{if $errMsg!=""}>
+            <{if $errMsg !=""}>
                 <div class="alert warning">
                     <ul>
                         <{foreach item=error from=$errMsg}>
@@ -33,7 +33,7 @@
                 <hr>
             <{/if}>
 
-            <{if $mActionForm->get('Legacy_Event_User_Preview')!=""}>
+            <{if $mActionForm->get('Legacy_Event_User_Preview') !=""}>
                 <h3><{$smarty.const._MD_MESSAGE_TEMPLATE3}> : <{$mActionForm->getShow('title')}></h3>
                 <p><{$smarty.const._MD_MESSAGE_TEMPLATE2}> : <{$mActionForm->getShow('uname')}>
                     <br><{$smarty.const._MD_MESSAGE_TEMPLATE4}></p>

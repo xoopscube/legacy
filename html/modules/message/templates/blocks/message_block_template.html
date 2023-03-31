@@ -29,7 +29,7 @@
     <a href="<{$message_url}>?action=settings">
         <img class="svg settings" src="<{$xoops_url}>/images/icons/settings.svg" width="1em" height="1em" alt="Settings"> <{$smarty.const._MI_MESSAGE_SUB_SETTINGS}></a>
 
-        <{if $UserSearch}>
+        <{if isset($UserSearch)}>
             <li>
             <a href="<{$message_url}>?action=search">
 <!--                <img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_edit.png" alt="">-->
