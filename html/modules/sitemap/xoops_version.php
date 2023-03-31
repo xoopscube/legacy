@@ -15,7 +15,7 @@
 $modversion['dirname']          = 'sitemap';
 $modversion['name']             = _MI_SITEMAP_NAME;
 $modversion['version']          = '2.33';
-$modversion['detailed_version'] = '2.33.0';
+$modversion['detailed_version'] = '2.33.1';
 $modversion['description']      = 'Automated Sitemap and XML file for search engines';
 $modversion['author']           = 'chanoir';
 $modversion['credits']          = 'The XOOPSCube Project';
