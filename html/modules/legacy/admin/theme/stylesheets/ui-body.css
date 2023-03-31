@@ -69,7 +69,6 @@ textarea::-webkit-resizer {
 
 /* -------------------- -------------------- HTML Elements */
 
-
 a:active, a:focus {
     color           : var(  --link-active  );
 }
@@ -83,15 +82,6 @@ a:link, a:visited {
     display         : inline-block;
     text-decoration : none;
 }
-
-/* ----- Add icon to external link
-a[href^="http://"]:not([href*="example.com"]):after,
-a[href^="https://"]:not([href*="example.com"]):after{
-    font-size       : 0.75rem;
-    vertical-align  : text-top;
-    content         : '\0020\2197';
-    text-decoration : none;
-}*/
 
 /* ----- ANCHOR LINK SCROLL MARGIN
    scroll-margin-top : value equal to header height */
@@ -172,7 +162,7 @@ h6 {
 hr {
     border          : 0;
     border-top      : 1px solid var(--layer-3);
-    margin          : 1.5em 0;
+    margin          : 2.5em 0;
     height          : 5px;
     background-image: linear-gradient(90deg, transparent, var(--layer-3), transparent);
 }

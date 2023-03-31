@@ -13,7 +13,7 @@
 
     <div class="ui-card-block-image card-module-svg">
         <{if $module->getVar('hasmain') && $module->getVar('weight','e') != 0}>
-            <a class="ui-module-state" href="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{if $module->modinfo.adminindex}><{$module->modinfo.adminindex}><{else}>admin/<{/if}>">
+            <a class="ui-module-state" href="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{if isset($module->modinfo.adminindex)}><{$module->modinfo.adminindex}><{else}>admin/<{/if}>">
         <{elseif $module->getVar('isactive') == 0}>
             <a class="ui-module-state ui-update-change" href="<{$xoops_url}>/modules/<{$module->getVar('dirname')}>/<{if $module->modinfo.adminindex}><{$module->modinfo.adminindex}><{else}>admin/<{/if}>">
         <{/if}>
