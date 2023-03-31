@@ -142,7 +142,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
                 $attributes = [];
                 $attributes['dummy_content'] = $uiadminhtml;
                 $template = XOOPS_LEGACY_PATH. '/templates/legacy_dummy.html';
-                self::display_message($attributes, $template, $return = false);
+                self::display_message( false, $attributes, $template );
             }
 
             // 2 - Customize the dashboard with template "dashboard.html"
@@ -163,7 +163,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
 
                     $template = XOOPS_LEGACY_PATH. '/admin/templates/dashboard.html';
 
-                    self::display_message($attributes, $template, false);
+                    self::display_message(false, $attributes, $template, );
 
                 }
             }
@@ -198,7 +198,7 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
 
             $template = XOOPS_LEGACY_PATH. '/templates/legacy_dummy.html';
 
-            self::display_message($attributes, $template, false);
+            self::display_message(false,$attributes, $template, );
         }
 
     }
