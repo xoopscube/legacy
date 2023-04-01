@@ -1,5 +1,5 @@
 <{foreach from=$tray->getElements() item=element}>
-    <{if isset($flag)}>
+    <{if !empty($flag)}>
         <{$tray->getDelimeter()}>
     <{/if}>
 <{if is_object($element)}>
