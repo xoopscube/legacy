@@ -32,13 +32,11 @@
         <{if isset($UserSearch)}>
             <li>
             <a href="<{$message_url}>?action=search">
-<!--                <img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_edit.png" alt="">-->
                 <img class="svg user-search" src="<{$xoops_url}>/images/icons/search.svg" width="1em" height="1em" alt=">User search">
                 <{$smarty.const._MI_MESSAGE_SUB_SEARCH}></a>
 
             <li>
             <a href="<{$message_url}>?action=favorites">
-<!--                <img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_edit.png" alt="">-->
                 <img class="svg favorites" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" height="1em" alt="Favorites">
                 <{$smarty.const._MI_MESSAGE_SUB_FAVORITES}></a>
         <{/if}>

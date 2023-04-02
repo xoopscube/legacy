@@ -1,4 +1,14 @@
 <?php
+/**
+ * Message module for private messages and forward to email
+ * @package    Message
+ * @version    2.3.3
+ * @author     Other authors Nuno Luciano aka gigamaster, 2020 XCL23
+ * @author     Osamu Utsugi aka Marijuana
+ * @copyright  (c) 2005-2023 The XOOPSCube Project, Authors
+ * @license    GPL 3.0
+ */
+
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
@@ -7,6 +17,7 @@ require _MY_MODULE_PATH.'forms/MessageSettingsForm.class.php';
 class settingsAction extends AbstractAction
 {
     private $mActionForm;
+    private $mService;
 
     public function __construct()
     {
@@ -38,6 +49,8 @@ class settingsAction extends AbstractAction
                 }
             }
         }
+        // service UserSearch
+        $this->mService = $this->root->mServiceManager->getService('UserSearch');
     }
 
     public function executeView(&$render)
@@ -46,5 +59,7 @@ class settingsAction extends AbstractAction
         $render->setAttribute('mActionForm', $this->mActionForm);
         $render->setAttribute('purgedays', $this->root->mContext->mModuleConfig['savedays']);
         $render->setAttribute('purgetype', $this->root->mContext->mModuleConfig['dletype']);
+        $render->setAttribute('UserSearch', $this->mService);
+        $render->setAttribute('message_url', XOOPS_URL.'/modules/message/index.php');
     }
 }
