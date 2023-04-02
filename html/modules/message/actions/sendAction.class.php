@@ -1,4 +1,14 @@
 <?php
+/**
+ * Message module for private messages and forward to email
+ * @package    Message
+ * @version    2.3.3
+ * @author     Other authors Nuno Luciano aka gigamaster, 2020 XCL23
+ * @author     Osamu Utsugi aka Marijuana
+ * @copyright  (c) 2005-2023 The XOOPSCube Project, Authors
+ * @license    GPL 3.0
+ */
+
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
@@ -10,12 +20,8 @@ class sendAction extends AbstractAction
     private $mPagenavi = null;
     private $select;
     private $subject = '';
-  
-    public function __construct()
-    {
-        parent::__construct();
-    }
-  
+    private $mService;
+
     private function _view()
     {
         $fromuid = 0;
@@ -57,6 +63,8 @@ class sendAction extends AbstractAction
             $this->listdata[] = $item_ary;
             unset($item_ary);
         }
+        // service UserSearch
+        $this->mService = $this->root->mServiceManager->getService('UserSearch');
     }
   
     public function execute()
@@ -75,8 +83,9 @@ class sendAction extends AbstractAction
         $render->setTemplateName('message_outboxlist.html');
         $render->setAttribute('ListData', $this->listdata);
         $render->setAttribute('pageNavi', $this->mPagenavi->mNavi);
-    
         $render->setAttribute('select', $this->select);
         $render->setAttribute('subject', $this->subject);
+        $render->setAttribute('UserSearch', $this->mService);
+        $render->setAttribute('message_url', XOOPS_URL.'/modules/message/index.php');
     }
 }

@@ -1,4 +1,14 @@
 <?php
+/**
+ * Message module for private messages and forward to email
+ * @package    Message
+ * @version    2.3.3
+ * @author     Other authors Nuno Luciano aka gigamaster, 2020 XCL23
+ * @author     Osamu Utsugi aka Marijuana
+ * @copyright  (c) 2005-2023 The XOOPSCube Project, Authors
+ * @license    GPL 3.0
+ */
+
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
@@ -8,6 +18,7 @@ require _MY_MODULE_PATH.'forms/MessageForm.class.php';
 class newAction extends AbstractAction
 {
     private $mActionForm;
+    private $mService;
 
     public function __construct()
     {
@@ -60,6 +71,8 @@ class newAction extends AbstractAction
                 $user = $userhand->get($to_userid);
                 $this->mActionForm->setUser($user);
             }
+            // service UserSearch
+            $this->mService = $this->root->mServiceManager->getService('UserSearch');
         }
     }
 
@@ -72,7 +85,7 @@ class newAction extends AbstractAction
             return true;
         }
 
-        if (false !== strpos($blacklist, ',')) {
+        if (strpos($blacklist, ',') !== false) {
             $lists = explode(',', $blacklist);
             if (!in_array($fromid, $lists, true)) {
                 return true;
@@ -83,45 +96,22 @@ class newAction extends AbstractAction
         return false;
     }
 
-  /*
-  private function usemail($orgi = false)
-  {
-    $setting = $this->getSettings($this->mActionForm->fuid);
-    if ( $setting->get('tomail') == 1 ) {
-      $userhand = xoops_gethandler('user');
-      $user = $userhand->get($this->mActionForm->fuid);
-      require_once XOOPS_ROOT_PATH.'/class/mail/phpmailer/class.phpmailer.php';
-      require_once _MY_MODULE_PATH.'class/MyMailer.class.php';
-      $mailer = new My_Mailer();
-      $mailer->prepare();
-      $mailer->setFromname($this->root->mContext->mXoopsConfig['sitename']);
-      $mailer->setFrom($this->root->mContext->mXoopsConfig['adminmail']);
-      $mailer->setTo($user->get('email'), $user->get('uname'));
+    private function usemail()
+    {
+        $setting = $this->getSettings($this->mActionForm->fuid);
+        if (1 == $setting->get('tomail')) {
+            $userhand = xoops_gethandler('user');
+            $user = $userhand->get($this->mActionForm->fuid);
 
-      $mailer->setSubject(_MD_MESSAGE_MAILSUBJECT);
-      $mailer->setBody($this->getMailBody($setting->get('viewmsm')));
-
-      $mailer->Send();
+            $mailer = $this->getMailer();
+            $mailer->setFromName($this->root->mContext->mXoopsConfig['sitename']);
+            $mailer->setFromEmail($this->root->mContext->mXoopsConfig['adminmail']);
+            $mailer->setToEmails($user->get('email'));
+            $mailer->setSubject(_MD_MESSAGE_MAILSUBJECT);
+            $mailer->setBody($this->getMailBody($setting->get('viewmsm')));
+            $mailer->send();
+        }
     }
-  }
-  */
-
-  private function usemail()
-  {
-      $setting = $this->getSettings($this->mActionForm->fuid);
-      if (1 == $setting->get('tomail')) {
-          $userhand = xoops_gethandler('user');
-          $user = $userhand->get($this->mActionForm->fuid);
-
-          $mailer = $this->getMailer();
-          $mailer->setFromName($this->root->mContext->mXoopsConfig['sitename']);
-          $mailer->setFromEmail($this->root->mContext->mXoopsConfig['adminmail']);
-          $mailer->setToEmails($user->get('email'));
-          $mailer->setSubject(_MD_MESSAGE_MAILSUBJECT);
-          $mailer->setBody($this->getMailBody($setting->get('viewmsm')));
-          $mailer->send();
-      }
-  }
 
     private function getMailBody($body = 0)
     {
@@ -161,5 +151,7 @@ class newAction extends AbstractAction
         $render->setTemplateName('message_new.html');
         $render->setAttribute('mActionForm', $this->mActionForm);
         $render->setAttribute('errMsg', $this->errMsg);
+        $render->setAttribute('UserSearch', $this->mService);
+        $render->setAttribute('message_url', XOOPS_URL.'/modules/message/index.php');
     }
 }
