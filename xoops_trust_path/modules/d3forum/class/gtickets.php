@@ -23,12 +23,12 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 			global $xoopsConfig;
 
 			// language file
-			if ( defined( 'XOOPS_ROOT_PATH' ) && ! empty( $xoopsConfig['language'] ) && ! strstr( $xoopsConfig['language'], '/' ) ) {
-
-				if ( file_exists( dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml' ) ) {
-					include dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml';
-				}
-			}
+//			if ( defined( 'XOOPS_ROOT_PATH' ) && ! empty( $xoopsConfig['language'] ) && ! strstr( $xoopsConfig['language'], '/' ) ) {
+//
+//				if ( file_exists( dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml' ) ) {
+//					include dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml';
+//				}
+//			}
 
 			// default messages
 			if ( empty( $this->messages ) ) {

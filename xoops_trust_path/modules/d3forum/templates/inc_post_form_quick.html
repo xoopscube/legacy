@@ -8,7 +8,9 @@
     <input type="hidden" name="pid" id="pid" value="<{$post.id}>">
     <input type="hidden" name="topic_id" id="topic_id" value="<{$topic.id}>">
     <input type="hidden" name="forum_id" id="forum_id" value="<{$forum.id}>">
+    <{if isset($external_link_id)}>
     <input type="hidden" name="external_link_id" id="external_link_id" value="<{$external_link_id|escape}>">
+    <{/if}>
     <input type="hidden" name="smiley" id="smiley" value="1">
     <input type="hidden" name="xcode" id="xcode" value="1">
     <input type="hidden" name="br" id="br" value="1">
@@ -56,8 +58,8 @@
 
     <label for="message">
         <{$smarty.const._MD_D3FORUM_TH_BODY}>
-        <textarea name="message" id="message" cols="50" rows="4"><{$message}></textarea>
-        <{$antispam.html_in_form}>
+        <textarea name="message" id="message" cols="50" rows="4"><{$message|default:''}></textarea>
+        <{$antispam.html_in_form|default:''}>
     </label>
 
     <footer>
@@ -65,7 +67,7 @@
             <img class="svg comment-edit" src="<{$xoops_url}>/images/icons/comment-edit.svg" width="1em" alt="edit"> <{$smarty.const._MD_D3FORUM_DOPOST}>
         </button>
 
-        <{if $external_link_id}>
+        <{if isset($external_link_id)}>
         <span>
         <a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>&amp;external_link_id=<{$external_link_id|escape:"url"}>&amp;subject=<{$subject_raw|escape:"url"}>">
         <{$smarty.const._MD_D3FORUM_LINK_RICHERCOMMENTFORM}>
@@ -79,19 +81,17 @@
 
 <{* Start Form Validation JavaScript *}>
 <script type="text/javascript">
-    <!--//
-    <{$antispam.js_global}>
+    <{$antispam.js_global|default:''}>
 
     function xoopsFormValidate_postform() {
         myform = window.document.postform;
         if ( myform.subject.value.replace(/^\s+|\s+$/g,"") == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_SUBJECT|string_format:$smarty.const._FORM_ENTER}>"); myform.subject.focus(); return false; }
         if ( myform.message.value.replace(/^\s+|\s+$/g,"") == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_ERR_NOMESSAGE}>"); myform.message.focus(); return false; }
-    <{$antispam.js_in_validate_function}>
+    <{$antispam.js_in_validate_function|default:''}>
         return true;
     }
     function d3forum_quote_message() {
         xoopsGetElementById("message").value = xoopsGetElementById("message").value + xoopsGetElementById("reference_quote").value ;
     }
-    //-->
 </script>
 <{* End Form Validation JavaScript *}>

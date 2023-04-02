@@ -299,13 +299,12 @@
         </article>
     </dialog>
     <{/if}>
-    <{$antispam.html_in_form}>
+    <{$antispam.html_in_form|default:''}>
 </form>
 
 <{* Start Form Validation JavaScript *}>
 <script type="text/javascript">
-<!--//
-<{$antispam.js_global}>
+<{$antispam.js_global|default:''}>
 
 function xoopsFormValidate_postform() {
 	myform = window.document.postform;
@@ -316,13 +315,13 @@ function xoopsFormValidate_postform() {
 	    window.alert("<{$smarty.const._MD_D3FORUM_ERR_NOMESSAGE}>");
 	    myform.message.focus(); return false; }
 	<{/if}>
-	<{$antispam.js_in_validate_function}>
+	<{$antispam.js_in_validate_function|default:''}>
 	return true;
 }
     function d3forum_quote_message() {
         xoopsGetElementById("message").value = xoopsGetElementById("message").value + xoopsGetElementById("reference_quote").value ;
     }
-//-->
+
 </script>
 <{* End Form Validation JavaScript *}>
 

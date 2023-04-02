@@ -1,5 +1,5 @@
 <form action="<{$mod_url}>/index.php" method="get">
-    <{$forum_selection_sort}>
+    <{$forum_selection_sort|default:''}>
 
     <input type="hidden" name="forum_id" value="<{$forum.id}>">
     <input type="hidden" name="external_link_id" value="<{$query.external_link_id}>">
