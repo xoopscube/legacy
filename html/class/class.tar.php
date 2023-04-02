@@ -48,17 +48,17 @@ class tar
     }
 
     /**
-     * Computes the unsigned Checksum of a file's header
-     * to try to ensure valid file
-     *
-     * @param string $bytestring
+     * Computes the unsigned Checksum of a file's header to try to ensure valid file
+     * PHP8 Fatal error - Uncaught TypeError: Unsupported operand types: string + int
+     * XCL 2.3.x PHP8 fix to add a string to an integer, replace $unsigned_chksum = ''; with $unsigned_chksum = null;
+     * @param $bytestring
      *
      * @access    private
      * @return float|int|string
      */
     public function __computeUnsignedChecksum($bytestring)
     {
-        $unsigned_chksum = '';
+        $unsigned_chksum = null;
         for ($i=0; $i<512; $i++) {
             $unsigned_chksum += ord($bytestring[$i]);
         }
