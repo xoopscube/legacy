@@ -29,7 +29,7 @@
         <{* ------- FILTER SORT *}>
 
         <form action="<{$mod_url}>/index.php" method="get">
-            <{$forum_selection_sort}>
+            <{$forum_selection_sort|default:''}>
             <input type="hidden" name="cat_ids" value="<{$cat_ids}>">
 
             <div class="grid-2">

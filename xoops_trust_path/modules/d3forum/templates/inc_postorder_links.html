@@ -21,7 +21,7 @@
         </a>
     <{/if}>
 
-    <{if $prev_topic.id || $next_topic.id}>
+    <{if isset($prev_topic.id) || isset($next_topic.id)}>
         <{if $prev_topic.id}>
         <a role="button" class="outline secondary" href="<{$mod_url}>/index.php?topic_id=<{$prev_topic.id}>" aria-label="<{$prev_topic.title}>">
             <img class="svg topic-prev" src="<{$xoops_url}>/images/icons/topic-prev.svg" width="1em" alt="previous">
@@ -39,3 +39,4 @@
         <{/if}>
     <{/if}>
 </div>
+

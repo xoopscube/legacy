@@ -364,7 +364,7 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 		$pagenav = '';
 
 		// LIMIT
-		$num = $params['posts_num'] < 5 ? 5 : (int) $params['posts_num'];
+		$num = $params['posts_num'] < 5 ? 5 : $params['posts_num'];
 
 		$pos = 0;
 

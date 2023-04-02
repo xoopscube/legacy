@@ -36,7 +36,7 @@
 
     <{if $mod_config.show_rss}>
     <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1" aria-label="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>">
-        <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" alt="RSS">
+        <img class="svg" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" height="1em" alt="RSS">
     </a>
     <{/if}>
 
@@ -53,7 +53,7 @@
 
         <{* ----- List All Topics *}>
         <a role="button" class="primary"  href="<{$mod_url}>/index.php?cat_ids=<{$category.id}>">
-            <img class="svg list-tree" src="<{$xoops_url}>/images/icons/list-tree.svg">
+            <img class="svg" src="<{$xoops_url}>/images/icons/list-tree.svg" width="1em" height="1em" alt="list-tree">
             <{$smarty.const._MD_D3FORUM_LISTTOPICSINCATEGORY}>
         </a>
 
@@ -67,7 +67,7 @@
             <{* ----- CATEGORY NEW FORUM *}>
             <{if $category.isadminormod}>
                 <li><a href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$category.id}>" aria-label="<{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}>">
-                    <img class="svg forum-plus" src="<{$xoops_url}>/images/icons/topic_plus.svg">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/topic_plus.svg" width="1em" height="1em" alt="new-forum">
                     <{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}>
                 </a></li>
             <{/if}>
@@ -75,17 +75,17 @@
             <{* ----- CATEGORY CREATE *}>
             <{if $xoops_isadmin}>
                 <li><a href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$category.id}>" aria-label="<{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}>">
-                    <img class="svg new" src="<{$xoops_url}>/images/icons/folder-plus.svg" width="1em" alt="new">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/folder-plus.svg" width="1em" height="1em" alt="new-category">
                     <{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}>
                 </a></li>
             <{* ----- CATEGORY MANAGER *}>
                 <li><a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>" aria-label="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>">
-                    <img class="svg" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="" alt="edit">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="1em" alt="edit">
                     <{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>
                 </a></li>
             <{* ----- CATEGORY ACCESS *}>
                 <li><a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>" aria-label="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}>">
-                    <img class="svg lock" src="<{$xoops_url}>/images/icons/lock.svg" width="1em" alt="permissions">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/lock.svg" width="1em" height="1em" alt="permissions">
                     <{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}>
                 </a></li>
             <{/if}>
@@ -113,13 +113,13 @@
         <div class="headings">
             <h3>
                 <a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>">
-                    <img class="svg category_<{$subcategory.bit_new}>" src="<{$xoops_url}>/images/icons/category_<{$subcategory.bit_new}>.svg" alt="<{$subcategory.title}>">
+                    <img class="svg category_<{$subcategory.bit_new}>" src="<{$xoops_url}>/images/icons/category_<{$subcategory.bit_new}>.svg" width="1em" height="1em" alt="<{$subcategory.title}>">
                     <{$subcategory.title}>
                 </a>
 
                 <{if $xoops_isadmin}>
                 <a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$subcategory.id}>" data-tooltip="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>">
-                    <img class="svg edit" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" alt="edit">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="1em" alt="edit">
                 </a>
                 <{/if}>
             </h3>
@@ -134,7 +134,7 @@
 
                 <{if $mod_config.show_rss}>
                 <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$subcategory.id}>&amp;odr=1" aria-label="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>">
-                    <img class="svg" src="<{$xoops_url}>/images/icons/rss.svg" alt="RSS">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" height="1em" alt="RSS">
                 </a>
                 <{/if}>
             </p>
@@ -166,15 +166,15 @@
         <div class="headings">
             <h3>
                 <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>">
-                    <img class="svg forum" src="<{$xoops_url}>/images/icons/forum_<{$forum.bit_new}>.svg" alt="forum>">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/forum_<{$forum.bit_new}>.svg" width="1em" height="1em" alt="forum>">
                     <{$forum.title}>
                 </a>
 
-            <{* if $xoops_isadmin *}>
-            <{if $forum.isadminormod}>
-            <a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>" data-tooltip="<{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}>">
-                <img class="svg edit" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" alt="edit"></a>
-            <{/if}>
+                <{* if $xoops_isadmin *}>
+                <{if $forum.isadminormod}>
+                <a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>" data-tooltip="<{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}>">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="1em" alt="edit"></a>
+                <{/if}>
             </h3>
 
             <p class="activity">
@@ -186,7 +186,7 @@
                 <span class="activity-last">
                 <{$smarty.const._MD_D3FORUM_LASTPOST}> <span class="badge"><{$forum.last_post_time_formatted}></span>
                 <a href="<{$mod_url}>/index.php?post_id=<{$forum.last_post_id}>" aria-label="<{$forum.last_post_subject}>">
-                    <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$forum.last_post_icon}>.svg" alt="posticon">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/posticon<{$forum.last_post_icon}>.svg" width="1em" height="1em" alt="posticon">
                     <{if $forum.last_post_gname}>
                     <span><{$forum.last_post_gname}></span>
                     <{else}>
@@ -197,23 +197,16 @@
 
                 <{if $mod_config.show_rss}>
                 <a href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>" aria-label="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>">
-                    <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" alt="RSS">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" height="1em" alt="RSS">
                 </a>
                 <{/if}>
-
             </p>
 
         </div>
 
-
         <{if $forum.desc}>
-        <div class="description">
-            <{$forum.desc}>
-        </div>
+        <div class="description"><{$forum.desc}></div>
         <{/if}>
-
-
-
 
         <{* ------- Action Control *}>
         <div class="flex-justify">
@@ -248,16 +241,16 @@
 <h5 id="forum-icons-legend">
     <label for="forum-legend">
         <input role="switch" type="checkbox" id="forum-legend" onclick="slideToggle('.forum-legend', this)" value="0">
-        <img class="svg help" src="<{$xoops_url}>/images/icons/info.svg" width="1em" height="1em" alt="Legend">
+        <img class="svg" src="<{$xoops_url}>/images/icons/info.svg" width="1em" height="1em" alt="help">
         <{$smarty.const._MD_D3FORUM_LEGEND}></label>
 </h5>
 
 <div class="forum-legend" style="display:none">
     <ul class="icon-list">
-        <li><img class="svg category-new" src="<{$xoops_url}>/images/icons/category_1.svg" width="1.25em"> = <{$smarty.const._MD_D3FORUM_ALT_NEWPOSTS}> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
-        <li><img class="svg category" src="<{$xoops_url}>/images/icons/category_0.svg" width="1.25em"> = <{$smarty.const._MD_D3FORUM_ALT_NONEWPOSTS}> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
-        <li><img class="svg forum-mew" src="<{$xoops_url}>/images/icons/forum_1.svg" width="1.25em" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_NEWPOSTS}></li>
-        <li><img class="svg forum" src="<{$xoops_url}>/images/icons/forum_0.svg" width="1.25em" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_NONEWPOSTS}></li>
+        <li><img class="svg" src="<{$xoops_url}>/images/icons/category_1.svg" width="1em" height="1em" alt="category-new"> = <{$smarty.const._MD_D3FORUM_ALT_NEWPOSTS}> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
+        <li><img class="svg" src="<{$xoops_url}>/images/icons/category_0.svg" width="1em" height="1em" alt="category"> = <{$smarty.const._MD_D3FORUM_ALT_NONEWPOSTS}> <{$smarty.const._MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY}></li>
+        <li><img class="svg" src="<{$xoops_url}>/images/icons/forum_1.svg"  width="1em" height="1em" alt="forum-mew"> = <{$smarty.const._MD_D3FORUM_ALT_NEWPOSTS}></li>
+        <li><img class="svg" src="<{$xoops_url}>/images/icons/forum_0.svg" width="1em" height="1em" alt="forum"> = <{$smarty.const._MD_D3FORUM_ALT_NONEWPOSTS}></li>
     </ul>
 </div>
 
@@ -276,7 +269,7 @@
 
         <div class="grid-2">
             <a role="button" class="outline" href="<{$mod_url}>/index.php?page=search">
-                <img class="svg search" src="<{$xoops_url}>/images/icons/search.svg" width="1em" alt="search">
+                <img class="svg" src="<{$xoops_url}>/images/icons/search.svg" width="1em" height="1em" alt="search">
                 <{$smarty.const._MD_D3FORUM_LINK_ADVSEARCH}>
             </a>
             <button type="submit" role="button" class="outline" value="<{$smarty.const._MD_D3FORUM_BTN_JUMPTOCATEGORY}>"><{$smarty.const._MD_D3FORUM_BTN_JUMPTOCATEGORY}></button>
