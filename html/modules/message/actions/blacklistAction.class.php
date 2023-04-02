@@ -1,4 +1,14 @@
 <?php
+/**
+ * Message module for private messages and forward to email
+ * @package    Message
+ * @version    2.3.3
+ * @author     Other authors Nuno Luciano aka gigamaster, 2020 XCL23
+ * @author     Osamu Utsugi aka Marijuana
+ * @copyright  (c) 2005-2023 The XOOPSCube Project, Authors
+ * @license    GPL 3.0
+ */
+
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
@@ -7,11 +17,7 @@ class blacklistAction extends AbstractAction
 {
     private $mActionForm;
     private $blackuser = [];
-
-//    public function __construct()
-//    {
-//        parent::__construct();
-//    }
+    private $mService;
 
     public function execute()
     {
@@ -19,30 +25,32 @@ class blacklistAction extends AbstractAction
         $modobj = $this->getSettings();
         $uid = (int)$this->root->mContext->mRequest->getRequest('uid');
         if (0 !== $uid) {  //Add
-      $this->addblklist($modobj, $uid);
+            $this->addblklist($modobj, $uid);
         } else {
             switch ($this->root->mContext->mRequest->getRequest('cmd')) {
-        case 'add':
-          $modHand = xoops_getmodulehandler('settings', _MY_DIRNAME);
-          $uid = $modHand->getuidTouname($this->root->mContext->mRequest->getRequest('uname'));
-          if ($uid > 0) {
-              $this->addblklist($modobj, $uid);
-          } else {
-              $this->setErr(_MD_MESSAGE_SETTINGS_MSG19);
-          }
-          break;
-        case 'del': //Delete
-          $this->delblklist($modobj);
-          break;
-        default:
-          if ('' !== $modobj->get('blacklist')) {
-              $blusers = explode(',', $modobj->get('blacklist'));
-              foreach ($blusers as $bluid) {
-                  $this->blackuser[$bluid] = $this->getLinkUnameFromId($bluid);
-              }
-          }
-      }
+            case 'add':
+            $modHand = xoops_getmodulehandler('settings', _MY_DIRNAME);
+            $uid = $modHand->getuidTouname($this->root->mContext->mRequest->getRequest('uname'));
+            if ($uid > 0) {
+                $this->addblklist($modobj, $uid);
+            } else {
+                $this->setErr(_MD_MESSAGE_SETTINGS_MSG19);
+            }
+            break;
+            case 'del': //Delete
+                $this->delblklist($modobj);
+                break;
+            default:
+                if ('' !== $modobj->get('blacklist')) {
+                    $blusers = explode(',', $modobj->get('blacklist'));
+                    foreach ($blusers as $bluid) {
+                        $this->blackuser[$bluid] = $this->getLinkUnameFromId($bluid);
+                    }
+                }
+            }
         }
+        // service UserSearch
+        $this->mService = $this->root->mServiceManager->getService('UserSearch');
     }
 
     private function delblklist($modobj)
@@ -101,5 +109,7 @@ class blacklistAction extends AbstractAction
     {
         $render->setTemplateName('message_blaclist.html');
         $render->setAttribute('blackuser', $this->blackuser);
+        $render->setAttribute('UserSearch', $this->mService);
+        $render->setAttribute('message_url', XOOPS_URL.'/modules/message/index.php');
     }
 }

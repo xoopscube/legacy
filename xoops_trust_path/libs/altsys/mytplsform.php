@@ -190,7 +190,7 @@ $mymenu_fake_uri = 'index.php?mode=admin&lib=altsys&page=mytplsadmin&dirname=' .
 altsys_include_mymenu();
 
 echo '<h2>' . _MD_A_MYTPLSFORM_EDIT . '</h2>';
-echo '<div class="">' . _MD_A_MYBLOCKSADMIN_CUSTOM_TIPS . '</div>';
+echo '<div class="tips">' . _MD_A_MYTPLSFORM_CUSTOM_TIPS . '</div>';
 
 // Template Set, Name, Type
 echo '<table class="outer">

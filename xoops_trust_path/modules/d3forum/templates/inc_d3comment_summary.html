@@ -1,11 +1,11 @@
 <{* Dev-Mode Toggle *}>
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<{if $topic.comment_link}>
+<{if !empty($topic.comment_link)}>
 
 	<h4><a href="<{$topic.comment_link}>" aria-label="topic-comment-link"><{$smarty.const._MD_D3FORUM_LINK_COMMENTSOURCE}></a></h4>
 
-    <{elseif is_array($topic.comment_description)}>
+    <{elseif isset($topic.comment_description) && is_array($topic.comment_description)}>
     <article>
         <div class="grid-left">
         <div><{$smarty.const._MD_D3FORUM_COM_TARGETMODULE}></div>
@@ -19,7 +19,7 @@
         </div>
     </article>
 
-    <{elseif $topic.comment_description}>
+    <{elseif isset($topic.comment_description)}>
     <div aria-label="topic-comment-description"><{$topic.comment_description}></div>
 
 <{/if}>

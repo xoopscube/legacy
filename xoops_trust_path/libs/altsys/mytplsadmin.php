@@ -317,7 +317,7 @@ echo '<section data-layout="row center-justify" class="action-control">
         echo '<a class="button" href="index.php?mode=admin&lib=altsys&page=mytplsform&tpl_tplset=default">' . _MYTPLSADMIN_CREATENEWCUSTOMTEMPLATE . '</a>';
     }
 echo '<a class="button" href="' .XOOPS_URL . '/modules/legacyRender/admin/index.php?action=TplsetList">Render</a>
-        <button class="help-admin button" type="button" data-id="4" data-module="altsys" data-help-article="#help-templates" aria-label="'._HELP.'"><b>?</b></button>
+        <button class="help-admin button-icon" type="button" data-module="altsys" data-help-article="#help-templates" aria-label="'._HELP.'"><b>?</b></button>
     </div>
     </section>';
 

@@ -1,14 +1,14 @@
 /*
 --------------------------------------------------------
 suggest.js - Input Suggest
-Version 2.1.1 (Update 2009/10/04)
+Version 2.3.1 (Update 2013/02/11)
 
-Copyright (c) 2006-2009 onozaty (https://www.enjoyxstudy.com)
+Copyright (c) 2006-2013 onozaty (http://www.enjoyxstudy.com)
 
 Released under an MIT-style license.
 
 For details, see the web site:
- https://www.enjoyxstudy.com/javascript/suggest/
+ http://www.enjoyxstudy.com/javascript/suggest/
 
 --------------------------------------------------------
 */
@@ -50,12 +50,9 @@ Suggest.Local.prototype = {
     // reg event
     this._addEvent(this.input, 'focus', this._bind(this.checkLoop));
     this._addEvent(this.input, 'blur', this._bind(this.inputBlur));
+    this._addEvent(this.suggestArea, 'blur', this._bind(this.inputBlur));
 
-    var keyevent = 'keydown';
-    if (window.opera || (navigator.userAgent.indexOf('Gecko') >= 0 && navigator.userAgent.indexOf('KHTML') == -1)) {
-      keyevent = 'keypress';
-    }
-    this._addEvent(this.input, keyevent, this._bindEvent(this.keyEvent));
+    this._addEvent(this.input, 'keydown', this._bindEvent(this.keyEvent));
 
     // init
     this.clearSuggestArea();
@@ -79,13 +76,22 @@ Suggest.Local.prototype = {
 
   inputBlur: function() {
 
-    this.changeUnactive();
-    this.oldText = this.getInputText();
+    setTimeout(this._bind(function(){
 
-    if (this.timerId) clearTimeout(this.timerId);
-    this.timerId = null;
+      if (document.activeElement == this.suggestArea
+          || document.activeElement == this.input) {
+        // keep suggestion
+        return;
+      }
 
-    setTimeout(this._bind(this.clearSuggestArea), 500);
+      this.changeUnactive();
+      this.oldText = this.getInputText();
+
+      if (this.timerId) clearTimeout(this.timerId);
+      this.timerId = null;
+
+      setTimeout(this._bind(this.clearSuggestArea), 500);
+    }, 500));
   },
 
   checkLoop: function() {
@@ -174,6 +180,7 @@ Suggest.Local.prototype = {
     }
 
     this.suggestArea.style.display = '';
+    this.suggestArea.scrollTop = 0;
   },
 
   getInputText: function() {
@@ -250,6 +257,7 @@ Suggest.Local.prototype = {
         if (this.activePosition < 0) {
           this.activePosition = null;
           this.input.value = this.inputValueBackup;
+          this.suggestArea.scrollTop = 0;
           return;
         }
       }
@@ -264,6 +272,7 @@ Suggest.Local.prototype = {
       if (this.activePosition >= this.suggestList.length) {
         this.activePosition = null;
         this.input.value = this.inputValueBackup;
+        this.suggestArea.scrollTop = 0;
         return;
       }
     }
@@ -313,6 +322,7 @@ Suggest.Local.prototype = {
     this.activePosition = index;
     this.changeActive(index);
 
+    this.clearSuggestArea();
     this.moveEnd();
   },
 
@@ -335,6 +345,16 @@ Suggest.Local.prototype = {
 
   setStyleActive: function(element) {
     element.className = this.classSelect;
+
+    // auto scroll
+    var offset = element.offsetTop;
+    var offsetWithHeight = offset + element.clientHeight;
+
+    if (this.suggestArea.scrollTop > offset) {
+      this.suggestArea.scrollTop = offset
+    } else if (this.suggestArea.scrollTop + this.suggestArea.clientHeight < offsetWithHeight) {
+      this.suggestArea.scrollTop = offsetWithHeight - this.suggestArea.clientHeight;
+    }
   },
 
   setStyleUnactive: function(element) {
@@ -441,6 +461,8 @@ Suggest.LocalMulti.prototype.listClick = function(event, index) {
   this.changeActive(index);
 
   this.input.value += this.delim;
+
+  this.clearSuggestArea();
   this.moveEnd();
 };
 
