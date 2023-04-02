@@ -9,3 +9,4 @@ define( '_MD_A_MYTPLSFORM_BTN_MODIFYCONT' , '更新して編集継続');
 define( '_MD_A_MYTPLSFORM_BTN_MODIFYEND' , '更新して編集終了');
 define( '_MD_A_MYTPLSFORM_BTN_CREATE' , '新規登録');
 define( '_MD_A_MYTPLSFORM_BTN_RESET' , 'リセット');
+define( '_MD_A_MYTPLSFORM_CUSTOM_TIPS' , 'Custom Template Tip.');
