@@ -9,3 +9,4 @@ define( '_MD_A_MYTPLSFORM_BTN_MODIFYCONT' , 'Modifier');
 define( '_MD_A_MYTPLSFORM_BTN_MODIFYEND' , 'Sauvegarder');
 define( '_MD_A_MYTPLSFORM_BTN_CREATE' , 'Créer');
 define( '_MD_A_MYTPLSFORM_BTN_RESET' , 'Réinitialiser');
+define( '_MD_A_MYTPLSFORM_CUSTOM_TIPS' , 'Custom Template Tip.');
