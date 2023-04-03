@@ -3,24 +3,24 @@
 // Altsys admin menu and breadcrumbs
 define( '_MD_A_MYMENU_MYTPLSADMIN' , 'Templates');
 define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Blocks Permissions');
-define( '_MD_A_MYMENU_MYPREFERENCES' , 'Preferences');
+define( '_MD_A_MYMENU_MYPREFERENCES' , 'Preferenciass');
 
 // Headings
-define( '_AM_TH_DATETIME' , 'Time');
-define( '_AM_TH_USER' , 'User');
+define( '_AM_TH_DATETIME' , 'Data');
+define( '_AM_TH_USER' , 'Utilisador');
 define( '_AM_TH_IP' , 'IP');
-define( '_AM_TH_IP_BAN' , 'System IP Ban');
-define( '_AM_TH_AGENT' , 'AGENT');
-define( '_AM_TH_TYPE' , 'Type');
-define( '_AM_TH_DESC' , 'Description');
-define( '_AM_TH_INFO' , 'Overview');
-define( '_AM_TH_TIPS' , 'Solution');
+define( '_AM_TH_IP_BAN' , 'IP Banido do sistema');
+define( '_AM_TH_AGENT' , 'AGENTE');
+define( '_AM_TH_TYPE' , 'Tipo');
+define( '_AM_TH_DESC' , 'Descrição');
+define( '_AM_TH_INFO' , 'Resumo');
+define( '_AM_TH_TIPS' , 'Solução');
 
 define( '_AM_TH_BADIPS' , 'Bad IPs<br><br>Write each IP address in a different line.<br>Blank means all IPs are allowed<br>The abbreviation of IPv6 address "::" and abbreviation of "0" can not be used.');
 define( '_AM_TH_GROUP1IPS' , 'Allowed IPs for Group=1<br><br>Write each IP address in a different line.<br>The abbreviation of IPv6 address "::" and abbreviation of "0" can not be used.<br>192.168. means 192.168.*<br>Blank means all IPs are allowed</span>');
 
-define( '_AM_LABEL_COMPACTLOG' , 'Compact log');
-define( '_AM_BUTTON_COMPACTLOG' , 'Compact');
+define( '_AM_LABEL_COMPACTLOG' , 'Compactar log');
+define( '_AM_BUTTON_COMPACTLOG' , 'Compactar');
 define( '_AM_JS_COMPACTLOGCONFIRM' , 'Duplicated (IP,Type) records will be removed. Do you want to proceed ?');
 define( '_AM_LABEL_REMOVEALL' , 'Remove all records');
 define( '_AM_BUTTON_REMOVEALL' , 'Remove all');

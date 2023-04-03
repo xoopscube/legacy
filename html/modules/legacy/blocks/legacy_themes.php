@@ -16,7 +16,7 @@
  * @param $options
  * @return array|null
  * */
-function b_legacy_themes_show($options)
+function b_legacy_themes_show($options): ?array
 {
     global $xoopsConfig;
 
@@ -33,10 +33,10 @@ function b_legacy_themes_show($options)
     $block['isEnableChanger'] = 1;
 
     $theme_options = [];
-    $handler =& xoops_getmodulehandler('theme', 'legacy');
+    $handler = xoops_getmodulehandler('theme', 'legacy');
     foreach ($xoopsConfig['theme_set_allowed'] as $name) {
-        $theme =& $handler->get($name);
-        if (null !== $theme) {
+        $theme = $handler->get($name);
+        if ( $theme !== null ) {
             $theme_option['name'] = $name;
             $theme_option['screenshot'] = $theme->getShow('screenshot');
             $theme_option['screenshotUrl'] = XOOPS_THEME_URL . '/' . $name . '/' . $theme->getShow('screenshot');

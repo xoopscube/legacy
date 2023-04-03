@@ -339,11 +339,11 @@ define( '_AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK' , "<a href='./index.php?action=BlockI
 define( '_AD_LEGACY_TIPS_BLOCK' , "Ou simplesmente <a href='./index.php?action=CustomBlockEdit'>crie um bloco personalizado</a> com seu próprio conteúdo");
 define( '_AD_LEGACY_TIPS_BLOCK2' , "Ao instalar um bloco, você pode editar as opções.");
 define( '_AD_LEGACY_TIPS_BLOCK_UNINSTALL' , "Mesmo se você desinstalar um bloco, a configuração do bloco não é removida. O bloco é removido simplesmente da vista. Consequentemente você pode reinstalar o bloco facilmente porque o instalador recorda a última configuração.");
-define( '_AD_LEGACY_TIPS_COMMENT' , "Search and manage active, pending or hidden comments from any user on any module.");
+define( '_AD_LEGACY_TIPS_COMMENT' , "Search and manage active, pending or hidden comments from any user on any module.<br>Note : Duplicatable (D3) Modules feature a comment-integration to be managed by D3forum !");
 define( '_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL' , "Even if you uninstall the custom block, the configuration of the block isn't deleted. The block is simply removed from view. You can re-install or delete it from the database from the <q><a href='.\index.php?action=BlockInstallList'>install block page</a></q>.");
 define( '_AD_LEGACY_TIPS_IMAGE' , "Você pode facilmente registrar muitos ícones emotivos de uma só vez ao enviá-los em um arquivo compactado.)");
 define( '_AD_LEGACY_TIPS_IMAGE_UPLOAD' , "Você pode facilmente registrar muitas imagens de arquivo, incluindo upload deles! <br /> Este lote-upload não verifica comprimento e Arquivo-Tamanho de cada imagem! <br /> Por favor, pré-ajustar-los antes de arquivar eles! <br /> (Apenas tar.gz ou zip)");
-define( '_AD_LEGACY_TIPS_IMGCAT' , "Gestor do banco de imagens interno do portal, e de suas respectivas permissões. Quando instalado, X-elFinder substitui o gerenciamento de imagem padrão.");
+define( '_AD_LEGACY_TIPS_IMGCAT' , "Gestor do banco de imagens interno do portal, e de suas respectivas permissões.<br>A instalação do módulo X-elFinder substitui o gerenciamento de imagem padrão.");
 define( '_AD_LEGACY_TIPS_IMGCAT_STORETYPE' , "Escolha o tipo de armazenamento, arquivo ou banco de dados, para as imagens. <strong>A configuração não pode ser alterada posteriormente.</strong><br>No caso de você selecionar o banco de dados como destino de armazenamento, os arquivos de imagem serão armazenados como dados do tipo BLOB, que podem não ser adequados para fins de backup.");
 define( '_AD_LEGACY_TIPS_INSTALL_BLOCK' , "Você pode personalizar o seu portal instalando e personalizando novos blocos.");
 define( '_AD_LEGACY_TIPS_MOD' , "Editar ou instalar novos módulos, personalizar o nome e as preferências, cache e permissões de utilizador!");

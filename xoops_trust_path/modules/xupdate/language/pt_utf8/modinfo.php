@@ -134,7 +134,7 @@ define( '_MI_XUPDATE_PARALLEL_FETCH_MAXDSC' , 'The number of HTTP simultaneous c
 define( '_MI_XUPDATE_CURL_MULTI_SELECT' , 'curl_multi_select not use');
 define( '_MI_XUPDATE_CURL_MULTI_SELECTDSC' , 'Choose "yes" only when the number of simultaneous connection is two or more and data acquisition goes wrong.');
 define( '_MI_XUPDATE_CURL_SSL_NO_VERIFY' , 'cURL: Disable SSL verify');
-define( '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC' , 'Please choose "yes", when the server authentication at the time of SSL connection becomes an error by cURL.');
+define( '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC' , '<b id="curl-ssl">cURL</b> Turn off curl\'s verification to bypass SSL certificate validation for local and test servers if you get an error.');
 
 // progress messages
 define( '_MI_XUPDATE_PROG_FILE_GETTING' , 'Downloading the package.');

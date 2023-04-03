@@ -1,6 +1,6 @@
 <?php
 
-define( '_MD_A_PICO_LINK_EXTRACT' , 'Extrait');
+define( '_MD_A_PICO_LINK_EXTRACT' , 'Delete');
 define( '_MD_A_PICO_LABEL_SEARCHBYPHRASE' , 'Recherche par phrase');
 define( '_MD_A_PICO_H2_TAGS' , 'Gestion de mots clés, étiquettes');
 define( '_MD_A_PICO_TH_TAG' , 'Étiquette, mot clé');
@@ -16,7 +16,7 @@ define( '_MD_A_PICO_H2_INDEPENDENTPERMISSION' , 'Autorisation indépendante');
 define( '_MD_A_PICO_LABEL_INDEPENDENTPERMISSION' , 'Définir les autorisations pour cette catégorie indépendamment de la catégorie parent');
 define( '_MD_A_PICO_LINK_CATPERMISSIONID' , 'Vérifiez les autorisations parentales');
 define( '_MD_A_PICO_LINK_DETAIL' , 'Détail');
-define( '_MD_A_PICO_H2_EXTRAS' , 'Extras');
+define( '_MD_A_PICO_H2_EXTRAS' , 'Extra forms');
 define( '_MD_A_PICO_TH_ID' , 'ID');
 define( '_MD_A_PICO_TH_TYPE' , 'Type');
 define( '_MD_A_PICO_TH_SUMMARY' , 'Sommaire');

@@ -34,16 +34,14 @@
 <{xoops_input type=hidden name=dirname value=$module->get('dirname')}>
 
 <table class="outer">
-    <!-- <tr>
-    <th colspan="2"><{$smarty.const._AD_LEGACY_LANG_MODUPDATE_CONF}></th>
-    </tr> -->
+<thead>
     <tr>
         <td class="head ui-card-block-image" width="240" colspan="2">
             <div style="max-width: 80%;"><img class="svg" src="<{$xoops_url}>/modules/<{$module->getShow('dirname')}>/<{$module->modinfo.image}>" aria-label="<{$module->getShow('name')}>"></div>
-            <!-- <div class="list_imagetitle"><{$module->modinfo.name|xoops_escape}></div> -->
         </td>
-        <!-- <td></td> -->
     </tr>
+</thead>
+    <tbody>
     <tr>
         <td><{$smarty.const._AD_LEGACY_LANG_MOD_NAME}></td>
         <td><{$module->getShow('name')}></td>
@@ -85,6 +83,8 @@
         <td><{$smarty.const._AD_LEGACY_LANG_MOD_DESC}></td>
         <td><{$module->modinfo.description|xoops_escape}></td>
     </tr>
+    </tbody>
+    <tfoot>
     <tr>
         <td colspan="2">
             <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
@@ -93,6 +93,7 @@
                 <{$smarty.const._AD_LEGACY_LANG_UPDATE}></button>
         </td>
     </tr>
+    </tfoot>
 </table>
 
 </form>

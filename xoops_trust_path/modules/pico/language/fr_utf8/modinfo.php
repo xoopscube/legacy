@@ -41,7 +41,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_ALLOWEACHHEAD', 'Spécifier des en-têtes HTML pour chaque contenu' );
     define( $constpref . '_BNAME_TAGS', 'Tags' );
 
-    define( $constpref . '_ADMENU_EXTRAS', 'Extra' );
+    define( $constpref . '_ADMENU_EXTRAS', 'Extra Forms' );
     define( $constpref . '_HTMLPR_EXCEPT', 'Les groupes qui peuvent éviter la correction par HTMLPurifier' );
     define( $constpref . '_HTMLPR_EXCEPTDSC', 'Les publications des utilisateurs qui ne sont pas dans les groupes cibles seront filtrées par HTMLPurifier et le module Protector.' );
     define( $constpref . '_BNAME_MYWAITINGS', 'Mes publications en attente' );

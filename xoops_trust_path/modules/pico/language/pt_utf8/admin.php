@@ -6,7 +6,7 @@
 // ## Website........: http://xoopscube.com.br
 
 // Appended by Xoops Language Checker -GIJOE- in 2008-11-19 04:29:55
-define( '_MD_A_PICO_LINK_EXTRACT' , 'Extract');
+define( '_MD_A_PICO_LINK_EXTRACT' , 'Delete');
 define( '_MD_A_PICO_LABEL_SEARCHBYPHRASE' , 'Search by phrase');
 define( '_MD_A_PICO_H2_TAGS' , 'Tag Manager');
 define( '_MD_A_PICO_TH_TAG' , 'Tag');

@@ -6,7 +6,7 @@
  * @version    XCL 2.3.3
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Author
+ * @copyright  (c) 2005-2023 Authors
  * @license    GPL v2.0
  */
 
@@ -56,7 +56,7 @@ class PicoControllerGetContent extends PicoControllerAbstract {
 		}
 
 		// auto-register
-		if ( ! empty( $this->mod_config['wraps_auto_register'] ) && '/' === @$cat_data['cat_vpath'][0] && 0 === $content_data['poster_uid'] && '' !== $content_data['vpath'] ) {
+		if ( !empty( $this->mod_config['wraps_auto_register'] ) && '/' === @$cat_data['cat_vpath'][0] && 0 === $content_data['poster_uid'] && '' !== $content_data['vpath'] ) {
 			$register_class = empty( $this->mod_config['auto_register_class'] ) ? 'PicoAutoRegisterWraps' : $this->mod_config['auto_register_class'];
 			require_once __DIR__ . '/' . $register_class . '.class.php';
 			$register_obj = new $register_class( $this->mydirname, $this->mod_config );

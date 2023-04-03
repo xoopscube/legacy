@@ -24,7 +24,7 @@
             <div class="dropdown-content" style="min-width: 240px; padding:.5em;">
                 <div data-layout="row justify-center mb-4">
                     <h6 data-self="center size-x1"><{$mydirname|ucfirst}> <{$smarty.const._ACTION}></h6>
-                    <button class="help-admin button" type="button" data-module="pico" data-help-article="#help-content" aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
+                    <button class="help-admin button" type="button" data-module="<{$mod_name}>" data-help-article="#help-access" aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
                 </div>
                 <a class="button" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>"><i class="i-edit"></i><{$smarty.const._EDIT}></a>
                 <a class="button" href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$cat_id}>"><i class="i-add"></i><{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a>

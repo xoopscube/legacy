@@ -229,7 +229,7 @@
     <nav class="page-nav">
 
         <ul class="pagenavi">
-        <{if $prev_content.id}>
+        <{if !empty($prev_content.id)}>
             <li class="<{$smarty.const._ALIGN_START}>">
             <a href="<{$mod_url}>/<{$prev_content.link}>" accesskey="P" aria-label="<{$smarty.const._MD_PICO_PREV}>">
                 <img class="svg arrow-left" src="<{$xoops_url}>/images/icons/arrow-left.svg" width="1em" height="1em" alt="previous">
@@ -243,7 +243,7 @@
                 <span data-self="sm-hide"><{$category.title}></span>
             </a>
             </li>
-        <{if $next_content.id}>
+        <{if !empty($next_content.id)}>
             <li class="<{$smarty.const._ALIGN_END}>"><a href="<{$mod_url}>/<{$next_content.link}>" accesskey="F" aria-label="<{$smarty.const._MD_PICO_NEXT}>">
                 <span><{$next_content.subject}></span>
                 <img class="svg arrow-right" src="<{$xoops_url}>/images/icons/arrow-right.svg" width="1em" height="1em" alt="next">

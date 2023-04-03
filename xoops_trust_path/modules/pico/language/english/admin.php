@@ -60,12 +60,12 @@ define( '_MD_A_PICO_MSG_CLEARBODYCACHEDONE' , 'all caches for contents have just
 define( '_MD_A_PICO_HELP_CLEARBODYCACHE' , 'Just execute it when some caching troubles are occurred eg) after moving site.');
 
 // extras
-define( '_MD_A_PICO_H2_EXTRAS' , 'Extras');
+define( '_MD_A_PICO_H2_EXTRAS' , 'Extra Forms');
 define( '_MD_A_PICO_TH_ID' , 'ID');
 define( '_MD_A_PICO_TH_TYPE' , 'Type');
 define( '_MD_A_PICO_TH_SUMMARY' , 'Summary');
 define( '_MD_A_PICO_LINK_DETAIL' , 'Detail');
-define( '_MD_A_PICO_LINK_EXTRACT' , 'Extract');
+define( '_MD_A_PICO_LINK_EXTRACT' , 'Delete');
 define( '_MD_A_PICO_LABEL_SEARCHBYPHRASE' , 'Search by phrase');
 define( '_MD_A_PICO_TH_EXTRASACTIONS' , 'Action');
 define( '_MD_A_PICO_LABEL_EXTRASRIGHTCHECKED' , 'Batch action for selected items');

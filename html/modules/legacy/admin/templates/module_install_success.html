@@ -25,13 +25,14 @@
     <{/foreach}>
 </ul>
 
-<{if $module->getAdminMenu()}>
+<{* TODO - This Link is not correct
+    if $module->getAdminMenu()}>
     <ul class="toptab" style="text-align:left;">
         <li class="editFile">
             <a href="<{$xoops_url}>/modules/<{$module->get('dirname')}>/admin/"><{$module->get('name')}> - <{$smarty.const._MI_LEGACY_MENU_MODULELIST}></a>
         </li>
     </ul>
-<{/if}>
+<{/if *}>
 
 <div class="legacy_module_return">
 
