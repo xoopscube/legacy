@@ -10,7 +10,7 @@
     As an optional second parameter, you can specify a string of text to display at the end if the variable was truncated. *}>
     <{foreach from=$xoops_breadcrumbs key="i" item="bc"}>
         <{if $i > 0}>
-            <{if $bc.url}>
+            <{if !empty($bc.url)}>
         <li><a href="<{$bc.url}>"><{$bc.name|truncate:25}></a>
             <{else}>
         <li aria-current="page"><{$bc.name|truncate:30}>

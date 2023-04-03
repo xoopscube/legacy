@@ -178,8 +178,8 @@ class PicoContent {
 			              'public'                  => $is_public,
 			              'can_read'                => $cat_data['isadminormod'] || $cat_data['can_read'] && $is_public,
 			              'can_readfull'            => $cat_data['isadminormod'] || $cat_data['can_readfull'] && $is_public,
-			              'can_edit'                => $cat_data['isadminormod'] || $cat_data['can_edit'] && ! $content_row['locked'] && $is_public,
-			              'can_delete'              => $cat_data['isadminormod'] || $cat_data['can_delete'] && ! $content_row['locked'] && $is_public,
+			              'can_edit'                => $cat_data['isadminormod'] || $cat_data['can_edit'] && !$content_row['locked'] && $is_public,
+			              'can_delete'              => $cat_data['isadminormod'] || $cat_data['can_delete'] && !$content_row['locked'] && $is_public,
 			              'ef'                      => pico_common_unserialize( $content_row['extra_fields'] ),
 		              ] + $content_row;
 	}

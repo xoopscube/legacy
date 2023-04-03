@@ -134,7 +134,7 @@ define( '_MI_XUPDATE_PARALLEL_FETCH_MAXDSC' , 'ストア一覧のデータを取
 define( '_MI_XUPDATE_CURL_MULTI_SELECT' , 'curl_multi_select を使用しない');
 define( '_MI_XUPDATE_CURL_MULTI_SELECTDSC' , '環境により同時接続数を 2 以上にするとデータ取得に失敗する場合があります。その場合に限り「はい」を選択してください。');
 define( '_MI_XUPDATE_CURL_SSL_NO_VERIFY' , 'cURL: SSLホスト認証をしない');
-define( '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC' , 'cURL 利用時に SSL接続時のサーバー認証がエラーになる場合に「はい」を選択してください。');
+define( '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC' , '<b id="curl-ssl">🚩 cURL</b> 利用時に SSL接続時のサーバー認証がエラーになる場合に「はい」を選択してください。');
 
 // progress messages
 define( '_MI_XUPDATE_PROG_FILE_GETTING' , 'パッケージを取得しています。');

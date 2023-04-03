@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: modifier.xoops_html_purifier.php,v 1.0 2010/03/25 15:12:36 kilica Exp $
- * @copyright (c) 2005-2022 The XOOPS Cube Project
+ * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license GPL v2.0
  *
  */

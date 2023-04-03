@@ -134,7 +134,7 @@ define( '_MI_XUPDATE_PARALLEL_FETCH_MAXDSC' , 'The set number will be used as th
 define( '_MI_XUPDATE_CURL_MULTI_SELECT' , 'cURL : Disable curl_multi_select');
 define( '_MI_XUPDATE_CURL_MULTI_SELECTDSC' , 'Turn off curl\'s multi-request capabilities built-in only when data acquisition goes wrong.');
 define( '_MI_XUPDATE_CURL_SSL_NO_VERIFY' , 'cURL: Disable SSL verification');
-define( '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC' , '<b id="curl-ssl">Turn off</b> curl\'s verification to bypass SSL certificate validation for local and test servers if you get an error.');
+define( '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC' , '<b id="curl-ssl">🚩 cURL</b> Turn off curl\'s verification to bypass SSL certificate validation for local and test servers if you get an error.');
 
 // progress messages
 define( '_MI_XUPDATE_PROG_FILE_GETTING' , 'Downloading package.');

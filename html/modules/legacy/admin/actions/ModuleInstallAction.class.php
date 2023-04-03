@@ -84,7 +84,7 @@ class Legacy_ModuleInstallAction extends Legacy_Action
 
     /**
      * @private
-     * @var Legacy_ModuleUinstaller
+     * @var Legacy_ModuleInstaller
      */
     public $mInstaller = null;
 

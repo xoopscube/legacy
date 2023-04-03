@@ -32,7 +32,7 @@ define( '_MD_PROFILE_LANG_DEFINITIONS_DELETE' , "Remover campo do formulário");
 define( '_MD_PROFILE_LANG_DEFINITIONS_EDIT' , "Editar campos");
 define( '_MD_PROFILE_LANG_DESCRIPTION' , "Descrição");
 define( '_MD_PROFILE_LANG_FIELD_ID' , "ID do campo");
-define( '_MD_PROFILE_LANG_FIELD_NAME' , "Nome do campo do formulário");
+define( '_MD_PROFILE_LANG_FIELD_NAME' , "Nome do campo");
 define( '_MD_PROFILE_LANG_FIELD_NAME_DESC' , "Isto é utilizado apenas internamente");
 define( '_MD_PROFILE_LANG_LABEL' , "Título");
 define( '_MD_PROFILE_LANG_OPTIONS' , "Opções");

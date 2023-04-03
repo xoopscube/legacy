@@ -28,7 +28,7 @@ $db = XoopsDatabaseFactory::getDatabaseConnection();
 //
 
 // extras output
-if ( ! empty( $_POST['extras_output'] ) && is_array( @$_POST['action_selects'] ) ) {
+if ( !empty( $_POST['extras_output'] ) && is_array( $_POST['action_selects'] ) ) {
 	$extra_rows = [];
 	$columns    = [ 'id' => 0, 'content_id' => 0, 'type' => '', 'created' => '', 'modified' => '' ];
 	foreach ( $_POST['action_selects'] as $extra_id => $value ) {
@@ -38,7 +38,7 @@ if ( ! empty( $_POST['extras_output'] ) && is_array( @$_POST['action_selects'] )
 		$extra_id  = (int) $extra_id;
 		$extra_row = $db->fetchArray( $db->query( 'SELECT ce.*,o.vpath,o.subject AS content_subject FROM ' . $db->prefix( $mydirname . '_content_extras' ) . ' ce LEFT JOIN ' . $db->prefix( $mydirname . '_contents' ) . " o ON o.content_id=ce.content_id WHERE content_extra_id=$extra_id" ) );
 		$data      = pico_common_unserialize( $extra_row['data'] );
-		if ( ! is_array( $data ) ) {
+		if ( !is_array( $data ) ) {
 			$data = [ $extra_row['data'] ];
 		}
 		$extra_rows[] = [
@@ -99,8 +99,6 @@ if ( ! empty( $_POST['extras_delete'] ) && ! empty( $_POST['action_selects'] ) )
 	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=extras", 3, _MD_A_PICO_MSG_DELETED );
 	exit;
 }
-
-// extras delete
 
 //
 // form stage

@@ -24,7 +24,7 @@
  * To support help view, there are some original modifiers.
  *
  * 'helpurl' modify a relativity URL for connecting the dynamic page link.
- * 'helpimage' modify a image URL. These modifiers consider the existence of
+ * 'helpimage' modify an image URL. These modifiers consider the existence of
  * language files.
  */
 class Legacy_HelpSmarty extends Smarty
@@ -44,10 +44,10 @@ class Legacy_HelpSmarty extends Smarty
      */
     public $mFilename = null;
 
-    public function Legacy_HelpSmarty()
-    {
-        self::__construct();
-    }
+//    public function Legacy_HelpSmarty()
+//    {
+//        self::__construct();
+//    }
 
     public function __construct()
     {
@@ -105,9 +105,7 @@ function Legacy_modifier_helpurl($file, $dirname = null)
     // TODO We should check file_exists.
     //
 
-    $url = XOOPS_MODULE_URL . "/legacy/admin/index.php?action=Help&amp;dirname={$dirname}&amp;file={$file}";
-
-    return $url;
+    return XOOPS_MODULE_URL . "/legacy/admin/index.php?action=Help&amp;dirname={$dirname}&amp;file={$file}";
 }
 
 /**

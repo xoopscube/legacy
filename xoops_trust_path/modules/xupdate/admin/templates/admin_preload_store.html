@@ -29,30 +29,92 @@
 
         <!-- category selection -->
         <div class="filtermenu">
-
-            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>" class="button">
-                <{$smarty.const._MI_XUPDATE_ALL}>
-            </a>
-            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=installed" class="button">
-                <{$smarty.const._MI_XUPDATE_INSTALLED}>
-            </a>
-            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=updated" class="button">
-                <{$smarty.const._MI_XUPDATE_UPDATED}>
-            </a>
-            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=future" class="button">
-                <{$smarty.const._MI_XUPDATE_FUTURE}>
-            </a>
+            <{if $mod_config.xelfinder_dirname}>
+            <a onclick="openWithSelfMain('<{$smarty.const.XOOPS_MODULE_URL}>/<{$mod_config.xelfinder_dirname}>/manager.php','filemanager',700,500);return false;"
+               href="#" class="button" aria-label="<{$smarty.const._MI_XUPDATE_ADMENU_PRELOAD}> <{$smarty.const._MI_XUPDATE_MANAGE}>">
+                <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="icon"><path fill="currentColor" d="M14 13h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-3l-1-1h-2a1 1 0 0 0-1 1v1H8V7h2a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H7L6 1H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2v13h7v1a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-3l-1-1h-2a1 1 0 0 0-1 1v1H8v-7h5v1a1 1 0 0 0 1 1Z"></path>
+                </svg> X-elFinder</a>
+            <{/if}>
+            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>" class="button"><{$smarty.const._MI_XUPDATE_ALL}></a>
+            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=installed" class="button"><{$smarty.const._MI_XUPDATE_INSTALLED}></a>
+            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=updated" class="button"><{$smarty.const._MI_XUPDATE_UPDATED}></a>
+            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$sort_query}>filter=future" class="button"><{$smarty.const._MI_XUPDATE_FUTURE}></a>
         </div>
 
         <div class="control-view">
 
-            <{if $mod_config.xelfinder_dirname}>
-                <a onclick="openWithSelfMain('<{$smarty.const.XOOPS_MODULE_URL}>/<{$mod_config.xelfinder_dirname}>/manager.php','filemanager',700,500);return false;"
-                   href="#" class="button">
-                    <{$smarty.const._MI_XUPDATE_ADMENU_PRELOAD}><{$smarty.const._MI_XUPDATE_MANAGE}>
-                </a>
-            <{/if}>
+            <{* ////— DROPDOWN SORT —\\\\ *}>
+            <div class="dropdown button-icon" id="filter-sort">
+                <a href="#" class="dropdown-toggle button" aria-label="sort filter"><img class="svg" src="<{$xoops_url}>/images/icons/list-tree.svg" width="1em" height="1em" alt="options"></a>
 
+                <div class="dropdown-content drop-top" style="min-width: 280px; padding:.5em">
+
+                    <{if !$sid}>
+                    <div data-layout="row center-justify inline">
+                        <h6><{$smarty.const._MD_XUPDATE_LANG_SID}></h6>
+                        <div>
+                            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_SID}>"
+                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_SID}>"
+                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        </div>
+                    </div>
+                    <{/if}>
+
+                    <div data-layout="row center-justify inline">
+                        <h6><{$smarty.const._AD_XUPDATE_LANG_NAME}></h6>
+                        <div>
+                            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"
+                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"
+                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;
+                            </a>
+                        </div>
+                    </div>
+
+                    <div data-layout="row center-justify">
+                        <h6><{$smarty.const._AD_LEGACY_LANG_VERSION}></h6>
+                        <div>
+                            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"
+                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"
+                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        </div>
+                    </div>
+
+                    <div data-layout="row center-justify">
+                        <h6><{$smarty.const._AD_XUPDATE_LANG_LICENSE}></h6>
+                        <div>
+                            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_LICENSE}>"
+                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_LICENSE}>"
+                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        </div>
+                    </div>
+
+                    <div data-layout="row center-justify">
+                        <h6><{$smarty.const._AD_XUPDATE_LANG_REQUIRED}></h6>
+                        <div>
+                            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_REQUIRED}>"
+                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_REQUIRED}>"
+                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        </div>
+                    </div>
+
+                    <div data-layout="row center-justify">
+                        <h6><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></h6>
+                        <div>
+                            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"
+                               class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                            <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"
+                               class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        </div>
+                    </div>
+
+                </div><{* ----- /Dropdown-content *}>
+            </div>
+            <{* ----- /Dropdown *}>
             <button class="help-admin button-icon" type='button' data-module='xupdate' data-help-article='#help-preload' aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
 
         </div>
@@ -71,86 +133,9 @@
         <{xoops_input type=hidden name=do_confirm value=1}>
 
     <table class="outer">
-
     <thead>
         <tr>
-        <th>
-        <{* ////— DROPDOWN SORT —\\\\ *}>
-        <div class="dropdown" id="filter-sort">
-
-            <a href="#" class="dropdown-toggle button" aria-label="sort filter">
-                <img class="svg" src="<{$xoops_url}>/images/icons/list-tree.svg" width="24px" height="24px" alt="options">
-            </a>
-
-            <div class="dropdown-content drop-left" style="min-width: 280px; padding:.5em">
-
-                <{if !$sid}>
-                <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._MD_XUPDATE_LANG_SID}></h6>
-                    <div>
-                        <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_SID}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_SID}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-                <{/if}>
-
-                <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._AD_XUPDATE_LANG_NAME}></h6>
-                    <div>
-                        <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_DIRNAME}>"
-                            class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;
-                        </a>
-                    </div>
-                </div>
-
-                <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_LEGACY_LANG_VERSION}></h6>
-                    <div>
-                        <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_VERSION}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_VERSION}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-
-                <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_XUPDATE_LANG_LICENSE}></h6>
-                    <div>
-                        <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_LICENSE}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_LICENSE}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-
-                <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_XUPDATE_LANG_REQUIRED}></h6>
-                    <div>
-                        <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_REQUIRED}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_REQUIRED}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-
-                <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></h6>
-                    <div>
-                        <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"
-                           class="btn" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a href="index.php?action=<{$action}>&amp;<{$pageNavi->getPrefix()}><{$sid_query}><{$filter_query}>sort=-<{$smarty.const.MODULE_SORT_KEY_LASTUPDATE}>"
-                           class="btn" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
-                    </div>
-                </div>
-
-            </div><{* ----- /Dropdown-content *}>
-        </div>
-        <{* ----- /Dropdown *}>
-        </th>
+        <th><{$smarty.const._MD_XUPDATE_LANG_SID}></th>
         <th><{$smarty.const._AD_XUPDATE_LANG_NAME}></th>
         <th><{$smarty.const._AD_XUPDATE_LANG_LICENSE}></th>
         <th><{$smarty.const._AD_LEGACY_LANG_LASTUPDATE}></th>
@@ -159,7 +144,6 @@
         <th><input id="rapidInstallCheckboxAll" type="checkbox" aria-label="<{$smarty.const._AD_XUPDATE_LANG_MESSAGE_BATCH_INSTALL}>"></th>
         </tr>
     </thead>
-
     <tbody>
         <{foreach item=module from=$moduleObjects}>
         <tr>

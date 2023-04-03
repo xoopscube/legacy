@@ -313,8 +313,9 @@ class Legacy_AdminDashboard extends XCube_ActionFilter
         }
 
         if ($infoArr['theme'] !== null && $infoArr['dirname'] !== null) {
-            //return XOOPS_THEME_PATH . '/' . $infoArr['theme'] . '/templates/' . $infoArr['dirname'] . '/' . $file;
-    return XOOPS_THEME_PATH . '/' . $infoArr['theme'] . '/modules/' . $infoArr['dirname'] . '/' . $file;
+            //return XOOPS_THEME_PATH . '/' . $infoArr['theme'] . '/modules/' . $infoArr['dirname'] . '/' . $file;
+            // themes / [theme-name] / templates / [module-name] / [file] .html
+            return XOOPS_THEME_PATH . '/' . $infoArr['theme'] . '/templates/' . $infoArr['dirname'] . '/' . $file;
         
         }
 

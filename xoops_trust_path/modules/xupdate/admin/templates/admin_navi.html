@@ -5,7 +5,7 @@
     &raquo;&raquo;
     <a href="./index.php?action=ModuleStore"><{$smarty.const._MI_XUPDATE_ADMENU_ADDONSTORE}></a>
     &raquo;&raquo; <span class="page-title"><{$currentMenu}></span>
-    <{if $currentItem}>
+    <{if isset($currentItem)}>
     &raquo;&raquo; <span class="page-title"><{$currentItem}></span>
     <{/if}>
 </nav>

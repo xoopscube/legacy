@@ -6,7 +6,7 @@
  * @version    XCL 2.3.3
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2022 Authors
+ * @copyright  (c) 2005-2023 Authors
  * @license    GPL v2.0
  */
 
@@ -20,15 +20,15 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 			global $xoopsConfig;
 
 			// language file
-			if ( defined( 'XOOPS_ROOT_PATH' ) && ! empty( $xoopsConfig['language'] ) && ! strstr( $xoopsConfig['language'], '/' ) ) {
+//			if ( defined( 'XOOPS_ROOT_PATH' ) && ! empty( $xoopsConfig['language'] ) && ! strstr( $xoopsConfig['language'], '/' ) ) {
 
 //				if ( file_exists( dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml' ) ) {
 //					include dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml';
 //				}
-                if ( file_exists( dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.php' ) ) {
-                    include dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.php';
-                }
-			}
+//                if ( file_exists( dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.php' ) ) {
+//                    include dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.php';
+//                }
+//			}
 
 			// default messages
 			if ( empty( $this->messages ) ) {

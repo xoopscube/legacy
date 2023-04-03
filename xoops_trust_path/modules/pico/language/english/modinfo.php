@@ -20,7 +20,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_ADMENU_CATEGORYACCESS', 'Permissions' );
     define( $constpref . '_ADMENU_IMPORT', 'Import-Sync' );
     define( $constpref . '_ADMENU_TAGS', 'Tags' );
-    define( $constpref . '_ADMENU_EXTRAS', 'Extra' );
+    define( $constpref . '_ADMENU_EXTRAS', 'Extra Forms' );
     define( $constpref . '_ADMENU_MYLANGADMIN', 'Language' );
     define( $constpref . '_ADMENU_MYTPLSADMIN', 'Templates' );
     define( $constpref . '_ADMENU_MYBLOCKSADMIN', 'Blocks-Permissions' );

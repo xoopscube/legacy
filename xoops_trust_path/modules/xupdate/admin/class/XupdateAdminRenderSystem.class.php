@@ -47,7 +47,7 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem {
 			]
 		);
 
-		// TODO event name is this?
+		// TODO what event name is this?
 		XCube_DelegateUtils::call( 'Legacy_RenderSystem.SetupXoopsTpl', new XCube_Ref( $this->mSmarty ) );
 
 		$this->mSmarty->force_compile = (
@@ -95,7 +95,8 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem {
 		$this->mSmarty->assign( 'xoops_lblocks', $blocks );
 
 		$info                        = Xupdate_AdminRenderSystem::getOverrideFileInfo( 'admin_theme.html' );
-		$this->mSmarty->template_dir = ( null != $info['file'] ) ?
+
+        $this->mSmarty->template_dir = ( null != $info['file'] ) ?
 			substr( $file['path'], 0, - 15 ) :
 			XUPDATE_ADMIN_RENDER_FALLBACK_PATH;
 		$this->mSmarty->setModulePrefix( '' );

@@ -50,7 +50,7 @@ define($constpref.'_ALLOWEACHHEAD','specify HTML headers for each contents');
 define($constpref.'_BNAME_TAGS','Tags');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-09-22 03:55:48
-define($constpref.'_ADMENU_EXTRAS','Extra');
+define($constpref.'_ADMENU_EXTRAS','Extra forms');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-09-18 10:36:06
 define($constpref.'_HTMLPR_EXCEPT','Groups can avoid purification by HTMLPurifier');

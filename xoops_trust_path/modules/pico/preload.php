@@ -54,7 +54,7 @@ if ( ! class_exists( 'PicoPreloadBase' ) ) {
 				$params['allowhtml'] = true;
 
 				if ( !isset( $params['switcher'] ) ) {
-					$id                 = $params['id'];
+					$id                 = $params['id'] ?? null;
 					$params['switcher'] = <<<EOD
 (function(){
 var f = $("#{$id}").closest("form");

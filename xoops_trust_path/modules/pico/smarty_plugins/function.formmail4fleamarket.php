@@ -38,7 +38,9 @@ function smarty_function_formmail4fleamarket( $params, &$smarty ) {
 }
 
 class PicoFormProcessBySmartyFormmail4fleamarket extends PicoFormProcessBySmartyBase {
+
 	public function __construct() {
+        parent::__construct(); // TODO gigamaster
 		$this->mypluginname = 'formmail4fleamarket';
 	}
 

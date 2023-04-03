@@ -44,9 +44,9 @@ class PicoFormProcessBySmartyBase {
 	public $ignore_field_names = [ 'cancel' ]; // public
 	public $cancel_field_name = 'cancel'; // public
 
-	public function PicoFormProcessBySmartyBase(): PicoFormProcessBySmartyBase {
-		return $this->__construct();
-	}
+//	public function PicoFormProcessBySmartyBase(): PicoFormProcessBySmartyBase {
+//		return $this->__construct();
+//	}
 
 	public function __construct() {
 		$this->mypluginname = 'base';
@@ -145,8 +145,9 @@ class PicoFormProcessBySmartyBase {
 	public function checkCurrentPage(): bool {
 		global $xoopsModule;
 
+        $page = $_GET['page'] ?? 'index';
 		// session clear in contentmanager or makecontent
-		if ( in_array( $_GET['page'], [ 'contentmanager', 'makecontent' ] ) ) {
+		if ( in_array( $page, [ 'contentmanager', 'makecontent' ] ) ) {
 			unset( $_SESSION[ $this->session_index ] );
 
 			return false;
@@ -269,7 +270,7 @@ class PicoFormProcessBySmartyBase {
 		                                              . $this->getTokenName()
 		                                              . '" value="'
 		                                              . $this->getTokenValue()
-		                                              . '" /></form>';
+		                                              . '"></form>';
 	}
 
 	public function displayFinished(): void {
@@ -478,7 +479,8 @@ class PicoFormProcessBySmartyBase {
 	}
 
 	public function isValidEmail( $email ): bool {
-		return preg_match( '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i', $email ) ? true : false;
+		//return preg_match( '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i', $email ) ? true : false;
+        return (bool)preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+([\.][a-z0-9-]+)+$/i', $email);
 	}
 
 	public function storeDB(): void {

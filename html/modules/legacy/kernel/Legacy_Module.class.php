@@ -456,7 +456,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                     break;
                 }
             }
-			// Since XCL 2.3.x PHP8 Check if constant is defined 
+			// Since XCL 2.3.x PHP8 Check if constant is defined
             if (!$findFlag) {
                 $configInfos= [];
                 foreach ($this->mXoopsModule->modinfo['config'] as $config) {
