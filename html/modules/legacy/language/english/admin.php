@@ -339,11 +339,11 @@ define( '_AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK' , '<a href="index.php?action=BlockIns
 define( '_AD_LEGACY_TIPS_BLOCK_UNINSTALL' , "Even if you uninstall a block, the configuration of the block isn't deleted. The block is simply removed from view.<br> Therefore you can easily re-install the block because the installer will keep safe the last configuration.");
 define( '_AD_LEGACY_TIPS_BLOCK' , 'Or simply <a href="index.php?action=CustomBlockEdit">create a custom block</a> and add your content.');
 define( '_AD_LEGACY_TIPS_BLOCK2' , "You can edit each block's options when you install the block.");
-define( '_AD_LEGACY_TIPS_COMMENT' , 'Search and manage active, pending or hidden comments from any user on any module.');
+define( '_AD_LEGACY_TIPS_COMMENT' , 'Search and manage active, pending or hidden comments from any user on any module.<br>Note : Duplicatable (D3) Modules feature a comment-integration to be managed by D3forum !');
 define( '_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL' , "Even if you uninstall the custom block, the configuration of the block isn't deleted. The block is simply removed from view. You can re-install or delete it from the database from the <a href=\"index.php?action=BlockInstallList\">'install block' page</a>.");
 define( '_AD_LEGACY_TIPS_IMAGE' , 'You can easily register many smilies by uploading a compressed archive!)');
 define( '_AD_LEGACY_TIPS_IMAGE_UPLOAD' , "You can easily register many images by uploading a compressed archive!<br>This batch-upload doesn't check Length and File-Size of each image!<br>Please pre-adjust them before you archive!<br>(Only tar.gz or zip archive)");
-define( '_AD_LEGACY_TIPS_IMGCAT' , 'Manage categories of images and users permissions. Set maximun upload size in Bytes, width and height in Pixels. Note that X-elFinder overrides the default image management.');
+define( '_AD_LEGACY_TIPS_IMGCAT' , 'Manage categories of images and users permissions. Set maximun upload size in Bytes, width and height in Pixels.<br>The module X-elFinder installation overrides the default image management.');
 define( '_AD_LEGACY_TIPS_IMGCAT_STORETYPE' , 'Please choose either the file or the database storage scheme for your image files. <strong>This setting cannot be changed later.</strong><br/>Keep in mind that if you select the database as the storage destination, image files will be stored as BLOB type data which may not be suitable for backup purposes.');
 define( '_AD_LEGACY_TIPS_INSTALL_BLOCK' , 'You can customize your site by installing your favorite blocks.');
 define( '_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE' , 'This is the phased update mode. You may need to update this module several times to the latest version. This mode guarantees a correct module update.');

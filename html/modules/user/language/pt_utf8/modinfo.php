@@ -8,7 +8,7 @@ define( '_MI_USER_ADMENU_AVATAR_MANAGE' , "Avatares");
 define( '_MI_USER_ADMENU_GROUP_LIST' , "Grupos e permissões");
 define( '_MI_USER_ADMENU_LIST' , "Listar associados");
 define( '_MI_USER_ADMENU_MAIL' , "Contatar associados");
-define( '_MI_USER_ADMENU_MAILJOB_MANAGE' , "Mala direta"); // só para não esquecer: 1) confirmar se utilizam esse termo em Portugal; 2) não tem hífen http://pt.wikipedia.org/wiki/Hífen
+define( '_MI_USER_ADMENU_MAILJOB_MANAGE' , "Agendar Correio"); // só para não esquecer: 1) confirmar se utilizam esse termo em Portugal; 2) não tem hífen http://pt.wikipedia.org/wiki/Hífen
 define( '_MI_USER_ADMENU_RANK_LIST' , "Graduações");
 define( '_MI_USER_ADMENU_USER_DATA_CSVUPLOAD' , "Importar dados");
 define( '_MI_USER_ADMENU_USER_DATA_DOWNLOAD' , "Exportar dados");
@@ -69,13 +69,13 @@ define( '_MI_USER_KEYWORD_CREATE_RANK' , "Adicionar graduação");
 define( '_MI_USER_KEYWORD_CREATE_USER' , "Adicionar utilisador");
 define( '_MI_USER_KEYWORD_GROUP_LIST' , "listar adicionar criar editar modificar remover utilizador membro conta ranque permissão acrescentar remover associado");
 define( '_MI_USER_KEYWORD_MAILJOB_LINK_LIST' , "Mailjob lista de links");
-define( '_MI_USER_KEYWORD_MAILJOB_MANAGE' , "Gestor de mala-direta");
+define( '_MI_USER_KEYWORD_MAILJOB_MANAGE' , "Agendar Correio");
 define( '_MI_USER_KEYWORD_USER_LIST' , "Listar associados");
 define( '_MI_USER_KEYWORD_USER_SEARCH' , "Localizar associado");
-define( '_MI_USER_LANG_MAILJOB_LINK_LIST' , "Lista de links Mailjob ");
-define( '_MI_USER_MENU_CREATE_AVATAR' , "Acrescentar avatar");
+define( '_MI_USER_LANG_MAILJOB_LINK_LIST' , "Lista de Correio Agendado");
+define( '_MI_USER_MENU_CREATE_AVATAR' , "Novo avatar");
 define( '_MI_USER_MENU_CREATE_GROUP' , "Novo grupo");
 define( '_MI_USER_MENU_CREATE_RANK' , "Nova graduação");
-define( '_MI_USER_MENU_CREATE_USER' , "Novo utilisaor");
+define( '_MI_USER_MENU_CREATE_USER' , "Novo utilisador");
 define( '_MI_USER_NAME' , "Utilisadores");
 define( '_MI_USER_NAME_DESC' , "Módulo de gerenciamento de utilisadores.");

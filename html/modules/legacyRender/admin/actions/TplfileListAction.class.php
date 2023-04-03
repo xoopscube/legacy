@@ -17,7 +17,7 @@ require_once XOOPS_MODULE_PATH . '/legacyRender/admin/forms/TplfileUploadForm.cl
 class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
 {
     /**
-     * A instance of action form for uploading.
+     * An instance of action form for uploading.
      * @var LegacyRender_TplfileUploadForm
      */
     public $mActionForm = null;
@@ -105,7 +105,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
             //
             // If $obj belongs to 'default' template-set, kick!
             //
-            if ('default' == $obj->get('tpl_tplset')) {
+            if ($obj->get('tpl_tplset') == 'default') {
                 continue;
             }
 
@@ -152,7 +152,7 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         //
         // Load override file.
         //
-        if (null != $this->mFilter->mTplset && 'default' != $this->mFilter->mTplset->get('tplset_name')) {
+        if ($this->mFilter->mTplset != null && $this->mFilter->mTplset->get('tplset_name') !='default') {
             foreach (array_keys($this->mObjects) as $key) {
                 $this->mObjects[$key]->loadOverride($this->mFilter->mTplset->get('tplset_name'));
             }
@@ -163,8 +163,10 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
         $render->setAttribute('filterForm', $this->mFilter);
         $render->setAttribute('actionForm', $this->mActionForm);
 
-        if (null != $this->mFilter->mTplset) {
+        if ($this->mFilter->mTplset != null) {
             $render->setAttribute('targetTplset', $this->mFilter->mTplset->get('tplset_name'));
+        } else {
+            $render->setAttribute('targetTplset', 'default'); // XCL 2.3.x fix Undefined array key "targetTplset" PHP8
         }
 
         $render->setAttribute('targetModule', xoops_getrequest('tpl_module'));
@@ -187,7 +189,8 @@ class LegacyRender_TplfileListAction extends LegacyRender_AbstractListAction
     {
         if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
             $navi =& $params['pagenavi'];
-            $mask = isset($params['mask']) ? $params['mask'] : null;
+            // $mask = isset($params['mask']) ? $params['mask'] : null;
+            $mask = $params['mask'] ?? null;
 
             foreach ($navi->mExtra as $key => $value) {
                 if ($key != $mask) {

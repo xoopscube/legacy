@@ -37,7 +37,7 @@ $modversion['templates'][]['file'] = 'ckeditor4_textarea.html';
 // Admin panel setting
 $modversion['hasAdmin'] = 1;
 $modversion['adminindex'] = "admin/index.php";
-$modversion['adminmenu'] = "admin/menu.php";
+//$modversion['adminmenu'] = "admin/menu.php";
 
 // Public side control setting
 $modversion['hasMain'] = 0;

@@ -11,7 +11,7 @@ Any installed add-on is displayed with a different color. It is recommended to u
 However, you are also given the freedom to use older versions if those are necessary for compatibility reasons.');
 define( '_AD_XUPDATE_LANG_MODULES' , 'Modules List');
 define( '_AD_XUPDATE_LANG_MODULES_TIP' , '<b>Beware of module versions !</b> You are free to use older versions for compatibility reasons.<br>
-Trust modules are duplicable and allow the installation of several instances on the public side.<br> It is recommended to rename Trust modules in order to give them meaningful names.');
+Trust modules are duplicable and allow the installation of several instances on the public side.<br> It is recommended to rename instances of D3 modules in order to give them meaningful names.');
 define( '_AD_XUPDATE_LANG_THEMES' , 'Themes List');
 define( '_AD_XUPDATE_LANG_THEMES_TIP' , 'There are two types of themes, frontend (client side) and backend, admin dashboard and control panel.<br>
 Both types of themes can have custom module templates, and can be built with CSS frameworks.<br>

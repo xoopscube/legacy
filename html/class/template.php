@@ -40,7 +40,7 @@ class XoopsTpl extends Smarty
         $this->compile_id = XOOPS_URL;
         if (1 == $xoopsConfig['theme_fromfile']) {
             $this->_canUpdateFromFile = true;
-            $this->compile_check = false; /*This should be set to false on an active site*/
+            $this->compile_check = false; /* This should be set to false on an active site*/
             $this->force_compile = true;
         } else {
             $this->_canUpdateFromFile = false;
@@ -56,9 +56,11 @@ class XoopsTpl extends Smarty
         //$this->plugins_dir = [SMARTY_DIR . 'plugins', XOOPS_ROOT_PATH . '/class/smarty/plugins'];
         $this->plugins_dir = [SMARTY_DIR . 'plugins'];
 
-//		$this->default_template_handler_func = 'xoops_template_create';
+        // $this->default_template_handler_func = 'xoops_template_create';
         $this->use_sub_dirs = false;
-
+		
+        // Smarty assign Legacy XOOPS2
+        // Refer to preload XCubeRender for XCL.2.3.x UI frameworks
         $this->assign(
             [
                 'xoops_url'         => XOOPS_URL,
@@ -67,13 +69,6 @@ class XoopsTpl extends Smarty
                 'xoops_charset'     => _CHARSET,
                 'xoops_version'     => XOOPS_VERSION,
                 'xoops_upload_url'  => XOOPS_UPLOAD_URL
-                //@TODO UI frameworks preload
-//                'xcl_ui_path'       => XCL_UI_PATH,
-//                'xcl_ui_url'        => XCL_UI_URL,
-//                'bs4_path'          => XCL_UI_BS4_PATH,
-//                'bs4_url'           => XCL_UI_BS4_URL,
-//                'fdn_path'          => XCL_UI_FDN_PATH,
-//                'fdn_url'           => XCL_UI_FDN_URL
             ]
         );
 

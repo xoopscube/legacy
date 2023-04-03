@@ -4,7 +4,7 @@
 define( '_MB_PICO_PROCESSBODY' , 'Traiter le contenu de manière dynamique');
 define( '_MB_PICO_TAGSNUM' , 'Afficher');
 define( '_MB_PICO_TAGSLISTORDER' , 'Ordre d\'affichage');
-define( '_MB_PICO_TAGSSQLORDER' , 'Ordre pour extraction');
+define( '_MB_PICO_TAGSSQLORDER' , 'Ordre pour Tags');
 define( '_MB_PICO_PARENTCAT' , 'Catégorie Parent');
 define( '_MB_PICO_PARENTCATDSC' , 'Les sous-catégories de chaque catégorie Parent seront affichées. Afficher de multiples catégories Parent avec leurs id séparés par une virgule.');
 define( '_MB_PICO_DISPLAYBODY' , 'Afficher également le document (body)');

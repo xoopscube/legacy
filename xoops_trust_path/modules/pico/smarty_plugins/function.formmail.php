@@ -30,12 +30,15 @@ function smarty_function_formmail( $params, &$smarty ) {
 }
 
 class PicoFormProcessBySmartyFormmail extends PicoFormProcessBySmartyBase {
+
 	public function __construct() {
+
+        parent::__construct(); // TODO gigamaster
 		$this->mypluginname = 'formmail';
 	}
 
 	public function executeLast() {
 		$this->sendMail();
-		//$this->storeDB() ;
+		$this->storeDB(); // TODO gigamaster - Control Panel > Pico > Extra
 	}
 }

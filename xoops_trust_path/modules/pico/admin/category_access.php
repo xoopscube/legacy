@@ -38,11 +38,11 @@ include dirname( __DIR__ ) . '/include/category_permissions.inc.php';
 //
 
 // independent permission update
-if ( ! empty( $_POST['independentpermission_update'] ) && 0 != $cat_id ) {
-	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
+if ( !empty( $_POST['independentpermission_update'] ) && 0 != $cat_id ) {
+	if ( !$xoopsGTicket->check( true, 'pico_admin' ) ) {
 		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
 	}
-	if ( ! empty( $_POST['independentpermission'] ) ) {
+	if ( !empty( $_POST['independentpermission'] ) ) {
 		// update permission_id of categories has the same permission_id and children of the category
 		$whr_cid = ! empty( $redundants['subcategories_ids_cs'] ) ? 'cat_id IN (' . $redundants['subcategories_ids_cs'] . $cat_id . ')' : 'cat_id=' . $cat_id;
 		$db->queryF( 'UPDATE ' . $db->prefix( $mydirname . '_categories' ) . " SET cat_permission_id=$cat_id WHERE cat_permission_id=$cat_permission_id AND ($whr_cid)" );
@@ -60,14 +60,14 @@ if ( ! empty( $_POST['independentpermission_update'] ) && 0 != $cat_id ) {
 
 
 // group update
-if ( ! empty( $_POST['group_update'] ) ) {
-	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
+if ( !empty( $_POST['group_update'] ) ) {
+	if ( !$xoopsGTicket->check( true, 'pico_admin' ) ) {
 		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
 	}
 	$db->queryF( 'DELETE FROM ' . $db->prefix( $mydirname . '_category_permissions' ) . " WHERE cat_id=$cat_id AND groupid>0" );
 	$result = $db->query( 'SELECT groupid FROM ' . $db->prefix( 'groups' ) );
 	while ( list( $gid ) = $db->fetchRow( $result ) ) {
-		if ( ! empty( $_POST['can_read'][ $gid ] ) ) {
+		if ( !empty( $_POST['can_read'][ $gid ] ) ) {
 			$perms = [];
 			foreach ( $pico_category_permissions as $perm_name ) {
 				$perms[ $perm_name ] = empty( $_POST[ $perm_name ][ $gid ] ) ? 0 : 1;
@@ -80,8 +80,8 @@ if ( ! empty( $_POST['group_update'] ) ) {
 }
 
 // user update
-if ( ! empty( $_POST['user_update'] ) ) {
-	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
+if ( !empty( $_POST['user_update'] ) ) {
+	if ( !$xoopsGTicket->check( true, 'pico_admin' ) ) {
 		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
 	}
 	$db->queryF( 'DELETE FROM ' . $db->prefix( $mydirname . '_category_permissions' ) . " WHERE cat_id=$cat_id AND uid>0" );
@@ -116,7 +116,7 @@ if ( ! empty( $_POST['user_update'] ) ) {
 				$user = &$member_handler->getUser( (int) $_POST['new_uids'][ $i ] );
 			}
 			// check the user is valid
-			if ( ! is_object( $user ) ) {
+			if ( !is_object( $user ) ) {
 				continue;
 			}
 			$uid = $user->getVar( 'uid' );

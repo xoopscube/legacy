@@ -4,7 +4,7 @@
  *
  * @package XCL
  * @subpackage Xupdate
- * @version 2.3
+ * @version 2.3.4
  * @author Other authors Gigamaster XCL/PHP7
  * @author Naoki Sawada, Naoki Okino
  * @copyright  (c) 2005-2023 Authors
@@ -28,8 +28,8 @@ $basename = basename( $dirname );
 $modversion['dirname']          = $myDirName;
 $modversion['trust_dirname']    = $basename;
 $modversion['name']             = _MI_XUPDATE_LANG_XUPDATE;
-$modversion['version']          = '2.33';
-$modversion['detailed_version'] = '2.33.0';
+$modversion['version']          = '2.34';
+$modversion['detailed_version'] = '2.34.0';
 $modversion['description']      = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author']           = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits']          = _MI_XUPDATE_LANG_CREDITS;
@@ -90,13 +90,6 @@ $modversion['adminmenu'] = [
 		'show'     => true,
 		'absolute' => false
 	],
-	//	array(
-	//		'title'		=> _MI_XUPDATE_ADMENU_PACKAGE,
-	//		'link'	=> 'admin/index.php?action=PackageStore',
-	//		'keywords'	=> _MI_XUPDATE_ADMENU_PACKAGE,
-	//		'show'	=> true,
-	//		'absolute' => false
-	//	),
 	[
 		'title'    => _MI_XUPDATE_ADMENU_MODULE,
 		'link'     => 'admin/index.php?action=ModuleStore',

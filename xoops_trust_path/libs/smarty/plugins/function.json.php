@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Smarty {json} plugin
  *
@@ -24,15 +23,17 @@
  * @copyright  2009 Sander Aarts
  * @license    LGPL License
  * @version    1.0.1
- * @param      array
- * @param      Smarty
+ * @param $params
+ * @param $smarty
+ * @return array|bool|float|int|mixed|stdClass|string|void|null
  */
+
 function smarty_function_json($params, &$smarty) {
 
 
-    $params['file'] = isset($params['file']) ? $params['file'] : null;
-    $params['obj2obj'] = isset($params['obj2obj']) ? $params['obj2obj'] : true;
-    $params['debug'] = isset($params['debug']) ? $params['debug'] : false;
+    $params['file'] = $params['file'] ?? null;
+    $params['obj2obj'] = $params['obj2obj'] ?? true;
+    $params['debug'] = $params['debug'] ?? false;
 
     //! @gigamaster removed $smarty->getConfigDir();
     //$larConfigDir = $smarty->getConfigDir();

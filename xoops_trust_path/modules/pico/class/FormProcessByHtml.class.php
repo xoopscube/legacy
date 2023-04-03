@@ -14,19 +14,20 @@ class FormProcessByHtml {
 	public $fields = [];
 	public $form_html = '';
 	public $column_separator = ',';
-	public $types = [ 'int', 'double', 'singlebytes', 'email', 'telephone' ];
+	public $types = [ 'int', 'double', 'singlebytes', 'email', 'url', 'telephone' ];
 	public $validator_dir;
 
-	public function FormProcessByHtml() {
-		return $this->__construct();
-	}
+//	public function FormProcessByHtml(): FormProcessByHtml
+//    {
+//		return $this->__construct();
+//	}
 
 	public function __construct() {
 		// register validators
 		$this->validator_dir = __DIR__ . '/validators';
 
 		if ( $handler = @opendir( $this->validator_dir ) ) {
-			while ( false !== ( $file = readdir( $handler ) ) ) {
+			while ( ( $file = readdir( $handler ) ) !== false) {
 				if ( strpos( $file, '.' ) === 0 ) {
 					continue;
 				}
@@ -52,7 +53,7 @@ class FormProcessByHtml {
 		foreach ( $tags as $tag_and_name ) {
 			[ $tag, $field_name_raw ] = $tag_and_name;
 
-			// judge whether the field is array or not (TODO)
+			// check whether the field is array or not (TODO)
 			$count = 1; // number of controllers with the "name"
 			if ( ( $pos = strpos( $field_name_raw, '[' ) ) > 0 ) {
 				$field_name = substr( $field_name_raw, 0, $pos );
@@ -72,16 +73,16 @@ class FormProcessByHtml {
 			if ( isset( $this->fields[ $field_name ] ) ) {
 				$this->fields[ $field_name ]['count'] ++;
 				$this->fields[ $field_name ]['tags'][]    = $tag;
-				$this->fields[ $field_name ]['options'][] = $this->fildValueFromTag( $tag );
+				$this->fields[ $field_name ]['options'][] = $this->fieldValueFromTag( $tag );
 				continue;
 			}
 
-			$options[] = $this->fildValueFromTag( $tag );
+			$options[] = $this->fieldValueFromTag( $tag );
 
-			// tag kind
-			if ( 0 === strncasecmp( $tag, '<textarea', 9 ) ) {
+			// tag kind - Form fields type
+			if ( strncasecmp( $tag, '<textarea', 9 ) === 0) {
 				$tag_kind = 'textarea';
-			} elseif ( 0 === strncasecmp( $tag, '<select', 7 ) ) {
+			} elseif ( strncasecmp( $tag, '<select', 7 ) === 0) {
 				$tag_kind = 'select';
 				if ( stripos( $tag, 'multiple' ) !== false ) {
 					$count = 0x10000; // large enough
@@ -94,6 +95,8 @@ class FormProcessByHtml {
 				$tag_kind = 'hidden';
 			} elseif ( stripos( $tag, 'type="text"' ) !== false ) {
 				$tag_kind = 'text';
+            } elseif ( stripos( $tag, 'type="url"' ) !== false ) {
+                $tag_kind = 'url';
 			} elseif ( stripos( $tag, 'type="submit"' ) !== false ) {
 				$tag_kind = 'submit';
 			} else {
@@ -121,7 +124,7 @@ class FormProcessByHtml {
 			// required
 			$required = in_array( 'required', $classes, true );
 
-			// type judgement
+			// type
 			$type = 'string';
 			foreach ( $this->types as $eachtype ) {
 				if ( in_array( $eachtype, $classes, true ) ) {
@@ -129,8 +132,12 @@ class FormProcessByHtml {
 					break;
 				}
 			}
+//            $type = 'url';
+//            if (preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $tag, $regs ) ) {
+//
+//            }
 
-			// get label as title of the field
+                // get label as title of the field
 			$label = empty( $title ) ? $field_name : $title;
 			if ( ! in_array( $tag_kind, [ 'radio', 'checkbox' ] ) ) {
 				// search <label> for other than radio/checkbox
@@ -164,7 +171,7 @@ class FormProcessByHtml {
 		}
 	}
 
-	public function fildValueFromTag( $tag ): string {
+	public function fieldValueFromTag( $tag ): string {
 		if ( preg_match( '/value\s*=\s*"([^"]+)"/', $tag, $regs ) ) {
 			return trim( $regs[1] );
 		}
@@ -340,6 +347,13 @@ class FormProcessByHtml {
 				}
 				break;
 
+            case 'url':
+                $value = $this->convertZenToHan( $value );
+                if (!filter_var($value, FILTER_VALIDATE_URL)) {
+                    $this->fields[ $field_name ]['errors'][] = 'Invalid URL format';
+                }
+                break;
+
 			case 'singlebytes':
 				$value = $this->convertZenToHan( $value );
 				break;
@@ -374,56 +388,34 @@ class FormProcessByHtml {
 		return $text;
 	}
 
-	public function checkEmailAddress( $email ): bool {
-		// 1) Check that neither the local or domain part of the e-mail address have leading, trailing, or consecutive dots, and that it is in the correct format:
-		if ( ! preg_match( "/^\.|\.\.|\.@|@\.|\.$/", $email ) && preg_match( "/^[^@]+?@[^.]+?\..+$/", $email ) ) {
-			// Email invalid because wrong characters or @ symbols.
-			return false;
-		}
-		// 2) Tokenize the e-mail address by '@:'
-		// Split it into sections to make life easier
-		$email_array = explode( '@', $email );
-		$local_array = explode( '.', $email_array[0] );
+    function checkEmailAddress($email=null)
+    {
+        /*  email request variable */
+        if (isset($_REQUEST['email'])) {
+            $email = $_REQUEST['email'];
+        }
+        /* email address validation - return false */
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 
-		//3) loop through each and re-concatenate all to get two strings: the local part (before the mandatory '@') and the domain part
+            echo $email . ' is NOT a valid email address.';
+            die();
+        }
+        /* email domain check return false
+         * uncomment to validate domain
+         * in production
+        */
+        /*
+        $atPos = mb_strpos($email, '@');
+        $domain = mb_substr($email, $atPos + 1);
+        if (!checkdnsrr($domain . '.', 'MX')) {
 
-		foreach ( $local_array as $i => $iValue ) {
-			if ( ! preg_match( "/^(([A-Za-z0-9!#$%&'*+/=?^_`{|}~-][A-Za-z0-9!#$%&'*+/=?^_`{|}~.-]{0,63})|(\"[^(|\")]{0,62}\"))$/", $local_array[ $i ] ) ) {
-				return false;
-			}
-		}
-
-		//4) If the first element/local part of the address does not contain any quotation marks, then use this pattern:
-		// $pattern = "/^[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~.\E]+$/";
-
-		//5) Else if the local part begins AND ends with quotation marks, use this pattern:
-		// $pattern = "/^\"(?:[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~. (),:;<>@[]\E]+|\\\\\\\\|\\\\\")+\"$/";
-
-		//6) Else if the local part contains TWO quotation marks (one only would invalidate), use this pattern:
-		// $pattern = "/^(?:[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~.\E]+\.\"(?:[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~. (),:;<>@[]\E]+|\\\\\\\\|\\\\\")+\"\.)+[0-9A-Za-z\/\Q!#$%&'*+-=?^_`{}|~.\E]+$/";
-
-		//7) Else the first part is invalid
-
-		if ( ! preg_match( "/^\[?[0-9.]+]?$/", $email_array[1] ) ) {
-			//8) If the local part was valid: check if domain is IP. If not, it should be valid domain name
-			$domain_array = explode( '.', $email_array[1] );
-
-			if ( count( $domain_array ) < 2 ) {
-				return false; // Not enough parts to domain
-			}
-			// If the second domain part is either encapsulated within square brackets ([]) or contains NO square brackets
-			// (just use substr and substr_count, it is much faster than regex), and it matches the pattern:
-			// preg_match("/^\[?[0-9A-Za-z\-\.]+\]?$/", $domain_array[$1]);
-			foreach ( $domain_array as $i => $iValue ) {
-				//if (!preg_match("^(([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])|([A-Za-z0-9]+))$", $domain_array[$i])) {
-				if ( ! preg_match( "/^\[?[0-9A-Za-z\-.]+]?$/", $domain_array[ $i ] ) ) {
-					return false;
-				}
-			}
-		}
-
-		return true; //	Then it is valid.
-	}
+            echo 'Domain "' . $domain . '" is not valid';
+            die();
+        }
+        */
+        /* email is valid return true */
+        return true;
+    }
 
 	public function getErrors(): array {
 		$ret = [];
@@ -472,7 +464,7 @@ class FormProcessByHtml {
 		return $form_html;
 	}
 
-	public function replaceContentTextarea( $form_html, $attribs ): string {
+	public function replaceContentTextarea( $form_html, $attribs ) {
 		$value4html = htmlspecialchars( $attribs['value'], ENT_QUOTES );
 
 		[ $before, $content_html_tmp ] = explode( $attribs['tags'][0], $form_html, 2 );
@@ -496,7 +488,8 @@ class FormProcessByHtml {
 			if ( stripos( $tag, 'value=' ) !== false ) {
 				$new_tag = preg_replace( '/value=\"(.*)\"/', 'value="' . $value4html . '"', $old_tag );
 			} else {
-				$new_tag = str_replace( '/>', 'value="' . $value4html . '" />', $old_tag );
+				//$new_tag = str_replace( '/>', 'value="' . $value4html . '" />', $old_tag ); TODO remove  trailing slash “/”
+                $new_tag = str_replace( '>', 'value="' . $value4html . '">', $old_tag );
 			}
 			$form_html = str_replace( $old_tag, $new_tag, $form_html );
 		}
@@ -504,7 +497,8 @@ class FormProcessByHtml {
 		return $form_html;
 	}
 
-	public function replaceSelectedOptions( $form_html, $attribs ): string {
+	public function replaceSelectedOptions( $form_html, $attribs ): string
+    {
 		$values = $attribs['value'];
 		if ( ! is_array( $values ) ) {
 			$values = [ $values ];
@@ -524,7 +518,8 @@ class FormProcessByHtml {
 		return $before . $attribs['tags'][0] . $new_options_html . '</select>' . $after;
 	}
 
-	public function replaceCheckedRadios( $form_html, $attribs, $field_name ) {
+	public function replaceCheckedRadios( $form_html, $attribs, $field_name )
+    {
 		$value4html = htmlspecialchars( $attribs['value'], ENT_QUOTES );
 
 		preg_match_all( '/<input\s+type="radio"[^>]*name="' . preg_quote( $field_name ) . '"[^>]*>/', $form_html, $matches, PREG_PATTERN_ORDER );
@@ -541,7 +536,8 @@ class FormProcessByHtml {
 		return $ret;
 	}
 
-	public function replaceCheckedCheckboxes( $form_html, $attribs, $field_name ) {
+	public function replaceCheckedCheckboxes( $form_html, $attribs, $field_name )
+    {
 		$values = $attribs['value'];
 		if ( ! is_array( $values ) ) {
 			$values = [ $values ];
@@ -565,7 +561,8 @@ class FormProcessByHtml {
 		return $ret;
 	}
 
-	public function renderForMail( $field_separator = "\n", $mid_separator = "\n" ): string {
+	public function renderForMail( $field_separator = "\n", $mid_separator = "\n" )
+    {
 		$ret = '';
 		foreach ( $this->fields as $field_name => $attribs ) {
 			$ret .= $field_separator . $attribs['label'] . $mid_separator;

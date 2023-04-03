@@ -338,11 +338,11 @@ define( '_AD_LEGACY_TIPS_ADD_CUSTOM_BLOCK' , "<a href=\"index.php?action=BlockIn
 define( '_AD_LEGACY_TIPS_BLOCK_UNINSTALL' , "Even if you uninstall a block, the configuration of the block isn't deleted. The block is simply removed from view.<br> Therefore you can easily re-install the block because the installer will keep safe the last configuration.");
 define( '_AD_LEGACY_TIPS_BLOCK' , "Or simply <a href=\"index.php?action=CustomBlockEdit\">create a custom block</a> and add your content.");
 define( '_AD_LEGACY_TIPS_BLOCK2' , "You can edit each block's options when you install the block.");
-define( '_AD_LEGACY_TIPS_COMMENT' , "Search and manage active, pending or hidden comments from any user on any module.");
+define( '_AD_LEGACY_TIPS_COMMENT' , "Search and manage active, pending or hidden comments from any user on any module.<br>Note : Duplicatable (D3) Modules feature a comment-integration to be managed by D3forum !");
 define( '_AD_LEGACY_TIPS_CUSTOM_BLOCK_UNINSTALL' , "Even if you uninstall the custom block, the configuration of the block isn't deleted. The block is simply removed from view. You can re-install or delete it from the database from the <a href=\"index.php?action=BlockInstallList\">'install block' page</a>.");
 define( '_AD_LEGACY_TIPS_IMAGE' , "You can easily register many images by uploading a compressed archive!)");
 define( '_AD_LEGACY_TIPS_IMAGE_UPLOAD' , "You can easily register many images by uploading a compressed archive!<br />This batch-upload doesn't check Length and File-Size of each image!<br>Please pre-adjust them before you archive!<br />(Only tar.gz or zip archive)");
-define( '_AD_LEGACY_TIPS_IMGCAT' , "Gérez les catégories d'images et les autorisations des utilisateurs. Notez que X-elFinder remplace la gestion d'image par défaut.");
+define( '_AD_LEGACY_TIPS_IMGCAT' , "Gérez les catégories d'images et les autorisations des utilisateurs.<br>L'installation du module X-elFinder remplace la gestion des images par défaut.");
 define( '_AD_LEGACY_TIPS_IMGCAT_STORETYPE' , "Vous pouvez choisir le schéma de stockage, fichier ou base de données, pour vos fichiers image. <strong>Ce paramètre ne peut pas être modifié ultérieurement.</strong><br>Gardez à l'esprit que si vous sélectionnez la base de données comme destination de stockage, les fichiers image seront stockés en tant que données de type BLOB,  qui ne convient pas forcément à des fins de sauvegarde.");
 define( '_AD_LEGACY_TIPS_INSTALL_BLOCK' , "You can customize your site by installing your favorite blocks.");
 define( '_AD_LEGACY_TIPS_PHASED_UPGRADE_MODE' , "C'est le mode de mise à jour progressive. Vous devrez peut-être mettre à jour ce module plusieurs fois vers la dernière version. Ce mode garantit une mise à jour correcte du module.");
