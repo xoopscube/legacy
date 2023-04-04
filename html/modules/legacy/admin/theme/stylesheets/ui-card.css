@@ -274,8 +274,7 @@ img.ui-avatar-card {
 
 /* input[size=] width depend using fonts,
    then setting by style for compatibility */
-.ui-card-block-item input[size="20"] {
-    /* width: 12em; */
+.ui-card-block-item input[type="text"] {
     width           : 74%;
 }
 .ui-card-block-item.pad-left {
