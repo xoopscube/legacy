@@ -1,0 +1,351 @@
+<div data-layout="row sm-column">
+    <div data-self="size-xxsmall">
+        <nav id="help-menu">
+            <ul data-layout="rows">
+                <li><a href="#help-overview" class="button">Render</a>
+                <li><a href="#help-banner" class="button">Banner</a>
+                <li><a href="#help-bannerclient" class="button">Banner Client</a>
+                <li><a href="#help-htaccess" class="button">Cool URI htaccess</a>
+                <li><a href="#help-template" class="button">Templates</a>
+                <li><a href="#help-themes" class="button">Themes</a>
+                <li><a href="#help-amp" class="button">AMP</a>
+                <li><a href="#help-bbcode" class="button">BBCode</a>
+                <li><a href="#help-markdown" class="button">Markdown</a>
+                <li><a href="#help-development" class="button">Development</a>
+            </ul>
+        </nav>
+    </div>
+
+<article id="help-module">
+
+    <section id="help-overview">
+
+        <h3>Overview</h3>
+
+        <p>The Renderer uses Smarty Template Engine — one of the most popular and mature template engines.</p>
+
+        <p>Smarty is a template engine for PHP. More specifically,
+            it facilitates a manageable way to separate application logic and content from its presentation.<br>
+            This is best described in a situation where the application programmer and the template designer play
+            different roles.
+
+        <p>Smarty Template Engine is used for rendering and cache management, it has neither override nor fall-back mechanism.
+
+        <p>The Render engine ensures compatibility with legacy themes of XOOPS2 and XOOPS2-JP.
+
+        <p>Templates are built with HTML, CSS, JavaScript and Smarty tags<br>
+        — Smarty is used with custom delimiters very similar to HTML markup language that make it easier to design and develop components.</p>
+
+        <div class="tips">The Renderer implementation of Smarty uses custom delimiters <b class="badge">&lt;{</b> ... <b class="badge">}&gt;</b><br>
+            instead of Smarty code enclosed in curly brace tag delimiters {$var} of the official documentation.</div>
+
+        <p>The <b>Template Management</b> allows you to enable a <b>Template Set</b> and check the list of <b>templates</b> that you can edit, copy, download or delete.
+        You can manage files more easily, even when they’re not all stored in one central folder or directory.
+        Although, some Themes have a template directory including most, if not all template files to meet an organization's needs for customization and personalization.
+
+        <p>For general instructions about the Smarty language, visit <a href="https://www.smarty.net/docsv2/en/" target="_blank" rel="noopener">https://www.smarty.net/docsv2/en/ ⭧</a>
+    </section>
+
+
+    <section id="help-banner">
+
+    <h3>Banner Management</h3>
+
+        <p>Allows you to manage banners and display ads in your website.
+
+        <p>You can place a banner of any type, in any location of the page, and on any module.
+
+        <p>You may show a banner to visitors a certain number of impressions.
+
+        <p>An impression is a metric used to quantify the number of digital views of a client banner.
+
+        <h4>Banner Smarty Tags</h4>
+
+        <p>Smarty generates web content through the placement of special Smarty tags within a document.
+
+        <p>The Banner tags can be added to Themes, Templates or Blocks.
+
+        <p>Smarty tags will be processed and substituted with content.
+
+    <h5>Banner Random Display</h5>
+
+    <pre><code class="lang-smarty">
+    &lt;{$xoops_banner}&gt;
+    </code></pre>
+
+    <h5>Display Banner if not empty</h5>
+    <pre><code class="lang-smarty">
+    &lt;{if $xoops_banner and $xoops_banner!=&quot;&quot;}&gt;&lt;{$xoops_banner}&gt;&lt;{/if}&gt;
+    </code></pre>
+
+    <h5>Display a specific Banner Id (bid)</h5>
+    <pre><code class="lang-smarty">
+    &lt;{if $xoops_banner &amp;&amp; bid=2}&gt;&lt;{$xoops_banner}&gt;&lt;{/if}&gt;
+    </code></pre>
+
+    <h3>Banner Client login</h3>
+
+    <code>
+    <{$smarty.const.XOOPS_URL}>/banners.php
+    </code>
+
+    <p>Banner Features</p>
+        <ul>
+            <li>List of Banner Clients
+            <li>List of Banners
+            <li>List of Expired Banners
+            <li>Edit a Banner
+            <li>Name
+            <li>Contact
+            <li>Email
+            <li>Login
+            <li>Password
+            <li>Impressions Allowed
+            <li>HTML code
+            <li>Extra info
+        </ul>
+    </section>
+
+    <section id="help-bannerclient">
+
+        <h3>Banner Client Management</h3>
+
+        <p>Assigning a banner to a particular client will help in the long run if you’re working with several clients (i.e. customers).
+        If you’re only going to have one or two banners, you may not need to create a banner client.
+
+        <h4>Steps for creating a new client</h4>
+        <p>To setup a new banner client, follow the steps below:</p>
+
+        <ul>
+            <li>Click the button New Banner Client
+            <li>Enter all the details for your new banner client:
+            <li>Name and Contact
+            <li>Client Email and Password (only access Banners impression)
+            <li>After doing so, click Submit.
+        </ul>
+
+    <p>In our testing, we are creating a client, company.com<br>
+        We are only entering the :</p>
+
+        <table class="outer">
+            <thead>
+            <tr>
+                <th colspan="2">Banner Client Required Fields</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>name for the client</td>
+                <td>company.com</td>
+            </tr>
+            <tr>
+                <td>Contact Name</td>
+                <td>name of a user as contact</td>
+            </tr>
+            <tr>
+                <td>Contact email</td>
+                <td>Enter a valid contact email</td>
+            </tr>
+            <tr>
+                <td>Login</td>
+                <td>Login only to banner views</td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>Generate password</td>
+            </tr>
+            <tr>
+                <td>Extra info</td>
+                <td>Any customised information, address, phone, etc.</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>Create a New Banner</h3>
+        <p>select the banner client</p>
+        <p>Set the total number of Impressions Allowed
+        <p>Image URL
+        <p>Click URL (where to redirect users)
+        <p>HTML code (check the box to confirm it is code and not an image).
+
+    </section>
+
+
+
+    <section id="help-htaccess">
+
+        <h3>Cool URI .htaccess</h3>
+
+        <p>This feature generates a htaccess file to use Cool URI
+
+        <p>1. Copy the generated code
+
+        <p>2. Create a file /public_html/.htaccess
+
+        <p>3. Past the generated code into .htaccess</p>
+
+        <p>4. Enable "Cool URI" in the Control Panel System  <a href="../../legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">🆒 Settings ⭢</a>
+
+        <h3>The .htaccess File</h3>
+
+        <p><b>.htaccess</b> files are plain-text configuration files used by the Apache HTTP web server.
+            They allow users to set directory level options without requiring access to the httpd.conf file,
+            including www rewrite, hotlink prevention, custom error pages, caching, and redirects.<br>
+            As such it is required that your server uses Apache, and a web host that allows htaccess files (the most popular hosts do).
+        </p>
+    </section>
+
+
+
+    <section id="help-template">
+
+        <h3>Template Management</h3>
+
+        <p>The list of Template Sets is displayed in Template Management.
+
+        <p>The distribution package comes with a Default Template Set.
+
+        <p>When modules are installed, their templates become part of this Default Template set.
+
+        <div class="error">The Default <b>Template Set</b> cannot be deleted nor modified !</div>
+
+        <p>To customize the templates in your site, first create a new <b>Template Set</b>
+
+        <p>Copy the templates you want to customize from the default template set to your new template set.
+
+        <p>Once you have a new Template Set, you can activate it by clicking the "Select" button in the Control column.
+
+        <p>Only then template files can be edited in the Template File Management.
+
+        <h3>Template File Management</h3>
+
+        <p>The list of template files allow download and editing of each file.</p>
+
+        <div class="tips">You can upload Template Set archives in tar format through the admin interface.</div>
+
+    </section>
+
+
+
+    <section id="help-themes">
+
+        <h3>Theme Selection</h3>
+
+        <p>Theme Management allows you to simple click the "Select" button next to the theme
+            that you want to use as the default theme or main theme of your site.
+
+        <p>Any theme that is "checked" in the "Control" column, will be available to users in the block "Themes".
+
+        <p>If you install the "Themes" block and grant users permission, they can then select their favorite theme and customize the look and feel of the website.
+
+        <h3>Install a Theme</h3>
+
+        <p>Distributed themes are mostly compressed.
+            To use a theme, the uncompressed files must be uploaded into the directory public_html/themes/.
+
+        <p>The Theme folder must include theme.html and manifesto.ini.php
+
+        <p>Additional Themes can be installed from X-Update Store, from theme-developers' websites or your custom design.
+
+        <h3>Uninstall a Theme</h3>
+
+        <p>The render system manages themes without using the database.
+
+        <p>So, to delete a theme, simply delete its directory from the "themes" directory.
+
+        <p><a class="button" href="<{'index.php?action=Help&dirname=legacy'}>">Learn more about Themes ⭢</a></p>
+
+    </section>
+
+
+    <section id="help-amp">
+        <h3>AMP HTML Specification</h3>
+
+        <p>AMP HTML is a subset of HTML for authoring content pages such as news articles in a way that guarantees certain baseline performance characteristics.
+            Being a subset of HTML, it puts some restrictions on the full set of tags and functionality available through HTML,
+            but it does not require the development of new rendering engines: existing user agents can render AMP HTML just like all other HTML.</p>
+        <p>Also, AMP HTML documents can be uploaded to a web server and served just like any other HTML document; no special configuration for the server is necessary.
+            However, they are also designed to be optionally served through specialized AMP serving systems that proxy AMP documents.</p>
+        <p><a href="https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml" target="_blank" rel="noopener nofollow">Learn more about AMP Spec ⭧</a></p>
+    </section>
+
+
+    <section id="help-bbcode">
+        <h3>BBCode</h3>
+
+        <p>BBCode is a simple way to format your entries (like bold text, italic text, links) in forums.
+            BBCode was implemented as method of providing a safer and easier way of allowing posts to be formatted on forums.</p>
+
+        <h3>Formatting Posts</h3>
+        <p>BBCode is short for Bulletin Board Code. It is used as a way for formatting posts made on message boards, blogs and more.
+            It is similar to HTML in the sense that in BBCode one does also use tags to format something specific (contained within the tag).
+            In BBCode tags are indicated by rectangular brackets surrounding a keyword, which is in turn transformed into HTML before being delivered to a web browser.
+
+            Since its creation, BBCode has been used in many different portals. Any developer can implement it for free and anyone can use it.
+        <p><a href="https://www.bbcode.org/" target="_blank" rel="noopener nofollow">Learn more about BBCode Spec ⭧</a></p>
+
+
+    </section>
+
+
+    <section id="help-markdown">
+        <h3>Markdown</h3>
+
+        <p>Markdown is a tool that converts simple text characters into HTML. It was created to facilitate writing on the web.
+        It is very similar in purpose to BBCode, being created later (in 2004).
+        Unlike BBCode, Markdown aims to avoid the use of tags wherever possible, as if the writing was just plain text.
+
+        <h3>Markdown vs BBCode</h3>
+
+        <p>In general, Markdown is not necessarily a competitor to BBCode, just a different and complementary way of writing on the web, which may be more suitable in certain contexts.
+        <p>In general, the writing difficulty can be ordered like this:
+
+        <p><code>Text < Markdown < BBCode < HTML</code></p>
+
+        <p>The further to the right, the more features, and the further to the left, the simpler.
+        <p>Markdown usage requires the installation of a plugin, preload or module.</p>
+        <p><a href="https://www.bbcode.org/markdown-syntax.php" target="_blank" rel="noopener nofollow">Learn more about Markdown Spec ⭧</a></p>
+    <section id="help-development">
+
+        <h3>Development</h3>
+
+        <p>Todo : Write some information.</p>
+        <ul>
+            <li>Tutorial - How to create Custom Templates
+            <li>How to creat Single File Component</li>
+            <li>Smarty Tags list</li>
+        </ul>
+
+        <table class="outer">
+            <thead>
+            <tr>
+                <th>Module name</th>
+                <th>Render  [ core system ]</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Type</td>
+                <td>X2 Module</td>
+            </tr>
+            <tr>
+                <td>Version</td>
+                <td>2.31</td>
+            </tr>
+            <tr>
+                <td>Level</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>🌐 Repository URL</td>
+                <td><a href="https://github.com/xoopscube/legacy" target="_blank">https://github.com/xoopscube/legacy ⭧</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <script>Prism.highlightAll();</script>
+
+</article>
+</div>

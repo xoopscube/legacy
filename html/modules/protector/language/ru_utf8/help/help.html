@@ -1,0 +1,245 @@
+<div data-layout="row sm-column">
+    <div data-self="size-xxsmall">
+        <nav id="help-menu">
+            <ul data-layout="rows">
+                <li><a href="#help-overview" class="button">Protector Module</a>
+                <li><a href="#help-blacklist" class="button">IP Blacklist</a>
+                <li><a href="#help-session" class="button">Session Hijacking</a>
+                <li><a href="#help-dos" class="button">DoS</a>
+                <li><a href="#help-crawler" class="button">Bad Crawlers</a>
+                <li><a href="#help-sql" class="button">SQL Injection</a>
+                <li><a href="#help-xss" class="button">XSS</a>
+                <li><a href="#help-var" class="button">Global Variables</a>
+                <li><a href="#help-development" class="button">Development</a>
+            </ul>
+        </nav>
+    </div>
+
+<article id="help-module">
+
+    <section id="help-overview">
+        <h3>Module Protector</h3>
+        <p>The protector module can defend your site against most common attacks.
+        <ul>
+            <li>Denial of service (DOS) attacks, bandwidth-hungry crawlers and spambots.
+            <li>SQL injection, variable contamination, null bytes, session hijacking, etc.
+            <li>Brute force attacks and directory traversals.
+            <li>Uploading of camouflaged image files and executables.
+            <li>Link and comment spammers
+        </ul>
+        <p>Protector logs the attacking IPs and offers a range of countermeasures including IP bans,
+        <p>Disable access, hidden the website response and automatic sanitization of attempted injections.
+        <p>The module also provides warnings of certain vulnerabilities in third-party add-ons and
+        <p>advices to fix them in the section <b>Security Advisor</b>.
+        <p>You can define security settings and rules to a more strict web security policy mechanism.
+        <p>Protector is a module developed by the trusted developer Gijoe from Peak.ne.jp
+        <p>This module is widely regarded as well by other CMS as a ‘must have’ module.
+    </section>
+
+
+<hr>
+
+
+    <section id="help-blacklist">
+        <h3>IP Blacklist</h3>
+
+        <p>What Is IP Blacklisting?
+        <p>IP blacklisting is a method used to filter out the illegitimate or malicious IP addresses from accessing your networks.
+        <p>Blacklists are lists containing ranges or individual IP addresses that you want to block.
+        <p>You can use these lists in combination with firewalls, intrusion prevention systems (IPS), and other traffic filtering tools.
+        <p>Creating and applying blacklists enables you to filter malicious traffic according to policies or through the manual
+        addition of IP addresses.
+        <p>Many network security tools that use blacklists are also able to add new addresses to be blocked.
+        <p>This can be done as externally referenced lists are updated or according to the results of event analysis.</p>
+    </section>
+
+
+<hr>
+
+
+    <section id="help-session">
+
+        <h3>Session Hijacking</h3>
+
+        <p>The Session Hijacking attack consists of the exploitation of the web session control mechanism, which is normally managed for a session token.
+
+        <p>Because http communication uses many TCP connections, the web server needs a method to recognize every user’s connections.
+            The most useful method depends on a token that the Web Server sends to the client browser after a successful client authentication.
+            A session token is normally composed of a string of variable width and it could be used in different ways,
+            like in the URL, in the header of the http requisition as a cookie, in other parts of the header of the http request, or yet in the body of the http requisition.
+
+        <p>The Session Hijacking attack compromises the session token by stealing or predicting a valid session token to gain unauthorized access to the Web Server.
+
+        <p>The session token could be compromised in different ways; the most common are:
+
+            <ul>
+                <li>Predictable session token
+                <li>Session Sniffing
+                <li>Client-side attacks (XSS, malicious JavaScript Codes, Trojans, etc)
+                <li>Man-in-the-middle attack
+                <li>Man-in-the-browser attack
+            </ul>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-dos">
+
+        <h3>Denial of Service (DoS)</h3>
+
+        <p>DoS attack attempts to saturate the abilities of a server
+        <p>The classic typology of DoS attack consists in the continuous loading of portal portions,
+            forcing the server into continually working to satisfy the demands
+        <p>How the module reacts - Protector can estimate the frequency of requests to the same pages, through time and number of reloads.
+        Once it matchs a pattern of the DoS attack, it can react with the following options :
+
+        <ul>
+            <li>logging the IP of the attacker
+            <li>prevent access to pages containing the block "Login"
+            <li>disable access or hidden the website response
+            <li>blank response from server (blank page)
+        </ul>
+
+        <p>Protector can also automatically add the IP to the directory of excluded IP addresses (therefore banning the IP)
+
+        <p>Moreover in the recent versions of the module it is possible to deny the access to the website through the use of the htaccess file
+        (even if this functionality is still at the experimental level).
+
+        <p>Some modules, for example the live chat module, are frequently updated by the users' browser to follow
+        the continuous flow of information that is modified.
+        In order to prevent users from using such modules as indicated for an attack, it is possible to define which modules escape anti-DoS control.
+    </section>
+
+
+<hr>
+
+
+    <section id="help-crawler">
+
+        <h3>Bad Crawlers</h3>
+
+        <p>A crawler is an indexing motor and information collector (for example an email sender in a forum spamming)
+        <p>It is considered a <b>bad crawler</b> when too frequently request are carried out.
+        <p>Protector reacts by applying the same criteria of DoS to the <b>bad crawler</b> and provides the following options :
+
+        <ul>
+            <li>show only a page containing the login block
+            <li>disable access, hidden the website response
+            <li>blank response from server (blank page)
+            <li>banning the IP
+            <li>block from .htaccess (experimental)
+        </ul>
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-sql">
+
+        <h3>SQL Injection</h3>
+
+        <p>SQL injection is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database.
+            Such code injection technique might destroy your database. SQL injection is one of the most common web hacking techniques.
+        <p>Protector can react by blocking various types of SQL injection attacks:
+
+        <ul>
+            <li>monitoring and surveillance
+            <li>prevent attempts in isolated comments
+            <li>monitoring the syntax of union operator in SQL
+            <li>prevent invalid data from being inserted into fields key
+        </ul>
+
+        <p>Important actions are audited (security, queries, executes, logins, etc.) and Protector can react in the following ways:
+
+        <ul>
+            <li>show only a page containing the login block
+            <li>data sanitization before sending it to the database
+            <li>blank response from server (blank page)
+            <li>banning the IP
+        </ul>
+        <p>Protector sanitizes the input before sending it to the database. Thus, parameterized queries can prevent SQL injection.
+    </section>
+
+
+<hr>
+
+
+    <section id="help-xss">
+
+        <h3>Cross-Site Scripting (XSS)</h3>
+
+        <p>These attacks are a type of injection, in which malicious scripts are injected into otherwise benign third-party add-ons of websites.
+        <p>XSS attacks occur when an attacker uses an third-party add-on installed in the web application to send malicious code,
+        generally in the form of a browser side script, to a different end user.
+        <p>Flaws that allow these attacks to succeed are quite widespread and occur anywhere an input from a user generates an output without validation or encoding.
+        <p>It is recommended to install add-ons tested and stable, developed by a trusted developers recognized for reliability and competence.
+
+        <p>Protector, being in fact a particularly powerful module itself, can only intercept part of these attacks by sanitizing data (see SQL injection attacks).
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-var">
+
+    <h3>Contamination of Global Variables</h3>
+
+    <p>A malicious attack can override variables leveraging user-supplied, untrusted query variables directly used on the
+        application server without any data sanitization. In extreme cases, the attack can change variables controlling
+        the business logic of the application. For instance, in languages like PHP, a number of poorly set default configurations
+        may allow the user to override variables.</p>
+    <p>Protector can react in the following ways:
+
+    <ul>
+        <li>show only a page containing the login block
+        <li>landing page
+        <li>banning the IP
+    </ul>
+
+    </section>
+
+
+    <hr>
+
+
+    <section id="help-development">
+
+        <table class="outer">
+            <thead>
+            <tr>
+                <th>Module name</th>
+                <th>Protector [ core system ]</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Type</td>
+                <td>Trust Module</td>
+            </tr>
+            <tr>
+                <td>Version</td>
+                <td>2.31</td>
+            </tr>
+            <tr>
+                <td>Level</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>🌐 Repository URL</td>
+                <td><a href="https://github.com/xoopscube/protector" target="_blank">https://github.com/xoopscube/protector ⭧</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+
+</article>
+</div>
