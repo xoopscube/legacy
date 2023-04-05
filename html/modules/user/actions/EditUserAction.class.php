@@ -22,6 +22,8 @@ class User_EditUserAction extends User_AbstractEditAction
      * @var string
      */
     public $mUserCookie = '';
+
+    public $mSelfDelete = false;
     
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
@@ -127,7 +129,22 @@ class User_EditUserAction extends User_AbstractEditAction
         $handler =& xoops_gethandler('timezone');
         $timezoneArr =& $handler->getObjects();
         $render->setAttribute('timezones', $timezoneArr);
-        
+
+        //
+        // set flags.
+        //
+        $user_ownpage = (is_object($xoopsUser) && $xoopsUser->get('uid') == $this->mObject->get('uid'));
+        $render->setAttribute('user_ownpage', $user_ownpage);
+        //
+        // About 'SELF DELETE'
+        //
+        $render->setAttribute('self_delete', $this->mSelfDelete);
+        if ($user_ownpage && $this->mSelfDelete) {
+            $render->setAttribute('enableSelfDelete', true);
+        } else {
+            $render->setAttribute('enableSelfDelete', false);
+        }
+
         //
         // umode option
         //

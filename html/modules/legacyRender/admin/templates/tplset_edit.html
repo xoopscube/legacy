@@ -26,9 +26,12 @@
     <{xoops_token form=$actionForm}>
     <{xoops_input type=hidden name=tplset_id value=$actionForm->get('tplset_id')}>
     <table class="outer">
+        <thead>
         <tr>
             <th colspan="2"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_EDIT}> (<{$object->getShow('tplset_name')}>)</th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <td><{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_NAME}></td>
             <td><{$object->getShow('tplset_name')}></td>
@@ -45,6 +48,8 @@
             <{xoops_textarea name=tplset_credits rows=5 cols=50 value=$actionForm->get('tplset_credits')}>
             </td>
         </tr>
+        </tbody>
+        <tfoot>
         <tr>
             <td colspan="2">
                 <input class="button" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
@@ -52,5 +57,6 @@
                     <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="edit"> <{$smarty.const._EDIT}></button>
             </td>
         </tr>
+        </tfoot>
     </table>
 </form>

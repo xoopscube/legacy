@@ -90,7 +90,7 @@ iframe[class^="cke"] html {
 
 /* D3FORUM POST TREE */
 .post-tree-item {
-    list-syle :none;
+    list-style :none;
 }
 /* D3FORUM ALERT PROGRESS TOASTER  */
 .progressTime::-webkit-progress-value { background-color: var(--bs-warning-bg-subtle);}

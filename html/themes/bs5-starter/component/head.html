@@ -20,10 +20,10 @@
     <meta property="og:url" content="//<{$smarty.server.HTTP_HOST}><{$xoops_requesturi}>">
     <meta property="og:type" content="website">
     <meta property="og:title" content="<{$xoops_pagetitle}>">
-    <{if $mytrustdirname == 'pico' && $content.ef.pico_img}>
+    <{if $xoops_dirname == 'pico' && isset($content.ef.pico_img)}>
     <meta property="og:image" content="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/pico_img_0_<{$content.ef.pico_img|escape}>">
     <{else}>
-    <meta property="og:image" content="<{$theme_url}>img/tile.png">
+    <meta property="og:image" content="<{$xoops_url}>/images/tile.png">
     <{/if}>
     <meta property="og:description" content="<{$xoops_meta_description}>">
     <meta property="og:site_name" content="<{$xoops_sitename}>">

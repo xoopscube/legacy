@@ -36,10 +36,10 @@ class Legacy_AdminSmarty extends Smarty
     //
     public $overrideMode = true;
     
-    public function Legacy_AdminSmarty()
-    {
-        self::__construct();
-    }
+//    public function Legacy_AdminSmarty()
+//    {
+//        self::__construct();
+//    }
 
     public function __construct()
     {
@@ -274,7 +274,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
  * @param $string
  * @return string
  * @internal
- * Return URL string by "overriding" rule.
+ * Return URL strings by "overriding" rule.
  * (Now, test implement)
  * 1) Search file in specified theme directory.
  * 2) Search file in current module template directory.
@@ -314,6 +314,7 @@ function Legacy_function_stylesheet($params, &$smarty)
     $infoArr = Legacy_get_override_file($file, 'stylesheets/');
 
     // TEMP
+    // XCL 2.3.x changed /modules/ to /templates/
     // TODO We must return FALLBACK_URL here.
     if (null != $infoArr['file']) {
         if ($params['static']) {

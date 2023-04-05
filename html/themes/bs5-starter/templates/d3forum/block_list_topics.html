@@ -34,12 +34,12 @@
         <{* <{/if}> ----- *}>
 	<{/if}>
 
-        <{* Display module block icon e.g. = <{$block.mod_imageurl}>//block_marked.svg *}>
+    <{* Display module block icon e.g. = <{$block.mod_imageurl}>//block_marked.svg *}>
 	<{if $topic.u2t_marked}><img class="svg me-1" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" alt="<{$block.lang_alt_marked}>"><{/if}>
     <{if !$topic.solved}><img class="svg me-1" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" alt="<{$block.lang_alt_unsolved}>"><{/if}>
 
-	    <{* displays the last post's subject or topic title *}>
-	<{if $block.disp_last_subject }>
+	<{* displays the last post's subject or topic title *}>
+	<{if isset($block.disp_last_subject)}>
 	    <{$topic.last_subject}>
 	<{else}>
 	    <{$topic.title}>

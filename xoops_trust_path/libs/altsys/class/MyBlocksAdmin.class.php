@@ -27,6 +27,7 @@ class MyBlocksAdmin {
 	public $target_dirname = '';
 
 	public $target_mname = '';
+    public $target_mname_bread = '';
 
 	public $block_configs = [];
 

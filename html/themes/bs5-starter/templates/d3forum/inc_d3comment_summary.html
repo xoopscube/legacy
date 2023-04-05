@@ -2,13 +2,13 @@
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 
-<{if $topic.comment_link}>
+<{if isset($topic.comment_link)}>
 
 	<p>
         <a href="<{$topic.comment_link}>"><{$smarty.const._MD_D3FORUM_LINK_COMMENTSOURCE}></a>
     </p>
-    <{elseif is_array($topic.comment_description)}>
 
+<{elseif isset($topic.comment_description) && is_array($topic.comment_description)}>
     <div class="card my-4">
         <div class="card-header">
         <h3>
@@ -30,6 +30,6 @@
         </div>
         <{/if}>
     </div>
-    <{elseif $topic.comment_description}>
+    <{elseif isset($topic.comment_description)}>
         <div class="description"><{$topic.comment_description}></div>
 <{/if}>

@@ -303,14 +303,16 @@ echo "<form name='MainForm' action='?mode=admin&amp;lib=altsys&amp;page=mytplsad
     . $xoopsGTicket->getTicketHtml( __LINE__ ) ;
 
 ////— ACTION-CONTROL —\\\\
-echo '<section data-layout="row center-justify" class="action-control">
-        <div>' . _MYTPLSADMIN_CREATE_NEW_TPLSET . ' : ' . _MYTPLSADMIN_CAPTION_BASE . ':
-			<select name="clone_tplset_from">'. $tplset_options .'
-			<option value="_blank_">' . _MYTPLSADMIN_OPT_BLANKSET . '</option>
-			</select> ' . _MYTPLSADMIN_CAPTION_SETNAME . ' :
-			<input type="text" name="clone_tplset_to" size="8" maxlength="16">
-			<input class="button submit" type="submit" name="clone_tplset_do" value="' . _MYTPLSADMIN_BTN_NEWTPLSET . '">
-		</div>
+
+
+echo '<section data-layout="row center-justify" class="action-control"><div>';
+//' . _MYTPLSADMIN_CREATE_NEW_TPLSET . ' : ' . _MYTPLSADMIN_CAPTION_BASE . ' <select name="clone_tplset_from">';
+//echo $tplset_options;
+//echo '<option value="_blank_">' . _MYTPLSADMIN_OPT_BLANKSET . '</option>
+//			</select> ' . _MYTPLSADMIN_CAPTION_SETNAME . ' :
+//			<input type="text" name="clone_tplset_to" size="8" maxlength="16">
+//			<input class="button submit" type="submit" name="clone_tplset_do" value="'. _MYTPLSADMIN_BTN_NEWTPLSET . '">
+echo '</div>
 		<div class="control-view">';
 	// link to create a new custom template
     if ( $target_dirname == '_custom' ) {
@@ -437,8 +439,7 @@ echo "<tfoot>
     . " <select name='clone_tplset_from'>
 				$tplset_options
 				<option value='_blank_'>" . _MYTPLSADMIN_OPT_BLANKSET . "</option>
-        </select>
-        <br>"
+        </select> "
     . _MYTPLSADMIN_CAPTION_SETNAME
     . " <input type='text' name='clone_tplset_to' size='8' maxlength='16'> <input type='submit' name='clone_tplset_do' value='" . _MYTPLSADMIN_BTN_NEWTPLSET . "'>
 		</td>
@@ -473,10 +474,7 @@ foreach ( $tplsets as $tplset ) {
         . "</td>\n";
 }
 
-echo '</tr></tfoot>';
-
-
-echo '</table></form>';
+echo '</tr></tfoot></table></form>';
 // end of table & form
 
 xoops_cp_footer();

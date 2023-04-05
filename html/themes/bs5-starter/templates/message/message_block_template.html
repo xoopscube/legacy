@@ -42,7 +42,7 @@
             <path fill-rule="evenodd" d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zM3 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm0 4.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
         </svg> <{$smarty.const._MI_MESSAGE_SUB_SETTINGS}></a>
 
-        <{if $UserSearch}>
+        <{if isset($UserSearch)}>
             <li class="list-group-item">
             <a href="<{$message_url}>?action=search">
                 <img src="<{$smarty.const.XOOPS_MODULE_URL}>/message/images/email_edit.png" alt="">

@@ -4,7 +4,7 @@
         <li class="breadcrumb-item"><a href="<{$mod_url}>/index.php"><{$xoops_dirname|ucfirst}></a>
         <{foreach from=$xoops_breadcrumbs key="i" item="bc"}>
         <{if $i > 0}>
-        <{if $bc.url}>
+        <{if isset($bc.url)}>
         <li class="breadcrumb-item"><a href="<{$bc.url}>"><{$bc.name|truncate:25}></a>
             <{else}>
         <li class="breadcrumb-item active" aria-current="page"><{$bc.name|truncate:30}>

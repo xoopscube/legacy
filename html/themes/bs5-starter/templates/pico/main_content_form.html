@@ -18,7 +18,7 @@
     <input type="hidden" name="content_id" value="<{$content.id}>">
     <input type="hidden" name="body_editor" id="body_editor" value="">
 
-    <{if $preview}>
+    <{if isset($preview)}>
     <{* foreach from=$preview.errors item="error_message"}>
     <p onmouseover="document.contentform.vpath.focus();document.contentform.vpath.style.border='#FFFFCC';">
         <em class="pico_notice"><{$error_message}></em>
@@ -142,8 +142,9 @@
         </div>
         <div class="col-sm-8">
             <input type="file" id="ei_pico_img" name="ei_pico_img">
+
+            <{if isset($content.ef.pico_img)}>
             <input type="hidden" name="ef_pico_img" value="<{$content.ef.pico_img|escape}>">
-            <{if $content.ef.pico_img}>
             <a href="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/pico_img_0_<{$content.ef.pico_img|escape}>">
                 <img src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/pico_img_1_<{$content.ef.pico_img|escape}>">
             </a>
@@ -387,7 +388,7 @@
 
                     <{foreach from=$content.filter_infos key="filter_name" item="filter"}>
                     <div class="d-flex flex-row justify-content-between mb-3">
-                        <{if $filter.title}>
+                        <{if isset($filter.title)}>
                             <{if $editor == "html" && !$content.body && $content.filter_infos[$filter_name].disableOnHtml}>
                             <{assign var=check value=0}>
                         <{else}>
@@ -395,7 +396,7 @@
                         <{/if}>
                         <div class="col-sm-1">
                             <input type="checkbox" class="form-check-input" name="filter_enabled_<{$filter_name}>" id="filter_enabled_<{$filter_name}>"
-                                   value="1" <{if $filter.enabled && $check}>checked="checked"<{/if}> <{if $filter.fixed}>disabled="disabled"<{/if}>>
+                                   value="1" <{if $filter.enabled && $check}>checked="checked"<{/if}> <{if isset($filter.fixed)}>disabled="disabled"<{/if}>>
                         </div>
                         <div class="col-sm-1">
                             <input type="number" class="form-control form-control-sm" size="3" min="0" max="100" step="1" name="filter_weight_<{$filter_name}>" id="filter_weight_<{$filter_name}>"
@@ -513,7 +514,7 @@
                     <h5><{$smarty.const._MD_PICO_EXPIRING}></h5>
                     <div class="row gap-0 row-gap-3 border rounded p-3 my-3">
                         <div class="col-auto">
-                        <{if $content.specify_expiring_time}>
+                        <{if isset($content.specify_expiring_time)}>
                             <{assign var="specify_expiring_time_checked" value="checked='checked'"}>
                         <{else}>
                             <{assign var="expiring_time_style" value="display:none;"}>
@@ -524,7 +525,7 @@
                                    name="specify_expiring_time"
                                    id="specify_expiring_time"
                                    value="1"
-                                   onclick="if(this.checked){document.getElementById('expiring_time').style.display='inline';}else{document.getElementById('expiring_time').style.display='none'}" <{$specify_expiring_time_checked}>>
+                                   onclick="if(this.checked){document.getElementById('expiring_time').style.display='inline';}else{document.getElementById('expiring_time').style.display='none'}" <{$specify_expiring_time_checked|default:''}>>
 
                             <span><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}> <small><{$content_base.expiring_time_formatted}></small></span>
                         </label>

@@ -30,9 +30,6 @@ function sitemap_show()
 
 	$block = [];
 
-	@$block['lang_home'] = _MD_SITEMAP_HOME ;
-	@$block['lang_close'] = _CLOSE ;
-
 	$module_handler =& xoops_gethandler('module');
 
 

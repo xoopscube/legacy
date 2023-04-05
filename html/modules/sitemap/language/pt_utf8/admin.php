@@ -1,7 +1,7 @@
 <?php
 
-define( '_MD_A_MYMENU_MYLANGADMIN' , 'Literals');
-define( '_MD_A_MYMENU_MYTPLSADMIN' , 'Templates');
-define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Blocks/Permissions');
-define( '_MD_A_MYMENU_MYPREFERENCES' , 'Preferences');
+define( '_MD_A_MYMENU_MYLANGADMIN' , 'Linguagem');
+define( '_MD_A_MYMENU_MYTPLSADMIN' , 'Modelos');
+define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Blocos/Permissões');
+define( '_MD_A_MYMENU_MYPREFERENCES' , 'Preferências');
 

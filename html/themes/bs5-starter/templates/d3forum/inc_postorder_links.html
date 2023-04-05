@@ -29,13 +29,13 @@
     </div>
     <div class="col-sm-6 d-flex justify-content-sm-end">
         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with previous and next topic button">
-            <{if $prev_topic.id || $next_topic.id}>
+            <{if isset($prev_topic.id) || isset($next_topic.id)}>
                 <{if $prev_topic.id}>
                 <a class="btn btn-outline-primary btn-sm" href="<{$mod_url}>/index.php?topic_id=<{$prev_topic.id}>" title="<{$prev_topic.title}>"><{$smarty.const._MD_D3FORUM_LINK_PREVTOPIC}></a>
                 <{/if}>
-            <{if $prev_topic.id && $next_topic.id}>
-            <!-- prev and next -->
-            <{/if}>
+                <{if $prev_topic.id && $next_topic.id}>
+                <!-- prev and next -->
+                <{/if}>
                 <{if $next_topic.id}>
                 <a class="btn btn-outline-primary btn-sm" href="<{$mod_url}>/index.php?topic_id=<{$next_topic.id}>" title="<{$next_topic.title}>"><{$smarty.const._MD_D3FORUM_LINK_NEXTTOPIC}></a>
                 <{/if}>

@@ -73,7 +73,7 @@ class User_UserInfoAction extends User_Action
         $root =& $controller->mRoot;
         
         $service =& $root->mServiceManager->getService('privateMessage');
-        if (null != $service) {
+        if ($service != null) {
             $client =& $root->mServiceManager->createClient($service);
             $this->mPmliteURL = $client->call('getPmliteUrl', ['fromUid' => is_object($xoopsUser) ? $xoopsUser->get('uid') : 0, 'toUid' => $uid]);
         }

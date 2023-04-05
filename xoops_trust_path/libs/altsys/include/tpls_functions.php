@@ -241,9 +241,10 @@ function tplsadmin_get_basefilepath( $dirname, $type, $tpl_file ) {
 
 	if ( is_callable( 'Legacy_Utils::getTrustDirnameByDirname' ) ) {
 		$mytrustdirname = Legacy_Utils::getTrustDirnameByDirname( $dirname );
-	} elseif ( ! defined( 'XOOPS_CUBE_LEGACY' ) ) {
-		$mytrustdirname = XOOPS_PATH;
 	}
+//    elseif ( ! defined( 'XOOPS_CUBE_LEGACY' ) ) {
+//		$mytrustdirname = XOOPS_PATH;
+//	}
 
 	if ( defined( 'ALTSYS_TPLSADMIN_BASEPATH' ) ) {
 		// Special hook

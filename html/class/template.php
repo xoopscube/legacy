@@ -61,6 +61,9 @@ class XoopsTpl extends Smarty
 		
         // Smarty assign Legacy XOOPS2
         // Refer to preload XCubeRender for XCL.2.3.x UI frameworks
+        if (isset($GLOBALS['xoopsUserIsAdmin'])) {
+            $xoops_isadmin = $GLOBALS['xoopsUserIsAdmin'];
+        }
         $this->assign(
             [
                 'xoops_url'         => XOOPS_URL,
@@ -68,15 +71,20 @@ class XoopsTpl extends Smarty
                 'xoops_langcode'    => _LANGCODE,
                 'xoops_charset'     => _CHARSET,
                 'xoops_version'     => XOOPS_VERSION,
-                'xoops_upload_url'  => XOOPS_UPLOAD_URL
+                'xoops_upload_url'  => XOOPS_UPLOAD_URL,
+                'xoops_isadmin'     => $xoops_isadmin
             ]
         );
 
         if (empty($this->debug_tpl)) {
-            // set path to debug template from SMARTY_DIR
+            // set path to debug template
             $this->debug_tpl = XOOPS_ROOT_PATH.'/modules/legacy/templates/xoops_debug.tpl';
             if ($this->security && is_file($this->debug_tpl)) {
                 $this->secure_dir[] = realpath($this->debug_tpl);
+            }
+            // set config debug mode
+            if ($xoopsConfig['debug_mode'] == 3) {
+                $this->debugging = true;
             }
             $this->debug_tpl = 'file:' . XOOPS_ROOT_PATH.'/modules/legacy/templates/xoops_debug.tpl';
         }
