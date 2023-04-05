@@ -77,7 +77,7 @@ data-bs-autohide="false" using autohide: false, you must add a close button to a
 
         <{* ------- SEARCH FILTER *}>
         <form action="<{$mod_url}>/index.php" method="get">
-            <{$forum_selection_sort}>
+            <{$forum_selection_sort|default:''}>
             <input type="hidden" name="forum_id" value="<{$forum.id}>">
             <input type="hidden" name="external_link_id" value="<{$query.external_link_id}>">
 
@@ -178,7 +178,7 @@ data-bs-autohide="false" using autohide: false, you must add a close button to a
                         <{/if}>
 
                         <a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>"><{$topic.title}></a>
-                        <{$topic.topic_page_jump}>
+                        <{$topic.topic_page_jump|default:''}>
                     </div>
 
                     <div class="small" aria-label="<{$smarty.const._MD_D3FORUM_LASTPOST}>">

@@ -3,7 +3,7 @@
     <ul class="msgNav nav nav-tabs card-header-tabs flex-column flex-sm-row">
 
         <li class="nav-item flex-sm-fill text-sm-center">
-                <a class="nav-link <{$tab}>" href="index.php">
+                <a class="nav-link <{$tab|default:''}>" href="index.php">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="download mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M.5 8a.5.5 0 0 1 .5.5V12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8.5a.5.5 0 0 1 1 0V12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8.5A.5.5 0 0 1 .5 8z"/>
                     <path fill-rule="evenodd" d="M5 7.5a.5.5 0 0 1 .707 0L8 9.793 10.293 7.5a.5.5 0 1 1 .707.707l-2.646 2.647a.5.5 0 0 1-.708 0L5 8.207A.5.5 0 0 1 5 7.5z"/>
@@ -12,7 +12,7 @@
         </li>
 
         <li class="nav-item flex-sm-fill text-sm-center">
-            <a class="nav-link <{$tabSent}>" id="send" href="index.php?action=send">
+            <a class="nav-link <{$tabSent|default:''}>" id="send" href="index.php?action=send">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="upload mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M.5 8a.5.5 0 0 1 .5.5V12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8.5a.5.5 0 0 1 1 0V12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8.5A.5.5 0 0 1 .5 8zM5 4.854a.5.5 0 0 0 .707 0L8 2.56l2.293 2.293A.5.5 0 1 0 11 4.146L8.354 1.5a.5.5 0 0 0-.708 0L5 4.146a.5.5 0 0 0 0 .708z"/>
                     <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0v-8A.5.5 0 0 1 8 2z"/>
@@ -20,7 +20,7 @@
         </li>
 
         <li class="nav-item flex-sm-fill text-sm-center">
-            <a class="nav-link <{$tabNew}>" id="new" href="index.php?action=new">
+            <a class="nav-link <{$tabNew|default:''}>" id="new" href="index.php?action=new">
                 <svg class="edit-square mr-2" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -29,14 +29,14 @@
 
         <{* ------- dropdown *}>
         <li class="nav-item text-sm-right dropdown">
-            <a class="msgOptions nav-link dropdown-toggle <{$tabOptions}>" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="msgOptions nav-link dropdown-toggle <{$tabOptions|default:''}>" data-bs-toggle="dropdown" aria-expanded="false">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="grip-horizontal" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M7 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-3 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                 </svg></a>
 
             <{* ------- dropdown-menu right aligned *}>
             <ul class="dropdown-menu dropdown-menu-end">
-                <{if $msgdata.inbox_id}>
+                <{if isset($msgdata.inbox_id)}>
                 <li>
                     <a class="dropdown-item" href="#" onclick="location.href='index.php?action=new&amp;res=<{$msgdata.inbox_id}>'">
                         <img class="svg reply" src="<{$xoops_url}>/images/icons/reply.svg" width="1em" height="1em" alt="reply"> <{$smarty.const._MD_MESSAGE_TEMPLATE13}></a>
@@ -51,7 +51,7 @@
                             <img class="svg mail-forward" src="<{$xoops_url}>/images/icons/mail-send.svg" width="1em" height="1em" alt="Forward"> <{$smarty.const._MD_MESSAGE_TEMPLATE21}></a>
                     </form>
                 </li>
-                <{elseif $msgdata.outbox_id}>
+                <{elseif isset($msgdata.outbox_id)}>
                 <li>
                     <a class="dropdown-item" onclick="document.getElementById('message-delete').submit();">
                         <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"> <{$smarty.const._MD_MESSAGE_TEMPLATE14}></a>
@@ -72,7 +72,7 @@
                         <img class="svg print" src="<{$xoops_url}>/images/icons/print.svg" width="1em" height="1em" alt="Print"> Print</a>
                 </li>
 
-                <{if $msgdata.inbox_id && $msgdata.from_uid !=1}>
+                <{if isset($msgdata.inbox_id) && $msgdata.from_uid !=1}>
                 <li>
                     <a class="dropdown-item" href="#" onclick="location.href='index.php?action=blacklist&amp;uid=<{$msgdata.from_uid}>'">
                         <img class="svg user" src="<{$xoops_url}>/images/icons/user.svg" width="1em" height="1em" alt="user"> <{$smarty.const._MD_MESSAGE_SETTINGS_MSG10}> this user</a>
@@ -84,7 +84,7 @@
                         <img class="svg user-block" src="<{$xoops_url}>/images/icons/user-lock.svg" width="1em" height="1em" alt="user block"> <{$smarty.const._MD_MESSAGE_SETTINGS_MSG10}></a>
                 </li>
 
-                <{if $UserSearch}>
+                <{if isset($UserSearch)}>
                 <li>
                     <a class="dropdown-item"  href="<{$message_url}>?action=search">
                         <img class="svg user-search" src="<{$xoops_url}>/images/icons/search-adv.svg" width="1em" height="1em" alt="user search">

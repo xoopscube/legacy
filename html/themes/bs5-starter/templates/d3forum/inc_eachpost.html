@@ -145,7 +145,7 @@
         <{* ------- Previous and next *}>
         <div class="btn-group btn-group-sm" role="group" aria-label="Previous and Next Post">
 
-            <{if $post.prev_id}>
+            <{if isset($post.prev_id)}>
             <a class="btn btn-outline-secondary" href="<{$post.prev_id|string_format:$inner_link_format}>">
                 <svg class="arrow-left-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.354 10.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L6.207 7.5H11a.5.5 0 0 1 0 1H6.207l2.147 2.146z"/>
@@ -159,7 +159,7 @@
                 </svg> <span class="d-none d-xl-inline"><{$smarty.const._MD_D3FORUM_LINK_PREVPOST}></span></button>
             <{/if}>
 
-            <{if $post.next_id}>
+            <{if isset($post.next_id)}>
             <a class="btn btn-outline-secondary" href="<{$post.next_id|string_format:$inner_link_format}>">
                 <svg class="arrow-right-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm5.646 10.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L9.793 7.5H5a.5.5 0 0 0 0 1h4.793l-2.147 2.146z"/>

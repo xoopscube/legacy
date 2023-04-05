@@ -35,3 +35,6 @@ define( '_MI_ALTSYS_ENABLEFORCECLONEDSC' , 'Warning : Some blocks may cause erro
 
 define( '_MI_ALTSYS_IMAGES_DIR' , 'Directory for image files');
 define( '_MI_ALTSYS_IMAGES_DIRDSC' , 'relative path should be set in the module directory. default: images');
+
+define( '_MI_ALTSYS_THEME_FROM_FILE' , 'Update from theme');
+define( '_MI_ALTSYS_THEME_FROM_FILEDSC' , 'Update from theme templates');

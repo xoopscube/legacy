@@ -14,7 +14,7 @@
                 <img class="figure-img img-fluid rounded-circle" src="<{$smarty.const.XOOPS_URL}>/modules/user/images/no_avatar.gif" alt="No Avatar" title="No Avatar" width="128">
                 <{/if}>
 
-                <{if $user_ownpage == true}>
+                <{if isset($user_ownpage) && $user_ownpage == true}>
                 <figcaption class="figure-caption">
                     <a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>">
                         <svg class="person-bounding-box" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -30,13 +30,13 @@
             <ul class="list-group list-group-flush small">
                 <li class="list-group-item d-flex justify-content-between align-items-center"><{$smarty.const._MD_USER_LANG_UNAME}> <span class="badge text-bg-secondary"><{$thisUser->getShow('uname')}></span></li>
                 <li class="list-group-item d-flex justify-content-between align-items-center"><{$smarty.const._MD_USER_LANG_NAME}> <span class="badge text-bg-secondary"><{$thisUser->getShow('name')}></span></li>
-                <{if $rank != null}>
+                <{if isset($rank)}>
                 <li class="list-group-item d-flex justify-content-between align-items-center"><{$smarty.const._MD_USER_LANG_RANK}> <span class="badge text-bg-secondary"><{$rank->getShow('rank_title')}></span></li>
                 <{/if}>
                 <li class="list-group-item d-flex justify-content-between align-items-center"><{$smarty.const._MD_USER_LANG_POSTS}> <span class="badge text-bg-secondary"><{$thisUser->getShow('posts')}></span></li>
                 <li class="list-group-item d-flex justify-content-between align-items-center"><{$smarty.const._MD_USER_LANG_LAST_LOGIN}> <span class="badge text-bg-secondary"><{$thisUser->get('last_login')|xoops_formattimestamp:l}></span></li>
                 <li class="list-group-item d-flex justify-content-between align-items-center"><{$smarty.const._MD_USER_LANG_USER_REGDATE}> <span class="badgetext-bg-secondary"><{$thisUser->get('user_regdate')|xoops_formattimestampGMT}></span></li>
-                <{if $xoops_isuser == true && $pmliteUrl !=''}>
+                <{if $xoops_isuser == true && !empty($pmliteUrl)}>
                 <li class="list-group-item d-flex justify-content-between align-items-center"><{$smarty.const._MD_USER_LANG_PM}>
                     <a href="<{$pmliteUrl|xoops_escape:link}>">
                         <svg class="envelope" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

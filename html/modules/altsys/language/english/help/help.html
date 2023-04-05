@@ -35,20 +35,27 @@
 
         <h2>Blocks management</h2>
 
-        <p>The building blocks of your site are single components of content like business information,
+        <p>Create and manage the building blocks of your website layout, such as business information,
             advertisements, contact forms, images or media embeds from other platforms.</p>
+
+        <p>There are two main types of blocks:</p>
+        <ul>
+            <li><b>Custom blocks</b> are created by selecting a custom type : Auto-Format (BBCode, emoticones), PHP or HTML.</li>
+            <li><b>Modules blocks</b> are pre-built blocks available when you install and enable a module, such as "User Login" or "Main Menu".</li>
+        </ul>
 
         <h3>Block Settings</h3>
         <p>Each block has the following default properties :</p>
         <ul>
-            <li>name (title)</li>
-            <li>order or weight of display</li>
-            <li>default block "side"</li>
-            <li>enabled or disable</li>
-            <li>Target module(s)</li>
+            <li>Name ( Title )</li>
+            <li>Order, or weight, of display</li>
+            <li>"Side" area ( refer to theme layout )</li>
+            <li>Enabled or disable status</li>
+            <li>Target front-page and module(s)</li>
             <li>User groups permissions</li>
-            <li>Cache settings</li>
-            <li><b>Custom Blocks</b></li>
+            <li>Independent Cache settings</li>
+            <li>Independent options ( edit )</li>
+            <li><b>Custom Blocks Options</b></li>
             <li>+ Type of Block (Auto-Format, HTML, PHP)</li>
             <li>+ Copy/duplicate</li>
             <li>+ Edit the template</li>
@@ -56,20 +63,19 @@
         </ul>
 
         <h3>Block Side</h3>
-
-        <p>The block "side"" is just a legacy code convention to identify areas in the theme and organize the layout.
-            Blocks are modular units of content that can be positioned almost anywhere on the page.</p>
+        <p>The block "side"" is just a legacy code convention for identifying areas of a Theme and organizing the layout.
+            A Theme layout defines the "side" areas available. Blocks are modular units of content that can be positioned almost anywhere on the page.</p>
         <p>For example, a theme can place the block-left "Main Menu" at the top of the page to create a navigation bar.</p>
 
-        <div class="tips">The block template specifies the shape, and the global theme specifies the areas and appearance.
-            The block's presentation layer can be replaced by a custom template design.</div>
+        <div class="tips">A Theme defines the overall structure, blocks areas and appearance. Module and blocks templates specify the shape.
+            The theme and templates can be replaced with a custom design.</div>
 
         <h3>Types of blocks</h3>
 
         <h4>Custom blocks</h4>
 
-        <p>A Custom block can be built with BBCode (Auto-Format), PHP, or HTML, CSS and JavaScript.
-            Thus allowing to create reusable Components to create an effective website layout.</p>
+        <p>A Custom block is created with a custom type : Auto-Format (BBCode, emoticones), PHP, or HTML, CSS and JavaScript.
+            Thus allowing you to design and easily manage reusable Components for an effective website layout.</p>
         <p>BBCode is a simple and secure way to format your entries (like bold text, italic text, links). Nowadays, Markdown shares the same purpose as BBCode.</p>
         <p>Custom Blocks can also embed code or integrate with third-party features specific to a site's unique needs.</p>
 
@@ -93,13 +99,16 @@
 
         <h3>Templates</h3>
 
-        <p>Templates of modules and blocks shape content. While the frontend and backend Themes define the general appearance.</p>
-        <p>A custom template can be created with HTML, CSS, JavaScript, PHP and Smarty variables to make a single file component.</p>
+        <p>A front-end theme defines the overall look. While module and block templates shape the content.</p>
+
+
+        <p>A custom template can be created with PHP or HTML, CSS and JavaScript to be used as a single file component.</p>
 
         <h3>Template Set</h3>
 
-        <p>The list of Template Sets can be found in Template Management of module Renderer.
-            When modules are installed, their templates become part of the Default Template Set.</p>
+        <p>When modules are installed, their templates become part of the Default Template Set.<br>
+            These templates can be easily edited or duplicated with the module Components (AltSys).<br>
+            The Template Sets available can be found in Template Set management of module Render.</p>
 
         <p>1. First, make a copy of the <b>Default Template Set</b> ( Base-File )</p>
         <p>2. Browse to templates »» Module</p>
@@ -110,11 +119,12 @@
         <div class="tips">In case of errors, check the box next to the template to easily copy from <b>Base-File Set</b> !</div>
 
         <h3>Find a Template</h3>
+        <p>Template management allows templates to be filtered by module, sorted and searched by name.</p>
 
         <h4>Naming Convention</h4>
 
         <p>The template naming convention is a systematic method for naming files
-            written in all-lowercase ASCII letters. The name specs might include the package name, action, event.</p>
+            written in all-lowercase ASCII letters. The name specs might include the package name, action, event. For example:</p>
         <ul>
             <li>[module-name]_[admin].html</li>
             <li>[module-name]_[block].html</li>
@@ -124,6 +134,7 @@
         <p><a class="button" href="<{'index.php?action=Help&dirname=legacy&file=directory_structure.html'}>">Learn more about Naming Convention ⭢</a></p>
 
         <h3>Custom Templates</h3>
+
         <p>1. Create a custom template</p>
         <p>2. Add some content</p>
         <p>3. Name the template eg.: mycustom_template.html</p>

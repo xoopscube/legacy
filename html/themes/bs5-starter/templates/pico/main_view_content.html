@@ -72,7 +72,7 @@
 
 
 <div class="card my-4">
-    <{if $content.ef.pico_img}>
+    <{if isset($content.ef.pico_img)}>
     <img class="card-img-top img-fluid" style="height: 240px; object-fit: cover;" src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/pico_img_1_<{$content.ef.pico_img|escape}>" alt="<{$content.subject}>">
     <div class="card-img-overlay">
         <h2 class="card-title bg-black bg-gradient text-white bg-opacity-50 rounded p-3"><{$content.subject}></h2>
@@ -115,9 +115,12 @@
         </div>
         <{* /if *}><{* ------- SMARTY COMMENT to make information visible only to admins *}>
 
-        <p><{if $content.ef.address1}><b><{$content.ef.address1}></b><{/if}>
-        <{if $content.ef.pronunciation|escape}><i><{$content.ef.pronunciation|escape}></i><{/if}>
-            <{if $content.ef.gender}><{$content.ef.gender}><{/if}></p>
+        <{* ----- Extra fields sample
+        <p><{if isset($content.ef.address1)}><b><{$content.ef.address1}></b><{/if}>
+        <{if isset($content.ef.pronunciation|escape)}><i><{$content.ef.pronunciation|escape}></i><{/if}>
+        <{if isset($content.ef.gender)}><{$content.ef.gender}><{/if}>
+        </p>
+        ----- Extra fields sample ----- *}>
 
         <{* ------- VIEWS + TAGS *}>
         <{if $content.tags_array}>
@@ -222,7 +225,7 @@
 <{if $mod_config.show_pagenavi && $content.id}>
     <div class="row row-cols-3 my-4">
     <div class="<{$smarty.const._ALIGN_START}>">
-    <{if $prev_content.id}>
+    <{if isset($prev_content.id)}>
         <a href="<{$mod_url}>/<{$prev_content.link}>" accesskey="P" title="<{$smarty.const._MD_PICO_PREV}>">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="arrow-left-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M7.854 4.646a.5.5 0 0 1 0 .708L5.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
@@ -238,7 +241,7 @@
             </svg> <{$category.title|truncate:"20"}></a>
     </div>
     <div class="text-end <{$smarty.const._ALIGN_END}>">
-    <{if $next_content.id}>
+    <{if isset($next_content.id)}>
         <a href="<{$mod_url}>/<{$next_content.link}>" accesskey="N" title="<{$smarty.const._MD_PICO_NEXT}>">
             <{$next_content.subject|truncate:"20"}> <svg width="1em" height="1em" viewBox="0 0 16 16" class="arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M8.146 4.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.793 8 8.146 5.354a.5.5 0 0 1 0-.708z"/>

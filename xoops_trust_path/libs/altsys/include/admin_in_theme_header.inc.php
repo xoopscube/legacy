@@ -19,7 +19,7 @@ $xoopsOption['theme_use_smarty'] = 1;
 require_once XOOPS_ROOT_PATH . '/class/template.php';
 $xoopsTpl = new XoopsTpl();
 $xoopsTpl->xoops_setCaching( 2 );
-if ( 3 == $xoopsConfig['debug_mode'] ) {
+if ( $xoopsConfig['debug_mode'] == 3) {
 	$xoopsTpl->xoops_setDebugging( true );
 }
 $xoopsTpl->assign( [

@@ -61,13 +61,13 @@ class Legacy_ActionSearchArgs
     {
         // TODO @gigamaster is_iterable / is_countable
         // PHP >= 7.1
-        if (is_iterable($this->mRecords)) {
-            return count($this->mRecords) > 0;
-        }
-        // PHP >= 7.3
-        // if(is_countable($searchdata)) {
-        //     return count($this->mRecords) > 0;
-        // }
+//        if (is_iterable($this->mRecords)) {
+//            return count($this->mRecords) > 0;
+//        }
+         // PHP >= 7.3
+         if(is_countable($this->mRecords)) {
+             return count($this->mRecords) > 0;
+         }
     }
 
 }
@@ -88,8 +88,9 @@ class Legacy_ActionSearchRecord
 //    {
 //        $this->__construct($moduleName, $url, $title, $desc);
 //    }
+// TODO mDescription = $desc returns nothing !
 
-    public function __construct($moduleName, $url, $title, $desc=null)
+    public function __construct($moduleName, $url, $title, $desc)
     {
         $this->mModuleName = $moduleName;
         $this->mActionUrl = $url;
@@ -100,8 +101,7 @@ class Legacy_ActionSearchRecord
 
 /***
  * @internal
- *  Execute action searching. Now, it returns all modules' results whether
- * the current user can access to.
+ * Execute action search. Now,it returns the results of all modules that the current user can access.
  *
  * @todo We should return the result by the current user's permission.
  */

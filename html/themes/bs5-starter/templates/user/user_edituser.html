@@ -237,7 +237,8 @@
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="person-lines-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm2 9a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
                     </svg> <{$smarty.const._MD_USER_LANG_BIO}></label>
-                <{xoops_textarea name=bio id=bio value=$actionForm->get('bio') rows=5 cols=50 class="form-control"}>
+                <{* --- xoops_textarea name=bio id=bio value=$actionForm->get('bio') rows=3 class="form-control" --- *}>
+                <{xoops_dhtmltarea name=bio id=bio value=$actionForm->get('bio') rows=3 class="form-control" editor=bbcode}>
             </div>
 
             <div class="form-group mb-3">
@@ -256,7 +257,7 @@
                         <path d="M13.293 1.207a1 1 0 0 1 1.414 0l.03.03a1 1 0 0 1 .03 1.383L13.5 4 12 2.5l1.293-1.293z"/>
                     </svg>
                     <{$smarty.const._MD_USER_LANG_USER_SIG}></label>
-                <{xoops_dhtmltarea class="form-control" name=user_sig id=user_sig rows=3 value=$actionForm->get('user_sig')}>
+                <{xoops_textarea name=user_sig id=user_sig value=$actionForm->get('user_sig') rows=3 class="form-control"}>
             </div>
 
             <div class="col-auto mb-3">

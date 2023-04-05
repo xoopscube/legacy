@@ -1,7 +1,8 @@
 <?php
 define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Manage blocks by selecting the side, target modules, user groups permissions and cache time.');
-define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , 'First, give the <b>Block Title</b> a name and select a <b>Custom Type</b>. Save and edit your new block.<br> 
-The <b>editor</b> will change according to the selected <b>Custom Type</b>.<br>Thus allowing you to create a reusable Component with BBcode and PHP or HTML, JavaScript and CSS.');
+define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , 'The <b>editor</b> will change according to the selected <b>Custom Type</b>.<br>
+First, give the <b>Block Title</b> a name, select a <b>Custom Type</b> and Save. Then, you can edit your new block.<br> 
+Thus allowing you to create a reusable Component with BBcode and PHP or HTML, JavaScript and CSS.');
 define( '_MD_A_MYBLOCKSADMIN_PERMUPDATED' , 'Permissions updated successfully');
 define( '_MD_A_MYBLOCKSADMIN_BLOCKADMIN' , 'Blocks management');
 define( '_MD_A_MYBLOCKSADMIN_NAME' , 'Name');

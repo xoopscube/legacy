@@ -39,10 +39,10 @@ function Legacy_modifier_css_theme($string)
 
 $theme = isset($_GET['theme']) ? trim($_GET['theme']) : null;
 $dirname = isset($_GET['dirname']) ? trim($_GET['dirname']) : null;
-$_GET['file'] = $_GET['file'] ?? 'style.css'; // @gigamaster use null coalescing operator  $_GET['file'] = isset($_GET['file']) ? $_GET['file'] : 'style.css';
+$_GET['file'] = $_GET['file'] ?? 'style.css'; // XCL @gigamaster use null coalescing operator  $_GET['file'] = isset($_GET['file']) ? $_GET['file'] : 'style.css';
 $file = 'stylesheets/' . trim(@$_GET['file']);
 
-// 'strpos($theme, '..') !== false' is used instead - @gigamaster has modified to save memory
+// XCl 'strpos($theme, '..') !== false' is used instead to save memory
 if (strpos($theme, '..') !== false || strpos($dirname, '..') !== false || strpos($file, '..') !== false) {
     exit();
 }
@@ -59,7 +59,8 @@ $smarty->register_function('stylesheet', 'Legacy_function_stylesheet');
 
     if (null !== $theme && null !== $dirname) {
         //$path = XOOPS_THEME_PATH . "/{$theme}/modules/{$dirname}";
-        //!Todo Check XCL path : theme/templates/dirname
+        //!Todo Check
+        // XCL path : theme/templates/dirname
         $path = XOOPS_THEME_PATH . "/{$theme}/templates/{$dirname}";
     } elseif (null !== $theme) {
         $path = XOOPS_THEME_PATH . '/' . $theme;
