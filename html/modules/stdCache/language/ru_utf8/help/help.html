@@ -1,0 +1,124 @@
+<div data-layout="row sm-column">
+    <div data-self="size-xxsmall">
+        <nav id="help-menu">
+            <ul data-layout="rows">
+                <li><a href="#help-overview" class="button">Cache Module</a>
+                <li><a href="#help-features" class="button">Features</a>
+                <li><a href="#help-policy" class="button">Group Policy</a>
+                <li><a href="#help-block" class="button">Clear Cache</a>
+                <li><a href="#help-development" class="button">Development</a>
+            </ul>
+        </nav>
+    </div>
+
+<article id="help-module">
+
+
+    <section id="help-overview">
+
+        <h3>Standard Cache Management</h3>
+
+        <p>This module manages the Standard Cache Policy of XCL Web Application Platform.
+        <p>The standard policy cache files for every user groups except the webmaster group.
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-features">
+
+        <h3>Features</h3>
+
+        <p>XCL introduced a new Cache Policy concept called Standard Cache.
+        <p>Its purpose is to reduce the time it takes to perform certain scenarios
+        <p>caching files of modules and blocks.
+        <p>The cache feature saves the content to files, if setting cache active.
+        <p>And, if cache files are available, XCL prevents the extra logic SQL of blocks and modules.
+        <p>This is a useful and powerful feature to speed up a web page load for all site visitors.
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-policy">
+
+        <h3>Understanding Group Policy Caching</h3>
+
+        <p>For security reasons, the Standard Cache Policy should prevent the caching of files for administrators' access.
+        <p>Otherwise, the files cached could be accessed by anonymous users.
+        <p>Also, to prevent the cache to grow larger with too many files in your server,
+        <p>the cache of modules can be enable or disable from General Settings.
+
+        <h3>Best practices for cache control settings</h3>
+
+        <p>Set the time that the module or block should keep the files in cache.
+        <p>Therefore, the Standard Cache Policy can cache many files, so it features a "cache clear block".
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-block">
+
+        <h3>The cache clear block</h3>
+
+        <p>This block is not visible and can delete all of cached files, including
+            extra cache files, with interval timer.</p>
+
+        <h4>Options</h4>
+
+        <p><img src="<{'cacheclear_block_option.png'|helpimage}>" alt="cache"></p>
+
+        <dl>
+            <dt>Interval timer (min)</dt>
+            <dd>Specify the interval.</dd>
+        </dl>
+
+    </section>
+
+
+
+    <hr>
+
+
+    <section id="help-development">
+        <h3>Development</h3>
+
+        <table class="outer">
+            <thead>
+            <tr>
+                <th>Module name</th>
+                <th>Standard Cache</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Type</td>
+                <td>X2 module</td>
+            </tr>
+            <tr>
+                <td>Version</td>
+                <td>2.31</td>
+            </tr>
+            <tr>
+                <td>Level</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>🌐 Repository URL</td>
+                <td><a href="https://github.com/xoopscube/legacy" target="_blank">https://github.com/xoopscube/legacy ⭧</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+
+</article>
+</div>
