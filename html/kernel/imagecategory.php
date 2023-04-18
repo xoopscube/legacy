@@ -84,6 +84,15 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
 
     public function insert(&$imgcat)
     {
+        $imgcat_name = null;
+        $imgcat_display = null;
+        $imgcat_weight = null;
+        $imgcat_maxsize = null;
+        $imgcat_maxwidth = null;
+        $imgcat_maxheight = null;
+        $imgcat_type = null;
+        $imgcat_storetype = null;
+        $imgcat_id = null;
         if ('xoopsimagecategory' != strtolower(get_class($imgcat))) {
             return false;
         }
@@ -164,7 +173,7 @@ class XoopsImagecategoryHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 

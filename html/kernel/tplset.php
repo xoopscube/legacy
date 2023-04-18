@@ -97,6 +97,11 @@ class XoopsTplsetHandler extends XoopsObjectHandler
 
     public function insert(&$tplset)
     {
+        $tplset_name = null;
+        $tplset_desc = null;
+        $tplset_credits = null;
+        $tplset_created = null;
+        $tplset_id = null;
         if ('xoopstplset' != strtolower(get_class($tplset))) {
             return false;
         }
@@ -176,7 +181,7 @@ class XoopsTplsetHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 

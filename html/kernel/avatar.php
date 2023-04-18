@@ -84,6 +84,14 @@ class XoopsAvatarHandler extends XoopsObjectHandler
 
     public function insert(&$avatar)
     {
+        $avatar_file = null;
+        $avatar_name = null;
+        $avatar_mimetype = null;
+        $avatar_display = null;
+        $avatar_weight = null;
+        $avatar_type = null;
+        $avatar_created = null;
+        $avatar_id = null;
         if ('xoopsavatar' != strtolower(get_class($avatar))) {
             return false;
         }

@@ -106,6 +106,13 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
      */
     public function insert(&$pm, $force=false)
     {
+        $msg_image = null;
+        $subject = null;
+        $from_userid = null;
+        $to_userid = null;
+        $msg_text = null;
+        $read_msg = null;
+        $msg_id = null;
         if ('xoopsprivmessage' != strtolower(get_class($pm))) {
             return false;
         }
@@ -234,7 +241,7 @@ class XoopsPrivmessageHandler extends XoopsObjectHandler
         if (!$result = $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 

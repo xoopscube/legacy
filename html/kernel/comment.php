@@ -160,6 +160,26 @@ class XoopsCommentHandler extends XoopsObjectHandler
      **/
     public function insert(&$comment)
     {
+        $com_pid = null;
+        $com_modid = null;
+        $com_icon = null;
+        $com_title = null;
+        $com_text = null;
+        $com_created = null;
+        $com_modified = null;
+        $com_uid = null;
+        $com_ip = null;
+        $com_sig = null;
+        $com_itemid = null;
+        $com_rootid = null;
+        $com_status = null;
+        $com_exparams = null;
+        $dohtml = null;
+        $dosmiley = null;
+        $doxcode = null;
+        $doimage = null;
+        $dobr = null;
+        $com_id = null;
         if ('xoopscomment' != strtolower(get_class($comment))) {
             return false;
         }
@@ -262,7 +282,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 

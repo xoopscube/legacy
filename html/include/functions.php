@@ -153,7 +153,7 @@ function xoops_refcheck($docheck=1)
         return false;
     }
     //TODO PHP8 'strpos' call can be converted to 'str_starts_with'
-    if (strpos($ref, XOOPS_URL) !== 0) {
+    if (strpos($ref, (string) XOOPS_URL) !== 0) {
         return false;
     }
     return true;
@@ -248,12 +248,12 @@ function xoops_makepass()
 {
     $makepass = '';
     $syllables = ['er', 'in', 'tia', 'wol', 'fe', 'pre', 'vet', 'jo', 'nes', 'al', 'len', 'son', 'cha', 'ir', 'ler', 'bo', 'ok', 'tio', 'nar', 'sim', 'ple', 'bla', 'ten', 'toe', 'cho', 'co', 'lat', 'spe', 'ak', 'er', 'po', 'co', 'lor', 'pen', 'cil', 'li', 'ght', 'wh', 'at', 'the', 'he', 'ck', 'is', 'mam', 'bo', 'no', 'fi', 've', 'any', 'way', 'pol', 'iti', 'cs', 'ra', 'dio', 'sou', 'rce', 'sea', 'rch', 'pa', 'per', 'com', 'bo', 'sp', 'eak', 'st', 'fi', 'rst', 'gr', 'oup', 'boy', 'ea', 'gle', 'tr', 'ail', 'bi', 'ble', 'brb', 'pri', 'dee', 'kay', 'en', 'be', 'se'];
-    mt_srand((double)microtime() * 1000000);
+    mt_srand((double)microtime() * 1_000_000);
     for ($count = 1; $count <= 4; $count++) {
-        if (mt_rand() % 10 === 1) {
-            $makepass .= sprintf('%0.0f', (mt_rand() % 50) + 1);
+        if (random_int(0, mt_getrandmax()) % 10 === 1) {
+            $makepass .= sprintf('%0.0f', (random_int(0, mt_getrandmax()) % 50) + 1);
         } else {
-            $makepass .= sprintf('%s', $syllables[mt_rand() % 62]);
+            $makepass .= sprintf('%s', $syllables[random_int(0, mt_getrandmax()) % 62]);
         }
     }
     return $makepass;
@@ -360,12 +360,12 @@ function xoops_getbanner()
     [$numrows] = $db->fetchRow($bresult);
     if ($numrows > 1) {
         $numrows = $numrows-1;
-        mt_srand((double)microtime()*1000000);
+        mt_srand((double)microtime()*1_000_000);
         /*use rand() unless you need a securely randomized integer,
         then use random_int() . If you don't know if you need the latter,
         you probably don't (it impacts "guessability", so imagine where that's useful).
         If you're trying to randomize a slideshow, for instance, rand() is just fine */
-        $bannum = mt_rand(0, $numrows);
+        $bannum = random_int(0, $numrows);
         /*
         try {
             $bannum = random_int (0, $numrows);
@@ -426,7 +426,7 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
         }
         if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && '' !== $xoopsConfig['session_name'] && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
 // Goodbye strpos and strstr: str_contains in PHP8            
-if (strpos($url, XOOPS_URL) === 0) {
+if (strpos($url, (string) XOOPS_URL) === 0) {
                 //@gigamaster changed this to save memory
                 if (strpos($url, '?') === false) {
                     $connector = '?';
@@ -791,6 +791,7 @@ function xoops_groupperm_deletebymoditem($module_id, $perm_name, $item_id = null
 
 function &xoops_utf8_encode(&$text)
 {
+    $out_text = null;
     if (XOOPS_USE_MULTIBYTES === 1) {
         if (function_exists('mb_convert_encoding')) {
             $out_text = mb_convert_encoding($text, 'UTF-8', 'auto');

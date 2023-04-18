@@ -105,7 +105,7 @@ if (XOOPS_COMMENT_APPROVENONE !== $xoopsModuleConfig['com_rule']) {
             } else {
                 // Show all threads
                 $top_comments =& $comment_handler->getTopComments($xoopsModule->getVar('mid'), $com_itemid, $com_dborder);
-                $c_count = count($top_comments);
+                $c_count = is_countable($top_comments) ? count($top_comments) : 0;
                 if ($c_count> 0) {
                     for ($i = 0; $i < $c_count; $i++) {
                         $comments =& $comment_handler->getThread($top_comments[$i]->getVar('com_rootid'), $top_comments[$i]->getVar('com_id'));
@@ -122,7 +122,7 @@ if (XOOPS_COMMENT_APPROVENONE !== $xoopsModuleConfig['com_rule']) {
         } else {
             // Show all threads
             $top_comments =& $comment_handler->getTopComments($xoopsModule->getVar('mid'), $com_itemid, $com_dborder);
-            $c_count = count($top_comments);
+            $c_count = is_countable($top_comments) ? count($top_comments) : 0;
             if ($c_count> 0) {
                 for ($i = 0; $i < $c_count; $i++) {
                     $comments =& $comment_handler->getThread($top_comments[$i]->getVar('com_rootid'), $top_comments[$i]->getVar('com_id'));

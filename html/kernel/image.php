@@ -97,6 +97,12 @@ class XoopsImageHandler extends XoopsObjectHandler
      **/
     public function insert(&$image)
     {
+        $image_name = null;
+        $image_nicename = null;
+        $image_mimetype = null;
+        $image_display = null;
+        $image_weight = null;
+        $imgcat_id = null;
         if ('xoopsimage' != strtolower(get_class($image))) {
             return false;
         }
@@ -220,7 +226,7 @@ class XoopsImageHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 

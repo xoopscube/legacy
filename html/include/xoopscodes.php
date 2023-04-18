@@ -59,7 +59,7 @@ function xoopsCodeTarea($textarea_id, $cols=60, $rows=15, $suffix=null)
 
     echo "<br>\n";
     //Hack smilies move for bold, italic ...
-    $areacontent = isset($GLOBALS[$textarea_id]) ? $GLOBALS[$textarea_id] : '';
+    $areacontent = $GLOBALS[$textarea_id] ?? '';
     echo "<img src='".XOOPS_URL."/images/icons/bold.svg' width='1em' height='1em' alt='bold' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"".$hiddentext . '");makeBold("'
          . $hiddentext . "\");' />&nbsp;<img src='" . XOOPS_URL . "/images/icons/italic.svg' width='1em' height='1em' alt='italic' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"" . $hiddentext . '");makeItalic("'
          . $hiddentext . "\");' />&nbsp;<img src='" . XOOPS_URL . "/images/icons/underline.svg' width='1em' height='1em' alt='underline' onmouseover='style.cursor=\"hand\"' onclick='setVisible(\"" . $hiddentext . '");makeUnderline("'

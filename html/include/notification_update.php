@@ -62,7 +62,7 @@ $user_id = !empty($xoopsUser) ? $xoopsUser->getVar('uid') : 0;
 $notification_handler =& xoops_gethandler('notification');
 
 foreach ($update_list as $update_item) {
-    list($category, $item_id, $event) = explode(',', $update_item['params']);
+    [$category, $item_id, $event] = explode(',', $update_item['params']);
     $status = !empty($update_item['status']) ? 1 : 0;
 
     if (!$status) {

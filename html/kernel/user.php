@@ -547,6 +547,36 @@ class XoopsUserHandler extends XoopsObjectHandler
      */
     public function insert(&$user, $force = false)
     {
+        $uname = null;
+        $name = null;
+        $email = null;
+        $url = null;
+        $user_avatar = null;
+        $user_icq = null;
+        $user_from = null;
+        $user_sig = null;
+        $user_viewemail = null;
+        $actkey = null;
+        $user_aim = null;
+        $user_yim = null;
+        $user_msnm = null;
+        $pass = null;
+        $posts = null;
+        $attachsig = null;
+        $rank = null;
+        $level = null;
+        $theme = null;
+        $timezone_offset = null;
+        $umode = null;
+        $uorder = null;
+        $notify_method = null;
+        $notify_mode = null;
+        $user_occ = null;
+        $bio = null;
+        $user_intrest = null;
+        $user_mailok = null;
+        $last_login = null;
+        $uid = null;
         if ('xoopsuser' != strtolower(get_class($user))) {
             return false;
         }
@@ -568,7 +598,7 @@ class XoopsUserHandler extends XoopsObjectHandler
         if ($user->isNew()) {
             $config = xoops_gethandler('config');
             $options = $config->getConfigs(new Criteria('conf_name', 'notify_method'));
-            if (isset($options) and (1 == count($options))) {
+            if (isset($options) and (1 == (is_countable($options) ? count($options) : 0))) {
                 $notify_method = $options[0]->getvar('conf_value');
             }
             $uid = $this->db->genId('users_uid_seq');
@@ -730,7 +760,7 @@ class XoopsUserHandler extends XoopsObjectHandler
         if (!$result) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 

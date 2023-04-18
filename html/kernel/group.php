@@ -109,6 +109,10 @@ class XoopsGroupHandler extends XoopsObjectHandler
      */
     public function insert(&$group)
     {
+        $name = null;
+        $description = null;
+        $group_type = null;
+        $groupid = null;
         if ('xoopsgroup' != strtolower(get_class($group))) {
             return false;
         }
@@ -274,6 +278,9 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      */
     public function insert(&$mship)
     {
+        $groupid = null;
+        $uid = null;
+        $linkid = null;
         if ('xoopsmembership' != strtolower(get_class($mship))) {
             return false;
         }
@@ -311,6 +318,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
      */
     public function delete(&$mship)
     {
+        $groupm = null;
         if ('xoopsmembership' != strtolower(get_class($mship))) {
             return false;
         }
@@ -373,7 +381,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         if (!$result) {
             return 0;
         }
-        list($count) = $db->fetchRow($result);
+        [$count] = $db->fetchRow($result);
         return $count;
     }
 
@@ -410,7 +418,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         if (!$result) {
             return $ret;
         }
-        while (list($groupid) = $db->fetchRow($result)) {
+        while ([$groupid] = $db->fetchRow($result)) {
             $ret[] = $groupid;
         }
         return $ret;
@@ -434,7 +442,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         if (!$result) {
             return $ret;
         }
-        while (list($uid) = $db->fetchRow($result)) {
+        while ([$uid] = $db->fetchRow($result)) {
             $ret[] = $uid;
         }
         return $ret;
@@ -465,7 +473,7 @@ class XoopsMembershipHandler extends XoopsObjectHandler
         if (!$result) {
             return $ret;
         }
-        while (list($uid) = $db->fetchRow($result)) {
+        while ([$uid] = $db->fetchRow($result)) {
             $ret[] = $uid;
         }
         return $ret;
