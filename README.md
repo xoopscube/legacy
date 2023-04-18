@@ -1,7 +1,8 @@
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://github.com/xoopscube/xcl)
+![X-Updare Store](https://img.shields.io/badge/XOOPSCube%20Package-XCL-blue)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-![X-Updare Store](https://img.shields.io/badge/X--Update%20Store-Pending-red)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/2.0.0/active.svg)](https://github.com/xoopscube/xcl)
+![X-Updare Store](https://img.shields.io/badge/X--Update%20Store-Online-green)
 
 
 # XOOPSCube Legacy :: XCL 2.3.x
@@ -13,6 +14,17 @@ XOOPSCube Legacy (XCL) is a free open-source Web Application Platform (WAP) well
 with a low code development approach maintained on GitHub. The XCL bundle package is designed for easy usage 
 to benefit from the performance of XCube Core and the most popular web server stack: Apache, MySQL and PHP.
 
+**Active branches in GitHub**  
+
+Active branch for all new features and bug fixes (PHP74, PHP8).  
+Keep a tested high quality, up-to-date master/main branch for releases.  
+
+| Branch | PHP Version | Commit / Pull request |
+|:-------------:|:-------------:|:-------------:|
+| Master | PHP 7.4. - PHP 8.0 | Release Candidate (RC)  |
+| Smarty3 | PHP 7.4. - PHP 8.0| Smarty v3 bug fixes |
+
+## Features  
 **XCL bundle package features out of the box**
 
 - X-elFinder file manager with WYSIWYG editors (code, graphics)  
@@ -27,17 +39,7 @@ to benefit from the performance of XCube Core and the most popular web server st
 <p><a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
 <img src="https://repository-images.githubusercontent.com/4779266/2956517f-c3ea-4177-bd08-e11b6e30f17c" alt="xcl-admin-render" title="XCL Admin version 2.3.x" width="100%">
 </a></p>
-  
-  
-**Active branches in GitHub**  
 
-Active branch for all new features and bug fixes (PHP74, PHP8).  
-Keep a tested high quality, up-to-date master/main branch for releases.  
-
-| Branch | PHP Version | Commit / Pull request |
-|:-------------:|:-------------:|:-------------:|
-| Master | PHP 7.4. - PHP 8.0 | Release Candidate (RC)  |
-| Smarty3 | PHP 7.4. - PHP 8.0| Smarty v3 bug fixes |
 
 ## Get Started
 ### Installation Wizard
@@ -156,8 +158,7 @@ We encourage everyone in the community to contribute their knowledge and experti
 
 The XOOPSCube project and available distributions have been developed and supported by a group of volunteers with a multidisciplinary approach and multicultural collaboration providing a variety of different perspectives and ideas to consider in future development and design.
 
-We encourage all members of the open source community to promote curiosity in learning and encourage the adoption of these core values: integrity, passion and respect.
-
+We encourage all members of the open source community to promote curiosity in learning and encourage the adoption of these core values: integrity, passion and respect.    
 
 | 10key         | Aaki          | Argon         | Asunta        | Bandit-x      | 
 |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
