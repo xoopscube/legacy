@@ -5,7 +5,7 @@
 ![X-Updare Store](https://img.shields.io/badge/X--Update%20Store-Online-green)
 
 
-# XOOPSCube Legacy :: XCL 2.3.x
+# XOOPSCube Legacy :: XCL Bundle Package 2.3
 
 ## Simple, Secure and Scalable
 ### Web Application Platform and Content Management System
