@@ -11,7 +11,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 require_once XOOPS_MODULE_PATH . '/user/class/AbstractEditAction.class.php';
 require_once XOOPS_MODULE_PATH . '/user/forms/EditUserForm.class.php';
 
-define('USER_COOKIE_KEEP_TIME', 31536000);
+define('USER_COOKIE_KEEP_TIME', 31_536_000);
 
 /***
  * @internal
@@ -106,7 +106,7 @@ class User_EditUserAction extends User_AbstractEditAction
     {
         if ($this->mObjectHandler->insert($this->mObject)) {
             if ($this->mActionForm->get('usercookie')) {
-                setcookie($this->mUserCookie, $this->mObject->getShow('uname'), time() + USER_COOKIE_KEEP_TIME);
+                setcookie($this->mUserCookie, $this->mObject->getShow('uname'), ['expires' => time() + USER_COOKIE_KEEP_TIME]);
             } else {
                 setcookie($this->mUserCookie);
             }

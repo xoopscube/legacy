@@ -5,12 +5,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 // load password_compat - https://github.com/ircmaxell/password_compat
 if (version_compare(PHP_VERSION, '5.5.0', '<') && (version_compare(PHP_VERSION, '5.3.7', '>=') || defined('PHP53_BCRYPT_Y2_FIXED'))) {
-    include_once dirname(dirname(__DIR__)) . '/compat/password.php';
+    include_once dirname(__DIR__, 2) . '/compat/password.php';
 }
 
 class User_EncryptPassword extends XCube_ActionFilter
 {
-    private $useNativeHashing = false;
+    private bool $useNativeHashing = false;
 
     public function User_EncryptPassword(&$controller)
     {

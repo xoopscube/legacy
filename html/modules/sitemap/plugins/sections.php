@@ -7,7 +7,7 @@ function b_sitemap_sections(){
 	$result = $db->query("SELECT secid, secname FROM ".$db->prefix("sections")."");
 
 	$ret = [];
-	while(list($id, $name) = $db->fetchRow($result)){
+	while([$id, $name] = $db->fetchRow($result)){
 		$ret["parent"][] = [
 			"id" => $id,
 			"title" => $myts->makeTboxData4Show($name),

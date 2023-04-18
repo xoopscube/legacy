@@ -96,7 +96,7 @@ define( '_MD_USER_LANG_USER_VIEWEMAIL' , 'Adresse Email visible');
 define( '_MD_USER_LANG_USER_YIM' , 'YIM');
 define( '_MD_USER_LANG_USERCOOKIE' , "Conserver mon nom d'utilisateur dans un cookie pour 1 an");
 define( '_MD_USER_LANG_USERKEYFOR' , "Clé d'activation d'utilisateur pour %s");
-define( '_MD_USER_LANG_USERREG' , "Enregistrement utilisateur");
+define( '_MD_USER_LANG_USERREG' , "Enregistrer utilisateur");
 define( '_MD_USER_LANG_VERIFYPASS' , "Vérifier mot de passe");
 define( '_MD_USER_LANG_WEBSITE' , 'Site web');
 define( '_MD_USER_LANG_WHOSONLINE' , "Qui est en ligne");

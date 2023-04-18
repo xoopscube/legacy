@@ -56,7 +56,7 @@ if( ! class_exists( 'XoopsGTicket' ) ) {
             }
 
             // limit max stubs 10
-            if (count($_SESSION['XOOPS_G_STUBS']) > 10) {
+            if ((is_countable($_SESSION['XOOPS_G_STUBS']) ? count($_SESSION['XOOPS_G_STUBS']) : 0) > 10) {
                 $_SESSION['XOOPS_G_STUBS'] = array_slice($_SESSION['XOOPS_G_STUBS'], -10);
             }
 
@@ -150,7 +150,7 @@ if( ! class_exists( 'XoopsGTicket' ) ) {
             if (@$found_stub['area'] == $area) {
                 $area_check = true;
             }
-            if (!empty($found_stub['referer']) && false !== strpos(@$_SERVER['HTTP_REFERER'], $found_stub['referer'])) {
+            if (!empty($found_stub['referer']) && false !== strpos(@$_SERVER['HTTP_REFERER'], (string) $found_stub['referer'])) {
                 $referer_check = true;
             }
 
@@ -217,7 +217,7 @@ function admin_refcheck($chkref = "") {
 	}
 	$cr = XOOPS_URL;
 	if ( $chkref !== "" ) { $cr .= $chkref; }
-    return !(strpos($ref, $cr) !== 0);
+    return !(strpos($ref, (string) $cr) !== 0);
 }
 
 }

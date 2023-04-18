@@ -4,7 +4,7 @@
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a>
-    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}></span>
 </nav>
 
 
@@ -25,30 +25,30 @@
     </thead>
     <tbody>
     <tr>
-        <td class="list_image"><i aria-label="<{$smarty.const._AD_USER_LANG_GROUP}>"><img class="svg" src="<{'icons/icon-user-group.svg'|theme}>" width="1em" alt="group"></i></td>
+        <td class="list_image"><i title="<{$smarty.const._AD_USER_LANG_GROUP}>"><img class="svg" src="<{'icons/icon-user-group.svg'|theme}>" width="1em" alt="group"></i></td>
         <td class="list_id"><{$group->getShow('groupid')}></td>
         <td class="list_title"><{$group->getShow('name')}></td>
         <td class="list_description"><{$group->getShow('description')}></td>
         <td class="list_type"><{$group->getShow('group_type')}></td>
         <td class="list_number"><{$group->getUserCount()|xoops_escape}></td>
         <td class="list_control">
-            <a class="action-add" href="index.php?action=GroupMember&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}>">
+            <a class="action-add" href="index.php?action=GroupMember&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._AD_USER_LANG_GROUP_ASSIGN}>">
                 <img class="svg" src="<{'icons/icon-add.svg'|theme}>" width="1em" alt="add">
             </a>
 
-            <a class="action-edit" href="index.php?action=GroupEdit&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._EDIT}>">
+            <a class="action-edit" href="index.php?action=GroupEdit&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._EDIT}>">
                 <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" width="1em" alt="edit">
             </a>
 
-            <a class="action-view" href="index.php?action=GroupProperty&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}>">
+            <a class="action-view" href="index.php?action=GroupProperty&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}>">
                 <img class="svg" src="<{'icons/icon-view.svg'|theme}>" width="1em" alt="view">
             </a>
-            <a class="action-lock" href="index.php?action=GroupPerm&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}>">
+            <a class="action-lock" href="index.php?action=GroupPerm&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}>">
                 <img class="svg" src="<{'icons/icon-lock.svg'|theme}>" width="1em" alt="lock">
             </a>
 
             <{if $group->get('groupid') > $smarty.const.XOOPS_GROUP_ANONYMOUS }>
-            <a class="action-delete" href="index.php?action=GroupDelete&amp;groupid=<{$group->getShow('groupid')}>" aria-label="<{$smarty.const._DELETE}>">
+            <a class="action-delete" href="index.php?action=GroupDelete&amp;groupid=<{$group->getShow('groupid')}>" title="<{$smarty.const._DELETE}>">
                 <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" width="1em" alt="delete">
             </a>
             <{/if}>

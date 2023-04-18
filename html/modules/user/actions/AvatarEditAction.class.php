@@ -237,7 +237,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
 
         $this->mActionForm->update($this->mObject);
 
-        return $this->_doExecute($this->mObject) ? USER_FRAME_VIEW_SUCCESS
+        return $this->_doExecute() ? USER_FRAME_VIEW_SUCCESS
                                                  : USER_FRAME_VIEW_ERROR;
     }
 
@@ -260,7 +260,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
             $avatarHandler =& xoops_getmodulehandler('avatar', 'user');
             $criteria =new Criteria('avatar_file', $this->mActionForm->mOldAvatarFilename);
             $avatarArr =& $avatarHandler->getObjects($criteria);
-            if (count($avatarArr) > 0 && is_object($avatarArr[0]) && 'C' == $avatarArr[0]->get('avatar_type')) {
+            if ((is_countable($avatarArr) ? count($avatarArr) : 0) > 0 && is_object($avatarArr[0]) && 'C' == $avatarArr[0]->get('avatar_type')) {
                 $avatarHandler->delete($avatarArr[0]);
             }
         }
@@ -297,6 +297,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
     **/
     public function _resize()
     {
+        $source = null;
         //resize requires GD library
         if (! function_exists('imagecreatefromjpeg') || ! function_exists('imagecreatefrompng') || ! function_exists('imagecreatefromgif')) {
             return;
@@ -306,7 +307,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
             return;
         }
         $filePath = XOOPS_UPLOAD_PATH.'/'.$formFile->getFileName();
-        list($width, $height, $type, $attr)=getimagesize($filePath);
+        [$width, $height, $type, $attr]=getimagesize($filePath);
         switch ($type) {
             case 2:
             $source = imagecreatefromjpeg($filePath);
@@ -319,7 +320,7 @@ class User_AvatarEditAction extends User_AbstractEditAction
             break;
         }
         $size = $this->_getResizedSize($width, $height, $this->mAvatarWidth, $this->mAvatarHeight);
-        $result = function_exists(imagecreatetruecolor) ? imagecreatetruecolor($size['width'], $size['height']) : imagecreate($size['width'], $size['height']);
+        $result = function_exists(\IMAGECREATETRUECOLOR) ? imagecreatetruecolor($size['width'], $size['height']) : imagecreate($size['width'], $size['height']);
         if (!imagecopyresampled($result, $source, 0, 0, 0, 0, $size['width'], $size['height'], $width, $height)) {
             die();
         }

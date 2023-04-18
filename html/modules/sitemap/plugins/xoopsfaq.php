@@ -7,7 +7,7 @@ function b_sitemap_xoopsfaq(){
 	$result = $db->query("SELECT category_id, category_title FROM ".$db->prefix("xoopsfaq_categories")." ORDER BY category_order");
 
 	$ret = [];
-	while(list($id, $name) = $db->fetchRow($result)){
+	while([$id, $name] = $db->fetchRow($result)){
 		$ret["parent"][] = [
 			"id" => $id,
 			"title" => $myts->makeTboxData4Show($name),

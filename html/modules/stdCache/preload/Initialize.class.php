@@ -22,7 +22,7 @@ class StdCache_Initialize extends XCube_ActionFilter
         $block =& $cacheInfo->mBlock;
         switch ($block->getVar('show_func', 'n')) {
         case 'b_legacy_mainmenu_show':    // mainmenu context
-            list($option) = explode('|', $block->getVar('options', 'n'));
+            [$option] = explode('|', $block->getVar('options', 'n'));
             if ($option) {
                 break;
             }            // but options setting no context

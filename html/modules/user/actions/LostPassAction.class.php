@@ -57,6 +57,7 @@ class User_LostPassAction extends User_Action
 
     public function _updatePassword(&$controller)
     {
+        $extraVars = [];
         $this->mActionForm->fetch();
 
         $userHandler =& xoops_gethandler('user');

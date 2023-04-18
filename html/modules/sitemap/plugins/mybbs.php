@@ -12,7 +12,7 @@ function b_sitemap_mybbs(){
 
 	$sql = 'SELECT bbs_id, bbs_name FROM '.$db->prefix('mybbs_master').' WHERE status=1 ORDER BY sort_order';
 	$result = $db->query($sql);
-	while ( list($catid, $name) = $db->fetchRow($result) ) {
+	while ( [$catid, $name] = $db->fetchRow($result) ) {
 		$sitemap['parent'][$i]['id'] = $catid;
 		$sitemap['parent'][$i]['title'] = $myts->makeTboxData4Show($name);
 		$sitemap['parent'][$i]['url'] = $url.$catid;

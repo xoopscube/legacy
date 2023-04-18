@@ -209,7 +209,7 @@ class User_UserSearchFilterForm extends User_AbstractFilterForm
         }
         
         $groups = $form->get('groups');
-        if (count($groups) > 0) {
+        if ((is_countable($groups) ? count($groups) : 0) > 0) {
             $g_criteria =new CriteriaCompo();
             foreach ($groups as $gid) {
                 $g_criteria->add(new Criteria('g.groupid', $gid), $condition='OR');

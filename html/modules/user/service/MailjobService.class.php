@@ -34,11 +34,11 @@ class User_MailjobService extends XCube_Service
     public function addMailjob()
     {
         require_once XOOPS_MODULE_PATH . '/user/admin/forms/MailjobServiceEditForm.class.php';
-    
+
         $root =& XCube_Root::getSingleton();
-    
+
         $uidArr = $root->mContext->mRequest->getRequest('uidArr');
-    
+
         //prepare mailjob object
         $handler =& xoops_getmodulehandler('mailjob', 'user');
         $obj = $handler->create();
@@ -48,7 +48,7 @@ class User_MailjobService extends XCube_Service
         $obj->set('from_email', $root->mContext->mRequest->getRequest('from_email'));
         $obj->set('is_pm', $root->mContext->mRequest->getRequest('is_pm'));
         $obj->set('is_mail', $root->mContext->mRequest->getRequest('is_mail'));
-    
+
         //validate
         $actionForm = new User_MailjobServiceEditForm();
         $actionForm->prepare();
@@ -57,12 +57,12 @@ class User_MailjobService extends XCube_Service
         if ($actionForm->hasError()) {
             return 0;
         }
-    
+
         //insert mailjob to DB
         if (! $handler->insert($obj)) {
             return 0;
         }
-    
+
         //insert mailjob_link
         $linkHandler =& xoops_getmodulehandler('mailjob_link', 'user');
         foreach ($uidArr as $uid) {
@@ -71,7 +71,7 @@ class User_MailjobService extends XCube_Service
             $linkObj->set('uid', $uid);
             $linkHandler->insert($linkObj);
         }
-    
+
         return $obj->get('mailjob_id');
     }
 /*
@@ -80,13 +80,13 @@ class User_MailjobService extends XCube_Service
         $root =& XCube_Root::getSingleton();
         $mailjob_id = intval($root->mContext->mRequest->getRequest('mailjob_id'));
         $uid = intval($root->mContext->mRequest->getRequest('mailjob_id'));
-    
+
         $handler =& xoops_getmodulehandler('mailjob', 'user');
         $mailjobObj =& $handler->get($mailjjob_id);
-    
+
         $userHandler =& xoops_gethandler('user');
         $userObj =& $userHandler->get($uid);
-    
+
         if ($mailjobObj->get('is_pm')) {
             $mailjobObj->mSend->add(array(&$this, "sendPM"));
         }
@@ -96,7 +96,7 @@ class User_MailjobService extends XCube_Service
         }
 
         $mailjobObj->send($userObj);
-        
+
         return $mailjobObj->loadUserCount();
     }
 */

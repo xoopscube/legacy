@@ -4,9 +4,9 @@ function b_user_online_show()
 {
     global $xoopsUser, $xoopsModule;
     $online_handler =& xoops_gethandler('online');
-    mt_srand(round(microtime(true)*1000000));
+    mt_srand(round(microtime(true)*1_000_000));
     // set gc probabillity to 10% for now..
-    if (mt_rand(1, 100) < 11) {
+    if (random_int(1, 100) < 11) {
         $online_handler->gc(300);
     }
     if (is_object($xoopsUser)) {
@@ -29,7 +29,7 @@ function b_user_online_show()
     }
     $onlines =& $online_handler->getAll();
     if (false !== $onlines) {
-        $total = count($onlines);
+        $total = is_countable($onlines) ? count($onlines) : 0;
         $block = [];
         $guests = 0;
         $members = '';

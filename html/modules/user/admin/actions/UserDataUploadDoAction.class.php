@@ -21,7 +21,7 @@ class User_UserDataUploadDoAction extends User_UserDataUploadAction
         }
         /// csv file check
         if (isset($_SESSION['user_csv_upload_data']) &&
-            count($_SESSION['user_csv_upload_data'])) {
+            (is_countable($_SESSION['user_csv_upload_data']) ? count($_SESSION['user_csv_upload_data']) : 0)) {
             return USER_FRAME_VIEW_SUCCESS;
         }
         return $this->getDefaultView($controller, $xoopsUser);

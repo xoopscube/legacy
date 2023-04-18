@@ -133,7 +133,7 @@ class UserUsersHandler extends XoopsObjectGenericHandler
     {
         $objects = &parent::getObjects($criteria, $limit, $start, $id_as_key);
 
-        if (count($objects)) {
+        if (is_countable($objects) ? count($objects) : 0) {
             foreach (array_keys($objects) as $key) {
                 $objects[$key]->_loadGroups();
             }

@@ -15,7 +15,7 @@ function b_sitemap_popnupblog(){
         $sql = 'SELECT DISTINCT c.* FROM '.$db->prefix('popnupblog_categories').' c, '.$db->prefix("popnupblog_info").
         	' f WHERE f.cat_id=c.cat_id GROUP BY c.cat_id, c.cat_title, c.cat_order ORDER BY c.cat_order';
         $result = $db->query($sql);
-        $categories = array();
+        $categories = [];
         while ( $cat_row = $db->fetchArray($result) ) {
             $i = $cat_row["cat_id"];
             $sitemap['parent'][$i]['id'] = $cat_row["cat_id"];

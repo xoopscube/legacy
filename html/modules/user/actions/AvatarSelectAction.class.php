@@ -29,7 +29,7 @@ class User_AvatarSelectAction extends User_AbstractEditAction
         $handler =& xoops_getmodulehandler('avatar', 'user');
         $criteria =new Criteria('avatar_file', $xoopsUser->get('user_avatar'));
         $avatarArr =& $handler->getObjects($criteria);
-        if (count($avatarArr) > 0) {
+        if ((is_countable($avatarArr) ? count($avatarArr) : 0) > 0) {
             $this->mOldAvatar =& $avatarArr[0];
         }
     }

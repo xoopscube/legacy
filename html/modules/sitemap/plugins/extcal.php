@@ -12,7 +12,7 @@ function b_sitemap_extcal(){
 	$result = $db->query("SELECT cat_id, cat_name FROM ".$db->prefix("extcal_cat"));
 
 	$ret = [];
-	while(list($id, $name) = $db->fetchRow($result)){
+	while([$id, $name] = $db->fetchRow($result)){
 		$ret["parent"][] = [
 			"id" => $id,
 			"title" => $myts->makeTboxData4Show($name),

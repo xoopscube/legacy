@@ -3,12 +3,16 @@
 <nav class="ui-breadcrumbs" aria-label="breadcrumb">
   <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
   &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
-  &raquo;&raquo; <span class="page-title"><a href="./index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a></span>
+  &raquo;&raquo; <span class="page-title" aria-current="page"><a href="./index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a></span>
 </nav>
 
-<{include file="./components/user-overview.html"}>
-
 <h2><{$smarty.const._AD_USER_LANG_GROUP_LIST}></h2>
+
+<div class="help-tips">
+    <{$smarty.const._AD_USER_TIPS_USER_ADMIN}><br>
+    The required Groups can not be deleted !
+    You can create new Groups and modify the permissions for each new Group created.</div>
+
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
 <section data-layout="rows center-justify" class="action-control">

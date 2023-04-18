@@ -29,7 +29,7 @@ class User_AvatarSelectForm extends XCube_ActionForm
     {
         $ids = $this->get('avatar_id');
         
-        if (1 != count($ids)) {
+        if (1 != (is_countable($ids) ? count($ids) : 0)) {
             $this->addErrorMessage(_MD_USER_ERROR_AVATAR_SELECT);
         }
         

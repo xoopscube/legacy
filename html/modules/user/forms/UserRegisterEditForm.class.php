@@ -87,7 +87,7 @@ class User_RegisterEditForm extends User_AbstractUserEditForm
         $obj->set('user_mailok', $this->get('user_mailok'));
         $obj->set('agree', $this->get('agree'));
 
-        $actkey=substr(md5(uniqid(mt_rand(), 1)), 0, 8);
+        $actkey=substr(md5(uniqid(random_int(0, mt_getrandmax()), 1)), 0, 8);
         $obj->set('actkey', $actkey, true);
         $obj->set('user_regdate', time(), true);
     }

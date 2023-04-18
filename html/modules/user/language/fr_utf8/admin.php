@@ -135,11 +135,11 @@ define( '_AD_USER_LANG_USER_DELETE' , "Supprimer un Utilisateur");
 define( '_AD_USER_LANG_USER_DELETE_ADVICE' , "Supprimer ");
 define( '_AD_USER_LANG_USER_EDIT' , "Editer un Utilisateur");
 define( '_AD_USER_LANG_USER_LIST' , "Gestion des Utilisateurs");
-define( '_AD_USER_LANG_USER_NEW' , "Ajouter un Nouveau Utilisateur");
-define( '_AD_USER_LANG_USER_NEW_FIELD' , "Ajouter un Nouveau Champ");
-define( '_AD_USER_LANG_USER_SEARCH_LIST' , "Recherche d'Utilisateurs");
+define( '_AD_USER_LANG_USER_NEW' , "Nouveau Utilisateur");
+define( '_AD_USER_LANG_USER_NEW_FIELD' , "Nouveau Champ");
+define( '_AD_USER_LANG_USER_SEARCH_LIST' , "Rechercher Utilisateurs");
 define( '_AD_USER_LANG_USER_TOTAL' , "Total des utilisateurs");
-define( '_AD_USER_LANG_USER_UPDATECONF' , "Confirmer la mise à jour de l'utilisateur");
+define( '_AD_USER_LANG_USER_UPDATECONF' , "Confirmer la mise à jour de la configuration.");
 define( '_AD_USER_LANG_USER_VIEW' , "Voir Utilisateur");
 define( '_AD_USER_LANG_VPASS' , "Vérifier Mot de Passe");
 // Message

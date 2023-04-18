@@ -197,7 +197,7 @@ class User_UserSearchListAction extends User_AbstractListAction
     public function getExtraURL()
     {
         $extraurl = '';
-        if (count($this->mFilter->mNavi->mExtra) > 0) {
+        if ((is_countable($this->mFilter->mNavi->mExtra) ? count($this->mFilter->mNavi->mExtra) : 0) > 0) {
             $t_arr = [];
             foreach ($this->mFilter->mNavi->mExtra as $key => $value) {
                 $t_arr[] = $key . '=' . urlencode($value);
@@ -212,7 +212,7 @@ class User_UserSearchListAction extends User_AbstractListAction
         if (isset($params['pagenavi']) && is_object($params['pagenavi'])) {
             $navi =& $params['pagenavi'];
             $url = $params['url'];
-            if (count($navi->mExtra) > 0) {
+            if ((is_countable($navi->mExtra) ? count($navi->mExtra) : 0) > 0) {
                 $t_arr = [];
 
                 foreach ($navi->mExtra as $key => $value) {

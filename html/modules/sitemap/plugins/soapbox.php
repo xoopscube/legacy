@@ -3,7 +3,8 @@
 // NOTE		::	edit by domifara for soapbox1.5 RC3
 
 function b_sitemap_soapbox(){
-	global $xoopsUser ;
+	$sitemap = null;
+ global $xoopsUser ;
 	$ret = [];
     $db = &XoopsDatabaseFactory::getDatabaseConnection();
 	$myts =& MyTextSanitizer::getInstance();
@@ -29,14 +30,10 @@ function b_sitemap_soapbox(){
 	if ( !$result = $db->query($sql)){
 		return $sitemap;
 	}
-	while(list($columnID, $name) = $db->fetchRow($result)){
+	while([$columnID, $name] = $db->fetchRow($result)){
 		 $columnID = (int)$columnID;
 		if ( $gperm_handler -> checkRight( $gperm_name, $columnID, $groups, $module_mid ) ){
-			$ret["parent"][] = array(
-				"id" => $columnID,
-				"title" => $myts->makeTboxData4Show($name),
-				"url" => $url.$columnID
-			);
+			$ret["parent"][] = ["id" => $columnID, "title" => $myts->makeTboxData4Show($name), "url" => $url.$columnID];
 		}
 
 	}

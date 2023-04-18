@@ -27,7 +27,7 @@ define('_MD_USER_LANG_AVATAR_ID', "ID");
 define('_MD_USER_LANG_AVATAR_LIST', "список аватаров");
 define('_MD_USER_LANG_AVATAR_MAXFILESIZE', "Макс. размер файла");
 define('_MD_USER_LANG_AVATAR_WIDTH', "Ширина");
-define('_MD_USER_LANG_AVATAR_WIDTH_HIGHT', "Ширина/высота аватара");
+define( '_MD_USER_LANG_AVATAR_WIDTH_HEIGHT' , 'Avatar Ширина x высота');
 define('_MD_USER_LANG_BIO', "Дополнителная информация");
 define('_MD_USER_LANG_DELACCOUNT', "Удалить аккаунт");
 define('_MD_USER_LANG_DELETE', "Удалить");

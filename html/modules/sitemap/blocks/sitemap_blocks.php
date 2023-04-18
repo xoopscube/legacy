@@ -12,7 +12,9 @@
 
 function b_sitemap_show( $options )
 {
-	global $xoopsConfig, $xoopsDB, $xoopsUser, $xoopsUserIsAdmin;
+	$member_handler = null;
+ $sitemap_configsBackup = null;
+ global $xoopsConfig, $xoopsDB, $xoopsUser, $xoopsUserIsAdmin;
 	global $sitemap_configs ;
 
 	$cols = empty( $options[0] ) ? 1 : (int) $options[0];

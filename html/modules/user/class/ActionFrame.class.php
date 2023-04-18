@@ -27,10 +27,10 @@ class User_ActionFrame
      */
     public $mCreateAction = null;
 
-    public function User_ActionFrame($admin)
-    {
-        self::__construct($admin);
-    }
+//    public function User_ActionFrame($admin)
+//    {
+//        self::__construct($admin);
+//    }
 
     public function __construct($admin)
     {
