@@ -122,7 +122,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
                     $themeimages[] = ['name' => $infoArr[2], 'content' => $info['file']];
                 }
             }
-            if (count($default) > 0) {
+            if ((is_countable($default) ? count($default) : 0) > 0) {
                 $tplfile =& $default[0]->createClone($tplset->get('tplset_name'));
                 $tplfile->Source->set('tpl_source', $info['file']);
                 $tplfile->set('tpl_lastimported', time());
@@ -140,7 +140,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
 
     public function _fetchImageset(&$tar, &$tplset, &$themeimages)
     {
-        if (0 == count($themeimages)) {
+        if (0 == (is_countable($themeimages) ? count($themeimages) : 0)) {
             return true;
         }
 
@@ -160,7 +160,7 @@ class LegacyRender_TplsetUploadAction extends LegacyRender_Action
         }
 
         $handler =& xoops_gethandler('imagesetimg');
-        for ($i = 0; $i < count($themeimages); $i++) {
+        for ($i = 0; $i < (is_countable($themeimages) ? count($themeimages) : 0); $i++) {
             if (isset($themeimages[$i]['name']) && '' != $themeimages[$i]['name']) {
                 $image =& $handler->create();
                 $image->set('imgsetimg_file', $themeimages[$i]['name']);

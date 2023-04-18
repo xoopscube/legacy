@@ -33,7 +33,8 @@ class Legacy_XoopsTpl extends XoopsTpl
      * If variables having the following key are assigned, converts value with
      * htmlspecialchars_decode, and set it to the context for compatibility.
      */
-    public $_mContextReserve = [];
+    public $_mContextReserve = ['xoops_pagetitle' => 'legacy_pagetitle'];
+//public $_mContextReserve = [];
 
 //    public function Legacy_XoopsTpl()
 //    {
@@ -42,7 +43,7 @@ class Legacy_XoopsTpl extends XoopsTpl
 
     public function __construct()
     {
-        $this->_mContextReserve = ['xoops_pagetitle' => 'legacy_pagetitle'];
+        //$this->_mContextReserve = ['xoops_pagetitle' => 'legacy_pagetitle'];
         parent::__construct();
     }
 
@@ -136,10 +137,10 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 
     public $mBeginRender = null;
 
-    public function Legacy_RenderSystem()
+  /*  public function Legacy_RenderSystem()
     {
         $this->__construct();
-    }
+    }*/
 
     public function __construct()
     {
@@ -184,7 +185,11 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             [
             'xoops_requesturi' => htmlspecialchars($GLOBALS['xoopsRequestUri'], ENT_QUOTES),    //@todo ?????????????
             //@todo set JavaScript/Weird, but need extra <script> tags for Xoops Legacy 2.x themes
-            'xoops_js' => '</script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript">'
+                // XCL 2.3.x moved to /common/js/x-utils.js
+            // 'xoops_js' => '</script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript">'
+            'xoops_js' => '</script><script type="text/javascript" src="'.XOOPS_URL.'/common/js/x-utils.js"></script><script type="text/javascript">',
+            // XCL 2.3.x
+            'xutils_js' => '</script><script type="text/javascript" src="'.XOOPS_URL.'/common/js/x-utils.js"></script><script type="text/javascript">'
             ]
         );
 
@@ -354,6 +359,8 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 
     public function renderMain(&$target)
     {
+        $GLOBLAS = [];
+        $xoopsCachedTemplateId = null;
         $this->_commonPrepareRender();
 
         // TODO refactor using null coalescing operator in PHP 7
@@ -568,7 +575,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
 		<meta name="copyright" content="'.htmlspecialchars($xoopsConfigMetaFooter['meta_copyright']).'">
 		<meta name="generator" content="XOOPSCube">
 		<title>'.htmlspecialchars($xoopsConfig['sitename']).'</title>
-		<script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script>
+		<script type="text/javascript" src="'.XOOPS_URL.'/common/js/x-utils.js"></script>
 		';
         $themecss = getcss($xoopsConfig['theme_set']);
         echo '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/theme/xcl_default/style.css">';

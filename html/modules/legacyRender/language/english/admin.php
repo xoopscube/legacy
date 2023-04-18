@@ -24,7 +24,7 @@ define( '_AD_LEGACYRENDER_LANG_BANNER' , 'Banner');
 define( '_AD_LEGACYRENDER_LANG_BANNER_DELETE' , 'Delete a Banner');
 define( '_AD_LEGACYRENDER_LANG_BANNER_EDIT' , 'Edit a Banner');
 define( '_AD_LEGACYRENDER_LANG_BANNER_LIST' , 'List of Banners');
-define( '_AD_LEGACYRENDER_LANG_BANNER_LIST_DESC' , 'Create a contact account for Banner Clients add html or link of Banners');
+define( '_AD_LEGACYRENDER_LANG_BANNER_LIST_DESC' , 'Before adding a new HTML banner or link, create a contact account for your Banner Clients.<br>The client credential grant type is used to get a token to access banner statistics.');
 define( '_AD_LEGACYRENDER_LANG_BANNER_NEW' , 'New Banner');
 define( '_AD_LEGACYRENDER_LANG_BANNERCLIENT_DELETE' , 'Delete a Banner Client');
 define( '_AD_LEGACYRENDER_LANG_BANNERCLIENT_EDIT' , 'Edit a Banner Client');

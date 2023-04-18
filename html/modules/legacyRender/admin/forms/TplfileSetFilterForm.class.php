@@ -35,7 +35,7 @@ class LegacyRender_TplfileSetFilterForm extends LegacyRender_TplfileFilterForm
             
             $handler =& xoops_getmodulehandler('tplset');
             $tplsets =& $handler->getObjects(new Criteria('tplset_name', xoops_getrequest('tpl_tplset')));
-            if (count($tplsets) > 0) {
+            if ((is_countable($tplsets) ? count($tplsets) : 0) > 0) {
                 $subCriteria->add(new Criteria('tpl_tplset', xoops_getrequest('tpl_tplset')));
                 $this->mTplset =& $tplsets[0];
             }

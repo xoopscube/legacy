@@ -6,9 +6,9 @@
     &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_BANNER_MANAGE}></a>
     &raquo;&raquo; <a href="./index.php?action=BannerclientList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a>
     <{if $actionForm->get('cid')}>
-    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_EDIT}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_EDIT}></span>
     <{else}>
-    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW}></span>
     <{/if}>
 </nav>
 
@@ -80,7 +80,7 @@
         <tr>
             <td><{$smarty.const._AD_LEGACYRENDER_LANG_EXTRAINFO}></td>
             <td>
-                <{xoops_dhtmltarea type=text name=extrainfo value=$actionForm->get('extrainfo') rows=5 cols=50}>
+                <{xoops_dhtmltarea type=text name=extrainfo value=$actionForm->get('extrainfo') rows=5 cols=50 editor=bbcode}>
             </td>
         </tr>
         </tbody>

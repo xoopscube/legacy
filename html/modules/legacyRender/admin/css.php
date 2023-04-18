@@ -39,7 +39,7 @@ function Legacy_modifier_css_theme($string)
 
 $theme = isset($_GET['theme']) ? trim($_GET['theme']) : null;
 $dirname = isset($_GET['dirname']) ? trim($_GET['dirname']) : null;
-$_GET['file'] = $_GET['file'] ?? 'style.css'; // XCL @gigamaster use null coalescing operator  $_GET['file'] = isset($_GET['file']) ? $_GET['file'] : 'style.css';
+$_GET['file'] ??= 'style.css'; // XCL @gigamaster use null coalescing operator  $_GET['file'] = isset($_GET['file']) ? $_GET['file'] : 'style.css';
 $file = 'stylesheets/' . trim(@$_GET['file']);
 
 // XCl 'strpos($theme, '..') !== false' is used instead to save memory

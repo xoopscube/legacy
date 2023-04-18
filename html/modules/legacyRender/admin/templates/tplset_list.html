@@ -4,7 +4,7 @@
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=TplsetList"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_MANAGE}></a>
-    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_LIST}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_LEGACYRENDER_LANG_TEMPLATE_SET_LIST}></span>
 </nav>
 
 
@@ -67,7 +67,7 @@
         <{* ////— DROPDOWN MENU —\\\\ *}>
         <div class="dropdown button-icon" id="action-contents">
             <a href="#" class="dropdown-toggle action-menu button" aria-label="action" style="font-size: var(--d-toggle-font);">
-                <{$smarty.const._MENU}><svg class="icon-dropmenu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
+                <{$smarty.const._ACTION}><svg class="icon-dropmenu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
             </a>
             <div class="dropdown-content" style="min-width: 240px; padding:.5em;">
                 <div data-layout="row justify-center mb-4">
@@ -138,25 +138,25 @@
             <form method="post" action="./index.php?action=TplsetList">
                 <{xoops_token name=$actionForm->getTokenName() value=$actionForm->getToken()}>
                 <input type="hidden" name="tplset_name" value="<{$obj->getShow('tplset_name')}>" id="legacy_xoopsform_tplset_name_<{$obj->getShow('tplset_name')}>">
-                <input type="submit" value="<{$smarty.const._SELECT}>" class="formButton">
+                <input type="submit" value="<{$smarty.const._SELECT}>" class="button">
             </form>
             <{/if}>
 
             <a class="action-download" href="index.php?action=TplsetDownload&amp;tplset_id=<{$obj->get('tplset_id')}>&amp;method=tar" aria-label="<{$smarty.const._AD_LEGACYRENDER_LANG_TPLSET_DOWNLOAD}>">
-                <img class="svg" src="<{'icons/icon-download.svg'|theme}>" alt="download">
+                <img class="svg" src="<{'icons/icon-download.svg'|theme}>" width="1em" height="1em" alt="download">
             </a>
             <a class="action-copy" href="index.php?action=TplsetClone&amp;tplset_id=<{$obj->get('tplset_id')}>" aria-label="<{$smarty.const._CLONE}>">
-                <img class="svg" src="<{'icons/icon-copy.svg'|theme}>" alt="copy">
+                <img class="svg" src="<{'icons/icon-copy.svg'|theme}>" width="1em" height="1em" alt="copy">
             </a>
             <br>
 
             <{if $obj->get('tplset_name') !="default"}>
             <a class="action-edit" href="index.php?action=TplsetEdit&amp;tplset_id=<{$obj->get('tplset_id')}>" aria-label="<{$smarty.const._EDIT}>">
-                <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="edit">
+                <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" width="1em" height="1em" alt="edit">
             </a>
                 <{if $activeTemplateSet !=$obj->get('tplset_name')}>
                 <a class="action-delete" href="index.php?action=TplsetDelete&amp;tplset_id=<{$obj->get('tplset_id')}>" aria-label="<{$smarty.const._DELETE}>">
-                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="delete">
+                    <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" width="1em" height="1em" alt="delete">
                 </a>
                 <{/if}>
             <{/if}>
@@ -171,8 +171,6 @@
     </tr>
     </tfoot>
 </table>
-
-
 
 <hr>
 
@@ -220,11 +218,11 @@
         <td class="list_control">
             <{if $obj->get('tpl_tplset') == "default"}>
             <a class="action-view" href="index.php?action=TplfileView&amp;tpl_id=<{$obj->get('tpl_id')}>" title="<{$smarty.const._AD_LEGACYRENDER_LANG_VIEW}>">
-                <img class="svg" src="<{'icons/icon-view.svg'|theme}>" alt="View">
+                <img class="svg" src="<{'icons/icon-view.svg'|theme}>" width="1em" height="1em" alt="View">
             </a>
             <{else}>
             <a class="action-edit" href="index.php?action=TplfileEdit&amp;tpl_id=<{$obj->get('tpl_id')}>" title="<{$smarty.const._EDIT}>">
-                <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="Edit">
+                <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" width="1em" height="1em" alt="Edit">
             </a>
             <{/if}>
         </td>

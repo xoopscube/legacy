@@ -5,7 +5,7 @@ define( '_MI_LEGACYRENDER_ADMENU_TEMPLATE_MANAGE' , 'テンプレート管理');
 define( '_MI_LEGACYRENDER_ADMENU_THEME_MANAGE' , 'テーマの設定');
 define( '_MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE' , 'テンプレート管理');
 define( '_MI_LEGACYRENDER_CONF_BANNERS' , 'バナー広告を有効にする');
-define( '_MI_LEGACYRENDER_CONF_BANNERS_DESC' , 'Client Management, account and login []');
+define( '_MI_LEGACYRENDER_CONF_BANNERS_DESC' , 'バナー クライアント資格情報付与タイプは、クライアントがバナー統計へのアクセス トークンを取得するために使用します。 したがって、クライアントのログインとパスワードは、ユーザー グループ権限システムの外部にあります。');
 define( '_MI_LEGACYRENDER_NAME' , 'レンダリングシステム');
 define( '_MI_LEGACYRENDER_NAME_DESC' , 'XOOPS JP 2.0.x のテーマエンジンと互換性のあるレンダーシステムです。XOOPS2テーマを使用可能です。');
 define( '_MI_LR_FOOTER' , 'フッタ');

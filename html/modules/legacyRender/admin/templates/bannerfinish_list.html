@@ -4,7 +4,7 @@
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_BANNER_MANAGE}></a>
-    &raquo;&raquo; <span class="page-title"><a href="./index.php?action=BannerfinishList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><a href="./index.php?action=BannerfinishList"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a></span>
 </nav>
 
 
@@ -30,54 +30,54 @@
         <{* ////— DROPDOWN FILTER-SORT —\\\\ *}>
         <div class="dropdown button-icon" id="filter-sort">
 
-            <a href="#" class="dropdown-toggle button" aria-label="filter sort"><img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options"></a>
+            <a href="#" class="dropdown-toggle button" title="filter sort"><img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options"></a>
             <div class="dropdown-content drop-top">
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_BID}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_BID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_BID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_BID}>" title="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_BID}>" title="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_CLIENT_NAME}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_CID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_CID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_CID}>" title="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_CID}>" title="<{$smarty.const._DESCENDING}>">&darr;
                         </a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_IMPRESSIONS}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_IMPRESSIONS}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_IMPRESSIONS}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_IMPRESSIONS}>" title="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_IMPRESSIONS}>" title="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_CLICKS}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_CLICKS}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_CLICKS}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_CLICKS}>" title="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_CLICKS}>" title="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_DATESTART}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_DATESTART}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_DATESTART}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_DATESTART}>" title="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_DATESTART}>" title="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
                     <h6><{$smarty.const._AD_LEGACYRENDER_LANG_DATEEND}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_DATEEND}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_DATEEND}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_DATEEND}>" title="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_DATEEND}>" title="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
             </div><{* ----- /Dropdown-content *}>
         </div><{* ----- /Dropdown *}>
-        <button class="help-admin button-icon" type='button' data-module='legacyRender' data-help-article='#help-bannerclient' aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
+        <button class="help-admin button-icon" type='button' data-module='legacyRender' data-help-article='#help-bannerclient' title="<{$smarty.const._HELP}>"><b>?</b></button>
     </div>
 </section>
 
@@ -104,11 +104,11 @@
         <td class="list_date"><{$obj->get('dateend')|xoops_formattimestamp}></td>
         <td class="list_control">
 
-            <a class="action-edit" href="./index.php?action=BannerEdit&amp;bid=<{$obj->getShow('bid')}>" aria-label="<{$smarty.const._EDIT}>">
+            <a class="action-edit" href="./index.php?action=BannerEdit&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._EDIT}>">
                 <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="<{$smarty.const._EDIT}>">
             </a>
 
-            <a class="action-delete" href="./index.php?action=BannerfinishDelete&amp;bid=<{$obj->getShow('bid')}>" aria-label="<{$smarty.const._DELETE}>">
+            <a class="action-delete" href="./index.php?action=BannerfinishDelete&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._DELETE}>">
                 <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="<{$smarty.const._DELETE}>"></a>
 
         </td>

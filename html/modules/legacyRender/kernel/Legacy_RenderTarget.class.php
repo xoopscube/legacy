@@ -16,10 +16,10 @@ class Legacy_AbstractThemeRenderTarget extends XCube_RenderTarget
 {
     public $mSendHeaderFlag=false;
 
-    public function Legacy_AbstractThemeRenderTarget()
+ /*   public function Legacy_AbstractThemeRenderTarget()
     {
         $this->__construct();
-    }
+    } */
 
     public function __construct()
     {
@@ -51,10 +51,10 @@ class Legacy_AbstractThemeRenderTarget extends XCube_RenderTarget
 
 class Legacy_ThemeRenderTarget extends Legacy_AbstractThemeRenderTarget
 {
-    public function Legacy_ThemeRenderTarget()
+ /*   public function Legacy_ThemeRenderTarget()
     {
         $this->__construct();
-    }
+    } */
 
     public function __construct()
     {
@@ -65,10 +65,10 @@ class Legacy_ThemeRenderTarget extends Legacy_AbstractThemeRenderTarget
 
 class Legacy_DialogRenderTarget extends Legacy_AbstractThemeRenderTarget
 {
-    public function Legacy_DialogRenderTarget()
+ /*   public function Legacy_DialogRenderTarget()
     {
         $this->__construct();
-    }
+    } */
 
     public function __construct()
     {
