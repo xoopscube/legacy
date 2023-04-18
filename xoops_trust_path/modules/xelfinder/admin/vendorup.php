@@ -50,7 +50,7 @@ if (! empty ( $_POST ['doupdate'] )) {
 	
 	$phpcli = !empty($_POST['phpcli'])? trim($_POST['phpcli']) : 'php';
 	$php54 = !empty($_POST['php54']);
-	$cmds = array();
+	$cmds = [];
 	$cmds[] = $phpcli.' -d curl.cainfo=cacert.pem -d openssl.cafile=cacert.pem composer.phar self-update --no-ansi --no-interaction 2>&1';
 	if ($php54) {
 	    $cmds[] = $phpcli.' -d curl.cainfo=cacert.pem -d openssl.cafile=cacert.pem composer.phar remove --no-update kunalvarma05/dropbox-php-sdk';
@@ -84,7 +84,7 @@ if (! empty ( $_POST ['doupdate'] )) {
 
 // RENDER
 xoops_cp_header ();
-include dirname ( __FILE__ ) . '/mymenu.php';
+include __DIR__ . '/mymenu.php';
 
 // Check if vendor file exists and print a message
 $filename = dirname(__FILE__, 2) . '/plugins/vendor/autoload.php';
@@ -176,7 +176,7 @@ if ($php54up = version_compare(PHP_VERSION, '5.4.0', '>=')) {
     <iframe id="ifm-xelfinder-vendorup" name="composer_update" title="Composer"></iframe>
     </div>
 </section>
-<hr>
+
 <script>
 (function($){
 	var autoHeight = function() {

@@ -61,7 +61,7 @@ foreach ( explode( "\n", $config['volume_setting'] ) as $_vol ) {
 	if ( ! $_vol || '#' === $_vol[0] ) {
 		continue;
 	}
-	list( , $_plugin, $_dirname ) = explode( ':', $_vol );
+	[, $_plugin, $_dirname] = explode( ':', $_vol );
 	$_plugin = trim( $_plugin );
 	if ( preg_match( '#(?:uploads|' . $modules_basename . ')/([^/]+)#i', trim( $_dirname ), $_match ) ) {
 		$_dirname = $_match[1];
@@ -83,7 +83,7 @@ if ( $_js_cache_path ) {
 	if ( ! is_file( $_js_cacahe ) || filemtime( $_js_cacahe ) < max( $_js_cache_times ) ) {
 		$_src = '';
 		foreach ( $_keys as $_key ) {
-			list( $_dirname ) = explode( '!', $_key );
+			[$_dirname] = explode( '!', $_key );
 			$_src .= str_replace( '$dirname', $_dirname, file_get_contents( $_js_cache_path[ $_key ] ) );
 		}
 		file_put_contents( $_js_cacahe, $_src );
@@ -320,7 +320,7 @@ function xelfinder_detect_lang() {
 	if ( $accept = @ $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) {
 		if ( preg_match_all( "/([\w_-]+)/i", $accept, $match, PREG_PATTERN_ORDER ) ) {
 			foreach ( $match[1] as $lang ) {
-				list( $l, $c ) = array_pad( preg_split( '/[_-]/', $lang ), 2, '' );
+				[$l, $c] = array_pad( preg_split( '/[_-]/', $lang ), 2, '' );
 				$lang = strtolower( $l );
 				if ( $c ) {
 					$lang .= '_' . strtoupper( $c );

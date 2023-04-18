@@ -2,10 +2,10 @@
 
 class xelFinderMisc {
 	
-	var $myConfig;
-	var $db;
-	var $mydirname;
-	var $mode;
+	public $myConfig;
+	public $db;
+	public $mydirname;
+	public $mode;
 	
 	public function __construct($mydirname) {
 		$this->db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -27,7 +27,7 @@ class xelFinderMisc {
 			$isAdmin = $xoopsUser->isAdmin($xModule->getVar('mid'));
 		} else {
 			$uid = 0;
-			$groups = array(XOOPS_GROUP_ANONYMOUS);
+			$groups = [XOOPS_GROUP_ANONYMOUS];
 			$isAdmin = false;
 		}
 	
@@ -39,11 +39,11 @@ class xelFinderMisc {
 		$grp = intval($perm[1], 16);
 		$gus = intval($perm[2], 16);
 	
-		return array($isOwner, $inGroup, $own, $grp, $gus, $perm);
+		return [$isOwner, $inGroup, $own, $grp, $gus, $perm];
 	}
 	
 	private function checkAuth($auth, $perm, $f_uid) {
-		list($isOwner, $inGroup, $own, $grp, $gus, $perm) = $this->authPrepare($perm, $f_uid);
+		[$isOwner, $inGroup, $own, $grp, $gus, $perm] = $this->authPrepare($perm, $f_uid);
 		//exit(var_dump(array($isOwner, $inGroup, $own, $grp, $gus, $perm)));
 		$ret = false;
 		if (strpos($auth, 'r') !== false) {
@@ -68,7 +68,7 @@ class xelFinderMisc {
 	
 	public function readAuth($perm, $f_uid, $file_id = null) {
 		
-		list($isOwner, $inGroup, $own, $grp, $gus, $perm) = $this->authPrepare($perm, $f_uid);
+		[$isOwner, $inGroup, $own, $grp, $gus, $perm] = $this->authPrepare($perm, $f_uid);
 		
 		if ($readable = (($isOwner && (4 & $own) === 4) || ($inGroup && (4 & $grp) === 4) || (4 & $gus) === 4)) {
 			if ($file_id && $this->mode === 'view' && ! empty($this->myConfig['edit_disable_linked'])) {
@@ -94,7 +94,7 @@ class xelFinderMisc {
 			$user = $user_handler->get( $uid );
 			$groups = $user->getGroups();
 		} else {
-			$groups = array( XOOPS_GROUP_ANONYMOUS );
+			$groups = [XOOPS_GROUP_ANONYMOUS];
 		}
 		return $groups;
 	}
@@ -110,7 +110,7 @@ class xelFinderMisc {
 		$ret = false;
 		//$res = $this->db->query($sql);exit(var_dump($this->db->getRowsNum($res)));
 		if (($res = $this->db->query($sql)) && $this->db->getRowsNum($res)) {
-			list($id, $perm, $f_uid) = $this->db->fetchRow($res);
+			[$id, $perm, $f_uid] = $this->db->fetchRow($res);
 			//exit(var_dump(array($id, $perm, $f_uid)));
 			if ($this->checkAuth($auth, $perm, $f_uid)) {
 				$ret = $id;

@@ -45,7 +45,7 @@ if ( file_exists( XOOPS_TRUST_PATH . '/libs/altsys/myblocksadmin.php' ) ) {
 
 // Preferences
 $config_handler =& xoops_gethandler( 'config' );
-if ( count( $config_handler->getConfigs( new Criteria( 'conf_modid', $xoopsModule->mid() ) ) ) > 0 ) {
+if ( (is_countable($config_handler->getConfigs( new Criteria( 'conf_modid', $xoopsModule->mid() ) )) ? count( $config_handler->getConfigs( new Criteria( 'conf_modid', $xoopsModule->mid() ) ) ) : 0) > 0 ) {
 	// legacy->preferences
 	$adminmenu[] = [
 		'title' => _PREFERENCES,
@@ -72,7 +72,7 @@ foreach ( array_keys( $adminmenu ) as $i ) {
 }
 if ( empty( $adminmenu_hilighted ) ) {
 	foreach ( array_keys( $adminmenu ) as $i ) {
-		if ( 'admin/' === substr( $adminmenu[ $i ]['link'], 0, 6 ) && stristr( $mymenu_uri, $adminmenu[ $i ]['link'] ) ) {
+		if ( 'admin/' === substr( $adminmenu[ $i ]['link'], 0, 6 ) && stristr( $mymenu_uri, (string) $adminmenu[ $i ]['link'] ) ) {
 			$adminmenu[ $i ]['selected']     = true;
 			$GLOBALS['altsysAdminPageTitle'] = $adminmenu[ $i ]['title'];
 			break;
@@ -82,7 +82,7 @@ if ( empty( $adminmenu_hilighted ) ) {
 
 // link conversion from relative to absolute
 foreach ( array_keys( $adminmenu ) as $i ) {
-	if ( stripos( $adminmenu[ $i ]['link'], XOOPS_URL ) === false ) {
+	if ( stripos( $adminmenu[ $i ]['link'], (string) XOOPS_URL ) === false ) {
 		$adminmenu[ $i ]['link'] = XOOPS_URL . "/modules/$mydirname/" . $adminmenu[ $i ]['link'];
 	}
 }

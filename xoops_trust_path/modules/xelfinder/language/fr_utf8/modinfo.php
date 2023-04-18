@@ -28,7 +28,7 @@ define( $constpref.'_ADMENU_MYPREFERENCES','Preferences');
 define( $constpref.'_MANAGER_TITLE' ,           'Page title of manager' );
 define( $constpref.'_MANAGER_TITLE_DESC' ,      '' );
 define( $constpref.'_VOLUME_SETTING' ,          'Volume Drivers' );
-define( $constpref.'_VOLUME_SETTING_DESC' ,     '<button class="help-admin button" type="button" data-module="xelfinder" data-help-article="#help-volume" aria-label="Help Volume"><b>?</b></button> Configuration options separated by a new line' );
+define( $constpref.'_VOLUME_SETTING_DESC' ,     '<button class="help-admin button" type="button" data-module="xelfinder" data-help-article="#help-volume" title="Help Volume"><b>?</b></button> Configuration options separated by a new line' );
 define( $constpref.'_SHARE_FOLDER' ,            'Shared Folder' );
 define( $constpref.'_DISABLED_CMDS_BY_GID' ,    'Group policy - disable cmds' );
 define( $constpref.'_DISABLED_CMDS_BY_GID_DESC','[GroupID]= Disabled cmds (comma-separated)].<br>Delimiter ID with ":" colon<br>Command list: archive, chmod, cut, duplicate, edit, empty, extract, mkdir, mkfile, paste, perm, put, rename, resize, rm, upload etc...' );

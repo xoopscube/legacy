@@ -1,5 +1,5 @@
 <?php
-require_once dirname(dirname(__FILE__)) . '/myalbum/driver.class.php';
+require_once dirname(__FILE__, 2) . '/myalbum/driver.class.php';
 
 /**
  * Simple elFinder driver for MySQL.
@@ -27,28 +27,18 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 	 * @author Naoki Sawada
 	 **/
 	protected function cacheDir($path) {
-		$this->dirsCache[$path] = array();
+		$this->dirsCache[$path] = [];
 
 		if ($path === '_') {
 			$cid = 0;
 		} else {
-			list($cid) = explode('_', substr($path, 1), 2);
+			[$cid] = explode('_', substr($path, 1), 2);
 		}
 
-		$row_def = array(
-			'size' => 0,
-			'ts' => 0,
-			'mime' => '',
-			'dirs' => 0,
-			'read' => true,
-			'write' => false,
-			'locked' => true,
-			'hidden' => false,
-			'url'    => null
-		);
+		$row_def = ['size' => 0, 'ts' => 0, 'mime' => '', 'dirs' => 0, 'read' => true, 'write' => false, 'locked' => true, 'hidden' => false, 'url'    => null];
 
-		$_mtime = array();
-		$_size = array();
+		$_mtime = [];
+		$_size = [];
 
 		// cat (dirctory)
 		$sql = 'SELECT c.pid, c.cid, c.title as name, max(f.`date`) as ts, s.pid as dirs ' .
@@ -96,7 +86,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 					} else {
 						$row['phash'] = $this->encode('_'.$cid.'_');
 					}
-					$ids = $width = $height = $name = array();
+					$ids = $width = $height = $name = [];
 					$ids[0] = $row['id'];
 					$ids[1] = $row['id1'];
 					$ids[2] = $row['id2'];
@@ -124,7 +114,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 							$row['url'] = $this->options['URL'].$ids[$_cnt];
 							$row['dim'] = $row['width'].'x'.$row['height'];
 							$row['size'] = filesize($realpath);
-							$row['mime'] = $this->mimetypeInternalDetect($ids[$_cnt]);
+							$row['mime'] = static::mimetypeInternalDetect($ids[$_cnt]);
 							$row['simg'] = trim($this->options['smallImg'], '/');
 							$row['owner'] = xoops_elFinder::getUnameByUid($row['uid']);
 							$row['tooltip'] = 'Owner: ' . $row['owner'];
@@ -151,15 +141,15 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 		if ($dir === '_') {
 			$cid = 0;
 		} else {
-			list($cid) = explode('_', substr($dir, 1), 2);
+			[$cid] = explode('_', substr($dir, 1), 2);
 		}
-		list($lid) = explode('.', $name);
-		list($lid) = explode('.', $lid);
-		list($lid, $cnt) = array_pad(explode('_', $lid), 2, '');
+		[$lid] = explode('.', $name);
+		[$lid] = explode('.', $lid);
+		[$lid, $cnt] = array_pad(explode('_', $lid), 2, '');
 		if ($cnt) {
 			$cnt = '_' . (int)$cnt;
 		}
-		
+
 		$sql = 'SELECT lid, cid FROM '.$this->tbf.' WHERE cid="'.(int)$cid.'" AND lid="'.(int)$lid.'"';
 		if (($res = $this->query($sql)) && ($r = $this->db->fetchArray($res))) {
 			$id = '_'.$r['cid'].'_'.$r['lid'].$cnt;
@@ -204,27 +194,19 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 	 * @author Naoki Sawada
 	 **/
 	protected function _stat($path) {
-		if ($path === '_') {
+		$stat = [];
+  $cnt = null;
+  if ($path === '_') {
 			$cid = $lid = 0;
 		} else {
-			list($cid, $lid) = explode('_', substr($path, 1), 2);
-			list($lid) = explode('.', $lid);
-			list($lid, $cnt) = array_pad(explode('_', $lid), 2, '');
+			[$cid, $lid] = explode('_', substr($path, 1), 2);
+			[$lid] = explode('.', $lid);
+			[$lid, $cnt] = array_pad(explode('_', $lid), 2, '');
 			if ($cnt) {
 				$cnt = (int)$cnt;
 			}
 		}
-		$stat_def = array(
-			'size' => 0,
-			'ts' => 0,
-			'mime' => '',
-			'dirs' => 0,
-			'read' => true,
-			'write' => false,
-			'locked' => true,
-			'hidden' => false,
-			'url'    => null
-		);
+		$stat_def = ['size' => 0, 'ts' => 0, 'mime' => '', 'dirs' => 0, 'read' => true, 'write' => false, 'locked' => true, 'hidden' => false, 'url'    => null];
 
 		if (! $cid) {
 			$stat['name'] = (! empty($this->options['alias'])? $this->options['alias'] : 'untitle');
@@ -265,7 +247,7 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 				$stat['url'] = $this->options['URL'].$stat['id'];
 				$realpath = realpath($this->options['filePath'].$stat['id']);
 				$stat['size'] = filesize($realpath);
-				$stat['mime'] = $this->mimetypeInternalDetect($stat['id']);
+				$stat['mime'] = static::mimetypeInternalDetect($stat['id']);
 				$stat['simg'] = trim($this->options['smallImg'], '/');
 				$stat['owner'] = xoops_elFinder::getUnameByUid($stat['uid']);
 				$stat['tooltip'] = 'Owner: ' . $stat['owner'];
@@ -274,9 +256,9 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 			}
 		}
 
-		return array();
+		return [];
 	}
-	
+
 	/**
 	* Return thumbnail file name for required file
 	*
@@ -287,8 +269,8 @@ class elFinderVolumeXoopsGnavi extends elFinderVolumeXoopsMyalbum {
 	**/
 	protected function tmbname($stat) {
 		$path = $this->decode($stat['hash']);
-		list(, $lid) = explode('_', substr($path, 1), 2);
+		[, $lid] = explode('_', substr($path, 1), 2);
 		return $this->encode($lid).$stat['ts'].'.png';
 	}
-	
+
 } // END class

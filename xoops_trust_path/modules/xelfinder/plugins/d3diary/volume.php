@@ -5,17 +5,6 @@
 
 if (is_dir(XOOPS_ROOT_PATH . $path)) {
 
-	$volumeOptions = array(
-		'driverSrc' => dirname(__FILE__) . '/driver.class.php',
-		'driver'    => 'XoopsD3diary',
-		'mydirname' => $mydirname,
-		'path'      => '_',
-		'filePath'  => XOOPS_ROOT_PATH . $path,
-		'URL'       => _MD_XELFINDER_SITEURL . $path,
-		'alias'     => $title,
-		'readonly'  => true,
-		'icon'       => is_file(XOOPS_MODULE_PATH.'/'.$mydirname.'/images/elfinder_volume_icon.png')? _MD_XELFINDER_MODULE_URL.'/'.$mydirname.'/images/elfinder_volume_icon.png' : '',
-		'smallImg'  => '/uploads/thumb'
-	);
+	$volumeOptions = ['driverSrc' => __DIR__ . '/driver.class.php', 'driver'    => 'XoopsD3diary', 'mydirname' => $mydirname, 'path'      => '_', 'filePath'  => XOOPS_ROOT_PATH . $path, 'URL'       => _MD_XELFINDER_SITEURL . $path, 'alias'     => $title, 'readonly'  => true, 'icon'       => is_file(XOOPS_MODULE_PATH.'/'.$mydirname.'/images/elfinder_volume_icon.png')? _MD_XELFINDER_MODULE_URL.'/'.$mydirname.'/images/elfinder_volume_icon.png' : '', 'smallImg'  => '/uploads/thumb'];
 
 }

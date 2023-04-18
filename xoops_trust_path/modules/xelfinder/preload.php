@@ -23,15 +23,15 @@ class xelfinderPreloadBase extends XCube_ActionFilter {
 	function preBlockFilter() {
 		$this->mRoot->mDelegateManager->delete('Legacypage.Imagemanager.Access','Legacy_EventFunction::imageManager');
 		$this->mRoot->mDelegateManager->add('Legacypage.Imagemanager.Access',
-									array($this, 'overRideDefaultImageManager'),
+									[$this, 'overRideDefaultImageManager'],
 									XCUBE_DELEGATE_PRIORITY_FIRST);
 		
 		$this->mRoot->mDelegateManager->add('Legacy_TextFilter.MakeXCodeConvertTable',
-									array($this, 'addXCodeConvertTable'),
+									[$this, 'addXCodeConvertTable'],
 									XCUBE_DELEGATE_PRIORITY_NORMAL - 1);
 		
 		$this->mRoot->mDelegateManager->add('Legacy_ActionFrame.CreateAction',
-									array($this, 'overRideImagecategoryList'),
+									[$this, 'overRideImagecategoryList'],
 									XCUBE_DELEGATE_PRIORITY_FIRST);
 	}
 
@@ -52,7 +52,7 @@ class xelfinderPreloadBase extends XCube_ActionFilter {
 				if (!isset($_GET['cb']) && (!isset($_GET['getfile']) || $_GET['getfile'] !== 'ckeditor')) {
 					$_GET['cb'] = 'bbcode';
 				}
-				require dirname(__FILE__).'/manager.php';
+				require __DIR__.'/manager.php';
 			}
 		}
 		

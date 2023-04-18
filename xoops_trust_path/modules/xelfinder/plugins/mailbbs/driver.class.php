@@ -10,17 +10,18 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 
 	protected $mydirname = '';
 
-	protected $enabledFiles = array();
+	protected $enabledFiles = [];
 
 	protected function set_mailbbs_enabledFiles() {
 
-		include(XOOPS_MODULE_PATH.'/'.$this->mydirname.'/config.php');
+		$log = null;
+  include(XOOPS_MODULE_PATH.'/'.$this->mydirname.'/config.php');
 
 		$log = preg_replace('#^\./#', '', $log);
 		$logfile = XOOPS_MODULE_PATH.'/'.$this->mydirname.'/'.$log;
 		$logs = file($logfile);
 
-		$ret = array();
+		$ret = [];
 		foreach ($logs as $log) {
 			$data = array_pad(explode('<>', $log), 8, '');
 			if (intval($data[7]) || ! $data[5]) continue; // 未承認 or ファイルなし
@@ -43,7 +44,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 	 **/
 	public function __construct() {
 		parent::__construct();
-		
+
 		$this->options['alias']    = '';              // alias to replace root dir name
 		$this->options['dirMode']  = 0755;            // new dirs mode
 		$this->options['fileMode'] = 0644;            // new files mode
@@ -91,7 +92,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _scandir($path) {
-		$files = array();
+		$files = [];
 		if ($path === $this->root) {
 			foreach ($this->enabledFiles as $file => $name) {
 				$files[] = $path.'/'.$file;
@@ -135,7 +136,7 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 		}
 		return $stat;
 	}
-	
+
 	/**
 	 * Return true if path is dir and has at least one childs directory
 	 *
@@ -157,33 +158,33 @@ class elFinderVolumeXoopsMailbbs extends elFinderVolumeLocalFileSystem {
 	 * @author Dmitry (dio) Levashov, Naoki Sawada
 	 **/
 	protected function doSearch($path, $q, $mimes) {
-		$result = array();
+		$result = [];
 		$encode = defined('_CHARSET')? _CHARSET : 'auto';
-	
+
 		foreach($this->_scandir($path) as $p) {
 			$stat = $this->stat($p);
-	
+
 			if (!$stat) { // invalid links
 				continue;
 			}
-	
+
 			if (!empty($stat['hidden']) || !$this->mimeAccepted($stat['mime'])) {
 				continue;
 			}
-				
+
 			$name = $stat['name'];
-	
+
 			if ($this->stripos($name, $q) !== false || $this->stripos(basename($stat['_localpath']), $q) !== false) {
 				$_path = mb_convert_encoding($this->_path($p), 'UTF-8', $encode);
 				if (preg_match('//u', $_path) !== false) { // UTF-8 check for json_encode()
 					$stat['path'] = $_path;
 				}
-	
+
 				$result[] = $stat;
 			}
 		}
-	
+
 		return $result;
 	}
-	
+
 } // END class

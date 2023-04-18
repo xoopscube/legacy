@@ -163,28 +163,18 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 * @author Dmitry Levashov
 	 **/
 	protected function cacheDir($path) {
-		$this->dirsCache[$path] = array();
+		$this->dirsCache[$path] = [];
 
 		if ($path === '_') {
 			$cid = 0;
 		} else {
-			list($cid) = explode('_', substr($path, 1), 2);
+			[$cid] = explode('_', substr($path, 1), 2);
 		}
 
-		$row_def = array(
-			'size' => 0,
-			'ts' => 0,
-			'mime' => '',
-			'dirs' => 0,
-			'read' => true,
-			'write' => false,
-			'locked' => true,
-			'hidden' => false,
-			'url'    => null
-		);
+		$row_def = ['size' => 0, 'ts' => 0, 'mime' => '', 'dirs' => 0, 'read' => true, 'write' => false, 'locked' => true, 'hidden' => false, 'url'    => null];
 
-		$_mtime = array();
-		$_size = array();
+		$_mtime = [];
+		$_size = [];
 
 		// cat (dirctory)
 		$sql = 'SELECT c.pid, c.cid, c.title as name, max(f.`date`) as ts, s.pid as dirs ' .
@@ -218,7 +208,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 			$sql = 'SELECT submitter as uid, lid, concat( lid, ".", ext ) AS id, res_x AS width, res_y AS height, `date` AS ts, concat( title, ".", ext ) AS name
 					FROM '.$this->tbf.'
 					WHERE cid="'.$cid.'" AND status>0';
-	
+
 			$res = $this->query($sql);
 			if ($res) {
 				while ($row = $this->db->fetchArray($res)) {
@@ -234,7 +224,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 					if (is_file($realpath)) {
 						$row['dim'] = $row['width'].'x'.$row['height'];
 						$row['size'] = filesize($realpath);
-						$row['mime'] = $this->mimetypeInternalDetect($row['id']);
+						$row['mime'] = static::mimetypeInternalDetect($row['id']);
 						$row['simg'] = trim($this->options['smallImg'], '/');
 						$row['owner'] = xoops_elFinder::getUnameByUid($row['uid']);
 						$row['tooltip'] = 'Owner: ' . $row['owner'];
@@ -256,7 +246,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function getParents($path) {
-		$parents = array();
+		$parents = [];
 
 		while ($path) {
 			if ($file = $this->stat($path)) {
@@ -295,7 +285,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 		if ($path === '_') {
 			return '';
 		} else {
-			list($cid, $name) = explode('_', substr($path, 1), 2);
+			[$cid, $name] = explode('_', substr($path, 1), 2);
 			return $name;
 		}
 	}
@@ -312,9 +302,9 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 		if ($dir === '_') {
 			$cid = 0;
 		} else {
-			list($cid) = explode('_', substr($dir, 1), 2);
+			[$cid] = explode('_', substr($dir, 1), 2);
 		}
-		list($lid) = explode('.', $name);
+		[$lid] = explode('.', $name);
 		$sql = 'SELECT lid, cid FROM '.$this->tbf.' WHERE cid="'.(int)$cid.'" AND lid="'.(int)$lid.'"';
 		if (($res = $this->query($sql)) && ($r = $this->db->fetchArray($res))) {
 			$id = '_'.$r['cid'].'_'.$r['lid'];
@@ -417,23 +407,14 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _stat($path) {
-		if ($path === '_') {
+		$stat = [];
+  if ($path === '_') {
 			$cid = $lid = 0;
 		} else {
-			list($cid, $lid) = explode('_', substr($path, 1), 2);
-			list($lid) = explode('.', $lid);
+			[$cid, $lid] = explode('_', substr($path, 1), 2);
+			[$lid] = explode('.', $lid);
 		}
-		$stat_def = array(
-			'size' => 0,
-			'ts' => 0,
-			'mime' => '',
-			'dirs' => 0,
-			'read' => true,
-			'write' => false,
-			'locked' => true,
-			'hidden' => false,
-			'url'    => null
-		);
+		$stat_def = ['size' => 0, 'ts' => 0, 'mime' => '', 'dirs' => 0, 'read' => true, 'write' => false, 'locked' => true, 'hidden' => false, 'url'    => null];
 
 		if (! $cid) {
 			$stat['name'] = (! empty($this->options['alias'])? $this->options['alias'] : 'untitle');
@@ -474,7 +455,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 				$stat['url'] = $this->options['URL'].$stat['id'];
 				$realpath = realpath($this->options['filePath'].$stat['id']);
 				$stat['size'] = filesize($realpath);
-				$stat['mime'] = $this->mimetypeInternalDetect($stat['id']);
+				$stat['mime'] = static::mimetypeInternalDetect($stat['id']);
 				$stat['simg'] = trim($this->options['smallImg'], '/');
 				$stat['owner'] = xoops_elFinder::getUnameByUid($stat['uid']);
 				$stat['tooltip'] = 'Owner: ' . $stat['owner'];
@@ -483,7 +464,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 			}
 		}
 
-		return array();
+		return [];
 	}
 
 	/**
@@ -521,7 +502,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 **/
 	protected function readlink($path) {
 		if ($path !== '_') {
-			list(, $name) = explode('_', substr($path, 1), 2);
+			[, $name] = explode('_', substr($path, 1), 2);
 			if ($name) {
 				return realpath($this->options['filePath'] . $name);
 			}
@@ -710,7 +691,7 @@ class elFinderVolumeXoopsMyalbum extends elFinderVolumeDriver {
 	 **/
 	protected function _checkArchivers() {
 		// die('Not yet implemented. (_checkArchivers)');
-		return array();
+		return [];
 	}
 
 	/**
