@@ -36,15 +36,10 @@ $langman->read( 'modinfo.php', $mydirname, $mytrustdirname );
 include dirname( __DIR__ ) . '/admin_menu.php';
 
 // Block Admin
-if ( file_exists( XOOPS_TRUST_PATH . '/libs/altsys/myblocksadmin.php' ) ) {
-
-	$title = defined( '_MD_A_MYMENU_MYBLOCKSADMIN' ) ? _MD_A_MYMENU_MYBLOCKSADMIN : 'blocksadmin';
-
-	$adminmenu[] = [ 'title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin' ];
-}
+// Rendered from admin_menu.php
 
 // Preferences
-$config_handler =& xoops_gethandler( 'config' );
+$config_handler = xoops_gethandler( 'config' );
 if ( (is_countable($config_handler->getConfigs( new Criteria( 'conf_modid', $xoopsModule->mid() ) )) ? count( $config_handler->getConfigs( new Criteria( 'conf_modid', $xoopsModule->mid() ) ) ) : 0) > 0 ) {
 	// legacy->preferences
 	$adminmenu[] = [

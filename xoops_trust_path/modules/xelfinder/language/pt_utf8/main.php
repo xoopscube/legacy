@@ -12,10 +12,10 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED_MAI
 // a flag for this language file has already been read or not.
 	define( $constpref . '_LOADED_MAIN', 1 );
 
-	define( $constpref . '_FINDER_TITLE', $mydirname.' - File Manager');
-	define( $constpref . '_FINDER_DESC', 'Allow members to upload and manage documents and images. The files are stored within the public upload folder.' );
-	define( $constpref . '_OPEN_MANAGER', 'Open the file manager' );
-	define( $constpref . '_OPEN_WINDOW', 'Popup window' );
+	define( $constpref . '_FINDER_TITLE', $mydirname.' - Gerenciador de arquivos');
+	define( $constpref . '_FINDER_DESC', 'Permite que os membros carreguem e gerenciem documentos e imagens.' );
+	define( $constpref . '_OPEN_MANAGER', 'Abrir o gerenciador de arquivos' );
+	define( $constpref . '_OPEN_WINDOW', 'Janela pop-up' );
 	define( $constpref . '_OPEN_FULL', 'New window' );
 	define( $constpref . '_OPEN_WINDOW_ADMIN', 'Pop window (Admin mode)' );
 	define( $constpref . '_OPEN_FULL_ADMIN', 'New window (Admin mode)' );

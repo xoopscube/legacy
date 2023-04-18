@@ -22,7 +22,7 @@ define( $constpref.'_ADMENU_GOOGLEDRIVE' ,   'GoogleDrive Token 取得' ) ;
 define( $constpref.'_ADMENU_VENDORUPDATE' ,  'vendor アップデート' ) ;
 define( $constpref.'_ADMENU_MYLANGADMIN' ,   '言語定数管理' ) ;
 define( $constpref.'_ADMENU_MYTPLSADMIN' ,   'テンプレート管理' ) ;
-define( $constpref.'_ADMENU_MYBLOCKSADMIN' , 'ブロック管理/アクセス権限' ) ;
+define( $constpref.'_ADMENU_MYBLOCKSADMIN' , 'アクセス権限' ) ;
 define( $constpref.'_ADMENU_MYPREFERENCES' , '一般設定' ) ;
 
 // configurations

@@ -21,7 +21,7 @@ define( $constpref.'_ADMENU_GOOGLEDRIVE' , 'Google Drive API' ) ;
 define( $constpref.'_ADMENU_VENDORUPDATE' ,'Update vendor' ) ;
 define( $constpref.'_ADMENU_MYLANGADMIN',  'Languages');
 define( $constpref.'_ADMENU_MYTPLSADMIN',  'Templates');
-define( $constpref.'_ADMENU_MYBLOCKSADMIN','Blocks/Permissions');
+define( $constpref.'_ADMENU_MYBLOCKSADMIN','Permissions');
 define( $constpref.'_ADMENU_MYPREFERENCES','Preferences');
 
 // configurations

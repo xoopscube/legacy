@@ -13,7 +13,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED_MAI
 	define( $constpref . '_LOADED_MAIN', 1 );
 
 	define( $constpref . '_FINDER_TITLE', $mydirname.' - File Manager');
-	define( $constpref . '_FINDER_DESC', 'Allow members to upload and manage documents and images. The files are stored within the public upload folder.' );
+	define( $constpref . '_FINDER_DESC', 'メンバーがドキュメントや画像をアップロードして管理できるようにします。 ファイルはパブリック アップロード フォルダー内に保存されます。' );
 	define( $constpref . '_OPEN_MANAGER', 'ファイルマネージャを開く' );
 	define( $constpref . '_OPEN_WINDOW', 'ポップアップ' );
 	define( $constpref . '_OPEN_FULL', 'フルウィンドウ' );
