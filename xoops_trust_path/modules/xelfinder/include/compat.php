@@ -3,12 +3,7 @@
 
 if(!function_exists('error_get_last')) {
 	function error_get_last() {
-		return array(
-				'type' => 0,
-				'message' => $GLOBALS[php_errormsg],
-				'file' => 'unknonw',
-				'line' => 0,
-		);
+		return ['type' => 0, 'message' => $GLOBALS[\PHP_ERRORMSG], 'file' => 'unknonw', 'line' => 0];
 	}
 }
 
@@ -44,7 +39,7 @@ if (!function_exists('sys_get_temp_dir')) {
 			return realpath( $_ENV['TEMP']);
 		}
 	
-		$tempfile = tempnam(uniqid(rand(),TRUE),'');
+		$tempfile = tempnam(uniqid(random_int(0, mt_getrandmax()),TRUE),'');
 		if (file_exists($tempfile)) {
 			unlink($tempfile);
 			return realpath(dirname($tempfile));
@@ -71,7 +66,7 @@ function php_compat_str_getcsv($input, $delimiter = ',', $enclosure = '"', $esca
 	$fh = tmpfile();
 	fwrite($fh, $input);
 	rewind($fh);
-	$data = array();
+	$data = [];
 	while (($row = php_compat_fgetcsv_wrap($fh, 1000, $delimiter, $enclosure, $escape)) !== FALSE) {
 		$data[] = $row;
 	}
@@ -111,7 +106,7 @@ if (! function_exists('array_replace_recursive')) {
 		foreach ($array1 as $key => $value) {
 			// create new key in $array, if it is empty or not an array
 			if (!isset($array[$key]) || (isset($array[$key]) && !is_array($array[$key]))) {
-				$array[$key] = array();
+				$array[$key] = [];
 			}
 			// overwrite the value in the base array
 			if (is_array($value)) {

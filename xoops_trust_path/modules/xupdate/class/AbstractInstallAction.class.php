@@ -44,15 +44,12 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction {
 	protected $writable_file = [];
 	protected $install_only = [];
 
-	protected $contents;
-	protected $action;
-	protected $currentMenu;
+	protected $contents = '';
+	protected $action = '';
+	protected $currentMenu = '';
 
 	public function __construct() {
 		parent::__construct();
-		$this->contents    = '';
-		$this->currentMenu = '';
-		$this->action      = '';
 	}
 
 	/**
@@ -247,7 +244,9 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction {
 	 * @return    void
 	 **/
 	public function executeViewSuccess( &$render ) {
-		$xupdateFtpModuleInstall = new Xupdate_FtpModuleInstall();// Xupdate instance
+		$is_install = null;
+  $_needModuleUpdate = null;
+  $xupdateFtpModuleInstall = new Xupdate_FtpModuleInstall();// Xupdate instance
 		//setup
 		$xupdateFtpModuleInstall->downloadDirPath   = $this->Xupdate->params['temp_path'];
 		$xupdateFtpModuleInstall->downloadUrlFormat = $this->mActionForm->get( 'addon_url' );
@@ -266,7 +265,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction {
 			//adump($this->options);
 			$is_install = ( $mobj->get( 'isactive' ) < 0 ) ? true : false;
 			$_arr       = $this->Xupdate->get( 'writable_dir' );
-			if ( ! empty( $_arr ) && count( $_arr ) > 0 ) {
+			if ( ! empty( $_arr ) && (is_countable($_arr) ? count( $_arr ) : 0) > 0 ) {
 				foreach ( $_arr as $item ) {
 					if ( in_array( $item, $this->options['writable_dir'] ) ) {
 						$xupdateFtpModuleInstall->options['writable_dir'][] = $item;
@@ -274,7 +273,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction {
 				}
 			}
 			$_arr = $this->Xupdate->get( 'writable_file' );
-			if ( ! empty( $_arr ) && count( $_arr ) > 0 ) {
+			if ( ! empty( $_arr ) && (is_countable($_arr) ? count( $_arr ) : 0) > 0 ) {
 				foreach ( $_arr as $item ) {
 					if ( in_array( $item, $this->options['writable_file'] ) ) {
 						$xupdateFtpModuleInstall->options['writable_file'][] = $item;
@@ -282,7 +281,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction {
 				}
 			}
 			$_arr = $this->Xupdate->get( 'no_overwrite' );
-			if ( ! empty( $this->options['no_overwrite'] ) && count( $this->options['no_overwrite'] ) > 0 ) {
+			if ( ! empty( $this->options['no_overwrite'] ) && (is_countable($this->options['no_overwrite']) ? count( $this->options['no_overwrite'] ) : 0) > 0 ) {
 				foreach ( $this->options['no_overwrite'] as $item ) {
 					if ( ! is_array( $_arr ) || ( is_array( $_arr ) && ! in_array( $item, $_arr ) ) ) {
 						$xupdateFtpModuleInstall->options['no_overwrite'][] = $item;
@@ -290,7 +289,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction {
 				}
 			}
 			$_arr = $this->Xupdate->get( 'no_update' );
-			if ( ! empty( $this->options['no_update'] ) && count( $this->options['no_update'] ) > 0 ) {
+			if ( ! empty( $this->options['no_update'] ) && (is_countable($this->options['no_update']) ? count( $this->options['no_update'] ) : 0) > 0 ) {
 				$_key = $is_install ? 'no_overwrite' : 'no_update';
 				foreach ( $this->options['no_update'] as $item ) {
 					if ( ! is_array( $_arr ) || ( is_array( $_arr ) && ! in_array( $item, $_arr ) ) ) {
@@ -302,7 +301,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction {
 				}
 			}
 			$_arr = $this->Xupdate->get( 'delete_dir' );
-			if ( ! empty( $_arr ) && count( $_arr ) > 0 ) {
+			if ( ! empty( $_arr ) && (is_countable($_arr) ? count( $_arr ) : 0) > 0 ) {
 				foreach ( $_arr as $item ) {
 					if ( in_array( $item, $this->options['delete_dir'] ) ) {
 						$xupdateFtpModuleInstall->options['delete_dir'][] = $item;
@@ -310,7 +309,7 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction {
 				}
 			}
 			$_arr = $this->Xupdate->get( 'delete_file' );
-			if ( ! empty( $_arr ) && count( $_arr ) > 0 ) {
+			if ( ! empty( $_arr ) && (is_countable($_arr) ? count( $_arr ) : 0) > 0 ) {
 				foreach ( $_arr as $item ) {
 					if ( in_array( $item, $this->options['delete_file'] ) ) {
 						$xupdateFtpModuleInstall->options['delete_file'][] = $item;
@@ -378,7 +377,8 @@ class Xupdate_AbstractInstallAction extends Xupdate_AbstractAction {
 	 * @return bool
 	 */
 	private function isNeedUpdateCheckByVersionFile( $mobj ) {
-		$xoops_version = XOOPS_MODULE_PATH . '/' . $this->dirname . '/xoops_version.php';
+		$modversion = [];
+  $xoops_version = XOOPS_MODULE_PATH . '/' . $this->dirname . '/xoops_version.php';
 
 		return (
 			'module' !== $this->contents

@@ -57,8 +57,8 @@ class RC4 extends Base
      * @access private
      * @see \phpseclib\Crypt\RC4::_crypt()
     */
-    const ENCRYPT = 0;
-    const DECRYPT = 1;
+    public const ENCRYPT = 0;
+    public const DECRYPT = 1;
     /**#@-*/
 
     /**
@@ -71,7 +71,7 @@ class RC4 extends Base
      * @var int
      * @access private
      */
-    var $block_size = 0;
+    public $block_size = 0;
 
     /**
      * Key Length (in bytes)
@@ -80,7 +80,7 @@ class RC4 extends Base
      * @var int
      * @access private
      */
-    var $key_length = 128; // = 1024 bits
+    public $key_length = 128; // = 1024 bits
 
     /**
      * The mcrypt specific name of the cipher
@@ -89,7 +89,7 @@ class RC4 extends Base
      * @var string
      * @access private
      */
-    var $cipher_name_mcrypt = 'arcfour';
+    public $cipher_name_mcrypt = 'arcfour';
 
     /**
      * Holds whether performance-optimized $inline_crypt() can/should be used.
@@ -98,7 +98,7 @@ class RC4 extends Base
      * @var mixed
      * @access private
      */
-    var $use_inline_crypt = false; // currently not available
+    public $use_inline_crypt = false; // currently not available
 
     /**
      * The Key
@@ -107,7 +107,7 @@ class RC4 extends Base
      * @var string
      * @access private
      */
-    var $key;
+    public $key;
 
     /**
      * The Key Stream for decryption and encryption
@@ -116,7 +116,7 @@ class RC4 extends Base
      * @var array
      * @access private
      */
-    var $stream;
+    public $stream;
 
     /**
      * Default Constructor.
@@ -289,12 +289,14 @@ class RC4 extends Base
             $keyStream[$j] = $temp;
         }
 
-        $this->stream = array();
-        $this->stream[self::DECRYPT] = $this->stream[self::ENCRYPT] = array(
-            0, // index $i
-            0, // index $j
-            $keyStream
-        );
+        $this->stream = [];
+        $this->stream[self::DECRYPT] = $this->stream[self::ENCRYPT] = [
+            0,
+            // index $i
+            0,
+            // index $j
+            $keyStream,
+        ];
     }
 
     /**

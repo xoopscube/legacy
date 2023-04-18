@@ -33,7 +33,7 @@ require_once XUPDATE_TRUST_PATH . '/class/AbstractAction.class.php';
  * ThemeSelect preload in Legacy module.
  */
 class Xupdate_Admin_ThemeFinderAction extends Xupdate_AbstractAction {
-	const THEME_FINDER_API_VERSION = '1';
+	public const THEME_FINDER_API_VERSION = '1';
 
 	protected $themeFinderUrl = 'http://cmsthemefinder.com/store/enter_store.php';
 

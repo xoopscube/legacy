@@ -7,10 +7,7 @@ class elFinderVolumeFlysystemGoogleDriveNetmountX extends elFinderVolumeFlysyste
 
 	public function __construct() {
 		parent::__construct();
-		$opts = array(
-			'gdCacheDir'     => XOOPS_TRUST_PATH.'/cache',
-			'gdCachePrefix'  => rawurlencode(substr(XOOPS_URL, 7)).'-'._MD_ELFINDER_MYDIRNAME.'-gd-',
-		);
+		$opts = ['gdCacheDir'     => XOOPS_TRUST_PATH.'/cache', 'gdCachePrefix'  => rawurlencode(substr(XOOPS_URL, 7)).'-'._MD_ELFINDER_MYDIRNAME.'-gd-'];
 		$this->options = array_merge($this->options, $opts);
 	}
 	

@@ -24,7 +24,7 @@ class Xupdate_Uninstaller {
 	public $mLog = null;
 
 	/*** bool ***/
-	private $_mForceMode = false;
+	private bool $_mForceMode = false;
 
 	/*** XoopsModule ***/
 	private $_mXoopsModule = null;

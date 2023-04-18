@@ -153,8 +153,8 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_Abstract {
 	}
 
 	protected function login( $user = null, $pass = null ) {
-		$this->_login    = null !== $user ? $user : 'anonymous';
-		$this->_password = null !== $pass ? $pass : 'anonymous@example.com';
+		$this->_login    = $user ?? 'anonymous';
+		$this->_password = $pass ?? 'anonymous@example.com';
 		if ( ! function_exists( 'ftp_login' ) ) {
 			$this->SendMSG( 'Fatal error: Call to undefined function ftp_login' );
 

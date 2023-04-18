@@ -20,17 +20,8 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	public $dirname;
 	public $html_only;
 
-	private $systemModules = [];
-	private $systemDirs = [];
-
-	public function __construct() {
-		parent::__construct();
-
-		// @todo
-		$this->systemModules = [ 'legacy' ];
-
-		// @todo
-		$this->systemDirs = [
+	private $systemModules = [ 'legacy' ];
+	private $systemDirs = [
 			'html',
 			'html/class',
 			'html/class/database/*',
@@ -51,6 +42,9 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			'xoops_trust_path/settings/site_default.dist.ini',
 			'xoops_trust_path/settings/site_default.ini'
 		];
+
+	public function __construct() {
+		parent::__construct();
 	}
 
 	/**
@@ -61,7 +55,8 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	 * @return    bool
 	 **/
 	public function execute( $caller ) {
-		$result        = true;
+		$cHandler = null;
+  $result        = true;
 		$siteCloseConf = null;
 		if ( true === $this->Xupdate->params['is_writable']['result'] ) {
 			$this->retry_phase = isset( $_POST['upload_retry'] ) ? (int) $_POST['upload_retry'] : 0;
@@ -538,7 +533,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$this->Ftp->localMkdir( $directory );
 		}
 		if ( file_exists( $directory ) && is_dir( $directory ) ) {
-			$this->Ftp->localChmod( $directory, ( 0 === strpos( $directory, XOOPS_TRUST_PATH ) ) ? _MD_XUPDATE_WRITABLE_DIR_PERM_T : _MD_XUPDATE_WRITABLE_DIR_PERM );
+			$this->Ftp->localChmod( $directory, ( 0 === strpos( $directory, (string) XOOPS_TRUST_PATH ) ) ? _MD_XUPDATE_WRITABLE_DIR_PERM_T : _MD_XUPDATE_WRITABLE_DIR_PERM );
 		}
 	}
 
@@ -552,14 +547,14 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	private function _chmod_file( &$file ) {
 		if ( file_exists( $file ) ) {
 			if ( ! is_dir( $file ) ) {
-				$this->Ftp->localChmod( $file, ( 0 === strpos( $file, XOOPS_TRUST_PATH ) ) ? _MD_XUPDATE_WRITABLE_FILE_PERM_T : _MD_XUPDATE_WRITABLE_FILE_PERM );
+				$this->Ftp->localChmod( $file, ( 0 === strpos( $file, (string) XOOPS_TRUST_PATH ) ) ? _MD_XUPDATE_WRITABLE_FILE_PERM_T : _MD_XUPDATE_WRITABLE_FILE_PERM );
 			}
 		} else {
 			// make empty file
 			$tmp = $this->exploredDirPath . '/_empty.tmp';
 			if ( @ touch( $tmp ) ) {
 				if ( $this->Ftp->localPut( $tmp, $file ) ) {
-					$this->Ftp->localChmod( $file, ( 0 === strpos( $file, XOOPS_TRUST_PATH ) ) ? _MD_XUPDATE_WRITABLE_FILE_PERM_T : _MD_XUPDATE_WRITABLE_FILE_PERM );
+					$this->Ftp->localChmod( $file, ( 0 === strpos( $file, (string) XOOPS_TRUST_PATH ) ) ? _MD_XUPDATE_WRITABLE_FILE_PERM_T : _MD_XUPDATE_WRITABLE_FILE_PERM );
 				}
 			}
 		}
@@ -573,7 +568,7 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	 * @return void
 	 */
 	private function _rename( $pair ) {
-		list( $from, $to ) = explode( '|', $pair );
+		[$from, $to] = explode( '|', $pair );
 		if ( $from && $to && ! file_exists( $to ) ) {
 			$this->Ftp->localRename( $from, $to );
 		}
@@ -717,12 +712,12 @@ function xupdate_on_shutdown( $cache_dir, $download_url ) {
 		}
 		$msg                   = [];
 		$upload_retry          = isset( $_POST['upload_retry'] ) ? (int) $_POST['upload_retry'] : 0;
-		$uploaded_count        = count( $GLOBALS['xupdate_retry_cache']['uploaded_files'] );
-		$uploaded_count_before = isset( $_POST['uploaded_count'] ) ? $_POST['uploaded_count'] : 0;
+		$uploaded_count        = is_countable($GLOBALS['xupdate_retry_cache']['uploaded_files']) ? count( $GLOBALS['xupdate_retry_cache']['uploaded_files'] ) : 0;
+		$uploaded_count_before = $_POST['uploaded_count'] ?? 0;
 		$total_files           = 0;
 		if ( isset( $GLOBALS['xupdate_retry_cache']['file_list'] ) ) {
 			foreach ( $GLOBALS['xupdate_retry_cache']['file_list'] as $list ) {
-				$total_files += count( $list['file'] );
+				$total_files += is_countable($list['file']) ? count( $list['file'] ) : 0;
 			}
 		}
 		$msg[] = '<html><head><title>' . _AD_XUPDATE_LANG_TIMEOUT_ERROR . '</title></head><body>';

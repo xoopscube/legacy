@@ -44,7 +44,7 @@ class Stream
      * @var object
      * @access private
      */
-    var $sftp;
+    public $sftp;
 
     /**
      * Path
@@ -52,7 +52,7 @@ class Stream
      * @var string
      * @access private
      */
-    var $path;
+    public $path;
 
     /**
      * Mode
@@ -60,7 +60,7 @@ class Stream
      * @var string
      * @access private
      */
-    var $mode;
+    public $mode;
 
     /**
      * Position
@@ -68,7 +68,7 @@ class Stream
      * @var int
      * @access private
      */
-    var $pos;
+    public $pos;
 
     /**
      * Size
@@ -76,7 +76,7 @@ class Stream
      * @var int
      * @access private
      */
-    var $size;
+    public $size;
 
     /**
      * Directory entries
@@ -84,7 +84,7 @@ class Stream
      * @var array
      * @access private
      */
-    var $entries;
+    public $entries;
 
     /**
      * EOF flag
@@ -92,7 +92,7 @@ class Stream
      * @var bool
      * @access private
      */
-    var $eof;
+    public $eof;
 
     /**
      * Context resource
@@ -102,7 +102,7 @@ class Stream
      * @var resource
      * @access public
      */
-    var $context;
+    public $context;
 
     /**
      * Notification callback function
@@ -110,7 +110,7 @@ class Stream
      * @var callable
      * @access public
      */
-    var $notification;
+    public $notification;
 
     /**
      * Registers this class as a URL wrapper.
@@ -124,7 +124,7 @@ class Stream
         if (in_array($protocol, stream_get_wrappers(), true)) {
             return false;
         }
-        return stream_wrapper_register($protocol, get_called_class());
+        return stream_wrapper_register($protocol, static::class);
     }
 
     /**
@@ -153,8 +153,10 @@ class Stream
      */
     function _parse_path($path)
     {
+        $scheme = null;
+        $port = null;
         $orig = $path;
-        extract(parse_url($path) + array('port' => 22));
+        extract(parse_url($path) + ['port' => 22]);
         if (isset($query)) {
             $path.= '?' . $query;
         } elseif (preg_match('/(\?|\?#)$/', $orig)) {
@@ -180,10 +182,10 @@ class Stream
         if ($host[0] == '$') {
             $host = substr($host, 1);
             global ${$host};
-            if (($$host instanceof SFTP) === false) {
+            if ((${$host} instanceof SFTP) === false) {
                 return false;
             }
-            $this->sftp = $$host;
+            $this->sftp = ${$host};
         } else {
             if (isset($this->context)) {
                 $context = stream_context_get_options($this->context);
@@ -447,8 +449,8 @@ class Stream
         //     and https://github.com/php/php-src/blob/master/main/php_streams.h#L592
         switch ($option) {
             case 1: // PHP_STREAM_META_TOUCH
-                $time = isset($var[0]) ? $var[0] : null;
-                $atime = isset($var[1]) ? $var[1] : null;
+                $time = $var[0] ?? null;
+                $atime = $var[1] ?? null;
                 return $this->sftp->touch($path, $time, $atime);
             case 2: // PHP_STREAM_OWNER_NAME
             case 3: // PHP_STREAM_GROUP_NAME
@@ -791,6 +793,6 @@ class Stream
         if (!method_exists($this, $name)) {
             return false;
         }
-        return call_user_func_array(array($this, $name), $arguments);
+        return call_user_func_array([$this, $name], $arguments);
     }
 }

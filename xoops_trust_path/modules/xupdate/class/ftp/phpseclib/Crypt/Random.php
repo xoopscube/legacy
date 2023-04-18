@@ -136,7 +136,7 @@ class Random
             $old_session_id = session_id();
             $old_use_cookies = ini_get('session.use_cookies');
             $old_session_cache_limiter = session_cache_limiter();
-            $_OLD_SESSION = isset($_SESSION) ? $_SESSION : false;
+            $_OLD_SESSION = $_SESSION ?? false;
             if ($old_session_id != '') {
                 session_write_close();
             }
@@ -211,7 +211,7 @@ class Random
                     $crypto = new RC4();
                     break;
                 default:
-                    user_error(__CLASS__ . ' requires at least one symmetric cipher be loaded');
+                    user_error(self::class . ' requires at least one symmetric cipher be loaded');
                     return false;
             }
 
@@ -263,7 +263,7 @@ if (!function_exists('phpseclib_safe_serialize')) {
         if (isset($arr['__phpseclib_marker'])) {
             return '';
         }
-        $safearr = array();
+        $safearr = [];
         $arr['__phpseclib_marker'] = true;
         foreach (array_keys($arr) as $key) {
             // do not recurse on the '__phpseclib_marker' key itself, for smaller memory usage

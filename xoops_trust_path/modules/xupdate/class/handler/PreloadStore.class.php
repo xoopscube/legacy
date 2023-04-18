@@ -21,8 +21,8 @@ require_once XUPDATE_TRUST_PATH . '/class/handler/ModuleStore.class.php';
  */
 class Xupdate_PreloadStore extends Xupdate_ModuleStore {
 
-	const PRIMARY = 'id';
-	const DATANAME = 'preloadstore';
+	public const PRIMARY = 'id';
+	public const DATANAME = 'preloadstore';
 
 	public function get_StoreUrl() {
 		//TODO for test dirname ?

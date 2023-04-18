@@ -31,7 +31,8 @@ class Xupdate_InstallUtils {
 	 * @return  bool
 	 **/
 	public static function installSQLAutomatically( /*** XoopsModule ***/ &$module, /*** Legacy_ModuleInstallLog ***/ &$log ) {
-		$dbTypeAliases = [
+		$sqlfileInfo = [];
+  $dbTypeAliases = [
 			'mysqli' => 'mysql'
 		];
 		$sqlFileInfo   =& $module->getInfo( 'sqlfile' );
@@ -314,9 +315,7 @@ class Xupdate_InstallUtils {
 	 * @return void
 	 */
 	public static function &createBlockByInfo( /*** XoopsModule ***/ &$module, /*** string[] ***/ $block ) {
-		$visible  = isset( $block['visible'] ) ?
-			$block['visible'] :
-			( isset( $block['visible_any'] ) ? $block['visible_any'] : 0 );
+		$visible  = $block['visible'] ?? $block['visible_any'] ?? 0;
 		$filename = isset( $block['template'] ) ?
 			Xupdate_InstallUtils::replaceDirname( $block['template'], $module->get( 'dirname' ) ) :
 			null;
@@ -325,7 +324,7 @@ class Xupdate_InstallUtils {
 		$blockObj     =& $blockHandler->create();
 
 		$blockObj->set( 'mid', $module->getVar( 'mid' ) );
-		$blockObj->set( 'options', isset( $block['options'] ) ? $block['options'] : null );
+		$blockObj->set( 'options', $block['options'] ?? null );
 		$blockObj->set( 'name', $block['name'] );
 		$blockObj->set( 'title', $block['name'] );
 		$blockObj->set( 'block_type', 'M' );
@@ -355,7 +354,7 @@ class Xupdate_InstallUtils {
 	public static function installBlock( /*** XoopsModule ***/ &$module, /*** XoopsBlock ***/ &$blockObj, /*** string[] ***/ &$block, /*** Legacy_ModuleInstallLog ***/ &$log ) {
 		$isNew        = $blockObj->isNew();
 		$blockHandler =& Xupdate_Utils::getXoopsHandler( 'block' );
-		$autoLink     = isset( $block['show_all_module'] ) ? $block['show_all_module'] : false;
+		$autoLink     = $block['show_all_module'] ?? false;
 
 		if ( ! $blockHandler->insert( $blockObj, $autoLink ) ) {
 			$log->addError(
@@ -465,7 +464,7 @@ class Xupdate_InstallUtils {
 
 		$tpls =& $tplHandler->getObjects( $cri );
 
-		if ( count( $tpls ) > 0 ) {
+		if ( (is_countable($tpls) ? count( $tpls ) : 0) > 0 ) {
 			$tplFile =& $tpls[0];
 		} else {
 			$tplFile =& $tplHandler->create();
@@ -824,7 +823,7 @@ class Xupdate_InstallUtils {
 			$config->setConfValueForInput( $info->mDefault );
 			$config->set( 'conf_order', $info->mOrder );
 
-			if ( count( $info->mOption->mOptions ) > 0 ) {
+			if ( (is_countable($info->mOption->mOptions) ? count( $info->mOption->mOptions ) : 0) > 0 ) {
 				foreach ( $info->mOption->mOptions as $opt ) {
 					$option = $configHandler->createConfigOption();
 					$option->set( 'confop_name', $opt->mName );
@@ -877,7 +876,7 @@ class Xupdate_InstallUtils {
 		$config->setConfValueForInput( $info->mDefault );
 		$config->set( 'conf_order', $info->mOrder );
 
-		if ( count( $info->mOption->mOptions ) > 0 ) {
+		if ( (is_countable($info->mOption->mOptions) ? count( $info->mOption->mOptions ) : 0) > 0 ) {
 			foreach ( $info->mOption->mOptions as $opt ) {
 				$option = $configHandler->createConfigOption();
 				$option->set( 'confop_name', $opt->mName );
@@ -920,7 +919,7 @@ class Xupdate_InstallUtils {
 		$configHandler =& Xupdate_Utils::getXoopsHandler( 'config' );
 		$configs       =& $configHandler->getConfigs( new Criteria( 'conf_modid', $module->get( 'mid' ) ) );
 
-		if ( 0 == count( $configs ) ) {
+		if ( 0 == (is_countable($configs) ? count( $configs ) : 0) ) {
 			return true;
 		}
 
@@ -1038,7 +1037,7 @@ class Xupdate_InstallUtils {
 		$cri->add( new Criteria( 'conf_name', $info->mName ) );
 		$configs =& $configHandler->getConfigs( $cri );
 
-		if ( ! ( count( $configs ) > 0 && is_object( $configs[0] ) ) ) {
+		if ( ! ( (is_countable($configs) ? count( $configs ) : 0) > 0 && is_object( $configs[0] ) ) ) {
 			$log->addError( _MIXUPDATE_INSTALL_ERROR_CONFIG_NOT_FOUND );
 
 			return false;
@@ -1068,7 +1067,7 @@ class Xupdate_InstallUtils {
 			}
 		}
 
-		if ( count( $info->mOption->mOptions ) > 0 ) {
+		if ( (is_countable($info->mOption->mOptions) ? count( $info->mOption->mOptions ) : 0) > 0 ) {
 			foreach ( $info->mOption->mOptions as $opt ) {
 				$option =& $configHandler->createConfigOption();
 				$option->set( 'confop_name', $opt->mName );
@@ -1121,7 +1120,7 @@ class Xupdate_InstallUtils {
 		$cri->add( new Criteria( 'conf_name', $info->mName ) );
 		$configs =& $configHandler->getConfigs( $cri );
 
-		if ( ! ( count( $configs ) > 0 && is_object( $configs[0] ) ) ) {
+		if ( ! ( (is_countable($configs) ? count( $configs ) : 0) > 0 && is_object( $configs[0] ) ) ) {
 			$log->addError( _MI_XUPDATE_INSTALL_ERROR_CONFIG_NOT_FOUND );
 
 			return false;

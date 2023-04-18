@@ -2,14 +2,14 @@
 
 class xelFinderAccess {
 	
-	private $readRegexs = array();
-	private $writeRegexs = array();
-	private $hiddenRegexs = array();
-	private $unlockRegexs = array();
-	private $readDirRegexs = array();
-	private $writeDirRegexs = array();
-	private $hiddenDirRegexs = array();
-	private $unlockDirRegexs = array();
+	private array $readRegexs = [];
+	private array $writeRegexs = [];
+	private array $hiddenRegexs = [];
+	private array $unlockRegexs = [];
+	private array $readDirRegexs = [];
+	private array $writeDirRegexs = [];
+	private array $hiddenDirRegexs = [];
+	private array $unlockDirRegexs = [];
 	
 	public function setReadExtention($str) {
 		$regs = $this->makeRegexExtention($str);
@@ -38,7 +38,7 @@ class xelFinderAccess {
 	private function makeRegexExtention($str) {
 		$str = trim($str, ' ,');
 		if ($str) {
-			$_exts = $_dirs = array();
+			$_exts = $_dirs = [];
 			//$str = preg_quote($str, '/');
 			$exts = array_map('trim', explode(',', $str));
 			foreach($exts as $ext) {
@@ -58,7 +58,7 @@ class xelFinderAccess {
 		} else {
 			$extReg = $dirReg = '/(?!)/';
 		}
-		return array($extReg, $dirReg);
+		return [$extReg, $dirReg];
 	}
 	
 	private function regMatch($regs, $str) {

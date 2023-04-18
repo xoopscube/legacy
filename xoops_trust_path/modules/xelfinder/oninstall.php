@@ -14,7 +14,8 @@ eval( ' function xoops_module_install_' . $mydirname . '( $module ) { return xel
 if ( ! function_exists( 'xelfinder_oninstall_base' ) ) {
 
 	function xelfinder_oninstall_base( $module, $mydirname ) {
-		// transactions on module install
+		$pieces = null;
+  // transactions on module install
 
 		global $ret; // TODO :-D
 

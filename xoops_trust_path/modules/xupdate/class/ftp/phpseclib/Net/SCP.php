@@ -48,11 +48,11 @@ class SCP
     /**
      * Reads data from a local file.
      */
-    const SOURCE_LOCAL_FILE = 1;
+    public const SOURCE_LOCAL_FILE = 1;
     /**
      * Reads data from a string.
      */
-    const SOURCE_STRING = 2;
+    public const SOURCE_STRING = 2;
     /**#@-*/
 
     /**#@+
@@ -63,11 +63,11 @@ class SCP
     /**
      * SSH1 is being used.
      */
-    const MODE_SSH1 = 1;
+    public const MODE_SSH1 = 1;
     /**
      * SSH2 is being used.
      */
-    const MODE_SSH2 =  2;
+    public const MODE_SSH2 =  2;
     /**#@-*/
 
     /**
@@ -76,7 +76,7 @@ class SCP
      * @var object
      * @access private
      */
-    var $ssh;
+    public $ssh;
 
     /**
      * Packet Size
@@ -84,7 +84,7 @@ class SCP
      * @var int
      * @access private
      */
-    var $packet_size;
+    public $packet_size;
 
     /**
      * Mode
@@ -92,7 +92,7 @@ class SCP
      * @var int
      * @access private
      */
-    var $mode;
+    public $mode;
 
     /**
      * Default Constructor.
@@ -140,6 +140,7 @@ class SCP
      */
     function put($remote_file, $data, $mode = self::SOURCE_STRING, $callback = null)
     {
+        $fp = null;
         if (!isset($this->ssh)) {
             return false;
         }
@@ -293,6 +294,7 @@ class SCP
      */
     function _receive()
     {
+        $length = null;
         switch ($this->mode) {
             case self::MODE_SSH2:
                 return $this->ssh->_get_channel_packet(SSH2::CHANNEL_EXEC, true);

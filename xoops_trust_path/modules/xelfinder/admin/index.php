@@ -43,7 +43,7 @@ if ($stype !== 'mediumblob' && $stype !== 'longblob') {
 }
 
 xoops_cp_header();
-include dirname(__FILE__).'/mymenu.php' ;
+include __DIR__.'/mymenu.php' ;
 
 echo '<h2>'.$xoopsModule->getVar('name').'</h2>' ;
 echo '<h3>Checking for directory and file write permissions</h3>';

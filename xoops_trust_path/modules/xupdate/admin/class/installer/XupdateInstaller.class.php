@@ -24,7 +24,7 @@ class Xupdate_Installer {
 	public $mLog = null;
 
 	/*** bool ***/
-	private $_mForceMode = false;
+	private bool $_mForceMode = false;
 
 	/*** XoopsModule ***/
 	private $_mXoopsModule = null;

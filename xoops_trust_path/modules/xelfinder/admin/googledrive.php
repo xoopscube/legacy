@@ -32,7 +32,7 @@ if ( $php54up = version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
 			$config        = $xoopsModuleConfig;
 
 			if ( ! empty( $_POST['json'] ) ) {
-				$json = @json_decode( $_POST['json'], true );
+				$json = @json_decode( $_POST['json'], true, 512, JSON_THROW_ON_ERROR );
 				if ( $json && isset( $json['web'] ) ) {
 					$clientId     = @$json['web']['client_id'];
 					$clientSecret = @$json['web']['client_secret'];
@@ -102,7 +102,7 @@ if ( $php54up && $vendor ) {
 					unset( $token['access_token'] );
 					$token['refresh_token'] = $aToken['refresh_token'];
 				}
-				$ext_token = json_encode( $token );
+				$ext_token = json_encode( $token, JSON_THROW_ON_ERROR );
 
                 echo $googledrivepass;
 

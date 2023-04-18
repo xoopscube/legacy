@@ -19,7 +19,7 @@
             <a href="#" id="check-app" class="button">
                 <img class="svg" src="<{$xoops_url}>/images/icons/check.svg" width="1em" height="1em" alt="check"> Configuration Checker
             </a>
-            <button class="help-admin button-icon" type="button" data-module="xupdate" data-help-article="#help-store" aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
+            <button class="help-admin button-icon" type="button" data-module="xupdate" data-help-article="#help-store" title="<{$smarty.const._HELP}>"><b>?</b></button>
         </div>
     </section>
     <{* ----- / ACTION-CONTROL *}>
@@ -69,7 +69,7 @@
                     <{foreach item=itemsobj from=$data.itemsobj}>
                     <li>
                         <a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj.id}>"
-                           class="isactive_<{$itemsobj.isactive}>" aria-label="<{$itemsobj.title}>">
+                           class="isactive_<{$itemsobj.isactive}>" title="<{$itemsobj.title}>">
                             <{$itemsobj.dirname}><{if $itemsobj.hasupdate}>
                             <img class="svg" src="<{$smarty.const.XOOPS_URL}>/images/icons/new.svg" alt="New!"
                                  style="vertical-align:middle;color:var(--color-amber)" width="1em" height="1em">
@@ -95,7 +95,7 @@
             <{foreach item=data from=$module_items}>
             <div class="eachstore" data-self="size-1of4 sm-full p-2">
                 <h3>
-                    <a href="index.php?action=ModuleStore&amp;sid=<{$data.storeobj->get('sid')}>" aria-label="<{$data.storeobj->getShow('name')}>">
+                    <a href="index.php?action=ModuleStore&amp;sid=<{$data.storeobj->get('sid')}>" title="<{$data.storeobj->getShow('name')}>">
                         <img class="svg" src="<{$xoops_url}>/images/icons/store.svg" width="1em" height="1em" alt="store">
                         <{* |truncate:16 Title limit 16 characters *}>
                         <{$data.storeobj->getShow('name')|truncate:16}>
@@ -105,7 +105,7 @@
                 <ul class="scroll-y">
                     <{foreach item=itemsobj from=$data.itemsobj}>
                     <li><a href="index.php?action=ModuleInstall&amp;id=<{$itemsobj.id}>"
-                           class="isactive_<{$itemsobj.isactive}>" aria-label="<{$itemsobj.title}>">
+                           class="isactive_<{$itemsobj.isactive}>" title="<{$itemsobj.title}>">
                         <{$itemsobj.dirname}>
                         <{if $itemsobj.hasupdate}>
                         <img class="svg" src="<{$smarty.const.XOOPS_URL}>/images/icons/new.svg" alt="New!"
@@ -130,7 +130,7 @@
             <{foreach item=data from=$theme_items}>
             <div class="eachstore" data-self="size-1of4 sm-full p-2">
                 <h3>
-                    <a href="index.php?action=ThemeStore&amp;sid=<{$data.storeobj->get('sid')}>" aria-label="<{$data.storeobj->getShow('name')}>">
+                    <a href="index.php?action=ThemeStore&amp;sid=<{$data.storeobj->get('sid')}>" title="<{$data.storeobj->getShow('name')}>">
                         <img class="svg" src="<{$xoops_url}>/images/icons/store.svg" width="1em" height="1em" alt="store">
                         <{* |truncate:16 Title limit 16 characters *}>
                         <{$data.storeobj->getShow('name')|truncate:16}>
@@ -140,7 +140,7 @@
                 <ul class="scroll-y">
                     <{foreach item=itemsobj from=$data.itemsobj}>
                     <li><a href="index.php?action=ThemeInstall&amp;id=<{$itemsobj.id}>"
-                           class="isactive_<{$itemsobj.isactive}>" aria-label="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if
+                           class="isactive_<{$itemsobj.isactive}>" title="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if
                         $itemsobj.hasupdate}>
                         <img class="svg" src="<{$smarty.const.XOOPS_URL}>/images/icons/new.svg" alt="New!"
                              style="vertical-align:middle;color:var(--color-amber)" width="1em" height="1em">
@@ -163,7 +163,7 @@
             <{foreach item=data from=$preload_items}>
             <div class="eachstore" data-self="size-1of4 sm-full p-2">
                 <h3>
-                    <a href="index.php?action=PreloadStore&amp;sid=<{$data.storeobj->get('sid')}>" aria-label="<{$data.storeobj->getShow('name')}>">
+                    <a href="index.php?action=PreloadStore&amp;sid=<{$data.storeobj->get('sid')}>" title="<{$data.storeobj->getShow('name')}>">
                         <img class="svg" src="<{$xoops_url}>/images/icons/store.svg" width="1em" height="1em" alt="store">
                         <{* |truncate:16 Title limit 16 characters *}>
                         <{$data.storeobj->getShow('name')|truncate:16}>
@@ -173,7 +173,7 @@
                 <ul class="scroll-y">
                     <{foreach item=itemsobj from=$data.itemsobj}>
                     <li><a href="index.php?action=PreloadInstall&amp;id=<{$itemsobj.id}>"
-                           class="isactive_<{$itemsobj.isactive}>" aria-label="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if
+                           class="isactive_<{$itemsobj.isactive}>" title="<{$itemsobj.title}>"><{$itemsobj.dirname}><{if
                         $itemsobj.hasupdate}>
                         <img class="svg" src="<{$smarty.const.XOOPS_URL}>/images/icons/new.svg" alt="New!"
                              style="vertical-align:middle;color:var(--color-amber)" width="1em" height="1em">

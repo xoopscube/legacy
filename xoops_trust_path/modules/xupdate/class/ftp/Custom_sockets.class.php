@@ -60,7 +60,8 @@ class Xupdate_Ftp_ extends Xupdate_Ftp_CustomBase {
 	}
 
 	protected function _readmsg( $fnction = '_readmsg' ) {
-		if ( ! $this->_connected ) {
+		$regs = [];
+  if ( ! $this->_connected ) {
 			$this->PushError( $fnction, 'Connect first' );
 
 			return false;

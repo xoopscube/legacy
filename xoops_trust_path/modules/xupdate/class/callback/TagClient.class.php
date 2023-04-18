@@ -41,7 +41,7 @@ class Xupdate_TagClientDelegate implements Legacy_iTagClientDelegate {
 		}
 
 		//get dirname list of Xupdate
-		$dirnames = Legacy_Utils::getDirnameListByTrustDirname( basename( dirname( dirname( __DIR__ ) ) ) );
+		$dirnames = Legacy_Utils::getDirnameListByTrustDirname( basename( dirname(__DIR__, 2) ) );
 
 		foreach ( $dirnames as $dir ) {
 			//setup client module info
@@ -90,7 +90,7 @@ class Xupdate_TagClientDelegate implements Legacy_iTagClientDelegate {
 		$cri->add( new Criteria( 'contents', $contents ) );
 		$cri->add( new Criteria( $handler->mPrimary, $idList, 'IN' ) );
 		$objs = $handler->getObjects( $cri, $limit, $start );
-		if ( count( $objs ) > 0 ) {
+		if ( (is_countable($objs) ? count( $objs ) : 0) > 0 ) {
 			$list['dirname'][]       = $dirname;
 			$list['dataname'][]      = $dataname;
 			$list['data'][]          = $objs;

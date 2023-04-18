@@ -134,8 +134,7 @@ define( '_MI_XUPDATE_PARALLEL_FETCH_MAXDSC' , 'Le nombre de connexions HTTP simu
 define( '_MI_XUPDATE_CURL_MULTI_SELECT' , 'Désactiver l\'option: curl_multi_select');
 define( '_MI_XUPDATE_CURL_MULTI_SELECTDSC' , 'Choisissez \"oui\" uniquement lorsque le nombre de connexions simultanées est de deux ou plus et que l\'acquisition de données pose problème.');
 define( '_MI_XUPDATE_CURL_SSL_NO_VERIFY' , 'cURL: désactiver la vérification SSL');
-define( '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC' , '<b id="curl-ssl">🚩 cURL</b> Désactiver lorsque l\'authentification SSL du serveur se traduit par une erreur.');
-define( '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC' , '<b id="curl-ssl">cURL</b> Désactiver la vérification curl du certificat SSL, pour éviter les erreurs de validation des serveurs de test ou en réseau local.');
+define( '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC' , '<b id="curl-ssl">🚩 cURL</b> Désactiver la vérification curl du certificat SSL, pour éviter les erreurs de validation des serveurs de test ou réseau local.');
 // progress messages
 define( '_MI_XUPDATE_PROG_FILE_GETTING' , 'Téléchargement du package.');
 define( '_MI_XUPDATE_PROG_UPLOADING' , 'Copie de fichiers.');

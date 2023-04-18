@@ -73,10 +73,10 @@ switch ( $mod_config['ftp_method'] ) {
 
 class Xupdate_Ftp extends Xupdate_Ftp_ {
 
-	private $loginCheckFile;
-	private $phpPerm;
+	private string $loginCheckFile;
+	private ?int $phpPerm = null;
 	private $uploaded_files = [];
-	private $rootChangeFlg = false;
+	private bool $rootChangeFlg = false;
 	public $isSafeMode;
 
 	/* Constructor */
@@ -364,7 +364,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 				}
 			}
 		}
-		if ( $this->chdir( '/' ) && 0 === strpos( XOOPS_TRUST_PATH, XOOPS_ROOT_PATH ) ) {
+		if ( $this->chdir( '/' ) && 0 === strpos( XOOPS_TRUST_PATH, (string) XOOPS_ROOT_PATH ) ) {
 			// May be XOOPS_ROOT_PATH is FTP root
 			$ftp_root = $xoops_root_path;
 
@@ -543,7 +543,7 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 
 		if ( null === $only_conf_lang ) {
 			$only_conf_lang = $this->mod_config['only_conf_lang'];
-			list( $no_overwrite, $no_update ) = $this->no_overwrite;
+			[$no_overwrite, $no_update] = $this->no_overwrite;
 		}
 
 		// language check
@@ -567,18 +567,18 @@ class Xupdate_Ftp extends Xupdate_Ftp_ {
 		}
 
 		if ( null === $no_overwrite ) {
-			list( $no_overwrite, $no_update ) = $this->no_overwrite;
+			[$no_overwrite, $no_update] = $this->no_overwrite;
 		}
 		if ( $no_update ) {
 			foreach ( $no_update as $item ) {
-				if ( 0 === strpos( $file, $item ) ) {
+				if ( 0 === strpos( $file, (string) $item ) ) {
 					return true;
 				}
 			}
 		}
 		if ( ! $dir_chk && $no_overwrite ) {
 			foreach ( $no_overwrite as $item ) {
-				if ( 0 === strpos( $file, $item ) && file_exists( $file ) ) {
+				if ( 0 === strpos( $file, (string) $item ) && file_exists( $file ) ) {
 					return true;
 				}
 			}

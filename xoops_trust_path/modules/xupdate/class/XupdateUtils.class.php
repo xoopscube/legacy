@@ -30,7 +30,7 @@ class Xupdate_Utils {
 		$handler = self::getXoopsHandler( 'config' );
 		$conf    = $handler->getConfigsByDirname( $dirname );
 
-		return ( isset( $conf[ $key ] ) ) ? $conf[ $key ] : null;
+		return $conf[ $key ] ?? null;
 	}
 
 	/**
@@ -112,7 +112,7 @@ class Xupdate_Utils {
 	 */
 	public static function getRedirectUrl( $url, $redirect = 10, $curl_ssl_no_verify = false ) {
 		if ( $headers = @ get_headers( $url, 1 ) ) {
-			$location = isset( $headers['Location'] ) ? $headers['Location'] : ( isset( $headers['location'] ) ? $headers['location'] : '' );
+			$location = $headers['Location'] ?? $headers['location'] ?? '';
 			if ( $location ) {
 				if ( is_array( $location ) ) {
 					$url = array_pop( $location );
@@ -153,7 +153,7 @@ class Xupdate_Utils {
 		$data      = curl_exec( $ch );
 		$http_code = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
 		if ( 301 == $http_code || 302 == $http_code || 303 == $http_code || 307 == $http_code ) {
-			list( $header ) = explode( "\r\n\r\n", $data, 2 );
+			[$header] = explode( "\r\n\r\n", $data, 2 );
 			if ( preg_match( '/(?:Location:|URI:)(.*?)\n/i', $header, $matches ) ) {
 				$url = trim( $matches[1] );
 				curl_setopt( $ch, CURLOPT_URL, $url );
@@ -213,7 +213,7 @@ class Xupdate_Utils {
 			$proxy = parse_url( $proxy );
 			if ( ! empty( $proxy ) && isset( $proxy['host'] ) ) {
 				// url
-				$proxyURL = ( isset( $proxy['scheme'] ) ? $proxy['scheme'] : 'http' ) . '://';
+				$proxyURL = ( $proxy['scheme'] ?? 'http' ) . '://';
 				$proxyURL .= $proxy['host'];
 
 				if ( isset( $proxy['port'] ) ) {
@@ -303,7 +303,7 @@ class Xupdate_Utils {
 		$isAssoc   = true;
 		$path      = self::getModuleConfig( $dirname, 'temp_path' );
 		$jsonData  = file_get_contents( XOOPS_TRUST_PATH . '/' . $path . '/stores_json.ini.php' );
-		$storeData = json_decode( $jsonData, $isAssoc );
+		$storeData = json_decode( $jsonData, $isAssoc, 512, JSON_THROW_ON_ERROR );
 
 		return self::convertEncoding( $storeData['categories'] );
 	}

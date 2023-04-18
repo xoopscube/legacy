@@ -14,7 +14,7 @@ use \Google_Service_Drive;
 
 if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
 	$_err = false;
-	foreach(array('ext_token') as $_key) {
+	foreach(['ext_token'] as $_key) {
 		if (! isset($extOptions[$_key])) {
 			$_err = true;
 		}
@@ -28,7 +28,7 @@ if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
 			$_client->setAccessToken($_token);
 		}
 		if ($_client->isAccessTokenExpired()) {
-			if ($_token = @json_decode($extOptions['ext_token'], true)) {
+			if ($_token = @json_decode($extOptions['ext_token'], true, 512, JSON_THROW_ON_ERROR)) {
 				$_client->setClientId($_token['client_id']);
 				$_client->setClientSecret($_token['client_secret']);
 				$_creds = $_client->refreshToken($_token['refresh_token']);
@@ -50,7 +50,7 @@ if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
 		$_gdrive = new GoogleDriveAdapter($service, $path, [ 'useHasDir' => true ]);
 		
 		$_cache = null;
-		$_expire = isset($extOptions['ext_cache_expire'])? $extOptions['ext_cache_expire'] : 300;
+		$_expire = $extOptions['ext_cache_expire'] ?? 300;
 		if ($_expire) {
 			$_cacheKey = md5(XOOPS_URL . $mDirname . $extOptions['ext_token'] . $path);
 			
@@ -84,16 +84,7 @@ if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
 			$_fly = new Filesystem($_gdrive);
 		}
 		
-		$volumeOptions = array (
-			'driver' => 'FlysystemExt',
-			'filesystem' => $_fly,
-			'fscache' => $_cache,
-			'alias' => $title,
-			'separator' => '/',
-			'icon' => XOOPS_MODULE_URL . '/' . $mDirname . '/images/volume_icon_googledrive.png',
-			'tmbPath' => XOOPS_MODULE_PATH . '/' . _MD_ELFINDER_MYDIRNAME . '/cache/tmb/',
-			'tmbURL' => _MD_XELFINDER_MODULE_URL . '/' . _MD_ELFINDER_MYDIRNAME . '/cache/tmb/'
-		);
+		$volumeOptions = ['driver' => 'FlysystemExt', 'filesystem' => $_fly, 'fscache' => $_cache, 'alias' => $title, 'separator' => '/', 'icon' => XOOPS_MODULE_URL . '/' . $mDirname . '/images/volume_icon_googledrive.png', 'tmbPath' => XOOPS_MODULE_PATH . '/' . _MD_ELFINDER_MYDIRNAME . '/cache/tmb/', 'tmbURL' => _MD_XELFINDER_MODULE_URL . '/' . _MD_ELFINDER_MYDIRNAME . '/cache/tmb/'];
 	}
 }
 

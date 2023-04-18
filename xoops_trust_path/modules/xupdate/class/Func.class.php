@@ -78,7 +78,8 @@ if ( ! class_exists( 'Xupdate_Func' ) ) {
 		 * @return bool
 		 */
 		public function _multiDownloadFile( &$multiData, $cacheTTL ) {
-			$timeout = 300;
+			$_info = [];
+   $timeout = 300;
 			$this->put_debug_log( str_repeat( '-', 10 ) . date( 'H:i:s' ) );
 			$this->put_debug_log( 'Start _multiDownloadFile().' );
 
@@ -89,7 +90,7 @@ if ( ! class_exists( 'Xupdate_Func' ) ) {
 
 			$max                = ( ! empty( $this->mod_config['parallel_fetch_max'] ) ) ? (int) $this->mod_config['parallel_fetch_max'] : 50;
 			$start              = 0;
-			$count              = count( $multiData );
+			$count              = is_countable($multiData) ? count( $multiData ) : 0;
 			$ret                = true;
 			$this->recent_error = '';
 			while ( $fetchs = array_slice( $multiData, $start, $max, true ) ) {
