@@ -8,7 +8,7 @@ function b_sitemap_yybbs(){
 
 	$sql = 'SELECT bbs_id, title FROM '.$db->prefix('yybbs_bbs').' WHERE status=0 ORDER BY priority';
 	$result = $db->query($sql);
-	while ( list($catid, $name) = $db->fetchRow($result) ) {
+	while ( [$catid, $name] = $db->fetchRow($result) ) {
 		$sitemap['parent'][$i]['id'] = $catid;
 		$sitemap['parent'][$i]['title'] = $myts->makeTboxData4Show($name);
 		$sitemap['parent'][$i]['url'] = $url.$catid;

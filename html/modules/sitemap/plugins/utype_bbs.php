@@ -12,7 +12,7 @@ function b_sitemap_utype_bbs(){
 		5, 0);
 
 	$ret = [];
-	while(list($cid, $top) = $db->fetchRow($result)) {
+	while([$cid, $top] = $db->fetchRow($result)) {
 		$ret['parent'][] = [
 			'id' => $cid,
 			'title' => _U_TYPE_CATEGORY.'&raquo;&raquo;'.$myts->makeTboxData4Show($top),
@@ -28,7 +28,7 @@ function b_sitemap_utype_bbs(){
 		",
 		5, 0);
 	if ($result) {
-		while(list($nid, $title, $hn) = $db->fetchRow($result)) {
+		while([$nid, $title, $hn] = $db->fetchRow($result)) {
 			$ret['parent'][] = [
 				'id' => $nid,
 				'title' => _U_TYPE_NEWPOST.'&raquo;&raquo;'.$myts->makeTboxData4Show($title),

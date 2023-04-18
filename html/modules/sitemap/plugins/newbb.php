@@ -52,7 +52,7 @@ function b_sitemap_newbb(){
 		if($sitemap_configs["show_subcategoris"]){
 			$category_handler =& xoops_getmodulehandler('category', 'newbb');
 			$categories = $category_handler->getAllCats('access');
-		    if(count($categories)>0) {
+		    if((is_countable($categories) ? count($categories) : 0)>0) {
                 foreach ($categories as $key => $category) {
                     $cat_id = $category->getVar("cat_id");
                     $i = $cat_id;

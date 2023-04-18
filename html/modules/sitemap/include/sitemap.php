@@ -30,6 +30,9 @@ function sitemap_show()
 
 	$block = [];
 
+//	@$block['lang_home'] = _MD_SITEMAP_HOME ;
+//	@$block['lang_close'] = _CLOSE ;
+
 	$module_handler =& xoops_gethandler('module');
 
 
@@ -56,7 +59,7 @@ function sitemap_show()
 			$sublinks =& $modules[$i]->subLink();
 			error_reporting( $old_error_reporting ) ;
 
-			if (count($sublinks) > 0) {
+			if ((is_countable($sublinks) ? count($sublinks) : 0) > 0) {
 				foreach($sublinks as $sublink){
 					$block['modules'][$i]['sublinks'][] = ['name' => $sublink['name'], 'url' => XOOPS_URL.'/modules/'.$modules[$i]->getVar('dirname').'/'.$sublink['url']];
 				}
@@ -164,7 +167,7 @@ function sitemap_get_categories_map($table, $id_name, $pid_name, $title_name, $u
 		$sql .= " ORDER BY `$order`" ;
 	}
 	$result = $xoopsDB->query($sql);
-	while (list($catid, $name) = $xoopsDB->fetchRow($result))
+	while ([$catid, $name] = $xoopsDB->fetchRow($result))
 	{
         // Parent output
 		$sitemap['parent'][$i]['id'] = $catid;

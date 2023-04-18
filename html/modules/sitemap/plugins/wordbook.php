@@ -7,7 +7,7 @@ function b_sitemap_wordbook(){
 	$result = $db->query("SELECT categoryID, name FROM ".$db->prefix("wbcategories")." order by weight");
 
 	$ret = [];
-	while(list($id, $name) = $db->fetchRow($result)){
+	while([$id, $name] = $db->fetchRow($result)){
 		$ret["parent"][] = [
 			"id" => $id,
 			"title" => $myts->makeTboxData4Show($name),
