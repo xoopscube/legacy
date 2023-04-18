@@ -69,6 +69,9 @@ class Profile_AbstractViewAction extends Profile_AbstractAction
      */
     public function execute()
     {
-        return $this->getDefaultView($controller, $xoopsUser, $moduleConfig);
+        $controller = null;
+        $xoopsUser = null;
+        $moduleConfig = null;
+        return $this->getDefaultView();
     }
 }

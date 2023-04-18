@@ -16,7 +16,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class deleteAction extends AbstractAction
 {
     private $mActionForm;
-    private $inout = 'inbox';
+    private string $inout = 'inbox';
   
     public function __construct()
     {

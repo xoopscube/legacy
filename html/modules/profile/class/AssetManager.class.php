@@ -70,6 +70,7 @@ class Profile_AssetManager
      */
     public function &_fallbackCreate($type, $name)
     {
+        $instance = null;
         if (isset($this->mAssetList[$type][$name])) {
             $className = $this->mAssetList[$type][$name]['class'];
             if (isset($this->mAssetList[$type][$name]['absPath'])) {

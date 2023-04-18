@@ -2,12 +2,11 @@
 
 <nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
-    &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_PROFILE_LANG_PROFILE}></a>
-    &raquo;&raquo; <a href="./index.php?action=DefinitionsList"><{$smarty.const._MI_PROFILE_LANG_DEFINITIONS_LIST}></a>
+    &raquo;&raquo; <a href="./index.php?action=DefinitionsList""><{$smarty.const._MI_PROFILE_LANG_PROFILE}></a>
     <{if $actionForm->get('field_id')}>
-    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_PROFILE_LANG_DEFINITIONS_EDIT}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_PROFILE_LANG_DEFINITIONS_EDIT}></span>
     <{else}>
-    &raquo;&raquo; <span class="page-title"><{$smarty.const._MI_PROFILE_LANG_ADD_A_NEW_DEFINITIONS}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._MI_PROFILE_LANG_ADD_A_NEW_DEFINITIONS}></span>
     <{/if}>
 </nav>
 
@@ -89,7 +88,7 @@
             <td><{$smarty.const._MD_PROFILE_LANG_VALIDATION}></td>
             <td>
                 <select name="validation" id="legacy_xoopsform_validation">
-                    <option value="<{$validation}>"<{if ! $actionForm->get('validation')}> selected="selected"<{/if}>></option>
+                    <option value="<{$validation|default:''}>"<{if ! $actionForm->get('validation')}> selected="selected"<{/if}>></option>
                     <{foreach item=validation from=$validationArr}>
                     <option value="<{$validation}>"<{if $validation==$actionForm->get('validation')}>selected="selected"<{/if}>><{$validation}></option>
                     <{/foreach}>
@@ -118,7 +117,7 @@
         <tr>
             <td><{$smarty.const._MD_PROFILE_LANG_DESCRIPTION}></td>
             <td>
-                <{xoops_dhtmltarea type=text name=description value=$actionForm->get('description')}>
+                <{xoops_dhtmltarea type=text name=description value=$actionForm->get('description') editor=bbcode}>
             </td>
         </tr>
         <tr>
@@ -166,9 +165,11 @@
                 </div>
                 <div id="fieldtype_category" class="optionField">
                     <select name="options" id="legacy_xoopsform_options">
+                        <{if !empty($catDirnames)}>
                         <{foreach item="catDir" from=$catDirnames}>
                         <option value="<{$catDir}>"<{if $catDir==$actionForm->get('options')}> selected="selected"<{/if}>><{$catDir}></options>
                         <{/foreach}>
+                        <{/if}>
                     </select>
                     <p><{$smarty.const._AD_PROFILE_DESC_FIELD_CATEGORY}></p>
                 </div>

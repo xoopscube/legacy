@@ -76,7 +76,7 @@
                 <tr valign="top">
                     <td><{$smarty.const._MD_USER_LANG_PM}></td>
                     <td>
-                        <a href="<{$pmliteUrl|xoops_escape:link}>" aria-label="<{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}>">
+                        <a href="<{$pmliteUrl|xoops_escape:link}>" title="<{$smarty.const._SENDPMTO|replace:"%s":$thisUser->getShow('uname')}>">
 <!--                            <img src="<{$smarty.const.XOOPS_URL}>/images/icons/mail.svg" >-->
                         <img class="svg mail-edit" src="<{$xoops_url}>/images/icons/mail-edit.svg" width="1em" height="1em" alt="<{$smarty.const._SENDPMTO}>"></a>
                     </td>
@@ -100,7 +100,7 @@
                 <tr valign="top">
                     <td><{$smarty.const._MD_USER_LANG_RANK}></td>
                     <td style="text-align:center;">
-                        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$rank->getShow('rank_image')}>" alt="<{$rank->getShow('rank_title')}>" aria-label="<{$rank->getShow('rank_title')}>" /><br>
+                        <img src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$rank->getShow('rank_image')}>" alt="<{$rank->getShow('rank_title')}>" title="<{$rank->getShow('rank_title')}>" /><br>
                         <{$rank->getShow('rank_title')}>
                     </td>
                 </tr>
@@ -134,7 +134,7 @@
 <p>
 <!-- start results item loop -->
 <{foreach item=result from=$module.results}>
-<img src="<{$result.image}>" alt="<{$module.name}>" aria-label="<{$module.name}>" /><b><a href="<{$result.link}>"><{$result.title}></a></b>
+<img src="<{$result.image}>" alt="<{$module.name}>" title="<{$module.name}>" /><b><a href="<{$result.link}>"><{$result.title}></a></b>
 <br><small>(<{$result.time|xoops_formattimestampGMT:l}>)</small><br>
 <{/foreach}>
 <!-- end results item loop -->

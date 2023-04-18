@@ -135,7 +135,7 @@ class Profile_ActionFrame
                 break;
         
             case PROFILE_FRAME_VIEW_ERROR:
-                $this->mAction->executeViewError($controller, $controller->mRoot->mContext->mXoopsUser, $render);
+                $this->mAction->executeViewError($controller);
                 break;
         
             case PROFILE_FRAME_VIEW_INDEX:
@@ -143,15 +143,15 @@ class Profile_ActionFrame
                 break;
         
             case PROFILE_FRAME_VIEW_INPUT:
-                $this->mAction->executeViewInput($controller, $controller->mRoot->mContext->mXoopsUser, $render);
+                $this->mAction->executeViewInput($controller);
                 break;
                 
             case PROFILE_FRAME_VIEW_PREVIEW:
-                $this->mAction->executeViewPreview($controller, $controller->mRoot->mContext->mXoopsUser, $render);
+                $this->mAction->executeViewPreview($controller);
                 break;
                 
             case PROFILE_FRAME_VIEW_CANCEL:
-                $this->mAction->executeViewCancel($controller, $controller->mRoot->mContext->mXoopsUser, $render);
+                $this->mAction->executeViewCancel($controller);
                 break;
         }
     }

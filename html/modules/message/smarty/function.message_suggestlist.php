@@ -26,7 +26,7 @@ function smarty_function_message_suggestlist($params, &$smarty)
     $sql.= 'ORDER BY `uname`';
     $result = $db->query($sql);
     $name = [];
-    while (list($uname) = $db->fetchRow($result)) {
+    while ([$uname] = $db->fetchRow($result)) {
         $uname = htmlspecialchars($uname, ENT_QUOTES);
         $name[] = "'".$uname."'";
     }

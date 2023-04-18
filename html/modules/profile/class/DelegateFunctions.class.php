@@ -161,7 +161,7 @@ class Profile_CoolUriDelegate
         $lUri = '/%s/index.php?action=%s%s&%s=%d';
         $key = 'uid';
 
-        $table = isset($dataname) ? $dataname : 'data';
+        $table = $dataname ?? 'data';
 
         if (isset($dataname)) {
             if ($data_id>0) {

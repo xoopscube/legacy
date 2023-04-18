@@ -15,8 +15,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class viewAction extends AbstractAction
 {
-    private $inout = 'inbox';
-    private $msgdata = null;
+    private string $inout = 'inbox';
+    private ?array $msgdata = null;
     private $mService;
 
     public function execute()

@@ -110,7 +110,7 @@ class Profile_AbstractEditAction extends Profile_AbstractAction
 
         $this->mActionForm->update($this->mObject);
 
-        return $this->_doExecute($this->mObject);
+        return $this->_doExecute();
     }
 
     /**

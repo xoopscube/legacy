@@ -40,12 +40,12 @@ class Profile_Module extends Legacy_ModuleAdapter
     public function startup()
     {
         parent::startup();
-    
+
         XCube_DelegateUtils::call('Module.profile.Event.GetAssetManager', new XCube_Ref($this->mAssetManager));
-    
+
         $root =& XCube_Root::getSingleton();
         $root->mController->mExecute->add([&$this, 'execute']);
-    
+
         //
         // TODO/Insert your initialization code.
         //
