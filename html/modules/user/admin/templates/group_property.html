@@ -4,7 +4,7 @@
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_USER_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=GroupList"><{$smarty.const._AD_USER_LANG_GROUP_LIST}></a>
-    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_USER_LANG_GROUP_PROPERTY}></span>
 </nav>
 
 
@@ -25,7 +25,7 @@
     </thead>
     <tbody>
     <tr>
-        <td class="list_image"><i aria-label="<{$smarty.const._AD_USER_LANG_GROUP}>"><img class="svg" src="<{'icons/icon-user-group.svg'|theme}>" width="1em" alt="group"></i></td>
+        <td class="list_image"><i title="<{$smarty.const._AD_USER_LANG_GROUP}>"><img class="svg" src="<{'icons/icon-user-group.svg'|theme}>" width="1em" alt="group"></i></td>
         <td class="list_id"><{$group->getShow('groupid')}></td>
         <td class="list_title"><{$group->getShow('name')}></td>
         <td class="list_description"><{$group->getShow('description')}></td>

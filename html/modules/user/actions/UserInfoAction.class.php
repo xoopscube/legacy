@@ -102,7 +102,7 @@ class User_UserInfoAction extends User_Action
                     'results' => $client->call('searchItemsOfUser', $params)
                 ];
 
-                $nresult = count($module['results']);
+                $nresult = is_countable($module['results']) ? count($module['results']) : 0;
                 if ($nresult) {
                     $module['has_more'] = $nresult >= USER_USERINFO_MAXHIT;
                     $this->mSearchResults[] = &$module;

@@ -15,7 +15,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
     /// アップされたCSVファイルを出力する
     public function execute(&$controller, &$xoopsUser)
     {
-    
+
         /// csv file check
         if (isset($_FILES['user_csv_file']) &&
             0 == $_FILES['user_csv_file']['error']) {
@@ -23,8 +23,8 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
         }
         return $this->getDefaultView($controller, $xoopsUser);
     }
-    
-    
+
+
     /// 確認画面を表示
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
@@ -59,7 +59,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                 setlocale(LC_ALL, 'ja_JP.UTF-8');
                 $bom = fread($handle, 3); // remove BOM
                 if (0xef !== ord($bom[0]) || 0xbb !== ord($bom[1]) || 0xbf !== ord($bom[2])) {
-                    rewind($handle, 0); // BOM not found then do rewind
+                    rewind($handle); // BOM not found then do rewind
                 }
             }
             $n = 0;
@@ -76,7 +76,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
                     'is_new' => true,
                     'value'  => [],
                 ];
-                if (count($_data) != count($user_key)) {
+                if (count((array) $_data) != count($user_key)) {
                     $user_data['error'] = true;
                 }
                 if ($_data[0]) {
@@ -131,13 +131,13 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
             }
             fclose($handle);
         }
-        
+
         $render->setAttribute('csv_data', $csv_data);
         $_SESSION['user_csv_upload_data'] = $csv_data;
     }
-    
-    
-    
+
+
+
     // {{{ explodeCSV(Ethna_Util.php)
     /**
      *  CSV形式の文字列を配列に分割する
@@ -178,21 +178,21 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
             }
 
             // 2. read field
-            if ('"' == $csv{$index}) {
+            if ('"' == $csv[$index]) {
                 // 2A. handle quote delimited field
                 $index++;
                 while ($index < $csv_len) {
-                    if ('"' == $csv{$index}) {
+                    if ('"' == $csv[$index]) {
                         // handle double quote
-                        if ('"' == $csv{$index + 1}) {
-                            $field .= $csv{$index};
+                        if ('"' == $csv[$index + 1]) {
+                            $field .= $csv[$index];
                             $index += 2;
                         } else {
                             // must be end of string
-                            while ($csv{$index} != $delimiter && $index < $csv_len) {
+                            while ($csv[$index] != $delimiter && $index < $csv_len) {
                                 $index++;
                             }
-                            if ($csv{$index} == $delimiter) {
+                            if ($csv[$index] == $delimiter) {
                                 $index++;
                             }
                             break;
@@ -222,7 +222,7 @@ class User_UserDataUploadConfAction extends User_UserDataUploadAction
 
                 // remove trailing spaces
                 $field = preg_replace("/[$space_list]+\$/S", '', $field);
-                if (isset($csv{$index}) && $csv{$index} == $delimiter) {
+                if (isset($csv[$index]) && $csv[$index] == $delimiter) {
                     $index++;
                 }
             }

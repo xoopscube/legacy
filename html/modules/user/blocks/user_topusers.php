@@ -4,7 +4,7 @@ function b_user_topusers_show($options)
     $block = [];
     $criteria = new CriteriaCompo(new Criteria('level', 0, '>'));
     $limit = (!empty($options[0])) ? $options[0] : 10;
-    $size = count($options);
+    $size = is_countable($options) ? count($options) : 0;
     for ($i = 2; $i < $size; $i++) {
         $criteria->add(new Criteria('rank', $options[$i], '<>'));
     }
@@ -13,7 +13,7 @@ function b_user_topusers_show($options)
     $criteria->setLimit($limit);
     $member_handler =& xoops_gethandler('member');
     $topposters =& $member_handler->getUsers($criteria);
-    $count = count($topposters);
+    $count = is_countable($topposters) ? count($topposters) : 0;
     for ($i = 0; $i < $count; $i++) {
         $block['users'][$i]['rank'] = $i+1;
         if (1 == $options[1]) {
@@ -44,7 +44,7 @@ function b_user_topusers_edit($options)
     $form .= ' />&nbsp;'._NO;
     $form .= '<br>'._MB_USER_NODISPGR.'<br><select id="options[]" name="options[]" multiple="multiple">';
     $ranks =& XoopsLists::getUserRankList();
-    $size = count($options);
+    $size = is_countable($options) ? count($options) : 0;
     foreach ($ranks as $k => $v) {
         $sel = '';
         for ($i = 2; $i < $size; $i++) {

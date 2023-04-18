@@ -57,7 +57,7 @@ class User_AbstractFilterForm
     public function getSort()
     {
         $sortkey = abs($this->mSort);
-        return isset($this->mSortKeys[$sortkey]) ? $this->mSortKeys[$sortkey] : 0;
+        return $this->mSortKeys[$sortkey] ?? 0;
     }
 
     public function getOrder()

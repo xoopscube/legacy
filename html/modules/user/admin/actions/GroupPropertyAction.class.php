@@ -33,6 +33,7 @@ class User_GroupPropertyAction extends User_Action
 
     public function getDefaultView(&$controller, &$xoopsUser)
     {
+        $modversion = [];
         $this->_loadGroup();
 
         if (!is_object($this->mGroup)) {

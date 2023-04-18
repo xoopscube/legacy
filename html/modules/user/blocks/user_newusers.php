@@ -9,7 +9,7 @@ function b_user_newusers_show($options)
     $criteria->setLimit($limit);
     $member_handler =& xoops_gethandler('member');
     $newmembers =& $member_handler->getUsers($criteria);
-    $count = count($newmembers);
+    $count = is_countable($newmembers) ? count($newmembers) : 0;
     for ($i = 0; $i < $count; $i++) {
         if (1 == $options[1]) {
             $block['users'][$i]['avatar'] = 'blank.gif' != $newmembers[$i]->getVar('user_avatar') ? XOOPS_UPLOAD_URL . '/' . $newmembers[$i]->getVar('user_avatar') : '';

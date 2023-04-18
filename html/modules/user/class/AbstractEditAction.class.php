@@ -105,7 +105,7 @@ class User_AbstractEditAction extends User_Action
 
         $this->mActionForm->update($this->mObject);
 
-        return $this->_doExecute($this->mObject) ? USER_FRAME_VIEW_SUCCESS
+        return $this->_doExecute() ? USER_FRAME_VIEW_SUCCESS
             : USER_FRAME_VIEW_ERROR;
     }
 

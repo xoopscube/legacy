@@ -113,13 +113,13 @@ class User_AvatarUploadAction extends User_Action
 
     public function _saveAvatarImages(&$avatarimages)
     {
-        if (0 == count($avatarimages)) {
+        if (0 == (is_countable($avatarimages) ? count($avatarimages) : 0)) {
             return true;
         }
 
         $avatarhandler =& xoops_getmodulehandler('avatar');
 
-        for ($i = 0; $i < count($avatarimages); $i++) {
+        for ($i = 0; $i < (is_countable($avatarimages) ? count($avatarimages) : 0); $i++) {
             $ext_pos = strrpos($avatarimages[$i]['name'], '.') ;
             if (false === $ext_pos) {
                 continue ;

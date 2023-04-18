@@ -48,7 +48,7 @@ class User_UserDataDownloadAction extends User_Action
         $criteria = new CriteriaElement();
         $criteria->setSort('uid');
         $users = $user_handler->getObjects($criteria);
-        if (!$users || 0 == count($users)) {
+        if (!$users || 0 == (is_countable($users) ? count($users) : 0)) {
             return USER_FRAME_VIEW_INDEX;
         }
         foreach ($users[0]->gets() as $key=>$var) {

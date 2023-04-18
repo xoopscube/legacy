@@ -42,7 +42,7 @@ class UserMailjob_linkHandler extends XoopsObjectGenericHandler
 
         $objArr = &$this->getObjects($criteria);
 
-        if (1 == count($objArr)) {
+        if (1 == (is_countable($objArr) ? count($objArr) : 0)) {
             $ret = &$objArr[0];
         }
 

@@ -153,7 +153,7 @@ class User_AvatarListAction extends User_AbstractListAction
                     $linkArr =& $linkHandler->getObjects($criteria);
 
                     if ($avatarHandler->delete($avatar)) {
-                        if (count($linkArr) > 0) {
+                        if ((is_countable($linkArr) ? count($linkArr) : 0) > 0) {
                             $userHandler =& xoops_gethandler('user');
                             foreach ($linkArr as $link) {
                                 $user =& $userHandler->get($link->get('user_id'));

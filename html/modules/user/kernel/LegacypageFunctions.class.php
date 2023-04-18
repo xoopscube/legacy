@@ -234,7 +234,7 @@ class User_LegacypageFunctions
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('uname', xoops_getrequest('uname')));
         $userArr = $userHandler->getObjects($criteria);
-        if (1 != count($userArr)) {
+        if (1 != (is_countable($userArr) ? count($userArr) : 0)) {
             return;
         }
 
@@ -258,7 +258,7 @@ class User_LegacypageFunctions
             }
         } else {
             $groups = $user->getGroups();
-            if (0 == count($groups)) {
+            if (0 == (is_countable($groups) ? count($groups) : 0)) {
                 return;
             }
         }
