@@ -16,8 +16,8 @@ require _MY_MODULE_PATH.'kernel/MyPageNavi.class.php';
 
 class indexAction extends AbstractAction
 {
-    private $listdata;
-    private $mPagenavi;
+    private ?array $listdata = null;
+    private ?\MyPageNavi $mPagenavi = null;
     private $select;
     private $subject = '';
     private $status = '';

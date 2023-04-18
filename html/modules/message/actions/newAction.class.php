@@ -17,7 +17,7 @@ require _MY_MODULE_PATH.'forms/MessageForm.class.php';
 
 class newAction extends AbstractAction
 {
-    private $mActionForm;
+    private \MessageForm $mActionForm;
     private $mService;
 
     public function __construct()
