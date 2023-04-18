@@ -21,17 +21,17 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
     /**
      * @var string The base URL for API requests
      **/
-    const API_URL = 'https://graph.microsoft.com/v1.0/me/drive/items/';
+    public const API_URL = 'https://graph.microsoft.com/v1.0/me/drive/items/';
 
     /**
      * @var string The base URL for authorization requests
      */
-    const AUTH_URL = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize';
+    public const AUTH_URL = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize';
 
     /**
      * @var string The base URL for token requests
      */
-    const TOKEN_URL = 'https://login.microsoftonline.com/common/oauth2/v2.0/token';
+    public const TOKEN_URL = 'https://login.microsoftonline.com/common/oauth2/v2.0/token';
 
     /**
      * OneDrive token object.
@@ -67,28 +67,26 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      *
      * @var array
      **/
-    protected $HasdirsCache = array();
+    protected $HasdirsCache = [];
 
     /**
      * Query options of API call.
      *
      * @var array
      */
-    protected $queryOptions = array();
+    protected $queryOptions = [];
 
     /**
      * Current token expires
      *
-     * @var integer
      **/
-    private $expires;
+    private ?int $expires = null;
 
     /**
      * Path to access token file for permanent mount
      *
-     * @var string
      */
-    private $aTokenFile = '';
+    private string $aTokenFile = '';
 
     /**
      * Constructor
@@ -99,21 +97,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      **/
     public function __construct()
     {
-        $opts = array(
-            'client_id' => '',
-            'client_secret' => '',
-            'accessToken' => '',
-            'root' => 'OneDrive.com',
-            'OneDriveApiClient' => '',
-            'path' => '/',
-            'separator' => '/',
-            'tmbPath' => '',
-            'tmbURL' => '',
-            'tmpPath' => '',
-            'acceptedName' => '#^[^/\\?*:|"<>]*[^./\\?*:|"<>]$#',
-            'rootCssClass' => 'elfinder-navbar-root-onedrive',
-            'useApiThumbnail' => true,
-        );
+        $opts = ['client_id' => '', 'client_secret' => '', 'accessToken' => '', 'root' => 'OneDrive.com', 'OneDriveApiClient' => '', 'path' => '/', 'separator' => '/', 'tmbPath' => '', 'tmbURL' => '', 'tmpPath' => '', 'acceptedName' => '#^[^/\\?*:|"<>]*[^./\\?*:|"<>]$#', 'rootCssClass' => 'elfinder-navbar-root-onedrive', 'useApiThumbnail' => true];
         $this->options = array_merge($this->options, $opts);
         $this->options['mimeDetect'] = 'internal';
     }
@@ -154,31 +138,21 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
         $curl = curl_init();
 
         $fields = http_build_query(
-            array(
-                'client_id' => $client_id,
-                'redirect_uri' => $redirect,
-                'client_secret' => $client_secret,
-                'code' => $code,
-                'grant_type' => 'authorization_code',
-            )
+            ['client_id' => $client_id, 'redirect_uri' => $redirect, 'client_secret' => $client_secret, 'code' => $code, 'grant_type' => 'authorization_code']
         );
 
-        curl_setopt_array($curl, array(
+        curl_setopt_array($curl, [
             // General options.
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => $fields,
-
-            CURLOPT_HTTPHEADER => array(
-                'Content-Length: ' . strlen($fields),
-            ),
-
+            CURLOPT_HTTPHEADER => ['Content-Length: ' . strlen($fields)],
             CURLOPT_URL => $url,
-        ));
+        ]);
 
         $result = elFinder::curlExec($curl);
 
-        $decoded = json_decode($result);
+        $decoded = json_decode($result, null, 512, JSON_THROW_ON_ERROR);
 
         if (null === $decoded) {
             throw new \Exception('json_decode() failed');
@@ -192,11 +166,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
             throw new \Exception($error);
         }
 
-        $res = (object)array(
-            'expires' => time() + $decoded->expires_in - 30,
-            'initialToken' => '',
-            'data' => $decoded
-        );
+        $res = (object)['expires' => time() + $decoded->expires_in - 30, 'initialToken' => '', 'data' => $decoded];
         if (!empty($decoded->refresh_token)) {
             $res->initialToken = md5($client_id . $decoded->refresh_token);
         }
@@ -231,21 +201,21 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 
             $curl = curl_init();
 
-            curl_setopt_array($curl, array(
+            curl_setopt_array($curl, [
                 // General options.
                 CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_POST => true, // i am sending post data
+                CURLOPT_POST => true,
+                // i am sending post data
                 CURLOPT_POSTFIELDS => 'client_id=' . urlencode($this->options['client_id'])
                     . '&client_secret=' . urlencode($this->options['client_secret'])
                     . '&grant_type=refresh_token'
                     . '&refresh_token=' . urlencode($this->token->data->refresh_token),
-
                 CURLOPT_URL => $url,
-            ));
+            ]);
 
             $result = elFinder::curlExec($curl);
 
-            $decoded = json_decode($result);
+            $decoded = json_decode($result, null, 512, JSON_THROW_ON_ERROR);
 
             if (!$decoded) {
                 throw new \Exception('json_decode() failed');
@@ -259,28 +229,24 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                 }
                 $err = property_exists($decoded, 'error')? ' ' . $decoded->error : '';
                 $err .= property_exists($decoded, 'error_description')? ' ' . $decoded->error_description : '';
-                throw new \Exception($err? $err : elFinder::ERROR_REAUTH_REQUIRE);
+                throw new \Exception($err ?: elFinder::ERROR_REAUTH_REQUIRE);
             }
 
-            $token = (object)array(
-                'expires' => time() + $decoded->expires_in - 30,
-                'initialToken' => $initialToken,
-                'data' => $decoded,
-            );
+            $token = (object)['expires' => time() + $decoded->expires_in - 30, 'initialToken' => $initialToken, 'data' => $decoded];
 
             $this->token = $token;
-            $json = json_encode($token);
+            $json = json_encode($token, JSON_THROW_ON_ERROR);
 
             if (!empty($decoded->refresh_token)) {
                 if (empty($this->options['netkey']) && $this->aTokenFile) {
-                    file_put_contents($this->aTokenFile, json_encode($token));
+                    file_put_contents($this->aTokenFile, json_encode($token, JSON_THROW_ON_ERROR));
                     $this->options['accessToken'] = $json;
                 } else if (!empty($this->options['netkey'])) {
                     // OAuth2 refresh token can be used only once,
                     // so update it if it is the same as the token file
                     $aTokenFile = $this->_od_getATokenFile();
                     if ($aTokenFile && is_file($aTokenFile)) {
-                        if ($_token = json_decode(file_get_contents($aTokenFile))) {
+                        if ($_token = json_decode(file_get_contents($aTokenFile), null, 512, JSON_THROW_ON_ERROR)) {
                             if ($_token->data->refresh_token === $refresh_token) {
                                 file_put_contents($aTokenFile, $json);
                             }
@@ -325,7 +291,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
             }
         }
 
-        return array($pid, $id, $parent);
+        return [$pid, $id, $parent];
     }
 
     /**
@@ -337,14 +303,11 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
     {
         $curl = curl_init($url);
 
-        $defaultOptions = array(
+        $defaultOptions = [
             // General options.
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HTTPHEADER => array(
-                'Content-Type: application/json',
-                'Authorization: Bearer ' . $this->token->data->access_token,
-            ),
-        );
+            CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'Authorization: Bearer ' . $this->token->data->access_token],
+        ];
 
         curl_setopt_array($curl, $defaultOptions);
 
@@ -368,7 +331,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
         if ($contents) {
             $res = elFinder::curlExec($curl);
         } else {
-            $result = json_decode(elFinder::curlExec($curl));
+            $result = json_decode(elFinder::curlExec($curl), null, 512, JSON_THROW_ON_ERROR);
             if (isset($result->value)) {
                 $res = $result->value;
                 unset($result->value);
@@ -398,9 +361,9 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      * @return object|array
      * @throws elFinderAbortException
      */
-    protected function _od_query($itemId, $fetch_self = false, $recursive = false, $options = array())
+    protected function _od_query($itemId, $fetch_self = false, $recursive = false, $options = [])
     {
-        $result = array();
+        $result = [];
 
         if (null === $itemId) {
             $itemId = 'root';
@@ -430,7 +393,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
             $result = $res;
         }
 
-        return isset($result->error) ? array() : $result;
+        return isset($result->error) ? [] : $result;
     }
 
     /**
@@ -443,11 +406,11 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      **/
     protected function _od_parseRaw($raw)
     {
-        $stat = array();
+        $stat = [];
 
-        $folder = isset($raw->folder) ? $raw->folder : null;
+        $folder = $raw->folder ?? null;
 
-        $stat['rev'] = isset($raw->id) ? $raw->id : 'root';
+        $stat['rev'] = $raw->id ?? 'root';
         $stat['name'] = $raw->name;
         if (isset($raw->lastModifiedDateTime)) {
             $stat['ts'] = strtotime($raw->lastModifiedDateTime);
@@ -494,13 +457,13 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      */
     protected function _od_getFileRaw($path)
     {
-        list(, $itemId) = $this->_od_splitPath($path);
+        [, $itemId] = $this->_od_splitPath($path);
         try {
             $res = $this->_od_query($itemId, true, false, $this->queryOptions);
 
             return $res;
         } catch (Exception $e) {
-            return array();
+            return [];
         }
     }
 
@@ -513,7 +476,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      */
     protected function _od_getThumbnail($path)
     {
-        list(, $itemId) = $this->_od_splitPath($path);
+        [, $itemId] = $this->_od_splitPath($path);
 
         try {
             $url = self::API_URL . $itemId . '/thumbnails/0/medium/content';
@@ -551,11 +514,8 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                 $url = self::API_URL . $parentId . ':/' . rawurlencode($name) . ':/createUploadSession';
             }
             $curl = $this->_od_prepareCurl($url);
-            curl_setopt_array($curl, array(
-                CURLOPT_POST => true,
-                CURLOPT_POSTFIELDS => '{}',
-            ));
-            $sess = json_decode(elFinder::curlExec($curl));
+            curl_setopt_array($curl, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => '{}']);
+            $sess = json_decode(elFinder::curlExec($curl), null, 512, JSON_THROW_ON_ERROR);
 
             if ($sess) {
                 if (isset($sess->error)) {
@@ -577,19 +537,9 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                 $_size = strlen($send);
                 $url = $sess->uploadUrl;
                 $curl = curl_init();
-                $options = array(
-                    CURLOPT_URL => $url,
-                    CURLOPT_PUT => true,
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_INFILE => $putFp,
-                    CURLOPT_INFILESIZE => $_size,
-                    CURLOPT_HTTPHEADER => array(
-                        'Content-Length: ' . $_size,
-                        'Content-Range: bytes ' . $range,
-                    ),
-                );
+                $options = [CURLOPT_URL => $url, CURLOPT_PUT => true, CURLOPT_RETURNTRANSFER => true, CURLOPT_INFILE => $putFp, CURLOPT_INFILESIZE => $_size, CURLOPT_HTTPHEADER => ['Content-Length: ' . $_size, 'Content-Range: bytes ' . $range]];
                 curl_setopt_array($curl, $options);
-                $sess = json_decode(elFinder::curlExec($curl));
+                $sess = json_decode(elFinder::curlExec($curl), null, 512, JSON_THROW_ON_ERROR);
                 if ($sess) {
                     if (isset($sess->error)) {
                         throw new Exception($sess->error->message);
@@ -599,7 +549,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                         break;
                     }
                     if (isset($sess->nextExpectedRanges)) {
-                        list($_next) = explode('-', $sess->nextExpectedRanges[0]);
+                        [$_next] = explode('-', $sess->nextExpectedRanges[0]);
                         if ($next == $_next) {
                             $send = $this->_od_getChunkData($fp);
                             if ($send === false) {
@@ -643,10 +593,10 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
         if ($chunkSize === null) {
             $mem = elFinder::getIniBytes('memory_limit');
             if ($mem < 1) {
-                $mem = 10485760; // 10 MiB
+                $mem = 10_485_760; // 10 MiB
             } else {
-                $mem -= memory_get_usage() - 1061548;
-                $mem = min($mem, 10485760);
+                $mem -= memory_get_usage() - 1_061_548;
+                $mem = min($mem, 10_485_760);
             }
             if ($mem > 327680) {
                 $chunkSize = floor($mem / 327680) * 327680;
@@ -741,11 +691,11 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 
         try {
             if (empty($options['client_id']) || empty($options['client_secret'])) {
-                return array('exit' => true, 'body' => '{msg:errNetMountNoDriver}');
+                return ['exit' => true, 'body' => '{msg:errNetMountNoDriver}'];
             }
 
             $itpCare = isset($options['code']);
-            $code = $itpCare? $options['code'] : (isset($_GET['code'])? $_GET['code'] : '');
+            $code = $itpCare? $options['code'] : ($_GET['code'] ?? '');
             if ($code) {
                 try {
                     if (!empty($options['id'])) {
@@ -753,47 +703,25 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                         $this->session->set('OneDriveTokens',
                             $this->_od_obtainAccessToken($options['client_id'], $options['client_secret'], $code, $options['id']));
 
-                        $out = array(
-                            'node' => $options['id'],
-                            'json' => '{"protocol": "onedrive", "mode": "done", "reset": 1}',
-                            'bind' => 'netmount',
-                        );
+                        $out = ['node' => $options['id'], 'json' => '{"protocol": "onedrive", "mode": "done", "reset": 1}', 'bind' => 'netmount'];
                     } else {
                         $nodeid = ($_GET['host'] === '1')? 'elfinder' : $_GET['host'];
-                        $out = array(
-                            'node' => $nodeid,
-                            'json' => json_encode(array(
-                                'protocol' => 'onedrive',
-                                'host' => $nodeid,
-                                'mode' => 'redirect',
-                                'options' => array(
-                                    'id' => $nodeid,
-                                    'code'=> $code
-                                )
-                            )),
-                            'bind' => 'netmount'
-                        );
+                        $out = ['node' => $nodeid, 'json' => json_encode(['protocol' => 'onedrive', 'host' => $nodeid, 'mode' => 'redirect', 'options' => ['id' => $nodeid, 'code'=> $code]], JSON_THROW_ON_ERROR), 'bind' => 'netmount'];
                     }
                     if (!$itpCare) {
-                        return array('exit' => 'callback', 'out' => $out);
+                        return ['exit' => 'callback', 'out' => $out];
                     } else {
-                        return array('exit' => true, 'body' => $out['json']);
+                        return ['exit' => true, 'body' => $out['json']];
                     }
                 } catch (Exception $e) {
-                    $out = array(
-                        'node' => $options['id'],
-                        'json' => json_encode(array('error' => elFinder::ERROR_ACCESS_DENIED . ' ' . $e->getMessage())),
-                    );
+                    $out = ['node' => $options['id'], 'json' => json_encode(['error' => elFinder::ERROR_ACCESS_DENIED . ' ' . $e->getMessage()], JSON_THROW_ON_ERROR)];
 
-                    return array('exit' => 'callback', 'out' => $out);
+                    return ['exit' => 'callback', 'out' => $out];
                 }
             } elseif (!empty($_GET['error'])) {
-                $out = array(
-                    'node' => $options['id'],
-                    'json' => json_encode(array('error' => elFinder::ERROR_ACCESS_DENIED)),
-                );
+                $out = ['node' => $options['id'], 'json' => json_encode(['error' => elFinder::ERROR_ACCESS_DENIED])];
 
-                return array('exit' => 'callback', 'out' => $out);
+                return ['exit' => 'callback', 'out' => $out];
             }
 
             if ($options['user'] === 'init') {
@@ -816,17 +744,12 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                     if ($path === '/') {
                         $path = 'root';
                     }
-                    $result = $this->_od_query($path, false, false, array(
-                        'query' => array(
-                            'select' => 'id,name',
-                            'filter' => 'folder ne null',
-                        ),
-                    ));
+                    $result = $this->_od_query($path, false, false, ['query' => ['select' => 'id,name', 'filter' => 'folder ne null']]);
                 }
 
                 if ($result === false) {
                     try {
-                        $this->session->set('OneDriveTokens', (object)array('token' => null));
+                        $this->session->set('OneDriveTokens', (object)['token' => null]);
 
                         $offline = '';
                         // Gets a log in URL with sufficient privileges from the OneDrive API
@@ -842,7 +765,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                             . '&redirect_uri=' . urlencode($redirect_uri);
 
                     } catch (Exception $e) {
-                        return array('exit' => true, 'body' => '{msg:errAccess}');
+                        return ['exit' => true, 'body' => '{msg:errAccess}'];
                     }
 
                     $html = '<input id="elf-volumedriver-onedrive-host-btn" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" value="{msg:btnApprove}" type="button">';
@@ -850,7 +773,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                             $("#' . $options['id'] . '").elfinder("instance").trigger("netmount", {protocol: "onedrive", mode: "makebtn", url: "' . $url . '"});
                             </script>';
 
-                    return array('exit' => true, 'body' => $html);
+                    return ['exit' => true, 'body' => $html];
                 } else {
                     $folders = [];
 
@@ -866,7 +789,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                     }
 
                     $folders = ['root' => 'My OneDrive'] + $folders;
-                    $folders = json_encode($folders);
+                    $folders = json_encode($folders, JSON_THROW_ON_ERROR);
 
                     $expires = empty($this->token->data->refresh_token) ? (int)$this->token->expires : 0;
                     $mnt2res = empty($this->token->data->refresh_token) ? '' : ', "mnt2res": 1';
@@ -876,15 +799,15 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                             $("#' . $options['id'] . '").elfinder("instance").trigger("netmount", ' . $json . ');
                             </script>';
 
-                    return array('exit' => true, 'body' => $html);
+                    return ['exit' => true, 'body' => $html];
                 }
             }
         } catch (Exception $e) {
-            return array('exit' => true, 'body' => '{msg:errNetMountNoDriver}');
+            return ['exit' => true, 'body' => '{msg:errNetMountNoDriver}'];
         }
 
         if ($_aToken = $this->session->get('OneDriveTokens')) {
-            $options['accessToken'] = json_encode($_aToken);
+            $options['accessToken'] = json_encode($_aToken, JSON_THROW_ON_ERROR);
             if ($this->options['path'] === 'root' || !$this->options['path']) {
                 $this->options['path'] = '/';
             }
@@ -892,7 +815,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
             $this->session->remove('OneDriveTokens');
             $this->setError(elFinder::ERROR_NETMOUNT, $options['host'], implode(' ', $this->error()));
 
-            return array('exit' => true, 'error' => $this->error());
+            return ['exit' => true, 'error' => $this->error()];
         }
 
         $this->session->remove('nodeId');
@@ -962,7 +885,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 
         $error = false;
         try {
-            $this->token = json_decode($this->options['accessToken']);
+            $this->token = json_decode($this->options['accessToken'], null, 512, JSON_THROW_ON_ERROR);
             if (!is_object($this->token)) {
                 throw new Exception('Required option `accessToken` is invalid JSON.');
             }
@@ -978,7 +901,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                 if (empty($this->options['netkey'])) {
                     if ($this->aTokenFile) {
                         if (is_file($this->aTokenFile)) {
-                            $this->token = json_decode(file_get_contents($this->aTokenFile));
+                            $this->token = json_decode(file_get_contents($this->aTokenFile), null, 512, JSON_THROW_ON_ERROR);
                             if (!is_object($this->token)) {
                                 unlink($this->aTokenFile);
                                 throw new Exception('Required option `accessToken` is invalid JSON.');
@@ -989,7 +912,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                     }
                 } else if (is_file($this->aTokenFile)) {
                     // If the refresh token is the same as the permanent volume
-                    $this->token = json_decode(file_get_contents($this->aTokenFile));
+                    $this->token = json_decode(file_get_contents($this->aTokenFile), null, 512, JSON_THROW_ON_ERROR);
                 }
             }
 
@@ -1045,11 +968,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
         // 'lsPlSleep' minmum 10 sec
         $this->options['lsPlSleep'] = max(10, $this->options['lsPlSleep']);
 
-        $this->queryOptions = array(
-            'query' => array(
-                'select' => 'id,name,lastModifiedDateTime,file,folder,size,image',
-            ),
-        );
+        $this->queryOptions = ['query' => ['select' => 'id,name,lastModifiedDateTime,file,folder,size,image']];
 
         if ($this->options['useApiThumbnail']) {
             $this->options['tmbURL'] = 'https://';
@@ -1093,7 +1012,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 
     protected function isNameExists($path)
     {
-        list($pid, $name) = $this->_od_splitPath($path);
+        [$pid, $name] = $this->_od_splitPath($path);
 
         $raw = $this->_od_query($pid . '/children/' . rawurlencode($name), true);
         return $raw ? $this->_od_parseRaw($raw) : false;
@@ -1110,10 +1029,10 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      */
     protected function cacheDir($path)
     {
-        $this->dirsCache[$path] = array();
+        $this->dirsCache[$path] = [];
         $hasDir = false;
 
-        list(, $itemId) = $this->_od_splitPath($path);
+        [, $itemId] = $this->_od_splitPath($path);
 
         $res = $this->_od_query($itemId, false, false, $this->queryOptions);
 
@@ -1228,7 +1147,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
     {
         if ($this->options['useApiThumbnail']) {
             if (func_num_args() > 2) {
-                list(, , $count) = func_get_args();
+                [, , $count] = func_get_args();
             } else {
                 $count = 0;
             }
@@ -1324,7 +1243,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      * @return string
      * @author Naoki Sawada
      **/
-    public function getContentUrl($hash, $options = array())
+    public function getContentUrl($hash, $options = [])
     {
         if (!empty($options['onetime']) && $this->options['onetimeUrl']) {
             return parent::getContentUrl($hash, $options);
@@ -1340,24 +1259,18 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
         if (($file = $this->file($hash)) == false || !$file['url'] || $file['url'] == 1) {
             $path = $this->decode($hash);
 
-            list(, $itemId) = $this->_od_splitPath($path);
+            [, $itemId] = $this->_od_splitPath($path);
             try {
                 $url = self::API_URL . $itemId . '/createLink';
-                $data = (object)array(
-                    'type' => 'embed',
-                    'scope' => 'anonymous',
-                );
+                $data = (object)['type' => 'embed', 'scope' => 'anonymous'];
                 $curl = $this->_od_prepareCurl($url);
-                curl_setopt_array($curl, array(
-                    CURLOPT_POST => true,
-                    CURLOPT_POSTFIELDS => json_encode($data),
-                ));
+                curl_setopt_array($curl, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => json_encode($data, JSON_THROW_ON_ERROR)]);
 
                 $result = elFinder::curlExec($curl);
                 if ($result) {
-                    $result = json_decode($result);
+                    $result = json_decode($result, null, 512, JSON_THROW_ON_ERROR);
                     if (isset($result->link)) {
-                        list(, $res) = explode('?', $result->link->webUrl);
+                        [, $res] = explode('?', $result->link->webUrl);
                         $res = 'https://onedrive.live.com/download.aspx?' . $res;
                     }
                 }
@@ -1381,7 +1294,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      **/
     protected function _dirname($path)
     {
-        list(, , $dirname) = $this->_od_splitPath($path);
+        [, , $dirname] = $this->_od_splitPath($path);
 
         return $dirname;
     }
@@ -1396,7 +1309,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      **/
     protected function _basename($path)
     {
-        list(, $basename) = $this->_od_splitPath($path);
+        [, $basename] = $this->_od_splitPath($path);
 
         return $basename;
     }
@@ -1534,15 +1447,9 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      */
     protected function _subdirs($path)
     {
-        list(, $itemId) = $this->_od_splitPath($path);
+        [, $itemId] = $this->_od_splitPath($path);
 
-        return (bool)$this->_od_query($itemId, false, false, array(
-            'query' => array(
-                'top' => 1,
-                'select' => 'id',
-                'filter' => 'folder ne null',
-            ),
-        ));
+        return (bool)$this->_od_query($itemId, false, false, ['query' => ['top' => 1, 'select' => 'id', 'filter' => 'folder ne null']]);
     }
 
     /**
@@ -1558,6 +1465,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      */
     protected function _dimensions($path, $mime)
     {
+        $cache = [];
         if (strpos($mime, 'image') !== 0) {
             return '';
         }
@@ -1566,19 +1474,15 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
         if (func_num_args() > 2) {
             $args = func_get_arg(2);
         } else {
-            $args = array();
+            $args = [];
         }
         if (!empty($args['substitute'])) {
             $tmbSize = intval($args['substitute']);
         } else {
             $tmbSize = null;
         }
-        list(, $itemId) = $this->_od_splitPath($path);
-        $options = array(
-            'query' => array(
-                'select' => 'id,image',
-            ),
-        );
+        [, $itemId] = $this->_od_splitPath($path);
+        $options = ['query' => ['select' => 'id,image']];
         if ($tmbSize) {
             $tmb = 'c' . $tmbSize . 'x' . $tmbSize;
             $options['query']['expand'] = 'thumbnails(select=' . $tmb . ')';
@@ -1587,7 +1491,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 
         if ($raw && property_exists($raw, 'image') && $img = $raw->image) {
             if (isset($img->width) && isset($img->height)) {
-                $ret = array('dim' => $img->width . 'x' . $img->height);
+                $ret = ['dim' => $img->width . 'x' . $img->height];
                 if ($tmbSize) {
                     $srcSize = explode('x', $ret['dim']);
                     if (min(($tmbSize / $srcSize[0]), ($tmbSize / $srcSize[1])) < 1) {
@@ -1631,9 +1535,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      */
     protected function _scandir($path)
     {
-        return isset($this->dirsCache[$path])
-            ? $this->dirsCache[$path]
-            : $this->cacheDir($path);
+        return $this->dirsCache[$path] ?? $this->cacheDir($path);
     }
 
     /**
@@ -1648,17 +1550,14 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
     protected function _fopen($path, $mode = 'rb')
     {
         if ($mode === 'rb' || $mode === 'r') {
-            list(, $itemId) = $this->_od_splitPath($path);
-            $data = array(
-                'target' => self::API_URL . $itemId . '/content',
-                'headers' => array('Authorization: Bearer ' . $this->token->data->access_token),
-            );
+            [, $itemId] = $this->_od_splitPath($path);
+            $data = ['target' => self::API_URL . $itemId . '/content', 'headers' => ['Authorization: Bearer ' . $this->token->data->access_token]];
 
             // to support range request
             if (func_num_args() > 2) {
                 $opts = func_get_arg(2);
             } else {
-                $opts = array();
+                $opts = [];
             }
             if (!empty($opts['httpheaders'])) {
                 $data['headers'] = array_merge($opts['httpheaders'], $data['headers']);
@@ -1700,13 +1599,10 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
     protected function _mkdir($path, $name)
     {
         $namePath = $this->_joinPath($path, $name);
-        list($parentId) = $this->_od_splitPath($namePath);
+        [$parentId] = $this->_od_splitPath($namePath);
 
         try {
-            $properties = array(
-                'name' => (string)$name,
-                'folder' => (object)array(),
-            );
+            $properties = ['name' => (string)$name, 'folder' => (object)[]];
 
             $data = (object)$properties;
 
@@ -1714,14 +1610,11 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 
             $curl = $this->_od_prepareCurl($url);
 
-            curl_setopt_array($curl, array(
-                CURLOPT_POST => true,
-                CURLOPT_POSTFIELDS => json_encode($data),
-            ));
+            curl_setopt_array($curl, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => json_encode($data, JSON_THROW_ON_ERROR)]);
 
             //create the Folder in the Parent
             $result = elFinder::curlExec($curl);
-            $folder = json_decode($result);
+            $folder = json_decode($result, null, 512, JSON_THROW_ON_ERROR);
 
             return $this->_joinPath($path, $folder->id);
         } catch (Exception $e) {
@@ -1740,7 +1633,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
      **/
     protected function _mkfile($path, $name)
     {
-        return $this->_save($this->tmpfile(), $path, $name, array());
+        return $this->_save($this->tmpfile(), $path, $name, []);
     }
 
     /**
@@ -1773,31 +1666,20 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 
         try {
             //Set the Parent id
-            list(, $parentId) = $this->_od_splitPath($targetDir);
-            list(, $itemId) = $this->_od_splitPath($source);
+            [, $parentId] = $this->_od_splitPath($targetDir);
+            [, $itemId] = $this->_od_splitPath($source);
 
             $url = self::API_URL . $itemId . '/copy';
 
-            $properties = array(
-                'name' => (string)$name,
-            );
+            $properties = ['name' => (string)$name];
             if ($parentId === 'root') {
-                $properties['parentReference'] = (object)array('path' => '/drive/root:');
+                $properties['parentReference'] = (object)['path' => '/drive/root:'];
             } else {
-                $properties['parentReference'] = (object)array('id' => (string)$parentId);
+                $properties['parentReference'] = (object)['id' => (string)$parentId];
             }
             $data = (object)$properties;
             $curl = $this->_od_prepareCurl($url);
-            curl_setopt_array($curl, array(
-                CURLOPT_POST => true,
-                CURLOPT_HEADER => true,
-                CURLOPT_HTTPHEADER => array(
-                    'Content-Type: application/json',
-                    'Authorization: Bearer ' . $this->token->data->access_token,
-                    'Prefer: respond-async',
-                ),
-                CURLOPT_POSTFIELDS => json_encode($data),
-            ));
+            curl_setopt_array($curl, [CURLOPT_POST => true, CURLOPT_HEADER => true, CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'Authorization: Bearer ' . $this->token->data->access_token, 'Prefer: respond-async'], CURLOPT_POSTFIELDS => json_encode($data, JSON_THROW_ON_ERROR)]);
             $result = elFinder::curlExec($curl);
 
             $res = new stdClass();
@@ -1806,13 +1688,8 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                 while ($res) {
                     usleep(200000);
                     $curl = curl_init($monUrl);
-                    curl_setopt_array($curl, array(
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_HTTPHEADER => array(
-                            'Content-Type: application/json',
-                        ),
-                    ));
-                    $res = json_decode(elFinder::curlExec($curl));
+                    curl_setopt_array($curl, [CURLOPT_RETURNTRANSFER => true, CURLOPT_HTTPHEADER => ['Content-Type: application/json']]);
+                    $res = json_decode(elFinder::curlExec($curl), null, 512, JSON_THROW_ON_ERROR);
                     if (isset($res->status)) {
                         if ($res->status === 'completed' || $res->status === 'failed') {
                             break;
@@ -1853,14 +1730,12 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
     protected function _move($source, $targetDir, $name)
     {
         try {
-            list(, $targetParentId) = $this->_od_splitPath($targetDir);
-            list($sourceParentId, $itemId, $srcParent) = $this->_od_splitPath($source);
+            [, $targetParentId] = $this->_od_splitPath($targetDir);
+            [$sourceParentId, $itemId, $srcParent] = $this->_od_splitPath($source);
 
-            $properties = array(
-                'name' => (string)$name,
-            );
+            $properties = ['name' => (string)$name];
             if ($targetParentId !== $sourceParentId) {
-                $properties['parentReference'] = (object)array('id' => (string)$targetParentId);
+                $properties['parentReference'] = (object)['id' => (string)$targetParentId];
             }
 
             $url = self::API_URL . $itemId;
@@ -1868,12 +1743,9 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 
             $curl = $this->_od_prepareCurl($url);
 
-            curl_setopt_array($curl, array(
-                CURLOPT_CUSTOMREQUEST => 'PATCH',
-                CURLOPT_POSTFIELDS => json_encode($data),
-            ));
+            curl_setopt_array($curl, [CURLOPT_CUSTOMREQUEST => 'PATCH', CURLOPT_POSTFIELDS => json_encode($data, JSON_THROW_ON_ERROR)]);
 
-            $result = json_decode(elFinder::curlExec($curl));
+            $result = json_decode(elFinder::curlExec($curl), null, 512, JSON_THROW_ON_ERROR);
             if ($result && isset($result->id)) {
                 return $targetDir . '/' . $result->id;
             } else {
@@ -1898,14 +1770,12 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
     {
         $stat = $this->stat($path);
         try {
-            list(, $itemId) = $this->_od_splitPath($path);
+            [, $itemId] = $this->_od_splitPath($path);
 
             $url = self::API_URL . $itemId;
 
             $curl = $this->_od_prepareCurl($url);
-            curl_setopt_array($curl, array(
-                CURLOPT_CUSTOMREQUEST => 'DELETE',
-            ));
+            curl_setopt_array($curl, [CURLOPT_CUSTOMREQUEST => 'DELETE']);
 
             //unlink or delete File or Folder in the Parent
             $result = elFinder::curlExec($curl);
@@ -1946,7 +1816,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
         $itemId = '';
         $size = null;
         if ($name === '') {
-            list($parentId, $itemId, $parent) = $this->_od_splitPath($path);
+            [$parentId, $itemId, $parent] = $this->_od_splitPath($path);
         } else {
             if ($stat) {
                 if (isset($stat['name'])) {
@@ -1956,7 +1826,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
                     $itemId = $stat['rev'];
                 }
             }
-            list(, $parentId) = $this->_od_splitPath($path);
+            [, $parentId] = $this->_od_splitPath($path);
             $parent = $path;
         }
 
@@ -1969,7 +1839,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
             }
         }
 
-        if ($size > 4194304) {
+        if ($size > 4_194_304) {
             return $this->_od_uploadSession($fp, $size, $name, $itemId, $parent, $parentId);
         }
 
@@ -1977,7 +1847,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
             // for unseekable file pointer
             if (!elFinder::isSeekableStream($fp)) {
                 if ($tfp = tmpfile()) {
-                    if (stream_copy_to_stream($fp, $tfp, $size? $size : -1) !== false) {
+                    if (stream_copy_to_stream($fp, $tfp, $size ?: -1) !== false) {
                         rewind($tfp);
                         $fp = $tfp;
                     }
@@ -1992,11 +1862,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
             }
             $curl = $this->_od_prepareCurl();
 
-            $options = array(
-                CURLOPT_URL => $url,
-                CURLOPT_PUT => true,
-                CURLOPT_INFILE => $fp,
-            );
+            $options = [CURLOPT_URL => $url, CURLOPT_PUT => true, CURLOPT_INFILE => $fp];
             // Size
             if ($size !== null) {
                 $options[CURLOPT_INFILESIZE] = $size;
@@ -2005,7 +1871,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
             curl_setopt_array($curl, $options);
 
             //create or update File in the Target
-            $file = json_decode(elFinder::curlExec($curl));
+            $file = json_decode(elFinder::curlExec($curl), null, 512, JSON_THROW_ON_ERROR);
 
             return $this->_joinPath($parent, $file->id);
         } catch (Exception $e) {
@@ -2026,7 +1892,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
         $contents = '';
 
         try {
-            list(, $itemId) = $this->_od_splitPath($path);
+            [, $itemId] = $this->_od_splitPath($path);
             $url = self::API_URL . $itemId . '/content';
             $contents = $this->_od_createCurl($url, $contents = true);
         } catch (Exception $e) {
@@ -2053,7 +1919,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
             if (file_put_contents($local, $content, LOCK_EX) !== false
                 && ($fp = fopen($local, 'rb'))) {
                 clearstatcache();
-                $res = $this->_save($fp, $path, '', array());
+                $res = $this->_save($fp, $path, '', []);
                 fclose($fp);
             }
             file_exists($local) && unlink($local);
@@ -2068,7 +1934,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
     protected function _checkArchivers()
     {
         // die('Not yet implemented. (_checkArchivers)');
-        return array();
+        return [];
     }
 
     /**

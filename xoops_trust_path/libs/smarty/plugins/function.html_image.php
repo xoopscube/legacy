@@ -56,12 +56,12 @@ function smarty_function_html_image($params, &$smarty)
             case 'dpi':
             case 'path_prefix':
             case 'basedir':
-                $$_key = $_val;
+                ${$_key} = $_val;
                 break;
 
             case 'alt':
                 if(!is_array($_val)) {
-                    $$_key = smarty_function_escape_special_chars($_val);
+                    ${$_key} = smarty_function_escape_special_chars($_val);
                 } else {
                     $smarty->trigger_error("html_image: extra attribute '$_key' cannot be an array", E_USER_NOTICE);
                 }
@@ -108,7 +108,7 @@ function smarty_function_html_image($params, &$smarty)
             }
         }
         if ($smarty->security &&
-            ($_params = array('resource_type' => 'file', 'resource_name' => $_image_path)) &&
+            ($_params = ['resource_type' => 'file', 'resource_name' => $_image_path]) &&
             (require_once(SMARTY_CORE_DIR . 'core.is_secure.php')) &&
             (!smarty_core_is_secure($_params, $smarty)) ) {
             $smarty->trigger_error("html_image: (secure) '$_image_path' not in secure directory", E_USER_NOTICE);

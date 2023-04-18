@@ -24,11 +24,11 @@ function smarty_modifier_xoops_user_avatarize($uid, $tag=false, $url=null)
     if (is_object($user) && $user->isActive() && ($user->get('user_avatar') != "blank.gif") && file_exists(XOOPS_UPLOAD_PATH . "/" . $user->get('user_avatar'))) {
         $src = XOOPS_UPLOAD_URL . "/" . $user->getShow('user_avatar');
         $path = XOOPS_UPLOAD_PATH . "/" . $user->getShow('user_avatar');
-        list($width, $height, $type, $attr) = getimagesize($path);
+        [$width, $height, $type, $attr] = getimagesize($path);
     } else {
         $src = XOOPS_URL . "/modules/user/images/no_avatar.gif";
         $path = XOOPS_UPLOAD_PATH . "/modules/user/images/no_avatar.gif";
-        list($width, $height, $type, $attr) = array(80,80,IMAGETYPE_GIF,'');
+        [$width, $height, $type, $attr] = [80, 80, IMAGETYPE_GIF, ''];
     }
 
     if ($tag===true) {

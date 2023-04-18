@@ -16,7 +16,8 @@
  */
 function smarty_function_d3comment($params, &$smarty)
 {
-	$forum_dirpath = XOOPS_TRUST_PATH.'/modules/d3forum' ;
+	$m_params = [];
+ $forum_dirpath = XOOPS_TRUST_PATH.'/modules/d3forum' ;
 	require_once $forum_dirpath.'/class/D3commentObj.class.php' ;
 
 	$mydirname = @$params['mydirname'] ;
@@ -28,11 +29,7 @@ function smarty_function_d3comment($params, &$smarty)
 	}
 	$params['mytrustdirname'] = $mytrustdirname ;
 
-	$class_bases = array(
-		XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/class' ,
-		XOOPS_TRUST_PATH.'/modules/'.$mytrustdirname.'/class' ,
-		XOOPS_TRUST_PATH.'/modules/d3forum/class' ,
-	) ;
+	$class_bases = [XOOPS_ROOT_PATH.'/modules/'.$mydirname.'/class', XOOPS_TRUST_PATH.'/modules/'.$mytrustdirname.'/class', XOOPS_TRUST_PATH.'/modules/d3forum/class'] ;
 
 	foreach( $class_bases as $class_base ) {
 		if( file_exists( $class_base.'/'.$classname.'.class.php' ) ) {

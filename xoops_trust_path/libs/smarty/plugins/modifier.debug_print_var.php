@@ -22,11 +22,7 @@
  */
 function smarty_modifier_debug_print_var($var, $depth = 0, $length = 50)
 {
-    $_replace = array(
-        "\n" => '<i>\n</i>',
-        "\r" => '<i>\r</i>',
-        "\t" => '<i>\t</i>'
-    );
+    $_replace = ["\n" => '<i>\n</i>', "\r" => '<i>\r</i>', "\t" => '<i>\t</i>'];
 
     switch (gettype($var)) {
         case 'array' :

@@ -29,10 +29,10 @@ function smarty_modifier_mb_truncate($string, $length = 80, $etc = '...', $break
 		return '';
 	}
 	$encode = defined('_CHARSET')? _CHARSET : 'UTF-8';
-	
+
 	// decode
-	$string = preg_replace(array("/&gt;/i", "/&lt;/i", "/&quot;/i", "/&#039;/i"), array(">", "<", "\"", "'"), $string);
-	
+	$string = preg_replace(["/&gt;/i", "/&lt;/i", "/&quot;/i", "/&#039;/i"], [">", "<", "\"", "'"], $string);
+
 	if (mb_strlen($string, $encode) > $length) {
 		$length -= mb_strlen($etc, $encode);
 		if (!$break_words && !$middle) {

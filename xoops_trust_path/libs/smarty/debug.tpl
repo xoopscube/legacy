@@ -1,5 +1,5 @@
 {* Smarty *}
-{* debug.tpl, last updated version 2.1.0 *}
+{* debug.tpl, last updated version 2.6.33-dev *}
 {assign_debug_info}
 {capture assign=debug_output}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "https://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">

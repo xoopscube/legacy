@@ -21,6 +21,7 @@
 function smarty_function_eval($params, &$smarty)
 {
 
+    $_var_compiled = null;
     if (!isset($params['var'])) {
         $smarty->trigger_error("eval: missing 'var' parameter");
         return;

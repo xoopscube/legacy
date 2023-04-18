@@ -23,12 +23,12 @@
 function smarty_function_legacy_tag_select($params, &$smarty)
 {
     $tDirname = $params['tDirname'];
-    $dirname = isset($params['dirname']) ? $params['dirname'] : null;
-    $dataname = isset($params['dataname']) ? $params['dataname'] : null;
-    $uidList = isset($params['uidList']) ? $params['uidList'] : null;
-    $tags = isset($params['tags']) ? $params['tags'] : null;    //selected tags
-    $template = isset($params['template']) ? $params['template'] : 'legacy_inc_tag_select.html';
-    $cloud = array();
+    $dirname = $params['dirname'] ?? null;
+    $dataname = $params['dataname'] ?? null;
+    $uidList = $params['uidList'] ?? null;
+    $tags = $params['tags'] ?? null;    //selected tags
+    $template = $params['template'] ?? 'legacy_inc_tag_select.html';
+    $cloud = [];
 
     XCube_DelegateUtils::call('Legacy_Tag.'.$tDirname.'.GetTagCloudSrc',
         new XCube_Ref($cloud),

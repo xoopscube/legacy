@@ -20,10 +20,10 @@
 function smarty_function_legacy_comment($params, &$smarty)
 {
     $cDirname = $params['cDirname'];
-    $dirname = isset($params['dirname']) ? $params['dirname'] : null;
-    $dataname = isset($params['dataname']) ? $params['dataname'] : null;
-    $dataId = isset($params['data_id']) ? $params['data_id'] : 0;
-    $categoryId = isset($params['category_id']) ? $params['category_id'] : 0;
+    $dirname = $params['dirname'] ?? null;
+    $dataname = $params['dataname'] ?? null;
+    $dataId = $params['data_id'] ?? 0;
+    $categoryId = $params['category_id'] ?? 0;
     $comments = null;
 
     XCube_DelegateUtils::call('Legacy_Comment.'.$cDirname.'.GetComments',
@@ -36,7 +36,7 @@ function smarty_function_legacy_comment($params, &$smarty)
         $params
     );
 
-    $template = isset($params['template']) ? $params['template'] : $comments['template'];
+    $template = $params['template'] ?? $comments['template'];
 
     //render template
     $render = new XCube_RenderTarget();

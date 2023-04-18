@@ -42,9 +42,9 @@ function smarty_function_xcck_search_form($params, &$smarty)
 	else{
 		$condition = Xcck_Cond::getValue($params['condition']);
 	}
-	$default = isset($params['default']) ? $params['default'] : null;
+	$default = $params['default'] ?? null;
 	$num = isset($params['num']) ? intval($params['num']) : 0;
-	$option = isset($params['option']) ? $params['option'] : null;
+	$option = $params['option'] ?? null;
 
 	//main
 	switch($def->get('field_type')){
@@ -53,7 +53,7 @@ function smarty_function_xcck_search_form($params, &$smarty)
 	case Xcck_FieldType::URI:
 		$html .= sprintf(_XCCK_TAG_INPUT, $def->get('field_name'), $num, $default, 20);
 		if($condition=='*'){
-			$html .= Xcck_Utils::makeCondSelector($def, $num, array(Xcck_Cond::EQ, Xcck_Cond::NE, Xcck_Cond::LIKE));
+			$html .= Xcck_Utils::makeCondSelector($def, $num, [Xcck_Cond::EQ, Xcck_Cond::NE, Xcck_Cond::LIKE]);
 		}
 		else{
 			$html .= sprintf(_XCCK_TAG_HIDDEN, $def->get('field_name'), $num, $condition);
@@ -63,7 +63,7 @@ function smarty_function_xcck_search_form($params, &$smarty)
 	case Xcck_FieldType::FLOAT:
 		$html .= sprintf(_XCCK_TAG_INPUT, $def->get('field_name'), $num, $default, 5);
 		if($condition=='*'){
-			$html .= Xcck_Utils::makeCondSelector($def, $num, array(Xcck_Cond::EQ, Xcck_Cond::NE, Xcck_Cond::LT, Xcck_Cond::LE, Xcck_Cond::GT, Xcck_Cond::GE));
+			$html .= Xcck_Utils::makeCondSelector($def, $num, [Xcck_Cond::EQ, Xcck_Cond::NE, Xcck_Cond::LT, Xcck_Cond::LE, Xcck_Cond::GT, Xcck_Cond::GE]);
 		}
 		else{
 			$html .= sprintf(_XCCK_TAG_HIDDEN, $def->get('field_name'), $num, $condition);
@@ -81,7 +81,7 @@ function smarty_function_xcck_search_form($params, &$smarty)
 		}
 		elseif(isset($option['yyyy']) || $option['yyyymm']){	//select year
 			$optionHtml = null;
-			$options = isset($option['yyyy']) ? $option['yyyy'] : $option['yyyymm'];
+			$options = $option['yyyy'] ?? $option['yyyymm'];
 			$selected = null;
 			foreach(array_keys($options) as $k){	//$k is value
 				$selected = ($k==$default) ? ' selected="selected"' : null;
@@ -92,7 +92,7 @@ function smarty_function_xcck_search_form($params, &$smarty)
 		}
 	
 		if($condition=='*'){
-			$html .= Xcck_Utils::makeCondSelector($def, $num, array(Xcck_Cond::EQ, Xcck_Cond::LIKE, Xcck_Cond::LE, Xcck_Cond::GE));
+			$html .= Xcck_Utils::makeCondSelector($def, $num, [Xcck_Cond::EQ, Xcck_Cond::LIKE, Xcck_Cond::LE, Xcck_Cond::GE]);
 		}
 		else{
 			$html .= sprintf(_XCCK_TAG_HIDDEN, $def->get('field_name'), $num, $condition);
@@ -118,7 +118,7 @@ function smarty_function_xcck_search_form($params, &$smarty)
 		$category = Xcck_Utils::getAccessController($def->getDirname());
 		XCube_DelegateUtils::call('Legacy_Category.'.$category->dirname().'.GetTree', new XCube_Ref($tree));
 		require_once "function.legacy_category_select.php";
-		$params =array('tree'=>$tree);
+		$params =['tree'=>$tree];
 		$html .= smarty_function_legacy_category_select($params, null);
 		$html .= sprintf(_XCCK_TAG_HIDDEN, $def->get('field_name'), $num, $condition);
 		break;

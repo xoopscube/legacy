@@ -18,7 +18,7 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
      */
     public function __construct()
     {
-        $opts = array(
+        $opts = [
             'host' => 'localhost',
             'user' => '',
             'pass' => '',
@@ -30,16 +30,17 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
             'tmpPath' => '',
             'separator' => '/',
             'phpseclibDir' => '../phpseclib/',
-            'connectCallback' => null, //provide your own already instantiated phpseclib $Sftp object returned by this callback
-                                       //'connectCallback'=> function($options) {
-                                       //     //load and instantiate phpseclib $sftp
-                                       //     return $sftp;
-                                       // },
+            'connectCallback' => null,
+            //provide your own already instantiated phpseclib $Sftp object returned by this callback
+            //'connectCallback'=> function($options) {
+            //     //load and instantiate phpseclib $sftp
+            //     return $sftp;
+            // },
             'checkSubfolders' => -1,
             'dirMode' => 0755,
             'fileMode' => 0644,
             'rootCssClass' => 'elfinder-navbar-root-ftp',
-        );
+        ];
         $this->options = array_merge($this->options, $opts);
         $this->options['mimeDetect'] = 'internal';
     }
@@ -86,7 +87,7 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
             }
 
             // make net mount key
-            $this->netMountKey = md5(join('-', array('sftpphpseclib', $this->options['host'], $this->options['port'], $this->options['path'], $this->options['user'])));
+            $this->netMountKey = md5(join('-', ['sftpphpseclib', $this->options['host'], $this->options['port'], $this->options['path'], $this->options['user']]));
 
             set_include_path(get_include_path() . PATH_SEPARATOR . getcwd().'/'.$this->options['phpseclibDir']);
             include_once('Net/SFTP.php');
@@ -103,7 +104,7 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
             }
         } else {
             // make net mount key
-            $this->netMountKey = md5(join('-', array('sftpphpseclib', $this->options['path'])));
+            $this->netMountKey = md5(join('-', ['sftpphpseclib', $this->options['path']]));
         }
 
         // normalize root path
@@ -239,7 +240,7 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
     protected function parseRaw($raw, $base, $nameOnly = false)
     {
         $info = $raw;
-        $stat = array();
+        $stat = [];
 
         if ($info['filename'] == '.' || $info['filename'] == '..') {
             return false;
@@ -251,7 +252,7 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
             $name = trim($m[1]);
             // check recursive processing
             if ($this->cacheDirTarget && $this->_joinPath($base, $name) !== $this->cacheDirTarget) {
-                return array();
+                return [];
             }
             if (!$nameOnly) {
                 $target = trim($m[2]);
@@ -266,7 +267,7 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
         }
 
         if ($nameOnly) {
-            return array('name' => $name);
+            return ['name' => $name];
         }
 
         $stat['ts'] = $info['mtime'];
@@ -275,10 +276,10 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
             $stat['owner'] = $info['uid'];
             $stat['group'] = $info['gid'];
             $stat['perm'] = $info['permissions'];
-            $stat['isowner'] = isset($stat['owner']) ? ($this->options['owner'] ? true : ($stat['owner'] == $this->options['user'])) : true;
+            $stat['isowner'] = isset($stat['owner']) ? ($this->options['owner'] ? true : $stat['owner'] == $this->options['user']) : true;
         }
 
-        $owner_computed = isset($stat['isowner']) ? $stat['isowner'] : $this->options['owner'];
+        $owner_computed = $stat['isowner'] ?? $this->options['owner'];
         $perm = $this->parsePermissions($info['permissions'], $owner_computed);
         $stat['name'] = $name;
         $stat['mime'] = $info['type'] == NET_SFTP_TYPE_DIRECTORY ? 'directory' : $this->mimetype($stat['name'], true);
@@ -308,10 +309,7 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
         $permissions = decoct($permissions);
         $perm = $isowner ? decbin($permissions[-3]) : decbin($permissions[-1]);
 
-        return array(
-            'read' => $perm[-3],
-            'write' => $perm[-2]
-        );
+        return ['read' => $perm[-3], 'write' => $perm[-2]];
     }
 
     /**
@@ -324,10 +322,10 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
      **/
     protected function cacheDir($path)
     {
-        $this->dirsCache[$path] = array();
+        $this->dirsCache[$path] = [];
         $hasDir = false;
 
-        $list = array();
+        $list = [];
         $encPath = $this->convEncIn($path);
         foreach ($this->ftpRawList($encPath) as $raw) {
             if (($stat = $this->parseRaw($raw, $encPath))) {
@@ -336,7 +334,7 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
         }
         $list = $this->convEncOut($list);
         $prefix = ($path === $this->separator) ? $this->separator : $path . $this->separator;
-        $targets = array();
+        $targets = [];
         foreach ($list as $stat) {
             $p = $prefix . $stat['name'];
             if (isset($stat['target'])) {
@@ -354,7 +352,7 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
         }
         // stat link targets
         foreach ($targets as $name => $target) {
-            $stat = array();
+            $stat = [];
             $stat['name'] = $name;
             $p = $prefix . $name;
             $cacheDirTarget = $this->cacheDirTarget;
@@ -436,16 +434,9 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
             $this->convEncIn();
         }
         if ($path === $this->root) {
-            $res = array(
-                'name' => $this->root,
-                'mime' => 'directory',
-                'dirs' => -1
-            );
+            $res = ['name' => $this->root, 'mime' => 'directory', 'dirs' => -1];
             if ($this->needOnline && (($this->ARGS['cmd'] === 'open' && $this->ARGS['target'] === $this->encode($this->root)) || $this->isMyReload())) {
-                $check = array(
-                    'ts' => true,
-                    'dirs' => true,
-                );
+                $check = ['ts' => true, 'dirs' => true];
                 $ts = 0;
                 foreach ($this->ftpRawList($path) as $str) {
                     $info = preg_split('/\s+/', $str, 9);
@@ -496,10 +487,10 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
             }
         }
 
-        $stat = $this->convEncIn(isset($this->cache[$outPath]) ? $this->cache[$outPath] : array());
+        $stat = $this->convEncIn($this->cache[$outPath] ?? []);
         if (!$this->mounted) {
             // dispose incomplete cache made by calling `stat` by 'startPath' option
-            $this->cache = array();
+            $this->cache = [];
         }
 
         return $stat;
@@ -804,7 +795,7 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
     protected function ftp_scan_dir($remote_directory, $targets = null)
     {
         $buff = $this->ftpRawList($remote_directory);
-        $items = array();
+        $items = [];
         if ($targets && is_array($targets)) {
             $targets = array_flip($targets);
         } else {
@@ -817,7 +808,7 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
                     case NET_SFTP_TYPE_SYMLINK : //omit symbolic links
                     case NET_SFTP_TYPE_DIRECTORY :
                         $remote_file_path = $this->_joinPath($remote_directory, $name);
-                        $item = array();
+                        $item = [];
                         $item['path'] = $remote_file_path;
                         $item['type'] = 'd'; // normal file
                         $items[] = $item;
@@ -825,7 +816,7 @@ class elFinderVolumeSFTPphpseclib extends elFinderVolumeFTP {
                         break;
                     default:
                         $remote_file_path = $this->_joinPath($remote_directory, $name);
-                        $item = array();
+                        $item = [];
                         $item['path'] = $remote_file_path;
                         $item['type'] = 'f'; // normal file
                         $items[] = $item;

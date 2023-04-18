@@ -30,7 +30,7 @@ class elFinderSession implements elFinderSessionInterface
      *
      * @var        array
      */
-    protected $keys = array();
+    protected $keys = [];
 
     /**
      * Is enabled base64encode
@@ -44,14 +44,7 @@ class elFinderSession implements elFinderSessionInterface
      *
      * @var        array
      */
-    protected $opts = array(
-        'base64encode' => false,
-        'keys' => array(
-            'default' => 'elFinderCaches',
-            'netvolume' => 'elFinderNetVolumes'
-        ),
-        'cookieParams' => array()
-    );
+    protected $opts = ['base64encode' => false, 'keys' => ['default' => 'elFinderCaches', 'netvolume' => 'elFinderNetVolumes'], 'cookieParams' => []];
 
     /**
      * Constractor
@@ -122,7 +115,7 @@ class elFinderSession implements elFinderSessionInterface
      */
     public function start()
     {
-        set_error_handler(array($this, 'session_start_error'), E_NOTICE | E_WARNING);
+        set_error_handler([$this, 'session_start_error'], E_NOTICE | E_WARNING);
 
         // apache2 SAPI has a bug of session cookie register
         // see https://bugs.php.net/bug.php?id=75554
@@ -160,7 +153,7 @@ class elFinderSession implements elFinderSessionInterface
     {
         $session = null;
         if ($this->started) {
-            list($cat, $name) = array_pad(explode('.', $key, 2), 2, null);
+            [$cat, $name] = array_pad(explode('.', $key, 2), 2, null);
             if (is_null($name)) {
                 if (!isset($this->keys[$cat])) {
                     $name = $cat;
@@ -180,7 +173,7 @@ class elFinderSession implements elFinderSessionInterface
                 $session =& $_SESSION[$cat];
             } else {
                 if (!isset($_SESSION[$cat]) || !is_array($_SESSION[$cat])) {
-                    $_SESSION[$cat] = array();
+                    $_SESSION[$cat] = [];
                 }
                 if (!isset($_SESSION[$cat][$name])) {
                     $_SESSION[$cat][$name] = null;
@@ -227,9 +220,9 @@ class elFinderSession implements elFinderSessionInterface
                     $cParm = array_merge($cParm, $this->opts['cookieParams']);
                 }
                 if (version_compare(PHP_VERSION, '7.3', '<')) {
-                    setcookie(session_name(), session_id(), 0, $cParm['path'] . (!empty($cParm['SameSite'])? '; SameSite=' . $cParm['SameSite'] : ''), $cParm['domain'], $cParm['secure'], $cParm['httponly']);
+                    setcookie(session_name(), session_id(), ['expires' => 0, 'path' => $cParm['path'] . (!empty($cParm['SameSite'])? '; SameSite=' . $cParm['SameSite'] : ''), 'domain' => $cParm['domain'], 'secure' => $cParm['secure'], 'httponly' => $cParm['httponly']]);
                 } else {
-                    $allows = array('expires' => true, 'path' => true, 'domain' => true, 'secure' => true, 'httponly' => true, 'samesite' => true);
+                    $allows = ['expires' => true, 'path' => true, 'domain' => true, 'secure' => true, 'httponly' => true, 'samesite' => true];
                     foreach(array_keys($cParm) as $_k) {
                         if (!isset($allows[$_k])) {
                             unset($cParm[$_k]);
@@ -295,7 +288,7 @@ class elFinderSession implements elFinderSessionInterface
             $this->start();
         }
 
-        list($cat, $name) = array_pad(explode('.', $key, 2), 2, null);
+        [$cat, $name] = array_pad(explode('.', $key, 2), 2, null);
         if (is_null($name)) {
             if (!isset($this->keys[$cat])) {
                 $name = $cat;

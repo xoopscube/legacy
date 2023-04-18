@@ -19,13 +19,14 @@
  */
 function smarty_function_legacy_map_edit($params, &$smarty)
 {
-    $dirname = isset($params['dirname']) ? $params['dirname'] : null;
-    $dataname = isset($params['dataname']) ? $params['dataname'] : null;
-    $dataId = isset($params['data_id']) ? $params['data_id'] : null;
-    $addressId = isset($params['geocode']) ? $params['geocode'] : null;
-    $template = isset($params['template']) ? $params['template'] : 'legacy_inc_map_edit.html';
+    $geocode = null;
+    $dirname = $params['dirname'] ?? null;
+    $dataname = $params['dataname'] ?? null;
+    $dataId = $params['data_id'] ?? null;
+    $addressId = $params['geocode'] ?? null;
+    $template = $params['template'] ?? 'legacy_inc_map_edit.html';
 
-    $places = array();
+    $places = [];
     XCube_DelegateUtils::call('Legacy_Map.GetPlaces',
         new XCube_Ref($places),
         $dirname,
@@ -39,7 +40,7 @@ function smarty_function_legacy_map_edit($params, &$smarty)
 
     $request = null;
     if(isset($latitude) && isset($longitude)){
-        $request = array('latitude'=>$latitude, 'longitude'=>$longitude, 'zoom'=>10);
+        $request = ['latitude'=>$latitude, 'longitude'=>$longitude, 'zoom'=>10];
     }
 
     //render template

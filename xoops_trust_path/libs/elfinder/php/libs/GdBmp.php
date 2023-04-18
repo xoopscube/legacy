@@ -143,6 +143,15 @@ class elFinderLibGdBmp
 
     public static function loadFromStreamAndFileHeader($stream, array $bitmap_file_header)
     {
+        $red_mask = null;
+        $green_mask = null;
+        $blue_mask = null;
+        $width = null;
+        $height = null;
+        $planes = null;
+        $alpha_mask = null;
+        $size_image = null;
+        $bit_count = null;
         if ($bitmap_file_header["type"] != 0x4d42) {
             return false;
         }
@@ -152,7 +161,7 @@ class elFinderLibGdBmp
         if ($buf === false) {
             return false;
         }
-        list(, $header_size) = unpack("V", $buf);
+        [, $header_size] = unpack("V", $buf);
 
 
         if ($header_size == 12) {
@@ -228,8 +237,8 @@ class elFinderLibGdBmp
             //自分でファイルサイズを元に逆算することで回避できることもあるので再計算できそうなら正当性を調べる
             //シークできないストリームの場合全体のファイルサイズは取得できないので、$bitmap_file_headerにサイズ申告がなければやらない
             if ($bitmap_file_header["size"] != 0) {
-                $colorsize = $bit_count == 1 || $bit_count == 4 || $bit_count == 8 ? ($clr_used ? $clr_used : pow(2, $bit_count)) << 2 : 0;
-                $bodysize = $size_image ? $size_image : ((($width * $bit_count + 31) >> 3) & ~3) * abs($height);
+                $colorsize = $bit_count == 1 || $bit_count == 4 || $bit_count == 8 ? ($clr_used ?: 2 ** $bit_count) << 2 : 0;
+                $bodysize = $size_image ?: ((($width * $bit_count + 31) >> 3) & ~3) * abs($height);
                 $calcsize = $bitmap_file_header["size"] - $bodysize - $colorsize - 14;
 
                 //本来であれば一致するはずなのに合わない時は、値がおかしくなさそうなら（BITMAPV5HEADERの範囲内なら）計算して求めた値を採用する
@@ -320,8 +329,8 @@ class elFinderLibGdBmp
 
             //画像データの前にパレットデータがあるのでパレットを作成する
             $palette_size = $header_size == 12 ? 3 : 4; //OS/2形式の場合は x に相当する箇所のデータは最初から確保されていない
-            $colors = $clr_used ? $clr_used : pow(2, $bit_count); //色数
-            $palette = array();
+            $colors = $clr_used ?: 2 ** $bit_count; //色数
+            $palette = [];
             for ($i = 0; $i < $colors; ++$i) {
                 $buf = fread($stream, $palette_size);
                 if ($buf === false) {
@@ -379,12 +388,12 @@ class elFinderLibGdBmp
                                         imagedestroy($img);
                                         return false;
                                     }
-                                    list(, $xx, $yy) = unpack("C2", $buf);
+                                    [, $xx, $yy] = unpack("C2", $buf);
                                     $x += $xx;
                                     $y += $yy * $line_step;
                                     break;
                                 default:     //ABS
-                                    list(, $pixels) = unpack("C", $buf);
+                                    [, $pixels] = unpack("C", $buf);
                                     $bytes = ($pixels >> $qrt_mod2) + ($pixels & $qrt_mod2);
                                     $buf = fread($stream, ($bytes + 1) & ~1);
                                     if ($buf === false) {
@@ -392,7 +401,7 @@ class elFinderLibGdBmp
                                         return false;
                                     }
                                     for ($i = 0, $pos = 0; $i < $pixels; ++$i, ++$x, $pos += $bit_count) {
-                                        list(, $c) = unpack("C", $buf[$pos >> 3]);
+                                        [, $c] = unpack("C", $buf[$pos >> 3]);
                                         $b = $pos & 0x07;
                                         imagesetpixel($img, $x, $y, $palette[($c & ($mask >> $b)) >> ($shift_base - $b)]);
                                     }
@@ -405,7 +414,7 @@ class elFinderLibGdBmp
                                 imagedestroy($img);
                                 return false;
                             }
-                            list(, $size, $c) = unpack("C2", $buf . $buf2);
+                            [, $size, $c] = unpack("C2", $buf . $buf2);
                             for ($i = 0, $pos = 0; $i < $size; ++$i, ++$x, $pos += $bit_count) {
                                 $b = $pos & 0x07;
                                 imagesetpixel($img, $x, $y, $palette[($c & ($mask >> $b)) >> ($shift_base - $b)]);
@@ -423,7 +432,7 @@ class elFinderLibGdBmp
 
                     $pos = 0;
                     for ($x = 0; $x < $width; ++$x, $pos += $bit_count) {
-                        list(, $c) = unpack("C", $buf[$pos >> 3]);
+                        [, $c] = unpack("C", $buf[$pos >> 3]);
                         $b = $pos & 0x7;
                         imagesetpixel($img, $x, $y, $palette[($c & ($mask >> $b)) >> ($shift_base - $b)]);
                     }
@@ -454,7 +463,7 @@ class elFinderLibGdBmp
 
                 $pos = 0;
                 for ($x = 0; $x < $width; ++$x, $pos += $pixel_step) {
-                    list(, $c) = unpack("V", substr($buf, $pos, $pixel_step) . "\x00\x00");
+                    [, $c] = unpack("V", substr($buf, $pos, $pixel_step) . "\x00\x00");
                     $a_masked = $c & $alpha_mask;
                     $r_masked = $c & $red_mask;
                     $g_masked = $c & $green_mask;

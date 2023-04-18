@@ -20,7 +20,7 @@ function smarty_function_message_userlist($params, &$smarty)
     $sql.= "WHERE `uid` <> ".$root->mContext->mXoopsUser->get('uid'). " ";
     $sql.= "ORDER BY `uname`";
     $result = $db->query($sql);
-    while (list($uname, $uid) = $db->fetchRow($result)) {
+    while ([$uname, $uid] = $db->fetchRow($result)) {
         $uname = htmlspecialchars($uname, ENT_QUOTES);
         $option.= '<option value="';
         $option.= $buid ? $uid : $uname;

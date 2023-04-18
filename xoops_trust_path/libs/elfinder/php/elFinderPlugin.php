@@ -15,7 +15,7 @@ class elFinderPlugin
      *
      * @var array
      */
-    protected $opts = array();
+    protected $opts = [];
 
     /**
      * Get current volume's options
@@ -54,7 +54,7 @@ class elFinderPlugin
         // check post var 'contentSaveId' to disable this plugin
         if ($elfinder && !empty($opts['disableWithContentSaveId'])) {
             $session = $elfinder->getSession();
-            $urlContentSaveIds = $session->get('urlContentSaveIds', array());
+            $urlContentSaveIds = $session->get('urlContentSaveIds', []);
             if (!empty(elFinder::$currentArgs['contentSaveId']) && ($contentSaveId = elFinder::$currentArgs['contentSaveId'])) {
                 if (!empty($urlContentSaveIds[$contentSaveId])) {
                     $elfinder->removeUrlContentSaveId($contentSaveId);
@@ -69,7 +69,7 @@ class elFinderPlugin
                 $onDropWith = $opts['onDropWith'];
                 $action = (int)$_REQUEST['dropWith'];
                 if (!is_array($onDropWith)) {
-                    $onDropWith = array($onDropWith);
+                    $onDropWith = [$onDropWith];
                 }
                 foreach ($onDropWith as $key) {
                     $key = (int)$key;
@@ -86,7 +86,7 @@ class elFinderPlugin
             $offDropWith = $opts['offDropWith'];
             $action = (int)$_REQUEST['dropWith'];
             if (!is_array($offDropWith)) {
-                $offDropWith = array($offDropWith);
+                $offDropWith = [$offDropWith];
             }
             $res = true;
             foreach ($offDropWith as $key) {

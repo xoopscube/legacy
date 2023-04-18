@@ -22,7 +22,7 @@
  * smarty-discussion-subscribe@googlegroups.com 
  *
  * @link https://www.smarty.net/
- * @version 2.6.25-dev
+ * @version 2.6.33-dev
  * @copyright Copyright: 2001-2005 New Digital Group, Inc.
  * @author Andrei Zmievski <andrei@php.net>
  * @access public
@@ -51,29 +51,29 @@ class Config_File {
     /**
      * Controls whether variables with the same name overwrite each other.
      */
-    var $overwrite        =    true;
+    public $overwrite        =    true;
 
     /**
      * Controls whether config values of on/true/yes and off/false/no get
      * converted to boolean values automatically.
      */
-    var $booleanize        =    true;
+    public $booleanize        =    true;
 
     /**
      * Controls whether hidden config sections/vars are read from the file.
      */
-    var $read_hidden     =    true;
+    public $read_hidden     =    true;
 
     /**
      * Controls whether or not to fix mac or dos formatted newlines.
      * If set to true, \r or \r\n will be changed to \n.
      */
-    var $fix_newlines =    true;
+    public $fix_newlines =    true;
     /**#@-*/
 
     /** @access private */
-    var $_config_path    = "";
-    var $_config_data    = array();
+    public $_config_path    = "";
+    public $_config_data    = [];
     /**#@-*/
 
     /**
@@ -135,7 +135,7 @@ class Config_File {
                 if(isset($this->_config_data[$file_name]["sections"][$section_name]["vars"][$var_name]))
                     return $this->_config_data[$file_name]["sections"][$section_name]["vars"][$var_name];
                 else
-                    return array();
+                    return [];
             }
         } else {
             if (empty($section_name)) {
@@ -144,7 +144,7 @@ class Config_File {
                 if(isset($this->_config_data[$file_name]["sections"][$section_name]["vars"]))
                     return (array)$this->_config_data[$file_name]["sections"][$section_name]["vars"];
                 else
-                    return array();
+                    return [];
             }
         }
     }
@@ -159,7 +159,7 @@ class Config_File {
      */
     function &get_key($config_key)
     {
-        list($file_name, $section_name, $var_name) = explode('/', $config_key, 3);
+        [$file_name, $section_name, $var_name] = explode('/', $config_key, 3);
         $result = &$this->get($file_name, $section_name, $var_name);
         return $result;
     }
@@ -225,9 +225,9 @@ class Config_File {
     function clear($file_name = NULL)
     {
         if ($file_name === NULL)
-            $this->_config_data = array();
+            $this->_config_data = [];
         else if (isset($this->_config_data[$file_name]))
-            $this->_config_data[$file_name] = array();
+            $this->_config_data[$file_name] = [];
     }
 
 
@@ -283,9 +283,9 @@ class Config_File {
             $contents = preg_replace('!\r\n?!', "\n", $contents);
         }
 
-        $config_data = array();
-        $config_data['sections'] = array();
-        $config_data['vars'] = array();
+        $config_data = [];
+        $config_data['sections'] = [];
+        $config_data['vars'] = [];
 
         /* reference to fill with data */
         $vars =& $config_data['vars'];
@@ -293,7 +293,7 @@ class Config_File {
         /* parse file line by line */
         preg_match_all('!^.*\r?\n?!m', $contents, $match);
         $lines = $match[0];
-        for ($i=0, $count=count($lines); $i<$count; $i++) {
+        for ($i=0, $count=is_countable($lines) ? count($lines) : 0; $i<$count; $i++) {
             $line = $lines[$i];
             if (empty($line)) continue;
 
@@ -306,14 +306,14 @@ class Config_File {
                     } else {
                         /* break reference to $vars to ignore hidden section */
                         unset($vars);
-                        $vars = array();
+                        $vars = [];
                         continue;
                     }
                 } else {                    
                     $section_name = $match[1];
                 }
                 if (!isset($config_data['sections'][$section_name]))
-                    $config_data['sections'][$section_name] = array('vars' => array());
+                    $config_data['sections'][$section_name] = ['vars' => []];
                 $vars =& $config_data['sections'][$section_name]['vars'];
                 continue;
             }

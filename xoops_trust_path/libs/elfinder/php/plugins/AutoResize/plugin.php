@@ -64,19 +64,27 @@ class elFinderPluginAutoResize extends elFinderPlugin
 
     public function __construct($opts)
     {
-        $defaults = array(
-            'enable' => true,       // For control by volume driver
-            'maxWidth' => 1024,       // Path to Water mark image
-            'maxHeight' => 1024,       // Margin right pixel
-            'quality' => 95,         // JPEG image save quality
-            'preserveExif' => false,      // Preserve EXIF data (Imagick only)
-            'forceEffect' => false,      // For change quality or make progressive JPEG of small images
-            'targetType' => IMG_GIF | IMG_JPG | IMG_PNG | IMG_WBMP, // Target image formats ( bit-field )
-            'offDropWith' => null,       // To disable it if it is dropped with pressing the meta key
+        $defaults = [
+            'enable' => true,
+            // For control by volume driver
+            'maxWidth' => 1024,
+            // Path to Water mark image
+            'maxHeight' => 1024,
+            // Margin right pixel
+            'quality' => 95,
+            // JPEG image save quality
+            'preserveExif' => false,
+            // Preserve EXIF data (Imagick only)
+            'forceEffect' => false,
+            // For change quality or make progressive JPEG of small images
+            'targetType' => IMG_GIF | IMG_JPG | IMG_PNG | IMG_WBMP,
+            // Target image formats ( bit-field )
+            'offDropWith' => null,
+            // To disable it if it is dropped with pressing the meta key
             // Alt: 8, Ctrl: 4, Meta: 2, Shift: 1 - sum of each value
             // In case of using any key, specify it as an array
-            'disableWithContentSaveId' => true // Disable on URL upload with post data "contentSaveId"
-        );
+            'disableWithContentSaveId' => true,
+        ];
 
         $this->opts = array_merge($defaults, $opts);
 
@@ -116,13 +124,7 @@ class elFinderPluginAutoResize extends elFinderPlugin
         }
 
         // check target image type
-        $imgTypes = array(
-            IMAGETYPE_GIF => IMG_GIF,
-            IMAGETYPE_JPEG => IMG_JPEG,
-            IMAGETYPE_PNG => IMG_PNG,
-            IMAGETYPE_BMP => IMG_WBMP,
-            IMAGETYPE_WBMP => IMG_WBMP
-        );
+        $imgTypes = [IMAGETYPE_GIF => IMG_GIF, IMAGETYPE_JPEG => IMG_JPEG, IMAGETYPE_PNG => IMG_PNG, IMAGETYPE_BMP => IMG_WBMP, IMAGETYPE_WBMP => IMG_WBMP];
         if (!isset($imgTypes[$imageType]) || !($opts['targetType'] & $imgTypes[$imageType])) {
             return false;
         }
