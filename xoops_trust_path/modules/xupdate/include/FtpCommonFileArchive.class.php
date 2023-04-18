@@ -187,7 +187,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 				ZIPARCHIVE::ER_READ   => 'ER_READ',
 				ZIPARCHIVE::ER_SEEK   => 'ER_SEEK'
 			];
-			$this->_set_error_log( $e->getMessage() . ( in_array( $result, $zip_open_error_arr ) ? f : 'undefine' ) );
+			$this->_set_error_log( $e->getMessage() . ( in_array( $result, $zip_open_error_arr ) ? \F : 'undefine' ) );
 
 			return false;
 		}

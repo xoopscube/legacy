@@ -48,7 +48,7 @@ class Xupdate_StoreHandler extends XoopsObjectGenericHandler {
 	/*** string ***/
 	public $mClass = 'Xupdate_StoreObject';
 
-	private $cacheCheckFile;
+	private string $cacheCheckFile;
 
 	/**
 	 * __construct

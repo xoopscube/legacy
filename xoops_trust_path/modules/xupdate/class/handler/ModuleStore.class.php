@@ -21,8 +21,8 @@ if ( ! defined( 'XOOPS_ROOT_PATH' ) ) {
  */
 class Xupdate_ModuleStore extends Legacy_AbstractObject {
 
-	const PRIMARY = 'id';
-	const DATANAME = 'modulestore';
+	public const PRIMARY = 'id';
+	public const DATANAME = 'modulestore';
 
 	public $mModule;
 	public $modinfo = [];
@@ -66,7 +66,7 @@ class Xupdate_ModuleStore extends Legacy_AbstractObject {
 	}
 
 	public function assignVars( $item ) {
-		$tag = isset( $item['tag'] ) ? $item['tag'] : '';
+		$tag = $item['tag'] ?? '';
 		unset( $item['tag'] );
 		$res            = parent::assignVars( $item );
 		$this->mDirname = 'xupdate';
@@ -593,7 +593,7 @@ class Xupdate_ModuleStoreHandler extends Legacy_AbstractClientObjectHandler {
 		$criteria->setGroupby( 'dirname' );
 		$mObjects = parent::getObjects( $criteria );
 
-		return count( $mObjects );
+		return is_countable($mObjects) ? count( $mObjects ) : 0;
 	}
 
 	/**

@@ -25,7 +25,7 @@ class Xupdate_Updater {
 	public $mLog = null;
 
 	/*** string[] ***/
-	private $_mMileStone = [
+	private array $_mMileStone = [
 		'006' => 'update006',
 		'011' => 'update011',
 		'022' => 'update022',
@@ -42,10 +42,10 @@ class Xupdate_Updater {
 	private $_mCurrentVersion = 0;
 
 	/*** int ***/
-	private $_mTargetVersion = 0;
+	private int $_mTargetVersion = 0;
 
 	/*** bool ***/
-	private $_mForceMode = false;
+	private bool $_mForceMode = false;
 
 	private function update006() {
 		$this->mLog->addReport( 'DB upgrade start (for Ver 0.06)' );

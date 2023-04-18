@@ -45,12 +45,12 @@ class Xupdate_Ftp_Abstract {
 	/* Public variables */
 	protected $LocalEcho;
 	protected $Verbose;
-	protected $OS_local;
-	protected $OS_remote;
+	protected $OS_local = FTP_OS_Unix;
+	protected $OS_remote = FTP_OS_Unix;
 	public $exploredDirPath;
 
 	/* Private variables */
-	protected $_lastaction;
+	protected $_lastaction = null;
 	protected $_errors;
 	protected $_type;
 	protected $_umask;
@@ -64,45 +64,25 @@ class Xupdate_Ftp_Abstract {
 	protected $_ftp_control_sock;
 	protected $_ftp_data_sock;
 	protected $_ftp_temp_sock;
-	protected $_ftp_buff_size;
-	protected $_login;
-	protected $_password;
-	protected $_connected;
-	protected $_ready;
-	protected $_code;
-	protected $_message;
-	protected $_can_restore;
+	protected $_ftp_buff_size = 4096;
+	protected $_login = 'anonymous';
+	protected $_password = 'anon@ftp.com';
+	protected $_connected = false;
+	protected $_ready = false;
+	protected $_code = 0;
+	protected $_message = '';
+	protected $_can_restore = false;
 	protected $_port_available;
-	protected $_curtype;
-	protected $_features;
+	protected $_curtype = null;
+	protected $_features = [];
 
 	protected $_conn_id; // connection id stream on PHP_FTP
 
-	protected $_error_array;
-	protected $AuthorizedTransferMode;
+	protected $_error_array = [];
+	protected $AuthorizedTransferMode = [ FTP_AUTOASCII, FTP_ASCII, FTP_BINARY ];
 	protected $OS_FullName;
 	protected $_eol_code;
-	protected $AutoAsciiExt;
-
-	protected $mes = '';
-
-	protected $item_options;
-	protected $no_overwrite;
-
-	/* Constructor */
-	public function __construct( $XupdateObj, $verb = false, $le = false, $port_mode = false ) {
-		// ToDo Cube流に直し
-		$this->XupdateObj =& $XupdateObj;
-		$this->mod_config =& $this->XupdateObj->mod_config;
-
-		$this->LocalEcho              = $le;
-		$this->Verbose                = $verb;
-		$this->_lastaction            = null;
-		$this->_error_array           = [];
-		$this->_eol_code              = [ FTP_OS_Unix => "\n", FTP_OS_Mac => "\r", FTP_OS_Windows => "\r\n" ];
-		$this->AuthorizedTransferMode = [ FTP_AUTOASCII, FTP_ASCII, FTP_BINARY ];
-		$this->OS_FullName            = [ FTP_OS_Unix => 'UNIX', FTP_OS_Windows => 'WINDOWS', FTP_OS_Mac => 'MACOS' ];
-		$this->AutoAsciiExt           = [
+	protected $AutoAsciiExt = [
 			'ASP',
 			'BAT',
 			'C',
@@ -124,24 +104,27 @@ class Xupdate_Ftp_Abstract {
 			'SQL',
 			'TXT'
 		];
+
+	protected $mes = '';
+
+	protected $item_options;
+	protected $no_overwrite;
+
+	/* Constructor */
+	public function __construct( $XupdateObj, $verb = false, $le = false, $port_mode = false ) {
+		// ToDo Cube流に直し
+		$this->XupdateObj =& $XupdateObj;
+		$this->mod_config =& $this->XupdateObj->mod_config;
+
+		$this->LocalEcho              = $le;
+		$this->Verbose                = $verb;
+		$this->_eol_code              = [ FTP_OS_Unix => "\n", FTP_OS_Mac => "\r", FTP_OS_Windows => "\r\n" ];
+		$this->OS_FullName            = [ FTP_OS_Unix => 'UNIX', FTP_OS_Windows => 'WINDOWS', FTP_OS_Mac => 'MACOS' ];
 		$this->_port_available        = ( true == $port_mode );
 		$this->SendMSG( 'Staring FTP client class' . ( $this->_port_available ? '' : ' without PORT mode support' ) );
-		$this->_connected     = false;
-		$this->_ready         = false;
-		$this->_can_restore   = false;
-		$this->_code          = 0;
-		$this->_message       = '';
-		$this->_ftp_buff_size = 4096;
-		$this->_curtype       = null;
 		$this->SetUmask( 0022 );
 		$this->SetType( FTP_AUTOASCII );
 		$this->SetTimeout( 30 );
-		//$this->Passive(!$this->_port_available);
-		$this->_login    = 'anonymous';
-		$this->_password = 'anon@ftp.com';
-		$this->_features = [];
-		$this->OS_local  = FTP_OS_Unix;
-		$this->OS_remote = FTP_OS_Unix;
 		$this->features  = [];
 		if ( 'WIN' === strtoupper( substr( PHP_OS, 0, 3 ) ) ) {
 			$this->OS_local = FTP_OS_Windows;

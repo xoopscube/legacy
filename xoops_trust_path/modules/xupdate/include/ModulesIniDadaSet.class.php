@@ -20,7 +20,7 @@ if ( ! defined( 'XOOPS_ROOT_PATH' ) ) {
 
 class Xupdate_ModulesIniDadaSet {
 	// language file mapping array [from => to]
-	private $lang_mapping = [
+	private array $lang_mapping = [
 		'japanese' => 'ja_utf8'
 	];
 
@@ -31,12 +31,12 @@ class Xupdate_ModulesIniDadaSet {
 	public $modHand;
 
 	public $stores = [];
-	private $approved = [];
-	private $master = [];
-	private $_mCategory = [];
-	private $allCallers = [ 'module', 'theme', 'package', 'preload' ];
-	private $cacheTTL = 300; // 5min
-	private $itemArrayKeys = [
+	private array $approved = [];
+	private array $master = [];
+	private array $_mCategory = [];
+	private array $allCallers = [ 'module', 'theme', 'package', 'preload' ];
+	private int $cacheTTL = 300; // 5min
+	private array $itemArrayKeys = [
 		'id',
 		'dirname',
 		'trust_dirname',
@@ -60,7 +60,7 @@ class Xupdate_ModulesIniDadaSet {
 
 	private $mTagModule;
 
-	private $disabled_items = [];
+	private array $disabled_items = [];
 
 	protected $mSiteObjects = [];
 	protected $mSiteItemArray = [];
@@ -85,7 +85,7 @@ class Xupdate_ModulesIniDadaSet {
 			$_disabled = preg_split( '/[\r\n]+/', $root->mContext->mModuleConfig['disabled_items'] );
 			foreach ( $_disabled as $_line ) {
 				$_line = trim( $_line );
-				list( $_sid, $_key ) = array_pad( preg_split( '/\s*:\s*/', $_line ), 2, '' );
+				[$_sid, $_key] = array_pad( preg_split( '/\s*:\s*/', $_line ), 2, '' );
 				if ( $_sid && $_key ) {
 					$this->disabled_items[ $_sid . ':' . $_key ] = true;
 				}
@@ -167,12 +167,13 @@ class Xupdate_ModulesIniDadaSet {
 	}
 
 	private function _setupStores() {
-		$downloadedFilePath = $this->_getDownloadedFilePath();
+		$stores_json = null;
+  $downloadedFilePath = $this->_getDownloadedFilePath();
 		if ( $downloadedFilePath && ! $stores_json = @ file_get_contents( $downloadedFilePath ) ) {
 			// for url fetch failure
 			$stores_json = @ file_get_contents( XOOPS_TRUST_PATH . '/modules/xupdate/include/settings/stores.txt' );
 		}
-		if ( ! $stores = @ json_decode( $stores_json, true ) ) {
+		if ( ! $stores = @ json_decode( $stores_json, true, 512, JSON_THROW_ON_ERROR ) ) {
 			$stores = [];
 		} else {
 			if ( isset( $stores['stores'] ) ) {
@@ -256,7 +257,7 @@ class Xupdate_ModulesIniDadaSet {
 
 				$_dirname  = dirname( $downloadUrl );
 				$_filename = basename( $downloadUrl );
-				list( $_basename ) = explode( '.', $_filename, 2 );
+				[$_basename] = explode( '.', $_filename, 2 );
 				$downloadLangUrl  = $_dirname . '/' . $_basename . '/language/' . $language . '/' . $_filename;
 				$tempLangFilename = 'lang_' . $language . '_' . $contents . (int) $store['sid'] . '.ini.php';
 
@@ -406,7 +407,7 @@ class Xupdate_ModulesIniDadaSet {
 			$item['addon_url'] = $item[ 'addon_url_' . $enc ];
 		}
 		foreach ( [ 'description', 'tag' ] as $_key ) {
-			if ( ! @ json_encode( $item[ $_key ] ) ) {
+			if ( ! @ json_encode( $item[ $_key ], JSON_THROW_ON_ERROR ) ) {
 				// if not UTF-8
 				$item[ $_key ] = '';
 			}
@@ -631,7 +632,9 @@ class Xupdate_ModulesIniDadaSet {
 	 * このサイトのデータをデータベースに再セットする
 	 */
 	private function _StoreUpdate( $obj, $oldobj ) {
-		$newdata['name']         = $obj->getVar( 'name' );
+		$newdata = [];
+  $olddata = [];
+  $newdata['name']         = $obj->getVar( 'name' );
 		$newdata['addon_url']    = $obj->getVar( 'addon_url' );
 		$newdata['setting_type'] = $obj->getShow( 'setting_type' );
 		$newdata['contents']     = $obj->getVar( 'contents' );
@@ -701,13 +704,13 @@ class Xupdate_ModulesIniDadaSet {
 		//trustモジュールでない(複製可能なものはどうしよう)
 		$item['version']       = isset( $item['version'] ) ? round( (float) $item['version'] * 100 ) : 0;
 		$item['replicatable']  = isset( $item['replicatable'] ) ? (int) $item['replicatable'] : 0;
-		$item['target_key']    = isset( $item['target_key'] ) ? $item['target_key'] : $item['dirname'];
+		$item['target_key'] ??= $item['dirname'];
 		$item['trust_dirname'] = '';
-		$item['description']   = isset( $item['description'] ) ? $item['description'] : '';
+		$item['description'] ??= '';
 		//$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
 		$item['unzipdirlevel'] = 0; // not use "unzipdirlevel"
-		$item['addon_url']     = isset( $item['addon_url'] ) ? $item['addon_url'] : '';
-		$item['category_id']   = isset( $this->_mCategory[ $sid ][ $item['target_key'] ] ) ? $this->_mCategory[ $sid ][ $item['target_key'] ] : 0;
+		$item['addon_url'] ??= '';
+		$item['category_id']   = $this->_mCategory[ $sid ][ $item['target_key'] ] ?? 0;
 
 		$item = $this->_createItemOptions( $item, $caller );
 
@@ -732,13 +735,13 @@ class Xupdate_ModulesIniDadaSet {
 		$sid                   = $item['sid'];
 		$item['version']       = isset( $item['version'] ) ? round( (float) $item['version'] * 100 ) : 0;
 		$item['replicatable']  = isset( $item['replicatable'] ) ? (int) $item['replicatable'] : 0;
-		$item['target_key']    = isset( $item['target_key'] ) ? $item['target_key'] : $item['dirname'];
-		$item['trust_dirname'] = isset( $item['trust_dirname'] ) ? $item['trust_dirname'] : $item['dirname'];
-		$item['description']   = isset( $item['description'] ) ? $item['description'] : '';
+		$item['target_key'] ??= $item['dirname'];
+		$item['trust_dirname'] ??= $item['dirname'];
+		$item['description'] ??= '';
 		//$item['unzipdirlevel']= isset($item['unzipdirlevel']) ? intval($item['unzipdirlevel']): 0 ;
 		$item['unzipdirlevel'] = 0; // not use "unzipdirlevel"
-		$item['addon_url']     = isset( $item['addon_url'] ) ? $item['addon_url'] : '';
-		$item['category_id']   = isset( $this->_mCategory[ $sid ][ $item['target_key'] ] ) ? $this->_mCategory[ $sid ][ $item['target_key'] ] : 0;
+		$item['addon_url'] ??= '';
+		$item['category_id']   = $this->_mCategory[ $sid ][ $item['target_key'] ] ?? 0;
 
 		$item = $this->_createItemOptions( $item, $caller );
 

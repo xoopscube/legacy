@@ -86,7 +86,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction {
 
 	public function &_getPageNavi() {
 		$navi =& parent::_getPageNavi();
-		$navi->setPerpage( 30 );//TODO
+		$navi->setPerpage( 25 );//TODO item per page in preferences
 		if ( $filter = (string) $this->mRoot->mContext->mRequest->getRequest( 'filter' ) ) {
 			$navi->addExtra( 'filter', $filter );
 		}
@@ -173,13 +173,15 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction {
 		return XUPDATE_FRAME_VIEW_INDEX;
 	}
 
-	/**
-	 * executeViewIndex
-	 *
-	 * @param XCube_RenderTarget    &$render
-	 *
-	 * @return    void
-	 **/
+    /**
+     * executeViewIndex
+     *
+     * @param XCube_RenderTarget    &$render
+     *
+     * @return    void
+     *
+     * @throws JsonException
+     */
 	public function executeViewIndex( &$render ) {
 		$render->setTemplateName( 'admin_' . $this->template . '_store.html' );
 
@@ -250,7 +252,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction {
 	}
 
 	/**
-	 * To support a template writer, this send the list of mid that actionForm kept.
+	 * To support a template writer, this sends the list of mid that actionForm kept.
 	 *
 	 * @param $render
 	 */
@@ -264,7 +266,7 @@ class Xupdate_AbstractStoreAction extends Xupdate_AbstractListAction {
 
 		$render->setAttribute( 'moduleObjects', $this->mModuleObjects );
 		$render->setAttribute( 'actionForm', $this->mActionForm );
-		// To support a template writer, this send the list of id that
+		// To support a template writer, this sends the list of id that
 		// actionForm kept.
 		$t_arr = $this->mActionForm->get( 'dirname' );
 		$render->setAttribute( 'ids', array_keys( $t_arr ) );
@@ -482,7 +484,7 @@ jQuery(function($){
 	{
 		var form = $(html).find('#contentBody form');
 		var formdata = form.serialize();
-		
+
 		installationModule.td.html("{$message_Getting_files}{$message_Processing}");
 
 		if (typeof installationModule.installhref != 'undefined'){

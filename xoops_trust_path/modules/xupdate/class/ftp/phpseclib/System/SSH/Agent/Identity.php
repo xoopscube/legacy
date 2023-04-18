@@ -39,8 +39,8 @@ class Identity
      *
      * @access private
      */
-    const SSH_AGENT_RSA2_256 = 2;
-    const SSH_AGENT_RSA2_512 = 4;
+    public const SSH_AGENT_RSA2_256 = 2;
+    public const SSH_AGENT_RSA2_512 = 4;
     /**#@-*/
 
     /**
@@ -50,7 +50,7 @@ class Identity
      * @access private
      * @see self::getPublicKey()
      */
-    var $key;
+    public $key;
 
     /**
      * Key Blob
@@ -59,7 +59,7 @@ class Identity
      * @access private
      * @see self::sign()
      */
-    var $key_blob;
+    public $key_blob;
 
     /**
      * Socket Resource
@@ -68,7 +68,7 @@ class Identity
      * @access private
      * @see self::sign()
      */
-    var $fsock;
+    public $fsock;
 
     /**
      * Signature flags
@@ -78,7 +78,7 @@ class Identity
      * @see self::sign()
      * @see self::setHash()
      */
-    var $flags = 0;
+    public $flags = 0;
 
     /**
      * Default Constructor.

@@ -53,13 +53,13 @@ class Agent
      * @access private
      */
     // to request SSH1 keys you have to use SSH_AGENTC_REQUEST_RSA_IDENTITIES (1)
-    const SSH_AGENTC_REQUEST_IDENTITIES = 11;
+    public const SSH_AGENTC_REQUEST_IDENTITIES = 11;
     // this is the SSH2 response; the SSH1 response is SSH_AGENT_RSA_IDENTITIES_ANSWER (2).
-    const SSH_AGENT_IDENTITIES_ANSWER = 12;
+    public const SSH_AGENT_IDENTITIES_ANSWER = 12;
     // the SSH1 request is SSH_AGENTC_RSA_CHALLENGE (3)
-    const SSH_AGENTC_SIGN_REQUEST = 13;
+    public const SSH_AGENTC_SIGN_REQUEST = 13;
     // the SSH1 response is SSH_AGENT_RSA_RESPONSE (4)
-    const SSH_AGENT_SIGN_RESPONSE = 14;
+    public const SSH_AGENT_SIGN_RESPONSE = 14;
     /**#@-*/
 
     /**@+
@@ -68,17 +68,17 @@ class Agent
      * @access private
      */
     // no forwarding requested and not active
-    const FORWARD_NONE = 0;
+    public const FORWARD_NONE = 0;
     // request agent forwarding when opportune
-    const FORWARD_REQUEST = 1;
+    public const FORWARD_REQUEST = 1;
     // forwarding has been request and is active
-    const FORWARD_ACTIVE = 2;
+    public const FORWARD_ACTIVE = 2;
     /**#@-*/
 
     /**
      * Unused
      */
-    const SSH_AGENT_FAILURE = 5;
+    public const SSH_AGENT_FAILURE = 5;
 
     /**
      * Socket Resource
@@ -86,14 +86,14 @@ class Agent
      * @var resource
      * @access private
      */
-    var $fsock;
+    public $fsock;
 
     /**
      * Agent forwarding status
      *
      * @access private
      */
-    var $forward_status = self::FORWARD_NONE;
+    public $forward_status = self::FORWARD_NONE;
 
     /**
      * Buffer for accumulating forwarded authentication
@@ -102,14 +102,14 @@ class Agent
      *
      * @access private
      */
-    var $socket_buffer = '';
+    public $socket_buffer = '';
 
     /**
      * Tracking the number of bytes we are expecting
      * to arrive for the agent socket on the SSH data
      * channel
      */
-    var $expected_bytes = 0;
+    public $expected_bytes = 0;
 
     /**
      * Default Constructor
@@ -151,58 +151,58 @@ class Agent
     function requestIdentities()
     {
         if (!$this->fsock) {
-            return array();
+            return [];
         }
 
         $packet = pack('NC', 1, self::SSH_AGENTC_REQUEST_IDENTITIES);
         if (strlen($packet) != fputs($this->fsock, $packet)) {
             user_error('Connection closed while requesting identities');
-            return array();
+            return [];
         }
 
         $temp = fread($this->fsock, 4);
         if (strlen($temp) != 4) {
             user_error('Connection closed while requesting identities');
-            return array();
+            return [];
         }
         $length = current(unpack('N', $temp));
         $type = ord(fread($this->fsock, 1));
         if ($type != self::SSH_AGENT_IDENTITIES_ANSWER) {
             user_error('Unable to request identities');
-            return array();
+            return [];
         }
 
-        $identities = array();
+        $identities = [];
         $temp = fread($this->fsock, 4);
         if (strlen($temp) != 4) {
             user_error('Connection closed while requesting identities');
-            return array();
+            return [];
         }
         $keyCount = current(unpack('N', $temp));
         for ($i = 0; $i < $keyCount; $i++) {
             $temp = fread($this->fsock, 4);
             if (strlen($temp) != 4) {
                 user_error('Connection closed while requesting identities');
-                return array();
+                return [];
             }
             $length = current(unpack('N', $temp));
             $key_blob = fread($this->fsock, $length);
             if (strlen($key_blob) != $length) {
                 user_error('Connection closed while requesting identities');
-                return array();
+                return [];
             }
             $key_str = 'ssh-rsa ' . base64_encode($key_blob);
             $temp = fread($this->fsock, 4);
             if (strlen($temp) != 4) {
                 user_error('Connection closed while requesting identities');
-                return array();
+                return [];
             }
             $length = current(unpack('N', $temp));
             if ($length) {
                 $temp = fread($this->fsock, $length);
                 if (strlen($temp) != $length) {
                     user_error('Connection closed while requesting identities');
-                    return array();
+                    return [];
                 }
                 $key_str.= ' ' . $temp;
             }

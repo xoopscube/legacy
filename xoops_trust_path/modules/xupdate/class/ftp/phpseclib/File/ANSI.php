@@ -35,7 +35,7 @@ class ANSI
      * @var int
      * @access private
      */
-    var $max_x;
+    public $max_x;
 
     /**
      * Max Height
@@ -43,7 +43,7 @@ class ANSI
      * @var int
      * @access private
      */
-    var $max_y;
+    public $max_y;
 
     /**
      * Max History
@@ -51,7 +51,7 @@ class ANSI
      * @var int
      * @access private
      */
-    var $max_history;
+    public $max_history;
 
     /**
      * History
@@ -59,7 +59,7 @@ class ANSI
      * @var array
      * @access private
      */
-    var $history;
+    public $history;
 
     /**
      * History Attributes
@@ -67,7 +67,7 @@ class ANSI
      * @var array
      * @access private
      */
-    var $history_attrs;
+    public $history_attrs;
 
     /**
      * Current Column
@@ -75,7 +75,7 @@ class ANSI
      * @var int
      * @access private
      */
-    var $x;
+    public $x;
 
     /**
      * Current Row
@@ -83,7 +83,7 @@ class ANSI
      * @var int
      * @access private
      */
-    var $y;
+    public $y;
 
     /**
      * Old Column
@@ -91,7 +91,7 @@ class ANSI
      * @var int
      * @access private
      */
-    var $old_x;
+    public $old_x;
 
     /**
      * Old Row
@@ -99,7 +99,7 @@ class ANSI
      * @var int
      * @access private
      */
-    var $old_y;
+    public $old_y;
 
     /**
      * An empty attribute cell
@@ -107,7 +107,7 @@ class ANSI
      * @var object
      * @access private
      */
-    var $base_attr_cell;
+    public $base_attr_cell;
 
     /**
      * The current attribute cell
@@ -115,7 +115,7 @@ class ANSI
      * @var object
      * @access private
      */
-    var $attr_cell;
+    public $attr_cell;
 
     /**
      * An empty attribute row
@@ -123,7 +123,7 @@ class ANSI
      * @var array
      * @access private
      */
-    var $attr_row;
+    public $attr_row;
 
     /**
      * The current screen text
@@ -131,7 +131,7 @@ class ANSI
      * @var array
      * @access private
      */
-    var $screen;
+    public $screen;
 
     /**
      * The current screen attributes
@@ -139,7 +139,7 @@ class ANSI
      * @var array
      * @access private
      */
-    var $attrs;
+    public $attrs;
 
     /**
      * Current ANSI code
@@ -147,7 +147,7 @@ class ANSI
      * @var string
      * @access private
      */
-    var $ansi;
+    public $ansi;
 
     /**
      * Tokenization
@@ -155,7 +155,7 @@ class ANSI
      * @var array
      * @access private
      */
-    var $tokenization;
+    public $tokenization;
 
     /**
      * Default Constructor.
@@ -193,7 +193,7 @@ class ANSI
         $this->max_x = $x - 1;
         $this->max_y = $y - 1;
         $this->x = $this->y = 0;
-        $this->history = $this->history_attrs = array();
+        $this->history = $this->history_attrs = [];
         $this->attr_row = array_fill(0, $this->max_x + 2, $this->base_attr_cell);
         $this->screen = array_fill(0, $this->max_y + 1, '');
         $this->attrs = array_fill(0, $this->max_y + 1, $this->attr_row);
@@ -231,7 +231,7 @@ class ANSI
      */
     function appendString($source)
     {
-        $this->tokenization = array('');
+        $this->tokenization = [''];
         for ($i = 0; $i < strlen($source); $i++) {
             if (strlen($this->ansi)) {
                 $this->ansi.= $source[$i];
@@ -376,7 +376,7 @@ class ANSI
                 continue;
             }
 
-            $this->tokenization[count($this->tokenization) - 1].= $source[$i];
+            $this->tokenization[count((array) $this->tokenization) - 1].= $source[$i];
             switch ($source[$i]) {
                 case "\r":
                     $this->x = 0;
@@ -399,7 +399,7 @@ class ANSI
                 case "\x0F": // shift
                     break;
                 case "\x1B": // start ANSI escape code
-                    $this->tokenization[count($this->tokenization) - 1] = substr($this->tokenization[count($this->tokenization) - 1], 0, -1);
+                    $this->tokenization[count((array) $this->tokenization) - 1] = substr($this->tokenization[count((array) $this->tokenization) - 1], 0, -1);
                     //if (!strlen($this->tokenization[count($this->tokenization) - 1])) {
                     //    array_pop($this->tokenization);
                     //}
@@ -441,10 +441,10 @@ class ANSI
         //}
 
         while ($this->y >= $this->max_y) {
-            $this->history = array_merge($this->history, array(array_shift($this->screen)));
+            $this->history = array_merge($this->history, [array_shift($this->screen)]);
             $this->screen[] = '';
 
-            $this->history_attrs = array_merge($this->history_attrs, array(array_shift($this->attrs)));
+            $this->history_attrs = array_merge($this->history_attrs, [array_shift($this->attrs)]);
             $this->attrs[] = $this->attr_row;
 
             if (count($this->history) >= $this->max_history) {
@@ -527,7 +527,7 @@ class ANSI
         for ($i = 0; $i <= $this->max_y; $i++) {
             for ($j = 0; $j <= $this->max_x; $j++) {
                 $cur_attr = $this->attrs[$i][$j];
-                $output.= $this->_processCoordinate($last_attr, $cur_attr, isset($this->screen[$i][$j]) ? $this->screen[$i][$j] : '');
+                $output.= $this->_processCoordinate($last_attr, $cur_attr, $this->screen[$i][$j] ?? '');
                 $last_attr = $this->attrs[$i][$j];
             }
             $output.= "\r\n";
@@ -562,7 +562,7 @@ class ANSI
         for ($i = 0; $i < count($this->history); $i++) {
             for ($j = 0; $j <= $this->max_x + 1; $j++) {
                 $cur_attr = $this->history_attrs[$i][$j];
-                $scrollback.= $this->_processCoordinate($last_attr, $cur_attr, isset($this->history[$i][$j]) ? $this->history[$i][$j] : '');
+                $scrollback.= $this->_processCoordinate($last_attr, $cur_attr, $this->history[$i][$j] ?? '');
                 $last_attr = $this->history_attrs[$i][$j];
             }
             $scrollback.= "\r\n";

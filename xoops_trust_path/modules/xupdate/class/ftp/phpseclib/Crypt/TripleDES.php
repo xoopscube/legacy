@@ -50,14 +50,14 @@ class TripleDES extends DES
      *
      * Inner chaining is used by SSH-1 and is generally considered to be less secure then outer chaining (self::MODE_CBC3).
      */
-    const MODE_3CBC = -2;
+    public const MODE_3CBC = -2;
 
     /**
      * Encrypt / decrypt using outer chaining
      *
      * Outer chaining is used by SSH-2 and when the mode is set to \phpseclib\Crypt\Base::MODE_CBC.
      */
-    const MODE_CBC3 = Base::MODE_CBC;
+    public const MODE_CBC3 = Base::MODE_CBC;
 
     /**
      * Key Length (in bytes)
@@ -66,7 +66,7 @@ class TripleDES extends DES
      * @var int
      * @access private
      */
-    var $key_length = 24;
+    public $key_length = 24;
 
     /**
      * The default salt used by setPassword()
@@ -76,7 +76,7 @@ class TripleDES extends DES
      * @var string
      * @access private
      */
-    var $password_default_salt = 'phpseclib';
+    public $password_default_salt = 'phpseclib';
 
     /**
      * The mcrypt specific name of the cipher
@@ -86,7 +86,7 @@ class TripleDES extends DES
      * @var string
      * @access private
      */
-    var $cipher_name_mcrypt = 'tripledes';
+    public $cipher_name_mcrypt = 'tripledes';
 
     /**
      * Optimizing value while CFB-encrypting
@@ -95,7 +95,7 @@ class TripleDES extends DES
      * @var int
      * @access private
      */
-    var $cfb_init_len = 750;
+    public $cfb_init_len = 750;
 
     /**
      * max possible size of $key
@@ -105,7 +105,7 @@ class TripleDES extends DES
      * @var string
      * @access private
      */
-    var $key_length_max = 24;
+    public $key_length_max = 24;
 
     /**
      * Internal flag whether using self::MODE_3CBC or not
@@ -113,7 +113,7 @@ class TripleDES extends DES
      * @var bool
      * @access private
      */
-    var $mode_3cbc;
+    public $mode_3cbc;
 
     /**
      * The \phpseclib\Crypt\DES objects
@@ -123,7 +123,7 @@ class TripleDES extends DES
      * @var array
      * @access private
      */
-    var $des;
+    public $des;
 
     /**
      * Default Constructor.
@@ -161,11 +161,7 @@ class TripleDES extends DES
                 $this->mode_3cbc = true;
 
                 // This three $des'es will do the 3CBC work (if $key > 64bits)
-                $this->des = array(
-                    new DES(Base::MODE_CBC),
-                    new DES(Base::MODE_CBC),
-                    new DES(Base::MODE_CBC),
-                );
+                $this->des = [new DES(Base::MODE_CBC), new DES(Base::MODE_CBC), new DES(Base::MODE_CBC)];
 
                 // we're going to be doing the padding, ourselves, so disable it in the \phpseclib\Crypt\DES objects
                 $this->des[0]->disablePadding();
@@ -193,7 +189,7 @@ class TripleDES extends DES
         if ($engine == self::ENGINE_OPENSSL) {
             $this->cipher_name_openssl_ecb = 'des-ede3';
             $mode = $this->_openssl_translate_mode();
-            $this->cipher_name_openssl = $mode == 'ecb' ? 'des-ede3' : 'des-ede3-' . $mode;
+            $this->cipher_name_openssl = $mode == 0 ? 'des-ede3' : 'des-ede3-' . $mode;
         }
 
         return parent::isValidEngine($engine);

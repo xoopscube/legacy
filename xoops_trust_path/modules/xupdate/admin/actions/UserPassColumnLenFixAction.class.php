@@ -46,7 +46,7 @@ class Xupdate_Admin_UserPassColumnLenFixAction extends Xupdate_AbstractAction {
 				$src      = file_get_contents( $mainfile );
 				$sens     = '/define\s*\(\s*(["\'])XOOPS_MAINFILE_INCLUDED\\1\s*,\s*1\s*\)\s*;\s*(?:\r\n|\n|\r)/';
 				if ( preg_match( $sens, $src ) && ! preg_match( '/define\s*\(\s*(["\'])XCUBE_CORE_USER_PASS_LEN_FIXED\\1/', $src ) ) {
-					$add   = '    // Alrady fixed length of users table pass column of this DB (Auto inserts by X-update)' . "\n";
+					$add   = '    // Already fixed length of users table pass column of this DB (Auto inserts by X-update)' . "\n";
 					$add   .= '    define(\'XCUBE_CORE_USER_PASS_LEN_FIXED\', true);' . "\n\n";
 					$src   = preg_replace( $sens, '$0' . $add, $src );
 					$local = XOOPS_TRUST_PATH . '/' . $this->mod_config['temp_path'] . '/mainfile.custom.php';

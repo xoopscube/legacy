@@ -28,7 +28,7 @@ class Xupdate_AssetManager {
 	public $mAssetList = [];
 
 	/*** object[][] ***/
-	private $_mCache = [];
+	private array $_mCache = [];
 
 	/**
 	 * __construct

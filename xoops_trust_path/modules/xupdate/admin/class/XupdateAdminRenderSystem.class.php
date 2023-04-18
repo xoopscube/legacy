@@ -75,7 +75,8 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem {
 	 * @return  void
 	 **/
 	public function renderTheme( /*** XCube_RenderTarget ***/ &$target ) {
-		$module  =& $this->mController->getVirtualCurrentModule();
+		$file = [];
+        $module  =& $this->mController->getVirtualCurrentModule();
 		$context =& $this->mController->mRoot->getContext();
 		$this->mSmarty->assign( $target->getAttributes() );
 		$this->mSmarty->assign(
@@ -96,7 +97,7 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem {
 
 		$info                        = Xupdate_AdminRenderSystem::getOverrideFileInfo( 'admin_theme.html' );
 
-        $this->mSmarty->template_dir = ( null != $info['file'] ) ?
+        $this->mSmarty->template_dir = ( $info['file'] != null) ?
 			substr( $file['path'], 0, - 15 ) :
 			XUPDATE_ADMIN_RENDER_FALLBACK_PATH;
 		$this->mSmarty->setModulePrefix( '' );
@@ -290,7 +291,7 @@ class Xupdate_AdminRenderSystem extends Legacy_AdminRenderSystem {
 		// TODO will be use other method
 		printf(
 			'<link rel="stylesheet" typw="text/css" media="%s" href="%s/legacy/admin/css.php?file=%s%s%s" />',
-			( isset( $params['media'] ) ? $params['media'] : 'all' ),
+			( $params['media'] ?? 'all' ),
 			XOOPS_MODULE_URL,
 			$info['file'],
 			( null != $info['dirname'] ? '&amp;dirname=' . $info['dirname'] : '' ),

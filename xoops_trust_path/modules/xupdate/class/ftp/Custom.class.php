@@ -81,7 +81,8 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 	}
 
 	protected function parselisting( $list ) {
-		//	Parses 1 line like:		"drwxrwx---  2 owner group 4096 Apr 23 14:57 text"
+		$v = [];
+  //	Parses 1 line like:		"drwxrwx---  2 owner group 4096 Apr 23 14:57 text"
 		if ( preg_match( "/^([-ld])([rwxst-]+)\s+(\d+)\s+([^\s]+)\s+([^\s]+)\s+(\d+)\s+(\w{3})\s+(\d+)\s+([\:\d]+)\s+(.+)$/i", $list, $ret ) ) {
 			$v   = [
 				'type'  => ( '-' == $ret[1] ? 'f' : $ret[1] ),
@@ -100,18 +101,18 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 			if ( in_array( $v['group'], $bad ) ) {
 				$v['group'] = null;
 			}
-			$v['perms'] += 00400 * (int) ( 'r' === $ret[2]{0} );
-			$v['perms'] += 00200 * (int) ( 'w' === $ret[2]{1} );
-			$v['perms'] += 00100 * (int) in_array( $ret[2]{2}, [ 'x', 's' ] );
-			$v['perms'] += 00040 * (int) ( 'r' === $ret[2]{3} );
-			$v['perms'] += 00020 * (int) ( 'w' === $ret[2]{4} );
-			$v['perms'] += 00010 * (int) in_array( $ret[2]{5}, [ 'x', 's' ] );
-			$v['perms'] += 00004 * (int) ( 'r' === $ret[2]{6} );
-			$v['perms'] += 00002 * (int) ( 'w' === $ret[2]{7} );
-			$v['perms'] += 00001 * (int) in_array( $ret[2]{8}, [ 'x', 't' ] );
-			$v['perms'] += 04000 * (int) in_array( $ret[2]{2}, [ 'S', 's' ] );
-			$v['perms'] += 02000 * (int) in_array( $ret[2]{5}, [ 'S', 's' ] );
-			$v['perms'] += 01000 * (int) in_array( $ret[2]{8}, [ 'T', 't' ] );
+			$v['perms'] += 00400 * (int) ( 'r' === $ret[2][0] );
+			$v['perms'] += 00200 * (int) ( 'w' === $ret[2][1] );
+			$v['perms'] += 00100 * (int) in_array( $ret[2][2], [ 'x', 's' ] );
+			$v['perms'] += 00040 * (int) ( 'r' === $ret[2][3] );
+			$v['perms'] += 00020 * (int) ( 'w' === $ret[2][4] );
+			$v['perms'] += 00010 * (int) in_array( $ret[2][5], [ 'x', 's' ] );
+			$v['perms'] += 00004 * (int) ( 'r' === $ret[2][6] );
+			$v['perms'] += 00002 * (int) ( 'w' === $ret[2][7] );
+			$v['perms'] += 00001 * (int) in_array( $ret[2][8], [ 'x', 't' ] );
+			$v['perms'] += 04000 * (int) in_array( $ret[2][2], [ 'S', 's' ] );
+			$v['perms'] += 02000 * (int) in_array( $ret[2][5], [ 'S', 's' ] );
+			$v['perms'] += 01000 * (int) in_array( $ret[2][8], [ 'T', 't' ] );
 		}
 
 		return $v;
@@ -535,7 +536,9 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 			return false;
 		}
 		$f = array_slice( preg_split( '/[' . CRLF . ']+/', $this->_message, - 1, PREG_SPLIT_NO_EMPTY ), 1, - 1 );
-		array_walk( $f, create_function( '&$a', '$a=preg_replace("/[0-9]{3}[\s-]+/", "", trim($a));' ) );
+		array_walk( $f, function (&$a) {
+      $a = preg_replace("/[0-9]{3}[\\s-]+/", "", trim($a));
+  } );
 		$this->_features = [];
 		foreach ( $f as $k => $v ) {
 			$v                                    = explode( ' ', trim( $v ) );
@@ -794,7 +797,8 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 	}
 
 	protected function mdel( $remote, $continious = false ) {
-		$list = $this->rawlist( $remote, '-la' );
+		$el = [];
+  $list = $this->rawlist( $remote, '-la' );
 		if ( false === $list ) {
 			$this->PushError( 'mdel', "can't read remote folder list", "Can't read remote folder \"" . $remote . '" contents' );
 
@@ -846,7 +850,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 		if ( ! $this->mmkdir( dirname( $dir ), $mode ) ) {
 			return false;
 		}
-		$r = $this->mkdir( $dir, $mode );
+		$r = $this->mkdir( $dir );
 		$this->chmod( $dir, $mode );
 
 		return $r;
@@ -994,7 +998,7 @@ class Xupdate_Ftp_CustomBase extends Xupdate_Ftp_Abstract {
 
 // R�cup�re une erreur externe
 	protected function PopError() {
-		if ( count( $this->_error_array ) ) {
+		if ( is_countable($this->_error_array) ? count( $this->_error_array ) : 0 ) {
 			return ( array_pop( $this->_error_array ) );
 		} else {
 			return ( false );

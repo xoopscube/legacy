@@ -21,8 +21,8 @@ require_once XUPDATE_TRUST_PATH . '/class/handler/ModuleStore.class.php';
  */
 class Xupdate_ThemeStore extends Xupdate_ModuleStore {
 
-	const PRIMARY = 'id';
-	const DATANAME = 'themestore';
+	public const PRIMARY = 'id';
+	public const DATANAME = 'themestore';
 
 	public function get_StoreUrl() {
 		//TODO for test dirname ?
