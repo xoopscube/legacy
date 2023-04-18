@@ -19,16 +19,16 @@
  
 function smarty_function_legacy_tree($params, &$smarty)
 {
-    $tree = isset($params['tree']) ? $params['tree'] : null;
+    $tree = $params['tree'] ?? null;
     if (!is_array($tree) || !($tree[0] instanceof Legacy_AbstractCategoryObject)) {
         echo '<p>Invalid parameter `tree` in {legacy_tree}</p>';
         return;
     }
 
     $control = !empty($params['control']);
-    $dirname = isset($params['dirname']) ? $params['dirname'] : '';
-    $className = isset($params['className']) ? $params['className'] : 'tree';
-    $template = isset($params['template']) ? $params['template'] : 'legacy_inc_tree.html';
+    $dirname = $params['dirname'] ?? '';
+    $className = $params['className'] ?? 'tree';
+    $template = $params['template'] ?? 'legacy_inc_tree.html';
 
     //render template
     $render = new XCube_RenderTarget();

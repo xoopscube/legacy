@@ -18,12 +18,12 @@
  */
 function smarty_function_legacy_map_view($params, &$smarty)
 {
-    $dirname = isset($params['dirname']) ? $params['dirname'] : null;
-    $dataname = isset($params['dataname']) ? $params['dataname'] : null;
-    $dataId = isset($params['data_id']) ? $params['data_id'] : null;
-    $template = isset($params['template']) ? $params['template'] : 'legacy_inc_map_view.html';
+    $dirname = $params['dirname'] ?? null;
+    $dataname = $params['dataname'] ?? null;
+    $dataId = $params['data_id'] ?? null;
+    $template = $params['template'] ?? 'legacy_inc_map_view.html';
 
-    $places = array();
+    $places = [];
     XCube_DelegateUtils::call('Legacy_Map.GetPlaces',
         new XCube_Ref($places),
         $dirname,

@@ -33,10 +33,10 @@ function smarty_function_xoops_cooluri($params, &$smarty)
         return;
     }
     $dirname = $params['dirname'];
-    $dataname = isset($params['dataname']) ? $params['dataname'] : null;
-    $dataId = isset($params['data_id']) ? $params['data_id'] : 0;
-    $action = isset($params['action']) ? $params['action'] : null;
-    $query = isset($params['query']) ? $params['query'] : null;
+    $dataname = $params['dataname'] ?? null;
+    $dataId = $params['data_id'] ?? 0;
+    $action = $params['action'] ?? null;
+    $query = $params['query'] ?? null;
 
     echo htmlspecialchars(Legacy_Utils::renderUri($dirname, $dataname, $dataId, $action, $query), ENT_QUOTES);
 }

@@ -21,16 +21,11 @@
  */
 function smarty_function_counter($params, &$smarty)
 {
-    static $counters = array();
+    static $counters = [];
 
-    $name = (isset($params['name'])) ? $params['name'] : 'default';
+    $name = $params['name'] ?? 'default';
     if (!isset($counters[$name])) {
-        $counters[$name] = array(
-            'start'=>1,
-            'skip'=>1,
-            'direction'=>'up',
-            'count'=>1
-            );
+        $counters[$name] = ['start'=>1, 'skip'=>1, 'direction'=>'up', 'count'=>1];
     }
     $counter =& $counters[$name];
 

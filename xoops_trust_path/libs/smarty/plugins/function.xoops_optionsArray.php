@@ -36,7 +36,7 @@ function smarty_function_xoops_optionsArray($params, &$smarty)
     //
     $tags = '';
     $objectArr =& $params['from'];
-    $default = isset($params['default']) ? $params['default'] : null;
+    $default = $params['default'] ?? null;
     $id = isset($params['id']) ? XOOPS_INPUT_DEFID_PREFIX . $params['id'] . '_': null;
     static $textFilter;
     if (!isset($textFilter)) {

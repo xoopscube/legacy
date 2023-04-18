@@ -18,6 +18,7 @@
 function smarty_core_get_php_resource(&$params, &$smarty)
 {
 
+    $_readable = null;
     $params['resource_base_path'] = $smarty->trusted_dir;
     $smarty->_parse_resource_name($params, $smarty);
 
@@ -31,7 +32,7 @@ function smarty_core_get_php_resource(&$params, &$smarty)
             $_readable = true;
         } else {
             // test for file in include_path
-            $_params = array('file_path' => $params['resource_name']);
+            $_params = ['file_path' => $params['resource_name']];
             require_once(SMARTY_CORE_DIR . 'core.get_include_path.php');
             if(smarty_core_get_include_path($_params, $smarty)) {
                 $_include_path = $_params['new_file_path'];
@@ -42,7 +43,7 @@ function smarty_core_get_php_resource(&$params, &$smarty)
         $_template_source = null;
         $_readable = is_callable($smarty->_plugins['resource'][$params['resource_type']][0][0])
             && call_user_func_array($smarty->_plugins['resource'][$params['resource_type']][0][0],
-                                    array($params['resource_name'], &$_template_source, &$smarty));
+                                    [$params['resource_name'], &$_template_source, &$smarty]);
     }
 
     /*

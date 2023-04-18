@@ -18,8 +18,8 @@ function smarty_function_message_suggestlist($params, &$smarty)
     $sql.= "WHERE `uid` <> ".$root->mContext->mXoopsUser->get('uid'). " ";
     $sql.= "ORDER BY `uname`";
     $result = $db->query($sql);
-    $name = array();
-    while (list($uname) = $db->fetchRow($result)) {
+    $name = [];
+    while ([$uname] = $db->fetchRow($result)) {
         $uname = htmlspecialchars($uname, ENT_QUOTES);
         $name[] = "'".$uname."'";
     }

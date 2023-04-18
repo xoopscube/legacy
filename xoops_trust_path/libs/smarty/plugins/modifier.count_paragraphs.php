@@ -21,7 +21,7 @@
 function smarty_modifier_count_paragraphs($string)
 {
     // count \r or \n characters
-    return count(preg_split('/[\r\n]+/', $string));
+    return is_countable(preg_split('/[\r\n]+/', $string)) ? count(preg_split('/[\r\n]+/', $string)) : 0;
 }
 
 /* vim: set expandtab: */

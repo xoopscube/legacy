@@ -28,7 +28,7 @@ function smarty_function_legacy_image( $params, &$smarty ) {
 	$num      = $params['num'] ?? 1;
 	$size     = $params['size'] ?? 0;
 
-	$imageObjs = array();
+	$imageObjs = [];
 	XCube_DelegateUtils::call( 'Legacy_Image.GetImageObjects', new XCube_Ref( $imageObjs ), $dirname, $dataname, $dataId, $num );
 
 	//display dummy image

@@ -22,13 +22,13 @@
 function smarty_function_legacy_tag_cloud($params, &$smarty)
 {
     $tDirname = $params['tDirname'];
-    $dirname = isset($params['dirname']) ? $params['dirname'] : null;
-    $dataname = isset($params['dataname']) ? $params['dataname'] : null;
-    $uidList = isset($params['uidList']) ? $params['uidList'] : null;
-    $max = isset($params['max']) ? $params['max'] : 200;    //font size(%)
-    $min = isset($params['min']) ? $params['min'] : 80;    //font size(%)
-    $template = isset($params['template']) ? $params['template'] : 'legacy_inc_tag_cloud.html';
-    $cloud = array();
+    $dirname = $params['dirname'] ?? null;
+    $dataname = $params['dataname'] ?? null;
+    $uidList = $params['uidList'] ?? null;
+    $max = $params['max'] ?? 200;    //font size(%)
+    $min = $params['min'] ?? 80;    //font size(%)
+    $template = $params['template'] ?? 'legacy_inc_tag_cloud.html';
+    $cloud = [];
 
     XCube_DelegateUtils::call('Legacy_Tag.'.$tDirname.'.GetTagCloudSrc',
         new XCube_Ref($cloud),
@@ -54,8 +54,10 @@ function smarty_function_legacy_tag_cloud($params, &$smarty)
 
 function _smarty_function_legacy_tag_cloud_get_size(/*** array **/ $tagList, /*** int ***/ $max, /*** int ***/ $min)
 {
+    $maxQty = null;
+    $minQty = null;
     // get the largest and smallest array values
-    if (count($tagList)>0) {
+    if ((is_countable($tagList) ? count($tagList) : 0)>0) {
         $maxQty = max(array_values($tagList));
         $minQty = min(array_values($tagList));
     }
@@ -71,7 +73,7 @@ function _smarty_function_legacy_tag_cloud_get_size(/*** array **/ $tagList, /**
     $step = ($max - $min)/($spread);
     
     // loop through our tag array
-    $sizeArr = array();
+    $sizeArr = [];
     foreach ($tagList as $key => $value) {
         // calculate CSS font-size
         // find the $value in excess of $min_qty

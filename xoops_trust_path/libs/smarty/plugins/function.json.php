@@ -31,9 +31,10 @@
 function smarty_function_json($params, &$smarty) {
 
 
-    $params['file'] = $params['file'] ?? null;
-    $params['obj2obj'] = $params['obj2obj'] ?? true;
-    $params['debug'] = $params['debug'] ?? false;
+    $larConfigDir = [];
+    $params['file'] ??= null;
+    $params['obj2obj'] ??= true;
+    $params['debug'] ??= false;
 
     //! @gigamaster removed $smarty->getConfigDir();
     //$larConfigDir = $smarty->getConfigDir();
@@ -59,7 +60,7 @@ function smarty_function_json($params, &$smarty) {
 
     $assoc = ($params['obj2obj'] == true) ? false : true;
     $json = trim(file_get_contents($lstConfigDir . $params['file']));
-    $data = json_decode($json, $assoc);
+    $data = json_decode($json, $assoc, 512, JSON_THROW_ON_ERROR);
 /*  echo "<h1>Data</h1>";
     echo "<pre>";
     print_r($data);
@@ -73,7 +74,7 @@ function smarty_function_json($params, &$smarty) {
 
     unset($params['file'], $params['obj2obj'], $params['debug']);
 
-    $assign = array();
+    $assign = [];
     foreach ($params as $key => $value) {
         if ($key === 'assign')
             $assign[$value] = $data;

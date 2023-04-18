@@ -26,8 +26,10 @@
  */
 function smarty_function_config_load($params, &$smarty)
 {
+        $_config_vars = null;
+        $_debug_start_time = null;
         if ($smarty->debugging) {
-            $_params = array();
+            $_params = [];
             require_once(SMARTY_CORE_DIR . 'core.get_microtime.php');
             $_debug_start_time = smarty_core_get_microtime($_params, $smarty);
         }
@@ -55,9 +57,7 @@ function smarty_function_config_load($params, &$smarty)
             }
         }
 
-        $_params = array('resource_name' => $_file,
-                         'resource_base_path' => $smarty->config_dir,
-                         'get_source' => false);
+        $_params = ['resource_name' => $_file, 'resource_base_path' => $smarty->config_dir, 'get_source' => false];
         $smarty->_parse_resource_name($_params);
         $_file_path = $_params['resource_type'] . ':' . $_params['resource_name'];
         if (isset($_section))
@@ -68,9 +68,7 @@ function smarty_function_config_load($params, &$smarty)
         if($smarty->force_compile || !file_exists($_compile_file)) {
             $_compile = true;
         } elseif ($smarty->compile_check) {
-            $_params = array('resource_name' => $_file,
-                             'resource_base_path' => $smarty->config_dir,
-                             'get_source' => false);
+            $_params = ['resource_name' => $_file, 'resource_base_path' => $smarty->config_dir, 'get_source' => false];
             $_compile = $smarty->_fetch_resource_info($_params) &&
                 $_params['resource_timestamp'] > filemtime($_compile_file);
         } else {
@@ -88,9 +86,7 @@ function smarty_function_config_load($params, &$smarty)
                 $smarty->_conf_obj->fix_newlines = $smarty->config_fix_newlines;
             }
 
-            $_params = array('resource_name' => $_file,
-                             'resource_base_path' => $smarty->config_dir,
-                             $_params['get_source'] = true);
+            $_params = ['resource_name' => $_file, 'resource_base_path' => $smarty->config_dir, $_params['get_source'] = true];
             if (!$smarty->_fetch_resource_info($_params)) {
                 return;
             }
@@ -100,9 +96,9 @@ function smarty_function_config_load($params, &$smarty)
             if(function_exists('var_export')) {
                 $_output = '<?php $_config_vars = ' . var_export($_config_vars, true) . '; ?>';
             } else {
-                $_output = '<?php $_config_vars = unserialize(\'' . strtr(serialize($_config_vars),array('\''=>'\\\'', '\\'=>'\\\\')) . '\'); ?>';
+                $_output = '<?php $_config_vars = unserialize(\'' . strtr(serialize($_config_vars),['\''=>'\\\'', '\\'=>'\\\\']) . '\'); ?>';
             }
-            $_params = (array('compile_path' => $_compile_file, 'compiled_content' => $_output, 'resource_timestamp' => $_params['resource_timestamp']));
+            $_params = (['compile_path' => $_compile_file, 'compiled_content' => $_output, 'resource_timestamp' => $_params['resource_timestamp']]);
             require_once(SMARTY_CORE_DIR . 'core.write_compiled_resource.php');
             smarty_core_write_compiled_resource($_params, $smarty);
         } else {
@@ -120,19 +116,16 @@ function smarty_function_config_load($params, &$smarty)
                 $smarty->_config[1]['vars'] = @array_merge($smarty->_config[1]['vars'], $_config_vars);
                 $smarty->_config[1]['files'][$_file] = true;
         } else if ($_scope == 'global') {
-            for ($i = 1, $for_max = count($smarty->_config); $i < $for_max; $i++) {
+            for ($i = 1, $for_max = is_countable($smarty->_config) ? count($smarty->_config) : 0; $i < $for_max; $i++) {
                 $smarty->_config[$i]['vars'] = @array_merge($smarty->_config[$i]['vars'], $_config_vars);
                 $smarty->_config[$i]['files'][$_file] = true;
             }
         }
 
         if ($smarty->debugging) {
-            $_params = array();
+            $_params = [];
             require_once(SMARTY_CORE_DIR . 'core.get_microtime.php');
-            $smarty->_smarty_debug_info[] = array('type'      => 'config',
-                                                'filename'  => $_file.' ['.$_section.'] '.$_scope,
-                                                'depth'     => $smarty->_inclusion_depth,
-                                                'exec_time' => smarty_core_get_microtime($_params, $smarty) - $_debug_start_time);
+            $smarty->_smarty_debug_info[] = ['type'      => 'config', 'filename'  => $_file.' ['.$_section.'] '.$_scope, 'depth'     => $smarty->_inclusion_depth, 'exec_time' => smarty_core_get_microtime($_params, $smarty) - $_debug_start_time];
         }
 
 }

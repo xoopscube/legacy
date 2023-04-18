@@ -56,7 +56,7 @@ function smarty_function_html_radios($params, &$smarty)
         switch($_key) {
             case 'name':
             case 'separator':
-                $$_key = (string)$_val;
+                ${$_key} = (string)$_val;
                 break;
 
             case 'checked':
@@ -70,16 +70,16 @@ function smarty_function_html_radios($params, &$smarty)
 
             case 'labels':
             case 'label_ids':
-                $$_key = (bool)$_val;
+                ${$_key} = (bool)$_val;
                 break;
 
             case 'options':
-                $$_key = (array)$_val;
+                ${$_key} = (array)$_val;
                 break;
 
             case 'values':
             case 'output':
-                $$_key = array_values((array)$_val);
+                ${$_key} = array_values((array)$_val);
                 break;
 
             case 'radios':
@@ -103,7 +103,7 @@ function smarty_function_html_radios($params, &$smarty)
     if (!isset($options) && !isset($values))
         return ''; /* raise error here? */
 
-    $_html_result = array();
+    $_html_result = [];
 
     if (isset($options)) {
 
@@ -129,6 +129,7 @@ function smarty_function_html_radios($params, &$smarty)
 }
 
 function smarty_function_html_radios_output($name, $value, $output, $selected, $extra, $separator, $labels, $label_ids) {
+    $_id = null;
     $_output = '';
     if ($labels) {
       if($label_ids) {

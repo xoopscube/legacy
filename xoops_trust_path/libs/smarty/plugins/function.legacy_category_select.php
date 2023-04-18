@@ -22,7 +22,7 @@ function smarty_function_legacy_category_select($params, &$smarty)
 
     $tree = $params['tree'];
     $selectedValue = $params['selectedValue'];
-    $canSelectBranch = isset($params['canSelectBranch']) ? $params['canSelectBranch'] : true;
+    $canSelectBranch = $params['canSelectBranch'] ?? true;
 
     foreach (array_keys($tree) as $key) {
         $pkey = $tree[$key]->getPrimary();

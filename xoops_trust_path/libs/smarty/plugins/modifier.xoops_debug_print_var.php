@@ -22,11 +22,8 @@
  */
 function smarty_modifier_xoops_debug_print_var($var, $depth = 0, $length = 60)
 {
-    $_replace = array(
-        "\n" => '<i>\n</i>',
-        "\r" => '<i>\r</i>',
-        "\t" => '<i>\t</i>'
-    );
+    $results = null;
+    $_replace = ["\n" => '<i>\n</i>', "\r" => '<i>\r</i>', "\t" => '<i>\t</i>'];
 
     switch (gettype($var)) {
         case 'array' :
@@ -38,7 +35,7 @@ function smarty_modifier_xoops_debug_print_var($var, $depth = 0, $length = 60)
                 $depth--;
             }
             break;
-        
+
         case 'object' :
             $object_vars = get_object_vars($var);
             if ($depth) {
@@ -70,7 +67,7 @@ function smarty_modifier_xoops_debug_print_var($var, $depth = 0, $length = 60)
                     $results .= '<b> -&gt;' . strtr($curr_key, $_replace) . '</b> = ';
                     $results .= smarty_modifier_xoops_debug_print_var($curr_val, ++$depth, $length);
                 }
-                 
+
                 $depth--;
             }
           break;

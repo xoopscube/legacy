@@ -24,7 +24,8 @@ require_once XOOPS_ROOT_PATH . '/modules/ckeditor4/class/Ckeditor4Utiles.class.p
 
 function smarty_function_ck4dhtmltarea($params, &$smarty)
 {
-	if (isset($params['name'])) {
+	$addScript = null;
+ if (isset($params['name'])) {
 		
 		$js = Ckeditor4_Utils::getJS($params);
 		
