@@ -129,9 +129,11 @@ class XCube_Controller {
 	public $mSetupTextFilter = null;
 
 	public function __construct() {
+    // ----- removed by PHP74 refactoring
 		$this->_mBlockChain        = [];
 		$this->_mFilterChain       = [];
 		$this->_mLoadedFilterNames = [];
+    // ----- reverse for further testing in XCL 2.3.3
 
 		$this->mSetupUser       = new XCube_Delegate();
 		$this->mExecute         = new XCube_Delegate();

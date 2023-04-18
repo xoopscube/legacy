@@ -1,7 +1,7 @@
 <?php
 /**
  * /core/XCube_RoleManager.class.php
- * @package XCube
+ * @package    XCube
  * @version    XCL 2.3.3
  * @author     Minahito, 2008/10/12
  * @copyright  (c) 2005-2023 The XOOPSCube Project

@@ -196,7 +196,6 @@ class XCube_FormFile {
 
 	/**
 	 * @brief Generate random string.
-	 * https://www.php.net/manual/en/function.mt-rand.php
 	 * @param string $salt Salt for generating token.
 	 *
 	 * @return string
@@ -206,9 +205,9 @@ class XCube_FormFile {
 			$root =& XCube_Root::getSingleton();
 			$salt = $root->getSiteConfig( 'Cube', 'Salt' );
 		}
-		mt_srand( microtime() * 1000000 );
+		mt_srand( microtime() * 1_000_000 );
 
-		return md5( $salt . mt_rand() );
+		return md5( $salt . random_int(0, mt_getrandmax()) );
 	}
 
 	/**

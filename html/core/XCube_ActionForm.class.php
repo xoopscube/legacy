@@ -145,7 +145,7 @@ class XCube_ActionForm {
 			mt_srand( microtime( true ) * 100000 );
 			$root          =& XCube_Root::getSingleton();
 			$salt          = $root->getSiteConfig( 'Cube', 'Salt' );
-			$this->_mToken = md5( $salt . uniqid( mt_rand(), true ) );
+			$this->_mToken = md5( $salt . uniqid( random_int(0, mt_getrandmax()), true ) );
 
 			$_SESSION['XCUBE_TOKEN'][ $this->getTokenName() ] = $this->_mToken;
 		}
@@ -296,7 +296,7 @@ class XCube_ActionForm {
 		//
 		if ( null !== $this->getTokenName() ) {
 			$key   = str_replace( '.', '_', $this->getTokenName() );
-			$token = isset( $_REQUEST[ $key ] ) ? $_REQUEST[ $key ] : null;
+			$token = $_REQUEST[ $key ] ?? null;
 
 			$flag = true;
 

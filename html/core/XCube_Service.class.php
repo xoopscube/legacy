@@ -26,12 +26,12 @@ function S_PUBLIC_FUNC( $definition ) {
 		$params = [];
 		foreach ( explode( ',', substr( $definition, $pos + 1, - 1 ) ) as $t_param ) {
 			if ( $t_param ) {
-				list( $k, $v ) = explode( ' ', trim( $t_param ) );
+				[$k, $v] = explode( ' ', trim( $t_param ) );
 				$params[ $k ] = $v;
 			}
 		}
 		$ret = [ 'in' => $params ];
-		list( $ret['out'], $ret['name'] ) = explode( ' ', substr( $definition, 0, $pos ) );
+		[$ret['out'], $ret['name']] = explode( ' ', substr( $definition, 0, $pos ) );
 
 		return $ret;
 	}

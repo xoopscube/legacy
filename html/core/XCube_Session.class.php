@@ -112,7 +112,7 @@ class XCube_Session {
 		if ( isset( $_COOKIE[ $currentSessionName ] ) ) {
 			if ( $forceCookieClear || ( $currentSessionName !== $this->mSessionName ) ) {
 				// Clearing Session Cookie
-				setcookie( $currentSessionName, '', time() - 86400, $this->_cookiePath() );
+				setcookie( $currentSessionName, '', ['expires' => time() - 86400, 'path' => $this->_cookiePath()] );
 			}
 		}
 		session_destroy();
