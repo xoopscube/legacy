@@ -6,28 +6,51 @@
 
 # XOOPSCube Legacy :: XCL 2.3.x
 
-  
-<P><a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
+## Simple, Secure and Scalable
+### Web Application Platform and Content Management System
+
+XOOPSCube Legacy (XCL) is a free open-source Web Application Platform (WAP) well suited for general purpose 
+with a low code development approach maintained on GitHub. The XCL bundle package is designed for easy usage 
+to benefit from the performance of XCube Core and the most popular web server stack: Apache, MySQL and PHP.
+
+**XCL bundle package features out of the box**
+
+- X-elFinder file manager with WYSIWYG editors (code, graphics)  
+  Cloud Storage : Box, Dropbox, Google Drive, OneDrive, FTP, and more.  
+  GUI-based Composer to install cloud packages and dependencies  
+- X-Update Manager : get and deploy deploy from stores in GitHub,  
+  Gitlab or any other public or private, local or remote repository.
+- Duplicatable modules :  
+  Content Management System (CMS), forums, knowledge management systems,   
+  and multiple blogs (e.g. WordPress) management.
+
+<p><a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
 <img src="https://repository-images.githubusercontent.com/4779266/2956517f-c3ea-4177-bd08-e11b6e30f17c" alt="xcl-admin-render" title="XCL Admin version 2.3.x" width="100%">
 </a></p>
   
   
 **Active branches in GitHub**  
-Use active branches for all new features and bug fixes (PHP74, PHP8).  
+
+Active branch for all new features and bug fixes (PHP74, PHP8).  
 Keep a tested high quality, up-to-date master/main branch for releases.  
 
 | Branch | PHP Version | Commit / Pull request |
-| -- | -- | -- |
-| Master | PHP 7.4.x | Release Candidate (RC)  |
-| PHP8  | PHP 8.0.x | Features and bug fixes |
-| Smarty3 | PHP 7.4.x | Smarty v3 bug fixes |
+|:-------------:|:-------------:|:-------------:|
+| Master | PHP 7.4. - PHP 8.0 | Release Candidate (RC)  |
+| Smarty3 | PHP 7.4. - PHP 8.0| Smarty v3 bug fixes |
 
-## Simple, Secure and Scalable
-### Web Application Platform and Content Management System
+## Get Started
+### Installation Wizard
 
-XOOPSCube Legacy (XCL) is a free and open-source Web Application Platform (WAP) to build, manage and deploy customized Content Management System (CMS), forums, community discussion board, knowledge management systems, or multiple blogs (e.g. WordPress). The XCL bundle package is designed for easy usage and to benefit from the performance of XCube Core and the most popular web server stack: Apache, MySQL and PHP.
-    
-    
+The XCL bundle package is designed to run smoothly on any local server environment bundle LAMP, MAMP, XAMPP,
+dedicated server, virtual private server (VPS) or shared hosting. Running a local instance (Linux, macOS, Windows) and deploying to your dedicated server or shared hosting is fairly easy.  
+The following guide focuses on the user-friendly [Web installation wizard](https://xoopscube.github.io/legacy/)
+
+1. Create a database (MySQL or MariaDB) InnoDB collation utf8mb4
+2. Clone or Unzip the package files in your root directory
+3. Browse to your website URL
+4. Follow the steps in the Installer
+
 <a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
 <img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl-installer-wizard.jpg" alt="Wizard Installation" title="Wizard Installation" width="100%">
 </a>
@@ -38,25 +61,7 @@ XOOPSCube Legacy (XCL) is a free and open-source Web Application Platform (WAP) 
 
 -----
 
-## Get Started 
-
-The XCL bundle package is designed to run smoothly on any local server environment bundle LAMP, MAMP, XAMPP,
-dedicated server, virtual private server (VPS) or shared hosting.  
-Running a local instance (Linux, macOS, Windows) and deploying to your dedicated server or shared hosting is fairly easy.  
-The following guide focuses on the user-friendly [Web installation wizard](https://xoopscube.github.io/legacy/)   
-
-1. Create a database (MySQL or MariaDB)
-2. Unzip the package files in your root directory
-4. Browse to your website URL 
-5. Follow the steps in the Installer
-
 ## Requirements
-
-
-Whether you plan to create your own personal or corporate community web site with news, forums, photo gallery, portfolio, etc.   
-XOOPSCube will run smoothly on the most popular open source web server stack consisting of Linux, Apache, MySQL, and PHP.   
-Though XOOPSCube can run on any other Operating System (OS) as well.
-
 
 <table>
 <tr>
@@ -70,8 +75,8 @@ Language</th>
 </tr>
 <tr>
 <td align="center">Apache version 2.4.+</td>
-<td align="center">MySQL version 5.6.+</td>
-<td align="center">PHP version 7.2.+</td>
+<td align="center">MySQL version 5.7.+</td>
+<td align="center">PHP version 7.4.+</td>
 </tr>
 <tr>
 <td align="center"><a href="https://apache.org/"><img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/icons/apache.svg" width="48px" height="48px" alt="Apache" title="Apache"></a></td>
@@ -89,36 +94,17 @@ Language</th>
 
 ## Usage
 
-After you complete the Wizard process, there are lots of options to customize your Web Application Platform :
-- From the Admin dashboard, set-up your preferences (you can close your site)
+### Post-installation checklist
+
+Once the installation wizard completed, your website is preconfigured with default configuration settings. These settings refer to the pre-existing value of a user-configurable setting that is assigned to your web application platform. Therefore, you need to perform some post-installation tasks before launching your new website. These include setting up the site name and slogan, customizing meta tags (SEO), allowing visitors to register, and user group permissions. More detailed documents are available and highlighted throughout the built-in Help.
+
+- From the Admin Control Panel, set your preferences (your site is closed by default)
 - Install modules, blocks or create custom blocks (HTML, CSS, JavaScript or PHP) to specific modules pages
 - Create new user groups and set permissions
 - Customize meta tags (SEO)
 - Manage translations and localization
 
 <img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl_site_ui_modules.jpg" alt="Modules">
-
-
-## Features
-
-Below is a list of some of XOOPS Cube Legacy features.
-
-* Installation wizard
-* Admin Dashboard
-* Dashboard Update Manager
-* Install modules, themes directly from GitHub
-* Simple Core and Modular architecture
-* Module API for unlimited expandability
-* Debug function for easy development
-* User Groups granular permissions
-* Smarty Template engine
-* Caching mechanism
-* Themes and Templates management
-* Embedded WYSIWYG HTML Editor
-* elFinder Web File Manager
-* Free choice of PHP, JS, CSS frameworks
-* Third-party modules and extensions (preloads)
-
 
 ## License
 
@@ -175,19 +161,19 @@ We encourage all members of the open source community to promote curiosity in le
 
 | 10key         | Aaki          | Argon         | Asunta        | Bandit-x      | 
 |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
-| Beduino       | Bindi         | Bluemooninc   | Domifara      | Fugafuga      |
-| Gara          | Gigamaster    | GIJOE         | Gusagi        | Halt          | 
-| Hamanaka      | Hiroki        | Hypweb (Nao-pon) | Hxrr       | JardaR        |
-| idaikobo      | Kilica        | kimura363     | Leco          | Lumbago       | 
-| Marijuana     | Marine        | Mat           | Matchan       | Metal         | 
-| Mikhail Miguel| Minahito      | Moegiiro      | Mumincacao    | Masarap       | 
-| Naao          | Nao-pon       | Neko88        | Nobunobu      | Nor           | 
-| Nbuy (Nobu)   | Ohsepoa       | OhYear        | Ohwada        | Okuhiki       | 
-| Onokazu       | Orrisroot     | Otneg         | Plusangel     | Pcboy         |
-| Roger         | RyujiAMANO    | Sacchan       |  Sak-Axyz     | Salamander    | 
-| Shige-p       | Shiraga       | Slayer_cg     | Sohgo         | Sow           |
-| Suin          | Toemon        | Tokitam       | Tohokuaiki    | Tom_g3x       | 
-| Tomoro        | Wanderer      | Wanikoo       |
+| @argon358       | Bindi         | @Bluemooninc   | @Domifara      | Fugafuga      |
+| Gara          | @Gigamaster   | GIJOE         | @Gusagi        | Halt          | 
+| @Hamanaka      | Hiroki        | @Kujiy        | Hxrr          | JardaR        |
+| Jidaikobo      | @Kilica       | kimura363     | Leco          | Lumbago       | 
+| Marijuana     | @Marine123    | Mat           | @Matchan       | Metal         | 
+| @mikhail-miguel| Minahito      | Moegiiro      | @Mumincacao    | Masarap       | 
+| @Naao         | @Nao-pon      | @Neko88        | @nobunobuta   | Nor           | 
+| @Nbuy (Nobu)  | @Ohsepoa      | @OhYear       | @Ohwada       | Okuhiki       | 
+| @Onokazu       | @Orrisroot     | Otneg         | @Plusangel     | @Pcboy         |
+| Roger         | @RyujiAMANO   | Sacchan       | Sak-Axyz      | Salamander    | 
+| Shige-p       | Shiraga       | @shirosaki     | Slayer_cg     | @Sohgo         | 
+| Sow           | @Suin         | @Toemon        | @Tokitam       | @Tohokuaiki    | 
+| Tom_g3x       | Tomoro        | Wanderer      | Wanikoo       |               |
 
 
       —///////////////////////—
