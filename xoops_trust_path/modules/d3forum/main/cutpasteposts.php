@@ -129,7 +129,7 @@ $xoopsTpl->assign( [
 		'reference_name'           => @$reference_name4html,
 		'reference_time'           => @$reference_time,
 		'reference_time_formatted' => formatTimestamp( @$reference_time, 'm' ),
-		'children_count'           => count( $children ),
+		'children_count'           => is_countable($children) ? count( $children ) : 0,
 		'category'                 => $category4assign,
 		'forum'                    => $forum4assign,
 		'topic'                    => $topic4assign,

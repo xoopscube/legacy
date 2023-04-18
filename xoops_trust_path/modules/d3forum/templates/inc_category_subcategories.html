@@ -5,7 +5,7 @@
 
     <div class="headings">
         <h3>
-            <a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>" aria-label="<{$subcategory.desc}>">
+            <a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>" title="<{$subcategory.desc}>">
                 <img class="svg category_<{$subcategory.bit_new}>" src="<{$xoops_url}>/images/icons/category_<{$subcategory.bit_new}>.svg" width="1em" alt="<{$subcategory.title}>">
                 <{$subcategory.title}>
             </a>
@@ -29,7 +29,7 @@
             <{/if}>
 
             <{if $mod_config.show_rss}>
-            <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$subcategory.id}>&amp;odr=1" aria-label="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>">
+            <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$subcategory.id}>&amp;odr=1" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>">
                 <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" alt="RSS">
             </a>
             <{/if}>

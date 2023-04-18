@@ -76,11 +76,11 @@
 		<img class="svg lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" alt="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>">
 	<{/if}>
 	<{if $mod_config.use_solved && $forum.isadminormod && !$topic.solved}>
-		<a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" aria-label="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>">
+		<a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>">
 			<img class="svg unsolved" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>"></a>
 	<{/if}>
 	<{if $mod_config.allow_mark && $uid && $topic.u2t_marked}>
-		<a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" aria-label="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>">
+		<a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=forum_id&amp;ret_val=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>">
 			<img class="svg marked" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>"></a>
 	<{/if}>
 	<a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a>

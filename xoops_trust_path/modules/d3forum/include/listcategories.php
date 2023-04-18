@@ -155,7 +155,7 @@ $xoopsOption['template_main'] = $mydirname . '_main_listcategories.html';
 
 include XOOPS_ROOT_PATH . '/header.php';
 
-unset( $xoops_breadcrumbs[ count( $xoops_breadcrumbs ) - 1 ]['url'] );
+unset( $xoops_breadcrumbs[ (is_countable($xoops_breadcrumbs) ? count( $xoops_breadcrumbs ) : 0) - 1 ]['url'] );
 
 $xoopsTpl->assign(
 	[

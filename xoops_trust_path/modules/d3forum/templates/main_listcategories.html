@@ -39,7 +39,7 @@
             <{$smarty.const._MD_D3FORUM_LASTVISIT}> <span class="badge"><{$lastvisit_formatted}></span>
 
             <{if $mod_config.show_rss}>
-            <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=0&amp;odr=1" aria-label="<{$smarty.const._MD_D3FORUM_LINK_ALLRSS}>">
+            <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=0&amp;odr=1" title="<{$smarty.const._MD_D3FORUM_LINK_ALLRSS}>">
                 <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" alt="RSS">
             </a>
             <{/if}>
@@ -88,7 +88,7 @@
     <header>
         <div class="headings">
         <h3>
-            <a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>" aria-label="<{$category.title}>">
+            <a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>" title="<{$category.title}>">
             <img class="svg category_<{$category.bit_new}>"
                  src="<{$xoops_url}>/images/icons/category_<{$category.bit_new}>.svg"
                  width="1em"
@@ -98,7 +98,7 @@
 
             <{if $xoops_isadmin}>
             <a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>"
-               aria-label="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>"
+               title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>"
                data-tooltip="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>">
                <img class="svg edit" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" alt="edit">
             </a>
@@ -116,7 +116,7 @@
 <!--            <{/if}>-->
 
             <{if $mod_config.show_rss}>
-            <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1" aria-label="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>">
+            <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>">
                 <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" alt="RSS">
             </a>
             <{/if}>

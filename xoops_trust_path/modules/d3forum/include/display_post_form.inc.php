@@ -12,12 +12,12 @@
  */
 
 // variable check (and default)
-$smiley         = $smiley ?? 1;
-$xcode          = $xcode ?? 1;
-$br             = $br ?? 1;
-$number_entity  = $number_entity ?? 1; // default on
-$special_entity = $special_entity ?? 0; // default off
-$solved         = $solved ?? 1;
+$smiley ??= 1;
+$xcode ??= 1;
+$br ??= 1;
+$number_entity ??= 1; // default on
+$special_entity ??= 0; // default off
+$solved ??= 1;
 $pid            = empty( $pid ) ? 0 : (int) $pid;
 $post_id        = empty( $post_id ) ? 0 : (int) $post_id;
 $topic_id       = empty( $topic_id ) ? 0 : (int) $topic_id;

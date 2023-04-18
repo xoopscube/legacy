@@ -164,21 +164,21 @@ $requests_text = [ 'subject', 'message', 'guest_name', 'guest_email', 'guest_url
 
 // 0/1 flags
 foreach ( $requests_01 as $key ) {
-	$$key = empty( $_POST[ $key ] ) ? 0 : 1;
+	${$key} = empty( $_POST[ $key ] ) ? 0 : 1;
 }
 // integer
 foreach ( $requests_int as $key ) {
-	$$key = (int) @$_POST[ $key ];
+	${$key} = (int) @$_POST[ $key ];
 }
 // text
 foreach ( $requests_text as $key ) {
-	$$key = $myts->stripSlashesGPC( @$_POST[ $key ] );
+	${$key} = $myts->stripSlashesGPC( @$_POST[ $key ] );
 }
 
 // Validations after FETCH
 $subject = '' == trim( $subject ) ? _NOTITLE : $subject;
 
-if ( $icon < 0 || $icon >= count( $d3forum_icon_meanings ) ) {
+if ( $icon < 0 || $icon >= (is_countable($d3forum_icon_meanings) ? count( $d3forum_icon_meanings ) : 0) ) {
 	$icon = 0;
 }
 if ( empty( $xoopsModuleConfig['allow_html'] ) ) {
@@ -289,10 +289,10 @@ if ( ! empty( $_POST['contents_preview'] ) ) {
 	$set4sql = "modified_time=UNIX_TIMESTAMP(), modifier_ip='" . addslashes( @$_SERVER['REMOTE_ADDR'] ) . "'";
 
 	foreach ( $requests_01 as $key ) {
-		$set4sql .= ",$key='" . $$key . "'";
+		$set4sql .= ",$key='" . ${$key} . "'";
 	}
 	foreach ( $requests_int as $key ) {
-		$set4sql .= ",$key='" . $$key . "'";
+		$set4sql .= ",$key='" . ${$key} . "'";
 	}
 	/*foreach( $requests_text as $key ) {
 		$set4sql .= ",$key='".addslashes($$key)."'" ;
@@ -324,7 +324,7 @@ if ( ! empty( $_POST['contents_preview'] ) ) {
 		$guest_url = preg_match( '#^https?\://#', $guest_url ) ? $guest_url : '';
 
 		foreach ( [ 'guest_name', 'guest_email', 'guest_url', 'guest_trip' ] as $key ) {
-			$set4sql .= ",$key='" . addslashes( $$key ) . "'";
+			$set4sql .= ",$key='" . addslashes( ${$key} ) . "'";
 		}
 		if ( ! empty( $guest_pass ) ) {
 			$set4sql .= ",guest_pass_md5='" . md5( $guest_pass . 'd3forum' ) . "'";

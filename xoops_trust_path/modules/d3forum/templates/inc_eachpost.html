@@ -7,11 +7,11 @@
     <header class="post-header">
 
         <{* ----- POST TITLE *}>
-        <h3 class="post-title" id="post_id<{$post.id}>" aria-label="post_id<{$post.id}>">
+        <h3 class="post-title" id="post_id<{$post.id}>" title="post_id<{$post.id}>">
             <span>
                 <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$post.icon}>.svg" alt="<{$icon_meanings[$post.icon]}>">
                 <{if $caller == 'listposts'}>
-                <a href="<{$mod_url}>/index.php?post_id=<{$post.id}>" id="post_path<{$post.unique_path}>" aria-label="post_path<{$post.unique_path}>">
+                <a href="<{$mod_url}>/index.php?post_id=<{$post.id}>" id="post_path<{$post.unique_path}>" title="post_path<{$post.unique_path}>">
                     <{$post.subject}>
                 </a>
                 <{else}>
@@ -33,7 +33,7 @@
             <div class="dropdown">
 
                 <{* ------- POST AUTHOR AVATAR *}>
-                <a href="#" class="dropdown-toggle" aria-label="post-author">
+                <a href="#" class="dropdown-toggle" title="post-author">
                     <{if $post.poster_avatar}>
                         <{* TODO Theme options to customize UI *}>
                         <{if $post.poster_avatar.height > 48}>
@@ -68,7 +68,7 @@
                         <{if $post.guest_url || $post.guest_trip}>
                             <{* <{$post.guest_email}> *}>
                             <{if $post.guest_url}>
-                                <a href="<{$post.guest_url}>" aria-label="<{$post.guest_url}>"><{$smarty.const._MD_D3FORUM_TH_GUESTURL}></a>
+                                <a href="<{$post.guest_url}>" title="<{$post.guest_url}>"><{$smarty.const._MD_D3FORUM_TH_GUESTURL}></a>
                             <{/if}>
                             <{if $post.guest_trip}>
                                 <{$smarty.const._MD_D3FORUM_TH_GUESTTRIP}>: <{$post.guest_trip}><{/if}>
@@ -159,7 +159,7 @@
 
         <{* ------- post actions *}>
 
-        <div role="group" aria-label="Post actions">
+        <div role="group" title="Post actions">
 
             <{if $post.can_edit}>
             <a role="button" class="outline" href="<{$mod_url}>/index.php?page=edit&amp;post_id=<{$post.id}>" data-tooltip="<{$smarty.const._MD_D3FORUM_POSTEDIT}>">
@@ -188,7 +188,7 @@
             <{/if}>
 
             <{if $post.can_reply}>
-            <a role="button" class="outline" href="<{$mod_url}>/index.php?page=reply&amp;post_id=<{$post.id}>" aria-label="<{$smarty.const._MD_D3FORUM_POSTREPLY}>">
+            <a role="button" class="outline" href="<{$mod_url}>/index.php?page=reply&amp;post_id=<{$post.id}>" title="<{$smarty.const._MD_D3FORUM_POSTREPLY}>">
                 <img class="svg reply" src="<{$xoops_url}>/images/icons/reply.svg" width="1em" alt="reply">
                 <{$smarty.const._MD_D3FORUM_POSTREPLY}>
             </a>

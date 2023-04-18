@@ -20,7 +20,7 @@ if ( XOOPS_URL == $xoops_cookie_path ) {
 }
 
 // update cookie
-setcookie( $mydirname . '_postorder', (int) $_GET['postorder'], time() + 86400 * 30, $xoops_cookie_path );
+setcookie( $mydirname . '_postorder', (int) $_GET['postorder'], ['expires' => time() + 86400 * 30, 'path' => $xoops_cookie_path] );
 
 $allowed_identifiers = [ 'post_id', 'topic_id', 'forum_id' ];
 

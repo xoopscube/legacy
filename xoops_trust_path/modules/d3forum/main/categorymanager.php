@@ -53,7 +53,7 @@ if ( isset( $_POST['categoryman_post'] ) ) {
 	exit;
 }
 
-if ( isset( $_POST['categoryman_delete'] ) && 0 === count( $children ) ) {
+if ( isset( $_POST['categoryman_delete'] ) && 0 === (is_countable($children) ? count( $children ) : 0) ) {
 
 	if ( ! $xoopsGTicket->check( true, 'd3forum' ) ) {
 		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
@@ -105,7 +105,7 @@ $xoopsTpl->assign( [
 		'category'            => $category4assign,
 		'page'                => 'categorymanager',
 		'formtitle'           => _MD_D3FORUM_LINK_CATEGORYMANAGER,
-		'children_count'      => count( $children ),
+		'children_count'      => is_countable($children) ? count( $children ) : 0,
 		'cat_jumpbox_options' => d3forum_make_cat_jumpbox_options( $mydirname, $whr_read4cat, $cat_row['pid'] ),
 		'gticket_hidden'      => $xoopsGTicket->getTicketHtml( __LINE__, 1800, 'd3forum' ),
 		'xoops_module_header' => '<link rel="stylesheet" type="text/css" media="all" href="' . str_replace( '{mod_url}', XOOPS_URL . '/modules/' . $mydirname, $xoopsModuleConfig['css_uri'] ) . '">' . $xoopsTpl->get_template_vars( 'xoops_module_header' ),

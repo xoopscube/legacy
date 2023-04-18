@@ -21,7 +21,8 @@ if ( ! function_exists( 'd3forum_global_search_base' ) ) {
 	function d3forum_global_search_base( $mydirname, $keywords, $andor, $limit, $offset, $userid ) {
 
 
-		( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = MyTextSanitizer::sGetInstance() ) || $myts = MyTextsanitizer::getInstance();
+		$myts = null;
+  ( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = MyTextSanitizer::sGetInstance() ) || $myts = MyTextsanitizer::getInstance();
 
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -105,7 +106,7 @@ if ( ! function_exists( 'd3forum_global_search_base' ) ) {
 		// nao-pon
 		$make_context_func = function_exists( 'xoops_make_context' ) ? 'xoops_make_context' : ( function_exists( 'search_make_context' ) ? 'search_make_context' : '' );
 
-		while ( list( $post_id, $topic_id, $post_time, $uid, $subject, $html, $smiley, $xcode, $br, $text, $external_link_id, $forum_id ) = $db->fetchRow( $result ) ) {
+		while ( [$post_id, $topic_id, $post_time, $uid, $subject, $html, $smiley, $xcode, $br, $text, $external_link_id, $forum_id] = $db->fetchRow( $result ) ) {
 
 			// naao from
 			$can_display = true;    //default

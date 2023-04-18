@@ -313,7 +313,7 @@ Define( '_MD_D3FORUM_BTN_COPYFORUMTOOTHERFORUM' , 'Copier ce Forum dans l\'autre
 // makecategory and categorymanager
 Define( '_MD_D3FORUM_CATEGORYMANAGER' , 'Gestion de Catégories');
 Define( '_MD_D3FORUM_LINK_MAKECATEGORY' , 'Créer une Catégorie');
-Define( '_MD_D3FORUM_LINK_MAKESUBCATEGORY' , 'Créer une Sub-Catégorie');
+Define( '_MD_D3FORUM_LINK_MAKESUBCATEGORY' , 'Créer une sous-catégorie');
 Define( '_MD_D3FORUM_LINK_CATEGORYMANAGER' , 'Modifier une Catégorie');
 Define( '_MD_D3FORUM_MSG_CATEGORYMADE' , 'La Catégorie a été créée avec succès');
 Define( '_MD_D3FORUM_MSG_CATEGORYUPDATED' , 'La Catégorie a été modifiée avec succès');

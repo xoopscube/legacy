@@ -82,7 +82,9 @@ function d3forum_display_comment_topicscount( $mydirname, $forum_id, $params, $m
 
 // old interface
 function d3forum_display_comment( $mydirname, $forum_id, $params ) {
-	global $xoopsUser, $xoopsConfig, $xoopsModule;
+	$m_params = [];
+ $obj = null;
+ global $xoopsUser, $xoopsConfig, $xoopsModule;
 
 	// check the d3forum exists and is active
 	$module_hanlder = xoops_gethandler( 'module' );
@@ -184,7 +186,17 @@ function d3forum_display_comment( $mydirname, $forum_id, $params ) {
 
 
 function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
-	global $xoopsUser, $xoopsConfig, $xoopsModule;
+	$forum_row = [];
+ $isadminormod = null;
+ $uid = null;
+ $myts = null;
+ $poster_regdate = null;
+ $xoopsModuleConfigs = [];
+ $topic_hits = null;
+ $odr_options = null;
+ $solved_options = null;
+ $forum4assign = [];
+ global $xoopsUser, $xoopsConfig, $xoopsModule;
 
 	$mydirpath = XOOPS_ROOT_PATH . '/modules/' . $mydirname;
 

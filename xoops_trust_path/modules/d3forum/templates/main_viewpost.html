@@ -139,7 +139,7 @@
            <span style='padding-left:`$eachpost.depth_in_tree`0px;'>"}>
        <{/if}>
 
-        <a href="<{$mod_url}>/index.php?topic_id=<{$eachpost.topic_id}>#post_id<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" aria-label="post_path<{$eachpost.unique_path}>">
+        <a href="<{$mod_url}>/index.php?topic_id=<{$eachpost.topic_id}>#post_id<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" title="post_path<{$eachpost.unique_path}>">
 
         <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$eachpost.icon}>.svg" alt="<{$icon_meanings[$eachpost.icon]}>"> <{$eachpost.subject}></a>
 
@@ -147,7 +147,7 @@
 
         <{if $forum.isadminormod}>
 
-            <a href="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$eachpost.topic_id}>" aria-label="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>">
+            <a href="<{$mod_url}>/index.php?page=topicmanager&amp;topic_id=<{$eachpost.topic_id}>" title="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>">
             <img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg" alt=""></a>
 
         <{/if}>

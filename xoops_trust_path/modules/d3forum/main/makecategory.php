@@ -36,7 +36,7 @@ require_once dirname( __DIR__ ) . '/include/transact_functions.php';
 
 if ( isset( $_POST['categoryman_post'] ) ) {
 	// create a record for category and category_access
-	$new_cat_id = d3forum_makecategory( $mydirname, $cat_id );
+	$new_cat_id = d3forum_makecategory( $mydirname );
 	redirect_header( XOOPS_URL . "/modules/$mydirname/index.php?cat_id=$cat_id", 2, _MD_D3FORUM_MSG_CATEGORYMADE );
 	exit;
 }

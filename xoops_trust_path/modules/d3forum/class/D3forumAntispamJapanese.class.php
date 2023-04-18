@@ -15,7 +15,7 @@ require_once __DIR__ . '/D3forumAntispamAbstract.class.php';
 
 class D3forumAntispamJapanese extends D3forumAntispamAbstract {
 
-	private $dictionary_cache = [];
+	private array $dictionary_cache = [];
 
 	private $dictionary_file;
 
@@ -45,7 +45,7 @@ class D3forumAntispamJapanese extends D3forumAntispamAbstract {
 			}
 		}
 
-		$size = count( $this->dictionary_cache[ $this->dictionary_file ] );
+		$size = is_countable($this->dictionary_cache[ $this->dictionary_file ]) ? count( $this->dictionary_cache[ $this->dictionary_file ] ) : 0;
 
 		$ret = [];
 

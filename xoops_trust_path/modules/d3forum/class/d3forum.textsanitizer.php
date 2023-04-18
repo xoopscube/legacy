@@ -185,7 +185,9 @@ class D3forumTextSanitizer extends MyTextSanitizer {
 	}
 
 	public function extractSummary( $text ) {
-		$patterns[] = "/^(.*)\[summary\](.*)\[\/summary\](.*)$/sU";
+		$patterns = [];
+  $replacements = [];
+  $patterns[] = "/^(.*)\[summary\](.*)\[\/summary\](.*)$/sU";
 
 		$replacements[] = '$2';
 
@@ -205,11 +207,13 @@ class D3forumTextSanitizer extends MyTextSanitizer {
 	}
 
 	public function myCodeSanitizer( $matches ) {
-		return '<div class="xoopsCode"><pre><code>' . $this->xoopsCodeDecodeSafe( base64_decode( $matches[1] ), 0 ) . '</code></pre></div>';
+		return '<div class="xoopsCode"><pre><code>' . $this->xoopsCodeDecodeSafe( base64_decode( $matches[1] ) ) . '</code></pre></div>';
 	}
 
 	public function xoopsCodeDecodeSafe( $text ) {
-		// Though I know this is bad judgement ...
+		$patterns = [];
+  $replacements = [];
+  // Though I know this is bad judgement ...
 		if ( preg_match( '/[<>\'\"]/', $text ) ) {
 			$text = htmlspecialchars( str_replace( '\"', '"', $text ), ENT_QUOTES );
 		}

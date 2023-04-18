@@ -243,7 +243,7 @@ function d3forum_import_from_cbb3( $mydirname, $import_mid ) {
 
 	$db->query( "DELETE FROM `$to_table`" );
 
-	while ( list( $cat_id ) = $db->fetchRow( $crs ) ) {
+	while ( [$cat_id] = $db->fetchRow( $crs ) ) {
 		foreach ( $group_ids as $groupid ) {
 			$irs = $db->query( "INSERT INTO `$to_table` VALUES ($cat_id,null,$groupid,1,1,1,1,0,0)" );
 			if ( ! $irs ) {
@@ -276,7 +276,7 @@ function d3forum_import_from_cbb3( $mydirname, $import_mid ) {
 
 	$db->query( "DELETE FROM `$to_table`" );
 
-	while ( list( $forum_id ) = $db->fetchRow( $frs ) ) {
+	while ( [$forum_id] = $db->fetchRow( $frs ) ) {
 		foreach ( $group_ids as $groupid ) {
 			$irs = $db->query( "INSERT INTO `$to_table` VALUES ($forum_id,null,$groupid,1,1,1,1,0)" );
 			if ( ! $irs ) {
@@ -362,7 +362,7 @@ function d3forum_import_from_newbb1( $mydirname, $import_mid ) {
 
 	$db->query( "DELETE FROM `$to_table`" );
 
-	while ( list( $cat_id ) = $db->fetchRow( $crs ) ) {
+	while ( [$cat_id] = $db->fetchRow( $crs ) ) {
 		foreach ( $group_ids as $groupid ) {
 			$irs = $db->query( "INSERT INTO `$to_table` VALUES ($cat_id,null,$groupid,1,1,1,1,0,0)" );
 			if ( ! $irs ) {
@@ -399,11 +399,11 @@ function d3forum_import_from_newbb1( $mydirname, $import_mid ) {
 
 	$db->query( "DELETE FROM `$to_table`" );
 
-	while ( list( $forum_id, $forum_access, $forum_type ) = $db->fetchRow( $frs ) ) {
+	while ( [$forum_id, $forum_access, $forum_type] = $db->fetchRow( $frs ) ) {
 		// moderator by uid
 		$mrs = $db->query( "SELECT user_id FROM `$from_mods_table` WHERE forum_id=$forum_id" );
 
-		while ( list( $uid ) = $db->fetchRow( $mrs ) ) {
+		while ( [$uid] = $db->fetchRow( $mrs ) ) {
 			$irs = $db->query( "INSERT INTO `$to_table` VALUES ($forum_id,$uid,null,1,1,1,1,1)" );
 			if ( ! $irs ) {
 				d3forum_import_errordie();
@@ -520,7 +520,7 @@ function d3forum_import_from_xhnewbb( $mydirname, $import_mid ) {
 
 	$db->query( "DELETE FROM `$to_table`" );
 
-	while ( list( $cat_id ) = $db->fetchRow( $crs ) ) {
+	while ( [$cat_id] = $db->fetchRow( $crs ) ) {
 		foreach ( $group_ids as $groupid ) {
 			$irs = $db->query( "INSERT INTO `$to_table` VALUES ($cat_id,null,$groupid,1,1,1,1,0,0)" );
 			if ( ! $irs ) {
@@ -557,11 +557,11 @@ function d3forum_import_from_xhnewbb( $mydirname, $import_mid ) {
 
 	$db->query( "DELETE FROM `$to_table`" );
 
-	while ( list( $forum_id, $forum_access, $forum_type ) = $db->fetchRow( $frs ) ) {
+	while ( [$forum_id, $forum_access, $forum_type] = $db->fetchRow( $frs ) ) {
 		// moderator by uid
 		$mrs = $db->query( "SELECT user_id FROM `$from_mods_table` WHERE forum_id=$forum_id" );
 
-		while ( list( $uid ) = $db->fetchRow( $mrs ) ) {
+		while ( [$uid] = $db->fetchRow( $mrs ) ) {
 
 			$irs = $db->query( "INSERT INTO `$to_table` VALUES ($forum_id,$uid,null,1,1,1,1,1)" );
 
@@ -760,7 +760,7 @@ function d3forum_comimport_posts_recursive( $mydirname, $topic_id, $com_id, $pid
 
 	$crs = $db->query( "SELECT com_id FROM `$from_table` WHERE com_pid=$com_id" );
 
-	while ( list( $child_com_id ) = $db->fetchRow( $crs ) ) {
+	while ( [$child_com_id] = $db->fetchRow( $crs ) ) {
 		d3forum_comimport_posts_recursive( $mydirname, $topic_id, $child_com_id, $post_id );
 	}
 }
@@ -822,7 +822,7 @@ function d3forum_export_forum_to_d3forum( $mydirname, $export_mid, $export_cat_i
 
 	$trs = $db->query( "SELECT topic_id FROM `$from_table` WHERE forum_id=$forum_id ORDER BY topic_id" );
 
-	while ( list( $topic_id ) = $db->fetchRow( $trs ) ) {
+	while ( [$topic_id] = $db->fetchRow( $trs ) ) {
 		d3forum_export_topic_to_d3forum( $mydirname, $export_mid, $export_forum_id, $forum_id, $topic_id, $is_move );
 	}
 }
@@ -892,7 +892,7 @@ function d3forum_export_topic_to_d3forum( $mydirname, $export_mid, $export_forum
 
 	$post_conversions = [];
 
-	while ( list( $post_id ) = $db->fetchRow( $prs ) ) {
+	while ( [$post_id] = $db->fetchRow( $prs ) ) {
 
 		$sql = "INSERT INTO `$to_table` ($columns4sql,`topic_id`) SELECT $columns4sql,$export_topic_id FROM `$from_table` WHERE post_id=$post_id";
 

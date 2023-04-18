@@ -17,7 +17,8 @@ if ( ! function_exists( 'd3forum_notify_base' ) ) {
 
 	function d3forum_notify_base( $mydirname, $category, $item_id ) {
 
-		include_once __DIR__ . '/include/common_functions.php';
+		$item = [];
+  include_once __DIR__ . '/include/common_functions.php';
 
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
 

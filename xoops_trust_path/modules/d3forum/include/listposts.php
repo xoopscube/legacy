@@ -165,15 +165,11 @@ $posts = d3forum_make_treeinformations( $posts );
 switch ( $postorder ) {
 	case 3:
 		// usort($posts, create_function('$a,$b', 'return $a["id"] > $b["id"] ? -1 : 1 ;')); !Deprecated fix @gigamaster
-		usort( $posts, static function ( $a, $b ) {
-			return ( $a["id"] > $b["id"] ? - 1 : 1 );
-		} );
+		usort( $posts, static fn($a, $b) => $a["id"] > $b["id"] ? - 1 : 1 );
 		break;
 	case 2:
 		//usort($posts, create_function('$a,$b', 'return $a["id"] > $b["id"] ? 1 : -1 ;')); !Deprecated fix @gigamaster
-		usort( $posts, static function ( $a, $b ) {
-			return ( $a["id"] > $b["id"] ? 1 : - 1 );
-		} );
+		usort( $posts, static fn($a, $b) => $a["id"] > $b["id"] ? 1 : - 1 );
 		break;
 	case 1:
 		rsort( $posts );
@@ -192,7 +188,7 @@ if ( $post_hits ) {
 	}
 	$d3forum_meta_description = mb_substr( trim( strip_tags( $posts[0]['post_text'] ) ), 0, 57, _CHARSET );
 	$d3forum_meta_description .= '...';
-	$d3forum_meta_description .= mb_substr( trim( strip_tags( $posts[ count( $posts ) - 1 ]['post_text'] ) ), 0, ( 60 - strlen( $reply_for_description ) ), _CHARSET ) . $reply_for_description;
+	$d3forum_meta_description .= mb_substr( trim( strip_tags( $posts[ (is_countable($posts) ? count( $posts ) : 0) - 1 ]['post_text'] ) ), 0, ( 60 - strlen( $reply_for_description ) ), _CHARSET ) . $reply_for_description;
 } else {
 	$d3forum_meta_description = mb_substr( trim( strip_tags( $posts[0]['post_text'] ) ), 0, 120, _CHARSET );
 }
@@ -274,7 +270,7 @@ $xoopsOption['template_main'] = $mydirname . '_main_listposts.html';
 
 include XOOPS_ROOT_PATH . '/header.php';
 
-unset( $xoops_breadcrumbs[ count( $xoops_breadcrumbs ) - 1 ]['url'] );
+unset( $xoops_breadcrumbs[ (is_countable($xoops_breadcrumbs) ? count( $xoops_breadcrumbs ) : 0) - 1 ]['url'] );
 
 $xoopsTpl->assign(
 	[

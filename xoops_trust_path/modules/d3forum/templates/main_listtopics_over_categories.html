@@ -47,7 +47,7 @@
                     <input type="text" size="12" name="txt" value="<{$query.txt}>">
                 </label>
 
-                <button type="submit" class="primary" value="<{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}>" aria-label="<{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}>">
+                <button type="submit" class="primary" value="<{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}>" title="<{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}>">
                     <img class="svg update" src="<{$xoops_url}>/images/icons/update.svg" alt="update"> <{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}>
                 </button>
             </div>
@@ -89,14 +89,14 @@
                 <{/if}>
                 <{if ! $topic.solved}>
                     <{if $topic.forum_isadminormod}>
-                        <a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=cat_ids&amp;ret_val=<{$cat_ids}>" aria-label="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>">
+                        <a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=cat_ids&amp;ret_val=<{$cat_ids}>" title="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>">
                             <img class="svg solved-no" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>"></a>
                     <{else}>
                         <img class="svg solved" src="<{$xoops_url}>/images/icons/topic_status_solved1.svg" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDYES}>">
                     <{/if}>
                 <{/if}>
                 <{if $uid && $topic.u2t_marked}>
-                    <a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=cat_ids&amp;ret_val=<{$cat_ids}>" aria-label="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>">
+                    <a href="<{$mod_url}>/index.php?page=update_u2t_marked&amp;topic_id=<{$topic.id}>&amp;ret_name=cat_ids&amp;ret_val=<{$cat_ids}>" title="<{$smarty.const._MD_D3FORUM_MARK_TURNOFF}>">
                         <img class="svg marked" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>"></a>
                 <{/if}>
                 <a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>" class="ml-2"><{$topic.title}></a>

@@ -99,7 +99,7 @@ foreach (
 		/*, 'notify' , 'u2t_marked'*/
 	] as $key
 ) {
-	$$key = in_array( $key, $post_default_options ) ? 1 : 0;
+	${$key} = in_array( $key, $post_default_options ) ? 1 : 0;
 }
 
 if ( is_object( @$GLOBALS['xoopsUser'] ) ) {

@@ -12,7 +12,9 @@
  */
 
 function d3forum_get_rssdata( $mydirname, $limit = 0, $offset = 0, $forum_id = 0, $cat_ids = [], $last_post = false, $_show_hidden_topic = null ) {
-	// Settings
+	$d3com = null;
+ $myts = null;
+ // Settings
 	$module_handler = xoops_gethandler( 'module' );
 
 	$module = $module_handler->getByDirname( $mydirname );
@@ -38,7 +40,7 @@ function d3forum_get_rssdata( $mydirname, $limit = 0, $offset = 0, $forum_id = 0
 	if ( empty( $cat_ids ) ) {
 		// all topics in the module
 		$whr_cat_ids = '';
-	} else if ( 1 === count( $cat_ids ) ) {
+	} else if ( 1 === (is_countable($cat_ids) ? count( $cat_ids ) : 0) ) {
 		// topics under the specified category
 		$whr_cat_ids = 'f.cat_id=' . $cat_ids[0];
 	} else {
@@ -134,7 +136,8 @@ function d3forum_get_rssdata( $mydirname, $limit = 0, $offset = 0, $forum_id = 0
 }
 
 function d3forum_whatsnew_base( $mydirname, $limit = 0, $offset = 0 ) {
-	foreach ( d3forum_get_rssdata( $mydirname, $limit, $offset, 0, 0, true, false ) as $row ) {
+	$ret = [];
+ foreach ( d3forum_get_rssdata( $mydirname, $limit, $offset, 0, 0, true, false ) as $row ) {
 		$ret[] = [
 			'link'        => $row['link'],
 			'cat_link'    => $row['cat_link'],
@@ -159,9 +162,11 @@ if ( ! function_exists( 'd3forum_make_context' ) ) {
 		static $strcut = '';
 
 		if ( ! $strcut ) {
-			$strcut = create_function( '$a,$b,$c', ( function_exists( 'mb_strcut' ) ) ?
-				'return mb_strcut($a,$b,$c);' :
-				'return strcut($a,$b,$c);' );
+			$strcut = function ($a, $b, $c) {
+       eval(( function_exists( 'mb_strcut' ) ) ?
+    				'return mb_strcut($a,$b,$c);' :
+    				'return strcut($a,$b,$c);');
+   };
 		}
 
 		$text = str_replace( [ '&lt;', '&gt;', '&amp;', '&quot;', '&#039;' ], [ '<', '>', '&', '"', "'" ], $text );

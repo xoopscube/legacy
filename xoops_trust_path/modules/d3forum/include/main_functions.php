@@ -56,7 +56,7 @@ function d3forum_make_treeinformations( $data ) {
 		}
 	}
 
-	$data[ count( $data ) - 1 ]['ul_out'] = str_repeat( '</li></ul>', $previous_depth + 1 );
+	$data[ (is_countable($data) ? count( $data ) : 0) - 1 ]['ul_out'] = str_repeat( '</li></ul>', $previous_depth + 1 );
 
 	return $data;
 }
@@ -64,7 +64,8 @@ function d3forum_make_treeinformations( $data ) {
 
 // check done
 function d3forum_get_forum_permissions_of_current_user( $mydirname ) {
-	global $xoopsUser;
+	$ret = [];
+ global $xoopsUser;
 
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -100,7 +101,8 @@ function d3forum_get_forum_permissions_of_current_user( $mydirname ) {
 
 // check done
 function d3forum_get_category_permissions_of_current_user( $mydirname ) {
-	global $xoopsUser;
+	$ret = [];
+ global $xoopsUser;
 
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -156,7 +158,7 @@ function d3forum_get_users_can_read_forum( $mydirname, $forum_id, $cat_id = null
 
 	$result = $db->query( $sql );
 
-	while ( list( $uid ) = $db->fetchRow( $result ) ) {
+	while ( [$uid] = $db->fetchRow( $result ) ) {
 		$cat_uids[] = $uid;
 	}
 
@@ -164,7 +166,7 @@ function d3forum_get_users_can_read_forum( $mydirname, $forum_id, $cat_id = null
 
 	$result = $db->query( $sql );
 
-	while ( list( $uid ) = $db->fetchRow( $result ) ) {
+	while ( [$uid] = $db->fetchRow( $result ) ) {
 		$cat_uids[] = $uid;
 	}
 
@@ -174,7 +176,7 @@ function d3forum_get_users_can_read_forum( $mydirname, $forum_id, $cat_id = null
 
 	$result = $db->query( $sql );
 
-	while ( list( $uid ) = $db->fetchRow( $result ) ) {
+	while ( [$uid] = $db->fetchRow( $result ) ) {
 		$forum_uids[] = $uid;
 	}
 
@@ -182,7 +184,7 @@ function d3forum_get_users_can_read_forum( $mydirname, $forum_id, $cat_id = null
 
 	$result = $db->query( $sql );
 
-	while ( list( $uid ) = $db->fetchRow( $result ) ) {
+	while ( [$uid] = $db->fetchRow( $result ) ) {
 		$forum_uids[] = $uid;
 	}
 
@@ -204,7 +206,7 @@ function d3forum_get_forum_moderate_groups4show( $mydirname, $forum_id ) {
 
 	$mrs = $db->query( $sql );
 
-	while ( list( $mod_gid, $mod_gname ) = $db->fetchRow( $mrs ) ) {
+	while ( [$mod_gid, $mod_gname] = $db->fetchRow( $mrs ) ) {
 		$ret[] = [
 			'gid'   => $mod_gid,
 			'gname' => htmlspecialchars( $mod_gname, ENT_QUOTES ),
@@ -230,7 +232,7 @@ function d3forum_get_forum_moderate_users4show( $mydirname, $forum_id ) {
 	$mrs = $db->query( $sql );
 
 	// naao from
-	while ( list( $mod_uid, $mod_uname, $mod_name ) = $db->fetchRow( $mrs ) ) {
+	while ( [$mod_uid, $mod_uname, $mod_name] = $db->fetchRow( $mrs ) ) {
 		if ( 1 === $xoopsModuleConfig['use_name'] && $mod_name ) {
 			$mod_uname = $mod_name;
 		}
@@ -257,7 +259,7 @@ function d3forum_get_category_moderate_groups4show( $mydirname, $cat_id ) {
 
 	$mrs = $db->query( $sql );
 
-	while ( list( $mod_gid, $mod_gname ) = $db->fetchRow( $mrs ) ) {
+	while ( [$mod_gid, $mod_gname] = $db->fetchRow( $mrs ) ) {
 		$ret[] = [
 			'gid'   => $mod_gid,
 			'gname' => htmlspecialchars( $mod_gname, ENT_QUOTES ),
@@ -283,7 +285,7 @@ function d3forum_get_category_moderate_users4show( $mydirname, $cat_id ) {
 	$mrs = $db->query( $sql );
 
 	// naao from
-	while ( list( $mod_uid, $mod_uname, $mod_name ) = $db->fetchRow( $mrs ) ) {
+	while ( [$mod_uid, $mod_uname, $mod_name] = $db->fetchRow( $mrs ) ) {
 
 		if ( 1 === $xoopsModuleConfig['use_name'] && $mod_name ) {
 			$mod_uname = $mod_name;
@@ -310,7 +312,7 @@ function d3forum_make_jumpbox_options( $mydirname, $whr4cat, $whr4forum, $forum_
 	$sql = 'SELECT c.cat_id, c.cat_title, c.cat_depth_in_tree, f.forum_id, f.forum_title FROM ' . $db->prefix( $mydirname . '_categories' ) . ' c LEFT JOIN ' . $db->prefix( $mydirname . '_forums' ) . " f ON f.cat_id=c.cat_id WHERE ($whr4cat) AND ($whr4forum) ORDER BY c.cat_order_in_tree, f.forum_weight";
 
 	if ( $result = $db->query( $sql ) ) {
-		while ( list( $cat_id, $cat_title, $cat_depth, $forum_id, $forum_title ) = $db->fetchRow( $result ) ) {
+		while ( [$cat_id, $cat_title, $cat_depth, $forum_id, $forum_title] = $db->fetchRow( $result ) ) {
 			$selected = $forum_id == $forum_selected ? 'selected="selected"' : '';
 			$ret      .= "<option value='$forum_id' $selected>" . str_repeat( '--', $cat_depth ) . $myts->makeTboxData4Show( $cat_title ) . ' - ' . $myts->makeTboxData4Show( $forum_title ) . "</option>\n";
 		}
@@ -333,7 +335,7 @@ function d3forum_make_cat_jumpbox_options( $mydirname, $whr4cat, $cat_selected =
 	$sql = 'SELECT c.cat_id, c.cat_title, c.cat_depth_in_tree FROM ' . $db->prefix( $mydirname . '_categories' ) . " c WHERE ($whr4cat) ORDER BY c.cat_order_in_tree";
 
 	if ( $result = $db->query( $sql ) ) {
-		while ( list( $cat_id, $cat_title, $cat_depth ) = $db->fetchRow( $result ) ) {
+		while ( [$cat_id, $cat_title, $cat_depth] = $db->fetchRow( $result ) ) {
 			$selected = $cat_id == $cat_selected ? 'selected="selected"' : '';
 			$ret      .= "<option value='$cat_id' $selected>" . str_repeat( '--', $cat_depth ) . $myts->makeTboxData4Show( $cat_title ) . "</option>\n";
 		}
@@ -384,7 +386,8 @@ function d3forum_get_comment_description( $mydirname, $external_link_format, $ex
 
 // get object for comment integration  // naao modified
 function d3forum_main_get_comment_object( $forum_dirname, $external_link_format, $forum_id = null ) {
-	require_once dirname( __DIR__ ) . '/class/D3commentObj.class.php';
+	$params = [];
+ require_once dirname( __DIR__ ) . '/class/D3commentObj.class.php';
 
 	$params['forum_dirname'] = $forum_dirname;
 
