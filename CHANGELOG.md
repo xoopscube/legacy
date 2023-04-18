@@ -8,9 +8,116 @@ All notable changes to this project will be documented in this file.
 
 Refer please to repository Legacy Commits  
 
+## [2.3.3 RC PHP8] 2023-04-18
+
+**Update modules**  
+
+- altsys v2.33.3
+- Core modules v2.33.3
+- d3Forum v2.33.3
+- Message v2.43.3
+- Pico v2.44.3
+- Protector v3.58.3
+- Sitemap v2.33.3
+- X-elFinder v2.64.3
+- X-Update Manager v2.34.3
+- update libs xelfinder and smarty plugins
+- Smarty PHP8 v2.6.33-dev
+- Translations (WIP)   
+English, Français, 日本語, Português, Pусский
+
+## [2.3.3 RC PHP8] 2023-04-16
+
+- fix warnings PHP7.4 - PHP 8.0
+- array, iscountable, and typos
+- add Smarty constants, global translation
+- add Smarty Forms examples
+- built-in Help documentation
+- control panel and dashboard options
+- clean-up CSS dark and light theme
+- Composer gui-based
+- Composer trust path vendor
+- merge JavaScript utilities
+- Protector ip security list
+- replace aria-label with title for action tooltip
+- review css and php metrics
+- Update Smarty plugins
+- Fix fields, controller, XelFinder, X-Update manager
+- Server information for Apache and Nginx path
+
+## [2.3.3 RC PHP8] 2023-04-04
+
+- Add language russian utf-8
+- Fix language constants
+- AltSys ( Components ) fix clone template set
+- Use Edit Profile
+- User Info Profile
+- Debug Mode Smarty (class template)
+- D3 Forum templates PHP8
+- D3 Pico templates PHP8
+- D3 Pico - Extra Smarty Forms
+- Design Formmail send automatically to email
+- Form Response stored in DB ( Control Panel )
+- Pico search form by ID
+- Fix warning Render and AdminRender
+- Theme Default fix warning PHP8
+- Theme Bootstrap 5 warning PHP8
+- Sitemap Fix Block - fatal error PHP8
+
+## [2.3.3 RC PHP8] 2023-03-31
+
+- add language Russian
+- altsys ui components php8
+- common / Bootstrap v5.3.0-alpha2
+- common / PicoCSS + pico grid
+- common / x-layout
+- Fix snooy not working with proxy server
+- Admin blocks
+- Admin Theme
+- Admin Menu Avatar
+- Admin menu Messages
+- component card block
+- component filter and search
+- control view grid, list localstorage
+- copy-past generated htaccess
+- Dropdown filter sort and search
+- Dropdown Action menu
+- Install wizard - removed unused images
+- Meta tags webmaster tools
+- Module.class check constants
+- Module d3forum php8
+- Module Message v.2.43
+- Module Pico v.2.44
+- Moodule Pico Smarty Form Design
+- Module X-Update v2.34
+- Module X-elFinder v2.64.0'
+- Module Sitemap v2.33.1
+- Templates CSS link to /common/picocss
+- Theme Bootstrap v5.3.0-alpha2
+- Theme Default PicoCSS
+- CSS metrics - card input width #235
+- Admin block - loginfo PHP8 #239
+- Admin Search preferences - Undefined constant PHP8 #241
+- Admin UIX Action Control + localstorage #242
+- Type Safe Element tray flag PHP8 #243
+- Module class getAdminMenu array #245
+- Solved PHP8 warnings by using Smarty modifier |default #247
+- GUI Installation check - refresh after recursively delete directory install #248
+- GUI theme localstorage - templates site-closed + redirect #249
+- AltSys Components - version number #250
+- GUI AltSys Components - Tips for Custom Blocks #251
+- RRender - Banner Management - SortKeys and CurrentClient #252
+- PHP8 - Admin Dashboard Preload - required parameter #253
+- Render Admin theme and templates #254
+- AdminDasboard Preload attributes #255
+- Unsupported operand types: string + int #261
+- Pico Design Smarty Form Build email validation #262
+- Update AdminDashboard Preload
+- Update modules templates
+
 ## [2.3.3 rc PHP8] 2023-03-23
 
-Merge backend, frontend and branch PHP8 
+- Merge backend, frontend and branch PHP8 
 
 ## [2.3.1rc] 2023-03-02
 
