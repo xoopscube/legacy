@@ -26,11 +26,12 @@ Keep a tested high quality, up-to-date master/main branch for releases.
 ### Web Application Platform and Content Management System
 
 XOOPSCube Legacy (XCL) is a free and open-source Web Application Platform (WAP) to build, manage and deploy customized Content Management System (CMS), forums, community discussion board, knowledge management systems, or multiple blogs (e.g. WordPress). The XCL bundle package is designed for easy usage and to benefit from the performance of XCube Core and the most popular web server stack: Apache, MySQL and PHP.
-    
+![cloud-storage](https://user-images.githubusercontent.com/1905497/232748465-34848e41-2e2c-4dcd-9630-c4683eff18ab.svg)    
 <table>
 <tr>
 <td>
-<svg xmlns="http://www.w3.org/2000/svg" role="img" width="3em" height="3em" viewBox="0 0 24 24" class="svg"><path fill="currentColor" d="M14 13h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-3l-1-1h-2a1 1 0 0 0-1 1v1H8V7h2a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H7L6 1H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2v13h7v1a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-3l-1-1h-2a1 1 0 0 0-1 1v1H8v-7h5v1a1 1 0 0 0 1 1Z"></path></svg>
+![cloud-storage](https://user-images.githubusercontent.com/1905497/232748465-34848e41-2e2c-4dcd-9630-c4683eff18ab.svg)
+
 </td>
 <td>
 File Manager with WYSIWYG editors (code, graphics) and Cloud Storage (Box, Dropbox, Google Drive, OneDrive, FTP ). 
