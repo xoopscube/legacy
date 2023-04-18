@@ -13,7 +13,8 @@ if ( ! function_exists( 'protector_notify_base' ) ) {
 	 * @return mixed
 	 */
 	function protector_notify_base( $mydirname, $category, $item_id ) {
-		include_once __DIR__ . '/include/common_functions.php';
+		$item = [];
+  include_once __DIR__ . '/include/common_functions.php';
 
 		$db =& Database::getInstance();
 

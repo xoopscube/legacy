@@ -44,7 +44,7 @@ function protector_postcommon() {
 		return true;
 	}
 
-	$last_ip                       = isset( $_SESSION['protector_last_ip'] ) ? $_SESSION['protector_last_ip'] : '';
+	$last_ip                       = $_SESSION['protector_last_ip'] ?? '';
 	$_SESSION['protector_last_ip'] = $protector->remote_ip;
 
 	// group1_ips (groupid=1)

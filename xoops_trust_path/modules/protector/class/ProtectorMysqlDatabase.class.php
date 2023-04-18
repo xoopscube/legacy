@@ -107,7 +107,7 @@ class ProtectorMySQLDatabase extends ProtectorMySQLDatabase_base {
 
 
 	public function checkSql( $sql ) {
-		list( $sql_wo_strings, $strings ) = $this->separateStringsInSQL( $sql );
+		[$sql_wo_strings, $strings] = $this->separateStringsInSQL( $sql );
 
 		// stage1: addslashes() processed or not
 		foreach ( $this->doubtful_requests as $request ) {
@@ -116,7 +116,7 @@ class ProtectorMySQLDatabase extends ProtectorMySQLDatabase_base {
 					// check the request stayed inside of strings as whole
 					$ok_flag = false;
 					foreach ( $strings as $string ) {
-						if ( strstr( $string, $request ) ) {
+						if ( strstr( $string, (string) $request ) ) {
 							$ok_flag = true;
 							break;
 						}
@@ -154,7 +154,7 @@ class ProtectorMySQLDatabase extends ProtectorMySQLDatabase_base {
 	public function &query( $sql, $limit = 0, $start = 0 ) {
 		$sql4check = substr( $sql, 7 );
 		foreach ( $this->doubtful_needles as $needle ) {
-			if ( stristr( $sql4check, $needle ) ) {
+			if ( stristr( $sql4check, (string) $needle ) ) {
 				$this->checkSql( $sql );
 				break;
 			}

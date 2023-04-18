@@ -26,7 +26,7 @@ $log_table = $db->prefix( $mydirname . '_log' );
 // Protector object
 require_once dirname( __DIR__ ) . '/class/protector.php';
 $db        = &Database::getInstance();
-$protector = Protector::getInstance( $db->conn );
+$protector = Protector::getInstance();
 $conf      = $protector->getConf();
 
 // transaction stage
@@ -82,11 +82,11 @@ if ( ! empty( $_POST['action'] ) ) {
         redirect_header( 'index.php', 2, _AM_MSG_REMOVED );
         exit;
     } elseif ( 'compactlog' == $_POST['action'] ) {
-        // compactize records (removing duplicated records (ip,type)
+        // compact records (removing duplicated records (ip,type)
         $result = $db->query( "SELECT `lid`,`ip`,`type` FROM $log_table ORDER BY lid DESC" );
         $buf    = [];
         $ids    = [];
-        while ( list( $lid, $ip, $type ) = $db->fetchRow( $result ) ) {
+        while ( [$lid, $ip, $type] = $db->fetchRow( $result ) ) {
             if ( isset( $buf[ $ip . $type ] ) ) {
                 $ids[] = $lid;
             } else {
@@ -99,10 +99,9 @@ if ( ! empty( $_POST['action'] ) ) {
     }
 }
 
-
 // query for listing
 $rs = $db->query( "SELECT count(lid) FROM $log_table" );
-list( $numrows ) = $db->fetchRow( $rs );
+[$numrows] = $db->fetchRow( $rs );
 $prs = $db->query( "SELECT l.lid, l.uid, l.ip, l.agent, l.type, l.description, UNIX_TIMESTAMP(l.timestamp), u.uname FROM $log_table l LEFT JOIN " . $db->prefix( 'users' ) . " u ON l.uid=u.uid ORDER BY timestamp DESC LIMIT $pos,$num" );
 
 // Page Navigation
@@ -132,7 +131,7 @@ echo '<section data-layout"row center-justify" class="action-control">
 <div><!-- Filters --></div>
     <div class="control-view">
         <a class="button" href="'. XOOPS_URL .'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1#ip-ban">⛔ '. _AM_TH_IP_BAN .'</a>
-        <button class="help-admin button" type="button" data-module="protector" data-help-article="#help-blacklist" aria-label="'._HELP .'">
+        <button class="help-admin button" type="button" data-module="protector" data-help-article="#help-blacklist" title="'._HELP .'">
             <b>?</b>
         </button>
     </div>
@@ -168,19 +167,17 @@ echo "<form name='ConfigForm' action='' method='POST'>"
     <tr>
         <td>" . _AM_TH_BADIPS . "</td>
         <td>
-        <textarea name='bad_ips' id='bad_ips' rows='4' style='width:200px;'>$bad_ips4disp</textarea>
-        <br>
-        " . htmlspecialchars( $protector->get_filepath4badips() ) . "
+        <textarea name='bad_ips' id='bad_ips' rows='4' style='width:240px;'>$bad_ips4disp</textarea>
         </td>
     </tr>
+    <tr><td colspan='2'><pre class='badge'>" . htmlspecialchars( $protector->get_filepath4badips() ) . "</pre></td></tr>
     <tr>
         <td>" . _AM_TH_GROUP1IPS . "</td>
         <td>
-        <textarea name='group1_ips' id='group1_ips' rows='4' style='width:200px;'>$group1_ips4disp</textarea>
-        <br>
-        " . htmlspecialchars( $protector->get_filepath4group1ips() ) . "
+        <textarea name='group1_ips' id='group1_ips' rows='4' style='width:240px;'>$group1_ips4disp</textarea>
         </td>
     </tr>
+    <tr><td colspan='2'><pre class='badge'>" . htmlspecialchars( $protector->get_filepath4group1ips() ) . "</pre></td></tr>
     </tbody>
     <tfoot>
     <tr>
@@ -217,7 +214,7 @@ echo "<form name='MainForm' action='' method='POST'>
 </thead>';
 
 // body of log listing
-while ( list( $lid, $uid, $ip, $agent, $type, $description, $timestamp, $uname ) = $db->fetchRow( $prs ) ) {
+while ( [$lid, $uid, $ip, $agent, $type, $description, $timestamp, $uname] = $db->fetchRow( $prs ) ) {
 
     $ip          = htmlspecialchars( $ip, ENT_QUOTES );
     $type        = htmlspecialchars( $type, ENT_QUOTES );
@@ -233,7 +230,7 @@ while ( list( $lid, $uid, $ip, $agent, $type, $description, $timestamp, $uname )
         $agent_short = substr( $agent, 0, strpos( $agent, ' ' ) );
     }
     $agent4disp = htmlspecialchars( $agent, ENT_QUOTES );
-    $agent_desc = $agent == $agent_short ? $agent4disp : htmlspecialchars( $agent_short, ENT_QUOTES ) . "<img src='../images/dotdotdot.gif' alt='$agent4disp' aria-label='$agent4disp'>";
+    $agent_desc = $agent == $agent_short ? $agent4disp : htmlspecialchars( $agent_short, ENT_QUOTES ) . "<img src='../images/dotdotdot.gif' alt='$agent4disp' title='$agent4disp'>";
 
     echo "<tbody>
     <tr>
@@ -251,11 +248,11 @@ while ( list( $lid, $uid, $ip, $agent, $type, $description, $timestamp, $uname )
 echo "<tfoot>
     <tr>
     <td colspan='9'> 
-    <button class='button delete' type='button' onclick='if(confirm(\"" . _AM_JS_REMOVECONFIRM . "\")){document.MainForm.action.value=\"delete\"; submit();}' aria-label='" . _AM_LABEL_REMOVE . "'>
+    <button class='button delete' type='button' onclick='if(confirm(\"" . _AM_JS_REMOVECONFIRM . "\")){document.MainForm.action.value=\"delete\"; submit();}' title='" . _AM_LABEL_REMOVE . "'>
     <i class='i-delete'></i>" . _AM_BUTTON_REMOVE . "</button> 
-    <button class='button delete' type='button' onclick='if(confirm(\"" . _AM_JS_REMOVEALLCONFIRM . "\")){document.MainForm.action.value=\"deleteall\"; submit();}' aria-label='" . _AM_LABEL_REMOVEALL . " '>
+    <button class='button delete' type='button' onclick='if(confirm(\"" . _AM_JS_REMOVEALLCONFIRM . "\")){document.MainForm.action.value=\"deleteall\"; submit();}' title='" . _AM_LABEL_REMOVEALL . " '>
     <i class='i-delete'></i>" . _AM_BUTTON_REMOVEALL . "</button>
-    <button class='button' type='button' value='' onclick='if(confirm(\"" . _AM_JS_COMPACTLOGCONFIRM . "\")){document.MainForm.action.value=\"compactlog\"; submit();}' aria-label='" . _AM_LABEL_COMPACTLOG . "'>
+    <button class='button' type='button' value='' onclick='if(confirm(\"" . _AM_JS_COMPACTLOGCONFIRM . "\")){document.MainForm.action.value=\"compactlog\"; submit();}' title='" . _AM_LABEL_COMPACTLOG . "'>
     <i class='i-tar'></i>" . _AM_BUTTON_COMPACTLOG . "</button>
     </td>
   </tr>
@@ -268,9 +265,9 @@ xoops_cp_footer();
 
 function protector_ip_cmp( $a, $b ) {
     $as   = explode( '.', $a );
-    $aval = @$as[0] * 167777216 + @$as[1] * 65536 + @$as[2] * 256 + @$as[3];
+    $aval = @$as[0] * 167_777_216 + @$as[1] * 65536 + @$as[2] * 256 + @$as[3];
     $bs   = explode( '.', $b );
-    $bval = @$bs[0] * 167777216 + @$bs[1] * 65536 + @$bs[2] * 256 + @$bs[3];
+    $bval = @$bs[0] * 167_777_216 + @$bs[1] * 65536 + @$bs[2] * 256 + @$bs[3];
 
     return $aval > $bval ? 1 : - 1;
 }

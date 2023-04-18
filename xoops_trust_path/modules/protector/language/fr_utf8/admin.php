@@ -2,18 +2,18 @@
 
 // Altsys admin menu and breadcrumbs
 define( '_MD_A_MYMENU_MYTPLSADMIN' , 'Templates');
-define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Blocks Permissions');
-define( '_MD_A_MYMENU_MYPREFERENCES' , 'Preferences');
+define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Blocs Permissions');
+define( '_MD_A_MYMENU_MYPREFERENCES' , 'Préférences');
 
 // Headings
-define( '_AM_TH_DATETIME' , 'Time');
-define( '_AM_TH_USER' , 'User');
+define( '_AM_TH_DATETIME' , 'Date');
+define( '_AM_TH_USER' , 'Utilisateur');
 define( '_AM_TH_IP' , 'IP');
-define( '_AM_TH_IP_BAN' , 'System IP Ban');
-define( '_AM_TH_AGENT' , 'AGENT');
+define( '_AM_TH_IP_BAN' , 'Système IP Ban');
+define( '_AM_TH_AGENT' , 'AgentT');
 define( '_AM_TH_TYPE' , 'Type');
 define( '_AM_TH_DESC' , 'Description');
-define( '_AM_TH_INFO' , 'Overview');
+define( '_AM_TH_INFO' , 'Aperçu');
 define( '_AM_TH_TIPS' , 'Solution');
 
 define( '_AM_TH_BADIPS' , 'Bad IPs<br><br>Write each IP address in a different line.<br>Blank means all IPs are allowed<br>The abbreviation of IPv6 address "::" and abbreviation of "0" can not be used.');
