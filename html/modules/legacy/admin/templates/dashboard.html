@@ -6,12 +6,12 @@
 }
 :where(.accordion ) h3 {
     background: none !important;
-    border:1px solid transparent none !important;
+    border:1px solid transparent !important;
     box-shadow:none!important;
 }
 :is(.accordion) h3.ui-state-active{
-    border-bottom: 1px solid var(--theme-color, var(--color-blue) )!important;
-    color: var(--theme-link, var(--color-blue) ) !important;
+    border-bottom: 1px solid var(--link-active, var(--theme-color) )!important;
+    color: var(--link-active, var(--theme-link) ) !important;
 }
 
 #tabs ul{margin: 0;padding: 0;list-style: none;}
@@ -29,7 +29,7 @@
 }
 #tabs ul li.ui-tabs-active{
     background: none;
-    color: #007fff;
+    color: var(--link-active, #007fff);
     border: 1px solid transparent;
     border-bottom: 1px solid var(--theme-color);
     border-top: 3px solid #007fff;
@@ -82,6 +82,7 @@ h3.beta b:nth-of-type(4) {animation-delay: 400ms;}
 h3.beta b:nth-of-type(5) {animation-delay: 500ms;}
 h3.beta b:nth-of-type(6) {animation-delay: 600ms;}
 h3.beta b:nth-of-type(7) {animation-delay: 700ms;}
+h3.beta b:nth-of-type(7) {animation-delay: 750ms;}
 @keyframes text-shadow {
     0% {color: white;text-shadow: 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0);}
     15% {text-shadow: -1px 1px 6px rgba(250, 250, 250, 1), -3px 3px 16px rgba(25, 25, 25, 1), -8px 8px 26px rgba(250, 250, 250, 0.9), -16px 16px 36px rgba(250, 250, 250, 0.8);}
@@ -103,7 +104,7 @@ h3.beta b:nth-of-type(7) {animation-delay: 700ms;}
     max-width: 100%;
     position: sticky;
     top: 0;
-    z-index: var(--z-sticky);
+    z-index: 2;
 }
 #taboard > ul li {
     border:1px solid transparent;
@@ -116,6 +117,9 @@ h3.beta b:nth-of-type(7) {animation-delay: 700ms;}
 }
 </style>
 
+
+
+
 <hr>
 
 <div id="ui-component">
@@ -126,15 +130,15 @@ h3.beta b:nth-of-type(7) {animation-delay: 700ms;}
 
             <ul>
                 <li><a href="#tab1">
-                    <svg class="uix" xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0L0 2v10l8 4l8-4V2L8 0zm6.4 2.6L8.5 4.8L1.9 2.6L8 1l6.4 1.6zM1 11.4V3.3l7 2.4v9.2l-7-3.5z"/></svg>
-                    Get Started</a></li>
-                <li><a href="#tab2">
-                    <svg class="uix" xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 16 16"><g fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59c.4.07.55-.17.55-.38c0-.19-.01-.82-.01-1.49c-2.01.37-2.53-.49-2.69-.94c-.09-.23-.48-.94-.82-1.13c-.28-.15-.68-.52-.01-.53c.63-.01 1.08.58 1.23.82c.72 1.21 1.87.87 2.33.66c.07-.52.28-.87.51-1.07c-1.78-.2-3.64-.89-3.64-3.95c0-.87.31-1.59.82-2.15c-.08-.2-.36-1.02.08-2.12c0 0 .67-.21 2.2.82c.64-.18 1.32-.27 2-.27c.68 0 1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82c.44 1.1.16 1.92.08 2.12c.51.56.82 1.27.82 2.15c0 3.07-1.87 3.75-3.65 3.95c.29.25.54.73.54 1.48c0 1.07-.01 1.93-.01 2.2c0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></g></svg>
-                    GitHub</a></li>
-                <li><a href="#tab3">
-                    <svg class="uix" xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 16 16"><path fill="currentColor" d="M12 7V5l-1.2-.4c-.1-.3-.2-.7-.4-1l.6-1.2l-1.5-1.3l-1.1.5c-.3-.2-.6-.3-1-.4L7 0H5l-.4 1.2c-.3.1-.7.2-1 .4l-1.1-.5l-1.4 1.4l.6 1.2c-.2.3-.3.6-.4 1L0 5v2l1.2.4c.1.3.2.7.4 1l-.5 1.1l1.4 1.4l1.2-.6c.3.2.6.3 1 .4L5 12h2l.4-1.2c.3-.1.7-.2 1-.4l1.2.6L11 9.6l-.6-1.2c.2-.3.3-.6.4-1L12 7zM3 6c0-1.7 1.3-3 3-3s3 1.3 3 3s-1.3 3-3 3s-3-1.3-3-3z"/><path fill="currentColor" d="M7.5 6a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 7.5 6z"/><path fill="currentColor" d="M16 3V2h-.6c0-.2-.1-.4-.2-.5l.4-.4l-.7-.7l-.4.4c-.2-.1-.3-.2-.5-.2V0h-1v.6c-.2 0-.4.1-.5.2l-.4-.4l-.7.7l.4.4c-.1.2-.2.3-.2.5H11v1h.6c0 .2.1.4.2.5l-.4.4l.7.7l.4-.4c.2.1.3.2.5.2V5h1v-.6c.2 0 .4-.1.5-.2l.4.4l.7-.7l-.4-.4c.1-.2.2-.3.2-.5h.6zm-2.5.5c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1z"/><path fill="currentColor" d="M15.4 11.8c-.1-.3-.2-.6-.4-.9l.3-.6l-.7-.7l-.5.4c-.3-.2-.6-.3-.9-.4L13 9h-1l-.2.6c-.3.1-.6.2-.9.4l-.6-.3l-.7.7l.3.6c-.2.3-.3.6-.4.9L9 12v1l.6.2c.1.3.2.6.4.9l-.3.6l.7.7l.6-.3c.3.2.6.3.9.4l.1.5h1l.2-.6c.3-.1.6-.2.9-.4l.6.3l.7-.7l-.4-.5c.2-.3.3-.6.4-.9l.6-.2v-1l-.6-.2zM12.5 14c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5s1.5.7 1.5 1.5s-.7 1.5-1.5 1.5z"/></svg>
-                    Get Started
-                </a></li>
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0L0 2v10l8 4l8-4V2L8 0zm6.4 2.6L8.5 4.8L1.9 2.6L8 1l6.4 1.6zM1 11.4V3.3l7 2.4v9.2l-7-3.5z"/>
+                    </svg> <{$smarty.const._ABOUT}></a></li>
+                <li><a href="#tab-start">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 16 16"><path fill="currentColor" d="M12 7V5l-1.2-.4c-.1-.3-.2-.7-.4-1l.6-1.2l-1.5-1.3l-1.1.5c-.3-.2-.6-.3-1-.4L7 0H5l-.4 1.2c-.3.1-.7.2-1 .4l-1.1-.5l-1.4 1.4l.6 1.2c-.2.3-.3.6-.4 1L0 5v2l1.2.4c.1.3.2.7.4 1l-.5 1.1l1.4 1.4l1.2-.6c.3.2.6.3 1 .4L5 12h2l.4-1.2c.3-.1.7-.2 1-.4l1.2.6L11 9.6l-.6-1.2c.2-.3.3-.6.4-1L12 7zM3 6c0-1.7 1.3-3 3-3s3 1.3 3 3s-1.3 3-3 3s-3-1.3-3-3z"/><path fill="currentColor" d="M7.5 6a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 7.5 6z"/><path fill="currentColor" d="M16 3V2h-.6c0-.2-.1-.4-.2-.5l.4-.4l-.7-.7l-.4.4c-.2-.1-.3-.2-.5-.2V0h-1v.6c-.2 0-.4.1-.5.2l-.4-.4l-.7.7l.4.4c-.1.2-.2.3-.2.5H11v1h.6c0 .2.1.4.2.5l-.4.4l.7.7l.4-.4c.2.1.3.2.5.2V5h1v-.6c.2 0 .4-.1.5-.2l.4.4l.7-.7l-.4-.4c.1-.2.2-.3.2-.5h.6zm-2.5.5c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1z"/><path fill="currentColor" d="M15.4 11.8c-.1-.3-.2-.6-.4-.9l.3-.6l-.7-.7l-.5.4c-.3-.2-.6-.3-.9-.4L13 9h-1l-.2.6c-.3.1-.6.2-.9.4l-.6-.3l-.7.7l.3.6c-.2.3-.3.6-.4.9L9 12v1l.6.2c.1.3.2.6.4.9l-.3.6l.7.7l.6-.3c.3.2.6.3.9.4l.1.5h1l.2-.6c.3-.1.6-.2.9-.4l.6.3l.7-.7l-.4-.5c.2-.3.3-.6.4-.9l.6-.2v-1l-.6-.2zM12.5 14c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5s1.5.7 1.5 1.5s-.7 1.5-1.5 1.5z"/>
+                    </svg> <{$smarty.const._START}></a></li>
+                <li><a href="#tab-source">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3a9 9 0 0 1 3.618 17.243l-2.193-5.602a3 3 0 1 0-2.849 0l-2.193 5.603A9 9 0 0 1 12 3z"/>
+                    </svg> <{$smarty.const._SOURCE}></a></li>
+
             </ul>
 
             <div id="tab1">
@@ -142,49 +146,38 @@ h3.beta b:nth-of-type(7) {animation-delay: 700ms;}
                 <div data-layout="row sm-column">
 
                 <div data-layout="column center" data-self="size-1of2 sm-full" class="xcl-beta-anim">
-                    <h1 class="xcl">XCL</h1><h3 class="beta"><b>B</b><b>E</b><b>T</b><b>A</b><b>2</b><b>3</b><b>1</b></h3>
+                    <h1 class="xcl">XCL</h1><h3 class="beta"><b>V</b><b>E</b><b>R</b><b>S</b><b>I</b><b>O</b><b>N</b><b>2.3</b></h3>
                 </div>
 
                 <hr>
 
                 <div class="accordion" data-self="sm-full">
-                    <h3>GPL and BSD licenses</h3>
-                    <div>
-                        <p>Open-source licensed software is mostly available free of charge, though it is not always the case.<br>
-                            XCube XCL distributions provide free features and functions released under GPL and BSD licenses.
-                            The BSD License allows proprietary use and allows the software to be incorporated into proprietary products.
-                        </p>
-                    </div>
+                    <h3><{$smarty.const._WAP_LICENSE}></h3>
+                    <div><p><{$smarty.const._WAP_LICENSE_DSC}></p></div>
 
-                    <h3>Distribution package</h3>
-                    <div>
-                        <p>The default distribution package provides a white-label solution to bundle and deploy a simple Web Application Platform.
-                        </p>
-                    </div>
+                    <h3><{$smarty.const._WAP_BUNDLE}></h3>
+                    <div><p><{$smarty.const._WAP_BUNDLE_DSC}></p></div>
 
-                    <h3>Integration</h3>
-                    <div>
-                        <p>For instance, individual developers and agencies might create their own free or paid package, personalize and
-                            offer specific features for a wide range of industries. Professional distributors may charge service fees to
-                            cover administrative or processing costs, technical support or maintenance services.
-                        </p>
-                    </div>
+                    <h3><{$smarty.const._WAP_B2C}></h3>
+                    <div><p><{$smarty.const._WAP_B2C_DSC}></p></div>
                 </div>
 
                 </div>
 
             </div>
 
-            <div id="tab2" class="github">
+            <div id="tab-start">
+                <h2>Tab3 Header</h2>
+                <{* include file="./components/dashboard-todo.html" *}>
+            </div>
+
+            <div id="tab-source" class="github">
 
                 <{include file="./components/dashboard-repo.html"}>
 
             </div>
 
-            <div id="tab3">
-                <h2>Tab3 Header</h2>
-                <{* include file="./components/dashboard-todo.html" *}>
-            </div>
+
 
         </div>
 

@@ -263,6 +263,13 @@ class XoopsNotificationHandler extends XoopsObjectHandler
      **/
     public function insert(&$notification)
     {
+        $not_modid = null;
+        $not_itemid = null;
+        $not_category = null;
+        $not_uid = null;
+        $not_event = null;
+        $not_mode = null;
+        $not_id = null;
         if ('xoopsnotification' != strtolower(get_class($notification))) {
             return false;
         }
@@ -364,7 +371,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 
@@ -620,6 +627,7 @@ class XoopsNotificationHandler extends XoopsObjectHandler
 
     public function triggerEvent($category, $item_id, $event, $extra_tags= [], $user_list= [], $module_id=null, $omit_user_id=null)
     {
+        $item_info = [];
         if (!isset($module_id)) {
             global $xoopsModule;
             $module =& $xoopsModule;

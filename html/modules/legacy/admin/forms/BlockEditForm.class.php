@@ -79,7 +79,7 @@ class Legacy_BlockEditForm extends XCube_ActionForm
         $this->mFormProperties['template'] = new XCube_StringProperty('template');
 
         $this->mFieldProperties['template'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['template']->setDependsByArray(array('maxlength'));
+        $this->mFieldProperties['template']->setDependsByArray(['maxlength']);
         $this->mFieldProperties['template']->addMessage('maxlength', _MD_LEGACY_ERROR_MAXLENGTH, _AD_LEGACY_LANG_TEMPLATE, '255');
         $this->mFieldProperties['template']->addVar('maxlength', '255');
 
@@ -89,7 +89,7 @@ class Legacy_BlockEditForm extends XCube_ActionForm
     public function validateBmodule()
     {
         $bmodule = $this->get('bmodule');
-        if (!(count($bmodule))) {
+        if (!(is_countable($bmodule) ? count($bmodule) : 0)) {
             $this->addErrorMessage(_AD_LEGACY_ERROR_BMODULE);
         } else {
             $handler =& xoops_gethandler('module');
@@ -105,7 +105,7 @@ class Legacy_BlockEditForm extends XCube_ActionForm
     public function validateGroupid()
     {
         $groupid = $this->get('groupid');
-        if (!(count($groupid))) {
+        if (!(is_countable($groupid) ? count($groupid) : 0)) {
             $this->addErrorMessage(_AD_LEGACY_ERROR_GROUPID);
         }
     }
@@ -152,7 +152,7 @@ class Legacy_BlockEditForm extends XCube_ActionForm
         // Update options (XOOPS2 compatible)
         //
         $optionArr = $this->get('options');
-        for ($i = 0; $i < count($optionArr); $i++) {
+        for ($i = 0; $i < (is_countable($optionArr) ? count($optionArr) : 0); $i++) {
             if (is_array($optionArr[$i])) {
                 $optionArr[$i] = implode(',', $optionArr[$i]);
             }

@@ -2,7 +2,7 @@
     <ul>
         <li>
             <div class="dropdown">
-                <a href="#" class="dropdown-toggle button" title="<{$smarty.const._CPHOME}>">
+                <a href="#" class="dropdown-toggle button" title="<{$smarty.const._LINKS_TIP}>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/></svg>
                 </a>
                 <div class="dropdown-content drop-nav">
@@ -19,14 +19,17 @@
                 </svg>
             </a>
         </li>
-        <{* Display date_format modifier to show current date and time *}>
+        <{* Display date_format modifier to show current date and time e.g. numeric $smarty.now|date_format:'%Y-%m-%d %H:%M:%S' *}>
         <li data-self="sm-hide">
-            <span class="badge"><{*  style="line-height: 24px;"*}>
-                <img class="svg" src="<{'icons/icon-date-time.svg'|theme}>" width="1em" alt="date-time"> <{$smarty.now|date_format:'%Y-%m-%d %H:%M:%S'}>
+            <span class="badge" title="<{$smarty.const._TIME_TIP}>">
+                <img class="svg" src="<{'icons/icon-date-time.svg'|theme}>" width="1em" alt="date-time"> <{$smarty.now|date_format:"%A, %e %B %Y - %H:%M:%S"}>
             </span>
         </li>
         <li class="ui-color-mode">
-            <button id="themeToggle" class="button button-icon" title="Color Mode"></button>
+            <a class="button" href="<{$xoops_url}>/index.php" target="_blank" title="<{$smarty.const._YOURHOME}>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path d="M10 20v-6h4v6h5v-8h3L12 3L2 12h3v8h5z" fill="currentColor"></path></svg>
+            </a>
+                <button id="themeToggle" class="button button-icon" title="<{$smarty.const._THEME_TIP}>"></button>
 
             <a class="button" href="<{$xoops_url}>/user.php?op=logout" target="_blank" title="<{$smarty.const._LOGOUT}>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path d="M16 17v-3H9v-4h7V7l5 5l-5 5M14 2a2 2 0 0 1 2 2v2h-2V4H5v16h9v-2h2v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9z" fill="currentColor"></path></svg>

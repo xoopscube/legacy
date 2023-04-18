@@ -157,6 +157,11 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
      */
     public function insert(&$perm)
     {
+        $gperm_groupid = null;
+        $gperm_itemid = null;
+        $gperm_modid = null;
+        $gperm_name = null;
+        $gperm_id = null;
         if ('xoopsgroupperm' != strtolower(get_class($perm))) {
             return false;
         }
@@ -260,7 +265,7 @@ class XoopsGroupPermHandler extends XoopsObjectHandler
         if (!$result) {
             return 0;
         }
-        list($count) = $db->fetchRow($result);
+        [$count] = $db->fetchRow($result);
         return $count;
     }
 

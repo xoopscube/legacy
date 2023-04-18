@@ -1,11 +1,11 @@
 <{* XCL-Cube Admin Panel Options *}>
-<div class="theme-options">
+<div class="panel-control">
 	<div class="qube-perspective">
 		<ul class="qube xcl-cube">
 			<li class="front">X
-			<li class="left">L
-			<li class="back">C
-			<li class="right">L
+			<li class="left">C
+			<li class="back">L
+			<li class="right">C
 			<li class="top">
 			<li class="bottom">
 		</ul>
@@ -13,29 +13,33 @@
 </div>
 
 <{* ----- RIGHT-SIDEBAR ----- *}>
-<style>
-    :is(.right-panel-block) form.action-search, ul#user-menu a {display:inline-flex;width: 100%; text-align:left;margin:0}
-    :is(.right-panel-block) input[type="search"], button.search {border:1px solid var(--layer-4); background:var(--layer-3); margin:1px; padding: var(--space-2 );}
-    :is(.right-panel-block) input[type="search"]{width: inherit;}
-    :is(.right-panel-block) span.icon{margin-right:var(--space-3)}
-    :is(.right-panel-block) button.help-admin.button {width: 100%;text-align: left;margin: 0 0 1em;}
-</style>
 <div class="right-sidebar">
 
     <div class="right-panel-title"> <{$smarty.const._CPHOME}>
-        <span class="button theme-options theme-options-close"> × </span>
+        <span class="button panel-control-close"> × </span>
     </div>
 
     <{* ----- RIGHT-PANEL-BLOCK ----- *}>
-		<div class="right-panel-block">
+    <div class="right-panel-block">
 
-            <{* Admin Block Help *}>
-            <div data-layout="row">
-                <{$xoops_lblocks.action_search.content}>
-            </div>
+        <{* Admin Block Help *}>
+        <div data-layout="row">
+            <{$xoops_lblocks.action_search.content}>
+        </div>
 
-            <h6>Select Theme </h6>
-            <div data-self="size-1of1 px-3 p-5" style="background: var(--layer-3);border:var(--border);border-radius: 5px;">
+        <{* Admin Module Help *}>
+        <{* assign var="helpAdmin" value="`$xoops_dirname` article#help-overview" *}>
+        <h6><{$smarty.const._HELP}></h6>
+        <div data-layout="row center-spread">
+            <button class="help-admin button" type="button" data-module="<{$xoops_dirname}>" data-help-article="#help-overview" aria-label="<{$smarty.const._HELP}>">
+                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M11 18h2v-2h-2v2m1-12a4 4 0 0 0-4 4h2a2 2 0 0 1 2-2a2 2 0 0 1 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5a4 4 0 0 0-4-4M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/></svg></span>
+                Module : <{$xoops_dirname}>
+            </button>
+        </div>
+
+        <h6><svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 16 16"><g fill="currentColor"><path d="M0 .5A.5.5 0 0 1 .5 0h5a.5.5 0 0 1 .5.5v5.277l4.147-4.131a.5.5 0 0 1 .707 0l3.535 3.536a.5.5 0 0 1 0 .708L10.261 10H15.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5H3a2.99 2.99 0 0 1-2.121-.879A2.99 2.99 0 0 1 0 13.044m6-.21l7.328-7.3l-2.829-2.828L6 7.188v5.647zM4.5 13a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0zM15 15v-4H9.258l-4.015 4H15zM0 .5v12.495V.5z"/><path d="M0 12.995V13a3.07 3.07 0 0 0 0-.005z"/></g>
+        </svg> <{$smarty.const._AD_BLOCK_THEME}></h6>
+        <div class="block-options">
             <select name="theme-select" id="theme-select" data-self="size-1of1">
                 <option value="default">-- Default</option>
                 <option value="amber">Amber</option>
@@ -45,45 +49,74 @@
                 <option value="forestgreen">forestgreen</option>
                 <option value="indigo">Indigo</option>
             </select>
-            </div>
+        </div>
 
-            <{* Admin Module Help *}>
-            <{* assign var="helpAdmin" value="`$xoops_dirname` article#help-overview" *}>
-            <h6><{$smarty.const._HELP}></h6>
-            <div data-layout="row center-spread">
-                <button class="help-admin button" type="button" data-module="<{$xoops_dirname}>" data-help-article="#help-overview" aria-label="<{$smarty.const._HELP}>">
-                    <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M11 18h2v-2h-2v2m1-12a4 4 0 0 0-4 4h2a2 2 0 0 1 2-2a2 2 0 0 1 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5a4 4 0 0 0-4-4M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/></svg></span>
-                    Module : <{$xoops_dirname}>
-                </button>
-            </div>
+        <h6><svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M6 18h5.5v-4H6v4Zm0-5h5.5V6H6v7Zm6.5 5H18v-7h-5.5v7Zm0-8H18V6h-5.5v4ZM5 21q-.825 0-1.413-.588T3 19V5q0-.825.588-1.413T5 3h14q.825 0 1.413.588T21 5v2h2v2h-2v2h2v2h-2v2h2v2h-2v2q0 .825-.588 1.413T19 21H5Zm0-2h14V5H5v14ZM5 5v14V5Z"/>
+        </svg> <{$smarty.const._AD_BLOCK_ADMIN}></h6>
+        <div id="admin-blocks" data-layout="column">
+            <label for="block-loginfo">
+                <{$smarty.const._AD_BLOCK_ACCOUNT}>
+                <input type="checkbox" class="switch block-control" id="block-loginfo" name="admin-block-loginfo">
+            </label>
+            <label for="block-online">
+                <{$smarty.const._AD_BLOCK_ONLINE}>
+                <input type="checkbox" class="switch block-control" id="block-online" name="admin-block-online">
+            </label>
+            <label for="block-menu">
+                <{$smarty.const._AD_BLOCK_MENU}>
+                <input type="checkbox" class="switch block-control" id="block-menu" name="admin-block-menu">
+            </label>
+            <label for="block-tips" title="Option to show or hide Tips. Modules have links to Help articles.">
+                <{$smarty.const._AD_BLOCK_TIPS}>
+                <input type="checkbox" class="switch block-control" id="block-tips" name="help-tips">
+            </label>
+            <label for="block-overview">
+                <{$smarty.const._AD_BLOCK_OVERVIEW}>
+                <input type="checkbox" class="switch block-control" id="block-overview" name="admin-block-overview">
+            </label>
+            <label for="block-server">
+                <{$smarty.const._AD_BLOCK_SERVER}>
+                <input type="checkbox" class="switch block-control" id="block-server" name="admin-block-server">
+            </label>
+            <label for="block-php">
+                <{$smarty.const._AD_BLOCK_PHP}>
+                <input type="checkbox" class="switch block-control" id="block-php" name="admin-block-php">
+            </label>
 
-            <{* ----- $uid|xoops_user:"name"
-            <h6><{$smarty.const._PROFILE}> <{$smarty.const._INFO}></h6>
-            <div data-layout="column">
-                <{$xoops_lblocks.block_loginfo.content}>
-            </div>
-                ----- *}>
+            <label for="block-tooltip">
+                <{$smarty.const._AD_BLOCK_TOOLTIP}>
+                <input type="checkbox" class="switch block-control" id="block-tooltip" name="tooltip">
+            </label>
+
+        </div>
+
+        <button id="clearLS" type="button" class="button delete"><i class="i-delete"></i> Clear LocalStorage</button>
 
 
-            <{* ----- ADMIN PREVIEW ----- *}>
-            <h6>Preview Layout</h6>
 
-            <div data-layout="row center-spread" class="btn-group" data-self="size-x1" role="group">
-                <button type="button" class="button" aria-label="736x414" href="<{$xoops_url}>/" onclick="window.open('<{$xoops_url}>/','pagename','resizable,height=700,width=400'); return false;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 576 1024"><path d="M480 0H96Q70 0 48 13T13 48 0 96v832q0 40 28 68t68 28h384q40 0 68-28t28-68V96q0-26-13-48t-35-35-48-13zm32 928q0 13-9.5 22.5T480 960H96q-13 0-22.5-9.5T64 928V96q0-13 9.5-22.5T96 64h384q13 0 22.5 9.5T512 96v832zM288.5 800q-26.5 0-45.5 19t-19 45q0 17 8.5 32t23.5 23.5 32 8.5 32-8.5 23.5-23.5 8.5-32q0-26-18.5-45t-45-19zM352 96H224q-13 0-22.5 9.5T192 128t9.5 22.5T224 160h128q13 0 22.5-9.5T384 128t-9.5-22.5T352 96z" fill="currentColor"></path></svg>
-                </button>
+        <{* ----- $uid|xoops_user:"name"
+        <h6><{$smarty.const._PROFILE}> <{$smarty.const._INFO}></h6>
+        <div data-layout="column">
+            <{$xoops_lblocks.block_loginfo.content}>
+        </div>
+            ----- *}>
 
-                <button type="button" class="button" aria-label="102x768" href="<{$xoops_url}>/" onclick="window.open('<{$xoops_url}>/','pagename','resizable,height=1024,width=768'); return false;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 832 1024"><path d="M736 0H96Q70 0 48 13T13 48 0 96v832q0 40 28 68t68 28h640q40 0 68-28t28-68V96q0-26-13-48t-35-35-48-13zm32 928q0 13-9.5 22.5T736 960H96q-13 0-22.5-9.5T64 928V96q0-13 9.5-22.5T96 64h640q13 0 22.5 9.5T768 96v832zM416 800q-26 0-45 19t-19 45 19 45 45 19 45-19 19-45q0-17-8.5-32T448 808.5t-32-8.5zm64-704H352q-13 0-22.5 9.5T320 128t9.5 22.5T352 160h128q13 0 22.5-9.5T512 128t-9.5-22.5T480 96z" fill="currentColor"></path></svg>
-                </button>
+        <{* ----- ADMIN PREVIEW ----- *}>
+        <h6>Preview Layout</h6>
+        <div data-layout="row center-spread" class="btn-group" data-self="size-x1" role="group">
+            <button type="button" class="button" aria-label="736x414" href="<{$xoops_url}>/" onclick="window.open('<{$xoops_url}>/','pagename','resizable,height=700,width=400'); return false;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 576 1024"><path d="M480 0H96Q70 0 48 13T13 48 0 96v832q0 40 28 68t68 28h384q40 0 68-28t28-68V96q0-26-13-48t-35-35-48-13zm32 928q0 13-9.5 22.5T480 960H96q-13 0-22.5-9.5T64 928V96q0-13 9.5-22.5T96 64h384q13 0 22.5 9.5T512 96v832zM288.5 800q-26.5 0-45.5 19t-19 45q0 17 8.5 32t23.5 23.5 32 8.5 32-8.5 23.5-23.5 8.5-32q0-26-18.5-45t-45-19zM352 96H224q-13 0-22.5 9.5T192 128t9.5 22.5T224 160h128q13 0 22.5-9.5T384 128t-9.5-22.5T352 96z" fill="currentColor"></path></svg>
+            </button>
+            <button type="button" class="button" aria-label="102x768" href="<{$xoops_url}>/" onclick="window.open('<{$xoops_url}>/','pagename','resizable,height=1024,width=768'); return false;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 832 1024"><path d="M736 0H96Q70 0 48 13T13 48 0 96v832q0 40 28 68t68 28h640q40 0 68-28t28-68V96q0-26-13-48t-35-35-48-13zm32 928q0 13-9.5 22.5T736 960H96q-13 0-22.5-9.5T64 928V96q0-13 9.5-22.5T96 64h640q13 0 22.5 9.5T768 96v832zM416 800q-26 0-45 19t-19 45 19 45 45 19 45-19 19-45q0-17-8.5-32T448 808.5t-32-8.5zm64-704H352q-13 0-22.5 9.5T320 128t9.5 22.5T352 160h128q13 0 22.5-9.5T512 128t-9.5-22.5T480 96z" fill="currentColor"></path></svg>
+            </button>
+            <button type="button" class="button" aria-label="New Tab" href="<{$xoops_url}>/" target="_blank" onclick="window.open('<{$xoops_url}>/'); return false;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 -64 1024 1024"><path d="M960 32H64q-26 0-45 18.5T0 96v544q0 26 19 45t45 19h416v96H320q-13 0-22.5 9.5T288 832t9.5 22.5T320 864h384q13 0 22.5-9.5T736 832t-9.5-22.5T704 800H544v-96h416q26 0 45-19t19-45V96q0-27-19-45.5T960 32zm0 608H64V96h896v544z" fill="currentColor"></path></svg>
+            </button>
+        </div>
 
-                <button type="button" class="button" aria-label="New Tab" href="<{$xoops_url}>/" target="_blank" onclick="window.open('<{$xoops_url}>/'); return false;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 -64 1024 1024"><path d="M960 32H64q-26 0-45 18.5T0 96v544q0 26 19 45t45 19h416v96H320q-13 0-22.5 9.5T288 832t9.5 22.5T320 864h384q13 0 22.5-9.5T736 832t-9.5-22.5T704 800H544v-96h416q26 0 45-19t19-45V96q0-27-19-45.5T960 32zm0 608H64V96h896v544z" fill="currentColor"></path></svg>
-                </button>
-            </div>
 
-
-		</div>
+    </div>
     <{* -----/ RIGHT-PANEL-BLOCK *}>
 
 </div>

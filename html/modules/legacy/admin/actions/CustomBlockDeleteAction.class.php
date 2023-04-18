@@ -20,7 +20,7 @@ class Legacy_CustomBlockDeleteAction extends Legacy_AbstractDeleteAction
 {
     public function _getId()
     {
-        return isset($_REQUEST['bid']) ? $_REQUEST['bid'] : 0;
+        return $_REQUEST['bid'] ?? 0;
     }
 
     public function &_getHandler()

@@ -22,7 +22,7 @@ class XCube_ObjectExistValidator extends XCube_Validator
             return true;
         } else {
             $handleName = $vars['handler'];
-            $moduleName = isset($vars['module']) ? $vars['module'] : null;
+            $moduleName = $vars['module'] ?? null;
 
             if (null == $moduleName) {
                 $handler =& xoops_gethandler($handleName);

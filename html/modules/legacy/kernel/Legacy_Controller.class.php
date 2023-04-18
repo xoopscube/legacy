@@ -155,7 +155,7 @@ class Legacy_Controller extends XCube_Controller
         $urlInfo = $this->_parseUrl();
 
         $adminStateFlag = false;
-        if (count($urlInfo) >= 3) {
+        if ((is_countable($urlInfo) ? count($urlInfo) : 0) >= 3) {
             if ('modules' === strtolower($urlInfo[0])) {
                 if ('admin' === strtolower($urlInfo[2])) {
                     $adminStateFlag = true;
@@ -492,7 +492,7 @@ class Legacy_Controller extends XCube_Controller
             //
             $urlInfo = $this->_parseUrl();
 
-            if (count($urlInfo) >= 2) {
+            if ((is_countable($urlInfo) ? count($urlInfo) : 0) >= 2) {
                 if ('modules' === strtolower($urlInfo[0])) {
                     $dirname = $urlInfo[1];
                 }
@@ -664,7 +664,7 @@ class Legacy_Controller extends XCube_Controller
             $criteria->add(new Criteria('conf_name', 'language'));
             $configs =& $handler->getConfigs($criteria);
 
-            if (count($configs) > 0) {
+            if ((is_countable($configs) ? count($configs) : 0) > 0) {
                 $language = $configs[0]->get('conf_value', 'none');
             }
         }
@@ -746,7 +746,7 @@ class Legacy_Controller extends XCube_Controller
         $GLOBALS['config_handler'] =& $configHandler;
         $GLOBALS['module_handler'] = xoops_gethandler('module');
 
-        if (0 == count($this->mRoot->mContext->mXoopsConfig)) {
+        if (0 == (is_countable($this->mRoot->mContext->mXoopsConfig) ? count($this->mRoot->mContext->mXoopsConfig) : 0)) {
             return;
         }
 
@@ -1226,7 +1226,7 @@ class Legacy_Controller extends XCube_Controller
         }
 
         if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && '' !== $xoopsConfig['session_name'] && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
-            if (strpos($url, XOOPS_URL) === 0) {
+            if (strpos($url, (string) XOOPS_URL) === 0) {
                 if (strpos($url, '?') === false) {
                     $connector = '?';
                 } else {

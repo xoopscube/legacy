@@ -18,8 +18,8 @@ require_once __DIR__ . '/AbstractObject.class.php';
 
 abstract class Legacy_AbstractCategoryObject extends Legacy_AbstractObject
 {
-    const PRIMARY = 'cat_id';
-    const DATANAME = 'cat';
+    public const PRIMARY = 'cat_id';
+    public const DATANAME = 'cat';
     public $mChildren = [];    //Legacy_AbstractCategoryObject[]
 
     public function Legacy_AbstractCategoryObject()

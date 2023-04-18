@@ -27,7 +27,6 @@
 
 <script>
 
-
     $( function() {
 
         $( "#dialog-help" ).dialog({
@@ -85,7 +84,7 @@
             $('#help-data').delay(3000).html('<div class="xcl-progress-loading"></div>');
 
             setTimeout(function() {
-                $('#help-data').delay(3000).load('<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&dirname='+module+' '+helpArticle, function() {
+                $('#help-data').delay(2500).load('<{$xoops_url}>/modules/legacy/admin/index.php?action=Help&dirname='+module+' '+helpArticle, function() {
                 //console.log('Load was performed=');
                // Note Local nginx server CORS issue if FIREFOX strict mode
               // use relative path eg. '../../'
@@ -136,6 +135,5 @@
 </style>
 
 <div class="display:none" id="dialog-help" title="� <{$xoops_dirname}>">
-    <div id="help-data">
-    </div>
+    <div id="help-data"></div>
 </div>

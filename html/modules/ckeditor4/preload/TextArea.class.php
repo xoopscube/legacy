@@ -16,7 +16,7 @@ require_once dirname( __FILE__, 2 ) . '/class/Ckeditor4Utiles.class.php';
 
 class ckeditor4_TextArea extends Ckeditor4_ParentTextArea
 {
-	private $Legacy_TextareaEditor_delete = false;
+	private bool $Legacy_TextareaEditor_delete = false;
 
 	public function __construct(&$controler) {
 		parent::__construct($controler);

@@ -333,6 +333,16 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
      */
     public function insert(&$config)
     {
+        $conf_modid = null;
+        $conf_catid = null;
+        $conf_name = null;
+        $conf_title = null;
+        $conf_value = null;
+        $conf_desc = null;
+        $conf_formtype = null;
+        $conf_valuetype = null;
+        $conf_order = null;
+        $conf_id = null;
         if ('xoopsconfigitem' != strtolower(get_class($config))) {
             return false;
         }
@@ -434,7 +444,7 @@ class XoopsConfigItemHandler extends XoopsObjectHandler
         if (!$result) {
             return false;
         }
-        list($count) = $db->fetchRow($result);
+        [$count] = $db->fetchRow($result);
         return $count;
     }
 }

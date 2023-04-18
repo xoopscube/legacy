@@ -77,6 +77,8 @@ class Legacy_ModuleInstaller
      */
     public function _installModule()
     {
+        $modversion = [];
+        $adminPerm = null;
         $moduleHandler =& xoops_gethandler('module');
         if (!$moduleHandler->insert($this->_mXoopsModule)) {
             $this->mLog->addError('*Could not install module information*');

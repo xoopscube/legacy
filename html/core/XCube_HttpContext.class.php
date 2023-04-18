@@ -182,7 +182,7 @@ class XCube_HttpRequest extends XCube_AbstractRequest {
 			return null;
 		}
 
-		return isset( $_GET[ $key ] ) ? $_GET[ $key ] : $_POST[ $key ];
+		return $_GET[ $key ] ?? $_POST[ $key ];
 	}
 
 	/**

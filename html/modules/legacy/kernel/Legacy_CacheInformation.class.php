@@ -219,7 +219,7 @@ class Legacy_BlockCacheInformation extends Legacy_AbstractCacheInformation
 
         if (!$filepath) {
             $id = md5(XOOPS_SALT . '(' . implode('_', $this->mIdentityArr) . ')' . implode('_', $this->mGroupArr));
-            $filepath = $this->getCacheFileBase($this->mBlock->get('bid'), $id);
+            $filepath = static::getCacheFileBase($this->mBlock->get('bid'), $id);
         }
         return $filepath;
     }

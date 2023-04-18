@@ -65,6 +65,10 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
 
     public function insert(&$imgsetimg)
     {
+        $imgsetimg_file = null;
+        $imgsetimg_body = null;
+        $imgsetimg_imgset = null;
+        $imgsetimg_id = null;
         if ('xoopsimagesetimg' != strtolower(get_class($imgsetimg))) {
             return false;
         }
@@ -142,7 +146,7 @@ class XoopsImagesetimgHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 

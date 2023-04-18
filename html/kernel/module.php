@@ -441,6 +441,19 @@ class XoopsModuleHandler extends XoopsObjectHandler
      **/
     public function insert(&$module)
     {
+        $name = null;
+        $version = null;
+        $weight = null;
+        $dirname = null;
+        $trust_dirname = null;
+        $role = null;
+        $hasmain = null;
+        $hasadmin = null;
+        $hassearch = null;
+        $hasconfig = null;
+        $hascomments = null;
+        $hasnotification = null;
+        $isactive = null;
         if ('xoopsmodule' != strtolower(get_class($module))) {
             return false;
         }
@@ -616,7 +629,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 

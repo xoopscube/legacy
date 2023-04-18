@@ -52,7 +52,7 @@ while ($myrow = $db->fetchArray($result)) {
 }
 $content .= '</table>';
 
-$b_back = array();
-$b_next = array('updateTables_go', _INSTALL_L132);
+$b_back = [];
+$b_next = ['updateTables_go', _INSTALL_L132];
 
 include './install_tpl.php';

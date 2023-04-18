@@ -93,7 +93,7 @@ class LegacyRenderTplfileObject extends XoopsSimpleObject
         $criteria->add(new Criteria('tpl_file', $this->get('tpl_file')));
 
         $objs =& $handler->getObjects($criteria);
-        if (count($objs) > 0) {
+        if ((is_countable($objs) ? count($objs) : 0) > 0) {
             $this->mOverride =& $objs[0];
         }
     }

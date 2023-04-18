@@ -25,7 +25,7 @@ class Legacy_AdminBlockServer extends Legacy_AbstractBlockProcedure
 
     public function getTitle()
     {
-        return 'Server'; // TODO language constant
+        return _AD_BLOCK_SERVER;
     }
 
     public function getEntryIndex()
@@ -40,6 +40,7 @@ class Legacy_AdminBlockServer extends Legacy_AbstractBlockProcedure
 
     public function execute()
     {
+        $sys_info = [];
         $root =& XCube_Root::getSingleton();
 
         // load admin message catalog of legacy for _AD_LEGACY_LANG_NO_SETTING, even if the current module is not Legacy.

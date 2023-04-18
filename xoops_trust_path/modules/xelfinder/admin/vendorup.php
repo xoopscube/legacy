@@ -121,32 +121,62 @@ if ($php54up = version_compare(PHP_VERSION, '5.4.0', '>=')) {
     .'<div class="tips">'. xelfinderAdminLang( 'COMPOSER_UPDATE_HELP' ) .'<br>'. xelfinderAdminLang('COMPOSER_UPDATE_TIME') .'</div>'
 ?>
 
-<div>
-	<form action="./index.php?page=vendorup" method="post" id="xelfinder_vendorup_f" target="composer_update">
-		<table>
-            <tr>
-			<td>
-				<p>PHP CLI Command<br><label><input value="php" type="radio" name="cli" checked="checked">Default is "php"</label></p>
-				<p><input type="text" name="phpcli" value="php" /></p>
-			</td>
-			<td>
-				<dl>
-					<dt>Customized example</dt>
-					<dd><label><input value="/usr/local/php<?php echo $curver; ?>/bin/php" type="radio" name="cli">lolipop - "/usr/local/php<?php echo $curver; ?>/bin/php"</label></dd>
-					<dd><label><input value="/usr/local/bin/php<?php echo $curverDig; ?>cli" type="radio" name="cli">XREA/CoreServer/ValueServer - "/usr/local/bin/php<?php echo $curverDig; ?>cli"</label></dd>
-					<dd><label><input value="/opt/php-<?php echo PHP_VERSION; ?>/bin/php" type="radio" name="cli">XSERVER - "/opt/php-<?php echo PHP_VERSION; ?>/bin/php"</label></dd>
-				</dl>
-			</td>
-		</tr></table>
-		<p>
-		    <input type="submit" name="doupdate" id="xelfinder_vendorup_s" value="<?php echo xelfinderAdminLang('ADMENU_VENDORUPDATE'); ?>">
-		    <input type="hidden" name="php54" value="<?php echo $curver === '5.4' ? '1' : '0'; ?>">
-		</p>
-	</form>
-</div>
+<style>
+    section.terminal-container{display:block;font-family:monospace;text-align:left;width:100%;border-radius:7px;margin:2em auto 4em;position: relative}
+    header.terminal{background:#212121;height:30px;border-radius:8px 8px 0 0;padding-left:10px;}
+    header.terminal .btn{background:var(--button-bg); border-radius:8px; display:inline-block;height:12px;margin:10px 4px 0 0;width:12px}
+    /*.green{background-color: #3BB662 !important;}*/
+    /*.red{background-color: #E75448 !important;}*/
+    /*.yellow{background-color: #E5C30F !important;}*/
 
-<iframe id="ifm-xelfinder-vendorup" name="composer_update" title="Composer" style="display: block;border:none;width:80%;height:300px;margin:2em auto;overflow-y:scroll;"></iframe>
+    /*.terminal-fixed-top{margin-top: 30px;}*/
+    .terminal-home{
+        background-color: #30353A;
+        padding: 0
+        border-radius: 0 0 7px 7px;
+        /*border-bottom-left-radius: 7px;*/
+        /*border-bottom-right-radius: 7px;*/
+        color: #FAFAFA;
+        display:block;
+    }
+    .terminal-home ul { list-style: none; padding:0;}
+    iframe {
+        background:var(--body-bg);display: block;border:none;width:100%;height:300px;margin:0;overflow-y:scroll;position: relative
+    }
+</style>
 
+<section class="terminal-container terminal-fixed-top">
+    <header class="terminal">
+        <span class="btn red"></span>
+        <span class="btn yellow"></span>
+        <span class="btn green"></span>
+    </header>
+
+    <div class="terminal-home">
+    <form action="./index.php?page=vendorup" method="post" id="xelfinder_vendorup_f" target="composer_update">
+    <table>
+        <tr>
+            <td>
+                <p>PHP CLI Command<br><label><input value="php" type="radio" name="cli" checked="checked">Default is "php"</label></p>
+                <p><input type="text" name="phpcli" value="php">
+                <input type="submit" name="doupdate" id="xelfinder_vendorup_s" value="<?php echo xelfinderAdminLang('ADMENU_VENDORUPDATE'); ?>"></p>
+                <input type="hidden" name="php54" value="<?php echo $curver === '5.4' ? '1' : '0'; ?>">
+            </td>
+            <td>
+                <h5>Customized example</h5>
+                <ul>
+                    <li><label><input value="/usr/local/php<?php echo $curver; ?>/bin/php" type="radio" name="cli">lolipop - "/usr/local/php<?php echo $curver; ?>/bin/php"</label></li>
+                    <li><label><input value="/usr/local/bin/php<?php echo $curverDig; ?>cli" type="radio" name="cli">XREA/CoreServer/ValueServer - "/usr/local/bin/php<?php echo $curverDig; ?>cli"</label></li>
+                    <li><label><input value="/opt/php-<?php echo PHP_VERSION; ?>/bin/php" type="radio" name="cli">XSERVER - "/opt/php-<?php echo PHP_VERSION; ?>/bin/php"</label></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    </form>
+    <iframe id="ifm-xelfinder-vendorup" name="composer_update" title="Composer"></iframe>
+    </div>
+</section>
+<hr>
 <script>
 (function($){
 	var autoHeight = function() {
@@ -158,19 +188,24 @@ if ($php54up = version_compare(PHP_VERSION, '5.4.0', '>=')) {
 		setTimeout(autoHeight, 500);
 	};
 	autoHeight();
+
 	$('#xelfinder_vendorup_f').on('submit', function(e) {
 		setTimeout(function() {
-			$('#xelfinder_vendorup_s').replaceWith($('<p>').html("<?php echo xelfinderAdminLang('COMPOSER_UPDATE_STARTED'); ?>"));
-		}, 100);
+			$('#xelfinder_vendorup_s').replaceWith($('<p>').html('<?php echo xelfinderAdminLang("COMPOSER_UPDATE_STARTED"); ?>'));
+		}, 200);
 	})
 	.find('input[type=radio]').on('change', function(e) {
 		$('#xelfinder_vendorup_f').find('input[type=text]').val($(this).val());
 	});
 })(jQuery);
+// NOTE : IFRAME background-color
+// Cannot use custom var(--layer-1) !
+$('iframe').css('background-color', '#101010');
+$('iframe').contents().find('body').css('backgroundColor', '#101010');
 </script>
 
 <?php
 } else {
-    echo '<div class="error"><p>Update Vendor requires PHP >= 5.4<br> Your PHP version is '. PHP_VERSION .'</p></div>';
+    echo '<div class="error"><p>Update Vendor requires PHP >= 7.4<br> Your PHP version is '. PHP_VERSION .'</p></div>';
 }
 xoops_cp_footer ();

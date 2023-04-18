@@ -8,7 +8,7 @@
  * @license    GPL 2.0
  */
 
-$writeok = array('uploads/', 'mainfile.php');
+$writeok = ['uploads/', 'mainfile.php'];
 $error = false;
 echo '<h2>wizard/install_modcheck.inc</h2>';
 

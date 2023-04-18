@@ -186,11 +186,6 @@ class Legacy_PreferenceInformation
 
     public $mOption = null;
 
-    public function Legacy_PreferenceInformation($name, $title, $description, $formType, $valueType, $default, $order = 0)
-    {
-        $this->__construct($name, $title, $description, $formType, $valueType, $default, $order);
-    }
-
     public function __construct($name, $title, $description, $formType, $valueType, $default, $order = 0)
     {
         $this->mName = $name;
@@ -265,11 +260,6 @@ class Legacy_PreferenceInfoCollection
     public $mComments = [];
 
     public $mNotifications = [];
-
-    public function Legacy_PreferenceInfoCollection()
-    {
-        $this->__construct();
-    }
 
     public function __construct()
     {
@@ -437,11 +427,6 @@ class Legacy_PreferenceOptionInformation
     public $mName = '';
     public $mValue = '';
 
-    public function Legacy_PreferenceOptionInformation($name, $value)
-    {
-        $this->__construct($name, $value);
-    }
-
     public function __construct($name, $value)
     {
         $this->mName = $name;
@@ -492,11 +477,6 @@ class Legacy_PreferenceOptionInfoCollection
 
 class Legacy_AbstractModinfoReader
 {
-    public function Legacy_AbstractModinfoReader()
-    {
-        $this->__construct();
-    }
-
     public function __construct()
     {
     }
@@ -526,11 +506,6 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
      */
     public $_mDirname;
 
-    public function Legacy_ModinfoX2FileReader($dirname)
-    {
-        $this->__construct($dirname);
-    }
-
     public function __construct($dirname)
     {
         $this->_mDirname = $dirname;
@@ -551,9 +526,12 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
             $showFunc = $arr['show_func'];
         }
 
-        $editFunc = isset($arr['edit_func']) ? $arr['edit_func'] : null;
-        $template = isset($arr['template']) ? $arr['template'] : null;
-        $options = isset($arr['options']) ? $arr['options'] : null;
+        //$editFunc = isset($arr['edit_func']) ? $arr['edit_func'] : null;
+        $editFunc = $arr['edit_func'] ?? null;
+        //$template = isset($arr['template']) ? $arr['template'] : null;
+        $template = $arr['template'] ?? null;
+        //$options = isset($arr['options']) ? $arr['options'] : null;
+        $options = $arr['options'] ?? null;
 
         $info =new Legacy_BlockInformation($funcNum, $arr['name'], $arr['file'], $showFunc, $editFunc, $template, $options);
 
@@ -565,6 +543,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
      */
     public function &loadBlockInformations()
     {
+        $modversion = [];
         $collection =new Legacy_BlockInfoCollection();
 
         $t_filePath = XOOPS_ROOT_PATH . '/modules/' . $this->_mDirname . '/xoops_version.php';
@@ -637,7 +616,8 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
 
     public function &_createPreferenceInformation($arr)
     {
-        $arr['description'] = isset($arr['description']) ? $arr['description'] : null;
+        //$arr['description'] = isset($arr['description']) ? $arr['description'] : null;
+        $arr['description'] ??= null;
         $info =new Legacy_PreferenceInformation($arr['name'], $arr['title'], $arr['description'], $arr['formtype'], $arr['valuetype'], $arr['default']);
         if (isset($arr['options'])) {
             foreach ($arr['options'] as $name => $value) {
@@ -753,6 +733,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
      */
     public function &loadPreferenceInformations()
     {
+        $modversion = [];
         $collection =new Legacy_PreferenceInfoCollection();
 
         $t_filePath = XOOPS_ROOT_PATH . '/modules/' . $this->_mDirname . '/xoops_version.php';
@@ -763,7 +744,7 @@ class Legacy_ModinfoX2FileReader extends Legacy_AbstractModinfoReader
         include $t_filePath;
 
         //
-        // If the module does not have any pereferences, check comments & notifications, and return.
+        // If the module does not have any preferences, check comments & notifications, and return.
         //
         if (!isset($modversion['config'])) {
             $this->_loadCommentPreferenceInfomations($modversion, $collection);
@@ -818,11 +799,6 @@ class Legacy_ModinfoX2DBReader extends Legacy_AbstractModinfoReader
      * @protected
      */
     public $_mDirname;
-
-    public function Legacy_ModinfoX2DBReader($dirname)
-    {
-        $this->__construct($dirname);
-    }
 
     public function __construct($dirname)
     {

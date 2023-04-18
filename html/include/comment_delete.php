@@ -162,7 +162,7 @@ case 'delete_one':
             } else {
                 // need to change root id for all its child comments as well
                 $c_child_comments =& $xot->getAllChild($new_rootid);
-                $cc_count = count($c_child_comments);
+                $cc_count = is_countable($c_child_comments) ? count($c_child_comments) : 0;
                 foreach (array_keys($c_child_comments) as $j) {
                     $c_child_comments[$j]->setVar('com_rootid', $new_rootid);
                     if (!$comment_handler->insert($c_child_comments[$j])) {

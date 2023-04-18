@@ -57,7 +57,8 @@ class db_manager {
 	}
 
 	public function queryFromFile( $sql_file_path ) {
-		$tables = [];
+		$pieces = null;
+  $tables = [];
 
 		if ( ! file_exists( $sql_file_path ) ) {
 			return false;

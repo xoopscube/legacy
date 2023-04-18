@@ -193,6 +193,7 @@ class XoopsBlock extends XoopsObject
     */
     public function &buildContent($position, $content='', $contentdb='')
     {
+        $ret = null;
         if (0 == $position) {
             $ret = $contentdb.$content;
         } elseif (1 == $position) {
@@ -368,8 +369,8 @@ class XoopsBlockHandler extends XoopsObjectHandler
     {
         $block =& $this->create();
 
-        $options=isset($info['options']) ? $info['options'] : null;
-        $edit_func=isset($info['edit_func']) ? $info['edit_func'] : null;
+        $options=$info['options'] ?? null;
+        $edit_func=$info['edit_func'] ?? null;
 
         $block->setVar('options', $options);
         $block->setVar('name', $info['name']);
@@ -423,6 +424,25 @@ class XoopsBlockHandler extends XoopsObjectHandler
      */
     public function insert(&$block, $autolink=false)
     {
+        $mid = null;
+        $func_num = null;
+        $options = null;
+        $name = null;
+        $title = null;
+        $content = null;
+        $side = null;
+        $weight = null;
+        $visible = null;
+        $block_type = null;
+        $c_type = null;
+        $dirname = null;
+        $func_file = null;
+        $show_func = null;
+        $edit_func = null;
+        $template = null;
+        $bcachetime = null;
+        $isactive = null;
+        $bid = null;
         if ('xoopsblock' != strtolower(get_class($block))) {
             return false;
         }
@@ -800,7 +820,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         }
         $result = $db->query($sql);
         $blockids = [];
-        while (list($itemid) = $db->fetchRow($result)) {
+        while ([$itemid] = $db->fetchRow($result)) {
             $blockids[] = $itemid;
         }
         if (!empty($blockids)) {
@@ -923,7 +943,7 @@ class XoopsBlockHandler extends XoopsObjectHandler
         if (!$result = $db->query($sql)) {
             return 0;
         }
-        list($count) = $db->fetchRow($result);
+        [$count] = $db->fetchRow($result);
         return $count;
     }
 

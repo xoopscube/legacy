@@ -5,9 +5,9 @@
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_BANNER_MANAGE}></a>
     <{if $actionForm->get('bid')}>
-    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_EDIT}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_EDIT}></span>
     <{else}>
-    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_NEW}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_NEW}></span>
     <{/if}>
 </nav>
 
@@ -80,7 +80,7 @@
         <tr>
             <td><{$smarty.const._AD_LEGACYRENDER_LANG_HTMLBANNER}></td>
             <td>
-                <label class="ui-checkbox" aria-label="HTML Banner"><{xoops_input type=checkbox name=htmlbanner value=1 default=$actionForm->get('htmlbanner')}>
+                <label class="ui-checkbox" title="HTML Banner"><{xoops_input type=checkbox name=htmlbanner value=1 default=$actionForm->get('htmlbanner')}>
                 <span class="ui-checkbox-custom"></span>
                 </label>
             </td>

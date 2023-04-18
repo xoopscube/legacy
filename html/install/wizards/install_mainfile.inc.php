@@ -13,7 +13,7 @@
 // checking XOOPS_ROOT_PATH and XOOPS_URL
 include_once '../mainfile.php';
 
-$detected = str_replace( array( '\\', '/install' ), array( '/', '' ), getcwd() );
+$detected = str_replace( ['\\', '/install'], ['/', ''], getcwd() );
 if ( '/' === substr( $detected, - 1 ) ) {
 	$detected = substr( $detected, 0, - 1 );
 }

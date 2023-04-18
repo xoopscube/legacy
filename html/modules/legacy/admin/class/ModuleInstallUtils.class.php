@@ -168,6 +168,7 @@ class Legacy_ModuleInstallUtils
      */
     public static function installSQLAutomatically(&$module, &$log)
     {
+        $pieces = null;
         $dbTypeAliases = [
             'mysqli' => 'mysql'
         ];
@@ -329,7 +330,7 @@ class Legacy_ModuleInstallUtils
         $tplfile->setVar('tpl_tplset', 'default');
         $tplfile->setVar('tpl_file', $fileName, true);
 
-        $description = isset($template['description']) ? $template['description'] : '';
+        $description = $template['description'] ?? '';
         $tplfile->setVar('tpl_desc', $description, true);
 
         if ($tplHandler->insert($tplfile)) {
@@ -502,10 +503,10 @@ class Legacy_ModuleInstallUtils
      */
     public static function &createBlockByInfo(&$module, $block, $func_num)
     {
-        $options = isset($block['options']) ? $block['options'] : null;
-        $edit_func = isset($block['edit_func']) ? $block['edit_func'] : null;
-        $template = isset($block['template']) ? $block['template'] : null;
-        $visible = isset($block['visible']) ? $block['visible'] : (isset($block['visible_any']) ? $block['visible_any']: 0);
+        $options = $block['options'] ?? null;
+        $edit_func = $block['edit_func'] ?? null;
+        $template = $block['template'] ?? null;
+        $visible = $block['visible'] ?? $block['visible_any'] ?? 0;
         $blockHandler =& xoops_gethandler('block');
         $blockObj =& $blockHandler->create();
 
@@ -663,7 +664,7 @@ class Legacy_ModuleInstallUtils
         $criteria->add(new Criteria('tpl_file', $block->get('template')));
         $tplfiles =& $tplHandler->getObjects($criteria);
 
-        if (count($tplfiles) > 0) {
+        if ((is_countable($tplfiles) ? count($tplfiles) : 0) > 0) {
             $tplfile =& $tplfiles[0];
         } else {
             $tplfile =& $tplHandler->create();
@@ -772,7 +773,7 @@ class Legacy_ModuleInstallUtils
         $config->setConfValueForInput($info->mDefault);
         $config->set('conf_order', $info->mOrder);
 
-        if (count($info->mOption->mOptions) > 0) {
+        if ((is_countable($info->mOption->mOptions) ? count($info->mOption->mOptions) : 0) > 0) {
             foreach (array_keys($info->mOption->mOptions) as $idx) {
                 $option =& $handler->createConfigOption();
                 $option->set('confop_name', $info->mOption->mOptions[$idx]->mName);
@@ -896,7 +897,7 @@ class Legacy_ModuleInstallUtils
         $configHandler =& xoops_gethandler('config');
         $configs =& $configHandler->getConfigs(new Criteria('conf_modid', $module->get('mid')));
 
-        if (0 == count($configs)) {
+        if (0 == (is_countable($configs) ? count($configs) : 0)) {
             return;
         }
 
@@ -1074,7 +1075,7 @@ class Legacy_ModuleInstallUtils
 
         $configArr =& $handler->getConfigs($criteria);
 
-        if (!(count($configArr) > 0 && is_object($configArr[0]))) {
+        if (!((is_countable($configArr) ? count($configArr) : 0) > 0 && is_object($configArr[0]))) {
             $log->addError('Execption Error: Could not find config.');
             return;
         }
@@ -1117,7 +1118,7 @@ class Legacy_ModuleInstallUtils
             }
         }
 
-        if (count($info->mOption->mOptions) > 0) {
+        if ((is_countable($info->mOption->mOptions) ? count($info->mOption->mOptions) : 0) > 0) {
             foreach (array_keys($info->mOption->mOptions) as $idx) {
                 $option =& $handler->createConfigOption();
                 $option->set('confop_name', $info->mOption->mOptions[$idx]->mName);
@@ -1146,7 +1147,7 @@ class Legacy_ModuleInstallUtils
 
         $configArr =& $handler->getConfigs($criteria);
 
-        if (!(count($configArr) > 0 && is_object($configArr[0]))) {
+        if (!((is_countable($configArr) ? count($configArr) : 0) > 0 && is_object($configArr[0]))) {
             $log->addError('Execption Error: Could not find config.');
             return;
         }

@@ -69,10 +69,7 @@ function getLanguage() {
 	if ( ! file_exists( './language/' . $language . '/install.php' ) ) {
 		$language = 'english';
 	}
-	setcookie( 'install_lang', $language,
-        ini_get( 'session.cookie_lifetime' ), ini_get( 'session.cookie_path' ),
-        ini_get( 'session.cookie_domain' ), ini_get( 'session.cookie_secure' ),
-        ini_get( 'session.cookie_httponly' )
+	setcookie( 'install_lang', $language, ['expires' => ini_get( 'session.cookie_lifetime' ), 'path' => ini_get( 'session.cookie_path' ), 'domain' => ini_get( 'session.cookie_domain' ), 'secure' => ini_get( 'session.cookie_secure' ), 'httponly' => ini_get( 'session.cookie_httponly' )]
     );
 
 	return $language;

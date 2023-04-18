@@ -2,9 +2,9 @@
  * X-UTILS JavaScript functions
  *
  * Distribution : XOOPSCube XCL 2.3.x
- * Version : 2.3.2
+ * Version : 2.3.3
  * Author : Nuno Luciano aka Gigamaster
- * Date : 2023-03-20
+ * Date : 2023-04-11
  * URL : https://github.com/xoopscube/
  *
  * Summary

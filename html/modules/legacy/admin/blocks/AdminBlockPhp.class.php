@@ -32,7 +32,7 @@ class Legacy_AdminBlockPhp extends Legacy_AbstractBlockProcedure
 
     public function getTitle()
     {
-        return 'PHP Settings'; // TODO language constant
+        return _AD_BLOCK_PHP;
     }
 
     public function getEntryIndex()

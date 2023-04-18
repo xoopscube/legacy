@@ -5,7 +5,7 @@
 <nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php">Dashboard</a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
-    &raquo;&raquo; <span class="page-title"><{$smarty.const._CPHOME}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._CPHOME}></span>
 </nav>
 
 
@@ -125,7 +125,7 @@
         <li>The BackEnd Theme provides a user interface to different roles and permissions: <span class="badge">/html/modules/legacy/admin/theme</span></li>
     </ul>
 
-    <div class="tips">
+    <div class="help-tips">
         You can put a custom backend theme with prefix <span class="badge">admin_</span> in directory /themes e.g. <span class="badge">/html/themes/admin_theme</span>
     </div>
 
@@ -186,7 +186,7 @@ module-name
 
     <p>All Smarty tags, variables and functions start with a left delimiter curly bracket { and end with a right curly bracket } within <> like HTML.</p>
 
-    <div class="tips">The Renderer implementation of Smarty uses custom delimiters <b class="badge">&lt;{</b> ... <b class="badge">}&gt;</b><br>
+    <div class="help-tips">The Renderer implementation of Smarty uses custom delimiters <b class="badge">&lt;{</b> ... <b class="badge">}&gt;</b><br>
         instead of Smarty code enclosed in curly brace tag delimiters {$var} of the official documentation.</div>
 
     <p>The Render engine will handle the delimiters present in Theme and templates to generate valid HTML.

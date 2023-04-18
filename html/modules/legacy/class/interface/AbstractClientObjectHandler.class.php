@@ -115,6 +115,7 @@ abstract class Legacy_AbstractClientObjectHandler extends XoopsObjectGenericHand
      */
     protected function _deleteClientData(/*** XoopsSimpleObject ***/ $obj)
     {
+        $tagDirname = null;
         $handler = xoops_gethandler('config');
         $conf = $handler->getConfigsByDirname($obj->getDirname());
 

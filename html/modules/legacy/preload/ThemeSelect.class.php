@@ -25,11 +25,6 @@ class Legacy_ThemeSelect extends XCube_ActionFilter
      */
     public $mIsSelectableTheme = null;
 
-    public function Legacy_ThemeSelect(&$controller)
-    {
-        $this->__construct($controller);
-    }
-
     public function __construct(&$controller)
     {
         //

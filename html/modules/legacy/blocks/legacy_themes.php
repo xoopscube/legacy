@@ -20,7 +20,7 @@ function b_legacy_themes_show($options): ?array
 {
     global $xoopsConfig;
 
-    if (0 === count($xoopsConfig['theme_set_allowed'])) {
+    if (0 === (is_countable($xoopsConfig['theme_set_allowed']) ? count($xoopsConfig['theme_set_allowed']) : 0)) {
         return null;
     }
 
@@ -51,7 +51,7 @@ function b_legacy_themes_show($options): ?array
         }
     }
 
-    $block['count'] = count($xoopsConfig['theme_set_allowed']);
+    $block['count'] = is_countable($xoopsConfig['theme_set_allowed']) ? count($xoopsConfig['theme_set_allowed']) : 0;
     $block['mode'] = $options[0];
     $block['width'] = $options[1];
     $block['theme_options'] = $theme_options;

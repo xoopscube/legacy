@@ -105,6 +105,9 @@ class XoopsConfigCategoryHandler extends XoopsObjectHandler
      */
     public function insert(&$confcat)
     {
+        $confcat_name = null;
+        $confcat_order = null;
+        $confcat_id = null;
         if ('xoopsconfigcategory' != strtolower(get_class($confcat))) {
             return false;
         }

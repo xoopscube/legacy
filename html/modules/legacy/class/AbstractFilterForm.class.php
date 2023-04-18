@@ -64,7 +64,7 @@ class Legacy_AbstractFilterForm
     {
         if (!isset($this->mSortKeys[abs($this->mSort)])) {
         $sortkey = abs($this->mNavi->mSort['sort']);
-        return isset($this->mSortKeys[$sortkey]) ? $this->mSortKeys[$sortkey] : null;
+        return $this->mSortKeys[$sortkey] ?? null;
         }
     }
 

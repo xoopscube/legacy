@@ -101,7 +101,7 @@ class XoopsConfigHandler
             return false;
         }
         $options =& $config->getConfOptions();
-        $count = count($options);
+        $count = is_countable($options) ? count($options) : 0;
         $conf_id = $config->getVar('conf_id');
         for ($i = 0; $i < $count; $i++) {
             $options[$i]->setVar('conf_id', $conf_id);
@@ -127,7 +127,7 @@ class XoopsConfigHandler
             return false;
         }
         $options =& $config->getConfOptions();
-        $count = count($options);
+        $count = is_countable($options) ? count($options) : 0;
         if (0 == $count) {
             $options =& $this->getConfigOptions(new Criteria('conf_id', $config->getVar('conf_id')));
             $count = count($options);
@@ -195,7 +195,7 @@ class XoopsConfigHandler
             $db = $this->_cHandler->db;
             $result = $db->query('SELECT conf_name,conf_value,conf_valuetype FROM '.$db->prefix('config').' '.$criteria->renderWhere().' ORDER BY conf_order ASC');
             if ($result) {
-                while (list($name, $value, $type) = $db->fetchRow($result)) {
+                while ([$name, $value, $type] = $db->fetchRow($result)) {
                     switch ($type) {
                         case 'array':
                             $ret[$name] = unserialize($value);
@@ -304,7 +304,7 @@ class XoopsConfigHandler
                 $criteria->add(new Criteria('conf_catid', $conf_catid));
             }
             $configs =& $this->_cHandler->getObjects($criteria);
-            $confcount = count($configs);
+            $confcount = is_countable($configs) ? count($configs) : 0;
             $ret = [];
             for ($i = 0; $i < $confcount; $i++) {
                 $ret[$configs[$i]->getVar('conf_name')] = $configs[$i]->getConfValueForOutput();

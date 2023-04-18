@@ -31,12 +31,10 @@ class LegacyTheme
 
 class LegacyThemeHandler
 {
-    public $_mThemeList;
+    public $_mThemeList = [];
 
     public function __construct()
     {
-        $this->_mThemeList= [];
-
         if ($handler=opendir(XOOPS_THEME_PATH)) {
             while (false !== ($dir=readdir($handler))) {
                 if ('.' === $dir || '..' === $dir) {
@@ -51,7 +49,7 @@ class LegacyThemeHandler
                         $manifesto = $iniHandler->getAllConfig();
                     }
 
-                    if (count($manifesto) > 0) {
+                    if ((is_countable($manifesto) ? count($manifesto) : 0) > 0) {
                         //
                         // If this system can use this theme, add this to list.
                         //

@@ -64,13 +64,13 @@
 	<tbody>
 		<{foreach from=$langfile_constants key="langfile_name" item="langfile_uservalue"}>
 		<tr title="<{$langfile_name|escape}>">
-			<td><label for="input_<{$langfile_name|escape}>"><{$langfile_name|truncate:30|escape}></label></td>
+			<td><label for="input_<{$langfile_name|escape}>"><{$langfile_name|truncate:38|escape}></label></td>
 			<td>
 				<div style="width:240px; overflow: auto;">
 					<{$langfile_name|constant|escape}>
 				</div>
 			</td>
-			<td>
+			<td class="list_center">
 				<{if empty($mylang_constants.$langfile_name)}>
 					<{if strlen(constant($langfile_name)) < 32}>
 						<input type="text"
@@ -78,11 +78,11 @@
 							   id="input_<{$langfile_name|escape}>"
 							   value="<{$langfile_uservalue|escape}>"
 							   <{if $langfile_uservalue}>class="lang-custom"<{/if}>
-								title="<{$smarty.const._MYLANGADMIN_TH_USERVALUE}>">
+								title="<{$smarty.const._MYLANGADMIN_TH_USERVALUE}>" data-self="size-x1">
 					<{else}>
 						<textarea name="<{$langfile_name|escape}>"
 								  id="input_<{$langfile_name|escape}>"
-								  <{if $langfile_uservalue}>class="lang-custom"<{/if}>">
+								  <{if $langfile_uservalue}>class="lang-custom"<{/if}>" data-self="size-x1">
 								  <{$langfile_uservalue|escape}>
 						</textarea>
 					<{/if}>

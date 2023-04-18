@@ -22,7 +22,7 @@ class Legacy_AdminBlockOnline extends Legacy_AbstractBlockProcedure
 
     public function getTitle()
     {
-        return 'Online';
+        return _AD_BLOCK_ONLINE;
     }
 
     public function getEntryIndex()

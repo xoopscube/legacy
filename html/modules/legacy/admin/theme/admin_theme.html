@@ -2,10 +2,10 @@
 <html class="no-js" lang="<{$xoops_langcode}>" data-theme="dark">
 <!-- ===========================
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL 2.3.1
+	Distribution : XOOPSCube XCL 2.3.3
 	Version : 2.3.1
 	Author : Nuno Luciano aka Gigamaster
-	Date : 2023-01-27
+	Date : 2023-03-27
 	URL : https://github.com/xoopscube/
 =========================== -->
 <head>
@@ -96,7 +96,9 @@
         <ul class="nav-side-menu">
 
         <{* ----------Block LogInfo Menu *}>
+            <div id="admin-block-loginfo" class="show">
         <{$xoops_lblocks.block_loginfo.content}>
+            </div>
 
         <{* ---------- Block Side Menu *}>
         <{$xoops_lblocks.sidemenu.content}>
@@ -118,27 +120,38 @@
 
         <nav class="ui-breadcrumbs" aria-label="breadcrumb">
             <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
-            &raquo;&raquo; <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceList"><{$smarty.const._MI_LEGACY_NAME}></a>
-            &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._CPHOME}></span>
         </nav>
 
         <{* Admin Blocks from file: /legacy/admin/preload/AdminDashboard.php
             Disable (0) or Enable (1) block render *}>
 
+        <div id="admin-block-online" class="hide">
         <{$xoops_lblocks.block_online.content}>
+        </div>
 
         <div data-layout="row sm-column" data-self="sm-full">
 
             <div data-layout="column px-3" data-self="size-x1">
+
+                <div id="admin-block-menu" class="show">
                 <{$xoops_lblocks.block_menu.content}>
+                </div>
+
+                <div id="admin-block-server" class="show">
                 <h3><{$xoops_lblocks.block_server.title}></h3>
                 <{$xoops_lblocks.block_server.content}>
+                </div>
+                <div id="admin-block-php" class="show">
                 <h3><{$xoops_lblocks.block_php.title}></h3>
                 <{$xoops_lblocks.block_php.content}>
+                </div>
+
             </div>
 
             <div data-layout="column px-3" data-self="size-xsmall sm-full">
+                <div id="admin-block-overview">
                 <{$xoops_lblocks.block_overview.content}>
+                </div>
             </div>
 
         </div>
@@ -152,26 +165,25 @@
     <hr>
 
     <{* ---------- ---------- Footer*}>
-        <footer class="credits">
-            <p><span>Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}> &copy;</span> 2005-2023 <a href="https://github.com/xoopscube/" target="_blank" rel="external">The XOOPS Cube Project</a></p>
-        </footer>
+    <footer class="credits">
+        <p><span>Powered by&nbsp;<{$smarty.const.XOOPS_VERSION}> &copy;</span> 2005-2023 <a href="https://github.com/xoopscube/" target="_blank" rel="external">The XOOPSCube Project</a></p>
+    </footer>
 
-        <{* ---------- ---------- Admin Panel and Help *}>
-        <{include file="../templates/components/admin-panel.html"}>
-        <{include file="../templates/components/admin-help.html"}>
+    <{* ---------- ---------- Admin Panel and Help *}>
+    <{include file="../templates/components/admin-panel.html"}>
+    <{include file="../templates/components/admin-help.html"}>
 
-        <{* ---------- ---------- Scroll to top *}>
-        <div class="scroll-top">
-            <a href="#">
-                <svg width="42px" height="42px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                    <path id="ntop-bg" d="M0 0h48v48h-48z"></path>
-                    <path id="ntop-arrow" d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z"></path>
-                </svg>
-            </a>
-        </div>
+    <{* ---------- ---------- Scroll to top *}>
+    <div class="scroll-top">
+        <a href="#">
+            <svg width="42px" height="42px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path id="ntop-bg" d="M0 0h48v48h-48z"></path>
+                <path id="ntop-arrow" d="M14.83 30.83l9.17-9.17 9.17 9.17 2.83-2.83-12-12-12 12z"></path>
+            </svg>
+        </a>
+    </div>
+
     </main>
-
-
 
 </div><{* /Layout Grid *}>
 

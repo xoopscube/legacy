@@ -29,7 +29,7 @@ class Legacy_Waiting extends XCube_ActionFilter
             if ($result) {
                 $blockVal = [];
                 $blockVal['adminlink'] = XOOPS_URL . '/modules/news/admin/index.php?op=newarticle';
-                list($blockVal['pendingnum']) = $xoopsDB->fetchRow($result);
+                [$blockVal['pendingnum']] = $xoopsDB->fetchRow($result);
                 $blockVal['lang_linkname'] = _MB_LEGACY_SUBMS;
                 $modules[] = $blockVal;
             }
@@ -40,7 +40,7 @@ class Legacy_Waiting extends XCube_ActionFilter
             if ($result) {
                 $blockVal = [];
                 $blockVal['adminlink'] = XOOPS_URL . '/modules/mylinks/admin/index.php?op=listNewLinks';
-                list($blockVal['pendingnum']) = $xoopsDB->fetchRow($result);
+                [$blockVal['pendingnum']] = $xoopsDB->fetchRow($result);
                 $blockVal['lang_linkname'] = _MB_LEGACY_WLNKS;
                 $modules[] = $blockVal;
             }
@@ -48,7 +48,7 @@ class Legacy_Waiting extends XCube_ActionFilter
             if ($result) {
                 $blockVal = [];
                 $blockVal['adminlink'] = XOOPS_URL . '/modules/mylinks/admin/index.php?op=listBrokenLinks';
-                list($blockVal['pendingnum']) = $xoopsDB->fetchRow($result);
+                [$blockVal['pendingnum']] = $xoopsDB->fetchRow($result);
                 $blockVal['lang_linkname'] = _MB_LEGACY_BLNK;
                 $modules[] = $blockVal;
             }
@@ -56,7 +56,7 @@ class Legacy_Waiting extends XCube_ActionFilter
             if ($result) {
                 $blockVal = [];
                 $blockVal['adminlink'] = XOOPS_URL . '/modules/mylinks/admin/index.php?op=listModReq';
-                list($blockVal['pendingnum']) = $xoopsDB->fetchRow($result);
+                [$blockVal['pendingnum']] = $xoopsDB->fetchRow($result);
                 $blockVal['lang_linkname'] = _MB_LEGACY_MLNKS;
                 $modules[] = $blockVal;
             }
@@ -67,7 +67,7 @@ class Legacy_Waiting extends XCube_ActionFilter
             if ($result) {
                 $blockVal = [];
                 $blockVal['adminlink'] = XOOPS_URL . '/modules/mydownloads/admin/index.php?op=listNewDownloads';
-                list($blockVal['pendingnum']) = $xoopsDB->fetchRow($result);
+                [$blockVal['pendingnum']] = $xoopsDB->fetchRow($result);
                 $blockVal['lang_linkname'] = _MB_LEGACY_WDLS;
                 $modules[] = $blockVal;
             }
@@ -83,7 +83,7 @@ class Legacy_Waiting extends XCube_ActionFilter
             if ($result) {
                 $blockVal = [];
                 $blockVal['adminlink'] = XOOPS_URL . '/modules/mydownloads/admin/index.php?op=listModReq';
-                list($blockVal['pendingnum']) = $xoopsDB->fetchRow($result);
+                [$blockVal['pendingnum']] = $xoopsDB->fetchRow($result);
                 $blockVal['lang_linkname'] = _MB_LEGACY_MFLS;
                 $modules[] = $blockVal;
             }

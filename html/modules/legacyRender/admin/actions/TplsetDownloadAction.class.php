@@ -43,6 +43,7 @@ class LegacyRender_TplsetDownloadAction extends LegacyRender_Action
     
     public function getDefaultView(&$controller, &$xoopsUser)
     {
+        $path = null;
         $method = 'tar' == xoops_getrequest('method') ? 'tar' : 'zip';
         $this->mDownloader =& $this->_createDownloader($method);
         
@@ -74,7 +75,7 @@ class LegacyRender_TplsetDownloadAction extends LegacyRender_Action
         $handler =& xoops_getmodulehandler('tplfile');
         $files =& $handler->getObjects(new Criteria('tpl_tplset', $this->mTplset->get('tplset_name')));
         
-        $count = count($files);
+        $count = is_countable($files) ? count($files) : 0;
         
         if ($count > 0) {
             $xml .= '  <templates>' . "\n";

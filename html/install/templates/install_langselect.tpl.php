@@ -1,6 +1,6 @@
 <select name="lang">
 	<?php
-	for ( $i = 0; $i < count( $this->v( 'languages' ) ); $i ++ ) {
+	for ( $i = 0; $i < (is_countable($this->v( 'languages' )) ? count( $this->v( 'languages' ) ) : 0); $i ++ ) {
 		?>
         <option
                 value="<?php $this->e( 'languages', $i ) ?>" <?php $this->e( 'selected', $i ) ?>><?php $this->e( 'languages', $i ) ?></option>

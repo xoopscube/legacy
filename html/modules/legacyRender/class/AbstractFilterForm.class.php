@@ -53,7 +53,7 @@ class LegacyRender_AbstractFilterForm
     public function getSort()
     {
         $sortkey = abs($this->mNavi->mSort['sort']);
-        return isset($this->mSortKeys[$sortkey]) ? $this->mSortKeys[$sortkey] : null;
+        return $this->mSortKeys[$sortkey] ?? null;
     }
 
     public function getOrder()

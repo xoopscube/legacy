@@ -55,7 +55,7 @@ class XoopsOnlineHandler
         } else {
             $sql = 'SELECT COUNT(*) FROM ' . $this->db->prefix('online') . ' WHERE online_uid=' . $uid . ' AND online_ip=' . $ip;
         }
-        list($count) = $this->db->fetchRow($this->db->queryF($sql));
+        [$count] = $this->db->fetchRow($this->db->queryF($sql));
         if ($count > 0) {
             $sql = 'UPDATE ' . $this->db->prefix('online') . ' SET online_updated=' . $time . ', online_module = ' . $module . ' WHERE online_uid = ' . $uid;
             if (0 == $uid) {
@@ -143,7 +143,7 @@ class XoopsOnlineHandler
             $ret = false;
             return $ret;
         }
-        list($ret) = $this->db->fetchRow($result);
+        [$ret] = $this->db->fetchRow($result);
         return $ret;
     }
 }

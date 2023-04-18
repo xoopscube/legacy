@@ -48,7 +48,7 @@ function b_legacy_mainmenu_show($options)
             $moddir .= $blockm['directory'] = $module->getVar('dirname', 'N');
             $info = $module->getInfo();
             $sublinks =& $module->subLink();
-            if (count($sublinks)>0 && ($all_links || $i==$mid)) {
+            if ((is_countable($sublinks) ? count($sublinks) : 0)>0 && ($all_links || $i==$mid)) {
                 foreach ($sublinks as $sublink) {
                     $blockm['sublinks'][] = ['name' => $sublink['name'], 'url' => $moddir . '/' . $sublink['url']];
                 }

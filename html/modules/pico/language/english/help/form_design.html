@@ -1,0 +1,222 @@
+<div data-layout="row sm-column">
+    <div data-self="size-xxsmall">
+        <nav id="help-menu">
+            <ul data-layout="rows">
+                <li><a href="#help-overview" class="button">Pico</a>
+                <li><a href="#help-features" class="button">Features</a>
+                <li><a href="#help-content" class="button">Content</a>
+                <li><a href="#help-content" class="button">Extra Forms</a>
+                <li><a href="#help-development" class="button">Development</a>
+            </ul>
+        </nav>
+    </div>
+
+<article id="help-module">
+
+    <section id="help-overview">
+
+        <h3>
+            Extending features of pico by smarty plugins(1)
+        </h3>
+
+
+        <p>Now, I show a practical examples how to use pico's formmail system.
+
+        Case 1:<br>
+        "Implant forms after product presentation pages"<br>
+
+        You can easily achive it using pico's smarty plugisn "pico" and "formmail".<br>
+
+        Make a content like this. (Turn "Smarty" filter on)</p>
+
+
+        <h4>(products introducing section)</h4>
+
+<pre><code class="lanh-html"></code></pre>
+
+<pre><code class="lang-smarty">
+&lt;{capture}&gt;
+&lt;{pico id=&quot;(content ID describing the form)&quot;}&gt;
+&lt;{/capture}&gt;
+&lt;{formmail4fleamarket mail_body_pre=&quot;A query from visitor existsnContact him/her soon as possiblenn&quot; from_name=&quot;Product manager&quot; cc_field_name=&quot;youremail&quot; cc_mail_subject=&quot;A confirmation for your query&quot; cc_mail_body_pre=&quot;Thank you for querying us.nThis is the content you have queriedn&quot;}&gt;
+</code></pre>
+
+
+<p>Also, you have to make a content like this.</p>
+<pre><code class="lang-html">
+&lt;form&gt;
+name: &lt;input type=&quot;text&quot; name=&quot;name&quot; class=&quot;required&quot; /&gt;&lt;br /&gt;
+email: &lt;input type=&quot;text&quot; name=&quot;youremail&quot; class=&quot;email&quot; /&gt;
+&lt;input type=&quot;submit&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
+
+        <p>This content ID(number) will be specified the former content.
+        You can make a variety of forms, and specify their numbers as you like.
+<br>
+        Of course, you can make form contents into the other pico module instance.
+        You can specify the form content by "dirname" parameter.h <code class="lang-smarty">&lt;{pico id=&quot;(conent ID)&quot; dirname=&quot;(dirname)&quot;}&gt;</code>
+<br>
+        Now we look long parameters of <code class="lang-smarty">&lt;{formmail}&gt;</code><br>
+        Their parameters controls "mail actions".<br>
+<br>
+        legend)
+        mail_body_pre: specifying body part before the query content. (from XOOPS to adminmail)<br>
+        from_name: specifying sender name<br>
+        cc_field_name: specifying a field name for sending "confirming mail" to form poster.<br>
+        cc_mail_subject: specifying Subject of "confirming mail"<br>
+            cc_mail_body_pre: specifying body part before the query content of "confirming mail"</p>
+
+
+        <h3>Pico Module</h3>
+        <p>Use our online form designer to build and customize web forms with your brand and colors in less than 2 minutes.
+            Build powerful online forms that are aesthetically pleasing, greatly customizable, and easy to use to collect leads, payments, and other data.
+        <p>Form Builder form designer without needing coding skills!
+        <p>Form Builder helps you make sure your online forms and provides you with all the features you need to create beautiful online custom forms</p>
+        <p>Easy to use professional tool for building forms
+            I can quickly create all sorts of forms (both for events and for research), connect them with other services like Google Drive to gather data in a structured way, implement payment, extract graphical reports, notify respondents etc.
+        </p>
+        <p>
+            Easy to use professional tool for building forms<br>
+            We are using this tool very frequently to gather data for our webinars, events, conferences and administrative aspects of the university. We were able to organize big international conferences with online payment. Also, we used their tool to register participants at contests, with powerful rules on forms and form elements. The team at 123FormBuilder is very helpful.
+            <br><br>
+            123FormBuilder is the best form builder I have used so far<br>
+            123FormBuilder is the best form builder I have used so far. It has a sleek and intuitive interface and it's super easy to drag and drop fields. It also has a ton of features like conditional logic, custom validation rules, and password strength requirements. I recommend 123FormBuilder for anyone looking for a great form builder.123FormBuilder is the best form builder I have used so far. It has a sleek and intuitive interface and it's super easy to drag and drop fields. It also has a ton of features like conditional logic, custom validation rules, and password strength requirements. I recommend 123FormBuilder for anyone looking for a great form builder.
+            <br><br>
+            Ioana D, Insurance Agent at Allianz Țiriac<br>
+            Great for large organizations or projects like ours<br>
+            123FormBuilder is the best form builder to use in larger projects. The templates are extremely flexible, I can design my own unique forms with a variety of fields and unlimited submissions. Their sales team is prompt and the customer service team was always happy to answer any questions - thank you Karla for the help!
+            <br><br>
+            George T, Lead Engineer<br>
+            Easy to use professional tool for building forms<br>
+            I can quickly create all sorts of forms (both for events and for research), connect them with other services like Google Drive to gather data in a structured way, implement payment, extract graphical reports, notify respondents etc.
+            <br><br>
+            Easy to use professional tool for building forms<br>
+            We are using this tool very frequently to gather data for our webinars, events, conferences and administrative aspects of the university. We were able to organize big international conferences with online payment. Also, we used their tool to register participants at contests, with powerful rules on forms and form elements. The team at 123FormBuilder is very helpful.
+        </p>
+            <p>Tired of jotting down form ideas you can’t translate into pixels?<br>
+            Well, rejoice, because bland digital forms are a thing of the past, yay!
+
+           <p>With 123FormBuilder, what you see is what you get (WYSIWYG). And what you get is an endless array of form customization options that make your life easier, more colorful, and always in-line with your brand.
+
+            <p>Every inch and pixel of our forms are customizable and our form designer makes it super-duper easy for you to adjust everything to perfection. Because your attentive eye deserves nothing less than flawlessness.
+<p>Css properties … They’re ALL customizable, so the only limit you have to create gorgeous forms is your own creativity.
+        Our form designer gives you the tool, you bring the skills — and voila, you’ve got custom forms that make your heart beat a little faster.
+    </p>
+
+        <p>Conditional logic that helps you display only fields that are relevant to every user</p>
+
+        <p>Formatting your form to display one question per page, like in an actual normal person to person conversation</p>
+        <p>Customizable email notifications to help you make the conversation go on</p>
+
+    </section>
+
+<hr>
+
+    <section id="help-extra">
+        <h3>Form Build</h3>
+        <p>You can create and design custom interactive forms</p>
+
+        <h3>Contact Us Form</h3>
+        <p>Contact form template with a clean design and Google Map to make your location available.
+            While an excessive number of items in the questionnaire has proven to be the most common
+            reason for dropping the submission process, using a universal, concise contact form remains
+            a win-win solution for gathering all the necessary information in the fastest and most
+            user-friendly way. A handy location widget will also allow your leads to find the shortest
+            route to you in seconds</p>
+
+<pre><code class="lanh-html"></code></pre>
+
+<pre><code class="lanh-smarty"></code></pre>
+
+        <h3>Contact Form Detailed</h3>
+        <p>Get all the information you need from your userbase with this very detailed contact form that
+            you can customize however you like. Offering a series of additional fields to fill, this form
+            will allow your customers to be as specific in their requests as they want to — and the upload
+            option it provides can speed up the processing of incoming submissions, giving you a handful of
+            extra customer loyalty points</p>
+
+<pre><code class="lanh-html"></code></pre>
+
+<pre><code class="lanh-smarty"></code></pre>
+
+        <h3>Information Request Form</h3>
+        <p> Request Form Make the process of introduction to potential customers as convenient as possible
+            with a simple Information Request Form that asks for the respondent's name, email, phone number.
+            If you're operating as an IT assist desk, a product or industry consultant — this easy-to-use
+            form can be your starting point to collect initial info from requesters.</p>
+
+<pre><code class="lanh-html"></code></pre>
+
+<pre><code class="lanh-smarty"></code></pre>
+
+
+        <h3>Create customized forms from templates</h3>
+
+        <p>Categories and content can be moved to other categories or exported to compatible modules.
+        <p>When Wrap mode is enabled, the virtual path for the content is available.</p>
+        <p>The following features are available in the backend Category and content management :</p>
+
+        <ul>
+            <li>Name, title
+            <li>Virtual path
+            <li>Weight (order) YSIWYG Editor
+            <li>Visible (public)
+            <li>Show in Navigation
+            <li>Show in Menu
+            <li>Allow comments
+            <li>Bulk Action
+            <li>Granular Permissions
+        </ul>
+
+        <div class="confirm">Note the User Interface design is subject to change, but not the logic.</div>
+
+
+
+    </section>
+
+
+<hr>
+
+
+    <section id="help-development">
+
+        <h3>Development</h3>
+
+        <p>TODO</p>
+        <p>Improve the documentation with samples.</p>
+        <p>Document Tags' links like Block Tags.</p>
+
+        <table class="outer">
+            <thead>
+            <tr>
+                <th>Module name</th>
+                <th>Pico</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Type</td>
+                <td>Trust Module [ CMS ]</td>
+            </tr>
+            <tr>
+                <td>Version</td>
+                <td>2.31</td>
+            </tr>
+            <tr>
+                <td>Level</td>
+                <td>Recommended</td>
+            </tr>
+            <tr>
+                <td>🌐 Repository URL</td>
+                <td><a href="https://github.com/xoopscube/pico" target="_blank">https://github.com/xoopscube/pico ⭧</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+
+
+</article>
+</div>

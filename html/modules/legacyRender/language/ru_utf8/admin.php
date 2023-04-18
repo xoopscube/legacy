@@ -24,7 +24,7 @@ define('_AD_LEGACYRENDER_LANG_BANNER', "Банер");
 define('_AD_LEGACYRENDER_LANG_BANNER_DELETE', "Удалить банер");
 define('_AD_LEGACYRENDER_LANG_BANNER_EDIT', "Редактировать банер");
 define('_AD_LEGACYRENDER_LANG_BANNER_LIST', "Список банеров");
-define( '_AD_LEGACYRENDER_LANG_BANNER_LIST_DESC' , 'Create a contact account for Banner Clients add html or link of Banners');
+define( '_AD_LEGACYRENDER_LANG_BANNER_LIST_DESC' , 'Прежде чем добавлять новый HTML-баннер или ссылку, создайте контактную учетную запись для своих клиентов.<br>Тип предоставления учетных данных клиента используется для получения токена для доступа к статистике баннеров.');
 define('_AD_LEGACYRENDER_LANG_BANNER_NEW', "Новый банер");
 define('_AD_LEGACYRENDER_LANG_BANNERCLIENT_DELETE', "Удалить клиента.");
 define('_AD_LEGACYRENDER_LANG_BANNERCLIENT_EDIT', "Редактировать клиента");
@@ -101,7 +101,6 @@ define('_AD_LEGACYRENDER_MESSAGE_UPLOAD_TEMPLATE_SUCCESS', "Шаблон усп�
 define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_1', "Измените внешний вид своего сайта при помощи шаблонов. Сначала сделайте копию (клона) набора шаблонов по умолчанию (default), и затем измените шаблоны в этой копии. Чтобы узнать больше - обратитесь к разделу помощи.");
 define('_AD_LEGACYRENDER_TIPS_TEMPLATE_MANAGE_2', "Вы можете легко менять набор шаблонов своего сайта щелкнув по подходящей кнопке 'Выбрать'. Чтобы узнать больше - обратитесь к разделу помощи.");
 define('_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD', "Если Вы не введете имя для нового набора шаблонов - имя будет взято из загруженного файла. Допустимы для загрузки только файлы TAR.GZ.");
-define( '_AD_LEGACYRENDER_TIPS_TPLSET_UPLOAD' , "If you don't input a name for your new template set, the name will be taken from the uploaded file. Note that XCL generates a TAR.GZ and you need to extract and upload only the TAR file.");
 define( '_AD_LEGACYRENDER_LANG_HTACCESS' , '.htaccess');
 define( '_AD_LEGACYRENDER_DESC_HTACCESS' , 'If your server can handle Apache mod_rewrite, you can use custom URIs by saving the settings  to a file in public/.htaccess<br>
 Cool URI must be enabled in the <a href="'.XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1#cool-uri">? Control Panel > Settings ⭧</a>');

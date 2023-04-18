@@ -113,6 +113,14 @@ class XoopsTplfileHandler extends XoopsObjectHandler
 
     public function insert(&$tplfile)
     {
+        $tpl_module = null;
+        $tpl_refid = null;
+        $tpl_tplset = null;
+        $tpl_file = null;
+        $tpl_desc = null;
+        $tpl_lastmodified = null;
+        $tpl_lastimported = null;
+        $tpl_type = null;
         if ('xoopstplfile' !== strtolower(get_class($tplfile))) {
             return false;
         }
@@ -159,6 +167,12 @@ class XoopsTplfileHandler extends XoopsObjectHandler
 
     public function forceUpdate(&$tplfile)
     {
+        $tpl_tplset = null;
+        $tpl_file = null;
+        $tpl_desc = null;
+        $tpl_lastimported = null;
+        $tpl_lastmodified = null;
+        $tpl_id = null;
         if ('xoopstplfile' !== strtolower(get_class($tplfile))) {
             return false;
         }
@@ -266,7 +280,7 @@ class XoopsTplfileHandler extends XoopsObjectHandler
         if (!$result =& $this->db->query($sql)) {
             return 0;
         }
-        list($count) = $this->db->fetchRow($result);
+        [$count] = $this->db->fetchRow($result);
         return $count;
     }
 

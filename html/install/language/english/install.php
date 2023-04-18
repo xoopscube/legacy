@@ -1,7 +1,7 @@
 <?php
 // Syntax replace define with const v2.3.0 2021/05/15 @gigamaster XCL-PHP7
 const _INSTALL_L0 = '<span>Ẋ OOPS Cube Web Application Platform</span><br>Starting the installation wizard' ;
-const _INSTALL_L168 = 'XCL 2.3 requires PHP7.x.x' ;
+const _INSTALL_L168 = 'XCL 2.3 requires PHP7.4.x' ;
 const _INSTALL_L70 = 'Please change the file permission for mainfile.php so that it is writeable by the server (i.e. chmod 777 mainfile.php on a UNIX/LINUX server, or check the properties of the file and make sure the read-only flag is not set on a Windows server ). Reload this page once you have changed the permission setting.';
 //define("_INSTALL_L71","Click on the button below to begin the installation.");
 const _INSTALL_L1 = 'Open mainfile.php with your text editor and find the following codes on line 31:' ;
@@ -46,8 +46,8 @@ const _INSTALL_L54 = 'Use persistent connection?' ;
 const _INSTALL_L69 = "Default is 'NO'. Choose 'NO' if you are unsure." ;
 const _INSTALL_L55 = 'The XCL Physical Path' ;
 const _INSTALL_L59 = 'Physical path to your main XCL directory WITHOUT trailing slash' ;
-const _INSTALL_L75 = 'The XOOPS_TRUST_PATH Physical Path' ;
-const _INSTALL_L76 = 'Physical path to your main XOOPS_TRUST_PATH directory WITHOUT trailing slash<br>You should set XOOPS_TRUST_PATH outside DocumentRoot.' ;
+const _INSTALL_L75 = 'The TRUST_PATH Physical Path' ;
+const _INSTALL_L76 = 'Physical path to your main TRUST_PATH directory WITHOUT trailing slash<br>It is recommended to place TRUST_PATH outside of the public DocumentRoot.' ;
 
 const _INSTALL_L56 = 'The XCL Virtual Path (URL)' ;
 const _INSTALL_L58 = 'Virtual path to your main XCL directory WITHOUT trailing slash' ;

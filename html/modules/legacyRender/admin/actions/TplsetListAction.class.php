@@ -49,7 +49,7 @@ class LegacyRender_TplsetListAction extends LegacyRender_AbstractListAction
             $criteria->add(new Criteria('conf_catid', XOOPS_CONF));
             
             $configs =& $configHandler->getConfigs($criteria);
-            if (count($configs) > 0) {
+            if ((is_countable($configs) ? count($configs) : 0) > 0) {
                 $configs[0]->set('conf_value', $this->mActionForm->get('tplset_name'));
                 $configHandler->insertConfig($configs[0]);
                 $this->mActiveTemplateSet = $this->mActionForm->get('tplset_name');

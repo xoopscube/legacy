@@ -236,7 +236,7 @@
 
     #container > main {
         min-width: 0;
-        max-width               : calc(100vw - 342px);
+        max-width               : calc(98vw - 342px);
         /*width: calc(98vw - 312px);*/
     }
     .nav-mobile {
@@ -265,9 +265,12 @@
 
 /* device 1408 -> 1440px */
 @media screen and (min-width:88em) {
+body {
+overflow-x: hidden;
+}
     #container > main {
         min-width:0;
-        max-width               : calc(1380px - 1rem);
-        /*max-width: 1279px;*/
+        width: 100%;
+        max-width: 1380px;
     }
 }

@@ -5,4 +5,4 @@
  * @version $Id$
 **/
 
-require_once XOOPS_TRUST_PATH . '/modules/xupdate/language/english/modinfo.php';
+require_once XOOPS_TRUST_PATH . '/modules/xupdate/language/fr_utf8/modinfo.php';

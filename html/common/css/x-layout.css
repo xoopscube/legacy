@@ -151,9 +151,11 @@ html{scroll-behavior: smooth;}
 [data-self~=centered] {align-items:center;justify-content:center}
 [data-layout*=column]:not([data-layout*=row]) [data-self*=right],[data-layout*=row]:not([data-layout*=column]) [data-self*=bottom] {align-self:flex-end}
 [data-self*=stretch] {align-self:stretch}
-[data-self*=center] {margin-left:auto;margin-right:auto}
+[data-self*=center] {place-content: center;}
 [data-self*=right] {display:flex;justify-content: flex-end;}
 [data-self*=left] {margin-left:0}
+[data-self*=start] {align-self:self-start;}
+[data-self*=end] {place-content: end;}
 [data-layout*=column][data-self*=bottom] {margin-top:auto}
 [data-layout*=column][data-self*=top],[data-layout*=row][data-self*=-top] {margin-bottom:auto}
 [data-layout*=row][data-self*=left] {margin-right:auto}
@@ -328,6 +330,26 @@ html{scroll-behavior: smooth;}
 [data-self~=radius-pill] {border-radius:50rem !important}
 [data-self~=radius-0] {border-radius:0 !important}
 
+/* aspect-ratio */
+.aspect-ratio-16\:9 {aspect-ratio: 16/9;}
+.aspect-ratio-3\:2 {aspect-ratio: 3/2;}
+.aspect-ratio-4\:3 {aspect-ratio: 4/3;}
+.aspect-ratio-5\:4 {aspect-ratio: 5/4;}
+.aspect-ratio-1\:1 {aspect-ratio: 1/1;}
+.aspect-ratio-4\:5 {aspect-ratio: 4/5;}
+.aspect-ratio-3\:4 {aspect-ratio: 3/4;}
+.aspect-ratio-2\:3 {aspect-ratio: 2/3;}
+.aspect-ratio-9\:16 {aspect-ratio: 9/16;}
+
+/* media wrapper */
+:where([class^=media-wrap], [class*=" media-wrap"]) {position: relative;}
+[class^=media-wrap], [class*=" media-wrap"] {height: 0;}
+[class^=media-wrap] > *,
+[class*=" media-wrap"] > * {position: absolute;top: 0;left: 0;width: 100%;height: 100%;}
+[class^=media-wrap] > *:not(iframe),
+[class*=" media-wrap"] > *:not(iframe) {object-fit: cover;}
+.media-wrap-16\:9 {padding-bottom: 56.25%;}
+.media-wrap-3\:2 {padding-bottom: 66.67%;}
 /* -------------------- -------------------- MEDIA QUERIES
 Stats Jan 2020 – Jan 2021
 --------------------------

@@ -38,6 +38,7 @@ class Legacy_CustomBlockEditAction extends Legacy_BlockEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
+        $moduleArr = [];
         $render->setTemplateName('customblock_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
 

@@ -29,17 +29,17 @@ require_once SMARTY_DIR.'/Smarty.class.php';
 class Legacy_AdminSmarty extends Smarty
 {
     public $mModulePrefix = null;
-    var $_canUpdateFromFile;
+    public $_canUpdateFromFile = true;
 
     //
     // If you don't intend to override the theme, set false.
     //
     public $overrideMode = true;
     
-//    public function Legacy_AdminSmarty()
-//    {
-//        self::__construct();
-//    }
+    public function Legacy_AdminSmarty()
+    {
+        self::__construct();
+    }
 
     public function __construct()
     {
@@ -274,7 +274,7 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
  * @param $string
  * @return string
  * @internal
- * Return URL strings by "overriding" rule.
+ * Return URL string by "overriding" rule.
  * (Now, test implement)
  * 1) Search file in specified theme directory.
  * 2) Search file in current module template directory.
@@ -297,6 +297,7 @@ function Legacy_modifier_theme($string)
 
 function Legacy_function_stylesheet($params, &$smarty)
 {
+    $request = [];
     if (!isset($params['file'])) {
         $smarty->trigger_error('stylesheet: missing file parameter.');
         return;
@@ -348,6 +349,7 @@ function Legacy_function_stylesheet($params, &$smarty)
 
 function Legacy_get_override_file($file, $prefix = null, $isSpDirname = false)
 {
+    $dirname = null;
     $root =& XCube_Root::getSingleton();
     $moduleObject =& $root->mContext->mXoopsModule;
 

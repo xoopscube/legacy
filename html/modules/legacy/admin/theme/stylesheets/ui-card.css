@@ -177,9 +177,7 @@
     min-width           : auto;
     width               : auto;
 }
-.list .ui-card-block-item .ui-card-data {
-    border:1px solid red;
-}
+
 .list .ui-card-block-item.username {
     width               : 17%;
 }
@@ -273,7 +271,9 @@ img.ui-avatar-card {
 }
 
 /* input[size=] width depend using fonts,
-   then setting by style for compatibility */
+   then setting by style for compatibility
+
+.ui-card-block-item input[type="text"] { */
 .ui-card-block-item input[size="20"] {
     /* width: 12em; */
     width           : 74%;

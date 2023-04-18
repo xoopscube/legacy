@@ -3,7 +3,7 @@
 <nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_LEGACYRENDER_NAME}></a>
-    &raquo;&raquo; <span class="page-title"><a href="./index.php?action=BannerList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_BANNER_MANAGE}></a></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><a href="./index.php?action=BannerList"><{$smarty.const._MI_LEGACYRENDER_ADMENU_BANNER_MANAGE}></a></span>
 </nav>
 
 
@@ -13,7 +13,7 @@
     <{/if}>
 </h2>
 
-<div class="tips">
+<div class="help-tips">
     <{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_LIST_DESC}>
 </div>
 
@@ -23,6 +23,7 @@
 
     <div>
         <a href="index.php?action=BannerEdit" class="button"><i class="i-add"></i><{$smarty.const._AD_LEGACYRENDER_LANG_BANNER_NEW}></a>
+        <a href="index.php?action=BannerclientEdit" class="button"><i class="i-add"></i><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_NEW}></a>
         <a href="index.php?action=BannerclientList" class="button"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERCLIENT_LIST}></a>
         <a href="index.php?action=BannerfinishList" class="button"><{$smarty.const._AD_LEGACYRENDER_LANG_BANNERFINISH_LIST}></a>
     </div>

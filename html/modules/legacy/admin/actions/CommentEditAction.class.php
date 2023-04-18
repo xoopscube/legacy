@@ -139,7 +139,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
 
     public function doApprove($comment)
     {
-        $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
+        $comment_config = (new Legacy_CommentEditAction())->loadCallbackFile($comment);
 
         if (false == $comment_config) {
             return;
@@ -168,7 +168,7 @@ class Legacy_CommentEditAction extends Legacy_AbstractEditAction
         //
         // call back
         //
-        $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
+        $comment_config = (new Legacy_CommentEditAction())->loadCallbackFile($comment);
 
         if (false == $comment_config) {
             return;

@@ -34,7 +34,7 @@ body {
     font-weight     : var( --font-weight );
     scrollbar-gutter: stable both-edges; /* reserve space for the scrollbar */
     /* Removed Background white Flash transition */
-    transition      : background 500ms ease-in-out, color 200ms ease;
+    /*transition      : background 500ms ease-in-out, color 200ms ease;*/
     /* Keyword values */
     -webkit-font-smoothing: antialiased;
     /*text-rendering: auto;*/
@@ -170,6 +170,7 @@ hr {
 p {
     margin          : var(--space-5) 0;
     line-height     : 1.5;
+    text-align: justify;
 }
 /*  -------------------- --------------------  LAYOUT GRID */
 
@@ -299,7 +300,7 @@ nav.pagination {
     right           : 2rem;
     bottom          : 0;
     pointer-events  : none;
-    z-index         : 9000;
+    z-index         : 90;
 }
 .scroll-top #ntop-bg {fill: var( --layer-4 )}
 .scroll-top #ntop-arrow {fill: var( --theme-color, var( --link ));}
@@ -340,5 +341,52 @@ nav.pagination {
 }
 @media print {
     .scroll-top { display: none !important; }
+}
+
+/* tooltip custom style */
+.ui-tooltip, .arrow:after {
+    background: black;
+    border: 2px solid white;
+}
+.ui-tooltip {
+    --ui-widget-font-size:13px;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    font-size: var(--ui-widget-font-size);
+    text-transform: uppercase;
+    box-shadow: 0 0 7px black;
+}
+.arrow {
+    width: 40px;
+    height: 14px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -50%;
+    bottom: -14px;
+}
+.arrow.top {
+    top: -14px;
+    bottom: auto;
+}
+.arrow.left {
+    left: 25%;
+}
+.arrow:after {
+    content: "";
+    position: absolute;
+    left: 25%;
+    top: -20px;
+    width: 20px;
+    height: 20px;
+    box-shadow: var(--shadow-6);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.arrow.top:after {
+    bottom: -20px;
+    top: auto;
 }
 

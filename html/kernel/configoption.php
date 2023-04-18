@@ -131,6 +131,10 @@ class XoopsConfigOptionHandler extends XoopsObjectHandler
      */
     public function insert(&$confoption)
     {
+        $confop_name = null;
+        $confop_value = null;
+        $conf_id = null;
+        $confop_id = null;
         if ('xoopsconfigoption' != strtolower(get_class($confoption))) {
             return false;
         }

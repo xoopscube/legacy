@@ -13,7 +13,7 @@ define( '_MI_LEGACYRENDER_ADMENU_TEMPLATE_MANAGE' , "Conjuntos de modelos");
 define( '_MI_LEGACYRENDER_ADMENU_THEME_MANAGE' , "Gestão de Temas");
 define( '_MI_LEGACYRENDER_ADMENU_TPLFILE_MANAGE' , "Arquivos de modelos");
 define( '_MI_LEGACYRENDER_CONF_BANNERS' , "Habilitar as Campanhas publicitárias?");
-define( '_MI_LEGACYRENDER_CONF_BANNERS_DESC' , 'Client Management, account and login []');
+define( '_MI_LEGACYRENDER_CONF_BANNERS_DESC' , 'O tipo de concessão de credenciais do Banner Client é usado pelos clientes para obter um token de acesso às estatísticas dos banners. Assim, logins e senhas de clientes são externos ao sistema de autorização de grupos de usuários.');
 define( '_MI_LEGACYRENDER_NAME' , "Gerador de modelos");
 define( '_MI_LEGACYRENDER_NAME_DESC' , "Sistema Gerador de modelos compativel com formatos de tema e modelos smarty das versões XOOPS JP 2.0.x and XCL 2.3.x. Traduzido por Mikhail Miguel.");
 define( '_MI_LR_CSS_FILE' , "Endereço URL do arquivo CSS do <i>jQuery UI</i>");

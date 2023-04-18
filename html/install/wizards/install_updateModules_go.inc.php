@@ -65,11 +65,11 @@ foreach ( array_keys( $modules ) as $mid ) {
 			$showfuncs = [];
 			$funcfiles = [];
 			if ( false != $blocks ) {
-				$count = count( $blocks );
+				$count = is_countable($blocks) ? count( $blocks ) : 0;
 				include_once( XOOPS_ROOT_PATH . '/class/xoopsblock.php' );
 				for ( $i = 1; $i <= $count; $i ++ ) {
 					if ( isset( $blocks[ $i ]['show_func'] ) && '' !== $blocks[ $i ]['show_func'] && isset( $blocks[ $i ]['file'] ) && ( '' !== $blocks[ $i ]['file'] ) ) {
-						$editfunc    = isset( $blocks[ $i ]['edit_func'] ) ? $blocks[ $i ]['edit_func'] : '';
+						$editfunc    = $blocks[ $i ]['edit_func'] ?? '';
 						$showfuncs[] = $blocks[ $i ]['show_func'];
 						$funcfiles[] = $blocks[ $i ]['file'];
 						$template    = '';

@@ -242,12 +242,12 @@ class XCube_Root {
 				return $m[ $a ];
 			}
 		} elseif ( 2 === $n ) {
-			list( $a, $b ) = func_get_args();
+			[$a, $b] = func_get_args();
 			if ( isset( $m[ $a ][ $b ] ) ) {
 				return $m[ $a ][ $b ];
 			}
 		} elseif ( 3 === $n ) {
-			list( $a, $b, $c ) = func_get_args();
+			[$a, $b, $c] = func_get_args();
 			if ( isset( $m[ $a ][ $b ] ) ) {
 				return $m[ $a ][ $b ];
 			}

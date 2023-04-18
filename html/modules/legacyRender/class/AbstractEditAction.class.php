@@ -76,8 +76,8 @@ class LegacyRender_AbstractEditAction extends LegacyRender_Action
         }
 
         $this->mActionForm->update($this->mObject);
-
-        return $this->_doExecute($this->mObject) ? LEGACYRENDER_FRAME_VIEW_SUCCESS
+//return $this->_doExecute($this->mObject) ? LEGACYRENDER_FRAME_VIEW_SUCCESS
+        return $this->_doExecute() ? LEGACYRENDER_FRAME_VIEW_SUCCESS
                                                  : LEGACYRENDER_FRAME_VIEW_ERROR;
     }
 

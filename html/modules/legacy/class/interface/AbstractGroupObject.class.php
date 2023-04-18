@@ -19,8 +19,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 **/
 abstract class Legacy_AbstractGroupObject extends XoopsSimpleObject
 {
-    const PRIMARY = 'group_id';
-    const DATANAME = 'group';
+    public const PRIMARY = 'group_id';
+    public const DATANAME = 'group';
 
     /**
      * __construct

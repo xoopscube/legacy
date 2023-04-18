@@ -201,7 +201,7 @@ class XCube_PageNavigator {
 				}
 			}
 
-			if ( 0 === count( $tarr ) ) {
+			if ( 0 === (is_countable($tarr) ? count( $tarr ) : 0) ) {
 				return $this->mUrl;
 			}
             // TODO XCL 2.3.x 'strpos' call can be converted to 'str_contains'

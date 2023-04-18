@@ -273,6 +273,10 @@ class Legacy_PreferenceEditState extends Legacy_AbstractPreferenceEditState
 
     public function postFilter(&$objectArr, &$actionForm)
     {
+        $name = null;
+        $useMysession = null;
+        $sessionName = null;
+        $sessionExpire = null;
         $themeName = null;
         $allowedThemes = null;
         foreach (array_keys($objectArr) as $key) {

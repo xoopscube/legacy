@@ -16,7 +16,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
 {
     public $mStatusFlag = LEGACY_CONTROLLER_STATE_PUBLIC;
-    public $_mLoadedFilterNames = array();
+    public $_mLoadedFilterNames = [];
 
     public function __construct(&$controller)
     {
@@ -91,7 +91,7 @@ class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
         }
 
         $objs =& $handler->getObjects();
-        if (count($objs) > 0) {
+        if ((is_countable($objs) ? count($objs) : 0) > 0) {
             return $objs[0];
         }
 

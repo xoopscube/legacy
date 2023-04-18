@@ -344,12 +344,7 @@ nav#help-menu {
 nav#help-menu a.button {
     display         : block;
     min-width       : 240px;
-}
-
-article#help-module section {
-    /*max-width: 80%;*/
-    overflow-wrap   : anywhere;
-    /*border:1px dotted red;*/
+    margin-bottom   : var(--space-4);
 }
 
 /* -------------------- -------------------- NAV-SIDE-MENU */
@@ -479,6 +474,7 @@ article#help-module section {
     align-items     : center;
     display         : flex;
     justify-content : center;
+    height          : 2.5rem;
     padding         : 0; /*var(  --space-4  ) 0; */
     width           : 100%;
 }

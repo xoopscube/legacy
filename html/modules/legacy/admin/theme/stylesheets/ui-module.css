@@ -126,9 +126,16 @@
 
 /* -------------------- -------------------- HELP SCROLL MARGIN */
 
+article#help-module section {
+    /*max-width: 80%;*/
+    overflow-wrap   : anywhere;
+    padding     : var(--space-6);
+    /*border:1px dotted red;*/
+}
+
 div.help section[id|="help"] {
-    padding     : var(--space-4);
-    scroll-margin-top: 6em; /* property should be applied to each anchor section to leave a margin at the top */
+
+    scroll-margin-top: 5em; /* property should be applied to each anchor section to leave a margin at the top */
 }
 
 /* -------------------- --------------------  X-UPDATE STORE */
@@ -167,52 +174,6 @@ div.help section[id|="help"] {
     overflow-x  : auto;
     width       : 100%;
 }
-
-/* -------------------- -------------------- SECTION BLOCK FILTER SEARCH */
-
-section.filter {
-    align-items     : center;
-    background      : var( --filter-bg     );
-    border          : var( --filter-border );
-    border-radius   : var( --filter-radius );
-    box-shadow      : var( --filter-shadow );
-    display         : flex;
-    flex-direction  : row;
-    flex-wrap       : wrap;
-    padding         : var(  --filter-padding  );
-    margin          : var(  --filter-margin   );
-    width           : 100%;
-}
-
-section.filter article {
-    flex            : 1;
-    padding-right   : var(  --space-2  );
-}
-
-section .search-button {
-    flex-basis      : 100%;
-    padding-top     : 1rem;
-}
-
-/* -------------------- --------------------  SECTION BLOCK SORT */
-
-section.sort {
-    align-items     : center;
-    background      : var(  --sort-background    );
-    border-color  	: var(  --sort-border-color  );
-    border-radius 	: var(  --sort-border-radius );
-    border-style  	: var(  --sort-border-style  );
-    border-width  	: var(  --sort-border-width  );
-    box-shadow    	: var(  --sort-box-shadow    );
-    padding       	: var(  --sort-padding       );
-    margin        	: var(  --sort-margin        );
-    display         : flex;
-    flex-direction  : row;
-    flex-wrap       : wrap;
-    justify-content : space-evenly;
-    max-width       : 95%;
-}
-
 
 /* -------------------- --------------------  RENDER TEMPLATE SOURCE */
 

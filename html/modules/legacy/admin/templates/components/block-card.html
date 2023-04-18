@@ -2,21 +2,21 @@
 
     <div class="ui-card-block-header" data-layout="row center-justify">
         <{strip}>
-        <a href="#" aria-label="<{$obj->getShow('bid')}>-
+        <a href="#!" title="bid-<{$obj->getShow('bid')}>-
             <{if $obj->mModule}>
             <{$obj->mModule->getVar('name')}>
             <{else}>
-                <{if $obj->get('c_type') == "H"}>
+                <{if $obj->get('c_type') == 'H'}>
                 <{$smarty.const._AD_LEGACY_LANG_CUSTOM_HTML}>
-                <{elseif $obj->get('c_type') == "P"}><{$smarty.const._AD_LEGACY_LANG_CUSTOM_PHP}>
-                <{elseif $obj->get('c_type') == "S"}><{$smarty.const._AD_LEGACY_LANG_CUSTOM_WITH_SMILIES}>
-                <{elseif $obj->get('c_type') == "T"}><{$smarty.const._AD_LEGACY_LANG_CUSTOM_WITHOUT_SMILIES}>
+                <{elseif $obj->get('c_type') == 'P'}><{$smarty.const._AD_LEGACY_LANG_CUSTOM_PHP}>
+                <{elseif $obj->get('c_type') == 'S'}><{$smarty.const._AD_LEGACY_LANG_CUSTOM_WITH_SMILIES}>
+                <{elseif $obj->get('c_type') == 'T'}><{$smarty.const._AD_LEGACY_LANG_CUSTOM_WITHOUT_SMILIES}>
                 <{/if}>
             <{/if}>" style="cursor: help;">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="icon-info"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2z" fill="currentColor"/></svg>
         </a>
         <{/strip}>
-        <label aria-label="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>">
+        <label title="<{$smarty.const._AD_LEGACY_LANG_UNINSTALL}>">
             <input type="checkbox" id="<{$obj->getShow('bid')}>" name="uninstall[<{$obj->getShow('bid')}>]" value="1">
         </label>
     </div><{* /ui-card-header *}>
@@ -24,7 +24,7 @@
     <div class="ui-card-block-image card-block-svg">
     <{* Block [c_type] *}>
     <{if $obj->mModule}>
-    <a class="ui-block-type" href="./index.php?action=BlockEdit&amp;bid=<{$obj->getShow('bid')}>" aria-label="<{$smarty.const._EDIT}>">
+    <a class="ui-block-type" href="./index.php?action=BlockEdit&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._EDIT}>">
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-module">
             <g id="ui-block-module">
                 <path class="block-icon" d="M2 10.96a.985.985 0 0 1-.37-1.37L3.13 7c.11-.2.28-.34.47-.42l7.83-4.4c.16-.12.36-.18.57-.18c.21 0 .41.06.57.18l7.9 4.44c.19.1.35.26.44.46l1.45 2.52c.28.48.11 1.09-.36 1.36l-1 .58v4.96c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18c-.21 0-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-5.54c-.3.17-.68.18-1 0m10-6.81v6.7l5.96-3.35L12 4.15M5 15.91l6 3.38v-6.71L5 9.21v6.7m14 0v-3.22l-5 2.9c-.33.18-.7.17-1 .01v3.69l6-3.38m-5.15-2.55l6.28-3.63l-.58-1.01l-6.28 3.63l.58 1.01z" fill="currentColor"></path>
@@ -35,7 +35,7 @@
         </svg>
     </a>
     <{else}>
-        <a class="ui-block-type" href="./index.php?action=CustomBlockEdit&amp;bid=<{$obj->getShow('bid')}>" aria-label="<{$smarty.const._EDIT}>">
+        <a class="ui-block-type" href="./index.php?action=CustomBlockEdit&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._EDIT}>">
         <{if $obj->get('c_type') == "H"}>
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-html">
                 <g id="ui-block-html">
@@ -80,10 +80,10 @@
     <div data-layout="rows">
 
         <div class="ui-card-block-item">
-            <span aria-label="<{$smarty.const._AD_LEGACY_LANG_WEIGHT}>">
+            <span title="<{$smarty.const._AD_LEGACY_LANG_WEIGHT}>">
                 <input type="number" size="1" maxlength="4" name="weight[<{$obj->get('bid')}>]" value="<{$obj->get('weight','e')}>">
             </span>
-            <span aria-label="<{$smarty.const._AD_LEGACY_LANG_TITLE}>">
+            <span title="<{$smarty.const._AD_LEGACY_LANG_TITLE}>">
                 <input type="text" size="18" maxlength="191" name="title[<{$obj->get('bid')}>]" value="<{$obj->get('title')}>">
             </span>
         </div>
@@ -92,11 +92,11 @@
         <{* $smarty.const._AD_LEGACY_LANG_SIDE *}>
         <{strip}>
         <{if $obj->get('side') == 0}>
-            <label class="active" aria-label="<{$smarty.const._AD_LEGACY_LANG_SIDE_BLOCK_LEFT}>">
+            <label class="active" title="<{$smarty.const._AD_LEGACY_LANG_SIDE_BLOCK_LEFT}>">
             <{xoops_input type=radio name=side key=$obj->get('bid') value=0 default=$obj->get('side')}>
             </label>
         <{else}>
-            <label class="inactive" aria-label="<{$smarty.const._AD_LEGACY_LANG_SIDE_BLOCK_LEFT}>">
+            <label class="inactive" title="<{$smarty.const._AD_LEGACY_LANG_SIDE_BLOCK_LEFT}>">
             <{xoops_input type=radio name=side key=$obj->get('bid') value=0 default=$obj->get('side')}>
             </label>
         <{/if}>
@@ -104,36 +104,36 @@
         <div class="ui-block-separator">-</div>
 
         <{if $obj->get('side') == 3}>
-            <label class="active" aria-label="<{$smarty.const._AD_LEGACY_LANG_CENTER_BLOCK_LEFT}>">
+            <label class="active" title="<{$smarty.const._AD_LEGACY_LANG_CENTER_BLOCK_LEFT}>">
                 <{xoops_input type=radio name=side key=$obj->get('bid') value=3 default=$obj->get('side')}></label>
         <{else}>
-            <label class="ui-block-input inactive" aria-label="<{$smarty.const._AD_LEGACY_LANG_CENTER_BLOCK_LEFT}>">
+            <label class="ui-block-input inactive" title="<{$smarty.const._AD_LEGACY_LANG_CENTER_BLOCK_LEFT}>">
                 <{xoops_input type=radio name=side key=$obj->get('bid') value=3 default=$obj->get('side')}></label>
         <{/if}>
 
         <{if $obj->get('side') == 5}>
-            <label class="active" aria-label="<{$smarty.const._AD_LEGACY_LANG_CENTER_BLOCK_CENTER}>">
+            <label class="active" title="<{$smarty.const._AD_LEGACY_LANG_CENTER_BLOCK_CENTER}>">
                 <{xoops_input type=radio name=side key=$obj->get('bid') value=5 default=$obj->get('side')}></label>
         <{else}>
-            <label class="inactive" aria-label="<{$smarty.const._AD_LEGACY_LANG_CENTER_BLOCK_CENTER}>">
+            <label class="inactive" title="<{$smarty.const._AD_LEGACY_LANG_CENTER_BLOCK_CENTER}>">
                 <{xoops_input type=radio name=side key=$obj->get('bid') value=5 default=$obj->get('side')}></label>
         <{/if}>
 
         <{if $obj->get('side') == 4}>
-            <label class="ui-block-input active" aria-label="<{$smarty.const._AD_LEGACY_LANG_CENTER_BLOCK_RIGHT}>">
+            <label class="ui-block-input active" title="<{$smarty.const._AD_LEGACY_LANG_CENTER_BLOCK_RIGHT}>">
                 <{xoops_input type=radio name=side key=$obj->get('bid') value=4 default=$obj->get('side')}></label>
         <{else}>
-            <label class="ui-block-input inactive" aria-label="<{$smarty.const._AD_LEGACY_LANG_CENTER_BLOCK_RIGHT}>">
+            <label class="ui-block-input inactive" title="<{$smarty.const._AD_LEGACY_LANG_CENTER_BLOCK_RIGHT}>">
                 <{xoops_input type=radio name=side key=$obj->get('bid') value=4 default=$obj->get('side')}></label>
         <{/if}>
 
         <div class="ui-block-separator">-</div>
 
         <{if $obj->get('side') == 1}>
-            <label class="ui-block-input active" aria-label="<{$smarty.const._AD_LEGACY_LANG_SIDE_BLOCK_RIGHT}>">
+            <label class="ui-block-input active" title="<{$smarty.const._AD_LEGACY_LANG_SIDE_BLOCK_RIGHT}>">
                 <{xoops_input type=radio name=side key=$obj->get('bid') value=1 default=$obj->get('side')}></label>
         <{else}>
-            <label class="ui-block-input inactive" aria-label="<{$smarty.const._AD_LEGACY_LANG_SIDE_BLOCK_RIGHT}>">
+            <label class="ui-block-input inactive" title="<{$smarty.const._AD_LEGACY_LANG_SIDE_BLOCK_RIGHT}>">
                 <{xoops_input type=radio name=side key=$obj->get('bid') value=1 default=$obj->get('side')}></label>
         <{/if}>
 

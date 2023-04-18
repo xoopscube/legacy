@@ -61,7 +61,7 @@ class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
     {
         $criteria = new Criteria('name', $themeName);
         $obj =& $this->getObjects($criteria);
-        if (count($obj) > 0) {
+        if ((is_countable($obj) ? count($obj) : 0) > 0) {
             return $obj[0];
         }
         // @gigamaster split workflow
@@ -90,7 +90,7 @@ class LegacyRenderThemeHandler extends XoopsObjectGenericHandler
                         $manifesto = $iniHandler->getAllConfig();
                     }
 
-                    if (count($manifesto) > 0) {
+                    if ((is_countable($manifesto) ? count($manifesto) : 0) > 0) {
                         //
                         // If this system can use this theme, add this to list.
                         // @gigamaster merged isset

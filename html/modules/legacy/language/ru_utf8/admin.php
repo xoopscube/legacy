@@ -299,7 +299,7 @@ define('_AD_LEGACY_LANG_THEME', "Theme");
 define('_AD_LEGACY_LANG_THEME_ADMIN', "Theme admin");
 define('_AD_LEGACY_LANG_TITLE', "Заголовок");
 define('_AD_LEGACY_LANG_TOPPAGE', "Toppage");
-define('_AD_LEGACY_LANG_UNINSTALL', "Деинсталлировать");
+define('_AD_LEGACY_LANG_UNINSTALL', "удалять");
 define('_AD_LEGACY_LANG_UPDATE', "Переустановить");
 define('_AD_LEGACY_LANG_UPGRADE', "Обновить версию");
 define( '_AD_LEGACY_LANG_UPLOAD' , 'Upload');
@@ -402,7 +402,7 @@ define('_MD_AM_INVLDSCOOK', "Неверное значение для назва
 define('_MD_AM_INVLDSEXP', "Неверное значение для времени истечения сессии.");
 define('_MD_AM_INVLDUCOOK', "Неверное значение для имени usercookie.");
 define('_MD_AM_IPBAN', "IP Banning");
-define('_MD_AM_LANGUAGE', "? Язык по-умолчанию");
+define('_MD_AM_LANGUAGE', "🌐 Язык");
 define('_MD_AM_LOADINGIMG', "Отображать изображение 'loading...'?");
 define('_MD_AM_MAILER', "Параметры отправки почты");
 define('_MD_AM_MAILER_', "");

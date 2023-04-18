@@ -53,7 +53,7 @@
 
 <{if $cat_id !=$cat_permission_id && $cat_id !=0}>
     <!-- link to the parent for the permission -->
-    <div class="tips">
+    <div class="help-tips">
     <a href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$cat_permission_id}>" target="_blank"><{$smarty.const._MD_A_PICO_LINK_CATPERMISSIONID}></a>
     </div>
 <{else}>
@@ -110,7 +110,7 @@
 <!-- user form -->
 <h2><{$smarty.const._MD_A_PICO_H2_USERPERMS}></h2>
 
-<div class="tips">
+<div class="help-tips">
     <{$smarty.const._MD_A_PICO_NOTICE_ADDUSERS}>
 </div>
 

@@ -44,12 +44,12 @@ class setting_manager {
 
 			//
 			// Generate prefix
-			mt_srand( (double) microtime() * 1000000 );
+			mt_srand( (double) microtime() * 1_000_000 );
 			do {
 				$this->prefix = substr( md5( random_int( 1, 6 ) ), 0, 6 );
 			} while ( ! preg_match( '/^[a-z]/', $this->prefix ) );
 
-			$this->salt = substr( md5( mt_rand() ), 5, 8 );
+			$this->salt = substr( md5( random_int(0, mt_getrandmax()) ), 5, 8 );
 
 			$this->db_pconnect = 0;
 
@@ -288,7 +288,7 @@ class setting_manager {
 
 		return [ extension_loaded( 'mysql' ) ? 'mysql' : 'mysqli' ];
 		$dirname = '../class/database/';
-		$dirlist = array();
+		$dirlist = [];
 		if (is_dir($dirname) && $handle = opendir($dirname)) {
 		    while (false !== ($file = readdir($handle))) {
 		        if ( !preg_match("/^[.]{1,2}$/",$file) ) {

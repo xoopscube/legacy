@@ -1,7 +1,9 @@
 <?php
 /**
  * @package Legacy
- * @version $Id: admin.php,v 1.3 2008/09/25 15:10:19 kilica Exp $
+ * @version XCL 2.3.3
+ * @author Nuno Luciano aka Gigamaster XCL PHP7
+ * @author kilica, v 1.3 2008/09/25 15:10:19 Exp $
  * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license GPL 2.0
  */
@@ -21,19 +23,14 @@ class DefaultSystemCheckFunction
         }
         $alert = [];
         $alert[]= '<div class="alert-notify">';
-        // if ( LEGACY_INSTALLERCHECKER_ACTIVE == true || XUPDATE_INSTALLERCHECKER_ACTIVE == true && is_dir(XOOPS_ROOT_PATH . '/install' ) ) {
-        //if (LEGACY_INSTALLERCHECKER_ACTIVE == true && XUPDATE_INSTALLERCHECKER_ACTIVE == true) {
-            //if ( LEGACY_INSTALLERCHECKER_ACTIVE == true && is_dir(XOOPS_ROOT_PATH . '/install' ) ) {
             if (is_dir(XOOPS_ROOT_PATH . '/install/')) {
-                //xoops_error(XCube_Utils::formatString( _WARNINSTALL2, XOOPS_ROOT_PATH . '/install'),'install', 'warning'); version XCL 2.3
-                $alert[]= '<div class="error"><button type="button" class="button alert-close" data-dismiss="alert" aria-hidden="true">&times;</button>'. XCube_Utils::formatString( _WARNINSTALL2, XOOPS_ROOT_PATH . '/install'). '</div>';
+                $alert[]= '<div class="error">'. XCube_Utils::formatString( _WARNINSTALL2, XOOPS_ROOT_PATH . '/install'). '<button type="button" class="button alert-close" data-dismiss="alert" aria-hidden="true">&times;</button></div>';
             }
             if (is_writable(XOOPS_ROOT_PATH . '/mainfile.php')) {
-                //xoops_error(sprintf(_WARNINWRITEABLE, XOOPS_ROOT_PATH.'/mainfile.php'), '', 'warning'); version Legacy 2.2
-                //xoops_error(XCube_Utils::formatString(_WARNINWRITEABLE, XOOPS_ROOT_PATH . '/mainfile.php')); version XCL 2.3
-                $alert[]= '<div class="error"><button type="button" class="button alert-close" data-dismiss="alert" aria-hidden="true">&times;</button>'. XCube_Utils::formatString(_WARNINWRITEABLE, XOOPS_ROOT_PATH . '/mainfile.php'). '</div>';
+                $alert[]= '<div class="error">'. XCube_Utils::formatString(_WARNINWRITEABLE, XOOPS_ROOT_PATH . '/mainfile.php'). '<button type="button" class="button alert-close" data-dismiss="alert" aria-hidden="true">&times;</button></div>';
             }
         $alert[]= '</div>';
+
         foreach ($alert as $notify) {
             echo "$notify ";
         }

@@ -70,10 +70,10 @@ $xoopsTpl->assign('sitemap', $sitemap);
 $xoopsTpl->assign('msgs', $myts->displayTarea($msgs,1));
 $xoopsTpl->assign('show_subcategoris', $sitemap_configs["show_subcategoris"]);
 
-$xoopsTpl->assign('this', array(
-	'mods' => $xoopsModule->getVar('dirname'),
-	'name' => $xoopsModule->getVar('name')
-));
+$xoopsTpl->assign('this', [
+'mods' => $xoopsModule->getVar('dirname'), 
+'name' => $xoopsModule->getVar('name')
+]);
 
 if( is_object( @$xoopsLogger ) ) {
     $xoopsLogger->activated = false;

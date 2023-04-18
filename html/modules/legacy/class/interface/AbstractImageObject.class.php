@@ -16,8 +16,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
 {
-    const IMAGE_TAG = '<img src="%s" width="%d" height="%d" alt="%s">';
-    const SWF_TAG = '<object data="%s" type="application/x-shockwave-flash" width="%d" height="%d"><param name="movie" value="%s" /><param name=loop value=false>
+    public const IMAGE_TAG = '<img src="%s" width="%d" height="%d" alt="%s">';
+    public const SWF_TAG = '<object data="%s" type="application/x-shockwave-flash" width="%d" height="%d"><param name="movie" value="%s" /><param name=loop value=false>
 </object>';
 
     protected $mDirArray = [];
@@ -104,8 +104,8 @@ abstract class Legacy_AbstractImageObject extends XoopsSimpleObject
             $root=&XCube_Root::getSingleton();
             $salt = $root->getSiteConfig('Cube', 'Salt');
         }
-        mt_srand(microtime() * 1000000);
-        $body = md5($salt . mt_rand());
+        mt_srand(microtime() * 1_000_000);
+        $body = md5($salt . random_int(0, mt_getrandmax()));
         return $prefix . $body;
     }
 

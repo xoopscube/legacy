@@ -63,6 +63,9 @@ class XoopsImagesetHandler extends XoopsObjectHandler
 
     public function insert(&$imgset)
     {
+        $imgset_name = null;
+        $imgset_refid = null;
+        $imgset_id = null;
         if ('xoopsimageset' != strtolower(get_class($imgset))) {
             return false;
         }
