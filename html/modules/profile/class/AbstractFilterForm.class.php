@@ -107,9 +107,11 @@ class Profile_AbstractFilterForm
     }
 
     /**
-     * @public
-     * @param null $start
-     * @param null $limit
+     * &getCriteria
+     *
+     * @param int|null $start
+     * @param int|null $limit
+     *
      * @return \CriteriaCompo|null
      */
     public function &getCriteria($start = null, $limit = null)

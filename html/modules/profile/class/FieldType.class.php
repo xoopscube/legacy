@@ -14,14 +14,14 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class Profile_FormType
 {
-    const STRING = 'string';
-    const TEXT = 'text';
-    const INT = 'int';
-    const FLOAT = 'float';
-    const DATE = 'date';
-    const CHECKBOX = 'checkbox';
-    const SELECTBOX = 'selectbox';
-    const URI = 'uri';
+    public const STRING = 'string';
+    public const TEXT = 'text';
+    public const INT = 'int';
+    public const FLOAT = 'float';
+    public const DATE = 'date';
+    public const CHECKBOX = 'checkbox';
+    public const SELECTBOX = 'selectbox';
+    public const URI = 'uri';
 }
 
 interface Profile_iFieldType
@@ -43,10 +43,11 @@ interface Profile_iFieldType
 **/
 class Profile_FieldTypeString implements Profile_iFieldType
 {
-    const TYPE = 'string';
+    public const TYPE = 'string';
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
+        $value = null;
         if ($option==Profile_ActionType::NONE||$option==Profile_ActionType::VIEW) {
             $value = $obj->getShow($key);
         } elseif ($option==Profile_ActionType::EDIT) {
@@ -68,7 +69,7 @@ class Profile_FieldTypeString implements Profile_iFieldType
 
     public function getDefault(/*** string ***/ $option)
     {
-        return isset($option) ? $option : '';
+        return $option ?? '';
     }
 
     public function getXObjType()
@@ -98,10 +99,11 @@ class Profile_FieldTypeString implements Profile_iFieldType
 **/
 class Profile_FieldTypeText implements Profile_iFieldType
 {
-    const TYPE = 'text';
+    public const TYPE = 'text';
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
+        $value = null;
         if ($option==Profile_ActionType::NONE||$option==Profile_ActionType::VIEW) {
             switch ($obj->get('option')) {
             case 'html':
@@ -161,7 +163,7 @@ class Profile_FieldTypeText implements Profile_iFieldType
 **/
 class Profile_FieldTypeInt implements Profile_iFieldType
 {
-    const TYPE = 'int';
+    public const TYPE = 'int';
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
@@ -180,7 +182,7 @@ class Profile_FieldTypeInt implements Profile_iFieldType
 
     public function getDefault(/*** string ***/ $option)
     {
-        return isset($option) ? $option : '';
+        return $option ?? '';
     }
 
     public function getXObjType()
@@ -211,7 +213,7 @@ class Profile_FieldTypeInt implements Profile_iFieldType
 **/
 class Profile_FieldTypeFloat implements Profile_iFieldType
 {
-    const TYPE = 'float';
+    public const TYPE = 'float';
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
@@ -230,7 +232,7 @@ class Profile_FieldTypeFloat implements Profile_iFieldType
 
     public function getDefault(/*** string ***/ $option)
     {
-        return isset($option) ? $option : 0;
+        return $option ?? 0;
     }
 
     public function getXObjType()
@@ -260,10 +262,11 @@ class Profile_FieldTypeFloat implements Profile_iFieldType
 **/
 class Profile_FieldTypeDate implements Profile_iFieldType
 {
-    const TYPE = 'date';
+    public const TYPE = 'date';
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
+        $value = null;
         if ($option==Profile_ActionType::NONE) {
             $value = $obj->get($key);
         } elseif ($option==Profile_ActionType::EDIT) {
@@ -316,16 +319,18 @@ class Profile_FieldTypeDate implements Profile_iFieldType
 **/
 class Profile_FieldTypeCheckbox implements Profile_iFieldType
 {
-    const TYPE = 'checkbox';
+    public const TYPE = 'checkbox';
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
+        $optArr = [];
+        $value = null;
         if ($option==Profile_ActionType::NONE||$option==Profile_ActionType::EDIT) {
             $value = $obj->get($key);
         } elseif ($option==Profile_ActionType::VIEW) {
             $handler = Legacy_Utils::getModuleHandler('definitions', 'profile');
             $objs = $handler->getObjects(new Criteria('field_name', $key));
-            if (count($objs)>0) {
+            if ((is_countable($objs) ? count($objs) : 0)>0) {
                 $def = array_shift($objs);
                 $optArr = $def->mFieldType->getOption($def);
             }
@@ -349,7 +354,7 @@ class Profile_FieldTypeCheckbox implements Profile_iFieldType
     public function getDefault(/*** string ***/ $option)
     {
         $optionArr = explode('|', $option);
-        return isset($optionArr[2]) ? $optionArr[2] : 0;
+        return $optionArr[2] ?? 0;
     }
 
     public function getXObjType()
@@ -379,10 +384,11 @@ class Profile_FieldTypeCheckbox implements Profile_iFieldType
 **/
 class Profile_FieldTypeSelectbox implements Profile_iFieldType
 {
-    const TYPE = 'selectbox';
+    public const TYPE = 'selectbox';
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
+        $value = null;
         if ($option==Profile_ActionType::NONE||$option==Profile_ActionType::VIEW) {
             $value = $obj->getShow($key);
         } elseif ($option==Profile_ActionType::EDIT) {
@@ -433,7 +439,7 @@ class Profile_FieldTypeSelectbox implements Profile_iFieldType
 **/
 class Profile_FieldTypeCategory implements Profile_iFieldType
 {
-    const TYPE = 'category';
+    public const TYPE = 'category';
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
@@ -482,10 +488,11 @@ class Profile_FieldTypeCategory implements Profile_iFieldType
 **/
 class Profile_FieldTypeUri implements Profile_iFieldType
 {
-    const TYPE = 'uri';
+    public const TYPE = 'uri';
 
     public function showField(/*** Profile_DataObject ***/ $obj, /*** string ***/ $key, /*** Profile_ActionType ***/ $option=0)
     {
+        $value = null;
         if ($option==Profile_ActionType::NONE||$option==Profile_ActionType::VIEW) {
             $value = $obj->getShow($key);
         } elseif ($option==Profile_ActionType::EDIT) {
@@ -537,7 +544,7 @@ class Profile_FieldTypeUri implements Profile_iFieldType
 **/
 class Profile_ActionType
 {
-    const NONE = 0;
-    const EDIT = 1;
-    const VIEW = 2;
+    public const NONE = 0;
+    public const EDIT = 1;
+    public const VIEW = 2;
 }

@@ -54,12 +54,12 @@ class Profile_AbstractAction
 
     public function getDefaultView()
     {
-        return Profile_FRAME_VIEW_NONE;
+        return \PROFILE_FRAME_VIEW_NONE;
     }
 
     public function execute()
     {
-        return Profile_FRAME_VIEW_NONE;
+        return \PROFILE_FRAME_VIEW_NONE;
     }
 
     public function executeViewSuccess(&$controller, &$render)

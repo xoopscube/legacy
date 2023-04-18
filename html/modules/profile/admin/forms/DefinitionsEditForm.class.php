@@ -133,7 +133,7 @@ class Profile_Admin_DefinitionsEditForm extends XCube_ActionForm
             return;
         }
         $objs = xoops_getmodulehandler('definitions', 'profile')->getObjects(new Criteria('field_name', $this->get('field_name')));
-        if (count($objs)>0) {
+        if ((is_countable($objs) ? count($objs) : 0)>0) {
             $this->addErrorMessage(_MD_PROFILE_ERROR_DUPLICATED_FIELD_NAME);
         }
     }

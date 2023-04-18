@@ -6,6 +6,7 @@ define( '_MD_PROFILE_LANG_FIELD_TIP3' , 'Int (Integers) - champ pour stocker une
 define( '_MD_PROFILE_LANG_FIELD_TIP4' , 'Date - champ de date avec un format spécifique');
 define( '_MD_PROFILE_LANG_FIELD_TIP5' , 'Case à cocher - permet de choisir 0 ou 1, vrai ou faux.');
 define( '_MD_PROFILE_LANG_FIELD_TIP6' , 'Choix multiple - permet plusieurs options, voir l\'exemple.');
+
 define( '_MD_PROFILE_LANG_UNAME' , 'Nom d\'Utilisateur');
 define( '_MD_PROFILE_ERROR_CONTENT_IS_NOT_FOUND' , 'Contenu introuvable');
 define( '_MD_PROFILE_ERROR_DBUPDATE_FAILED' , 'Impossible de mettre à jour la base de données');
@@ -43,3 +44,5 @@ define( '_MD_PROFILE_LANG_VALIDATION' , 'Validation');
 define( '_MD_PROFILE_LANG_WEIGHT' , 'Ordre');
 define( '_MD_PROFILE_MESSAGE_CONFIRM_DELETE' , 'Confirmer la supression ?');
 define( '_MD_PROFILE_DESC_OPTIONS' , 'Séparer les options avec \'|\' et sans espaces. Exemple: eau|thé|café|vin');
+define( '_MD_PROFILE_ERROR_DUPLICATED_FIELD_NAME' , 'The field name is already used.');
+define( '_MD_PROFILE_ERROR_RESERVED_NAME' , "You can't use this field name because it is used in user module.");
