@@ -27,7 +27,20 @@ Keep a tested high quality, up-to-date master/main branch for releases.
 
 XOOPSCube Legacy (XCL) is a free and open-source Web Application Platform (WAP) to build, manage and deploy customized Content Management System (CMS), forums, community discussion board, knowledge management systems, or multiple blogs (e.g. WordPress). The XCL bundle package is designed for easy usage and to benefit from the performance of XCube Core and the most popular web server stack: Apache, MySQL and PHP.
     
-    
+<table>
+<tr>
+<td>
+<svg xmlns="http://www.w3.org/2000/svg" role="img" width="3em" height="3em" viewBox="0 0 24 24" class="svg"><path fill="currentColor" d="M14 13h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-3l-1-1h-2a1 1 0 0 0-1 1v1H8V7h2a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H7L6 1H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h2v13h7v1a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-3l-1-1h-2a1 1 0 0 0-1 1v1H8v-7h5v1a1 1 0 0 0 1 1Z"></path></svg>
+</td>
+<td>
+File Manager with WYSIWYG editors (code, graphics) and Cloud Storage (Box, Dropbox, Google Drive, OneDrive, FTP ). 
+X-Update Manager to deploy from stores in GitHub, Gitlab or any other public or private, local or remote repository.
+Customized Content Management System (CMS), forums, community discussion board, knowledge management systems, or 
+multiple blogs (e.g. WordPress).
+</td>
+</tr>
+</table>
+
 <a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
 <img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl-installer-wizard.jpg" alt="Wizard Installation" title="Wizard Installation" width="100%">
 </a>
