@@ -36,7 +36,7 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
      *
      * @var string
      */
-    private $FETCH_OPTIONS = [];
+    private array $FETCH_OPTIONS = [];
 
     /**
      * Directory for tmp files
@@ -253,13 +253,13 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
             'Content-Type: application/json',
             'Authorization: Basic ' . $auth,
         ]);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data, JSON_THROW_ON_ERROR));
         $result = curl_exec($ch);
         curl_close($ch);
 
-        $res = $result ? json_decode($result, true) : [];
+        $res = $result ? json_decode($result, true, 512, JSON_THROW_ON_ERROR) : [];
 
-        return isset($res['oauth2_token']) ? $res['oauth2_token'] : false;
+        return $res['oauth2_token'] ?? false;
     }
 
     /*********************************************************************/
@@ -275,6 +275,7 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
      **/
     public function netmountPrepare($options)
     {
+        $callback = null;
         if (empty($options['app_key']) && defined('ELFINDER_DROPBOX_APPKEY')) {
             $options['app_key'] = ELFINDER_DROPBOX_APPKEY;
         }
@@ -336,8 +337,8 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
                 }
 
                 $itpCare = isset($options['code']);
-                $code = $itpCare? $options['code'] : (isset($_GET['code'])? $_GET['code'] : '');
-                $state = $itpCare? $options['state'] : (isset($_GET['state'])? $_GET['state'] : '');
+                $code = $itpCare? $options['code'] : ($_GET['code'] ?? '');
+                $state = $itpCare? $options['state'] : ($_GET['state'] ?? '');
                 if (!$aToken && empty($code)) {
                     $url = $authHelper->getAuthUrl($callback);
 
@@ -380,23 +381,14 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
                             $nodeid = ($_GET['host'] === '1')? 'elfinder' : $_GET['host'];
                             $out = [
                                 'node' => $nodeid,
-                                'json' => json_encode(array(
-                                    'protocol' => 'dropbox2',
-                                    'host' => $nodeid,
-                                    'mode' => 'redirect',
-                                    'options' => array(
-                                        'id' => $nodeid,
-                                        'code' => $code,
-                                        'state' => $state
-                                    )
-                                )),
+                                'json' => json_encode(['protocol' => 'dropbox2', 'host' => $nodeid, 'mode' => 'redirect', 'options' => ['id' => $nodeid, 'code' => $code, 'state' => $state]], JSON_THROW_ON_ERROR),
                                 'bind' => 'netmount'
                             ];
                         }
                         if (!$itpCare) {
-                            return array('exit' => 'callback', 'out' => $out);
+                            return ['exit' => 'callback', 'out' => $out];
                         } else {
-                            return array('exit' => true, 'body' => $out['json']);
+                            return ['exit' => true, 'body' => $out['json']];
                         }
                     }
                     $path = $options['path'];
@@ -416,7 +408,7 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
                     }
 
                     $folders = ['/' => '/'] + $folders;
-                    $folders = json_encode($folders);
+                    $folders = json_encode($folders, JSON_THROW_ON_ERROR);
                     $json = '{"protocol": "dropbox2", "mode": "done", "folders": ' . $folders . '}';
                     $options['pass'] = 'return';
                     $html = 'Dropbox.com';
@@ -496,6 +488,7 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
      **/
     protected function init()
     {
+        $errors = [];
         if (empty($this->options['app_key'])) {
             if (defined('ELFINDER_DROPBOX_APPKEY') && ELFINDER_DROPBOX_APPKEY) {
                 $this->options['app_key'] = ELFINDER_DROPBOX_APPKEY;
@@ -945,7 +938,7 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
      **/
     protected function _dirname($path)
     {
-        list($dirname) = $this->_db_splitPath($path);
+        [$dirname] = $this->_db_splitPath($path);
 
         return $dirname;
     }
@@ -960,7 +953,7 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
      **/
     protected function _basename($path)
     {
-        list(, $basename) = $this->_db_splitPath($path);
+        [, $basename] = $this->_db_splitPath($path);
 
         return $basename;
     }
@@ -1138,9 +1131,9 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
             file_put_contents($tmp, $data);
             $size = getimagesize($tmp);
             if ($size) {
-                $ret = array('dim' => $size[0] . 'x' . $size[1]);
+                $ret = ['dim' => $size[0] . 'x' . $size[1]];
                 $srcfp = fopen($tmp, 'rb');
-                $target = isset(elFinder::$currentArgs['target'])? elFinder::$currentArgs['target'] : '';
+                $target = elFinder::$currentArgs['target'] ?? '';
                 if ($subImgLink = $this->getSubstituteImgLink($target, $size, $srcfp)) {
                     $ret['url'] = $subImgLink;
                 }
@@ -1162,9 +1155,7 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
      **/
     protected function _scandir($path)
     {
-        return isset($this->dirsCache[$path])
-            ? $this->dirsCache[$path]
-            : $this->cacheDir($path);
+        return $this->dirsCache[$path] ?? $this->cacheDir($path);
     }
 
     /**
@@ -1182,16 +1173,13 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
             if ($link = $this->service->getTemporaryLink($path)) {
                 $access_token = $this->service->getAccessToken();
                 if ($access_token) {
-                    $data = array(
-                        'target' => $link->getLink(),
-                        'headers' => array('Authorization: Bearer ' . $access_token),
-                    );
+                    $data = ['target' => $link->getLink(), 'headers' => ['Authorization: Bearer ' . $access_token]];
 
                     // to support range request
                     if (func_num_args() > 2) {
                         $opts = func_get_arg(2);
                     } else {
-                        $opts = array();
+                        $opts = [];
                     }
                     if (!empty($opts['httpheaders'])) {
                         $data['headers'] = array_merge($opts['httpheaders'], $data['headers']);

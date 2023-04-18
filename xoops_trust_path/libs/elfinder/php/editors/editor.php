@@ -12,7 +12,7 @@ class elFinderEditor
      *
      * @var array
      */
-    protected $allowed = array();
+    protected $allowed = [];
 
     /**
      * elFinder instance
@@ -74,6 +74,6 @@ class elFinderEditor
      */
     public function argValue($key, $empty = '')
     {
-        return isset($this->args[$key]) ? $this->args[$key] : $empty;
+        return $this->args[$key] ?? $empty;
     }
 }

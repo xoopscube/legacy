@@ -68,20 +68,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
      */
     public function __construct()
     {
-        $opts = array(
-            'host' => 'localhost',
-            'user' => '',
-            'pass' => '',
-            'db' => '',
-            'port' => null,
-            'socket' => null,
-            'files_table' => 'elfinder_file',
-            'tmbPath' => '',
-            'tmpPath' => '',
-            'rootCssClass' => 'elfinder-navbar-root-sql',
-            'noSessionCache' => array('hasdirs'),
-            'isLocalhost' => false
-        );
+        $opts = ['host' => 'localhost', 'user' => '', 'pass' => '', 'db' => '', 'port' => null, 'socket' => null, 'files_table' => 'elfinder_file', 'tmbPath' => '', 'tmpPath' => '', 'rootCssClass' => 'elfinder-navbar-root-sql', 'noSessionCache' => ['hasdirs'], 'isLocalhost' => false];
         $this->options = array_merge($this->options, $opts);
         $this->options['mimeDetect'] = 'internal';
     }
@@ -118,7 +105,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
             $err = mysqli_connect_error();
         }
         if ($err) {
-            return $this->setError(array('Unable to connect to MySQL server.', $err));
+            return $this->setError(['Unable to connect to MySQL server.', $err]);
         }
 
         if (!$this->needOnline && empty($this->ARGS['init'])) {
@@ -264,7 +251,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
      **/
     protected function cacheDir($path)
     {
-        $this->dirsCache[$path] = array();
+        $this->dirsCache[$path] = [];
 
         $sql = 'SELECT f.id, f.parent_id, f.name, f.size, f.mtime AS ts, f.mime, f.read, f.write, f.locked, f.hidden, f.width, f.height, IF(ch.id, 1, 0) AS dirs 
                 FROM ' . $this->tbf . ' AS f 
@@ -311,7 +298,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
      **/
     protected function getParents($path)
     {
-        $parents = array();
+        $parents = [];
 
         while ($path) {
             if ($file = $this->stat($path)) {
@@ -361,30 +348,30 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
             return parent::doSearch($path, $q, $mimes);
         }
 
-        $dirs = array();
+        $dirs = [];
         $timeout = $this->options['searchTimeout'] ? $this->searchStart + $this->options['searchTimeout'] : 0;
 
         if ($path != $this->root || $this->rootHasParent) {
-            $dirs = $inpath = array(intval($path));
+            $dirs = $inpath = [intval($path)];
             while ($inpath) {
                 $in = '(' . join(',', $inpath) . ')';
-                $inpath = array();
+                $inpath = [];
                 $sql = 'SELECT f.id FROM %s AS f WHERE f.parent_id IN ' . $in . ' AND `mime` = \'directory\'';
                 $sql = sprintf($sql, $this->tbf);
                 if ($res = $this->query($sql)) {
-                    $_dir = array();
+                    $_dir = [];
                     while ($dat = $res->fetch_assoc()) {
                         $inpath[] = $dat['id'];
                     }
-                    $dirs = array_merge($dirs, $inpath);
+                    $dirs = [...$dirs, ...$inpath];
                 }
             }
         }
 
-        $result = array();
+        $result = [];
 
         if ($mimes) {
-            $whrs = array();
+            $whrs = [];
             foreach ($mimes as $mime) {
                 if (strpos($mime, '/') === false) {
                     $whrs[] = sprintf('f.mime LIKE \'%s/%%\'', $this->db->real_escape_string($mime));
@@ -624,7 +611,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
             return $stat;
 
         }
-        return array();
+        return [];
     }
 
     /**
@@ -667,9 +654,7 @@ class elFinderVolumeMySQL extends elFinderVolumeDriver
      **/
     protected function _scandir($path)
     {
-        return isset($this->dirsCache[$path])
-            ? $this->dirsCache[$path]
-            : $this->cacheDir($path);
+        return $this->dirsCache[$path] ?? $this->cacheDir($path);
     }
 
     /**

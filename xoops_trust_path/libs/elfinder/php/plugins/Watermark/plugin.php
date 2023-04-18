@@ -74,25 +74,39 @@ class elFinderPluginWatermark extends elFinderPlugin
 
     public function __construct($opts)
     {
-        $defaults = array(
-            'enable' => true,       // For control by volume driver
-            'source' => 'logo.png', // Path to Water mark image
-            'ratio' => 0.2,        // Ratio to original image (ratio > 0 and ratio <= 1)
-            'position' => 'RB',       // Position L(eft)/C(enter)/R(ight) and T(op)/M(edium)/B(ottom)
-            'marginX' => 5,          // Margin horizontal pixel
-            'marginY' => 5,          // Margin vertical pixel
-            'quality' => 95,         // JPEG image save quality
-            'transparency' => 70,         // Water mark image transparency ( other than PNG )
-            'targetType' => IMG_GIF | IMG_JPG | IMG_PNG | IMG_WBMP, // Target image formats ( bit-field )
-            'targetMinPixel' => 200,        // Target image minimum pixel size
-            'interlace' => IMG_GIF | IMG_JPG, // Set interlacebit image formats ( bit-field )
-            'offDropWith' => null,       // To disable it if it is dropped with pressing the meta key
+        $defaults = [
+            'enable' => true,
+            // For control by volume driver
+            'source' => 'logo.png',
+            // Path to Water mark image
+            'ratio' => 0.2,
+            // Ratio to original image (ratio > 0 and ratio <= 1)
+            'position' => 'RB',
+            // Position L(eft)/C(enter)/R(ight) and T(op)/M(edium)/B(ottom)
+            'marginX' => 5,
+            // Margin horizontal pixel
+            'marginY' => 5,
+            // Margin vertical pixel
+            'quality' => 95,
+            // JPEG image save quality
+            'transparency' => 70,
+            // Water mark image transparency ( other than PNG )
+            'targetType' => IMG_GIF | IMG_JPG | IMG_PNG | IMG_WBMP,
+            // Target image formats ( bit-field )
+            'targetMinPixel' => 200,
+            // Target image minimum pixel size
+            'interlace' => IMG_GIF | IMG_JPG,
+            // Set interlacebit image formats ( bit-field )
+            'offDropWith' => null,
+            // To disable it if it is dropped with pressing the meta key
             // Alt: 8, Ctrl: 4, Meta: 2, Shift: 1 - sum of each value
             // In case of using any key, specify it as an array
-            'marginRight' => 0,          // Deprecated - marginX should be used
-            'marginBottom' => 0,          // Deprecated - marginY should be used
-            'disableWithContentSaveId' => true // Disable on URL upload with post data "contentSaveId"
-        );
+            'marginRight' => 0,
+            // Deprecated - marginX should be used
+            'marginBottom' => 0,
+            // Deprecated - marginY should be used
+            'disableWithContentSaveId' => true,
+        ];
 
         $this->opts = array_merge($defaults, $opts);
 
@@ -132,13 +146,7 @@ class elFinderPluginWatermark extends elFinderPlugin
         }
 
         // check target image type
-        $imgTypes = array(
-            IMAGETYPE_GIF => IMG_GIF,
-            IMAGETYPE_JPEG => IMG_JPEG,
-            IMAGETYPE_PNG => IMG_PNG,
-            IMAGETYPE_BMP => IMG_WBMP,
-            IMAGETYPE_WBMP => IMG_WBMP
-        );
+        $imgTypes = [IMAGETYPE_GIF => IMG_GIF, IMAGETYPE_JPEG => IMG_JPEG, IMAGETYPE_PNG => IMG_PNG, IMAGETYPE_BMP => IMG_WBMP, IMAGETYPE_WBMP => IMG_WBMP];
         if (!isset($imgTypes[$imageType]) || !($opts['targetType'] & $imgTypes[$imageType])) {
             return false;
         }
@@ -153,7 +161,7 @@ class elFinderPluginWatermark extends elFinderPlugin
         }
         // check water mark image
         if (!file_exists($opts['source'])) {
-            $opts['source'] = dirname(__FILE__) . "/" . $opts['source'];
+            $opts['source'] = __DIR__ . "/" . $opts['source'];
         }
         if (is_readable($opts['source'])) {
             $watermarkImgInfo = getimagesize($opts['source']);
@@ -240,7 +248,7 @@ class elFinderPluginWatermark extends elFinderPlugin
         //if (class_exists('Imagick', false)) {
         //    return $this->watermarkPrint_imagick($src, $watermark, $dest_x, $dest_y, $quality, $transparency, $watermarkImgInfo, $opts);
         //} else {
-            elFinder::expandMemoryForGD(array($watermarkImgInfo, $srcImgInfo));
+            elFinder::expandMemoryForGD([$watermarkImgInfo, $srcImgInfo]);
             return $this->watermarkPrint_gd($src, $watermark, $dest_x, $dest_y, $quality, $transparency, $watermarkImgInfo, $srcImgInfo, $opts);
         //}
     }
@@ -296,6 +304,8 @@ class elFinderPluginWatermark extends elFinderPlugin
     private function watermarkPrint_gd($src, $watermark, $dest_x, $dest_y, $quality, $transparency, $watermarkImgInfo, $srcImgInfo, $opts)
     {
 
+        $oWatermarkImg = null;
+        $oSrcImg = null;
         $watermark_width = $watermarkImgInfo[0];
         $watermark_height = $watermarkImgInfo[1];
 
