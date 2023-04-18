@@ -1,11 +1,78 @@
 <?php
+/**
+ * XOOPSCube Legacy — Versão em Português
+ * @version XCL 2.3.3
+ * @author  Nuno Luciano aka gigamaster XCL23
+ * @author  Mikhail Miguel ( mikhail.miguel@gmail.com )
+ * @license http://creativecommons.org/licenses/by/2.5/br/
+ */
 
-// ## XOOPS Cube Legacy - Versão em Português
-// ## Por............: Mikhail Miguel
-// ## Website........: http://xoops.net.br
-// ## E-mail.........: mikhail.miguel@gmail.com
-// ## http://creativecommons.org/licenses/by/2.5/br/
+// ADMIN QUICK LINKS
+define( '_AD_ACCOUNT' , 'Conta');
+define( '_AD_AVATAR' , 'Avatar');
+define( '_AD_BANNERS' , 'Anúncios');
+define( '_AD_BLOCKS' , 'Blocos');
+define( '_AD_CENSOR' , 'Censurar');
+define( '_AD_CLOSE_SITE' , 'Fechar site');
+define( '_AD_DEBUG' , 'Depurar');
+define( '_AD_EMOTICON' , 'Emoticon');
+define( '_AD_LOCALE' , 'Idioma'); /* localization Translation */
+define( '_AD_MAIL_SETUP' , 'Correio');
+define( '_AD_MAILING' , 'Mala direta');
+define( '_AD_META_SEO' , 'Meta SEO');
+define( '_AD_MODULES' , 'Módulos');
+define( '_AD_PROFILE' , 'Perfil');
+define( '_AD_RANKS' , 'Classificação');
+define( '_AD_SEARCH' , 'Pesquisa');
+define( '_AD_SETTINGS' , 'Configurações ');
+define( '_AD_TEMPLATES' , 'Templates');
+define( '_AD_TEMPLATE_SET' , 'Template set');
+define( '_AD_THEMES' , 'Tema');
+define( '_AD_URL_REWRITE' , 'URL Rewrite');
+define( '_AD_USER_SEARCH' , 'Pesquisar'); /* ( find user) */
 
+// ADMIN BLOCKS
+define( '_AD_BLOCK_ACCOUNT' , 'Menu administrador');
+define( '_AD_BLOCK_ADMIN' , 'Opções de temas');
+define( '_AD_BLOCK_ASIDE' , 'Menu do admin');
+define( '_AD_BLOCK_MENU' , 'Menu de Módulos');
+define( '_AD_BLOCK_ONLINE' , 'Usuários online');
+define( '_AD_BLOCK_OVERVIEW' , 'Estatísticas gerais');
+define( '_AD_BLOCK_PHP' , 'Configuração do PHP');
+define( '_AD_BLOCK_SEARCH' , 'Pesquisa de ação');
+define( '_AD_BLOCK_SERVER' , 'Ambiente do servidor');
+define( '_AD_BLOCK_THEME' , 'Selecione o tema');
+define( '_AD_BLOCK_TIPS' , 'Dicas de Módulos');
+define( '_AD_BLOCK_TOOLTIP' , 'Desativar dicas');
+
+// ADMIN NAV
+define( '_LINKS_TIP' , 'Admin Quick Links');
+define( '_THEME_TIP' , 'Tema claro ou escuro');
+define( '_TIME_TIP' , 'Atual registro de data e hora');
+
+// ADMIN DASHBOARD - TABS
+define( '_ABOUT' , 'Sobre XOOPSCube');
+define( '_START' , 'Primeiros passos');
+define( '_SOURCE' , 'Código fonte');
+
+define( '_WAP_LICENSE' , 'Licenças de código aberto');
+define( '_WAP_LICENSE_DSC' , "O software licenciado de código aberto geralmente está disponível gratuitamente, mas nem sempre é esse o caso. O código-fonte do XCL foi projetado para ser disponibilizado publicamente. Qualquer pessoa pode visualizar, modificar e distribuir o código como bem entender.
+Os módulos e temas são lançados sob as licenças BSD, GPL e MIT.<br>
+A licença BSD do XCube permite o uso proprietário e permite a incorporação do software em produtos proprietários.");
+
+define( '_WAP_BUNDLE' , 'Pacote XCL');
+define( '_WAP_BUNDLE_DSC' , "XCL v.2.3.x é um aplicativo da Web de propósito geral com uma abordagem de desenvolvimento de baixo código mantida no GitHub.
+Uma das principais vantagens do XCL Bundle Package são as opções expansivas que ele oferece prontas para uso.
+Você mesmo pode estendê-lo com armazenamento em nuvem seguindo as instruções simples do compositor baseado em GUI.
+Você não precisa mais baixar arquivos separadamente e carregá-los manualmente. O X-Update Manager fornece funcionalidade de um clique para ajudá-lo a obter e implantar complementos.
+Não há contratos, custos ocultos, limitações ou restrições.");
+
+define( '_WAP_B2C' , 'B2B and B2C Services');
+define( '_WAP_B2C_DSC' , "Por exemplo, desenvolvedores e agências individuais podem criar seu próprio pacote gratuito ou pago,
+personalizar e oferecer recursos específicos para uma ampla gama de indústrias. Os distribuidores profissionais podem cobrar serviços
+taxas para cobrir custos administrativos ou de processamento, suporte técnico ou serviços de manutenção.");
+
+// System
 define( '_ADD' , "Acrescentar");
 define( '_ADDIMAGE' , "Enviar imagem");
 define( '_ALIGN' , "Alinhamento");
@@ -163,11 +230,11 @@ define( '_USERNAME' , "Codinome:");
 define( '_VERSION' , "Versão");
 define( '_VIEW' , "Mostrar");
 define( '_VISITWEBSITE' , "Visitar");
-define( '_WARNINSTALL2' , "Atenção: a pasta %s existe no servidor. Adicione uma senha (palavra-chave) ao ficheiro 'install/passwd.php' ou remova este diretório para proteger a instalação.");
-define( '_WARNINWRITEABLE' , "Atenção: o arquivo %s tem permissão de escrita pelo servidor. Altere esta permissão por motivos de segurança: em sistemas tipo UNIX, configure como CHMOD 0444; em ambiente Windows, configure como somente leitura.");
+define( '_WARNINSTALL2' , "Atenção: a pasta {0} existe no servidor. Adicione uma senha (palavra-chave) ao ficheiro 'install/passwd.php' ou remova este diretório para proteger a instalação.");
+define( '_WARNINWRITEABLE' , "Atenção: o arquivo {0} tem permissão de escrita pelo servidor. Altere esta permissão por motivos de segurança: em sistemas tipo UNIX, configure como CHMOD 0444; em ambiente Windows, configure como somente leitura.");
 define( '_WARNPHPENV' , "Atenção: o parâmetro %s do arquivo php.ini está configurado como %s. %s");
 define( '_WARNSECURITY' , "Isto deixa o seu portal menos seguro. Se possível, altere as configurações de seu servidor.");
-define( '_WARN_INSTALL_TIP' , 'Activate the Preload — For development purposes only!<br> Use the preload to keep mainfile and install directory.<br>Remember to chomd and delete install to prevent any security problem.');
+define( '_WARN_INSTALL_TIP' , 'Ative o pré-carregamento — apenas para fins de desenvolvimento!<br> Use o pré-carregamento para manter o arquivo principal e o diretório de instalação.<br>Lembre-se de clicar em chomd e excluir a instalação para evitar qualquer problema de segurança.');
 
 define( '_WEEK' , "Uma semana");
 define( '_WELCOMETO' , "Bem-vindo ao %s");

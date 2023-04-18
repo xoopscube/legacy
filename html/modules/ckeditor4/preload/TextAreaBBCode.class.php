@@ -16,7 +16,7 @@ require_once dirname( __FILE__, 2 ) . '/class/Ckeditor4Utiles.class.php';
 
 class ckeditor4_TextAreaBBCode extends Ckeditor4_ParentTextArea
 {
-	private $Legacy_TextareaEditor_delete = false;
+	private bool $Legacy_TextareaEditor_delete = false;
 
 	public function __construct(&$controler) {
 		parent::__construct($controler);
@@ -27,7 +27,7 @@ class ckeditor4_TextAreaBBCode extends Ckeditor4_ParentTextArea
 
 	public function preBlockFilter() {
 		$this->mRoot->mDelegateManager->reset('Site.TextareaEditor.BBCode.Show');
-		$this->mRoot->mDelegateManager->add('Site.TextareaEditor.BBCode.Show',array(&$this, 'render'));
+		$this->mRoot->mDelegateManager->add('Site.TextareaEditor.BBCode.Show',[&$this, 'render']);
 	}
 
 	public function postFilter() {

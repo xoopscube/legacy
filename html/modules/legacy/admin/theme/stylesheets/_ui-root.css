@@ -25,7 +25,6 @@
     - CARD-SMALL
     - COLOR BLOCK - TODO Block Type SVG refactor and rename
     - DROPDOWN
-    - FILTER
     - FOOTER
     - INPUT
     - NAV HEADER
@@ -33,7 +32,6 @@
     - NAV SIDE BLOCK
     - NOTIFICATION
     - SHADOW
-    - SORT - TODO refactor and rename
     - SPACE
     - SCROLLBAR FIREFOX
     - TABS
@@ -97,7 +95,7 @@ Usage with color var:
         --disable       : hsl(var(--h) var(--s) 70%);
         --contrast      : hsl(var(--h) var(--s) 70%);
 
-        --body-bg       : var(--layer-1);
+        --body-bg       : var(--layer-2);
         --body-color    : var(--secondary);
         --link          : var(--primary);
         --link-active   : #face74;
@@ -139,7 +137,7 @@ Usage with color var:
     --disable       : hsl(219, 15%, 70%);
     --contrast      : hsl(219, 15%, 70%);
 
-    --body-bg       : var( --layer-1 );
+    --body-bg       : var( --layer-2 );
     --body-color    : var( --primary );
     /*--header-bg     : #212121;*/
     --link          : var( --color-black );
@@ -147,6 +145,8 @@ Usage with color var:
     --link-hover    : var( --color-orange );
     --link-visited  : var( --color-blue );
     --notify-bg     : var(--layer-4 );
+    /* Sidebar */
+    --aside-panel-bg: var( --layer-1 );
     /*--theme-color : var(--layer-2);*/
     /*--theme-link : var(--color-white);*/
 }
@@ -180,7 +180,7 @@ Usage with color var:
     --bg-linear             : linear-gradient(360deg, hsla(219, 15%, 25%, 0.70), hsla(0, 0%, 0%, 0.90));
     --bg-gradient           : linear-gradient(360deg, var(--layer-1), var(--layer-2));
 
-    --aside-bg              : var( --layer-3 );
+    --aside-bg              : var( --layer-1 );
 
     --aside-panel-bg        : var( --layer-1 );
     --aside-panel-shadow    : var( --shadow-5 );
@@ -243,7 +243,7 @@ Usage with color var:
     --breadcrumbs-color     : var( --theme-color, var( --link ) );
     --breadcrumbs-radius	: var( --border-radius );
     --breadcrumbs-shadow    : var( --shadow-2 );
-    --breadcrumbs-padding   : var( --space-3 ) var( --space-4 );
+    --breadcrumbs-padding   : var( --space-5 ) var( --space-6 );
     --breadcrumbs-margin    : var( --space-3 ) 0; /* Top & Bottom, '0' for Left & Right*/
     --breadcrumbs-bg-link   : var( --button-bg); /* var( --button-bg ); */
 
@@ -362,7 +362,7 @@ Usage with color var:
 
     /* -------------------- --------------------  FORM input */
 
-    --input-bg              : var( --layer-2 );
+    --input-bg              : var( --layer-1 );
     --input-border          : 1px solid var( --theme-color, var( --layer-3 ) );
     --input-color           : var( --secondary ); /* var( --theme-color, var( --secondary )); */
     --input-margin          : var( --button-margin );
@@ -438,14 +438,14 @@ Usage with color var:
 
     /* -------------------- --------------------  SORT */
 
-    --sort-background       : var( --layer-3 );
-    --sort-border-color     : var( --border-color );
-    --sort-border-radius    : var( --border-radius );
-    --sort-border-style     : var( --border-style );
-    --sort-border-width     : var( --border-width );
-    --sort-box-shadow       : var( --shadow-2 );
-    --sort-margin           : var( --space-8 ) auto;
-    --sort-padding          : var( --space-6 ) var( --space-8 );
+    /*--sort-background       : var( --layer-3 );*/
+    /*--sort-border-color     : var( --border-color );*/
+    /*--sort-border-radius    : var( --border-radius );*/
+    /*--sort-border-style     : var( --border-style );*/
+    /*--sort-border-width     : var( --border-width );*/
+    /*--sort-box-shadow       : var( --shadow-2 );*/
+    /*--sort-margin           : var( --space-8 ) auto;*/
+    /*--sort-padding          : var( --space-6 ) var( --space-8 );*/
 
     /* -------------------- --------------------  SPACE : relative margin and padding */
     /* --space-unit x 'value' = space

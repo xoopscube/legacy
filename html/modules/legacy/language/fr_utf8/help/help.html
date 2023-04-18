@@ -3,7 +3,7 @@
         <nav id="help-menu">
             <ul data-layout="column">
                 <li><a href="#help-overview" class="button">Get started</a>
-                <li><a href="#accesskey" class="button">Accesskey</a>
+                <li><a href="#admin-layout" class="button">Admin Layout</a>
                 <li><a href="#help-search" class="button">Action Search</a>
                 <li><a href="#help-blocks" class="button">Blocks</a>
                 <li><a href="#help-comments" class="button">Comments</a>
@@ -21,62 +21,105 @@
 
     <section class="help" id="help-overview">
 
-        <h3>Getting Started</h3>
+        <h2>Mise en route</h2>
 
-        <p>A kick-start guide to XCL if you are running this admin dashboard for the first time.
-        <p>The goal of this kick-start guide is to help new site administrators get orientated to what this
-        position does and what responsibilities it entails. It provides the information
-        needed to get started and begin with your Web Application Platform and CMS.
-        <p>Other detailed instructional materials are available and will be highlighted throughout.</p>
+        <p>Cette section fournit un guide de démarrage rapide avec un bref résumé du panneau de commande, du tableau de bord et de la <b>liste de contrôle post-installation</b>.</p>
 
-        <h4>Quick Links (Top left icon)</h4>
+        <h3>Guide de démarrage rapide</h3>
 
-        <p>From quick links, you can access and search the most relevant features.
-        <p>If you have installed X-Update, a top notification will show you available updates.
-        <p>You can also use X-elFinder file manager to upload files to the server without the need for additional FTP access.
+        <p>Une fois l'assistant d'installation terminé, votre site Web est préconfiguré avec les paramètres de configuration par défaut.
+            Ces paramètres font référence à la valeur préexistante d'un paramètre configurable par l'utilisateur qui est attribué à votre plate-forme d'application Web.
+            Par conséquent, vous devez effectuer certaines tâches de post-installation avant de lancer votre nouveau site Web.
+            Celles-ci incluent la configuration du nom et du slogan du site, la personnalisation des balises méta (SEO), l'autorisation des visiteurs à s'inscrire et les autorisations des groupes d'utilisateurs.
+            Des documents plus détaillés sont disponibles et seront mis en évidence tout au long de ce guide.</p>
 
-        <h4>Left Sidebar</h4>
+        <h3>Panneau de configuration et tableau de bord personnalisé</h3>
+        <p>Le panneau de contrôle, également appelé zone d'administration, vous donne accès à toutes les actions pouvant être effectuées sur votre plate-forme d'applications Web.
+            Il comprend également un tableau de bord qui peut être personnalisé depuis le "panneau d'administration". Vous pouvez activer ou désactiver les blocs d'administration, les conseils de module et les info-bulles d'action.
+            Vos préférences sont stockées dans le localStorage de votre navigateur.</p>
+<style>
+    .guide-layout { background: var(--body-bg );border: var(--border);box-shadow:var(--shadow-3); display: block;font-size:14px;margin-top:var(--space-7)}
+    .guide-layout > div {
+        border: var(--border);
+    }
+</style>
 
-        <p>The menu on the left gives you access to an overview of the structure and the features that you have
-            at your disposal to create and manage your web application platform.</p>
+        <div class="guide-layout">
+            <div data-layout="row center-justify sm-column p-4">
+                <div data-self="size-x1 center p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"></path></svg>
+                    Liens rapides pour accéder aux fonctionnalités principales
+                </div>
+                <div data-self="center p-4">Accueil | Thème | Se déconnecter</div>
+            </div>
 
-        <p>In short, you track notifications and manage the structure of your website from the dashboard,
-            navigate in the easiest way between the core and third-party modules.</p>
+            <div data-layout="row top-justify sm-column p-4">
+                <div data-self="size-1of5 sm-full p-4" style="background: var(--aside-bg );">
+                    <h6>Menu principal</h6>
+                    <p>Le menu principal est généré automatiquement à partir des modules actifs. Chaque sous-menu vous donne accès aux actions du module qui peuvent être effectuées.</p>
+                </div>
+                <div data-self="size-x1 sm-full px-6 py-4">
+                    <h6>Contenu principal</h6>
+                    <p>L'idée principale d'avoir un tableau de bord personnalisable dans XCL est de fournir un accès facile aux différentes sections d'un simple clic.
+                        Pour y parvenir, nous avons sélectionné les fonctionnalités clés de XCL que les administrateurs utilisent le plus souvent au quotidien.
+                        Nous avons pré-rempli le tableau de bord avec des "blocs d'administration" par défaut qui vous donneront un aperçu de l'environnement.</p>
+                    <p>Vous pouvez ajouter vos propres widgets au tableau de bord à différentes fins - par exemple, vous pouvez intégrer n'importe quelle API tierce ou widgets de surveillance.
+                        En bref, les widgets sont une solution rapide et non technique, tandis que l'API est un processus plus complexe qui nécessite des connaissances techniques spécifiques.</p>
+                </div>
+                <div data-self="size-1of5 sm-full p-4" style="background: var(--aside-panel-bg);">
+                    <h6>Panneau d'administration</h6>
+                    <p>Le x-cube à droite ouvre le panneau latéral d'administration où vous pouvez rechercher une action ou afficher l'aide du module actif,
+                        et personnalisez les options de votre tableau de bord.</p>
+                </div>
+            </div>
+        </div>
 
-        <p>Right Panel (the x-cube)</p>
+        <h3>Liste de vérification post-installation</h3>
+        <p>Une fois l'assistant d'installation terminé, effectuez les tâches suivantes, selon le cas:</p>
 
-        <p>The right panel, also called "the x-cube", features the function <b>Action Search</b>>.<br>
-            This function will return all actions of all modules that the current user can access in the Control Panel.<br>
-            A Theme color-scheme saved to localstorage.<br>
-            Access to multi-sites, if the service is installed and running on your web platform.<br>
-        <p>For example, you can install multiple XCPress or XPress (WordPress blogs) and switch to an instance to manage pages, posts, etc.
-        <p>This panel can also display a custom block component to quickly access extensions e.g. tasks, contacts.
+        <div data-layout="row center-justify sm-column">
+            <div data-self="size-1of3 start sm-full">
+                <h3 class="list_center"><svg class="todo" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><circle cx="8.32" cy="36.81" r="3.82" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m4.75 23.34l2.57 2.57l5.07-5.07M4.71 9.87l2.58 2.57l5.07-5.07m4.22 2.57H43.5M16.58 23.38H43.5M16.58 36.81H43.5"/></svg>
+                <br>Configurer les paramètres</h3>
+                <p>
+                    Modifier le nom et le slogan du site<br>
+                    Adresse e-mail de l'administrateur<br>
+                    Message personnalisé de maintenance<br>
+                    Sélectionnez "Page de démarrage" ou module<br>
+                    Définir le cache à l'échelle du module (production )
+                </p>
+            </div>
+            <div data-self="size-1of3 start sm-full">
+                <h3 class="list_center"><svg class="security" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M43.5 25.27V10.4a2 2 0 0 0-2-2h-35a2 2 0 0 0-2 2v27.2a2 2 0 0 0 2 2h27.265M4.5 15.636h39"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M37.488 41.6a11.308 11.308 0 0 0 7.913-9.394a38.052 38.052 0 0 0-.034-5.768a1.219 1.219 0 0 0-1.184-1.134a8.506 8.506 0 0 1-6.004-2.123a.984.984 0 0 0-1.381 0a8.506 8.506 0 0 1-6.004 2.123a1.219 1.219 0 0 0-1.184 1.134a38.052 38.052 0 0 0-.034 5.768a11.308 11.308 0 0 0 7.912 9.394Zm0 0V22.897"/></svg>
+                <br> Accès utilisateur</h3>
+                <p>
+                    Autoriser les visiteurs à créer un compte<br>
+                    Autoriser le téléchargement d'avatars personnalisés<br>
+                    Ajouter de nouveaux champs au profil utilisateur<br>
+                    Attribuer des autorisations aux groupes d'utilisateurs<br>
+                    Configurer les modules et bloquer l'accès
+                </p>
+            </div>
+            <div data-self="size-1of3 start sm-full">
+                <h3 class="list_center"><svg class="design" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><rect width="43.39" height="11.24" x="2.3" y="18.38" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" rx="2" transform="rotate(45 23.999 24)"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m27.97 20.03l-3.69 3.69M14.9 6.95l-3.69 3.69m8.05.67l-2.05 2.05m6.41 2.31l-2.06 2.05M41.05 33.1l-3.69 3.69m-5.03-12.41l-2.05 2.06m6.41 2.3l-2.05 2.05M24 16.05l3.63-3.63a3.89 3.89 0 0 1 1.47-.92l9-3.11a1.22 1.22 0 0 1 1.55 1.55l-3.11 9a3.89 3.89 0 0 1-.92 1.47L32 24m-8 8L14 42a1.94 1.94 0 0 1-2.75 0l-5.2-5.2a1.94 1.94 0 0 1 0-2.75l10-10m-7.68 7.63l7.95 7.95M27.2 12.85l7.95 7.95"/></svg>
+                <br> Préférences de rendu</h3>
+                <p>
+                    Ajoutez votre identité visuelle<br>
+                    Ajouter de nouveaux mots-clés Meta et une description<br>
+                    selon les besoins de l'entreprise<br>
+                    Modifier le copyright et le pied de page Meta<br>
+                    Définir les outils pour les webmasters (SEO)
+                </p>
+            </div>
+        </div>
 
-        <h3>Main container</h3>
-
-        <p>Depending on whether a module, category, or content is selected, different content is loaded in the main container.
-
-        <p>The main container will show a breadcrumb menu to make your navigation easier.
-
-        <h3>X-Update Store</h3>
-
-        <p>If the module is installed, you have free access to the public stores of trusted developers.
-        <p>You can install add-ons, modules, themes and Preloads (Single File Component).</p>
-
-
-        <h3>Settings</h3>
-
-        <p>The Preferences section is the place where you can access your website general settings.
-        <p>For example, you can close the site to public but allowing access to specific groups.
-        <p>Set the name, language, default theme, user account, email, SEO, and much more.</p>
-
-        <p><a class="button" href="<{'abc_index.html'|helpurl}>">Read the guide !</a></p>
+        <div class="tips">La section des ressources d'aide intégrées fournit une documentation utile pour aider les administrateurs à gérer l'application Web et les modules.
+            Vous pouvez trouver le lien "Aide" vers la documentation dans le sous-menu de chaque module et le panneau d'administration. N'hésitez pas à les explorer.</div>
 
     </section>
 
-<hr>
 
-    <section class="help" id="accesskey">
+    <section class="help" id="admin-layout">
 
     <h3>Accesskey</h3>
 
@@ -156,9 +199,36 @@
             An accesskey value can conflict with a system or browser keyboard shortcut, or assistive technology functionality.</p>
     </div>
 
-</section>
+    </section>
 
-<hr>
+    <section id="help-gui">
+        <h3>Admin Theme Options</h3>
+
+        <h4>Show or hide blocks and modules Tips</h4>
+        <p>Modules Tips are small alert messages that display short information about functionality.</p>
+        <p>Actions Tips display descriptive text when you rest the pointer on a button command or control.</p>
+        <p>Module Help enhanced Help are larger modals that display more descriptive text than a Module Tip and can have a link to a Help article.</p>
+        <p>You can set an option to show or hide Tips.</p>
+        <h3>Show or hide Tips</h3>
+        <ol>
+            <li>Click the x-cube admin panel</li>
+            <li>Click theme options.</li>
+            <li>Click help tips.</li>
+            <li>Under User interface options, in the Admin Theme Options list, click the option that you want:</li>
+        </ol>
+        <p><b>Show feature descriptions in Tips</b>
+           This option turns on Tips and Enhanced Help-Tips so that you see more information about a module feature,
+            including the functionality name, keyboard shortcuts, and links to Help articles. This is the default setting.</p>
+        <p><b>Don't show feature descriptions in Tips</b>
+           This option turns off Enhanced Help Tips so that you see only the brief information and maybe a keyboard shortcut.</p>
+        <p><b>Don't show Tips</b>
+           This option turns off Tips and Enhanced Help Tips so that you only see the module's view and action controls.</p>
+
+        <blockquote>The value of the id attribute must be unique within the HTML document.
+            The id attribute is used to point to a specific style declaration in a style sheet.
+            It is also used by JavaScript to access and manipulate the element with the specific id.
+            The syntax for id is: write a hash character (#), followed by an id name.</blockquote>
+    </section>
 
     <section id="help-search">
 
@@ -170,7 +240,6 @@
 
     </section>
 
-<hr>
 
     <section id="help-blocks">
 
@@ -202,7 +271,6 @@
 
     </section>
 
-<hr>
 
     <section id="help-comments">
 
@@ -216,7 +284,6 @@
 
     </section>
 
-<hr>
 
     <section id="help-images">
 
@@ -270,8 +337,6 @@
 
     </section>
 
-<hr>
-
 
     <section id="help-modules">
 
@@ -296,8 +361,6 @@
         </ul>
     </section>
 
-<hr>
-
 
     <section id="help-themes">
 
@@ -318,8 +381,6 @@
 
     </section>
 
-
-<hr>
 
     <section id="help-smilies">
 
@@ -344,7 +405,6 @@
 
     </section>
 
-<hr>
 
     <section id="help-word-censor">
 
@@ -384,7 +444,6 @@
 
     </section>
 
-<hr>
 
     <section id="help-development">
 
@@ -445,8 +504,6 @@
         </table>
 
     </section>
-
-
 
 </article>
 </div>

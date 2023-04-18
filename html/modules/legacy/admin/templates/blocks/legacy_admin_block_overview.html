@@ -1,6 +1,7 @@
 <{* Modules Overview *}>
 
 <style id="dynamicss">
+	:is(.overview-stats) .ui-card-full {margin:0 auto 1em; }
 	div[chart-type="bar-compare"] .linebox-title-bar {
 		margin-top: 5px;
 		margin-bottom: 5px;
@@ -37,10 +38,10 @@
 
 </style>
 
-<div class="ui-card-overview" data-layout="column">
+<div class="overview-stats" data-layout="column">
 
 	<{* ---------- ---------- Modules Overview *}>
-	<div class="ui-card-small" data-layout="column">
+	<div class="ui-card-full" data-layout="column">
 		<div data-layout="row">
 			<div class="ui-card-small-icon ui-icon-blue">
 				<img class="svg" src="<{'icons/icon-module.svg'|theme}>" width="1em" height="1em" alt="modules">
@@ -62,7 +63,7 @@
 	</div>
 
 	<{* ---------- ---------- Blocks Overview *}>
-	<div class="ui-card-small" data-layout="column">
+	<div class="ui-card-full" data-layout="column">
 		<div data-layout="row">
 			<div class="ui-card-small-icon ui-icon-green">
 				<img class="svg" src="<{'icons/icon-blocks.svg'|theme}>" width="1em" height="1em" alt="blocks">
@@ -86,7 +87,7 @@
 	</div>
 
 	<{* ---------- ---------- Users Overview *}>
-	<div class="ui-card-small" data-layout="column">
+	<div class="ui-card-full" data-layout="column">
 		<div data-layout="row">
 			<div class="ui-card-small-icon ui-icon-blue">
 				<img class="svg" src="<{'icons/icon-user-group.svg'|theme}>" width="1em" height="1em" alt="user-groups">

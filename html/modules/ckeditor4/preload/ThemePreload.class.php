@@ -45,19 +45,19 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class ckeditor4_ThemePreload extends XCube_ActionFilter
 {
-	var $preloadTheme = null;
+	public $preloadTheme = null;
 
 	function postFilter()
 	{
 		// Smarty for custom parameters passed from plug-ins
-		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreBuild_ckconfig', array(&$this, 'setParams'));
+		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreBuild_ckconfig', [&$this, 'setParams']);
 
 		// ckeditor.config for custom parameters' interpretation
 		// Toolbar specified in Smarty plug-in and management screen: General config cannot be overwritten
-		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreParseBuild_ckconfig', array(&$this, 'preSetConfig'));
+		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreParseBuild_ckconfig', [&$this, 'preSetConfig']);
 
 		// ckeditor.config for custom parameters (final stage: all configs can be overwritten)
-		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PostBuild_ckconfig', array(&$this, 'postSetConfig'));
+		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PostBuild_ckconfig', [&$this, 'postSetConfig']);
 	}
 
 	/**

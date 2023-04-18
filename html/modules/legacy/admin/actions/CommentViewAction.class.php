@@ -51,7 +51,7 @@ class Legacy_CommentViewAction extends Legacy_Action
         $criteria =new Criteria('com_pid', $this->mObject->get('com_id'));
         $children =& $handler->getObjects($criteria);
 
-        if (count($children) > 0) {
+        if ((is_countable($children) ? count($children) : 0) > 0) {
             foreach (array_keys($children) as $key) {
                 $children[$key]->loadModule();
                 $children[$key]->loadUser();

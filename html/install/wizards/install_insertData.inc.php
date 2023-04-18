@@ -73,6 +73,6 @@ foreach ( $group as $key => $val ) {
 $result = $mm->doRewrite();
 $wizard->assign( 'mm_reports', $mm->report() );
 
-setcookie( 'xcl_wap_session', '', time() - 3600, ini_get( 'session.cookie_path' ), ini_get( 'session.cookie_domain' ), ini_get( 'session.cookie_secure' ), ini_get( 'session.cookie_httponly' ) );
+setcookie( 'xcl_wap_session', '', ['expires' => time() - 3600, 'path' => ini_get( 'session.cookie_path' ), 'domain' => ini_get( 'session.cookie_domain' ), 'secure' => ini_get( 'session.cookie_secure' ), 'httponly' => ini_get( 'session.cookie_httponly' )] );
 
 $wizard->render( 'install_insertData.tpl.php' );

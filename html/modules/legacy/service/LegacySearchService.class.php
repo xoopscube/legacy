@@ -152,7 +152,7 @@ class Legacy_SearchService extends XCube_Service
         $groupArr = Legacy_SearchUtils::getUserGroups();
 
         $ret = [];
-        while (list($mid, $name) = $db->fetchRow($result)) {
+        while ([$mid, $name] = $db->fetchRow($result)) {
             if ($handler->checkRight('module_read', $mid, $groupArr)) {
                 $ret[] = ['mid' => $mid, 'name' => $name];
             }

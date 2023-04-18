@@ -202,6 +202,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
      */
     public function _recoverXoopsGroupPermission()
     {
+        $xoopsDB = null;
         $root =& XCube_Root::getSingleton();
         $db =& $root->mController->getDB();
 

@@ -106,8 +106,7 @@
 		<{if $module->hasAdminIndex()}>
 
 		<{if $module->getAdminMenu()}>
-
-
+			
 		<a href="#menu-close" title="menu-close" class="menu-close">X</a>
 
 			<ul class="module-menu">
@@ -192,7 +191,7 @@
 			</a>
 			</li>
 
-				<{else}>
+			<{else}>
 
 				<{* ---------- ---------- ---------- ---------- ---------- Module No-Settings *}>
 
@@ -200,9 +199,6 @@
 					<{$smarty.const._AD_LEGACY_LANG_NO_SETTING}>
 				</li>
 		</ul>
-
-
-
 
 		<{/if}><{* ----- /getAdminMenu *}>
 

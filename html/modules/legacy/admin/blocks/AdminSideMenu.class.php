@@ -44,7 +44,7 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 
     public function getTitle()
     {
-        return 'AdminSideMenu';
+        return _AD_BLOCK_ASIDE;
     }
 
     public function getEntryIndex()
@@ -113,7 +113,7 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
 
         $handler =& xoops_gethandler('module');
 
-        while (list($weight, $mid) = $db->fetchRow($result)) {
+        while ([$weight, $mid] = $db->fetchRow($result)) {
             $xoopsModule = & $handler->get($mid);
             $module =& Legacy_Utils::createModule($xoopsModule, false);
 

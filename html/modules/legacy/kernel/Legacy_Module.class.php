@@ -1,11 +1,11 @@
 <?php
 /**
  *
- * @package Legacy
- * @version XCL 2.3.x PHP8 gigamaster 
- * @Id: Legacy_Module.class.php,v 1.6 2008/09/25 15:11:59 kilica Exp $
- * @copyright (c) 2005-2023 The XOOPSCube Project
- * @license   GPL 2.0
+ * @package     Legacy
+ * @version     XCL 2.3.x PHP8 gigamaster
+ * @Id          Legacy_Module.class.php,v 1.6 2008/09/25 15:11:59 kilica Exp $
+ * @copyright   (c) 2005-2023 The XOOPSCube Project
+ * @license     GPL 2.0
  *
  */
 
@@ -435,9 +435,9 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
 
             function is_countable($searchArgs) {
 
-                if (0 == count($this->mXoopsModule->adminmenu) && !isset($this->mXoopsModule->modinfo['config'])) {
+                if (0 == (is_countable($this->mXoopsModule->adminmenu) ? count($this->mXoopsModule->adminmenu) : 0) && !isset($this->mXoopsModule->modinfo['config'])) {
 
-                    return (is_array($searchArgs) || $searchArgs instanceof Countable);
+                    return (is_countable($searchArgs));
                 }
             }
         }
@@ -446,10 +446,10 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
         //
         // Search preference
         //
-        if (isset($this->mXoopsModule->modinfo['config']) && count($this->mXoopsModule->modinfo['config'])>0) {
+        if (isset($this->mXoopsModule->modinfo['config']) && (is_countable($this->mXoopsModule->modinfo['config']) ? count($this->mXoopsModule->modinfo['config']) : 0)>0) {
             $findFlag = false;
             foreach ($searchArgs->getKeywords() as $word) {
-                if (stripos(_PREFERENCES, $word) !== false) {
+                if (stripos(_PREFERENCES, (string) $word) !== false) {
                     $root =& XCube_Root::getSingleton();
                     $searchArgs->addRecord($this->mXoopsModule->getVar('name'), $root->mController->getPreferenceEditUrl($this->mXoopsModule), _PREFERENCES);
                     $findFlag = true;
@@ -470,7 +470,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                             $configInfos[]= @constant($config['description']);
                         }
                     }
-                    if (isset($config['options']) && count($config['options']) > 0 ) {
+                    if (isset($config['options']) && (is_countable($config['options']) ? count($config['options']) : 0) > 0 ) {
                         foreach ($config['options'] as $key=>$val) {
                             if (defined($key)) {
                                 $configInfos[]= ( constant($key) ?? $key ?? '' );
@@ -481,7 +481,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
 
                 $findFlag=true;
                 foreach ($searchArgs->getKeywords() as $word) {
-                    $findFlag&=(stripos(implode(' ', $configInfos), $word) !== false);
+                    $findFlag&=(stripos(implode(' ', $configInfos), (string) $word) !== false);
                 }
 
                 if ($findFlag) {
@@ -500,17 +500,17 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
 
             function is_countable($searchArgs) {
 
-                if (count($this->mXoopsModule->adminmenu) > 0 ) {
+                if ((is_countable($this->mXoopsModule->adminmenu) ? count($this->mXoopsModule->adminmenu) : 0) > 0 ) {
                     foreach ($this->mXoopsModule->adminmenu as $menu) {
                         $findFlag = true;
                         foreach ($searchArgs->getKeywords() as $word) {
                             $tmpFlag=false;
-                            $tmpFlag|=(stripos($menu['title'], $word) !== false);
+                            $tmpFlag|=(stripos($menu['title'], (string) $word) !== false);
 
                             // Search keyword
                             if (isset($menu['keywords'])) {
                                 $keyword=is_array($menu['keywords']) ? implode(' ', $menu['keywords']) : $menu['keywords'];
-                                $tmpFlag|=(stripos($keyword, $word) !== false);
+                                $tmpFlag|=(stripos($keyword, (string) $word) !== false);
                             }
 
                             $findFlag&=$tmpFlag;
@@ -535,7 +535,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                     }
                 }
 
-            return (is_array($searchArgs) || $searchArgs instanceof Countable);
+            return (is_countable($searchArgs));
 
             }
 
@@ -548,7 +548,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
             $findFlag = false;
 
             foreach ($searchArgs->getKeywords() as $word) {
-                if (stripos(_HELP, $word) !== false) {
+                if (stripos(_HELP, (string) $word) !== false) {
                     $root =& XCube_Root::getSingleton();
                     $searchArgs->addRecord($this->mXoopsModule->getVar('name'), $root->mController->getHelpViewUrl($this->mXoopsModule), _HELP);
                     $findFlag = true;
@@ -571,7 +571,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                 $lines = file($dir . '/' . $helpfile);
                 foreach ($lines as $line) {
                     foreach ($searchArgs->getKeywords() as $word) {
-                        if (stripos($line, $word) !== false) {
+                        if (stripos($line, (string) $word) !== false) {
                             $url = XOOPS_MODULE_URL . '/legacy/admin/index.php?action=Help&amp;dirname=' . $this->mXoopsModule->getVar('dirname');
                             $searchArgs->addRecord($this->mXoopsModule->getVar('name'), $url, _HELP);
                             return;

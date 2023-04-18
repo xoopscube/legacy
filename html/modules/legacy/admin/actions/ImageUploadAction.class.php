@@ -123,7 +123,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
 
     public function _saveTargetImages(&$targetimages, $t_imgcat_id)
     {
-        if (0 === count($targetimages)) {
+        if (0 === (is_countable($targetimages) ? count($targetimages) : 0)) {
             return true;
         }
 
@@ -133,7 +133,7 @@ class Legacy_ImageUploadAction extends Legacy_Action
         $imagehandler =& xoops_getmodulehandler('image');
 
         if ('file' === strtolower($t_category_type)) {
-            for ($i = 0; $i < count($targetimages); $i++) {
+            for ($i = 0; $i < (is_countable($targetimages) ? count($targetimages) : 0); $i++) {
                 $ext_pos = strrpos($targetimages[$i]['name'], '.') ;
                 if (false === $ext_pos) {
                     continue ;

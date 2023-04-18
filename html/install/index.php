@@ -87,7 +87,7 @@ $myts = TextSanitizer::getInstance();
 
 if ( isset( $_POST ) ) {
 	foreach ( $_POST as $k => $v ) {
-		$$k = $myts->stripSlashesGPC( $v );
+		${$k} = $myts->stripSlashesGPC( $v );
 	}
 }
 

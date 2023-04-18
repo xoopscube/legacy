@@ -19,7 +19,7 @@ class ckeditor4_TextFilter extends XCube_ActionFilter
 	 */
 	function preBlockFilter()
 	{
-		$this->mRoot->mDelegateManager->add('Legacy_TextFilter.MakeXCodeConvertTable', array(&$this, 'filter'));
+		$this->mRoot->mDelegateManager->add('Legacy_TextFilter.MakeXCodeConvertTable', [&$this, 'filter']);
 	}
 
 	function filter(&$patterns, &$replacements)

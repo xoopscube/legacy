@@ -120,13 +120,13 @@ class Legacy_SmilesUploadAction extends Legacy_Action
 
     public function _saveSmilesImages(&$smilesimages)
     {
-        if (0 === count($smilesimages)) {
+        if (0 === (is_countable($smilesimages) ? count($smilesimages) : 0)) {
             return true;
         }
 
         $smileshandler =& xoops_getmodulehandler('smiles');
 
-        for ($i = 0; $i < count($smilesimages); $i++) {
+        for ($i = 0; $i < (is_countable($smilesimages) ? count($smilesimages) : 0); $i++) {
             $ext_pos = strrpos($smilesimages[$i]['name'], '.') ;
             if (false === $ext_pos) {
                 continue ;

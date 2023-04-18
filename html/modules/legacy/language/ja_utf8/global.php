@@ -1,5 +1,71 @@
 <?php
 
+// ADMIN QUICK LINKS
+define( '_AD_ACCOUNT' , 'アカウント');
+define( '_AD_AVATAR' , 'アバター');
+define( '_AD_BANNERS' , 'バナー');
+define( '_AD_BLOCKS' , 'ブロック');
+define( '_AD_CENSOR' , '単語検閲');
+define( '_AD_CLOSE_SITE' , 'シャット');
+define( '_AD_DEBUG' , 'デバッグ');
+define( '_AD_EMOTICON' , '絵文字');
+define( '_AD_LOCALE' , '言語'); /* localization Localize your app Translation Translation (language )*/
+define( '_AD_MAIL_SETUP' , 'メール設定');
+define( '_AD_MAILING' , 'ユーザーを検索');
+define( '_AD_META_SEO' , 'Meta SEO');
+define( '_AD_MODULES' , 'モジュール');
+define( '_AD_PROFILE' , 'プロフィール');
+define( '_AD_RANKS' , 'ランキング');
+define( '_AD_SEARCH' , '検索');
+define( '_AD_SETTINGS' , 'パラメーター');
+define( '_AD_TEMPLATES' , 'テンプレート');
+define( '_AD_TEMPLATE_SET' , 'セット');
+define( '_AD_THEMES' , 'テーマ');
+define( '_AD_URL_REWRITE' , 'URL Rewrite');
+define( '_AD_USER_SEARCH' , 'ユーザーを探す'); /* ( find user) */
+
+// ADMIN BLOCKS
+define( '_AD_BLOCK_ACCOUNT' , '管理者のアカウント');
+define( '_AD_BLOCK_ADMIN' , 'テーマ オプション');
+define( '_AD_BLOCK_ASIDE' , '管理者メニュー');
+define( '_AD_BLOCK_MENU' , 'モジュールのメニュー');
+define( '_AD_BLOCK_ONLINE' , 'ユーザーオンライン');
+define( '_AD_BLOCK_OVERVIEW' , '一般統計');
+define( '_AD_BLOCK_PHP' , 'PHP 設定');
+define( '_AD_BLOCK_SEARCH' , 'アクション検索');
+define( '_AD_BLOCK_SERVER' , 'サーバー環境');
+define( '_AD_BLOCK_THEME' , 'テーマを選択');
+define( '_AD_BLOCK_TIPS' , 'モジュールのヒント');
+define( '_AD_BLOCK_TOOLTIP' , 'ツールチップの削除');
+
+// ADMIN NAV
+define( '_LINKS_TIP' , '管理者用クイック リンク');
+define( '_THEME_TIP' , '暗いまたは明るいテーマ');
+define( '_TIME_TIP' , '現在のタイムスタンプ');
+
+// ADMIN DASHBOARD - TABS
+define( '_ABOUT' , 'XOOPSCube について');
+define( '_START' , '始めましょう');
+define( '_SOURCE' , 'ソースコード');
+
+define( '_WAP_LICENSE' , 'オープンソース ライセンス');
+define( '_WAP_LICENSE_DSC' , "オープンソース ライセンス ソフトウェアは通常無料で入手できますが、常にそうとは限りません。 XCL のソース コードは、公開されるように設計されています。 誰でも適切と思われるコードを表示、変更、および配布できます。
+モジュールとテーマは、BSD、GPL、および MIT ライセンスの下でリリースされます。<br>
+XCube の BSD ライセンスは、独自の使用を許可し、ソフトウェアを独自の製品に組み込むことを許可します。");
+
+define( '_WAP_BUNDLE' , 'XCL バンドル パッケージ');
+define( '_WAP_BUNDLE_DSC' , "XCL v.2.3.x は、GitHub で管理されているローコード開発アプローチを備えた汎用 Web アプリケーションです。
+XCL バンドル パッケージの主な利点の 1 つは、すぐに使用できる拡張オプションです。
+GUI ベースのコンポーザーの簡単な指示に従うことで、クラウド ストレージを使用して自分で拡張できます。
+アーカイブを個別にダウンロードして手動でアップロードする必要はなくなりました。 X-Update Manager は、アドオンの取得と展開を支援するワンクリック機能を提供します。
+契約、隠れたコスト、制限や制限はありません");
+
+define( '_WAP_B2C' , 'B2B and B2C Services');
+define( '_WAP_B2C_DSC' , "たとえば、個々の開発者や代理店は、独自の無料または有料のパッケージを作成する場合があります。
+幅広い業界向けに特定の機能をパーソナライズして提供します。 プロのディストリビューターはサービスを請求する場合があります
+管理費または処理費、技術サポートまたは保守サービスをカバーする料金。");
+
+// System
 define( '_TOKEN_ERROR' , '照合用のワンタイム・チケットが見つかりませんでした。ほとんどの場合は操作手順の関係でワンタイム・チケットが消費されただけですが、CSRF攻撃を受けた可能性もあります（この操作は本当にあなたが望んだ操作ですか？）　操作内容をしっかり確認し、もう一度操作を行ってください。');
 define( '_SYSTEM_MODULE_ERROR' , '以下のモジュールが必要です。');
 define( '_INSTALL' , 'インストール');
@@ -37,7 +103,7 @@ define( '_WARNINSTALL2' , "注）ディレクトリ %s はサーバー上に存�
 define( '_WARNINWRITEABLE' , '注意：ファイル%sへの書き込みが可能となっています。このファイルのパーミッション設定を変更してください。');
 define( '_WARNPHPENV' , '注意：PHPの設定環境の中で、"%s" が "%s"になっています。%s');
 define( '_WARNSECURITY' , '（サイトの脆弱につながる危険性があります。）');
-define( '_WARN_INSTALL_TIP' , 'Activate the Preload — For development purposes only!<br> Use the preload to keep mainfile and install directory.<br>Remember to chomd and delete install to prevent any security problem.');
+define( '_WARN_INSTALL_TIP' , 'プリロードを有効にする — 開発目的のみ!<br>プリロードを使用してメインファイルとインストール ディレクトリを保持します。<br>セキュリティ上の問題を防ぐために、必ず chomd してインストールを削除してください。');
 
 //%%%%%%	File Name themeuserpost.php 	%%%%%
 define( '_POSTEDBY' , '投稿者：'); // Posted date
@@ -202,19 +268,19 @@ define( '_DEBUG_MODE' , 'Debug');
 define( '_DEBUG_MODE_PHP' , 'PHP');
 define( '_DEBUG_MODE_SQL' , 'SQL');
 define( '_DEBUG_MODE_SMARTY' , 'Smarty');
-define( '_DEBUG_MODE_DESC' , 'Disable debug mode in production. Admin > Settings > Debug mode [Off].');
+define( '_DEBUG_MODE_DESC' , '本番環境でデバッグ モードを無効にします。 管理者 > 設定 > デバッグ モード [オフ]');
 
 //%%%%% System Control Panel %%%%%
 //%%%%% System Control Panel %%%%%
-define( '_ACCOUNT' , 'Account');
-define( '_BANNERS' , 'Banners');
-define( '_BLOCKS' , 'Blocks');
-define( '_GROUPS' , 'Groups');
-define( '_MAILING', 'Mailing');
-define( '_MODULES' , 'Modules');
-define( '_RANKS' , 'Ranks');
-define( '_TRANSLATION' , 'Translation');
-define( '_USERS' , 'Users');
+define( '_ACCOUNT' , 'アカウント');
+define( '_BANNERS' , 'バナー');
+define( '_BLOCKS' , 'ブロック');
+define( '_GROUPS' , 'グループ');
+define( '_MAILING', '郵送');
+define( '_MODULES' , 'モジュール');
+define( '_RANKS' , 'ランク');
+define( '_TRANSLATION' , '翻訳');
+define( '_USERS' , 'ユーザー');
 
 define( '_SYS_OS' , 'OS');
 define( '_SYS_SERVER' , 'Server');

@@ -43,7 +43,7 @@ class Legacy_AdminBlockMenu extends Legacy_AbstractBlockProcedure
 
     public function getTitle()
     {
-        return 'Dashboard Menu';
+        return _AD_BLOCK_MENU;
     }
 
     public function getEntryIndex()
@@ -112,7 +112,7 @@ class Legacy_AdminBlockMenu extends Legacy_AbstractBlockProcedure
 
         $handler =& xoops_gethandler('module');
 
-        while (list($weight, $mid) = $db->fetchRow($result)) {
+        while ([$weight, $mid] = $db->fetchRow($result)) {
             $xoopsModule = & $handler->get($mid);
             $module =& Legacy_Utils::createModule($xoopsModule, false);
 

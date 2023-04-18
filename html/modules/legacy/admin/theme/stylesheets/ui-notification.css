@@ -39,6 +39,7 @@
 .alert-notify > div,
 .alert-submit > div {
     display: flex;
+    align-items: flex-start;
     justify-content: space-between;
     margin : 1rem!important;
 }
@@ -61,7 +62,7 @@
 /* TODO check for : xoops_confirm class="confirmMsg", xoops_error class="<{$style}>", xoops_result class="resultMsg" */
 /* TODO override with modal notification !?  */
 
-    .confirm, .danger, .error, .success, .tips,
+    .confirm, .danger, .error, .success,.help-tips, .tips,
     .confirmMsg, .resultMsg {
         background      : var( --notify-bg    );
         border          : var( --notify-border);
@@ -90,9 +91,19 @@
     background-repeat: no-repeat;
     /* animation: warning 1s infinite alternate; */
 }
+.help-tips,
 .tips {
     border-left     : 7px solid var( --color-blue );
     background      : var( --notify-bg ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M11.5 3a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1a8.5 8.5 0 1 0 0 17a8.5 8.5 0 0 0 0-17zM11 8v2h1V8h-1zm0 4v5h1v-5h-1z' fill='%23face74'/%3E %3C/svg%3E") .6em 1em no-repeat;
+}
+.help-tips {
+    display: none;
+}
+.show {
+    display: block;
+}
+.hide {
+    display: none;
 }
 .success {
     border-left     : 7px solid var(  --color-green     );

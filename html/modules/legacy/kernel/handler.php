@@ -270,6 +270,7 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
      */
     public function _insert(&$obj)
     {
+        $fields = [];
         $fileds= [];
         $values= [];
 

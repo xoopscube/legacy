@@ -62,6 +62,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
 
     public function getDefaultView(&$controller, &$xoopsUser)
     {
+        $params = [];
         $root =& $controller->mRoot;
         $service =& $root->mServiceManager->getService('LegacySearch');
 
@@ -95,9 +96,9 @@ class Legacy_SearchResultsAction extends Legacy_Action
                     $params['mid'] = $mid;
                     $module['results'] = $this->_doSearch($client, $xoopsUser, $params);
 
-                    if (count($module['results']) > 0) {
+                    if ((is_countable($module['results']) ? count($module['results']) : 0) > 0) {
                         // @todo @gigamaster $module['has_more'] = (count($module['results']) >= $this->_getMaxHit()) ? true : false;
-                        $module['has_more'] = count($module['results']) >= $this->_getMaxHit();
+                        $module['has_more'] = (is_countable($module['results']) ? count($module['results']) : 0) >= $this->_getMaxHit();
                         $this->mSearchResults[] = $module;
                     }
                 }
@@ -149,7 +150,7 @@ class Legacy_SearchResultsAction extends Legacy_Action
     public function _getSelectedMids()
     {
         $ret = $this->mActionForm->get('mids');
-        if (!count($ret)) {
+        if (!(is_countable($ret) ? count($ret) : 0)) {
             foreach ($this->mModules as $module) {
                 $ret[] = $module['mid'];
             }

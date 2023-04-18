@@ -94,7 +94,7 @@ class Legacy_SearchResultsForm extends XCube_ActionForm
     public function update(&$params)
     {
         $mids = $this->get('mids');
-        if (count($mids) > 0) {
+        if ((is_countable($mids) ? count($mids) : 0) > 0) {
             $params['mids'] = $mids;
         }
 

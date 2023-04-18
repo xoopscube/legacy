@@ -14,32 +14,32 @@ if (!defined('XOOPS_ROOT_PATH')) {
 **/
 interface Lenum_Status
 {
-    const DELETED = 0;
-    const REJECTED = 2;
-    const PROGRESS = 5;
-    const PUBLISHED = 9;
+    public const DELETED = 0;
+    public const REJECTED = 2;
+    public const PROGRESS = 5;
+    public const PUBLISHED = 9;
 }
 /**
  * Lenum_WorkflowStatus
 **/
 interface Lenum_WorkflowStatus
 {
-    const DELETED = 0;
-    const BLOCKED = 1;
-    const REJECTED = 2;
-    const PROGRESS = 5;
-    const FINISHED = 9;
+    public const DELETED = 0;
+    public const BLOCKED = 1;
+    public const REJECTED = 2;
+    public const PROGRESS = 5;
+    public const FINISHED = 9;
 }
 /**
  * Lenum_GroupRank
 **/
 class Lenum_GroupRank
 {
-    const GUEST = 0;
-    const ASSOCIATE = 2;
-    const REGULAR = 5;
-    const STAFF = 7;
-    const OWNER = 9;
+    public const GUEST = 0;
+    public const ASSOCIATE = 2;
+    public const REGULAR = 5;
+    public const STAFF = 7;
+    public const OWNER = 9;
 
     public static function getList()
     {
@@ -56,9 +56,9 @@ class Lenum_GroupRank
 
 class Lenum_ImageType
 {
-    const GIF = 1;
-    const JPG = 2;
-    const PNG = 3;
+    public const GIF = 1;
+    public const JPG = 2;
+    public const PNG = 3;
 
     public static function getName(/*** Enum ***/ $ext)
     {

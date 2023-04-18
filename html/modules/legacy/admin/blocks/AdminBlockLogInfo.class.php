@@ -22,7 +22,7 @@ class Legacy_AdminBlockLogInfo extends Legacy_AbstractBlockProcedure
 
     public function getTitle()
     {
-        return 'Admin Log Info';
+        return _AD_BLOCK_ACCOUNT;
     }
 
     public function getEntryIndex()
@@ -37,6 +37,8 @@ class Legacy_AdminBlockLogInfo extends Legacy_AbstractBlockProcedure
 
     public function execute()
     {
+        $inbox_url = null;
+        $new_messages = null;
         $root =& XCube_Root::getSingleton();
         $xoopsUser =& $root->mController->mRoot->mContext->mXoopsUser;
 

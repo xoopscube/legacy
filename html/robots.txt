@@ -1,29 +1,8 @@
 User-agent: * #Applies to all robots
+User-agent: *
+Allow: /
 Disallow: /admin.php
-Disallow: /avatar.php
-Disallow: /banners.php
-Disallow: /edituser.php
-Disallow: /footer.php
-Disallow: /header.php
-Disallow: /image.php
-Disallow: /imagemanager.php
-Disallow: /mainfile.dist.php
-Disallow: /mainfile.php
-Disallow: /misc.php
-Disallow: /notifications.php
-Disallow: /pmlite.php
-Disallow: /readpmsg.php
-Disallow: /user.php
 Disallow: /userinfo.php
-Disallow: /viewpmsg.php
-Disallow: /class/
-Disallow: /common/
-Disallow: /core/
-Disallow: /images/
-Disallow: /include/
-Disallow: /kernel/
-Disallow: /language/
-Disallow: /modules/
 
 # Reference the absolute URL to your XML sitemap
 # You can reference multiple XML sitemaps

@@ -174,7 +174,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                         }
                     }
 
-                    $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
+                    $comment_config = (new Legacy_CommentEditAction())->loadCallbackFile($comment);
 
                     if ($comment_config && false != $call_approvefunc) {
                         $function = $comment_config['callback']['approve'];
@@ -267,7 +267,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                     } else {
                         // need to change root id for all its child comments as well
                 $c_child_comments =& $xot->getAllChild($new_rootid);
-                        $cc_count = count($c_child_comments);
+                        $cc_count = is_countable($c_child_comments) ? count($c_child_comments) : 0;
                         foreach (array_keys($c_child_comments) as $j) {
                             $c_child_comments[$j]->setVar('com_rootid', $new_rootid);
                             if (!$comment_handler->insert($c_child_comments[$j])) {
@@ -288,7 +288,7 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
                 //
                 // callback
                 //
-                $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
+                $comment_config = (new Legacy_CommentEditAction())->loadCallbackFile($comment);
 
                             if ($comment_config) {
                                 $function = $comment_config['callback']['update'];

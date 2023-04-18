@@ -1,5 +1,71 @@
 <?php
 
+// ADMIN QUICK LINKS
+define( '_AD_ACCOUNT' , 'Compte');
+define( '_AD_AVATAR' , 'Avatar');
+define( '_AD_BANNERS' , 'Bannières');
+define( '_AD_BLOCKS' , 'Blocs');
+define( '_AD_CENSOR' , 'Censurer');
+define( '_AD_CLOSE_SITE' , 'Fermer le site');
+define( '_AD_DEBUG' , 'Déboguer');
+define( '_AD_EMOTICON' , 'Émoticône');
+define( '_AD_LOCALE' , 'Langue'); /* localization Localize your app Translation Translation (language )*/
+define( '_AD_MAIL_SETUP' , 'Messagerie');
+define( '_AD_MAILING' , 'Publipostage');
+define( '_AD_META_SEO' , 'Meta SEO');
+define( '_AD_MODULES' , 'Modules');
+define( '_AD_PROFILE' , 'Profil');
+define( '_AD_RANKS' , 'Rangs');
+define( '_AD_SEARCH' , 'Recherche');
+define( '_AD_SETTINGS' , 'Paramètres');
+define( '_AD_TEMPLATES' , 'Templates');
+define( '_AD_TEMPLATE_SET' , 'Lot Template');
+define( '_AD_THEMES' , 'Theme');
+define( '_AD_URL_REWRITE' , 'URL Rewrite');
+define( '_AD_USER_SEARCH' , 'Rechercher'); /* ( find user) */
+
+// ADMIN BLOCKS
+define( '_AD_BLOCK_ACCOUNT' , "Menu de l'admin");
+define( '_AD_BLOCK_ADMIN' , 'Options du thème');
+define( '_AD_BLOCK_ASIDE' , "Menu admin");
+define( '_AD_BLOCK_MENU' , 'Menu des Modules');
+define( '_AD_BLOCK_ONLINE' , 'Utilisateurs en ligne');
+define( '_AD_BLOCK_OVERVIEW' , 'Statistiques générales');
+define( '_AD_BLOCK_PHP' , 'Paramètres PHP');
+define( '_AD_BLOCK_SEARCH' , 'Recherche de fonctions');
+define( '_AD_BLOCK_SERVER' , 'Environnement serveur');
+define( '_AD_BLOCK_THEME' , 'Sélectionne un thème');
+define( '_AD_BLOCK_TIPS' , 'Aide sur les modules');
+define( '_AD_BLOCK_TOOLTIP' , 'Désactiver info-bulles');
+
+// ADMIN NAV
+define( '_LINKS_TIP' , 'Admin Quick Links');
+define( '_THEME_TIP' , 'Thème clair ou sombre');
+define( '_TIME_TIP' , 'Current timestamp');
+
+// ADMIN DASHBOARD - TABS
+define( '_ABOUT' , 'À propos de XOOPSCube');
+define( '_START' , 'Démarrer');
+define( '_SOURCE' , 'Code source');
+
+define( '_WAP_LICENSE' , 'Licences Open Source');
+define( '_WAP_LICENSE_DSC' , "Les logiciels sous licence open source sont généralement disponibles gratuitement, mais ce n'est pas toujours le cas. Le code source de XCL est conçu pour être accessible au public. N'importe qui peut visualiser, modifier et distribuer le code comme bon lui semble.
+Les modules et les thèmes sont publiés sous les licences BSD, GPL et MIT.<br>
+La licence BSD de XCube permet une utilisation propriétaire et permet l'incorporation du logiciel dans des produits propriétaires.");
+
+define( '_WAP_BUNDLE' , 'XCL Bundle Package');
+define( '_WAP_BUNDLE_DSC' , "XCL v.2.3.x est une application Web à usage général avec une approche de développement à faible code maintenue sur GitHub.
+L'un des principaux avantages du package groupé XCL réside dans les nombreuses options qu'il offre prêtes à l'emploi.
+Vous pouvez l'étendre vous-même avec le stockage en nuage en suivant les instructions simples du compositeur basé sur l'interface graphique.
+Vous n'avez plus besoin de télécharger les archives séparément et de les télécharger manuellement. X-Update Manager fournit une fonctionnalité en un clic pour vous aider à obtenir et à déployer des modules complémentaires.
+Il n'y a pas de contrats, de coûts cachés, de limitations ou de restrictions.");
+
+define( '_WAP_B2C' , 'B2B and B2C Services');
+define( '_WAP_B2C_DSC' , "Par exemple, les développeurs individuels et les agences peuvent créer leur propre package gratuit ou payant,
+personnaliser et offrir des fonctionnalités spécifiques pour un large éventail d'industries. Les distributeurs professionnels peuvent facturer le service
+des frais pour couvrir les frais administratifs ou de traitement, le support technique ou les services de maintenance.");
+
+// System
 define( '_TOKEN_ERROR' , "Attention ! A fin d'éviter une erreur dans la requête faite au serveur, la validation du formulaire requiert une confirmation!");
 define( '_SYSTEM_MODULE_ERROR' , "Les modules suivants sont requis.");
 define( '_INSTALL' , "Installer");
@@ -33,8 +99,8 @@ define( '_NEWESTFIRST' , "Les récents en premier");
 define( '_MORE' , "plus...");
 define( '_MULTIPAGE' , "Pour avoir votre article sur des pages multiples, insérer le mot <span style='color:red'>[pagebreak]</span> (avec les crochets) dans l'article.");
 define( '_IFNOTRELOAD' , "Si la page ne se recharge pas automatiquement, merci de cliquer <a href=%s>ici</a>");
-define( '_WARNINSTALL2' , "ATTENTION: Le repértoire %s existe sur votre serveur.<br>Ajoutez um mot-de-passe au fichier 'install/passwd.php' ou supprimez ce repértoire pour des raisons de sécurité.");
-define( '_WARNINWRITEABLE' , "ATTENTION : Veillez Changer les permissions du fichier %s pour des raisons de sécurité - sous Unix (444), sous Win32 (lecture seule)");
+define( '_WARNINSTALL2' , "ATTENTION: Le repértoire {0} existe sur votre serveur.<br>Ajoutez um mot-de-passe au fichier 'install/passwd.php' ou supprimez ce repértoire pour des raisons de sécurité.");
+define( '_WARNINWRITEABLE' , "ATTENTION : Veillez Changer les permissions du fichier {0} pour des raisons de sécurité - sous Unix (444), sous Win32 (lecture seule)");
 define( '_WARNPHPENV' , "ATTENTION : paramètres php.ini \"%s\" est réglé \"%s\". %s");
 define( '_WARNSECURITY' , "(Ceci peut causer des problèmes de sécurité)");
 define( '_WARN_INSTALL_TIP' , "Activer la précharge - A des fins de développement uniquement!<br>Utilisez le 'preload' pour conserver le fichier 'mainfile'' et le répertoire d'installation.<br>Souvenez-vous de changer les permissions de 'mainfile' (lecture) et de supprimer '/install' pour des raisons de sécurité.");

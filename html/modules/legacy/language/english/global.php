@@ -1,5 +1,72 @@
 <?php
 
+// ADMIN QUICK LINKS
+define( '_AD_ACCOUNT' , 'Account');
+define( '_AD_AVATAR' , 'Avatar');
+define( '_AD_BANNERS' , 'Ad Banners');
+define( '_AD_BLOCKS' , 'Blocks');
+define( '_AD_CENSOR' , 'Word censor');
+define( '_AD_CLOSE_SITE' , 'Close site');
+define( '_AD_DEBUG' , 'Debug');
+define( '_AD_EMOTICON' , 'Smilies');
+define( '_AD_LOCALE' , 'language'); /* localization Localize your app Translation Translation (language )*/
+define( '_AD_MAIL_SETUP' , 'Mail-setup');
+define( '_AD_MAILING' , 'Search user');
+define( '_AD_META_SEO' , 'Meta SEO');
+define( '_AD_MODULES' , 'Modules');
+define( '_AD_PROFILE' , 'Profile');
+define( '_AD_RANKS' , 'Ranking');
+define( '_AD_SEARCH' , 'Search');
+define( '_AD_SETTINGS' , 'Settings');
+define( '_AD_TEMPLATES' , 'Templates');
+define( '_AD_TEMPLATE_SET' , 'Template set');
+define( '_AD_THEMES' , 'Theme');
+define( '_AD_URL_REWRITE' , 'URL Rewrite');
+define( '_AD_USER_SEARCH' , 'Search user'); /* ( find user) */
+
+
+// ADMIN BLOCKS
+define( '_AD_BLOCK_ACCOUNT' , 'Admin Account');
+define( '_AD_BLOCK_ADMIN' , 'Admin Theme Options');
+define( '_AD_BLOCK_ASIDE' , 'Admin Menu');
+define( '_AD_BLOCK_MENU' , 'Modules Menu');
+define( '_AD_BLOCK_ONLINE' , 'Users Online');
+define( '_AD_BLOCK_OVERVIEW' , 'Overview Stats');
+define( '_AD_BLOCK_PHP' , 'PHP Settings');
+define( '_AD_BLOCK_SEARCH' , 'Action Search');
+define( '_AD_BLOCK_SERVER' , 'Server Environment');
+define( '_AD_BLOCK_THEME' , 'Select Theme');
+define( '_AD_BLOCK_TIPS' , 'Modules Help Tips');
+define( '_AD_BLOCK_TOOLTIP' , 'Disable action tooltip');
+
+// ADMIN NAV
+define( '_LINKS_TIP' , 'Admin Quick Links');
+define( '_THEME_TIP' , 'Dark or Light Theme');
+define( '_TIME_TIP' , 'Current timestamp');
+
+// ADMIN DASHBOARD - TABS
+define( '_ABOUT' , 'About XOOPSCube');
+define( '_START' , 'Get Started');
+define( '_SOURCE' , 'Source code');
+
+define( '_WAP_LICENSE' , 'Open Source Licenses');
+define( '_WAP_LICENSE_DSC' , "Open-source licensed software is usually available for free, but this is not always the case. XCL's source code is designed to be publicly available. Anyone can view, modify and distribute the code as they see fit.
+Modules and themes are released under the BSD, GPL and MIT licenses.<br>
+The BSD license of XCube allows proprietary use and permits incorporation of the software into proprietary products.");
+
+define( '_WAP_BUNDLE' , 'XCL Bundle Package');
+define( '_WAP_BUNDLE_DSC' , "XCL v.2.3.x is a general purpose web application with a low code development approach maintained on GitHub. 
+One of the main advantages of the XCL Bundle Package is the expansive options it provides out of the box. 
+You can extend it yourself with cloud storage by following the simple instructions of the GUI-based composer. 
+You no longer need to download archives separately and upload them manually. X-Update Manager provides one-click functionality to help you get and deploy add-ons. 
+There are no contracts, hidden costs, limitations or restrictions.");
+
+define( '_WAP_B2C' , 'B2B and B2C Services');
+define( '_WAP_B2C_DSC' , "For instance, individual developers and agencies might create their own free or paid package, 
+personalize and offer specific features for a wide range of industries. Professional distributors may charge service 
+fees to cover administrative or processing costs, technical support or maintenance services.");
+
+// System
 define( '_TOKEN_ERROR' , 'Alert ! This prevent you from instantiating a malformed request or post. Please, submit again to confirm!');
 define( '_SYSTEM_MODULE_ERROR' , 'The following modules are required.');
 define( '_INSTALL' , 'Install');
@@ -70,20 +137,25 @@ define( '_QUOTEC' , 'Quote:');
 //%%%%%%	File Name admin.php 	%%%%%
 define( '_NOPERM' , "Sorry, you don't have the permission to access this area.");
 
-//%%%%%		Common Phrases		%%%%%
+//%%%%%		Common ACTIONS		%%%%%
 define( '_NO' , 'No');
 define( '_YES' , 'Yes');
 define( '_EDIT' , 'Edit');
 define( '_DELETE' , 'Delete');
 define( '_VIEW' , 'View');
-define( '_SAVE' , 'Save changes');
+define( '_SAVE' , 'Save');
 define( '_SUBMIT' , 'Submit');
-define( '_MODULENOEXIST' , 'Selected module does not exist!');
+
 define( '_ALIGN' , 'Align');
 define( '_LEFT' , 'Left');
 define( '_CENTER' , 'Center');
 define( '_RIGHT' , 'Right');
+define( '_UPLOAD' , 'UPLOAD');
+define( '_DOWNLOAD' , 'DOWNLOAD');
+
+define( '_MODULENOEXIST' , 'Selected module does not exist!');
 define( '_FORM_ENTER' , 'Please enter %s');
+
 // %s represents file name
 define( '_MUSTWABLE' , 'File %s must be writable by the server!');
 // Module info
@@ -205,7 +277,7 @@ define( '_DEBUG_MODE_DESC' , 'Disable debug mode in production. Admin > Settings
 //%%%%% System Control Panel %%%%%
 define( '_ACCOUNT' , 'Account');
 define( '_BANNERS' , 'Banners');
-define( '_BLOCKS' , 'Blocks');
+//define( '_BLOCKS' , 'Blocks');
 define( '_GROUPS' , 'Groups');
 define( '_MAILING', 'Mailing');
 define( '_MODULES' , 'Modules');
@@ -218,5 +290,3 @@ define( '_SYS_SERVER' , 'Server');
 define( '_SYS_USERAGENT' , 'User agent');
 define( '_SYS_PHPVERSION' , 'PHP version');
 define( '_SYS_MYSQLVERSION' , 'MySQL version');
-
-

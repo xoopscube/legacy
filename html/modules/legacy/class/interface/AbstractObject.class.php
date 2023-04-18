@@ -77,7 +77,7 @@ abstract class Legacy_AbstractObject extends XoopsSimpleObject
             return;
         }
 
-        $dirname = isset($dirname) ? $dirname : $this->getDirname();
+        $dirname ??= $this->getDirname();
         $handler = Legacy_Utils::getModuleHandler($table, $dirname);
 
         if (in_array($table, $this->mChildList)) {

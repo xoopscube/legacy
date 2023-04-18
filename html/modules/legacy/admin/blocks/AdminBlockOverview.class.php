@@ -22,7 +22,7 @@ class Legacy_AdminBlockOverview extends Legacy_AbstractBlockProcedure
 
     public function getTitle()
     {
-        return 'Admin System Overview';
+        return _AD_BLOCK_OVERVIEW;
     }
 
     public function getEntryIndex()

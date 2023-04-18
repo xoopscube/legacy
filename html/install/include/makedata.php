@@ -20,7 +20,8 @@ include_once './class/dbmanager.php';
 // of missing fields in install file, when add new fields to database)
 
 function make_groups( &$dbm ) {
-	$gruops['XOOPS_GROUP_ADMIN']     = $dbm->insert( 'groups', " VALUES (0, '" . addslashes( _INSTALL_WEBMASTER ) . "', '" . addslashes( _INSTALL_WEBMASTERD ) . "', 'Admin')" );
+	$gruops = [];
+ $gruops['XOOPS_GROUP_ADMIN']     = $dbm->insert( 'groups', " VALUES (0, '" . addslashes( _INSTALL_WEBMASTER ) . "', '" . addslashes( _INSTALL_WEBMASTERD ) . "', 'Admin')" );
 	$gruops['XOOPS_GROUP_USERS']     = $dbm->insert( 'groups', " VALUES (0, '" . addslashes( _INSTALL_REGUSERS ) . "', '" . addslashes( _INSTALL_REGUSERSD ) . "', 'User')" );
 	$gruops['XOOPS_GROUP_ANONYMOUS'] = $dbm->insert( 'groups', " VALUES (0, '" . addslashes( _INSTALL_ANONUSERS ) . "', '" . addslashes( _INSTALL_ANONUSERSD ) . "', 'Anonymous')" );
 

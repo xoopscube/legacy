@@ -94,7 +94,7 @@ button,
     display         : inline-block;
     font-family     : var(--font-family);
     font-size       : var(--font-size);
-    font-weight     : var(--font-weight);
+    /*font-weight     : var(--font-weight);*/
     /*letter-spacing  : 0.08rem;*/
     /*line-height     : 1.5;*/
     padding         : var(--button-padding);

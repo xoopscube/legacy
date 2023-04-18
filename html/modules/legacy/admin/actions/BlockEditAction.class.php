@@ -153,6 +153,7 @@ class Legacy_BlockEditAction extends Legacy_AbstractEditAction
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
+        $moduleArr = [];
         $render->setTemplateName('block_edit.html');
         $render->setAttribute('actionForm', $this->mActionForm);
 

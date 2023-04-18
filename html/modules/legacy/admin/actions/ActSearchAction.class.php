@@ -21,10 +21,6 @@ class Legacy_ActionSearchArgs
     public $mKeywords;
     public $mRecords;
 
-    public function Legacy_ActionSearchArgs($words) {
-        $this->__construct($words);
-    }
-
     public function __construct($words)
     {
         $this->setKeywords($words);

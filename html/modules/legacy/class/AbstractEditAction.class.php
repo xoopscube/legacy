@@ -86,7 +86,7 @@ class Legacy_AbstractEditAction extends Legacy_Action
 
         $this->mActionForm->update($this->mObject);
 
-        return $this->_doExecute($this->mObject) ? LEGACY_FRAME_VIEW_SUCCESS
+        return $this->_doExecute() ? LEGACY_FRAME_VIEW_SUCCESS
                                                  : LEGACY_FRAME_VIEW_ERROR;
     }
 

@@ -7,7 +7,7 @@ class ckeditor4_KtaiEmojiRegist extends XCube_ActionFilter
 	private $emj2i_table;
 	
 	public function preBlockFilter() {
-		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PostBuild_ckconfig', array(&$this, 'regist'));  
+		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PostBuild_ckconfig', [&$this, 'regist']);  
 	}
 
 	public function regist(&$config) {
@@ -37,7 +37,7 @@ class ckeditor4_KtaiEmojiRegist extends XCube_ActionFilter
 		
 		$emj_path = 'images/emoji/i/';
 		
-		$img = $emo = $map = array();
+		$img = $emo = $map = [];
 		
 		$emj2i_table = $this->emj2i_table;
 		foreach($emj_list as $n) {

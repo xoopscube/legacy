@@ -53,7 +53,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
         $criteria =new Criteria('com_pid', $this->mObject->get('com_id'));
         $children =& $handler->getObjects($criteria);
 
-        if (count($children) > 0) {
+        if ((is_countable($children) ? count($children) : 0) > 0) {
             foreach (array_keys($children) as $key) {
                 $children[$key]->loadModule();
                 $children[$key]->loadUser();
@@ -106,7 +106,7 @@ class Legacy_CommentDeleteAction extends Legacy_AbstractDeleteAction
         //
         // callback
         //
-        $comment_config = Legacy_CommentEditAction::loadCallbackFile($comment);
+        $comment_config = (new Legacy_CommentEditAction())->loadCallbackFile($comment);
 
         if (false == $comment_config) {
             return;

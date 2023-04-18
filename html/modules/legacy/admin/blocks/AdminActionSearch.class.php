@@ -30,7 +30,7 @@ class Legacy_AdminActionSearch extends Legacy_AbstractBlockProcedure
 
     public function getTitle()
     {
-        return 'TEST: AdminActionSearch';
+        return _AD_BLOCK_SEARCH;
     }
 
     public function getEntryIndex()

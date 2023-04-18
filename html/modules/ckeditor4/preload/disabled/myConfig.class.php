@@ -6,9 +6,9 @@ class ckeditor4_myConfig extends XCube_ActionFilter
 {
 	public function postFilter()
 	{
-		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreBuild_ckconfig',      array($this, 'PreBuild'));
-		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreParseBuild_ckconfig', array($this, 'PreParseBuild'));
-		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PostBuild_ckconfig',     array($this, 'PostBuild'));
+		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreBuild_ckconfig',      [$this, 'PreBuild']);
+		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PreParseBuild_ckconfig', [$this, 'PreParseBuild']);
+		$this->mRoot->mDelegateManager->add('Ckeditor4.Utils.PostBuild_ckconfig',     [$this, 'PostBuild']);
 	}
 
 	public function PreBuild(&$params)

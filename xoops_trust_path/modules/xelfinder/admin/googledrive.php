@@ -110,13 +110,13 @@ if ( $php54up && $vendor ) {
 				echo '<div><textarea class="allselect" style="width:70%;height:5em;" spellcheck="false">' . $ext_token . '</textarea></div>';
 
 				echo '<h3>Example to Volume Driver Setting</h3>'
-                    .'<div class="tips">The default "root" folder is <a href="https://drive.google.com/drive/my-drive" target="_blank">"My Drive" of your Google Drive</a><br>'
+                    .'<div class="confirm">The default "root" folder is <a href="https://drive.google.com/drive/my-drive" target="_blank">"My Drive" of your Google Drive</a><br>'
                     .'You can set an ID of a specific folder.</div>'
                     .'<div class="ui-card-full">'
 				    .'<p>Folder ID <input type=text id="xelfinder_googledrive_folder" value="root"></p>';
 				echo '<p>You can find the folder ID to the URL(folders/[Folder ID]) of the site of <a href="https://drive.google.com/drive/" target="_blank">GoogleDrive</a>.</p>'
                     .'</div>';
-                echo '<div class="tips">Copy and paste to a newline in <a href="index.php?action=PreferenceEdit&confmod_id=11" target="_blank">Preferences > Volume Drivers</a></div>';
+                echo '<div class="confirm">Copy and paste to a newline in <a href="index.php?action=PreferenceEdit&confmod_id=11" target="_blank">Preferences > Volume Drivers</a></div>';
 				echo '<div class="ui-card-full">'
                     .'<textarea class="allselect" style="width:70%;height:7em;" id="xelfinder_googledrive_volconf" spellcheck="false">xelfinder:GoogleDrive:root:GoogleDrive:gid=1|id=gd|ext_token=' . $ext_token . '</textarea>'
                     .'</div>';
@@ -206,7 +206,7 @@ if ( $php54up && $vendor ) {
 
             <h3>Web client ID and Secret key</h3>
 
-            <div class="tips">Copy and past here the content of json file "client_secrect_xxxx.json"</div>
+            <div class="confirm">Copy and past here the content of json file "client_secrect_xxxx.json"</div>
 
             <div class="ui-card-full">
                 <p>JSON client secret :</p>
@@ -238,7 +238,7 @@ if ( $php54up && $vendor ) {
             </div>
 
             <h3>Continuous connectivity</h3>
-            <div class="tips">
+            <div class="confirm">
                 A short-lived access token helps improve the security of our applications, but it comes with a cost: when it expires, the user needs to log in again to get a new one. Frequent re-authentication can diminish the perceived user experience of your application</div>
             <div class="ui-card-full">
                 <p>Keeping Refresh Tokens Secure</p>
@@ -266,6 +266,6 @@ if ( $php54up && $vendor ) {
             .'<p><a class="button" href="./index.php?page=vendorup">'. xelfinderAdminLang( 'COMPOSER_RUN_UPDATE' ) .'</a></p>';
 
 } else {
-    echo '<div class="error"><p>Update Vendor requires PHP >= 5.4<br> Your PHP version is '. PHP_VERSION .'</p></div>';
+    echo '<div class="error"><p>Update Vendor requires PHP >= 7.4<br> Your PHP version is '. PHP_VERSION .'</p></div>';
 }
 xoops_cp_footer();
