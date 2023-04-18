@@ -690,16 +690,21 @@ class Archive_Zip
     */
     public function errorName($p_with_code=false)
     {
+        $v_error_list = [];
         $v_const_list = get_defined_constants();
 
           // ----- Extract error constants from all const.
-        for (reset($v_const_list);
-             list($v_key, $v_value) = each($v_const_list);) {
+        for (reset($v_const_list);;) {
             if ('ARCHIVE_ZIP_ERR_'
                == mb_substr($v_key, 0, mb_strlen('ARCHIVE_ZIP_ERR_'))) {
                 $v_error_list[$v_key] = $v_value;
             }
         }
+        (list($v_key, $v_value))[1] = current($v_const_list);
+        (list($v_key, $v_value))['value'] = current($v_const_list);
+        (list($v_key, $v_value))[0] = key($v_const_list);
+        (list($v_key, $v_value))['key'] = key($v_const_list);
+        next($v_const_list);
 
         // ----- Search the name form the code value
         $v_key = array_search($this->_error_code, $v_error_list, true);
@@ -949,7 +954,7 @@ class Archive_Zip
       }
 
     // ----- Create the Central Dir files header
-    for ($i=0, $v_count=0; $i < count($v_header_list); $i++) {
+    for ($i=0, $v_count=0; $i < (is_countable($v_header_list) ? count($v_header_list) : 0); $i++) {
         // ----- Create the file header
       if ('ok' == $v_header_list[$i]['status']) {
           if (1 != ($v_result=$this->_writeCentralFileHeader($v_header_list[$i]))) {
@@ -1113,7 +1118,7 @@ class Archive_Zip
     $v_offset = @ftell($this->_zip_fd);
 
     // ----- Create the Central Dir files header
-    for ($i=0, $v_count=0; $i < count($v_header_list); $i++) {
+    for ($i=0, $v_count=0; $i < (is_countable($v_header_list) ? count($v_header_list) : 0); $i++) {
         // ----- Create the file header
       if ('ok' == $v_header_list[$i]['status']) {
           if (1 != ($v_result = $this->_writeCentralFileHeader($v_header_list[$i]))) {
@@ -1176,14 +1181,15 @@ class Archive_Zip
                         $p_add_dir, $p_remove_dir, $p_remove_all_dir,
                         &$p_params)
   {
+      $p_temp_list = [];
       $v_result=1;
       $v_header = [];
 
     // ----- Recuperate the current number of elt in list
-    $v_nb = count($p_result_list);
+    $v_nb = is_countable($p_result_list) ? count($p_result_list) : 0;
 
     // ----- Loop on the files
-    for ($j=0; ($j<count($p_list)) && (1 == $v_result); $j++) {
+    for ($j=0; ($j<(is_countable($p_list) ? count($p_list) : 0)) && (1 == $v_result); $j++) {
         // ----- Recuperate the filename
       $p_filename = $this->_tool_TranslateWinPath($p_list[$j], false);
 
@@ -1248,7 +1254,7 @@ class Archive_Zip
               $v_result = $this->_addFileList($p_temp_list, $p_result_list, $p_add_dir, $p_remove_dir, $p_remove_all_dir, $p_params);
 
             // ----- Update the number of elements of the list
-            $v_nb = count($p_result_list);
+            $v_nb = is_countable($p_result_list) ? count($p_result_list) : 0;
           }
         }
 
@@ -1855,7 +1861,7 @@ class Archive_Zip
 
           // ----- Look if the filename is in the list
           for ($j=0;
-                  ($j < count($p_params[ARCHIVE_ZIP_PARAM_BY_NAME]))
+                  ($j < (is_countable($p_params[ARCHIVE_ZIP_PARAM_BY_NAME]) ? count($p_params[ARCHIVE_ZIP_PARAM_BY_NAME]) : 0))
                && (!$v_extract);
                $j++) {
 
@@ -1878,7 +1884,7 @@ class Archive_Zip
       // ----- Look for extract by ereg rule
       elseif ((isset($p_params[ARCHIVE_ZIP_PARAM_BY_EREG]))
                && ('' != $p_params[ARCHIVE_ZIP_PARAM_BY_EREG])) {
-          if (ereg($p_params[ARCHIVE_ZIP_PARAM_BY_EREG], $v_header['stored_filename'])) {
+          if (preg_match($p_params[ARCHIVE_ZIP_PARAM_BY_EREG], $v_header['stored_filename'])) {
               $v_extract = true;
           }
       }
@@ -1896,7 +1902,7 @@ class Archive_Zip
                && (0 != $p_params[ARCHIVE_ZIP_PARAM_BY_INDEX])) {
 
           // ----- Look if the index is in the list
-          for ($j=$j_start; ($j < count($p_params[ARCHIVE_ZIP_PARAM_BY_INDEX])) && (!$v_extract); $j++) {
+          for ($j=$j_start; ($j < (is_countable($p_params[ARCHIVE_ZIP_PARAM_BY_INDEX]) ? count($p_params[ARCHIVE_ZIP_PARAM_BY_INDEX]) : 0)) && (!$v_extract); $j++) {
               if (($i>=$p_params[ARCHIVE_ZIP_PARAM_BY_INDEX][$j]['start']) && ($i<=$p_params[ARCHIVE_ZIP_PARAM_BY_INDEX][$j]['end'])) {
                   $v_extract = true;
               }
@@ -2508,6 +2514,7 @@ class Archive_Zip
      */
   public function _readEndCentralDir(&$p_central_dir)
   {
+      $v_pos = null;
       $v_result=1;
 
     // ----- Go to the end of the zip file
@@ -2704,7 +2711,7 @@ class Archive_Zip
 
           // ----- Look if the filename is in the list
           for ($j=0;
-               ($j < count($p_params[ARCHIVE_ZIP_PARAM_BY_NAME]))
+               ($j < (is_countable($p_params[ARCHIVE_ZIP_PARAM_BY_NAME]) ? count($p_params[ARCHIVE_ZIP_PARAM_BY_NAME]) : 0))
                  && (!$v_found);
                $j++) {
 
@@ -2731,7 +2738,7 @@ class Archive_Zip
       // ----- Look for extract by ereg rule
       elseif ((isset($p_params[ARCHIVE_ZIP_PARAM_BY_EREG]))
                && ('' != $p_params[ARCHIVE_ZIP_PARAM_BY_EREG])) {
-          if (ereg($p_params[ARCHIVE_ZIP_PARAM_BY_EREG],
+          if (preg_match($p_params[ARCHIVE_ZIP_PARAM_BY_EREG],
                    $v_header_list[$v_nb_extracted]['stored_filename'])) {
               $v_found = true;
           }
@@ -2752,7 +2759,7 @@ class Archive_Zip
 
           // ----- Look if the index is in the list
           for ($j=$j_start;
-               ($j < count($p_params[ARCHIVE_ZIP_PARAM_BY_INDEX]))
+               ($j < (is_countable($p_params[ARCHIVE_ZIP_PARAM_BY_INDEX]) ? count($p_params[ARCHIVE_ZIP_PARAM_BY_INDEX]) : 0))
                  && (!$v_found);
                $j++) {
               if (($i>=$p_params[ARCHIVE_ZIP_PARAM_BY_INDEX][$j]['start'])
@@ -3233,7 +3240,7 @@ class Archive_Zip
     }
 
     // ----- Check that all the params are valid
-    for (reset($p_params); list($v_key, $v_value) = each($p_params);) {
+    for (reset($p_params);;) {
         if (!isset($p_default[$v_key])) {
             $this->_errorLog(ARCHIVE_ZIP_ERR_INVALID_PARAMETER,
                              'Unsupported parameter with key \''.$v_key.'\'');
@@ -3241,13 +3248,23 @@ class Archive_Zip
             return Archive_Zip::errorCode();
         }
     }
+    (list($v_key, $v_value))[1] = current($p_params);
+    (list($v_key, $v_value))['value'] = current($p_params);
+    (list($v_key, $v_value))[0] = key($p_params);
+    (list($v_key, $v_value))['key'] = key($p_params);
+    next($p_params);
 
     // ----- Set the default values
-    for (reset($p_default); list($v_key, $v_value) = each($p_default);) {
+    for (reset($p_default);;) {
         if (!isset($p_params[$v_key])) {
             $p_params[$v_key] = $p_default[$v_key];
         }
     }
+    (list($v_key, $v_value))[1] = current($p_default);
+    (list($v_key, $v_value))['value'] = current($p_default);
+    (list($v_key, $v_value))[0] = key($p_default);
+    (list($v_key, $v_value))['key'] = key($p_default);
+    next($p_default);
 
     // ----- Check specific parameters
     $v_callback_list = [

@@ -18,7 +18,7 @@ altsys_include_language_file( 'modinfo' );
 $modversion['dirname']          = 'altsys';
 $modversion['name']             = _MI_ALTSYS_MODULENAME;
 $modversion['version']          = '2.33';
-$modversion['detailed_version'] = '2.33.2';
+$modversion['detailed_version'] = '2.33.3';
 $modversion['description']      = _MI_ALTSYS_MODULEDESC;
 $modversion['author']           = 'GIJ=CHECKMATE<br>PEAK Corp.(https://www.peak.ne.jp/)';
 $modversion['credits']          = 'PEAK Corp., Gigamaster (XCL/PHP7)';

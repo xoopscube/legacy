@@ -90,11 +90,11 @@ if ( ! empty( $_POST['clone_tplset_do'] ) && ! empty( $_POST['clone_tplset_from'
 	if ( ! preg_match( '/^[0-9A-Za-z_-]{1,16}$/', $_POST['clone_tplset_to'] ) ) {
 		tplsadmin_die( _MYTPLSADMIN_ERR_INVALIDSETNAME, $target_dirname );
 	}
-	list( $is_exist ) = $db->fetchRow( $db->query( 'SELECT COUNT(*) FROM ' . $db->prefix( 'tplfile' ) . " WHERE tpl_tplset='" . addslashes( $tplset_to ) . "'" ) );
+	[$is_exist] = $db->fetchRow( $db->query( 'SELECT COUNT(*) FROM ' . $db->prefix( 'tplfile' ) . " WHERE tpl_tplset='" . addslashes( $tplset_to ) . "'" ) );
 	if ( $is_exist ) {
 		tplsadmin_die( _MYTPLSADMIN_ERR_DUPLICATEDSETNAME, $target_dirname );
 	}
-	list( $is_exist ) = $db->fetchRow( $db->query( 'SELECT COUNT(*) FROM ' . $db->prefix( 'tplset' ) . " WHERE tplset_name='" . addslashes( $tplset_to ) . "'" ) );
+	[$is_exist] = $db->fetchRow( $db->query( 'SELECT COUNT(*) FROM ' . $db->prefix( 'tplset' ) . " WHERE tplset_name='" . addslashes( $tplset_to ) . "'" ) );
 	if ( $is_exist ) {
 		tplsadmin_die( _MYTPLSADMIN_ERR_DUPLICATEDSETNAME, $target_dirname );
 	}
@@ -189,7 +189,7 @@ if ( is_array( @$_POST['del_do'] ) ) {
 				}
 				$tplfile = $myts->stripSlashesGPC( $tplfile_tmp );
 				$result  = $db->query( 'SELECT tpl_id FROM ' . $db->prefix( 'tplfile' ) . " WHERE tpl_tplset='" . addslashes( $tplset_from ) . "' AND tpl_file='" . addslashes( $tplfile ) . "'" );
-				while ( list( $tpl_id ) = $db->fetchRow( $result ) ) {
+				while ( [$tpl_id] = $db->fetchRow( $result ) ) {
 					$tpl_id = (int) $tpl_id;
 					$db->query( 'DELETE FROM ' . $db->prefix( 'tplfile' ) . " WHERE tpl_id=$tpl_id" );
 					$db->query( 'DELETE FROM ' . $db->prefix( 'tplsource' ) . " WHERE tpl_id=$tpl_id" );
@@ -242,7 +242,7 @@ $tplset_handler = xoops_gethandler( 'tplset' );
 $tplsets        = array_keys( $tplset_handler->getList() );
 $sql            = 'SELECT distinct tpl_tplset FROM ' . $db->prefix( 'tplfile' ) . " ORDER BY tpl_tplset='default' DESC,tpl_tplset";
 $srs            = $db->query( $sql );
-while ( list( $tplset ) = $db->fetchRow( $srs ) ) {
+while ( [$tplset] = $db->fetchRow( $srs ) ) {
 	if ( ! in_array( $tplset, $tplsets ) ) {
 		$tplsets[] = $tplset;
 	}
@@ -316,7 +316,7 @@ echo '<section data-layout="row center-justify" class="action-control">';
 echo '<div class="control-view"><a class="button" href="' .XOOPS_URL . '/modules/legacyRender/admin/index.php?action=TplsetList">
 <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="icon"><path fill="currentColor" d="M8 10v11H4a1 1 0 0 1-1-1V10h5zm13 0v10a1 1 0 0 1-1 1H10V10h11zm-1-7a1 1 0 0 1 1 1v4H3V4a1 1 0 0 1 1-1h16z"></path>
 </svg> Render</a>
-        <button class="help-admin button-icon" type="button" data-module="altsys" data-help-article="#help-templates" aria-label="'._HELP.'"><b>?</b></button>
+        <button class="help-admin button-icon" type="button" data-module="altsys" data-help-article="#help-templates" title="'._HELP.'"><b>?</b></button>
     </div>
     </section>';
 
@@ -345,7 +345,7 @@ $fingerprint_classes = [
 ];
 
 // template ROWS
-while ( list( $tpl_file, $tpl_desc, $type, $count ) = $db->fetchRow( $frs ) ) {
+while ( [$tpl_file, $tpl_desc, $type, $count] = $db->fetchRow( $frs ) ) {
 
 	$fingerprints = [];
 
@@ -359,7 +359,7 @@ while ( list( $tpl_file, $tpl_desc, $type, $count ) = $db->fetchRow( $frs ) ) {
             " . htmlspecialchars( $tpl_file, ENT_QUOTES ) . "<br>
             <em>" . htmlspecialchars( $tpl_desc, ENT_QUOTES ) . "</em>
         </td>
-        <td><span aria-label='"._MYTPLSADMIN_TH_SET." : " . $count . "'>" . $type . "</span></td>\n";
+        <td><span title='"._MYTPLSADMIN_TH_SET." : " . $count . "'>" . $type . "</span></td>\n";
 
 	// the base file template column
 	$basefilepath = tplsadmin_get_basefilepath( $target_dirname, $type, $tpl_file );
@@ -412,9 +412,9 @@ while ( list( $tpl_file, $tpl_desc, $type, $count ) = $db->fetchRow( $frs ) ) {
                 . "&amp;tpl_tplset="
                 . htmlspecialchars( $tpl['tpl_tplset'], ENT_QUOTES )
                 . "&amp;dirname=" . htmlspecialchars( $target_dirname, ENT_QUOTES )
-                . " aria-label='"._EDIT."'>"
+                . " title='"._EDIT."'>"
                 . "<i class='i-edit'></i></a> <input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1'> <br>"
-                . "<span aria-label='Template : $numrows'>"
+                . "<span title='Template : $numrows'>"
                 . formatTimestamp( $tpl['tpl_lastmodified'], 'm' )
                 . '</span><br><small>'
                 . substr( $fingerprint, 0, 16 )

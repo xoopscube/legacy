@@ -91,14 +91,14 @@ function smarty_resource_db_tplinfo( $tpl_name ) {
 	// If we're not using the "default" template set, then get the templates from the DB
 	if ( 'default' != $tplset ) {
 		$tplobj = $tplfile_handler->find( $tplset, null, null, null, $tpl_name, true );
-		if ( count( $tplobj ) ) {
+		if ( is_countable($tplobj) ? count( $tplobj ) : 0 ) {
 			return $cache[ $tpl_name ] = $tplobj[0];
 		}
 	}
 	// If we are using the default tplset, get the template from the filesystem
 	$tplobj = $tplfile_handler->find( 'default', null, null, null, $tpl_name, true );
 
-	if ( ! count( $tplobj ) ) {
+	if ( ! (is_countable($tplobj) ? count( $tplobj ) : 0) ) {
 		return $cache[ $tpl_name ] = false;
 	}
 	$tplobj    = $tplobj[0];

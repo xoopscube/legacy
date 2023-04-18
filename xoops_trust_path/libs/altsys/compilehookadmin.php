@@ -150,7 +150,7 @@ foreach ( $compile_hooks as $command => $compile_hook ) {
 					array_shift( $file_bodies );
 				}
 
-				if ( mb_strstr( $file_bodies[ count( $file_bodies ) - 1 ], 'altsys' ) ) {
+				if ( mb_strstr( $file_bodies[ (is_countable($file_bodies) ? count( $file_bodies ) : 0) - 1 ], 'altsys' ) ) {
 					array_pop( $file_bodies );
 
 					$file_bodies[ count( $file_bodies ) - 1 ] = rtrim( $file_bodies[ count( $file_bodies ) - 1 ] );
@@ -219,7 +219,7 @@ if ( $handler = opendir( XOOPS_COMPILE_PATH . '/' ) ) {
 $sql            = 'SELECT tplset_name,COUNT(DISTINCT tpl_file) FROM ' . $xoopsDB->prefix( 'tplset' ) . ' LEFT JOIN ' . $xoopsDB->prefix( 'tplfile' ) . " ON tplset_name=tpl_tplset GROUP BY tpl_tplset ORDER BY tpl_tplset='default' DESC,tpl_tplset";
 $srs            = $xoopsDB->query( $sql );
 $tplset_options = "<option value=''>----</option>\n";
-while ( list( $tplset, $tpl_count ) = $xoopsDB->fetchRow( $srs ) ) {
+while ( [$tplset, $tpl_count] = $xoopsDB->fetchRow( $srs ) ) {
 	$tplset4disp = htmlspecialchars( $tplset, ENT_QUOTES );
 
 	$tplset_options .= "<option value='$tplset4disp'>$tplset4disp ($tpl_count)</option>\n";

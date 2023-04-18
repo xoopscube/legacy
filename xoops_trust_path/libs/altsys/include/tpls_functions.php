@@ -71,7 +71,7 @@ function tplsadmin_import_data( $tplset, $tpl_file, $tpl_source, $lastmodified =
 
 	$drs = $db->query( 'SELECT tpl_id FROM ' . $db->prefix( 'tplfile' ) . " WHERE tpl_tplset='" . addslashes( $tplset ) . "' AND tpl_file='" . addslashes( $tpl_file ) . "'" );
 
-	while ( list( $tpl_id ) = $db->fetchRow( $drs ) ) {
+	while ( [$tpl_id] = $db->fetchRow( $drs ) ) {
 		$db->queryF( 'UPDATE ' . $db->prefix( 'tplfile' ) . " SET tpl_lastmodified='" . addslashes( $lastmodified ) . "',tpl_lastimported=UNIX_TIMESTAMP() WHERE tpl_id='$tpl_id'" );
 
 		$db->queryF( 'UPDATE ' . $db->prefix( 'tplsource' ) . " SET tpl_source='" . addslashes( $tpl_source ) . "' WHERE tpl_id='$tpl_id'" );
@@ -139,7 +139,7 @@ function tplsadmin_copy_templates_db2db( $tplset_from, $tplset_to, $whr_append =
 
 			altsys_template_touch( $tpl_id );
 		} else {
-			while ( list( $tpl_id ) = $db->fetchRow( $drs ) ) {
+			while ( [$tpl_id] = $db->fetchRow( $drs ) ) {
 				// UPDATE mode
 
 				$db->query( 'UPDATE '
@@ -214,7 +214,7 @@ function tplsadmin_copy_templates_f2db( $tplset_to, $whr_append = '1' ) {
 
 			altsys_template_touch( $tpl_id );
 		} else {
-			while ( list( $tpl_id ) = $db->fetchRow( $drs ) ) {
+			while ( [$tpl_id] = $db->fetchRow( $drs ) ) {
 				// UPDATE mode
 
 				$db->query( 'UPDATE ' . $db->prefix( 'tplfile' ) . " SET tpl_lastmodified='" . addslashes( $lastmodified ) . "' WHERE tpl_id='$tpl_id'" );
@@ -235,7 +235,8 @@ function tplsadmin_copy_templates_f2db( $tplset_to, $whr_append = '1' ) {
  * @return string
  */
 function tplsadmin_get_basefilepath( $dirname, $type, $tpl_file ) {
-	// module instance
+	$mytrustdirname = null;
+ // module instance
 
 	$path = $basefilepath = XOOPS_ROOT_PATH . '/modules/' . $dirname . '/templates/' . ( 'block' == $type ? 'blocks/' : '' ) . $tpl_file;
 

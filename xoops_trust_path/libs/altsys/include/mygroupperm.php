@@ -99,7 +99,7 @@ if ( ! empty( $_POST['perms'] ) && is_array( $_POST['perms'] ) ) {
 				}
 				foreach ( $perm_data['groups'] as $group_id => $item_ids ) {
 					//				foreach ($item_ids as $item_id => $selected) {
-					$selected = isset( $item_ids[ $item_id ] ) ? $item_ids[ $item_id ] : 0;
+					$selected = $item_ids[ $item_id ] ?? 0;
 					if ( 1 == $selected ) {
 						// make sure that all parent ids are selected as well
 						if ( '' != $perm_data['parents'][ $item_id ] ) {

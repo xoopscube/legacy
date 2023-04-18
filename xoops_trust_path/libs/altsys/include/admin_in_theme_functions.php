@@ -37,12 +37,12 @@ function altsys_admin_in_theme( $s ) {
 	}
 
 	// outputs before cp_header()
-	@list( $former_outputs, $tmp_s ) = explode( '<!DOCTYPE', $s, 2 );
+	@[$former_outputs, $tmp_s] = explode( '<!DOCTYPE', $s, 2 );
 	if ( empty( $tmp_s ) ) {
 		$tmp_s = $s;
 	}
 
-	@list( , $tmp_s ) = explode( "<div class='content'>", $tmp_s, 2 );
+	@[, $tmp_s] = explode( "<div class='content'>", $tmp_s, 2 );
 	if ( empty( $tmp_s ) ) {
 		define( 'ALTSYS_DONT_USE_ADMIN_IN_THEME', 1 );
 
@@ -63,7 +63,8 @@ function altsys_admin_in_theme( $s ) {
 
 
 function altsys_admin_in_theme_in_last( $contents = null ) {
-	global $xoops_admin_contents, $xoopsConfig, $xoopsModule, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger, $altsysModuleConfig, $altsysModuleId;
+	$xoopsTpl = null;
+ global $xoops_admin_contents, $xoopsConfig, $xoopsModule, $xoopsUser, $xoopsUserIsAdmin, $xoopsLogger, $altsysModuleConfig, $altsysModuleId;
 
 	if ( ! isset( $contents ) ) {
 		while ( ob_get_level() ) {
@@ -125,7 +126,7 @@ function altsys_admin_in_theme_in_last( $contents = null ) {
 			'xoops_requesturi'      => htmlspecialchars( $GLOBALS['xoopsRequestUri'], ENT_QUOTES ),
 			'xoops_sitename'        => htmlspecialchars( $xoopsConfig['sitename'], ENT_QUOTES ),
 			'xoops_showlblock'      => 1,
-			'xoops_js'              => '</script><script type="text/javascript" src="' . XOOPS_URL . '/include/xoops.js"></script><script type="text/javascript">' . "\n",
+			'xoops_js'              => '</script><script type="text/javascript" src="' . XOOPS_URL . '/common/js/x-utils.js"></script><script type="text/javascript">' . "\n",
 			'xoops_runs_admin_side' => 1,
 			'xoops_breadcrumbs'     => $xoops_breadcrumbs,
 			'xoops_slogan'          => htmlspecialchars( $xoopsConfig['slogan'], ENT_QUOTES ),

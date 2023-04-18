@@ -138,7 +138,7 @@ if ( ! empty( $_POST['do_modifycont'] ) || ! empty( $_POST['do_modify'] ) ) {
 	}
 
 	$result = $db->query( 'SELECT tpl_id FROM ' . $db->prefix( 'tplfile' ) . " WHERE tpl_file='$tpl_file4sql' AND tpl_tplset='" . addslashes( $tpl['tpl_tplset'] ) . "'" );
-	while ( list( $tpl_id ) = $db->fetchRow( $result ) ) {
+	while ( [$tpl_id] = $db->fetchRow( $result ) ) {
 		$sql = 'UPDATE ' . $db->prefix( 'tplsource' ) . " SET tpl_source='" . addslashes( $myts->stripSlashesGPC( $_POST['tpl_source'] ) ) . "' WHERE tpl_id=$tpl_id";
 		if ( ! $db->query( $sql ) ) {
 			die( 'SQL Error' );

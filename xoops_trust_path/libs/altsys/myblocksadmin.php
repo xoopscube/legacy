@@ -19,7 +19,7 @@ include_once XOOPS_ROOT_PATH . '/class/xoopsblock.php';
 
 // language file
 altsys_include_language_file( 'myblocksadmin' );
-altsys_get_core_type( ALTSYS_CORE_TYPE_XCL21 );
+altsys_get_core_type();
 include_once __DIR__ . '/class/MyBlocksAdminForXCL21.class.php';
 $myba =& MyBlocksAdminForXCL21::getInstance();
 

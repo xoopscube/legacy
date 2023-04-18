@@ -1,16 +1,16 @@
 <?php
 
 define( '_MI_ALTSYS_MODULENAME' , 'Composants');
-define( '_MI_ALTSYS_MODULEDESC' , 'Gestion simplifiée de composants système, blocs, modèles, traduction et localisation.');
+define( '_MI_ALTSYS_MODULEDESC' , 'Gestion simplifiée de composants système, blocs, modèles, langue et traduction.');
 
 // menus
 define( '_MI_ALTSYS_MENU_CUSTOMBLOCKS' , 'Blocs personnalisés');
-define( '_MI_ALTSYS_MENU_NEWCUSTOMBLOCK' , 'Créer un Nouveau Bloc');
+define( '_MI_ALTSYS_MENU_NEWCUSTOMBLOCK' , 'Nouveau Bloc');
 define( '_MI_ALTSYS_MENU_MYBLOCKSADMIN' , 'Blocs des Modules');
 define( '_MI_ALTSYS_MENU_MYTPLSADMIN' , 'Templates');
 define( '_MI_ALTSYS_MENU_COMPILEHOOKADMIN' , 'Templates Avancés');
-define( '_MI_ALTSYS_MENU_MYLANGADMIN' , 'Langages');
-define( '_MI_ALTSYS_MENU_ADVANCEDLANGADMIN' , 'Langages Avancés');
+define( '_MI_ALTSYS_MENU_MYLANGADMIN' , 'Langue');
+define( '_MI_ALTSYS_MENU_ADVANCEDLANGADMIN' , 'Langue Avancés');
 define( '_MI_ALTSYS_MENU_MYAVATAR' , 'Avatars');
 define( '_MI_ALTSYS_MENU_MYSMILEY' , 'Emoticones');
 
@@ -19,13 +19,13 @@ define( '_MI_ALTSYS_BNAME_ADMIN_MENU' , 'Menu Admin');
 
 // configs
 define( '_MI_ALTSYS_ADMINMENU_HFT' , 'Rewrite admin menu');
-define( '_MI_ALTSYS_ADMINMENU_HFTDSC' , 'If your admin menu is broken, remove cache/adminmenu.php. This feature works only with XOOPS 2.0.x');
+define( '_MI_ALTSYS_ADMINMENU_HFTDSC' , 'If your admin menu is broken, remove cache/adminmenu.php. This feature works only with XOOPS2-JP');
 define( '_MI_ALTSYS_AMHFT_OPT_2COL' , 'Two columns of module icons');
 define( '_MI_ALTSYS_AMHFT_OPT_NOIMG' , 'IMG to TEXT');
 define( '_MI_ALTSYS_AMHFT_OPT_XCSTY' , 'Like XoopsCube Legacy 2.1');
 
 define( '_MI_ALTSYS_ADMINMENU_IM' , 'Copy mymenu links into admin menu');
-define( '_MI_ALTSYS_ADMINMENU_IMDSC' , 'If your admin menu is broken, remove cache/adminmenu.php. This feature works only with XOOPS 2.0.x');
+define( '_MI_ALTSYS_ADMINMENU_IMDSC' , 'If your admin menu is broken, remove cache/adminmenu.php. This feature works only with XOOPS2-JP');
 
 define( '_MI_ALTSYS_ADMIN_IN_THEME' , 'Theme set for admin');
 define( '_MI_ALTSYS_ADMIN_IN_THEMEDSC' , 'Set the name of the theme displaying admin area. Insert a line just after including common.php in mainfile.php<br />include XOOPS_TRUST_PATH.\'/libs/altsys/include/admin_in_theme.inc.php\');<br /> to enable this. This feature works only with XOOPS 2.0.x');

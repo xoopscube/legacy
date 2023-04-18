@@ -68,7 +68,8 @@ class Text_Diff {
 	 *                    method.
 	 */
 	public function reverse() {
-		if ( version_compare( zend_version(), '2', '>' ) ) {
+		$obj = null;
+  if ( version_compare( zend_version(), '2', '>' ) ) {
 			$rev = clone( $obj );
 		} else {
 			$rev = $this;
@@ -107,7 +108,7 @@ class Text_Diff {
 		$lcs = 0;
 		foreach ( $this->_edits as $edit ) {
 			if ( is_a( $edit, 'Text_Diff_Op_copy' ) ) {
-				$lcs += count( $edit->orig );
+				$lcs += is_countable($edit->orig) ? count( $edit->orig ) : 0;
 			}
 		}
 
@@ -233,7 +234,7 @@ class Text_MappedDiff extends Text_Diff {
 		assert( count( $from_lines ) == count( $mapped_from_lines ) );
 		assert( count( $to_lines ) == count( $mapped_to_lines ) );
 
-		parent::Text_Diff( $mapped_from_lines, $mapped_to_lines );
+		parent::__construct( $mapped_from_lines, $mapped_to_lines );
 
 		$xi = $yi = 0;
 		for ( $i = 0; $i < count( $this->_edits ); $i ++ ) {
@@ -276,7 +277,7 @@ class Text_Diff_Engine_xdiff {
 		$to_string   = implode( "\n", $to_lines );
 
 		/* Diff the two strings and convert the result to an array. */
-		$diff = xdiff_string_diff( $from_string, $to_string, count( $to_lines ) );
+		$diff = xdiff_string_diff( $from_string, $to_string, is_countable($to_lines) ? count( $to_lines ) : 0 );
 		$diff = explode( "\n", $diff );
 
 		/* Walk through the diff one line at a time.  We build the $edits
@@ -339,8 +340,10 @@ class Text_Diff_Engine_native {
 	 */
 
 	public function diff( $from_lines, $to_lines ) {
-		$n_from = count( $from_lines );
-		$n_to   = count( $to_lines );
+		$xhash = [];
+  $yhash = [];
+  $n_from = is_countable($from_lines) ? count( $from_lines ) : 0;
+		$n_to   = is_countable($to_lines) ? count( $to_lines ) : 0;
 
 		$this->xchanged = $this->ychanged = [];
 		$this->xv       = $this->yv = [];
@@ -462,14 +465,17 @@ class Text_Diff_Engine_native {
 	 * @return array
 	 */
 	public function _diag( $xoff, $xlim, $yoff, $ylim, $nchunks ) {
-		$flip = false;
+		$ymatches = [];
+  $ymids = [];
+  $seps = [];
+  $flip = false;
 
 		if ( $xlim - $xoff > $ylim - $yoff ) {
 			/* Things seems faster (I'm not sure I understand why) when the
 			 * shortest sequence is in X. */
 			$flip = true;
 
-			list( $xoff, $xlim, $yoff, $ylim ) = [ $yoff, $ylim, $xoff, $xlim ];
+			[$xoff, $xlim, $yoff, $ylim] = [ $yoff, $ylim, $xoff, $xlim ];
 		}
 
 		if ( $flip ) {
@@ -597,7 +603,8 @@ class Text_Diff_Engine_native {
 	 * @param $ylim
 	 */
 	public function _compareseq( $xoff, $xlim, $yoff, $ylim ) {
-		/* Slide down the bottom initial diagonal. */
+		$seps = [];
+  /* Slide down the bottom initial diagonal. */
 		while ( $xoff < $xlim && $yoff < $ylim
 		        && $this->xv[ $xoff ] == $this->yv[ $yoff ] ) {
 			++ $xoff;
@@ -619,7 +626,7 @@ class Text_Diff_Engine_native {
 			 * max(2,min(8,(int)$nchunks)); */
 			$nchunks = min( 7, $xlim - $xoff, $ylim - $yoff ) + 1;
 
-			list( $lcs, $seps ) = $this->_diag( $xoff, $xlim, $yoff, $ylim, $nchunks );
+			[$lcs, $seps] = $this->_diag( $xoff, $xlim, $yoff, $ylim, $nchunks );
 		}
 
 		if ( 0 == $lcs ) {
@@ -662,9 +669,9 @@ class Text_Diff_Engine_native {
 		$i = 0;
 		$j = 0;
 
-		assert( count( $lines ) == count( $changed ) );
-		$len       = count( $lines );
-		$other_len = count( $other_changed );
+		assert( (is_countable($lines) ? count( $lines ) : 0) == count( $changed ) );
+		$len       = is_countable($lines) ? count( $lines ) : 0;
+		$other_len = is_countable($other_changed) ? count( $other_changed ) : 0;
 
 		while ( 1 ) {
 			/* Scan forward to find the beginning of another run of

@@ -22,7 +22,8 @@ if ( ! function_exists( 'altsys_oninstall_base' ) ) {
 
 	if ( ! function_exists( 'altsys_oninstall_base' ) ) {
 		function altsys_oninstall_base( $module, $mydirname ) {
-			// transactions on module install
+			$pieces = null;
+   // transactions on module install
 
 			global $ret; // TODO :-D
 

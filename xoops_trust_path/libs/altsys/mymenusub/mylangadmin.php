@@ -22,7 +22,7 @@ $mrs = $db->query( 'SELECT m.name,m.dirname,COUNT(l.mid) FROM ' . $db->prefix( '
 $adminmenu = [];
 
 
-while ( list( $name, $dirname, $count ) = $db->fetchRow( $mrs ) ) {
+while ( [$name, $dirname, $count] = $db->fetchRow( $mrs ) ) {
 
     $moduleIcon = '<img class="svg" src="'.XOOPS_URL.'/modules/'.$dirname.'/images/module_icon.svg" width="1em" height="1em" alt="module-icon">';
 

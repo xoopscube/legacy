@@ -153,7 +153,7 @@ if ( ! in_array( $target_file, $lang_files, true ) ) {
 $langfile_unique_path = "$lang_base_dir/$target_file";
 
 // get constants defined by the target_file
-list( $langfile_names, $constpref, $already_read ) = altsys_mylangadmin_get_constant_names( $langfile_unique_path, $target_dirname );
+[$langfile_names, $constpref, $already_read] = altsys_mylangadmin_get_constant_names( $langfile_unique_path, $target_dirname );
 
 // get user_values should be overridden
 $langfile_constants = [];

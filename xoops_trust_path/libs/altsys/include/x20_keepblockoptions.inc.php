@@ -16,7 +16,7 @@ $result = $xoopsDB->query( $query );
 $record = $xoopsDB->fetchArray( $result );
 if ( $record ) {
 	$mid   = $record['mid'];
-	$count = count( $modversion['blocks'] );
+	$count = is_countable($modversion['blocks']) ? count( $modversion['blocks'] ) : 0;
 
 
 	$sql     = 'SELECT * FROM ' . $xoopsDB->prefix( 'newblocks' ) . ' WHERE mid=' . $mid . " AND block_type <>'D' AND func_num > $count";

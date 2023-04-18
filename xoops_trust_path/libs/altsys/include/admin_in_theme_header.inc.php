@@ -104,7 +104,7 @@ if ( is_object( $xoopsUser ) ) {
 				if ( is_array( @$adminmenu ) ) {
 					foreach ( $adminmenu as $eachmenu ) {
 						//if ( strstr( $_SERVER['REQUEST_URI'], $eachmenu['link'] ) ) {
-						if ( false !== strpos( $_SERVER['REQUEST_URI'], $eachmenu['link'] ) ) {
+						if ( false !== strpos( $_SERVER['REQUEST_URI'], (string) $eachmenu['link'] ) ) {
 							$xoops_breadcrumbs[] = [ 'name' => $eachmenu['title'] ];
 							break;
 						}
@@ -133,7 +133,7 @@ $sql    = 'SELECT DISTINCT gperm_itemid FROM ' . $db->prefix( 'group_permission'
 $result = $db->query( $sql );
 
 $blockids = [];
-while ( list( $blockid ) = $db->fetchRow( $result ) ) {
+while ( [$blockid] = $db->fetchRow( $result ) ) {
 	$blockids[] = (int) $blockid;
 }
 
