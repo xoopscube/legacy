@@ -14,7 +14,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED_MAI
 
 	define( $constpref . '_FINDER_TITLE', $mydirname.' - File Manager');
 	define( $constpref . '_FINDER_DESC', 'Allow members to upload and manage documents and images. The files are stored within the public upload folder.' );
-	define( $constpref . '_OPEN_MANAGER', 'Open the file manager' );
+	define( $constpref . '_OPEN_MANAGER', 'Ouvrir le gestionnaire de fichiers' );
 	define( $constpref . '_OPEN_WINDOW', 'Popup window' );
 	define( $constpref . '_OPEN_FULL', 'New window' );
 	define( $constpref . '_OPEN_WINDOW_ADMIN', 'Pop window (Admin mode)' );

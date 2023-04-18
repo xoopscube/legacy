@@ -12,13 +12,13 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED_MAI
 // a flag for this language file has already been read or not.
 	define( $constpref . '_LOADED_MAIN', 1 );
 
-	define( $constpref . '_FINDER_TITLE', $mydirname.' - File Manager');
-	define( $constpref . '_FINDER_DESC', 'Allow members to upload and manage documents and images. The files are stored within the public upload folder.' );
-	define( $constpref . '_OPEN_MANAGER', 'Open the file manager' );
-	define( $constpref . '_OPEN_WINDOW', 'Popup window' );
-	define( $constpref . '_OPEN_FULL', 'New window' );
-	define( $constpref . '_OPEN_WINDOW_ADMIN', 'Pop window (Admin mode)' );
-	define( $constpref . '_OPEN_FULL_ADMIN', 'New window (Admin mode)' );
-	define( $constpref . '_ADMIN_PANEL', 'Go to admin panel' );
+	define( $constpref . '_FINDER_TITLE', $mydirname.' - Файловый менеджер');
+	define( $constpref . '_FINDER_DESC', 'Позволяет участникам загружать документы и изображения и управлять ими.' );
+	define( $constpref . '_OPEN_MANAGER', 'Откройте файловый менеджер' );
+	define( $constpref . '_OPEN_WINDOW', 'Всплывающие окна' );
+	define( $constpref . '_OPEN_FULL', 'Новое окно' );
+	define( $constpref . '_OPEN_WINDOW_ADMIN', 'Всплывающее окно (режим администратора)' );
+	define( $constpref . '_OPEN_FULL_ADMIN', 'Новое окно (режим администратора)' );
+	define( $constpref . '_ADMIN_PANEL', 'Перейдите в панель управления' );
 
 }
