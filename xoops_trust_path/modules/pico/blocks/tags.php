@@ -10,19 +10,11 @@
  * @license GPL v2.0
  */
 
-$GLOBALS['pico_blocks_tags_order_options'] = array(
-	'count ASC'         => 'count ASC',
-	'count DESC'        => 'count DESC',
-	'weight ASC'        => 'weight ASC',
-	'weight DESC'       => 'weight DESC',
-	'label ASC'         => 'label ASC',
-	'label DESC'        => 'label DESC',
-	'created_time ASC'  => 'created_time ASC',
-	'created_time DESC' => 'created_time DESC',
-);
+$GLOBALS['pico_blocks_tags_order_options'] = ['count ASC'         => 'count ASC', 'count DESC'        => 'count DESC', 'weight ASC'        => 'weight ASC', 'weight DESC'       => 'weight DESC', 'label ASC'         => 'label ASC', 'label DESC'        => 'label DESC', 'created_time ASC'  => 'created_time ASC', 'created_time DESC' => 'created_time DESC'];
 
 function b_pico_tags_show( $options ) {
-	global $pico_blocks_tags_order_options;
+	$ret = [];
+ global $pico_blocks_tags_order_options;
 
 	// options
 	$mytrustdirname = basename( dirname( __DIR__ ) );
@@ -49,7 +41,7 @@ function b_pico_tags_show( $options ) {
 	$result = $db->query( $sql );
 	if ( $sqlorder != $listorder ) {
 		$labels4sql = [];
-		while ( list( $label, ) = $db->fetchRow( $result ) ) {
+		while ( [$label, ] = $db->fetchRow( $result ) ) {
 			$labels4sql[] = "'" . addslashes( $label ) . "'";
 		}
 		$sql    = 'SELECT label,count FROM ' . $db->prefix( $mydirname . '_tags' ) . ' WHERE label IN (' . implode( ',', $labels4sql ) . ") ORDER BY $listorder";
@@ -59,7 +51,7 @@ function b_pico_tags_show( $options ) {
 	// tags4assign
 	$tags = [];
 	$rank = 0;
-	while ( list( $label, $count ) = $db->fetchRow( $result ) ) {
+	while ( [$label, $count] = $db->fetchRow( $result ) ) {
 		$tags[ $label ] = [
 			'label' => $label,
 			'count' => $count,

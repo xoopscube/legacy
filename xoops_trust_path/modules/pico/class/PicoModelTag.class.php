@@ -12,7 +12,7 @@
 
 class PicoTagHandler {
 
-	var $mydirname;
+	public $mydirname;
 
 	public function __construct( $mydirname ) {
 		$this->mydirname = $mydirname;
@@ -33,7 +33,7 @@ class PicoTagHandler {
 		if ( $db->getRowsNum( $trs ) <= 0 ) {
 			return false;
 		} else {
-			list( $content_ids_sc ) = $db->fetchRow( $trs );
+			[$content_ids_sc] = $db->fetchRow( $trs );
 
 			return preg_replace( '/[^0-9,]/', '', $content_ids_sc );
 		}

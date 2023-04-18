@@ -41,7 +41,7 @@ class PicoCategoryHandler {
 
 		$ret = [];
 		//for php5.3+
-		while ( list( $cat_id ) = $db->fetchRow( $crs ) ) {
+		while ( [$cat_id] = $db->fetchRow( $crs ) ) {
 			$objTemp = new PicoCategory( $this->mydirname, $cat_id, $this->permissions );
 			if ( $return_prohibited_also || $objTemp->data['can_read'] ) {
 				$ret[ $cat_id ] = $objTemp;
@@ -65,7 +65,7 @@ class PicoCategoryHandler {
 
 		$ret = [];
 		//for php5.3+
-		while ( list( $cat_id ) = $db->fetchRow( $crs ) ) {
+		while ( [$cat_id] = $db->fetchRow( $crs ) ) {
 			$objTemp = new PicoCategory( $this->mydirname, $cat_id, $this->permissions );
 			if ( $return_prohibited_also || $objTemp->data['can_read'] ) {
 				$ret[ $cat_id ] = $objTemp;
@@ -177,7 +177,7 @@ class PicoCategory {
 			       'vpath'          => htmlspecialchars( $this->data['cat_vpath'], ENT_QUOTES ),
 			       'desc'           => htmlspecialchars( $this->data['cat_desc'], ENT_QUOTES ),
 			       'options'        => $options4edit,
-			       'children_count' => count( @$this->data['redundants'] ),
+			       'children_count' => is_countable(@$this->data['redundants']) ? count( @$this->data['redundants'] ) : 0,
 		       ] + $this->getData4html();
 	}
 

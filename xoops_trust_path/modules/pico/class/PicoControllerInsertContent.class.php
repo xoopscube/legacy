@@ -47,7 +47,7 @@ class PicoControllerInsertContent extends PicoControllerAbstract {
 
 		// permission check
 		if ( empty( $cat_data['can_post'] ) ) {
-			redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_MAKECONTENT );
+			redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_CREATECONTENT );
 		}
 
 		// create content

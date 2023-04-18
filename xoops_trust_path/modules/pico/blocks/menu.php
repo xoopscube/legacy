@@ -11,7 +11,8 @@
  */
 
 function b_pico_menu_show( $options ) {
-	// options
+	$ret = [];
+ // options
 	$mytrustdirname = basename( dirname( __DIR__ ) );
 	$mydirname      = empty( $options[0] ) ? $mytrustdirname : $options[0];
 	$cat_ids        = '' === trim( @$options[1] ) ? [] : array_map( 'intval', explode( ',', $options[1] ) );

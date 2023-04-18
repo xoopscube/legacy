@@ -20,7 +20,6 @@ class PicoUriMapper {
 	public function __construct( $mydirname, $config ) {
 		$this->mydirname = $mydirname;
 		$this->config    = $config;
-		$this->request   = [];
 	}
 
 	public function initGet() {
@@ -272,7 +271,8 @@ class PicoUriMapper {
      * @param $ext
      */
 	public function transferWrappedFile( $wrap_full_path, $ext ): void {
-		// remove output bufferings
+		$mimes = [];
+  // remove output bufferings
 		while ( ob_get_level() ) {
 			ob_end_clean();
 		}

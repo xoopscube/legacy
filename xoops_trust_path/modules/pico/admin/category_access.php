@@ -66,7 +66,7 @@ if ( !empty( $_POST['group_update'] ) ) {
 	}
 	$db->queryF( 'DELETE FROM ' . $db->prefix( $mydirname . '_category_permissions' ) . " WHERE cat_id=$cat_id AND groupid>0" );
 	$result = $db->query( 'SELECT groupid FROM ' . $db->prefix( 'groups' ) );
-	while ( list( $gid ) = $db->fetchRow( $result ) ) {
+	while ( [$gid] = $db->fetchRow( $result ) ) {
 		if ( !empty( $_POST['can_read'][ $gid ] ) ) {
 			$perms = [];
 			foreach ( $pico_category_permissions as $perm_name ) {
@@ -110,7 +110,7 @@ if ( !empty( $_POST['user_update'] ) ) {
 				$uname    = $db->quoteString( @$_POST['new_unames'][ $i ] );
 				$uname    = substr( $uname, 1, - 1 );
 				$criteria = new Criteria( 'uname', $uname );
-				@list( $user ) = $member_handler->getUsers( $criteria );
+				@[$user] = $member_handler->getUsers( $criteria );
 			} else {
 				// add new user by uid
 				$user = &$member_handler->getUser( (int) $_POST['new_uids'][ $i ] );
@@ -173,7 +173,7 @@ foreach ( $groups as $group ) {
 $users4assign = [];
 $cprs         = $db->query( 'SELECT u.uid,u.uname,cp.permissions FROM ' . $db->prefix( $mydirname . '_category_permissions' ) . ' cp LEFT JOIN ' . $db->prefix( 'users' ) . " u ON cp.uid=u.uid WHERE cp.cat_id=$cat_permission_id AND cp.groupid IS NULL ORDER BY u.uid " );
 $user_trs     = '';
-while ( list( $uid, $uname, $serialized_upermissions ) = $db->fetchRow( $cprs ) ) {
+while ( [$uid, $uname, $serialized_upermissions] = $db->fetchRow( $cprs ) ) {
 
 	$uid          = (int) $uid;
 	$upermissions = pico_common_unserialize( $serialized_upermissions );

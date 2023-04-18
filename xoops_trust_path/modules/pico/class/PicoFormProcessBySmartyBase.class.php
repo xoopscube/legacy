@@ -13,7 +13,7 @@
 require_once XOOPS_TRUST_PATH . '/modules/pico/class/FormProcessByHtml.class.php';
 
 class PicoFormProcessBySmartyBase {
-	public $mypluginname;
+	public $mypluginname = 'base';
 	public $mydirname;
 	public $mod_url;
 	public $content4disp;
@@ -48,9 +48,9 @@ class PicoFormProcessBySmartyBase {
 //		return $this->__construct();
 //	}
 
-	public function __construct() {
-		$this->mypluginname = 'base';
-	}
+	public function __construct()
+ {
+ }
 
 	public function init( $params, $smarty ): void {
 		$this->mydirname     = $smarty->_tpl_vars['mydirname'];
@@ -182,7 +182,7 @@ class PicoFormProcessBySmartyBase {
 		// get captured form
 		if ( ! empty( $params['name'] ) && ! empty( $smarty->_smarty_vars['capture'][ $params['name'] ] ) ) {
 			$this->form_body = $smarty->_smarty_vars['capture'][ $params['name'] ];
-		} elseif ( count( $smarty->_smarty_vars['capture'] ) > 0 ) {
+		} elseif ( (is_countable($smarty->_smarty_vars['capture']) ? count( $smarty->_smarty_vars['capture'] ) : 0) > 0 ) {
 			$this->form_body = $smarty->_smarty_vars['capture']['default'];
 		} else {
 			echo '<em>confirm <{capture}><{/capture}> block exists before this tag</em>';

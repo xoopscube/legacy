@@ -131,7 +131,7 @@ function pico_import_from_smartsection( $mydirname, $import_mid ) {
 	$module_handler = &xoops_gethandler( 'module' );
 	$module         = &$module_handler->get( $import_mid );
 	$from_tables    = $module->getInfo( 'tables' );
-	if ( 5 != count( $from_tables ) ) {
+	if ( 5 != (is_countable($from_tables) ? count( $from_tables ) : 0) ) {
 		pico_import_errordie();
 	}
 	$target_dirname = $module->getVar( 'dirname' );

@@ -32,7 +32,8 @@ function b_pico_list_allowed_order() {
 }
 
 function b_pico_list_show( $options ) {
-	// options
+	$ret = [];
+ // options
 	$mytrustdirname = basename( dirname( __DIR__ ) );
 
 	$mydirname      = empty( $options[0] ) ? $mytrustdirname : $options[0];

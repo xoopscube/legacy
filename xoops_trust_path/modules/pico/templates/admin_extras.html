@@ -32,7 +32,7 @@
     </form>
 
     <div class="control-view">
-        <button class="help-admin button-icon" type="button" data-module="pico" data-help-article="#help-extra" aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
+        <button class="help-admin button-icon" type="button" data-module="pico" data-help-article="#help-extra" title="<{$smarty.const._HELP}>"><b>?</b></button>
     </div>
 
 </section>
@@ -49,7 +49,7 @@
             <th><{$smarty.const._MD_PICO_CREATED}></th>
             <th><{$smarty.const._MD_A_PICO_TH_TYPE}></th>
             <th><{$smarty.const._MD_A_PICO_TH_SUMMARY}></th>
-            <th><{$smarty.const._MD_A_PICO_TH_EXTRASACTIONS}>
+            <th class="action-control list_right"><{$smarty.const._MD_A_PICO_TH_EXTRASACTIONS}>
                 <input type="checkbox" onclick="with(document.extras){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_action_')>=0){elements[i].checked=this.checked;}}}">
             </th>
         </tr>
@@ -66,10 +66,10 @@
         </td>
         <td><{$extra.data_summary_short_raw|escape}></td>
         <td class="list_control">
-            <a class="action-view" href="<{$mod_url}>/admin/index.php?page=extras&amp;extra_id=<{$extra.id}>" aria-label="<{$smarty.const._MD_A_PICO_LINK_DETAIL}>"><i class="i-view"></i></a>
-            <a class="action-edit" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$extra.content_id}>" aria-label="<{$smarty.const._EDIT}> Form"><i class="i-edit"></i></a>
+            <a class="action-view" href="<{$mod_url}>/admin/index.php?page=extras&amp;extra_id=<{$extra.id}>" title="<{$smarty.const._MD_A_PICO_LINK_DETAIL}>"><i class="i-view"></i></a>
+            <a class="action-edit" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$extra.content_id}>" title="<{$smarty.const._EDIT}> Form"><i class="i-edit"></i></a>
 <!--            <a class="action-view" href="<{$mod_url}>/admin/index.php?page=extras&amp;content_id=<{$extra.content_id}>&amp;num=<{$num}>"><{$smarty.const._MD_A_PICO_LINK_EXTRACT}></a>-->
-            <a class="action-delete" href="<{$mod_url}>/admin/index.php?page=extras&amp;num=<{$num}>&amp;content_id=<{$extra.content_id}>" aria-label="<{$smarty.const._MD_A_PICO_LINK_EXTRACT}>"><i class="i-delete"></i></a>
+            <a class="action-delete" href="<{$mod_url}>/admin/index.php?page=extras&amp;num=<{$num}>&amp;content_id=<{$extra.content_id}>" title="<{$smarty.const._MD_A_PICO_LINK_EXTRACT}>"><i class="i-delete"></i></a>
             <input type="checkbox" name="action_selects[<{$extra.id}>]" id="col_action_<{$extra.id}>" value="1">
 
         </td>

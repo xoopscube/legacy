@@ -20,7 +20,8 @@ eval( 'function ' . $mydirname . '_notify_iteminfo( $category, $item_id ){ retur
 if ( ! function_exists( 'pico_notify_base' ) ) {
 
 	function pico_notify_base( $mydirname, $category, $item_id ) {
-		include_once __DIR__ . '/include/common_functions.php';
+		$item = [];
+  include_once __DIR__ . '/include/common_functions.php';
 
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
