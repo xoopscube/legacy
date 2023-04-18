@@ -67,12 +67,12 @@
 
     <{* ////— ACTION-CONTROL —\\\\ *}>
     <{capture name="controllers"}>
-    <div role="group" aria-label="Post actions">
+    <div role="group" title="Post actions">
 
         <{if $content.can_edit}>
             <a role="button"
                class="outline" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>"
-               aria-label="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>"
+               title="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>"
                data-tooltip="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>">
                 <img class="svg file-edit" src="<{$xoops_url}>/images/icons/file-edit.svg" width="1em" height="1em" alt="edit">
                 <span data-self="sm-hide"><{$smarty.const._MD_PICO_LINK_EDITCONTENT}></span></a>
@@ -80,7 +80,7 @@
 
         <{if $xoops_isadmin}>
         <a role="button" class="outline" href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>"
-           aria-label="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>"
+           title="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>"
            data-tooltip="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>">
                 <img class="svg batch" src="<{$xoops_url}>/images/icons/file-move.svg" width="1em" height="1em" alt="manage">
                 <span data-self="sm-hide"><{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}></span></a>
@@ -89,7 +89,7 @@
         <{if $mod_config.show_printicon}>
         <a role="button" class="outline"
            href="<{$mod_url}>/<{$content.link}><{if $mod_config.use_wraps_mode || $mod_config.use_rewrite}>?<{else}>&amp;<{/if}>page=print"
-           aria-label="<{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}>"
+           title="<{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}>"
            data-tooltip="<{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}>">
             <img class="svg print" src="<{$xoops_url}>/images/icons/print.svg" width="1em" height="1em" alt="print">
             <span data-self="sm-hide"><{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}></span></a>
@@ -100,7 +100,7 @@
            class="outline"
            href="<{$content.tellafriend_uri}>"
            target="_top"
-           aria-label="<{$smarty.const._MD_PICO_LINK_TELLAFRIEND}>"
+           title="<{$smarty.const._MD_PICO_LINK_TELLAFRIEND}>"
            data-tooltip="<{$smarty.const._MD_PICO_LINK_TELLAFRIEND}>">
             <img class="svg share" src="<{$xoops_url}>/images/icons/share.svg" width="1em" height="1em" alt="share">
 <!--                <img class="svg mail-send" src="<{$xoops_url}>/images/icons/mail-send.svg" width="1em" height="1em" alt="share"> -->
@@ -231,20 +231,20 @@
         <ul class="pagenavi">
         <{if !empty($prev_content.id)}>
             <li class="<{$smarty.const._ALIGN_START}>">
-            <a href="<{$mod_url}>/<{$prev_content.link}>" accesskey="P" aria-label="<{$smarty.const._MD_PICO_PREV}>">
+            <a href="<{$mod_url}>/<{$prev_content.link}>" accesskey="P" title="<{$smarty.const._MD_PICO_PREV}>">
                 <img class="svg arrow-left" src="<{$xoops_url}>/images/icons/arrow-left.svg" width="1em" height="1em" alt="previous">
                 <span><{$prev_content.subject}></span>
             </a>
             </li>
         <{/if}>
             <li>
-            <a href="<{$mod_url}>/<{$category.link}>" accesskey="T" aria-label="<{$smarty.const._MD_PICO_CATEGORYINDEX}>">
+            <a href="<{$mod_url}>/<{$category.link}>" accesskey="T" title="<{$smarty.const._MD_PICO_CATEGORYINDEX}>">
                 <img class="svg arrow-up" src="<{$xoops_url}>/images/icons/arrow-up.svg" width="1em" height="1em" alt="up">
                 <span data-self="sm-hide"><{$category.title}></span>
             </a>
             </li>
         <{if !empty($next_content.id)}>
-            <li class="<{$smarty.const._ALIGN_END}>"><a href="<{$mod_url}>/<{$next_content.link}>" accesskey="F" aria-label="<{$smarty.const._MD_PICO_NEXT}>">
+            <li class="<{$smarty.const._ALIGN_END}>"><a href="<{$mod_url}>/<{$next_content.link}>" accesskey="F" title="<{$smarty.const._MD_PICO_NEXT}>">
                 <span><{$next_content.subject}></span>
                 <img class="svg arrow-right" src="<{$xoops_url}>/images/icons/arrow-right.svg" width="1em" height="1em" alt="next">
             </a>

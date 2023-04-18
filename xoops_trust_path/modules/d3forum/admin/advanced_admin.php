@@ -55,7 +55,7 @@ if ( ! empty( $_POST['do_synctopics'] ) ) {
 
 	$topic_counter = 0;
 
-	while ( list( $topic_id ) = $db->fetchRow( $trs ) ) {
+	while ( [$topic_id] = $db->fetchRow( $trs ) ) {
 
 		$topic_counter ++;
 
@@ -64,10 +64,10 @@ if ( ! empty( $_POST['do_synctopics'] ) ) {
 		// sync posts from post_votes
 		$prs = $db->query( 'SELECT post_id FROM ' . $db->prefix( $mydirname . '_posts' ) . " WHERE topic_id=$topic_id" );
 
-		while ( list( $post_id ) = $db->fetchRow( $prs ) ) {
+		while ( [$post_id] = $db->fetchRow( $prs ) ) {
 			d3forum_sync_post_votes( $mydirname, $post_id, false );
 		}
-		d3forum_sync_topic_votes( $mydirname, $topic_id, false );
+		d3forum_sync_topic_votes( $mydirname, $topic_id );
 
 		d3forum_sync_topic( $mydirname, $topic_id, false );
 	}
@@ -88,7 +88,7 @@ if ( ! empty( $_POST['do_syncforums'] ) ) {
 	// sync all forums
 	$result = $db->query( 'SELECT forum_id FROM ' . $db->prefix( $mydirname . '_forums' ) );
 
-	while ( list( $forum_id ) = $db->fetchRow( $result ) ) {
+	while ( [$forum_id] = $db->fetchRow( $result ) ) {
 		d3forum_sync_forum( $mydirname, $forum_id, false );
 	}
 
@@ -107,7 +107,7 @@ if ( ! empty( $_POST['do_synccategories'] ) ) {
 	// sync all categories
 	$result = $db->query( 'SELECT cat_id FROM ' . $db->prefix( $mydirname . '_categories' ) . ' ORDER BY cat_order_in_tree DESC' );
 
-	while ( list( $cat_id ) = $db->fetchRow( $result ) ) {
+	while ( [$cat_id] = $db->fetchRow( $result ) ) {
 		d3forum_sync_category( $mydirname, $cat_id );
 	}
 

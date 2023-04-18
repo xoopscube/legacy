@@ -3,7 +3,7 @@
         <{foreach from=$pagenav item=nav_}>
         <{if $nav_.url}>
         <li class="page-item <{$nav_.class}>">
-            <a class="page-link" href="<{$nav_.url}>" aria-label="go to page <{$nav_.txt}>"><{$nav_.txt}></a>
+            <a class="page-link" href="<{$nav_.url}>" title="go to page <{$nav_.txt}>"><{$nav_.txt}></a>
         </li>
         <{else}>
         <li class="page-item active" aria-current="page">

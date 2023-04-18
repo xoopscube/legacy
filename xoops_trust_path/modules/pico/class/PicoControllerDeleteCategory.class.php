@@ -48,7 +48,7 @@ class PicoControllerDeleteCategory extends PicoControllerAbstract {
 		}
 
 		// children check
-		if ( count( $cat_data['redundants']['subcattree_raw'] ) > 0 ) {
+		if ( (is_countable($cat_data['redundants']['subcattree_raw']) ? count( $cat_data['redundants']['subcattree_raw'] ) : 0) > 0 ) {
 			// LANGTD
 			redirect_header( XOOPS_URL . '/', 2, 'child categories exist' );
 		}

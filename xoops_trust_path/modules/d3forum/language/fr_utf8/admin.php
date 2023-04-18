@@ -1,7 +1,7 @@
 <?php
 
 define( '_MD_A_MYMENU_MYTPLSADMIN' , 'Templates');
-define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Blocks Permissions');
+define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Gestion des Blocs');
 define( '_MD_A_MYMENU_MYPREFERENCES' , 'Préférences');
 
 // forum_access and category_access
@@ -20,8 +20,8 @@ define( '_MD_A_D3FORUM_TH_UID' , 'uid');
 define( '_MD_A_D3FORUM_TH_UNAME' , 'uname');
 define( '_MD_A_D3FORUM_TH_GROUPNAME' , 'groupname');
 define( '_MD_A_D3FORUM_NOTICE_ADDUSERS' , "Vous pouvez accorder ou refuser des autorisations à des utilisateurs spécifiques.<br>Ajoutez le <b>uid</b> ou <b>uname</b> de l'utilisateur, puis attribuez des autorisations.");
-define( '_MD_A_D3FORUM_ERR_CREATECATEGORYFIRST' , 'Créez premièrement une Catégorie');
-define( '_MD_A_D3FORUM_ERR_CREATEFORUMFIRST' , 'Créez premièrement un Forum');
+define( '_MD_A_D3FORUM_ERR_CREATECATEGORYFIRST' , 'Commencez par créer une Catégorie');
+define( '_MD_A_D3FORUM_ERR_CREATEFORUMFIRST' , 'Commencez par créer un Forum');
 
 // advanced
 define( '_MD_A_D3FORUM_H2_SYNCALLTABLES' , 'Synchronisez les informations superflues');
@@ -45,5 +45,5 @@ define( '_MD_A_D3FORUM_HELP_IMPORTFROM' , 'Vous pouvez importer de newbb1, xhnew
 define( '_MD_A_D3FORUM_HELP_COMIMPORTFROM' , 'Les commentaires de XOOPS seront importés comme des contributions de d3forum. En outre vous devez permettre au dispositif d\'intégration-commentaires de les employer, en modifiant les modéles (templates) et les préférences etc...)');
 
 // post_histories
-define( '_MD_A_D3FORUM_H2_POSTHISTORIES' , 'Historique de l\'édition/suppression de messages');
+define( '_MD_A_D3FORUM_H2_POSTHISTORIES' , 'Historique de modifications des messages');
 define( '_MD_A_D3FORUM_LINK_REFERDELETED' , 'Supprimé');

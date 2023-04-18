@@ -45,7 +45,7 @@ $js_accordion = <<<EOD
 EOD;
 
 // ui-card-full
-echo "<div class='ui-card-full'>\n";
+echo "<div>\n";
 
 // Title
 echo '<h2><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="1em" height="1em" viewBox="0 0 32 32">
@@ -108,12 +108,12 @@ echo "<h4><input class='switch' type='checkbox' name='server-software-info' oncl
 echo '<div class="server-software" style="display:none">
     <div class="tips">'. _AM_ADV_APACHE .' <code>$_SERVER["SERVER_SOFTWARE"]</code></div>'
      .'<table class="outer">
-    <tr><td style="width:25%">'. _AM_ADV_SERVER .'</td><td><strong>' . $_SERVER['SERVER_SOFTWARE'] . '</strong> <code aria-label="php sapi name">' . php_sapi_name() . '</code>
-    <code aria-label="GATEWAY_INTERFACE">' . $_SERVER['GATEWAY_INTERFACE'] . '</code>
-    <code aria-label="SERVER_PROTOCOL">' . $_SERVER['SERVER_PROTOCOL'] . '</code>
-    <strong>Protocol:</strong><code aria-label="Protocol http or https">' . $protocol . '</code></td></tr>
+    <tr><td style="width:25%">'. _AM_ADV_SERVER .'</td><td><strong>' . $_SERVER['SERVER_SOFTWARE'] . '</strong> <code title="php sapi name">' . php_sapi_name() . '</code>
+    <code title="GATEWAY_INTERFACE">' . $_SERVER['GATEWAY_INTERFACE'] . '</code>
+    <code title="SERVER_PROTOCOL">' . $_SERVER['SERVER_PROTOCOL'] . '</code>
+    <strong>Protocol:</strong><code title="Protocol http or https">' . $protocol . '</code></td></tr>
     <tr><td>Server Address : <b>' . $_SERVER['SERVER_ADDR'] . '</b></td><td>Server Name : <b>' . $_SERVER['SERVER_NAME'] . '</b></td></tr>
-    <tr><td>HTTP_ACCEPT</td><td><pre><code>' . $_SERVER['HTTP_ACCEPT'] . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . '</code> <code aria-label="HTTP_ACCEPT_ENCODING">' . $_SERVER['HTTP_ACCEPT_ENCODING'] . '</code></pre></td></tr>
+    <tr><td>HTTP_ACCEPT</td><td><pre><code>' . $_SERVER['HTTP_ACCEPT'] . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . '</code> <code title="HTTP_ACCEPT_ENCODING">' . $_SERVER['HTTP_ACCEPT_ENCODING'] . '</code></pre></td></tr>
     <tr><td>DOCUMENT_ROOT</td><td><pre>' . $_SERVER['DOCUMENT_ROOT'] . '</pre></td></tr>
     <tr><td>SCRIPT_FILENAME</td><td><pre>' . $_SERVER['SCRIPT_FILENAME'] . '</pre></td></tr>
     <tr><td>PHP SELF</td><td><pre>' . $_SERVER['PHP_SELF'] . '</pre></td></tr>
@@ -123,7 +123,6 @@ echo '<div class="server-software" style="display:none">
 // TODO : Modal loading echo phpinfo();
 // echo '<h4>PHP Modules</h4>';
 // echo '<div style="border:4px solid #ccc; display:block; width:400px; height:height: calc(100vh - 400px); overflow-y: auto">'. phpinfo(INFO_MODULES).'</div>';
-
 
 
 // CHECK mainfile.php
@@ -155,7 +154,7 @@ echo "<div class='confirm'>
     Public check [ link ] : <a href='" . XOOPS_URL . '/' . htmlspecialchars( $relative_path ) . "/modules/protector/public_check.php' target='_blank'>" . _AM_ADV_TRUSTPATH_PUBLIC_LINK . "</a>
     </div>";
 
-echo '<div class="accordion" id="trust_path" data-layout="column" data-self="size-1of2 sm-full">
+echo '<div class="accordion" id="trust_path" data-layout="column" data-self="size-x1 sm-full">
     <h3>' . _AM_TH_INFO . '</h3>
     <div>' . _AM_ADV_TRUSTPATH_PUBLIC . '</div>
     <h3>' . _AM_TH_DESC . '</h3>
@@ -175,7 +174,7 @@ if ( $safe ) {
 } else {
 	echo '<div class="error">[ on ] &nbsp; <span style="color:red;font-weight:bold;">' . _AM_ADV_NOTSECURE . '</span></div>';
 
-echo '<div class="accordion" id="fopen" data-layout="column" data-self="size-1of2 sm-full">
+echo '<div class="accordion" id="fopen" data-layout="column" data-self="size-x1 sm-full">
     <h3>' . _AM_TH_INFO . '</h3>
     <div>' . _AM_ADV_FOPEN_ON . '</div>
     <h3>' . _AM_TH_DESC . '</h3>
@@ -197,7 +196,7 @@ if ( $safe ) {
 } else {
 	echo '<div class="error">[ on ] &nbsp; <span style="color:red;font-weight:bold;">' . _AM_ADV_NOTSECURE . '</span></div>';
 
-    echo '<div class="accordion" id="sid" data-layout="column" data-self="size-1of2 sm-full">
+    echo '<div class="accordion" id="sid" data-layout="column" data-self="size-x1 sm-full">
     <h3>' . _AM_TH_INFO . '</h3>
     <div>' . _AM_ADV_SESSION_ON . '</div>
     <h3>' . _AM_TH_DESC . '</h3>
@@ -218,7 +217,7 @@ if ( $safe ) {
 } else {
 	echo '<div class="error">[ ' . XOOPS_DB_PREFIX . ' ] &nbsp; <span style="color:red;font-weight:bold;">' . _AM_ADV_NOTSECURE . '</span></div>';
 
-    echo '<div class="accordion" id="prefix" data-layout="column" data-self="size-1of2 sm-full">
+    echo '<div class="accordion" id="prefix" data-layout="column" data-self="size-x1 sm-full">
     <h3>' . _AM_TH_INFO . '</h3>
     <div>' . _AM_ADV_DBPREFIX_ON . '</div>
     <h3>' . _AM_TH_DESC . '</h3>
@@ -238,7 +237,7 @@ $db =& Database::getInstance();
 if ( 'protectormysqldatabase' != strtolower( get_class( $db ) ) ) {
 	echo '<div class="error"><span style="color:red;font-weight:bold;">' . _AM_ADV_DBFACTORYUNPATCHED . '</span></div>';
 
-    echo '<div class="accordion" id="db" data-layout="column" data-self="size-1of2 sm-full">
+    echo '<div class="accordion" id="db" data-layout="column" data-self="size-x1 sm-full">
     <h3>' . _AM_TH_INFO . '</h3>
     <div>' . _AM_ADV_DBFACTORY_ON . '</div>
     <h3>' . _AM_TH_DESC . '</h3>

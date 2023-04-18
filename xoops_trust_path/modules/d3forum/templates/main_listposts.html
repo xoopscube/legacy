@@ -110,7 +110,7 @@
     <{/if}>
 
     <{if ($eachpost.topic_id==$topic.id)}>
-        <a href="#post_id<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" aria-label="post_path<{$eachpost.unique_path}>">
+        <a href="#post_id<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" title="post_path<{$eachpost.unique_path}>">
             <img class="svg <{$icon_meanings[$eachpost.icon]}>" src="<{$xoops_url}>/images/icons/posticon<{$eachpost.icon}>.svg" width="1em" alt="<{$icon_meanings[$eachpost.icon]}>">
             <{$eachpost.subject|truncate:44:'...'}>
         </a> <{$eachpost.poster_uname}>, <span class="badge"><{$eachpost.post_time_formatted}></span>

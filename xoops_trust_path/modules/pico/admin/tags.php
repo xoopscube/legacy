@@ -24,7 +24,7 @@ $myts = &PicoTextSanitizer::sGetInstance();
 
 $db = XoopsDatabaseFactory::getDatabaseConnection();
 
-$allowed_orders = array( 'count ASC', 'count DESC', 'weight ASC', 'weight DESC', 'label ASC', 'label DESC' );
+$allowed_orders = ['count ASC', 'count DESC', 'weight ASC', 'weight DESC', 'label ASC', 'label DESC'];
 
 //
 // transaction stage
@@ -49,7 +49,7 @@ if ( ! empty( $_POST['tags_update'] ) ) {
 			$old_label4sql = $db->quoteString( $old_label );
 			$old_label4sql = substr( $old_label4sql, 1, - 1 );
 			$result        = $db->query( "SELECT content_id,tags FROM " . $db->prefix( $mydirname . "_contents WHERE tags LIKE '%" . $old_label4sql . "%'" ) );
-			while ( list( $content_id, $tags ) = $db->fetchRow( $result ) ) {
+			while ( [$content_id, $tags] = $db->fetchRow( $result ) ) {
 				$tags_array = array_flip( explode( ' ', $tags ) );
 				if ( isset( $tags_array[ $old_label ] ) ) {
 					$tags_array[ $new_label ] = $tags_array[ $old_label ];
@@ -84,7 +84,7 @@ if ( ! empty( $_POST['tags_delete'] ) && ! empty( $_POST['action_selects'] ) ) {
 
 		// update tags field in contents table
 		$result = $db->query( "SELECT content_id,tags FROM " . $db->prefix( $mydirname . "_contents WHERE tags LIKE '%" . $label4sql . "%'" ) );
-		while ( list( $content_id, $tags ) = $db->fetchRow( $result ) ) {
+		while ( [$content_id, $tags] = $db->fetchRow( $result ) ) {
 			$tags_array = array_flip( explode( ' ', $tags ) );
 			if ( isset( $tags_array[ $label ] ) ) {
 				unset( $tags_array[ $label ] );
@@ -152,19 +152,19 @@ include __DIR__ . '/mymenu.php';
 
 $tpl = new XoopsTpl();
 
-$tpl->assign( array(
-	'mydirname'      => $mydirname,
-	'mod_name'       => $xoopsModule->getVar( 'name' ),
-	'mod_url'        => XOOPS_URL . '/modules/' . $mydirname,
-	'mod_imageurl'   => XOOPS_URL . '/modules/' . $mydirname . '/' . $xoopsModuleConfig['images_dir'],
-	'mod_config'     => $xoopsModuleConfig,
-	'tags'           => $tags4assign,
-	'num'            => $num,
-	'order'          => $order,
-	'allowed_orders' => $allowed_orders,
-	'pagenav'        => $pagenav,
-	'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__, 1800, 'pico_admin' ),
-) );
+$tpl->assign( [
+'mydirname'      => $mydirname, 
+'mod_name'       => $xoopsModule->getVar( 'name' ), 
+'mod_url'        => XOOPS_URL . '/modules/' . $mydirname, 
+'mod_imageurl'   => XOOPS_URL . '/modules/' . $mydirname . '/' . $xoopsModuleConfig['images_dir'], 
+'mod_config'     => $xoopsModuleConfig, 
+'tags'           => $tags4assign, 
+'num'            => $num, 
+'order'          => $order, 
+'allowed_orders' => $allowed_orders, 
+'pagenav'        => $pagenav, 
+'gticket_hidden' => $xoopsGTicket->getTicketHtml( __LINE__, 1800, 'pico_admin' )
+] );
 
 $tpl->display( 'db:' . $mydirname . '_admin_tags.html' );
 

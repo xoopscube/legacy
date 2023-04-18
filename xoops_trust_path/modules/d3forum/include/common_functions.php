@@ -12,7 +12,9 @@
  */
 
 function d3forum_get_forums_can_read( $mydirname ) {
-	global $xoopsUser;
+	$cat_ids = [];
+ $forums = [];
+ global $xoopsUser;
 
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -40,7 +42,7 @@ function d3forum_get_forums_can_read( $mydirname ) {
 	$result = $db->query( $sql );
 
 	if ( $result ) {
-		while ( list( $cat_id ) = $db->fetchRow( $result ) ) {
+		while ( [$cat_id] = $db->fetchRow( $result ) ) {
 			$cat_ids[] = (int) $cat_id;
 		}
 	}
@@ -55,7 +57,7 @@ function d3forum_get_forums_can_read( $mydirname ) {
 	$result = $db->query( $sql );
 
 	if ( $result ) {
-		while ( list( $forum_id ) = $db->fetchRow( $result ) ) {
+		while ( [$forum_id] = $db->fetchRow( $result ) ) {
 			$forums[] = (int) $forum_id;
 		}
 	}
@@ -69,7 +71,8 @@ function d3forum_get_forums_can_read( $mydirname ) {
 
 
 function d3forum_get_categories_can_read( $mydirname ) {
-	global $xoopsUser;
+	$cat_ids = [];
+ global $xoopsUser;
 
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -91,7 +94,7 @@ function d3forum_get_categories_can_read( $mydirname ) {
 	$result = $db->query( $sql );
 
 	if ( $result ) {
-		while ( list( $cat_id ) = $db->fetchRow( $result ) ) {
+		while ( [$cat_id] = $db->fetchRow( $result ) ) {
 			$cat_ids[] = (int) $cat_id;
 		}
 	}
@@ -105,7 +108,8 @@ function d3forum_get_categories_can_read( $mydirname ) {
 
 
 function d3forum_get_submenu( $mydirname ) {
-	static $submenus_cache;
+	$myts = null;
+ static $submenus_cache;
 
 	if ( ! empty( $submenus_cache[ $mydirname ] ) ) {
 		return $submenus_cache[ $mydirname ];
@@ -194,7 +198,7 @@ function d3forum_common_is_necessary_antispam( $user, $mod_config ) {
 	if ( ! is_object( $user ) ) {
 		return true;
 	}
-	if ( count( array_intersect( $mod_config['antispam_groups'], $belong_groups ) ) === count( $belong_groups ) ) {
+	if ( count( array_intersect( $mod_config['antispam_groups'], $belong_groups ) ) === (is_countable($belong_groups) ? count( $belong_groups ) : 0) ) {
 		return true;
 	}
 
@@ -203,7 +207,8 @@ function d3forum_common_is_necessary_antispam( $user, $mod_config ) {
 
 
 function &d3forum_common_get_antispam_object( $mod_config ) {
-	require_once dirname( __DIR__ ) . '/class/D3forumAntispamDefault.class.php';
+	$antispam_obj = null;
+ require_once dirname( __DIR__ ) . '/class/D3forumAntispamDefault.class.php';
 
 	$class_name = 'D3forumAntispam' . ucfirst( trim( $mod_config['antispam_class'] ) );
 

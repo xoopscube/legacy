@@ -68,7 +68,9 @@ class Text_Diff_Renderer {
 	 * @return string  The formatted output.
 	 */
 	public function render( $diff ) {
-		$xi      = $yi = 1;
+		$x0 = null;
+  $y0 = null;
+  $xi      = $yi = 1;
 		$block   = false;
 		$context = [];
 
@@ -80,7 +82,7 @@ class Text_Diff_Renderer {
 		foreach ( $diff->getDiff() as $edit ) {
 			if ( is_a( $edit, 'Text_Diff_Op_copy' ) ) {
 				if ( is_array( $block ) ) {
-					if ( count( $edit->orig ) <= $nlead + $ntrail ) {
+					if ( (is_countable($edit->orig) ? count( $edit->orig ) : 0) <= $nlead + $ntrail ) {
 						$block[] = $edit;
 					} else {
 						if ( $ntrail ) {
@@ -96,7 +98,7 @@ class Text_Diff_Renderer {
 				$context = $edit->orig;
 			} else {
 				if ( ! is_array( $block ) ) {
-					$context = array_slice( $context, count( $context ) - $nlead );
+					$context = array_slice( $context, (is_countable($context) ? count( $context ) : 0) - $nlead );
 					$x0      = $xi - count( $context );
 					$y0      = $yi - count( $context );
 					$block   = [];
@@ -108,10 +110,10 @@ class Text_Diff_Renderer {
 			}
 
 			if ( $edit->orig ) {
-				$xi += count( $edit->orig );
+				$xi += is_countable($edit->orig) ? count( $edit->orig ) : 0;
 			}
 			if ( $edit->final ) {
-				$yi += count( $edit->final );
+				$yi += is_countable($edit->final) ? count( $edit->final ) : 0;
 			}
 		}
 

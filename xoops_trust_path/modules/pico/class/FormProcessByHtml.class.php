@@ -232,12 +232,12 @@ class FormProcessByHtml {
 		$query    = file_get_contents( 'php://input' );
 		$key_vals = explode( '&', $query );
 		foreach ( $key_vals as $key_val ) {
-			@list( $key, $val ) = array_map( 'urldecode', explode( '=', $key_val ) );
+			@[$key, $val] = array_map( 'urldecode', explode( '=', $key_val ) );
 			if ( $input_encoding ) {
 				$key = $this->convertEncodingToIE( $key, $input_encoding );
 				$val = $this->convertEncodingToIE( $val, $input_encoding );
 			}
-			@list( $key_pref, ) = explode( '[', $key );
+			@[$key_pref, ] = explode( '[', $key );
 			if ( $key_pref !== $key ) {
 				// don't parse explicit array with []
 				$ret[ $key_pref ] = $this->stripMQGPC( @$_POST[ $key_pref ] );

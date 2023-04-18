@@ -12,7 +12,7 @@
         </dt>
         <dd><ul>
         <{foreach item=content from=$category.contents}>
-            <li><a href="<{$block.mod_url}>/<{$content.link}>" aria-label="<{$block.lang_lastupdated}>:<{$content.created_time_formatted}>"><{$content.subject}></a></li>
+            <li><a href="<{$block.mod_url}>/<{$content.link}>" title="<{$block.lang_lastupdated}>:<{$content.created_time_formatted}>"><{$content.subject}></a></li>
         <{/foreach}>
         </ul></dd>
     </dl>

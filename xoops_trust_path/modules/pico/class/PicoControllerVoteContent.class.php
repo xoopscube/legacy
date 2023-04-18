@@ -31,7 +31,9 @@ class PicoControllerVoteContent extends PicoControllerAbstract {
 	public $contentObj;
 
 	public function execute( $request ) {
-		parent::execute( $request );
+		$mydirname = null;
+  $content4assign = null;
+  parent::execute( $request );
 
 		$this->contentObj = new PicoContent( $this->mydirname, $request['content_id'], $this->currentCategoryObj );
 

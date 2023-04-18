@@ -39,7 +39,7 @@ class PicoContentHandler {
 
 		$ret = [];
 		//for php5.3+
-		while ( list( $content_id ) = $db->fetchRow( $ors ) ) {
+		while ( [$content_id] = $db->fetchRow( $ors ) ) {
 			$objTemp = new PicoContent( $this->mydirname, $content_id, $categoryObj );
 			if ( $return_prohibited_also || $objTemp->data['can_read'] ) {
 				$ret[ $content_id ] = $objTemp;
@@ -70,7 +70,7 @@ class PicoContentHandler {
 
 		$ret = [];
 		//for php5.3+
-		while ( list( $content_id ) = $db->fetchRow( $result ) ) {
+		while ( [$content_id] = $db->fetchRow( $result ) ) {
 			$objTemp            = new PicoContent( $this->mydirname, $content_id );
 			$ret[ $content_id ] = $objTemp;
 			//if( $objTemp->data['can_read'] ) $ret[ $content_id ] =& $objTemp ;
@@ -93,7 +93,7 @@ class PicoContentHandler {
 
 		$ret     = [];
 		$waiting = $offset;
-		while ( list( $content_id ) = $db->fetchRow( $ors ) ) {
+		while ( [$content_id] = $db->fetchRow( $ors ) ) {
 			if ( count( $ret ) >= $limit ) {
 				break;
 			}
@@ -114,7 +114,7 @@ class PicoContentHandler {
 
 		$result = $db->query( 'SELECT content_id,vpath FROM ' . $db->prefix( $this->mydirname . '_contents' ) . " WHERE cat_id=$cat_id AND vpath IS NOT NULL AND poster_uid=0" );
 		$ret    = [];
-		while ( list( $content_id, $vpath ) = $db->fetchRow( $result ) ) {
+		while ( [$content_id, $vpath] = $db->fetchRow( $result ) ) {
 			$ret[ $content_id ] = $vpath;
 		}
 
@@ -369,7 +369,7 @@ class PicoContent {
 	public function &getPrevContent() {
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-		list( $prev_content_id ) = $db->fetchRow(
+		[$prev_content_id] = $db->fetchRow(
 			$db->query(
 				'SELECT content_id FROM '
 				. $db->prefix( $this->mydirname . '_contents' )
@@ -394,7 +394,7 @@ class PicoContent {
 	public function &getNextContent() {
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
-		list( $next_content_id ) = $db->fetchRow(
+		[$next_content_id] = $db->fetchRow(
 			$db->query(
 				'SELECT content_id FROM '
 				. $db->prefix( $this->mydirname . '_contents' )

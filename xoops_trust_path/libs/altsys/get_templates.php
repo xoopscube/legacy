@@ -59,7 +59,7 @@ if ( $xoopsDB->getRowsNum( $trs ) <= 0 ) {
 	die( _TPLSADMIN_ERR_INVALIDTPLSET );
 }
 
-while ( list( $tpl_file, $tpl_source, $tpl_lastmodified ) = $xoopsDB->fetchRow( $trs ) ) {
+while ( [$tpl_file, $tpl_source, $tpl_lastmodified] = $xoopsDB->fetchRow( $trs ) ) {
 	$downloader->addFileData( $tpl_source, $tplset . '/' . $tpl_file, $tpl_lastmodified );
 }
 //bugfix by nao-pon ,echo is not necessary for downloader

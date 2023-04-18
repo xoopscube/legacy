@@ -139,7 +139,7 @@
 
 <{foreach item=content from=$category.contents}>
     <p class="flex-justify">
-    <a href="<{$mod_url}>/<{$content.link}>" aria-label="<{$smarty.const._MD_PICO_CREATED}>:<{$content.created_time_formatted}>">
+    <a href="<{$mod_url}>/<{$content.link}>" title="<{$smarty.const._MD_PICO_CREATED}>:<{$content.created_time_formatted}>">
         <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file"> <{$content.subject}>
     </a>
 

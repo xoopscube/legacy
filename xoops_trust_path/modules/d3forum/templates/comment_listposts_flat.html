@@ -9,13 +9,13 @@
 <{include file="db:`$mydirname`_inc_pagination.html"}>
 <{/if}>
 <{* if $pagenav  } >
-<nav class="pagination" aria-label="pagination">
+<nav class="pagination" title="pagination">
     <ul class="pagenavi>">
         <li>pagenavi</li>
         <{foreach from=$pagenav item=nav_}>
         <{if $nav_.url}>
         <li class="page-item <{$nav_.class}>">
-            <a class="page-link" href="<{$nav_.url}>" aria-label="go to page <{$nav_.txt}>"><{$nav_.txt}></a>
+            <a class="page-link" href="<{$nav_.url}>" title="go to page <{$nav_.txt}>"><{$nav_.txt}></a>
         </li>
         <{else}>
         <li class="page-item active" aria-current="page">
@@ -169,10 +169,10 @@
         </h4>
         <p>
         <{if $post.guest_url}>
-            <a href="<{$post.guest_url}>" aria-label="<{$post.guest_url}>"><{$smarty.const._MD_D3FORUM_TH_GUESTURL}></a>
+            <a href="<{$post.guest_url}>" title="<{$post.guest_url}>"><{$smarty.const._MD_D3FORUM_TH_GUESTURL}></a>
         <{/if}>
         <{if $post.poster_uid !=0}>
-        <a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>" aria-label="<{$post.poster_uname}>">
+        <a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>" title="<{$post.poster_uname}>">
         <{if $post.poster_avatar}>
             <{if $post.poster_avatar.height > 48}>
                 <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="24" height="24" alt="<{$post.poster_uname}>" data-self="radius-circle">
@@ -218,7 +218,7 @@
                 data-toggle="popover"
                 data-html="true"
                 data-placement="top"
-                aria-label="<{$smarty.const._MD_D3FORUM_HISTORIES}>"
+                title="<{$smarty.const._MD_D3FORUM_HISTORIES}>"
                 data-content="
             <a href='<{$mod_url}>/admin/index.php?page=post_histories&amp;post_id=<{$post.id}>'}>
             <{$smarty.const._MD_D3FORUM_LASTMODIFIED}><br><{$post.modified_time_formatted}></a>">
@@ -262,7 +262,7 @@
                     <{foreach from=$pagenav item=nav_}>
                         <{if $nav_.url}>
                         <li class="page-item <{$nav_.class}>">
-                            <a class="page-link" href="<{$nav_.url}>" aria-label="go to page <{$nav_.txt}>"><{$nav_.txt}></a>
+                            <a class="page-link" href="<{$nav_.url}>" title="go to page <{$nav_.txt}>"><{$nav_.txt}></a>
                         </li>
                         <{else}>
                         <li class="page-item active" aria-current="page">

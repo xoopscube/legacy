@@ -50,7 +50,7 @@ function d3forum_delete_post_recursive( $mydirname, $post_id ) {
 		die( 'DB ERROR in delete posts' );
 	}
 
-	while ( list( $child_post_id ) = $db->fetchRow( $result ) ) {
+	while ( [$child_post_id] = $db->fetchRow( $result ) ) {
 		d3forum_delete_post_recursive( $mydirname, $child_post_id );
 	}
 
@@ -88,7 +88,7 @@ function d3forum_delete_topic( $mydirname, $topic_id, $delete_also_posts = true 
 			die( _MD_D3FORUM_ERR_SQL . __LINE__ );
 		}
 
-		while ( list( $post_id ) = $db->fetchRow( $result ) ) {
+		while ( [$post_id] = $db->fetchRow( $result ) ) {
 			d3forum_delete_post_recursive( $mydirname, $post_id );
 		}
 	}
@@ -127,7 +127,7 @@ function d3forum_delete_forum( $mydirname, $forum_id, $delete_also_topics = true
 			die( _MD_D3FORUM_ERR_SQL . __LINE__ );
 		}
 
-		while ( list( $topic_id ) = $db->fetchRow( $result ) ) {
+		while ( [$topic_id] = $db->fetchRow( $result ) ) {
 			d3forum_delete_topic( $mydirname, $topic_id );
 		}
 	}
@@ -166,7 +166,7 @@ function d3forum_delete_category( $mydirname, $cat_id, $delete_also_forums = tru
 			die( _MD_D3FORUM_ERR_SQL . __LINE__ );
 		}
 
-		while ( list( $forum_id ) = $db->fetchRow( $result ) ) {
+		while ( [$forum_id] = $db->fetchRow( $result ) ) {
 			d3forum_delete_forum( $mydirname, $forum_id );
 		}
 	}
@@ -302,7 +302,7 @@ function d3forum_makecattree_recursive( $tablename, $cat_id, $order = 'cat_weigh
 	if ( 0 === $db->getRowsNum( $result ) ) {
 		return $parray;
 	}
-	while ( list( $new_cat_id, $new_cat_title ) = $db->fetchRow( $result ) ) {
+	while ( [$new_cat_id, $new_cat_title] = $db->fetchRow( $result ) ) {
 		$parray = d3forum_makecattree_recursive( $tablename, $new_cat_id, $order, $parray, $depth + 1, $new_cat_title );
 	}
 
@@ -504,7 +504,7 @@ function d3forum_maketree_recursive( $tablename, $post_id, $order = 'post_id', $
 
 	$max_count_of_last_level = 0;
 
-	while ( list( $new_post_id, $new_unique_path ) = $db->fetchRow( $result ) ) {
+	while ( [$new_post_id, $new_unique_path] = $db->fetchRow( $result ) ) {
 
 		$new_post_ids[ (int) $new_post_id ] = $new_unique_path;
 
@@ -978,7 +978,7 @@ function d3forum_transact_turnsolvedon_in_category( $mydirname, $cat_id ) {
 
 	$result = $db->query( $sql );
 
-	while ( list( $forum_id ) = $db->fetchRow( $result ) ) {
+	while ( [$forum_id] = $db->fetchRow( $result ) ) {
 		d3forum_transact_turnsolvedon_in_forum( $mydirname, $forum_id );
 	}
 }

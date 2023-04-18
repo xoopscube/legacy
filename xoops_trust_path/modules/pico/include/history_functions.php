@@ -59,7 +59,8 @@ function pico_get_content_history_profile( $mydirname, $content_history_id, $con
 
 // get content_histories for form
 function pico_get_content_histories4assign( $mydirname, $content_id ) {
-	$db = XoopsDatabaseFactory::getDatabaseConnection();
+	$myts = null;
+ $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = &MyTextSanitizer::sGetInstance() ) || $myts = &MyTextSanitizer::getInstance();
 

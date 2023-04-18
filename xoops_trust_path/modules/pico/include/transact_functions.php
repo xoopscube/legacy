@@ -52,7 +52,7 @@ function pico_delete_category( $mydirname, $cat_id, $delete_also_contents = true
 		if ( ! $result = $db->query( $sql ) ) {
 			die( _MD_PICO_ERR_SQL . __LINE__ );
 		}
-		while ( list( $content_id ) = $db->fetchRow( $result ) ) {
+		while ( [$content_id] = $db->fetchRow( $result ) ) {
 			pico_delete_content( $mydirname, $content_id );
 		}
 	}
@@ -151,7 +151,7 @@ function pico_makecattree_recursive( $mydirname, $cat_id, $order = 'cat_weight',
 		return array( $parray , $parray[ $myindex ]['contents_total'] , $parray[ $myindex ]['subcategories_total'] ) ;
 	} */
 
-	$myindex = count( $parray );
+	$myindex = is_countable($parray) ? count( $parray ) : 0;
 
 	$myarray = [
 		'cat_id'               => $cat_id,
@@ -172,7 +172,7 @@ function pico_makecattree_recursive( $mydirname, $cat_id, $order = 'cat_weight',
 
 	$subcategories_total = (int) $myarray['subcategories_count'];
 
-	while ( list( $new_cat_id, $new_cat_title ) = $db->fetchRow( $result ) ) {
+	while ( [$new_cat_id, $new_cat_title] = $db->fetchRow( $result ) ) {
 		[
 			$parray,
 			$subarray,
@@ -243,14 +243,14 @@ function pico_sync_tags( $mydirname ) {
 
 	$result = $db->query( 'SELECT label FROM ' . $db->prefix( $mydirname . '_tags' ) );
 
-	while ( list( $label ) = $db->fetchRow( $result ) ) {
+	while ( [$label] = $db->fetchRow( $result ) ) {
 		$all_tags_array[ $label ] = [];
 	}
 
 	// count tags from contents table
 	$result = $db->query( 'SELECT content_id,tags FROM ' . $db->prefix( $mydirname . '_contents' ) );
 
-	while ( list( $content_id, $tags ) = $db->fetchRow( $result ) ) {
+	while ( [$content_id, $tags] = $db->fetchRow( $result ) ) {
 		foreach ( explode( ' ', $tags ) as $tag ) {
 			if ( '' == trim( $tag ) ) {
 				continue;
@@ -302,7 +302,7 @@ function pico_sync_all( $mydirname ) {
 	// sync contents <- content_votes
 	$result = $db->query( 'SELECT content_id FROM ' . $db->prefix( $mydirname . '_contents' ) );
 
-	while ( list( $content_id ) = $db->fetchRow( $result ) ) {
+	while ( [$content_id] = $db->fetchRow( $result ) ) {
 		pico_sync_content_votes( $mydirname, (int) $content_id );
 		//pico_sync_content( $mydirname , intval( $content_id ) ) ;
 	}
@@ -323,7 +323,7 @@ function pico_sync_all( $mydirname ) {
 
 			$result = $db->query( 'SELECT topic_external_link_id,COUNT(*) FROM ' . $db->prefix( $target_dirname . '_topics' ) . " WHERE topic_external_link_id>0 AND forum_id=$forum_id AND ! topic_invisible GROUP BY topic_external_link_id" );
 
-			while ( list( $content_id, $comments_count ) = $db->fetchRow( $result ) ) {
+			while ( [$content_id, $comments_count] = $db->fetchRow( $result ) ) {
 				$db->queryF( 'UPDATE ' . $db->prefix( $mydirname . '_contents' ) . " SET comments_count=$comments_count WHERE content_id=$content_id" );
 			}
 		}
@@ -351,7 +351,7 @@ function pico_convert_serialized_data( $mydirname ) {
 	$result = $db->query( $sql );
 
 	if ( $db->getRowsNum( $result ) > 0 ) {
-		while ( list( $id, $data ) = $db->fetchRow( $result ) ) {
+		while ( [$id, $data] = $db->fetchRow( $result ) ) {
 			$data4sql = $db->quoteString( pico_common_serialize( pico_common_unserialize( $data ) ) );
 			$db->queryF( 'UPDATE ' . $db->prefix( $mydirname . '_content_extras' ) . " SET data=$data4sql WHERE content_extra_id=$id" );
 		}
@@ -363,7 +363,7 @@ function pico_convert_serialized_data( $mydirname ) {
 	$result = $db->query( $sql );
 
 	if ( $db->getRowsNum( $result ) > 0 ) {
-		while ( list( $id, $data ) = $db->fetchRow( $result ) ) {
+		while ( [$id, $data] = $db->fetchRow( $result ) ) {
 			$data4sql = $db->quoteString( pico_common_serialize( pico_common_unserialize( $data ) ) );
 			$db->queryF( 'UPDATE ' . $db->prefix( $mydirname . '_contents' ) . " SET extra_fields=$data4sql WHERE content_id=$id" );
 		}
@@ -372,7 +372,8 @@ function pico_convert_serialized_data( $mydirname ) {
 
 // get requests for category's sql (parse options)
 function pico_get_requests4category( $mydirname, $cat_id = null ) {
-	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = &MyTextSanitizer::sGetInstance() ) || $myts = &MyTextSanitizer::getInstance();
+	$myts = null;
+ ( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = &MyTextSanitizer::sGetInstance() ) || $myts = &MyTextSanitizer::getInstance();
 
 	$db = XoopsDatabaseFactory::getDatabaseConnection();
 
@@ -520,7 +521,8 @@ function pico_updatecategory( $mydirname, $cat_id ) {
 
 // get requests for content's sql (parse options)
 function pico_get_requests4content( $mydirname, &$errors, $auto_approval = true, $isadminormod = false, $content_id = 0 ) {
-	global $xoopsUser;
+	$myts = null;
+ global $xoopsUser;
 
 	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts =& MyTextSanitizer::sGetInstance() ) || $myts =& MyTextSanitizer::getInstance();
 

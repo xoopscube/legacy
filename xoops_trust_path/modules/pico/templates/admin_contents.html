@@ -22,13 +22,13 @@
     <{if $cat_id >= 0}>
         <{* ////— DROPDOWN MENU —\\\\ *}>
         <div class="dropdown" id="action-contents">
-            <a href="#" class="dropdown-toggle action-menu button" aria-label="action">
+            <a href="#" class="dropdown-toggle action-menu button" title="action">
                 <{$smarty.const._MENU}><svg class="icon-dropmenu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
             </a>
             <div class="dropdown-content" style="min-width: 240px; padding:.5em;">
                 <div data-layout="row justify-center mb-4">
                     <h6 data-self="center size-x1"><{$mydirname|ucfirst}> <{$smarty.const._ACTION}></h6>
-                    <button class="help-admin button" type="button" data-module="pico" data-help-article="#help-content" aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
+                    <button class="help-admin button" type="button" data-module="pico" data-help-article="#help-content" title="<{$smarty.const._HELP}>"><b>?</b></button>
                 </div>
                 <a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>" class="button">
                     <i class="i-edit"></i><{$smarty.const._EDIT}></a>
@@ -47,13 +47,8 @@
 
 </section>
 
-
-
-
-
 <form name="contents" action="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$cat_id}>" method="post">
     <{$gticket_hidden}>
-
 
     <table class="outer">
         <thead>
@@ -89,7 +84,7 @@
         <td class="list_id"><{$content.id}>
             <{if $cat_id == $smarty.const.SPECIAL_CAT_ID_ALL}>
             <br>
-            <span class="badge" aria-label="<{"--"|str_repeat:$content.cat_depth_in_tree}><{$content.cat_title}>"><{$content.cat_id}></span>
+            <span class="badge" title="<{"--"|str_repeat:$content.cat_depth_in_tree}><{$content.cat_title}>"><{$content.cat_id}></span>
             <{/if}>
         </td>
         <td class="list_center">
@@ -123,7 +118,7 @@
             <input type="checkbox"
                    name="visibles[<{$content.id}>]"
                    id="col_visible_<{$content.id}>"
-                   value="1" aria-label="Visible" <{if $content.visible}>checked="checked"<{/if}>>
+                   value="1" title="Visible" <{if $content.visible}>checked="checked"<{/if}>>
         </td>
         <td class="list_nav">
             <input type="checkbox"
@@ -154,12 +149,12 @@
                 (<{$history.body_size|number_format}><{$smarty.const._MD_PICO_BYTE}>)
                 <br>
                 &nbsp;
-                <a class="action-view" href="<{$mod_url}>/index.php?page=viewhistory&amp;content_history_id=<{$history.id}>" aria-label="<{$smarty.const._MD_PICO_REFERIT}>"><i class="i-view"></i></a>
+                <a class="action-view" href="<{$mod_url}>/index.php?page=viewhistory&amp;content_history_id=<{$history.id}>" title="<{$smarty.const._MD_PICO_REFERIT}>"><i class="i-view"></i></a>
                 -
-                <a class="action-download" href="<{$mod_url}>/index.php?page=downloadhistory&amp;content_history_id=<{$history.id}>" aria-label="<{$smarty.const._MD_PICO_DOWNLOADIT}>"><i class="i-download"></i></a>
+                <a class="action-download" href="<{$mod_url}>/index.php?page=downloadhistory&amp;content_history_id=<{$history.id}>" title="<{$smarty.const._MD_PICO_DOWNLOADIT}>"><i class="i-download"></i></a>
                 <{if $history.prev_id}>
                 -
-                <a class="action-diff" href="<{$mod_url}>/index.php?page=diffhistory&amp;older_history_id=<{$history.prev_id}>&amp;newer_history_id=<{$history.id}>" aria-label="<{$smarty.const._MD_PICO_DIFFFROMPREV}>"><i class="i-download"></i></a>
+                <a class="action-diff" href="<{$mod_url}>/index.php?page=diffhistory&amp;older_history_id=<{$history.prev_id}>&amp;newer_history_id=<{$history.id}>" title="<{$smarty.const._MD_PICO_DIFFFROMPREV}>"><i class="i-download"></i></a>
                 <{/if}>
             </li>
             <{/foreach}>
@@ -186,7 +181,7 @@
             <br>
             <img src="<{$content.modifier_uname|xoops_user_avatarize}>" width="20px" height="20px" data-self="radius-circle" alt="avatar"> <{$content.modifier_uname}>
             <br>
-                <small>    <span class="badge" aria-label="<{$smarty.const._MD_PICO_MODIFIED}>"><{$content.modified_time_formatted}></span></small>
+                <small>    <span class="badge" title="<{$smarty.const._MD_PICO_MODIFIED}>"><{$content.modified_time_formatted}></span></small>
         <{/if}>
         </td>
             <td class="list_batch">
@@ -197,11 +192,11 @@
             </td>
         <td class="list_control" nowrap="nowrap" style="text-align:<{$smarty.const._ALIGN_END}>;">
             <{if !$content.is_deleted}>
-            <a class="action-view" href="<{$mod_url}>/<{$content.link}>" aria-label="<{$smarty.const._MD_A_PICO_LABEL_MAINDISP}>">
+            <a class="action-view" href="<{$mod_url}>/<{$content.link}>" title="<{$smarty.const._MD_A_PICO_LABEL_MAINDISP}>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z" fill="currentColor"/></svg>
             </a>
-            <a class="action-edit" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=ac<{$cat_id}>" aria-label="<{$smarty.const._EDIT}>">
-                <svg class="icon-edit" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"/></svg>
+            <a class="action-edit" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=ac<{$cat_id}>" title="<{$smarty.const._EDIT}>">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"/></svg>
             </a>
             <{/if}>
         </td>

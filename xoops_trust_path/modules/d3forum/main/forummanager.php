@@ -55,7 +55,7 @@ foreach ( $modules as $module ) {
 		// d3forum
 		$exportable_modules[ $mid ]           = 'd3forum:' . $module->getVar( 'name' ) . "($dirname)";
 		$dist_category_permissions            = d3forum_get_category_permissions_of_current_user( $dirname );
-		$exportable_module_categories[ $mid ] = d3forum_make_cat_jumpbox_options( $dirname, '1', 'c.`cat_id` IN (' . implode( ',', array_keys( $dist_category_permissions ) ) . ')', 0 );
+		$exportable_module_categories[ $mid ] = d3forum_make_cat_jumpbox_options( $dirname, '1', 'c.`cat_id` IN (' . implode( ',', array_keys( $dist_category_permissions ) ) . ')' );
 	}
 }
 
@@ -124,7 +124,7 @@ if ( is_object( $forum_configs ) && PHP_VERSION_ID >= 70000 ) {
 
 	if ( $forum_configs->num_rows > 0 ) {
 		$forum_row     = $forum_configs->fetch_assoc();
-		$forum_configs = unserialize( $forum_row, array( 'allowed_classes' => [ 'forum_options' ] ) );
+		$forum_configs = unserialize( $forum_row, ['allowed_classes' => [ 'forum_options' ]] );
 	} else {
 		/* previous version */
 		$forum_configs = unserialize( $forum_row['forum_options'] );

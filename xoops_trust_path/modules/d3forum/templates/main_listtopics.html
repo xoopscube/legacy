@@ -53,7 +53,7 @@
 
             <{if $mod_config.show_rss}>
             <a href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>"
-               aria-label="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>">
+               title="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>">
                 <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" alt="RSS">
             </a>
             <{/if}>
@@ -106,7 +106,7 @@
             <ul role="listbox">
                 <{* ----- FORUM EDIT *}>
                 <{if $forum.isadminormod}>
-                <li><a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>" aria-label="edit">
+                <li><a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>" title="edit">
                     <img class="svg" src="<{$xoops_url}>/images/icons/edit.svg" width="" height="" alt="edit">
                     <{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}></a></li>
                 <{/if}>
@@ -168,7 +168,7 @@
 
 <{* ------- Pagination *}>
 <{if $pagenav}>
-<nav class="page-nav" aria-label="Forum page navigation">
+<nav class="page-nav" title="Forum page navigation">
     <div class="pagination"><{$pagenav}></div>
 </nav>
 <{/if}>

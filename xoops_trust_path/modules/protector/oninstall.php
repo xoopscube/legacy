@@ -14,7 +14,8 @@ eval( ' function xoops_module_install_' . $mydirname . '( $module ) { return pro
 
 if ( ! function_exists( 'protector_oninstall_base' ) ) {
 	function protector_oninstall_base( $module, $mydirname ) {
-		// transations on module install
+		$pieces = null;
+  // transations on module install
 
 		global $ret; // TODO :-D
 

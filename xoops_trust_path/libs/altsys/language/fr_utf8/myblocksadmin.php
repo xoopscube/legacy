@@ -1,5 +1,6 @@
 <?php
-define( '_MD_A_MYBLOCKSADMIN_TIPS' , "Gérez les blocs en sélectionnant le côté, les modules cibles, les autorisations des groupes d'utilisateurs et le temps de cache.");
+
+define( '_MD_A_MYBLOCKSADMIN_TIPS' , "Gérez les blocs en sélectionnant l'emplacement, les modules cibles et les autorisations des groupes d'utilisateurs, le temps de cache.");
 define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , "L'<b>éditeur</b> changera en fonction du <b>type personnalisé</b> sélectionné.<br>
 Tout d'abord, donnez un nom au <b>Titre du bloc</b>, sélectionnez un <b>Type personnalisé</b> et enregistrez. Ensuite, vous pouvez modifier votre nouveau bloc.<br>
  Vous permettant ainsi de créer un composant réutilisable avec BBcode et PHP ou HTML, JavaScript et CSS.");
@@ -22,7 +23,7 @@ define( '_MD_A_MYBLOCKSADMIN_FMT_TAGRULE' , "%s sera remplacé par %s dans l'aff
 define( '_MD_A_MYBLOCKSADMIN_CTYPE' , 'Type personnalisé');
 define( '_MD_A_MYBLOCKSADMIN_EDITTPL' , 'Editer le template');
 define( '_MD_A_MYBLOCKSADMIN_OPTIONS' , 'Option du Bloc');
-define( '_MD_A_MYBLOCKSADMIN_BCACHETIME' , 'Temps du Cache');
+define( '_MD_A_MYBLOCKSADMIN_BCACHETIME' , 'Temps de Cache');
 define( '_MD_A_MYBLOCKSADMIN_ACTION' , 'Action');
 define( '_MD_A_MYBLOCKSADMIN_DESCRIPTION' , 'Description');
 define( '_MD_A_MYBLOCKSADMIN_TOPPAGE' , 'Top Page');
@@ -32,7 +33,6 @@ define( '_MD_A_MYBLOCKSADMIN_PERM_MADMIN' , 'Admin module');
 define( '_MD_A_MYBLOCKSADMIN_PERM_MREAD' , 'Accés module');
 define( '_MD_A_MYBLOCKSADMIN_DBUPDATED' , 'Mise à jour avec succés de la Base de données');
 define( '_MD_A_MYBLOCKSADMIN_FMT_REMOVEBLOCK' , '%s sera supprimé. Voulez-vous confirmer?');
-
 
 define( '_MD_A_MYBLOCKSADMIN_CLONEFORM' , 'Copier le bloc');
 define( '_MD_A_MYBLOCKSADMIN_NEWFORM' , 'Créer un bloc');
@@ -50,7 +50,6 @@ define( '_MD_A_MYBLOCKSADMIN_CTYPE_SMILE' , 'HTML+BBCODE+AutoLink+Smiley');
 define( '_MD_A_MYBLOCKSADMIN_CTYPE_PHP' , 'PHP eval()');
 
 define( '_MD_A_MYBLOCKSADMIN_NOTICE4COMMONFCK' , "Si vous voulez utiliser l'éditeur WYSIWYG, installez /common/FCKeditor");
-
 
 // Group permission phrases
 define( '_MD_A_MYBLOCKSADMIN_PERMADDNG' , "Impossible d'ajouter %s permissions de %s pour le groupe %s");

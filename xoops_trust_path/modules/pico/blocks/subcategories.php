@@ -11,7 +11,9 @@
  */
 
 function b_pico_subcategories_show( $options ) {
-	global $xoopsUser;
+	$myts = null;
+ $ret = [];
+ global $xoopsUser;
 
 	$mydirname = empty( $options[0] ) ? 'pico' : $options[0];
 

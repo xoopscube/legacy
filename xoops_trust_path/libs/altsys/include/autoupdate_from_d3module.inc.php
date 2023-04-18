@@ -23,7 +23,7 @@ if ( $altsysModuleConfig['theme_fromfile'] == 0 ) {
 
 $tplsadmin_autoupdate_mydirnames =[];
 if ( ! is_array( $tplsadmin_autoupdate_mydirnames ) ) {
-    $tplsadmin_autoupdate_mydirnames = array( 'd3forum', 'pico' ) ;
+    $tplsadmin_autoupdate_mydirnames = ['d3forum', 'pico'] ;
 }
 
 foreach ( $tplsadmin_autoupdate_mydirnames as $tplsadmin_mydirname ) {
@@ -59,7 +59,7 @@ foreach ( $tplsadmin_autoupdate_mydirnames as $tplsadmin_mydirname ) {
             if ( is_file( $file_path ) && '.html' == substr( $file, - 5 ) ) {
                 $mtime = (int) @filemtime( $file_path );
                 $tpl_file = $tplsadmin_mydirname . '_' . $file;
-                list( $count ) = $xoopsDB->fetchRow( $xoopsDB->query( 'SELECT COUNT(*) FROM ' . $xoopsDB->prefix( 'tplfile' ) . " WHERE tpl_tplset='" . addslashes( $xoopsConfig['template_set'] ) . "' AND tpl_file='" . addslashes( $tpl_file ) . "' AND tpl_lastmodified >= $mtime" ) );
+                [$count] = $xoopsDB->fetchRow( $xoopsDB->query( 'SELECT COUNT(*) FROM ' . $xoopsDB->prefix( 'tplfile' ) . " WHERE tpl_tplset='" . addslashes( $xoopsConfig['template_set'] ) . "' AND tpl_file='" . addslashes( $tpl_file ) . "' AND tpl_lastmodified >= $mtime" ) );
                 if ( $count <= 0 ) {
                     include_once XOOPS_TRUST_PATH . '/libs/altsys/include/tpls_functions.php';
                     tplsadmin_import_data( $xoopsConfig['template_set'], $file, implode( '', file( $file_path ) ), $mtime );

@@ -121,7 +121,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_SPAMURI4GDSC', 'If this number of URLs are found in POST data from guests, the POST is considered as SPAM. 0 means disabling this feature.' );
 
 	define( $constpref . '_FILTERS', 'Enable filters' );
-	define( $constpref . '_FILTERSDSC', 'Specify each file name inside of /filters_byconfig/ with a new line.<br> eg. postcommon_post_deny_by_httpbl.php' );
+	define( $constpref . '_FILTERSDSC', 'Specify each file name inside of /filters_byconfig/ with a new line.<br> e.g. postcommon_post_deny_by_httpbl.php' );
 
 	define( $constpref . '_MANIPUCHECK', '<b>Enable check files change</b>' );
 	define( $constpref . '_MANIPUCHECKDSC', '🔔 Notify administrators if the root folder or index changes.' );

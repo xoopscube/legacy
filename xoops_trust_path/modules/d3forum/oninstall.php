@@ -16,7 +16,8 @@ eval( ' function xoops_module_install_' . $mydirname . '( $module ) { return d3f
 if ( ! function_exists( 'd3forum_oninstall_base' ) ) {
 
 	function d3forum_oninstall_base( $module, $mydirname ) {
-		// transations on module install
+		$pieces = null;
+  // transations on module install
 
 		global $ret; // TODO :-D
 

@@ -13,13 +13,13 @@ define( '_MYLANGADMIN_NOTE_ADDEDBYMYLANG' , '(constante ajoutée par utilisateur
 define( '_MYLANGADMIN_DT_MYLANGFILENAME' , 'Reécriture partielle du nom de fichier');
 
 define( '_MYLANGADMIN_DT_CACHEFILENAME' , 'Nom du fichier en Cache');
-define( '_MYLANGADMIN_DT_CACHESTATUS' , 'Mise en Cache du statut');
+define( '_MYLANGADMIN_DT_CACHESTATUS' , 'Statut de la Mise en Cache');
 define( '_MYLANGADMIN_CREATED' , 'Créé');
 define( '_MYLANGADMIN_NOTCREATED' , 'N\'a pas été créé pour l\'instant');
 
-define( '_MYLANGADMIN_ERR_MODNOLANGUAGE' , 'Le module sélectionné n\'a pas de dossier de la langue');
+define( '_MYLANGADMIN_ERR_MODNOLANGUAGE' , 'Le module sélectionné n\'a pas de dossier pour cette langue!');
 define( '_MYLANGADMIN_ERR_MODLANGINCOMPATIBLE' , 'Le module sélectionné a une structure incompatible');
-define( '_MYLANGADMIN_ERR_MODEMPTYLANGDIR' , 'Le module sélectionné n\'a pas de fichier langue de re�criture');
+define( '_MYLANGADMIN_ERR_MODEMPTYLANGDIR' , 'Le module sélectionné n\'a pas de fichier langue de reécriture');
 
 define( '_MYLANGADMIN_MSG_D3LANGMANENABLED' , 'Le système de reécriture est activé dés maintenant.');
 define( '_MYLANGADMIN_FMT_HOWTOENABLED3LANGMAN4XCL' , 'Le système de reécriture est désormais désactivé. Pour l\'activer, copiez "%s" dans "%s"');

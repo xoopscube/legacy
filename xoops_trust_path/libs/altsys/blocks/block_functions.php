@@ -14,6 +14,7 @@ require_once dirname(__DIR__) . '/include/altsys_functions.php';
 
 function b_altsys_admin_menu_show($options)
 {
+    $ret = [];
     global $xoopsUser;
 
     $mydirname = empty($options[0]) ? 'altsys' : $options[0];
@@ -128,7 +129,7 @@ function b_altsys_admin_menu_show($options)
             if ($mod->getVar('hasconfig') && !in_array($mod->getVar('dirname'), ['system', 'legacy'])) {
                 $submenus4assign[] = [
                     'title' => _PREFERENCES,
-                    'url' => htmlspecialchars(altsys_get_link2modpreferences($mid, $coretype), ENT_QUOTES),
+                    'url' => htmlspecialchars(altsys_get_link2modpreferences($mid), ENT_QUOTES),
                 ];
             }
 

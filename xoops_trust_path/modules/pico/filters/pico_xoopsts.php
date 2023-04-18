@@ -11,7 +11,8 @@ define( '_MD_PICO_FILTERS_XOOPSTSUSEHTMLATNEW', false );
 define( '_MD_PICO_FILTERS_XOOPSTSDISABLEONHTML', true );
 
 function pico_xoopsts( $mydirname, $text, $content4assign ) {
-	include_once( XOOPS_ROOT_PATH . '/class/module.textsanitizer.php' );
+	$myts = null;
+ include_once( XOOPS_ROOT_PATH . '/class/module.textsanitizer.php' );
 
 	( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = &MyTextSanitizer::sGetInstance() ) || $myts = &MyTextSanitizer::getInstance();
 

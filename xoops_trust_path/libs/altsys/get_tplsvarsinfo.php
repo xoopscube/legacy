@@ -149,7 +149,7 @@ if ( $handler = opendir( XOOPS_COMPILE_PATH . '/' ) ) {
 		if ( mb_strstr( $tpl_name, '%' ) ) {
 			$mod_name = 'theme_etc';
 		} else {
-			list( $mod_name ) = explode( '_', $tpl_name );
+			[$mod_name] = explode( '_', $tpl_name );
 		}
 		$tplsvarsinfo_mod_tpl[ $mod_name ][ $tpl_name ] = $tplsvarsinfo;
 		$tplsvarsinfo_total                             = array_merge( $tplsvarsinfo_total, $tplsvarsinfo );

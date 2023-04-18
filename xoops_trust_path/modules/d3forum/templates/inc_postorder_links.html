@@ -23,7 +23,7 @@
 
     <{if isset($prev_topic.id) || isset($next_topic.id)}>
         <{if $prev_topic.id}>
-        <a role="button" class="outline secondary" href="<{$mod_url}>/index.php?topic_id=<{$prev_topic.id}>" aria-label="<{$prev_topic.title}>">
+        <a role="button" class="outline secondary" href="<{$mod_url}>/index.php?topic_id=<{$prev_topic.id}>" title="<{$prev_topic.title}>">
             <img class="svg topic-prev" src="<{$xoops_url}>/images/icons/topic-prev.svg" width="1em" alt="previous">
             <span data-self="sm-hide"><{$smarty.const._MD_D3FORUM_LINK_PREVTOPIC}></span>
         </a>
@@ -32,7 +32,7 @@
         <!-- prev and next -->
         <{/if}>
         <{if $next_topic.id}>
-        <a role="button" class="outline secondary" href="<{$mod_url}>/index.php?topic_id=<{$next_topic.id}>" aria-label="<{$next_topic.title}>">
+        <a role="button" class="outline secondary" href="<{$mod_url}>/index.php?topic_id=<{$next_topic.id}>" title="<{$next_topic.title}>">
             <img class="svg topic-next" src="<{$xoops_url}>/images/icons/topic-next.svg" width="1em" alt="next">
             <span data-self="sm-hide"><{$smarty.const._MD_D3FORUM_LINK_NEXTTOPIC}></span>
         </a>

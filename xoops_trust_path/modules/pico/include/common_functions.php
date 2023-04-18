@@ -54,7 +54,8 @@ function pico_get_categories_can_read( $mydirname ) {
 
 // deprecated
 function pico_common_get_categories_can_read( $mydirname, $uid = null ) {
-	$db = XoopsDatabaseFactory::getDatabaseConnection();
+	$cat_ids = [];
+ $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ( $uid > 0 ) {
 		$user_handler = &xoops_gethandler( 'user' );
@@ -84,7 +85,7 @@ function pico_common_get_categories_can_read( $mydirname, $uid = null ) {
 	$result = $db->query( $sql );
 
 	if ( $result ) {
-		while ( list( $cat_id ) = $db->fetchRow( $result ) ) {
+		while ( [$cat_id] = $db->fetchRow( $result ) ) {
 			$cat_ids[] = (int) $cat_id;
 		}
 	}
@@ -159,7 +160,8 @@ function pico_common_make_category_link4html( $mod_config, $cat_row, $mydirname 
 }
 
 function pico_common_get_submenu( $mydirname, $caller = 'xoops_version' ) {
-	static $submenus_cache;
+	$myts = null;
+ static $submenus_cache;
 
 	if ( ! empty( $submenus_cache[ $caller ][ $mydirname ] ) ) {
 		return $submenus_cache[ $caller ][ $mydirname ];
@@ -266,7 +268,7 @@ function pico_common_get_cat_options( $mydirname ) {
 
 	$cat_options = [ 0 => _MD_PICO_TOP ];
 
-	while ( list( $id, $title, $depth, $contents_num ) = $db->fetchRow( $crs ) ) {
+	while ( [$id, $title, $depth, $contents_num] = $db->fetchRow( $crs ) ) {
 		$cat_options[ $id ] = str_repeat( '--', $depth ) . htmlspecialchars( $title, ENT_QUOTES ) . " ($contents_num)";
 	}
 

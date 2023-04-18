@@ -43,7 +43,8 @@ class PicoPermission {
 	}
 
 	public function queryPermissions( $mydirname ): ?array {
-		$ret = [];
+		$user = null;
+  $ret = [];
 
 		if ( $this->uid > 0 ) {
 			$user_handler = &xoops_gethandler( 'user' );
@@ -74,7 +75,7 @@ class PicoPermission {
 		$sql    = 'SELECT cat_id,permissions FROM ' . $this->db->prefix( $mydirname . '_category_permissions' ) . " WHERE ($whr)";
 		$result = $this->db->query( $sql );
 		if ( $result ) {
-			while ( list( $cat_id, $serialized_permissions ) = $this->db->fetchRow( $result ) ) {
+			while ( [$cat_id, $serialized_permissions] = $this->db->fetchRow( $result ) ) {
 				$permissions = pico_common_unserialize( $serialized_permissions );
 				if ( is_array( @$ret[ $cat_id ] ) ) {
 					foreach ( $permissions as $perm_name => $value ) {
@@ -106,14 +107,14 @@ class PicoPermission {
 		$uids   = [];
 		$sql    = 'SELECT uid FROM ' . $this->db->prefix( $mydirname . '_category_permissions' ) . " WHERE cat_id=$permission_id AND uid IS NOT NULL AND ($whr_type)";
 		$result = $this->db->query( $sql );
-		while ( list( $uid ) = $this->db->fetchRow( $result ) ) {
+		while ( [$uid] = $this->db->fetchRow( $result ) ) {
 			$uids[] = $uid;
 		}
 
 		// groupid * groups_users_link
 		$sql    = 'SELECT distinct g.uid FROM ' . $this->db->prefix( $mydirname . '_category_permissions' ) . ' x , ' . $this->db->prefix( 'groups_users_link' ) . " g WHERE x.groupid=g.groupid AND x.cat_id=$permission_id AND x.groupid IS NOT NULL AND ($whr_type)";
 		$result = $this->db->query( $sql );
-		while ( list( $uid ) = $this->db->fetchRow( $result ) ) {
+		while ( [$uid] = $this->db->fetchRow( $result ) ) {
 			$uids[] = $uid;
 		}
 		$uids = array_unique( $uids );

@@ -1,7 +1,7 @@
 <{* Dev-Mode Toggle *}>
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<div class="d-flex d-inline-flex" aria-label="Vote">
+<div class="d-flex d-inline-flex" title="Vote">
     <{if $post.can_vote}>
     <form action="<{$mod_url}>/index.php" method="get">
         <input type="hidden" name="page" value="vote_to_post">

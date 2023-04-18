@@ -65,9 +65,9 @@ foreach ( $modules4menu as $m4menu ) {
 require_once XOOPS_TRUST_PATH . '/libs/altsys/class/D3Tpl.class.php';
 
 $tpl = new D3Tpl();
-$tpl->assign( array(
-	'adminmenu' => $adminmenu,
-	'mypage'    => 'myblocksadmin',
-) );
+$tpl->assign( [
+'adminmenu' => $adminmenu, 
+'mypage'    => 'myblocksadmin'
+] );
 
 $tpl->display( 'db:altsys_inc_menu_sub.html' );

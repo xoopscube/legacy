@@ -58,7 +58,7 @@ if ( ! empty( $_POST['group_update'] ) && empty( $invaild_cat_id ) ) {
 
 	$result = $db->query( 'SELECT groupid FROM ' . $db->prefix( 'groups' ) );
 
-	while ( list( $gid ) = $db->fetchRow( $result ) ) {
+	while ( [$gid] = $db->fetchRow( $result ) ) {
 		if ( ! empty( $_POST['can_reads'][ $gid ] ) ) {
 			$can_post           = empty( $_POST['can_posts'][ $gid ] ) ? 0 : 1;
 			$can_edit           = empty( $_POST['can_edits'][ $gid ] ) ? 0 : 1;
@@ -143,7 +143,7 @@ $crs = $db->query( 'SELECT cat_id,cat_title,cat_depth_in_tree FROM ' . $db->pref
 
 $cat_options = [];
 
-while ( list( $id, $title, $depth ) = $db->fetchRow( $crs ) ) {
+while ( [$id, $title, $depth] = $db->fetchRow( $crs ) ) {
 	$cat_options[ $id ] = str_repeat( '--', $depth ) . htmlspecialchars( $title, ENT_QUOTES );
 }
 
@@ -206,7 +206,7 @@ $fars = $db->query( 'SELECT u.uid,u.uname,fa.can_post,fa.can_edit,fa.can_delete,
 
 $user_trs = '';
 
-while ( list( $uid, $uname, $can_post, $can_edit, $can_delete, $post_auto_approved, $is_moderator, $can_makeforum ) = $db->fetchRow( $fars ) ) {
+while ( [$uid, $uname, $can_post, $can_edit, $can_delete, $post_auto_approved, $is_moderator, $can_makeforum] = $db->fetchRow( $fars ) ) {
 
 	$uid = (int) $uid;
 

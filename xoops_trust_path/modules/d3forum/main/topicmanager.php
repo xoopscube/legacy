@@ -90,11 +90,11 @@ if ( ! empty( $_POST['topicman_sync'] ) ) {
 	// sync posts from post_votes
 	$prs = $db->query( 'SELECT post_id FROM ' . $db->prefix( $mydirname . '_posts' ) . " WHERE topic_id=$topic_id" );
 
-	while ( list( $post_id ) = $db->fetchRow( $prs ) ) {
+	while ( [$post_id] = $db->fetchRow( $prs ) ) {
 		d3forum_sync_post_votes( $mydirname, $post_id, false );
 	}
 
-	d3forum_sync_topic_votes( $mydirname, $topic_id, false );
+	d3forum_sync_topic_votes( $mydirname, $topic_id );
 
 	d3forum_sync_topic( $mydirname, $topic_id, false );
 

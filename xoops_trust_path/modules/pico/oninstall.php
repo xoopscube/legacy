@@ -16,7 +16,8 @@ eval( ' function xoops_module_install_' . $mydirname . '( $module ) { return pic
 if ( ! function_exists( 'pico_oninstall_base' ) ) {
 
 	function pico_oninstall_base( $module, $mydirname ) {
-		// transations on module install
+		$pieces = null;
+  // transations on module install
 
 		global $ret; // TODO :-D
 

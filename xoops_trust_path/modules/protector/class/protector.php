@@ -178,7 +178,7 @@ class protector {
 			if ( ! $result || mysqli_num_rows( $result ) < 5 ) {
 				return false;
 			}
-			while ( list( $key, $val ) = mysqli_fetch_row( $result ) ) {
+			while ( [$key, $val] = mysqli_fetch_row( $result ) ) {
 				$db_conf[ $key ] = $val;
 			}
 		}
@@ -217,9 +217,9 @@ class protector {
 
 		if ( ! headers_sent() ) {
 			// clear typical session id of PHP
-			setcookie( 'PHPSESSID', '', time() - 3600, '/', '', 0 );
+			setcookie( 'PHPSESSID', '', ['expires' => time() - 3600, 'path' => '/', 'domain' => '', 'secure' => 0] );
 			if ( isset( $_COOKIE[ session_name() ] ) ) {
-				setcookie( session_name(), '', time() - 3600, '/', '', 0 );
+				setcookie( session_name(), '', ['expires' => time() - 3600, 'path' => '/', 'domain' => '', 'secure' => 0] );
 			}
 
 			// clear autologin cookie
@@ -227,8 +227,8 @@ class protector {
 			if ( XOOPS_URL == $xoops_cookie_path ) {
 				$xoops_cookie_path = '/';
 			}
-			setcookie( 'autologin_uname', '', time() - 3600, $xoops_cookie_path, '', 0 );
-			setcookie( 'autologin_pass', '', time() - 3600, $xoops_cookie_path, '', 0 );
+			setcookie( 'autologin_uname', '', ['expires' => time() - 3600, 'path' => $xoops_cookie_path, 'domain' => '', 'secure' => 0] );
+			setcookie( 'autologin_pass', '', ['expires' => time() - 3600, 'path' => $xoops_cookie_path, 'domain' => '', 'secure' => 0] );
 		}
 
 		if ( $redirect_to_top ) {
@@ -266,7 +266,7 @@ class protector {
 
 		if ( $unique_check ) {
 			$result = mysqli_query( $this->_conn, 'SELECT ip,type FROM ' . XOOPS_DB_PREFIX . '_' . $this->mydirname . '_log ORDER BY timestamp DESC LIMIT 1' );
-			list( $last_ip, $last_type ) = mysqli_fetch_row( $result );
+			[$last_ip, $last_type] = mysqli_fetch_row( $result );
 			if ( $last_ip == $ip && $last_type == $type ) {
 				$this->_logged = true;
 
@@ -297,7 +297,7 @@ class protector {
 	}
 
 	public function get_bwlimit() {
-		list( $expire ) = @file( self::get_filepath4bwlimit() );
+		[$expire] = @file( self::get_filepath4bwlimit() );
 		$expire = min( (int) $expire, time() + 300 );
 
 		return $expire;
@@ -339,7 +339,7 @@ class protector {
 
 	public function get_bad_ips( $with_jailed_time = false ) {
 		$fbadips = self::get_filepath4badips();
-		list( $bad_ips_serialized ) = file_exists($fbadips)?file( $fbadips ):null;
+		[$bad_ips_serialized] = file_exists($fbadips)?file( $fbadips ):null;
 		$bad_ips = empty( $bad_ips_serialized ) ? [] : @unserialize( $bad_ips_serialized );
 		if ( ! is_array( $bad_ips ) || isset( $bad_ips[0] ) ) {
 			$bad_ips = [];
@@ -373,7 +373,7 @@ class protector {
 	 */
 
 	public function get_group1_ips( $with_info = false ) {
-		list( $group1_ips_serialized ) = @file( self::get_filepath4group1ips() );
+		[$group1_ips_serialized] = @file( self::get_filepath4group1ips() );
 		$group1_ips = empty( $group1_ips_serialized ) ? [] : @unserialize( $group1_ips_serialized );
 		if ( ! is_array( $group1_ips ) ) {
 			$group1_ips = [];
@@ -525,7 +525,7 @@ class protector {
 				return;
 			}
 			foreach ( $this->_dblayertrap_doubtful_needles as $needle ) {
-				if ( stristr( $val, $needle ) ) {
+				if ( stristr( $val, (string) $needle ) ) {
 					$this->_dblayertrap_doubtfuls[] = $val;
 				}
 			}
@@ -605,7 +605,7 @@ class protector {
 		}
 
 		foreach ( $this->_bigumbrella_doubtfuls as $doubtful ) {
-			if ( strstr( $s, $doubtful ) ) {
+			if ( strstr( $s, (string) $doubtful ) ) {
 				return 'XSS found by Protector.';
 			}
 		}
@@ -617,7 +617,7 @@ class protector {
 	}
 
 	public function intval_allrequestsendid() {
-		global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_COOKIE_VARS;
+		global $_GET, $_POST, $_COOKIE;
 
 		if ( $this->_done_intval ) {
 			return true;
@@ -631,7 +631,7 @@ class protector {
 				if ( isset( $_REQUEST[ $key ] ) && $_REQUEST[ $key ] == $_GET[ $key ] ) {
 					$_REQUEST[ $key ] = $newval;
 				}
-				$_GET[ $key ] = $HTTP_GET_VARS[ $key ] = $newval;
+				$_GET[ $key ] = $_GET[ $key ] = $newval;
 			}
 		}
 		foreach ( $_POST as $key => $val ) {
@@ -640,7 +640,7 @@ class protector {
 				if ( isset( $_REQUEST[ $key ] ) && $_REQUEST[ $key ] == $_POST[ $key ] ) {
 					$_REQUEST[ $key ] = $newval;
 				}
-				$_POST[ $key ] = $HTTP_POST_VARS[ $key ] = $newval;
+				$_POST[ $key ] = $_POST[ $key ] = $newval;
 			}
 		}
 		foreach ( $_COOKIE as $key => $val ) {
@@ -649,7 +649,7 @@ class protector {
 				if ( isset( $_REQUEST[ $key ] ) && $_REQUEST[ $key ] == $_COOKIE[ $key ] ) {
 					$_REQUEST[ $key ] = $newval;
 				}
-				$_COOKIE[ $key ] = $HTTP_COOKIE_VARS[ $key ] = $newval;
+				$_COOKIE[ $key ] = $_COOKIE[ $key ] = $newval;
 			}
 		}
 
@@ -660,7 +660,7 @@ class protector {
 	 * @return bool
 	 */
 	public function eliminate_dotdot() {
-		global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_COOKIE_VARS;
+		global $_GET, $_POST, $_COOKIE;
 
 		if ( $this->_done_dotdot ) {
 			return true;
@@ -680,7 +680,7 @@ class protector {
 				if ( ' .' != substr( $sanitized_val, - 2 ) ) {
 					$sanitized_val .= ' .';
 				}
-				$_GET[ $key ] = $HTTP_GET_VARS[ $key ] = $sanitized_val;
+				$_GET[ $key ] = $_GET[ $key ] = $sanitized_val;
 				if ( $_REQUEST[ $key ] == $_GET[ $key ] ) {
 					$_REQUEST[ $key ] = $sanitized_val;
 				}
@@ -714,7 +714,7 @@ class protector {
 	 * @param $val
 	 */
 	public function replace_doubtful( $key, $val ) {
-		global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_COOKIE_VARS;
+		global $_GET, $_POST, $_COOKIE;
 
 		$index_expression = '';
 		$indexes          = explode( '_', $key );
@@ -723,15 +723,15 @@ class protector {
 		switch ( $base_array ) {
 			case 'G':
 				$main_ref   = &$this->get_ref_from_base64index( $_GET, $indexes );
-				$legacy_ref = &$this->get_ref_from_base64index( $HTTP_GET_VARS, $indexes );
+				$legacy_ref = &$this->get_ref_from_base64index( $_GET, $indexes );
 				break;
 			case 'P':
 				$main_ref   = &$this->get_ref_from_base64index( $_POST, $indexes );
-				$legacy_ref = &$this->get_ref_from_base64index( $HTTP_POST_VARS, $indexes );
+				$legacy_ref = &$this->get_ref_from_base64index( $_POST, $indexes );
 				break;
 			case 'C':
 				$main_ref   = &$this->get_ref_from_base64index( $_COOKIE, $indexes );
-				$legacy_ref = &$this->get_ref_from_base64index( $HTTP_COOKIE_VARS, $indexes );
+				$legacy_ref = &$this->get_ref_from_base64index( $_COOKIE, $indexes );
 				break;
 			default:
 				exit;
@@ -925,7 +925,7 @@ class protector {
 		// bandwidth limitation
 		if ( @$this->_conf['bwlimit_count'] >= 10 ) {
 			$result = $xoopsDB->query( 'SELECT COUNT(*) FROM ' . $xoopsDB->prefix( $this->mydirname . '_access' ) );
-			list( $bw_count ) = $xoopsDB->fetchRow( $result );
+			[$bw_count] = $xoopsDB->fetchRow( $result );
 			if ( $bw_count > $this->_conf['bwlimit_count'] ) {
 				$this->write_file_bwlimit( time() + $this->_conf['dos_expire'] );
 			}
@@ -933,7 +933,7 @@ class protector {
 
 		// F5 attack check (High load & same URI)
 		$result = $xoopsDB->query( 'SELECT COUNT(*) FROM ' . $xoopsDB->prefix( $this->mydirname . '_access' ) . " WHERE ip='$ip4sql' AND request_uri='$uri4sql'" );
-		list( $f5_count ) = $xoopsDB->fetchRow( $result );
+		[$f5_count] = $xoopsDB->fetchRow( $result );
 		if ( $f5_count > $this->_conf['dos_f5count'] ) {
 
 			// delayed insert
@@ -990,7 +990,7 @@ class protector {
 
 		// Crawler check (High load & different URI)
 		$result = $xoopsDB->query( 'SELECT COUNT(*) FROM ' . $xoopsDB->prefix( $this->mydirname . '_access' ) . " WHERE ip='$ip4sql'" );
-		list( $crawler_count ) = $xoopsDB->fetchRow( $result );
+		[$crawler_count] = $xoopsDB->fetchRow( $result );
 
 		// delayed insert
 		$xoopsDB->queryF( $sql4insertlog );
@@ -1064,7 +1064,7 @@ class protector {
 
 		// count check
 		$result = $xoopsDB->query( 'SELECT COUNT(*) FROM ' . $xoopsDB->prefix( $this->mydirname . '_access' ) . " WHERE ip='$ip4sql' AND malicious_actions like 'BRUTE FORCE:%'" );
-		list( $bf_count ) = $xoopsDB->fetchRow( $result );
+		[$bf_count] = $xoopsDB->fetchRow( $result );
 		if ( $bf_count > $this->_conf['bf_count'] ) {
 			$this->register_bad_ips( time() + $this->_conf['banip_time0'] );
 			$this->last_error_type = 'BruteForce';
@@ -1101,7 +1101,7 @@ class protector {
 			}
 
 			// count BBCode likd [url=www....] up (without [url=https://...])
-			$this->_spamcount_uri += count( preg_split( '/\[url=(?!http|\\"http|\\\'http|' . $http_host . ')/i', $val ) ) - 1;
+			$this->_spamcount_uri += (is_countable(preg_split( '/\[url=(?!http|\\"http|\\\'http|' . $http_host . ')/i', $val )) ? count( preg_split( '/\[url=(?!http|\\"http|\\\'http|' . $http_host . ')/i', $val ) ) : 0) - 1;
 		}
 	}
 
@@ -1138,7 +1138,7 @@ class protector {
 	}
 
 	public function disable_features() {
-		global $HTTP_POST_VARS, $HTTP_GET_VARS, $HTTP_COOKIE_VARS;
+		global $_POST, $_GET, $_COOKIE;
 
 		// disable "Notice: Undefined index: ..."
 		$error_reporting_level = error_reporting( 0 );
@@ -1198,15 +1198,15 @@ class protector {
 			// preview CSRF zx 2004/12/14
 			// news submit.php
 			if ( 'modules/news/submit.php' == substr( @$_SERVER['SCRIPT_NAME'], - 23 ) && isset( $_POST['preview'] ) && 0 !== strpos( @$_SERVER['HTTP_REFERER'], XOOPS_URL . '/modules/news/submit.php' ) ) {
-				$HTTP_POST_VARS['nohtml'] = $_POST['nohtml'] = 1;
+				$_POST['nohtml'] = $_POST['nohtml'] = 1;
 			}
 			// news admin/index.php
 			if ( 'modules/news/admin/index.php' == substr( @$_SERVER['SCRIPT_NAME'], - 28 ) && ( 'preview' == $_POST['op'] || 'preview' == $_GET['op'] ) && 0 !== strpos( @$_SERVER['HTTP_REFERER'], XOOPS_URL . '/modules/news/admin/index.php' ) ) {
-				$HTTP_POST_VARS['nohtml'] = $_POST['nohtml'] = 1;
+				$_POST['nohtml'] = $_POST['nohtml'] = 1;
 			}
 			// comment comment_post.php
 			if ( isset( $_POST['com_dopreview'] ) && ! strstr( substr( @$_SERVER['HTTP_REFERER'], - 16 ), 'comment_post.php' ) ) {
-				$HTTP_POST_VARS['dohtml'] = $_POST['dohtml'] = 0;
+				$_POST['dohtml'] = $_POST['dohtml'] = 0;
 			}
 			// disable preview of system's blocksadmin
 			if ( 'modules/system/admin.php' == substr( @$_SERVER['SCRIPT_NAME'], - 24 ) && ( 'blocksadmin' == $_GET['fct'] || 'blocksadmin' == $_POST['fct'] ) && isset( $_POST['previewblock'] ) /* && strpos( $_SERVER['HTTP_REFERER'] , XOOPS_URL.'/modules/system/admin.php' ) !== 0 */ ) {

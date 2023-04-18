@@ -12,7 +12,9 @@
  */
 
 function b_d3forum_list_forums_show( $options ) {
-	global $xoopsUser;
+	$myts = null;
+ $ret = [];
+ global $xoopsUser;
 
 	$mydirname = empty( $options[0] ) ? 'd3forum' : $options[0];
 
@@ -142,7 +144,9 @@ function b_d3forum_list_forums_edit( $options ) {
 
 
 function b_d3forum_list_topics_show( $options ) {
-	global $xoopsUser;
+	$myts = null;
+ $ret = [];
+ global $xoopsUser;
 
 	$mydirname = empty( $options[0] ) ? 'd3forum' : $options[0];
 
@@ -500,7 +504,9 @@ function b_d3forum_list_topics_edit( $options ) {
 
 
 function b_d3forum_list_posts_show( $options ) {
-	global $xoopsUser;
+	$myts = null;
+ $ret = [];
+ global $xoopsUser;
 
 	$mydirname = empty( $options[0] ) ? 'd3forum' : $options[0];
 

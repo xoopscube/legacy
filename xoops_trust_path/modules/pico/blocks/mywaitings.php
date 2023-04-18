@@ -11,7 +11,8 @@
  */
 
 function b_pico_mywaitings_show( $options ) {
-	global $xoopsUser;
+	$ret = [];
+ global $xoopsUser;
 
 	$mydirname     = empty( $options[0] ) ? 'pico' : $options[0];
 	$this_template = empty( $options[1] ) ? 'db:' . $mydirname . '_block_mywaitings.html' : trim( $options[1] );

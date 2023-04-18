@@ -10,7 +10,6 @@
  * @license    GPL v2.0
  */
 
-
 class MyBlocksAdmin {
 	public $db;
 
@@ -27,6 +26,7 @@ class MyBlocksAdmin {
 	public $target_dirname = '';
 
 	public $target_mname = '';
+
     public $target_mname_bread = '';
 
 	public $block_configs = [];
@@ -52,7 +52,7 @@ class MyBlocksAdmin {
 			86400   => _DAY,
 			259200  => sprintf( _DAYS, 3 ),
 			604800  => _WEEK,
-			2592000 => _MONTH,
+			2_592_000 => _MONTH,
 		];
 
 		$this->ctype_options = [
@@ -107,7 +107,8 @@ class MyBlocksAdmin {
 	 */
 
 	public function init( $xoopsModule ) {
-		// altsys "module" MODE
+		$target_module = null;
+  // altsys "module" MODE
 
 		if ( 'altsys' == $xoopsModule->getVar( 'dirname' ) ) {
 			// set target_module if specified by $_GET['dirname']
@@ -283,7 +284,7 @@ class MyBlocksAdmin {
 
 			$selected_mids = [];
 
-			while ( list( $selected_mid ) = $this->db->fetchRow( $result ) ) {
+			while ( [$selected_mid] = $this->db->fetchRow( $result ) ) {
 				$selected_mids[] = (int) $selected_mid;
 			}
 
@@ -334,7 +335,7 @@ class MyBlocksAdmin {
 			// originated from the table of `group_perm`
 			$result        = $this->db->query( 'SELECT gperm_groupid FROM ' . $this->db->prefix( 'group_permission' ) . " WHERE gperm_itemid='$bid' AND gperm_name='block_read'" );
 			$selected_gids = [];
-			while ( list( $selected_gid ) = $this->db->fetchRow( $result ) ) {
+			while ( [$selected_gid] = $this->db->fetchRow( $result ) ) {
 				$selected_gids[] = (int) $selected_gid;
 			}
 			if ( 0 == $bid && empty( $selected_gids ) ) {
@@ -415,27 +416,27 @@ class MyBlocksAdmin {
 
     // Block-Side Render View
     return "
-    <label aria-label='Block-Left'>
+    <label title='Block-Left'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_LEFT . "' class='blockposition' $ssel0 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_LEFT . ";'>
     </label>
     <div>-</div>
-    <label aria-label='Center-Block-Left'>
+    <label title='Center-Block-Left'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_LEFT . "' class='blockposition' $ssel2 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_LEFT . ";'>
     </label>
-    <label aria-label='Center-Block-Center'>
+    <label title='Center-Block-Center'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_CENTER . "' class='blockposition' $ssel3 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_CENTER . ";'>
     </label>
-    <label aria-label='Center-Block-Right'>
+    <label title='Center-Block-Right'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_RIGHT . "' class='blockposition' $ssel4 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_RIGHT . ";'>
     </label>
     <div>-</div>
-    <label aria-label='Block-Right'>
+    <label title='Block-Right'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_RIGHT . "' class='blockposition' $ssel1 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_RIGHT . ";'>
     </label>
 
     <input type='hidden' name='extra_sides[$bid]' value='" . $value4extra_side . "' class='block-extra-side' id='extra_side_$bid'>
 
-    <label aria-label='" . _NONE . "'>
+    <label title='" . _NONE . "'>
         <input type='radio' name='sides[$bid]' value='-1' class='blockposition ui-input-red' $sseln onclick='document.getElementById(\"extra_side_$bid\").value=-1;'>
     </label>
 	";
@@ -444,7 +445,8 @@ class MyBlocksAdmin {
 
 	// public
 	public function list_blocks() {
-		global $xoopsGTicket;
+		$handler = null;
+  global $xoopsGTicket;
 
 		// main query
 		$sql       = 'SELECT * FROM ' . $this->db->prefix( 'newblocks' ) . " WHERE mid='$this->target_mid' ORDER BY visible DESC,side,weight";
@@ -514,7 +516,8 @@ class MyBlocksAdmin {
 	 * @return array
 	 */
 	public function get_block_configs() {
-		if ( $this->target_mid <= 0 ) {
+		$modversion = [];
+  if ( $this->target_mid <= 0 ) {
 			return [];
 		}
 		include XOOPS_ROOT_PATH . '/modules/' . $this->target_dirname . '/xoops_version.php';
@@ -528,7 +531,8 @@ class MyBlocksAdmin {
 
 
 	public function list_groups() {
-		// query for getting blocks
+		$handler = null;
+  // query for getting blocks
 		$sql       = 'SELECT * FROM ' . $this->db->prefix( 'newblocks' ) . " WHERE mid='$this->target_mid' ORDER BY visible DESC,side,weight";
 		$result    = $this->db->query( $sql );
 		$block_arr = [];
@@ -674,7 +678,7 @@ class MyBlocksAdmin {
 		$sql     = "SELECT `gperm_groupid` FROM `$table` WHERE gperm_name='block_read' AND `gperm_itemid`=$bid";
 		$result  = $this->db->query( $sql );
 		$db_gids = [];
-		while ( list( $gid ) = $this->db->fetchRow( $result ) ) {
+		while ( [$gid] = $this->db->fetchRow( $result ) ) {
 			$db_gids[] = $gid;
 		}
 		$db_gids = array_map( 'intval', $db_gids );
@@ -721,7 +725,8 @@ class MyBlocksAdmin {
 	 * @return array
 	 */
 	public function fetchRequest4Block( $bid ) {
-		$bid = (int) $bid;
+		$myts = null;
+  $bid = (int) $bid;
 		( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = MyTextSanitizer::sGetInstance() ) || $myts = MyTextSanitizer::getInstance();
 
 		if ( @$_POST['extra_sides'][ $bid ] > 0 ) {
@@ -820,7 +825,8 @@ class MyBlocksAdmin {
 
 
 	public function do_clone( $bid ) {
-		$bid = (int) $bid;
+		$handler = null;
+  $bid = (int) $bid;
 
 		$request = $this->fetchRequest4Block( $bid );
 
@@ -1005,7 +1011,7 @@ class MyBlocksAdmin {
 			// find template of the block
 			$tplfile_handler       =& xoops_gethandler( 'tplfile' );
 			$found_templates       =& $tplfile_handler->find( $GLOBALS['xoopsConfig']['template_set'], 'block', null, null, $block_template );
-			$block_template_tplset = count( $found_templates ) > 0 ? $GLOBALS['xoopsConfig']['template_set'] : 'default';
+			$block_template_tplset = (is_countable($found_templates) ? count( $found_templates ) : 0) > 0 ? $GLOBALS['xoopsConfig']['template_set'] : 'default';
 		}
 		//HACK by domifara
 		/*

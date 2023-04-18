@@ -22,7 +22,7 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 
 		public $messages = [];
 
-		const PBKDF2_SALT_BYTES = 24;
+		public const PBKDF2_SALT_BYTES = 24;
 
 		/**
 		 * XoopsGTicket constructor.
@@ -173,7 +173,7 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 
 			// limit max stubs 10
 
-			if ( count( $_SESSION['XOOPS_G_STUBS'] ) > 10 ) {
+			if ( (is_countable($_SESSION['XOOPS_G_STUBS']) ? count( $_SESSION['XOOPS_G_STUBS'] ) : 0) > 10 ) {
 				$_SESSION['XOOPS_G_STUBS'] = array_slice( $_SESSION['XOOPS_G_STUBS'], - 10 );
 			}
 
@@ -349,7 +349,7 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 				}
 
 				if ( is_array( $val ) ) {
-					list( $tmp_table, $tmp_form ) = $this->extract_post_recursive( htmlspecialchars( $key, ENT_QUOTES ), $val );
+					[$tmp_table, $tmp_form] = $this->extract_post_recursive( htmlspecialchars( $key, ENT_QUOTES ), $val );
 
 					$table .= $tmp_table;
 

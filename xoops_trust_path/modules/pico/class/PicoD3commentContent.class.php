@@ -17,7 +17,8 @@ require_once XOOPS_TRUST_PATH . '/modules/d3forum/class/D3commentAbstract.class.
 class PicoD3commentContent extends D3commentAbstract {
 
 	public function fetchSummary( $external_link_id ) {
-		( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = &MyTextSanitizer::sGetInstance() ) || $myts = &( new MyTextSanitizer )->getInstance();
+		$myts = null;
+  ( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = &MyTextSanitizer::sGetInstance() ) || $myts = &( new MyTextSanitizer )->getInstance();
 
 		$module_handler = &xoops_gethandler( 'module' );
 		$module         = &$module_handler->getByDirname( $this->mydirname );

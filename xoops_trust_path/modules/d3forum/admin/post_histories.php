@@ -36,7 +36,7 @@ $navi_obj = new XoopsPageNav( $hits, $num, $pos, 'pos', htmlspecialchars( 'page=
 
 $histories4assign = [];
 
-while ( list( $history_id, $post_id, $history_time, $data_serialized, $subject ) = $db->fetchRow( $result ) ) {
+while ( [$history_id, $post_id, $history_time, $data_serialized, $subject] = $db->fetchRow( $result ) ) {
 
 	$histories4assign[] = [
 		'id'                     => $history_id,

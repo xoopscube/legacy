@@ -22,7 +22,7 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 $modversion['dirname']          = $mydirname;
 $modversion['name']             = constant( $constpref . '_NAME' );
 $modversion['version']          = '3.58';
-$modversion['detailed_version'] = '3.58.0';
+$modversion['detailed_version'] = '3.58.3';
 $modversion['detailed_version'] = $modversion['version'].'.1';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'GIJ=CHECKMATE PEAK Corp.(https://www.peak.ne.jp/) ';

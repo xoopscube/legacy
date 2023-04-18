@@ -28,7 +28,7 @@ class PicoExtraFields {
 	public $isadminormod;
 	public $content_id;
 	public $images_path;
-	public $image_sizes;
+	public $image_sizes = [];
     public $image_quality; // since XCL 2.3.x
 
 	public function __construct( $mydirname, $mod_config, $auto_approval, $isadminormod, $content_id ) {
@@ -39,7 +39,6 @@ class PicoExtraFields {
 		$this->content_id    = $content_id;
 		$this->images_path   = XOOPS_ROOT_PATH . '/' . $mod_config['extra_images_dir'];
         $this->image_quality = $this->mod_config['extra_images_quality'];
-		$this->image_sizes   = [];
 		$size_combos         = preg_split( '/\s+/', $this->mod_config['extra_images_size'] );
 		foreach ( $size_combos as $size_combo ) {
 			$this->image_sizes[] = array_map( 'intval', preg_split( '/\D+/', $size_combo ) );
@@ -186,7 +185,7 @@ class PicoExtraFields {
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 		foreach ( glob( $this->images_path . '/' . $glob_pattern ) as $filename ) {
-			if ( strpos( $filename, $current_id ) !== false ) {
+			if ( strpos( $filename, (string) $current_id ) !== false ) {
 				continue;
 			}
 			if ( preg_match( '/([0-9a-f]{16}\.[a-z]{3})$/', $filename, $regs ) ) {

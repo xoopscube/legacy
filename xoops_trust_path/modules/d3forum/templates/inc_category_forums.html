@@ -5,14 +5,14 @@
 
     <div class="headings">
         <h4>
-            <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>" aria-label="<{$forum.title}>">
+            <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>" title="<{$forum.title}>">
                 <img class="svg forum_<{$forum.bit_new}>" src="<{$xoops_url}>/images/icons/forum_<{$forum.bit_new}>.svg" alt="forum">
                 <{$forum.title}>
             </a>
 
             <{if $xoops_isadmin}>
             <a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>"
-               aria-label="<{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}>"
+               title="<{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}>"
                data-tooltip="<{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}>">
                 <img class="svg edit" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" alt="edit">
             </a>
@@ -29,7 +29,7 @@
 
 
             <{if $mod_config.show_rss}>
-            <a href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>" aria-label="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>">
+            <a href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>">
                 <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" alt="RSS">
             </a>
             <{/if}>

@@ -60,14 +60,15 @@ function pico_main_make_treeinformations( $data ) {
 			$data[ $i ]['prev_id']     = $data[ $i - 1 ]['id'];
 		}
 	}
-	$data[ count( $data ) - 1 ]['ul_out'] = str_repeat( '</li></ul>', $previous_depth + 1 );
+	$data[ (is_countable($data) ? count( $data ) : 0) - 1 ]['ul_out'] = str_repeat( '</li></ul>', $previous_depth + 1 );
 
 	return $data;
 }
 
 // get permissions of current user
 function pico_main_get_category_permissions_of_current_user( $mydirname, $uid = null ) {
-	$db = XoopsDatabaseFactory::getDatabaseConnection();
+	$ret = [];
+ $db = XoopsDatabaseFactory::getDatabaseConnection();
 
 	if ( $uid > 0 ) {
 		$user_handler = &xoops_gethandler( 'user' );
@@ -93,7 +94,7 @@ function pico_main_get_category_permissions_of_current_user( $mydirname, $uid = 
 	$result = $db->query( $sql );
 
 	if ( $result ) {
-		while ( list( $cat_id, $serialized_permissions ) = $db->fetchRow( $result ) ) {
+		while ( [$cat_id, $serialized_permissions] = $db->fetchRow( $result ) ) {
 			$permissions = pico_common_unserialize( $serialized_permissions );
 			if ( is_array( @$ret[ $cat_id ] ) ) {
 				foreach ( $permissions as $perm_name => $value ) {
@@ -128,7 +129,7 @@ function pico_main_get_category_moderate_groups4show( $mydirname, $cat_id ) {
 
 	$mrs = $db->query( $sql );
 
-	while ( list( $mod_gid, $mod_gname ) = $db->fetchRow( $mrs ) ) {
+	while ( [$mod_gid, $mod_gname] = $db->fetchRow( $mrs ) ) {
 		$ret[] = [
 			'gid'   => $mod_gid,
 			'gname' => htmlspecialchars( $mod_gname, ENT_QUOTES ),
@@ -154,7 +155,7 @@ function pico_main_get_category_moderate_users4show( $mydirname, $cat_id ) {
 
 	$mrs = $db->query( $sql );
 
-	while ( list( $mod_uid, $mod_uname ) = $db->fetchRow( $mrs ) ) {
+	while ( [$mod_uid, $mod_uname] = $db->fetchRow( $mrs ) ) {
 		$ret[] = [
 			'uid'   => $mod_uid,
 			'uname' => htmlspecialchars( $mod_uname, ENT_QUOTES ),
@@ -175,7 +176,7 @@ function pico_main_make_cat_jumpbox_options( $mydirname, $whr4cat, $cat_selected
 	$sql = 'SELECT c.cat_id, c.cat_title, c.cat_depth_in_tree FROM ' . $db->prefix( $mydirname . '_categories' ) . " c WHERE ($whr4cat) ORDER BY c.cat_order_in_tree";
 
 	if ( $result = $db->query( $sql ) ) {
-		while ( list( $cat_id, $cat_title, $cat_depth ) = $db->fetchRow( $result ) ) {
+		while ( [$cat_id, $cat_title, $cat_depth] = $db->fetchRow( $result ) ) {
 			$selected = $cat_id == $cat_selected ? 'selected="selected"' : '';
 			$ret      .= "<option value='$cat_id' $selected>" . str_repeat( '--', $cat_depth ) . $myts->makeTboxData4Show( $cat_title, 1, 1 ) . "</option>\n";
 		}
@@ -208,7 +209,7 @@ function pico_main_get_moderators( $mydirname, $cat_id ) {
 
 	$result = $db->query( $sql );
 
-	while ( list( $uid ) = $db->fetchRow( $result ) ) {
+	while ( [$uid] = $db->fetchRow( $result ) ) {
 		$cat_uids[] = $uid;
 	}
 
@@ -219,14 +220,14 @@ function pico_main_get_moderators( $mydirname, $cat_id ) {
 
 	$groupids = [];
 
-	while ( list( $groupid ) = $db->fetchRow( $result ) ) {
+	while ( [$groupid] = $db->fetchRow( $result ) ) {
 		$groupids[] = $groupid;
 	}
 
 	if ( ! empty( $groupids ) ) {
 		$sql    = 'SELECT distinct uid FROM ' . $db->prefix( 'groups_users_link' ) . ' WHERE groupid IN (' . implode( ',', $groupids ) . ')';
 		$result = $db->query( $sql );
-		while ( list( $uid ) = $db->fetchRow( $result ) ) {
+		while ( [$uid] = $db->fetchRow( $result ) ) {
 			$cat_uids[] = $uid;
 		}
 	}
@@ -384,7 +385,8 @@ function pico_main_render_moduleheader( $mydirname, $mod_config, $appendix_heade
 
 // get directories recursively under WRAP
 function pico_main_get_wraps_directories_recursively( $mydirname, $dir_path = '/' ) {
-	$full_dir_path = XOOPS_TRUST_PATH . _MD_PICO_WRAPBASE . '/' . $mydirname . $dir_path;
+	$ret = [];
+ $full_dir_path = XOOPS_TRUST_PATH . _MD_PICO_WRAPBASE . '/' . $mydirname . $dir_path;
 
 	if ( ! is_dir( $full_dir_path ) ) {
 		return [];

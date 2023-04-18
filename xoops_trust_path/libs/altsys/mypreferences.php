@@ -33,7 +33,7 @@ if ( 'showmod' == $op ) {
 	$config_handler =& xoops_gethandler( 'config' );
 	$mod            = $xoopsModule->mid();
 	$config         =& $config_handler->getConfigs( new Criteria( 'conf_modid', $mod ) );
-	$count          = count( $config );
+	$count          = is_countable($config) ? count( $config ) : 0;
 	if ( $count < 1 ) {
 		die( 'no configs' );
 	}
@@ -104,7 +104,7 @@ if ( 'showmod' == $op ) {
 					$addBr = '<br>';
 				}
 				$options =& $config_handler->getConfigOptions( new Criteria( 'conf_id', $config[ $i ]->getVar( 'conf_id' ) ) );
-				$opcount = count( $options );
+				$opcount = is_countable($options) ? count( $options ) : 0;
 				for ( $j = 0; $j < $opcount; $j ++ ) {
 					$optval = defined( $options[ $j ]->getVar( 'confop_value' ) ) ? constant( $options[ $j ]->getVar( 'confop_value' ) ) : $options[ $j ]->getVar( 'confop_value' );
 					$optkey = defined( $options[ $j ]->getVar( 'confop_name' ) ) ? constant( $options[ $j ]->getVar( 'confop_name' ) ) : $options[ $j ]->getVar( 'confop_name' );
@@ -121,7 +121,7 @@ if ( 'showmod' == $op ) {
 					$addBr = '<br>';
 				}
 				$options =& $config_handler->getConfigOptions( new Criteria( 'conf_id', $config[ $i ]->getVar( 'conf_id' ) ) );
-				$opcount = count( $options );
+				$opcount = is_countable($options) ? count( $options ) : 0;
 				for ( $j = 0; $j < $opcount; $j ++ ) {
 					$optval = defined( $options[ $j ]->getVar( 'confop_value' ) ) ? constant( $options[ $j ]->getVar( 'confop_value' ) ) : $options[ $j ]->getVar( 'confop_value' );
 					$optkey = defined( $options[ $j ]->getVar( 'confop_name' ) ) ? constant( $options[ $j ]->getVar( 'confop_name' ) ) : $options[ $j ]->getVar( 'confop_name' );
@@ -215,7 +215,7 @@ if ( $op == 'save' ) {
 	if ( ! empty( $_POST['conf_ids'] ) ) {
 		$conf_ids = $_POST['conf_ids'];
 	}
-	$count            = count( $conf_ids );
+	$count            = is_countable($conf_ids) ? count( $conf_ids ) : 0;
 	$tpl_updated      = false;
 	$theme_updated    = false;
 	$startmod_updated = false;
@@ -253,7 +253,7 @@ if ( $op == 'save' ) {
 						// block files only for now..
 						$tplfile_handler =& xoops_gethandler( 'tplfile' );
 						$dtemplates      =& $tplfile_handler->find( 'default', 'block' );
-						$dcount          = count( $dtemplates );
+						$dcount          = is_countable($dtemplates) ? count( $dtemplates ) : 0;
 
 						// need to do this to pass to xoops_template_touch function
 						$GLOBALS['xoopsConfig']['template_set'] = $newtplset;

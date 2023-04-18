@@ -107,7 +107,7 @@ while (false !== ($row_table = $db->fetchArray($srs))) {
 			continue;
 		}
 		$drs = $db->queryF( "SHOW CREATE TABLE `$table`" );
-		list( , $create ) = $db->fetchRow( $drs );
+		[, $create] = $db->fetchRow( $drs );
 		$line = "\nDROP TABLE IF EXISTS `$table`;\n" . $create . ";\n\n";
 		if ( $tempfile ) {
 			fwrite( $tempfile, $line );

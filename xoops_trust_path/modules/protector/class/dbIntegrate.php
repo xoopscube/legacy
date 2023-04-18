@@ -12,7 +12,7 @@
 
 class protectorDbIntegrate {
 	private $link = null;
-	private $api = 'mysql';
+	private string $api = 'mysql';
 
 	public function __construct( $link ) {
 		$this->link = $link;
@@ -69,7 +69,7 @@ class protectorDbIntegrate {
 
 				return $res;
 			default:
-				return mysqli_fetch_field( $result, $field_offset );
+				return mysqli_fetch_field( $result );
 		}
 	}
 }

@@ -59,7 +59,7 @@ if ( ! empty( $_POST['group_update'] ) && empty( $invaild_forum_id ) ) {
 
 	$result = $db->query( 'SELECT groupid FROM ' . $db->prefix( 'groups' ) );
 
-	while ( list( $gid ) = $db->fetchRow( $result ) ) {
+	while ( [$gid] = $db->fetchRow( $result ) ) {
 
 		if ( ! empty( $_POST['can_reads'][ $gid ] ) ) {
 			$can_post           = empty( $_POST['can_posts'][ $gid ] ) ? 0 : 1;
@@ -182,7 +182,7 @@ $fars = $db->query( 'SELECT u.uid,u.uname,fa.can_post,fa.can_edit,fa.can_delete,
 
 $user_trs = '';
 
-while ( list( $uid, $uname, $can_post, $can_edit, $can_delete, $post_auto_approved, $is_moderator ) = $db->fetchRow( $fars ) ) {
+while ( [$uid, $uname, $can_post, $can_edit, $can_delete, $post_auto_approved, $is_moderator] = $db->fetchRow( $fars ) ) {
 
 	$uid = (int) $uid;
 

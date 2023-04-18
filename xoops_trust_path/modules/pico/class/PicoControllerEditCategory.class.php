@@ -46,7 +46,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract {
 
 		// fetch data from DB
 		$cat_data                            = $categoryObj->getData();
-		$this->assign['category_base']       = $categoryObj->getData4html( true );
+		$this->assign['category_base']       = $categoryObj->getData4html();
 		$this->categoryObjs['category_base'] = &$categoryObj;
 		$this->assign['category']            = $categoryObj->getData4edit();
 
