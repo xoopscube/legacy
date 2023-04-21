@@ -99,8 +99,9 @@ define( '_NEWESTFIRST' , "Les récents en premier");
 define( '_MORE' , "plus...");
 define( '_MULTIPAGE' , "Pour avoir votre article sur des pages multiples, insérer le mot <span style='color:red'>[pagebreak]</span> (avec les crochets) dans l'article.");
 define( '_IFNOTRELOAD' , "Si la page ne se recharge pas automatiquement, merci de cliquer <a href=%s>ici</a>");
-define( '_WARNINSTALL2' , "ATTENTION: Le repértoire {0} existe sur votre serveur.<br>Ajoutez um mot-de-passe au fichier 'install/passwd.php' ou supprimez ce repértoire pour des raisons de sécurité.");
-define( '_WARNINWRITEABLE' , "ATTENTION : Veillez Changer les permissions du fichier {0} pour des raisons de sécurité - sous Unix (444), sous Win32 (lecture seule)");
+define( '_WARNINSTALL2' , '<span>ATTENTION: le dossier <b>Install</b> existe!<br><span class="alert-install">{0}</span><br>Editez le fichier <span class="alert-install">install/passwd.php</span> et ajoutez um mot-de-passe ou supprimez ce dossier pour des raisons de sécurité.</span>');
+define( '_WARNINWRITEABLE' , "<span>ATTENTION: <b>Mainfile</b> est accessible en écriture !<br><span class='alert-install'>{0}</span><br>Changez les permissions du fichier pour des raisons de sécurité - sous Unix (444), sous Win32 (lecture seule)</span>");
+
 define( '_WARNPHPENV' , "ATTENTION : paramètres php.ini \"%s\" est réglé \"%s\". %s");
 define( '_WARNSECURITY' , "(Ceci peut causer des problèmes de sécurité)");
 define( '_WARN_INSTALL_TIP' , "Activer la précharge - A des fins de développement uniquement!<br>Utilisez le 'preload' pour conserver le fichier 'mainfile'' et le répertoire d'installation.<br>Souvenez-vous de changer les permissions de 'mainfile' (lecture) et de supprimer '/install' pour des raisons de sécurité.");

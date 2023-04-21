@@ -17,7 +17,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	// Menu
 	define( $constpref . '_ADMININDEX', 'Protect Center' );
 	define( $constpref . '_ADVISORY', 'セキュリティガイド' );
-	define( $constpref . '_PREFIXMANAGER', 'PREFIX マネージャ' );
+	define( $constpref . '_PREFIXMANAGER', 'DB PREFIX マネージャ' );
 	define( $constpref . '_ADMENU_MYBLOCKSADMIN', 'アクセス権限' );
 
 	// Configs

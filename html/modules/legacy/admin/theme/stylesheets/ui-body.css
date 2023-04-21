@@ -86,7 +86,7 @@ a:link, a:visited {
 /* ----- ANCHOR LINK SCROLL MARGIN
    scroll-margin-top : value equal to header height */
 a[name|=help] {
-    scroll-margin-top: 4em;
+    scroll-margin-top: 5em;
 }
 a[id|=avatar-active],
 a[id|=block-permission],
@@ -95,6 +95,10 @@ a[id|=cool-uri],
 a[id|=ip-ban],
 a[id|=debug-mode] {
     scroll-margin-top: 120px;
+}
+/* Altsys (components) menu+submenu */
+h3[id|=normalize] {
+    scroll-margin-top: 200px;
 }
 
 blockquote {
@@ -158,6 +162,8 @@ h6 {
     text-transform  : uppercase;
     margin          : var(--space-6) 0;
 }
+
+article#help-module h2 {margin:0 0 1em 0;}
 
 hr {
     border          : 0;

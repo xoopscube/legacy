@@ -2,7 +2,7 @@
     <div data-self="size-xxsmall">
         <nav id="help-menu">
             <ul data-layout="column">
-                <li><a href="#help-overview" class="button">Get started</a>
+                <li><a href="#help-overview" class="button">Get Started</a>
                 <li><a href="#admin-layout" class="button">Admin Layout</a>
                 <li><a href="#help-search" class="button">Action Search</a>
                 <li><a href="#help-blocks" class="button">Blocks</a>
@@ -16,7 +16,14 @@
             </ul>
         </nav>
     </div>
-
+    <style>
+        .guide-layout { background: var(--body-bg );border: var(--border);box-shadow:var(--shadow-3); display: block;font-size:14px;margin-top:var(--space-7)}
+        .guide-layout > div {
+            border: var(--border);
+        }
+        .guide-layout div.block {background: var(--card-full-bg );padding:.5em;}
+        div.block:not(:last-child) {margin-bottom:1em}
+    </style>
 <article id="help-module">
 
     <section class="help" id="help-overview">
@@ -33,16 +40,16 @@
             These include setting up the site name and slogan, customizing meta tags (SEO), allowing visitors to register, and user group permissions.
             More detailed documents are available and will be highlighted throughout this guide.</p>
 
+        <h3>Store and manage preferences and settings</h3>
+        <p>Save your preferences for all dashboard blocks. Manage your configuration and modules effectively and reliably.
+            Get and deploy add-ons from the X-Update Manager in real time without impacting users, avoiding time-consuming redeployment.
+            The Web App Configuration is built for simplicity, scalability, and security.
+            The web application configuration is built on simplicity, security and scalability.</p>
+
         <h3>Control Panel and Custom Dashboard</h3>
         <p>The control panel, also known as the admin area, gives you access to all actions that can be performed on your web application platform.
             It also includes a dashboard that can be customized from the "admin panel". You can enable or disable admin blocks, module tips and action tooltips.
             Your preferences are stored in your browser's localStorage.</p>
-<style>
-    .guide-layout { background: var(--body-bg );border: var(--border);box-shadow:var(--shadow-3); display: block;font-size:14px;margin-top:var(--space-7)}
-    .guide-layout > div {
-        border: var(--border);
-    }
-</style>
 
         <div class="guide-layout">
             <div data-layout="row center-justify sm-column p-4">
@@ -54,7 +61,7 @@
             </div>
 
             <div data-layout="row top-justify sm-column p-4">
-                <div data-self="size-1of5 sm-full p-4" style="background: var(--aside-bg );">
+                <div data-self="size-1of5 stretch sm-full p-4" style="background: var(--aside-bg );">
                     <h6>Side Menu</h6>
                     <p>The side menu is automatically generated from active modules. Each sub-menu provides you access to module's actions that can be performed.</p>
                 </div>
@@ -66,7 +73,7 @@
                     <p>You can add your own Widgets to the Dashboard for different purposes - for example, you can embed any third-party API or Monitoring widgets.
                         In short, Widgets are a quick, non-technical solution, whereas the API is a more involved process that requires specific technical knowledge.</p>
                 </div>
-                <div data-self="size-1of5 sm-full p-4" style="background: var(--aside-panel-bg);">
+                <div data-self="size-1of5 stretch sm-full p-4" style="background: var(--aside-panel-bg);">
                     <h6>Admin Panel</h6>
                     <p>The x-cube on the right opens the admin side panel where you can search for an action or show Help from the active module,
                         and customize your dashboard options.</p>
@@ -203,12 +210,29 @@
     <section id="help-gui">
         <h3>Admin Theme Options</h3>
 
-        <h4>Show or hide blocks and modules Tips</h4>
+        <h4>Store your dashboard preferences - blocks and modules Tips</h4>
+
         <p>Modules Tips are small alert messages that display short information about functionality.</p>
         <p>Actions Tips display descriptive text when you rest the pointer on a button command or control.</p>
         <p>Module Help enhanced Help are larger modals that display more descriptive text than a Module Tip and can have a link to a Help article.</p>
         <p>You can set an option to show or hide Tips.</p>
+
         <h3>Show or hide Tips</h3>
+
+        <div class="guide-layout">
+        <div data-layout="row center-justify sm-column p-4">
+            <div data-self="size-x1 center sm-full p-4">
+                <div class="block"><{$smarty.const._AD_BLOCK_ONLINE}></div>
+                <div class="block"><{$smarty.const._AD_BLOCK_MENU}></div>
+                <div class="block"><{$smarty.const._AD_BLOCK_SERVER}></div>
+            </div>
+            <div data-self="start sm-full p-4">
+                <div class="block"><{$smarty.const._AD_BLOCK_OVERVIEW}></div>
+                <div class="block">Custom Block</div>
+            </div>
+        </div>
+        </div>
+
         <ol>
             <li>Click the x-cube admin panel</li>
             <li>Click theme options.</li>
@@ -242,29 +266,129 @@
 
     <section id="help-blocks">
 
-            <h3>Blocks management</h3>
+        <h3>Blocks management</h3>
 
-            <p>The block management system is built into the kernel and provides five default block positions,
-                the order of display, in which module, for which user groups and cache settings.</p>
+        <p>The block management system is built into the kernel and provides custom title, five default block positions,
+            display order, modules, user groups access and cache settings.</p>
 
-            <p>The block position is just a legacy code convention to identify areas in the theme layout.</p>
+        <h4>Block Title (name)</h4>
+        <p>You can rename the block title, and display or not in your theme.</p>
 
-            <p>The block template specifies the shape, and the global theme specifies the areas and appearance.
-                However, it can be overridden by a custom template.</p>
+        <h4>Block Order (weight)</h4>
+        <p>The display order set in the specific field, next to the block name, will determine its placement on the page,
+            relative to the display orders of all other visible blocks.</p>
+        <p>The display order is 0, the starting number of 1 and incremented by 1 relates to all subsequent blocks.
+            The new starting number can be changed manually by the user and will then be incremented by 1 against that initial number.</p>
 
-            <p>There are two types of blocks : Modules blocks and Custom blocks.</p>
+        <h4>Block Type (custom)</h4>
+        <p>Custom blocks can be created with BBCode and PHP, or HTML, CSS and JavaScript.</p>
 
-            <h4>Modules blocks</h4>
+        <h4>Block Side (position)</h4>
+        <p>The block position is just a legacy code convention to identify areas in the theme layout.</p>
+        <p>Themes can provide several placeholders, for example, by using a prefix added to the block title, or the block's order (weight) value. </p>
 
-            <p>Modules have several pre-built blocks that offer specific functionality and favor composition over inheritance.
-                These blocks are made available in the block management by enabling modules.</p>
+        <h4>Cache setting</h4>
+        <p>You can specify the cache lifetime or prevent a block from being cached, if its content requires updates in real time (e.g. comments or RSS feeds).</p>
 
-            <h4>Custom blocks</h4>
+        <h4>Target modules</h4>
+        <p>Where to show the block.</p>
 
-            <p>A Custom block can be built with HTML, CSS, JavaScript, PHP and Smarty variables.
-                Thus allowing to create reusable Components to create an effective website layout.<br>
-                It can also embed code or integrate with third-party features specific to a site's unique needs.</p>
-            <p>The block editor will switch according to the type of content.</p>
+        <h4>Target groups</h4>
+        <p>user Groups that can access the block.</p>
+
+<h3>Example of Custom Block</h3>
+
+        <div data-layout="row sm-column">
+            <div data-self="size-1of3 sm-full">
+                <div class="ui-card-block">
+                    <div class="ui-card-block-header" data-layout="row center-justify">
+                        <a href="#!" style="cursor: help;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="icon-info"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2z" fill="currentColor"></path></svg></a>
+                        <label>
+                            <input type="checkbox" id="27" name="uninstall[27]" value="1">
+                        </label>
+                    </div>
+                    <div class="ui-card-block-image card-block-svg">
+                        <a class="ui-block-type" href="#!">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-html">
+                                <g id="ui-block-html"><path class="block-icon" d="M12 17.56l4.07-1.13l.55-6.1H9.38L9.2 8.3h7.6l.2-1.99H7l.56 6.01h6.89l-.23 2.58l-2.22.6l-2.22-.6l-.14-1.66h-2l.29 3.19L12 17.56M4.07 3h15.86L18.5 19.2L12 21l-6.5-1.8L4.07 3z" fill="currentColor"></path>
+                                    <text class="block-name" x="120px" y="50px" fill="currentColor">
+                                        <tspan>Custom HTML</tspan>
+                                    </text>
+                                </g>
+                            </svg>
+                        </a>
+                    </div>
+                    <div data-layout="rows">
+                        <div class="ui-card-block-item">
+                            <span><input type="number" size="1" maxlength="4" name="weight[27]" value="0"></span>
+                            <span><input type="text" size="18" maxlength="191" name="title[27]" value="Welcome"></span>
+                        </div>
+                        <div class="ui-card-block-item">
+                            <label class="inactive"><input name="side[27]" id="legacy_xoopsform_side_0" type="radio" value="0"></label><div class="ui-block-separator">-</div><label class="ui-block-input inactive"><input name="side[27]" id="legacy_xoopsform_side_3" type="radio" value="3"></label><label class="active"><input name="side[27]" id="legacy_xoopsform_side_5" type="radio" value="5" checked="checked"></label><label class="ui-block-input inactive"><input name="side[27]" id="legacy_xoopsform_side_4" type="radio" value="4"></label><div class="ui-block-separator">-</div><label class="ui-block-input inactive"><input name="side[27]" id="legacy_xoopsform_side_1" type="radio" value="1"></label>
+                        </div>
+                    </div>
+                    <div data-layout="rows">
+                        <div class="ui-card-block-item">
+                            <select name="bcachetime[27]" data-layout="row">
+                                <option id="_0" value="0" selected="selected">No Cache</option>
+                                <option id="_30" value="30">30 seconds</option>
+                                <option id="_60" value="60">1 minute</option>
+                                <option id="_300" value="300">5 minutes</option>
+                                <option id="_1800" value="1800">30 minutes</option>
+                                <option id="_3600" value="3600">1 hour</option>
+                                <option id="_18000" value="18000">5 hours</option>
+                                <option id="_86400" value="86400">1 day</option>
+                                <option id="_259200" value="259200">3 days</option>
+                                <option id="_604800" value="604800">1 week</option>
+                                <option id="_2592000" value="2592000">1 month</option>
+                            </select>
+                        </div>
+                        <div class="ui-card-block-item" data-self="inline">
+                            <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M15 13h1.5v2.82l2.44 1.41l-.75 1.3L15 16.69V13m4-5H5v11h4.67c-.43-.91-.67-1.93-.67-3a7 7 0 0 1 7-7c1.07 0 2.09.24 3 .67V8M5 21a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2H5m11-9.85A4.85 4.85 0 0 0 11.15 16c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 20.85 16c0-2.68-2.17-4.85-4.85-4.85z" fill="currentColor"></path>
+                            </svg>
+                            <small>2023/03/23 09:11:00</small>
+                        </div>
+                    </div>
+                    <div class="ui-card-block-item">
+                        <a href="./index.php?action=CustomBlockEdit&amp;bid=27" class="button">
+                            <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path>
+                            </svg> Edit
+                        </a>
+                        <a href="./index.php?action=BlockUninstall&amp;bid=27" class="button">
+                            <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M3.27 1L2 2.27L6.22 6.5L3 9l1.63 1.27L12 16l2.1-1.63l1.43 1.43L12 18.54l-7.37-5.73L3 14.07l9 7l4.95-3.85L20.73 21L22 19.73L3.27 1m16.09 9.27L21 9l-9-7l-2.91 2.27l7.87 7.88l2.4-1.88m.45 4.73l1.19-.93l-1.43-1.43l-1.19.92L19.81 15z" fill="currentColor">
+                                </path>
+                            </svg> Uninstall
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div data-self="size-x1 sm-full p-6">
+
+
+                <p>The block template specifies the shape, and the global theme specifies the areas and appearance.
+                    However, it can be overridden by a custom template.</p>
+
+                <p>There are two types of blocks : Modules blocks and Custom blocks.</p>
+
+                <h4>Modules blocks</h4>
+
+                <p>Modules have several pre-built blocks that offer specific functionality and favor composition over inheritance.
+                    These blocks are made available in the block management by enabling modules.</p>
+
+                <h4>Custom blocks</h4>
+
+                <p>A Custom block can be built with HTML, CSS, JavaScript, PHP and Smarty variables.
+                    Thus allowing to create reusable Components to create an effective website layout.<br>
+                    It can also embed code or integrate with third-party features specific to a site's unique needs.</p>
+                <p>The block editor will switch according to the type of content.</p>
+            </div>
+
+        </div>
+
+
 
         <p><a href="<{'block.html'|helpurl}>" class="button">Learn more about Blocks ⭢</a></p>
 
@@ -275,9 +399,9 @@
 
         <h3>Comment Management</h3>
 
-        <p>The block management system is built into the kernel.
-            It provides a text comment box where users can generate their own comments and leave them on a specific piece of content.</p>
-        You can follow the last comments of your articles on your Dashboard. In addition to having a quick view, you can also give Reply to the comment as well as moderate its status as a public, unpublish, spam, and delete it.
+        <p>The Comment management system is built into the kernel.
+            It provides a textarea comment box where users can generate their own comments and leave them on a specific piece of content.</p>
+        You can follow the last comments of your articles on your Dashboard. In addition to having a quick view, you can also give Reply to the comment as well as moderate its status as a public, pending, spam, and delete it.
 
         <div class="tips">D3 modules comments are easily integrated (module preferences) and managed through D3Forum.</div>
 
@@ -489,7 +613,7 @@
             </tr>
             <tr>
                 <td>Version</td>
-                <td>2.31</td>
+                <td>2.33</td>
             </tr>
             <tr>
                 <td>Level</td>

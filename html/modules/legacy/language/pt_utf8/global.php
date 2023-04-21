@@ -230,8 +230,9 @@ define( '_USERNAME' , "Codinome:");
 define( '_VERSION' , "Versão");
 define( '_VIEW' , "Mostrar");
 define( '_VISITWEBSITE' , "Visitar");
-define( '_WARNINSTALL2' , "Atenção: a pasta {0} existe no servidor. Adicione uma senha (palavra-chave) ao ficheiro 'install/passwd.php' ou remova este diretório para proteger a instalação.");
-define( '_WARNINWRITEABLE' , "Atenção: o arquivo {0} tem permissão de escrita pelo servidor. Altere esta permissão por motivos de segurança: em sistemas tipo UNIX, configure como CHMOD 0444; em ambiente Windows, configure como somente leitura.");
+define( '_WARNINSTALL2' , '<span>Atenção: a pasta <b>Install</b> existe!<br><span class="alert-install">{0}</span><br>Edite o arquivo <span class="alert-install">install/passwd.php</span> para adicionar uma senha ou remova esta pasta por motivos de segurança.</span>');
+define( '_WARNINWRITEABLE' , "<span>Atenção: <b>Mainfile</b> com permissão de escrita!<br><span class='alert-install'>{0}</span><br> Altere esta permissão por motivos de segurança:: Unix (0444), Windows (leitura)</span>");
+
 define( '_WARNPHPENV' , "Atenção: o parâmetro %s do arquivo php.ini está configurado como %s. %s");
 define( '_WARNSECURITY' , "Isto deixa o seu portal menos seguro. Se possível, altere as configurações de seu servidor.");
 define( '_WARN_INSTALL_TIP' , 'Ative o pré-carregamento — apenas para fins de desenvolvimento!<br> Use o pré-carregamento para manter o arquivo principal e o diretório de instalação.<br>Lembre-se de clicar em chomd e excluir a instalação para evitar qualquer problema de segurança.');

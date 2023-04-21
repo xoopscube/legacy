@@ -419,7 +419,7 @@ Usage with color var:
     --notify-radius         : var( --border-radius );
     --notify-shadow         : var( --shadow-2 );
     --notify-color          : var( --primary );
-    --notify-margin         : var(--space-8) auto;
+    --notify-margin         : var(--space-7) auto;
     --notify-padding        : 1rem 1rem 1rem 3rem;
     --notify-max-width      : 90%;
 

@@ -11,7 +11,7 @@
  */
 
 /**
- * Save assigned variables for the template
+ * Compile Hook to save assigned variables for the template
  * @param $file
  * @param $smarty
  *

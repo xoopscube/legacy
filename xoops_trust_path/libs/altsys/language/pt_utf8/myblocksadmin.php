@@ -1,10 +1,10 @@
 <?php
+// XCL 2.3.3 Nuno Luciano aka gigamaster XCL-PHP7+
 // $Id: myblocksadmin.php 1040 2011-11-06 05:24:00Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
-define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Gerencie blocos selecionando o lado, módulos de destino, permissões de grupos de usuários e tempo de cache.');
-define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , 'O <b>editor</b> mudará de acordo com o <b>Tipo personalizado</b> selecionado.<br>
-Primeiro, dê um nome ao <b>Título do bloco</b>, selecione um <b>Tipo personalizado</b> e salve. Em seguida, você pode editar seu novo bloco.<br>
-Permitindo assim criar um Componente reutilizável com BBcode e PHP ou HTML, JavaScript e CSS.');
+define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Selecione um módulo para gerenciar blocos definindo o lado, o módulo de destino, as permissões do grupo de usuários e o tempo de cache.');
+define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , 'Primeiro, dê um nome ao <b>Título do bloco</b>, selecione um <b>Tipo personalizado</b> e salve. O <b>editor</b> mudará de acordo com o <b>Tipo personalizado</b> selecionado.<br>
+Você pode então editar o novo bloco para criar componentes reutilizáveis usando BBcode e PHP ou HTML, JavaScript e CSS.');
 define( '_MD_A_MYBLOCKSADMIN_ACTION' , "Ação");
 define( '_MD_A_MYBLOCKSADMIN_ALLPAGES' , "Todas as páginas");
 define( '_MD_A_MYBLOCKSADMIN_BCACHETIME' , "Tempo do Cache");

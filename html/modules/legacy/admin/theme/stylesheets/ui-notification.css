@@ -91,6 +91,14 @@
     background-repeat: no-repeat;
     /* animation: warning 1s infinite alternate; */
 }
+/* install + mainfile language global.php */
+.error .alert-install {
+    background: var(--color-red);
+    border-bottom    : 1px solid #ff5722;
+    color:white;
+    font-size: 13px;
+    word-break      : break-all;
+}
 .help-tips,
 .tips {
     border-left     : 7px solid var( --color-blue );
