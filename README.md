@@ -34,7 +34,7 @@ Keep a tested high quality, up-to-date master/main branch for releases.
   Gitlab or any other public or private, local or remote repository.
 - Duplicatable modules :  
   Content Management System (CMS), forums, knowledge management systems,   
-  and multiple blogs (e.g. WordPress) management.
+  and multiple blogs management (e.g. WordPress) .
 
 <p><a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
 <img src="https://repository-images.githubusercontent.com/4779266/2956517f-c3ea-4177-bd08-e11b6e30f17c" alt="xcl-admin-render" title="XCL Admin version 2.3.x" width="100%">
