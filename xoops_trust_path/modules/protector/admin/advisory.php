@@ -37,10 +37,6 @@ $js_accordion = <<<EOD
             heightStyle: "content", /* "auto" height of the tallest panel. "fill" expand to parent height. "content": Each panel height as its content */
         });
     } );
-    // UI toggle view options
-    function toggle(className, obj) {
-    $(className).toggle(750,"easeOutQuint", obj.checked )
-    }
 </script>
 EOD;
 

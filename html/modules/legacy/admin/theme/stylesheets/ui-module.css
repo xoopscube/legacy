@@ -41,7 +41,7 @@
 .fingerprint6 { color: var( --color-amber ) }
 .fingerprint7 { color: var( --link ) }
 
-/* -------------------- -------------------- COPY TO CLIPBOARD */
+/* -------------------- -------------------- COPY TO CLIPBOARD + DRAW CSS ICON */
 
 .textarea-wrap {
     position    : relative;
@@ -134,7 +134,6 @@ article#help-module section {
 }
 
 div.help section[id|="help"] {
-
     scroll-margin-top: 5em; /* property should be applied to each anchor section to leave a margin at the top */
 }
 

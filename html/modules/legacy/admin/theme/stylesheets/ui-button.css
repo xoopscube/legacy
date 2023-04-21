@@ -227,3 +227,11 @@ nav.ui-breadcrumbs a:focus,
     box-shadow          : var( --button-shadow-on );
 }
 
+button:disabled,
+button[disabled],
+input[type=submit]:disabled{
+    border              : var( --button-border ) !important;
+    cursor: not-allowed;
+    pointer-events: all !important;
+    opacity: .7;
+}

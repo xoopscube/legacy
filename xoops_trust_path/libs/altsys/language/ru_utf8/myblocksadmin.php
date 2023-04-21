@@ -1,9 +1,8 @@
 <?php
-define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Управляйте блоками, выбирая сторону, целевые модули, разрешения групп пользователей и время кэширования.');
-define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , '<b>редактор</b> изменится в соответствии с выбранным пользовательским типом.
-Сначала дайте <b>названию блока</b> имя, выберите <b>Пользовательский тип</b> и сохраните.<br>
-Затем вы можете отредактировать новый блок.
-Таким образом, вы можете создавать повторно используемые компоненты с BBcode и PHP или HTML, JavaScript и CSS.');
+define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Выберите модуль для управления его блоками, установив боковые, целевые модули, разрешения группы пользователей и время кэширования.');
+define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , 'Сначала дайте имя <b>названию блока</b>, выберите <b>Пользовательский тип</b> и <b>сохраните</b>.
+<b>редактор</b> изменится в соответствии с выбранным пользовательским типом.<br>
+Затем вы можете отредактировать новый блок, чтобы создать повторно используемые компоненты с BBcode и PHP или HTML, JavaScript и CSS.');
 define( '_MD_A_MYBLOCKSADMIN_PERMUPDATED' , 'Разрешения успешно обновлены');
 define( '_MD_A_MYBLOCKSADMIN_BLOCKADMIN' , 'Управление блоками');
 define( '_MD_A_MYBLOCKSADMIN_NAME' , 'Имя');
@@ -54,7 +53,7 @@ define( '_MD_A_MYBLOCKSADMIN_NOTICE4COMMONFCK' , 'If you want to use WYSIWYG edi
 
 
 // Group permission phrases
-define( '_MD_A_MYBLOCKSADMIN_PERMADDNG' , 'Could not add %s permission to %s for group %s');
-define( '_MD_A_MYBLOCKSADMIN_PERMADDOK' , 'Added %s permission to %s for group %s');
-define( '_MD_A_MYBLOCKSADMIN_PERMRESETNG' , 'Could not reset group permission for module %s');
-define( '_MD_A_MYBLOCKSADMIN_PERMADDNGP' , 'All parent items must be selected.');
+define( '_MD_A_MYBLOCKSADMIN_PERMADDNG' , 'Не удалось добавить разрешение %s к %s для группы %s');
+define( '_MD_A_MYBLOCKSADMIN_PERMADDOK' , 'Добавлено разрешение %s для %s для группы %s');
+define( '_MD_A_MYBLOCKSADMIN_PERMRESETNG' , 'Не удалось сбросить групповое разрешение для модуля %s');
+define( '_MD_A_MYBLOCKSADMIN_PERMADDNGP' , 'Все родительские элементы должны быть выбраны.');

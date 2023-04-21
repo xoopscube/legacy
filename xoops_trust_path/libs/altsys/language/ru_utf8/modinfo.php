@@ -1,21 +1,21 @@
 <?php
 
-define( '_MI_ALTSYS_MODULENAME' , 'Components');
-define( '_MI_ALTSYS_MODULEDESC' , 'Quick management of blocks, templates, translation and localization.');
+define( '_MI_ALTSYS_MODULENAME' , 'Компоненты');
+define( '_MI_ALTSYS_MODULEDESC' , 'Быстрое управление блоками, шаблонами, переводом и локализацией.');
 
 // menus
-define( '_MI_ALTSYS_MENU_CUSTOMBLOCKS' , 'Custom Blocks');
-define( '_MI_ALTSYS_MENU_NEWCUSTOMBLOCK' , 'New Custom Block');
-define( '_MI_ALTSYS_MENU_MYBLOCKSADMIN' , 'Modules Blocks');
-define( '_MI_ALTSYS_MENU_MYTPLSADMIN' , 'Templates');
-define( '_MI_ALTSYS_MENU_COMPILEHOOKADMIN' , 'Advanced Templates');
-define( '_MI_ALTSYS_MENU_MYLANGADMIN' , 'Languages');
-define( '_MI_ALTSYS_MENU_ADVANCEDLANGADMIN' , 'Advanced Languages');
-define( '_MI_ALTSYS_MENU_MYAVATAR' , 'Avatars');
+define( '_MI_ALTSYS_MENU_CUSTOMBLOCKS' , 'Пользовательские блоки');
+define( '_MI_ALTSYS_MENU_NEWCUSTOMBLOCK' , 'Новый блок');
+define( '_MI_ALTSYS_MENU_MYBLOCKSADMIN' , 'Модули Блоки');
+define( '_MI_ALTSYS_MENU_MYTPLSADMIN' , 'Шаблоны');
+define( '_MI_ALTSYS_MENU_COMPILEHOOKADMIN' , 'Расширенные шаблоны');
+define( '_MI_ALTSYS_MENU_MYLANGADMIN' , 'Язык');
+define( '_MI_ALTSYS_MENU_ADVANCEDLANGADMIN' , 'Продвинутые языки');
+define( '_MI_ALTSYS_MENU_MYAVATAR' , 'Аватары');
 define( '_MI_ALTSYS_MENU_MYSMILEY' , 'Smileys');
 
 // blocks
-define( '_MI_ALTSYS_BNAME_ADMIN_MENU' , 'Admin Menu');
+define( '_MI_ALTSYS_BNAME_ADMIN_MENU' , 'Меню администратора');
 
 // configs
 define( '_MI_ALTSYS_ADMINMENU_HFT' , 'Rewrite admin menu');
@@ -30,8 +30,8 @@ define( '_MI_ALTSYS_ADMINMENU_IMDSC' , 'If your admin menu is broken, remove cac
 define( '_MI_ALTSYS_ADMIN_IN_THEME' , 'Theme set for admin');
 define( '_MI_ALTSYS_ADMIN_IN_THEMEDSC' , 'Set the name of the theme displaying admin area. Insert a line just after including common.php in mainfile.php<br>include XOOPS_TRUST_PATH.\'/libs/altsys/include/admin_in_theme.inc.php\');<br> to enable this. This feature works only with XOOPS 2.0.x');
 
-define( '_MI_ALTSYS_ENABLEFORCECLONE' , 'Force all blocks to be duplicable');
-define( '_MI_ALTSYS_ENABLEFORCECLONEDSC' , 'Warning : Some blocks may cause errors if multiple instances are displayed on the same page!');
+define( '_MI_ALTSYS_ENABLEFORCECLONE' , 'Сделать все блоки дублируемыми');
+define( '_MI_ALTSYS_ENABLEFORCECLONEDSC' , 'Предупреждение: некоторые блоки могут вызывать ошибки, если на одной странице отображается несколько экземпляров!');
 
-define( '_MI_ALTSYS_IMAGES_DIR' , 'Directory for image files');
-define( '_MI_ALTSYS_IMAGES_DIRDSC' , 'relative path should be set in the module directory. default: images');
+define( '_MI_ALTSYS_IMAGES_DIR' , 'Каталог для файлов изображений');
+define( '_MI_ALTSYS_IMAGES_DIRDSC' , 'относительный путь должен быть установлен в каталоге модуля. по умолчанию: изображения');

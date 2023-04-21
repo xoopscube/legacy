@@ -99,8 +99,9 @@ define( '_NEWESTFIRST' , '新しいものから');
 define( '_MORE' , 'もっと...');
 define( '_MULTIPAGE' , '[pagebreak]タグを本文内に記入することでページ区切りを挿入することができます。');
 define( '_IFNOTRELOAD' , 'ページが自動的に更新されない場合は<a href="%s">ここ</a>をクリックしてください');
-define( '_WARNINSTALL2' , "注）ディレクトリ %s はサーバー上に存在します。<br>'install/passwd.php' ファイルを開き、パスワードを追加するか、必ず削除してください。");
-define( '_WARNINWRITEABLE' , '注意：ファイル%sへの書き込みが可能となっています。このファイルのパーミッション設定を変更してください。');
+define( '_WARNINSTALL2' , '<span>警告: <b>インストール</b> フォルダが存在します!<br><span class="alert-install">{0}</span><br>ファイルを開き、 <span class="alert-install">install/passwd.php</span> パスワードを追加するか、必ず削除してください。</span>');
+define( '_WARNINWRITEABLE' , "<span>警告: <b>Mainfile</b> への書き込みが可能となっています。<br><span class='alert-install'>{0}</span><br> セキュリティ上の理由から、このファイルのアクセス許可を変更してください: Unix (0444)、Windows (読み取り専用)。</span>");
+
 define( '_WARNPHPENV' , '注意：PHPの設定環境の中で、"%s" が "%s"になっています。%s');
 define( '_WARNSECURITY' , '（サイトの脆弱につながる危険性があります。）');
 define( '_WARN_INSTALL_TIP' , 'プリロードを有効にする — 開発目的のみ!<br>プリロードを使用してメインファイルとインストール ディレクトリを保持します。<br>セキュリティ上の問題を防ぐために、必ず chomd してインストールを削除してください。');

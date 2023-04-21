@@ -54,7 +54,7 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref.'_LOADED')) {
 // Menu
     define($constpref.'_ADMININDEX', 'Central de proteção');
     define($constpref.'_ADVISORY', 'Guia de segurança');
-    define($constpref.'_PREFIXMANAGER', 'Gerenciador de PREFIXO');
+    define($constpref.'_PREFIXMANAGER', 'Gerenciador de PREFIXO BD');
 
 // Configs
     define($constpref.'_GLOBAL_DISBL', 'Interrupção temporaria de funcionamento');

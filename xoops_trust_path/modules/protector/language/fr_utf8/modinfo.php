@@ -46,7 +46,7 @@ define($constpref."_DESC", "Protector apporte à votre site une sécurité suppl
 // Menu
 define($constpref."_ADMININDEX", "Centre de protection");
 define($constpref."_ADVISORY", "Conseils de sécurité");
-define($constpref."_PREFIXMANAGER", "Gestion du préfixe");
+define($constpref."_PREFIXMANAGER", "Gestion du préfixe BDD");
 define($constpref."_ADMENU_MYBLOCKSADMIN", "Permissions") ;
 
 // Configs

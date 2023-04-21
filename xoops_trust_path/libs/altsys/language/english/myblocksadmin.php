@@ -1,8 +1,8 @@
 <?php
-define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Manage blocks by selecting the side, target modules, user groups permissions and cache time.');
-define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , 'The <b>editor</b> will change according to the selected <b>Custom Type</b>.<br>
-First, give the <b>Block Title</b> a name, select a <b>Custom Type</b> and Save. Then, you can edit your new block.<br> 
-Thus allowing you to create a reusable Component with BBcode and PHP or HTML, JavaScript and CSS.');
+define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Select the module to manage its blocks by setting the side, target modules, user group permissions and cache time.');
+define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , 'First, give the <b>Block Title</b> a name, select a <b>Custom Type</b> and <b>Save</b>. 
+The <b>editor</b> will change according to the selected custom type.<br>
+You can then edit your new block to create reusable components with BBcode and PHP or HTML, JavaScript and CSS.');
 define( '_MD_A_MYBLOCKSADMIN_PERMUPDATED' , 'Permissions updated successfully');
 define( '_MD_A_MYBLOCKSADMIN_BLOCKADMIN' , 'Blocks management');
 define( '_MD_A_MYBLOCKSADMIN_NAME' , 'Name');
@@ -33,7 +33,6 @@ define( '_MD_A_MYBLOCKSADMIN_PERM_MREAD' , 'module read');
 define( '_MD_A_MYBLOCKSADMIN_DBUPDATED' , 'Database updated successfully');
 define( '_MD_A_MYBLOCKSADMIN_FMT_REMOVEBLOCK' , '%s will be deleted. Are you sure to delete this block?');
 
-
 define( '_MD_A_MYBLOCKSADMIN_CLONEFORM' , 'Copy the block');
 define( '_MD_A_MYBLOCKSADMIN_NEWFORM' , 'Create a block');
 define( '_MD_A_MYBLOCKSADMIN_EDITFORM' , 'Edit the block');
@@ -50,7 +49,6 @@ define( '_MD_A_MYBLOCKSADMIN_CTYPE_SMILE' , 'Custom Smilies');
 define( '_MD_A_MYBLOCKSADMIN_CTYPE_PHP' , 'Custom PHP');
 
 define( '_MD_A_MYBLOCKSADMIN_NOTICE4COMMONFCK' , 'If you want to use WYSIWYG editor, install common/fckeditor');
-
 
 // Group permission phrases
 define( '_MD_A_MYBLOCKSADMIN_PERMADDNG' , 'Could not add %s permission to %s for group %s');

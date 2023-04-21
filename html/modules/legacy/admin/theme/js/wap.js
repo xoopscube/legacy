@@ -226,3 +226,7 @@ clearLS.onclick = function () {
         $(this).remove();
     });
 };
+// UI toggle view options
+function toggle(className, obj) {
+    $(className).toggle(750,"easeOutQuint", obj.checked )
+}

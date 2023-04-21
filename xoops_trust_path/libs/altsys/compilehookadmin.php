@@ -20,10 +20,7 @@ include_once __DIR__ . '/include/altsys_functions.php';
 // language file
 altsys_include_language_file( 'compilehookadmin' );
 
-//
 // DEFINITIONS
-//
-
 $compile_hooks = [
 
 	'enclosebycomment' => [
@@ -37,8 +34,8 @@ $compile_hooks = [
 	],
 
 	'enclosebybordereddiv' => [
-		'pre'         => '<div class="altsys_tplsadmin_frame" style="border:1px solid black;overflow-wrap: break-word;">',
-		'post'        => '<br><a href="' . XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=%1$s" style="color:red;">Edit:<br>%1$s</a></div>',
+		'pre'         => '<div class="altsys_tplsadmin_frame hook">',
+		'post'        => '<div class="hook-edit"><a href="' . XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=%1$s"><i class="i-edit"></i> ' . _EDIT . '</a> <span class="overlay">:%1$s</span></div>',
 		'success_msg' => _TPLSADMIN_FMT_MSG_ENCLOSEBYBORDEREDDIV,
 		'dt'          => _TPLSADMIN_DT_ENCLOSEBYBORDEREDDIV,
 		'dd'          => _TPLSADMIN_DD_ENCLOSEBYBORDEREDDIV,
@@ -56,16 +53,15 @@ $compile_hooks = [
 		'skip_theme'  => false,
 	],
 
-	'removehooks' => [
-		'pre'         => '',
-		'post'        => '',
-		'success_msg' => _TPLSADMIN_FMT_MSG_REMOVEHOOKS,
-		'dt'          => _TPLSADMIN_DT_REMOVEHOOKS,
-		'dd'          => _TPLSADMIN_DD_REMOVEHOOKS,
-		'conf_msg'    => _TPLSADMIN_CNF_REMOVEHOOKS,
-		'skip_theme'  => false,
-	],
-
+    'removehooks' => [
+        'pre'         => '',
+        'post'        => '',
+        'success_msg' => _TPLSADMIN_FMT_MSG_REMOVEHOOKS,
+        'dt'          => _TPLSADMIN_DT_REMOVEHOOKS,
+        'dd'          => _TPLSADMIN_DD_REMOVEHOOKS,
+        'conf_msg'    => _TPLSADMIN_CNF_REMOVEHOOKS,
+        'skip_theme'  => false,
+    ],
 ];
 
 
@@ -237,39 +233,67 @@ altsys_include_mymenu();
 $breadcrumbsObj = AltsysBreadcrumbs::getInstance();
 $breadcrumbsObj->appendPath( XOOPS_URL . '/modules/altsys/admin/index.php?mode=admin&amp;lib=altsys&amp;page=compilehookadmin', _MI_ALTSYS_MENU_COMPILEHOOKADMIN );
 
+// Action Button State
+$cstate = ($compiledcache_num == 0) ? 'disabled' : '';
+$vstate = ($tplsvars_num == 0) ? 'disabled' : '';
+
 // Heading Title
-echo "
-<h2>" . _MI_ALTSYS_MENU_COMPILEHOOKADMIN . "</h2>
+echo '<h2>' . _MI_ALTSYS_MENU_COMPILEHOOKADMIN . '</h2>
 
-	<style>
-		dl	{ margin: 10px; }
-		dt	{ margin-bottom:5px; }
-		dd	{ margin-left:20px; }
-	</style>
+<h4><input class="switch" type="checkbox" name="intro-hook-todo" onclick="toggle(\'.intro-tasks\', this)" value="0">
+<label for="intro-hook-todo">' . _TPLSADMIN_INTRO . '</label></h4>
+
+<div class="intro-tasks" style="display:none">
+    <div class="ui-card-full">
+        <div>' . _TPLSADMIN_DESC . '</div>
+        <h3>' . _TPLSADMIN_TASK_Title . '</h3>
+        <div>' . _TPLSADMIN_TASK . '</div>
+        <div class="confirm">' . _TPLSADMIN_NOTE . '</div>
+        </div>
+</div>
+<hr>
+	<form action="?mode=admin&amp;lib=altsys&amp;page=compilehookadmin" method="post">
+	<h3>' . _TPLSADMIN_CACHE_TITLE . '</h3>
+	<div class="ui-card-full"><p>' . _TPLSADMIN_CACHE_DESC . '</p></div>
+    <div data-layout="row sm-column">
+    
+    <div data-self="size-1of2 sm-full">';
+    echo ($compiledcache_num == 0) ? '<div class="success">' :'<div class="danger">';
+	echo "<p>" . _TPLSADMIN_NUMCAP_COMPILEDCACHES . ": <span class='badge'><b>$compiledcache_num</b></span></p>
+    <p><button type='submit' class='button delete' name='clearcache' value='" . _DELETE . "' onclick='return confirm(\"" . _TPLSADMIN_CNF_DELETEOK . "\");' $cstate><i class='i-delete'></i> " . _DELETE . "</button></p>
+    </div>
+	</div>
 	
-	<form action='?mode=admin&amp;lib=altsys&amp;page=compilehookadmin' method='post'>
-\n";
-
+	<div data-self='size-1of2 sm-full'>";
+    echo ($tplsvars_num == 0) ? '<div class="success">' :'<div class="danger">';
+    echo "<p>" . _TPLSADMIN_NUMCAP_TPLSVARS . ": <span class='badge'><b>$tplsvars_num</b></span></p>
+		<p><button type='submit' class='button delete' name='cleartplsvars' value='" . _DELETE . "' onclick='return confirm(\"" . _TPLSADMIN_CNF_DELETEOK . "\");' $vstate><i class='i-delete'></i> " . _DELETE . "</button>
+		<button type='button' onclick=\"location.href='#normalize'\" class='button'$vstate>Normalize</button></p>
+		</div>
+	</div>
+	
+		</div>
+		" . $xoopsGTicket->getTicketHtml( __LINE__ );
+// XCL 2.3.x PHP 7.3.x
+// Alert Notification of cached and deleted templates
 foreach ( $compile_hooks as $command => $compile_hook ) {
-	echo "
-		<h3>{$compile_hook['dt']}</h3>
+    // if ($command === array_key_first($compile_hooks)) {
+    if ($command === array_key_last($compile_hooks)) {
+        echo "<h3 id='normalize'>{$compile_hook['dt']}</h3>
+		<div class='confirm'>
+		<p>{$compile_hook['dd']}</p>
+		<p><input class='button' type='submit' name='$command' id='$command' value='" . _GO . "' onclick='return confirm(\"{$compile_hook['conf_msg']}\");'></p>
+		</div>";
+    } else {
+        echo "<h3>{$compile_hook['dt']}</h3>
 		<div class='ui-card-full'>
 		<p>{$compile_hook['dd']}</p>
 		<p><input class='button' type='submit' name='$command' id='$command' value='" . _GO . "' onclick='return confirm(\"{$compile_hook['conf_msg']}\");'></p>
-		</div>
-	\n";
+		</div>";
+    }
 }
-
-    echo "<div class='ui-card-full'>
-		<p>" . _TPLSADMIN_NUMCAP_COMPILEDCACHES . ": <strong>$compiledcache_num</strong></p>
-		<p><input type='submit' class='button delete' name='clearcache' value='" . _DELETE . "' onclick='return confirm(\"" . _TPLSADMIN_CNF_DELETEOK . "\");'></p>
-		<p>" . _TPLSADMIN_NUMCAP_TPLSVARS . ": <strong>$tplsvars_num</strong></p>
-		<p><input type='submit' class='button delete' name='cleartplsvars' value='" . _DELETE . "' onclick='return confirm(\"" . _TPLSADMIN_CNF_DELETEOK . "\");'></p>
-		" . $xoopsGTicket->getTicketHtml( __LINE__ ) . "
-		</div>
-	</form>
-
-
+	echo "</form>
+    <hr>
 	<form action='?mode=admin&amp;lib=altsys&amp;page=get_tplsvarsinfo' method='post' style='margin: 40px;' target='_blank'>
 		<h3>" . _TPLSADMIN_DT_GETTPLSVARSINFO_DW . "</h3>
 		<div class='ui-card-full'>

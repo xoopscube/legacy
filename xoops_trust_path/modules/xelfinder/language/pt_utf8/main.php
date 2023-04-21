@@ -16,9 +16,9 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED_MAI
 	define( $constpref . '_FINDER_DESC', 'Permite que os membros carreguem e gerenciem documentos e imagens.' );
 	define( $constpref . '_OPEN_MANAGER', 'Abrir o gerenciador de arquivos' );
 	define( $constpref . '_OPEN_WINDOW', 'Janela pop-up' );
-	define( $constpref . '_OPEN_FULL', 'New window' );
-	define( $constpref . '_OPEN_WINDOW_ADMIN', 'Pop window (Admin mode)' );
-	define( $constpref . '_OPEN_FULL_ADMIN', 'New window (Admin mode)' );
-	define( $constpref . '_ADMIN_PANEL', 'Go to admin panel' );
+	define( $constpref . '_OPEN_FULL', 'Novas janela' );
+	define( $constpref . '_OPEN_WINDOW_ADMIN', 'Janela pop-up (modo Admin)' );
+	define( $constpref . '_OPEN_FULL_ADMIN', 'Nova janela (modo Admin)' );
+	define( $constpref . '_ADMIN_PANEL', 'Acesso ao painel de controle' );
 
 }
