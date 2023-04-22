@@ -188,7 +188,7 @@
         </td>
         <td class="list_cat_id">
             <{assign var=categoryId value=$module->getShow('category_id')}>
-            <{$categoryList[$categoryId]}>
+            <{if isset($categoryList[$categoryId])}><{$categoryList[$categoryId]}><{/if}>
         </td>
         <td class="list_update">
 

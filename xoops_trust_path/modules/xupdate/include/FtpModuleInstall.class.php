@@ -55,8 +55,8 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 	 * @return    bool
 	 **/
 	public function execute( $caller ) {
-		$cHandler = null;
-  $result        = true;
+		$cHandler      = null;
+        $result        = true;
 		$siteCloseConf = null;
 		if ( true === $this->Xupdate->params['is_writable']['result'] ) {
 			$this->retry_phase = isset( $_POST['upload_retry'] ) ? (int) $_POST['upload_retry'] : 0;
@@ -446,19 +446,19 @@ class Xupdate_FtpModuleInstall extends Xupdate_FtpCommonZipArchive {
 			$module  =& $hModule->getByDirname( $dirname );
 			if ( is_object( $module ) ) {
 				if ( $module->getVar( 'isactive' ) ) {
-					$ret = '<a href="' . XOOPS_MODULE_URL . '/legacy/admin/index.php?action=ModuleUpdate&dirname=' . $dirname . '">' . _MI_XUPDATE_ADMENU_MODULE . _MI_XUPDATE_UPDATE . '</a>';
+					$ret = _MI_XUPDATE_ADMENU_MODULE . ' <a class="button" href="' . XOOPS_MODULE_URL . '/legacy/admin/index.php?action=ModuleUpdate&dirname=' . $dirname . '">' .  _MI_XUPDATE_UPDATE . '</a>';
 				} else {
 					$ret = _AD_LEGACY_LANG_BLOCK_INACTIVETOTAL;
 				}
 			} elseif ( file_exists( XOOPS_ROOT_PATH . '/modules/' . $dirname ) ) {
 				$ret = '<a href="' . XOOPS_MODULE_URL . '/legacy/admin/index.php?action=ModuleInstall&dirname=' . $dirname . '">' . _MI_XUPDATE_ADMENU_MODULE . _INSTALL . '</a>';
 			} else {
-				$ret = '<a href="' . XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=ModuleStore">' . _AD_XUPDATE_LANG_MESSAGE_GETTING_FILES . _AD_XUPDATE_LANG_MESSAGE_SUCCESS . '</a>';
+				$ret = _AD_XUPDATE_LANG_MESSAGE_GETTING_FILES . ' <a class="button" href="' . XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=ModuleStore">'. _AD_XUPDATE_LANG_MESSAGE_SUCCESS . '</a>';
 			}
 		} elseif ( 'theme' === $caller ) {
-			$ret = '<a href="' . XOOPS_MODULE_URL . '/legacy/admin/index.php?action=ThemeList">' . _MI_XUPDATE_ADMENU_THEME . _MI_XUPDATE_MANAGE . '</a>';
+			$ret = _MI_XUPDATE_ADMENU_THEME . ' <a class="button" href="' . XOOPS_MODULE_URL . '/legacy/admin/index.php?action=ThemeList">' .  _MI_XUPDATE_MANAGE . '</a>';
 		} elseif ( 'preload' === $caller ) {
-			$ret = '<a href="' . XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=PreloadStore">' . _AD_XUPDATE_LANG_MESSAGE_GETTING_FILES . _AD_XUPDATE_LANG_MESSAGE_SUCCESS . '</a>';
+			$ret = _AD_XUPDATE_LANG_MESSAGE_GETTING_FILES . ' <a class="button" href="' . XOOPS_MODULE_URL . '/xupdate/admin/index.php?action=PreloadStore">' .  _AD_XUPDATE_LANG_MESSAGE_SUCCESS . '</a>';
 		}
 
 		return $ret;
@@ -720,17 +720,23 @@ function xupdate_on_shutdown( $cache_dir, $download_url ) {
 				$total_files += is_countable($list['file']) ? count( $list['file'] ) : 0;
 			}
 		}
-		$msg[] = '<html><head><title>' . _AD_XUPDATE_LANG_TIMEOUT_ERROR . '</title></head><body>';
-		$msg[] = '<h1>' . _AD_XUPDATE_LANG_TIMEOUT_ERROR . '</h1>';
+		//$msg[] = '<html><head><title>' . _AD_XUPDATE_LANG_TIMEOUT_ERROR . '</title></head><body>';
+        $msg[] = '<!DOCTYPE html><html data-theme="dark" lang="en"><head>
+<meta charset="UTF-8"><title>' . _AD_XUPDATE_LANG_TIMEOUT_ERROR . '</title>
+<link type="text/css" rel="stylesheet" href="'.XOOPS_URL.'/modules/legacy/admin/theme/style.css">
+<link type="text/css" rel="stylesheet" href="'.XOOPS_URL.'/modules/legacy/admin/theme/stylesheets/ui-notification.css"></head>
+<body><main style="width:80vw;margin:4em auto"><h1>X-Update Manager</h1>';
+		$msg[] = '<div class="error">' . _AD_XUPDATE_LANG_TIMEOUT_ERROR . '</div>';
+
 		$start = $upload_retry ?: 1;
 		for ( $i = $start; $i <= $GLOBALS['xupdate_stage']; $i ++ ) {
 			$done_files = '';
 			if ( 5 === $i ) {
-				$done_files = ' (' . _AD_XUPDATE_LANG_MESSAGE_SUCCESS . ': ' . $uploaded_count . '/' . $total_files . ')';
+				$done_files = '<div class="success">'. _AD_XUPDATE_LANG_MESSAGE_SUCCESS . ': ' . $uploaded_count . '/' . $total_files . ')</div>';
 			}
-			$msg[] = constant( '_AD_XUPDATE_LANG_STAGE_' . $i ) . $done_files;
+			$msg[] = '<div class="ui-card-full">'. constant( '_AD_XUPDATE_LANG_STAGE_' . $i ) . $done_files.'</div>';
 		}
-		$msg[] = _AD_XUPDATE_LANG_STAGE_TIMEOUT;
+		$msg[] = '<div class="error">' . _AD_XUPDATE_LANG_STAGE_TIMEOUT . '</div>';
 		if ( $GLOBALS['xupdate_stage'] < 2 ) {
 			$msg[] = sprintf( _AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE, $download_url );
 		} else {
@@ -753,17 +759,18 @@ function xupdate_on_shutdown( $cache_dir, $download_url ) {
 				if ( $GLOBALS['xupdate_do_closesite'] ) {
 					$post['do_closesite'] = 1;
 				}
-				$form = '<form method="post" action="./?' . $_SERVER['QUERY_STRING'] . '" onsubmit="document.getElementById(\'retry\').disabled=\'disabled\'">';
+				$form = '<form class="ui-card-full" method="post" action="./?' . $_SERVER['QUERY_STRING'] . '" onsubmit="document.getElementById(\'retry\').disabled=\'disabled\'">';
 				foreach ( $post as $key => $val ) {
 					if ( is_array( $val ) ) {
 						foreach ( $val as $_val ) {
-							$form .= '<input type="hidden" name="' . htmlspecialchars( $key ) . '[]" value="' . htmlspecialchars( $_val, ENT_COMPAT, _CHARSET ) . '" />';
+							$form .= '<input type="hidden" name="' . htmlspecialchars( $key ) . '[]" value="' . htmlspecialchars( $_val, ENT_COMPAT, _CHARSET ) . '">';
 						}
 					} else {
-						$form .= '<input type="hidden" name="' . htmlspecialchars( $key ) . '" value="' . htmlspecialchars( $val, ENT_COMPAT, _CHARSET ) . '" />';
+						$form .= '<input type="hidden" name="' . htmlspecialchars( $key ) . '" value="' . htmlspecialchars( $val, ENT_COMPAT, _CHARSET ) . '">';
 					}
 				}
-				$form  .= '<input id="retry" type="submit" value="' . ( ( 5 === $GLOBALS['xupdate_stage'] ) ? _AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY : _AD_XUPDATE_LANG_STAGE_TASK_RETRY ) . '" />';
+				$form  .= '<input id="retry" type="submit" class="button" value="' . ( ( 5 === $GLOBALS['xupdate_stage'] ) ? _AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY : _AD_XUPDATE_LANG_STAGE_TASK_RETRY ) . '">';
+                $form  .= '<input type="button" value="' . _CANCEL . '" onclick="history.back();history.back();">';
 				$form  .= '</form>';
 				$msg[] = $form;
 			}
@@ -773,7 +780,7 @@ function xupdate_on_shutdown( $cache_dir, $download_url ) {
 			$msg[] = 'PHP error message:';
 			$msg[] = $buf;
 		}
-		$msg[] = '</body></html>';
+		$msg[] = '</main></body></html>';
 		if ( ! headers_sent() ) {
 			header( 'Content-type: text/html; charset=' . _CHARSET );
 		}
