@@ -120,5 +120,41 @@
     box-shadow      : var(--button-shadow-on);
     color           : var(--button-color-on);
 }
+/* AltSys - Components Smarty Compile Hooks */
+.hook {
+    border:1px dotted darkorange!important;
+}
+.hook-edit{
+    background: rgba(0, 0, 0, 0.125);
+    border:1px dotted darkorange!important;
+    font-size:13px !important;
+    overflow-wrap: break-word;
+    position: relative;
+}
+.hook-template {}
 
-
+.ui-card-full { position:relative}
+.overlay {
+    position: absolute;
+    /*bottom: 0;*/
+    display:none;
+    top:24px;
+    left:24px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 100%;
+    transition: .5s ease;
+    opacity:0;
+    font-size:13px !important;
+    margin:0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 7px;
+    z-index: 100;
+    width: fit-content;
+}
+.hook-edit:hover > .overlay,
+.ui-card-full:hover .overlay {
+    opacity: 1;
+    display: block;
+}
