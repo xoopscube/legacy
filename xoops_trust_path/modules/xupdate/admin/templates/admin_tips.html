@@ -1,21 +1,24 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
-
-<div class="tips">
+<{capture name="tips"}>
 <{if empty($action) && $currentMenu == $smarty.const._MI_XUPDATE_ADMENU_STORELIST}>
-    <{$smarty.const._AD_XUPDATE_LANG_STORES_TIP}>
-<{elseif $action == 'ModuleStore'}>
-    <{$smarty.const._AD_XUPDATE_LANG_MODULES_TIP}>
+<{$smarty.const._AD_XUPDATE_LANG_STORES_TIP}>
+<{elseif isset($action)}>
+<{if $action == 'ModuleStore'}>
+<{$smarty.const._AD_XUPDATE_LANG_MODULES_TIP}>
 <{elseif $action == 'PackageStore'}>
-    <{$smarty.const._AD_XUPDATE_LANG_PRELOADS_TIP}>
+<{$smarty.const._AD_XUPDATE_LANG_PRELOADS_TIP}>
 <{elseif $action == 'PreloadStore'}>
-    <{$smarty.const._AD_XUPDATE_LANG_PRELOADS_TIP}>
+<{$smarty.const._AD_XUPDATE_LANG_PRELOADS_TIP}>
 <{elseif $action == 'ThemeStore'}>
-    <{$smarty.const._AD_XUPDATE_LANG_THEMES_TIP}>
-<{elseif empty($action) && $currentMenu == $smarty.const._MI_XUPDATE_ADMENU_THEMEFINDER}>
-    <{$smarty.const._AD_XUPDATE_LANG_THEME_FINDER_TIP}>
+<{$smarty.const._AD_XUPDATE_LANG_THEMES_TIP}>
 <{/if}>
-</div>
+<{/if}>
+<{/capture}>
+
+<{if trim($smarty.capture.tips)}>
+<div class="tips"><{$smarty.capture.tips}></div>
+<{/if}>
 
 <style>
     .modal-footer {

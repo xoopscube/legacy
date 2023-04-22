@@ -23,4 +23,4 @@ define( '_MD_XUPDATE_LANG_NAME' , 'Nom');
 define( '_MD_XUPDATE_LANG_ADDON_URL' , 'ADDON_URL');
 define( '_MD_XUPDATE_LANG_THEME_URL' , 'THEME_URL');
 define( '_MD_XUPDATE_LANG_REG_UNIXTIME' , 'REG_UNIXTIME');
-define( '_MD_XUPDATE_MESSAGE_INSTALL_COMPLETE_WARNING' , 'Retirer le répertoire \"/app/public/stage/html/install\" pour bloquer les attaques anonymes qui tentent d\'utiliser l\'installateur. <br>Configuration des informations de la connexion FTP à la prochaine page ou suppression manuelle.');
+define( '_MD_XUPDATE_MESSAGE_INSTALL_COMPLETE_WARNING' , 'Supprimer le répertoire "' . XOOPS_ROOT_PATH . '/install" pour bloquer les attaques anonymes qui tentent d\'utiliser l\'installateur. <br>Configuration des informations de la connexion FTP à la prochaine page ou suppression manuelle.');

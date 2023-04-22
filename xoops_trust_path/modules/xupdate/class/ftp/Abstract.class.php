@@ -78,11 +78,31 @@ class Xupdate_Ftp_Abstract {
 
 	protected $_conn_id; // connection id stream on PHP_FTP
 
-	protected $_error_array = [];
-	protected $AuthorizedTransferMode = [ FTP_AUTOASCII, FTP_ASCII, FTP_BINARY ];
+	protected $_error_array;
+	protected $AuthorizedTransferMode;
 	protected $OS_FullName;
 	protected $_eol_code;
-	protected $AutoAsciiExt = [
+	protected $AutoAsciiExt;
+
+	protected $mes = '';
+
+	protected $item_options;
+	protected $no_overwrite;
+
+	/* Constructor */
+	public function __construct( $XupdateObj, $verb = false, $le = false, $port_mode = false ) {
+		// ToDo Cube流に直し
+		$this->XupdateObj =& $XupdateObj;
+		$this->mod_config =& $this->XupdateObj->mod_config;
+
+		$this->LocalEcho              = $le;
+		$this->Verbose                = $verb;
+		$this->_lastaction            = null;
+		$this->_error_array           = [];
+		$this->_eol_code              = [ FTP_OS_Unix => "\n", FTP_OS_Mac => "\r", FTP_OS_Windows => "\r\n" ];
+		$this->AuthorizedTransferMode = [ FTP_AUTOASCII, FTP_ASCII, FTP_BINARY ];
+		$this->OS_FullName            = [ FTP_OS_Unix => 'UNIX', FTP_OS_Windows => 'WINDOWS', FTP_OS_Mac => 'MACOS' ];
+		$this->AutoAsciiExt           = [
 			'ASP',
 			'BAT',
 			'C',
@@ -104,27 +124,24 @@ class Xupdate_Ftp_Abstract {
 			'SQL',
 			'TXT'
 		];
-
-	protected $mes = '';
-
-	protected $item_options;
-	protected $no_overwrite;
-
-	/* Constructor */
-	public function __construct( $XupdateObj, $verb = false, $le = false, $port_mode = false ) {
-		// ToDo Cube流に直し
-		$this->XupdateObj =& $XupdateObj;
-		$this->mod_config =& $this->XupdateObj->mod_config;
-
-		$this->LocalEcho              = $le;
-		$this->Verbose                = $verb;
-		$this->_eol_code              = [ FTP_OS_Unix => "\n", FTP_OS_Mac => "\r", FTP_OS_Windows => "\r\n" ];
-		$this->OS_FullName            = [ FTP_OS_Unix => 'UNIX', FTP_OS_Windows => 'WINDOWS', FTP_OS_Mac => 'MACOS' ];
 		$this->_port_available        = ( true == $port_mode );
 		$this->SendMSG( 'Staring FTP client class' . ( $this->_port_available ? '' : ' without PORT mode support' ) );
+		$this->_connected     = false;
+		$this->_ready         = false;
+		$this->_can_restore   = false;
+		$this->_code          = 0;
+		$this->_message       = '';
+		$this->_ftp_buff_size = 4096;
+		$this->_curtype       = null;
 		$this->SetUmask( 0022 );
 		$this->SetType( FTP_AUTOASCII );
 		$this->SetTimeout( 30 );
+		//$this->Passive(!$this->_port_available);
+		$this->_login    = 'anonymous';
+		$this->_password = 'anon@ftp.com';
+		$this->_features = [];
+		$this->OS_local  = FTP_OS_Unix;
+		$this->OS_remote = FTP_OS_Unix;
 		$this->features  = [];
 		if ( 'WIN' === strtoupper( substr( PHP_OS, 0, 3 ) ) ) {
 			$this->OS_local = FTP_OS_Windows;

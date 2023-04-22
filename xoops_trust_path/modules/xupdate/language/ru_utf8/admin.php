@@ -62,7 +62,7 @@ define( '_AD_XUPDATE_LANG_STAGE_6' , 'Deployment of the file is complete.');
 define( '_AD_XUPDATE_LANG_STAGE_7' , 'Permission setting is completed.');
 define( '_AD_XUPDATE_LANG_STAGE_TIMEOUT' , 'Processing was interrupted according to causes, such as timeout or insufficient memory.');
 define( '_AD_XUPDATE_LANG_STAGE_UPLOAD_RETRY' , 'To run the rest of the deployment files, click here');
-define( '_AD_XUPDATE_LANG_STAGE_TASK_RETRY' , 'To do the more, click here');
+define( '_AD_XUPDATE_LANG_STAGE_TASK_RETRY' , 'Try the task again');
 define( '_AD_XUPDATE_LANG_STAGE_UPLOAD_NOT_COMPLETE' , 'Deployment of the file to retrieve the archive from the [ <a href="%s">link here</a> ] because it is incomplete, please do the proper placement of the FTP upload files manually.');
 
 define( '_AD_XUPDATE_LANG_THM_TOTAL' , 'Total of Themes');

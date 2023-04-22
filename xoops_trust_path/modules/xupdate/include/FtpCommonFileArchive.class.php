@@ -56,7 +56,7 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 				// check shell cmd
 				if ( '.zip' === substr( $this->download_file, - 4 ) ) {
 					// check shell cmd
-					$this->procExec( 'unzip --help', $o, $c );
+                    $this->procExec( 'unzip --help', $o, $c );
 					if ( 0 === $c ) {
 						$extractor = '_unzipFile_Unzip';
 					} else {
@@ -187,7 +187,10 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 				ZIPARCHIVE::ER_READ   => 'ER_READ',
 				ZIPARCHIVE::ER_SEEK   => 'ER_SEEK'
 			];
+// TODO check this f vs \F
+			// $this->_set_error_log( $e->getMessage() . ( in_array( $result, $zip_open_error_arr ) ? f : 'undefine' ) );
 			$this->_set_error_log( $e->getMessage() . ( in_array( $result, $zip_open_error_arr ) ? \F : 'undefine' ) );
+
 
 			return false;
 		}
@@ -221,10 +224,13 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	private function _unzipFile_FileArchive( $downloadFilePath, $exploredDirPath ) {
 		require_once PEAR_PATH . PATH_SEPARATOR . 'File/Archive.php';
 
-		if ( $source = File_Archive::read( $downloadFilePath . '/' ) ) {
+		//if ( $source = File_Archive::read( $downloadFilePath . '/' ) ) { TODO Non-static method 'read' should not be called statically
+        if ( $source = (new File_Archive)->read( $downloadFilePath . '/' ) ) {
 			if ( is_object( $source ) && 'PEAR_Error' !== get_class( $source ) ) {
-                $file_Archive_Writer = File_Archive::appender($exploredDirPath);
-                File_Archive::extract(
+                // $file_Archive_Writer = File_Archive::appender($exploredDirPath);
+                $file_Archive_Writer = (new File_Archive)->appender($exploredDirPath);
+                //File_Archive::extract(
+                (new File_Archive)->extract(
 					$source,
 					//File_Archive::appender( $exploredDirPath ) // @TODO test this - Only variables should be passed by reference
                     $file_Archive_Writer
@@ -316,17 +322,17 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 		return $ret;
 	}
 
-	/**
-	 * Execute shell command
-	 *
-	 * @param string $command      command line
-	 * @param array  $output       stdout strings
-	 * @param int    $return_var   process exit code
-	 * @param array  $error_output stderr strings
-	 *
-	 * @return int     exit code
-	 * @author Alexey Sukhotin
-	 */
+    /**
+     * Execute shell command
+     *
+     * @param string     $command      command line
+     * @param array|null $output       stdout strings
+     * @param int        $return_var   process exit code
+     * @param array|null $error_output stderr strings
+     *
+     * @return int     exit code
+     * @author Alexey Sukhotin
+     */
 	private function procExec(string $command, array &$output = null, int &$return_var = - 1, array &$error_output = null ) {
 		$descriptorspec = [
 			0 => [ 'pipe', 'r' ],  // stdin

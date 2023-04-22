@@ -303,7 +303,7 @@ class Xupdate_Utils {
 		$isAssoc   = true;
 		$path      = self::getModuleConfig( $dirname, 'temp_path' );
 		$jsonData  = file_get_contents( XOOPS_TRUST_PATH . '/' . $path . '/stores_json.ini.php' );
-		$storeData = json_decode( $jsonData, $isAssoc, 512, JSON_THROW_ON_ERROR );
+		$storeData = json_decode( $jsonData, $isAssoc );
 
 		return self::convertEncoding( $storeData['categories'] );
 	}

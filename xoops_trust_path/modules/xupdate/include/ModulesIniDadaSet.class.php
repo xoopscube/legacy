@@ -173,7 +173,7 @@ class Xupdate_ModulesIniDadaSet {
 			// for url fetch failure
 			$stores_json = @ file_get_contents( XOOPS_TRUST_PATH . '/modules/xupdate/include/settings/stores.txt' );
 		}
-		if ( ! $stores = @ json_decode( $stores_json, true, 512, JSON_THROW_ON_ERROR ) ) {
+		if ( ! $stores = @ json_decode( $stores_json, true ) ) {
 			$stores = [];
 		} else {
 			if ( isset( $stores['stores'] ) ) {
@@ -407,7 +407,7 @@ class Xupdate_ModulesIniDadaSet {
 			$item['addon_url'] = $item[ 'addon_url_' . $enc ];
 		}
 		foreach ( [ 'description', 'tag' ] as $_key ) {
-			if ( ! @ json_encode( $item[ $_key ], JSON_THROW_ON_ERROR ) ) {
+			if ( ! @ json_encode( $item[ $_key ] ) ) {
 				// if not UTF-8
 				$item[ $_key ] = '';
 			}
