@@ -34,6 +34,9 @@ function xoops_header($closehead = true)
 {
     $root =& XCube_Root::getSingleton();
     $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
+// PHP 8 only - null safe operator    
+/*  $renderSystem?->showXoopsHeader($closehead); */
+// PHP 74
     if ($renderSystem !== null) {
         $renderSystem->showXoopsHeader($closehead);
     }
@@ -46,6 +49,9 @@ function xoops_footer()
 {
     $root =& XCube_Root::getSingleton();
     $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
+// PHP 8 only - null safe operator  
+/*    $renderSystem?->showXoopsFooter();  */
+// PHP 74
     if ($renderSystem !== null) {
         $renderSystem->showXoopsFooter();
     }
