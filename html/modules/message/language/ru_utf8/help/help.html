@@ -2,78 +2,71 @@
     <div data-self="size-xxsmall">
         <nav id="help-menu">
             <ul data-layout="rows">
-                <li><a href="#help-overview" class="button">Overview</a>
-                <li><a href="#help-preferences" class="button">Preferences</a>
+                <li><a href="#help-overview" class="button">Message</a>
+                <li><a href="#help-preferences" class="button">Настройки</a>
+                <li><a href="#help-development" class="button">Development</a>
             </uL>
         </nav>
     </div>
 
-<article id="help-message">
+<article id="help-module">
 
     <section id="help-overview">
 
-        <h3>Overview</h3>
+        <h3>Message</h3>
 
+        <p>Этот модуль Message предоставляет функции личных сообщений с дополнительными функциями и улучшениями.
+            Частное сообщение — это тип связи, при котором сообщение может быть просмотрено или прочитано только определенным получателем.
+            Это также называется прямым сообщением (DM) или личным сообщением.</p>
+
+        <h3>Характеристики</h3>
         <ul>
-          <li>This module provides Private Messages functions</li>
-          <li>Default user profile can be replaced by the template of this module.</li>
-          <li>Add Block to display messages of Inbox and Outbox.</li>
-          <li>Messages status, read, unread, lock.<li>
-          <li>Search messages by status or username from Inbox and Outbox.</li>
-          <li>Option to purge messages automatically.</li>
-          <li>Settings to define pagination (messages per page). </li>
-          <li>Forward message to email account.</li>
-          <li>Blacklist management.</li>
+            <li>Добавьте блок для отображения сообщений в папках "Входящие" и "Исходящие".
+            <li>Статус сообщения: прочитано, непрочитано, заблокировано.
+            <li>Поиск сообщений по статусу или имени пользователя в папках "Входящие" и "Исходящие".
+            <li>Возможность автоматически очищать сообщения.
+            <li>Настройки для определения нумерации страниц (количество сообщений на странице).
+            <li>Переслать сообщение на адрес электронной почты.
+            <li>Управление черным списком.
         </ul>
 
     </section>
 
 
-<hr>
-
-
     <section id="help-preferences">
 
-        <h3>Preferences</h3>
+        <h3>Настройки</h3>
 
-        <p>Administrator can replace template user_userinfo.html</p>
-        <p>Set the default number of messages per page</p>
-        <p>Delay to purge messages and set if unread messages are also deleted</p>
-        <p>Use of block 'New Messages'.</p>
+        <p>Администраторы могут установить количество сообщений по умолчанию на странице.
+        <p>Задержка для очистки сообщений и установка, если непрочитанные сообщения также удаляются.
+        <p>Установите блок «Новые сообщения» для зарегистрированных пользователей.
+        <p>Замените шаблон профиля пользователя по умолчанию шаблоном этого модуля<br>
+            при установке модуля "мой друг" и/или модуля "социальная сеть".
 
     </section>
-
-
-<hr>
 
 
     <section id="help-development">
 
         <h3>Development</h3>
 
-        <p>TODO</p>
-        <p>Improve the documentation with samples.</p>
-        <p>Document Tags' links like Block Tags.</p>
-
-        <table class="outer">
-            <thead>
-            <tr>
-                <th>Module name</th>
-                <th>Message</th>
-            </tr>
-            </thead>
+        <table>
             <tbody>
             <tr>
+                <td>Bundle Package</td>
+                <td> XCL 2.3.3</td>
+            </tr>
+            <tr>
+                <td>Module name</td>
+                <td>Message</td>
+            </tr>
+            <tr>
                 <td>Type</td>
-                <td>X2 module</td>
+                <td>XCube Core Module</td>
             </tr>
             <tr>
                 <td>Level</td>
-                <td>Recommended</td>
-            </tr>
-            <tr>
-                <td>Version</td>
-                <td>2.31</td>
+                <td>Required</td>
             </tr>
             <tr>
                 <td>Author</td>

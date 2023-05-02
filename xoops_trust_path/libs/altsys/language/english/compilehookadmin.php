@@ -2,11 +2,10 @@
 
 define( '_TPLSADMIN_INTRO', 'Introducing the Template Compilation Hook');
 
-define( '_TPLSADMIN_DESC', '
-Compile hooks provide an easy way to insert visual editing helpers into your templates and collect Smarty variables. 
-These features are accessible only within frontend templates and duplicatable modules, for which they have been written. ');
+define( '_TPLSADMIN_DESC', 'Compilation hooks can be used to insert visual guides into your templates and helpers for collecting Smarty variables.<br>
+These functions are only available in the frontend templates and duplicatable D3 modules for which they were written.');
 
-define( '_TPLSADMIN_NOTE', 'Important : Although the visual helpers are intended to highlight the structure of your layout and templates, 
+define( '_TPLSADMIN_NOTE', 'Important : Although the visual editing helpers are intended to highlight the structure of your layout and templates, 
 there are limitations to feature-based recognition, for example, of components and custom templates! ');
 
 define( '_TPLSADMIN_TASK_Title', 'Why and when to perform this task!');
@@ -21,7 +20,8 @@ You can use the compiled templates to complete the following tasks:<br>
 </ul>');
 
 define( '_TPLSADMIN_CACHE_TITLE', 'Compiled Templates');
-define( '_TPLSADMIN_CACHE_DESC' , 'The source templates remains unchanged, in most cases, you can delete all compiled template files and execute <b>Normalise</b>. The templates removed from the cache are immediately regenerated.' );
+define( '_TPLSADMIN_CACHE_DESC' , 'The source templates remains unchanged, in most cases, you can delete all compiled template files and execute <b>Normalise</b>. 
+Which resets hooks and regenerates compiled template files when pages are visited.' );
 
 define( '_TPLSADMIN_FMT_MSG_ENCLOSEBYCOMMENT' , '%d cached templates wrapped with tplsadmin comments.');
 define( '_TPLSADMIN_DT_ENCLOSEBYCOMMENT' , 'Add comments into the source code');

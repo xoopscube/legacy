@@ -205,7 +205,7 @@ if ( is_array( @$_POST['del_do'] ) ) {
 }
 
 
-// GET stage
+// GET view
 
 // javascript
 $_MYTPLSADMIN_ERR_INVALIDTPLSET = htmlspecialchars( _MYTPLSADMIN_ERR_INVALIDTPLSET, ENT_QUOTES | ENT_HTML5 );
@@ -296,10 +296,21 @@ if ( $breadcrumbsObj->hasPaths() ) {
 	$breadcrumbsObj->appendPath( '', $target_mname );
 }
 
-// Heading Title
+// Custom Template and Module Templates switch button link, help and tips
+if ( $target_dirname == '_custom' ) {
+    $c_button = '<div><a class="button" href="index.php?mode=admin&lib=altsys&page=mytplsform&tpl_tplset=default"><i class="i-edit"></i>' . _MYTPLSADMIN_CREATENEWCUSTOMTEMPLATE . '</a></div>';
+    $c_help = '#help-template-custom';
+    $c_tips = _MYTPLSADMIN_CUSTOM_TIPS;
+}else{
+    $c_button = '<div><!-- is module --></div>';
+    $c_help = '#help-template-module';
+    $c_tips = _MYTPLSADMIN_TIPS;
+}
+
+// Heading Title and Tips
 echo '<div class="ui-dev-mode">file:mytplsadmin.php</div>';
 echo "<h2>" . _MYTPLSADMIN_H3_MODULE . " » $target_mname</h2>\n";
-echo '<div class="help-tips">' . _MYTPLSADMIN_TIPS . '</div>';
+echo '<div class="help-tips">' . $c_tips . '</div>';
 
 // Form
 echo "<form name='MainForm' action='?mode=admin&amp;lib=altsys&amp;page=mytplsadmin&amp;dirname=" . htmlspecialchars( $target_dirname, ENT_QUOTES ) . "' method='post'>"
@@ -307,19 +318,11 @@ echo "<form name='MainForm' action='?mode=admin&amp;lib=altsys&amp;page=mytplsad
 
 ////— ACTION-CONTROL —\\\\
 echo '<section data-layout="row center-justify" class="action-control">';
-	// link to create a new custom template
-    if ( $target_dirname == '_custom' ) {
-        echo '<div><a class="button" href="index.php?mode=admin&lib=altsys&page=mytplsform&tpl_tplset=default"><i class="i-edit"></i>' . _MYTPLSADMIN_CREATENEWCUSTOMTEMPLATE . '</a></div>';
-    }else{
-        echo '<div><!-- module --></div>';
-    }
-echo '<div class="control-view"><a class="button" href="' .XOOPS_URL . '/modules/legacyRender/admin/index.php?action=TplsetList">
+    echo $c_button;
+    echo '<div class="control-view"><a class="button" href="' .XOOPS_URL . '/modules/legacyRender/admin/index.php?action=TplsetList">
 <svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24" class="icon"><path fill="currentColor" d="M8 10v11H4a1 1 0 0 1-1-1V10h5zm13 0v10a1 1 0 0 1-1 1H10V10h11zm-1-7a1 1 0 0 1 1 1v4H3V4a1 1 0 0 1 1-1h16z"></path>
-</svg> Render</a>
-        <button class="help-admin button-icon" type="button" data-module="altsys" data-help-article="#help-templates" title="'._HELP.'"><b>?</b></button>
-    </div>
-    </section>';
-
+</svg> Render</a> <button class="help-admin button-icon" type="button" data-module="altsys" data-help-article="' . $c_help. '" title="'._HELP.'"><b>?</b></button></div>
+</section>';
 
 // TABLE
 echo "<table class='outer'>

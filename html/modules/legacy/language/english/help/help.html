@@ -1,13 +1,21 @@
+<style>
+    .guide-layout { background: var(--body-bg );border: var(--border);box-shadow:var(--shadow-3); display: block;font-size:14px;margin-top:var(--space-7)}
+    .guide-layout > div {border: var(--border);}
+    .guide-layout div.block {background: var(--card-full-bg );padding:.5em;}
+    .guide-layout div.block:not(:last-child) {margin-bottom:1em}
+</style>
 <div data-layout="row sm-column">
+
     <div data-self="size-xxsmall">
         <nav id="help-menu">
             <ul data-layout="column">
-                <li><a href="#help-overview" class="button">Get Started</a>
-                <li><a href="#admin-layout" class="button">Admin Layout</a>
-                <li><a href="#help-search" class="button">Action Search</a>
+                <li><a href="#help-overview" class="button">Overview</a>
+                <li><a href="#help-getstart" class="button">Get Started</a>
+                <li><a href="#help-search" class="button">Get Help</a>
                 <li><a href="#help-blocks" class="button">Blocks</a>
                 <li><a href="#help-comments" class="button">Comments</a>
                 <li><a href="#help-images" class="button">Images</a>
+                <li><a href="#help-language" class="button">Language</a>
                 <li><a href="#help-modules" class="button">Modules</a>
                 <li><a href="#help-themes" class="button">Themes</a>
                 <li><a href="#help-smilies" class="button">Smilies</a>
@@ -16,19 +24,24 @@
             </ul>
         </nav>
     </div>
-    <style>
-        .guide-layout { background: var(--body-bg );border: var(--border);box-shadow:var(--shadow-3); display: block;font-size:14px;margin-top:var(--space-7)}
-        .guide-layout > div {
-            border: var(--border);
-        }
-        .guide-layout div.block {background: var(--card-full-bg );padding:.5em;}
-        div.block:not(:last-child) {margin-bottom:1em}
-    </style>
+
 <article id="help-module">
 
     <section class="help" id="help-overview">
+        <h3>Overview</h3>
+        <p>The system preferences is where you can customize the general settings of your platform, such as site name and slogan,
+        language and theme, close your site for maintenance, designate a module for your home page and much more.</p>
+        <code class="badge">Control Panel »» System »» Preferences »» Settings</code>
 
-        <h2>Getting Started</h2>
+        <p>Configuration settings are aggregated and organized into several Core modules to ensure reliability, availability, and scalability of your Web Application.
+            The Core Modules are required to accomplish the input, processing, output, storage, update and control activities.
+            Active modules are represented by the icons in the side menu of the Control Panel.
+        <p>For more information, access the integrated help in the submenu of each module and activate the contextual help on the side-panel.
+    </section>
+
+    <section class="help" id="help-getstart">
+
+        <h3>Getting Started</h3>
 
         <p>This section provides a quick start guide with a brief summary of the control panel, dashboard and <b>post-installation checklist</b>.</p>
 
@@ -40,15 +53,15 @@
             These include setting up the site name and slogan, customizing meta tags (SEO), allowing visitors to register, and user group permissions.
             More detailed documents are available and will be highlighted throughout this guide.</p>
 
-        <h3>Store and manage preferences and settings</h3>
-        <p>Save your preferences for all dashboard blocks. Manage your configuration and modules effectively and reliably.
+        <h3>Store and manage preferences</h3>
+        <p>Save your preferences for dashboard blocks, hints and tips. Manage your configuration and modules effectively and reliably.
             Get and deploy add-ons from the X-Update Manager in real time without impacting users, avoiding time-consuming redeployment.
             The Web App Configuration is built for simplicity, scalability, and security.
             The web application configuration is built on simplicity, security and scalability.</p>
 
         <h3>Control Panel and Custom Dashboard</h3>
         <p>The control panel, also known as the admin area, gives you access to all actions that can be performed on your web application platform.
-            It also includes a dashboard that can be customized from the "admin panel". You can enable or disable admin blocks, module tips and action tooltips.
+            It also includes a dashboard that can be customized from the admin side-panel. You can enable or disable admin blocks, module tips and action tooltips.
             Your preferences are stored in your browser's localStorage.</p>
 
         <div class="guide-layout">
@@ -63,11 +76,11 @@
             <div data-layout="row top-justify sm-column p-4">
                 <div data-self="size-1of5 stretch sm-full p-4" style="background: var(--aside-bg );">
                     <h6>Side Menu</h6>
-                    <p>The side menu is automatically generated from active modules. Each sub-menu provides you access to module's actions that can be performed.</p>
+                    <p>The admin side-menu is automatically generated from active modules. Each sub-menu provides you access to module's actions that can be performed and the built-in Help User Guide.</p>
                 </div>
                 <div data-self="size-x1 sm-full px-6 py-4">
                     <h6>Main content</h6>
-                    <p>The main idea of having customizable dashboard in XCL is to provide easy access to different sections with a simple click.
+                    <p>The main idea of having a customizable dashboard in XCL is to provide easy access to different sections with a simple click.
                         To achieve this, we picked out the key features of XCL that administrators use most often on a daily basis.
                         We have pre-filled the dashboard with default "admin blocks" that will give you some insights into the environment.</p>
                     <p>You can add your own Widgets to the Dashboard for different purposes - for example, you can embed any third-party API or Monitoring widgets.
@@ -75,8 +88,8 @@
                 </div>
                 <div data-self="size-1of5 stretch sm-full p-4" style="background: var(--aside-panel-bg);">
                     <h6>Admin Panel</h6>
-                    <p>The x-cube on the right opens the admin side panel where you can search for an action or show Help from the active module,
-                        and customize your dashboard options.</p>
+                    <p>The x-cube on the right opens the admin side panel where you can perform an action search using keywords, display the Help dialog for the current module,
+                        and find the controls to customize your dashboard.</p>
                 </div>
             </div>
         </div>
@@ -120,370 +133,324 @@
             </div>
         </div>
 
-        <div class="tips">The built-in Help resources section provides useful documentation to help administrators manage the web application and modules. You can find the "Help" link to the documentation in the submenu of each module and the admin panel. Do not hesitate to explore them.</div>
-
-    </section>
-
-
-    <section class="help" id="admin-layout">
-
-    <h3>Accesskey</h3>
-
-    <table class="outer">
-        <thead>
-        <tr>
-            <th>Browser</th>
-            <th>Windows</th>
-            <th>Linux</th>
-            <th>Mac</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Firefox</td>
-            <td><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd><em>key</em></kbd></td>
-            <td><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd><em>key</em></kbd></td>
-            <td>
-                <kbd>Control</kbd> + <kbd>Option</kbd> + <kbd><em>key</em></kbd><br>
-                <kbd>Control</kbd> + <kbd>Alt</kbd> + <kbd><em>key</em></kbd>
-            </td>
-        </tr>
-        <tr>
-            <td>Internet Explorer</td>
-            <td><kbd>Alt</kbd> + <kbd><em>key</em></kbd><br><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd><em>key</em></kbd></td>
-            <td>N/A</td>
-            <td>N/A</td>
-        </tr>
-        <tr>
-            <td>Edge</td>
-            <td><kbd>Alt</kbd> + <kbd><em>key</em></kbd><br><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd><em>key</em></kbd></td>
-            <td>N/A</td>
-            <td>
-                <kbd>Control</kbd> + <kbd>Option</kbd> + <kbd><em>key</em></kbd><br><kbd>Control</kbd> + <kbd>Option</kbd> + <kbd>Shift</kbd> +
-                <kbd><em>key</em></kbd>
-            </td>
-        </tr>
-        <tr>
-            <td>Google Chrome</td>
-            <td><kbd>Alt</kbd> + <kbd><em>key</em></kbd><br><kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd><em>key</em></kbd></td>
-            <td><kbd>Alt</kbd> + <kbd><em>key</em></kbd></td>
-            <td>
-                <kbd>Control</kbd> + <kbd>Option</kbd> + <kbd><em>key</em></kbd><br><kbd>Control</kbd> + <kbd>Option</kbd> + <kbd>Shift</kbd> +
-                <kbd><em>key</em></kbd>
-            </td>
-        </tr>
-        <tr>
-            <td>Safari</td>
-            <td>N/A</td>
-            <td>N/A</td>
-            <td>
-                <kbd>Control</kbd> + <kbd>Option</kbd> + <kbd><em>key</em></kbd><br>
-                <kbd>Control</kbd> + <kbd>Option</kbd> + <kbd>Shift</kbd> +
-                <kbd><em>key</em></kbd>
-            </td>
-        </tr>
-        <tr>
-            <td>Opera 15+</td>
-            <td><kbd>Alt</kbd> + <kbd><em>key</em></kbd></td>
-            <td><kbd>Alt</kbd> + <kbd><em>key</em></kbd></td>
-            <td><kbd>Control</kbd> + <kbd>Alt</kbd> + <kbd><em>key</em></kbd></td>
-        </tr>
-        <tr>
-            <td>Opera 12</td>
-            <td colspan="3">
-                <kbd>Shift</kbd> + <kbd>Esc</kbd> opens a contents list which are
-                accessible by accesskey, then, can choose an item by pressing
-                <kbd><em>key</em></kbd>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-    <div class="confirm">
-        <strong>Accessibility concerns</strong><br>
-        <p>In addition to poor browser support, there are numerous concerns with the accesskey attribute:
-            An accesskey value can conflict with a system or browser keyboard shortcut, or assistive technology functionality.</p>
-    </div>
+        <div class="tips">The built-in help provides documentation to help administrators manage the web application and modules.
+            You will find the "Help" link in the sub-menu of each module. Feel free to consult them.</div>
 
     </section>
 
     <section id="help-gui">
-        <h3>Admin Theme Options</h3>
 
-        <h4>Store your dashboard preferences - blocks and modules Tips</h4>
+        <h3>Control Panel Options</h3>
 
-        <p>Modules Tips are small alert messages that display short information about functionality.</p>
-        <p>Actions Tips display descriptive text when you rest the pointer on a button command or control.</p>
-        <p>Module Help enhanced Help are larger modals that display more descriptive text than a Module Tip and can have a link to a Help article.</p>
-        <p>You can set an option to show or hide Tips.</p>
+        <p>Customize the User Interface blocks of information and save your preferences to localstorage.</p>
 
-        <h3>Show or hide Tips</h3>
+        <ol>
+        <li>Click the x-cube to open the admin panel</li>
+        <li>Select a Theme color-scheme</li>
+        <li>Enable or disable blocks and tips</li>
+        </ol>
 
+        <p>The following placeholders blocks</p>
         <div class="guide-layout">
         <div data-layout="row center-justify sm-column p-4">
-            <div data-self="size-x1 center sm-full p-4">
+            <div data-self="size-x1 start sm-full p-4">
                 <div class="block"><{$smarty.const._AD_BLOCK_ONLINE}></div>
                 <div class="block"><{$smarty.const._AD_BLOCK_MENU}></div>
                 <div class="block"><{$smarty.const._AD_BLOCK_SERVER}></div>
             </div>
-            <div data-self="start sm-full p-4">
+            <div data-self="size-1of4 start sm-full p-4">
                 <div class="block"><{$smarty.const._AD_BLOCK_OVERVIEW}></div>
                 <div class="block">Custom Block</div>
+            </div>
+            <div data-self="size-1of4 stretch sm-hide p-4" style="background: var(--aside-panel-bg);">
+                <h6><svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M6 18h5.5v-4H6v4Zm0-5h5.5V6H6v7Zm6.5 5H18v-7h-5.5v7Zm0-8H18V6h-5.5v4ZM5 21q-.825 0-1.413-.588T3 19V5q0-.825.588-1.413T5 3h14q.825 0 1.413.588T21 5v2h2v2h-2v2h2v2h-2v2h2v2h-2v2q0 .825-.588 1.413T19 21H5Zm0-2h14V5H5v14ZM5 5v14V5Z"></path>
+                </svg> Control Panel</h6>
+                <p>Admin Options</p>
             </div>
         </div>
         </div>
 
-        <ol>
-            <li>Click the x-cube admin panel</li>
-            <li>Click theme options.</li>
-            <li>Click help tips.</li>
-            <li>Under User interface options, in the Admin Theme Options list, click the option that you want:</li>
-        </ol>
-        <p><b>Show feature descriptions in Tips</b>
-           This option turns on Tips and Enhanced Help-Tips so that you see more information about a module feature,
-            including the functionality name, keyboard shortcuts, and links to Help articles. This is the default setting.</p>
-        <p><b>Don't show feature descriptions in Tips</b>
-           This option turns off Enhanced Help Tips so that you see only the brief information and maybe a keyboard shortcut.</p>
-        <p><b>Don't show Tips</b>
-           This option turns off Tips and Enhanced Help Tips so that you only see the module's view and action controls.</p>
+        <h4>Admin Account</h4>
+            <p>Show-hide the administrator account on the left side-menu</p>
+        <h4>Users Online</h4>
+            <p>Show-hide the block of Users Online at the top of dashboard</p>
+        <h4>Modules Menu</h4>
+            <p>Show-hide the block menu with icons and modal links of installed modules</p>
+        <h4>Modules Help Tips</h4>
+            <p>Show-hide the Help-Tips on modules' admin pages with short information about the module feature.</p>
+        <h4>Overview Stats</h4>
+            <p>Show-hide block with total of modules, blocks and Users.</p>
+        <h4>Server Environment</h4>
+            <p>Show-hide block with server information</p>
+        <h4>PHP Settings</h4>
+            <p>Show-hide block with PHP settings</p>
+        <h4>Disable action tooltip</h4>
+            <p>Show-hide tooltip hover action buttons, tag title with description.</p>
 
-        <blockquote>The value of the id attribute must be unique within the HTML document.
-            The id attribute is used to point to a specific style declaration in a style sheet.
-            It is also used by JavaScript to access and manipulate the element with the specific id.
-            The syntax for id is: write a hash character (#), followed by an id name.</blockquote>
     </section>
 
     <section id="help-search">
 
-        <h3>Action Search</h3>
+        <h3>How to get help</h3>
+        <p>There are a few different ways to find help for your Web Application Platform.
+            You can use the Action Search to assist you in searching modules Help files and preferences.
+            You can learn more about a module from the contextual Help dialog and the built-in User Guide.</p>
+
+        <h3>Use Action Search</h3>
+        <p>Click the x-cube on the right to open the side panel.
+        Enter different keywords in the action search field to find what you are looking for in the modules User Guide files and modules Preferences.</p>
+
+        <h3>Use Built-in Help</h3>
+        <p>All modules installed on your Web Application Platform have a built-in User Guide.
+            In the left side-menu, for each module, there is a help link, so you can easily get the User Guide for the modules you are using.
+            A module's User Guide can provide easy access to other sections, topics, and examples.
+
+        <h3>Use Contextual Help Dialog</h3>
+        <p><button class="help-admin button-icon" type="button" data-module="legacy" data-help-article="#help-modules" title="Get Help for module management"><b>?</b></button>
+            The Help button is available in the administration of most modules. This displays a modal dialog box in response to user action, to get the relative help section.
+            For example, this button displays the contextual help for module managent.</p>
+
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h3>
         <ul>
-            <li>Search information from help files or admin menu features by typing a keyword.</li>
-            <li>Perform a search when you need to learn how to use XOOPS Cube Legacy.</li>
+            <li>Control Panel customization
+            <li>Modules management</li>
+            <li>Development and support</li>
         </ul>
-
     </section>
-
 
     <section id="help-blocks">
 
-        <h3>Blocks management</h3>
+        <h3>Block management</h3>
 
-        <p>The block management system is built into the kernel and provides custom title, five default block positions,
-            display order, modules, user groups access and cache settings.</p>
+        <p>The block management is part of the core system.
+            Blocks are made available in block management by installing and activating modules but also when creating custom blocks.
+            Simply put, there are two main types of blocks : Modules blocks and Custom blocks.
 
-        <h4>Block Title (name)</h4>
-        <p>You can rename the block title, and display or not in your theme.</p>
+        <h3>Modules blocks</h3>
 
-        <h4>Block Order (weight)</h4>
-        <p>The display order set in the specific field, next to the block name, will determine its placement on the page,
-            relative to the display orders of all other visible blocks.</p>
-        <p>The display order is 0, the starting number of 1 and incremented by 1 relates to all subsequent blocks.
-            The new starting number can be changed manually by the user and will then be incremented by 1 against that initial number.</p>
+        <p><b>Modules blocks</b> are pre-built blocks such as "User Login", "Main Menu" or "Who's online".
+            Each module block provides specific functionality and has its own settings and template.</p>
 
-        <h4>Block Type (custom)</h4>
-        <p>Custom blocks can be created with BBCode and PHP, or HTML, CSS and JavaScript.</p>
+        <h3>Custom blocks</h3>
 
-        <h4>Block Side (position)</h4>
-        <p>The block position is just a legacy code convention to identify areas in the theme layout.</p>
-        <p>Themes can provide several placeholders, for example, by using a prefix added to the block title, or the block's order (weight) value. </p>
+        <p><b>Custom blocks</b> are a quick and easy way to extend and customize your content with images, text or third party services: maps, videos, etc. By default,
+            Custom blocks are rendered with a dummy template. However, it is possible to create reusable components with their own custom template.
+            We'll see more details about custom components later.
 
-        <h4>Cache setting</h4>
-        <p>You can specify the cache lifetime or prevent a block from being cached, if its content requires updates in real time (e.g. comments or RSS feeds).</p>
+        <h3>Block settings</h3>
+        <ul>
+            <li>Title
+            <li>Side
+            <li>Order
+            <li>Cache time
+            <li>Target modules
+            <li>Target groups
+            <li>Template
+        </ul>
 
-        <h4>Target modules</h4>
-        <p>Where to show the block.</p>
+        <h3>Block Side Position</h3>
 
-        <h4>Target groups</h4>
-        <p>user Groups that can access the block.</p>
+        <p>The block side position is a legacy code convention to identify placeholders, also known as areas, regions or zones in the theme layout.
+        <p>The theme specifies the overall page appearance, style and defines the placeholders available.
+            Where a module block template can specify its own shape, size, and position.
+        <p>>Along with more savvy combinations of custom templates and components, it's also important to understand how blocks are displayed and sorted (order/weight).
 
-<h3>Example of Custom Block</h3>
+        <h3>Block Placeholders</h3>
+        <p>Your site's theme defines the placeholders available.
+            Therefore, block placement in placeholders is done per theme on the Block Management.
+            If you have more than one theme enabled on your site blocks might be placed differently for each theme.
 
-        <div data-layout="row sm-column">
-            <div data-self="size-1of3 sm-full">
-                <div class="ui-card-block">
-                    <div class="ui-card-block-header" data-layout="row center-justify">
-                        <a href="#!" style="cursor: help;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="icon-info"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2z" fill="currentColor"></path></svg></a>
-                        <label>
-                            <input type="checkbox" id="27" name="uninstall[27]" value="1">
-                        </label>
-                    </div>
-                    <div class="ui-card-block-image card-block-svg">
-                        <a class="ui-block-type" href="#!">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 240 100" class="ui-block-html">
-                                <g id="ui-block-html"><path class="block-icon" d="M12 17.56l4.07-1.13l.55-6.1H9.38L9.2 8.3h7.6l.2-1.99H7l.56 6.01h6.89l-.23 2.58l-2.22.6l-2.22-.6l-.14-1.66h-2l.29 3.19L12 17.56M4.07 3h15.86L18.5 19.2L12 21l-6.5-1.8L4.07 3z" fill="currentColor"></path>
-                                    <text class="block-name" x="120px" y="50px" fill="currentColor">
-                                        <tspan>Custom HTML</tspan>
-                                    </text>
-                                </g>
-                            </svg>
-                        </a>
-                    </div>
-                    <div data-layout="rows">
-                        <div class="ui-card-block-item">
-                            <span><input type="number" size="1" maxlength="4" name="weight[27]" value="0"></span>
-                            <span><input type="text" size="18" maxlength="191" name="title[27]" value="Welcome"></span>
-                        </div>
-                        <div class="ui-card-block-item">
-                            <label class="inactive"><input name="side[27]" id="legacy_xoopsform_side_0" type="radio" value="0"></label><div class="ui-block-separator">-</div><label class="ui-block-input inactive"><input name="side[27]" id="legacy_xoopsform_side_3" type="radio" value="3"></label><label class="active"><input name="side[27]" id="legacy_xoopsform_side_5" type="radio" value="5" checked="checked"></label><label class="ui-block-input inactive"><input name="side[27]" id="legacy_xoopsform_side_4" type="radio" value="4"></label><div class="ui-block-separator">-</div><label class="ui-block-input inactive"><input name="side[27]" id="legacy_xoopsform_side_1" type="radio" value="1"></label>
-                        </div>
-                    </div>
-                    <div data-layout="rows">
-                        <div class="ui-card-block-item">
-                            <select name="bcachetime[27]" data-layout="row">
-                                <option id="_0" value="0" selected="selected">No Cache</option>
-                                <option id="_30" value="30">30 seconds</option>
-                                <option id="_60" value="60">1 minute</option>
-                                <option id="_300" value="300">5 minutes</option>
-                                <option id="_1800" value="1800">30 minutes</option>
-                                <option id="_3600" value="3600">1 hour</option>
-                                <option id="_18000" value="18000">5 hours</option>
-                                <option id="_86400" value="86400">1 day</option>
-                                <option id="_259200" value="259200">3 days</option>
-                                <option id="_604800" value="604800">1 week</option>
-                                <option id="_2592000" value="2592000">1 month</option>
-                            </select>
-                        </div>
-                        <div class="ui-card-block-item" data-self="inline">
-                            <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M15 13h1.5v2.82l2.44 1.41l-.75 1.3L15 16.69V13m4-5H5v11h4.67c-.43-.91-.67-1.93-.67-3a7 7 0 0 1 7-7c1.07 0 2.09.24 3 .67V8M5 21a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2H5m11-9.85A4.85 4.85 0 0 0 11.15 16c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 20.85 16c0-2.68-2.17-4.85-4.85-4.85z" fill="currentColor"></path>
-                            </svg>
-                            <small>2023/03/23 09:11:00</small>
-                        </div>
-                    </div>
-                    <div class="ui-card-block-item">
-                        <a href="./index.php?action=CustomBlockEdit&amp;bid=27" class="button">
-                            <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path>
-                            </svg> Edit
-                        </a>
-                        <a href="./index.php?action=BlockUninstall&amp;bid=27" class="button">
-                            <svg class="icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M3.27 1L2 2.27L6.22 6.5L3 9l1.63 1.27L12 16l2.1-1.63l1.43 1.43L12 18.54l-7.37-5.73L3 14.07l9 7l4.95-3.85L20.73 21L22 19.73L3.27 1m16.09 9.27L21 9l-9-7l-2.91 2.27l7.87 7.88l2.4-1.88m.45 4.73l1.19-.93l-1.43-1.43l-1.19.92L19.81 15z" fill="currentColor">
-                                </path>
-                            </svg> Uninstall
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div data-self="size-x1 sm-full p-6">
+        <p>Example of a common theme layout, structured as a 3 column portal with placeholders displayed as wireframes.
 
+        <p>
+        <svg viewBox="10.965 -5.032 1598.97 1080" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <style>
+                svg rect:not(:first-of-type):hover, rect > rect:hover{fill: rgb(85, 151, 218)!important;stroke:rgb(85, 151, 218)!important;filter: drop-shadow(3px 3px 7px rgba(0, 0, 0, 1));transition: all 0.5s ease;}
+            </style>
+            <rect width="1600" height="1080" style="fill: var(--body-bg);" x="9.935" rx="14" ry="14" y="-5.032">
+                <title>Theme Layout - Blocks Placeholders</title>
+            </rect>
+            <text style="fill: rgb(101, 123, 153);  font-size: 32px;" transform="matrix(0.808189, 0, 0, 0.822814, 49.935001, 53.499912)">Theme Layout Placeholders</text>
+            <rect style="fill-rule: nonzero; stroke-width: 2px; fill: rgb(218, 85, 85); stroke: rgb(218, 85, 85); stroke-dasharray: 4px; fill-opacity: 0.2; paint-order: fill;" x="49.935" width="1140" height="77.678" rx="14" ry="14" y="77.29">
+                <title>header</title>
+            </rect>
+            <text style="font-size: 22px; line-height: 38px;" transform="matrix(1.04275, 0, 0, 1.06162, 70.008507, 122.890717)"><tspan>Header Navigation</tspan><tspan x="0" dy="1em"></tspan></text>
+            <rect style="fill-rule: nonzero; stroke-width: 2px; fill: rgb(218, 85, 85); stroke: rgb(218, 85, 85); stroke-dasharray: 4px; fill-opacity: 0.2; paint-order: fill;" x="1230.401" width="339.534" height="77.678" rx="14" ry="14" y="77.29">
+                <title>search</title>
+            </rect>
+            <text style="font-size: 22px;" transform="matrix(1.04275, 0, 0, 1.06162, 1250, 124.198105)"><tspan>Search</tspan><tspan x="0" dy="1em"></tspan></text>
+            <rect x="49.935" y="194.968" width="340.065" height="540" rx="14.001" style="stroke: rgb(218, 85, 85); stroke-dasharray: 4px; fill: rgb(218, 85, 85); fill-opacity: 0.2; stroke-width: 2px;" ry="14.001">
+                <title>aside</title>
+            </rect>
+            <text style="font-size: 23px;" transform="matrix(1.04275, 0, 0, 1.06162, 70, 234.198105)"><tspan>Side Block-Left</tspan><tspan x="0" dy="1em"></tspan></text>
+            <rect x="70" y="260" width="300" height="120" rx="14.001" style="stroke-width: 2px; fill-opacity: 0.2; fill: none; stroke: rgb(85, 151, 218);" ry="14.001">
+            </rect>
+            <text style="font-size: 23px;" transform="matrix(1.04275, 0, 0, 1.06162, 110.008507, 327.890717)"><tspan>Block order/weight 1</tspan><tspan x="0" dy="1em"></tspan></text>
+            <rect style="stroke: rgb(85, 151, 218); stroke-width: 2px; fill-opacity: 0.2; fill: none;" x="70" y="420" width="300" height="120" rx="14" ry="14">
+            </rect>
+            <text style="font-size: 23px;" transform="matrix(1.04275, 0, 0, 1.06162, 110.008507, 487.890686)"><tspan>Block order/weight 2</tspan><tspan x="0" dy="1em"></tspan></text>
+            <rect style="stroke: rgb(85, 151, 218); stroke-width: 2px; fill-opacity: 0.2; fill: none;" x="70" y="580" width="300" height="120" rx="14" ry="14">
+            </rect>
+            <text style="font-size: 23px;" transform="matrix(1.04275, 0, 0, 1.06162, 110.008507, 647.890686)"><tspan>Block order/weight 3</tspan><tspan x="0" dy="1em"></tspan></text>
+            <rect style="fill-rule: nonzero; stroke-width: 2px; fill: rgb(218, 85, 85); stroke: rgb(218, 85, 85); stroke-dasharray: 4px; fill-opacity: 0.2;" x="430.401" width="760.239" height="539.7" rx="14" ry="14" y="195.268">
+                <title>Module-content</title>
+            </rect>
+            <text style="font-size: 23px;" transform="matrix(1.04275, 0, 0, 1.06162, 460, 234.198105)"><tspan>Content</tspan><tspan x="0" dy="1em"></tspan></text>
+            <rect x="449.935" y="260" width="720" height="440" rx="14.001" style="stroke-width: 2px; fill-opacity: 0.2; fill: none; stroke: rgb(85, 151, 218);" ry="14.001">
+                <title>template</title>
+            </rect>
+            <text style="font-size: 23px;" transform="matrix(1.04275, 0, 0, 1.06162, 470, 304.19812)"><tspan>Module Template</tspan><tspan x="0" dy="1em"></tspan></text>
+            <rect style="fill-rule: nonzero; stroke-width: 2px; fill: rgb(218, 85, 85); stroke: rgb(218, 85, 85); stroke-dasharray: 4px; fill-opacity: 0.2;" x="1230.401" width="339.599" height="539.7" rx="14" ry="14" y="195.268">
+                <title>Block block-right</title>
+            </rect>
+            <text style="font-size: 23px;" transform="matrix(1.04275, 0, 0, 1.06162, 1250, 234.198105)"><tspan>Side Block-Right</tspan><tspan x="0" dy="1em"></tspan></text>
+            <rect x="49.935" y="774.968" width="340.065" height="140" rx="14.001" style="stroke: rgb(218, 85, 85); stroke-dasharray: 4px; fill: rgb(218, 85, 85); fill-opacity: 0.2; stroke-width: 2px;" ry="14.001">
+                <title>Block center-left</title>
+            </rect>
+            <text style="font-size: 23px;" transform="matrix(1.04275, 0, 0, 1.06162, 70, 824.19812)"><tspan>Side Center-Left</tspan><tspan x="0" dy="1em"></tspan></text>
+            <rect style="fill-rule: nonzero; stroke-width: 2px; fill: rgb(218, 85, 85); stroke: rgb(218, 85, 85); stroke-dasharray: 4px; fill-opacity: 0.2;" x="430.401" width="760.239" height="140" rx="14" ry="14" y="774.968">
+                <title>Block center-center</title>
+            </rect>
+            <text style="font-size: 23px;" transform="matrix(1.04275, 0, 0, 1.06162, 460, 824.19812)"><tspan>Side Center-Center</tspan><tspan x="0" dy="1em"></tspan></text>
+            <rect x="1229.935" y="774.968" width="340.065" height="140" rx="14.001" style="stroke: rgb(218, 85, 85); stroke-dasharray: 4px; fill: rgb(218, 85, 85); fill-opacity: 0.2; paint-order: fill; stroke-width: 2px;" ry="14.001">
+                <title>Block center-right</title>
+            </rect>
+            <text style="font-size: 23px;" transform="matrix(1.04275, 0, 0, 1.06162, 1250, 824.19812)"><tspan>Side Center-Right</tspan><tspan x="0" dy="1em"></tspan></text>
+            <rect style="stroke-dasharray: 4px; stroke: rgb(218, 103, 85); fill: rgb(218, 85, 85); fill-opacity: 0.2; paint-order: fill; stroke-width: 2px;" x="49.935" y="954.968" width="1520.065" height="80" rx="14" ry="14">
+                <title>Meta Copyright and footer from Render Preferences</title>
+            </rect>
+            <text style="font-size: 23px;" transform="matrix(1.04275, 0, 0, 1.06162, 70, 1004.19812)"><tspan>Footer</tspan><tspan x="0" dy="1em"></tspan></text>
+        </svg>
+        </p>
 
-                <p>The block template specifies the shape, and the global theme specifies the areas and appearance.
-                    However, it can be overridden by a custom template.</p>
-
-                <p>There are two types of blocks : Modules blocks and Custom blocks.</p>
-
-                <h4>Modules blocks</h4>
-
-                <p>Modules have several pre-built blocks that offer specific functionality and favor composition over inheritance.
-                    These blocks are made available in the block management by enabling modules.</p>
-
-                <h4>Custom blocks</h4>
-
-                <p>A Custom block can be built with HTML, CSS, JavaScript, PHP and Smarty variables.
-                    Thus allowing to create reusable Components to create an effective website layout.<br>
-                    It can also embed code or integrate with third-party features specific to a site's unique needs.</p>
-                <p>The block editor will switch according to the type of content.</p>
-            </div>
-
-        </div>
+        <p>Defining placeholders in the theme layout is a minor design constraint. In fact, a framework is necessary in any creative process.
+            Furthermore, given the modular architecture and the flexibility of the rendering engine,
+            it is possible to create compositions adapted to the most diverse needs and thus deliver tailor-made solutions.</p>
 
 
+        <h3>Block Order</h3>
 
-        <p><a href="<{'block.html'|helpurl}>" class="button">Learn more about Blocks ⭢</a></p>
+        <p>The block management screen also lets you specify the vertical sort-order of the blocks within a theme placeholder.
+        This can be done by the block numeric input field next to the block title. A spinner allows you to increment and decrement the value to the desired position.
+        When editing the theme you can also customize a block by assigning a weight to the CSS style.
+        Lighter blocks (smaller weight) are displayed up towards the top of the placeholder. Heavier blocks towards the bottom of it.
+
+        <h3>Block actions</h3>
+        <p>After adding a block, click the edit icon in the block header to configure it.</p>
+
+        <h4>Edit the new block - HTML</h4>
+        <p>The Block Title includes a 'kebab' (three vertical dots) menu <span class="button"><svg xmlns="http://www.w3.org/2000/svg" role="img" width="1em" height="1em" viewBox="0 0 24 24">
+            <path d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2z" fill="currentColor"></path>
+        </svg></span></p>
+        <p>The kebab menu, also known as the vertical three-dot menu, is an icon used to open
+            a menu and display actions for the related item : quick links to block management.</p>
+
+        <h3>Uninstall a Block</h3>
+        <ul>
+            <li>A Module block can be installed or uninstalled without being deleted from the system. While a Custom Block can be completely removed from the UI and the database.
+            <li>If you uninstall a Module block, it is moved back to the management list of 'Install block'.
+            <li>Uninstalled blocks keep their settings, so you can re-install the block and recover its last settings.
+        </ul>
+
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h3>
+        <ul>
+            <li><a href="<{'block.html'|helpurl}>">Modules Blocks</a></li>
+            <li><a href="<{'block-custom.html'|helpurl}>">Custom Blocks</a></li>
+            <li><a href="<{'block-custom.html'|helpurl}>">Select and move blocks</a></li>
+            <li><a href="../../altsys/admin/index.php?mode=admin&lib=altsys&page=myblocksadmin">Using Components</a></li>
+        </ul>
 
     </section>
-
 
     <section id="help-comments">
 
         <h3>Comment Management</h3>
 
-        <p>The Comment management system is built into the kernel.
+        <p>The Comment management is a built-in feature.
             It provides a textarea comment box where users can generate their own comments and leave them on a specific piece of content.</p>
-        You can follow the last comments of your articles on your Dashboard. In addition to having a quick view, you can also give Reply to the comment as well as moderate its status as a public, pending, spam, and delete it.
+        You can follow the last comments of your articles on your Dashboard.
+        In addition to having a quick view, you can also give Reply to the comment as well as moderate its status as a public, pending and delete it as spam.
 
         <div class="tips">D3 modules comments are easily integrated (module preferences) and managed through D3Forum.</div>
 
-    </section>
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h3>
+        <ul>
+            <li><a href="<{'comments.html'|helpurl}>">Learn more about Comments ⭢</a></li>
+            <li>D3Forum comment integration</li>
+        </ul>
 
+    </section>
 
     <section id="help-images">
 
         <h3>Image Management</h3>
 
-        <div class="badge">Dashboard »» Settings »» Image Management</div>
-
-        <h4>Category management</h4>
         <p>Here you can create and edit categories, set the maximum file size, maximum image width and height, display and hide categories and images.</p>
         <p>The following options are available when creating a category:</p>
 
-        <h4>Name</h4>
-        <p>A descriptive name of the category.</p>
+        <div class="tips">X-elFinder overrides the Image management, and it is integrated and extended to manage local and cloud storage services such as Google Drive, OneDrive or Dropbox.</div>
 
-        <h4>Permissions</h4>
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h3>
         <ul>
-            <li>Groups who can upload to the category.</li>
-            <li>Groups who can view the category.</li>
+            <li><a href="<{'media.html'|helpurl}>">Learn more about Image Management ⭢</a></li>
+            <li>X-elFinder File Manager</li>
         </ul>
-
-        <h4>File size</h4>
-        <p>You can optionally set a maximum allowed size in kilobytes for uploaded file. Leave blank if you do not wish to impose a limit.
-        <p>Example: 1024000 bytes = 1,000Kb = 1MB
-
-        <div class="tips">
-            Note: Hosting services usually have limits on the amount of data that can be uploaded via PHP
-        If you need to upload very large files, you should contact your server's support service and tell them about the size limits they have put in place.
-        Alternatively, you can install the module Xelfinder, the web file manager can connect to a cloud service.
-        </div>
-
-        <h4>Image width</h4>
-        <p>Optionally set the maximum allowed width in pixes for uploaded images. Images over this setting will be automatically resized.</p>
-
-        <h4>Image height</h4>
-        <p>Optionally set the maximum allowed height in pixes for uploaded images. Images over this setting will be automatically resized</p>
-
-        <h4>Display</h4>
-        <p>Show or hide the category</p>
-
-        <h4>Order</h4>
-        <p>In the list component, you can sort by any column. Leave the value by default for the original sort order, or set a custom order with a numeric value.</p>
-
-        <h4>Category store type</h4>
-        <p>Choose either the file or the database storage scheme for your image files.</p>
-
-        <div class="error">This parameter cannot be changed later!</div>
-
-        <p>Keep in mind that if you select the database as the storage destination, image files will be stored as BLOB type data which may not be suitable for backup purposes.</p>
-
-        <p><a href="<{'images.html'|helpurl}>" class="button">Learn more about Image management ⭢</a></p>
 
     </section>
 
+    <section id="help-language">
+
+        <h3>Language</h3>
+
+        <p>Localisation and translation</p>
+        <p> you can override a specific language string without modifying any language files.</p>
+
+        <h3>Related</h3>
+        <p>Components localisation and translation</p>
+
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h3>
+        <ul>
+            <li><a href="<{'language.html'|helpurl}>">Learn more about Language ⭢</a></li>
+            <li>Components localisation and translation</li>
+        </ul>
+
+    </section>
 
     <section id="help-modules">
 
         <h3>Module management</h3>
+        <p>
+        In a modular architecture, Each module is responsible for managing certain features and parameters.  
+        The required functions for configuring and managing The web application platforma are grouped into eight modules :
+        components, system, render, user groups, profile, cache, message, protector. </p>  
+        
+        <p>Active modules are represented by the icons in the <b>Side menu</b> of the Control Panel.</p>
 
-        <div class="badge">Dashboard »» System »» Module Management</div>
+        <p>Modules mostly work independently of one another.
+            However, in a number of cases the functionality of certain modules depends on the capabilities of other modules. 
+            For example:</p>
+        <ul>
+            <li>The module <b>Pico</b> can be used to manage articles but depends on D3Forum comment-integration to allow comments.
+            </li>
+        </ul>
 
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h3>
         <ul>
             <li>List of modules installed in the web application platform.</li>
-            <li>You can install modules.</li>
+            <li>Install modules.</li>
             <li>Enable or disable modules.</li>
             <li>Grant user groups permissions.</li>
             <li>Enable or disable cache</li>
             <li>View module details (!)</li>
         </ul>
 
-        <h3>Module Installation</h3>
-
-        <div class="badge">Settings »» Module Management »» Module install</div>
-        <ul>
-            <li>Module Installation Wizard</li>
-        </ul>
     </section>
-
 
     <section id="help-themes">
 
@@ -500,34 +467,37 @@
 
         <p>If you install the "Themes" block and grant users permission, they can then select their favorite theme and customize the look and feel of the website.</p>
 
-        <p><a href="<{'theme.html'|helpurl}>" class="button">Learn more about Themes  ⭢</a></p>
+        <h3><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h3>
+        <p><a href="<{'theme.html'|helpurl}>">Learn more about Themes  ⭢</a></p>
 
     </section>
-
 
     <section id="help-smilies">
 
         <h3>Smilies Management</h3>
 
-        <p>An emoticon is a short sequence of keyboard letters and symbols, usually emulating a facial expression, that complements a text message.</p>
-        <p>An array of emoticons is available in the insert emoticon popup of the WYSIWYG HTML editor.</p>
+        <p>An emoticon is a short sequence of keyboard letters and symbols, usually emulating a facial expression, 
+            that complements a text message. However, you can use this feature to replace any keywords with an image,
+        for example, logotype or math formula.</p>
+
+        <p>Checked items are available in the insert smilies popup of the WYSIWYG HTML editor.</p>
 
         <p>Actions : </p>
         <ul>
             <li>Add, Edit, Delete, Display</li>
-            <li>Code and Emotion description</li>
+            <li>Code, Image and description</li>
             <li>Smiles Batch-Upload (tar.gz or zip)</li>
         </ul>
         <p>Disable Emojis</p>
-        <p>Uncheck the option [Display] if you don't want your :) to turn into a (smilie).</p>
+        <p>Uncheck the option [Display] if you don't want your :) to turn into an image (smilie).</p>
 
         <div class="tips">
-            <p>XOOPSCube allowed file type(s) property allows you to specify the file types that the user can upload using the File field.</p>
+            <p>XOOPSCube file type(s) property allows you to specify the file types that the user can upload using the File field.</p>
             <p>For example, if you set the values for this property as "gif, jpg, png" the user will only be able to upload GIF, JPG and PNG graphic images.</p>
         </div>
 
     </section>
-
 
     <section id="help-word-censor">
 
@@ -537,6 +507,9 @@
 
         <p>This section of the Control Panel allows you to enable word censoring.
             It is also where you define the list of censored words.</p>
+        <p>The profanity filter, sometimes referred to as just "filter" or "censor", is a feature typically used on
+            forums and comments that automatically scans users' posts as they are submitted and automatically changes
+            or censors particular words.</p>
 
         <h4>Enable censorship?</h4>
         <p>You may enable or disable word censoring. If you select “Yes”, the system will replace any specified words
@@ -544,19 +517,11 @@
 
         <h4>Replacement characters</h4>
         <p>You may optionally specify a word or phrase to be used when replacing censored words.
-            For example, if you set “tisk tisk” as your replacement word, and “shucks” is in your censored list,
-            then anytime “shucks” is used it will be replaced with “tisk tisk”.
-            If you do not set this preference, a pound symbol will be used for each character that is censored,
-            so “shucks” would be converted to “######“.</p>
+            For example, if you set “#OOPS#” as your replacement word, and “shucks” is in your censored list,
+            then anytime “shucks” is used it will be replaced with “#OOPS#”.
+            If you do not set this preference, default "#OOPS#" will be used for each word that is censored.</p>
 
         <h4>Words to censor</h4>
-
-        <p>Specify a list of words to censor. Wildcards are allowed. For example, test* would censor the words “test”,
-            “testing”, and “tester”, while *gress would censor the words “progress” and “congress”.</p>
-
-        <p>The profanity filter, sometimes referred to as just "filter" or "censor", is a feature typically used on
-            forums and comments that automatically scans users' posts as they are submitted and automatically changes
-            or censors particular words.</p>
 
         <p>Enter the censored words in the textarea using a common delimiter character "|" (pipe) to separate the values.</p>
         <p>Set the characters replacing all the censored words in the input field "censor-replace".</p>
@@ -566,7 +531,6 @@
         </div>
 
     </section>
-
 
     <section id="help-development">
 
@@ -612,12 +576,12 @@
                 <td>X2 Module</td>
             </tr>
             <tr>
-                <td>Version</td>
-                <td>2.33</td>
-            </tr>
-            <tr>
                 <td>Level</td>
                 <td>Required</td>
+            </tr>
+            <tr>
+                <td>Bundle Package</td>
+                <td> XCL 2.3.3</td>
             </tr>
             <tr>
                 <td>🌐 Repository URL</td>

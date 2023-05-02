@@ -35,7 +35,7 @@ define( '_MI_XUPDATE_INSTALL_MSG_MODULE_INFORMATION_DELETED' , 'Module informati
 define( '_MI_XUPDATE_INSTALL_ERROR_MODULE_INFORMATION_DELETED' , 'Module information could not deleted.');
 define( '_MI_XUPDATE_INSTALL_MSG_TABLE_DOROPPED' , 'Table \'{0}\' is doropped.');
 define( '_MI_XUPDATE_INSTALL_ERROR_TABLE_DOROPPED' , 'Table \'{0}\' could not doropped.');
-define( '_MI_XUPDATE_INSTALL_ERROR_BLOCK_TPL_DELETED' , 'Block template could not deleted.<br>{0}');
+define( '_MI_XUPDATE_INSTALL_ERROR_BLOCK_TPL_DELETED' , 'The block template could not be deleted.<br>{0}');
 define( '_MI_XUPDATE_INSTALL_MSG_MODULE_UNINSTALLED' , 'Module \'{0}\' is uninstalled.');
 define( '_MI_XUPDATE_INSTALL_ERROR_MODULOE_UNINSTALLED' , 'Module \'{0}\' could not uninstalled.');
 define( '_MI_XUPDATE_INSTALL_MSG_UPDATE_STARTED' , 'Module update started.');
@@ -133,8 +133,8 @@ define( '_MI_XUPDATE_PARALLEL_FETCH_MAX' , 'HTTP maximum connections');
 define( '_MI_XUPDATE_PARALLEL_FETCH_MAXDSC' , 'The set number will be used as the maximum amount of simultaneously open connections to fetch data from a store list. The maximum number of concurrent requests that you can perform depends on the resources of your environment. You can adjust and reduce this value. Default: 50');
 define( '_MI_XUPDATE_CURL_MULTI_SELECT' , 'cURL : Disable curl_multi_select');
 define( '_MI_XUPDATE_CURL_MULTI_SELECTDSC' , 'Turn off curl\'s multi-request capabilities built-in only when data acquisition goes wrong.');
-define( '_MI_XUPDATE_CURL_SSL_NO_VERIFY' , 'cURL: Disable SSL verification');
-define( '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC' , '<b id="curl-ssl">🚩 cURL</b> Turn off curl\'s verification to bypass SSL certificate validation for local and test servers if you get an error.');
+define( '_MI_XUPDATE_CURL_SSL_NO_VERIFY' , '<b id="curl-ssl">🚩cURL</b> : Disable SSL verification');
+define( '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC' , 'If you get an error, turn off cURL\'s verification to bypass SSL certificate validation for local and test servers.');
 
 // progress messages
 define( '_MI_XUPDATE_PROG_FILE_GETTING' , 'Downloading package.');

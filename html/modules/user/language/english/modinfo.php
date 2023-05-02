@@ -1,11 +1,11 @@
 <?php
 
-define( '_MI_USER_ADMENU_AVATAR_MANAGE' , 'Avatar Management');
-define( '_MI_USER_ADMENU_GROUP_LIST' , 'Group Management');
-define( '_MI_USER_ADMENU_LIST' , 'User Management');
+define( '_MI_USER_ADMENU_AVATAR_MANAGE' , 'Avatars');
+define( '_MI_USER_ADMENU_GROUP_LIST' , 'Groups');
+define( '_MI_USER_ADMENU_LIST' , 'Users');
 define( '_MI_USER_ADMENU_MAIL' , 'Mail Users');
-define( '_MI_USER_ADMENU_MAILJOB_MANAGE' , 'Mailjob Management');
-define( '_MI_USER_ADMENU_RANK_LIST' , 'User Rank Manager');
+define( '_MI_USER_ADMENU_MAILJOB_MANAGE' , 'Mailjob');
+define( '_MI_USER_ADMENU_RANK_LIST' , 'User Ranks');
 define( '_MI_USER_ADMENU_USER_DATA_CSVUPLOAD' , 'Users Batch Registration');
 define( '_MI_USER_ADMENU_USER_DATA_DOWNLOAD' , 'User Data Download');
 define( '_MI_USER_ADMENU_USER_SEARCH' , 'User Search');

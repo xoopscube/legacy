@@ -1,7 +1,7 @@
 <div data-layout="row sm-column">
     <div data-self="size-xxsmall">
         <nav id="help-menu">
-            <ul data-layout="rows">
+            <ul data-layout="column">
                 <li><a href="#help-overview" class="button">Render</a>
                 <li><a href="#help-banner" class="button">Banner</a>
                 <li><a href="#help-bannerclient" class="button">Banner Client</a>
@@ -22,38 +22,34 @@
 
         <h3>Overview</h3>
 
-        <p>The Renderer uses Smarty Template Engine — one of the most popular and mature template engines.</p>
+        <p>The Render theme engine uses Smarty Template Engine — one of the most popular and mature template engines.</p>
 
-        <p>Smarty is a template engine for PHP. More specifically,
-            it facilitates a manageable way to separate application logic and content from its presentation.<br>
-            This is best described in a situation where the application programmer and the template designer play
-            different roles.
+        <p>Themes and Templates are built with HTML, CSS, JavaScript and Smarty tags 
+            — Smarty is used with custom delimiters very similar to HTML markup language that make it easier to design and develop components.</p>
 
-        <p>Smarty Template Engine is used for rendering and cache management, it has neither override nor fall-back mechanism.
+        <div class="tips">The renderer implementation of Smarty uses custom delimiters <b class="badge">&lt;{</b> ... <b class="badge">}&gt;</b>
+             instead of Smarty code enclosed in curly brace tag delimiters {$var} of the official documentation.</div>
 
-        <p>The Render engine ensures compatibility with legacy themes of XOOPS2 and XOOPS2-JP.
+        <p>The Render provides an easier management of templates, even when they’re not all stored in one central directory.
+            Although, some Themes have a template directory including most, if not all template files to meet an organization's needs for customization and personalization.
 
-        <p>Templates are built with HTML, CSS, JavaScript and Smarty tags<br>
-        — Smarty is used with custom delimiters very similar to HTML markup language that make it easier to design and develop components.</p>
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h4>
+        <ul>
+            <li>Custom templates</li>
+            <li>Custom Components</li>
+            <li><a href="https://www.smarty.net/docsv2/en/" target="_blank" rel="noopener">General instructions about Smarty language ⭧</a></li>
+        </ul>
 
-        <div class="tips">The Renderer implementation of Smarty uses custom delimiters <b class="badge">&lt;{</b> ... <b class="badge">}&gt;</b><br>
-            instead of Smarty code enclosed in curly brace tag delimiters {$var} of the official documentation.</div>
-
-        <p>The <b>Template Management</b> allows you to enable a <b>Template Set</b> and check the list of <b>templates</b> that you can edit, copy, download or delete.
-        You can manage files more easily, even when they’re not all stored in one central folder or directory.
-        Although, some Themes have a template directory including most, if not all template files to meet an organization's needs for customization and personalization.
-
-        <p>For general instructions about the Smarty language, visit <a href="https://www.smarty.net/docsv2/en/" target="_blank" rel="noopener">https://www.smarty.net/docsv2/en/ ⭧</a>
     </section>
-
 
     <section id="help-banner">
 
     <h3>Banner Management</h3>
 
-        <p>Allows you to manage banners and display ads in your website.
+        <p>Allows you to manage adverts and displays banners in your website.
 
-        <p>You can place a banner of any type, in any location of the page, and on any module.
+        <p>You can place a banner of any type, on any location of the page, of any module.
 
         <p>You may show a banner to visitors a certain number of impressions.
 
@@ -66,28 +62,6 @@
         <p>The Banner tags can be added to Themes, Templates or Blocks.
 
         <p>Smarty tags will be processed and substituted with content.
-
-    <h5>Banner Random Display</h5>
-
-    <pre><code class="lang-smarty">
-    &lt;{$xoops_banner}&gt;
-    </code></pre>
-
-    <h5>Display Banner if not empty</h5>
-    <pre><code class="lang-smarty">
-    &lt;{if $xoops_banner and $xoops_banner!=&quot;&quot;}&gt;&lt;{$xoops_banner}&gt;&lt;{/if}&gt;
-    </code></pre>
-
-    <h5>Display a specific Banner Id (bid)</h5>
-    <pre><code class="lang-smarty">
-    &lt;{if $xoops_banner &amp;&amp; bid=2}&gt;&lt;{$xoops_banner}&gt;&lt;{/if}&gt;
-    </code></pre>
-
-    <h3>Banner Client login</h3>
-
-    <code>
-    <{$smarty.const.XOOPS_URL}>/banners.php
-    </code>
 
     <p>Banner Features</p>
         <ul>
@@ -104,6 +78,14 @@
             <li>HTML code
             <li>Extra info
         </ul>
+
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h4>
+        <ul>
+            <li>Block Management</li>
+            <li>Theme Design</li>
+        </ul>
+
     </section>
 
     <section id="help-bannerclient">
@@ -116,61 +98,13 @@
         <h4>Steps for creating a new client</h4>
         <p>To setup a new banner client, follow the steps below:</p>
 
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h4>
         <ul>
-            <li>Click the button New Banner Client
-            <li>Enter all the details for your new banner client:
-            <li>Name and Contact
-            <li>Client Email and Password (only access Banners impression)
-            <li>After doing so, click Submit.
+            <li>Banner Management</li>
         </ul>
 
-    <p>In our testing, we are creating a client, company.com<br>
-        We are only entering the :</p>
-
-        <table class="outer">
-            <thead>
-            <tr>
-                <th colspan="2">Banner Client Required Fields</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>name for the client</td>
-                <td>company.com</td>
-            </tr>
-            <tr>
-                <td>Contact Name</td>
-                <td>name of a user as contact</td>
-            </tr>
-            <tr>
-                <td>Contact email</td>
-                <td>Enter a valid contact email</td>
-            </tr>
-            <tr>
-                <td>Login</td>
-                <td>Login only to banner views</td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td>Generate password</td>
-            </tr>
-            <tr>
-                <td>Extra info</td>
-                <td>Any customised information, address, phone, etc.</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h3>Create a New Banner</h3>
-        <p>select the banner client</p>
-        <p>Set the total number of Impressions Allowed
-        <p>Image URL
-        <p>Click URL (where to redirect users)
-        <p>HTML code (check the box to confirm it is code and not an image).
-
     </section>
-
-
 
     <section id="help-htaccess">
 
@@ -193,29 +127,35 @@
             including www rewrite, hotlink prevention, custom error pages, caching, and redirects.<br>
             As such it is required that your server uses Apache, and a web host that allows htaccess files (the most popular hosts do).
         </p>
+
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h4>
+        <ul>
+            <li>Render Preferences</li>
+            <li>Apache htaccess</li>
+        </ul>
+
     </section>
-
-
 
     <section id="help-template">
 
         <h3>Template Management</h3>
 
-        <p>The list of Template Sets is displayed in Template Management.
-
         <p>The distribution package comes with a Default Template Set.
 
         <p>When modules are installed, their templates become part of this Default Template set.
 
+        <p>The list of Template Sets is displayed in Template Management.
+
         <div class="error">The Default <b>Template Set</b> cannot be deleted nor modified !</div>
 
-        <p>To customize the templates in your site, first create a new <b>Template Set</b>
+        <h3>Custom Template Set</h3>
 
-        <p>Copy the templates you want to customize from the default template set to your new template set.
+        <p>Clone the Default Template Set to create a new Template Set 
 
-        <p>Once you have a new Template Set, you can activate it by clicking the "Select" button in the Control column.
+        <p>Edit the templates in your new Template Set
 
-        <p>Only then template files can be edited in the Template File Management.
+        <p>Once you have a new Template Set customized, you can activate it with the "Select" button.
 
         <h3>Template File Management</h3>
 
@@ -223,20 +163,26 @@
 
         <div class="tips">You can upload Template Set archives in tar format through the admin interface.</div>
 
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h4>
+        <ul>
+            <li>Components</li>
+            <li>Custom Templates</li>
+            <li>Theme Design</li>
+        </ul>
+
     </section>
-
-
 
     <section id="help-themes">
 
         <h3>Theme Selection</h3>
 
-        <p>Theme Management allows you to simple click the "Select" button next to the theme
+        <p>Theme Management allows you to "Select" the theme
             that you want to use as the default theme or main theme of your site.
 
         <p>Any theme that is "checked" in the "Control" column, will be available to users in the block "Themes".
 
-        <p>If you install the "Themes" block and grant users permission, they can then select their favorite theme and customize the look and feel of the website.
+        <p>If you install the block "Themes" and grant users permission, they can then select their favorite theme and customize the look and feel of the website.
 
         <h3>Install a Theme</h3>
 
@@ -253,12 +199,18 @@
 
         <p>So, to delete a theme, simply delete its directory from the "themes" directory.
 
-        <p><a class="button" href="<{'index.php?action=Help&dirname=legacy'}>">Learn more about Themes ⭢</a></p>
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h4>
+        <ul>
+            <li>Block Management</li>
+            <li>Components</li>
+            <li>Theme Design</li>
+        </ul>
 
     </section>
 
-
     <section id="help-amp">
+
         <h3>AMP HTML Specification</h3>
 
         <p>AMP HTML is a subset of HTML for authoring content pages such as news articles in a way that guarantees certain baseline performance characteristics.
@@ -266,29 +218,41 @@
             but it does not require the development of new rendering engines: existing user agents can render AMP HTML just like all other HTML.</p>
         <p>Also, AMP HTML documents can be uploaded to a web server and served just like any other HTML document; no special configuration for the server is necessary.
             However, they are also designed to be optionally served through specialized AMP serving systems that proxy AMP documents.</p>
-        <p><a href="https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml" target="_blank" rel="noopener nofollow">Learn more about AMP Spec ⭧</a></p>
+
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h4>
+        <ul>
+            <li><a href="https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml" target="_blank" rel="noopener nofollow">Learn more about AMP Spec ⭧</a></li>
+        </ul>
+
     </section>
 
-
     <section id="help-bbcode">
+
         <h3>BBCode</h3>
 
         <p>BBCode is a simple way to format your entries (like bold text, italic text, links) in forums.
             BBCode was implemented as method of providing a safer and easier way of allowing posts to be formatted on forums.</p>
 
         <h3>Formatting Posts</h3>
+
         <p>BBCode is short for Bulletin Board Code. It is used as a way for formatting posts made on message boards, blogs and more.
             It is similar to HTML in the sense that in BBCode one does also use tags to format something specific (contained within the tag).
             In BBCode tags are indicated by rectangular brackets surrounding a keyword, which is in turn transformed into HTML before being delivered to a web browser.
 
             Since its creation, BBCode has been used in many different portals. Any developer can implement it for free and anyone can use it.
-        <p><a href="https://www.bbcode.org/" target="_blank" rel="noopener nofollow">Learn more about BBCode Spec ⭧</a></p>
 
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h4>
+
+        <ul>
+            <li><a href="https://www.bbcode.org/" target="_blank" rel="noopener nofollow">Learn more about BBCode Spec ⭧</a></li>
+        </ul>
 
     </section>
 
-
     <section id="help-markdown">
+
         <h3>Markdown</h3>
 
         <p>Markdown is a tool that converts simple text characters into HTML. It was created to facilitate writing on the web.
@@ -304,12 +268,21 @@
 
         <p>The further to the right, the more features, and the further to the left, the simpler.
         <p>Markdown usage requires the installation of a plugin, preload or module.</p>
-        <p><a href="https://www.bbcode.org/markdown-syntax.php" target="_blank" rel="noopener nofollow">Learn more about Markdown Spec ⭧</a></p>
+
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h4>
+
+        <ul>
+            <li><a href="https://www.bbcode.org/markdown-syntax.php" target="_blank" rel="noopener nofollow">Learn more about Markdown Spec ⭧</a></li>
+        </ul>
+
+    </section>
+
     <section id="help-development">
 
         <h3>Development</h3>
 
-        <p>Todo : Write some information.</p>
+        <p>Todo : Write some information about features. Tips and tutrials.</p>
         <ul>
             <li>Tutorial - How to create Custom Templates
             <li>How to creat Single File Component</li>
@@ -329,12 +302,12 @@
                 <td>X2 Module</td>
             </tr>
             <tr>
-                <td>Version</td>
-                <td>2.31</td>
-            </tr>
-            <tr>
                 <td>Level</td>
                 <td>Required</td>
+            </tr>
+            <tr>
+                <td>Bundle Package</td>
+                <td> XCL 2.3.3</td>
             </tr>
             <tr>
                 <td>🌐 Repository URL</td>
@@ -344,8 +317,6 @@
         </table>
 
     </section>
-
-    <script>Prism.highlightAll();</script>
 
 </article>
 </div>

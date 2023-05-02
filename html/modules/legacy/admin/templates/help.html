@@ -3,15 +3,14 @@
 <nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="<{$module->getAdminIndex()|xoops_escape:link}>"><{$module->mXoopsModule->getShow('name')}></a>
-    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._HELP}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page">
+        <a href="index.php?action=Help&dirname=<{$module->mXoopsModule->getShow('dirname')}>"><{$smarty.const._HELP}></a></span>
 </nav>
 
-<h2><{$smarty.const._HELP}> »
-    <a href="<{$module->getAdminIndex()|xoops_escape:link}>"><{$module->mXoopsModule->getShow('name')}></a>
+<h2><a href="index.php?action=Help&dirname=<{$module->mXoopsModule->getShow('dirname')}>"><{$smarty.const._HELP}></a> »
+    <{$module->mXoopsModule->getShow('name')}>
 </h2>
 
-
-
-<div class="ui-card-full">
+<!--<div class="ui-card-full">-->
     <div class="help"><{$contents}></div>
-</div>
+<!--</div>-->

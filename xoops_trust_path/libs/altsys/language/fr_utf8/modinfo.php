@@ -5,7 +5,7 @@ define( '_MI_ALTSYS_MODULEDESC' , 'Gestion simplifiée de composants système, b
 
 // menus
 define( '_MI_ALTSYS_MENU_CUSTOMBLOCKS' , 'Blocs personnalisés');
-define( '_MI_ALTSYS_MENU_NEWCUSTOMBLOCK' , 'Nouveau Bloc');
+define( '_MI_ALTSYS_MENU_NEWCUSTOMBLOCK' , 'Ajouter un bloc');
 define( '_MI_ALTSYS_MENU_MYBLOCKSADMIN' , 'Blocs des Modules');
 define( '_MI_ALTSYS_MENU_MYTPLSADMIN' , 'Templates');
 define( '_MI_ALTSYS_MENU_COMPILEHOOKADMIN' , 'Templates Avancés');

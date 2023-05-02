@@ -23,7 +23,7 @@
     /* max-width: 57em; container */
     padding         : var(--space-4);
     position        : sticky;
-    top             : 102px;
+    top             : 110px;
     z-index         : var(--z-above);
 }
 .adminavi .adminavi-item {
@@ -329,22 +329,6 @@ div.dropdown-content.drop-top :is(span, select, input[type=text]) {width:100%;ma
 }
 .nav-aside-active {
     transform       : translateX(0);
-}
-
-/* -------------------- --------------------  NAV HELP  */
-
-nav#help-menu {
-    align-self      : flex-start;
-    /*position: sticky; ui-media.css tablet */
-    width           : 100%;
-    top             : 130px;
-    z-index: var(--z-above);
-}
-
-nav#help-menu a.button {
-    display         : block;
-    min-width       : 240px;
-    margin-bottom   : var(--space-4);
 }
 
 /* -------------------- -------------------- NAV-SIDE-MENU */
