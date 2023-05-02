@@ -1,5 +1,5 @@
 <?php
-define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Select the module to manage its blocks by setting the side, target modules, user group permissions and cache time.');
+define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Select the module to manage its blocks settings : side, target modules, user group permissions and cache time.');
 define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , 'First, give the <b>Block Title</b> a name, select a <b>Custom Type</b> and <b>Save</b>. 
 The <b>editor</b> will change according to the selected custom type.<br>
 You can then edit your new block to create reusable components with BBcode and PHP or HTML, JavaScript and CSS.');
@@ -8,14 +8,14 @@ define( '_MD_A_MYBLOCKSADMIN_BLOCKADMIN' , 'Blocks management');
 define( '_MD_A_MYBLOCKSADMIN_NAME' , 'Name');
 define( '_MD_A_MYBLOCKSADMIN_TITLE' , 'Title');
 define( '_MD_A_MYBLOCKSADMIN_SIDE' , 'Side');
-define( '_MD_A_MYBLOCKSADMIN_SBLEFT' , 'o --- - LEFT');
-define( '_MD_A_MYBLOCKSADMIN_SBRIGHT' , '- --- o RIGHT');
-define( '_MD_A_MYBLOCKSADMIN_CBLEFT' , '- o-- - CENTERLEFT');
-define( '_MD_A_MYBLOCKSADMIN_CBRIGHT' , '- --o - CENTERRIGHT');
-define( '_MD_A_MYBLOCKSADMIN_CBCENTER' , '- -o- - CENTER');
+define( '_MD_A_MYBLOCKSADMIN_SBLEFT' , 'Block-Left');
+define( '_MD_A_MYBLOCKSADMIN_SBRIGHT' , 'Block-Right');
+define( '_MD_A_MYBLOCKSADMIN_CBLEFT' , 'Center-Left');
+define( '_MD_A_MYBLOCKSADMIN_CBRIGHT' , 'Center-Right');
+define( '_MD_A_MYBLOCKSADMIN_CBCENTER' , 'Center-Center');
 define( '_MD_A_MYBLOCKSADMIN_VISIBLE' , 'Visible');
-define( '_MD_A_MYBLOCKSADMIN_WEIGHT' , 'Weight');
-define( '_MD_A_MYBLOCKSADMIN_VISIBLEIN' , 'Visible in');
+define( '_MD_A_MYBLOCKSADMIN_WEIGHT' , 'Order');
+define( '_MD_A_MYBLOCKSADMIN_VISIBLEIN' , 'Visibility');
 define( '_MD_A_MYBLOCKSADMIN_CONTENT' , 'Content');
 define( '_MD_A_MYBLOCKSADMIN_CAPT_USABLETAGS' , 'Usable tags');
 define( '_MD_A_MYBLOCKSADMIN_FMT_TAGRULE' , '%s will be replaced into %s in the view');
@@ -34,12 +34,12 @@ define( '_MD_A_MYBLOCKSADMIN_DBUPDATED' , 'Database updated successfully');
 define( '_MD_A_MYBLOCKSADMIN_FMT_REMOVEBLOCK' , '%s will be deleted. Are you sure to delete this block?');
 
 define( '_MD_A_MYBLOCKSADMIN_CLONEFORM' , 'Copy the block');
-define( '_MD_A_MYBLOCKSADMIN_NEWFORM' , 'Create a block');
+define( '_MD_A_MYBLOCKSADMIN_NEWFORM' , 'Add a custom block');
 define( '_MD_A_MYBLOCKSADMIN_EDITFORM' , 'Edit the block');
 
-define( '_MD_A_MYBLOCKSADMIN_LINK_FORCECLONE' , 'Force Copy');
+define( '_MD_A_MYBLOCKSADMIN_LINK_FORCECLONE' , 'Force Clone');
 
-define( '_MD_A_MYBLOCKSADMIN_BTN_CLONE' , 'Copy');
+define( '_MD_A_MYBLOCKSADMIN_BTN_CLONE' , 'Clone');
 define( '_MD_A_MYBLOCKSADMIN_BTN_NEW' , 'Create');
 define( '_MD_A_MYBLOCKSADMIN_BTN_EDIT' , 'Update');
 

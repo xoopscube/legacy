@@ -1,20 +1,20 @@
 <?php
 define( '_MD_A_MYBLOCKSADMIN_TIPS' , "Sélectionnez le module pour gérer ses blocs en définissant l'emplacement, les modules cibles, les autorisations des groupes d'utilisateurs et le temps de cache.");
-define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , "Tout d'abord, donnez un nom au <b>Titre du bloc</b>, sélectionnez un <b>Type personnalisé</b> et enregistrez. L'<b>éditeur</b> changera en fonction du <b>type personnalisé</b> sélectionné.<br>
+define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , "Tout d'abord, donnez un nom au <b>Titre du bloc</b>, sélectionnez un <b>Type personnalisé</b> et enregistrez. L'<b>éditeur</b> changera en fonction du <b>type personnalisé</b> sélectionné. 
 Vous pouvez ensuite modifier le nouveau bloc pour créer des composants réutilisables avec BBcode et PHP ou HTML, JavaScript et CSS.");
 define( '_MD_A_MYBLOCKSADMIN_PERMUPDATED' , 'Permissions mises à jour avec succès');
 define( '_MD_A_MYBLOCKSADMIN_BLOCKADMIN' , 'Gestion des blocs');
 define( '_MD_A_MYBLOCKSADMIN_NAME' , 'Nom');
 define( '_MD_A_MYBLOCKSADMIN_TITLE' , 'Titre');
 define( '_MD_A_MYBLOCKSADMIN_SIDE' , 'Emplacement');
-define( '_MD_A_MYBLOCKSADMIN_SBLEFT' , 'o --- - Gauche');
-define( '_MD_A_MYBLOCKSADMIN_SBRIGHT' , '- --- o Droite');
-define( '_MD_A_MYBLOCKSADMIN_CBLEFT' , '- o-- - CENTRE-GAUCHE');
-define( '_MD_A_MYBLOCKSADMIN_CBRIGHT' , '- --o - CENTRE-DROIT');
-define( '_MD_A_MYBLOCKSADMIN_CBCENTER' , '- -o- - CENTRE');
+define( '_MD_A_MYBLOCKSADMIN_SBLEFT' , 'Bloc-Gauche');
+define( '_MD_A_MYBLOCKSADMIN_SBRIGHT' , 'Bloc-Droite');
+define( '_MD_A_MYBLOCKSADMIN_CBLEFT' , 'CENTRE-GAUCHE');
+define( '_MD_A_MYBLOCKSADMIN_CBRIGHT' , 'CENTRE-DROIT');
+define( '_MD_A_MYBLOCKSADMIN_CBCENTER' , 'CENTRE');
 define( '_MD_A_MYBLOCKSADMIN_VISIBLE' , 'Visible');
 define( '_MD_A_MYBLOCKSADMIN_WEIGHT' , 'Ordre');
-define( '_MD_A_MYBLOCKSADMIN_VISIBLEIN' , 'Visible sur');
+define( '_MD_A_MYBLOCKSADMIN_VISIBLEIN' , 'Visibilité');
 define( '_MD_A_MYBLOCKSADMIN_CONTENT' , 'Contenu');
 define( '_MD_A_MYBLOCKSADMIN_CAPT_USABLETAGS' , 'Tags Utilisables');
 define( '_MD_A_MYBLOCKSADMIN_FMT_TAGRULE' , "%s sera remplacé par %s dans l'affichage");
@@ -33,7 +33,7 @@ define( '_MD_A_MYBLOCKSADMIN_DBUPDATED' , 'Mise à jour avec succés de la Base 
 define( '_MD_A_MYBLOCKSADMIN_FMT_REMOVEBLOCK' , '%s sera supprimé. Voulez-vous confirmer?');
 
 define( '_MD_A_MYBLOCKSADMIN_CLONEFORM' , 'Copier le bloc');
-define( '_MD_A_MYBLOCKSADMIN_NEWFORM' , 'Créer un bloc');
+define( '_MD_A_MYBLOCKSADMIN_NEWFORM' , 'Ajouter un bloc personnalisé');
 define( '_MD_A_MYBLOCKSADMIN_EDITFORM' , 'Editer un bloc');
 
 define( '_MD_A_MYBLOCKSADMIN_LINK_FORCECLONE' , 'Forcer copie');

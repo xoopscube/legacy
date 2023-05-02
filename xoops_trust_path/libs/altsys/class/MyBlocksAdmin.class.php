@@ -416,21 +416,21 @@ class MyBlocksAdmin {
 
     // Block-Side Render View
     return "
-    <label title='Block-Left'>
+    <label title='Block-Left' title='" . _MD_A_MYBLOCKSADMIN_SBLEFT . "'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_LEFT . "' class='blockposition' $ssel0 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_LEFT . ";'>
     </label>
     <div>-</div>
-    <label title='Center-Block-Left'>
+    <label title='" . _MD_A_MYBLOCKSADMIN_CBLEFT . "'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_LEFT . "' class='blockposition' $ssel2 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_LEFT . ";'>
     </label>
-    <label title='Center-Block-Center'>
+    <label title='" . _MD_A_MYBLOCKSADMIN_CBCENTER . "'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_CENTER . "' class='blockposition' $ssel3 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_CENTER . ";'>
     </label>
-    <label title='Center-Block-Right'>
+    <label title='" . _MD_A_MYBLOCKSADMIN_CBRIGHT . "'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_CENTERBLOCK_RIGHT . "' class='blockposition' $ssel4 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_CENTERBLOCK_RIGHT . ";'>
     </label>
     <div>-</div>
-    <label title='Block-Right'>
+    <label title='" . _MD_A_MYBLOCKSADMIN_SBRIGHT . "'>
         <input type='radio' name='sides[$bid]' value='" . XOOPS_SIDEBLOCK_RIGHT . "' class='blockposition' $ssel1 onclick='document.getElementById(\"extra_side_$bid\").value=" . XOOPS_SIDEBLOCK_RIGHT . ";'>
     </label>
 

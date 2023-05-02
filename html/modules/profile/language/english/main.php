@@ -6,6 +6,7 @@ define( '_MD_PROFILE_LANG_FIELD_TIP3' , 'Int (Integers) - allows value containin
 define( '_MD_PROFILE_LANG_FIELD_TIP4' , 'Date - allows a specific date format.');
 define( '_MD_PROFILE_LANG_FIELD_TIP5' , 'Checkbox - allows a selection 0 or 1, true or false.');
 define( '_MD_PROFILE_LANG_FIELD_TIP6' , 'Selectbox - allows multiple options, see the example.');
+
 define( '_MD_PROFILE_LANG_UNAME' , 'User Name');
 define( '_MD_PROFILE_ERROR_CONTENT_IS_NOT_FOUND' , 'Content not found');
 define( '_MD_PROFILE_ERROR_DBUPDATE_FAILED' , 'Failed to update the database');

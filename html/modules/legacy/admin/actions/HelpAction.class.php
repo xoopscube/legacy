@@ -23,7 +23,7 @@
  *
  * To support help view, there are some original modifiers.
  *
- * 'helpurl' modify a relativity URL for connecting the dynamic page link.
+ * 'helpurl' modify a relative URL for connecting the dynamic page link.
  * 'helpimage' modify an image URL. These modifiers consider the existence of
  * language files.
  */

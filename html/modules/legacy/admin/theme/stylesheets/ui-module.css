@@ -124,17 +124,41 @@
     background  : var(--layer-3);
 }
 
-/* -------------------- -------------------- HELP SCROLL MARGIN */
+/* -------------------- -------------------- MODULE - HELP  */
 
-article#help-module section {
-    /*max-width: 80%;*/
-    overflow-wrap   : anywhere;
-    padding     : var(--space-6);
-    /*border:1px dotted red;*/
+article#dialog-help {
+    display:block;
+    width:100%;
+    box-sizing: border-box;
+}
+article#help-module > section{
+    background: var(--card-full-bg );
+    border: var(--card-full-border );
+    border-radius: var(--card-full-radius );
+    box-shadow: var(--card-full-shadow );
+    padding: var(--card-full-padding);
+    margin: 0 1em 2em;
+    scroll-padding-top: 70px;
+    max-width: 100%;
+}
+article#help-module section h3:first-of-type {margin-top:0;}
+nav#help-menu {
+    align-self      : flex-start;
+    /*position: sticky; ui-media.css tablet */
+    width           : 100%;
+    top             : 130px;
+    z-index         : var(--z-above);
+}
+
+nav#help-menu a.button {
+    display         : block;
+    min-width       : 240px;
+    margin-bottom   : var(--space-4);
+    text-align      : start;
 }
 
 div.help section[id|="help"] {
-    scroll-margin-top: 5em; /* property should be applied to each anchor section to leave a margin at the top */
+    scroll-margin-top: 8em; /* property should be applied to each anchor section to leave a margin at the top */
 }
 
 /* -------------------- --------------------  X-UPDATE STORE */

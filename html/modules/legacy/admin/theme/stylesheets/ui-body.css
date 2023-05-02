@@ -351,17 +351,17 @@ nav.pagination {
 
 /* tooltip custom style */
 .ui-tooltip, .arrow:after {
-    background: black;
+    background: black !important;
     border: 2px solid white;
 }
 .ui-tooltip {
     --ui-widget-font-size:13px;
-    padding: 10px 20px;
-    color: white;
     border-radius: 20px;
+    box-shadow: var(--shadow-6) !important;
+    color: white !important;
     font-size: var(--ui-widget-font-size);
+    padding: 10px 20px;
     text-transform: uppercase;
-    box-shadow: 0 0 7px black;
 }
 .arrow {
     width: 40px;

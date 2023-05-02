@@ -1,6 +1,7 @@
 <?php
 /**
- * Protector module for XCL - Administration panel.
+ * Protector module for XCL - Database prefix manager and backup
+ *
  * @package    Protector
  * @version    XCL 2.3.3
  * @author     Other authors Gigamaster, 2020 XCL PHP7

@@ -165,8 +165,7 @@ define( '_AD_USER_TIPS_MAILJOB_LINK' , 'In Mail Job, messages that cannot be suc
 define( '_AD_USER_TIPS_MAILJOB_SEND', "Если Вы выбрали очень много пользователей для отправки писем - сервер может не ответить правильно (вернет пустую страницу и т.п.). В таком случае перезагрузите страницу несколько раз, чтобы закончить отправку всем пользователям.");
 define( '_AD_USER_TIPS_RANK' , 'A social user ranking system is helpfull to identify contributors. You can define your own policy by editing default ranks.');
 define('_AD_USER_TIPS_RECOUNT_POSTS', "Вы можете пересчитать количество сообщений для каждого пользователя нажав на кнопку [Пересчитать].");
-define( '_AD_USER_TIPS_USER_ADMIN' , 'Access to your web site is controlled through a group-based system. Create new groups based on default groups. 
-Assign users to groups that authorize their access to Modules and blocks content.
+define( '_AD_USER_TIPS_USER_ADMIN' , 'Access to your web site is controlled through a group-based system. Create new groups based on default groups and assign users to groups that authorize their access to Modules and blocks content.
 You can also extend default User Profile by adding new fields.');
 define('_AD_USER_TIPS_USER_EDIT', "Если Вам необходимо сменить пароль введите 'Пароль' и 'Подтвердить пароль'.");
 define('_AD_USER_TIPS_USER_NEW', "Вы должны ввести 'Имя пользователя', 'Email адрес',  'Пароль' и 'Подтвердить пароль'.");

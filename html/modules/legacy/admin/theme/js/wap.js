@@ -109,7 +109,7 @@
         var rest = str.substring(0, str.lastIndexOf("/") + 1);
         //console.log(rest);
         // Dashboard - Tabs
-        $('#tab-start').load(rest +'modules/legacy/admin/index.php?action=Help&dirname=legacy #help-overview');
+        $('#tab-start').load(rest +'modules/legacy/admin/index.php?action=Help&dirname=legacy #help-getstart');
 
 
         $( document ).tooltip({

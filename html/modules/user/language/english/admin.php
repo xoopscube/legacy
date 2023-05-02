@@ -165,9 +165,7 @@ define( '_AD_USER_TIPS_MAILJOB_LINK' , 'In Mail Job, messages that cannot be suc
 define( '_AD_USER_TIPS_MAILJOB_SEND' , 'If there are too many users to send a mail, the server may not respond as expected (blank page etc.). In that case, reload the browser several times to complete sending the mail to all users.');
 define( '_AD_USER_TIPS_RANK' , 'A social user ranking system is helpfull to identify contributors. You can define your own policy by editing default ranks.');
 define( '_AD_USER_TIPS_RECOUNT_POSTS' , 'You may recalculate the number of posts for the user by clicking on the "Recalculate" button below.');
-define( '_AD_USER_TIPS_USER_ADMIN' , 'Access to your web site is controlled through a group-based system. Create new groups based on default groups. 
-Assign users to groups that authorize their access to Modules and blocks content.
-You can also extend default User Profile by adding new fields.');
+define( '_AD_USER_TIPS_USER_ADMIN' , 'Access to your web site is controlled through a group-based system : default Groups can not be deleted !<br>You can create new Groups and modify the permissions for each new Group created.');
 define( '_AD_USER_TIPS_USER_EDIT' , 'To change the password, fill the input fields "Password" and "Verify password" with a new value.');
 define( '_AD_USER_TIPS_USER_NEW' , 'The following fields are required: User name = Email address and Password & Verify password.');
 define( '_AD_USER_TIPS_USER_SEARCH' , 'You can search and sort your users data to find the vital information you are looking for.<br>The accuracy of the end result will be directly related to the number of fields you fill.');

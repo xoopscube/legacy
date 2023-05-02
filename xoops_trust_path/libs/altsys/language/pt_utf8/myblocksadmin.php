@@ -13,9 +13,7 @@ define( '_MD_A_MYBLOCKSADMIN_BTN_CLONE' , "Clonar");
 define( '_MD_A_MYBLOCKSADMIN_BTN_EDIT' , "Atualizar");
 define( '_MD_A_MYBLOCKSADMIN_BTN_NEW' , "Adicionar");
 define( '_MD_A_MYBLOCKSADMIN_CAPT_USABLETAGS' , "Utilizar tags");
-define( '_MD_A_MYBLOCKSADMIN_CBCENTER' , "Centro");
-define( '_MD_A_MYBLOCKSADMIN_CBLEFT' , "Centro-esquero");
-define( '_MD_A_MYBLOCKSADMIN_CBRIGHT' , "Centro-direito");
+
 define( '_MD_A_MYBLOCKSADMIN_CLONEFORM' , "Clonar o bloco");
 define( '_MD_A_MYBLOCKSADMIN_CONTENT' , "Conteúdo");
 define( '_MD_A_MYBLOCKSADMIN_CTYPE' , "Tipo personalizado");
@@ -44,6 +42,9 @@ define( '_MD_A_MYBLOCKSADMIN_PERMRESETNG' , "Não foi possível anular as permis
 define( '_MD_A_MYBLOCKSADMIN_PERMUPDATED' , "Permissões atualizadas corretamente");
 define( '_MD_A_MYBLOCKSADMIN_SBLEFT' , "Esquerdo");
 define( '_MD_A_MYBLOCKSADMIN_SBRIGHT' , "Direito");
+define( '_MD_A_MYBLOCKSADMIN_CBCENTER' , "Centro");
+define( '_MD_A_MYBLOCKSADMIN_CBLEFT' , "Centro-esquero");
+define( '_MD_A_MYBLOCKSADMIN_CBRIGHT' , "Centro-direito");
 define( '_MD_A_MYBLOCKSADMIN_SIDE' , "Lado");
 define( '_MD_A_MYBLOCKSADMIN_TITLE' , "Título");
 define( '_MD_A_MYBLOCKSADMIN_TOPPAGE' , "Página inicial");

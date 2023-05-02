@@ -8,11 +8,11 @@ define( '_MD_A_MYBLOCKSADMIN_BLOCKADMIN' , 'Управление блоками'
 define( '_MD_A_MYBLOCKSADMIN_NAME' , 'Имя');
 define( '_MD_A_MYBLOCKSADMIN_TITLE' , 'заглавие');
 define( '_MD_A_MYBLOCKSADMIN_SIDE' , 'сторона');
-define( '_MD_A_MYBLOCKSADMIN_SBLEFT' , 'o --- - слева');
-define( '_MD_A_MYBLOCKSADMIN_SBRIGHT' , '- --- o СПРАВА');
-define( '_MD_A_MYBLOCKSADMIN_CBLEFT' , '- o-- - В ЦЕНТРЕ СЛЕВА');
-define( '_MD_A_MYBLOCKSADMIN_CBRIGHT' , '- --o - ЦЕНТР СПРАВА');
-define( '_MD_A_MYBLOCKSADMIN_CBCENTER' , '- -o- - в центре');
+define( '_MD_A_MYBLOCKSADMIN_SBLEFT' , 'СЛЕВА');
+define( '_MD_A_MYBLOCKSADMIN_SBRIGHT' , 'СПРАВА');
+define( '_MD_A_MYBLOCKSADMIN_CBLEFT' , 'В ЦЕНТРЕ СЛЕВА');
+define( '_MD_A_MYBLOCKSADMIN_CBRIGHT' , 'ЦЕНТР СПРАВА');
+define( '_MD_A_MYBLOCKSADMIN_CBCENTER' , 'В ЦЕНТРЕ');
 define( '_MD_A_MYBLOCKSADMIN_VISIBLE' , 'видимый');
 define( '_MD_A_MYBLOCKSADMIN_WEIGHT' , 'вес');
 define( '_MD_A_MYBLOCKSADMIN_VISIBLEIN' , 'Видно в');

@@ -1,8 +1,9 @@
 <?php
 
 define( '_MYTPLSADMIN_TIPS' , 'The original template file is read-only for added security reasons.<br>
-	You can select a base set to create a new Template Set, or create an empty Set and check only the templates you want to copy and customize.<br>
-	You can manage your Template Sets as well as template files from the module <b>Render</b>');
+	You can select a base set to create a new Template Set, or create an empty Template Set and check only the templates you want to copy and customize.<br>
+	You can manage and select your Template Set from the module <b>Render</b>');
+define( '_MYTPLSADMIN_CUSTOM_TIPS' , 'Create custom templates');
 define( '_MYTPLSADMIN_CREATE_NEW_TPLSET' , 'Create a new set');
 define( '_MYTPLSADMIN_CAPTION_BASE' , 'Base');
 define( '_MYTPLSADMIN_CAPTION_SETNAME' , 'name');
@@ -10,8 +11,8 @@ define( '_MYTPLSADMIN_OPT_BLANKSET' , '(blank)');
 define( '_MYTPLSADMIN_CAPTION_COPYTO' , 'Destination');
 define( '_MYTPLSADMIN_BTN_COPY' , 'Copy');
 define( '_MYTPLSADMIN_TITLE_CHECKALL' , 'Turn on/off all of checkboxes in this row');
-define( '_MYTPLSADMIN_CNF_DELETE_SELECTED_TEMPLATES' , 'All of checked templates in the set(row) will be removed. Are you OK?');
-define( '_MYTPLSADMIN_CNF_COPY_SELECTED_TEMPLATES' , 'All of checked templates in the set(row) will be copied/overwritten into the selected set. Are you OK?');
+define( '_MYTPLSADMIN_CNF_DELETE_SELECTED_TEMPLATES' , 'All of checked templates in the set(row) will be removed. Please confirm!');
+define( '_MYTPLSADMIN_CNF_COPY_SELECTED_TEMPLATES' , 'All of checked templates in the set(row) will be copied/overwritten into the selected set. Please confirm!');
 define( '_MYTPLSADMIN_TH_SET' , 'Template Set');
 define( '_MYTPLSADMIN_TH_NAME' , 'Template name');
 define( '_MYTPLSADMIN_TH_TYPE' , 'Type');
