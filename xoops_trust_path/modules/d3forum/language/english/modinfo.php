@@ -22,13 +22,13 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_BNAME_LIST_FORUMS', 'Forums');
 
     // admin menu
-    define($constpref . '_ADMENU_CATEGORYACCESS', 'Category Permissions');
-    define($constpref . '_ADMENU_FORUMACCESS', 'Forum Permissions');
+    define($constpref . '_ADMENU_CATEGORYACCESS', 'Categories');
+    define($constpref . '_ADMENU_FORUMACCESS', 'Forums');
     define($constpref . '_ADMENU_ADVANCEDADMIN', 'Advanced');
     define($constpref . '_ADMENU_POSTHISTORIES', 'Histories');
-    define($constpref . '_ADMENU_MYLANGADMIN', 'Languages');
+    define($constpref . '_ADMENU_MYLANGADMIN', 'Language');
     define($constpref . '_ADMENU_MYTPLSADMIN', 'Templates');
-    define($constpref . '_ADMENU_MYBLOCKSADMIN', 'Blocks Permissions');
+    define($constpref . '_ADMENU_MYBLOCKSADMIN', 'Blocks');
     define($constpref . '_ADMENU_MYPREFERENCES', 'Preferences');
 
     // configurations
@@ -74,7 +74,7 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_BODY_EDITORDSC', 'WYSIWYG editor will be enabled under only forums allowing HTML. With forums escaping HTML specialchars, xoopsdhtml will be displayed automatically.');
     define($constpref . '_ANONYMOUS_NAME', 'Anonymous Name');
     define($constpref . '_ANONYMOUS_NAMEDSC', 'A pseudonym or alias is a fictitious name that a person or group assumes for a particular purpose, which differs from their original or true name. Default value: guest');
-    define($constpref . '_ICON_MEANINGS', 'Alt attribute of icons');
+    define($constpref . '_ICON_MEANINGS', 'Icons - alt attribute');
     define($constpref . '_ICON_MEANINGSDSC', 'The alt attribute provides alternative information explaining the meaning of forum icons.<br>Specify each alt separated by pipe "|". The first alt corresponds to "posticon0.svg"<br>Default value: none|normal|unhappy|happy|lower it|raise it|report|question');
     define($constpref . '_ICON_MEANINGSDEF', 'none|normal|unhappy|happy|lower it|raise it|report|question');
     define($constpref . '_GUESTVOTE_IVL', 'Enable Voting from guests');

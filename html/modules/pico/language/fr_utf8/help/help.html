@@ -5,6 +5,10 @@
                 <li><a href="#help-overview" class="button">Pico</a>
                 <li><a href="#help-features" class="button">Features</a>
                 <li><a href="#help-content" class="button">Content</a>
+                <li><a href="#help-permissions" class="button">Permissions</a>
+                <li><a href="#help-import" class="button">Import and Sync</a>
+                <li><a href="#help-tags" class="button">Tags</a>
+                <li><a href="#help-extra" class="button">Extra Forms</a>
                 <li><a href="#help-development" class="button">Development</a>
             </ul>
         </nav>
@@ -15,16 +19,36 @@
     <section id="help-overview">
 
         <h3>Pico Module</h3>
-        <p>Pico is a Trust module, D3 for directory free and duplicable, that can run multiple instances.
-        <p>The module provides management control in the front-end for static content and publishing workflows.
-        <p>The module features a simple and granular access permissions assigned to groups and to individual user.
-        <p>Among other options, custom 'head' with stylesheet and JavaScript by module, category or content.
-        <p>You can track the history of your document and see past revisions from the front-end, create forms,
-        <p>override options for each category, forum integration to manage comments, and much more...
 
+        <p>Pico can run multiple instances as a Content Management System (CMS), Document and Knowledge Management, Wrapper, Portfolio, Gallery and much more.
+            One of the most significant advantages of using Pico is the simplified installation and updates, granular permissions and editing workflow.</p>
+        <ul>
+        <li>Pico is a Trust module, D3 for directory free and duplicable, that can run multiple instances.
+        <li>The module provides management control in the front-end for static content and publishing workflows.
+        <li>The module features a simple and granular access permissions for groups or a specific user.
+        <li>Among other options, custom 'head' with stylesheet and JavaScript by module, category or content.
+        <li>Track the history of your document and see past revisions from the front-end
+        <li>Customized Smarty Forms, override options for each category, forum integration to manage comments, and much more...
+        </ul>
+
+        <h4>Content Management System</h4>
+        <p>Enables non-developer users to easily set up and modify site pages. Some of its features include content creation and distribution, team collaboration, and image storage.</p>
+
+        <h4>Document management system</h4>
+        <p>Helps organizations to capture, store, and distribute documents such as papers, emails, and system-generated reports.
+            A document management system is software solution, often cloud-based, that also digitizes, tags, approves, and completes designated tasks with these documents.</p>
+
+        <h4>Knowledge Management</h4>
+        <p>knowledge management helps people identify the information they need and suggests ways to achieve the knowledge they need which Helps users.</p>
+
+        <h4>Wrapper module</h4>
+        <p>Pico provides a wrap functionality to run as an instance that contains static HTML documents, often used to group together related elements for the purpose of styling or semantic purposes.</p>
+
+        <h4>Editing WorkFlow</h4>
+        <p>In short, Editing Workflow is the order in which the editing stages should take place.
+            All Editors will have their preferred workflows, often depending on the type of content they create.
+            However, all forms of document editing can be broken down into certain stages, each requiring specific tasks.</p>
     </section>
-
-<hr>
 
     <section id="help-features">
 
@@ -81,14 +105,12 @@
         </ul>
     </section>
 
-
-<hr>
-
-
     <section id="help-content">
+
     <h3>Content Management</h3>
 
-    <p>Categories and content can be moved to other categories or exported to compatible modules.
+    <p>D3 modules are designed to create categories and contents on the front end.
+    <p>Categories and content can be moved to other categories or exported to other instances of the module.
     <p>When Wrap mode is enabled, the virtual path for the content is available.</p>
     <p>The following features are available in the backend Category and content management :</p>
 
@@ -106,13 +128,90 @@
 
         <div class="confirm">Note the User Interface design is subject to change, but not the logic.</div>
 
-      
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h4>
+        <ul>
+            <li>Content Editor</li>
+            <li>Permissions</li>
+        </ul>
 
     </section>
 
+    <section id="help-permissions">
 
-<hr>
+        <h3>Permissions</h3>
 
+        <div class="tips">Subcategories and contents inherit permissions from the nearest parent category, in the absence of individual permissions, all inherit from the Top-level category, by default.</div>
+
+        <p>Only administrators can create subcategories.
+            However, you can assign users and roles to create and mange subcategories (either individually, or for all subcategories on your module instance).
+            For example, you may grant users a specific role with the ability to create content.</p>
+        <p>On the front end, click "Edit category", then click "Category permissions"
+        <p>On the back end, select the category and click "Submit" to manage users permissions.
+    </section>
+
+    <section id="help-import">
+
+        <h3>Import and Synchronize</h3>
+
+        <p>The import tool and data synchronization can both be used to populate an instance of Pico with data imported from other instances of modules Pico and TinyD.
+        <p>The Import tool is intended primarily for bulk data population. Note that this resets the instance importing the data, which means losing all existing data and custom settings.
+        <p>The data synchronization is intended to synchronize incremental changes on the instance deployed.
+        <p>It’s important to use these tools correctly in order to ensure that your contents are imported and synchronized.
+        <p>In addition, it is recommended to check and correctly set user permissions.
+        This will prevent unintended access, helping to maintain data accuracy and ensure sensitive information
+        is only seen by users with permissions.
+
+        <div class="error">Warning : All data in this module will be lost when you execute to import.</div>
+
+        <h3>Import data</h3>
+        <ol>
+            <li>Select a module : Pico or TinyD</li>
+            <li>Click the action button import.</li>
+        </ol>
+
+        <h3>Synchronize redundant data</h3>
+        <p>Data redundancy occurs when the same piece of data exists in multiple places, whereas data inconsistency is when the same data exists in different formats in multiple tables.
+            Unfortunately, data redundancy can cause data inconsistency, which can result in contents with unreliable information.</p>
+        <p>Execute if your categories or contents display contradictory data.</p>
+
+        <h3>Clear compiled cache</h3>
+        <p>Execute if you have caching troubles are occurred eg) after moving site.</p>
+
+    </section>
+
+    <section id="help-tags">
+
+        <h3>Tags</h3>
+
+    </section>
+
+    <section id="help-extra">
+
+        <h3>Extra Smarty Forms</h3>
+
+        <p>You can create and design custom interactive forms. Design Smarty Forms with Pico for your website
+            allows you to generate custom documents with pre-designed templates and forms.
+            Forms are automatically processed by the module.
+            You have the option of forwarding responses to your email and saving them to your database.</p>
+
+        <h4>Create customized forms from templates</h4>
+
+        <p>Use categories to manage your custom forms and to easily include in your content.
+        <p>You can also import custom forms and content from other instances of Pico.
+
+        <p>The workflow is very simple, let's see an example: Read the guide !</p>
+
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h4>
+        <ul>
+            <li><a href="<{'form_design.html'|helpurl}>">Design Smarty Forms</a></li>
+            <li>Create Custom Fields</li>
+            <li>Run multiple instances</li>
+            <li>Custom design for each instance</li>
+        </ul>
+
+    </section>
 
     <section id="help-development">
 
@@ -136,7 +235,7 @@
             </tr>
             <tr>
                 <td>Version</td>
-                <td>2.31</td>
+                <td>'2.44.3</td>
             </tr>
             <tr>
                 <td>Level</td>
@@ -150,8 +249,6 @@
         </table>
 
     </section>
-
-
 
 </article>
 </div>

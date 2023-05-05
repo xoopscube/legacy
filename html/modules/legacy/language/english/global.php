@@ -11,7 +11,7 @@ define( '_AD_DEBUG' , 'Debug');
 define( '_AD_EMOTICON' , 'Smilies');
 define( '_AD_LOCALE' , 'language'); /* localization Localize your app Translation Translation (language )*/
 define( '_AD_MAIL_SETUP' , 'Mail-setup');
-define( '_AD_MAILING' , 'Search user');
+define( '_AD_MAILING' , 'Mailing');
 define( '_AD_META_SEO' , 'Meta SEO');
 define( '_AD_MODULES' , 'Modules');
 define( '_AD_PROFILE' , 'Profile');
