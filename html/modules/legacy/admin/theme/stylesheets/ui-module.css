@@ -161,6 +161,11 @@ div.help section[id|="help"] {
     scroll-margin-top: 8em; /* property should be applied to each anchor section to leave a margin at the top */
 }
 
+section.help .guide-layout { background: var(--body-bg );border: var(--border);box-shadow:var(--shadow-3); display: block;font-size:14px;margin-top:var(--space-7)}
+section.help .guide-layout > div {border: var(--border);}
+section.help .guide-layout div.block {background: var(--card-full-bg );padding:.5em;}
+section.help .guide-layout div.block:not(:last-child) {margin-bottom:1em}
+
 /* -------------------- --------------------  X-UPDATE STORE */
 
 /* UL - LI vertical scroll eg. Module Update */

@@ -1,7 +1,7 @@
 <?php
 
 define( '_MD_A_MYMENU_MYTPLSADMIN' , 'Templates');
-define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Blocks Permissions');
+define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Blocks');
 define( '_MD_A_MYMENU_MYPREFERENCES' , 'Preferences');
 
 // forum_access and category_access
@@ -15,7 +15,7 @@ define( '_MD_A_D3FORUM_TH_CAN_EDIT' , 'Edit');
 define( '_MD_A_D3FORUM_TH_CAN_DELETE' , 'Delete');
 define( '_MD_A_D3FORUM_TH_POST_AUTO_APPROVED' , 'AutoApproval');
 define( '_MD_A_D3FORUM_TH_IS_MODERATOR' , 'Moderator');
-define( '_MD_A_D3FORUM_TH_CAN_MAKEFORUM' , 'Making forums');
+define( '_MD_A_D3FORUM_TH_CAN_MAKEFORUM' , 'Create forums');
 define( '_MD_A_D3FORUM_TH_UID' , 'uid');
 define( '_MD_A_D3FORUM_TH_UNAME' , 'uname');
 define( '_MD_A_D3FORUM_TH_GROUPNAME' , 'groupname');

@@ -11,7 +11,7 @@ define( '_AD_DEBUG' , 'デバッグ');
 define( '_AD_EMOTICON' , '絵文字');
 define( '_AD_LOCALE' , '言語'); /* localization Localize your app Translation Translation (language )*/
 define( '_AD_MAIL_SETUP' , 'メール設定');
-define( '_AD_MAILING' , 'ユーザーを検索');
+define( '_AD_MAILING' , '郵送');
 define( '_AD_META_SEO' , 'Meta SEO');
 define( '_AD_MODULES' , 'モジュール');
 define( '_AD_PROFILE' , 'プロフィール');

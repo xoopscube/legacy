@@ -5,7 +5,10 @@
                 <li><a href="#help-overview" class="button">Pico</a>
                 <li><a href="#help-features" class="button">Features</a>
                 <li><a href="#help-content" class="button">Content</a>
-                <li><a href="#help-content" class="button">Extra Forms</a>
+                <li><a href="#help-permissions" class="button">Permissions</a>
+                <li><a href="#help-import" class="button">Import and Sync</a>
+                <li><a href="#help-tags" class="button">Tags</a>
+                <li><a href="#help-extra" class="button">Extra Forms</a>
                 <li><a href="#help-development" class="button">Development</a>
             </ul>
         </nav>
@@ -40,12 +43,12 @@
 
         <h4>Wrapper module</h4>
         <p>Pico provides a wrap functionality to run as an instance that contains static HTML documents, often used to group together related elements for the purpose of styling or semantic purposes.</p>
-<h4>Editing WorkFlow</h4>
+
+        <h4>Editing WorkFlow</h4>
         <p>In short, Editing Workflow is the order in which the editing stages should take place.
             All Editors will have their preferred workflows, often depending on the type of content they create.
             However, all forms of document editing can be broken down into certain stages, each requiring specific tasks.</p>
     </section>
-
 
     <section id="help-features">
 
@@ -102,12 +105,12 @@
         </ul>
     </section>
 
-
     <section id="help-content">
 
     <h3>Content Management</h3>
 
-    <p>Categories and content can be moved to other categories or exported to compatible modules.
+    <p>D3 modules are designed to create categories and contents on the front end.
+    <p>Categories and content can be moved to other categories or exported to other instances of the module.
     <p>When Wrap mode is enabled, the virtual path for the content is available.</p>
     <p>The following features are available in the backend Category and content management :</p>
 
@@ -128,16 +131,64 @@
         <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
             Related content</h4>
         <ul>
-            <li></li>
-            <li></li>
+            <li>Content Editor</li>
+            <li>Permissions</li>
         </ul>
 
     </section>
 
+    <section id="help-permissions">
+
+        <h3>Permissions</h3>
+
+        <div class="tips">Subcategories and contents inherit permissions from the nearest parent category, in the absence of individual permissions, all inherit from the Top-level category, by default.</div>
+
+        <p>Only administrators can create subcategories.
+            However, you can assign users and roles to create and mange subcategories (either individually, or for all subcategories on your module instance).
+            For example, you may grant users a specific role with the ability to create content.</p>
+        <p>On the front end, click "Edit category", then click "Category permissions"
+        <p>On the back end, select the category and click "Submit" to manage users permissions.
+    </section>
+
+    <section id="help-import">
+
+        <h3>Import and Synchronize</h3>
+
+        <p>The import tool and data synchronization can both be used to populate an instance of Pico with data imported from other instances of modules Pico and TinyD.
+        <p>The Import tool is intended primarily for bulk data population. Note that this resets the instance importing the data, which means losing all existing data and custom settings.
+        <p>The data synchronization is intended to synchronize incremental changes on the instance deployed.
+        <p>It’s important to use these tools correctly in order to ensure that your contents are imported and synchronized.
+        <p>In addition, it is recommended to check and correctly set user permissions.
+        This will prevent unintended access, helping to maintain data accuracy and ensure sensitive information
+        is only seen by users with permissions.
+
+        <div class="error">Warning : All data in this module will be lost when you execute to import.</div>
+
+        <h3>Import data</h3>
+        <ol>
+            <li>Select a module : Pico or TinyD</li>
+            <li>Click the action button import.</li>
+        </ol>
+
+        <h3>Synchronize redundant data</h3>
+        <p>Data redundancy occurs when the same piece of data exists in multiple places, whereas data inconsistency is when the same data exists in different formats in multiple tables.
+            Unfortunately, data redundancy can cause data inconsistency, which can result in contents with unreliable information.</p>
+        <p>Execute if your categories or contents display contradictory data.</p>
+
+        <h3>Clear compiled cache</h3>
+        <p>Execute if you have caching troubles are occurred eg) after moving site.</p>
+
+    </section>
+
+    <section id="help-tags">
+
+        <h3>Tags</h3>
+
+    </section>
 
     <section id="help-extra">
 
-        <h3>Extra Forms</h3>
+        <h3>Extra Smarty Forms</h3>
 
         <p>You can create and design custom interactive forms. Design Smarty Forms with Pico for your website
             allows you to generate custom documents with pre-designed templates and forms.
@@ -161,7 +212,6 @@
         </ul>
 
     </section>
-
 
     <section id="help-development">
 
@@ -199,8 +249,6 @@
         </table>
 
     </section>
-
-
 
 </article>
 </div>

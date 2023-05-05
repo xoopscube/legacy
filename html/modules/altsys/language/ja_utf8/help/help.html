@@ -6,8 +6,9 @@
                 <li><a href="#help-module-block" class="button">Modules Blocks</a>
                 <li><a href="#help-template-custom" class="button">Custom Templates</a>
                 <li><a href="#help-template-module" class="button">Modules Templates</a>
-                <li><a href="#help-template-component" class="button">Single File Component</a>
                 <li><a href="#help-advanced" class="button">Advanced Templates</a>
+                <li><a href="#help-reusable-component" class="button">Reusable Component</a>
+                <li><a href="#help-single-component" class="button">Single File Component</a>
                 <li><a href="#help-language" class="button">Language</a>
                 <li><a href="#help-development" class="button">Development</a>
             </ul>
@@ -49,7 +50,6 @@
             <li>And check all user groups
             <li>Specify caching time 1 week</li>
         </ol>
-
 
 
         <table class="outer">
@@ -120,7 +120,6 @@
             <li>BBCode Autolink, Smiley, PHP and Smarty</li>
             <li>How to duplicate a module block</li>
         </ul>
-<!--        <p><a class="button" href="../../legacy/admin/index.php?action=Help&dirname=legacy&file=block.html">Learn more about Blocks ⭢</a></p>-->
 
     </section>
 
@@ -166,8 +165,9 @@
 
         <h3>Custom Templates</h3>
 
-        <p>This section is intended to provide general information for standalone custom, composable and reusable components.</p>
-        <p>Due to the modular architecture and flexible nature of the render engine there are few constraints as to how you can organize and customize your components.
+        <p>This section is intended to provide general information for standalone custom templates.</p>
+        <p>Due to the modular architecture and flexible nature of the render engine there are few constraints as to how you can organize and customize your custom templates.
+            Establish a file naming scheme that aligns with your project requirements and scales easily. In order to meet changes in application and system processing demands.
 
         <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
         </svg> Create a Custom Template</h4>
@@ -182,35 +182,13 @@
         <div class="error">* The name of the Custom Template cannot be changed once it has been saved in the database !</div>
 
         <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Create a Custom Block</h4>
+        </svg> Using your Custom Block</h4>
 
-        <p>Then, you can create a custom block and load your custom template</p>
-        <p>For example, create a custom block with PHP and Smarty :</p>
+        <p>You can include your custom template in your theme layout, modules templates or custom blocks.</p>
 
-        <ul>
-            <li>Title</li>
-            <li>Side</li>
-            <li>Visibility</li>
-            <li>Custom Type</li>
-        </ul>
-        <pre><code class="lang-php">
-$xoopsTpl = new XoopsTpl();
-$test = $xoopsTpl->fetch('db:myblock_custom.html');
-echo $test;
+        <pre><code class="lang-smarty">
+&lt;{include file=db:custom_template.html}&gt;
         </code></pre>
-
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Edit a Custom Block</h4>
-
-        <p></p>
-
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Delete a Custom Block</h4>
-
-        <p></p>
-
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
 
         <p><a href="<{'index.php?action=Help&dirname=legacyRender'}>">Learn more about Themes and Templates ⭢</a></p>
 
@@ -306,8 +284,7 @@ echo $test;
         <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
             Related content</h4>
         <ul>
-            <li></li>
-            <li></li>
+            <li>Render Template Management</li>
         </ul>
     </section>
 
@@ -329,12 +306,87 @@ echo $test;
         <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
             Related content</h4>
         <ul>
-            <li></li>
-            <li></li>
+            <li>Theme Design</li>
+            <li>Customize templates</li>
         </ul>
 
     </section>
 
+    <section id="help-reusable-component">
+
+        <h3>Reusable Component</h3>
+
+        <p>This section is intended to provide general information for standalone custom, composable and reusable components.</p>
+        <p>Due to the modular architecture and flexible nature of the render engine there are few constraints as to how you can organize and customize your components.
+
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
+        </svg> Create a Custom Template</h4>
+        <p>Organize your templates according to your project file naming and folder hierarchy conventions.
+            This is a critical step if you consider how you or others will look for and access files at a later date.
+        <p>For this example, the underscore ( _ ) character, also known as an understrike, underbar, or underline, is used to create visual spacing in a sequence of words where whitespace is not permitted.</p>
+        <ol>
+            <li>Create a custom template</li>
+            <li>Add some content</li>
+            <li>Name the template e.g. : _component_custom.html <b style="color:red">*</b></li>
+            <li>Save the custom template</li>
+        </ol>
+
+        <div class="error">* The name of the Custom Template cannot be changed once it has been saved in the database !</div>
+
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
+        </svg> Create a Custom Block</h4>
+
+        <p>Then, you can create a custom block and load your custom template</p>
+        <p>For example, create a custom block with PHP and Smarty :</p>
+
+        <ul>
+            <li>Title</li>
+            <li>Side</li>
+            <li>Visibility</li>
+            <li>Custom Type</li>
+        </ul>
+        <pre><code class="lang-php">
+$xoopsTpl = new XoopsTpl();
+$test = $xoopsTpl->fetch('db:_component_custom.html');
+echo $test;
+        </code></pre>
+
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
+        </svg> Edit a Custom Block</h4>
+
+        <p></p>
+
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
+        </svg> Delete a Custom Block</h4>
+
+        <p></p>
+
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
+            Related content</h4>
+
+        <p><a href="<{'index.php?action=Help&dirname=legacyRender'}>">Learn more about Themes and Templates ⭢</a></p>
+
+    </section>
+
+    <section id="help-single-component">
+
+        <h3>Single File Component</h3>
+
+        <p>This section is intended to provide general information for standalone single file component.</p>
+        <p>Due to the modular architecture and flexible nature of the render engine you can easily extend with single file components.
+
+        <p>There are two main types files : preloads and render components.</p>
+        <p>For more details, please refer to the respective sections of the documentation.</p>
+
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/>
+        </svg> Related content</h4>
+
+        <ul>
+            <li>Preloads</li>
+            <li>Render components</li>
+        </ul>
+
+    </section>
 
     <section id="help-language">
 
@@ -394,17 +446,11 @@ echo $test;
         <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
             Related content</h4>
         <ul>
-            <li></li>
-            <li></li>
-        </ul>
-        <p>For more details please refer to the documentation :</p>
-        <ul>
             <li><a href="<{'language.html'|helpurl}>">Localisation and translation</a></li>
             <li><a href="<{'language.html'|helpurl}>">Catalog file structure</a></li>
         </ul> 
 
     </section>
-
 
     <section id="help-development">
 
@@ -422,7 +468,7 @@ echo $test;
             </tr>
             <tr>
                 <td>Type</td>
-                <td>Trust Module [ library ]</td>
+                <td>Trust [ library ]</td>
             </tr>
             <tr>
                 <td>Level</td>
@@ -452,7 +498,6 @@ echo $test;
         </table>
 
     </section>
-
 
 </article>
 </div>

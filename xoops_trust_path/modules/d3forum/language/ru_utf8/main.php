@@ -322,9 +322,9 @@ Define( '_MD_D3FORUM_MSG_CATEGORYMADE' , 'A category has been created successful
 Define( '_MD_D3FORUM_MSG_CATEGORYUPDATED' , 'The category has been modified successfully');
 Define( '_MD_D3FORUM_MSG_CATEGORYDELETED' , 'The category has been deleted successfully');
 Define( '_MD_D3FORUM_TH_CATEGORYTITLE' , 'Category title');
-Define( '_MD_D3FORUM_TH_CATEGORYWEIGHT' , 'Category weight');
+Define( '_MD_D3FORUM_TH_CATEGORYWEIGHT' , 'Category order (weight)');
 Define( '_MD_D3FORUM_TH_CATEGORYPARENT' , 'Parent category');
-Define( '_MD_D3FORUM_TH_CATEGORYDESC' , 'Category desccription');
+Define( '_MD_D3FORUM_TH_CATEGORYDESC' , 'Category description');
 Define( '_MD_D3FORUM_TH_CATEGORYOPTIONS' , 'Category options');
 Define( '_MD_D3FORUM_ONOFF' , 'ON/OFF');
 Define( '_MD_D3FORUM_HOWTO_OVERRIDEOPTIONS' , '<p>Override preferences by writing a new line for each option.<br><code><b>(option name)</b>:<u>(option value)</u></code><br>Example to show breadcrumbs (1=on, 0=off):<br><code><b>show_breadcrumbs</b>:<u>1</u></code></p><p><b>Overridable options current values</b></p>');
@@ -332,7 +332,7 @@ Define( '_MD_D3FORUM_SUFFIX_UNDERTHISCATEGORY' , '(under this category)');
 Define( '_MD_D3FORUM_SUFFIX_UNDERTHISFORUM' , '(under this forum)');
 
 // batch actions
-Define( '_MD_D3FORUM_BATCH_ACTIONS' , 'Batch Actions');
+Define( '_MD_D3FORUM_BATCH_ACTIONS' , 'Batch Action');
 Define( '_MD_D3FORUM_BATCH_ACTIONS_DESC' , 'Batch actions are actions triggered on a set of selected objects. 
 By default, Admins can run this action in several entries at once.');
 Define( '_MD_D3FORUM_BA_TURNSOLVEDON' , 'Turn all topics as solved');
