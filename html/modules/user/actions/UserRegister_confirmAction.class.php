@@ -1,6 +1,7 @@
 <?php
 /**
  * @package user
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: UserRegister_confirmAction.class.php,v 1.3 2007/12/15 15:45:35 minahito Exp $
  */
 

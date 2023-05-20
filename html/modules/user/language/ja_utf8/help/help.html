@@ -1,407 +1,550 @@
 <div data-layout="row sm-column">
+
     <div data-self="size-xxsmall">
         <nav id="help-menu">
             <ul data-layout="rows">
-                <li><a href="#help-overview" class="button">概要</a>
-                <li><a href="#help-groups" class="button"> グループ</a>
-                <li><a href="#help-users" class="button">ユーザー</a>
-                <li><a href="#help-avatars" class="button">アバター</a>
-                <li><a href="#help-blocks" class="button">ブロック</a>
-                <li><a href="#help-ranks" class="button">ランク</a>
-                <li><a href="#help-mailjob" class="button">メールジョブ</a>
-                <li><a href="#help-csv" class="button">CSV登録</a>
-                <li><a href="#help-preferences" class="button">環境設定</a>
+                <li><a href="#help-overview" class="button">Overview</a>
+                <li><a href="#help-groups" class="button">Group Management</a>
+                <li><a href="#help-users" class="button">User Account</a>
+                <li><a href="#help-avatars" class="button">Avatars</a>
+                <li><a href="#help-blocks" class="button">Blocks</a>
+                <li><a href="#help-ranks" class="button">Ranks</a>
+                <li><a href="#help-mailjob" class="button">MailJob</a>
+                <li><a href="#help-csv" class="button">csv Registration</a>
+                <li><a href="#help-preferences" class="button">Preferences</a>
             </ul>
         </nav>
     </div>
 
-<article id="help-user">
+<article id="help-module">
 
     <section id="help-overview">
 
-        <h3>概要</h3>
+        <h3>Overview</h3>
 
-        <p>ユーザーモジュールは、シンプルで安全で拡張性の高いアカウント認証システムを確保するためのベストプラクティスを提供します。</p>
-        <p>このモジュールを使用すると、ユーザー、グループを管理し、デフォルトのセキュリティレルムで定義された権限を設定することができます。</p>
+        <p><b>User Groups</b> allows you to manage privileges and assign permissions to User groups defined in the default security realm.
+        <p>The Umodule provides the best practices ensuring you have a simple, secure and scalable account authentication system.
 
-        <p>次の機能が用意されています:</p>
+
+        <p>The following features are provided by the modules Users, Message and Protector :
 
         <ul>
-            <li>認証</li>
-            <li>ユーザー登録</li>
-            <li>ユーザープロファイル編集</li>
-            <li>ユーザープロファイルの表示</li>
-            <li>ユーザーについてのブロック</li>
-            <li>ユーザー管理</li>
-            <li>その他のオプション</li>
+            <li>Group-based permissions
+            <li>Registration : new user account and activation method
+            <li>Authentication and security limit of Log in attempts
+            <li>Extend User Profile with custom fields
+            <li>Private Message
+            <li>Blocks : Login, Users Online, New Members, Top Posters
+            <li>Manage subscription event notification
         </ul>
-        <p>ユーザーは、認証できるエンティティです。 各ユーザーには、レルム内で一意のidが割り当てられます.</p>
-        <p>多数のユーザーの管理を容易にするために、ユーザーを名前付きグループに編成することができます。</p>
-        <p>ユーザーには、他のグループのメンバーシップを割り当てることができます。</p>
-        <p>管理者権限を持つのは、Webmasterグループのメンバーとしてログインしているユーザーのみです。</p>
-        <p>ユーザーは、さまざまな基準に従って他のユーザーを検索できます</p>
-        <p>ユーザーは、プライベートメッセージモジュールを介して他のユーザーや電子メールにプライベートメッセージを送信することができます。</p>
 
     </section>
-
-
-<hr>
-
 
     <section id="help-groups">
 
-        <h3>グループ管理</h3>
+        <h3>Group Management</h3>
 
-        <p>ユーザーを複数のグループに割り当て、モジュールとブロックのコンテンツへのアクセス権を付与できます。</p>
-        <p>インストールウィザードでは、次の必要なグループが作成されますs :</p>
+        <p>Groups are used to segment users in your web application.
+        You can assign users to multiple groups and grant access to modules and blocks content.
+        The installation wizard creates the default User Groups and Roles :</p>
 
+        <div data-layout="row p-7 m-auto">
+            <table style="border-collapse: separate;border-spacing: 4px;padding:8px;">
+            <tr><th><b>User Groups</b></th><td><b>Description</b></td></tr>
+            <tr class="bg-blue"><td>Webmasters</td><td>Full administrative permissions across the application</td></tr>
+            <tr class="bg-green"><td>Registered Users</td><td>All users except anonymous. Permissions to read and write comments.</td></tr>
+            <tr class="bg-orange"><td>Anonymous Users</td><td>Guest users or visitors, by default anonymous. Permissions restricted to read.</td></tr>
+            <tr><th><b>Roles</b></th><td><b>Privilege</b></td></tr>
+            <tr class="bg-blue"><td>Webmaster</td><td>Administration</td></tr>
+            <tr class="bg-indigo"><td>Moderator</td><td>Forum moderation</td></tr>
+        </table>
+        </div>
+
+        <div class="error">These User Groups and Roles are required by the system and cannot be deleted !<br>
+            You can create new Groups and modify the permissions for each new Group created.</div>
+
+        <h3>Actions</h3>
+
+        <p><a class="button action-add" href="index.php?action=GroupMember&amp;groupid=1" title="Assign a member">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6h-2Z"></path></svg>
+        </a> Assign a user to the Group.
+
+        <p><a class="button action-edit" href="index.php?action=GroupEdit&amp;groupid=1" title="Edit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path></svg>
+        </a> Edit the group's name and write a short description.
+
+        <p><a class="button action-view" href="index.php?action=GroupProperty&amp;groupid=1" title="Properties">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z" fill="currentColor"></path></svg>
+        </a> View properties of the group's global permissions.
+        <p><a class="button action-lock" href="index.php?action=GroupPerm&amp;groupid=1" title="Group Permissions">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M20 8h-3V6.21c0-2.61-1.91-4.94-4.51-5.19A5.008 5.008 0 0 0 7 6v2H4v14h16V8zm-8 9c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2zM9 8V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9z"></path></svg>
+        </a> Set group permissions for modules and blocks.
+
+        <h3>Creating Groups</h3>
+
+        <p>Browse to Group Management and click the button :<br>
+            <a class="button" href="#!"><i class="i-add"></i> Add new group</a>
+
+        <ol>
+        <li>Enter the name of the user group in the Name field.
+        <li>Write a short description
+        <li>Click Submit
+        </ol>
+
+        <p>The Group Management page is displayed with the new group.
+        <p><a href="#!" class="button" title="Group Permissions"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M20 8h-3V6.21c0-2.61-1.91-4.94-4.51-5.19A5.008 5.008 0 0 0 7 6v2H4v14h16V8zm-8 9c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2zM9 8V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9z"></path></svg>
+        </a> Click Group Permissions to modify the Group.
+
+        <p><a class="button action-delete" href="#!" aria-label="Delete">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M6 21h12V7H6v14zm2.46-9.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z"></path></svg>
+        </a> Alternatively, click Delete to delete the user group.
+
+        <div class="tips">It's recommended to start with the same default permissions of the group Registered Users.</div>
+
+        <h3>Assigning Permissions to User Groups</h3>
+
+        <p>The ability to perform an action requires privileges.
+            Usually, permissions and privileges are used interchangeably,
+            but technically they have specific and different meanings in the context of web application security.
+            Simply put, modules expose permissions. Users have privileges. Privileges are assigned permissions to User Groups.
+            When you assign permission to a user group, you are granting a privilege to all members of the group.
+        </p>
+
+        <h6>Permissions</h6>
+        <p>Declaration of the actions that can be executed on the module.
+
+        <h6>Privileges</h6>
+        <p>Permissions assigned to user groups.
+
+        <div data-layout="row p-7 m-auto">
+        <table class="list_center" style="border-collapse: separate;border-spacing: 4px;padding:8px;">
+            <tr>
+                <th colspan="4"><b>Permissions</b></th>
+            </tr>
+            <tr class="bg-blue">
+                <td width="25%">Create</td><td width="25%">Read</td><td width="25%">Update</td><td width="25%">Delete</td>
+            </tr>
+            <tr>
+                <th colspan="4"><b>Privileges</b></th>
+            </tr>
+            <tr>
+                <td colspan="2" class="bg-green">Access ( Read )</td><td colspan="2" class="bg-blue">Admin ( Write )</td>
+            </tr>
+            <tr>
+                <th colspan="4"><b>Profile</b></th>
+            </tr>
+            <tr>
+                <td colspan="2" class="bg-green">Access ( Read )</td><td colspan="2" class="bg-red">Null ( access denied )</td>
+            </tr>
+            <tr>
+                <th colspan="4"><b>Ban</b></th>
+            </tr>
+            <tr class="bg-red">
+                <td colspan="4">Null ( access denied )</td>
+            </tr>
+        </table>
+        </div>
+
+        <div class="tips">You may assign permissions when editing modules, blocks and user profile fields. These are different views of the same privileges.</div>
+
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li>ウェブマスター（管理者）
-            <li>登録ユーザー（メンバー）
-            <li>匿名ユーザー(ゲスト)
+            <li><a href="<{'cgroups-permissions.html'|helpurl}>">Group Management</a>
+            <li><a href="<{'index.php?action=Help&dirname=profile'}>">Add Custom Fields to User Profile ⭢</a>
         </ul>
-
-        <div class="error">必要なグループを削除することはできません！<br>
-            新しいグループを作成し、作成された新しいグループごとに権限を変更できます。</div>
-
-        <p>The group membership remains independently of the session (the logging session).
-            継承または除外の概念は、グループメンバーシップを管理するのに十分な権限を持つユーザーが手動で処理する必要があります。</p>
-
-        <h3>役割</h3>
-
-        <P>Idベースのグループは加法的であり、これはidがユーザーが属するすべてのグループの合計（または結合）であることを意味します。</p>
-
-        <p>ロールは、特定のユーザーに権限を追加するために使用されます。 : </p>
-        <ul>
-            <li>Webmaster-ユーザーと権限を割り当てることができます
-            <li>モデレータ-フォーラムのみを管理できます
-        </ul>
-
-        <div class="confirm">D3モジュールまたはTrustモジュールには、個々のユーザーに割り当てることができる機能があります。</div>
-
-        <p>D3フォーラムの権限セクション、およびその他の信頼モジュールでは、対応するチェックボックスを選択できます
-            特定のユーザー、つまり表示、投稿、編集などに付与できる権限には、次のようなものがあります。</p>
-
-
-        <div class="tips">セキュリティとアクセスのニーズを考慮し、それらのニーズに応じてグループを設定します,
-            次に、付与する権限に基づいてユーザーをグループに追加します。</div>
 
     </section>
-
-
-<hr>
 
 
     <section id="help-users">
 
-        <h3>ユーザー管理</h3>
+        <h3>User Account</h3>
 
-        <p>Webサイトへのアクセスは、ユーザーがグループに割り当てられるグループシステムによって制御されます。
-            グループ権限は、モジュールとブロックのコンテンツへのアクセスを許可します。</p>
+        <p>Access to your website is controlled by a group system by which users are assigned to User groups.
+            Group permissions allow access to the content of modules and blocks.
 
-        <p>D3モジュールまたはTrustモジュールは、ロールベースのシステムを提供して個々のユーザーに権限を割り当てることで、ユーザー管理を拡張できます。</p>
+        <p>User accounts are added through user registration and activation.
+            Although Webmasters can create and activate accounts in User Management.
 
-        <div class="confirm">ユーザーの権限は、ユーザーが属するすべてのグループ権限の合計によって決定されます。</div>
+        <p>D3 modules, or Trust modules, can extend User Management by providing a role-based system to assign individual permissions.
 
-        <h3>ユーザーアカウント</h3>
-        <p>ユーザーアカウントには、既定でログイン情報、認証、およびプロファイルフィールドがあります。
-            ログイン資格情報(通常はユーザー名とパスワード)は、アカウントにログインしているユーザーを認証します。</p>
+        <div class="confirm">A user's permissions are determined by the sum of all group permissions to which the user belongs.</div>
 
-        <p>ユーザーアカウントは、ユーザー登録とアクティベーションによって追加されます。
-            ウェブマスターはuser managementモジュールでアカウントを作成できますが,
-            また、新しいフィールドを追加することで、デフォルトのユーザープロファイルを拡張します。</p>
+        <h3>User Profile</h3>
+        <p>A user account has login information, authentication, personal information fields, private messages and notification management.
+
+        <h6>Registration</h6>
+        <p>Registration to the site is allowed by default. If you are running a closed site, or need to temporarily disable registration,
+            you may disable this feature by switching "Allow new user registration" to the "No" setting in the module preferences :<br>
+            <span class="badge">Control Panel »» User Groups »» Preferences</span>
+
+        <h6>Activation</h6>
+        <p>Activation is a process of verifying a registered user.
+            The registered user's account can be automatically activated upon registration.
+            Indeed, an activated account is required to connect. However, other activation modes are available.
+        <p>The Activation mode specifies the activation workflow :
+
+        <ul>
+        <li><b>Activate automatically</b> : This mode will automatically activate a user upon first registration.
+        <li><b>Require activation by user</b> : Activation by following the link in the confirmation message sent to the user's email address.
+        <li><b>Activation by administrators</b>: Activation by groups selected in the module preferences or by administrators via the back-end area.
+        </ul>
+
+        <p>Users have the ability to resend the activation email by clicking Send the verification email.
+
+        <h6>Avatar</h6>
+        <p>This feature allows Users to fashion their online personae called avatars. See section <a href="#help-avatars">Avatar Management</a>.
+
+        <h6>Log in</h6>
+        <p>Login credentials, typically a username and password, authenticate a user logging into an account.
+        <p>Users can also reset a lost or forgotten password.
+
+        <h6>Limit Log in Attempts</h6>
+        <p>This security feature blocks an Internet address from making further attempts after a specified limit on retries is reached, making a brute-force attack difficult or impossible.
+            If a user experiences too many failed sign in attempts, their account will be temporarily suspended for a period of time.
+            The module Protector allows administrators to enable IP blocking on their web application, in order to block all known malicious IP addresses to reduce the risk of an attack.
+
+        <h6>Private Message</h6>
+        <p>This feature is implemented by the module Message.
+
+        <h6>Notifications</h6>
+        <p>This feature is implemented by the core system.
+
+        <h6>Extend the User Profile</h6>
+
+        <p>The User Profile can be easily extended by adding new fields with the module Profile.
+            You can add custom fields for your users, set permissions and requirements.
+            This feature can be used if you need to add additional fields that are not available by default.
+
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
+        <ul>
+            <li><a href="<{'cgroups-permissions.html'|helpurl}>">Group Management</a>
+            <li><a href="<{'index.php?action=Help&dirname=profile'}>">Add Custom Fields to User Profile ⭢</a>
+        </ul>
 
     </section>
-
-
-<hr>
-
 
     <section id="help-avatars">
 
-        <h3>アバター</h3>
+        <h3>Avatars</h3>
 
-        <p>登録ユーザーは、必要に応じてアバターと呼ばれる彼らのオンラインペルソナをファッションすることができます。</p>
+        <p>Registered Users can optionally fashion their online personae called avatars.
 
-        <p>このオプションは、モジュールユーザーグループの"環境設定"からオフに設定できます。</p>
+        <p>Enable this option in the module's preferences.
+        "Allow new user registration" to the "No" setting in the module preferences :<br>
+        <span class="badge">Control Panel »» User Groups »» Preferences</span>
 
-        <h3>アバターの種類。</h3>
+        <h3>Types of avatars</h3>
 
-        <p>一つは、管理者が一連の画像をアップロードすることによって準備するシステムアバターです。</p>
-        <p>もう一つは、ユーザーが自分の好きな画像ファイルをアップロードするためのカスタムアバターです。</p>
+        <p>Allow users to select an avatar from a previously uploaded collection.
+        <p>Or allow users to upload their own avatar :
+        <ul>
+            <li>Avatar image max width (pixel)
+            <li>Avatar image max height (pixel)
+            <li>Avatar image max filesize 1 Megabytes (MB) = 1,048,576 Bytes
+        </ul>
 
-        <p>セキュリティ上の理由から、許可される唯一のファイル形式は次のとおりです :<br> .GIF, .JPG and .PNG</p>
+        <p>For security reasons, the default files extensions allowed for avatars are : .GIF, .JPG and .PNG
+
+        <div class="tips">Some Themes can generate automatically an avatar based on the first letter of the username.</div>
 
     </section>
-
-
-<hr>
 
 
     <section id="help-blocks">
 
+        <h3>Module Blocks</h3>
 
-        <h3>ユーザーモジュール - 公開側ブロック</h3>
+        <h6>Login</h6>
+        <p>This module block shows the login-form for only anonymous users who still are not passing the authentication.
+            If the user registration is allowed, it shows the link to create an account.
+            The SSL login option ensures backwards compatibility.
 
-        <h5 class='highlight_block_name'>ログイン</h5>
-        <h6>概要</h6>
-        <p>このブロックは、まだ認証を通過していないゲストユーザーに対してのみ、ログインフォームを表示します。また、新規ユーザー登録が設定で許可されているならば、それは register.php へのリンクを表示します。さらに、SSLログインが許されているなら、一般設定で指定されたリンクを表示します。</p>
+        <p>Create An Account is what the anonymous user do after the sign-up.
+            An account needs to be associated with a signature or profile, and often that can't be done until the user completes the registration process.
+        That registration process may require them to agree to the “Terms and Conditions” : that's the sign-up part.
 
-        <h6>備考</h6>
-        <p>もしあなたが間違ってこのブロックをアンインストールしてしまっても、 user.php へアクセスすれば、ログインブロックなしでログインを行うことができます。</p>
+        <div class="tips">Note : You can log in using example.com/user.php, if you have uninstalled this block by mistake.</div>
 
-        <h5 class='highlight_block_name'>オンライン情報</h5>
-            <h6>概要</h6>
-            <p>このブロックは、あなたのサイトにアクセスしているかもしれないユーザーの名前と、人数を表示します。</p>
+        <h6>Users Online</h6>
+        <p>This block displays the names of users likely to access your site and how many are online.
+        <p>Getting correct information for online users is too cumbersome and resource consuming process.
+        Therefore, this block does not attempt to display an exact result. But this should give you some insight.
 
-            <h6>備考</h6>
-            <p>オンラインユーザーに関する正確な情報を収集することは、非常に負荷の重い処理です。それゆえ、このブロックは正確な結果を求めようとはしません。しかし、あなたのサイトをエキサイティングなものにするには十分な役割を果たすでしょう。</p>
+        <h6>New Members</h6>
+        <p>This block displays the names of users who have recently registered on your site.</p>
 
-            <h5 class='highlight_block_name'>新しい登録ユーザ</h5>
-            <h6>概要</h6>
-            <p>このブロックはあなたのサイトに最近新規に登録されたユーザーを表示します。</p>
+        <h6>Options</h6>
+        <dl>
+            <dt>Display x members</dt>
+            <dd>Specifies the limit of recently users to display.</dd>
 
-            <h6>オプション</h6>
-            <dl>
-                <dt> x 人を表示</dt>
-                <dd>最近のユーザーを表示する際に、何人まで表示するかという人数制限について指定します。</dd>
+            <dt>Display member avatars</dt>
+            <dd>If YES, displays user avatars with users name.</dd>
+        </dl>
 
-                <dt>ユーザのアバターを表示</dt>
-                <dd>「はい」を選択すれば、ユーザー名の上にユーザーのアバターが表示されます。</dd>
-            </dl>
+        <h6>Top posters</h6>
+        <p>This block shows the ranking of the top contributors.</p>
 
-            <h5 class='highlight_block_name'>投稿数ランキング</h5>
-            <h6>概要</h6>
-            <p>このブロックは常連の投稿者の投稿数ランキングを表示します。</p>
+        <p>Options</p>
+        <dl>
+            <dt>Display x members</dt>
+            <dd>Specifies the limit of users to display.</dd>
 
-            <h6>オプション</h6>
-            <dl>
-                <dt> x 人を表示</dt>
-                <dd>何人まで表示するかという人数制限について指定します。</dd>
+            <dt>Display member avatars</dt>
+            <dd>If YES, displays user avatars with users name.</dd>
 
-                <dt>ユーザのアバターを表示</dt>
-                <dd>「はい」を選択すれば、ユーザー名の上にユーザーのアバターが表示されます。</dd>
+            <dt>Do not display users whose rank is x</dt>
+            <dd>You can remove users belonging to specific groups from the ranking.</dd>
+        </dl>
 
-                <dt>以下の特別ランクのユーザは除外する</dt>
-                <dd>ランキングから指定したグループに所属するユーザーを除外することができます。</dd>
-            </dl>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
+        <ul>
+            <li><a href="<{'index.php?action=Help&dirname=legacy'}>">Block Management ⭢</a>
+        </ul>
 
     </section>
-
-
-<hr>
-
 
     <section id="help-ranks">
 
-        <h3>ランク</h3>
+        <h3>Ranks</h3>
 
-        <p>ランキングシステムでは、投稿数に基づいて、各ユーザーの名前の横にユーザーランクが表示されます。</p>
-        <p>デフォルトでは、2つのユーザー特別ランクがあります:</p>
+        <p>The Ranking system displays user rank next to each user’s name based on the number of posts.</p>
+
+        <p>By default there are two user special ranks :</p>
 
         <ul>
-            <li>ウェブマスター</li>
-            <li>モデレータ</li>
+            <li>Webmaster</li>
+            <li>Moderator</li>
         </ul>
 
-        <p>新しいルールと画像を使用して、新しいユーザーランクを作成できます。
-            作成できるランクの数に制限はありません。</p>
+        <p>You can create new user ranks with new rules and images.
+            There is no limit to the number of ranks that you can create.</p>
 
-        <p>ランクを追加したら、コメント付きのプロフィールまたはページにアクセスして、実際のランクを確認します。</p>
+        <p>Once you have added ranks, visit a profile or page with comments to see it in action.</p>
 
     </section>
-
-
-<hr>
-
 
     <section id="help-mailjob">
 
-        <h3>メールジョブ</h3>
+        <h3>Mail Job</h3>
 
-        <p>Jobをメールで送信して、注意が必要なイベント、特定の条件、またはシステム状態をユーザーに通知できます
-        <p>検索ユーザーは、さまざまな条件に応じてフィルタリングします
-        <p>ユーザーへのメッセージの管理
-        <p>再試行、再送信、および有効期限
-        <p>最大再試行回数をカスタマイズできます
-        <p>これにより、新しいイベントの処理を続行するオプションが提供されます。
+        <p>The mail job allows you to create job definitions that send simple email, or notifications.
+            You can use MailJob to inform users of events, for example :
+        <ul>
+            <li>User conferences.
+            <li>Networking events.
+            <li>Learning Workshops.
+            <li>Community events.
+            <li>Outdoors activities.
+            <li>Auctions and Pop-up shops.
+            <li>Special guest events.
+        </ul>
+
+        <h3>Usage</h3>
+
+        <p>Add an empty job from the control panel.
+        <p>Specify a name and a label for the job.
+        <p>In a next step invoke the job wizard to find users. The wizard brings up the following window :
+        <p>Search Users filter according to various criteria.
+        <p>Then, you can manage the job messages to users :
+        <p>Retry, resubmit, and expiration.
+        <p>You can customize the maximum number of retries.
+        <p>This gives you the option to continue processing new events.
+
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
+        <ul>
+            <li><a href="<{'index.php?action=Help&dirname=legacy'}>">Mail Setup ⭢</a>
+        </ul>
 
     </section>
-
-
-<hr>
-
 
     <section id="help-csv">
 
-        <h3>一括登録</h3>
+        <h3>Batch Registration</h3>
 
         <p>Upload and manage Users using a CSV text file.
-        <p>CSVファイルを使用してメンバーのバッチを登録します。
-        <p>一括登録用のユーザーデータCSVファイルをダウンロードします。
-        <p>CSVファイルを開き、フォーマットに従ってメンバー情報を入力します-列を変更しないでください！
-        <p>CSVが正常に登録されると、新しいメンバーがユーザー管理に一覧表示されます。
-        <p>CSVファイルの内容に問題があり、登録できない場合は、エラーメッセージを参照してCSVファイルを修正してください。
+        <p>Register a batch of members with a CSV file.
+        <p>Download the User Data CSV file for batch registration.
+        <p>Open the CSV file and input the member information according to the format - Do not change columns!
+        <p>When the CSV is successfully registered, the new members will be listed in User management.
+        <p>If there is a problem with the content of the CSV file, and it cannot be registered, please refer to the error message to correct the CSV file.
 
     </section>
-
-
-<hr>
-
 
     <section id="help-preferences">
 
-        <h3>ユーザーモジュール - 一般設定</h3>
-        <h3>新規ユーザの登録を許可する </h3>
-        <p>ゲストがあなたのサイトに登録を行うことができるかどうかをしています。「はい」を選択した場合、 register.php が利用可能になり、<span class='highlight_block_name'>ログインブロック</span>が register.php へのリンクを表示し始めます。たとえ「いいえ」が選択されていた場合でも、あなたは新しいユーザーをユーザー管理から追加することができます。</p>
+        <h3>Preferences</h3>
 
-        <h3>パスワードの最低文字数</h3>
-        <p>パスワードの最低文字数を指定します。長いパスワードはSpecifies the minimum length of password. 長いパスワードは、パスワードを推測するのをより困難にします。 もちろん、長さは強いパスワードのすべてというわけではありませんが、５文字以上を指定するべきでしょう。</p>
+        <h6>Features in Control Panel</h6>
+        <p>This article provides information specific to user management.</p>
 
-        <h3>ユーザ名の最低文字数と最大文字数</h3>
-        <p>ユーザー名に最低必要な文字長を指定します。このオプションはセキュリティに関するものではありません。 単純に好みで決めてください。</p>
+        <h4>User module - Preferences</h4>
 
-        <h3>ユーザ自身のEmailアドレス変更を許可する</h3>
-        <p>ユーザがユーザアカウントの編集(edituser.php)で、彼らのEメールアドレスを変えることができるかどうかを指定します。実のところ、このモジュールはEメールアドレスを変更するユーザーに対して、確認のメールを送りません。</p>
+        <h6>Allow new user registration?</h6>
+        <p>Specifies whether anonymous users can register to your site. If YES, registration is available, and <span class='highlight_block_name'>Login Block</span> shows the link to create an account (register.php).
+        <p>Even if registration is deactivated, you can still add a new user in the user management.</p>
 
-        <h3>新規ユーザ登録の際にメールにて知らせを受け取る </h3>
-        <p>このオプションが「はい」である場合、次のオプションで設定されたグループは新しいユーザー登録に関して通知を受け取ることができます。</p>
+        <h6>Minimum length of password required</h6>
+        <p>Specifies the minimum password length. A long password makes a password harder to guess. Of course, length is only one strong password factor. But, you should specify at least five.</p>
 
-        <h3>通知先グループ </h3>
-        <p>先のオプションが「はい」と設定されていた場合、ここで指定したグループは通知メールを受け取ります。このオプションは、通常、管理者グループを指定するとよいでしょう。</p>
+        <h6>Minimum length of username required</h6>
+        <p>Specifies the minimum username length. This option is not about security. This is a decision to be made based on the needs of your organization.</p>
 
-        <h3>新規登録ユーザアカウントの有効化の方法</h3>
-        <p>登録後に、ユーザーはアクティベーション（有効化）されなくてはいけません。アクティベーションは「ログイン可能にする」ということを意味しています。ユーザーアクティベーションを行う方法はいくつかあります。</p>
+        <h6>Allow users to change email address?</h6>
+        <p>Specifies whether users can change their email address in user profile editor (edituser.php). By the way, this module does not send a confirmation email for users who change their email address.</p>
 
-        <h3>ユーザー自身の承認が必要</h3>
-        <p>これはウェブサイトシステムにおいて疑いなく世界で一番ポピュラーな設定です。ユーザーが登録を行う際、彼らはアクティベーションメールを得ます。そして、彼らはそのメールに書かれているアクティベーション URL をクリックすることによってログインが可能な状態になります。ほとんどの場合、この設定を選択しておけば間違いがないでしょう。</p>
+        <h6>Notify by mail when a new user is registered?</h6>
+        <p>If this option is Yes, the group specified by the following option can receive an e-mail notification about new user registrations.</p>
 
-        <h3>自動的にアカウントを有効にする</h3>
-        <p>簡単に言えば、アクティベーション機構が全くない設定で、すべてのユーザーアカウントが登録と同時に有効になります。しかし、これを使用する場合は、あなたは BOT に注意するべきです。 BOT は自動的に登録を行い、 SPAM を送りつけてくる可能性があります。したがって、この設定はイントラネットなどの閉じたセグメントで有効でしょう。</p>
+        <h6>Select a group to which new user notification mail will be sent</h6>
+        <p>Specifies the group that receives the notification mail in case the previous option is Yes. The webmaster group is usually selected for this option.</p>
 
-        <h3>管理者が確認してアカウントを有効にする</h3>
-        <p>次のオプションで指定されたグループから直接承認を受けることによってのみ、ユーザーはアクティベートされます。要するに手作業ですから、この選択は承認者にきつい仕事を強制するかもしれません。</p>
+        <h6>Select activation type of newly registered users</h6>
+        <p>After registering, a user must be activated. Being activated means being able to log in. There are several ways to activate users.</p>
 
-        <h3>ユーザ名として使用可能な文字の設定</h3>
-        <p>ユーザー名に関してどの程度の自由度があるのかを以下の設定から選択します。</p>
+        <h6>Require activation by user</h6>
+        <p>This is far and away the most popular setting in the world of website systems. A user gets an activation email when they register. They are then able to login by clicking on the activation URL on the mail. This choice is satisfactory in most cases.</p>
 
-        <h3>強（アルファベットおよび数字のみ）</h3>
-        <p>この選択では、あなたのサイトは以下の文字列のみをユーザー名に使用できる文字として許可します。</p>
+        <h6>Activate automatically</h6>
+        <p>In simple terms, there is really no activation mechanism, everyone is activated straight away. But, if you use it, you have to be careful of internet bots.
+            An Internet bot, web crawler, bot, or simply bot, is a software application that performs automated tasks over the Internet. A bot can auto-register and SPAM. Therefore, this choice is only recommended for a closed segment.</p>
+
+        <h6>Activation by administrators</h6>
+        <p>A user can only be activated by direct approval of the group specified by the following option. This activation requires human intervention, and therefore seems more effective. However, this can be a time-consuming task for activators.</p>
+
+        <h6>Select the level of strictness for username filtering</h6>
+        <p>Select the strictness level for the username from the following options.</p>
+
+        <h6>Strict (Only alphabets and numbers)</h6>
+        <p>This option only allows the following characters for username.</p>
         <ul>
-            <li>大小アルファベット</li>
-            <li>数字</li>
-            <li>アンダースコア (_)</li>
-            <li>ハイフン (-)</li>
+            <li>Alphabets without case-sensitive.</li>
+            <li>Numbers.</li>
+            <li>Under score (_).</li>
+            <li>Hyphen (-).</li>
         </ul>
 
-        <h3>中</h3>
-        <p>この選択では、あなたのサイトは以下の文字列のみをユーザー名に使用できる文字として許可します。</p>
-
+        <h6>Medium</h6>
+        <p>This option allows the following characters for username.</p>
         <ul>
-            <li>大小アルファベット</li>
-            <li>数字</li>
-            <li>アンダースコア (_)</li>
-            <li>ハイフン (-)</li>
-            <li>小なり(&lt;)</li>
-            <li>大なり(&gt;)</li>
-            <li>カンマ(,).</li>
-            <li>ピリオド(.)</li>
-            <li>ドル記号($)</li>
-            <li>パーセント(%)</li>
-            <li>シャープ(#)</li>
-            <li>アットマーク(@)</li>
-            <li>エクスクラメーションマーク(!)</li>
-            <li>シングルクォーテーション(')</li>
-            <li>ダブルクォーテーション(&quot;)</li>
+            <li>Alphabets without case-sensitive.</li>
+            <li>Numbers</li>
+            <li>Underscore(_).</li>
+            <li>Hyphen(-).</li>
+            <li>Less than character(&lt;).</li>
+            <li>Greater than character(&gt;).</li>
+            <li>Comma(,).</li>
+            <li>Period(.).</li>
+            <li>Dollar($).</li>
+            <li>Percent(%).</li>
+            <li>Sharp(#).</li>
+            <li>At sign(@).</li>
+            <li>Exclamation point(!).</li>
+            <li>Single quotation(').</li>
+            <li>Double quotation(&quot;).</li>
         </ul>
 
-        <h3>低 - ２バイト文字を許可する</h3>
-        <p>この選択では、あなたのサイトはコントロールコード以外のすべての文字を許可します。 しかし、この選択はいくつかのモジュールで問題を起こすかもしれません。 したがって、ユーザーモジュールはこの選択を推奨していません。</p>
+        <h6>Light - allow 2byte characters</h6>
+        <p>This option allows all characters except control code. But this can be a cause of problem for some modules. Therefore, this option is not recommended if you are using old modules.</p>
 
-        <h3>アバター画像のアップロードを許可する</h3>
-        <p>ユーザが彼のアバターとして彼のお気に入りの画像ファイルをこのサイトにアップロードできるかどうかを指定します。たとえ「いいえ」が選択された場合でも、ユーザーは管理者が事前に準備するシステムアバターから彼のアバターを選択することができます。</p>
+        <h6>Allow custom avatar upload?</h6>
+        <p>Specifies whether a user can upload their favorite image file as an avatar. Even if the case is No, a user can choose an avatar among the avatars made available by the administrators.</p>
 
-        <h3>アバターアップロード権を得るための発言数 </h3>
-        <p>もしカスタムアバターのアップロードを許可しないのであれば、あなたはこのオプションに触れる必要はありません。</p>
+        <h6>Minimum posts required</h6>
+        <p>If you allow uploading of custom avatars, you don't need to set this option.</p>
 
-        <p>これはカスタムアバターをアップロードする権利をユーザーが獲得するために必要な投稿数の設定です。これはナンセンスかもしれません。 0 を設定するのがよいでしょう。</p>
+        <p>This is the minimum number of posts required for users to upload a custom avatar. This decision depends on your organization's community member ranking strategy.</p>
 
-        <h3>アバター画像の最大幅(ピクセル) </h3>
-        <p>もしカスタムアバターのアップロードを許可しないのであれば、あなたはこのオプションに触れる必要はありません。</p>
+        <h6>Avatar image max width (pixel)</h6>
+        <p>Define if custom avatar upload is allowed.</p>
 
-        <p>カスタムアバターに幅の制限を設定します。ユーザがこの値より横幅の広い画像をアップロードしようとする場合、このモジュールはエラーメッセージを表示します。</p>
+        <p>Specifies the limit width for the custom avatar. In the event that a user uploads an image larger than this value, this module displays an error message.</p>
 
-        <h3>アバター画像の最大高さ(ピクセル) </h3>
-        <p>もしカスタムアバターのアップロードを許可しないのであれば、あなたはこのオプションに触れる必要はありません。</p>
+        <h6>Avatar image max height (pixel)</h6>
+        <p>Define if custom avatar upload is allowed.</p>
 
-        <p>カスタムアバターに高さ（縦幅）の制限を設定します。ユーザがこの値より縦幅の広い画像をアップロードしようとする場合、このモジュールはエラーメッセージを表示します。</p>
+        <p>Specifies the limit height for the custom avatar. In the event that a user uploads an image larger than this value, this module displays an error message.</p>
 
-        <h3>アバター画像の最大ファイルサイズ(バイト)</h3>
-        <p>もしカスタムアバターのアップロードを許可しないのであれば、あなたはこのオプションに触れる必要はありません。</p>
+        <h6>Avatar image max filesize 1 Megabytes (MB)	=	1,048,576 Bytes</h6>
+        <p>Define if custom avatar upload is allowed.</p>
 
-        <p>カスタムアバターにファイルサイズの上限を設定します。ユーザーがこの値より大きいファイルサイズの画像ファイルをアップロードしようとする場合、このモジュールはエラーメッセージを表示します。</p>
+        <p>Specifies the limit filesize for custom avatar. In the event that a user uploads an image larger than this value, this module displays an error message.</p>
 
-        <h3>ユーザが自分自身のアカウントを削除できる</h3>
-        <p>ユーザがユーザアカウントの編集において、自分のアカウントを削除することができるかどうかを設定します。はい、ユーザーはユーザーアカウント情報(userinfo.php)からのリンクを通じて、アカウント削除のダイアログへ進むことができます。削除に関するこのダイアログが非常に簡素なものになっているので、あなたはそれらのテンプレート user_delete.html と user_delete_success.htmlを編集するべきでしょう。</p>
+        <h6>Allow users to delete own account?</h6>
+        <p>Specifies whether users can delete their own account in the user profile edit.
+            If Yes, users can access the account deletion dialog via the user profile link (userinfo.php).
+            Since these delete dialogs are very minimal, you can improve it with a notice by changing the templates --- user_delete.html, user_delete_success.html.</p>
 
-        <h3>アカウント削除前の確認メッセージ</h3>
-        <p>これはアカウント削除ダイアログで表示されるメッセージです。もし先のオプションで、ユーザが自分自身のアカウントを削除できる設定を行っていないのであれば、あなたはこのオプションに触れる必要はありません。</p>
+        <h6>Execution confirmation message</h6>
+        <p>This is the message displayed in the account deletion dialog. If you don't allow users to delete their own account, you don't need to edit this option.</p>
 
-        <h3>ユーザ名として使用できない文字列</h3>
-        <p>これはあなたのサイトがユーザ名として使用することを許さないパターンです。 | で区切ってください。これは大文字と小文字を区別せず、正規表現による指定が可能です。加えて、このルールはコントロールパネルのユーザー管理画面では適用されません。</p>
+        <h6>Enter names that should not be selected as username</h6>
+        <p>These are patterns that your site does not allow as usernames. Separate them with a | (pipe). This is case-insensitive and regex enabled.
+            This rule does not apply to user management in the control panel. If you don't allow users to delete their own account, you don't need to edit this option.
 
-        <p>もしゲストユーザーの新規ユーザー登録を許可していないのであれば、あなたはこのオプションに触れる必要はありません。</p>
+        <h6>Enter emails that should not be used in user profile</h6>
+        <p>These are patterns that your site does not allow as email address. Separate them with a | (pipe). This is case-insensitive and regex enabled.
+            This rule does not apply to user management in the control panel.</p>
 
-        <h3>ユーザのemailアドレスとして使用できない文字列</h3>
-        <p>これはあなたのサイトが電子メールアドレスとして使用することを許さないパターンで、フリーメールによるユーザー登録を防止するような場合に使用します。 | で区切ってください。これは大文字と小文字を区別せず、正規表現による指定が可能です。加えて、このルールはコントロールパネルのユーザー管理画面では適用されません。</p>
+        <h6>Display disclaimer?</h6>
+        <p>Specify whether the user registration displays the disclaimer specified by the following option.</p>
 
-        <h3>利用許諾文を表示する </h3>
-        <p>ユーザー新規登録時に、次のオプションで指定される利用許諾文を表示するかどうかを指定します。</p>
+        <h6>Registration disclaimer</h6>
+        <p>This is the disclaimer stated in the user registration for the anonymous user. If the previous option is No, you do not need to edit this option.</p>
 
-        <h3>利用許諾文 </h3>
-        <p>これはユーザー新規登録において、ゲストに対して表示される注意書きです。もし前のオプションで「いいえ」を選択しているのであれば、あなたはこのオプションに触れる必要はありません。</p>
+        <h6>Name for user cookies</h6>
+        <p>Specifies the cookie name for web browsers. In most of the cases, you don't need to change this.</p>
 
-        <h3>ユーザ名の保存に使用するクッキーの名称</h3>
-        <p>ウェブブラウザに対するクッキー名を指定します。高度な設定であり、ほとんどの場合、あなたはこれを変更する必要はないでしょう。</p>
+        <h6>Use SSL for login?</h6>
+        <p>You need to install the additional login script to enable SSL connection. If YES, <span class="highlight_block_name">Login Block</span> shows the link "SSL Login".
+            These options are for compatibility with XOOPS2-JP. You may be able to find a better solution to upgrade and migrate your SSL connection. The script is in the public "/html" directory.</p>
 
-        <h3>ログインにSSLを使用する</h3>
-        <p>あなたは、SSLログインを有効にするために、特別な追加ログインスクリプトをインストールしなければなりません。「はい」を選択した場合、<span class="highlight_block_name">ログインブロック</span>は次のオプションで指定されたリンクを「ＳＳＬログイン」として表示します。これらのオプションは XOOPS2 JP のものと互換です。おそらく、あなたは SSL ログインに関して、これよりベターな解決策を見つけることが可能です。追加スクリプトは /extras ディレクトリに入っています。</p>
+        <h6>SSL Post variable name</h6>
+        <p>This option is for SSL Login, too. Specifies a name of the POST-request variable.</p>
 
-        <h3>SSLログイン時に使用するPOST変数の名称</h3>
-        <p>このオプションも SSL ログインのためのものです。 POST リクエスト変数の名前を指定します。</p>
-
-        <h3>SSLログインページへのURL </h3>
-        <p>このオプションも SSL ログインのためのものです。あなたがインストールした追加ログインスクリプトの URL を指定します。</p>
+        <h6>URL where SSL login page is located</h6>
+        <p>This option is for SSL Login, too. Specifies the URL where you have installed the additional login script for SSL.</p>
 
     </section>
-
-
-<hr>
-
 
     <section id="help-development">
 
         <h3>Development</h3>
 
         <table class="outer">
-            <thead>
-            <tr>
-                <th>Module name</th>
-                <th>User [ core system ]</th>
-            </tr>
-            </thead>
             <tbody>
             <tr>
-                <td>Type</td>
-                <td>X2 Module</td>
+                <td>Bundle Package</td>
+                <td> XCL 2.3.3</td>
             </tr>
             <tr>
-                <td>Version</td>
-                <td>2.31</td>
+                <td>Module name</td>
+                <td>User</td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td>XCube Core Module</td>
             </tr>
             <tr>
                 <td>Level</td>
                 <td>Required</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>Update by Nuno Luciano aka gigamaster, 2020 XCL23, Nobuhiro Yasutomi aka nbuy</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>Kazuhisa Minato aka minahito, Core developer</td>
+            </tr>
+            <tr>
+                <td>Copyright </td>
+                <td>(c) 2007-2023 The XOOPSCube Project, Authors</td>
+            </tr>
+            <tr>
+                <td>license</td>
+                <td>GPL 2.0</td>
             </tr>
             <tr>
                 <td>🌐 Repository URL</td>
@@ -413,5 +556,4 @@
     </section>
 
 </article>
-
 </div>

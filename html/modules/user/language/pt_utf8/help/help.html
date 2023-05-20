@@ -1,10 +1,11 @@
 <div data-layout="row sm-column">
+
     <div data-self="size-xxsmall">
         <nav id="help-menu">
             <ul data-layout="rows">
                 <li><a href="#help-overview" class="button">Overview</a>
-                <li><a href="#help-groups" class="button"> Groups</a>
-                <li><a href="#help-users" class="button">Users</a>
+                <li><a href="#help-groups" class="button">Group Management</a>
+                <li><a href="#help-users" class="button">User Account</a>
                 <li><a href="#help-avatars" class="button">Avatars</a>
                 <li><a href="#help-blocks" class="button">Blocks</a>
                 <li><a href="#help-ranks" class="button">Ranks</a>
@@ -21,123 +22,135 @@
 
         <h3>Overview</h3>
 
-        <p>The User module provides the best practices ensuring you have a simple, secure and scalable account authentication system.
-        <p>This module allows you to manage users, groups, and set permissions defined in the default security realm.
+        <p><b>User Groups</b> allows you to manage privileges and assign permissions to User groups defined in the default security realm.
+        <p>The Umodule provides the best practices ensuring you have a simple, secure and scalable account authentication system.
 
-        <p>The following features are provided:</p>
 
-        <ul>
-            <li>Authentication</li>
-            <li>User Registration</li>
-            <li>User Profile Edit</li>
-            <li>User Profile Display</li>
-            <li>Blocks about users</li>
-            <li>User Management</li>
-            <li>others</li>
-        </ul>
-    </section>
-
-    <section>
-
-        <h3>Identity-Based Security</h3>
-
-        <p>The most common form of Identity-based security is password authentication involving the login of an online account.
-            Most of the largest digital corporations rely on this form of security, such as Facebook, Google, and Amazon.
-
-        <h3>Group-Based Policy</h3>
-
-        <p>Groups are used to segment users in your web application by grouping the users into roles based on user authentication.
-
-        <p>User and group-based policies are designed to facilitate the assignment of security permissions to multiple user accounts, improving security and productivity.
-
-        <p>Typically, you create a User Group to represent a group of users.
-            By granting security permissions to the User Group, you can reduce the need to configure security permissions for individual user accounts.</p>
-        <p>You can manage permissions directly in User Groups Management,
-            or you can manage them 'remotely' by associating them within Modules and blocks permissions.
-            Either way, you need to create the User Groups you require directly in User Groups Management.</p>
-
-        <p>When you first install the Web Application Platform, the only User Groups that exists are the built-in required groups :
+        <p>The following features are provided by the modules Users, Message and Protector :
 
         <ul>
-        <li>Webmasters
-        <li>Registered Users
-        <li>Anonymous<br>
-        The user group which by default does not have any permissions.
-        </ul>
-
-        <p>When you assign a User account to a User Group, that user becomes a 'member' of the User Group.<br>
-            A user can be a member of more than one User Group.<br>
-            This can make managing security permissions easier because you can configure different user groups to provide access to different collections of security permissions.<br>
-            By adding or removing a user's membership of different User Groups, you can allocate or remove that user's access to the collections
-            of security permissions to which those particular User Groups provide access.</p>
-
-        <p>When a user logs on via a user account that is a 'member' of a User Group, that user is granted:</p>
-
-        <ul>
-        <li>The permissions of the ‘Registered Users’ User Group
-        <li>The permissions of the user account
-        <li>The permissions of the User Group(s) of which the user account is a member
-        <li>The permissions of any role that is assigned to the user account, e.g. moderator.
-        <li>The permissions of any D3 module individual permissions that are assigned to the User
-        <li>Access to any modules and contents that are associated with the User Group(s)
-        <li>Access to any blocks and contents that are associated with the User Group(s)
-        <li>Access to any D3 modules contents that are associated with the User Account.
+            <li>Group-based permissions
+            <li>Registration : new user account and activation method
+            <li>Authentication and security limit of Log in attempts
+            <li>Extend User Profile with custom fields
+            <li>Private Message
+            <li>Blocks : Login, Users Online, New Members, Top Posters
+            <li>Manage subscription event notification
         </ul>
 
     </section>
-
 
     <section id="help-groups">
 
         <h3>Group Management</h3>
 
-        <P>Identity-based are attached to a user account, group, or role. These policies let you specify what actions that identity, user or user-group is allowed to do (its permissions).
-            Groups are additive, which means that identity is the sum (or conjunction) of all the groups to which the user belongs.
-        <p>The group membership remains independently of the session (the logging session).<br>
-            Any notion of inheritance or exclusion must be handled manually by someone with enough privileges to manage group membership.</p>
-        <p>You can assign users to more than one group and grant access to the content of modules and blocks.</p>
+        <p>Groups are used to segment users in your web application.
+        You can assign users to multiple groups and grant access to modules and blocks content.
+        The installation wizard creates the default User Groups and Roles :</p>
 
-        <p>The installation wizard creates the default Groups and Roles :</p>
-
-        <table>
-            <tr><td>Webmasters</td><td>Administrators</td></tr>
-            <tr><td>Registered Users</td><td>Members</td></tr>
-            <tr><td>Anonymous Users</td><td>Guests</td></tr>
-            <tr><td colspan="2"><b>Roles</b></td></tr>
-            <tr><td>Webmaster</td><td>Administration</td></tr>
-            <tr><td>Moderator</td><td>Forum moderation</td></tr>
+        <div data-layout="row p-7 m-auto">
+            <table style="border-collapse: separate;border-spacing: 4px;padding:8px;">
+            <tr><th><b>User Groups</b></th><td><b>Description</b></td></tr>
+            <tr class="bg-blue"><td>Webmasters</td><td>Full administrative permissions across the application</td></tr>
+            <tr class="bg-green"><td>Registered Users</td><td>All users except anonymous. Permissions to read and write comments.</td></tr>
+            <tr class="bg-orange"><td>Anonymous Users</td><td>Guest users or visitors, by default anonymous. Permissions restricted to read.</td></tr>
+            <tr><th><b>Roles</b></th><td><b>Privilege</b></td></tr>
+            <tr class="bg-blue"><td>Webmaster</td><td>Administration</td></tr>
+            <tr class="bg-indigo"><td>Moderator</td><td>Forum moderation</td></tr>
         </table>
+        </div>
 
-        <div class="error">These required User Groups and Roles can not be deleted !<br>
+        <div class="error">These User Groups and Roles are required by the system and cannot be deleted !<br>
             You can create new Groups and modify the permissions for each new Group created.</div>
 
-        <h3>Roles</h3>
+        <h3>Actions</h3>
 
-        <p>Roles are used to add privileges to specific users, for example :
-        <ul>
-            <li>Webmaster - can assign users and permissions
-            <li>Moderator - can manage only comments and forums
-        </ul>
+        <p><a class="button action-add" href="index.php?action=GroupMember&amp;groupid=1" title="Assign a member">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6h-2Z"></path></svg>
+        </a> Assign a user to the Group.
 
-        <div class="confirm">D3 modules, or Trust modules can assign individual permissions.</div>
+        <p><a class="button action-edit" href="index.php?action=GroupEdit&amp;groupid=1" title="Edit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path></svg>
+        </a> Edit the group's name and write a short description.
 
-        <p>The Permissions section of D3Forum, and other Trust modules, allow you to select the checkboxes that correspond
-            to the privileges you can grant to a specific user i.e. View, Post, Edit, etc.</p>
+        <p><a class="button action-view" href="index.php?action=GroupProperty&amp;groupid=1" title="Properties">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z" fill="currentColor"></path></svg>
+        </a> View properties of the group's global permissions.
+        <p><a class="button action-lock" href="index.php?action=GroupPerm&amp;groupid=1" title="Group Permissions">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M20 8h-3V6.21c0-2.61-1.91-4.94-4.51-5.19A5.008 5.008 0 0 0 7 6v2H4v14h16V8zm-8 9c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2zM9 8V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9z"></path></svg>
+        </a> Set group permissions for modules and blocks.
 
-        <div class="tips">Consider your security and access needs, set Groups according to those needs,
-        then add users to the Groups based on the permissions that you want to grant.</div>
+        <h3>Creating Groups</h3>
 
-        <p>Bulk actions or bulk editing is an efficient way to complete certain actions to multiple items at one time as opposed to completing the same action multiple times.
-            For example, you can perform a bulk action to disable or delete multiple users at the same time.
-            Actions that involve a unique identifier, such as setting a user's permission level for a content, should not be completed through bulk editing if each user requires separate settings.
-            Some actions can only be completed at the individual item level. The Actions button only appears in modules that allow for bulk editing.
+        <p>Browse to Group Management and click the button :<br>
+            <a class="button" href="#!"><i class="i-add"></i> Add new group</a>
+
+        <ol>
+        <li>Enter the name of the user group in the Name field.
+        <li>Write a short description
+        <li>Click Submit
+        </ol>
+
+        <p>The Group Management page is displayed with the new group.
+        <p><a href="#!" class="button" title="Group Permissions"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M20 8h-3V6.21c0-2.61-1.91-4.94-4.51-5.19A5.008 5.008 0 0 0 7 6v2H4v14h16V8zm-8 9c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2zM9 8V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9z"></path></svg>
+        </a> Click Group Permissions to modify the Group.
+
+        <p><a class="button action-delete" href="#!" aria-label="Delete">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M6 21h12V7H6v14zm2.46-9.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z"></path></svg>
+        </a> Alternatively, click Delete to delete the user group.
+
+        <div class="tips">It's recommended to start with the same default permissions of the group Registered Users.</div>
+
+        <h3>Assigning Permissions to User Groups</h3>
+
+        <p>The ability to perform an action requires privileges.
+            Usually, permissions and privileges are used interchangeably,
+            but technically they have specific and different meanings in the context of web application security.
+            Simply put, modules expose permissions. Users have privileges. Privileges are assigned permissions to User Groups.
+            When you assign permission to a user group, you are granting a privilege to all members of the group.
         </p>
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+
+        <h6>Permissions</h6>
+        <p>Declaration of the actions that can be executed on the module.
+
+        <h6>Privileges</h6>
+        <p>Permissions assigned to user groups.
+
+        <div data-layout="row p-7 m-auto">
+        <table class="list_center" style="border-collapse: separate;border-spacing: 4px;padding:8px;">
+            <tr>
+                <th colspan="4"><b>Permissions</b></th>
+            </tr>
+            <tr class="bg-blue">
+                <td width="25%">Create</td><td width="25%">Read</td><td width="25%">Update</td><td width="25%">Delete</td>
+            </tr>
+            <tr>
+                <th colspan="4"><b>Privileges</b></th>
+            </tr>
+            <tr>
+                <td colspan="2" class="bg-green">Access ( Read )</td><td colspan="2" class="bg-blue">Admin ( Write )</td>
+            </tr>
+            <tr>
+                <th colspan="4"><b>Profile</b></th>
+            </tr>
+            <tr>
+                <td colspan="2" class="bg-green">Access ( Read )</td><td colspan="2" class="bg-red">Null ( access denied )</td>
+            </tr>
+            <tr>
+                <th colspan="4"><b>Ban</b></th>
+            </tr>
+            <tr class="bg-red">
+                <td colspan="4">Null ( access denied )</td>
+            </tr>
+        </table>
+        </div>
+
+        <div class="tips">You may assign permissions when editing modules, blocks and user profile fields. These are different views of the same privileges.</div>
+
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li>User Management</li>
-            <li>Profile Custom Fields</li>
-            <li>Bulk Action</li>
+            <li><a href="<{'cgroups-permissions.html'|helpurl}>">Group Management</a>
+            <li><a href="<{'index.php?action=Help&dirname=profile'}>">Add Custom Fields to User Profile ⭢</a>
         </ul>
 
     </section>
@@ -145,57 +158,95 @@
 
     <section id="help-users">
 
-        <h3>User Management</h3>
+        <h3>User Account</h3>
 
         <p>Access to your website is controlled by a group system by which users are assigned to User groups.
-            Group permissions allow access to the content of modules and blocks.</p>
+            Group permissions allow access to the content of modules and blocks.
 
-        <p>D3 modules, or Trust modules, can extend User Management by providing a role-based system to assign individual permissions.</p>
+        <p>User accounts are added through user registration and activation.
+            Although Webmasters can create and activate accounts in User Management.
+
+        <p>D3 modules, or Trust modules, can extend User Management by providing a role-based system to assign individual permissions.
 
         <div class="confirm">A user's permissions are determined by the sum of all group permissions to which the user belongs.</div>
 
-        <h3>User Account</h3>
+        <h3>User Profile</h3>
+        <p>A user account has login information, authentication, personal information fields, private messages and notification management.
 
-        <p>A user account has login information, authentication and profile fields by default.
-            Login credentials, typically a username and password, authenticate a user logging into an account.</p>
+        <h6>Registration</h6>
+        <p>Registration to the site is allowed by default. If you are running a closed site, or need to temporarily disable registration,
+            you may disable this feature by switching "Allow new user registration" to the "No" setting in the module preferences :<br>
+            <span class="badge">Control Panel »» User Groups »» Preferences</span>
 
-        <p>User accounts are added through user registration and activation.
-            Although webmasters can create accounts in the User Management.
+        <h6>Activation</h6>
+        <p>Activation is a process of verifying a registered user.
+            The registered user's account can be automatically activated upon registration.
+            Indeed, an activated account is required to connect. However, other activation modes are available.
+        <p>The Activation mode specifies the activation workflow :
 
-        <p>The user profile can also be extended by adding new fields with the Profile module.</p>
-
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
         <ul>
-            <li>Group Management
-            <li>User Management
-            <li>Add Custom Fields to User Profiles
+        <li><b>Activate automatically</b> : This mode will automatically activate a user upon first registration.
+        <li><b>Require activation by user</b> : Activation by following the link in the confirmation message sent to the user's email address.
+        <li><b>Activation by administrators</b>: Activation by groups selected in the module preferences or by administrators via the back-end area.
+        </ul>
+
+        <p>Users have the ability to resend the activation email by clicking Send the verification email.
+
+        <h6>Avatar</h6>
+        <p>This feature allows Users to fashion their online personae called avatars. See section <a href="#help-avatars">Avatar Management</a>.
+
+        <h6>Log in</h6>
+        <p>Login credentials, typically a username and password, authenticate a user logging into an account.
+        <p>Users can also reset a lost or forgotten password.
+
+        <h6>Limit Log in Attempts</h6>
+        <p>This security feature blocks an Internet address from making further attempts after a specified limit on retries is reached, making a brute-force attack difficult or impossible.
+            If a user experiences too many failed sign in attempts, their account will be temporarily suspended for a period of time.
+            The module Protector allows administrators to enable IP blocking on their web application, in order to block all known malicious IP addresses to reduce the risk of an attack.
+
+        <h6>Private Message</h6>
+        <p>This feature is implemented by the module Message.
+
+        <h6>Notifications</h6>
+        <p>This feature is implemented by the core system.
+
+        <h6>Extend the User Profile</h6>
+
+        <p>The User Profile can be easily extended by adding new fields with the module Profile.
+            You can add custom fields for your users, set permissions and requirements.
+            This feature can be used if you need to add additional fields that are not available by default.
+
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
+        <ul>
+            <li><a href="<{'cgroups-permissions.html'|helpurl}>">Group Management</a>
+            <li><a href="<{'index.php?action=Help&dirname=profile'}>">Add Custom Fields to User Profile ⭢</a>
         </ul>
 
     </section>
-
 
     <section id="help-avatars">
 
         <h3>Avatars</h3>
 
-        <p>Registered Users can optionally fashion their online personae called avatars.</p>
+        <p>Registered Users can optionally fashion their online personae called avatars.
 
-        <p>This option can be set off from module User Groups » preferences.</p>
+        <p>Enable this option in the module's preferences.
+        "Allow new user registration" to the "No" setting in the module preferences :<br>
+        <span class="badge">Control Panel »» User Groups »» Preferences</span>
 
-        <h3>Types of avatars.</h3>
+        <h3>Types of avatars</h3>
 
-        <p>One is the system avatar, which administrators prepare by uploading a set of images.</p>
-        <p>The other is the custom avatar, for which users upload their favorite image file.</p>
-
-        <p>For security reasons, the only file formats allowed include :<br> .GIF, .JPG and .PNG</p>
-
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <p>Allow users to select an avatar from a previously uploaded collection.
+        <p>Or allow users to upload their own avatar :
         <ul>
-            <li>Avatar Management</li>
-            <li>User Preferences</li>
+            <li>Avatar image max width (pixel)
+            <li>Avatar image max height (pixel)
+            <li>Avatar image max filesize 1 Megabytes (MB) = 1,048,576 Bytes
         </ul>
+
+        <p>For security reasons, the default files extensions allowed for avatars are : .GIF, .JPG and .PNG
+
+        <div class="tips">Some Themes can generate automatically an avatar based on the first letter of the username.</div>
 
     </section>
 
@@ -204,12 +255,10 @@
 
         <h3>Module Blocks</h3>
 
-        <h4 class='highlight_block_name'>Login</h4>
-
-        <h6>Overview</h6>
+        <h6>Login</h6>
         <p>This module block shows the login-form for only anonymous users who still are not passing the authentication.
             If the user registration is allowed, it shows the link to create an account.
-            And, if the SSL login is allowed, it shows the link specified by options of preferences.</p>
+            The SSL login option ensures backwards compatibility.
 
         <p>Create An Account is what the anonymous user do after the sign-up.
             An account needs to be associated with a signature or profile, and often that can't be done until the user completes the registration process.
@@ -217,13 +266,12 @@
 
         <div class="tips">Note : You can log in using example.com/user.php, if you have uninstalled this block by mistake.</div>
 
-        <h4 class='highlight_block_name'>Users Online</h4>
-        <h6>Overview</h6>
+        <h6>Users Online</h6>
         <p>This block displays the names of users likely to access your site and how many are online.
-        <p>Getting correct information for online users is too cumbersome and resource consuming process. Therefore, this block does not attempt to display an exact result. But this should give you some insight.</p>
+        <p>Getting correct information for online users is too cumbersome and resource consuming process.
+        Therefore, this block does not attempt to display an exact result. But this should give you some insight.
 
-        <h4 class='highlight_block_name'>New Members</h4>
-        <h6>Overview</h6>
+        <h6>New Members</h6>
         <p>This block displays the names of users who have recently registered on your site.</p>
 
         <h6>Options</h6>
@@ -235,11 +283,10 @@
             <dd>If YES, displays user avatars with users name.</dd>
         </dl>
 
-        <h4 class='highlight_block_name'>Top posters</h4>
-        <h6>Overview</h6>
+        <h6>Top posters</h6>
         <p>This block shows the ranking of the top contributors.</p>
 
-        <h6>Options</h6>
+        <p>Options</p>
         <dl>
             <dt>Display x members</dt>
             <dd>Specifies the limit of users to display.</dd>
@@ -251,15 +298,12 @@
             <dd>You can remove users belonging to specific groups from the ranking.</dd>
         </dl>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li>Block Management</li>
-            <li>User Groups Preferences</li>
+            <li><a href="<{'index.php?action=Help&dirname=legacy'}>">Block Management ⭢</a>
         </ul>
 
     </section>
-
 
     <section id="help-ranks">
 
@@ -279,15 +323,7 @@
 
         <p>Once you have added ranks, visit a profile or page with comments to see it in action.</p>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
-        <ul>
-            <li></li>
-            <li></li>
-        </ul>
-
     </section>
-
 
     <section id="help-mailjob">
 
@@ -306,6 +342,7 @@
         </ul>
 
         <h3>Usage</h3>
+
         <p>Add an empty job from the control panel.
         <p>Specify a name and a label for the job.
         <p>In a next step invoke the job wizard to find users. The wizard brings up the following window :
@@ -315,15 +352,12 @@
         <p>You can customize the maximum number of retries.
         <p>This gives you the option to continue processing new events.
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li>Mail Setup</li>
-            <li>User Groups Preferences</li>
+            <li><a href="<{'index.php?action=Help&dirname=legacy'}>">Mail Setup ⭢</a>
         </ul>
 
     </section>
-
 
     <section id="help-csv">
 
@@ -338,36 +372,35 @@
 
     </section>
 
-
     <section id="help-preferences">
 
         <h3>Preferences</h3>
 
-        <h5>Features in Control Panel</h5>
+        <h6>Features in Control Panel</h6>
         <p>This article provides information specific to user management.</p>
 
         <h4>User module - Preferences</h4>
 
-        <h5>Allow new user registration?</h5>
+        <h6>Allow new user registration?</h6>
         <p>Specifies whether anonymous users can register to your site. If YES, registration is available, and <span class='highlight_block_name'>Login Block</span> shows the link to create an account (register.php).
         <p>Even if registration is deactivated, you can still add a new user in the user management.</p>
 
-        <h5>Minimum length of password required</h5>
+        <h6>Minimum length of password required</h6>
         <p>Specifies the minimum password length. A long password makes a password harder to guess. Of course, length is only one strong password factor. But, you should specify at least five.</p>
 
-        <h5>Minimum length of username required</h5>
+        <h6>Minimum length of username required</h6>
         <p>Specifies the minimum username length. This option is not about security. This is a decision to be made based on the needs of your organization.</p>
 
-        <h5>Allow users to change email address?</h5>
+        <h6>Allow users to change email address?</h6>
         <p>Specifies whether users can change their email address in user profile editor (edituser.php). By the way, this module does not send a confirmation email for users who change their email address.</p>
 
-        <h5>Notify by mail when a new user is registered?</h5>
+        <h6>Notify by mail when a new user is registered?</h6>
         <p>If this option is Yes, the group specified by the following option can receive an e-mail notification about new user registrations.</p>
 
-        <h5>Select a group to which new user notification mail will be sent</h5>
+        <h6>Select a group to which new user notification mail will be sent</h6>
         <p>Specifies the group that receives the notification mail in case the previous option is Yes. The webmaster group is usually selected for this option.</p>
 
-        <h5>Select activation type of newly registered users</h5>
+        <h6>Select activation type of newly registered users</h6>
         <p>After registering, a user must be activated. Being activated means being able to log in. There are several ways to activate users.</p>
 
         <h6>Require activation by user</h6>
@@ -380,7 +413,7 @@
         <h6>Activation by administrators</h6>
         <p>A user can only be activated by direct approval of the group specified by the following option. This activation requires human intervention, and therefore seems more effective. However, this can be a time-consuming task for activators.</p>
 
-        <h5>Select the level of strictness for username filtering</h5>
+        <h6>Select the level of strictness for username filtering</h6>
         <p>Select the strictness level for the username from the following options.</p>
 
         <h6>Strict (Only alphabets and numbers)</h6>
@@ -415,72 +448,71 @@
         <h6>Light - allow 2byte characters</h6>
         <p>This option allows all characters except control code. But this can be a cause of problem for some modules. Therefore, this option is not recommended if you are using old modules.</p>
 
-        <h5>Allow custom avatar upload?</h5>
+        <h6>Allow custom avatar upload?</h6>
         <p>Specifies whether a user can upload their favorite image file as an avatar. Even if the case is No, a user can choose an avatar among the avatars made available by the administrators.</p>
 
-        <h5>Minimum posts required</h5>
+        <h6>Minimum posts required</h6>
         <p>If you allow uploading of custom avatars, you don't need to set this option.</p>
 
         <p>This is the minimum number of posts required for users to upload a custom avatar. This decision depends on your organization's community member ranking strategy.</p>
 
-        <h5>Avatar image max width (pixel)</h5>
+        <h6>Avatar image max width (pixel)</h6>
         <p>Define if custom avatar upload is allowed.</p>
 
         <p>Specifies the limit width for the custom avatar. In the event that a user uploads an image larger than this value, this module displays an error message.</p>
 
-        <h5>Avatar image max height (pixel)</h5>
+        <h6>Avatar image max height (pixel)</h6>
         <p>Define if custom avatar upload is allowed.</p>
 
         <p>Specifies the limit height for the custom avatar. In the event that a user uploads an image larger than this value, this module displays an error message.</p>
 
-        <h5>Avatar image max filesize 1 Megabytes (MB)	=	1,048,576 Bytes</h5>
+        <h6>Avatar image max filesize 1 Megabytes (MB)	=	1,048,576 Bytes</h6>
         <p>Define if custom avatar upload is allowed.</p>
 
         <p>Specifies the limit filesize for custom avatar. In the event that a user uploads an image larger than this value, this module displays an error message.</p>
 
-        <h5>Allow users to delete own account?</h5>
+        <h6>Allow users to delete own account?</h6>
         <p>Specifies whether users can delete their own account in the user profile edit.
             If Yes, users can access the account deletion dialog via the user profile link (userinfo.php).
             Since these delete dialogs are very minimal, you can improve it with a notice by changing the templates --- user_delete.html, user_delete_success.html.</p>
 
-        <h5>Execution confirmation message</h5>
+        <h6>Execution confirmation message</h6>
         <p>This is the message displayed in the account deletion dialog. If you don't allow users to delete their own account, you don't need to edit this option.</p>
 
-        <h5>Enter names that should not be selected as username</h5>
+        <h6>Enter names that should not be selected as username</h6>
         <p>These are patterns that your site does not allow as usernames. Separate them with a | (pipe). This is case-insensitive and regex enabled.
             This rule does not apply to user management in the control panel. If you don't allow users to delete their own account, you don't need to edit this option.
 
-        <h5>Enter emails that should not be used in user profile</h5>
+        <h6>Enter emails that should not be used in user profile</h6>
         <p>These are patterns that your site does not allow as email address. Separate them with a | (pipe). This is case-insensitive and regex enabled.
             This rule does not apply to user management in the control panel.</p>
 
-        <h5>Display disclaimer?</h5>
+        <h6>Display disclaimer?</h6>
         <p>Specify whether the user registration displays the disclaimer specified by the following option.</p>
 
-        <h5>Registration disclaimer</h5>
+        <h6>Registration disclaimer</h6>
         <p>This is the disclaimer stated in the user registration for the anonymous user. If the previous option is No, you do not need to edit this option.</p>
 
-        <h5>Name for user cookies</h5>
+        <h6>Name for user cookies</h6>
         <p>Specifies the cookie name for web browsers. In most of the cases, you don't need to change this.</p>
 
-        <h5>Use SSL for login?</h5>
+        <h6>Use SSL for login?</h6>
         <p>You need to install the additional login script to enable SSL connection. If YES, <span class="highlight_block_name">Login Block</span> shows the link "SSL Login".
             These options are for compatibility with XOOPS2-JP. You may be able to find a better solution to upgrade and migrate your SSL connection. The script is in the public "/html" directory.</p>
 
-        <h5>SSL Post variable name</h5>
+        <h6>SSL Post variable name</h6>
         <p>This option is for SSL Login, too. Specifies a name of the POST-request variable.</p>
 
-        <h5>URL where SSL login page is located</h5>
+        <h6>URL where SSL login page is located</h6>
         <p>This option is for SSL Login, too. Specifies the URL where you have installed the additional login script for SSL.</p>
 
     </section>
-
 
     <section id="help-development">
 
         <h3>Development</h3>
 
-        <table>
+        <table class="outer">
             <tbody>
             <tr>
                 <td>Bundle Package</td>
@@ -497,6 +529,22 @@
             <tr>
                 <td>Level</td>
                 <td>Required</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>Update by Nuno Luciano aka gigamaster, 2020 XCL23, Nobuhiro Yasutomi aka nbuy</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>Kazuhisa Minato aka minahito, Core developer</td>
+            </tr>
+            <tr>
+                <td>Copyright </td>
+                <td>(c) 2007-2023 The XOOPSCube Project, Authors</td>
+            </tr>
+            <tr>
+                <td>license</td>
+                <td>GPL 2.0</td>
             </tr>
             <tr>
                 <td>🌐 Repository URL</td>

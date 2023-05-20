@@ -1,6 +1,7 @@
 <?php
 /**
  * @package user
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: UserSearchFilterForm.class.php,v 1.3 2007/09/08 01:09:39 minahito Exp $
  */
 

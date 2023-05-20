@@ -1,6 +1,7 @@
 <?php
 /**
  * @package user
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: AvatarEditAction.class.php,v 1.3 2007/08/23 13:04:21 minahito Exp $
  */
 

@@ -1,6 +1,7 @@
 <?php
 /**
  * @package user
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: LegacypageFunctions.class.php,v 1.6 2007/12/15 15:18:11 minahito Exp $
  */
 

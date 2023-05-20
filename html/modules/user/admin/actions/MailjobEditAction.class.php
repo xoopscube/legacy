@@ -1,6 +1,7 @@
 <?php
 /**
  * @package user
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: MailjobEditAction.class.php,v 1.2 2007/06/05 05:32:54 minahito Exp $
  */
 

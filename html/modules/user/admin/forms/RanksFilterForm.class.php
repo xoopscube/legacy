@@ -1,6 +1,7 @@
 <?php
 /**
  * @package legacyRender
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: RanksFilterForm.class.php,v 1.1 2007/05/15 02:34:39 minahito Exp $
  */
 
