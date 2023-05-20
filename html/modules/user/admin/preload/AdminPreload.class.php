@@ -1,7 +1,8 @@
 <?php
 /**
  * @package user
- * @author     Nobuhiro YASUTOMI, PHP8
+ * @author  Nobuhiro YASUTOMI, PHP8
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: AdminPreload.class.php,v 1.1 2007/05/15 02:35:34 minahito Exp $
  */
 

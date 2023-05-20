@@ -1,6 +1,7 @@
 <?php
 /**
  * @package user
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: UserDataDownloadAction.class.php,v 1.1 2007/05/15 02:34:42 minahito Exp $
  */
 

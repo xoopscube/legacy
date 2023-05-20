@@ -3,7 +3,7 @@
     <div data-self="size-xxsmall">
         <nav id="help-menu">
             <ul data-layout="rows">
-                <li><a href="#help-store" class="button">Store Overview</a>
+                <li><a href="#help-overview" class="button">Store Overview</a>
                 <li><a href="#help-modules" class="button">Module</a>
                 <li><a href="#help-theme" class="button">Theme</a>
 <!--                <li><a href="#help-themefinder" class="button">Theme Finder</a>-->
@@ -21,11 +21,15 @@
     <section id="help-overview">
 
         <h3>X-Update Manager</h3>
+        <p>X-update Manager is a software update service (SUS) with a user-friendly GUI to quickly extend and update your web app.
+        This module can download all critical updates and security patches to your server as soon as they become available.
+        In addition, you can manage your FTP/SSH credentials in the module preferences.
 
-        <p>The X-Update manager is a module utility to get and deploy add-ons and updates : modules, preloads and themes.</p>
-
+        <p>With the introduction of X-update, site administrators just need to log in to the administration
+        Control Panel to install or update modules, themes and preloads.
+        The deployment is as fast as possible by downloading archives from repositories such as GitHub or GitLab.
+        X-update also provides support for language catalogs (localization) and multiple instances of D3 modules (duplicatable and directory free).
         <p>X-Update automatically monitors the public repository for updates as well as installed modules and themes.</p>
-
         <p>Available updates are highlighted in the top notification, and the front-end if X-Update's block is installed.</p>
 
         <div class="confirm">If your SSL certificate is not valid, check <b>cURL: Disable SSL verification</b> in module's preferences.</div>
@@ -84,8 +88,8 @@
         <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
             Related content</h4>
         <ul>
-            <li></li>
-            <li></li>
+            <li>Install Modules</li>
+            <li>Run multiple instances of a Trust Module</li>
         </ul>
 
     </section>
@@ -117,8 +121,8 @@
         <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
             Related content</h4>
         <ul>
-            <li></li>
-            <li></li>
+            <li>Theme Management</li>
+            <li>Theme with custom templates</li>
         </ul>
 
     </section>
@@ -129,13 +133,6 @@
         <h3>ThemeFinder</h3>
         <p>Service to select and preview Themes.</p>
         <div class="error">Note : The service is not up-to-date and might be removed soon due the lack of developers interest.</div>
-
-        <h5><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h5>
-        <ul>
-            <li></li>
-            <li></li>
-        </ul>
 
     </section>
 
@@ -160,13 +157,13 @@
             <p>Unlike modules, Preloads do not have a control panel.</p>
             <p>A Preload is installed in the public directory <span class="badge">/preloads/</span></p>
             <p>To disable a preload, the best practice is to use X-elFinder<br>
-                The file manager can be used to delete or to move the preload file to the directory <span class="badge">/preloads/disabled/</span></p>
+                The file manager can be used to delete or move the preload file to a directory <span class="badge">/preloads/disabled/</span></p>
 
         <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
             Related content</h4>
         <ul>
-            <li></li>
-            <li></li>
+            <li>List of preloads</li>
+            <li>Sample of preload file</li>
         </ul>
 
     </section>
@@ -197,8 +194,8 @@
         <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
             Related content</h4>
         <ul>
-            <li></li>
-            <li></li>
+            <li>Create your own Update Store</li>
+            <li>Customize X-Update Manager</li>
         </ul>
 
     </section>
@@ -212,7 +209,7 @@
             <tbody>
             <tr>
                 <td>Bundle Package</td>
-                <td> XCL 2.3.3</td>
+                <td>XCL 2.3.3</td>
             </tr>
             <tr>
                 <td>Module name</td>
@@ -220,15 +217,27 @@
             </tr>
             <tr>
                 <td>Type</td>
-                <td>Trust module</td>
-            </tr>
-            <tr>
-                <td>Version</td>
-                <td>2.31</td>
+                <td>Trust module (software update service)</td>
             </tr>
             <tr>
                 <td>Level</td>
-                <td>Recommended</td>
+                <td>Required</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>Domifara, Hamaco, Kilica Hikawa, Naoki Okino aka naao, Naoki Sawada aka nao-pon</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>Update by Nuno Luciano aka gigamaster, 2020 XCL23, Nobuhiro Yasutomi aka nbuy</td>
+            </tr>
+            <tr>
+                <td>Copyright </td>
+                <td>(c) 2012-2023 The XOOPSCube Project, Authors</td>
+            </tr>
+            <tr>
+                <td>license</td>
+                <td>GPL 2.0</td>
             </tr>
             <tr>
                 <td>🌐 Repository URL</td>

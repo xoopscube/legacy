@@ -1,6 +1,7 @@
 <?php
 /**
  * @package user
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: UserRegisterAction.class.php,v 1.2 2007/06/07 02:58:44 minahito Exp $
  */
 

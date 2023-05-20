@@ -1,6 +1,7 @@
 <?php
 /**
  * @package User
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: UserRecountForm.class.php,v 1.1 2007/05/15 02:34:39 minahito Exp $
  */
 

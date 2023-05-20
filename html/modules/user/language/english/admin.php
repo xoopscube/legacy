@@ -105,7 +105,7 @@ define( '_AD_USER_LANG_PERM_ADMIN' , 'Admin');
 define( '_AD_USER_LANG_PERM_BLOCK_ACCESS' , 'Permission to access blocks');
 define( '_AD_USER_LANG_PERM_GROUP_PERM_BLOCK' , 'Blocks');
 define( '_AD_USER_LANG_PERM_GROUP_PERM_MODULE' , 'System / Module');
-define( '_AD_USER_LANG_PERM_MODULE_ACCESS' , 'System/module permissions');
+define( '_AD_USER_LANG_PERM_MODULE_ACCESS' , 'Permission to access modules');
 define( '_AD_USER_LANG_PERM_SYSTEM_PERM_MODULE' , 'System management');
 define( '_AD_USER_LANG_RANK' , 'Rank');
 define( '_AD_USER_LANG_RANK_EDIT' , 'Edit user rank');

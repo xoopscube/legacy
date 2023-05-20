@@ -10,7 +10,6 @@
 
 <h2><{$smarty.const._AD_USER_LANG_GROUP_PERMISSION}> &raquo; <{$group->getShow('name')}></h2>
 
-
 <table class="outer">
     <thead>
     <tr>
@@ -58,8 +57,8 @@
 </table>
 
 <h3><{$smarty.const._AD_USER_LANG_PERM_ACCESS_ADMIN}></h3>
-
-<h4><{$smarty.const._AD_USER_LANG_PERM_MODULE_ACCESS}></h4>
+<hr>
+<h3><{$smarty.const._AD_USER_LANG_PERM_MODULE_ACCESS}></h3>
 
 <{if $actionForm->hasError()}>
 <div class="error">
@@ -99,7 +98,6 @@
     <br>
     <{/if}>
 
-
     <table class="outer">
         <thead>
         <tr>
@@ -131,7 +129,7 @@
         </tbody>
     </table>
 
-<br>
+<hr>
 
     <h3><{$smarty.const._AD_USER_LANG_PERM_BLOCK_ACCESS}></h3>
 
@@ -177,6 +175,8 @@
 
     </table>
     <{/foreach}>
+
+<hr>
 
     <div data-layout="row centered" class="adminnavi">
         <{xoops_input type=hidden name=groupid value=$group->get('groupid')}>

@@ -1,6 +1,7 @@
 <?php
 /**
  * @package user
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: GroupPermAction.class.php,v 1.2 2007/06/07 05:27:37 minahito Exp $
  */
 

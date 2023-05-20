@@ -1,6 +1,7 @@
 <?php
 /**
  * @package user
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: GroupMemberAction.class.php,v 1.3 2007/12/15 12:25:29 minahito Exp $
  */
 

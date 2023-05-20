@@ -1,6 +1,7 @@
 <?php
 /**
  * @package user
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: UserEditAction.class.php,v 1.2 2007/12/22 17:54:05 minahito Exp $
  */
 
