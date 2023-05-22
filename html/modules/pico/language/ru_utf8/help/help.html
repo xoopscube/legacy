@@ -1,14 +1,20 @@
 <div data-layout="row sm-column">
+
     <div data-self="size-xxsmall">
         <nav id="help-menu">
             <ul data-layout="rows">
-                <li><a href="#help-overview" class="button">Pico</a>
+                <li><a href="#help-overview" class="button">Overview</a>
                 <li><a href="#help-features" class="button">Features</a>
-                <li><a href="#help-content" class="button">Content</a>
+                <li><a href="#help-content" class="button">Content Management</a>
+                <li><a href="#help-comments" class="button">Comments Integration</a>
+                <li><a href="#help-workflow" class="button">Publication Workflow</a>
+                <li><a href="#help-revision" class="button">Content Revision History</a>
+                <li><a href="#help-tags" class="button">Tags Management</a>
                 <li><a href="#help-permissions" class="button">Permissions</a>
-                <li><a href="#help-import" class="button">Import and Sync</a>
-                <li><a href="#help-tags" class="button">Tags</a>
                 <li><a href="#help-extra" class="button">Extra Forms</a>
+                <li><a href="#help-import" class="button">Import and Sync</a>
+                <li><a href="#help-html-head" class="button">Custom HTML head</a>
+                <li><a href="#help-instances" class="button">Multiple instances</a>
                 <li><a href="#help-development" class="button">Development</a>
             </ul>
         </nav>
@@ -18,18 +24,735 @@
 
     <section id="help-overview">
 
-        <h3>Pico Module</h3>
+        <h3>Overview</h3>
 
-        <p>Pico can run multiple instances as a Content Management System (CMS), Document and Knowledge Management, Wrapper, Portfolio, Gallery and much more.
-            One of the most significant advantages of using Pico is the simplified installation and updates, granular permissions and editing workflow.</p>
-        <ul>
-        <li>Pico is a Trust module, D3 for directory free and duplicable, that can run multiple instances.
-        <li>The module provides management control in the front-end for static content and publishing workflows.
-        <li>The module features a simple and granular access permissions for groups or a specific user.
-        <li>Among other options, custom 'head' with stylesheet and JavaScript by module, category or content.
-        <li>Track the history of your document and see past revisions from the front-end
-        <li>Customized Smarty Forms, override options for each category, forum integration to manage comments, and much more...
+        <p>The Pico module is one of the most useful and versatile modules. You can use it for content creation, to manage dynamic and static content.
+        <p>Examples of content creation include documents, articles, pages with custom components and forms, images and videos.
+        Static content is any content, or unchangeable files, that can be delivered to users without processing. For example, web documents or html files, brochures, reports or marketing materials.
+
+        <p>Pico is a Trust module based on duplicatable D3 specs which means you can install and run multiple highly customized instances from a single source.
+        Instances such as Content Management System (CMS), Knowledge Management or Wrapper for static content.
+
+        <p>The most significant benefits of using Pico coupled with CKEditor and X-elFinder are simplified installation and updates, granular permissions and digital content management.
+
+    </section>
+
+    <section id="help-features">
+
+        <h3>Features</h3>
+        <ul class="ui-card-2-col">
+            <li>Multiple instances
+            <li>Highly customizable
+            <li>Front-end management
+            <li>Breadcrumbs
+            <li>Navigation Menus
+            <li>Dynamic submenu
+            <li>Automated menu page
+            <li>Granular permission system
+            <li>Category hierarchy structure
+            <li>Content Forms with simple HTML
+            <li>Content Publishing Workflow, draft, pending, published
+            <li>Content approval process to create content
+            <li>Content approval process to modify content
+            <li>Event notification for waiting approval
+            <li>Content revision history to track changes
+            <li>Content revisions differential
+            <li>Content preview
+            <li>Content Cache
+            <li>Override options for each category
+            <li>Body filter system (smarty, wiki, php etc.)
+            <li>Limitless extra fields and images
+            <li>Tags
+            <li>Vote
+            <li>Wrap documents from TRUST_PATH/wraps/(dirname)
+            <li>Wrap documents automatically
+            <li>Wrap documents manually
+            <li>Wrap documents Auto-register to DB
+            <li>language constants override
+            <li>Static URI (same as wraps)
+            <li>Static URI mod_rewrite (both wraps mode and normal mode)
+            <li>Tell a friend option
+            <li>Tell-a-friend module supported natively
+            <li>Pagination
+            <li>Print friendly view
+            <li>Single content view
+            <li>Custom HTML Head Tags per module/category
+            <li>Custom HTML Head Tags per content
+            <li>Search (with context)
+            <li>Page view statistics
+            <li>Block list (duplicatable)
+            <li>Block menu (duplicatable)
+            <li>Block content (duplicatable)
+            <li>Front-end controller for admin
+            <li>Native d3forum comment-integration
+            <li>Wysiwyg Editor
+            <li>Import from TinyD per module
+            <li>Import from pico per module
+            <li>Import from pico per content
+            <li>Plugin for sitemap module
+            <li>Plugin for waiting module
+            <li>Plugin for Xmobile
+            <li>RSS (both module and each category)
         </ul>
+    </section>
+
+    <section id="help-content">
+
+    <h3>Content Management</h3>
+
+    <p>D3 modules are designed to let you create categories and contents on the front end.
+        These modules also provide <i>granular user permissions</i>, allowing you to customize access levels to contents and features.
+        You can identify and create user roles which define what a user can see and do.
+
+    <h6>Back-end</h6>
+
+    <p>The main administrative view provides the following functionality to let you manage contents and permissions :
+
+    <ul>
+        <li>Batch actions
+        <li>Edit title
+        <li>Virtual path
+        <li>Weight (order)
+        <li>Visible (published)
+        <li>Show in Navigation
+        <li>Show in Menu
+        <li>Allow comments
+        <li>User groups and granular permissions
+    </ul>
+
+    <h6>Front-end</h6>
+
+    <p>You can create and edit categories and contents directly from the front-end :
+
+    <ul>
+        <li>Visible (published)
+        <li>Show in navigation
+        <li>Show in menu
+        <li>Allow comments
+        <li>Use cache (enable only for static content)
+        <li>Lock (only moderators can edit/delete)
+        <li>Set filters
+        <li>Access revision history
+    </ul>
+
+    <div class="tips">Categories and contents can be moved or exported to other active instances.
+        You can also embed content from one instance into another instance and easily include HTML files.
+        See section "Wraps mode" for more details.</div>
+
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
+        <ul>
+            <li><a href="<{'help.html#help-workflow'|helpurl}>">Content publication workflow</a>
+            <li><a href="<{'help.html#help-revision'|helpurl}>">Content Revision history</a>
+            <li><a href="<{'help.html#help-tags'|helpurl}>">Content Tags Management</a>
+            <li><a href="<{'help.html#help-permissions'|helpurl}>">Granular User Permissions</a>
+        </ul>
+    </section>
+
+    <section id="help-comments">
+
+        <h3>Comment Integration</h3>
+
+        <p>The comment-integration feature of the d3forum module is convenient for engaging users in discussion forums.</p>
+        <p>Before you proceed with the settings, create a category and a forum for the module's comments. You can then modify the Pico preferences.
+
+        <h3>Example of forum category structure</h3>
+
+        <div data-layout="row p-6 m-auto">
+            <table class="list_center" style="border-collapse: separate;border-spacing: 4px;padding:8px;">
+                <tbody>
+                <tr>
+                    <th style="width:33%">Categories</th><th>Forum</th><th>Module</th>
+                </tr>
+                <tr>
+                    <td rowspan="2" class="bg-indigo">General</td><td class="bg-indigo">Announcements</td><td></td>
+                </tr>
+                <tr>
+                    <td class="bg-indigo">Ideas and suggestions</td><td></td>
+                </tr>
+                <tr class="bg-blue">
+                    <td rowspan="2">Comments</td><td title="Comment-Integration Module's Comments">Pico's Comments</td><td>Pico</td>
+                </tr>
+                <tr class="bg-blue">
+                    <td>Other Module's Comments</td><td>Other Module</td>
+                </tr>
+                <tr>
+                    <td></td><td class="bg-green">Public Forum</td><td></td>
+                </tr>
+                <tr>
+                    <td></td><td class="bg-red">Private Forum</td><td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h6>Create a category for "Comments"</h6>
+
+        <ol>
+        <li>Browse to D3forum in your site's front end
+        <li>Click the action "New category"
+        <li>Enter a name e.g. "Comments"
+        <li>Enter a category description
+        <li>Click the button "Submit"
+        </ol>
+
+        <h6>Create a forum for comment integration</h6>
+        <ol>
+            <li>Browse to your category "Comments"
+            <li>Enter a name< e.g. "Pico's comments"
+            <li>Enter a forum description</li>
+            <li>Select the category : "Comments"</li>
+            <li>Forum weight : you can leave the default value "0"</li>
+            <li>Format for comment-integration : <br>
+                Leave blank, the module's feature comment-integration will set this field automatically.
+            <li>Click the button "Submit"
+        </ol>
+
+        <h6>Forum ID for comment integration</h6>
+
+        <p>The forum ID's can be found by browsing to the new forum "Pico's comments" URL.
+
+        <p><code>.../modules/d3forum/index.php?forum_id=<b>1</b></code>
+
+        <p>The ID is what comes after forum_id=, so in this case, it is 1.
+
+        <h6>Set Pico's preferences for comment integration</h6>
+
+        <p>Browse to  Control Panel »» Pico »» Preferences
+
+        <p>You can enter the directory name of deforum and the forum ID at the bottom of the page.
+        <p>The d3forum directory and the forum_id value are saved in the database configuration table when you submit your preferences.
+
+        <div data-layout="row p-6 m-auto">
+        <table class="outer">
+            <tbody>
+            <tr>
+                <td><div class="list_title">Comment-integration: dirname of d3forum</div></td>
+                <td><input type="text" size="50" maxlength="191" value="d3forum"></td>
+            </tr>
+            <tr>
+                <td><div class="list_title">Comment-integration: forum ID</div></td>
+                <td><input type="text" size="50" maxlength="191" value="1"></td>
+            </tr>
+            <tr>
+                <td><div class="list_title">Comment-integration : Order</div></td>
+                <td>
+                    <select name="comment_order">
+                        <option value="asc">Oldest First</option>
+                        <option value="desc" selected="selected">Newest First</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><div class="list_title">Comment-integration : View</div></td>
+                <td>
+                    <select name="comment_view">
+                        <option value="listposts_flat" selected="selected">Flat</option>
+                        <option value="listtopics">Threaded</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><div class="list_title">Comment-integration : Maximum number of comments per page</div></td>
+                <td><input type="text" size="50" maxlength="191" value="5"></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <p>The comment-integration feature generates a form to comment, a link to read more comments and pagination -
+            the automated process of adding consecutive numbers to identify the sequential order of comments.</p>
+
+
+
+    </section>
+
+    <section id="help-workflow">
+
+        <h3>Content Workflow</h3>
+
+        <p>The module provides a simple publication workflow implementation for creating web content in your organization.
+            This allows you to push a content through predefined states to share information or media with specific audiences.
+            Assuming you have enabled notifications on module preferences, the system notifies the author and the webmasters group, by default.
+
+        <h6>Content status</h6>
+
+        <ul>
+            <li>Draft or Invisible : Content is unpublished or scheduled to be published
+            <li>Staged or waiting release : Content is scheduled to be published
+            <li>Published : Content is published and available to users
+            <li>Locked : Content is published but only moderators can edit and delete
+            <li>Archived or Expired: Previously published versions of content that has been unpublished and is no longer available
+        </ul>
+
+        <h3>View Content Status</h3>
+
+        <p>To view the status of your publications, browse to module administrative view "Contents" :</p>
+        <ul>
+            <li>Select a category : All Contents <br>
+                or select the category that contains the contents you want to view. If your content is not in a category, select <b>Top</b> instead.
+                <br>
+                When you select a category or subcategory, it only displays its contents.
+            <li>See the <b>Revision</b> or <b>Status</b> column, depending on your version or admin theme installed. It displays the current status of each content.
+        </ul>
+
+        <table class="outer">
+            <tr>
+                <th class="list_id">ID</th>
+                <th>Subject / Virtual path</th>
+                <th class="list_order">Order</th>
+                <th class="list_visible">VIS<br><input type="checkbox" title="Visible"></th>
+                <th>NAVI<br><input type="checkbox" title="Show in page navigation"></th>
+                <th>MENU<br><input type="checkbox" title="Show in menu"></th>
+                <th>COM<br><input type="checkbox" title="Allow comments"></th>
+                <th>Revision</th>
+                <th class="list_batch">Batch<br><input type="checkbox"></th>
+                <th style="text-align:right">Action</th>
+            </tr>
+            <tr style="background:rgb(178 116 14 / 50%); border-bottom:1px dotted rgb(255 40 40 / 50%)">
+                <td class="list_id">11 - <i class="i-folder" title="Category 1--Theming"></i></td>
+                <td class="list_center"><input type="text" size="27" value="Test locked" title="Edit the title"></td>
+                <td class="list_order"><input type="number" size="3" value="0" style="max-width: 8ch;" title="Order"></td>
+                <td class="list_visible"><input type="checkbox" value="1" title="Visible"></td>
+                <td class="list_nav"><input type="checkbox" value="1" title="Show in page navigation"></td>
+                <td class="list_menu"><input type="checkbox" value="1" title="Show in menu"></td>
+                <td class="list_comments"><input type="checkbox" value="1" title="Allow comments"></td>
+                <td class="list_date">
+                    <strong style="color:var(--color-amber,#3F51B5);">Invisible</strong>
+                    <strong style="color:#F44336;">Content locked</strong>
+                    <br>
+                    <img src="../../user/images/no_avatar.gif" width="20px" height="20px" data-self="radius-circle" alt="avatar"> webmaster
+                    <br>
+                    <small><span class="badge" title="Modified">2023/5/5 15:36</span></small>
+                </td>
+                <td class="list_batch"><input type="checkbox" value="1" title="Batch Action"></td>
+                <td class="list_control" nowrap="nowrap" style="text-align:right;">
+                    <a class="action-view" href="#!" title="View"><i class="i-view"></i></a>
+                    <a class="action-edit" href="#!" title="Edit"><i class="i-edit"></i></a>
+                </td>
+            </tr>
+            <tr class="">
+                <td class="list_id">12 - <i class="i-folder" title="Category 1--Theming"></i></td>
+                <td class="list_center"><input type="text" size="27" value="Test locked" title="Edit the title"></td>
+                <td class="list_order"><input type="number" size="3" value="0" style="max-width: 8ch;" title="Order"></td>
+                <td class="list_visible"><input type="checkbox" value="1" title="Visible"></td>
+                <td class="list_nav"><input type="checkbox" value="1" title="Show in page navigation"></td>
+                <td class="list_menu"><input type="checkbox" value="1" title="Show in menu"></td>
+                <td class="list_comments"><input type="checkbox" value="1" title="Allow comments"></td>
+                <td class="list_date">
+                    <strong style="color:var(--color-amber,#3F51B5);">Invisible</strong>
+                    <br>
+                    <img src="../../user/images/no_avatar.gif" width="20px" height="20px" data-self="radius-circle" alt="avatar"> moderator
+                    <br>
+                    <small><span class="badge" title="Modified">2023/5/5 10:03</span></small>
+                </td>
+                <td class="list_batch"><input type="checkbox" value="1" title="Batch Action"></td>
+                <td class="list_control" nowrap="nowrap" style="text-align:right;">
+                    <a class="action-view" href="#!" title="View"><i class="i-view"></i></a>
+                    <a class="action-edit" href="#!" title="Edit"><i class="i-edit"></i></a>
+                </td>
+            </tr>
+        </table>
+
+        <div class="tips">Batch actions allow you to trigger an action on multiple entries at once.</div>
+
+    </section>
+
+    <section id="help-revision">
+
+        <h3>Content Revision history</h3>
+
+        <p>This feature allows you to view the evolution of the published content.
+            When revision history is enabled, every published change will result in a new version being created.
+            You can see what was revised, who made the revision, compare two revisions, and download changes.
+
+        <ul>
+            <li>View the chronological revision history of the content.
+            <li>See who made changes to the content.
+            <li>Download a revision of the content to reverse any changes.
+            <li>Compare revisions to each other and easily view changes between.
+        </ul>
+
+        <h3>Enable Revision history</h3>
+
+        <p>To enable this feature, browse to module's preferences :
+        <div data-layout="row p-6 m-auto">
+        <table class="outer">
+        <tr><td>Content Revision History - Maximum number of revisions per content stored in the database.</td><td> Default value: 4.</td>
+        <tr><td>Content Revision History - Minimum time interval for each revision.</td><td>Default value in seconds: 180.</td>
+        </table>
+        </div>
+
+        <h3>View Revision History</h3>
+
+        <p>Revision history gives you a point-in-time snapshot of your content, so you can compare versions and see the date and time they were published.
+            One draft or published version exists at a time, but you can have many archived versions, depending on your preference settings for the maximum number of revisions.
+
+        <h6>Back-end</h6>
+
+        <p>In the administrative view "Contents", select "All Contents" to see the revision and status of each content, the date and time of its last modification.
+
+        <p>To view an iteration of the content, click on "Edit" and then on "Revision History".
+        <p>Depending on the status of the content, you can review, copy (save as), modify, publish or unpublish the content.
+
+        <h6>Front-end</h6>
+
+        <p>You can compare file revisions using the diff tool associated with Revision History.
+            Assuming your template contains the default variables and a revision exists, it displays the "modified" date and time next to the title :
+
+        <ul>
+            <li>Created - the date and time the content was initially created
+            <li>Modified - the date and time the content was last changed and saved
+        </ul>
+
+        <p>Regarding the modified content in question, click "Edit content" to view "Revision History" links e.g. refer, download, diff.
+
+        <p>Comparing revisions :
+
+        <div data-layout="row p-6 m-auto">
+        <table class="outer">
+        <tr><th>Date</th><th>Author</th><th>Changes</th><th> Action</th></tr>
+        <tr class="list_center"><td>2023/5/5 9:11</td><td> editor</td><td>(127byte)</td><td> Refer - Download - Diff to current - Diff from previous</td></tr>
+        <tr class="list_center"><td>2023/5/5 8:20</td><td> webmaster</td><td>(242byte)</td><td> Refer - Download - Diff to current - Diff from previous</td></tr>
+        <tr class="list_center"><td>2023/5/5 8:12</td><td> moderator</td><td>(787byte)</td><td> Refer - Download - Diff to current</td></tr>
+        </table>
+        </div>
+
+        <div class="confirm">Note: If a revision can not be restored directly on the module, download the revision, copy the content and republish it.</div>
+
+        <h3>Customize Revision History</h3>
+
+        <p>The revision history uses the Text diff renderer.
+        This is a powerful data comparison tool for parsing strings and reporting differences (additions and deletions) between two revisions.
+            The diff is wrapped in an HTML <b>pre</b> tag, preformatted text is usually rendered using a monospaced font.
+            To highlight the differences and give you control over the layout use the following HTML tags:
+
+        <ul>
+        <li><b>del</b> is used to represent deleted text.
+        <li><b>ins</b> is used to represent the newly added text.
+        </ul>
+
+        <p>Added and deleted elements are styled using CSS "main.css" and displayed in the template.
+        <p>You can refine the styles by extending the predefined classes or by modifying an instance of them.
+
+<pre style="border-radius:var(--border-radius)"><code class="language-css">
+.pico_history_diff {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border: var( --border, 1px solid #060E18B3); /* if --border is not defined, fallback */
+    padding: 1em;
+}
+.pico_history_diff del {
+    color: var(--del-color, #c62828);
+}
+.pico_history_diff ins {
+    color: var(--ins-color, #388e3c);
+    text-decoration: none;
+}
+</code></pre>
+
+        <div class="tips">You can edit the CSS directly by selecting the module's Templates and the "main.css" file.</div>
+
+    </section>
+
+    <section id="help-tags">
+
+        <h3>Content Tags Management</h3>
+
+        <p>You can associate multiple tags separated by space. Tags are text labels that help users to identify characteristics of the content.
+            Tags management list all tags, the total number of articles using the tag, and a summary of content IDs - each displaying the subject of the content as a tooltip.
+
+        <p>You can rename and reorder the tags and display the "Tags" block to show all the tags available for the current module instance.
+
+        <div data-layout="row py-6 m-auto">
+            <table class="outer">
+                <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Order</th>
+                    <th>Used</th>
+                    <th>Summary</th>
+                    <th>Created</th>
+                    <th><input type="checkbox" title="Batch Action"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text" size="10" value="modules" title="Rename Tag"></td>
+                    <td class="list_order"><input type="number" size="3" value="0" title="Display order"></td>
+                    <td class="list_center" title="total articles">1</td>
+                    <td><a class="badge" href="#!" title="Get and Deploy Modules">9</a></td>
+                    <td class="list_date"><span class="badge">2023/5/5 15:28:19</span></td>
+                    <td class="list_control"><input type="checkbox" value="1" title="Select Tag for batch action"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" size="10" value="templates" title="Rename Tag"></td>
+                    <td class="list_order"><input type="number" size="3" value="1" title="Display order"></td>
+                    <td class="list_center" title="total articles">1</td>
+                    <td><a class="badge" href="#!" title="Custom templates">8</a></td>
+                    <td class="list_date"><span class="badge">2023/5/5 15:28:20</span></td>
+                    <td class="list_control"><input type="checkbox" value="1" title="Select Tag for batch action"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" size="10" value="theme" title="Rename Tag"></td>
+                    <td class="list_order"><input type="number" size="3" value="2" title="Display order"></td>
+                    <td class="list_center" title="total articles">2</td>
+                    <td>
+                        <a class="badge" href="#!" title="Getting started with themes">7</a>
+                        <a class="badge" href="#!" title="Get and Deploy Themes">10</a>
+                    </td>
+                    <td class="list_date"><span class="badge">2023/5/5 15:28:27</span></td>
+                    <td class="list_control"><input type="checkbox" value="1" title="Select Tag for batch action"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" size="10" value="design" title="Rename Tag"></td>
+                    <td class="list_order"><input type="number" size="3" value="3" title="Display order"></td>
+                    <td class="list_center" title="total articles">2</td>
+                    <td>
+                        <a class="badge" href="#!" title="Getting started with themes">7</a>
+                        <a class="badge" href="#!" title="Custom templates">8</a>
+                    </td>
+                    <td class="list_date"><span class="badge">2023/5/5 15:28:31</span></td>
+                    <td class="list_control"><input type="checkbox" value="1" title="Select Tag for batch action"></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="3" class="list_center"><input type="submit" name="tags_update" value="Submit"></td>
+                    <td colspan="3" class="list_right">
+                        Batch action for selected items
+                        <input type="submit" class="button delete" value="Delete" onclick="return confirm('Are you sure to delete them?');">
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="tips">Batch actions allow you to delete multiple entries at once.</div>
+
+    </section>
+
+    <section id="help-permissions">
+
+        <h3>Permissions</h3>
+
+        <div class="tips">Subcategories and contents inherit permissions from the nearest parent category, in the absence of individual permissions, all inherit from the Top-level category, by default.</div>
+
+        <p>Only administrators can create subcategories.
+            However, you can assign users and roles to create and mange subcategories (either individually, or for all subcategories on your module instance).
+            For example, you may grant users a specific role with the ability to create content.
+
+        <h6>Back-end</h6>
+
+        <p>In the administrative view "Permissions", select a category. The module prompts you to verify the inherited permissions.
+            If you want to customize unique permissions for the category, you can select the checkbox and submit.
+            click on edit.On the back end, select the category and click "Submit" to manage users permissions.
+
+        <h6>Front-end</h6>
+
+        <p>On the front end, click "Edit category", then click "Category permissions"
+
+    </section>
+
+    <section id="help-extra">
+
+        <h3>Extra Smarty Forms</h3>
+
+        <p>You can create and design custom interactive forms. In addition to designing smarty forms,
+            you can generate custom documents using templates and incorporate pre-designed forms.
+            Forms are processed automatically by the module.
+            You can forward responses to your email, or save them to your database and manage form responses in the control panel.</p>
+
+        <h4>Create a Custom Form Template</h4>
+
+        <p>Use categories to manage your custom forms and to easily include in your content.
+        <p>You can also import custom forms and content from other instances of Pico.
+
+        <p>The workflow is very simple, let's see an example: Read the guide !</p>
+
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
+        <ul>
+            <li><a href="<{'form_design.html'|helpurl}>">Guide To Design Smarty Forms</a>
+            <li><a href="<{'component.html'|helpurl}>">Guide To Create Custom Fields</a>
+        </ul>
+
+    </section>
+
+    <section id="help-import">
+
+        <h3>Import and Synchronize</h3>
+
+        <p>The Import tool is intended primarily for bulk data population.
+            This feature resets the instance importing the data, meaning the loss of all existing data and custom settings.
+
+        <p>The data synchronization is intended to synchronize incremental changes on the instance deployed.
+
+        <p>You can use these tools to populate an instance with data imported from other module instances, and maintain data accuracy.
+
+        In addition, it is recommended to check that user permissions are set up correctly.
+        This prevents unintended access and ensures that sensitive information is only seen by users with the necessary permissions.
+
+        <h3>Import data</h3>
+        <ol>
+            <li>Select an instance of Pico or TinyD modules.
+            <li>Click the action button "Import Data".
+        </ol>
+
+        <div class="error">Warning: All data and settings of the module that imports data will be lost when the process starts.</div>
+
+        <h3>Synchronize redundant data</h3>
+
+        <p>Data redundancy occurs when the same piece of data exists in multiple places, whereas data inconsistency is when the same data exists in different formats in multiple tables.
+            Unfortunately, data redundancy can cause data inconsistency, which can result in contents with unreliable information.
+            Data synchronization ensures that all records are consistent.
+
+        <p>Run data synchronization to resolve categories or contents issues related to data import.
+
+        <h3>Clear compiled cache</h3>
+
+        <p>If you experience rendering problems, for example after a site move or data import, you should clear the cache of compiled templates.
+        <p>The next time the rendering process is run, the cache for each compiled template is recreated and displayed.
+        <p>Refresh the web browsers' cache
+        <p>After clearing the compiled cache, it is strongly recommended clearing web browsers cache !
+
+    </section>
+
+    <section id="help-html-head">
+        <h3>Custom HTML Head Tags</h3>
+
+        <p>This module allows you to create custom HTML code for the <b>head</b> and <b>body</b> of module instances, categories and contents.
+
+        <p>You can create a custom HTML head for different purposes :
+        <ul>
+        <li>Customize a module instance, category or content.
+        <li>Custom CSS stylesheet per module, category or content.
+        <li>Custom JavaScript per module, category or content.
+        <li>Search engine optimization (SEO)
+        <li>Multi-language support
+        </ul>
+
+        <h3>Enable Custom HTML Head</h3>
+        <p>Browse to module's preferences to enable custom HTML header. The following options are available :
+
+        <table class="outer">
+        <tbody>
+        <tr>
+            <td><b>Common HTML header [ CSS, JS ]</b></td><td>Enter the code or link for the instance of this module.</td>
+        </tr>
+        <tr>
+            <td><b>Enable custom HTML header for each content</b></td><td>Yes or No to display front-end textarea to customize each content.</td>
+        </tr>
+        <tr>
+            <td><b>CSS file for this module</b></td><td>Relative or absolute path can be defined. Default value : {mod_url}/index.php?page=main_css</td>
+        </tr>
+        </tbody>
+        </table>
+
+        <h3>Custom HTML Head for Category</h3>
+
+        <p>The front-end provides several options for customising a category. Among these options, the HTML header can override CSS styles.</p>
+
+        <h6>Category creation and edition</h6>
+        <ol>
+        <li>Click "New subcategory" or "Edit category"
+        <li>Click "Options" (on/off) to override preferences by writing a new line for each option.
+        </ol>
+        <p>For example, override the style to change the background color of content : </p>
+        <pre><code class="language-html">htmlheader:&lt;style&gt;article#pico_container {background:#202f3c;}&lt;/style&gt;</code></pre>
+
+        <div class="confirm">Note that this example applies to Themes built with PicoCSS. Other Themes and CSS frameworks may use a different ID.</div>
+
+        <h3>Custom HTML Head for Content</h3>
+        <ol>
+        <li>Content creation and edition
+        <li>Click HTML headers to display the textarea
+        </ol>
+        <p>For example, this style overrides the category style to change the background color of content :</p>
+        <pre><code class="language-html">&lt;style&gt;article#pico_container {background:#202f44;}&lt;/style&gt;</code></pre>
+
+    </section>
+
+    <section id="help-instances">
+
+        <h3>Multiple Instances</h3>
+
+        <p>D3 modules can run multiple instances simultaneously on your web application. Consider the following example :
+
+        <ul>
+        <li>If you have a single instance of Pico, everyone works together in the same place.
+        <li>If you have multiple instances of Pico, users may have access to one or many instances of Pico.
+        <li>You might have instances for different purposes or departments.
+        <li>Each instance is independent with its own blocks, templates, permissions and language
+        <li>Instances can share data, or include content from other instances.
+        </ul>
+
+
+        <h3>Scalability</h3>
+
+        <p>A scalable solution must enable organisations to grow appropriately and cost-effectively to meet changing demands.
+
+        <p>You can install and customize multiple instances on your web server document root, the public directory of the web server running your web app.
+            Each instance has its own database tables and directory /public_html/modules/instance-name/
+
+
+        <p>Although public instances are independent, they all operate from a single trusted source.
+
+        <div data-layout="row p-6 m-auto">
+        <table class="list_center" style="border-collapse: separate;border-spacing: 4px;padding:8px;">
+        <tbody>
+        <tr>
+            <th>Trust Path</th><th>Public Module</th>
+        </tr>
+        <tr>
+            <td></td><td class="bg-indigo">Instance 1 - Content Management</td>
+        </tr>
+        <tr>
+            <td class="bg-blue" title="Trusted Source">Pico</td><td class="bg-red">Instance 2 - Document management</td>
+        </tr>
+        <tr>
+            <td></td><td class="bg-green">Instance 3 - Knowledge Management</td>
+        </tr>
+        </tbody>
+        </table>
+        </div>
+
+
+        <h3>Wrap Static Content</h3>
+        <p>In the example below, you can see an organization with several highly customized instances and one instance /company wrapping several static content folders..
+
+        <div data-layout="row p-6 m-auto">
+            <table class="list_center" style="border-collapse: separate;border-spacing: 4px;padding:8px;">
+                <tbody>
+                <tr>
+                    <th>Trust Path</th><th>Static HTML</th><th>Public Module</th>
+                </tr>
+                <tr>
+                    <td></td><td></td><td class="bg-indigo">Instance 1 - Content Management</td>
+                </tr>
+                <tr>
+                    <td class="bg-blue" title="Trusted Source">Pico</td><td class="bg-blue"></td><td class="bg-red">Instance 2 - Document management</td>
+                </tr>
+                <tr>
+                    <td></td><td></td><td class="bg-green">Instance 3 - Knowledge Management</td>
+                </tr>
+                <tr>
+                    <td></td><td class="bg-orange">brochures</td><td class="bg-orange">Company / Brochures</td>
+                </tr>
+                <tr>
+                    <td class="bg-orange">wraps/company</td><td class="bg-orange">marketing</td><td class="bg-orange">Company / Marketing</td>
+                </tr>
+                <tr>
+                    <td></td><td class="bg-orange">reports</td><td class="bg-orange">Company / Reports</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+
+        <h3>Customization</h3>
 
         <h4>Content Management System</h4>
         <p>Enables non-developer users to easily set up and modify site pages. Some of its features include content creation and distribution, team collaboration, and image storage.</p>
@@ -48,167 +771,11 @@
         <p>In short, Editing Workflow is the order in which the editing stages should take place.
             All Editors will have their preferred workflows, often depending on the type of content they create.
             However, all forms of document editing can be broken down into certain stages, each requiring specific tasks.</p>
-    </section>
 
-    <section id="help-features">
-
-        <h3>Features</h3>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li>Category hierarchy structure</li>
-            <li>Breadcrumbs</li>
-            <li>Navigation Menus</li>
-            <li>Dynamic submenu</li>
-            <li>Automated menu page</li>
-            <li>Granular permission system</li>
-            <li>Published, pending review and draft content</li>
-            <li>Approval system to create content</li>
-            <li>Approval system to modify content</li>
-            <li>Event notification for waiting approval</li>
-            <li>Content revisions history</li>
-            <li>Preview content</li>
-            <li>Cache content</li>
-            <li>Override options for each category</li>
-            <li>Body filter system (smarty, wiki, php etc.)</li>
-            <li>Limitless Extra fields or images</li>
-            <li>Tags</li>
-            <li>Vote</li>
-            <li>Pagination</li>
-            <li>Wrap content from TRUST_PATH/wraps/(dirname)</li>
-            <li>Option to automatically wrap documents</li>
-            <li>Option to manually wrap documents</li>
-            <li>Auto-register wrapped files into DB</li>
-            <li>language constants override</li>
-            <li>Static URI (same as wraps)</li>
-            <li>Static URI mod_rewrite (both wraps mode and normal mode)</li>
-            <li>Tell a friend option</li>
-            <li>Tell-a-friend module supported natively</li>
-            <li>Print friendly view</li>
-            <li>Single content view</li>
-            <li>HTML head customized per module/category</li>
-            <li>HTML head customized per content</li>
-            <li>Search (with context)</li>
-            <li>All time views count</li>
-            <li>Block list (duplicatable)</li>
-            <li>Block menu (duplicatable)</li>
-            <li>Block content (duplicatable)</li>
-            <li>Front-end controller for admin</li>
-            <li>Native d3forum comment-integration</li>
-            <li>Wysiwyg Editor</li>
-            <li>Import from TinyD per module</li>
-            <li>Import from pico per module</li>
-            <li>Import from pico per content</li>
-            <li>Plugin for sitemap module</li>
-            <li>Plugin for waiting module</li>
-            <li>Plugin for Xmobile</li>
-            <li>RSS (both module and each category)</li>
-            <li>Support xoops_breadcrumbs</li>
-        </ul>
-    </section>
-
-    <section id="help-content">
-
-    <h3>Content Management</h3>
-
-    <p>D3 modules are designed to create categories and contents on the front end.
-    <p>Categories and content can be moved to other categories or exported to other instances of the module.
-    <p>When Wrap mode is enabled, the virtual path for the content is available.</p>
-    <p>The following features are available in the backend Category and content management :</p>
-
-    <ul>
-        <li>Name, title
-        <li>Virtual path
-        <li>Weight (order) YSIWYG Editor
-        <li>Visible (public)
-        <li>Show in Navigation
-        <li>Show in Menu
-        <li>Allow comments
-        <li>Bulk Action
-        <li>Granular Permissions
-    </ul>
-
-        <div class="confirm">Note the User Interface design is subject to change, but not the logic.</div>
-
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
-        <ul>
-            <li>Content Editor</li>
-            <li>Permissions</li>
-        </ul>
-
-    </section>
-
-    <section id="help-permissions">
-
-        <h3>Permissions</h3>
-
-        <div class="tips">Subcategories and contents inherit permissions from the nearest parent category, in the absence of individual permissions, all inherit from the Top-level category, by default.</div>
-
-        <p>Only administrators can create subcategories.
-            However, you can assign users and roles to create and mange subcategories (either individually, or for all subcategories on your module instance).
-            For example, you may grant users a specific role with the ability to create content.</p>
-        <p>On the front end, click "Edit category", then click "Category permissions"
-        <p>On the back end, select the category and click "Submit" to manage users permissions.
-    </section>
-
-    <section id="help-import">
-
-        <h3>Import and Synchronize</h3>
-
-        <p>The import tool and data synchronization can both be used to populate an instance of Pico with data imported from other instances of modules Pico and TinyD.
-        <p>The Import tool is intended primarily for bulk data population. Note that this resets the instance importing the data, which means losing all existing data and custom settings.
-        <p>The data synchronization is intended to synchronize incremental changes on the instance deployed.
-        <p>It’s important to use these tools correctly in order to ensure that your contents are imported and synchronized.
-        <p>In addition, it is recommended to check and correctly set user permissions.
-        This will prevent unintended access, helping to maintain data accuracy and ensure sensitive information
-        is only seen by users with permissions.
-
-        <div class="error">Warning : All data in this module will be lost when you execute to import.</div>
-
-        <h3>Import data</h3>
-        <ol>
-            <li>Select a module : Pico or TinyD</li>
-            <li>Click the action button import.</li>
-        </ol>
-
-        <h3>Synchronize redundant data</h3>
-        <p>Data redundancy occurs when the same piece of data exists in multiple places, whereas data inconsistency is when the same data exists in different formats in multiple tables.
-            Unfortunately, data redundancy can cause data inconsistency, which can result in contents with unreliable information.</p>
-        <p>Execute if your categories or contents display contradictory data.</p>
-
-        <h3>Clear compiled cache</h3>
-        <p>Execute if you have caching troubles are occurred eg) after moving site.</p>
-
-    </section>
-
-    <section id="help-tags">
-
-        <h3>Tags</h3>
-
-    </section>
-
-    <section id="help-extra">
-
-        <h3>Extra Smarty Forms</h3>
-
-        <p>You can create and design custom interactive forms. Design Smarty Forms with Pico for your website
-            allows you to generate custom documents with pre-designed templates and forms.
-            Forms are automatically processed by the module.
-            You have the option of forwarding responses to your email and saving them to your database.</p>
-
-        <h4>Create customized forms from templates</h4>
-
-        <p>Use categories to manage your custom forms and to easily include in your content.
-        <p>You can also import custom forms and content from other instances of Pico.
-
-        <p>The workflow is very simple, let's see an example: Read the guide !</p>
-
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
-        <ul>
-            <li><a href="<{'form_design.html'|helpurl}>">Design Smarty Forms</a></li>
-            <li>Create Custom Fields</li>
-            <li>Run multiple instances</li>
-            <li>Custom design for each instance</li>
+            <li><a href="<{'component.html'|helpurl}>">Run multiple instances</a>
+            <li><a href="<{'component.html'|helpurl}>">Custom design for each instance</a>
         </ul>
 
     </section>
@@ -222,24 +789,38 @@
         <p>Document Tags' links like Block Tags.</p>
 
         <table class="outer">
-            <thead>
-            <tr>
-                <th>Module name</th>
-                <th>Pico</th>
-            </tr>
-            </thead>
             <tbody>
             <tr>
-                <td>Type</td>
-                <td>Trust Module [ CMS ]</td>
+                <td>Bundle Package</td>
+                <td> XCL 2.3.3</td>
             </tr>
             <tr>
-                <td>Version</td>
-                <td>'2.44.3</td>
+                <td>Module name</td>
+                <td>Pico</td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td>Trust Module</td>
             </tr>
             <tr>
                 <td>Level</td>
                 <td>Recommended</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>Update by Nuno Luciano aka gigamaster, 2020 XCL23</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>Original by Gijoe @peak.ne.jp</td>
+            </tr>
+            <tr>
+                <td>Copyright </td>
+                <td>(c) 2007-2023 Peak.ne.jp, Authors</td>
+            </tr>
+            <tr>
+                <td>license</td>
+                <td>GPL 2.0</td>
             </tr>
             <tr>
                 <td>🌐 Repository URL</td>

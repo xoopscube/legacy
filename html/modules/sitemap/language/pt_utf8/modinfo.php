@@ -1,8 +1,7 @@
 <?php
 
-/* Brazilian Portuguese Translation by Marcelo Yuji Himoro <http://yuji.ws> */
+/* Brazilian Portuguese Translation by Marcelo Yuji Himoro */
 
-// Appended by Xoops Language Checker -GIJOE- in 2006-10-28 05:37:02
 define( '_MI_SITEMAP_NAME' , 'Mapa do site');
 define( '_MI_SITEMAP_MESSAGE' , '<p>O mapa do site é uma página especial destinada a servir de guia para o site.<br>
 É uma representação visual do espaço de informações para ajudar os usuários a encontrar páginas específicas com mais eficiência.</p>');

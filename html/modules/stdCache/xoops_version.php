@@ -1,6 +1,10 @@
 <?php
-// $Id: xoops_version.php,v 1.11 2008/10/12 03:55:38 minahito Exp $
-
+/**
+ * Cache Clear Block
+ * @package stdCache
+ * @author  Kazuhisa Minato aka minahito, Core developer
+ * @version $Id: xoops_version.php,v 1.11 2008/10/12 03:55:38 minahito Exp $
+ */
 
 // Manifesto
 $modversion['dirname']          = 'stdCache';

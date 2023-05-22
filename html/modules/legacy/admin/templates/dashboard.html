@@ -117,9 +117,6 @@ h3.beta b:nth-of-type(7) {animation-delay: 750ms;}
 }
 </style>
 
-
-
-
 <hr>
 
 <div id="ui-component">
@@ -144,11 +141,9 @@ h3.beta b:nth-of-type(7) {animation-delay: 750ms;}
             <div id="tab1">
 
                 <div data-layout="row sm-column">
-
                 <div data-layout="column center" data-self="size-1of2 sm-full" class="xcl-beta-anim">
                     <h1 class="xcl">XCL</h1><h3 class="beta"><b>V</b><b>E</b><b>R</b><b>S</b><b>I</b><b>O</b><b>N</b><b>2.3</b></h3>
                 </div>
-
                 <hr>
 
                 <div class="accordion" data-self="sm-full">
@@ -167,8 +162,8 @@ h3.beta b:nth-of-type(7) {animation-delay: 750ms;}
             </div>
 
             <div id="tab-start">
-                <h2>Tab3 Header</h2>
-                <{* include file="./components/dashboard-todo.html" *}>
+                <h2><{$smarty.const._FETCHING}> <{$smarty.const._HELP}></h2>
+
             </div>
 
             <div id="tab-source" class="github">
@@ -177,6 +172,7 @@ h3.beta b:nth-of-type(7) {animation-delay: 750ms;}
 
             </div>
 
+            <{* include file="./components/dashboard-todo.html" *}>
 
 
         </div>

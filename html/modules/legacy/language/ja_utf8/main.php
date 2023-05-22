@@ -29,7 +29,7 @@ define( '_MD_LEGACY_LANG_COMMENT_RULE' , 'コメント投稿に関するルー�
 define( '_MD_LEGACY_LANG_DOBR' , '改行を自動挿入する');
 define( '_MD_LEGACY_LANG_DOHTML' , 'HTMLタグを有効にする');
 define( '_MD_LEGACY_LANG_DOSMILEY' , '顔アイコンを有効にする');
-define( '_MD_LEGACY_LANG_DOXCODE' , 'XOOPSコードを有効にする');
+define( '_MD_LEGACY_LANG_DOXCODE' , 'XCode BBCodeコードを有効にする');
 define( '_MD_LEGACY_LANG_EMOTION' , '意味');
 define( '_MD_LEGACY_LANG_ERROR' , 'エラー');
 define( '_MD_LEGACY_LANG_FMAIL' , '友達のEmail');

@@ -102,7 +102,6 @@
             active: 1
         });
 
-
         // Load overview from the module's help file
         var str = window.location.pathname;
         //console.log(str);
@@ -113,6 +112,22 @@
 
 
         $( document ).tooltip({
+            //disabled: false,
+            position: {
+                my: "center bottom-20",
+                at: "center top",
+                using: function( position, feedback ) {
+                    $( this ).css( position );
+                    $( "<div>" )
+                        // .addClass( "arrow" )
+                        .addClass( feedback.vertical )
+                        .addClass( feedback.horizontal )
+                        .appendTo( this );
+                }
+            },
+            // track: true
+        });
+        $("svg rect").find("title").tooltip({
             //disabled: false,
             position: {
                 my: "center bottom-20",

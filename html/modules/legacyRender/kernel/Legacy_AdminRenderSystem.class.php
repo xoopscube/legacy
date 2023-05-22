@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Legacy
+ * @package    Legacy
  * @author     Nobuhiro YASUTOMI, PHP8
  */
 

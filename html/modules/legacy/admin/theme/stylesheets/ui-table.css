@@ -20,7 +20,7 @@
 .admin-theme-list li,
 .action-search-records-desc {
     background      : var( --card-full-bg );
-    border-color    : var( --card-full-border);
+    border          : var( --card-full-border);
     border-radius   : var( --card-full-radius);
     box-shadow      : var( --card-full-shadow);
     margin          : var( --space-2 );

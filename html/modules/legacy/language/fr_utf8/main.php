@@ -30,7 +30,7 @@ define( '_MD_LEGACY_LANG_DOBR' , 'Insérer automatiquement un retour à la ligne
 define( '_MD_LEGACY_LANG_DOHTML' , 'Permettre les tags HTML');
 define( '_MD_LEGACY_LANG_DOSMILEY' , 'Utiliser les émojis.');
 define( '_MD_LEGACY_LANG_ALL_SMILEY_LIST' , 'Liste des émojis');
-define( '_MD_LEGACY_LANG_DOXCODE' , 'Pemettre le code XOOPS');
+define( '_MD_LEGACY_LANG_DOXCODE' , 'Pemettre XCode BBCode');
 define( '_MD_LEGACY_LANG_EMOTION' , 'Emoticône');
 define( '_MD_LEGACY_LANG_ERROR' , 'erreur');
 define( '_MD_LEGACY_LANG_FMAIL' , 'Email d\'un ami');

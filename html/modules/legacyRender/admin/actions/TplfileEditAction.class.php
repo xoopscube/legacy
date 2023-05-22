@@ -1,8 +1,8 @@
 <?php
 /**
- * @package legacyRender
+ * @package    legacyRender
  * @author     Nobuhiro YASUTOMI, PHP8
- * @version $Id: TplfileEditAction.class.php,v 1.1 2007/05/15 02:34:17 minahito Exp $
+ * @version    $Id: TplfileEditAction.class.php,v 1.1 2007/05/15 02:34:17 minahito Exp $
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {

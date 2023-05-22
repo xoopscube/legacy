@@ -1,10 +1,12 @@
 <?php
 /**
  * HelpAction.class.php
+ * The subclass of Smarty for the Help viewer
+ *
  * @package    Legacy
  * @version    XCL 2.3.3
  * @author     Nobuhiro YASUTOMI, PHP8
- * @author     Other authors gigamaster, 2020 XCL/PHP7
+ * @author     Other authors Nuno Luciano aka gigamaster, 2020 XCL/PHP7
  * @author     Kilica, 2008/09/25
  * @copyright  (c) 2005-2023 The XOOPSCube Project
  * @license    GPL 2.0
@@ -17,15 +19,12 @@
 /***
  * @internal
  *
- * The sub-class of smarty for help viewer, make it possible to use smarty in
- * help html file. This class extends Smarty to mediate the collision compiled
- * file name.
- *
- * To support help view, there are some original modifiers.
- *
- * 'helpurl' modify a relative URL for connecting the dynamic page link.
- * 'helpimage' modify an image URL. These modifiers consider the existence of
- * language files.
+ * The subclass of Smarty for the Help viewer, allows using Smarty in html help files.
+ * This class extends Smarty to avoid filename collisions in compiled filenames.
+ * Smarty custom modifiers supported in Help view :
+ * 'helpurl'   - modify a relative URL to the dynamic page link.
+ * 'helpimage' - modify an image URL.
+ * These modifiers take into account the existence of language files.
  */
 class Legacy_HelpSmarty extends Smarty
 {
@@ -43,11 +42,6 @@ class Legacy_HelpSmarty extends Smarty
      * @var string
      */
     public $mFilename = null;
-
-//    public function Legacy_HelpSmarty()
-//    {
-//        self::__construct();
-//    }
 
     public function __construct()
     {
@@ -102,7 +96,7 @@ function Legacy_modifier_helpurl($file, $dirname = null)
     }
 
     //
-    // TODO We should check file_exists.
+    // TODO We should check file_exists -> line 201
     //
 
     return XOOPS_MODULE_URL . "/legacy/admin/index.php?action=Help&amp;dirname={$dirname}&amp;file={$file}";
@@ -147,11 +141,6 @@ class Legacy_HelpAction extends Legacy_Action
      * @var XCube_Delegate
      */
     public $mCreateHelpSmarty = null;
-
-    public function Legacy_HelpAction($flag)
-    {
-        self::__construct($flag);
-    }
 
     public function __construct($flag)
     {
@@ -207,7 +196,6 @@ class Legacy_HelpAction extends Legacy_Action
                 return LEGACY_FRAME_VIEW_ERROR;
             }
         }
-
 
         $controller->mRoot->mContext->setAttribute('legacy_help_dirname', $this->_mDirname);
 

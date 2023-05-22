@@ -6,7 +6,7 @@
                 <li><a href="#help-features" class="button">Features</a>
                 <li><a href="#help-implement" class="button">Implement</a>
                 <li><a href="#help-customize" class="button">Customize</a>
-                <li><a href="#help-update" class="button">Update</a>
+                <li><a href="#help-update" class="button">Build and Update</a>
                 <li><a href="#help-license" class="button">License</a>
                 <li><a href="#help-development" class="button">Development</a>
             </ul>
@@ -17,19 +17,21 @@
 
     <section id="help-overview">
 
-    <h3>CKEditor4 Overview</h3>
+    <h3>Overview</h3>
 
-    <p>Proven, enterprise-grade WYSIWYG HTML editor with wide browser compatibility, including legacy browsers.
-    <p>This module is the default WYSIWYG editor to create and manage your web content easily.
-    <p>WYSIWYG implies a user interface that allows the user to view something very similar to the end result
-        while the document is being created.
+    <p>CKEditor 4 is a rich text editor that allows you to create content directly in your web browser.
+
+    <p>This WYSIWYG editor, which stands for What You See Is What You Get, allows you to edit content in a form like the published web page.
+        The module also provides a minimal and secure pre-configured BBCode-based editor to allow users to comment on your content, participate in forums and send private messages.
+        Combined with X-elfinder file manager integration, CKEditor 4 is a major asset to create content and easily manage files.
+
     </section>
 
 
     <section id="help-features">
 
     <h3>Main Features</h3>
-        <p>The XOOPSCube module CKEditor4 is released by default with a customized Full package bundle and provides out of the box:</p>
+        <p>The CKEditor4 module is released by default with a full custom package and provides the following out of the box :</p>
 
         <ul>
             <li><b>Control Panel</b> preferences settings e.g. toolbars, user group permissions, ui color.</li>
@@ -48,20 +50,20 @@
         <h4>CKEditor4 module Preferences</h4>
 
         <ul>
-            <li>Toolbar for Admin : CKEditor's "config.toolbar" for admin.
-            <li>Toolbar UI Color : Setting Editor UI Color with hexadecimal color code eg. #405060
-            <li>Toolbar for registered user : CKEditor's "config.toolbar" for registed user.
-            <li>Toolbar for guest : CKEditor's "config.toolbar" for guest.
-            <li>Toolbar for BBcode plugin : CKEditor's "config.toolbar" for BBcode plugin.
-            <li>CSS URL of editing area : URL of external CSS applied to edit area is set up per line.
-                <br>* A special value "&lt;head&gt;" reads automatically CSS specified in HTML &lt;head&gt; of a page.
-            <li>Extra plugin : CKEditor's "config.extraPlugins" setting.
-            <li>Custom config URL : CKEditor's "config.customConfig" setting.
-            <li>Enter Mode : CKEditor's "config.enterMode" setting.
-            <li>Shift+Enter Mode : CKEditor's "config.shiftEnterMode" setting.
-            <li>Allow All Content : CKEditor's "config.allowedContent" setting.
-            <li>Auto Paragraph : CKEditor's "config.autoParagraph" setting.
-            <li>X-elFinder : Set X-elFinder directory name for server browser.
+            <li><b>Toolbar for Admin</b> : CKEditor's "config.toolbar" for admin.
+            <li><b>Toolbar for registered user</b> : CKEditor's "config.toolbar" for registered user.
+            <li><b>Toolbar for guest</b> : CKEditor's "config.toolbar" for guest.
+            <li><b>Toolbar for BBCode plugin</b> : CKEditor's "config.toolbar" for BBcode plugin.
+            <li><b>Toolbar UI Color</b> : Setting Editor UI Color with hexadecimal color code eg. #405060
+            <li><b>CSS URL of editing area</b> : URL of external CSS applied to edit area is set up per line.
+                <br>* A special value to automatically parse the CSS specified in the HTML &lt;head&gt; of a page.
+            <li><b>Extra plugins</b> : CKEditor's "config.extraPlugins" setting.
+            <li><b>Custom config URL</b> : CKEditor's "config.customConfig" setting.
+            <li><b>Allow All Content</b> : CKEditor's "config.allowedContent" setting.
+            <li><b>Auto Paragraph</b> : CKEditor's "config.autoParagraph" setting.
+            <li><b>Enter Mode</b> : CKEditor's "config.enterMode" setting.
+            <li><b>Shift+Enter Mode</b> : CKEditor's "config.shiftEnterMode" setting.
+            <li><b>X-elFinder</b> : Set X-elFinder file manager directory name for server browser.
         </ul>
 
     </section>
@@ -73,10 +75,36 @@
 
         <ol>
             <li>Clone/Duplicate your <b>Templates</b> to create a new Set.
-            <li>Edit any installed module's templates with a textarea and add a new parameter <strong><em>editor=html</em></strong>
+            <li>Edit any installed module's templates with a textarea and add a new parameter <b><em>editor=html</em></b> or  <b><em>editor=bbcode</em></b>
         </ol>
 
+        <h6>Editor HTML</h6>
         <pre><code class="lang-smarty">&lt;{xoops_dhtmltarea editor=html}&gt;</code></pre>
+
+        <h6>Editor BBCode</h6>
+        <pre><code class="lang-smarty">&lt;{xoops_dhtmltarea editor=bbcode}&gt;</code></pre>
+
+        <h6>Editor PHP</h6>
+        <p>The example bellow implements the WYSIWYG editor for custom blocks type PHP by using raw data and escape method to make the form more secure. See the implementation in admin templates e.g. blocks_admin_edit.</p>
+<pre><code class="lang-smarty">
+&lt;{if $block.is_custom}&gt;
+    &lt;{if $block.ctype == 'P'}&gt;
+
+        &lt;!-- Textarea Block raw data and escape method --&gt;
+        &lt;textarea name=&quot;contents[&lt;{$block.bid}&gt;]&quot; id=&quot;textarea_content&quot; rows=&quot;20&quot;&gt;
+        &lt;{$block.content_raw|escape}&gt;
+        &lt;/textarea&gt;
+
+    &lt;!-- Configuration for PHP --&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    CKEDITOR.replace( 'textarea_content', {
+        customConfig: '&lt;{$xoops_url}&gt;/modules/ckeditor4/ckeditor/config_php.js',
+    });
+    &lt;/script&gt;
+
+    &lt;{/if}&gt;
+&lt;{/if}&gt;
+</code></pre>
 
         <div class="confirm"><strong>Note !</strong> Remember to update your new template set.<br>
             The CKEditor4 module won't make any data conversion.<br>
@@ -90,36 +118,23 @@
 
         <h3>Customize CKEditor4</h3>
 
-        <h4>User Interface color</h4>
-
-        <p>The CKEditor UI color can be adjusted from the module's preferences <strong> Admin > CKEditor > Preferences</strong> to match the look and feel of a website or an application.
-            In order to define the color of the user interface, use the config.uiColor configuration setting which accepts an RGB color code.</p>
-        <p>The editor instance UI color was set by default to the theme RGB value.</p>
-
-        <p>Please note that this configuration option can only be used for editor skins that are compatible with the so-called "chameleon" feature, for example:</p>
-
-        <ul>
-            <li>Moono-Lisa</li>
-            <li>Moono</li>
-            <li>Kama</li>
-        </ul>
-
-        <div class="tips">Note :<br>
-            Refer to the Setting Editor User Interface Color article to learn more about this feature :
-            <a href="https://ckeditor.com/docs/ckeditor4/latest/examples/uicolor.html" target="_blank">uicolor  ⭧</a>
-        </div>
+        <p>CKEditor 4 comes with a rich set of configuration options that make it possible to customize its appearance, features, and behavior.
 
         <h3>CKEditor4 Toolbar</h3>
-        <p>There are several approaches to CKEditor 4 toolbar configuration to choose from:</p>
+
+        <p>There are several approaches to CKEditor 4 toolbar configuration to choose from:
+
         <ul>
-            <li><a href="https://ckeditor.com/docs/ckeditor4/latest/features/toolbar.html#toolbar-configurator" target="_blank" rel="noopener nofollow">Using the toolbar configurator</a> — the most recommended and easy to use solution.</li>
-            <li><a href="https://ckeditor.com/docs/ckeditor4/latest/features/toolbarconcepts.html#toolbar-groups-configuration" target="_blank" rel="noopener nofollow">Toolbar groups configuration</a> — requires manual toolbar configuration (for advanced users only)</li>
-            <li><a href="https://ckeditor.com/docs/ckeditor4/latest/features/toolbarconcepts.html#item-by-item-configuration" target="_blank" rel="noopener nofollow">“Item by item” configuration</a> — requires manual toolbar configuration (for advanced users only)</li>
+            <li><a href="https://ckeditor.com/docs/ckeditor4/latest/features/toolbar.html#toolbar-configurator" target="_blank" rel="noopener nofollow">Using the toolbar configurator</a> — the most recommended and easy to use solution.
+            <li><a href="https://ckeditor.com/docs/ckeditor4/latest/features/toolbarconcepts.html#toolbar-groups-configuration" target="_blank" rel="noopener nofollow">Toolbar groups configuration</a> — requires manual toolbar configuration (for advanced users only)
+            <li><a href="https://ckeditor.com/docs/ckeditor4/latest/features/toolbarconcepts.html#item-by-item-configuration" target="_blank" rel="noopener nofollow">“Item by item” configuration</a> — requires manual toolbar configuration (for advanced users only)
         </ul>
-        <p>Most important settings can be defined in CKeditor preferences, including Toolbar customization for each group.</p>
+
+        <p>Most important settings can be defined in CKeditor preferences, including Toolbar customization for each group.
+
         <ol>
-            <li>Select a special group (checkbox)</li>
-            <li>Example of toolbar for special group :</li>
+            <li>Select a special group (checkbox)
+            <li>Example of toolbar for special group :
         </ol>
 
 <pre><code class="lang-json">[["Source","-","Templates"],
@@ -133,15 +148,30 @@
 ["Styles","Format","Font","FontSize"]]</code></pre>
         <div class="confirm">JSON is purely a string with a specified data format — it contains only properties, no methods. JSON requires double quotes to be used around strings and property names. Single quotes are not valid other than surrounding the entire JSON string.</div>
 
+        <p><a class="button" href="https://xoopscube.github.io/ckeditor4/" target="_blank">xoopscube.github.io/ckeditor4 ⭧</a>
 
+        <h3>User Interface color</h3>
 
+        <p>The CKEditor UI color can be adjusted from the module's preferences <strong> Admin > CKEditor > Preferences</strong> to match the look and feel of a website or an application.
+            In order to define the color of the user interface, use the config.uiColor configuration setting which accepts an RGB color code.
+        <p>The editor instance UI color was set by default to the theme RGB value.
 
-        <p><a class="button" href="https://xoopscube.github.io/ckeditor4/" target="_blank">xoopscube.github.io/ckeditor4 ⭧</a></p>
+        <p>Please note that this configuration option can only be used for editor skins that are compatible with the so-called "chameleon" feature, for example:
 
+        <ul>
+            <li>Moono-Lisa
+            <li>Moono
+            <li>Kama
+        </ul>
+
+        <div class="tips">Note :<br>
+            Refer to the Setting Editor User Interface Color article to learn more about this feature :
+            <a href="https://ckeditor.com/docs/ckeditor4/latest/examples/uicolor.html" target="_blank">uicolor  ⭧</a>
+        </div>
 
         <h3>Customize config.js</h3>
 
-        <pre><code class="lang-javascript">
+        <pre><code class="lang-javascript"><!--
 CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
@@ -152,10 +182,12 @@ CKEDITOR.editorConfig = function( config ) {
     // Pressing Shift+Enter will create a new <br> element.
     config.shiftEnterMode = CKEDITOR.ENTER_BR;
 };
-</code></pre>
+--></code></pre>
 
         <h3>CKEDITOR.config</h3>
+
         <p>Stores default configuration settings. Changes to this object are reflected in all editor instances, if not specified otherwise for a particular instance.</p>
+
         <p>Read more about setting CKEditor configuration in the <a href="https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html" target="_blank">documentation</a>.</p>
 
         <style>
@@ -799,29 +831,32 @@ CKEDITOR.editorConfig = function( config ) {
 
     </section>
 
-
     <section id="help-update">
 
-        <h3>Update CKEditor4 plugins</h3>
+        <h3>Build and Update CKEditor4 plugins</h3>
 
         <p>This file was added automatically by CKEditor builder.
-        You may re-use it at any time to build CKEditor again.</p>
+        You may re-use it at any time to build CKEditor again.
 
-        <p>If you would like to build CKEditor online again
-        (for example to upgrade), visit one the following links:</p>
+        <p><code>html/modules/ckeditor4/ckeditor/build-config.js</code>
+
+        <p>If you would like to build CKEditor online again, for example to upgrade, visit one the following links in the file build-config.js :
 
         <ol>
-        <li><a href="https://ckeditor.com/cke4/builder" target="_blank" rel="noopener">
-            https://ckeditor.com/cke4/builder</a> <br>
-            Visit online builder to build CKEditor from scratch.
+        <li>Visit online builder to build CKEditor from scratch.<br>
+            <a href="https://ckeditor.com/cke4/builder" target="_blank" rel="noopener">
+            https://ckeditor.com/cke4/builder  ⭧</a>
 
-        <li><a href="https://ckeditor.com/cke4/builder/57716b5b5a8805ad4de22bb0e90b4f03" target="_blank" rel="noopener">
-            https://ckeditor.com/cke4/builder/57716b5b5a8805ad4de22bb0e90b4f03</a><br>
-            Visit online builder to build CKEditor, starting with the same setup as before.
 
-        <li><a href="https://ckeditor.com/cke4/builder/download/57716b5b5a8805ad4de22bb0e90b4f03" target="_blank" rel="noopener">
-            https://ckeditor.com/cke4/builder/download/57716b5b5a8805ad4de22bb0e90b4f03</a><br>
-            Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
+        <li>Visit online builder to build CKEditor, starting with the same setup as before.<br>
+        <a href="https://ckeditor.com/cke4/builder/069129c9382503296cffba6b1b154b95" target="_blank" rel="noopener">
+            https://ckeditor.com/cke4/builder/069129c9382503296cffba6b1b154b95  ⭧</a>
+
+
+        <li>Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.<br>
+        <a href="https://ckeditor.com/cke4/builder/download/069129c9382503296cffba6b1b154b95" target="_blank" rel="noopener">
+            https://ckeditor.com/cke4/builder/download/069129c9382503296cffba6b1b154b95  ⭧</a>
+
         </ol>
 
         <div class="confirm">Note :<br>
@@ -833,19 +868,22 @@ CKEDITOR.editorConfig = function( config ) {
 
     <section id="help-license">
 
-    <h3>License</h3>
+        <h3>License</h3>
 
-    <p>CKEditor is distributed under the GPL, LGPL and MPL open source licenses.<br>
-    This triple copyleft licensing model avoids incompatibility with other open source licenses.<br>
-        These Open Source licenses are specially indicated for:</p>
-    <ul>
-        <li>Integrating CKEditor into Open Source software;
-        <li>Personal and educational use of CKEditor;
-        <li>Integrating CKEditor in commercial software, taking care of satisfying the Open Source licenses terms,
-        while not able or interested on supporting CKEditor and its development.
-    </ul>
+        <p>CKEditor is distributed under the GPL, LGPL and MPL open source licenses.<br>
+        This triple copyleft licensing model avoids incompatibility with other open source licenses.<br>
+            These Open Source licenses are specially indicated for:</p>
+        <ul>
+            <li>Integrating CKEditor into Open Source software;
+            <li>Personal and educational use of CKEditor;
+            <li>Integrating CKEditor in commercial software, taking care of satisfying the Open Source licenses terms,
+            while not able or interested on supporting CKEditor and its development.
+        </ul>
 
-    <p>CKEditor web site <a href="https://ckeditor.com/license" target="_blank" rel="license">License  ⭧</a></p>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
+        <ul>
+            <li><a href="https://ckeditor.com/license" target="_blank" rel="license">CKEditor License  ⭧</a>
+        </ul>
 
     </section>
 
@@ -854,34 +892,43 @@ CKEDITOR.editorConfig = function( config ) {
         <h3>Development</h3>
 
         <table class="outer">
-            <thead>
-            <tr>
-                <th>Module name</th>
-                <th>CKEditor4</th>
-            </tr>
-            </thead>
             <tbody>
+            <tr>
+                <td>Bundle Package</td>
+                <td> XCL 2.3.3</td>
+            </tr>
+            <tr>
+                <td>Module name</td>
+                <td>CKEditor4</td>
+            </tr>
             <tr>
                 <td>Type</td>
                 <td>X2 module</td>
-            </tr>
-            <tr>
-                <td>Version</td>
-                <td>2.31</td>
             </tr>
             <tr>
                 <td>Level</td>
                 <td>Recommended</td>
             </tr>
             <tr>
-                <td>? Repository URL</td>
+                <td>Author</td>
+                <td>Update by Nuno Luciano aka gigamaster, 2020 XCL23</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>Naoki Sawada (aka nao-pon)</td>
+            </tr>
+            <tr>
+                <td>Copyright </td>
+                <td>(c) 2012-2023 Naoki Sawada, Authors</td>
+            </tr>
+            <tr>
+                <td>Repository URL</td>
                 <td><a href="https://github.com/xoopscube/ckeditor4" target="_blank">https://github.com/xoopscube/ckeditor4 ⭧</a></td>
             </tr>
             </tbody>
         </table>
 
     </section>
-
 
 </article>
 </div>

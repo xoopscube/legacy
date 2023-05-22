@@ -85,7 +85,7 @@ define( '_AD_LEGACY_ERROR_REQUIRED' , '{0} is required.');
 
 // LANG
 define( '_AD_LEGACY_LANG_ACTIONSEARCH' , 'Action Search');
-define( '_AD_LEGACY_LANG_ACTIONSEARCH_INFO' , 'ActionSearch lets you quickly find and execute actions or find and change preferences. Start typing the name of an action or setting, or try any related word. For example, you can type "user" to find actions related to registered members.');
+define( '_AD_LEGACY_LANG_ACTIONSEARCH_INFO' , 'Action Search lets you quickly find admin settings and Help from the built-in documentation.<br> For example, you can type "user" to find actions related to registered members.');
 define( '_AD_LEGACY_LANG_ACTIVE' , 'Active');
 define( '_AD_LEGACY_LANG_ADD_CUSTOM_BLOCK' , 'Add custom block');
 define( '_AD_LEGACY_LANG_ADMIN_MENU' , 'Information about the Adminstration Menu');
@@ -210,7 +210,7 @@ define( '_AD_LEGACY_LANG_LICENCE' , 'Licence');
 define( '_AD_LEGACY_LANG_LIST' , 'List');
 define( '_AD_LEGACY_LANG_MAINMENU_HAS_MAIN' , 'Main Menu');
 define( '_AD_LEGACY_LANG_MAINMENU_INFO' , 'Information about the Main Menu');
-define( '_AD_LEGACY_LANG_MOD_ADMINGROUP' , 'Target Group (Admin Right)');
+define( '_AD_LEGACY_LANG_MOD_ADMINGROUP' , 'Target Group (Admin Rights)');
 define( '_AD_LEGACY_LANG_MOD_AUTHOR' , 'Module Author');
 define( '_AD_LEGACY_LANG_MOD_BASIC_INFO' , 'Basic Information');
 define( '_AD_LEGACY_LANG_MOD_CREDITS' , 'Signature / Memo');
@@ -220,9 +220,9 @@ define( '_AD_LEGACY_LANG_MOD_EDIT' , 'Module Edit');
 define( '_AD_LEGACY_LANG_MOD_LICENSE_INFO' , 'Licence Information ');
 define( '_AD_LEGACY_LANG_MOD_MID' , 'MID');
 define( '_AD_LEGACY_LANG_MOD_NAME' , 'Module name');
-define( '_AD_LEGACY_LANG_MOD_READGROUP' , 'Target Group (Read Right)');
+define( '_AD_LEGACY_LANG_MOD_READGROUP' , 'Target Group (Read Rights)');
 define( '_AD_LEGACY_LANG_MOD_TOTAL' , 'Total of Modules');
-define( '_AD_LEGACY_LANG_MODINSTALL' , 'Module install');
+define( '_AD_LEGACY_LANG_MODINSTALL' , 'Install Module');
 define( '_AD_LEGACY_LANG_MODINSTALL_ADVICE' , 'Are you sure you want to install <b>_%s_</b>?');
 define( '_AD_LEGACY_LANG_MODINSTALL_CONF' , 'Are you sure you want to install this module?');
 define( '_AD_LEGACY_LANG_MODINSTALL_LIST_ADVICE' , 'Delete unused module files from your server to avoid security issues and keep your website safe.');
@@ -395,7 +395,7 @@ define( '_MD_AM_DOSEARCH' , 'Enable Global Search');
 define( '_MD_AM_DOSEARCHDSC' , 'Provide a search function to help users find content in the Web Application.');
 define( '_MD_AM_DTHEME' , '🎨 Default theme');
 define( '_MD_AM_DTPLSET' , '🎨 Default template set');
-define( '_MD_AM_GENERAL' , 'Settings');
+define( '_MD_AM_GENERAL' , 'General Settings'); /* used by installation wizard */
 define( '_MD_AM_IFUCANT' , "If you can't change the permissions you can edit the rest of this file by hand.");
 define( '_MD_AM_INVLDMINPASS' , 'Invalid value for minimum length of password.');
 define( '_MD_AM_INVLDSCOOK' , 'Invalid value for sessioncookie name.');

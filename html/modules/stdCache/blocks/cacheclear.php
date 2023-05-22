@@ -1,4 +1,9 @@
 <?php
+/**
+ * Cache Clear Block
+ * @package stdCache
+ * @author  Kazuhisa Minato aka minahito, Core developer
+ */
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();

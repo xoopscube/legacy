@@ -11,7 +11,8 @@
  * @license    GPL 2.0
  */
 
-$adminmenu[10]['title']= _MI_LEGACY_NAME.' '._CPHOME; /* _MI_LEGACY_MENU_XOOPS_CONFIG; */
+//$adminmenu[10]['title']= _MI_LEGACY_NAME.' '._CPHOME; /* _MI_LEGACY_MENU_XOOPS_CONFIG; */
+$adminmenu[10]['title']=_MI_LEGACY_MENU_CONFIGURATION;
 $adminmenu[10]['link']= 'admin/index.php?action=PreferenceList';
 $adminmenu[10]['show']=true;
 
@@ -61,6 +62,7 @@ $adminmenu[110]['title']=_MI_LEGACY_MENU_THEME_MANAGE;
 $adminmenu[110]['link']= 'admin/index.php?action=ThemeList';
 $adminmenu[110]['show']=true;
 
-$adminmenu[120]['title']=_MI_LEGACY_MENU_GENERAL_SETTINGS;
+//$adminmenu[120]['title']=_MI_LEGACY_MENU_GENERAL_SETTINGS;
+$adminmenu[120]['title']=_MI_LEGACY_MENU_PREFERENCE;
 $adminmenu[120]['link']= 'admin/index.php?action=PreferenceEdit&confcat_id=1';
 $adminmenu[120]['show']=true;

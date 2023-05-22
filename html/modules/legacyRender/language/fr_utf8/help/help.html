@@ -22,24 +22,19 @@
 
         <h3>Overview</h3>
 
-        <p>The Render theme engine uses Smarty Template Engine — one of the most popular and mature template engines.</p>
+        <div data-layout="row sm-column">
+            <div data-layout="column" data-self="size-xxsmall center px-4 sm-full">
+                <p><img class="svg smarty" src="../../../images/logo/smarty-engine.svg" width="4.75em" alt="Smarty" style="color:var(--color-amber);"></p>
+                <h6>Smarty Template Engine</h6>
+            </div>
+            <div data-self="size-x1 sm-full">
+                <p>This overview provides basic information of the Render syntax built on Smarty Template Engine.
 
-        <p>Themes and Templates are built with HTML, CSS, JavaScript and Smarty tags 
-            — Smarty is used with custom delimiters very similar to HTML markup language that make it easier to design and develop components.</p>
-
-        <div class="tips">The renderer implementation of Smarty uses custom delimiters <b class="badge">&lt;{</b> ... <b class="badge">}&gt;</b>
-             instead of Smarty code enclosed in curly brace tag delimiters {$var} of the official documentation.</div>
-
-        <p>The Render provides an easier management of templates, even when they’re not all stored in one central directory.
-            Although, some Themes have a template directory including most, if not all template files to meet an organization's needs for customization and personalization.
-
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
-        <ul>
-            <li>Custom templates</li>
-            <li>Custom Components</li>
-            <li><a href="https://www.smarty.net/docsv2/en/" target="_blank" rel="noopener">General instructions about Smarty language ⭧</a></li>
-        </ul>
+                <p>The rendering was designed with a clear separation between the front-end and back-end of the Web Application Platform.
+                    It thus addresses the general and specific needs of organizations through a combination of high-level integration and customization.
+                Among other features, the module Render provides URL rewrite generator, Template Management, SEO (Search Engine Optimization) meta tags.
+            </div>
+        </div>
 
     </section>
 
@@ -48,23 +43,16 @@
     <h3>Banner Management</h3>
 
         <p>Allows you to manage adverts and displays banners in your website.
+            You can place a banner on any module and show it to visitors a certain number of impressions.
+            An impression is a metric used to quantify the number of digital views of a client banner.
 
-        <p>You can place a banner of any type, on any location of the page, of any module.
+        <h3>Banner Smarty Tags</h3>
 
-        <p>You may show a banner to visitors a certain number of impressions.
+        <p>Smarty tags generate the banner content through the placement of special Smarty tags within Themes, Templates or Blocks.
+            The Smarty tags are processed and substituted with the banner content : image or code html.
 
-        <p>An impression is a metric used to quantify the number of digital views of a client banner.
-
-        <h4>Banner Smarty Tags</h4>
-
-        <p>Smarty generates web content through the placement of special Smarty tags within a document.
-
-        <p>The Banner tags can be added to Themes, Templates or Blocks.
-
-        <p>Smarty tags will be processed and substituted with content.
-
-    <p>Banner Features</p>
-        <ul>
+    <h3>Banner Features</h3>
+        <ul class="ui-card-2-col">
             <li>List of Banner Clients
             <li>List of Banners
             <li>List of Expired Banners
@@ -79,13 +67,6 @@
             <li>Extra info
         </ul>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
-        <ul>
-            <li>Block Management</li>
-            <li>Theme Design</li>
-        </ul>
-
     </section>
 
     <section id="help-bannerclient">
@@ -93,16 +74,22 @@
         <h3>Banner Client Management</h3>
 
         <p>Assigning a banner to a particular client will help in the long run if you’re working with several clients (i.e. customers).
-        If you’re only going to have one or two banners, you may not need to create a banner client.
 
-        <h4>Steps for creating a new client</h4>
+        <h3>Steps for creating a new client</h3>
+
         <p>To setup a new banner client, follow the steps below:</p>
-
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
         <ul>
-            <li>Banner Management</li>
+            <li>Click the button "New Banner Client"</li>
+            <li>Enter the client details</li>
+            <li>Enter a login and password ( allows client log in to see impressions)</li>
+            <li>Enter any information to help you effectively follow up with the client</li>
         </ul>
+
+        <div class="tips">Clients can log in at example.com/banners.php</div>
+
+        <p>If you have to manage complex campaigns for your organisation that requires analytics implementation,
+            it is recommended to install an open source marketing automation tool, for example Matomo.
+            Otherwise, you can migrate to XCL-Enterprise and install the CRM extension "Campaign" which includes a wide range of plugins for planning, executing, and tracking of marketing campaigns.
 
     </section>
 
@@ -118,7 +105,9 @@
 
         <p>3. Past the generated code into .htaccess</p>
 
-        <p>4. Enable "Cool URI" in the Control Panel System  <a href="../../legacy/admin/index.php?action=PreferenceEdit&confcat_id=1">🆒 Settings ⭢</a>
+        <p>4. Enable "Cool URI" in General Settings
+
+            <p>Control Panel »» System »» Preferences »» General Settings - <a href="../../legacy/admin/index.php?action=PreferenceEdit&confcat_id=1#cool-uri">🆒 Cool URI ⭢</a>
 
         <h3>The .htaccess File</h3>
 
@@ -128,18 +117,28 @@
             As such it is required that your server uses Apache, and a web host that allows htaccess files (the most popular hosts do).
         </p>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
-        <ul>
-            <li>Render Preferences</li>
-            <li>Apache htaccess</li>
-        </ul>
-
     </section>
 
     <section id="help-template">
 
         <h3>Template Management</h3>
+        <p>Smarty Template Engine is one of the most popular and mature template engines.
+
+        <blockquote>
+            Smarty is a template engine for PHP, facilitating the separation of presentation (HTML/CSS) from application logic.<br>
+            This implies that PHP code is application logic, and is separated from the presentation.
+        </blockquote>
+
+        <p>The Render theme engine uses Themes and Templates are built with HTML, CSS, JavaScript and Smarty tags
+            — Smarty is used with custom delimiters very similar to HTML markup language to render dynamic content.
+            That makes it easier to create and design themes, templates and custom components.</p>
+
+        <div class="tips">The renderer implementation of Smarty uses custom delimiters <b class="badge">&lt;{</b> ... <b class="badge">}&gt;</b>
+            instead of Smarty code enclosed in curly brace tag delimiters {$var} of the official documentation.</div>
+
+        <p>The Render provides an easier management of templates, even when they’re not all stored in one central directory.
+            Although, some Themes have a template directory including most, if not all template files to meet an organization's needs for customization and personalization.
+
 
         <p>The distribution package comes with a Default Template Set.
 
@@ -150,26 +149,17 @@
         <div class="error">The Default <b>Template Set</b> cannot be deleted nor modified !</div>
 
         <h3>Custom Template Set</h3>
-
-        <p>Clone the Default Template Set to create a new Template Set 
-
-        <p>Edit the templates in your new Template Set
-
-        <p>Once you have a new Template Set customized, you can activate it with the "Select" button.
+        <ol>
+        <li>Clone the Default Template Set to create a new Template Set
+        <li>Edit the templates in your new Template Set
+        <li>Once you have a new Template Set customized, you can activate it with the "Select" button.
+        </ol>
 
         <h3>Template File Management</h3>
 
         <p>The list of template files allow download and editing of each file.</p>
 
         <div class="tips">You can upload Template Set archives in tar format through the admin interface.</div>
-
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
-        <ul>
-            <li>Components</li>
-            <li>Custom Templates</li>
-            <li>Theme Design</li>
-        </ul>
 
     </section>
 
@@ -199,14 +189,6 @@
 
         <p>So, to delete a theme, simply delete its directory from the "themes" directory.
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
-        <ul>
-            <li>Block Management</li>
-            <li>Components</li>
-            <li>Theme Design</li>
-        </ul>
-
     </section>
 
     <section id="help-amp">
@@ -219,8 +201,7 @@
         <p>Also, AMP HTML documents can be uploaded to a web server and served just like any other HTML document; no special configuration for the server is necessary.
             However, they are also designed to be optionally served through specialized AMP serving systems that proxy AMP documents.</p>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
             <li><a href="https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml" target="_blank" rel="noopener nofollow">Learn more about AMP Spec ⭧</a></li>
         </ul>
@@ -242,9 +223,7 @@
 
             Since its creation, BBCode has been used in many different portals. Any developer can implement it for free and anyone can use it.
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
-
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
             <li><a href="https://www.bbcode.org/" target="_blank" rel="noopener nofollow">Learn more about BBCode Spec ⭧</a></li>
         </ul>
@@ -269,9 +248,7 @@
         <p>The further to the right, the more features, and the further to the left, the simpler.
         <p>Markdown usage requires the installation of a plugin, preload or module.</p>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
-
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
             <li><a href="https://www.bbcode.org/markdown-syntax.php" target="_blank" rel="noopener nofollow">Learn more about Markdown Spec ⭧</a></li>
         </ul>
@@ -290,24 +267,38 @@
         </ul>
 
         <table class="outer">
-            <thead>
-            <tr>
-                <th>Module name</th>
-                <th>Render  [ core system ]</th>
-            </tr>
-            </thead>
             <tbody>
             <tr>
+                <td>Bundle Package</td>
+                <td> XCL 2.3.3</td>
+            </tr>
+            <tr>
+                <td>Module name</td>
+                <td>LegacyRender [ core system ]</td>
+            </tr>
+            <tr>
                 <td>Type</td>
-                <td>X2 Module</td>
+                <td>XCube module [ core system ]</td>
             </tr>
             <tr>
                 <td>Level</td>
                 <td>Required</td>
             </tr>
             <tr>
-                <td>Bundle Package</td>
-                <td> XCL 2.3.3</td>
+                <td>Author</td>
+                <td>Update Nuno Luciano aka gigamaster XCL23, Nobuhiro YASUTOMI PHP8</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>Kazuhisa Minato, Core developer</td>
+            </tr>
+            <tr>
+                <td>Copyright </td>
+                <td>(c) 2007-2023 The XOOPSCube Project, Kazuhisa Minato, Authors</td>
+            </tr>
+            <tr>
+                <td>license</td>
+                <td>GPL 2.0</td>
             </tr>
             <tr>
                 <td>🌐 Repository URL</td>

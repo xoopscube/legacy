@@ -30,7 +30,7 @@ define('_MD_LEGACY_LANG_DOBR', "Вставлять перенос строки �
 define('_MD_LEGACY_LANG_DOHTML', "Включить HTML теги");
 define('_MD_LEGACY_LANG_DOSMILEY', "Использовать смайлики");
 define( '_MD_LEGACY_LANG_ALL_SMILEY_LIST' , 'smilies List');
-define('_MD_LEGACY_LANG_DOXCODE', "Включить коды XOOPS");
+define('_MD_LEGACY_LANG_DOXCODE', "Включить коды XCode BBCode");
 define('_MD_LEGACY_LANG_EMOTION', "Emoticon");
 define('_MD_LEGACY_LANG_ERROR', "ошибка");
 define('_MD_LEGACY_LANG_FMAIL', "Email друга");

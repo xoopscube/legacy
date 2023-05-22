@@ -90,9 +90,9 @@ hr { margin: 2rem 1rem; }
 label.required::before { content: '*';color:var(--red); }
 
 pre {
-    display: inline-grid;
+    /*display: inline-grid;
     border: 1px dotted var(--form-element-disabled-border-color);
-    width: 100%
+    width: 100%*/
 }
 code, kbd {
     display: inline-block;
