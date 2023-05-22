@@ -3,7 +3,7 @@
     <div data-self="size-xxsmall">
         <nav id="help-menu">
             <ul data-layout="rows">
-                <li><a href="#help-overview" class="button">Store Overview</a>
+                <li><a href="#help-overview" class="button">Overview</a>
                 <li><a href="#help-modules" class="button">Module</a>
                 <li><a href="#help-theme" class="button">Theme</a>
 <!--                <li><a href="#help-themefinder" class="button">Theme Finder</a>-->
@@ -20,17 +20,17 @@
 
     <section id="help-overview">
 
-        <h3>X-Update Manager</h3>
-        <p>X-update Manager is a software update service (SUS) with a user-friendly GUI to quickly extend and update your web app.
-        This module can download all critical updates and security patches to your server as soon as they become available.
+        <h3>Overview</h3>
+        <p>X-Update module is an update manager, also known as software update service (SUS), to quickly update your web application and extend with add-ons.
+        With the introduction of this multi-purpose module, you can perform the following tasks :
+            upgrade the core system, update and install modules, themes and single components (preloads).
+        <p>The update manager also provides support for language catalogs (localization) and installation of multiple instances of D3 modules—duplicatable and free to rename client side directory.
         In addition, you can manage your FTP/SSH credentials in the module preferences.
+        This module can download all critical updates and security patches to your server as soon as they become available.
+        The deployment is as fast as possible by downloading archives from a central repository, such as GitHub and GitLab.
 
-        <p>With the introduction of X-update, site administrators just need to log in to the administration
-        Control Panel to install or update modules, themes and preloads.
-        The deployment is as fast as possible by downloading archives from repositories such as GitHub or GitLab.
-        X-update also provides support for language catalogs (localization) and multiple instances of D3 modules (duplicatable and directory free).
-        <p>X-Update automatically monitors the public repository for updates as well as installed modules and themes.</p>
-        <p>Available updates are highlighted in the top notification, and the front-end if X-Update's block is installed.</p>
+        <p>X-Update automatically monitors the central repository, single source of truth for upgrades and updates of installed add-ons.
+        <p>Available updates are highlighted in admin top notification, and front-end if you install the X-Update's block.
 
         <div class="confirm">If your SSL certificate is not valid, check <b>cURL: Disable SSL verification</b> in module's preferences.</div>
 
@@ -41,8 +41,8 @@
 
         <h3>Module</h3>
 
-        <p>Modules can add new functionality to your Web Application Platform or enhance and extend existing functionality.</p>
-        <p>There are different types of modules (utility, service, etc.) usually classified as follows :</p>
+        <p>Modules can add new functionality to your Web Application Platform or enhance and extend existing functionality.
+        <p>There are different types of modules (utility, service, etc.) usually classified as follows :
 
         <table class="outer">
             <thead>
@@ -67,29 +67,28 @@
         </tbody>
         </table>
 
-        <h4>Core modules</h4>
+        <h3>Core modules</h3>
         <p>The default settings ensures that required core modules are running and redirects
-            to the built-in installation wizard if any required module is missing in your application.</p>
+            to the built-in installation wizard if any required module is missing in your application.
 
-        <h4>Trust modules</h4>
-        <p>D3 nodules are installed in the Trust_PATH directory. These modules are duplicable and allow the installation 
-            of several instances with different names, language and templates on the client side.</p>
+        <h3>Trust modules</h3>
+        <p>D3 nodules are installed in the Trust_PATH directory. These modules are duplicable, or duplicatable which means you can install
+            multiple client-side instances, each with its own directory name, database tables, language, and custom templates.
 
-        <h4>X2 Modules</h4>
+        <h3>X2 Modules</h3>
         <p>These modules are installed in the public side and run a single instance.
             The core modules, <b>legacy System and Renderer</b>, are designed to ensure backward compatibility
             and easier upgrades from previous versions. Thus providing forward compatibility with the extensible 
-            built-in features such as delegate and preload (hooks, extensions).</p>
+            built-in features such as delegate and preload (hooks, extensions).
 
         <div class="error">NOTE ! The Legacy system can not guarantee backwards compatibility 
             with deprecated code of module versions that are no longer supported by developers.
             Beware of your Web Application Platform version — <b><{$smarty.const.XOOPS_VERSION}></b></div>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li>Install Modules</li>
-            <li>Run multiple instances of a Trust Module</li>
+            <li><a href="<{'index.php?action=Help&dirname=legacy'}>">Module Management ⭢</a>
+            <li><a href="#!">Guide to multi-tenant and multiple instances</a>
         </ul>
 
     </section>
@@ -100,14 +99,14 @@
         <h3>Theme</h3>
 
         <p>This section provides a brief introduction to download and install Themes 
-            to customize the global appearance of your website.</p>
+            to customize the global appearance of your website.
         <p>The core Render is framework-agnostic, which means Themes can be built with
-            different CSS and JavaScript frameworks.</p>
+            different CSS and JavaScript frameworks.
 
             <ol>
-                <li>Select a Theme and follow the wizard steps</li>
-                <li>Browse to » Theme Management</li>
-                <li>Select your Default Theme</li>
+                <li>Select a Theme and follow the wizard steps
+                <li>Browse to » Theme Management
+                <li>Select your Default Theme
             </ol>
 
         <p>Theme Management allows you to "Select" the default theme and to select multiple themes available to users.
@@ -116,13 +115,11 @@
 
         <p>Any theme that is "checked" in Theme Management will be available to users in the block "Themes".
 
-        <p>If you install the block "Themes" and grant users permission, they can then select their favorite theme and customize the look and feel of the website.</p>
+        <p>If you install the block "Themes" and grant users permission, they can then select their favorite theme and customize the look and feel of the website.
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li>Theme Management</li>
-            <li>Theme with custom templates</li>
+            <li><a href="<{'index.php?action=Help&dirname=legacyRender'}>">Getting started with themes ⭢</a>
         </ul>
 
     </section>
@@ -131,7 +128,7 @@
     <section id="help-themefinder">
 
         <h3>ThemeFinder</h3>
-        <p>Service to select and preview Themes.</p>
+        <p>Service to select and preview Themes.
         <div class="error">Note : The service is not up-to-date and might be removed soon due the lack of developers interest.</div>
 
     </section>
@@ -141,29 +138,27 @@
 
         <h3>Preload</h3>
 
-        <p>This section provides a brief introduction to Preloads and walks through the installation of a simple extension.</p>
-        <p><b>Preloads</b> are commonly <b>Single File Components</b> that extend the Web Application Platform with customized functionality:</p>
+        <p>This section provides a brief introduction to Preloads and walks through the installation of a simple extension.
+        <p><b>Preloads</b> are commonly <b>Single File Components</b> that extend the Web Application Platform with customized functionality:
                 <ul>
-                    <li>Productivity workflow</li>
-                    <li>Web page content enrichment</li>
-                    <li>Information aggregation</li>
-                    <li>Custom UI components</li>
+                    <li>Productivity workflow
+                    <li>Web page content enrichment
+                    <li>Information aggregation
+                    <li>Custom UI components
                 </ul>
         <p>In a nutshell, Preloads are simple extensions, or plugins, to add new functionality,
-            enhance the current usability or customize a design without hacking the core system.</p>
+            enhance the current usability or customize a design without hacking the core system.
 
         <h3>Enable and disable a Preload</h3>
 
-            <p>Unlike modules, Preloads do not have a control panel.</p>
-            <p>A Preload is installed in the public directory <span class="badge">/preloads/</span></p>
+            <p>Unlike modules, Preloads do not have a control panel.
+            <p>A Preload is installed in the public directory <span class="badge">/preloads/</span>
             <p>To disable a preload, the best practice is to use X-elFinder<br>
-                The file manager can be used to delete or move the preload file to a directory <span class="badge">/preloads/disabled/</span></p>
+                The file manager can be used to delete or move the preload file to a directory <span class="badge">/preloads/disabled/</span>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li>List of preloads</li>
-            <li>Sample of preload file</li>
+            <li><a href="<{'index.php?action=Help&dirname=legacy'}>">Delegate mechanism and Preload ⭢</a>
         </ul>
 
     </section>
@@ -173,29 +168,27 @@
 
         <h3>Preferences</h3>
         
-        <p>X-Update manager provides several options to get and deploy add-ons :</p>
+        <p>X-Update manager provides several options to get and deploy add-ons :
         <ul>
-            <li>FTP, Login password for FTP or passphrase of private key for SSH2 Key-Auth</li>
-            <li>Private key for SSH connection</li>
-            <li>Write permissions of files and folders</li>
-            <li>Update only used Language</li>
-            <li>Disabled items from Store list</li>
-            <li>Select a Tag module</li>
-            <li>Preload files edited with X-elFinder</li>
-            <li>View the debug output</li>
-            <li>Add-on Store URL</li>
-            <li>HTTP maximum connections</li>
+            <li>FTP, Login password for FTP or passphrase of private key for SSH2 Key-Auth
+            <li>Private key for SSH connection
+            <li>Write permissions of files and folders
+            <li>Update only used Language
+            <li>Disabled items from Store list
+            <li>Select a Tag module
+            <li>Preload files edited with X-elFinder
+            <li>View the debug output
+            <li>Add-on Store URL
+            <li>HTTP maximum connections
         </ul>
 
         <div class="confirm">Disable SSL verification :
             Turn off cURL's verification to bypass SSL certificate validation for local and test servers.
         </div>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li>Create your own Update Store</li>
-            <li>Customize X-Update Manager</li>
+            <li><a href="#!">Guide to create and manage your own Update Store</a>
         </ul>
 
     </section>
@@ -205,7 +198,7 @@
 
         <h3>Development</h3>
 
-        <table>
+        <table class="outer">
             <tbody>
             <tr>
                 <td>Bundle Package</td>
@@ -225,11 +218,15 @@
             </tr>
             <tr>
                 <td>Author</td>
+                <td>Update by Nuno Luciano aka gigamaster, 2020 XCL23, Nobuhiro Yasutomi aka nbuy</td>
+            </tr>
+            <tr>
+                <td>Author</td>
                 <td>Domifara, Hamaco, Kilica Hikawa, Naoki Okino aka naao, Naoki Sawada aka nao-pon</td>
             </tr>
             <tr>
                 <td>Author</td>
-                <td>Update by Nuno Luciano aka gigamaster, 2020 XCL23, Nobuhiro Yasutomi aka nbuy</td>
+                <td>Naoki Sawada aka nao-pon, Lead developer</td>
             </tr>
             <tr>
                 <td>Copyright </td>

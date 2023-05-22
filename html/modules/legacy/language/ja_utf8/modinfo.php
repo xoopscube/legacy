@@ -26,6 +26,7 @@ define( '_MI_LEGACY_MENU_ACTIONSEARCH' , 'アクションサーチ');
 define( '_MI_LEGACY_MENU_BLOCKINSTALL' , 'ブロックのインストール');
 define( '_MI_LEGACY_MENU_BLOCKLIST' , 'ブロックの管理');
 define( '_MI_LEGACY_MENU_COMMENT_MANAGE' , 'コメントの管理');
+define( '_MI_LEGACY_MENU_CONFIGURATION' , 'システム構成');
 define( '_MI_LEGACY_MENU_CREATE_SMILES' , '顔アイコンの新規作成');
 define( '_MI_LEGACY_MENU_GENERAL_SETTINGS' , '全般設定');
 define( '_MI_LEGACY_MENU_IMAGE_MANAGE' , 'イメージ・マネージャー');

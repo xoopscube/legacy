@@ -31,10 +31,10 @@
 
         <p>Administrators can assign user groups and individual permissions into various categories.
         Users with appropriate access rights can discuss one specific topic with other members of the platform.
+
     </section>
 
     <section id="help-forum-usage">
-
 
         <h3>New Category and Forum</h3>
 
@@ -49,76 +49,75 @@
             <li>Category order (weight position, default sorting by category ID)
             <li>Category options, (more about this below in section options).
         </ol>
-        <p>When you’ve included all these details, you can simply click "Submit" on the bottom of the form, and your Category will be created.</p>
+
+        <p>When you’ve included all these details, you can simply click "Submit" at the bottom of the form, and your Category will be created.
 
         <div class="tips">Category, subcategories and forums inherit permissions from the nearest parent category, in the absence of individual permissions, from the Top-level category, by default.</div>
 
+        <h3>Moderation</h3>
         <p>Only administrators can create categories and forums.
             However, you can assign users and roles to moderate and create forums (either individually, or for all categories on your module instance).
-            For example, you may grant users a specific role with the ability to create forums.</p>
-        <p>Click the button, or icon "Edit category", then click "Category permissions" to manage users permissions.
+            For example, you may grant users a specific role "moderator" with the ability to create forums.
+
+        <ol>
+            <li>Click the button, or icon "Edit category"</li>
+            <li>Click "Category permissions" to manage users permissions</li>
+        </ol>
 
         <h3>Overridable options</h3>
 
         <p>Categories, subcategories and forums inherit the options from the Top-level category, by default.
             However, you can customize the default options when creating or editing a category or forum.
+
         <p>Override preferences by writing a new line for each option.<br>
-        (option name):(option value)<br>
-        Example to show breadcrumbs (1=on, 0=off):<br>
-        show_breadcrumbs:1
+        <code>(option name):(option value)</code>
+        <p>Example to show breadcrumbs (1=on, 0=off):<br>
+        <code>show_breadcrumbs:1</code>
 
-        <p>Overridable options current values
+        <h4>Overridable options current values</h4>
 
-        <h4>default_options:smiley,xcode,br,number_entity</h4>
-        <p>desc</p>
-        <h4>allow_html:0</h4>
-        <p>desc</p>
-        <h4>allow_textimg:0</h4>
-        <p>desc</p>
-        <h4>allow_sig:1</h4>
-        <p>desc</p>
-        <h4>allow_sigimg:0</h4>
-        <p>desc</p>
-        <h4>posts_per_topic:20</h4>
-        <p>desc</p>
-        <h4>hot_threshold:10</h4>
-        <p>desc</p>
-        <h4>topics_per_page:10</h4>
-        <p>desc</p>
-        <h4>use_vote:1</h4>
-        <p>desc</p>
-        <h4>use_solved:1</h4>
-        <p>desc</p>
-        <h4>allow_mark:1</h4>
-        <p>desc</p>
-        <h4>allow_hideuid:0</h4>
-        <p>desc</p>
-        <h4>viewallbreak:10</h4>
-        <p>desc</p>
-        <h4>selfeditlimit:240</h4>
-        <p>desc</p>
-        <h4>selfdellimit:0</h4>
-        <p>desc</p>
-        <h4>css_uri:{mod_url}/index.php?page=main_css</h4>
-        <p>desc</p>
-        <h4>images_dir:images</h4>
-        <p>desc</p>
-        <h4>body_editor:xoopsdhtml</h4>
-        <p>desc</p>
-        <h4>anonymous_name:Гости</h4>
-        <p>desc</p>
-        <h4>icon_meanings:нет|норма|несчастлив|счастлив|супер|ерунда|доклад|вопрос</h4>
-        <p>desc</p>
-        <h4>guest_vote_interval:86400</h4>
-        <p>desc</p>
-
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
-        <ul>
-            <li>Block Management</li>
-            <li>D3 modules comment integration</li>
-            <li>Users Roles and Permissions</li>
-        </ul>
+        <p><b>default_options:smiley,xcode,br,number_entity</b>
+        <p>desc
+        <p><b>allow_html:0</b>
+        <p>desc
+        <p><b>allow_textimg:0</b>
+        <p>desc
+        <p><b>allow_sig:1</b>
+        <p>desc
+        <p><b>allow_sigimg:0</b>
+        <p>desc
+        <p><b>posts_per_topic:20</b>
+        <p>desc
+        <p><b>hot_threshold:10</b>
+        <p>desc
+        <p><b>topics_per_page:10</b>
+        <p>desc
+        <p><b>use_vote:1</b>
+        <p>desc
+        <p><b>use_solved:1</b>
+        <p>desc
+        <p><b>allow_mark:1</b>
+        <p>desc
+        <p><b>allow_hideuid:0</b>
+        <p>desc
+        <p><b>viewallbreak:10</b>
+        <p>desc
+        <p><b>selfeditlimit:240</b>
+        <p>desc
+        <p><b>selfdellimit:0</b>
+        <p>desc
+        <p><b>css_uri:{mod_url}/index.php?page=main_css</b>
+        <p>desc
+        <p><b>images_dir:images</b>
+        <p>desc
+        <p><b>body_editor:xoopsdhtml</b>
+        <p>desc
+        <p><b>anonymous_name:Гости</b>
+        <p>desc
+        <p><b>icon_meanings:нет|норма|несчастлив|счастлив|супер|ерунда|доклад|вопрос</b>
+        <p>desc
+        <p><b>guest_vote_interval:86400</b>
+        <p>desc
 
     </section>
 
@@ -127,23 +126,20 @@
         <h3>Forum Blocks</h3>
 
         <p>The module allows you to add blocks with forums, topics and posts in the different modules and pages of your site.
-        <p>Each block has its own options and template, permissions and cache settings.</p>
+        <p>Each block has its own options and template, permissions and cache settings.
 
         <h3>Block Forums</h3>
-        <p>desc</p>
+        <p>desc
 
         <h3>Block Topics</h3>
-        <p>desc</p>
+        <p>desc
 
         <h3>Block Posts</h3>
-        <p>desc</p>
+        <p>desc
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li>Components</li>
-            <li>Custom Template</li>
-            <li>Block Management</li>
+            <li><a href="<{'index.php?action=Help&dirname=altsys'}>">Block Management ⭢</a>
         </ul>
 
     </section>
@@ -152,9 +148,9 @@
 
         <h3>Permissions</h3>
 
-        <p>Provide permissions to groups and users.</p>
+        <p>Provide permissions to groups and users.
         <p>Category and Forum permissions are a combination of a category, forum and users permissions.
-        <p>Assign permissions individually within a specific category and forum.
+        <p>Assign permissions individually within a specific category and forum.</p>
 
         <table class="outer">
             <thead>
@@ -218,11 +214,9 @@
             </tfoot>
         </table>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li>User Groups Management</li>
-            <li>Cache settings</li>
+            <li><a href="<{'index.php?action=Help&dirname=user'}>">User Groups Management ⭢</a>
         </ul>
 
     </section>
@@ -232,13 +226,12 @@
 
         <h3>Advanced</h3>
 
-        <p>Features tools to synchronize and import comments</p>
+        <p>Features tools to synchronize and import comments
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li></li>
-            <li></li>
+            <li>[...]
+            <li>[...]
         </ul>
 
     </section>
@@ -251,11 +244,10 @@
         <p>A comment or post history, also called revision history or edit history.
         <p>You can view Edit's history by clicking the "View history" menu
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li></li>
-            <li></li>
+            <li>[...]
+            <li>[...]
         </ul>
 
     </section>
@@ -265,13 +257,11 @@
 
         <h3>Customization</h3>
 
-        <p>You can customize the module language and templates.</p>
+        <p>You can customize the module language and templates.
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li>Components</li>
-            <li>Custom Template</li>
+            <li><a href="<{'index.php?action=Help&dirname=altsys'}>">Custom Template ⭢</a>
         </ul>
 
     </section>
@@ -285,7 +275,7 @@
         <p>The D3 Forum module comes with several options set for a new forum.
         <p>Review the list of options and define your preferences.
         <p>If you are familiar with themes and templates, you can duplicate the template files of the module to be customized.
-        <p>You can install multiple instances of D3Forum using the X-Update Manager.</p>
+        <p>You can install multiple instances of D3Forum using the X-Update Manager.
 
     </section>
 
@@ -297,7 +287,7 @@
         <p>It was developed by Gijoe and Jidaikobo, improved by Naao, Nao-pon and Domifara.
         <p>Updated to XCL23 PHP7-PHP8 by Nobuhiro Yasutomi and Nuno Luciano.
 
-        <table>
+        <table class="outer">
         <tbody>
             <tr>
                 <td>Bundle Package</td>
@@ -317,15 +307,19 @@
             </tr>
             <tr>
                 <td>Author</td>
-                <td>Original by Gijoe @peak.ne.jp and Jidaikbo</td>
+                <td>Update by Nobuhiro Yasutomi @nbuy, Nuno Luciano @gigamaster XCL23</td>
             </tr>
             <tr>
                 <td>Author</td>
-                <td>Update by @domifara, @naao Naoki Okino, @nao-pon Naoki Sawada, Nobuhiro Yasutomi @nbuy, Nuno Luciano @gigamaster XCL23</td>
+                <td>Update by Naoki Sawada aks @nao-pon, Lead developer,  Naoki Okino @naao and Domifara @domifara</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>Original by Gijoe @peak.ne.jp and Jidaikbo</td>
             </tr>
             <tr>
                 <td>Copyright </td>
-                <td>(c) 2007-2023 Peak.ne.jp, Authors</td>
+                <td>2007-2023 Peak.ne.jp, Authors</td>
             </tr>
             <tr>
                 <td>license</td>

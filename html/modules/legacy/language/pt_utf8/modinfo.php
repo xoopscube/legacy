@@ -32,6 +32,7 @@ define( '_MI_LEGACY_MENU_ACTIONSEARCH' , "Pesquisa interna");
 define( '_MI_LEGACY_MENU_BLOCKINSTALL' , "Instalar bloco");
 define( '_MI_LEGACY_MENU_BLOCKLIST' , "Gerenciar blocos");
 define( '_MI_LEGACY_MENU_COMMENT_MANAGE' , "Comentários");
+define( '_MI_LEGACY_MENU_CONFIGURATION' , 'Configuração');
 define( '_MI_LEGACY_MENU_CREATE_SMILES' , "Criar ícone emotivo");
 define( '_MI_LEGACY_MENU_GENERAL_SETTINGS' , "Configurações");
 define( '_MI_LEGACY_MENU_IMAGE_MANAGE' , "Banco de imagens");

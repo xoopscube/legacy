@@ -178,7 +178,7 @@ define( '_AD_LEGACY_LANG_LICENCE' , "Licença");
 define( '_AD_LEGACY_LANG_LIST' , "Listar");
 define( '_AD_LEGACY_LANG_MAINMENU_HAS_MAIN' , "Principal");
 define( '_AD_LEGACY_LANG_MAINMENU_INFO' , "Sobre o menu principal");
-define( '_AD_LEGACY_LANG_MODINSTALL' , "Instalar um novo módulo");
+define( '_AD_LEGACY_LANG_MODINSTALL' , "Instalar módulo");
 define( '_AD_LEGACY_LANG_MODINSTALL_ADVICE' , "Tem certeza de que deseja instalar o módulo <strong>_%s_</strong>?");
 define( '_AD_LEGACY_LANG_MODINSTALL_CONF' , "Tem certeza de que deseja instalar este módulo?");
 define( '_AD_LEGACY_LANG_MODINSTALL_LIST_ADVICE' , "Remova os módulos desnecessários do servidor para manter a segurança do seu portal.");

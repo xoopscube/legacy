@@ -210,7 +210,7 @@ define( '_AD_LEGACY_LANG_LICENCE' , "Licence");
 define( '_AD_LEGACY_LANG_LIST' , "Liste");
 define( '_AD_LEGACY_LANG_MAINMENU_HAS_MAIN' , "Main Menu");
 define( '_AD_LEGACY_LANG_MAINMENU_INFO' , "Information sur Main Menu");
-define( '_AD_LEGACY_LANG_MOD_ADMINGROUP' , "Target Group(Admin Right)");
+define( '_AD_LEGACY_LANG_MOD_ADMINGROUP' , "Target Group(Admin Rights)");
 define( '_AD_LEGACY_LANG_MOD_AUTHOR' , 'Module Author');
 define( '_AD_LEGACY_LANG_MOD_BASIC_INFO' , "Information générale");
 define( '_AD_LEGACY_LANG_MOD_CREDITS' , "Signature / Memo");

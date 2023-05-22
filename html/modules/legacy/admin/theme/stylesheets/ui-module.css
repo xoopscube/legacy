@@ -131,6 +131,7 @@ article#dialog-help {
     width:100%;
     box-sizing: border-box;
 }
+
 article#help-module > section{
     background: var(--card-full-bg );
     border: var(--card-full-border );
@@ -141,6 +142,7 @@ article#help-module > section{
     scroll-padding-top: 70px;
     max-width: 100%;
 }
+article#help-module h2 {margin:0 0 1em 0;}
 article#help-module section h3:first-of-type {margin-top:0;}
 nav#help-menu {
     align-self      : flex-start;
@@ -161,10 +163,35 @@ div.help section[id|="help"] {
     scroll-margin-top: 8em; /* property should be applied to each anchor section to leave a margin at the top */
 }
 
-section.help .guide-layout { background: var(--body-bg );border: var(--border);box-shadow:var(--shadow-3); display: block;font-size:14px;margin-top:var(--space-7)}
-section.help .guide-layout > div {border: var(--border);}
-section.help .guide-layout div.block {background: var(--card-full-bg );padding:.5em;}
-section.help .guide-layout div.block:not(:last-child) {margin-bottom:1em}
+ .guide-layout { background: var(--body-bg );border: var(--border);box-shadow:var(--shadow-1); display: block;font-size:14px;margin-top:var(--space-7)}
+ .guide-layout > div {border: var(--border);}
+ .guide-layout div.block {background: var(--card-full-bg );padding:.5em;}
+ .guide-layout div.block:not(:last-child) {margin-bottom:1em}
+
+h4.help-rel + ul {
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+h4.help-rel + ul > li {
+    background: var(--layer-3);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    box-shadow: none;
+    margin:  .25em 1.5em;
+    padding: 0;
+
+}
+h4.help-rel + ul > li a {
+    width:100%; margin:0;border:1px solid red;padding: var(--space-4) var(--space-6);
+}
+h4.help-rel + ul > li:last-of-type {
+    margin-bottom: 1.5em
+}
+h4.help-rel + ul > li:hover{
+    box-shadow: var(--shadow-2);
+    transition: var(--shadow-transition);
+}
 
 /* -------------------- --------------------  X-UPDATE STORE */
 

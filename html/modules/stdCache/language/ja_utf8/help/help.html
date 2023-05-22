@@ -1,4 +1,5 @@
 <div data-layout="row sm-column">
+
     <div data-self="size-xxsmall">
         <nav id="help-menu">
             <ul data-layout="rows">
@@ -18,8 +19,9 @@
 
         <h3>Standard Cache Management</h3>
 
-        <p>This module manages the Standard Cache Policy of XCL Web Application Platform.
-        <p>The standard policy cache files for every user groups except the webmaster group.
+        <p>This module utility improves the performance of your web application by allowing users to retrieve faster compiled temporary files stored in a cache directory.
+        <p>The module manages the standard cache policy of your web application platform cache files for every user group except the webmaster group.
+        To ensure the best performance, it also provides a block to easily clear the cache.
 
     </section>
 
@@ -28,12 +30,11 @@
 
         <h3>Features</h3>
 
-        <p>XCL introduced a new Cache Policy concept called Standard Cache.
-        <p>Its purpose is to reduce the time it takes to perform certain scenarios
-        <p>caching files of modules and blocks.
-        <p>The cache feature saves the content to files, if setting cache active.
-        <p>And, if cache files are available, XCL prevents the extra logic SQL of blocks and modules.
-        <p>This is a useful and powerful feature to speed up a web page load for all site visitors.
+        <p>With the introduction of a new Cache Policy concept called Standard Cache, You can configure the output cache settings in any module or block.
+        <p>Its purpose is to reduce the time it takes to perform certain scenarios caching files of modules and blocks.
+        <p>When the cache is enabled, the cache feature saves automatically the content to a file. If cache files are available, it prevents the extra logic SQL of blocks and modules.
+        At the same time, it checks user's access permissions before delivering the cached module page or block content.
+        This is a useful and powerful feature to speed up access to your web pages.
 
     </section>
 
@@ -42,46 +43,38 @@
 
         <h3>Understanding Group Policy Caching</h3>
 
-        <p>For security reasons, the Standard Cache Policy should prevent the caching of files for administrators' access.
-        <p>Otherwise, the files cached could be accessed by anonymous users.
-        <p>Also, to prevent the cache to grow larger with too many files in your server,
-        <p>the cache of modules can be enable or disable from General Settings.
+        <p>For security reasons, the Standard Cache Policy should prevent the caching of files for administrators' access. Otherwise, the files cached could be accessed by anonymous users.
+        <p>Also, to prevent the cache to grow larger with too many files in your server, the module cache can be enabled or disabled from the general settings :<br>
+        <p><code> Control Panel »» System »» Preferences »» General Settings</code></p>
 
         <h3>Best practices for cache control settings</h3>
 
-        <p>Set the time that the module or block should keep the files in cache.
-        <p>Therefore, the Standard Cache Policy can cache many files, so it features a "cache clear block".
+        <p>Each module and block allows you to set how long the module or block should keep cached files.
+        <p>Therefore, the standard cache policy can cache a significant number of files.
+        <p>For this reason, the module provides a block with the option to set the time interval for clearing the cache of modules and groups of files.
+        <p>To ensure the best performance in case of increased demand or scheduled downtime for maintenance of your server, it is recommended to install the block "Clear cache block".</p>
 
-        <h5><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h5>
-        <ul>
-            <li>Use Groups Management</li>
-            <li>Module Management</li>
-        </ul>
     </section>
 
 
     <section id="help-block">
 
-        <h3>The cache clear block</h3>
+        <h3>Clear cache block</h3>
 
-        <p>This block is not visible and can delete all of cached files, including
-            extra cache files, with interval timer.</p>
+        <p>Install the module's block to clear precompiled files to cache.</p>
+        <ol>
+            <li>Install the block "Clear cache block"
+            <li>Select the target modules (multiple selection)
+            <li>Select the target groups (multiple selection)
+            <li>Enter the interval timer (minutes). Default value : 60
+        </ol>
 
-        <h4>Options</h4>
+        <div class="tips">This block is not visible and can delete all of cached files, including
+            extra cache files, with interval timer.</div>
 
-        <p><img src="<{'cacheclear_block_option.png'|helpimage}>" alt="cache"></p>
-
-        <dl>
-            <dt>Interval timer (min)</dt>
-            <dd>Specify the interval.</dd>
-        </dl>
-
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M2 8v11.529S6.621 19.357 12 22c5.379-2.643 10-2.471 10-2.471V8s-5.454 0-10 2.471C7.454 8 2 8 2 8z"/><circle cx="12" cy="5" r="3" fill="currentColor"/></svg>
-            Related content</h4>
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li>Block Management</li>
-            <li>Components</li>
+            <li><a href="<{'index.php?action=Help&dirname=legacy'}>">Block Management ⭢</a>
         </ul>
 
     </section>
@@ -90,24 +83,39 @@
     <section id="help-development">
         <h3>Development</h3>
 
-        <table>
+        <table class="outer">
             <tbody>
             <tr>
-                <td>Module name</td>
-                <td>Standard Cache</td>
+                <td>Bundle Package</td>
+                <td> XCL 2.3.3</td>
             </tr>
-
+            <tr>
+                <td>Module name</td>
+                <td>stdCache [ Standard Cache ]</td>
+            </tr>
             <tr>
                 <td>Type</td>
-                <td>X2 module</td>
-            </tr>
-            <tr>
-                <td>Version</td>
-                <td>2.31</td>
+                <td>X2 Module Utility</td>
             </tr>
             <tr>
                 <td>Level</td>
                 <td>Required</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>Update Nuno Luciano aka gigamaster, XCL23</td>
+            </tr>
+            <tr>
+                <td>Author</td>
+                <td>Kazuhisa Minato, Core developer</td>
+            </tr>
+            <tr>
+                <td>Copyright </td>
+                <td>(c) 2007-2023 The XOOPSCube Project, Kazuhisa Minato, Authors</td>
+            </tr>
+            <tr>
+                <td>license</td>
+                <td>GPL 2.0</td>
             </tr>
             <tr>
                 <td>🌐 Repository URL</td>

@@ -1,6 +1,7 @@
 <?php
 /**
  * @package stdCache
+ * @author  Kazuhisa Minato aka minahito, Core developer
  * @version $Id: Initialize.class.php,v 1.1 2007/05/15 02:35:37 minahito Exp $
  */
 

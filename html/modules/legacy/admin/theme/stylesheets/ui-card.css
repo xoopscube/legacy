@@ -39,7 +39,7 @@
 .ui-block-online {
     display			: flex;
     justify-content	: space-between;
-    margin			: var(--space-8) 0;
+    margin			: var(--space-6) 0;
     padding         : var(--space-6);
 }
 .ui-block-online-welcome {
@@ -86,7 +86,7 @@
     display			: grid;
     grid-template-columns : repeat(auto-fit, minmax(214px, 1fr));
     grid-gap        : 16px;
-    margin: 4em auto 0;
+    margin          : 4em auto 0;
 }
 .ui-card-small {
     align-items     : center;
@@ -118,10 +118,10 @@
 .ui-card-small-subtitle {
     margin          : 0 0 0 1rem;
 }
-.ui-card-small:hover {
-    box-shadow      : var(--card-small-shadow-on);
-    transform       : translateY(-3px);
-}
+/*.ui-card-small:hover {*/
+/*    box-shadow      : var(--card-small-shadow-on);*/
+/*    transform       : translateY(-3px);*/
+/*}*/
 
 /* -------------------- --------------------  UI--BLOCKS-GRID */
 

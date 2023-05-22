@@ -35,7 +35,7 @@ define( '_AD_BLOCK_OVERVIEW' , 'Overview Stats');
 define( '_AD_BLOCK_PHP' , 'PHP Settings');
 define( '_AD_BLOCK_SEARCH' , 'Action Search');
 define( '_AD_BLOCK_SERVER' , 'Server Environment');
-define( '_AD_BLOCK_THEME' , 'Select Theme');
+define( '_AD_BLOCK_THEME' , 'Select Theme Color');
 define( '_AD_BLOCK_TIPS' , 'Modules Help Tips');
 define( '_AD_BLOCK_TOOLTIP' , 'Disable action tooltip');
 

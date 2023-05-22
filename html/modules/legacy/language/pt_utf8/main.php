@@ -35,7 +35,7 @@ define( '_MD_LEGACY_LANG_COMMENT_RULE' , "Permissões dos comentários");
 define( '_MD_LEGACY_LANG_DOBR' , "Inserir quebra-de-linha automaticamente");
 define( '_MD_LEGACY_LANG_DOHTML' , "Habilitar códigos HTML");
 define( '_MD_LEGACY_LANG_DOSMILEY' , "Utilizar ícones emotivos (emos)");
-define( '_MD_LEGACY_LANG_DOXCODE' , "Habilitar códigos do XOOPS");
+define( '_MD_LEGACY_LANG_DOXCODE' , "Habilitar código XCode BBCode");
 define( '_MD_LEGACY_LANG_EMOTION' , "Emo");
 define( '_MD_LEGACY_LANG_ERROR' , "Erro");
 define( '_MD_LEGACY_LANG_FMAIL' , "Endereço do destinatário");

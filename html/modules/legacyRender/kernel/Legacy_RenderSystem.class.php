@@ -3,9 +3,9 @@
  * Legacy_RenderSystem.class.php
  * @package LegacyRender
  * @version 2.3.3
- * @author     Nobuhiro YASUTOMI, PHP8
- * @author Nuno Luciano v.XCL23
- * @author minahito v 1.4 2008/08/26 15:58:41
+ * @author  Nobuhiro YASUTOMI, PHP8
+ * @author  Nuno Luciano v.XCL23
+ * @author  Kazuhisa Minato aka minahito v 1.4 2008/08/26 15:58:41
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {

@@ -103,8 +103,8 @@ Usage with color var:
         --link-visited  : var(--primary);
 
         /* SCROLLBAR */
-        --trackBG       : hsl(227, 10%, 10%);
-        --thumbBG       : hsl(219, 15%, 25%);
+        /*--trackBG       : hsl(227, 10%, 10%);*/
+        /*--thumbBG       : hsl(219, 15%, 25%);*/
     }
 }
 
@@ -125,7 +125,7 @@ Usage with color var:
     --color-red-op  : hsla(5, 70%, 45%, 0.8);
     --color-white   : hsl(0, 0%, 90%);
 
-    --layer-1       : hsl(219, 25%, 84%);
+    --layer-1       : hsl(219, 25%, 85%);
     --layer-2       : hsl(219, 25%, 88%);
     --layer-3       : hsl(219, 25%, 92%);
     --layer-4       : hsl(219, 25%, 94%);
@@ -167,8 +167,8 @@ Usage with color var:
     /* SVG ICON [buttons, cards] */
     --icon-size         : 20px;
     /* SCROLLBAR */
-    --trackBG           : var( --layer-1 );
-    --thumbBG           : var( --layer-4 );
+    --trackBG           : var( --layer-3 );
+    --thumbBG           : var( --layer-1 );
     --thumbLinear       : linear-gradient(left, #272727, rgba(255, 147, 5, 0.5));
 
     /* -------------------- --------------------  LAYOUT Grid template */
@@ -180,7 +180,7 @@ Usage with color var:
     --bg-linear             : linear-gradient(360deg, hsla(219, 15%, 25%, 0.70), hsla(0, 0%, 0%, 0.90));
     --bg-gradient           : linear-gradient(360deg, var(--layer-1), var(--layer-2));
 
-    --aside-bg              : var( --layer-1 );
+    --aside-bg              : var( --layer-3 );
 
     --aside-panel-bg        : var( --layer-1 );
     --aside-panel-shadow    : var( --shadow-5 );
@@ -266,7 +266,7 @@ Usage with color var:
     /* -------------------- --------------------  CARD-BLOCK */
 
     --card-bg               : var( --layer-3 );
-    --card-border           : var( --layer-4 );
+    --card-border           : var( --border );
     --card-bg-image         : none; /**/
     --card-margin           : var( --space-6 );
     --card-padding          : var( --space-6 );
@@ -290,11 +290,11 @@ Usage with color var:
 
     /* -------------------- --------------------  CARD-FULL */
 
-    --card-full-bg          : var( --layer-3 );
-    --card-full-border      : var( --layer-4);
+    --card-full-bg          : var( --layer-4 );
+    --card-full-border      : 1px solid var( --layer-4);
     --card-full-radius      : var( --border-radius );
     --card-full-padding     : var( --space-6 );
-    --card-full-margin      : var( --space-6 );
+    --card-full-margin      : auto;
     --card-full-shadow      : var( --shadow-1 );
 
     /* -------------------- --------------------  CARD-SMALL */
@@ -417,17 +417,19 @@ Usage with color var:
     --notify-bg             : var( --layer-1 );
     --notify-border         : 1px solid var( --layer-4 );
     --notify-radius         : var( --border-radius );
-    --notify-shadow         : var( --shadow-2 );
+    --notify-shadow         : var( --shadow-1 );
     --notify-color          : var( --primary );
     --notify-margin         : var(--space-7) auto;
     --notify-padding        : 1rem 1rem 1rem 3rem;
     --notify-max-width      : 90%;
 
     /* -------------------- --------------------  SHADOW */
-    --shadow-2: 0 6px 14px 0 rgba(0,0,0,.132), 0 1px 4px 0 rgba(0,0,0,.108);
 
-    --shadow-1  : 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+    /*--shadow-1  : 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);*/
     /*--shadow-2  : 0 2px 4px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.28);*/
+    --shadow-1  : 0 3px 6px 0 rgba(0,0,0,.132), 0 1px 4px 0 rgba(0,0,0,.108);
+    --shadow-2  : 0 6px 12px 0 rgba(0,0,0,.132), 0 1px 4px 0 rgba(0,0,0,.108);
     --shadow-3  : 0 3px 6px rgba(0,0,0,0.19), 0 3px 6px rgba(0,0,0,0.28);
     --shadow-4  : 0 4px 8px rgba(0,0,0,0.25), 0 4px 8px rgba(0,0,0,0.28);
     --shadow-5  : 0 5px 10px rgba(0,0,0,0.30), 0 5px 10px rgba(0,0,0,0.25);
@@ -507,7 +509,7 @@ Usage with color var:
 
     /* -------------------- --------------------  UI DIALOG / MODAL */
 
-    --ui-dialog-bg              : var(--layer-1);
+    --ui-dialog-bg              : var(--layer-3);
     --ui-dialog-shadow          : var(--shadow-5);
     --ui-icon-background        : var(--link-hover); /* background-color, border */
     /*--ui-icon-background-border : var(--link-hover);*/

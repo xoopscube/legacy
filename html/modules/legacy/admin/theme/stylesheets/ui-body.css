@@ -144,17 +144,17 @@ h2 {
 }
 h3 {
     font-size       : 24px;
-    margin          : 1.25em 0;
+    margin          : 1.25em 0 .5em;
 }
 h4 {
     font-size       : 20px;
-    margin          : 1.25em 0;
+    margin          : 1.5em 0 1em;
 }
 h5 {
     font-size       : 16px;
     letter-spacing  : 1px;
     text-transform  : uppercase;
-    margin          : var(--space-6) 0;
+    margin          : 1.5em 0 1em;
 }
 h6 {
     font-size       : 14px;
@@ -162,8 +162,6 @@ h6 {
     text-transform  : uppercase;
     margin          : var(--space-6) 0;
 }
-
-article#help-module h2 {margin:0 0 1em 0;}
 
 hr {
     border          : 0;
@@ -214,7 +212,7 @@ header.nav-top ul {
 header.nav-top ul li {
     display         : inline-block;
     font-size       : var(--icon-size);
-    padding         : 2px;
+    padding         : 0;
 }
 header.nav-top svg.site-name{
     color: var(--theme-hover, var(--primary) )

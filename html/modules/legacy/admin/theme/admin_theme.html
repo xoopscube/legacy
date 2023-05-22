@@ -122,7 +122,7 @@
             <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
         </nav>
 
-        <{* Admin Blocks from file: /legacy/admin/preload/AdminDashboard.php
+        <{* Edit Admin Blocks from file: /legacy/admin/preload/AdminDashboard.php
             Disable (0) or Enable (1) block render *}>
 
         <div id="admin-block-online" class="hide">
@@ -131,7 +131,7 @@
 
         <div data-layout="row sm-column" data-self="sm-full">
 
-            <div data-layout="column px-3" data-self="size-x1">
+            <div data-layout="column mt-7 px-3" data-self="size-x1">
 
                 <div id="admin-block-menu" class="show">
                 <{$xoops_lblocks.block_menu.content}>
@@ -141,6 +141,7 @@
                 <h3><{$xoops_lblocks.block_server.title}></h3>
                 <{$xoops_lblocks.block_server.content}>
                 </div>
+
                 <div id="admin-block-php" class="show">
                 <h3><{$xoops_lblocks.block_php.title}></h3>
                 <{$xoops_lblocks.block_php.content}>

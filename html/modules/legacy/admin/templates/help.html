@@ -7,10 +7,8 @@
         <a href="index.php?action=Help&dirname=<{$module->mXoopsModule->getShow('dirname')}>"><{$smarty.const._HELP}></a></span>
 </nav>
 
-<h2><a href="index.php?action=Help&dirname=<{$module->mXoopsModule->getShow('dirname')}>"><{$smarty.const._HELP}></a> »
-    <{$module->mXoopsModule->getShow('name')}>
+<h2><a href="index.php?action=Help&dirname=<{$module->mXoopsModule->getShow('dirname')}>"><{$module->mXoopsModule->getShow('name')}></a> »
+    <{$smarty.const._HELP}>
 </h2>
 
-<!--<div class="ui-card-full">-->
-    <div class="help"><{$contents}></div>
-<!--</div>-->
+<div class="help"><{$contents}></div>

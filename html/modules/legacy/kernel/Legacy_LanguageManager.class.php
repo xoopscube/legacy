@@ -1,9 +1,9 @@
 <?php
 /**
  *
- * @package Legacy
+ * @package    Legacy
  * @author     Nobuhiro YASUTOMI, PHP8
- * @version $Id: Legacy_LanguageManager.class.php,v 1.6 2008/09/25 15:11:57 kilica Exp $
+ * @version    $Id: Legacy_LanguageManager.class.php,v 1.6 2008/09/25 15:11:57 kilica Exp $
  * @copyright (c) 2005-2023 The XOOPSCube Project
  * @license   GPL 2.0
  *
