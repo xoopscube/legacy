@@ -14,15 +14,15 @@ define( '_MD_A_PICO_TH_USED' , 'Used');
 define( '_MD_A_PICO_LABEL_ORDER' , 'Order');
 
 // Appended by Xoops Language Checker -GIJOE- in 2008-09-07 05:14:32
-define( '_MD_A_PICO_H2_CLEARBODYCACHE' , 'Clear body cache');
+define( '_MD_A_PICO_H2_CLEARBODYCACHE' , 'Clear compiled cache');
 define( '_MD_A_PICO_BTN_DOCLEARBODYCACHE' , 'clear');
 define( '_MD_A_PICO_MSG_CLEARBODYCACHEDONE' , 'all caches for contents have just been cleared');
 define( '_MD_A_PICO_HELP_CLEARBODYCACHE' , 'Just execute it when some caching troubles are occurred eg) after moving site.');
 
 // Appended by Xoops Language Checker -GIJOE- in 2008-04-23 04:51:13
-define( '_MD_A_PICO_H2_INDEPENDENTPERMISSION' , 'Independent Permission');
-define( '_MD_A_PICO_LABEL_INDEPENDENTPERMISSION' , 'Set permissions for this category independently from the parent category');
-define( '_MD_A_PICO_LINK_CATPERMISSIONID' , 'Check the parental permissions');
+define( '_MD_A_PICO_H2_INDEPENDENTPERMISSION' , 'Crie um conjunto exclusivo de permissões.');
+define( '_MD_A_PICO_LABEL_INDEPENDENTPERMISSION' , 'Este elemento atualmente herda permissões de seu pai. Você pode marcar a caixa de seleção e enviar para configurar permissões exclusivas para esta categoria.');
+define( '_MD_A_PICO_LINK_CATPERMISSIONID' , 'Check the parent permissions');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-10-04 05:27:55
 define( '_MD_A_PICO_LINK_DETAIL' , 'Detail');

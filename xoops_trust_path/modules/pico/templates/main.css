@@ -9,7 +9,20 @@ ul.list-group{
     padding: 10px;
 
 }
-
+.pico_history_diff {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border: var( --border, 1px solid #060E18B3); /* if --border is not defined, fall-back */
+    padding: 1em;
+}
+.pico_history_diff del {
+    color: var(--del-color, #c62828);
+}
+.pico_history_diff ins {
+    color: var(--ins-color, #388e3c);
+    text-decoration: none;
+}
 
 /* Apply Level To Heading (Category Name) */
 li.list-group-item div.level1>h4 {margin-left:20px;}

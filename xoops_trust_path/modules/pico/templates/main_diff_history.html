@@ -1,11 +1,26 @@
 <{* Dev-Mode Toggle *}>
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
+<{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
 
 <div class="pico_container" id="<{$mydirname}>_container">
 
-<{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
-
 <pre class="pico_history_diff" id="<{$mydirname}>_history_diff"><{$diff_str}></pre>
-
+    <{foreach from=$content_histories item="history"}>
+    <li>
+        <{$history.modified_time_formatted}>
+        -
+        <{$history.modifier_uname}>
+        (<{$history.body_size|number_format}><{$smarty.const._MD_PICO_BYTE}>)
+        <a href="<{$mod_url}>/index.php?page=viewhistory&amp;content_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_REFERIT}></a>
+        -
+        <a href="<{$mod_url}>/index.php?page=downloadhistory&amp;content_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_DOWNLOADIT}></a>
+        -
+        <a href="<{$mod_url}>/index.php?page=diffhistory&amp;older_history_id=<{$history.id}>&amp;newer_history_id=0"><{$smarty.const._MD_PICO_DIFF2NOW}></a>
+        <{if $history.prev_id}>
+        -
+        <a href="<{$mod_url}>/index.php?page=diffhistory&amp;older_history_id=<{$history.prev_id}>&amp;newer_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_DIFFFROMPREV}></a>
+        <{/if}>
+    </li>
+    <{/foreach}>
 </div>

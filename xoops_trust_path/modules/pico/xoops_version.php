@@ -265,7 +265,7 @@ $modversion['config'][] = [
     'description' => '',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
-    'default'     => 300,
+    'default'     => 180,
     'options'     => []
 ];
 
@@ -498,9 +498,9 @@ $modversion['config'][] = [
 	'options'     => []
 ];
 $modversion['config'][] = [
-    'name'        => $constpref . '_EFIMAGES_QUALITY',
-    'title'       => $constpref . '_EFIMAGES_QUALITYDSC',
-    'description' => 'set the quality for generated images',
+    'name'        => 'extra_images_quality',
+    'title'       => $constpref . '_EFIMAGES_QUALITY',
+    'description' => $constpref . '_EFIMAGES_QUALITYDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
     'default'     => 50,
