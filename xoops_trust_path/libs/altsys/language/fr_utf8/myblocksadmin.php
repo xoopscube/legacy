@@ -1,5 +1,5 @@
 <?php
-define( '_MD_A_MYBLOCKSADMIN_TIPS' , "Sélectionnez le module pour gérer ses blocs en définissant l'emplacement, les modules cibles, les autorisations des groupes d'utilisateurs et le temps de cache.");
+define( '_MD_A_MYBLOCKSADMIN_TIPS' , "Sélectionnez le module pour gérer ses blocs disponibles : emplacement, modules cibles, autorisations des groupes d'utilisateurs et temps de cache.");
 define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , "Tout d'abord, donnez un nom au <b>Titre du bloc</b>, sélectionnez un <b>Type personnalisé</b> et enregistrez. L'<b>éditeur</b> changera en fonction du <b>type personnalisé</b> sélectionné. 
 Vous pouvez ensuite modifier le nouveau bloc pour créer des composants réutilisables avec BBcode et PHP ou HTML, JavaScript et CSS.");
 define( '_MD_A_MYBLOCKSADMIN_PERMUPDATED' , 'Permissions mises à jour avec succès');

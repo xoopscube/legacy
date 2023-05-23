@@ -38,6 +38,10 @@ $adminmenu4altsys = [
 		'title' => constant( $constpref . '_ADMENU_MYBLOCKSADMIN' ),
 		'link'  => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin',
 	],
+    [
+        'title' => _HELP,
+        'link'  => '../legacy/admin/index.php?action=Help&dirname='.$mydirname,
+    ],
 	// [
 	// 	'title' => constant( $constpref.'_ADMENU_MYPREFERENCES' ) ,
 	// 	'link' => 'admin/index.php?mode=admin&lib=altsys&page=mypreferences' ,

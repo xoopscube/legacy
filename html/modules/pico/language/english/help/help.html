@@ -152,117 +152,15 @@
 
         <h3>Comment Integration</h3>
 
-        <p>The comment-integration feature of the d3forum module is convenient for engaging users in discussion forums.</p>
+        <p>The comments-integration feature of the d3forum module is particularly valuable for involving users in discussion forums.
+            In addition to increasing usability, the integration makes commenting quick and easy.
+
         <p>Before you proceed with the settings, create a category and a forum for the module's comments. You can then modify the Pico preferences.
 
-        <h3>Example of forum category structure</h3>
-
-        <div data-layout="row p-6 m-auto">
-            <table class="list_center" style="border-collapse: separate;border-spacing: 4px;padding:8px;">
-                <tbody>
-                <tr>
-                    <th style="width:33%">Categories</th><th>Forum</th><th>Module</th>
-                </tr>
-                <tr>
-                    <td rowspan="2" class="bg-indigo">General</td><td class="bg-indigo">Announcements</td><td></td>
-                </tr>
-                <tr>
-                    <td class="bg-indigo">Ideas and suggestions</td><td></td>
-                </tr>
-                <tr class="bg-blue">
-                    <td rowspan="2">Comments</td><td title="Comment-Integration Module's Comments">Pico's Comments</td><td>Pico</td>
-                </tr>
-                <tr class="bg-blue">
-                    <td>Other Module's Comments</td><td>Other Module</td>
-                </tr>
-                <tr>
-                    <td></td><td class="bg-green">Public Forum</td><td></td>
-                </tr>
-                <tr>
-                    <td></td><td class="bg-red">Private Forum</td><td></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h6>Create a category for "Comments"</h6>
-
-        <ol>
-        <li>Browse to D3forum in your site's front end
-        <li>Click the action "New category"
-        <li>Enter a name e.g. "Comments"
-        <li>Enter a category description
-        <li>Click the button "Submit"
-        </ol>
-
-        <h6>Create a forum for comment integration</h6>
-        <ol>
-            <li>Browse to your category "Comments"
-            <li>Enter a name< e.g. "Pico's comments"
-            <li>Enter a forum description</li>
-            <li>Select the category : "Comments"</li>
-            <li>Forum weight : you can leave the default value "0"</li>
-            <li>Format for comment-integration : <br>
-                Leave blank, the module's feature comment-integration will set this field automatically.
-            <li>Click the button "Submit"
-        </ol>
-
-        <h6>Forum ID for comment integration</h6>
-
-        <p>The forum ID's can be found by browsing to the new forum "Pico's comments" URL.
-
-        <p><code>.../modules/d3forum/index.php?forum_id=<b>1</b></code>
-
-        <p>The ID is what comes after forum_id=, so in this case, it is 1.
-
-        <h6>Set Pico's preferences for comment integration</h6>
-
-        <p>Browse to  Control Panel »» Pico »» Preferences
-
-        <p>You can enter the directory name of deforum and the forum ID at the bottom of the page.
-        <p>The d3forum directory and the forum_id value are saved in the database configuration table when you submit your preferences.
-
-        <div data-layout="row p-6 m-auto">
-        <table class="outer">
-            <tbody>
-            <tr>
-                <td><div class="list_title">Comment-integration: dirname of d3forum</div></td>
-                <td><input type="text" size="50" maxlength="191" value="d3forum"></td>
-            </tr>
-            <tr>
-                <td><div class="list_title">Comment-integration: forum ID</div></td>
-                <td><input type="text" size="50" maxlength="191" value="1"></td>
-            </tr>
-            <tr>
-                <td><div class="list_title">Comment-integration : Order</div></td>
-                <td>
-                    <select name="comment_order">
-                        <option value="asc">Oldest First</option>
-                        <option value="desc" selected="selected">Newest First</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td><div class="list_title">Comment-integration : View</div></td>
-                <td>
-                    <select name="comment_view">
-                        <option value="listposts_flat" selected="selected">Flat</option>
-                        <option value="listtopics">Threaded</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td><div class="list_title">Comment-integration : Maximum number of comments per page</div></td>
-                <td><input type="text" size="50" maxlength="191" value="5"></td>
-            </tr>
-            </tbody>
-        </table>
-        </div>
-
-        <p>The comment-integration feature generates a form to comment, a link to read more comments and pagination -
-            the automated process of adding consecutive numbers to identify the sequential order of comments.</p>
-
-
+        <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
+        <ul>
+            <li><a href="<{'index.php?action=Help&dirname=d3forum#help-forum-integration'}>">Delegate mechanism and Preload ⭢</a>
+        </ul>
 
     </section>
 
@@ -748,10 +646,6 @@
             </table>
         </div>
 
-
-
-
-
         <h3>Customization</h3>
 
         <h4>Content Management System</h4>
@@ -765,12 +659,13 @@
         <p>knowledge management helps people identify the information they need and suggests ways to achieve the knowledge they need which Helps users.</p>
 
         <h4>Wrapper module</h4>
-        <p>Pico provides a wrap functionality to run as an instance that contains static HTML documents, often used to group together related elements for the purpose of styling or semantic purposes.</p>
+        <p>Pico provides a wrap functionality to run an instance that renders a directory structure containing static web documents.
+            Wraps mode can be used to efficiently organize digital files.
 
-        <h4>Editing WorkFlow</h4>
-        <p>In short, Editing Workflow is the order in which the editing stages should take place.
-            All Editors will have their preferred workflows, often depending on the type of content they create.
-            However, all forms of document editing can be broken down into certain stages, each requiring specific tasks.</p>
+        <h4>Editorial WorkFlow</h4>
+
+        <p>In short, the module implements a simple publication workflow to create, review, edit, publish and archive content.
+            The workflow rules for editing and publishing can be easily set with users permissions.</p>
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>

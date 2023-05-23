@@ -4,6 +4,7 @@
             <ul data-layout="rows">
                 <li><a href ="#help-forum-overview" class="button">Overview</a>
                 <li><a href ="#help-forum-usage" class="button">Usage</a>
+                <li><a href ="#help-forum-integration" class="button">Comments integration</a>
                 <li><a href ="#help-forum-blocks" class="button">Blocks</a>
                 <li><a href ="#help-forum-permissions" class="button">Permissions</a>
                 <li><a href ="#help-forum-advanced" class="button">Advanced</a>
@@ -34,11 +35,140 @@
 
     </section>
 
+    <section id="help-forum-integration">
+
+        <h3>Comments Integration</h3>
+
+        <p>The comments-integration feature of the d3forum module is particularly valuable for involving users in discussion forums.
+            In addition to increasing usability, the integration makes commenting quick and easy.
+
+        <p>This feature allows you to include a quick form and recent comments in any page and any blog.
+        You can customize the design using the Components module or Template Management.
+
+        <p>Before integrating into a module, for example Pico, create a category and a forum to manage module comments.<br>
+        You can then modify the module preferences.
+
+        <h3>Example of forum category structure</h3>
+
+        <div data-layout="row p-6 m-auto">
+            <table class="list_center" style="border-collapse: separate;border-spacing: 4px;padding:8px;">
+                <tbody>
+                <tr>
+                    <th style="width:33%">D3Forum Categories</th><th>Forum</th><th>Module</th>
+                </tr>
+                <tr>
+                    <td rowspan="2" class="bg-indigo">General</td><td class="bg-indigo">Announcements</td><td></td>
+                </tr>
+                <tr>
+                    <td class="bg-indigo">Ideas and suggestions</td><td></td>
+                </tr>
+                <tr class="bg-blue">
+                    <td rowspan="2">Comments</td><td title="Comment-Integration Module's Comments">Pico's Comments</td><td>Pico</td>
+                </tr>
+                <tr class="bg-blue">
+                    <td>Other Module's Comments</td><td>Other Module</td>
+                </tr>
+                <tr>
+                    <td></td><td class="bg-green">Public Forum</td><td></td>
+                </tr>
+                <tr>
+                    <td></td><td class="bg-red">Private Forum</td><td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h6>Create a category for "Comments"</h6>
+
+        <ol>
+            <li>Browse to D3forum in your site's front end
+            <li>Click the action "New category"
+            <li>Enter a name e.g. "Comments"
+            <li>Enter a category description
+            <li>Click the button "Submit"
+        </ol>
+
+        <h6>Create a forum for comment integration</h6>
+        <ol>
+            <li>Browse to your category "Comments"
+            <li>Enter a name< e.g. "Pico's comments"
+            <li>Enter a forum description</li>
+            <li>Select the category : "Comments"</li>
+            <li>Forum weight : you can leave the default value "0"</li>
+            <li>Format for comment-integration : <br>
+                Leave blank, the module's feature comment-integration will set this field automatically.
+            <li>Click the button "Submit"
+        </ol>
+
+        <h6>Get the Forum ID for comment integration</h6>
+
+        <p>The forum ID's can be found by browsing to the new forum "Pico's comments" URL.
+
+        <p><code>.../modules/d3forum/index.php?forum_id=<b>1</b></code>
+
+        <p>The ID is what comes after forum_id=, so in this case, it is <b>1</b>.
+
+        <h6>Set the Forum ID in Module's preferences</h6>
+
+        <p>Although this example uses the Pico module preferences, the steps in the comment integration process are the same for all modules.
+
+        <p>Browse to Control Panel »» Pico »» Preferences
+
+        <p>You can enter the directory name of d3forum and the forum ID at the bottom of the page.
+
+        <p>The d3forum directory and forum_id values are stored in the database configuration table when you submit your preferences.
+
+        <div data-layout="row p-6 m-auto">
+            <table class="outer">
+                <tbody>
+                <tr>
+                    <td><div class="list_title">Comment-integration: dirname of d3forum</div></td>
+                    <td><input type="text" size="50" maxlength="191" value="d3forum"></td>
+                </tr>
+                <tr>
+                    <td><div class="list_title">Comment-integration: forum ID</div></td>
+                    <td><input type="text" size="50" maxlength="191" value="1"></td>
+                </tr>
+                <tr>
+                    <td><div class="list_title">Comment-integration : Order</div></td>
+                    <td>
+                        <select name="comment_order">
+                            <option value="asc">Oldest First</option>
+                            <option value="desc" selected="selected">Newest First</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="list_title">Comment-integration : View</div></td>
+                    <td>
+                        <select name="comment_view">
+                            <option value="listposts_flat" selected="selected">Flat</option>
+                            <option value="listtopics">Threaded</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="list_title">Comment-integration : Maximum number of comments per page</div></td>
+                    <td><input type="text" size="50" maxlength="191" value="5"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tips">The comments-integration feature includes a quick reply comment form, a link to read more comments and pagination -
+            an automated process of adding consecutive numbers to identify the sequential order of comments.</div>
+
+
+
+    </section>
+
     <section id="help-forum-usage">
 
-        <h3>New Category and Forum</h3>
+        <h3>Usage</h3>
 
         <p>D3 modules are designed to create categories and contents on the front end.
+
+        <h3>New Category and Forum</h3>
 
         <p>Click "New Category" and fill in the details in the form page.
 
@@ -77,47 +207,48 @@
         <h4>Overridable options current values</h4>
 
         <p><b>default_options:smiley,xcode,br,number_entity</b>
-        <p>desc
+        <p>Default filters for content : Specify filter names separated by comma ",". Example: smiley,xcode,br,number_entity<br>
+        Available options: special_entity, html attachsig, u2t_marked
         <p><b>allow_html:0</b>
-        <p>desc
+        <p>Enable HTML (0 = off, 1 = on). Beware of the risks of Script injection attack by malicious users. Allow trusted user groups only.
         <p><b>allow_textimg:0</b>
-        <p>desc
+        <p>Enable external images in comments and posts. These images, sometimes called Web Beacons, can be used to track IPs or User-Agents of registered users. External images are not a security threat. However, it is recommended to turn off external images.
         <p><b>allow_sig:1</b>
-        <p>desc
+        <p>Enable Signature. Users can add their profile signature in the comments.
         <p><b>allow_sigimg:0</b>
-        <p>desc
+        <p>Enable external images in signature. You can turn off automatic loading of external images as an additional privacy protection.
         <p><b>posts_per_topic:20</b>
-        <p>desc
+        <p>Set the maximum posts per topic.
         <p><b>hot_threshold:10</b>
-        <p>desc
+        <p>Enable Hot Topic Threshold. Set the number of replies that a topic must receive for it to be considered a "hot topic".
         <p><b>topics_per_page:10</b>
-        <p>desc
+        <p>Set the maximum topics per page.
         <p><b>use_vote:1</b>
-        <p>desc
+        <p>Enable Voting
         <p><b>use_solved:1</b>
-        <p>desc
+        <p>Enable Solved
         <p><b>allow_mark:1</b>
-        <p>desc
+        <p>Enable Marking
         <p><b>allow_hideuid:0</b>
-        <p>desc
+        <p>Allow Users to Post Anonymously. Registered users can check the anonymous option when they write topics and posts.
         <p><b>viewallbreak:10</b>
-        <p>desc
+        <p>Topics per page in the view forum.
         <p><b>selfeditlimit:240</b>
-        <p>desc
+        <p>Time limit to edit posts. Disable with value set to 0. Default in seconds (4min): 240
         <p><b>selfdellimit:0</b>
-        <p>desc
+        <p>Time limit to delete posts. Set the value in seconds. Disable delete with value set to 0.
         <p><b>css_uri:{mod_url}/index.php?page=main_css</b>
-        <p>desc
+        <p>CSS file for this module 'main.css'
         <p><b>images_dir:images</b>
-        <p>desc
+        <p>Directory for image files. Relative path to module in the public directory e.g. dirname/images. Default value : images
         <p><b>body_editor:xoopsdhtml</b>
-        <p>desc
-        <p><b>anonymous_name:Гости</b>
-        <p>desc
-        <p><b>icon_meanings:нет|норма|несчастлив|счастлив|супер|ерунда|доклад|вопрос</b>
-        <p>desc
+        <p>WYSIWYG editor will be enabled only for forums allowing HTML.
+        <p><b>anonymous_name:guest</b>
+        <p>Anonymous Name. A pseudonym or alias is a fictitious name that a person or group assumes for a particular purpose, which differs from their original or true name. Default value: guest
+        <p><b>icon_meanings:none|normal|unhappy|happy|lower it|raise it|report|question</b>
+        <p>The alt attribute provides alternative information explaining the meaning of forum icons. Specify each alt separated by pipe "|".
         <p><b>guest_vote_interval:86400</b>
-        <p>desc
+        <p>Enable Voting from guests. Allow votes from the same IP with required delay in seconds. Disable with value set to 0. Default value: 86400.
 
     </section>
 
@@ -129,13 +260,28 @@
         <p>Each block has its own options and template, permissions and cache settings.
 
         <h3>Block Forums</h3>
-        <p>desc
+        <ul>
+        <li>Specify categories. Set category's id separated by a comma. Note this specification is not applied recursively. Leave the fill blank for all categories, or `auto` for the current category.
+        <li>Cache Time
+        </ul>
 
         <h3>Block Topics</h3>
-        <p>desc
+        <ul>
+        <li>Display items. Default value : 10
+        <li>Display sie, sorted, marked
+        <li>Set category's id separated by a comma. Note this specification is not applied recursively. Leave the fill blank for all categories, or `auto` for the current category.
+        <li>Specify forums. Same as category specification.
+        <li>Cache Time
+        </ul>
 
         <h3>Block Posts</h3>
-        <p>desc
+        <ul>
+            <li>Display items. Default value : 10
+            <li>Display sie, sorted, marked
+            <li>Set category's id separated by a comma. Note this specification is not applied recursively. Leave the fill blank for all categories, or `auto` for the current category.
+            <li>Specify forums. Same as category specification.
+            <li>Cache Time
+        </ul>
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>

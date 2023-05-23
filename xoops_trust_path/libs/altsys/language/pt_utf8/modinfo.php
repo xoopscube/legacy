@@ -3,7 +3,7 @@
 // License http://creativecommons.org/licenses/by/2.5/br/
 
 define( '_MI_ALTSYS_MODULENAME' , "Componentes");
-define( '_MI_ALTSYS_MODULEDESC' , "Gestão rápida de blocos, templates, tradução e localização.");
+define( '_MI_ALTSYS_MODULEDESC' , "Gerenciamento geral de componentes customizados, blocos, templates, internacionalização de idiomas (i18n) e localização (l10n).");
 
 // menus
 define( '_MI_ALTSYS_MENU_CUSTOMBLOCKS' , "Blocos personalizados");

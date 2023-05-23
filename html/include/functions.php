@@ -422,7 +422,7 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
     if (!defined('XOOPS_CPFUNC_LOADED')) {
         require_once XOOPS_ROOT_PATH.'/class/template.php';
         $xoopsTpl = new XoopsTpl();
-        //@gigamaster changed this to save memory
+        //TODO PHP8 'strpos' call can be converted to 'str_contains'
         if ($addredirect && strpos($url, 'user.php') !== false) {
             if (strpos($url, '?') === false) {
                 $url .= '?xoops_redirect='.urlencode($xoopsRequestUri);
@@ -431,7 +431,7 @@ function redirect_header($url, $time = 3, $message = '', $addredirect = true)
             }
         }
         if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && '' !== $xoopsConfig['session_name'] && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
-// Goodbye strpos and strstr: str_contains in PHP8            
+// TODO Goodbye strpos and strstr: str_contains in PHP8
 if (strpos($url, (string) XOOPS_URL) === 0) {
                 //@gigamaster changed this to save memory
                 if (strpos($url, '?') === false) {
@@ -483,7 +483,7 @@ if (strpos($url, (string) XOOPS_URL) === 0) {
     } else {
         $message = urlencode("Unable to load redirect template! The form Redirect to the previous page.");
         // $_SERVER['HTTP_REFERER'], Returns the complete URL of the current page
-        header("Location:".$_SERVER[HTTP_REFERER]."?message=".$message);
+        header("Location:".$_SERVER['HTTP_REFERER']."?message=".$message);
     }
     exit;
 

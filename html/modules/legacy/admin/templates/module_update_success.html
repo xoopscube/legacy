@@ -30,21 +30,14 @@
             <{/foreach}>
         </ul>
     </div>
-
-
-
-    <{if $isPhasedMode && !$isLatestUpgrade}>
-    <p>&raquo; <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getShow('dirname')}>"><b>Go to the next phased version</b></a></p>
-    <{else}>
-
-    <div class="legacy_module_return">
-
-        <a href="index.php?action=ModuleList" class="button">
-            <img class="svg" src="<{'icons/icon-module-open.svg'|theme}>" width="1em" height="1em" alt="module-list"> <{$smarty.const._AD_LEGACY_LANG_MODLIST}>
-        </a>
-
-    </div>
-
-    <{/if}>
-
 </div>
+
+<{if $isPhasedMode && !$isLatestUpgrade}>
+<p>&raquo; <a href="index.php?action=ModuleUpdate&amp;dirname=<{$module->getShow('dirname')}>"><b>Go to the next phased version</b></a></p>
+<{else}>
+<p class="legacy_module_return">
+    <a href="index.php?action=ModuleList" class="button">
+        <img class="svg" src="<{'icons/icon-module-open.svg'|theme}>" width="1em" height="1em" alt="module-list"> <{$smarty.const._AD_LEGACY_LANG_MODLIST}>
+    </a>
+</p>
+<{/if}>

@@ -1,7 +1,7 @@
 <?php
 
 define( '_MI_ALTSYS_MODULENAME' , 'Components');
-define( '_MI_ALTSYS_MODULEDESC' , 'Quick management of blocks, templates, translation and localization.');
+define( '_MI_ALTSYS_MODULEDESC' , 'General management of custom components, blocks, templates, language internationalization (i18n) and localization (l10n).');
 
 // menus
 define( '_MI_ALTSYS_MENU_CUSTOMBLOCKS' , 'Custom Blocks');

@@ -271,9 +271,9 @@ Usage with color var:
     --card-margin           : var( --space-6 );
     --card-padding          : var( --space-6 );
     --card-radius           : var( --border-radius );
-    --card-shadow           : var( --shadow-2 );
+    --card-shadow           : var( --shadow-1 );
     /* Active - Hover */
-    --card-hover            : var( --layer-4 );
+    --card-bg-hover            : var( --layer-4 );
     /* CARD BLOCK HEADER  */
     --card-header-bg        : transparent ;
     --card-header-border    : var( --layer-4 );
@@ -286,7 +286,7 @@ Usage with color var:
     /* CARD BLOCK ITEM    */
     --card-item-padding     : 0.5em 1em;
     --card-item-width       : 100%;
-    --card-box-shadow-on    : var( --shadow-5 );
+    --card-box-shadow-on    : var( --shadow-3 );
 
     /* -------------------- --------------------  CARD-FULL */
 

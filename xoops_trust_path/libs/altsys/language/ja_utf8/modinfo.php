@@ -1,7 +1,7 @@
 <?php
 
 define( '_MI_ALTSYS_MODULENAME' , 'コンポーネント');
-define( '_MI_ALTSYS_MODULEDESC' , 'ブロック、テンプレート、翻訳、ローカリゼーションの迅速な管理。');
+define( '_MI_ALTSYS_MODULEDESC' , 'カスタム コンポーネント、ブロック、テンプレート、言語の国際化 (i18n) およびローカリゼーション (l10n) の一般的な管理。');
 
 // menus
 define( '_MI_ALTSYS_MENU_CUSTOMBLOCKS' , 'カスタムブロック');

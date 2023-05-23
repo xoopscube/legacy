@@ -1,5 +1,5 @@
 <?php
-define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Select the module to manage its blocks settings : side, target modules, user group permissions and cache time.');
+define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Select the module to manage its available blocks : side, target modules, user group permissions and cache duration.');
 define( '_MD_A_MYBLOCKSADMIN_CUSTOM_TIPS' , 'First, give the <b>Block Title</b> a name, select a <b>Custom Type</b> and <b>Save</b>. 
 The <b>editor</b> will change according to the selected custom type.<br>
 You can then edit your new block to create reusable components with BBcode and PHP or HTML, JavaScript and CSS.');

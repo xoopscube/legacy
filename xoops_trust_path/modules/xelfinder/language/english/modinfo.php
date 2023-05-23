@@ -25,7 +25,7 @@ define( $constpref.'_ADMENU_MYBLOCKSADMIN','Permissions');
 define( $constpref.'_ADMENU_MYPREFERENCES','Preferences');
 
 // configurations
-define( $constpref.'_MANAGER_TITLE' ,           'Page title of manager' );
+define( $constpref.'_MANAGER_TITLE' ,           'Page title of file manager' );
 define( $constpref.'_MANAGER_TITLE_DESC' ,      '' );
 define( $constpref.'_VOLUME_SETTING' ,          'Volume Drivers' );
 define( $constpref.'_VOLUME_SETTING_DESC' ,     '<button class="help-admin button" type="button" data-module="xelfinder" data-help-article="#help-volume" title="Help Volume"><b>?</b></button> Configuration options separated by a new line' );
@@ -90,11 +90,11 @@ define( $constpref.'_DROPBOX_HIDDEN_EXT' ,      'Dropxbox.com - Shared volume hi
 define( $constpref.'_DROPBOX_HIDDEN_EXT_DESC' , 'Hidden files are displayed only to administrators. Specify files name separated by comma ",".<br>This targets a folder that ends with "/"' );
 define( $constpref.'_DROPBOX_WRITABLE_GROUPS' , 'Dropxbox.com - Groups with full access' );
 define( $constpref.'_DROPBOX_WRITABLE_GROUPS_DESC' , 'Any member of the group can add, edit, delete, share, or download files and folders. Other groups can only read.<br>You can organize members of your team into groups. Share a folder or file with a group to grant access automatically to all group members.' );
-define( $constpref.'_DROPBOX_UPLOAD_MIME' ,     'Shared Dropbox MIME type which can be uploaded') ;
-define( $constpref.'_DROPBOX_UPLOAD_MIME_DESC' ,'The MIME type which the group which permits writing can upload. It sets up by comma separated values. Administrators do not receive this restriction.') ;
-define( $constpref.'_DROPBOX_WRITE_EXT' ,       'Shared Writable files') ;
+define( $constpref.'_DROPBOX_UPLOAD_MIME' ,     'Dropxbox.com - MIME types allowed to upload to a shared volume') ;
+define( $constpref.'_DROPBOX_UPLOAD_MIME_DESC' ,'MIME types that groups with write permissions can upload. Define comma-separated values. Administrators are not restricted.') ;
+define( $constpref.'_DROPBOX_WRITE_EXT' ,       'Dropxbox.com - Shared files with write access') ;
 define( $constpref.'_DROPBOX_WRITE_EXT_DESC' ,  'File permissions are inherited from the group with write permissions. File name separated by comma ",".<br>It targets a folder that ends with "/".<br>Administrators are not restricted.') ;
-define( $constpref.'_DROPBOX_UNLOCK_EXT' ,      'Dropxbox.com - Shared unlocked files') ;
+define( $constpref.'_DROPBOX_UNLOCK_EXT' ,      'Dropxbox.com - Shared files unlocked') ;
 define( $constpref.'_DROPBOX_UNLOCK_EXT_DESC' , 'Unlocked file can be deleted, moved and renamed.<br>File name separated by comma ",".<br>It targets a folder that ends with "/".<br>All the files are unlocked for administrators.') ;
 define( $constpref.'_JQUERY' ,                  'URL of jQuery JavaScript' );
 define( $constpref.'_JQUERY_DESC' ,             'CDN or local URL (recommended self-hosted version)' );
@@ -146,30 +146,30 @@ define( $constpref.'_UPLOAD_ALLOW_ADMIN' ,      'Allowed MIME Types for Uploads 
 define( $constpref.'_UPLOAD_ALLOW_ADMIN_DESC' , 'Specify the MIME types, separated by a space.<br>Value to allow all: all. Value to disable all : none<br>Exemple: image text/plain' );
 define( $constpref.'_AUTO_RESIZE_ADMIN' ,       'Auto-resize uploads by Admin' );
 define( $constpref.'_AUTO_RESIZE_ADMIN_DESC' ,  'Value in pixels to resize an image automatically so that it may fit in the specified rectangle size at the time of upload.<br>Leave empty to disable auto-resize.' );
-define( $constpref.'_UPLOAD_MAX_ADMIN' ,        'Allowed maximum file size for Admin' );
+define( $constpref.'_UPLOAD_MAX_ADMIN' ,        'Maximum allowed file size for Admin' );
 define( $constpref.'_UPLOAD_MAX_ADMIN_DESC',    'limit upload with a maximum file size. Leave blank or set "0" for unlimited. Example of maximum value: 10M' );
 
 define( $constpref.'_SPECIAL_GROUPS' ,          'Special groups' );
-define( $constpref.'_SPECIAL_GROUPS_DESC' ,     'Select groups you want to set specific permissions. Multiple Select' );
+define( $constpref.'_SPECIAL_GROUPS_DESC' ,     'Select the groups for which you want to set specific permissions. Multiple selection.' );
 define( $constpref.'_UPLOAD_ALLOW_SPGROUPS' ,   'Allowed MIME Types for Special groups' );
 define( $constpref.'_UPLOAD_ALLOW_SPGROUPS_DESC','' );
 define( $constpref.'_AUTO_RESIZE_SPGROUPS' ,    'Auto-resize uploads by Special groups (px)' );
 define( $constpref.'_AUTO_RESIZE_SPGROUPS_DESC','' );
-define( $constpref.'_UPLOAD_MAX_SPGROUPS' ,     'Allowed maximum file size for Special groups' );
+define( $constpref.'_UPLOAD_MAX_SPGROUPS' ,     'Maximum allowed file size for special groups' );
 define( $constpref.'_UPLOAD_MAX_SPGROUPS_DESC', '' );
 
 define( $constpref.'_UPLOAD_ALLOW_USER' ,       'Allowed MIME Types for Registered users' );
 define( $constpref.'_UPLOAD_ALLOW_USER_DESC' ,  '' );
 define( $constpref.'_AUTO_RESIZE_USER' ,        'Auto-resize uploads by Registered users (px)' );
 define( $constpref.'_AUTO_RESIZE_USER_DESC',    '' );
-define( $constpref.'_UPLOAD_MAX_USER' ,         'Allowed maximum file size for Registered users' );
+define( $constpref.'_UPLOAD_MAX_USER' ,         'Maximum allowed file size for registered users' );
 define( $constpref.'_UPLOAD_MAX_USER_DESC',     '' );
 
 define( $constpref.'_UPLOAD_ALLOW_GUEST' ,      'Allowed MIME Types for Guests' );
 define( $constpref.'_UPLOAD_ALLOW_GUEST_DESC' , '' );
 define( $constpref.'_AUTO_RESIZE_GUEST' ,       'Auto-resize uploads by Guests (px)' );
 define( $constpref.'_AUTO_RESIZE_GUEST_DESC',   '' );
-define( $constpref.'_UPLOAD_MAX_GUEST' ,        'Allowed maximum file size for Guests' );
+define( $constpref.'_UPLOAD_MAX_GUEST' ,        'Maximum allowed file size for Guests' );
 define( $constpref.'_UPLOAD_MAX_GUEST_DESC',    '' );
 
 define( $constpref.'_DISABLE_PATHINFO' ,        '🚩 Disable "PATH_INFO" in file reference URL' );

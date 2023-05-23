@@ -2,9 +2,9 @@
 
 // $Id: mytplsadmin.php 1040 2011-11-06 05:24:00Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
-define( '_MYTPLSADMIN_TIPS' , 'Pour des raisons de sécurité, le fichier source du modèle est en lecture seule.<br>
-Vous pouvez sélectionner un ensemble de base pour créer un nouvel ensemble de modèles, ou vous pouvez créer un ensemble vide et marquer uniquement les modèles que vous souhaitez copier et personnaliser.<br>
-Vous pouvez gérer les ensembles de modèles ainsi que les fichiers de modèles à partir du module <b>Render</b>.');
+define( '_MYTPLSADMIN_TIPS' , 'O Template original é somente leitura por motivos de segurança. Você pode criar um novo conjunto de Templates (conjunto de arquivos de modelos).<br>
+Comece com uma cópia do conjunto padrão base: "Default" ou crie um conjunto de Templates vazio para selecionar apenas os Templates que deseja personalizar.<br>
+Você pode gerenciar conjuntos de Templates no módulo <b>Render</b>.');
 define( '_MYTPLSADMIN_BTN_COPY' , "Copiar");
 define( '_MYTPLSADMIN_BTN_NEWTPLSET' , "Criar");
 define( '_MYTPLSADMIN_CAPTION_BASE' , "Base");

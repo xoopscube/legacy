@@ -1,7 +1,7 @@
 <?php
 
 define( '_MI_ALTSYS_MODULENAME' , 'Composants');
-define( '_MI_ALTSYS_MODULEDESC' , 'Gestion simplifiée de composants système, blocs, modèles, langue et traduction.');
+define( '_MI_ALTSYS_MODULEDESC' , 'Gestion générale des composants personnalisés, des blocs, des modèles, internationalisation de la langue (i18n) et localisation (l10n).');
 
 // menus
 define( '_MI_ALTSYS_MENU_CUSTOMBLOCKS' , 'Blocs personnalisés');

@@ -1,7 +1,7 @@
 <?php
 
-define( '_MYTPLSADMIN_TIPS' , 'The original template file is read-only for added security reasons.<br>
-	You can select a base set to create a new Template Set, or create an empty Template Set and check only the templates you want to copy and customize.<br>
+define( '_MYTPLSADMIN_TIPS' , 'The original template file is read-only for security reasons. You can create a new Template Set (collection of template files).<br>
+	Start with a copy of the Base Set: "Default". Alternatively, create an empty template set to select only the templates you want to customize.<br>
 	You can manage and select your Template Set from the module <b>Render</b>');
 define( '_MYTPLSADMIN_CUSTOM_TIPS' , 'Create custom templates');
 define( '_MYTPLSADMIN_CREATE_NEW_TPLSET' , 'Create a new set');
