@@ -70,8 +70,8 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_BODY_EDITOR', 'WYSIWYG HTML editor to simplify content creation' );
     define( $constpref . '_HTMLPR_EXCEPT', 'Select Trusted Users Groups.' );
     define( $constpref . '_HTMLPR_EXCEPTDSC', 'HTML sanitization with HTMLPurifier to secure against XSS attacks.' );
-    define( $constpref . '_HISTORY_P_C', 'Document Version Control - How many revisions are stored in database. Default value: 4' );
-    define( $constpref . '_MLT_HISTORY', 'Document Version Control - Minimum lifetime for each revision. Default value in seconds: 300 ' );
+    define( $constpref . '_HISTORY_P_C', 'Content Revision History - Maximum number of revisions per content stored in the database. Default value: 4' );
+    define( $constpref . '_MLT_HISTORY', 'Content Revision History - Minimum time interval for each revision. Default value in seconds: 300 ' );
     define( $constpref . '_BRCACHE', 'Cache lifetime for image files (only with wraps mode)' );
     define( $constpref . '_BRCACHEDSC', 'Files other than HTML are cached by the web browser. Default value in seconds (60 minutes): 3600<br>PageSpeed Insights recommend a minimum cache time of one week and preferably up to one year for static assets.' );
     define( $constpref . '_EF_CLASS', 'Class for extra_fields' );
@@ -82,8 +82,8 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_EFIMAGES_DIRDSC', 'Relative path to the public directory e.g. public_html/.<br>First, create and chmod 777 the directory. Default value: uploads/dirname' );
     define( $constpref . '_EFIMAGES_SIZE', 'Extra images generated from the upload file' );
     define( $constpref . '_EFIMAGES_SIZEDSC', 'Used in article header and theme Open Graph. Default values in pixels, width x height : 1200x627 820x312 640x360' );
-    define( $constpref . '_EFIMAGES_QUALITY', 'Extra Image quality compression' );
-    define( $constpref . '_EFIMAGES_QUALITYDSC', 'minimize' );
+    define( $constpref . '_EFIMAGES_QUALITY', 'Extra Images quality compression' );
+    define( $constpref . '_EFIMAGES_QUALITYDSC', 'Set the quality for generated images. Reduce the file size of your files.' );
     define( $constpref . '_IMAGICK_PATH', 'Path for ImageMagick binaries' );
     define( $constpref . '_IMAGICK_PATHDSC', 'Leave blank, or set it like /usr/X11R6/bin/' );
     define( $constpref . '_COM_DIRNAME', 'Comment-integration: dirname of d3forum' );

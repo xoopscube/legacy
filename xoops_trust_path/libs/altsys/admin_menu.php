@@ -55,6 +55,10 @@ $adminmenu4altsys = [
 		'title' => _PREFERENCES,
 		'link'  => 'admin/index.php?mode=admin&lib=altsys&page=mypreferences',
 	],
+    [
+        'title' => _HELP,
+        'link'  => '../legacy/admin/index.php?action=Help&dirname=altsys',
+    ],
 //    [
 //        'title' => _HELP,
 //        'link'  => '../legacy/admin/index.php?action=Help&dirname=altsys',

@@ -214,7 +214,7 @@
 }
 
 .ui-card-block:hover  {
-    background      : var( --card-hover );
+    background      : var( --card-bg-hover );
     box-shadow      : var( --card-box-shadow-on );
 }
 

@@ -50,7 +50,7 @@ Alternative data display
 :where(table, table.outer, table:not([class^="cke_"])) {
     background      : var(  --table-background );
     border-collapse : collapse;
-    box-shadow    	: var( --shadow-2 );
+    box-shadow    	: var( --shadow-1 );
     font-size       : 14px;
     margin        	: 0;
     padding       	: var( --space-4 );

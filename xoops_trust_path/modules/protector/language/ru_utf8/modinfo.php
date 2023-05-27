@@ -15,19 +15,19 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_DESC', 'This module protects your application platform from various attacks like DoS, SQL Injection, and contamination of global variables.' );
 
 	// Menu
-	define( $constpref . '_ADMININDEX', 'Protect Center' );
-	define( $constpref . '_ADVISORY', 'Security Advisor' );
-	define( $constpref . '_PREFIXMANAGER', 'DB Prefix Manager' );
-	define( $constpref . '_ADMENU_MYBLOCKSADMIN', 'Permissions' );
+	define( $constpref . '_ADMININDEX', 'IP авторизован' );
+	define( $constpref . '_ADVISORY', 'Советник по безопасности' );
+	define( $constpref . '_PREFIXMANAGER', 'Префикс БД ' );
+	define( $constpref . '_ADMENU_MYBLOCKSADMIN', 'Разрешения' );
 
 	// Configs
-	define( $constpref . '_GLOBAL_DISBL', 'Temporary disabled' );
-	define( $constpref . '_GLOBAL_DISBLDSC', 'All protections are temporary disabled.<br>Remember to turn this off after solving any trouble.' );
+	define( $constpref . '_GLOBAL_DISBL', 'Временно отключен' );
+	define( $constpref . '_GLOBAL_DISBLDSC', 'Все средства защиты временно отключены.<br>Не забудьте включить его после устранения какой-либо неполадки.' );
 
-	define( $constpref . '_DEFAULT_LANG', 'Default language' );
-	define( $constpref . '_DEFAULT_LANGDSC', 'Specify the language set to display messages before processing common.php' );
+	define( $constpref . '_DEFAULT_LANG', 'Язык по умолчанию' );
+	define( $constpref . '_DEFAULT_LANGDSC', 'Укажите язык, на котором будет отображаться сообщение перед обработкой common.php' );
 
-	define( $constpref . '_RELIABLE_IPS', 'Reliable IPs' );
+	define( $constpref . '_RELIABLE_IPS', 'Надежные IP-адреса' );
 	define( $constpref . '_RELIABLE_IPSDSC', 'Add an IP address that you can rely separated with:<br> | . ^ to match first digits<br> $  to match last digits of string.' );
 
 	define( $constpref . '_LOG_LEVEL', 'Logging level' );

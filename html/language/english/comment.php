@@ -7,7 +7,7 @@ if (!defined('_CM_TITLE')) {
     define('_CM_DOSMILEY', 'Enable Smiley Icons');
     define('_CM_DOHTML', 'Enable HTML Tags');
     define('_CM_DOAUTOWRAP', 'Auto wrap lines');
-    define('_CM_DOXCODE', 'Enable XOOPS Codes');
+    define('_CM_DOXCODE', 'Enable XCode BBCode');
     define('_CM_REFRESH', 'Refresh');
     define('_CM_PENDING', 'Pending');
     define('_CM_HIDDEN', 'Hidden');

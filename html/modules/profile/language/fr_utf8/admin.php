@@ -10,7 +10,7 @@ define( '_MI_PROFILE_ADMENU_DATA_DOWNLOAD' , 'Télécharger les profils');
 define( '_AD_PROFILE_DATA_DOWNLOAD_DO' , "Télécharger au format CSV");
 
 define( '_AD_PROFILE_DESC_FIELD_SELECTBOX' , 'Définir les options en séparant avec |');
-define( '_AD_PROFILE_DESC_FIELD_CHECKBOX' , 'Définissez la chaîne d\'affichage lorsque "coché" et "décoché", séparés par |. A vide, "' . _YES . '" et "' . _NO . '" sont utilisés.');
+define( '_AD_PROFILE_DESC_FIELD_CHECKBOX' , 'Définir la chaîne d\'affichage lorsque les valeurs sont "cochées" et "non cochées". Valeurs séparées et délimitées par le caractère "barre verticale" ("|"). Lorsque le champ est vide, les valeurs, "' . _YES . '" et "' . _NO . '" sont utilisés.');
 define( '_AD_PROFILE_DESC_FIELD_STRING' , 'Définissez la valeur de chaîne par défaut.');
 define( '_AD_PROFILE_DESC_FIELD_INT' , 'Définissez la valeur Int par défaut.');
 define( '_AD_PROFILE_DESC_FIELD_FLOAT' , 'Définissez la valeur flottante par défaut.');

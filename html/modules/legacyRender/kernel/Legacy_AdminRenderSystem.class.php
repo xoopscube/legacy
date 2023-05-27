@@ -126,7 +126,8 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         $this->mSmarty->register_function('stylesheet', 'Legacy_function_stylesheet');
 
         /**
-         * @todo - get global smarty module and uid for theme design :
+         * Since XCL 2.3
+         * Assign global smarty variable for module and uid :
          * @brief <{$uid|xoops_user:"uname"}>, <{$uid|xoops_user:"name"}>, <{$uid|xoops_user:"email"}>, <{$uid|xoops_user:"last_login"}>
          */
         global $xoopsUser, $xoopsModule, $xoopsOption, $xoopsConfig;
@@ -144,7 +145,9 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
             'xoops_upload_url'  => XOOPS_UPLOAD_URL,
             'xoops_modulename'  => $modname,
             'xoops_dirname'     => $dirname,
-            'uid'               => $uid
+            'uid'               => $uid,
+            'module_name'       => $modname,
+            'module_dir'        => $dirname,
             ]
         );
 

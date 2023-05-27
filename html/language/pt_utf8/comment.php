@@ -15,7 +15,7 @@ if (!defined("_CM_TITLE")) {
     define("_CM_DOSMILEY", "Habilitar emos");
     define("_CM_DOHTML", "Habilitar códigos em HTML");
     define("_CM_DOAUTOWRAP", "Quebra automática de linhas");
-    define("_CM_DOXCODE", "Habilitar os códigos do XOOPS");
+    define("_CM_DOXCODE", "Habilitar código XCode BBCode");
     define("_CM_REFRESH", "Atualizar");
     define("_CM_PENDING", "Pendente");
     define("_CM_HIDDEN", "Oculto");

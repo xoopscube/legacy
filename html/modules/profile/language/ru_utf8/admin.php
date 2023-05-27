@@ -9,8 +9,8 @@ define( '_AD_PROFILE_DATA_NUM' , '<strong> %d </strong> users registered.');
 define( '_MI_PROFILE_ADMENU_DATA_DOWNLOAD' , 'Download Profiles');
 define( '_AD_PROFILE_DATA_DOWNLOAD_DO' , 'Download CSV');
 
-define( '_AD_PROFILE_DESC_FIELD_SELECTBOX' , 'Set options by dividing |');
-define( '_AD_PROFILE_DESC_FIELD_CHECKBOX' , 'Set the display string when "checked" and "unchecked", divided by |. When empty, "' . _YES . '" and "' . _NO . '" is used.');
+define( '_AD_PROFILE_DESC_FIELD_SELECTBOX' , 'Установите параметры, разделенные знаком "|"');
+define( '_AD_PROFILE_DESC_FIELD_CHECKBOX' , 'Определяет строку отображения, когда значения "отмечены" и "не отмечены", отдельные значения разделены символом трубы ("|"). Когда пусто, используются значения "' . _YES . '" и "' . _NO . '".');
 define( '_AD_PROFILE_DESC_FIELD_STRING' , 'Set the default String value.');
 define( '_AD_PROFILE_DESC_FIELD_INT' , 'Set the default Int value.');
 define( '_AD_PROFILE_DESC_FIELD_FLOAT' , 'Set the default Float value.');

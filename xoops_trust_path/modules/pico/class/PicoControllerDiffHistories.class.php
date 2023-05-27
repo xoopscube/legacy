@@ -43,7 +43,7 @@ class PicoControllerDiffHistories extends PicoControllerAbstract {
 
 		// check each content_ids
 		if ( $older_profile[1] !== $newer_profile[1] ) {
-			die( 'Differenct content_ids each other' );
+			die( 'Content_ids different from each other' );
 		}
 
 		$this->contentObj = new PicoContent( $this->mydirname, $request['content_id'], $this->currentCategoryObj );
@@ -72,7 +72,8 @@ class PicoControllerDiffHistories extends PicoControllerAbstract {
 		$renderer                 = new Text_Diff_Renderer_inline();
 		$this->assign['diff_str'] = $renderer->render( $diff );
 		error_reporting( $original_error_level );
-
+        // Since XCL 2.3 revision list
+        $this->assign['content_histories'] = pico_get_content_histories4assign( $this->mydirname, $content_data['id'] );
 		// breadcrumbs
 		$breadcrumbsObj->appendPath( '', 'DIFF' );
 		$this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();

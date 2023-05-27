@@ -15,7 +15,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_DESC', 'This module protects your application platform from various attacks like DoS, SQL Injection, and contamination of global variables.' );
 
 	// Menu
-	define( $constpref . '_ADMININDEX', 'Protect Center' );
+	define( $constpref . '_ADMININDEX', 'IP Safe List' );
 	define( $constpref . '_ADVISORY', 'Security Advisor' );
 	define( $constpref . '_PREFIXMANAGER', 'DB Prefix Manager' );
 	define( $constpref . '_ADMENU_MYBLOCKSADMIN', 'Permissions' );

@@ -1,7 +1,7 @@
 <?php
 
-define( '_MYTPLSADMIN_TIPS' , 'Le modèle original est en lecture seule pour des raisons de sécurité.<br>
-Créez un nouveau jeu de modèles et copiez les fichiers modèles à personnaliser.<br>
+define( '_MYTPLSADMIN_TIPS' , 'Le fichier de Template original est en lecture seule pour des raisons de sécurité. Vous pouvez créer un nouveau lot de Templates (ensemble de fichiers templates).<br>
+Commencez par une copie du lot de Base : "Default". Vous pouvez également créer un lot de Templates vide pour ne sélectionner que les Templates que vous souhaitez personnaliser.<br>
 <b>Render</b> vous permet de sélectionner, modifier, copier, télécharger ou supprimer un jeu de modèles.');
 define( '_MYTPLSADMIN_CREATE_NEW_TPLSET' , 'Nouveau Lot de Templates');
 define( '_MYTPLSADMIN_CAPTION_BASE' , 'Base');

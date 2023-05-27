@@ -127,7 +127,7 @@
 		<tr>
 			<td><{$smarty.const._MD_A_MYBLOCKSADMIN_CONTENT}></td>
 			<td>
-				<a href="?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=<{$block.template}>&amp;tpl_tplset=<{$block.template_tplset}>"><{$smarty.const._MD_A_MYBLOCKSADMIN_EDITTPL}></a>
+				<a href="?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=<{$block.template}>&amp;tpl_tplset=<{$block.template_tplset}>"><i class="i-edit"></i> <{$smarty.const._MD_A_MYBLOCKSADMIN_EDITTPL}></a>
 			</td>
 		</tr>
 		<{/if}>
@@ -152,11 +152,10 @@
     </tbody>
     <tfoot>
 	<tr>
-		<td></td>
-		<td>
-			<{if $block.is_custom}>
+		<td colspan="2">
+		<{if $block.is_custom}>
+		<button type="submit" class="button preview" name="preview"  id="preview" value="<{$smarty.const._PREVIEW}>"><{$smarty.const._PREVIEW}></button>
 <!--				<input type="submit" class="formButton" name="preview"  id="preview" value="<{$smarty.const._PREVIEW}>">-->
-			<button type="submit" class="button preview" name="preview"  id="preview" value="<{$smarty.const._PREVIEW}>"><{$smarty.const._PREVIEW}></button>
 			<{/if}>
 <!--			<input type="submit" class="formButton" name="submitblock"  id="submitblock" value="<{$submit_button}>">-->
 			<button type="submit" class="button submit" name="submitblock"  id="submitblock" value="<{$submit_button}>"><{$submit_button}></button>

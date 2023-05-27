@@ -31,8 +31,8 @@ define( '_MD_A_PICO_MSG_FMT_DUPLICATEDVPATH' , 'Certaines publications n\'ont pa
 
 // category_access
 define( '_MD_A_PICO_LABEL_SELECTCATEGORY' , 'Choisir une catégorie');
-define( '_MD_A_PICO_H2_INDEPENDENTPERMISSION' , 'Autorisation indépendante');
-define( '_MD_A_PICO_LABEL_INDEPENDENTPERMISSION' , 'Définir les autorisations pour cette catégorie indépendamment de la catégorie parent');
+define( '_MD_A_PICO_H2_INDEPENDENTPERMISSION' , 'Créez un ensemble de permissions unique.');
+define( '_MD_A_PICO_LABEL_INDEPENDENTPERMISSION' , 'Cet élément hérite actuellement des autorisations de son parent. Vous pouvez cocher la case et soumettre pour configurer des autorisations uniques pour cette catégorie.');
 define( '_MD_A_PICO_LINK_CATPERMISSIONID' , 'Vérifiez les autorisations parentales');
 define( '_MD_A_PICO_H2_GROUPPERMS' , 'Permissions par groupe');
 define( '_MD_A_PICO_H2_USERPERMS' , 'Permissions par utilisateur');

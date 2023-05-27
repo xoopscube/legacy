@@ -6,7 +6,7 @@ if (!defined('_CM_TITLE')) {
     define('_CM_DOSMILEY', 'Permettre les émoticônes');
     define('_CM_DOHTML', 'Permettre les balises HTML');
     define('_CM_DOAUTOWRAP', 'Retour à la ligne automatique');
-    define('_CM_DOXCODE', 'Permettre les codes XOOPS');
+    define('_CM_DOXCODE', 'Permettre XCode BBCode');
     define('_CM_REFRESH', 'Actualiser');
     define('_CM_PENDING', 'En suspens');
     define('_CM_HIDDEN', 'Cacher');

@@ -57,7 +57,8 @@ class PicoControllerGetHistory extends PicoControllerAbstract {
 		$this->assign['content_history_id'] = $request['content_history_id'];
 		[ , , $history_body ] = pico_get_content_history_profile( $this->mydirname, $request['content_history_id'] );
 		$this->assign['history_body_raw'] = $history_body;
-
+        // Since XCL 2.3 revision list
+        $this->assign['content_histories'] = pico_get_content_histories4assign( $this->mydirname, $content_data['id'] );
 		// breadcrumbs
 		$breadcrumbsObj->appendPath( '', _MD_PICO_HISTORY );
 		$this->assign['xoops_breadcrumbs'] = $breadcrumbsObj->getXoopsbreadcrumbs();

@@ -7,7 +7,7 @@ if (!defined('_CM_TITLE')) {
     define('_CM_DOSMILEY', '顔アイコンを有効にする');
     define('_CM_DOHTML', 'HTMLタグを有効にする');
     define('_CM_DOAUTOWRAP', '改行を自動挿入する');
-    define('_CM_DOXCODE', 'XOOPSコードを有効にする');
+    define('_CM_DOXCODE', 'XCode BBCodeコードを有効にする');
     define('_CM_REFRESH', '更新');
     define('_CM_PENDING', '承認待ち');
     define('_CM_HIDDEN', '非表示');

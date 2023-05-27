@@ -23,7 +23,7 @@
         <{* ////— DROPDOWN MENU —\\\\ *}>
         <div class="dropdown" id="action-contents">
             <a href="#" class="dropdown-toggle action-menu button" title="action">
-                <{$smarty.const._MENU}><svg class="icon-dropmenu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
+                <{$smarty.const._ACTION}> <{$smarty.const._MENU}><svg class="icon-dropmenu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
             </a>
             <div class="dropdown-content" style="min-width: 240px; padding:.5em;">
                 <div data-layout="row justify-center mb-4">
@@ -80,11 +80,10 @@
         </thead>
         <tbody>
         <{foreach from=$contents item="content"}>
-        <tr>
-        <td class="list_id"><{$content.id}>
-            <{if $cat_id == $smarty.const.SPECIAL_CAT_ID_ALL}>
-            <br>
-            <span class="badge" title="<{"--"|str_repeat:$content.cat_depth_in_tree}><{$content.cat_title}>"><{$content.cat_id}></span>
+        <tr class="<{if $content.locked}>bg-red<{/if}>">
+        <td class="list_id">
+            <{$content.id}>
+            <{if $cat_id == $smarty.const.SPECIAL_CAT_ID_ALL}> - <i class="i-folder" title="<{$content.cat_id}><{'--'|str_repeat:$content.cat_depth_in_tree}><{$content.cat_title}>"></i>
             <{/if}>
         </td>
         <td class="list_center">
@@ -93,15 +92,14 @@
                    name="subjects[<{$content.id}>]"
                    id="col_subject_<{$content.id}>"
                    value="<{$content.subject}>">
-            <br>
+            <{if $content.wrap_file}><br>
             <input type="text"
                    size="27"
                    name="vpaths[<{$content.id}>]"
                    id="col_vpath_<{$content.id}>"
                    value="<{$content.vpath}>">
-            <{if strstr($content.filters,"wraps")}>*<{/if}>
-            <{if $content.wrap_file}>
             <br>
+            <{if strstr($content.filters,"wraps")}>*<{/if}>
             <{$content.wrap_file.mtime_formatted}>
             (<{$content.wrap_file.size}> <{$smarty.const._MD_PICO_BYTE}>)
             <{/if}>
@@ -171,6 +169,7 @@
             <{if $content.locked}>
             <strong style="color:#F44336;"><{$smarty.const._MD_PICO_ERR_LOCKEDCONTENT}></strong>
             <{/if}>
+
             <{if $content.created_time >= time()}>
             <strong style="color:#2196F3;"><{$smarty.const._MD_PICO_WAITINGRELEASE}></strong>
             <{/if}>

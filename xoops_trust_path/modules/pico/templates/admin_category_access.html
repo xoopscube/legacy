@@ -19,12 +19,12 @@
         <{* ////— DROPDOWN MENU —\\\\ *}>
         <div class="dropdown" id="action-contents">
             <a href="#" class="dropdown-toggle action-menu button" title="action">
-                <{$smarty.const._MENU}><svg class="icon-dropmenu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
+                <{$smarty.const._ACTION}> <{$smarty.const._MENU}><svg class="icon-dropmenu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m7 10l5 5l5-5z"/></svg>
             </a>
             <div class="dropdown-content" style="min-width: 240px; padding:.5em;">
                 <div data-layout="row justify-center mb-4">
                     <h6 data-self="center size-x1"><{$mydirname|ucfirst}> <{$smarty.const._ACTION}></h6>
-                    <button class="help-admin button" type="button" data-module="<{$mod_name}>" data-help-article="#help-access" title="<{$smarty.const._HELP}>"><b>?</b></button>
+                    <button class="help-admin button" type="button" data-module="<{$mod_name}>" data-help-article="#help-permissions" title="<{$smarty.const._HELP}>"><b>?</b></button>
                 </div>
                 <a class="button" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$cat_id}>"><i class="i-edit"></i><{$smarty.const._EDIT}></a>
                 <a class="button" href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$cat_id}>"><i class="i-add"></i><{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}></a>

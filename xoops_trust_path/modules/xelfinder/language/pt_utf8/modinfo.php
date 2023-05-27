@@ -91,7 +91,7 @@ define( $constpref.'_ADMENU_MYPREFERENCES','Preferências');
     define( $constpref.'_DROPBOX_WRITABLE_GROUPS' , 'Dropxbox.com - Grupos com acesso total' );
     define( $constpref.'_DROPBOX_WRITABLE_GROUPS_DESC' , 'Qualquer membro do grupo pode adicionar, editar, excluir, compartilhar ou baixar arquivos e pastas. Outros grupos só podem ler.<br>Você pode organizar os membros em grupos. Compartilhe uma pasta ou arquivo com um grupo para conceder acesso automaticamente a todos os membros do grupo.' );
     define( $constpref.'_DROPBOX_UPLOAD_MIME' ,     'Dropxbox.com - Tipo MIME que pode ser carregado no volume compartilhado') ;
-    define( $constpref.'_DROPBOX_UPLOAD_MIME_DESC' ,'O tipo MIME que o grupo com permissões de gravação pode carregar. Os administradores não são restritos.') ;
+    define( $constpref.'_DROPBOX_UPLOAD_MIME_DESC' ,'Tipo MIME que o grupo com permissões de gravação pode carregar. Os administradores não são restritos.') ;
     define( $constpref.'_DROPBOX_WRITE_EXT' ,       'Arquivos compartilhados com permissões de gravação') ;
     define( $constpref.'_DROPBOX_WRITE_EXT_DESC' ,  'As permissões de arquivo são herdadas do grupo com permissões de gravação. Nome do arquivo separado por vírgula ",".<br>Destina-se a uma pasta que termina com barra "/".<br>Os administradores não são restritos.') ;
     define( $constpref.'_DROPBOX_UNLOCK_EXT' ,      'Dropxbox.com - Arquivos desbloqueados compartilhados') ;

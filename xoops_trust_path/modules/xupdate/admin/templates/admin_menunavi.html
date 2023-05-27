@@ -5,6 +5,6 @@
     <{foreach item=menu from=$adminMenu}>
     <a href="<{$menu.link|xoops_escape:link}>" class="adminavi-item"><{$menu.title|xoops_escape}></a>
     <{/foreach}>
-<!--    <a href="<{$xoops_url}>/admin.php" class="adminavi-item"><{$smarty.const._CPHOME}></a>-->
     <{/if}>
+    <a href="../legacy/admin/index.php?action=Help&dirname=xupdate"><{$smarty.const_HELP}></a>
 </div>

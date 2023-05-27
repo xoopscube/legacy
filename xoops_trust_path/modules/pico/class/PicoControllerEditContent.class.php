@@ -50,7 +50,7 @@ class PicoControllerEditContent extends PicoControllerAbstract {
 			redirect_header( XOOPS_URL . '/', 2, $content_data['locked'] ? _MD_PICO_ERR_LOCKEDCONTENT : _MD_PICO_ERR_EDITCONTENT );
 		}
 
-		// category list can be read for category jumpbox etc.
+		// category list can be read for category jump-box etc.
 		$categoryHandler                     = new PicoCategoryHandler( $this->mydirname, $this->permissions );
 		$categories                          = $categoryHandler->getAllCategories();
 		$this->assign['categories_can_post'] = [];

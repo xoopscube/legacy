@@ -7,7 +7,7 @@ if (!defined('_CM_TITLE')) {
     define('_CM_DOSMILEY', 'Включить смайлики');
     define('_CM_DOHTML', 'Включить HTML');
     define('_CM_DOAUTOWRAP', 'Автоматический перенос строк');
-    define('_CM_DOXCODE', 'Включить XOOPS коды');
+    define('_CM_DOXCODE', 'Включить XCode BBCode коды');
     define('_CM_REFRESH', 'Обновить');
     define('_CM_PENDING', 'Ожидает');
     define('_CM_HIDDEN', 'Скрыт');

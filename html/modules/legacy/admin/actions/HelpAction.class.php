@@ -24,6 +24,11 @@
  * Smarty custom modifiers supported in Help view :
  * 'helpurl'   - modify a relative URL to the dynamic page link.
  * 'helpimage' - modify an image URL.
+ * Since XCL 2.3
+ * Usage : <{$help}>=module_dirname
+ * Example
+ * Module  : <a href="<{$help}>=legacy">System</a>
+ * File    : <a href="<{$help}>=legacy&amp;file=block.html">Block</a>
  * These modifiers take into account the existence of language files.
  */
 class Legacy_HelpSmarty extends Smarty
@@ -168,7 +173,6 @@ class Legacy_HelpAction extends Legacy_Action
     {
         $moduleHandler =& xoops_gethandler('module');
         $this->mModuleObject =& $moduleHandler->getByDirname($this->_mDirname);
-
         $language = $controller->mRoot->mContext->getXoopsConfig('language');
 
         //
@@ -198,7 +202,13 @@ class Legacy_HelpAction extends Legacy_Action
         }
 
         $controller->mRoot->mContext->setAttribute('legacy_help_dirname', $this->_mDirname);
-
+        // Since XCL 2.3
+        // Usage   : <{$help}>=module_dirname
+        // Example
+        // Module  : <a href="<{$help}>=legacy">System</a>
+        // File    : <a href="<{$help}>=legacy&amp;file=block.html">Block</a>
+        $mHelp = XOOPS_MODULE_URL . "/legacy/admin/index.php?action=Help&amp;dirname";
+        $smarty->assign('help',$mHelp);
         $smarty->template_dir = $template_dir;
         $this->mContents = $smarty->fetch('file:' . $helpfile);
 

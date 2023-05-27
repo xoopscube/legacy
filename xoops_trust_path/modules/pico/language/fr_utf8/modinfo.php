@@ -82,8 +82,8 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_EFIMAGES_DIRDSC', 'Relative path to the public directory e.g. public_html/.<br>First, create and chmod 777 the directory. Default value: uploads/dirname' );
     define( $constpref . '_EFIMAGES_SIZE', 'Extra images generated from the upload file' );
     define( $constpref . '_EFIMAGES_SIZEDSC', 'Used in article header and theme Open Graph. Default values in pixels, width x height : 1200x627 820x312 640x360' );
-    define( $constpref . '_EFIMAGES_QUALITY', 'Extra Image quality compression' );
-    define( $constpref . '_EFIMAGES_QUALITYDSC', 'minimize' );
+    define( $constpref . '_EFIMAGES_QUALITY', 'Extra Images quality compression' );
+    define( $constpref . '_EFIMAGES_QUALITYDSC', 'Set the quality for generated images. Reduce the file size of your files.' );
     define( $constpref . '_IMAGICK_PATH', 'Chemin pour ImageMagick binaries' );
     define( $constpref . '_IMAGICK_PATHDSC', 'Laisser vide normal, ou définissez par ex. /usr/X11R6/bin/' );
     define( $constpref . '_COM_DIRNAME', 'Comment-integration: dirname of d3forum' );
