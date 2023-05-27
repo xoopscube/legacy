@@ -49,16 +49,16 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref.'_LOADED')) {
     define($constpref.'_NAME', 'Protector');
 
 // A brief description of this module
-    define($constpref.'_DESC', 'M�dulo para prote��o do XOOPS contra ataques mal-intencionados, em especial: ataques DoS, SQL Injection e contamina��es por vari�vel.');
+    define($constpref.'_DESC', 'Modulo para proteção contra ataques mal-intencionados, em especial: ataques DoS, SQL Injection e contaminações por variàvel.');
 
 // Menu
-    define($constpref.'_ADMININDEX', 'Central de proteção');
+    define($constpref.'_ADMININDEX', 'IP Autorizados');
     define($constpref.'_ADVISORY', 'Guia de segurança');
-    define($constpref.'_PREFIXMANAGER', 'Gerenciador de PREFIXO BD');
+    define($constpref.'_PREFIXMANAGER', 'Prefixo Base Dados');
 
 // Configs
     define($constpref.'_GLOBAL_DISBL', 'Interrupção temporaria de funcionamento');
-    define($constpref.'_GLOBAL_DISBLDSC', 'Suspende temporariamente o funcionamento de todas as proteções.<br />Apos resolver os problemas, não se esqueça de desativar.');
+    define($constpref.'_GLOBAL_DISBLDSC', 'Suspende temporariamente o funcionamento de todas as proteções.<br>Apos resolver os problemas, não se esqueça de desativar.');
     define($constpref.'_RELIABLE_IPS', 'IPs confiaveis');
     define($constpref.'_RELIABLE_IPSDSC', 'Indique os endereços IP que não passarão por examinação para ataques DoS, separados por |. ^ para o invalido, e  $ para o final do string.');
     define($constpref.'_LOG_LEVEL', 'Nivel de logging');
@@ -70,21 +70,21 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref.'_LOADED')) {
     define($constpref.'_LOGLEVEL255', 'Gerar log de todos os elementos');
 
     define($constpref.'_HIJACK_TOPBIT', 'Proteção de IP bits contra renovação de sessão');
-    define($constpref.'_HIJACK_TOPBITDSC', 'Prevenir session hijack:<br />O padrão é 32(bit) e protege de todos os bits.<br />Caso use Proxy ou seu endereço IP mude a cada acesso, defina o intervalo de bits mais longo possivel à invariação.<br>Ex.: Se houver possibilidade de variação dentro de 192.168.0.0~192.168.0.255, defina esta opço como 24(bit).');
+    define($constpref.'_HIJACK_TOPBITDSC', 'Prevenir session hijack:<br>O padrão é 32(bit) e protege de todos os bits.<br />Caso use Proxy ou seu endereço IP mude a cada acesso, defina o intervalo de bits mais longo possivel à invariação.<br>Ex.: Se houver possibilidade de variação dentro de 192.168.0.0~192.168.0.255, defina esta opço como 24(bit).');
     define($constpref.'_HIJACK_DENYGP', 'Grupos proibidos de mudança de IP');
-    define($constpref.'_HIJACK_DENYGPDSC', 'Prevenir session hijack:<br />Escolha os grupos cujos usuarios proibidos de alteração de endere*o IP durante uma sessão.<br>(Recomendado: "Administradores")');
+    define($constpref.'_HIJACK_DENYGPDSC', 'Prevenir session hijack:<br>Escolha os grupos cujos usuarios proibidos de alteração de endere*o IP durante uma sessão.<br>(Recomendado: "Administradores")');
     define($constpref.'_SAN_NULLBYTE', 'Substituição de caracteres nulos por espaços');
-    define($constpref.'_SAN_NULLBYTEDSC', 'O caracter "\\0" fatal é usado frequentemente em ataques maliciosos.<br />Sempre que detectado, ele serà substituidoo por um espaço.<br>(Recomendado)');
+    define($constpref.'_SAN_NULLBYTEDSC', 'O caracter "\\0" fatal é usado frequentemente em ataques maliciosos.<br>Sempre que detectado, ele serà substituidoo por um espaço.<br>(Recomendado)');
     define($constpref.'_DIE_NULLBYTE', 'Encerramento forçado de sessão em caso de detecão de caracteres nulos');
-    define($constpref.'_DIE_NULLBYTEDSC', 'O caracter "\\0" fatal é usado frequentemente em ataques maliciosos.<br />(Recomendado)');
+    define($constpref.'_DIE_NULLBYTEDSC', 'O caracter "\\0" fatal é usado frequentemente em ataques maliciosos.<br>(Recomendado)');
     define($constpref.'_DIE_BADEXT', 'Encerramento forçado de sessão em caso de uploads com extensões proibidas');
     define($constpref.'_DIE_BADEXTDSC', 'Caso houver uploads de arquivos com extensões como .php ou outros arquivos executaveis no servidor, a sessão serà apagada.<br>(Não recomendado se você for usuario de B-Wiki ou PukiWikiMod e anexar codigos-fonte em PHP.)');
     define($constpref.'_CONTAMI_ACTION', 'Solução em caso de detecão de contaminações por variavel');
     define($constpref.'_CONTAMI_ACTIONDS', 'Escolha o tipo de solução quando uma tentativa de alteração das globais de sistema do XOOPS for detectada.<br>(Padrão: "Encerramento forçado de sessão")');
     define($constpref.'_ISOCOM_ACTION', 'Solução em caso de detecção de comentarios isolados');
-    define($constpref.'_ISOCOM_ACTIONDSC', 'Prevenir SQL injection:<br />Escolha o tipo de solução quando um comentario isolado /* for detectado sem seu par */.<br>Processo de sanitização: */ é inserido no final.<br>(Recomendado: "Sanitização")');
+    define($constpref.'_ISOCOM_ACTIONDSC', 'Prevenir SQL injection:<br>Escolha o tipo de solução quando um comentario isolado /* for detectado sem seu par */.<br>Processo de sanitização: */ é inserido no final.<br>(Recomendado: "Sanitização")');
     define($constpref.'_UNION_ACTION', 'Solução em caso de detecção de UNION');
-    define($constpref.'_UNION_ACTIONDSC', 'Prevenir SQL injection:<br />Escolha o tipo de solução quando uma sintaxe UNION do SQL for detectada.<br />Processo de sanitização: UNION é alterado para uni-on.<br>(Recomendado: "Sanitização")');
+    define($constpref.'_UNION_ACTIONDSC', 'Prevenir SQL injection:<br>Escolha o tipo de solução quando uma sintaxe UNION do SQL for detectada.<br>Processo de sanitização: UNION é alterado para uni-on.<br>(Recomendado: "Sanitização")');
     define($constpref.'_ID_INTVAL', 'Conversão forçada de variavel ID');
     define($constpref.'_ID_INTVALDSC', 'Força valores numéricos e variaveis com nomes terminados em "id". Eficaz, principalmente, com modulos derivados do myLinks. Protege também de alguns XSS e SQL injection. Entretanto, pode entrar em conflito com alguns modulos.');
     define($constpref.'_FILE_DOTDOT', 'Proibido de DirectoryTraversal');
@@ -104,11 +104,11 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref.'_LOADED')) {
     define($constpref.'_DOS_F5ACTION', 'Medidas contra ataques F5');
 
     define($constpref.'_DOS_CRCOUNT', 'N° de vezes para ser reconhecido como um crawler malicioso');
-    define($constpref.'_DOS_CRCOUNTDSC', 'Prevenir crawlers maliciosos (como bots catadores de e-mails):<br />Se forem realizadas buscas dentro do site dentro do tempo de observação definido acima e do n° de vezes definidas nesta opção, serà reconhecido como um crawler malicioso.');
+    define($constpref.'_DOS_CRCOUNTDSC', 'Prevenir crawlers maliciosos (como bots catadores de e-mails):<br>Se forem realizadas buscas dentro do site dentro do tempo de observação definido acima e do n° de vezes definidas nesta opção, serà reconhecido como um crawler malicioso.');
     define($constpref.'_DOS_CRACTION', 'Solução para crawlers maliciosos');
 
     define($constpref.'_DOS_CRSAFE', 'User-Agent permitidos');
-    define($constpref.'_DOS_CRSAFEDSC', 'Descreva incondicionalmente o nome dos prov�veis crawlers com uma perl regex pattern.<br />Ex.: /(msnbot|Googlebot|Yahoo! Slurp)/i');
+    define($constpref.'_DOS_CRSAFEDSC', 'Descreva incondicionalmente o nome dos prov�veis crawlers com uma perl regex pattern.<br>Ex.: /(msnbot|Googlebot|Yahoo! Slurp)/i');
 
     define($constpref.'_OPT_NONE', 'Nenhuma (apenas gerar log)');
     define($constpref.'_OPT_SAN', 'Sanitização');

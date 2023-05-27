@@ -168,15 +168,18 @@ input#block-tooltip:checked { background: var(--color-red)}
     transform       : rotateY(359deg);
 }
 .xcl-cube > * {
-    background      : rgba(0,127,255,0.5);
+    --bgcolor : rgb(0,127,255);
+    background      : rgba(var(--bgcolor), 0.25);
     border          : 1px solid var(--theme-color, var(--color-blue) );
+    color           : white;
     text-align      : center;
     cursor          : pointer;
 }
-.xcl-cube > .front {background : rgba(84,110,127,0.27)}
+
+/*.xcl-cube > .front {background : rgba(84,110,127,0.27)}*/
 .xcl-cube > .left {background  : rgba(70,90,100,0.27)}
-.xcl-cube > .back {background  : rgba(55,70,80,0.27)}
-.xcl-cube > .right {background : rgba(40,52,60,0.27)}
+/*.xcl-cube > .back {background  : rgba(55,70,80,0.27)}*/
+/*.xcl-cube > .right {background : rgba(40,52,60,0.27)}*/
 
 /* -------------------- --------------------  COLOR SCHEME */
 

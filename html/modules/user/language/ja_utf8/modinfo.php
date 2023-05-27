@@ -74,4 +74,4 @@ define( '_MI_USER_MENU_CREATE_USER' , 'ユーザーの新規作成');
 define( '_MI_USER_NAME' , 'ユーザーモジュール');
 define( '_MI_USER_NAME_DESC' , 'ユーザーアカウントに関する処理を行う基盤モジュール');
 define( '_MI_USER_ADMENU_USER_DATA_CSVUPLOAD' , 'ユーザーの一括登録');
-define( '_MI_USER_ADMENU_USER_DATA_DOWNLOAD' , 'ユーザデータのダウンロード');
+define( '_MI_USER_ADMENU_USER_DATA_DOWNLOAD' , 'ユーザー情報一覧（CSV)');

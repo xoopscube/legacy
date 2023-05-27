@@ -65,18 +65,18 @@
 
         <h3>Actions</h3>
 
-        <p><a class="button action-add" href="index.php?action=GroupMember&amp;groupid=1" title="Assign a member">
+        <p><a class="button action-add" href="#!" title="Assign a member">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6h-2Z"></path></svg>
         </a> Assign a user to the Group.
 
-        <p><a class="button action-edit" href="index.php?action=GroupEdit&amp;groupid=1" title="Edit">
+        <p><a class="button action-edit" href="#!" title="Edit">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path></svg>
         </a> Edit the group's name and write a short description.
 
-        <p><a class="button action-view" href="index.php?action=GroupProperty&amp;groupid=1" title="Properties">
+        <p><a class="button action-view" href="#!" title="Properties">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z" fill="currentColor"></path></svg>
         </a> View properties of the group's global permissions.
-        <p><a class="button action-lock" href="index.php?action=GroupPerm&amp;groupid=1" title="Group Permissions">
+        <p><a class="button action-lock" href="#!" title="Group Permissions">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M20 8h-3V6.21c0-2.61-1.91-4.94-4.51-5.19A5.008 5.008 0 0 0 7 6v2H4v14h16V8zm-8 9c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2zM9 8V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9z"></path></svg>
         </a> Set group permissions for modules and blocks.
 
@@ -95,7 +95,7 @@
         <p><a href="#!" class="button" title="Group Permissions"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M20 8h-3V6.21c0-2.61-1.91-4.94-4.51-5.19A5.008 5.008 0 0 0 7 6v2H4v14h16V8zm-8 9c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2zM9 8V6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9z"></path></svg>
         </a> Click Group Permissions to modify the Group.
 
-        <p><a class="button action-delete" href="#!" aria-label="Delete">
+        <p><a class="button action-delete" href="#!" title="Delete">
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M6 21h12V7H6v14zm2.46-9.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z"></path></svg>
         </a> Alternatively, click Delete to delete the user group.
 
@@ -149,8 +149,7 @@
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'cgroups-permissions.html'|helpurl}>">Group Management</a>
-            <li><a href="<{'index.php?action=Help&dirname=profile'}>">Add Custom Fields to User Profile ⭢</a>
+            <li><a href="<{$help}>=profile">Add Custom Fields to User Profile ⭢</a>
         </ul>
 
     </section>
@@ -218,8 +217,8 @@
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'cgroups-permissions.html'|helpurl}>">Group Management</a>
-            <li><a href="<{'index.php?action=Help&dirname=profile'}>">Add Custom Fields to User Profile ⭢</a>
+            <li><a href="<{'groups-permissions.html'|helpurl}>">Group Management</a>
+            <li><a href="<{$help}>=profile'">Add Custom Fields to User Profile ⭢</a>
         </ul>
 
     </section>
@@ -300,7 +299,7 @@
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'index.php?action=Help&dirname=legacy'}>">Block Management ⭢</a>
+            <li><a href="<{$help}>=legacy">Block Management ⭢</a>
         </ul>
 
     </section>
@@ -354,7 +353,7 @@
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'index.php?action=Help&dirname=legacy'}>">Mail Setup ⭢</a>
+            <li><a href="<{$help}>=legacy">Mail Setup ⭢</a>
         </ul>
 
     </section>

@@ -5,7 +5,7 @@
             <ul data-layout="rows">
                 <li><a href="#help-overview" class="button">Overview</a>
                 <li><a href="#help-features" class="button">Features</a>
-                <li><a href="#help-content" class="button">Content Management</a>
+                <li><a href="#help-content" class="button">Usage</a>
                 <li><a href="#help-comments" class="button">Comments Integration</a>
                 <li><a href="#help-workflow" class="button">Publication Workflow</a>
                 <li><a href="#help-revision" class="button">Content Revision History</a>
@@ -98,11 +98,13 @@
 
     <section id="help-content">
 
-    <h3>Content Management</h3>
+    <h3>Usage</h3>
 
     <p>D3 modules are designed to let you create categories and contents on the front end.
         These modules also provide <i>granular user permissions</i>, allowing you to customize access levels to contents and features.
         You can identify and create user roles which define what a user can see and do.
+
+    <h4><i class="i-task"></i> Contents Management</h4>
 
     <h6>Back-end</h6>
 
@@ -150,7 +152,7 @@
 
     <section id="help-comments">
 
-        <h3>Comment Integration</h3>
+        <h3>Comments Integration</h3>
 
         <p>The comments-integration feature of the d3forum module is particularly valuable for involving users in discussion forums.
             In addition to increasing usability, the integration makes commenting quick and easy.
@@ -159,7 +161,7 @@
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'index.php?action=Help&dirname=d3forum#help-forum-integration'}>">Delegate mechanism and Preload ⭢</a>
+            <li><a href="<{$help}>=d3forum#help-integration">D3Forum comments integration ⭢</a>
         </ul>
 
     </section>
@@ -174,15 +176,65 @@
 
         <h6>Content status</h6>
 
-        <ul>
-            <li>Draft or Invisible : Content is unpublished or scheduled to be published
-            <li>Staged or waiting release : Content is scheduled to be published
-            <li>Published : Content is published and available to users
-            <li>Locked : Content is published but only moderators can edit and delete
-            <li>Archived or Expired: Previously published versions of content that has been unpublished and is no longer available
-        </ul>
+        <div data-layout="row p-6 m-auto">
+            <table class="outer">
+                <tbody>
+                <tr><td>Draft or Invisible</td><td> Content is unpublished or scheduled to be published</td>
+                <tr><td>Staged or waiting release</td><td>Content is scheduled to be published</td>
+                <tr><td>Published</td><td>Content is published and available to users</td></tr>
+                <tr><td>Locked</td><td>Content is published but only moderators can edit and delete</td></tr>
+                <tr><td>Archived or Expired</td><td>Previously published versions of content that has been unpublished and is no longer available</td></tr>
+                </tbody>
+            </table>
+        </div>
 
-        <h3>View Content Status</h3>
+        <h4><i class="i-task"></i> Custom Approval Process</h4>
+        <p>Content writing is both a creative and a business process. It is linked to your workflow to optimize and improve content creation.
+            Furthermore, you can personalize the content workflow and provide detailed information on each step.
+            This allows everyone involved to concentrate on the task in hand.
+            What's more, when the workflow is documented and unambiguous, the risk of errors and delays is minimized.
+            Here's an example of how you can simplify and automate your workflow.
+
+        <h6>Content Creation Process</h6>
+
+        <div data-layout="row m-auto sm-column">
+
+            <div data-self="size-1of3 p-6 sm-full">
+                <p>There are many ways to organize approvals and revisions.
+                    The rule for an efficient and successful workflow is to keep it simple.
+                    Here's what it might look like in your workflow to help you save time and work efficiently with your team.</p>
+            </div>
+            <div data-self="size-1of3 p-6 sm-full">
+                <table class="outer">
+                    <tr><th colspan="2">Task-based Workflow</th></tr>
+                    <tr class="list_center"><td class="bg-black">1</td><td>Research Keyword</td></tr>
+                    <tr class="list_center"><td class="bg-red">2</td><td>Write Draft</td></tr>
+                    <tr class="list_center"><td class="bg-orange">3</td><td>Proofread and Edit</td></tr>
+                    <tr class="list_center"><td class="bg-green">4</td><td>Approve and Publish</td></tr>
+                </table>
+            </div>
+            <div data-self="size-1of3 p-6 sm-full">
+                <table class="outer">
+                    <tr><th colspan="2">Status-based Workflow</th></tr>
+                    <tr class="list_center"><td class="bg-blue">1</td><td>New Content</td></tr>
+                    <tr class="list_center"><td class="bg-red">2</td><td>Draft (invisible)</td></tr>
+                    <tr class="list_center"><td class="bg-amber">3</td><td>Review content</td></tr>
+                    <tr class="list_center"><td class="bg-green">4</td><td>Approve and Publish</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <p>This workflow can be adapted to any type of content creation. Just make sure that deadlines are realistic and achievable.
+            Users with the appropriate permissions can also edit, add comments and manage multimedia files in locations shared with them. See the File Manager section of the documentation.
+<!--        <ul>-->
+<!--            <li>Draft or Invisible : Content is unpublished or scheduled to be published-->
+<!--            <li>Staged or waiting release : Content is scheduled to be published-->
+<!--            <li>Published : Content is published and available to users-->
+<!--            <li>Locked : Content is published but only moderators can edit and delete-->
+<!--            <li>Archived or Expired: Previously published versions of content that has been unpublished and is no longer available-->
+<!--        </ul>-->
+
+        <h4><i class="i-task"></i> View Content Status</h4>
 
         <p>To view the status of your publications, browse to module administrative view "Contents" :</p>
         <ul>
@@ -202,13 +254,13 @@
                 <th>NAVI<br><input type="checkbox" title="Show in page navigation"></th>
                 <th>MENU<br><input type="checkbox" title="Show in menu"></th>
                 <th>COM<br><input type="checkbox" title="Allow comments"></th>
-                <th>Revision</th>
+                <th>Status<br>Revision</th>
                 <th class="list_batch">Batch<br><input type="checkbox"></th>
                 <th style="text-align:right">Action</th>
             </tr>
             <tr style="background:rgb(178 116 14 / 50%); border-bottom:1px dotted rgb(255 40 40 / 50%)">
                 <td class="list_id">11 - <i class="i-folder" title="Category 1--Theming"></i></td>
-                <td class="list_center"><input type="text" size="27" value="Test locked" title="Edit the title"></td>
+                <td class="list_center"><input type="text" size="27" value="Test Draft" title="Edit the title"></td>
                 <td class="list_order"><input type="number" size="3" value="0" style="max-width: 8ch;" title="Order"></td>
                 <td class="list_visible"><input type="checkbox" value="1" title="Visible"></td>
                 <td class="list_nav"><input type="checkbox" value="1" title="Show in page navigation"></td>
@@ -216,7 +268,6 @@
                 <td class="list_comments"><input type="checkbox" value="1" title="Allow comments"></td>
                 <td class="list_date">
                     <strong style="color:var(--color-amber,#3F51B5);">Invisible</strong>
-                    <strong style="color:#F44336;">Content locked</strong>
                     <br>
                     <img src="../../user/images/no_avatar.gif" width="20px" height="20px" data-self="radius-circle" alt="avatar"> webmaster
                     <br>
@@ -237,7 +288,7 @@
                 <td class="list_menu"><input type="checkbox" value="1" title="Show in menu"></td>
                 <td class="list_comments"><input type="checkbox" value="1" title="Allow comments"></td>
                 <td class="list_date">
-                    <strong style="color:var(--color-amber,#3F51B5);">Invisible</strong>
+                    <strong style="color:#F44336;">Locked</strong>
                     <br>
                     <img src="../../user/images/no_avatar.gif" width="20px" height="20px" data-self="radius-circle" alt="avatar"> moderator
                     <br>
@@ -270,7 +321,7 @@
             <li>Compare revisions to each other and easily view changes between.
         </ul>
 
-        <h3>Enable Revision history</h3>
+        <h4><i class="i-task"></i> Enable Revision history</h4>
 
         <p>To enable this feature, browse to module's preferences :
         <div data-layout="row p-6 m-auto">
@@ -280,7 +331,7 @@
         </table>
         </div>
 
-        <h3>View Revision History</h3>
+        <h4><i class="i-task"></i> View Revision History</h4>
 
         <p>Revision history gives you a point-in-time snapshot of your content, so you can compare versions and see the date and time they were published.
             One draft or published version exists at a time, but you can have many archived versions, depending on your preference settings for the maximum number of revisions.
@@ -304,7 +355,7 @@
 
         <p>Regarding the modified content in question, click "Edit content" to view "Revision History" links e.g. refer, download, diff.
 
-        <p>Comparing revisions :
+        <h4><i class="i-task"></i> Comparing revisions </h4>
 
         <div data-layout="row p-6 m-auto">
         <table class="outer">
@@ -317,17 +368,19 @@
 
         <div class="confirm">Note: If a revision can not be restored directly on the module, download the revision, copy the content and republish it.</div>
 
-        <h3>Customize Revision History</h3>
+        <h4><i class="i-task"></i> Customize Revision History</h4>
 
         <p>The revision history uses the Text diff renderer.
         This is a powerful data comparison tool for parsing strings and reporting differences (additions and deletions) between two revisions.
             The diff is wrapped in an HTML <b>pre</b> tag, preformatted text is usually rendered using a monospaced font.
             To highlight the differences and give you control over the layout use the following HTML tags:
 
-        <ul>
-        <li><b>del</b> is used to represent deleted text.
-        <li><b>ins</b> is used to represent the newly added text.
-        </ul>
+        <dl style="width: max-content;">
+            <dt><b>del</b></dt>
+            <dd class="bg-red"><b>del</b> is used to represent deleted text.</dd>
+            <dt><b>ins</b></dt>
+            <dd class="bg-green"><b>ins</b> is used to represent the newly added text.</dd>
+        </dl>
 
         <p>Added and deleted elements are styled using CSS "main.css" and displayed in the template.
         <p>You can refine the styles by extending the predefined classes or by modifying an instance of them.
@@ -434,8 +487,6 @@
 
         <h3>Permissions</h3>
 
-        <div class="tips">Subcategories and contents inherit permissions from the nearest parent category, in the absence of individual permissions, all inherit from the Top-level category, by default.</div>
-
         <p>Only administrators can create subcategories.
             However, you can assign users and roles to create and mange subcategories (either individually, or for all subcategories on your module instance).
             For example, you may grant users a specific role with the ability to create content.
@@ -450,6 +501,8 @@
 
         <p>On the front end, click "Edit category", then click "Category permissions"
 
+        <div class="tips">Subcategories and contents inherit permissions from the nearest parent category, in the absence of individual permissions, all inherit from the Top-level category, by default.</div>
+
     </section>
 
     <section id="help-extra">
@@ -461,7 +514,7 @@
             Forms are processed automatically by the module.
             You can forward responses to your email, or save them to your database and manage form responses in the control panel.</p>
 
-        <h4>Create a Custom Form Template</h4>
+        <h4><i class="i-task"></i> Create a Custom Form Template</h4>
 
         <p>Use categories to manage your custom forms and to easily include in your content.
         <p>You can also import custom forms and content from other instances of Pico.
@@ -470,8 +523,8 @@
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'form_design.html'|helpurl}>">Guide To Design Smarty Forms</a>
-            <li><a href="<{'component.html'|helpurl}>">Guide To Create Custom Fields</a>
+            <li><a href="#!" title="Todo : Documentation Samples">Guide To Design Smarty Forms</a>
+            <li><a href="#!" title="Todo : Documentation Samples">Guide To Create Custom Fields</a>
         </ul>
 
     </section>
@@ -516,6 +569,7 @@
     </section>
 
     <section id="help-html-head">
+
         <h3>Custom HTML Head Tags</h3>
 
         <p>This module allows you to create custom HTML code for the <b>head</b> and <b>body</b> of module instances, categories and contents.
@@ -529,7 +583,7 @@
         <li>Multi-language support
         </ul>
 
-        <h3>Enable Custom HTML Head</h3>
+        <h4><i class="i-task"></i> Enable Custom HTML Head</h4>
         <p>Browse to module's preferences to enable custom HTML header. The following options are available :
 
         <table class="outer">
@@ -546,7 +600,7 @@
         </tbody>
         </table>
 
-        <h3>Custom HTML Head for Category</h3>
+        <h4><i class="i-task"></i> Custom HTML Head for Category</h4>
 
         <p>The front-end provides several options for customising a category. Among these options, the HTML header can override CSS styles.</p>
 
@@ -560,7 +614,7 @@
 
         <div class="confirm">Note that this example applies to Themes built with PicoCSS. Other Themes and CSS frameworks may use a different ID.</div>
 
-        <h3>Custom HTML Head for Content</h3>
+        <h4><i class="i-task"></i> Custom HTML Head for Content</h4>
         <ol>
         <li>Content creation and edition
         <li>Click HTML headers to display the textarea
@@ -583,7 +637,6 @@
         <li>Each instance is independent with its own blocks, templates, permissions and language
         <li>Instances can share data, or include content from other instances.
         </ul>
-
 
         <h3>Scalability</h3>
 
@@ -613,7 +666,6 @@
         </tbody>
         </table>
         </div>
-
 
         <h3>Wrap Static Content</h3>
         <p>In the example below, you can see an organization with several highly customized instances and one instance /company wrapping several static content folders..
@@ -648,29 +700,29 @@
 
         <h3>Customization</h3>
 
-        <h4>Content Management System</h4>
+        <h5>Content Management System</h5>
         <p>Enables non-developer users to easily set up and modify site pages. Some of its features include content creation and distribution, team collaboration, and image storage.</p>
 
-        <h4>Document management system</h4>
+        <h5>Document management system</h5>
         <p>Helps organizations to capture, store, and distribute documents such as papers, emails, and system-generated reports.
             A document management system is software solution, often cloud-based, that also digitizes, tags, approves, and completes designated tasks with these documents.</p>
 
-        <h4>Knowledge Management</h4>
+        <h5>Knowledge Management</h5>
         <p>knowledge management helps people identify the information they need and suggests ways to achieve the knowledge they need which Helps users.</p>
 
-        <h4>Wrapper module</h4>
+        <h5>Wrapper module</h5>
         <p>Pico provides a wrap functionality to run an instance that renders a directory structure containing static web documents.
             Wraps mode can be used to efficiently organize digital files.
 
-        <h4>Editorial WorkFlow</h4>
+        <h5>Editorial WorkFlow</h5>
 
         <p>In short, the module implements a simple publication workflow to create, review, edit, publish and archive content.
             The workflow rules for editing and publishing can be easily set with users permissions.</p>
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'component.html'|helpurl}>">Run multiple instances</a>
-            <li><a href="<{'component.html'|helpurl}>">Custom design for each instance</a>
+            <li><a href="#!" title="Todo : Documentation Samples">Run multiple instances</a>
+            <li><a href="#!" title="Todo : Documentation Samples">Custom design for each instance</a>
         </ul>
 
     </section>
@@ -679,9 +731,7 @@
 
         <h3>Development</h3>
 
-        <p>TODO</p>
-        <p>Improve the documentation with samples.</p>
-        <p>Document Tags' links like Block Tags.</p>
+        <p><b>TODO</b> : Design Smarty Forms and multiple instances documentation with samples.</p>
 
         <table class="outer">
             <tbody>

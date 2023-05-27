@@ -40,17 +40,77 @@
         <li>Select box - allows multiple options, see the example.
     </ul>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Add Profile Field</h4>
-        <p>[...]</p>
+        <table class="outer">
+            <thead>
+            <tr>
+                <th>Field form name</th>
+                <th>Label</th>
+                <th>Type</th>
+                <th>Validation</th>
+                <th>Required?</th>
+                <th>Display</th>
+                <th>Order</th>
+                <th class="list_control">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>city</td>
+                <td>city</td>
+                <td>string</td>
+                <td></td>
+                <td>1</td>
+                <td>1</td>
+                <td>10</td>
+                <td class="list_control">
+                    <a class="action-view" href="#!" aria-label="View">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z" fill="currentColor"></path></svg>
+                    </a>
+                    <a class="action-edit" href="#!" aria-label="Edit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path></svg>
+                    </a>
+                    <a class="action-delete" href="#!" aria-label="Delete">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M6 21h12V7H6v14zm2.46-9.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z"></path></svg>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
         <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Edit Profile Fields</h4>
-        <p>[...]</p>
+        </svg> Add Profile Field</h4>
+        <p>Click the button "New Field" and fill the form.</p>
+
+        <ul>
+            <li>Field form name. This is used only internally!
+            <li>Label
+            <li>Type. This can not be edited later.
+            <li>Validation [ email ]
+            <li>Required?
+            <li>Display . Check this option to display the field on User profile
+            <li>Order
+            <li>Description
+            <li>Access groups
+            <li>Options. Depends on the Type of fiel.Exemple checkbox : <br>Define the display string when values are "checked" and "unchecked". Separate values delimited by the pipe character ("|"). When empty, "Yes" and "No" is used.
+        </ul>
+
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
+        </svg> View Profile Field</h4>
+        <p><a class="button" href="#!" aria-label="View">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path d="M12 9a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5a5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5z" fill="currentColor"></path></svg>
+        </a> Click the button "View" to display properties of custom field.</p>
+
+        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
+        </svg> Edit Profile Field</h4>
+        <p><a class="button" href="#!" aria-label="Edit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z" fill="currentColor"></path></svg>
+        </a> Click the button "Edit" to change the properties. However, you can not edit the <b>Type</b> of custom field.</p>
 
         <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
         </svg> Delete Profile Field</h4>
-        <p>[...]</p>
+        <p><a class="button" href="#!" aria-label="Delete">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img"><path fill="currentColor" d="M6 21h12V7H6v14zm2.46-9.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z"></path></svg>
+        </a> Click the button "Delete" to remove the field from the module and user profile.</p>
 
     </section>
 

@@ -2,6 +2,7 @@
     <div data-self="size-xxsmall">
         <nav id="help-menu">
             <ul data-layout="rows">
+                <li><a href="#help-overview" class="button">Overview</a>
                 <li><a href="#help-custom-block" class="button">Custom Blocks</a>
                 <li><a href="#help-module-block" class="button">Modules Blocks</a>
                 <li><a href="#help-template-custom" class="button">Custom Templates</a>
@@ -9,7 +10,7 @@
                 <li><a href="#help-advanced" class="button">Advanced Templates</a>
                 <li><a href="#help-reusable-component" class="button">Reusable Component</a>
                 <li><a href="#help-single-component" class="button">Single File Component</a>
-                <li><a href="#help-language" class="button">Language</a>
+                <li><a href="#help-language" class="button">Language Localisation</a>
                 <li><a href="#help-development" class="button">Development</a>
             </ul>
         </nav>
@@ -39,8 +40,7 @@
         <p><b>Custom blocks</b> are a quick and easy way to add information or new features:
             image, text or third party services: maps, videos, etc.
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Create a Custom Block HTML</h4>
+        <h4><i class="i-task"></i> Create a Custom Block HTML</h4>
 
         <p>For example, if your homepage promotes a product or service, you can add a testimonials block after the presentation.
 
@@ -101,8 +101,7 @@
 
         <div class="tips">In the editor, click the "Source" button, at the top left of toolbar, and paste the <b>content</b> above!</div>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> View the new block HTML</h4>
+        <h4><i class="i-task"></i> View the new block HTML</h4>
 
         <p>At this point, you should see that the new block is successfully rendered if you browse to your <a href="../../../index.php" target="_blank"><i class="i-home"></i> Home page ⭧</a></p>
 
@@ -120,8 +119,7 @@
         <p>The kebab menu, also known as the vertical three-dot menu, is an icon used to open
             a menu and display actions for the related item : quick links to block management.
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Delete a Custom Block</h4>
+        <h4><i class="i-task"></i> Delete a Custom Block</h4>
 
         <p><span class="button" title="delete"><svg class="icon-delete" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" role="img">
                 <path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12m2.46-7.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14l-2.13-2.12M15.5 4l-1-1h-5l-1 1H5v2h14V4h-3.5z" fill="currentColor"></path>
@@ -131,8 +129,8 @@
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'custom-component.html'|helpurl}>">Custom templates and reusable components</a>
-            <li><a href="<{'custom-blocks.html'|helpurl}>">BBCode Autolink, Smiley, PHP and Smarty</a>
+            <li><a href="<{'#help-reusable-component'|helpurl}>">Reusable components</a>
+            <li><a href="<{$help}>=legacy#help-blocks">System Block Management ⭢</a>
         </ul>
 
     </section>
@@ -145,8 +143,7 @@
             When you install a module, only one instance of each block is available in Block Management.
             "Components" provides an additional functionality, "Force Clone" allows you to duplicate any available block.
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Cloning Modules Blocks</h4>
+        <h4><i class="i-task"></i> Cloning Modules Blocks</h4>
 
         <p>Perform the following steps to clone a block.
 
@@ -156,11 +153,11 @@
         <li>Enter a new block title and edit settings
         </ol>
 
-        <p>This procedure creates an exact copy of the block with the new title and settings.
+        <div class="tips">This procedure creates an exact copy of the block with the new title and settings.</div>
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'custom-component.html'|helpurl}>">Custom templates and reusable components</a></li>
+            <li><a href="<{$help}>=legacy#help-blocks">System Block Management ⭢</a>
         </ul>
 
     </section>
@@ -173,20 +170,18 @@
         <p>Due to the modular architecture and flexible nature of the render engine there are few constraints as to how you can organize and customize your custom templates.
             Establish a file naming scheme that aligns with your project requirements and scales easily. In order to meet changes in application and system processing demands.
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Create a Custom Template</h4>
+        <h4><i class="i-task"></i> Create a Custom Template</h4>
 
         <ol>
-        <li>Create a custom template</li>
-        <li>Add some content</li>
-        <li>Name the template e.g. : custom_template.html <b style="color:red">*</b></li>
-        <li>Save the custom template</li>
+        <li>Create a custom template
+        <li>Add some content
+        <li>Name the template e.g. : custom_template.html <b style="color:red">*</b>
+        <li>Save the custom template
         </ol>
 
         <div class="error">* The name of the Custom Template cannot be changed once it has been saved in the database !</div>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Using your Custom Block</h4>
+        <h4><i class="i-task"></i> Using your Custom Block</h4>
 
         <p>You can include your custom template in your theme layout, modules templates or custom blocks.
 
@@ -196,7 +191,7 @@
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'index.php?action=Help&dirname=legacyRender'}>">Getting started with themes ⭢</a></li>
+            <li><a href="<{$help}>=legacyRender">Render Template Management ⭢</a>
         </ul>
 
     </section>
@@ -212,8 +207,7 @@
         is stored in the database. Thanks to the flexibility of the rendering engine, you can duplicate an existing template set
         and adapt the predefined templates to the needs of your organization and your users.
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Create a Custom Template Set</h4>
+        <h4><i class="i-task"></i> Create a Custom Template Set</h4>
 
         <p>You can create a new template set from the Base (default template files collection)
             to adapt your user interface design to different contexts, cultures, and respond to the needs of different users.
@@ -272,8 +266,7 @@
 
         <p>This adds a new column to the table with the new set of templates.
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Customize Templates</h4>
+        <h4><i class="i-task"></i> Customize Templates</h4>
 
         <ol>
         <li>Click on the "Edit" button
@@ -283,24 +276,21 @@
 
         <div class="tips">The difference between the source Template and the custom Template is highlighted by colors.</div>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Activate the Custom Template Set</h4>
+        <h4><i class="i-task"></i> Activate the Custom Template Set</h4>
 
         <p>Select your Template Set from the available template collections in the module "Render".<br>
         <code class="badge">Control Panel »» Render »» Template Management »» List of Template Sets</code>
 
         <div class="tips">In case of error, you can easily copy the original template from the "base file" to your custom template!</div>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Delete the Custom Template Set</h4>
+        <h4><i class="i-task"></i> Delete the Custom Template Set</h4>
 
         <p>Custom Template Sets can be deleted in the module "Render".<br>
             <code class="badge">Control Panel »» Render »» Template Management »» List of Template Sets</code>
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'index.php?action=Help&dirname=legacy'}>">Delegate and Preloads ⭢</a>
-            <li><a href="<{'index.php?action=Help&dirname=legacyRender'}>">Render Template Management ⭢</a>
+            <li><a href="<{$help}>=legacyRender">Render Template Management ⭢</a>
         </ul>
 
     </section>
@@ -321,8 +311,7 @@
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'custom-component.html'|helpurl}>">Custom templates and reusable components</a>
-            <li><a href="<{'index.php?action=Help&dirname=legacyRender'}>">Getting started with themes ⭢</a></li>
+            <li><a href="<{$help}>=legacyRender">Getting started with themes ⭢</a>
         </ul>
 
     </section>
@@ -335,8 +324,7 @@
 
         <p>Due to the modular architecture and flexible nature of the render engine there are few constraints as to how you can organize and customize your components.
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Create a Custom Template</h4>
+        <h4><i class="i-task"></i> Create a Custom Template</h4>
 
         <p>Organize your templates according to your project file naming and folder hierarchy conventions.
             This is a critical step if you consider how you or others will look for and access files at a later date.
@@ -352,18 +340,17 @@
 
         <div class="error">* The name of the Custom Template cannot be changed once it has been saved in the database !</div>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Create a Custom Block</h4>
+        <h4><i class="i-task"></i> Create a Custom Block</h4>
 
         <p>Then, you can create a custom block and load your custom template
 
         <p>For example, create a custom block with PHP and Smarty :
 
         <ul>
-            <li>Title</li>
-            <li>Side</li>
-            <li>Visibility</li>
-            <li>Custom Type</li>
+            <li>Title
+            <li>Side
+            <li>Visibility
+            <li>Custom Type
         </ul>
 
         <pre><code class="lang-php">
@@ -372,19 +359,17 @@ $test = $xoopsTpl->fetch('db:_component_custom.html');
 echo $test;
         </code></pre>
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Edit a Custom Block</h4>
+        <h4><i class="i-task"></i> Edit a Custom Block</h4>
 
         <p>Rename the custom block and edit the content.
 
-        <h4><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M8 13.5H1.5a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1H9m1.5 3l1.5-3l1.5 3V12a1.5 1.5 0 0 1-3 0Zm0 6h3m-10-9v13M6 4h2"/>
-        </svg> Delete a Custom Block</h4>
+        <h4><i class="i-task"></i> Delete a Custom Block</h4>
 
         <p>This permanently removes the custom block from the Database.
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'index.php?action=Help&dirname=legacyRender'}>">Getting started with themes ⭢</a></li>
+            <li><a href="<{$help}>=legacy">System Block Management ⭢</a>
         </ul>
 
     </section>
@@ -403,24 +388,29 @@ echo $test;
 
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'index.php?action=Help&dirname=legacy'}>">Delegate and Preloads ⭢</a>
-            <li><a href="<{'index.php?action=Help&dirname=legacyRender'}>">Render Template Management ⭢</a>
+            <li><a href="<{'#help-reusable-component'|helpurl}>">Reusable components</a>
+            <li><a href="<{$help}>=legacy">Delegate and Preloads ⭢</a>
+            <li><a href="<{$help}>=legacyRender">Render Template Management ⭢</a>
         </ul>
 
     </section>
 
     <section id="help-language">
 
-        <h3>Language</h3>
+        <h3>Language Localisation</h3>
 
         <p>The built-in language manager aims to facilitate the localization process and branding customization.
             It leverages the adaptability of modular architecture to align UI elements with a brand's tone and voice.
 
-        <h3>language and character set</h3>
+        <blockquote>Language localisation is the process of adapting a product's translation to a specific country or region.
+        It is the second phase of a larger process of product translation and cultural adaptation to account for
+        differences in distinct markets, a process known as internationalisation and localisation.</blockquote>
+
+        <h3>Language and character set</h3>
 
         <p>UTF-8 Unicode is the common character encoding method and the default character set for distributed languages, including english, fr_utf8, ja_utf8, pt_utf8, ru_utf8.
 
-        <h3>Edit language translation</h3>
+        <h4><i class="i-task"></i> Edit language translation</h4>
 
         <ol>
             <li>Select the module to translate
@@ -482,11 +472,12 @@ echo $test;
 
         <p>For example, <code class="lang-php">define( '_MSC_INTSITE' , 'Interesting Site: %s');</code> here <b>%s</b> is a placeholder for your site name.
 
+        <div class="tips">You can add new languages string constants to be used in your theme components or custom templates.</div>
+
         <h4 class="help-rel"><i class="i-help"></i> Related content</h4>
         <ul>
-            <li><a href="<{'language.html'|helpurl}>">Internationalization and localization</a>
-            <li><a href="<{'language.html'|helpurl}>">Folder structure for multi-language</a>
-            <li><a href="<{'language.html'|helpurl}>">Languages String Constants</a>
+            <li><a href="<{'language.html'|helpurl}>">Internationalization and localization ⭢</a>
+            <li><a href="<{'language.html'|helpurl}>">Folder structure for multi-language ⭢</a>
         </ul>
 
     </section>

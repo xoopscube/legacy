@@ -13,7 +13,7 @@ define( '_MI_PROFILE_ADMENU_DATA_DOWNLOAD' , 'Download Profiles');
 define( '_AD_PROFILE_DATA_DOWNLOAD_DO' , "Exportar em CSV");
 
 define( '_AD_PROFILE_DESC_FIELD_SELECTBOX' , "Separe cada item com uma barra vertical ( | ).");
-define( '_AD_PROFILE_DESC_FIELD_CHECKBOX' , "Defina os nomes das etiquetas de <q>marcado</q> e <q>desmarcado</q>, divididas por uma barra vertical ( | ). Se deixar vazio, as opções de <q>SIM</q> e <q>NÃO</q> serão usadas.");
+define( '_AD_PROFILE_DESC_FIELD_CHECKBOX' , 'Define a cadeia de caracteres de exibição quando os valores são "marcados" e "desmarcados", valores separados delimitados pelo caractere "barra vertical" ("|"). Quando vazio, os valores "' . _YES . '" and "' . _NO . '" são usados.');
 define( '_AD_PROFILE_DESC_FIELD_STRING' , "Defina o valor padrão.");
 define( '_AD_PROFILE_DESC_FIELD_INT' , "Defina o valor padrão.");
 define( '_AD_PROFILE_DESC_FIELD_FLOAT' , "Defina o valor padrão.");

@@ -15,9 +15,9 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_DESC', '悪意ある攻撃からXOOPSを守るためのモジュール<br>DoS,SQL Injection,変数汚染といった攻撃を主に防ぎます。' );
 
 	// Menu
-	define( $constpref . '_ADMININDEX', 'Protect Center' );
+	define( $constpref . '_ADMININDEX', 'IPセーフリスト' );
 	define( $constpref . '_ADVISORY', 'セキュリティガイド' );
-	define( $constpref . '_PREFIXMANAGER', 'DB PREFIX マネージャ' );
+	define( $constpref . '_PREFIXMANAGER', 'DBプレフィックス ' );
 	define( $constpref . '_ADMENU_MYBLOCKSADMIN', 'アクセス権限' );
 
 	// Configs

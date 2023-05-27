@@ -65,8 +65,8 @@ a.action-view {
 
 
 .bg-amber {
-    background: 1px solid var(  --color-amber	);
-    color:var(  --color-amber	);
+    background      : var(  --color-amber	);
+    color           : var(  --color-white	);
 }
 .bg-black {
     background      : var(  --color-black	);

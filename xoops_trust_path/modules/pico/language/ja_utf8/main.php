@@ -50,7 +50,7 @@ define( '_MD_PICO_LINK_EDITCATEGORY' , 'カテゴリー編集' );
 define( '_MD_PICO_LINK_EDITCONTENT' , 'コンテンツ編集' );
 define( '_MD_PICO_LINK_CATEGORYPERMISSIONS' , 'カテゴリー権限設定' );
 define( '_MD_PICO_LINK_BATCHCONTENTS' , 'コンテンツ一括管理' );
-define( '_MD_PICO_LINK_PUBLICCATEGORYINDEX' , '公開側カテゴリートップ' );
+define( '_MD_PICO_LINK_PUBLICCATEGORYINDEX' , '公開インデックス' );
 
 define( '_MD_PICO_LINK_PRINTERFRIENDLY' , 'プリンタ用画面' );
 define( '_MD_PICO_LINK_TELLAFRIEND' , '友達に伝える' );
