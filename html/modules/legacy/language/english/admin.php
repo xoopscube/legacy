@@ -455,7 +455,7 @@ define( '_MD_AM_SMTPUSERDESC' , 'Username to connect to an SMTP host with SMTPAu
 define( '_MD_AM_SSLLINK' , '🔒 URL where SSL login page is located');
 define( '_MD_AM_SSLPOST' , '🔒 SSL Post variable name');
 define( '_MD_AM_STARTPAGE' , '📦 Module for start page. If none, use defined template: legacy_app_start_page.html');
-define( '_MD_AM_THEMEFILE' , '🎨 Update module template .html files from themes/your theme/templates directory?');
+define( '_MD_AM_THEMEFILE' , '<a id="theme-template">🎨 Update module template</a> .html files from themes/your theme/templates directory?');
 define( '_MD_AM_THEMEFILEDSC' , 'If this option is enabled, module template .html files will be updated automatically if there are newer files under the themes/your theme/templates directory for the current theme. This should be turned off once the site goes public.');
 define( '_MD_AM_THEMEOK' , '🎨 Selectable themes');
 define( '_MD_AM_THEMEOKDSC' , 'Choose themes that users can select as their default theme');

@@ -46,7 +46,7 @@
 	<tr>
 		<td><{$smarty.const._MD_A_MYBLOCKSADMIN_WEIGHT}></td>
 		<td>
-			<input type="text" name="weights[<{$block.bid}>]" value="<{$block.weight}>" size="3" maxlength="5">
+			<input type="number" size="1" maxlength="4"  name="weights[<{$block.bid}>]" value="<{$block.weight}>">
 		</td>
 	</tr>
 	<tr>
@@ -105,7 +105,6 @@
 					<{elseif $block.ctype == 'H' || empty($block.ctype)}>
 						<{xoops_dhtmltarea cols=74 rows=15 name="contents[`$block.bid`]" id="textarea_content" value="`$block.content_raw`" class=html editor=html}>
 					<{else}>
-
 						<{xoops_dhtmltarea cols=74 rows=15 name="contents[`$block.bid`]" id="textarea_content" value="`$block.content_raw`" myckeditor=true class=bbcode editor=bbcode}>
 					<{/if}>
 
