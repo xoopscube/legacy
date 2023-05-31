@@ -352,7 +352,7 @@ define( '_MD_AM_SMTPUSERDESC' , 'SMTPAuthを使用してSMTPサーバにアク�
 define( '_MD_AM_SSLLINK' , '🔒 SSLログインページへのURL');
 define( '_MD_AM_SSLPOST' , '🔒 SSLログイン時に使用するPOST変数の名称');
 define( '_MD_AM_STARTPAGE' , '📦 スタートページ用モジュール。ない場合は、定義されたテンプレート: legacy_app_start_page.html を使用します。');
-define( '_MD_AM_THEMEFILE' , '🎨 themes/ ディレクトリからの自動アップデートを有効にする');
+define( '_MD_AM_THEMEFILE' , '<a id="theme-template">🎨 themes/</a> ディレクトリからの自動アップデートを有効にする');
 define( '_MD_AM_THEMEFILEDSC' , '現在使用中のテーマよりも更新日時が新しいファイルが themes/ディレクトリ下にある場合に、自動的にデータベース内のデータを更新します。サイト公開時には無効にする事をお勧めします。');
 define( '_MD_AM_THEMEOK' , '🎨 選択可能なテーマ');
 define( '_MD_AM_THEMEOKDSC' , 'ユーザが選択することのできるテーマファイルを指定してください');

@@ -49,7 +49,7 @@ $modversion['blocks'][1] = [
 ];
 
 // Menu
-$modversion['hasMain'] = 1;
+$modversion['hasMain'] = 0;
 
 // Search
 $modversion['hasSearch'] = 0;

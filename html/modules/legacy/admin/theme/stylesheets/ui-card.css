@@ -380,19 +380,17 @@ svg text.module-name {
 svg.ui-block-module {
     background      : var(  --color-blue );
 }
-
 svg.ui-block-html  {
     background      : var(  --color-blue );
 }
-
 svg.ui-block-html path.block-icon {
     color           : var(  --secondary );
     transform       : translate(10px, 20px);
 }
-
 svg.ui-block-php  {
     background      : var(  --color-indigo );
 }
+:is(svg.ui-block-html, svg.ui-block-php) tspan {color:white}
 
 /* -------------------- -------------------- SVG Custom Settings */
 

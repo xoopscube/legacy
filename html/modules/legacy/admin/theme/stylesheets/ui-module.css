@@ -172,6 +172,7 @@ h4.help-rel + ul {
     list-style: none;
     margin:0;
     padding:0;
+    width: max-content;
 }
 h4.help-rel + ul > li {
     background: var(--layer-3);

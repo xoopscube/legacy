@@ -452,9 +452,9 @@ define( '_MD_AM_SMTPPASSDESC' , "Mot de passe pour se connecter à l'hôte SMTP 
 define( '_MD_AM_SMTPUSER' , "Nom utilisateur SMTPAuth");
 define( '_MD_AM_SMTPUSERDESC' , "Nom utilisateur pour se connecter à l'hôte STMP avec SMTPAuth.");
 define( '_MD_AM_SSLLINK' , "🔒 URL pour la page de connexion SSL");
-define( '_MD_AM_SSLPOST' , "Nom de la variable SSL");
+define( '_MD_AM_SSLPOST' , "🔒 Nom de la variable SSL");
 define( '_MD_AM_STARTPAGE' , "📦 Module pour la page de démarrage. Si aucun, utiliser le modèle défini : legacy_app_start_page.html");
-define( '_MD_AM_THEMEFILE' , "Mise à jour des fichiers du Theme à partir du répertoire themes/ ?");
+define( '_MD_AM_THEMEFILE' , '<a id="theme-template">🎨 Mise à jour des templates</a> à partir du répertoire themes/ ?');
 define( '_MD_AM_THEMEFILEDSC' , "La mise à jour se fera automatiquement depuis les fichiers plus récents dans le répertoire themes/ pour le thème actuel. Il est conseillé de désactiver cette option pour un site accessible au public.");
 define( '_MD_AM_THEMEOK' , "🎨 Themes sélectionnables");
 define( '_MD_AM_THEMEOKDSC' , "Choisissez les Themes que les utilisateurs peuvent choisir comme thème par défaut dans le bloc thèmes");

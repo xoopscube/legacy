@@ -455,10 +455,10 @@ define( '_MD_AM_SMTPPASSDESC' , "Senha para se conectar ao servidor smtp usando 
 define( '_MD_AM_SMTPUSER' , "Identidade de acesso SMTP");
 define( '_MD_AM_SMTPUSERDESC' , "Nome da conta de acesso ao servidor SMTP. Geralmente é o primeiro nome antes do sinal de arroba (<em>Username</em>), mas também pode ser o endereço de correio-eletrônico completo.");
 define( '_MD_AM_SSLLINK' , "🔒 Endereço virtual (URL) da página de entrada com <acronym lang='pt' aria-label='SSL é o acrônimo para Secure Sockets Layer, um padrão aberto para estabelecer um canal de comunicação seguro, de forma a evitar a interceptação de informações críticas, como números de cartão de crédito, senhas, etc.'>SSL</acronym>");
-define( '_MD_AM_SSLPOST' , "Nome da variável SSL Post");
+define( '_MD_AM_SSLPOST' , "🔒 Nome da variável SSL Post");
 define( '_MD_AM_STARTPAGE' , "📦 Módulo para página inicial. Se nenhum, usar modelo definido: legacy_app_start_page.html");
-define( '_MD_AM_THEMEFILE' , "Utilizar o conjunto de modelos HTML definido pelo tema selecionado? Se existirem, esses arquivos podem ser encontrados no diretório <q>/themes/{<em>TemaSelecionado<em>}/templates/</q>");
-define( '_MD_AM_THEMEFILEDSC' , "Os arquivos dos temas poderão ser atualizados sempre que houver alterações no diretório /themes. Habilite somente se o portal estiver em desenvolvimento.");
+define( '_MD_AM_THEMEFILE' , '<a id="theme-template">🎨 Utilizar o conjunto de modelos</a> HTML definido pelo tema selecionado? ');
+define( '_MD_AM_THEMEFILEDSC' , "Se existirem, esses arquivos podem ser encontrados no diretório <q>/themes/{<em>TemaSelecionado<em>}/templates/</q>. Os arquivos dos temas poderão ser atualizados sempre que houver alterações no diretório /themes. Habilite somente se o portal estiver em desenvolvimento.");
 define( '_MD_AM_THEMEOK' , '🎨 Temas habilitados');
 define( '_MD_AM_THEMEOKDSC' , 'Escolha os temas que os associados poderão utilizar além do tema padrão.');
 define( '_MD_AM_THEMESET' , '🎨 Tema');
