@@ -19,6 +19,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
  */
 include_once XOOPS_ROOT_PATH.'/class/database/database.php';
 
+mysqli_report( MYSQLI_REPORT_ERROR ); // for backword compat
+
 class XoopsMysqliDatabase extends XoopsDatabase
 {
     /**
