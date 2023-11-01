@@ -158,6 +158,8 @@ function xoops_refcheck($docheck=1)
     if ($ref === '') {
         return false;
     }
+    // Allow protocol part to be omitted
+    if (substr(XOOPS_URL, 0, 1)==='/') $ref = preg_replace('/^https?:/', '', $ref);
     //TODO PHP8 'strpos' call can be converted to 'str_starts_with'
     if (strpos($ref, (string) XOOPS_URL) !== 0) {
         return false;
