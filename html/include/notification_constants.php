@@ -3,7 +3,7 @@
  * Notification constants
  * @package    XCL
  * @subpackage core
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Minahito, 2007/05/15
  * @author     Kazumi Ono (aka onokazu)
  * @copyright  (c) 2000-2003 XOOPS.org
