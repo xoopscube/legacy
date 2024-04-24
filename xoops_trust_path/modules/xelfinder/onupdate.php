@@ -4,7 +4,7 @@
  * @package    XelFinder
  * @version    XCL 2.3.3
  * @author     Naoki Sawada (aka Nao-pon) <https://github.com/nao-pon>
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 

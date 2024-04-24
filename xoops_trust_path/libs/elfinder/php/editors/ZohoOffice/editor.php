@@ -2,17 +2,70 @@
 
 class elFinderEditorZohoOffice extends elFinderEditor
 {
-    private static int $curlTimeout = 20;
+    private static $curlTimeout = 20;
 
-    protected $allowed = ['init', 'save', 'chk'];
+    protected $allowed = array('init', 'save', 'chk');
 
-    protected $editor_settings = ['writer' => ['unit' => 'mm', 'view' => 'pageview'], 'sheet' => ['country' => 'US'], 'show' => []];
+    protected $editor_settings = array(
+        'writer' => array(
+            'unit' => 'mm',
+            'view' => 'pageview'
+        ),
+        'sheet' => array(
+            'country' => 'US'
+        ),
+        'show' => array()
+    );
 
-    private array $urls = ['writer' => 'https://writer.zoho.com/writer/officeapi/v1/document', 'sheet' => 'https://sheet.zoho.com/sheet/officeapi/v1/spreadsheet', 'show' => 'https://show.zoho.com/show/officeapi/v1/presentation'];
+    private $urls = array(
+        'writer' => 'https://api.office-integrator.com/writer/officeapi/v1/document',
+        'sheet' => 'https://api.office-integrator.com/sheet/officeapi/v1/spreadsheet',
+        'show' => 'https://api.office-integrator.com/show/officeapi/v1/presentation',
+    );
 
-    private array $srvs = ['application/msword' => 'writer', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'writer', 'application/pdf' => 'writer', 'application/vnd.oasis.opendocument.text' => 'writer', 'application/rtf' => 'writer', 'text/html' => 'writer', 'application/vnd.ms-excel' => 'sheet', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'sheet', 'application/vnd.oasis.opendocument.spreadsheet' => 'sheet', 'application/vnd.sun.xml.calc' => 'sheet', 'text/csv' => 'sheet', 'text/tab-separated-values' => 'sheet', 'application/vnd.ms-powerpoint' => 'show', 'application/vnd.openxmlformats-officedocument.presentationml.presentation' => 'show', 'application/vnd.openxmlformats-officedocument.presentationml.slideshow' => 'show', 'application/vnd.oasis.opendocument.presentation' => 'show', 'application/vnd.sun.xml.impress' => 'show'];
+    private $srvs = array(
+        'application/msword' => 'writer',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'writer',
+        'application/pdf' => 'writer',
+        'application/vnd.oasis.opendocument.text' => 'writer',
+        'application/rtf' => 'writer',
+        'text/html' => 'writer',
+        'application/vnd.ms-excel' => 'sheet',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' => 'sheet',
+        'application/vnd.oasis.opendocument.spreadsheet' => 'sheet',
+        'application/vnd.sun.xml.calc' => 'sheet',
+        'text/csv' => 'sheet',
+        'text/tab-separated-values' => 'sheet',
+        'application/vnd.ms-powerpoint' => 'show',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation' => 'show',
+        'application/vnd.openxmlformats-officedocument.presentationml.slideshow' => 'show',
+        'application/vnd.oasis.opendocument.presentation' => 'show',
+        'application/vnd.sun.xml.impress' => 'show',
+    );
 
-    private ?string $myName = '';
+    private $myName = '';
+
+    protected function extentionNormrize($extention, $srvsName) {
+        switch($srvsName) {
+            case 'writer':
+                if (!in_array($extention, array('zdoc', 'docx', 'rtf', 'odt', 'html', 'txt'))) {
+                    $extention = 'docx';
+                }
+                break;
+            case 'sheet':
+                if (!in_array($extention, array('zsheet', 'xls', 'xlsx', 'ods', 'csv', 'tsv'))) {
+                    $extention = 'xlsx';
+                }
+                break;
+            case 'show':
+                if (!in_array($extention, array('zslides', 'pptx', 'pps', 'ppsx', 'odp', 'sxi'))) {
+                    $extention = 'pptx';
+                }
+                break;
+
+        }
+        return $extention;
+    }
 
     public function __construct($elfinder, $args)
     {
@@ -28,7 +81,7 @@ class elFinderEditorZohoOffice extends elFinderEditor
     public function init()
     {
         if (!defined('ELFINDER_ZOHO_OFFICE_APIKEY') || !function_exists('curl_init')) {
-            return ['error', [elFinder::ERROR_CONF, '`ELFINDER_ZOHO_OFFICE_APIKEY` or curl extension']];
+            return array('error', array(elFinder::ERROR_CONF, '`ELFINDER_ZOHO_OFFICE_APIKEY` or curl extension'));
         }
         if (!empty($this->args['target'])) {
             $fp = $cfile = null;
@@ -49,7 +102,7 @@ class elFinderEditorZohoOffice extends elFinderEditor
                 $res = curl_exec($ch);
                 curl_close($ch);
                 if ($res) {
-                    if ($data = json_decode($res, true, 512, JSON_THROW_ON_ERROR)) {
+                    if ($data = json_decode($res, true)) {
                         $save = !empty($data['cansave']);
                     }
                 }
@@ -72,7 +125,8 @@ class elFinderEditorZohoOffice extends elFinderEditor
                     }
                 }
                 //$srv = $this->args['service'];
-                $format = $srcVol->getExtentionByMime($file['mime']);
+                $srvsName = $this->srvs[$file['mime']];
+                $format = $this->extentionNormrize($srcVol->getExtentionByMime($file['mime']), $srvsName);
                 if (!$format) {
                     $format = substr($file['name'], strrpos($file['name'], '.') * -1);
                 }
@@ -80,8 +134,19 @@ class elFinderEditorZohoOffice extends elFinderEditor
                 if ($lang === 'jp') {
                     $lang = 'ja';
                 }
-                $srvsName = $this->srvs[$file['mime']];
-                $data = ['apikey' => ELFINDER_ZOHO_OFFICE_APIKEY, 'callback_settings' => ['save_format' => $format, 'context_info' => ['hash' => $hash]], 'editor_settings' => $this->editor_settings[$srvsName], 'document_info' => ['document_name' => substr($file['name'], 0, strlen($file['name']) - strlen($format)- 1)]];
+                $data = array(
+                    'apikey' => ELFINDER_ZOHO_OFFICE_APIKEY,
+                    'callback_settings' => array(
+                        'save_format' => $format,
+                        'save_url_params' => array(
+                            'hash' => $hash
+                        )
+                    ),
+                    'editor_settings' => $this->editor_settings[$srvsName],
+                    'document_info' => array(
+                        'document_name' => substr($file['name'], 0, strlen($file['name']) - strlen($format)- 1)
+                    )
+                );
                 $data['editor_settings']['language'] = $lang;
                 if ($save) {
                     $conUrl = elFinder::getConnectorUrl();
@@ -89,7 +154,7 @@ class elFinderEditorZohoOffice extends elFinderEditor
                 }
                 foreach($data as $_k => $_v) {
                     if (is_array($_v)){
-                        $data[$_k] = json_encode($_v, JSON_THROW_ON_ERROR);
+                        $data[$_k] = json_encode($_v);
                     }
                 }
                 if ($cfile) {
@@ -108,9 +173,9 @@ class elFinderEditorZohoOffice extends elFinderEditor
 
                 $fp && fclose($fp);
 
-                if ($res && $res = @json_decode($res, true, 512, JSON_THROW_ON_ERROR)) {
+                if ($res && $res = @json_decode($res, true)) {
                     if (!empty($res['document_url'])) {
-                        $ret = ['zohourl' => $res['document_url']];
+                        $ret = array('zohourl' => $res['document_url']);
                         if (!$save) {
                             $ret['warning'] = 'exportToSave';
                         }
@@ -121,31 +186,28 @@ class elFinderEditorZohoOffice extends elFinderEditor
                 }
 
                 if ($error) {
-                    return ['error' => is_string($error)? preg_split('/[\r\n]+/', $error) : 'Error code: ' . $error];
+                    return array('error' => is_string($error)? preg_split('/[\r\n]+/', $error) : 'Error code: ' . $error);
                 }
             }
         }
 
-        return ['error' => ['errCmdParams', 'editor.' . $this->myName . '.init']];
+        return array('error' => array('errCmdParams', 'editor.' . $this->myName . '.init'));
     }
 
     public function save()
     {
-        if (!empty($_POST) && !empty($_POST['id']) && !empty($_FILES) && !empty($_FILES['content'])) {
-            $data = @json_decode(str_replace('&quot;', '"', $_POST['id']), true, 512, JSON_THROW_ON_ERROR);
-            if (!empty($data['hash'])) {
-                $hash = $data['hash'];
-                /** @var elFinderVolumeDriver $volume */
-                if ($volume = $this->elfinder->getVolume($hash)) {
-                    if ($content = file_get_contents($_FILES['content']['tmp_name'])) {
-                        if ($volume->putContents($hash, $content)) {
-                            return ['raw' => true, 'error' => '', 'header' => 'HTTP/1.1 200 OK'];
-                        }
+        if (!empty($_POST) && !empty($_POST['hash']) && !empty($_FILES) && !empty($_FILES['content'])) {
+            $hash = $_POST['hash'];
+            /** @var elFinderVolumeDriver $volume */
+            if ($volume = $this->elfinder->getVolume($hash)) {
+                if ($content = file_get_contents($_FILES['content']['tmp_name'])) {
+                    if ($volume->putContents($hash, $content)) {
+                        return array('raw' => true, 'error' => '', 'header' => 'HTTP/1.1 200 OK');
                     }
                 }
             }
         }
-        return ['raw' => true, 'error' => '', 'header' => 'HTTP/1.1 500 Internal Server Error'];
+        return array('raw' => true, 'error' => '', 'header' => 'HTTP/1.1 500 Internal Server Error');
     }
 
     public function chk()
@@ -158,6 +220,6 @@ class elFinderEditorZohoOffice extends elFinderEditor
                 $res = (bool)$file['write'];
             }
         }
-        return ['cansave' => $res];
+        return array('cansave' => $res);
     }
 }

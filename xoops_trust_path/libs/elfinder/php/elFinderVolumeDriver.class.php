@@ -270,7 +270,7 @@ abstract class elFinderVolumeDriver
         // mime.types file path (for mimeDetect==internal)
         'mimefile' => '',
         // Static extension/MIME of general server side scripts to security issues
-        'staticMineMap' => ['php:*' => 'text/x-php', 'pht:*' => 'text/x-php', 'php3:*' => 'text/x-php', 'php4:*' => 'text/x-php', 'php5:*' => 'text/x-php', 'php7:*' => 'text/x-php', 'phtml:*' => 'text/x-php', 'phar:*' => 'text/x-php', 'cgi:*' => 'text/x-httpd-cgi', 'pl:*' => 'text/x-perl', 'asp:*' => 'text/x-asap', 'aspx:*' => 'text/x-asap', 'py:*' => 'text/x-python', 'rb:*' => 'text/x-ruby', 'jsp:*' => 'text/x-jsp'],
+        'staticMineMap' => ['php:*' => 'text/x-php', 'pht:*' => 'text/x-php', 'php3:*' => 'text/x-php', 'php4:*' => 'text/x-php', 'php5:*' => 'text/x-php', 'php7:*' => 'text/x-php', 'php8:*' => 'text/x-php', 'php9:*' => 'text/x-php', 'phtml:*' => 'text/x-php', 'phar:*' => 'text/x-php', 'cgi:*' => 'text/x-httpd-cgi', 'pl:*' => 'text/x-perl', 'asp:*' => 'text/x-asap', 'aspx:*' => 'text/x-asap', 'py:*' => 'text/x-python', 'rb:*' => 'text/x-ruby', 'jsp:*' => 'text/x-jsp'],
         // mime type normalize map : Array '[ext]:[detected mime type]' => '[normalized mime]'
         'mimeMap' => ['md:application/x-genesis-rom' => 'text/x-markdown', 'md:text/plain' => 'text/x-markdown', 'markdown:text/plain' => 'text/x-markdown', 'css:text/x-asm' => 'text/css', 'css:text/plain' => 'text/css', 'csv:text/plain' => 'text/csv', 'java:text/x-c' => 'text/x-java-source', 'json:text/plain' => 'application/json', 'sql:text/plain' => 'text/x-sql', 'rtf:text/rtf' => 'application/rtf', 'rtfd:text/rtfd' => 'application/rtfd', 'ico:image/vnd.microsoft.icon' => 'image/x-icon', 'svg:text/plain' => 'image/svg+xml', 'pxd:application/octet-stream' => 'image/x-pixlr-data', 'dng:image/tiff' => 'image/x-adobe-dng', 'sketch:application/zip' => 'image/x-sketch', 'sketch:application/octet-stream' => 'image/x-sketch', 'xcf:application/octet-stream' => 'image/x-xcf', 'amr:application/octet-stream' => 'audio/amr', 'm4a:video/mp4' => 'audio/mp4', 'oga:application/ogg' => 'audio/ogg', 'ogv:application/ogg' => 'video/ogg', 'zip:application/x-zip' => 'application/zip', 'm3u8:text/plain' => 'application/x-mpegURL', 'mpd:text/plain' => 'application/dash+xml', 'mpd:application/xml' => 'application/dash+xml', '*:application/x-dosexec' => 'application/x-executable', 'doc:application/vnd.ms-office' => 'application/msword', 'xls:application/vnd.ms-office' => 'application/vnd.ms-excel', 'ppt:application/vnd.ms-office' => 'application/vnd.ms-powerpoint', 'yml:text/plain' => 'text/x-yaml', 'ai:application/pdf' => 'application/postscript', 'cgm:text/plain' => 'image/cgm', 'dxf:text/plain' => 'image/vnd.dxf', 'dds:application/octet-stream' => 'image/vnd-ms.dds', 'hpgl:text/plain' => 'application/vnd.hp-hpgl', 'igs:text/plain' => 'model/iges', 'iges:text/plain' => 'model/iges', 'plt:application/octet-stream' => 'application/plt', 'plt:text/plain' => 'application/plt', 'sat:text/plain' => 'application/sat', 'step:text/plain' => 'application/step', 'stp:text/plain' => 'application/step'],
         // An option to add MimeMap to the `mimeMap` option
@@ -4772,7 +4772,13 @@ abstract class elFinderVolumeDriver
             $pinfo = pathinfo($path);
             $ext = isset($pinfo['extension']) ? strtolower($pinfo['extension']) : '';
         }
-        return ($ext && isset(elFinderVolumeDriver::$mimetypes[$ext])) ? elFinderVolumeDriver::$mimetypes[$ext] : 'unknown';
+        $res = ($ext && isset(elFinderVolumeDriver::$mimetypes[$ext])) ? elFinderVolumeDriver::$mimetypes[$ext] : 'unknown';
+        // Recursive check if MIME type is unknown with multiple extensions
+        if ($res === 'unknown' && strpos($pinfo['filename'], '.')) {
+            return elFinderVolumeDriver::mimetypeInternalDetect($pinfo['filename']);
+        } else {
+            return $res;
+        }
     }
 
     /**
