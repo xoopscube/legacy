@@ -2,10 +2,10 @@
 /**
  * /core/XCube_Object.class.php
  * @package    XCube
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Minahito, 2008/10/12
- * @copyright  (c) 2005-2023 The XOOPSCube Project
+ * @copyright  (c) 2005-2024 The XOOPSCube Project
  * @license    BSD-3-Clause
  */
 

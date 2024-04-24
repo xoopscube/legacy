@@ -2,11 +2,11 @@
 /**
  * /core/XCube_FormFile.class.php
  * @package    XCube
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Minahito, 2008/10/12
- * @copyright  (c) 2005-2023 The XOOPSCube Project
+ * @copyright  (c) 2005-2024 The XOOPSCube Project
  * @license    BSD-3-Clause
  * @brief      @WARNING
  * This class is a simple wrapper class to process the uploaded file.
