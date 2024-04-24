@@ -1,10 +1,10 @@
 <h2>Conseils d'utilisation</h2>
-<p>L'utilisation de l'interface utilisateur est similaire au gestionnaire de fichiers standard du système d'exploitation. Cependant, le glisser-déposer n'est pas possible avec les navigateurs mobiles. </p>
+<p>Le fonctionnement sur l&#39;interface utilisateur est similaire &agrave; celui du gestionnaire de fichiers standard du syst&egrave;me d&#39;exploitation. Cependant, le glisser-d&eacute;poser n&#39;est pas possible avec les navigateurs mobiles. </p>
 <ul>
-	<li>Clic droit ou tapotement long pour afficher le menu contextuel.</li>
-	<li>Glissez et déposez dans l'arborescence des dossiers ou l'espace de travail actuel pour déplacer/copier des éléments.</li>
-	<li>La sélection des éléments dans l'espace de travail peut être étendue à la sélection avec la touche Shift ou Alt (Option).</li>
-	<li>Glissez et déposez vers le dossier ou l'espace de travail de destination pour télécharger des fichiers et des dossiers.</li>
-	<li>La boîte de dialogue de téléchargement peut accepter le collage/dépôt de données du presse-papiers ou de listes d'URL et le glisser-déposer à partir d'un autre navigateur ou de gestionnaires de fichiers, etc.</li>.
-	<li>Draguer commence par appuyer sur la touche Alt(Option) pour glisser vers l'extérieur du navigateur. Il deviendra l'opération de téléchargement avec Google Chrome.</li>
+<li>Cliquez avec le bouton droit ou appuyez longuement pour afficher le menu contextuel.</li>
+<li>Faites glisser et d&eacute;posez dans l&#39;arborescence des dossiers ou dans l&#39;espace de travail actuel pour d&eacute;placer/copier des &eacute;l&eacute;ments.</li>
+<li>La s&eacute;lection d&#39;&eacute;l&eacute;ments dans l&#39;espace de travail peut &ecirc;tre une s&eacute;lection &eacute;tendue avec la touche Maj ou Alt (Option).</li>
+<li>Faites glisser et d&eacute;posez vers le dossier ou l&#39;espace de travail de destination pour t&eacute;l&eacute;charger des fichiers et des dossiers.</li>
+<li>La bo&icirc;te de dialogue de t&eacute;l&eacute;chargement peut accepter le collage/d&eacute;placement de donn&eacute;es du presse-papiers ou de listes d&#39;URL, ainsi que le glisser-d&eacute;poser depuis d&#39;autres navigateurs ou gestionnaires de fichiers, etc.</li>
+<li>Faites glisser le d&eacute;but en appuyant sur la touche Alt (Option) pour le faire glisser vers l&#39;ext&eacute;rieur du navigateur. Cela deviendra une op&eacute;ration de t&eacute;l&eacute;chargement avec Google Chrome.</li>
 </ul>

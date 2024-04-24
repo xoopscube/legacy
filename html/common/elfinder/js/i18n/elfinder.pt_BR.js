@@ -58,12 +58,12 @@
 			'errFileNotFound'      : 'Arquivo não encontrado.',
 			'errTrgFolderNotFound' : 'Pasta de destino "$1" não encontrada.',
 			'errPopup'             : 'O seu navegador está bloqueando popup\'s. Para abrir o arquivo, altere esta opção no seu Navegador.',
-			'errMkdir'             : 'Impossivel de adicionar a pasta "$1".',
-			'errMkfile'            : 'Impossivel de adicionar o arquivo "$1".',
-			'errRename'            : 'Impossivel de renomear "$1".',
+			'errMkdir'             : 'Incapaz de criar a pasta "$1".',
+			'errMkfile'            : 'Incapaz de criar o arquivo "$1".',
+			'errRename'            : 'Incapaz de renomear "$1".',
 			'errCopyFrom'          : 'Copia dos arquivos do volume "$1" não permitida.',
 			'errCopyTo'            : 'Copia dos arquivos para o volume "$1" não permitida.',
-			'errMkOutLink'         : 'Impossivel de adicionar um link fora da unidade raiz.', // from v2.1 added 03.10.2015
+			'errMkOutLink'         : 'Incapaz de criar um link fora da unidade raiz.', // from v2.1 added 03.10.2015
 			'errUpload'            : 'Erro no upload.',  // old name - errUploadCommon
 			'errUploadFile'        : 'Não foi possível fazer o upload "$1".', // old name - errUpload
 			'errUploadNoFiles'     : 'Não foi encontrado nenhum arquivo para upload.',
