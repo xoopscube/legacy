@@ -6,7 +6,7 @@
 ![License GPL](https://img.shields.io/badge/License-GPL-green)
 ![X-Updare Store](https://img.shields.io/badge/XOOPSCube%20Package-XCL-blue)
 
-## ///// — CKEditor4 :: WYSIWYG editor + Web-based File manager
+## ///// — CKEditor4 :: WYSIWYG editor + elFinder Web-based File manager
 
 **CKEditor Wysiwig Editor for XCL. Full version with plugins for BBCode and X-elFinder File Manager**  
 
@@ -20,11 +20,11 @@ MODULE |  CKEditor4
 ------------ | -------------
 Description  | Battle-tested WYSIWYG editor with X-elFinder web-based file manager running on JavaScript + PHP.
 Render Engine| Smarty v2 and XCube Layout
-Version      | 4.20.2
+Version      | 4.22.1
 Author       | @nao-pon Naoki Sawada
 Maintainer   | Update @gigamaster Nuno Luciano (XCL7)
-Copyright    | 2005-2023 Authors
-License      | XCL module is distributed under a GPL 2.3 License.
+Copyright    | 2005-2024 Authors
+License      | XCL module is distributed under a GPL 2.0 License.
 License      | elFinder is distributed under a 3-Clause BSD License.
 
 
@@ -32,7 +32,7 @@ License      | elFinder is distributed under a 3-Clause BSD License.
 
 
 
-          Apache, Nginx, etc. PHP 7.2.x
+          Apache, Nginx, etc. PHP 7.4.x
           MySQL 5.6, MariaDB  InnoDB utf8 / utf8mb4
           XCL version 2.3.+
 

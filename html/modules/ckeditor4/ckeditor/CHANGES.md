@@ -3,7 +3,7 @@ CKEditor 4 Changelog
 
 https://ckeditor.com/cke4/release-notes  
 
-## CKEditor 4.0
+## CKEditor 4.22.1
 
 The first stable release of the new CKEditor 4 code line.
 

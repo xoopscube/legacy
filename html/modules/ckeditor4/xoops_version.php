@@ -2,10 +2,10 @@
 /**
  * CKEditor4 module for XCL
  * @package    CKEditor4
- * @version    2.3.3
+ * @version    2.4.0
  * @author     Other authors Nuno Luciano (aka gigamaster), 2020, XCL PHP7
  * @author     Naoki Sawada (aka nao-pon) <https://xoops.hypweb.net/>
- * @copyright  (c) 2005-2023 The XOOPSCube Project
+ * @copyright  (c) 2005-2024 The XOOPSCube Project
  * @license    GPL 2.0
  */
 
@@ -16,7 +16,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 // Manifesto.
 $modversion['dirname']      = "ckeditor4";
 $modversion['name']         = _MI_CKEDITOR4_LANG_CKEDITOR4;
-$modversion['version']      = '4.20.2';
+$modversion['version']      = '4.22.1';
 $modversion['description']  = _MI_CKEDITOR4_DESC_CKEDITOR4;
 $modversion['author']       = "Naoki Sawada (aka nao-pon) https://xoops.hypweb.net";
 $modversion['credits']      = "Naoki Sawada (aka nao-pon). Nuno Luciano (aka gigamaster) XCL PHP7 ";

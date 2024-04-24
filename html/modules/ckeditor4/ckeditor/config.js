@@ -1,6 +1,6 @@
 /**
  * CKEditor configuration for XCL 2.3.x
- * Date : 20-03-2023 @gigamaster
+ * Date : 20-04-2024 @gigamaster
  * 
  * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
@@ -8,16 +8,16 @@
 
 CKEDITOR.editorConfig = function( config ) {
 
-    //var uitheme = JSON.parse(localStorage.getItem('uicolor'));
-
-
     config.docType = '<!DOCTYPE html>';
 	// Define changes to default configuration here. For example:
 	config.language = 'en';
 
     config.width = '100%';     // Editor dimension
-    config.height = '340px';   // Use pixels or CSS unit (percent)
+    config.height = '100%';   // Use pixels or CSS unit (percent)
+    
+    //var uitheme = JSON.parse(localStorage.getItem('uicolor'));
     // config.uiColor = localStorage.getItem('uicolor');
+
     // NOTE
     // This option should not be changed unless when outputting a non-HTML data format like BBCode
     // &nbsp; (non-breaking space)
@@ -25,6 +25,16 @@ CKEDITOR.editorConfig = function( config ) {
     // &lt; = <
     // &amp;= &
     config.basicEntities = false;
+
+    // codesnnipet plugin 
+    // Changing Highlighter Theme
+    config.codeSnippet_theme = 'github-dark';
+
+    // oEmbed Plugin
+    config.oembed_maxWidth = '560';
+    config.oembed_maxHeight = '315';
+    config.oembed_WrapperClass = 'embededContent';
+
     // Minimize toolbar
     config.toolbarCanCollapse = true;
     // NOTE
@@ -39,6 +49,7 @@ CKEDITOR.editorConfig = function( config ) {
         // config.shiftEnterMode = CKEDITOR.ENTER_BR;
 
     //config.editorplaceholder = 'Start typing here…';
+    
 
     config.magicline_color = '#e43140';
 
