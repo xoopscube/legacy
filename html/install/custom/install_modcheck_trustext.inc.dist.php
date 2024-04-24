@@ -2,10 +2,10 @@
 /**
  * @package    XCL
  * @subpackage Installation Wizard
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Kilica
- * @copyright  Copyright 2005-2022 XOOPSCube Project
+ * @copyright  Copyright 2005-2024 XOOPSCube Project
  * @license    GPL 2.0
  */
 
