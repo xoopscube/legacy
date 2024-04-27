@@ -1,0 +1,100 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{* USER TAB PROFILE *}>
+<div class="ui-tab-content">
+
+
+    <div class="grid-left">
+
+
+        <{* ------- User Avatar *}>
+        <div class="user-tab-avatar">
+
+            <{if $thisUser->get('user_avatar') != "blank.gif" }>
+            <img data-self="radius-circle"
+                 src="<{$smarty.const.XOOPS_UPLOAD_URL}>/<{$thisUser->getShow('user_avatar')}>"
+                 alt="<{$smarty.const._MD_USER_LANG_AVATAR}>"
+                 aria-label="<{$smarty.const._MD_USER_LANG_AVATAR}>"
+                 width="96"
+                 height="96">
+            <{else}>
+
+            <div id="avatar">
+                <span id="username"><{$thisUser->getShow('uname')}></span>
+            </div>
+
+            <{/if}>
+
+            <{if $user_ownpage == true}>
+
+            <label>
+                <a href="<{$xoops_url}>/edituser.php?op=avatarform&amp;uid=<{$thisUser->getShow('uid')}>">
+                    <img class="svg avatar" src="<{$xoops_url}>/images/icons/avatar.svg" width="1em" height="1em" alt="Edit Avatar">
+                    <{$smarty.const._MD_USER_LANG_AVATAR_EDIT}>
+                </a>
+            </label>
+
+            <{/if}>
+
+        </div><{* ------- /User Avatar *}>
+
+
+        <{* ------- User Data *}>
+        <div class="user-tab-data">
+
+            <h3><{$thisUser->getShow('uname')}></h3>
+
+            <hr>
+
+            <{* ------- Registered Members Only *}>
+            <{if $xoops_isuser == true}>
+
+                <{if $thisUser->get('user_viewemail') == 1 || $user_ownpage == true || $xoops_isadmin == true}>
+                <p><span><img class="svg mail" src="<{$xoops_url}>/images/icons/mail.svg" width="1em" height="1em" alt="Email"> <{$smarty.const._MD_USER_LANG_EMAIL}></span>
+                    <br>
+                    <span class="badge"><{mailto address=$thisUser->get('email') encode="javascript"}></span>
+                </p>
+                <{/if}>
+
+                <p>
+                    <span><img class="svg url" src="<{$xoops_url}>/images/icons/url.svg" width="1em" height="1em" alt="URL"> <{$smarty.const._MD_USER_LANG_WEBSITE}></span>
+                    <br>
+                    <span class="badge"><a href="<{$thisUser->getShow('url')}>" rel="external"><{$thisUser->getShow('url')}></a></span>
+                </p>
+
+                <hr>
+
+                <{if $thisUser->get('bio') != null}>
+                <label><{$smarty.const._MD_USER_LANG_BIO}>
+                    <{$thisUser->getShow('bio')}>
+                </label>
+
+                <hr>
+                <{/if}>
+
+                <{if $thisUser->get('user_intrest') != null}>
+                <label><{$smarty.const._MD_USER_LANG_USER_INTREST}>
+                <{$thisUser->getShow('user_intrest')}></label>
+                <hr>
+                <{/if}>
+
+
+                <{* /////— PROFILE CUSTOM FIELDS —\\\\\ *}>
+                <{legacy_profile uid=$thisUser->getShow('uid')}>
+
+
+                <{if $thisUser->get('user_sig') != null}>
+                <label><{$smarty.const._MD_USER_LANG_USER_SIG}>
+                <{$thisUser->getShow('user_sig')}></label>
+                <hr>
+                <{/if}>
+
+            <{/if}>
+            <{* ------- /Registered Members Only *}>
+
+        </div><{* /user-tab-data *}>
+
+    </div><{* /grid-left *}>
+
+</div><{* /ui-tab-content *}>

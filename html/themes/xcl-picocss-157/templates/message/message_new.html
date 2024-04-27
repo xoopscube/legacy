@@ -1,0 +1,71 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav aria-label="breadcrumb">
+<ul>
+    <li><a href="<{$xoops_url}>/"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a></li>
+    <li><a href="index.php"><img class="svg" src="<{$xoops_url}>/images/icons/inbox.svg" width="1em" height="1em" alt="inbox"> <{$smarty.const._MI_MESSAGE_NAME}></a></li>
+    <li aria-current="page"><{$smarty.const._MD_MESSAGE_TEMPLATE1}></li>
+</ul>
+</nav>
+
+<div id="tabs-mail">
+
+    <{include file=db:message_nav.html}>
+
+    <div id="mail-new">
+
+        <form action="index.php?action=new" method="post" id="message_new">
+            <{xoops_token form=$mActionForm}>
+            <{xoops_input type=hidden name=mode}>
+
+        <div class="ui-tab-content">
+
+            <{if $errMsg !=""}>
+                <div class="alert warning">
+                    <ul>
+                        <{foreach item=error from=$errMsg}>
+                        <li><{$error}></li>
+                        <{/foreach}>
+                    </ul>
+                </div>
+                <hr>
+            <{/if}>
+
+            <{if $mActionForm->get('Legacy_Event_User_Preview') !=""}>
+                <h3><{$smarty.const._MD_MESSAGE_TEMPLATE3}> : <{$mActionForm->getShow('title')}></h3>
+                <p><{$smarty.const._MD_MESSAGE_TEMPLATE2}> : <{$mActionForm->getShow('uname')}>
+                    <br><{$smarty.const._MD_MESSAGE_TEMPLATE4}></p>
+
+                <blockquote>
+                    <{$mActionForm->getShow('note', 'toShowTarea')}>
+                </blockquote>
+                <hr>
+            <{/if}>
+
+
+            <label for="uname"><{$smarty.const._MD_MESSAGE_TEMPLATE2}>
+            <{xoops_input name=uname maxlength=25 value=$mActionForm->get('uname')}>
+            </label>
+            <label for="title"><{$smarty.const._MD_MESSAGE_TEMPLATE3}>
+            <{xoops_input name=title class="form-control form-control-sm" maxlength=100 value=$mActionForm->get('title')}>
+            </label>
+            <label for="note" class="note"><{$smarty.const._MD_MESSAGE_TEMPLATE4}>
+            <{xoops_dhtmltarea class="form-control" rows=7 id=note name=note value=$mActionForm->get('note') editor=bbcode}>
+            </label>
+
+        </div><{* ------- /ui-tab-content *}>
+
+        <footer class="action-control">
+            <{* NOTE : wrap [role=button] with div.../div for small buttons *}>
+            <{legacy_button class="outline" role="button" id=Preview Text=$smarty.const._MD_MESSAGE_TEMPLATE5}>
+
+            <{legacy_button class="primary" role="button" id=Submit Text=$smarty.const._MD_MESSAGE_TEMPLATE6}>
+        </footer>
+
+    </form>
+
+    </div><{* ------- /ui-tab-mail-settings *}>
+
+</div><{* ------- /ui-tab-wrap *}>
+

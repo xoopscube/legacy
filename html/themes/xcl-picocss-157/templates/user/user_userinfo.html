@@ -1,0 +1,80 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+
+<nav aria-label="breadcrumb">
+    <ul>
+    <li><a href="<{$xoops_url}>/">
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a></li>
+    <li><a href="#"><{$smarty.const._MD_USER_LANG_PROFILE}></a></li>
+    <li aria-current="page"><{$smarty.const._MD_USER_LANG_ALLABOUT|replace:"%s":$thisUser->getShow('uname')}></li>
+    </ul>
+</nav>
+
+
+<div data-layout="column">
+
+    <div id="tabs">
+
+        <ul>
+            <li aria-controls="tab-profile">
+                <a href="#tab-profile">
+                <img class="svg profile" src="<{$xoops_url}>/images/icons/user.svg" width="1em" height="1em" alt="profile">
+                <span data-self="sm-hide">Profile</span></a>
+            </li>
+            <li aria-controls="tab-timeline">
+                <a href="#tab-timeline">
+                <img class="svg timeline" src="<{$xoops_url}>/images/icons/timeline.svg" width="1em" height="1em" alt="timeline"> <span data-self="sm-hide">Timeline</span></a>
+            </li>
+
+            <{if $xoops_isuser == true && $user_ownpage == true}>
+            <li class="page" id="foo">
+                <a href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>">
+                <img class="svg user-edit" src="<{$xoops_url}>/images/icons/user-edit.svg" width="1em" height="1em" alt="timeline"> <span data-self="sm-hide">Edit Profile</span></a>
+            </li>
+            <li class="page" id="fii">
+                <a href="<{$xoops_url}>/notifications.php">
+                <img class="svg notifications" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="timeline"> <span data-self="sm-hide">Notifications</span></a>
+            </li>
+            <{/if}>
+
+        </ul>
+
+
+        <div id="tab-profile">
+            <{* ----- THEME TEMPLATE *}>
+            <{* include file="$xoops_theme/templates/user/inc_user_tab_profile.html" *}>
+            <{* ----- MODULE TEMPLATE *}>
+            <{include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_profile.html"}>
+        </div>
+
+        <div id="tab-timeline">
+            <{* ----- THEME TEMPLATE *}>
+            <{* include file="$xoops_theme/templates/user/inc_user_tab_timeline.html" *}>
+            <{* ----- MODULE TEMPLATE *}>
+            <{include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_timeline.html"}>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+<script>
+    $( function() {
+        $("#tabs").tabs({
+
+            classes: {
+                // "ui-tabs": "tab-bg",
+                // "ui-tabs-nav": "tab-shadow",
+                //"ui-tabs-tab": "ui-corner-top",
+                //"ui-tabs-panel": "ui-corner-bottom"
+                "ui-tabs": "taborder"
+            },
+            fx: [{opacity: 'toggle', duration: 'normal'}, {opacity: 'toggle', duration: 'normal'}]
+       // }).addClass('tabs-user');
+    }).find('.ui-tabs-tab').removeClass('ui-corner-all ui-corner-top');
+        $('#tabs > ul > li.page a').unbind('click');
+    });
+</script>

@@ -1,0 +1,18 @@
+<{* ---------- Block-Left *}>
+<{foreach item=block from=$xoops_lblocks}>
+    <{if !$block.title|strstr:"Topage"}>
+    <div class="block-left b-<{$block.weight}>" id="b<{$block.id}>">
+        <h4 data-layout="row center-justify" class="block-title">
+            <{if $xoops_isadmin}>
+            <a href="#b<{$block.id}>"><{$block.title|replace:' ':'-'}></a>
+            <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+            <{else}>
+            <{if ! $block.title|strstr:"none"}><a href="#b<{$block.id}>"><{$block.title}></a><{/if}>
+            <{/if}>
+        </h4>
+        <div class="block-content">
+            <{$block.content}>
+        </div>
+    </div>
+    <{/if}>
+<{/foreach}>

@@ -1,0 +1,204 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<article class="topic-post">
+
+    <{* ------- POST HEADER *}>
+    <header class="post-header">
+
+        <{* ----- POST TITLE *}>
+        <h3 class="post-title" id="post_id<{$post.id}>" title="post_id<{$post.id}>">
+            <span>
+                <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$post.icon}>.svg" alt="<{$icon_meanings[$post.icon]}>">
+                <{if $caller == 'listposts'}>
+                <a href="<{$mod_url}>/index.php?post_id=<{$post.id}>" id="post_path<{$post.unique_path}>" title="post_path<{$post.unique_path}>">
+                    <{$post.subject}>
+                </a>
+                <{else}>
+                    <{$post.subject}>
+                <{/if}>
+            </span>
+            <span>
+                <{if $post.invisible || !$post.approval}>
+<{if $post.invisible}> invisible
+<{elseif !$post.approval}> yetapproval<{/if}>
+<{/if}>
+
+            </span>
+        </h3>
+
+        <div>
+
+            <{* ------- Dropdown AVATAR with POST AUTHOR INFO *}>
+            <div class="dropdown">
+
+                <{* ------- POST AUTHOR AVATAR *}>
+                <a href="#" class="dropdown-toggle" title="post-author">
+                    <{if $post.poster_avatar}>
+                        <{* TODO Theme options to customize UI *}>
+                        <{if $post.poster_avatar.height > 48}>
+                        <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="18" height="18" alt="<{$post.poster_uname}>" data-self="radius-circle">
+                        <{elseif $post.poster_avatar.width > 1}>
+                        <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="<{$post.poster_uname}>" data-self="radius-circle">
+                        <{else}>
+                        <img src="<{$xoops_url}>/uploads/no_avatar.gif" width="24" height="24" alt="<{$post.poster_uname}>" data-self="radius-circle">
+                        <{/if}>
+                    <{/if}>
+                    <{$post.poster_uname}></a>
+                <{* ------- /POST AUTHOR AVATAR *}>
+                <{* ------- POST AUTHOR INFO *}>
+                <div class="dropdown-content">
+                    <div class="post-author-info">
+                        <{if $post.poster_uid != 0}>
+                            <a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>">
+                                <{$post.poster_uname}>
+                                <img class="svg link" src="<{$xoops_url}>/images/icons/link.svg" width="1em" alt="profile">
+                            </a>
+                            <{if $post.poster_rank_title}>
+                            <img src="<{$xoops_upload_url}>/<{$post.poster_rank_image}>" alt="<{$post.poster_rank_title}>" data-tooltip="<{$post.poster_rank_title}>">
+                            <br>
+                        <{/if}>
+                        <span class="badge"><{$smarty.const._MD_D3FORUM_POSTERJOINED}>: <{$post.poster_regdate_formatted}></span>
+                        <{if $post.poster_from}>
+                            <span class="badge"><{$smarty.const._MD_D3FORUM_POSTERFROM}>: <{$post.poster_from}></span>
+                        <{/if}>
+                        <span class="badge"><{$smarty.const._MD_D3FORUM_POSTERPOSTS}>: <{$post.poster_posts_count}></span>
+                        <{if $post.poster_is_online}><span class="badge"><{$smarty.const._MD_D3FORUM_POSTERISONLINE}></span><{/if}>
+                        <{else}>
+                        <{if $post.guest_url || $post.guest_trip}>
+                            <{* <{$post.guest_email}> *}>
+                            <{if $post.guest_url}>
+                                <a href="<{$post.guest_url}>" title="<{$post.guest_url}>"><{$smarty.const._MD_D3FORUM_TH_GUESTURL}></a>
+                            <{/if}>
+                            <{if $post.guest_trip}>
+                                <{$smarty.const._MD_D3FORUM_TH_GUESTTRIP}>: <{$post.guest_trip}><{/if}>
+                            <{/if}>
+                        <{/if}>
+                    </div>
+                </div>
+                <{* ------- /POST AUTHOR INFO *}>
+            </div>
+
+            <{* ------- POST DATE - HISTORY - DEPTH TREE *}>
+            <div class="post-date">
+                <img class="svg date-time" src="<{$xoops_url}>/images/icons/datetime.svg" width="1em" alt="date">
+                <span data-self="sm-hide"><{$smarty.const._MD_D3FORUM_ON}></span>
+                <span class="badge"><{$post.post_time_formatted}></span>
+
+                <{if $post.post_time < $post.modified_time and $xoops_isadmin}>
+                <a href="<{$mod_url}>/admin/index.php?page=post_histories&amp;post_id=<{$post.id}>" data-tooltip="<{$smarty.const._MD_D3FORUM_LASTMODIFIED}> - <{$smarty.const._MD_D3FORUM_HISTORIES}>">
+                    <img class="svg history" src="<{$xoops_url}>/images/icons/history.svg" alt="history"></a>
+                <span class="badge"><{$post.modified_time_formatted}></span>
+                <{/if}>
+
+                <{* ------- depth in tree read control *}>
+                <span class="badge"><{$smarty.const._MD_D3FORUM_UNIQUEPATHPREFIX}> <{$post.unique_path}></span>
+                <{if $postorder < 2 || $caller == 'viewpost'}>
+<!--                <span class="badge d3f_head_tree_depth" style="width:<{$post.depth_in_tree*5|min:100}>%;">-->
+                <span class="badge">depth: <{$post.depth_in_tree}></span>
+                <{/if}>
+
+
+            </div><{* ------- POST DATE - HISTORY - DEPTH TREE *}>
+
+        </div>
+
+    </header>
+    <{* ------- /POST HEADER *}>
+
+
+    <{* ------- POST CONTENT *}>
+    <div class="post-content">
+        <{$post.post_text}>
+
+        <{if $post.signature}>
+        <div class="post-signature"> -- <br><{$post.signature}></div>
+        <{/if}>
+
+    </div>
+    <{* ------- /POST CONTENT *}>
+
+
+
+    <{* ------- ACTION CONTROL *}>
+
+    <footer>
+        <div class="action-control">
+        <{if $post.can_vote || $mod_config.use_vote && ! $post.invisible && $post.approval}>
+            <div class="flex-justify">
+            <{if $post.can_vote}>
+            <form action="<{$mod_url}>/index.php" method="get">
+                <input type="hidden" name="page" value="vote_to_post">
+                <input type="hidden" name="post_id" value="<{$post.id}>">
+                <input type="hidden" name="point" value="10">
+                <{if $caller == 'listposts'}>
+                <input type="hidden" name="ret_name" value="topic_id">
+                <input type="hidden" name="ret_val" value="<{$topic.id}>">
+                <{/if}>
+
+                <button type="submit"
+                        role="button"
+                        class="outline vote"
+                        value="<{$smarty.const._MD_D3FORUM_VOTEPOINTDSCBEST}>"
+                        data-tooltip="<{$smarty.const._MD_D3FORUM_VOTEPOINTDSCBEST}>">
+                    <img class="svg thumb-up" src="<{$xoops_url}>/images/icons/thumb-up.svg" width="1em" alt="thumb-up">
+                    <{* <span data-self="sm-hide"><{$smarty.const._MD_D3FORUM_VOTEPOINTDSCBEST}></span> *}>
+                </button>
+            </form>
+            <{/if}>
+
+                <div class=" post-vote-stats">
+                <img class="svg chart" src="<{$xoops_url}>/images/icons/chart.svg" width="1em" alt="chart">
+                    <{$smarty.const._MD_D3FORUM_VOTECOUNT}>
+                    <span class="badge post-vote-count"> <{$post.votes_count}></span>
+                    <{$smarty.const._MD_D3FORUM_VOTEPOINTAVG}>
+                    <span class="badge post-vote-avg"><{$post.votes_avg|string_format:"%.2f"}></span>
+                </div>
+            </div>
+        <{/if}>
+
+        <{* ------- post actions *}>
+
+        <div role="group" title="Post actions">
+
+            <{if $post.can_edit}>
+            <a role="button" class="outline" href="<{$mod_url}>/index.php?page=edit&amp;post_id=<{$post.id}>" data-tooltip="<{$smarty.const._MD_D3FORUM_POSTEDIT}>">
+                <img class="svg edit-box" src="<{$xoops_url}>/images/icons/edit-box.svg" width="1em" alt="edit">
+            </a>
+            <{/if}>
+
+            <{* ------- Admin or Moderator *}>
+            <{if $forum.isadminormod}>
+                <a role="button" class="outline cutpaste" href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$post.id}>" data-tooltip="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>">
+                    <img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg" width="1em" alt="tools">
+                </a>
+            <{/if}>
+
+            <{if !$post.approval && $forum.isadminormod}>
+                <a role="button" class="outline" href="<{$mod_url}>/index.php?page=update_post_approval&amp;post_id=<{$post.id}>&amp;ret_name=<{$ret_name}>&amp;ret_val=<{$ret_val}>" data-tooltip="<{$smarty.const._MD_D3FORUM_LABEL_DOAPPROVAL}>">
+                    <img class="svg topic_invisible" src="<{$xoops_url}>/images/icons/topic_invisible.svg" width="1em" alt="invisible">
+                </a>
+            <{/if}>
+            <{* ------- / Admin or Moderator *}>
+
+            <{if $post.can_delete}>
+            <a role="button" class="outline delete" href="<{$mod_url}>/index.php?page=delete&amp;post_id=<{$post.id}>" data-tooltip="<{$smarty.const._MD_D3FORUM_POSTDELETE}>">
+                <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" alt="delete">
+            </a>
+            <{/if}>
+
+            <{if $post.can_reply}>
+            <a role="button" class="outline" href="<{$mod_url}>/index.php?page=reply&amp;post_id=<{$post.id}>" title="<{$smarty.const._MD_D3FORUM_POSTREPLY}>">
+                <img class="svg reply" src="<{$xoops_url}>/images/icons/reply.svg" width="1em" alt="reply">
+                <{$smarty.const._MD_D3FORUM_POSTREPLY}>
+            </a>
+            <{/if}>
+
+        </div>
+        <{* ------- /post actions *}>
+
+        </div>
+
+    </footer>
+
+</article>

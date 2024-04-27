@@ -1,0 +1,31 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav aria-label="breadcrumb">
+    <ul>
+        <li><a href="<{$xoops_url}>/">
+            <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a></li>
+        <li><a href="<{$xoops_url}>/user.php">Profile</a></li>
+        <li aria-current="page"><{$smarty.const._NOT_ACTIVENOTIFICATIONS}></li>
+    </ul>
+</nav>
+
+<form action="notifications.php" method="post">
+    <{xoops_token form=$actionForm}>
+    <{xoops_input type=hidden name=delete value=1}>
+
+    <article class="notification alert confirm">
+        <header>
+            <h2>
+                <img class="svg bell" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em"
+                     alt="notification"> <{$smarty.const._NOT_DELETINGNOTIFICATIONS}>
+            </h2>
+        </header>
+        <{foreach item=ids from=$actionForm->mNotifiyIds}>
+        <input type="hidden" name="del_not[<{$ids.modid|xoops_escape:plain}>][]" value="<{$ids.id|xoops_escape:plain}>">
+        <{/foreach}>
+        <input type="submit" role="button" class="outline delete" name="delete" value="<{$smarty.const._DELETE}>">
+        <input type="button" role="button" class="outline cancel" name="confirm_back" value="<{$smarty.const._CANCEL}>"
+               onclick="javascript:history.go(-1);">
+    </article>
+</form>

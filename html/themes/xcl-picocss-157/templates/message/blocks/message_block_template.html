@@ -1,0 +1,45 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav class="block-messages">
+
+<ul id="privatemessages">
+    <li>
+    <{if $block>0}>
+            <a href="<{$message_url}>?action=index">
+            <span><img class="svg inbox-full" src="<{$xoops_url}>/images/icons/inbox-full.svg" width="1em" height="1em" alt="Inbox"> <{$smarty.const._MD_MESSAGE_TEMPLATE15}></span>
+            <span class="badge"><b style="color:orange"><{$block}></b>/<{$incount}></span>
+        </a>
+          <{else}>
+        <a href="<{$message_url}>?action=index">
+            <img class="svg inbox" src="<{$xoops_url}>/images/icons/inbox.svg" width="1em" height="1em" alt="Inbox">
+            <{$smarty.const._MD_MESSAGE_TEMPLATE15}> <b class="badge"><{$incount}></b></a>
+    <{/if}>
+
+
+    <li>
+    <a href="<{$message_url}>?action=send">
+        <span><img class="svg inbox-out" src="<{$xoops_url}>/images/icons/inbox-out.svg" width="1em" height="1em" alt="Inbox-out"> <{$smarty.const._MD_MESSAGE_TEMPLATE7}></span> <span class="badge"> <{$outcount}></span></a>
+
+    <li>
+    <a href="<{$message_url}>?action=new">
+        <img class="svg mail-edit" src="<{$xoops_url}>/images/icons/mail-edit.svg" width="1em" height="1em" alt="New message"> <{$smarty.const._MD_MESSAGE_TEMPLATE8}></a>
+
+    <li>
+    <a href="<{$message_url}>?action=settings">
+        <img class="svg settings" src="<{$xoops_url}>/images/icons/settings.svg" width="1em" height="1em" alt="Settings"> <{$smarty.const._MI_MESSAGE_SUB_SETTINGS}></a>
+
+        <{if isset($UserSearch)}>
+            <li>
+            <a href="<{$message_url}>?action=search">
+                <img class="svg user-search" src="<{$xoops_url}>/images/icons/search.svg" width="1em" height="1em" alt=">User search">
+                <{$smarty.const._MI_MESSAGE_SUB_SEARCH}></a>
+
+            <li>
+            <a href="<{$message_url}>?action=favorites">
+                <img class="svg favorites" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" height="1em" alt="Favorites">
+                <{$smarty.const._MI_MESSAGE_SUB_FAVORITES}></a>
+        <{/if}>
+</ul>
+
+</nav>
