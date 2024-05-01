@@ -5,7 +5,7 @@
  * @version    XCL 2.3.3
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -22,7 +22,7 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 $modversion['dirname']          = $mydirname;
 $modversion['name']             = constant( $constpref . '_NAME' );
 $modversion['version']          = '3.58';
-$modversion['detailed_version'] = '3.58.3';
+$modversion['detailed_version'] = '3.58.4';
 $modversion['detailed_version'] = $modversion['version'].'.1';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'GIJ=CHECKMATE PEAK Corp.(https://www.peak.ne.jp/) ';

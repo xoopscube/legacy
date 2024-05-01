@@ -6,7 +6,7 @@
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Naoki Sawada (aka Nao-pon)
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -28,8 +28,8 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = $mydirname; //constant( $constpref . '_NAME' );
-$modversion['version']          = '2.33';
-$modversion['detailed_version'] = '2.33.3';
+$modversion['version']          = '2.34';
+$modversion['detailed_version'] = '2.34.0';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'Gijoe (peak.ne.jp) and Jidaikbo, @nao-pon Naoki Sawada';
 $modversion['credits']          = '@domifara, @naao Naoki Okino, @nao-pon Naoki Sawada, @gigamaster (XCL/PHP7)';

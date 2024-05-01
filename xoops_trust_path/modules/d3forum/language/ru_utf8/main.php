@@ -93,7 +93,7 @@ define( '_MD_D3FORUM_A_BOTTOMOFTHETOPIC' , 'Bottom of the posts'); //jidaikobo
 // comment integration
 define( '_MD_D3FORUM_POSTASCOMMENTTOP' , 'Post a new comment');
 define( '_MD_D3FORUM_LINK_COMMENTSOURCE' , 'target of the comment');
-define( '_MD_D3FORUM_LINK_RICHERCOMMENTFORM' , 'Switch to Editor Mode - Start a new Topic');
+define( '_MD_D3FORUM_LINK_RICHERCOMMENTFORM' , 'Switch to Editor Mode');
 define( '_MD_D3FORUM_LINK_LISTALLCOMMENTS' , 'View more comments...');
 define( '_MD_D3FORUM_FMT_POSTHITSINFO' , '%d hits');
 define( '_MD_D3FORUM_FMT_POSTDISPLAYSINFO' , '%d displayed');

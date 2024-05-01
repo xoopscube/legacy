@@ -6,13 +6,14 @@
  * @version    XCL 2.3.3
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
 include dirname( __DIR__ ) . '/include/common_prepend.php';
 
 require_once dirname( __DIR__ ) . '/class/gtickets.php';
+
 
 $cat_id = (int) @$_GET['cat_id'];
 

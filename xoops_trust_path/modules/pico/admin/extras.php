@@ -6,7 +6,7 @@
  * @version    XCL 2.3.3
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Author
+ * @copyright  (c) 2005-2024 Author
  * @license    GPL v2.0
  */
 

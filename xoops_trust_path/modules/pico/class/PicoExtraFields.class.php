@@ -6,7 +6,7 @@
  * @version    XCL 2.43.1
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  * @brief      you can override this class by specifying your sub-class into the preferences
  */

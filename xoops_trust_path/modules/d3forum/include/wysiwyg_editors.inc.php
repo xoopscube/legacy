@@ -6,7 +6,7 @@
  * @subpackage D3Forum
  * @version 2.3
  * @author Gijoe (Peak), Gigamaster (XCL)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license GPL v2.0
  */
 

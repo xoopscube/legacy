@@ -6,7 +6,7 @@
  * @subpackage Xupdate
  * @version 2.3
  * @author Naoki Sawada, Naoki Okino, Minahito, Gigamaster (XCL 2.3)
- * @copyright Copyright 2005-2023 The XOOPSCube Project
+ * @copyright Copyright 2005-2024 The XOOPSCube Project
  * @license GPL v2.0
  */
 

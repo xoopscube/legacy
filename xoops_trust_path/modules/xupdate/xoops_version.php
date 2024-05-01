@@ -7,7 +7,7 @@
  * @version 2.3.4
  * @author Other authors Gigamaster XCL/PHP7
  * @author Naoki Sawada, Naoki Okino
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license GPL V2
  */
 
@@ -29,7 +29,7 @@ $modversion['dirname']          = $myDirName;
 $modversion['trust_dirname']    = $basename;
 $modversion['name']             = _MI_XUPDATE_LANG_XUPDATE;
 $modversion['version']          = '2.34';
-$modversion['detailed_version'] = '2.34.3';
+$modversion['detailed_version'] = '2.34.4';
 $modversion['description']      = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author']           = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits']          = _MI_XUPDATE_LANG_CREDITS;

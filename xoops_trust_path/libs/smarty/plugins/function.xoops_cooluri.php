@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id
- * @copyright (c) 2005-2023 The XOOPSCube Project
+ * @copyright (c) 2005-2024 The XOOPSCube Project
  * @license GPL v2.0
  *
  */

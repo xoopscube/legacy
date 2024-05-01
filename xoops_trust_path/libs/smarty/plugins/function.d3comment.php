@@ -17,7 +17,7 @@
 function smarty_function_d3comment($params, &$smarty)
 {
 	$m_params = [];
- $forum_dirpath = XOOPS_TRUST_PATH.'/modules/d3forum' ;
+ 	$forum_dirpath = XOOPS_TRUST_PATH.'/modules/d3forum' ;
 	require_once $forum_dirpath.'/class/D3commentObj.class.php' ;
 
 	$mydirname = @$params['mydirname'] ;
@@ -38,7 +38,7 @@ function smarty_function_d3comment($params, &$smarty)
 		}
 	}
 
-	$m_params['forum_dirname'] = $forum_dirname ;
+	$m_params['forum_dirname'] = $forum_dirname ?? '' ;
 
 	$m_params['external_dirname'] = $mydirname  ; 
 	$m_params['classname'] = $classname ;

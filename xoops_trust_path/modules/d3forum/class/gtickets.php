@@ -6,7 +6,7 @@
  * @version    XCL 2.3.3
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -21,14 +21,6 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 
 		public function __construct() {
 			global $xoopsConfig;
-
-			// language file
-//			if ( defined( 'XOOPS_ROOT_PATH' ) && ! empty( $xoopsConfig['language'] ) && ! strstr( $xoopsConfig['language'], '/' ) ) {
-//
-//				if ( file_exists( dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml' ) ) {
-//					include dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml';
-//				}
-//			}
 
 			// default messages
 			if ( empty( $this->messages ) ) {
@@ -237,8 +229,8 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 
 			$form  .= $this->getTicketHtml( __LINE__, 300, $area ) . '<input type="submit" value="' . $this->messages['btn_repost'] . '"></form>';
 
-//			echo '<html><head><title>' . $this->messages['err_general'] . '</title><style>table,td,th {border:solid black 1px; border-collapse:collapse;}</style></head><body>' . sprintf( $this->messages['fmt_prompt4repost'], $this->getErrors() ) . $table . $form . '</body></html>';
-            echo '<!doctype html><html class="no-js" lang="en"><head><meta charset="utf-8"><title>' . $this->messages['err_general'] . '</title><link rel="stylesheet" href="'.XOOPS_URL.'/common/css/x-layout.css"><link rel="stylesheet" href="'.XOOPS_URL.'/modules/legacy/admin/theme/style.css"></script><style>body{background:hsl(219, 15%, 16%);color:#abc;margin:2em auto;max-width:80vw;}table,td,th {border:solid black 1px; border-collapse:collapse;}</style></head><body>' . sprintf( $this->messages['fmt_prompt4repost'], $this->getErrors() ) . $table . $form . '</body></html>';
+            // Message with Admin Theme style
+			echo '<!doctype html><html class="no-js" lang="en"><head><meta charset="utf-8"><title>' . $this->messages['err_general'] . '</title><link rel="stylesheet" href="'.XOOPS_URL.'/common/css/x-layout.css"><link rel="stylesheet" href="'.XOOPS_URL.'/modules/legacy/admin/theme/style.css"></script><style>body{background:hsl(219, 15%, 16%);color:#abc;margin:2em auto;max-width:80vw;}table,td,th {border:solid black 1px; border-collapse:collapse;}</style></head><body>' . sprintf( $this->messages['fmt_prompt4repost'], $this->getErrors() ) . $table . $form . '</body></html>';
 
         }
 

@@ -101,7 +101,7 @@ Define( '_MD_D3FORUM_A_BOTTOMOFTHETOPIC' , 'Derniers messages');
 // comment integration
 Define( '_MD_D3FORUM_POSTASCOMMENTTOP' , 'Poster un nouveau commentaire');
 Define( '_MD_D3FORUM_LINK_COMMENTSOURCE' , 'cible de ce commentaire');
-Define( '_MD_D3FORUM_LINK_RICHERCOMMENTFORM' , 'Afficher éditeur texte - Démarrer un nouveau Sujet');
+Define( '_MD_D3FORUM_LINK_RICHERCOMMENTFORM' , 'Utiliser éditeur de texte');
 Define( '_MD_D3FORUM_LINK_LISTALLCOMMENTS' , 'Voir tous les commentaires...');
 Define( '_MD_D3FORUM_FMT_COMMENTSUBJECT' , 'Re: %s');
 Define( '_MD_D3FORUM_COMMENTSLIST' , 'Liste commentaires');

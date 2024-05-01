@@ -6,7 +6,7 @@
  * @version    XCL 2.3.3
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
@@ -132,6 +132,8 @@ class PicoContent {
 	public $categoryObj;
 	public $errorno = 0;
 	public $need_filter_body = false;
+	// faster const if no lang catalog
+	public const _MD_PICO_ERR_COMPILEERROR = 'Smarty Compiler Error ';
 
 	public function __construct( $mydirname, $content_id, $categoryObj = null, $allow_makenew = false ) {
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
@@ -169,9 +171,9 @@ class PicoContent {
 
 		$this->data = [
 			              'id'                      => (int) $content_row['content_id'],
-			              'created_time_formatted'  => formatTimestamp( $content_row['created_time'] ),
-			              'modified_time_formatted' => formatTimestamp( $content_row['modified_time'] ),
-			              'expiring_time_formatted' => formatTimestamp( $content_row['expiring_time'] ),
+			              'created_time_formatted'  => formatTimestamp( $content_row['created_time'], 'm' ),
+			              'modified_time_formatted' => formatTimestamp( $content_row['modified_time'], 'm' ),
+			              'expiring_time_formatted' => formatTimestamp( $content_row['expiring_time'], 'm' ),
 			              'subject_raw'             => $content_row['subject'],
 			              'body_raw'                => $content_row['body'],
 			              'isadminormod'            => $cat_data['isadminormod'],
@@ -231,9 +233,11 @@ class PicoContent {
 
 	public function filterBody( $content4assign ) {
 		$db = XoopsDatabaseFactory::getDatabaseConnection();
-
+		
+		
+	
 		// marking for compiling errors
-		if ( @$content4assign['last_cached_time'] && $content4assign['last_cached_time'] < $content4assign['modified_time'] ) {
+		if ( $content4assign['last_cached_time'] && $content4assign['last_cached_time'] < $content4assign['modified_time'] ) {
 			if ( _MD_PICO_ERR_COMPILEERROR == $content4assign['body_cached'] ) {
 				return $content4assign['body_cached'];
 			} else {

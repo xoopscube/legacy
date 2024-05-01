@@ -178,7 +178,7 @@ Define( '_MD_D3FORUM_LINK_POSTORDERTREEASC' , "Ramificação");
 Define( '_MD_D3FORUM_LINK_POSTORDERTREEDESC' , "Inverter a ramificação");
 Define( '_MD_D3FORUM_LINK_PREVPOST' , "Postagem anterior");
 Define( '_MD_D3FORUM_LINK_PREVTOPIC' , "Tópico anterior");
-Define( '_MD_D3FORUM_LINK_RICHERCOMMENTFORM' , "Formulário avançado - Iniciar un novo Tópico");
+Define( '_MD_D3FORUM_LINK_RICHERCOMMENTFORM' , "Utilizar editor de texto");
 Define( '_MD_D3FORUM_LISTALLTOPICS' , "Listar todos os tópicos");
 Define( '_MD_D3FORUM_LISTTOPICSINCATEGORIES' , "Listar tópicos nas categorias especificadas");
 Define( '_MD_D3FORUM_LISTTOPICSINCATEGORY' , "Listar tópicos na categoria");
