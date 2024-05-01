@@ -54,12 +54,8 @@
     <{* ----- Favicon SVG located in the root directory ----- *}>
     <link rel="icon" href="<{$xoops_url}>/favicon.svg" type="image/svg+xml">
 
-    <{* ----- Favicon.png root images' directory
-    <link rel="alternate icon" href="<{$xoops_url}>/images/favicon.png" type="image/png">
-
     <!-- Mobile App Manifest -->
-<!--    <link rel="manifest" href="<{$xoops_imageurl}>site.webmanifest">-->
-    ----- *}>
+    <!-- <link rel="manifest" href="<{$xoops_imageurl}>site.webmanifest">-->
 
     <{* ----- CSS - PicoCSS ----- *}>
     <link rel="preload" href="<{$xoops_imageurl}>css/pico.amber.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -143,7 +139,7 @@
 
     <{if $xoops_showrblock==1}>
     <aside id="block-right">
-        <nav class="is-sticky-above-lg ">
+        <nav class="block-sticky">
             <{include file="$xoops_theme/component/block-right.html"}>
 
             <details open="">
@@ -177,7 +173,7 @@
 <{if !empty($xoops_clblocks)}>
 <div>
     <{foreach item=block from=$xoops_clblocks}>
-    <{if !$block.title|strstr:"admin"}>
+    <{if !$block.title|strstr:"admin" && !$block.title|strstr:"top" && !$block.title|strstr:"hero"}>
     <article class="block-center-left b-<{$block.weight}>">
         <h4 data-layout="row center-justify" class="block-title">
             <{if $xoops_isadmin}>
@@ -198,7 +194,7 @@
 <{if !empty($xoops_ccblocks)}>
 <div>
     <{foreach item=block from=$xoops_ccblocks}>
-    <{if !$block.title|strstr:"admin"}>
+    <{if !$block.title|strstr:"admin" && !$block.title|strstr:"top" && !$block.title|strstr:"hero"}>
     <article class="block-center-center b-<{$block.weight}>">
         <h4 data-layout="row center-justify" class="block-title">
             <{if $xoops_isadmin}>
@@ -219,7 +215,7 @@
 <{if !empty($xoops_crblocks)}>
 <div>
     <{foreach item=block from=$xoops_crblocks}>
-    <{if !$block.title|strstr:"admin"}>
+    <{if !$block.title|strstr:"admin" && !$block.title|strstr:"top" && !$block.title|strstr:"hero"}>
     <article class="block-center-right b-<{$block.weight}>">
         <h4 data-layout="row center-justify" class="block-title">
             <{if $xoops_isadmin}>
@@ -287,4 +283,3 @@
 <script async src="<{$xoops_url}>/common/prismjs/prism.js"></script>
 </body>
 </html>
-

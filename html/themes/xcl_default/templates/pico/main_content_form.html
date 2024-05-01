@@ -117,10 +117,10 @@
 	<label for="ei_image">
 		Image
 		<input type="file" id="ei_image" name="ei_image">
-		<input type="hidden" name="ef_image" value="<{$content.ef.image|escape}>">
-		<{if $content.ef.image}>
+		<input type="hidden" name="ef_image" value="<{$content.ef.image|default:''|escape}>">
+		<{if isset($content.ef.image)}>
 		<a href="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_0_<{$content.ef.image|escape}>">
-			<img src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_1_<{$content.ef.image|escape}>">
+			<img src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_1_<{$content.ef.image|escape|default:''}>">
 		</a>
 		<{/if}>
 	</label>
@@ -159,7 +159,7 @@
         My photo
 		<input type="file" id="ei_myphoto" name="ei_myphoto">
 		<input type="hidden" name="ef_myphoto" value="<{$content.ef.myphoto|escape}>">
-		<{if $content.ef.myphoto}>
+		<{if isset($content.ef.myphoto)}>
 			<a href="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/myphoto_0_<{$content.ef.myphoto|escape}>">
 				<img src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/myphoto_1_<{$content.ef.myphoto|escape}>"></a>
 		<{/if}>
@@ -343,7 +343,7 @@
 				<span>Order</span>
 			</label>
 			<{foreach from=$content.filter_infos key="filter_name" item="filter"}>
-			<{if $filter.title}>
+			<{if isset($filter.title)}>
 			<{if $editor == "html" && !$content.body && $content.filter_infos[$filter_name].disableOnHtml}>
 				<{assign var=check value=0}>
 			<{else}>
@@ -388,7 +388,7 @@
 		<{* ------- CONTENT TIME *}>
 
 		<{if $category.isadminormod}>
-			<{if $content.specify_created_time}>
+			<{if isset($content.specify_created_time)}>
 				<{assign var="specify_created_time_checked" value="checked='checked'"}>
 			<{else}>
 				<{assign var="created_time_style" value="display:none;"}>
@@ -399,7 +399,7 @@
 					   name="specify_created_time"
 					   id="specify_created_time"
 					   value="1"
-					   onclick="if(this.checked){xoopsGetElementById('created_time').style.display='inline';}else{xoopsGetElementById('created_time').style.display='none'}" <{$specify_created_time_checked}>>
+					   onclick="if(this.checked){xoopsGetElementById('created_time').style.display='inline';}else{xoopsGetElementById('created_time').style.display='none'}" <{$specify_created_time_checked|default:''}>>
 				<span><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}> <small><{$content_base.created_time_formatted}></small></span>
 
 			</label>
@@ -408,7 +408,7 @@
 				   id="created_time"
 				   size="24"
 				   value="<{$content.created_time_formatted|escape}>"
-				   style="<{$created_time_style}>">
+				   style="<{$created_time_style|default:''}>">
 			</fieldset>
 		<{/if}>
 
@@ -424,7 +424,7 @@
 		<{/if}>
 
 		<{if $category.isadminormod}>
-			<{if $content.specify_modified_time}>
+			<{if isset($content.specify_modified_time)}>
 				<{assign var="specify_modified_time_checked" value="checked='checked'"}>
 			<{else}>
 				<{assign var="modified_time_style" value="display:none;"}>
@@ -435,7 +435,7 @@
 					   name="specify_modified_time"
 					   id="specify_modified_time"
 					   value="1"
-					   onclick="if(this.checked){xoopsGetElementById('modified_time').style.display='inline';}else{xoopsGetElementById('modified_time').style.display='none'}" <{$specify_modified_time_checked}>>
+					   onclick="if(this.checked){xoopsGetElementById('modified_time').style.display='inline';}else{xoopsGetElementById('modified_time').style.display='none'}" <{$specify_modified_time_checked|default:''}>>
 
 				<span><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}> <small><{$content_base.modified_time_formatted}></small></span>
             </label>
@@ -444,13 +444,13 @@
 				   id="modified_time"
 				   size="24"
 				   value="<{$content.modified_time_formatted|escape}>"
-				   style="<{$modified_time_style}> ">
+				   style="<{$modified_time_style|default:''}>">
 			</fieldset>
 		<{/if}>
 
 		<{if $category.isadminormod}>
 		<h5><{$smarty.const._MD_PICO_EXPIRING}></h5>
-			<{if $content.specify_expiring_time}>
+			<{if isset($content.specify_expiring_time)}>
 				<{assign var="specify_expiring_time_checked" value="checked='checked'"}>
 			<{else}>
 				<{assign var="expiring_time_style" value="display:none;"}>
@@ -460,7 +460,7 @@
 				   name="specify_expiring_time"
 				   id="specify_expiring_time"
 				   value="1"
-				   onclick="if(this.checked){xoopsGetElementById('expiring_time').style.display='inline';}else{xoopsGetElementById('expiring_time').style.display='none'}" <{$specify_expiring_time_checked}>>
+				   onclick="if(this.checked){xoopsGetElementById('expiring_time').style.display='inline';}else{xoopsGetElementById('expiring_time').style.display='none'}" <{$specify_expiring_time_checked|default:''}>>
 
 			 <span><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}> <small><{$content_base.expiring_time_formatted}></small></span>
 		</label>
@@ -469,7 +469,7 @@
 			   name="expiring_time"
 			   id="expiring_time" size="24"
 			   value="<{$content.expiring_time_formatted|escape}>"
-			   style="<{$expiring_time_style}>">
+			   style="<{$expiring_time_style|default:''}>">
 
 		<{/if}>
 

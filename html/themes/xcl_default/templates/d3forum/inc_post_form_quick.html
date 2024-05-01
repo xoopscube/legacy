@@ -7,7 +7,7 @@
     <input type="hidden" name="mode" id="mode" value="<{$quick_form_mode|default:'sametopic'}>">
     <input type="hidden" name="pid" id="pid" value="<{$post.id|default:''}>">
     <input type="hidden" name="topic_id" id="topic_id" value="<{$topic.id|default:''}>">
-    <input type="hidden" name="forum_id" id="forum_id" value="<{$forum.id}>">
+    <input type="hidden" name="forum_id" id="forum_id" value="<{$forum.id|default:''}>">
     <{if isset($external_link_id)}>
     <input type="hidden" name="external_link_id" id="external_link_id" value="<{$external_link_id|escape}>">
     <{/if}>

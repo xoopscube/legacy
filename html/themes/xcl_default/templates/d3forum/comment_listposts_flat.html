@@ -102,7 +102,7 @@
 
 <{if $plugin_params.order !='asc'}>
     <{* ----- begin simple comment form *}>
-    <{if $forum.can_post && !$plugin_params.no_form}>
+    <{if $forum.can_post && !isset($plugin_params.no_form)}>
         <{include file="db:`$mydirname`_inc_post_form_quick.html" h2_title=$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP quick_form_mode="sametopic"}>
     <{/if}>
     <{*  /end simple comment form *}>

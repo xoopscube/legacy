@@ -22,7 +22,7 @@
 
         <label for="uname" aria-label="<{$smarty.const._USERNAME}>">
 
-        <input type="text" name="uname" id="uname" placeholder="<{$smarty.const._USERNAME}>" value="<{$usercookie}>">
+        <input type="text" name="uname" id="uname" placeholder="<{$smarty.const._USERNAME}>" value="<{$usercookie|default:''}>">
         <{* xoops_input type=text name=uname size=25 maxlength=25 value=$usercookie *}>
         </label>
 

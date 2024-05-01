@@ -745,7 +745,7 @@ article h3 :is(span.badge){font-size: 14px;vertical-align: baseline;}
 
 /* TAGS */
 article>footer>.content-tags {
-    background      : var(--pico-code-background-color);
+    /* background      : var(--pico-code-background-color); */
     color           : var(--pico-code-value-color);
     padding-top     : 1rem;
 }
