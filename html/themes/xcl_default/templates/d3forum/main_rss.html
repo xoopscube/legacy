@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="<{$encoding}>"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+  <title><{$title}></title>
+  <link><{$top_link}></link>
+  <description></description>
+  <lastBuildDate><{"r"|date:$b_time}></lastBuildDate>
+  <docs>http://backend.userland.com/rss/</docs>
+  <{foreach from=$data item=item}>
+  <item>
+    <title><{$item.subject}></title>
+    <link><{$item.link}></link>
+    <guid><{$item.link}></guid>
+    <description><{$item.context}></description>
+    <pubDate><{"r"|date:$item.post_time}></pubDate>
+    <category><{$item.cat_title}></category>
+    <category><{$item.forum_title}></category>
+    <content:encoded><![CDATA[<{$item.description}>]]></content:encoded>
+  </item>
+  <{/foreach}>
+  </channel>
+</rss>

@@ -1,0 +1,37 @@
+<{if $actionForm->hasError()}>
+<div class="errorMsg">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message|xoops_escape}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<form action="<{$xoops_url}>/imagemanager.php?op=upload" method="post" enctype="multipart/form-data" style="margin:1rem 0;">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=imgcat_id value=$actionForm->get('imgcat_id')}>
+  <{xoops_input type=hidden name=target value=$target}>
+  <table class="outer">
+    <tr>
+      <td><{$smarty.const._MD_LEGACY_LANG_IMAGE_FILE}></td>
+      <td>
+        <{xoops_input type=file name=image_name}>
+      </td>
+    </tr>
+    <tr>
+      <td><{$smarty.const._MD_LEGACY_LANG_IMAGE_NICENAME}></td>
+      <td>
+        <{xoops_input type=text name=image_nicename value=$actionForm->get('image_nicename') size=30 maxlength=255}>
+      </td>
+    </tr>
+    <tfoot>
+    <tr>
+      <td colspan="2" style="text-align:center;">
+        <input class="btn submit" type="submit" value="<{$smarty.const._SUBMIT}>">
+        <input class="btn cancel" type="button" value="<{$smarty.const._BACK}>" onclick="javascript:history.back()">
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</form>

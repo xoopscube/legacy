@@ -1,0 +1,53 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav aria-label="breadcrumb">
+    <ul>
+  <li><a href="<{$xoops_url}>/">
+      <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
+  <li><a href="<{$xoops_url}>/user.php"><{$smarty.const._MD_USER_LANG_PROFILE}></a>
+  <li aria-current="page"><{$smarty.const._MD_USER_LANG_LOSTPASSWORD}>
+    </ul>
+</nav>
+
+<form action="#" method="post">
+    <{xoops_token form=$actionForm}>
+
+<article class="lost-password">
+
+    <header>
+    <h2><{$smarty.const._MD_USER_LANG_LOSTPASSWORD}></h2>
+    </header>
+
+    <{if $actionForm->hasError()}>
+    <div class="alert error">
+      <ul>
+        <{foreach item=message from=$actionForm->getErrorMessages()}>
+          <li><{$message}></li>
+        <{/foreach}>
+      </ul>
+    </div>
+    <{/if}>
+
+
+
+
+        <div class="alert error">
+            <{$smarty.const._MD_USER_LANG_NOPROBLEM}>
+        </div>
+
+        <label>
+            <{$smarty.const._MD_USER_LANG_EMAIL}>
+
+            <{xoops_input name=email value=$actionForm->get('email') size=34 maxlength=60}>
+        </label>
+
+    <footer>
+    <input type="submit" role="button" class="primary" value="<{$smarty.const._SEND}>">
+    </footer>
+
+
+
+</article>
+
+</form>

@@ -1,0 +1,91 @@
+/*
+* XCL Default Theme built with PicoCSS v206
+*
+* @version   2.4.0
+* @update    2024-04-20
+* @Date      2024-02-02
+* @author    Nuno Luciano ( https://github.com/gigamaster )
+* @copyright (c) 2005-2024 The XOOPSCube Project, authors
+* @license   MIT
+* @link      https://github.com/xoopscube
+*/
+/* -------------------- Dropdown Menu */
+
+div.dropdown {
+    position            : relative;
+    display             : block;
+}
+div.dropdown a.dropdown-toggle:not(.ui-tabs-anchor) {
+    background          : transparent; /*var(--background-color);*/
+    border              : none;
+    border-radius       : var(--pico-border-radius);
+    box-shadow          : none;
+    color               : var(--pico-primary-color);
+    cursor              : pointer;
+    display             : block;
+    font                : inherit;
+    margin              : 0;
+    padding             : 0 .25rem .25rem;
+    transition          : all var(--transition-time) var(--transition-cube);
+}
+div.dropdown a.dropdown-toggle:hover:not(.ui-tabs-anchor) {
+    background          : var(--primary-focus); /* link [div][a] */
+    box-shadow          : none;
+    color               : var(--primary-hover);
+    background          : var(--pico-primary-hover-background);
+    color               : var(--pico-primary-inverse);
+}
+div.dropdown.isopen div.dropdown-content {
+    display             : block;
+    z-index             : var(--z-above);
+}
+div.dropdown-content {
+    background          : var(--pico-form-element-background-color);
+    border              : var(--pico-border-width) solid var(--pico-form-element-border-color);
+    border-radius       : var(--pico-border-radius);
+    box-shadow          : var(--pico-card-box-shadow); /* 0px 2px 4px 1px hsla(0, 0%, 0%, 0.74); */
+    color               : var(--pico-primary-color);
+    display             : none;
+
+    min-width           : 190px;
+    padding             : .5rem;
+    position            : absolute;
+    right               : -10px;
+
+    text-align          : left;
+    top                 : 100%;
+    transition          : all var(--transition-time) var(--transition-cube);
+}
+@media (min-width: 992px) {
+    .dropdown-content {
+        right           : 1px; /* Fix device Viewport */
+    }
+}
+div.dropdown div.dropdown-content ul {
+    margin              : 0;
+    padding             : 0;
+    list-style          : none;
+}
+div.dropdown div.dropdown-content ul li {
+    background          : transparent;
+    padding             : 0;
+    width               : 100%;
+}
+/* Dropdown links */
+div.dropdown div.dropdown-content a {
+    border-radius       : var(--pico-border-radius);
+    color               : var(--pico-primary-color);
+    display             : block;
+    font-size           : 16px;
+    padding             : calc(var(--pico-form-element-spacing-vertical)* .8) var(--pico-form-element-spacing-horizontal);
+    text-decoration     : none;
+}
+/* Change color of dropdown links on hover */
+div.dropdown div.dropdown-content a:hover {
+    background          : var(--pico-primary-hover-background);
+    color               : var(--pico-primary-inverse);
+}
+
+div.dropdown div.dropdown-content a > svg {
+    margin              : var(--dropdown-icon-margin);
+}

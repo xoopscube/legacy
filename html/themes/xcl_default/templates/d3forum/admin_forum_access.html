@@ -1,0 +1,122 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<{* ----- D3 Module Name + Forum selection *}>
+<h2><{$mod_name}> » <{$smarty.const._MD_D3FORUM_FORUM}> » <{$forum_title}></h2>
+
+
+<{* ////— ACTION-CONTROL —\\\\ *}>
+<section data-layout="rows center-justify" class="action-control">
+
+    <div>
+        <form name="selectforum" action="<{$mod_url}>/admin/index.php" method="get">
+            <input type="hidden" name="page" value="forum_access">
+            <label for="select_forum_id"><{$smarty.const._MD_A_D3FORUM_LABEL_SELECTFORUM}></label>:
+            <select name="forum_id" id="select_forum_id"><{$forum_jumpbox_options}></select>
+            <input type="submit" value="<{$smarty.const._SUBMIT}>">
+        </form>
+    </div>
+
+    <div class="control-view">
+        <a class="button" href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum_id}>"><i class="i-edit"></i><{$smarty.const._EDIT}></a>
+
+        <button class="help-admin button-icon" type='button' data-module="<{$mydirname}>" data-help-article="#help-forum-usage" title="<{$smarty.const._HELP}>"><b>?</b></button>
+    </div>
+
+</section>
+
+
+
+<{* group form *}>
+<h3><{$smarty.const._MD_A_D3FORUM_H2_GROUPPERMS}></h3>
+
+<form name="groupperms" action="<{$mod_url}>/admin/index.php?page=forum_access&amp;forum_id=<{$forum_id}>" method="post" style="margin:20px 0px">
+	<{$gticket_hidden}>
+	<table class="outer">
+        <thead>
+		<tr>
+			<th>
+				<{$smarty.const._MD_A_D3FORUM_TH_GROUPNAME}>
+			</th>
+			<th>
+				<{$smarty.const._MD_A_D3FORUM_TH_CAN_READ}>
+				<input type="checkbox" onclick="with(document.groupperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('gcol_1_')>=0){elements[i].checked=this.checked;}}}">
+			</th>
+			<th>
+				<{$smarty.const._MD_A_D3FORUM_TH_CAN_POST}>
+				<input type="checkbox" onclick="with(document.groupperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('gcol_2_')>=0){elements[i].checked=this.checked;}}}">
+			</th>
+			<th>
+				<{$smarty.const._MD_A_D3FORUM_TH_CAN_EDIT}>
+				<input type="checkbox" onclick="with(document.groupperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('gcol_3_')>=0){elements[i].checked=this.checked;}}}">
+			</th>
+			<th>
+				<{$smarty.const._MD_A_D3FORUM_TH_CAN_DELETE}>
+				<input type="checkbox" onclick="with(document.groupperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('gcol_4_')>=0){elements[i].checked=this.checked;}}}">
+			</th>
+			<th>
+				<{$smarty.const._MD_A_D3FORUM_TH_POST_AUTO_APPROVED}>
+				<input type="checkbox" onclick="with(document.groupperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('gcol_5_')>=0){elements[i].checked=this.checked;}}}">
+			</th>
+			<th>
+				<{$smarty.const._MD_A_D3FORUM_TH_IS_MODERATOR}>
+				<input type="checkbox" onclick="with(document.groupperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('gcol_6_')>=0){elements[i].checked=this.checked;}}}">
+			</th>
+		</tr>
+        </thead>
+        <tbody>
+		<{$group_trs}>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="100"><input type="submit" name="group_update" value="<{$smarty.const._SUBMIT}>"></td>
+        </tr>
+        </tfoot>
+	</table>
+</form>
+
+
+<{* user form *}>
+<h3><{$smarty.const._MD_A_D3FORUM_H2_USERPERMS}></h3>
+<div class="help-tips"><{$smarty.const._MD_A_D3FORUM_NOTICE_ADDUSERS}></div>
+
+<form name="userperms" action="<{$mod_url}>/admin/index.php?page=forum_access&amp;forum_id=<{$forum_id}>" method="post" style="margin:20px 0px">
+	<{$gticket_hidden}>
+	<table class="outer">
+        <thead>
+		<tr>
+			<th><{$smarty.const._MD_A_D3FORUM_TH_UID}></th>
+			<th><{$smarty.const._MD_A_D3FORUM_TH_UNAME}></th>
+			<th><{$smarty.const._MD_A_D3FORUM_TH_CAN_READ}></th>
+			<th>
+				<{$smarty.const._MD_A_D3FORUM_TH_CAN_POST}>
+				<input type="checkbox" onclick="with(document.userperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&(elements[i].id.indexOf('ucol_2_')>=0||elements[i].id.indexOf('ncol_2_')>=0)){elements[i].checked=this.checked;}}}">
+			</th>
+			<th>
+				<{$smarty.const._MD_A_D3FORUM_TH_CAN_EDIT}>
+				<input type="checkbox" onclick="with(document.userperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&(elements[i].id.indexOf('ucol_3_')>=0||elements[i].id.indexOf('ncol_3_')>=0)){elements[i].checked=this.checked;}}}">
+			</th>
+			<th>
+				<{$smarty.const._MD_A_D3FORUM_TH_CAN_DELETE}>
+				<input type="checkbox" onclick="with(document.userperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&(elements[i].id.indexOf('ucol_4_')>=0||elements[i].id.indexOf('ncol_4_')>=0)){elements[i].checked=this.checked;}}}">
+			</th>
+			<th>
+				<{$smarty.const._MD_A_D3FORUM_TH_POST_AUTO_APPROVED}>
+				<input type="checkbox" onclick="with(document.userperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&(elements[i].id.indexOf('ucol_5_')>=0||elements[i].id.indexOf('ncol_5_')>=0)){elements[i].checked=this.checked;}}}">
+			</th>
+			<th>
+				<{$smarty.const._MD_A_D3FORUM_TH_IS_MODERATOR}>
+				<input type="checkbox" onclick="with(document.userperms){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&(elements[i].id.indexOf('ucol_6_')>=0||elements[i].id.indexOf('ncol_6_')>=0)){elements[i].checked=this.checked;}}}">
+			</th>
+		</tr>
+        <thead>
+        <tbody>
+		<{$user_trs}>
+		<{$newuser_trs}>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="100"><input type="submit" name="user_update" value="<{$smarty.const._SUBMIT}>"></td>
+        </tr>
+        </tfoot>
+	</table>
+</form>

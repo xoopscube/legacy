@@ -1,0 +1,55 @@
+<p><img src="<{$xoops_url}>/modules/profile/images/form_add.png" alt="<{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DATA}>" aria-label="<{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DATA}>" /> <a href="index.php?action=DataEdit"><{$smarty.const._MD_PROFILE_LANG_ADD_A_NEW_DATA}></a></li>
+</p>
+
+<!-- You can add a search function like below
+Search string field :
+<form action="index.php" method="GET">
+  <fieldset>
+  <input type="hidden" name="action" value="DataList" />
+  <input type="text" name="stringfield" value="" />
+  <input type="submit" class="button submit" value="<{$smarty.const._SUBMIT}>" />
+  </fieldset>
+</form>
+-->
+
+
+<table class="outer">
+    <tr>
+        <th><{$smarty.const._MD_PROFILE_LANG_UID}>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=<{$smarty.const.PROFILE_DATA_SORT_KEY_UID}>">
+                <img src="<{$xoops_url}>/modules/profile/images/up.png" alt="<{$smarty.const._ASCENDING}>" aria-label="<{$smarty.const._ASCENDING}>"></a>
+            <a href="<{$pageNavi->renderUrlForSort()}>&amp;<{$pageNavi->getPrefix()}>sort=-<{$smarty.const.PROFILE_DATA_SORT_KEY_UID}>">
+                <img src="<{$xoops_url}>/modules/profile/images/down.png" alt="<{$smarty.const._DESCENDING}>" aria-label="<{$smarty.const._DESCENDING}>"></a></th>
+        <th><{$smarty.const._MD_PROFILE_LANG_UNAME}></th>
+
+        <{foreach item=def from=$definitions}>
+        <th><{$def->getShow('field_name')}></th>
+        <{/foreach}>
+
+        <th><{$smarty.const._MD_PROFILE_LANG_CONTROL}></th>
+    </tr>
+
+    <{foreach item=obj from=$objects}>
+    <tr>
+        <td><{$obj->getShow('uid')}></td>
+        <td><{$obj->getShow('uid')|xoops_user:"user_name"}></td>
+
+        <{foreach item=def2 from=$definitions}>
+        <td>
+            <{$obj->showField($def2->getShow('field_name'), 2)}>
+        </td>
+        <{/foreach}>
+
+        <td>
+            <a href="./index.php?action=DataView&amp;uid=<{$obj->getShow('uid')}>">
+                <img src="<{$xoops_url}>/modules/profile/images/form_view.png" alt="<{$smarty.const._VIEW}>" aria-label="<{$smarty.const._VIEW}>"></a>
+            <a href="./index.php?action=DataEdit&amp;uid=<{$obj->getShow('uid')}>">
+                <img src="<{$xoops_url}>/modules/profile/images/form_edit.png" alt="<{$smarty.const._EDIT}>" aria-label="<{$smarty.const._EDIT}>"></a>
+            <a href="./index.php?action=DataDelete&amp;uid=<{$obj->getShow('uid')}>">
+                <img src="<{$xoops_url}>/modules/profile/images/form_delete.png" alt="<{$smarty.const._DELETE}>" aria-label="<{$smarty.const._DELETE}>"></a>
+        </td>
+    </tr>
+    <{/foreach}>
+
+</table>
+<nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>

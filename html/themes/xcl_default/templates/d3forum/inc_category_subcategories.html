@@ -1,0 +1,47 @@
+<h4 class="block-title subcategories"><{$smarty.const._MD_D3FORUM_SUBCATEGORIES}></h4>
+
+<{foreach item="subcategory" from=$category.subcategories}>
+<div id="subcategory-<{$subcategory.id}>" class="category-sub">
+
+    <div class="headings">
+        <h3>
+            <a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>" title="<{$subcategory.desc}>">
+                <img class="svg category_<{$subcategory.bit_new}>" src="<{$xoops_url}>/images/icons/category_<{$subcategory.bit_new}>.svg" width="1em" alt="<{$subcategory.title}>">
+                <{$subcategory.title}>
+            </a>
+
+            <{if $xoops_isadmin}>
+            <a href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$subcategory.id}>"
+               aria-label="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>"
+               data-tooltip="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>">
+                <img class="svg edit" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" alt="edit">
+            </a>
+            <{/if}>
+        </h3>
+
+        <{* ------- Activity Overview - Subcategories *}>
+        <p class="forum-activity">
+            <{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}> <span class="badge"><{$subcategory.topics_count_in_tree}></span>
+            <{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}> <span class="badge"><{$subcategory.posts_count_in_tree}></span>
+            <{if $subcategory.last_post_time}>
+            <{$smarty.const._MD_D3FORUM_LASTPOST}>: <span class="badge"><{$subcategory.last_post_time_formatted}></span>
+            <{/if}>
+
+            <{if $mod_config.show_rss}>
+            <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$subcategory.id}>&amp;odr=1" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>">
+                <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" alt="RSS">
+            </a>
+            <{/if}>
+        </p>
+        <{* ------- /Activity Overview - Subcategories *}>
+
+    </div>
+
+    <{if $subcategory.desc}>
+    <div class="description">
+        <{$subcategory.desc}>
+    </div>
+    <{/if}>
+
+</div>
+<{/foreach}>

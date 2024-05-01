@@ -1,0 +1,24 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{if !empty($topic.comment_link)}>
+
+	<h4><a href="<{$topic.comment_link}>" title="topic-comment-link"><{$smarty.const._MD_D3FORUM_LINK_COMMENTSOURCE}>123</a></h4>
+
+    <{elseif isset($topic.comment_description) && is_array($topic.comment_description)}>
+
+    <div class="grid-left">
+        <div><{$smarty.const._MD_D3FORUM_COM_SUMMARY}></div>
+        <div><{$topic.comment_description.summary}></div>
+    </div>
+
+    <p><a href="<{$xoops_url}>/modules/<{$topic.comment_description.dirname}>/">
+        <img class="svg" src="<{$xoops_url}>/modules/<{$topic.comment_description.dirname}>/images/module_icon.svg" width="1em" height="1em" alt="<{$topic.comment_description.module_name}>"> 
+        <{$topic.comment_description.module_name}></a> : 
+        <a href="<{$topic.comment_description.uri}>" data-tooltip="<{$smarty.const._MD_D3FORUM_COM_SUBJECT}>"><{$topic.comment_description.subject}></a>
+    </p>
+
+    <{elseif isset($topic.comment_description)}>
+    <div title="topic-comment-description"><{$topic.comment_description}></div>
+
+<{/if}>

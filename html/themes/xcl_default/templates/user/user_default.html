@@ -1,0 +1,53 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav aria-label="breadcrumb">
+    <ul>
+    <li><a href="<{$xoops_url}>/">
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home">
+        </a>
+    <li aria-current="page"><{$smarty.const._LOGIN}>
+    </ul>
+</nav>
+
+<hr>
+
+    <article class="user-login">
+
+        <h2><{$smarty.const._LOGIN}></h2>
+
+        <form action="<{$xoops_url}>/user.php" method="post">
+            <{xoops_input type=hidden name=op value=login}>
+            <{xoops_input type=hidden name=xoops_redirect value=$redirect_page}>
+
+        <label for="uname" aria-label="<{$smarty.const._USERNAME}>">
+
+        <input type="text" name="uname" id="uname" placeholder="<{$smarty.const._USERNAME}>" value="<{$usercookie}>">
+        <{* xoops_input type=text name=uname size=25 maxlength=25 value=$usercookie *}>
+        </label>
+
+        <label for="pass" aria-label="<{$smarty.const._PASSWORD}>">
+
+        <input type="password" name="pass" id="pass" placeholder="<{$smarty.const._PASSWORD}>">
+        <{* xoops_input type=password name=pass id="pass" size=25 maxlength=32 placeholder=$smarty.const._PASSWORD  *}>
+        </label>
+
+        <div>
+            <button type="submit" role="button" value="<{$smarty.const._LOGIN}>">
+                <img class="svg login" src="<{$xoops_url}>/images/icons/login.svg" alt="<{$smarty.const._LOGIN}>">
+                <{$smarty.const._MB_USER_LOGIN}>
+            </button>
+        </div>
+
+        <div>
+            <a href="<{$xoops_url}>/lostpass.php"><{$smarty.const._MB_USER_LOSTPASS}></a>
+
+            <{if $allowRegister}>
+                |  &nbsp; <a href="<{$xoops_url}>/register.php"><{$smarty.const._MD_USER_LANG_NOTREGISTERED}></a>
+            <{/if}>
+        </div>
+
+        </form>
+
+    </article>
+

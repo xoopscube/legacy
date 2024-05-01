@@ -1,0 +1,5 @@
+<div class="tag_select">
+<{foreach item=item from=$cloud key=tag}>
+  <span<{if in_array($tag, $tags)}> class="selected"<{/if}>><{$tag|xoops_escape}></span>
+<{/foreach}>
+</div>

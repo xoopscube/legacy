@@ -1,0 +1,56 @@
+<{* set tab sent-box to active *}>
+<{assign var="outboxView" value="ui-tabs-active ui-state-active"}>
+
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav aria-label="breadcrumb">
+<ul>
+    <li><a href="<{$xoops_url}>/"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a></li>
+    <li><a href="index.php"><img class="svg" src="<{$xoops_url}>/images/icons/inbox-out.svg" width="1em" height="1em" alt="outbox"> <span data-self="sm-hide"><{$smarty.const._MI_MESSAGE_NAME}></span></a></li>
+    <li><a href="index.php?action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a></li>
+    <li aria-current="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></li>
+</ul>
+</nav>
+
+
+<article id="mail-outbox-view">
+
+    <header>
+        <{include file=db:message_nav.html}>
+    </header>
+
+    <div id="printhis">
+
+        <div class="headings">
+        <h3 class="mail-subject" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE3}>"><{$msgdata.title}></h3>
+            <div class="flex-justify">
+                <div class="mail-to" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>">
+                    <{$smarty.const._MD_MESSAGE_TEMPLATE9}> <img src="<{$msgdata.to_uid|xoops_user_avatarize}>" width="24px" data-self="radius-circle" alt="avatar">
+                    <{$msgdata.toname}>
+                </div>
+                <div class="mail-date" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE10}>">
+                    <img class="svg datetime" src="<{$xoops_url}>/images/icons/datetime.svg" alt="datetime"> <span class="badge"><{$msgdata.utime|xoops_formattimestamp:l}></span>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="mail-content" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>">
+            <{$msgdata.message}>
+        </div>
+
+    </div><{* printhis *}>
+
+    
+    <footer class="action-control">
+        <form id="message-delete" method="post" action="index.php?action=delete&amp;inout=out">
+            <input type="hidden" name="outbox" value="<{$msgdata.outbox_id}>">
+            <button type="submit" role="button" class="outline secondary delete" value="<{$smarty.const._MD_MESSAGE_TEMPLATE14}>">
+                <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt="delete"> <{$smarty.const._MD_MESSAGE_TEMPLATE14}>
+            </button>
+       </form>     
+    </footer>
+    
+
+</article>

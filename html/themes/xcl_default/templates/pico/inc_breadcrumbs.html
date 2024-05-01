@@ -1,0 +1,21 @@
+<nav aria-label="breadcrumb">
+<ul>
+    <li><a href="<{$xoops_url}>/">
+        <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home">
+    </a>
+    <li><a href="<{$mod_url}>/index.php">
+    <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="category"> <{$smarty.const._MD_PICO_TOP}></a>
+    <{* Smarty Truncate for Modules sub-links eg: D3Forum and Pico
+    This truncates a variable to a character length, the default is 80.
+    As an optional second parameter, you can specify a string of text to display at the end if the variable was truncated. *}>
+    <{foreach from=$xoops_breadcrumbs key="i" item="bc"}>
+        <{if $i > 0}>
+            <{if !empty($bc.url)}>
+        <li><a href="<{$bc.url}>"><{$bc.name|truncate:25}></a>
+            <{else}>
+        <li aria-current="page"><{$bc.name|truncate:30}>
+            <{/if}>
+        <{/if}>
+    <{/foreach}>
+</ul>
+</nav>

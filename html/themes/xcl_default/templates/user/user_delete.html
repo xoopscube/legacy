@@ -1,0 +1,22 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+
+<{if $actionForm->hasError()}>
+<div class="alert error">
+  <ul>
+    <{foreach item=message from=$actionForm->getErrorMessages()}>
+      <li><{$message}></li>
+    <{/foreach}>
+  </ul>
+</div>
+<{/if}>
+
+<div class='alert confirm'>
+  <h4><{$self_delete_message|nl2br}></h4>
+  <form method="post" action="#">
+    <{xoops_token form=$actionForm}>
+    <input type="submit" class="ui-button delete" value="<{$smarty.const._DELETE}>" />
+    <input type="button" class="ui-button cancel" name="confirm_back" value="<{$smarty.const._CANCEL}>"  onclick="javascript:history.go(-1);" />
+  </form>
+</div>

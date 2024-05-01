@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="<{$xoops_langcode}>">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>">
+    <meta http-equiv="content-language" content="<{$xoops_langcode}>">
+    <title><{$xoops_sitename}></title>
+
+    <!-- !TODO : Fix this to default package stylesheet ! -->
+
+    <link rel="stylesheet" href="<{$xoops_url}>/modules/legacy/admin/theme/style.css">
+
+    <style>
+        body {
+            margin          : 2em;
+            transition      : background 500ms ease-in-out, color 200ms ease;
+        }
+        .wrapper-delete {
+            align-content   : center;
+            display         : flex;
+            flex-direction  : column;
+            justify-content : center;
+            min-height      : 100vh;
+        }
+        .wrapper-delete > * {
+            margin          : 1em auto;
+        }
+        table {
+            width           : 100%;
+            border-spacing  : 1px;
+            border-collapse : separate;
+        }
+        td {
+            padding         : 1em 2em;
+        }
+        .icon-delete {
+            color           :#f44336;
+            vertical-align  : middle; /* Align icon and text */
+            width           : 1.5em; /* Size icon to text */
+        }
+    </style>
+</head>
+<body>
+
+
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+
+<div class="wrapper-delete">
+    <h2><{$smarty.const._UNINSTALL}></h2>
+    <h3>
+        <img class="svg package-uninstall" src="<{$xoops_url}>/images/icons/uninstall.svg">
+    </h3>
+    <h4><{$smarty.const._UNINSTALL_CONFIRM}></h4>
+    <p><{$lang_ifnotreload}></p>
+    <form action="<{$xoops_url}>/index.php" method="post">
+        <div>
+            <input type="hidden" name="cube_module_uninstallok" value="<{$cube_module_uninstall}>">
+            <input class="ui-button delete" type="submit" value="<{$smarty.const._UNINSTALL}>">
+        </div>
+    </form>
+
+</div>
+
+</body>
+
+</html>
