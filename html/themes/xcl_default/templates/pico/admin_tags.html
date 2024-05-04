@@ -25,7 +25,7 @@
             </select>
         </label>
         <input type="submit" value="<{$smarty.const._GO}>">
-        <{$pagenav}>
+       <nav><{$pagenav}></nav>
     </form>
 
     <div class="control-view">
@@ -70,7 +70,7 @@
 
         </td>
         <td class="list_date"><span class="badge"><{$tag.created_time|formatTimestamp}></span></td>
-        <td class="list_control"><input type="checkbox" name="action_selects[<{$tag.label}>]" id="col_action_<{$tag.id}>" value="1">
+        <td class="list_control"><input type="checkbox" name="action_selects[<{$tag.label}>]" id="col_action_<{$tag.id|default:''}>" value="1">
         </td>
         </tr>
         <{/foreach}>

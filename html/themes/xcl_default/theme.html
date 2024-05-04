@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="<{$xoops_langcode}>" data-theme="dark">
 <!--
 /*
@@ -17,7 +17,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark" />
-
     <title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
     <meta name="description" content="<{$xoops_meta_description}>">
     <meta name="robots" content="<{$xoops_meta_robots}>">
@@ -60,8 +59,6 @@
     <{* ----- CSS - PicoCSS ----- *}>
     <link rel="preload" href="<{$xoops_imageurl}>css/pico.amber.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="<{$xoops_imageurl}>css/pico.amber.min.css"></noscript>
-    <{* ----- CSS - PicoCSS default styles [color scheme] ----- *}>
-    <!-- <link rel="stylesheet" href="<{$xoops_imageurl}>css/pico.amber.min.css" /> -->
     <!-- RMV: added module header -->
     <{$xoops_module_header}>
     <!-- Defer JavaScript -->
@@ -80,9 +77,7 @@
     color: var(--pico-secondary-inverse); /*Active color*/}}
     </style>
 </head>
-
 <body class="<{$xoops_dirname}>">
-
 <header>
 <nav class="container-fluid nav-top">
     <ul>
@@ -91,7 +86,7 @@
         </a></li>
         <li>
             <a href="<{$xoops_url}>/" class="contrast nav-logo" title="<{$xoops_slogan}>">
-                LOGO
+                <img src="<{$logotype}>" width="24px" height="auto" alt=""> LOGO
                 <span data-self="sm-hide"><{$xoops_sitename}></span>
             </a>
         </li>
@@ -112,7 +107,7 @@
 <{if $xoops_is_top|default:''}> 
 <{include file="$xoops_theme/component/block-center-top.html"}>
 <{else}> 
-<!-- <section class="container" id="block-top"> aDD A CUSTOMIZED HEADER FOR MODULES </section> -->
+<!-- <section class="container" id="block-top"> ADD A CUSTOMIZED HEADER FOR MODULES </section> -->
 <{/if}>
 
 <{* Main *}>
@@ -141,22 +136,13 @@
     <aside id="block-right">
         <nav class="block-sticky">
             <{include file="$xoops_theme/component/block-right.html"}>
-
-            <details open="">
-                <summary>Content</summary>
-                <ul>
-                    <li><a class="secondary" href="/docs/color-schemes" aria-current="page">Introduction</a></li>
-                    <li><a class="secondary" href="/docs/color-schemes#usage">Usage</a></li>
-                    <li><a class="secondary" href="/docs/color-schemes#example">Card example</a></li>
-                </ul>
-            </details>
         </nav>
     </aside>
     <{/if}>
 
 </main>
 
-<{if $xoops_banner !="&nbsp;"}>
+<{if $banner !="&nbsp;"}>
 <section role="banner">
     <div class="container">
         <article class="flex-justify">
@@ -245,7 +231,7 @@
     </a>
 </div>
 
-<{if $xoops_banner !="&nbsp;"}>
+<{if $banner !="&nbsp;"}>
 <section role="banner">
     <div class="container">
         <article class="flex-justify">

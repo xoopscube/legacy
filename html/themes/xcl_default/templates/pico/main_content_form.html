@@ -4,9 +4,10 @@
 
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
 
+
 <form name="contentform"
       id="contentform"
-      action="<{$mod_url}>/index.php?page=<{$page}>&amp;content_id=<{$content.id}>&amp;ret=<{$smarty.get.ret|escape:'url'}>"
+      action="<{$mod_url}>/index.php?page=<{$page}>&amp;content_id=<{$content.id}>&amp;ret=<{$smarty.get.ret|escape:'url'|default:''}>"
       method="post"
       onsubmit="return xoopsFormValidate_contentform();"
       enctype="multipart/form-data">
@@ -19,7 +20,7 @@
 <article class="pico_container" id="<{$mydirname}>_container">
 
 	<header>
-        <h2><{$formtitle}>: <{$content.subject}></h2>
+        <h2><{$formtitle}> <{$content.subject}></h2>
 
         <{if !$content.approval}>
         <strong class="badge warning">
@@ -47,19 +48,6 @@
         <{/if}>
 
 	</header>
-
-    <{if isset($preview)}>
-        <{foreach from=$preview.errors item="error_message"}>
-        <p onmouseover="document.contentform.vpath.focus();document.contentform.vpath.style.border='#FFFFCC';">
-            <em class="pico_notice"><{$error_message}></em>
-        </p>
-        <{/foreach}>
-        <h2 class="pico_title"><{$smarty.const._PREVIEW}></h2>
-        <div class="pico_body pico_preview" id="<{$mydirname}>_body">
-        <{$preview.body}>
-        </div>
-    <{/if}>
-
 
 	<{* -------Article subject of waiting content *}>
 		<{if $content.subject_waiting && $page !='makecontent'}>
@@ -115,19 +103,25 @@
 
 	<{* ------- image upload *}>
 	<label for="ei_image">
-		Image
-		<input type="file" id="ei_image" name="ei_image">
+		Image 
+		<input type="file" id="ei_image" name="ei_image" accept="image/gif, image/jpg, image/jpeg, image/png" />
 		<input type="hidden" name="ef_image" value="<{$content.ef.image|default:''|escape}>">
-		<{if isset($content.ef.image)}>
+		<{if (empty($content.ef.image))}>
+		<small id="email-helper"><b class="badge">.gif</b> <b class="badge">.jpg</b> <b class="badge">.jpeg</b> <b class="badge">.jfif</b> <b class="badge">.pjpeg</b> <b class="badge">.pjp</b> <b class="badge">.png</b></small>
+		<{else}>
 		<a href="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_0_<{$content.ef.image|escape}>">
-			<img src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_1_<{$content.ef.image|escape|default:''}>">
+			<img src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_1_<{$content.ef.image|escape|default:''}>" 
+			width="50%" 
+			height="auto" 
+			style="aspect-ratio: 1/0.5;"
+			title="aspect-ratio: 1/0.5">
 		</a>
 		<{/if}>
 	</label>
 
 
 <{* ------- extra fields sample (TEXTBOX) -------
-	<div>
+<div>
 
 	<label for="pronunciation">
         Pronunciation
@@ -328,7 +322,7 @@
 		</fieldset>
 	</div>
 
-	<{* ------- CONTENT FILTERS *}>
+	<{* ------- CONTENT FILTERS - CODE SYNTAX *}>
     <h5>
 	<label for='filters_onoff'>
 		<input class='switch' role="switch" type='checkbox' id='filters_onoff' onclick="slideToggle('.content-filters', this)" value='0'>
@@ -513,33 +507,70 @@
 
 
 <footer>
-
-    <div class="action-control">
+	<div class="grid">
 		<{if $page == 'contentmanager' && $category.can_delete}>
-			<button type="submit" role="button" class="outline delete" name="contentman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECONTENT}>')">
-				<{$smarty.const._DELETE}></button>
+		<button type="submit" role="button" class="outline delete" name="contentman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECONTENT}>')">
+			<img class="svg" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"> 
+			<{$smarty.const._DELETE}>
+		</button>
 		<{/if}>
 
-		<button type="submit" role="button" class="outline" name="contentman_preview" id="contentman_preview" value="<{$smarty.const._PREVIEW}>"><{$smarty.const._PREVIEW}></button>
-
-		<button type="submit" role="button" class="primary" name="contentman_post" id="contentman_post" value="<{$smarty.const._MD_PICO_BTN_SUBMITEDITING}>"><{$smarty.const._MD_PICO_BTN_SUBMITEDITING}></button>
-
+		<button type="submit" role="button" class="outline" name="contentman_preview" id="contentman_preview" value="<{$smarty.const._PREVIEW}>">
+			<img class="svg" src="<{$xoops_url}>/images/icons/view.svg" width="1em" height="1em" alt="preview"> 
+			<{$smarty.const._PREVIEW}>
+		</button>
+<{* ----- capture controls for modal preview *}>
+<{capture name="controllers"}>
+		<button type="submit" role="button" class="primary" name="contentman_post" id="contentman_post" value="<{$smarty.const._MD_PICO_BTN_SUBMITEDITING}>">
+			<img class="svg" src="<{$xoops_url}>/images/icons/check.svg" width="1em" height="1em" alt="check"> <{$smarty.const._MD_PICO_BTN_SUBMITEDITING}>
+		</button>
 
 		<{if !$content.approval && $category.isadminormod && $page !='makecontent'}>
 			<button type="submit" role="button" class="primary" name="contentman_copyfromwaiting" value="<{$smarty.const._MD_PICO_BTN_COPYFROMWAITING}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>')">
 			<{$smarty.const._MD_PICO_BTN_COPYFROMWAITING}></button>
-
 		<{elseif $page == 'contentmanager'}>
-
 			<button type="submit" role="button" class="outline save-copy" name="contentman_post" id="contentman_saveas" value="<{$smarty.const._MD_PICO_BTN_SUBMITSAVEAS}>" onclick="document.contentform.action='<{$mod_url}>/index.php?page=makecontent&amp;content_id=0';return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMSAVEASCONTENT}>');">
 			<{$smarty.const._MD_PICO_BTN_SUBMITSAVEAS}></button>
-
 		<{/if}>
-	</div>
-	
-</footer>
+<{/capture}>
 
+	<{if trim($smarty.capture.controllers)}>
+		<{$smarty.capture.controllers}>
+	<{/if}>
+</div>
+</footer>
 </article>
+
+
+<{if isset($preview)}><{$gticket_hidden}>
+<dialog id="preview-content" open>
+    <article>
+        <header>
+            <a href="#" title="Cancel" class="close" onclick="javascript:history.go(-1);" title="<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>"></a>
+            <h4><{$smarty.const._PREVIEW}></h4>
+        </header>
+        <div>
+			<{foreach from=$preview.errors item="error_message"}>
+			<p onmouseover="document.contentform.vpath.focus();document.contentform.vpath.style.border='#FFFFCC';">
+				<em class="pico_notice"><{$error_message}></em>
+			</p>
+			<{/foreach}>
+		
+            <{$preview.body}>
+        </div>
+        <footer>
+            <div class="grid">
+                <a href="#" role="button" class="secondary" onclick="javascript:history.go(-1);" title="<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>">Cancel</a>
+			<{if trim($smarty.capture.controllers)}>
+				<{$smarty.capture.controllers}>
+			<{/if}>
+            </div>
+        </footer>
+    </article>
+</dialog>
+<{/if}>
+
+
 </form>
 <{* ------- Start Form Validation JavaScript /*}>
 <script type="text/javascript">

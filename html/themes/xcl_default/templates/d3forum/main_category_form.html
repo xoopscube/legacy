@@ -98,12 +98,12 @@
 
     <footer class="action-control">
         <{if $page == 'categorymanager' && $children_count == 0}>
-        <button type="submit" role="button" class="outline secondary delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')">
-            <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" alt="delete"> <{$smarty.const._DELETE}></button>
+        <div>
+            <button type="submit" role="button" class="outline secondary delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')">
+            <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" alt="delete"> <{$smarty.const._DELETE}></button></div>
         <{/if}>
-        <button type="submit" role="button" class="primary" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
-            <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg" width="1em" alt="check"> <{$smarty.const._SUBMIT}>
-        </button>
+        <div><button type="submit" role="button" class="primary" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
+            <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg" width="1em" alt="check"> <{$smarty.const._SUBMIT}></button></div>
     </footer>
 </article>
 

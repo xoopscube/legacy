@@ -3,8 +3,8 @@
 
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
 
-<h2><{$smarty.const._MD_PICO_CATEGORYMANAGER}></h2>
-
+<!-- <h2><{$smarty.const._MD_PICO_CATEGORYMANAGER}></h2>
+ -->
 
 <form name="categoryform" id="categoryform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>" method="post" onsubmit="return xoopsFormValidate_categoryform();">
     <{$gticket_hidden}>
@@ -12,7 +12,7 @@
 	<article data-layout="column" class="framed" id="<{$mydirname}>_container">
 
 		<header>
-			<h3><{$formtitle}></h3>
+			<h2><{$formtitle}></h2>
 		</header>
 
 		<label for="category_pid">
@@ -77,17 +77,26 @@
                 <{* CONSTANT CUSTOM HTML: trust_path/module/pico/language/[lang]/main.php *}>
                 <{* -- DEFAULT <code><b>(option name)</b>:<u>(option value)</u></code> -- *}>
 				<{$smarty.const._MD_PICO_HOWTO_OVERRIDEOPTIONS}>
-                <div class="category_options_desc"><{$category.option_desc}></div>
+                <code class="category_options_desc"><{$category.option_desc}></code>
 		</div>
 		<{* ----- /CATEGORY OPTIONS *}>
 
-		<footer class="grid">
+		<footer>
+			<div class="grid">
+			<{if $page == 'categorymanager' && isset($children_count) == 0}>
 			<div>
-				<{if $page == 'categorymanager' && $children_count == 0}>
-				<input type="submit" role="button" class="outline delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>"
-					   onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECATEGORY}>')">
-				<{/if}>
-				<input type="submit" role="button" class="button" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
+				<button type="submit" role="button" class="outline delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>"
+					onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECATEGORY}>')">
+					<img class="svg" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"> 
+					<{$smarty.const._DELETE}>
+				</button>
+			</div>
+			<{/if}>
+			<div>
+				<button type="submit" role="button" class="button" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
+					<{$smarty.const._SUBMIT}>
+				</button>
+			</div>
 			</div>
 		</footer>
 

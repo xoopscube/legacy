@@ -7,7 +7,7 @@
 <{if $pagenav}>
 <{include file="db:`$mydirname`_inc_pagination.html"}>
 <{/if}>
-<{* if $pagenav  } >
+<{* ------- if $pagenav  } >
 <nav class="pagination" title="pagination">
     <ul class="pagenavi>">
         <li>pagenavi</li>
@@ -24,7 +24,7 @@
         <{/foreach}>
     </ul>
 </nav>
-<{ /if *}>
+<{ ------- /if *}>
 
 <h5>
     <label for="post-tree">
@@ -113,7 +113,7 @@
 
 <{if $forum.can_post && isset($plugin_params.no_form)}>
 
-<{*  link to comment input form  *}>
+<{*  ----- link to comment input form  *}>
     <div>
         <a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>&amp;external_link_id=<{$external_link_id|escape:'url'}>&amp;subject=<{$subject|escape:'url'}>">
         <{if $plugin_params.link_to_form}>
@@ -155,7 +155,6 @@
             <{elseif $post.poster_avatar.width > 1}>
                 <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="<{$post.poster_uname}>" data-self="radius-circle">
             <{else}>
-            <!--   <img src="<{$xoops_url}>/modules/user/images/no_avatar.gif" width="48" height="48" alt="<{$post.poster_uname}>" data-self="radius-circle">-->
                 <img class="svg user" src="<{$xoops_url}>/images/icons/user.svg" width="48px" height="48px" alt="<{$post.poster_uname}>">
             <{/if}>
         <{/if}>

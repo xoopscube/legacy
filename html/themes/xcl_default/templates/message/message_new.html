@@ -9,8 +9,6 @@
 </ul>
 </nav>
 
-
-
 <article id="mail-new">
 
     <header>
@@ -54,11 +52,15 @@
         <label for="note" class="note"><{$smarty.const._MD_MESSAGE_TEMPLATE4}>
         <{xoops_dhtmltarea class="form-control" rows=7 id=note name=note value=$mActionForm->get('note') editor=bbcode}>
         </label>
-
-        <footer class="action-control grid">
+        
+        <hr>
+        
+        <footer>
+            <div class="grid">
             <{legacy_button class="outline" role="button" id=Preview Text=$smarty.const._MD_MESSAGE_TEMPLATE5}>
 
             <{legacy_button class="primary" role="button" id=Submit Text=$smarty.const._MD_MESSAGE_TEMPLATE6}>
+            </div>
         </footer>
 
     </form>

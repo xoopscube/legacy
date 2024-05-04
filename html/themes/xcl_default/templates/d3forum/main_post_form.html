@@ -154,6 +154,14 @@
         </label>
         <{/if}>
 
+        <!-- notification thread-new_post -->
+        <{if $allow_notify}>
+        <label for="notify">
+            <input type="checkbox" name="notify" id="notify" value="1" <{$notify_checked}>>
+            <{$smarty.const._MD_D3FORUM_LABEL_NEWPOSTNOTIFY}>
+        </label>
+        <{/if}>
+
         <!-- html -->
         <{if $allow_html}>
         <label for="html">
@@ -179,14 +187,6 @@
             <label for="attachsig">
                 <input type="checkbox" name="attachsig" id="attachsig" value="1" <{$attachsig_checked}>>
                 <{$smarty.const._MD_D3FORUM_LABEL_ATTACHSIG}>
-            </label>
-            <{/if}>
-
-            <!-- notification thread-new_post -->
-            <{if $allow_notify}>
-            <label for="notify">
-                <input type="checkbox" name="notify" id="notify" value="1" <{$notify_checked}>>
-                <{$smarty.const._MD_D3FORUM_LABEL_NEWPOSTNOTIFY}>
             </label>
             <{/if}>
 
@@ -250,48 +250,50 @@
 
 
 	<footer>
-        <div class="action-control">
+        <div class="grid">
         <{if $mode == "reply"}>
 
         <a role="button" class="outline primary" href="javascript:void(0);" onclick="if(xoopsGetElementById('post_reference').style.display=='none'){xoopsGetElementById('post_reference').style.display='block'}else{xoopsGetElementById('post_reference').style.display='none'};">
-        <img class="svg comment-quote" src="<{$xoops_url}>/images/icons/comment-quote.svg">
+        <img class="svg" src="<{$xoops_url}>/images/icons/comment-quote.svg" width="1em" height="1em" alt="quote">
             <{$smarty.const._MD_D3FORUM_REFERENCEPOST}></a>
         <{/if}>
 
         <button type="submit" role="button" class="outline" name="contents_preview" id="contents_preview" value="<{$smarty.const._PREVIEW}>">
-            <img class="svg preview" src="<{$xoops_url}>/images/icons/view.svg"> <{$smarty.const._PREVIEW}>
+            <img class="svg" src="<{$xoops_url}>/images/icons/view.svg" width="1em" height="1em" alt="preview"> <{$smarty.const._PREVIEW}>
         </button>
 
         <button type="submit" role="button" class="primary" name="content_submit" id="content_submit" value="<{$smarty.const._SUBMIT}>" onclick="return xoopsFormValidate_postform();">
-            <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg"> <{$smarty.const._SUBMIT}>
+            <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg" width="1em" height="1em" alt="check"> <{$smarty.const._SUBMIT}>
         </button>
         </div>
     </footer>
 
 </article>
-    <{if $ispreview}>
-    <dialog open>
-        <article>
-            <header>
-                <a href="#close" title="Close" class="close" onclick="javascript:history.go(-1);"></a>
-                <{$smarty.const._PREVIEW}>
-            </header>
-            <h3><{$preview_subject}></h3>
-            <div>
-                <{$preview_message}>
+
+<{if $ispreview}>
+<dialog open>
+    <article>
+        <header>
+            <a href="#close" title="Close" class="close" onclick="javascript:history.go(-1);"></a>
+            <{$smarty.const._PREVIEW}>
+        </header>
+        <h3><{$preview_subject}></h3>
+        <div>
+            <{$preview_message}>
+        </div>
+        <footer>
+            <div class="grid">
+                <a href="#" role="button" class="secondary" onclick="javascript:history.go(-1);">Cancel</a>
+                <button type="submit" role="button" class="primary" name="content_submit" id="content_submit_preview" value="<{$smarty.const._SUBMIT}>" onclick="return xoopsFormValidate_postform();">
+                    <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg"> <{$smarty.const._SUBMIT}>
+                </button>
             </div>
-            <footer>
-                <div class="grid">
-                    <a href="#" role="button" class="secondary" onclick="javascript:history.go(-1);">Cancel</a>
-                    <button type="submit" role="button" class="primary" name="content_submit" id="content_submit_preview" value="<{$smarty.const._SUBMIT}>" onclick="return xoopsFormValidate_postform();">
-                        <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg"> <{$smarty.const._SUBMIT}>
-                    </button>
-                </div>
-            </footer>
-        </article>
-    </dialog>
-    <{/if}>
-    <{$antispam.html_in_form|default:''}>
+        </footer>
+    </article>
+</dialog>
+<{/if}>
+<{$antispam.html_in_form|default:''}>
+
 </form>
 
 <{* Start Form Validation JavaScript *}>

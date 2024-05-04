@@ -10,7 +10,7 @@
     <{foreach item=module from=$searchResults}>
 
         <{* ------- Capitalize module name 'name|ucfirst' *}>
-        <h4><{$module.name|ucfirst}></h4>
+        <h4><img class="svg" src="<{$xoops_url}>/modules/<{$module.directory}>/<{$module.icon}>" width="1em" height="1em"><{$module.name|ucfirst}></h4>
 
         <{* ------- Start results item loop *}>
         <{foreach item=result from=$module.results}>

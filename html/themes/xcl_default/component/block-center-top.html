@@ -27,7 +27,7 @@ section#block-top div.grid {
     width: 400px;
     height: 400px;
     background: linear-gradient(90deg, var(--pico-primary-focus) 21%, var(--pico-primary) 100%);
-    mix-blend-mode: color-dodge;
+    /* mix-blend-mode: color-dodge; */
     -webkit-animation: move 25s infinite alternate;
             animation: move 25s infinite alternate;
     transition: 1s cubic-bezier(0.07, 0.8, 0.16, 1);
@@ -39,9 +39,9 @@ section#block-top div.grid {
           filter: blur(30px);
   box-shadow:
     inset 0 0 0 5px rgba(255, 255, 255, 0.6),
-    inset 100px 100px 0 0px #fab070,
+    inset 100px 100px 0 0px #98781c,
     inset 200px 200px 0 0px #2b86c5,
-    inset 300px 300px 0 0px #13171f;
+    inset 340px 340px 0 0px var(--pico-background-color);
 }
 
 @keyframes move {

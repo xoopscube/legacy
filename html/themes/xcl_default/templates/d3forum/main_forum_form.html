@@ -76,6 +76,8 @@
 
         <p><{$smarty.const._MD_D3FORUM_HELP_EXTERNALLINKFORMAT}></p>
 
+
+        <{* ----- FORUM OPTIONS *}>
         <h4><{$smarty.const._MD_D3FORUM_TH_FORUMOPTIONS}></h4>
 
         <label for="forum_option_controller_onoff">
@@ -84,13 +86,11 @@
             <{$smarty.const._MD_D3FORUM_ONOFF}>
         </label>
 
-
             <label id="forum_option_controller" <{if !$forum.options}>style="display:none;"<{/if}>>
                 <textarea name="options" id="forum_options" cols="50" rows="5"><{$forum.options}></textarea>
                 <br>
                 <{$smarty.const._MD_D3FORUM_HOWTO_OVERRIDEOPTIONS}>
-                <br>
-                <span class="forumoptiondesc"><{$forum.option_desc}></span>
+                <code><span class="forumoptiondesc"><{$forum.option_desc}></span></code>
             </label>
 
 		<{/if}>

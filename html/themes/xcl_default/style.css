@@ -124,18 +124,11 @@ body > footer .logos svg {
     transform       : translateY(-.0625rem)
 }
 
-/* ARTICLE H4 ONLY (FORM COMMENT/REPLY) */
-article header :where( h4:only-child){
+/* ARTICLE H* ONLY CHILD (FORM COMMENT/REPLY) */
+article header :where( h2, h3, h4 ):only-child{
     margin          : var(--pico-spacing) 0;
 }
-/* ARTICLE FOOTER BUTTON, DROPDOWN */
-article > footer :is( [role=button] ) { 
-    border          : none;
-}
-/* dropdown */
-article footer div :is(details) {
-    border-radius   : var(--pico-border-radius);
-    box-shadow      : var(--pico-button-hover-box-shadow, 0 0 0 rgba(0, 0, 0, 0)), 0 0 0 var(--pico-outline-width) var(--pico-primary-focus);
+article header :where( p:last-child ){
     margin-bottom   : 0;
 }
 
@@ -149,7 +142,7 @@ article footer div :is(details) {
 --background-color  : var(--pico-primary-focus);
     border-radius   : var(--pico-border-radius);
 }
-/* A HREF LINK UNDERLINE none */
+/* A LINK UNDERLINE none */
 a {--pico-text-decoration: none; border:none}
 :where(a:not([role=button])):is([aria-current]:not([aria-current=false]),:hover,:active,:focus), 
 [role=link] :is(a,[aria-current]:not([aria-current=false]),:hover,:active,:focus) {
@@ -160,38 +153,21 @@ a {--pico-text-decoration: none; border:none}
 }
 /* A LINK - ICON ONLY */
 :is(a.btn-icon) {
-    align-items     : center;
-    background      : var(--pico-primary-background);
-    border-radius   : var(--pico-border-radius); /* 5px; */
+    border-radius   : var(--pico-border-radius);
     box-shadow      : var(--pico-box-shadow);
     display         : inline-flex;
-    color           : var(--pico-contrast-inverse);
+    justify-content : center;
     font-weight     : 600;
-    font-size       : 20px;
-    width           : 24px;
-    height          : 24px;
-    margin          : .25rem;
-    padding         : 2px;
-    opacity         : .7;
-    transition      : opacity 0.3s ease-in;;
+    font-size       : 24px;
+    width           : 30px;
+    height          : 28px;
+    opacity         : .8;
+    transition      : opacity 0.3s ease-in;
 }
 :is(a.btn-icon):hover {
-    opacity: 1;
-}
-
-/* ARTICLE > FOOTER > DROPDOWN, FORM, BUTTON */
-article > footer {padding:var(--pico-spacing)}
-
-article > footer > :is(details.dropdown, button, div button),
-article > footer > form :is(button, [type=submit]) {
---pico-spacing      : 0;
-    margin          : var(--pico-spacing) 0;
-}
-article > footer :is(button.save-copy) {
-    border:1px solid var(--pico-form-element-valid-border-color);    
-}
-article > footer :is(button.save-copy):hover {
-    border:1px solid var(--pico-form-element-valid-active-border-color)
+    background      : var(--pico-primary-focus);
+    color           : var(--pico-secondary-inverse);
+    opacity         : 1;
 }
 
 hr { margin: 2rem 1rem; } /* @todo ? */
@@ -202,15 +178,11 @@ hr { margin: 2rem 1rem; } /* @todo ? */
     column-gap      : 1rem;
     display         : flex;
     flex-wrap       : wrap;
-    white-space     : normal;
     justify-content : space-between;
+    margin-top      : 1rem;
+    white-space     : normal;
 }
 
-:is(footer.action-control) {margin-top:2rem}
-:is(footer.action-control) :where(button, input) {margin-bottom:0; border:2PX DOTTED orange}
-:is(footer.action-control) :where(a) {
-    margin          : 0 .5em;
-}
 /* -------------------- BANNER */
 section[role=banner] > div > article {
     border          : 1px solid var(--pico-muted-border-color);
@@ -287,24 +259,86 @@ section[role=banner] > div > article {
     font-size       : 12px;
     min-width       : 3ch;
     display         : inline-block;
-    padding         : 0 0.5rem;
+    padding         : 0 0.5rem;vertical-align: baseline;
+}
+
+/* article h3 :is(.badge){font-size: 14px; } */
+:is(article, hgroup, .list-content) h3, h4, .block-title {
+    display         : flex;
+    flex-wrap       : wrap;
+    justify-content : space-between;
+    width           : 100%;
+    align-items     : baseline;
 }
 
 /* BUTTON ACTION */
 :is(.delete) {
     color           : var(--pico-del-color);
+    border-color    : var(--pico-del-color);
 }
 :is(button.vote) {
     margin-bottom   : 0;
 }
-:is(button,input[type=submit],input[type=button],[role=button]):not(summary) {
-    white-space     : nowrap;
-}
-:is([type=submit],[type=button],[role=button]) svg {
+/* :is(button,input[type=submit],input[type=button],[role=button]):not(summary) {
+    
+    white-space     : nowrap; 
+} */
+:where([type=submit],[type=button],[role=button]) svg {
     display         : inline;
-    margin          : 0 .35rem 0;
+    margin          : 0 .25rem 0; 
+    /* background:red */
 }
 
+/* :is(footer.action-control) {margin-top:2rem} *//* margin-bottom   : 0; 🟠 */
+/* :is(footer.action-control) :where(button, input) {margin-bottom:0;} */
+:where(footer.action-control, footer div.grid) 
+:is(div, button, input[type=submit],input[type=button],[role=button], details.dropdown, input, a):not(summary) { 
+    margin-bottom   : 0; 
+    white-space     : nowrap; 
+    /* border          : 2px solid orange; */
+}
+:where(footer.action-control) :is(a) {
+    border-radius   : var(--pico-border-radius);
+    margin          : 0 .5em;
+    padding         : .25rem; 
+    
+    /* border:2px solid rgb(149, 0, 255) */
+    /* padding         : var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal); */
+}
+:where(footer.action-control) :is(a, button[type=submit]):hover {
+    background      : var(--pico-primary-focus);
+    color           : var(--pico-secondary-inverse); 
+    /* border:2px solid rgb(0, 89, 255) */
+}
+/* ARTICLE > FOOTER > DROPDOWN, FORM, BUTTON */
+article > footer {
+    padding         : var(--pico-spacing)}
+
+/* article > footer > :is(details.dropdown, button, div button),
+article > footer > form :is(button, [type=submit]) {
+--pico-spacing      : 0;
+    margin          : var(--pico-spacing) 0;
+}
+article > footer :is(button.save-copy) {
+    border:1px solid var(--pico-form-element-valid-border-color);    
+}
+article > footer :is(button.save-copy):hover {
+    border:1px solid var(--pico-form-element-valid-active-border-color)
+} */
+/* ARTICLE FOOTER BUTTON, DROPDOWN, INPUT */
+/* article > footer :is( [role=button], input[role=button]) { 
+    border          : none;
+    margin-bottom   : 0;
+}
+article > footer :is( [role=button], input[role=button]):hover {
+    background      : var(--pico-form-element-focus-color);
+}
+/* dropdown */
+/*article footer div :is(details) {
+    border-radius   : var(--pico-border-radius);
+    box-shadow      : var(--pico-button-hover-box-shadow, 0 0 0 rgba(0, 0, 0, 0)), 0 0 0 var(--pico-outline-width) var(--pico-primary-focus);
+    margin-bottom   : 0;
+} */
 /* -------------------- BLOCKS */
 /* BLOCKS - Title */
 [class^="block-title"] {
@@ -386,7 +420,7 @@ summary[role="link"].contrast:is([aria-current],:hover,:active,:focus) {
     color           : var(--pico-contrast-hover);
 }
 
-/* -------------------- SEARCH FORM - PicoCSS pill 5rem */
+/* -------------------- SEARCH FORM - PicoCSS default pill: 5rem */
 
 [role=search]>:last-child {
     border-top-right-radius: 1rem;
@@ -663,8 +697,13 @@ nav.post-tree-order {
     width           : 100%;
 }
 nav.post-tree-order a {
-    padding         : .5em;
+    border-radius   : var(--pico-border-radius);
+    padding         : .25em;
     margin-right    : .5em;
+}
+nav.post-tree-order a:hover {
+    background      : var(--pico-primary-focus);
+    color           : var(--pico-secondary-inverse);
 }
 /* POST TREE */
 /* in main view, main list, comment list */
@@ -730,22 +769,13 @@ article .header-image {
     margin-bottom   : var(--pico-block-spacing-vertical);
     object-fit      : cover;
     width           : 100%;
+    border          : 2px solid var(--pico-muted-color);
+    border-radius   : var(--pico-border-radius);
 }
-
-/* List of contents */
+/* Page list of contents H3  + icons folder, docs */
 article h3 :is(span[data-tooltip]) {font-size:16px;}
-article h3 :is(span.badge){font-size: 14px;vertical-align: baseline;}
-:is(article, hgroup, .list-content) h3, h4, .block-title {
-    display         : flex;
-    flex-wrap       : wrap;
-    justify-content : space-between;
-    width           : 100%;
-    align-items     : baseline;
-}
-
 /* TAGS */
 article>footer>.content-tags {
-    /* background      : var(--pico-code-background-color); */
     color           : var(--pico-code-value-color);
     padding-top     : 1rem;
 }
@@ -812,13 +842,14 @@ ul.pagenavi li {
     padding         : 0;
     text-align      : center;
     user-select     : none;
-    margin          : 0 .125rem;
+    margin          : 0 .25rem;
     min-width       : 4ch;
 }
-ul.pagenavi li:last-of-type { margin: 0}
+/* ul.pagenavi li:last-of-type { margin: 0} */
 
 ul.pagenavi li:not([aria-current]) a {
     background      : var(--pico-form-element-background-color);
+
     margin          : 0;
     padding         : .25rem .5rem;
     width           : 100%;
@@ -830,8 +861,10 @@ ul.pagenavi li[aria-current] {
 }
 ul.pagenavi li:not([aria-current]):hover a {
     border-color    : var(--pico-primary);
+    background      : var(--pico-primary-focus);
+    color           : var(--pico-secondary-inverse);
     padding         : .25rem .5rem;
-    background      : var(--pico-contrast-focus)
+    /* background      : var(--pico-contrast-focus) */
 }
 
 /* -------------------- SYSTEM Notification  */

@@ -42,15 +42,16 @@
     </label>
 
     <h4><{$smarty.const._SR_SEARCHIN}></h4>
-
+<div class="grid">
     <{foreach item=module from=$moduleArr}>
     <label for="mids[]">
         <input type="checkbox" name="mids[]" value="<{$module.mid|xoops_escape:plain}>" <{if in_array($module.mid, $selectedMidArr)}>checked="checked"<{/if}>><{$module.name|xoops_escape}>
     </label>
     <{/foreach}>
-
+</div>
     <footer>
-    <input type="submit" role="button" class="primary" value="<{$smarty.const._SR_SEARCH}>">
+    <button type="submit" role="button" class="primary">
+        <img class="svg" src="<{$xoops_url}>/images/icons/search.svg" width="1em" height="1em" alt="search"> <{$smarty.const._SR_SEARCH}></button>
     </footer>
 
 </article>
