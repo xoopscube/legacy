@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 240 100">
+<g id="page">
+<path class="module-icon" fill="currentColor" d="M4 18.95V2l10 4.025V22.95zM16 19V4.65L9.45 2H20v17z"/>
+<text class="module-name" x="120px" y="50px" fill="currentColor">
+<tspan><![CDATA[Page]]></tspan>
+</text>
+</g>
+</svg>
