@@ -3,7 +3,7 @@
  * @package    profile
  * @version    2.3.1
  * @author     Original Author Kilica
- * @copyright  (c) 2005-2023 The XOOPSCube Project
+ * @copyright  (c) 2005-2024 The XOOPSCube Project
  * @license    GPL 2.0
  */
 
