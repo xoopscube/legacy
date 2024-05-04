@@ -18,3 +18,9 @@
 </noscript>
 
 <div class="confirmInfo nojs"><?php echo _INSTALL_L128 ?></div>
+<?php 
+if (version_compare(PHP_VERSION, '7.4.0', '>')) {
+    echo '<div class="confirmOk nojs">PHP version <code>' . PHP_VERSION . '</code></div>';
+} 
+?>
+

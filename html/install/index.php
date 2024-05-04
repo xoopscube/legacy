@@ -19,18 +19,18 @@
 */
 
 if ( PHP_VERSION_ID >= 70000 ) {
-	//error_reporting( error_reporting() ^ E_ALL & ~E_NOTICE );
-    ini_set('error_reporting', E_ERROR);
+	//error_reporting( error_reporting() ^ E_ALL & ~E_NOTICE );E_ERROR
+    ini_set('error_reporting', E_ALL & ~E_NOTICE);
 }
 
 /* ALERT PHP VERSION REQUIRED BY XCL V2.4.0 */
-if (version_compare(PHP_VERSION, '7.3.0', '<')) {
+if (version_compare(PHP_VERSION, '7.4.0', '<')) {
 	echo '<style>body{background:#222730;color:#bfcbd9;font-family:sans-serif;}
 	 .phpalert{background:#9a0a0a;color:white;font-size:16px;font-weight:600;line-height:2;width:50%;margin:3em auto;padding:1em;border:1 px solid orange;border-radius:6px;} 
 	 .phpversion{background:#222730;color:#bfcbd9;border-radius:6px;padding:4px 6px}</style>
 	 <div class="phpalert">Your PHP version <i class="phpversion">' . PHP_VERSION . '</i> 
 	 does not satisfy XOOPSCube requirements.<br>
-	 PHP version <i class="phpversion">>= 7.3</i> is required. <i class="phpversion">PHP 7.4</i> is recommended!</div>';
+	 PHP version <i class="phpversion">PHP 7.4</i> is required !</div>';
 }
 
 /*
