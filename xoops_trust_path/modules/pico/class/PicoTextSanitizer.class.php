@@ -3,7 +3,7 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
@@ -13,12 +13,8 @@
 include_once( XOOPS_ROOT_PATH . '/class/module.textsanitizer.php' );
 
 class PicoTextSanitizer extends MyTextSanitizer {
+	
 	public $nbsp = 0;
-
-	/*    public function __construct()
-		{
-			parent::__construct();
-		}*/
 
 	public static function &sGetInstance() {
 		static $instance;

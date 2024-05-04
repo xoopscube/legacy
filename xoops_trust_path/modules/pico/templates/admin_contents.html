@@ -54,8 +54,7 @@
         <thead>
         <tr>
             <th class="list_id"><{$smarty.const._MD_A_PICO_TH_CONTENTSID}></th>
-            <th><{$smarty.const._MD_PICO_TH_SUBJECT}> / <{$smarty.const._MD_PICO_TH_VIRTUALPATH}></th>
-            <th class="list_order"><{$smarty.const._MD_A_PICO_TH_CONTENTSWEIGHT}></th>
+            <th><{$smarty.const._MD_PICO_TH_SUBJECT}> / <{$smarty.const._MD_PICO_TH_VIRTUALPATH}></th>            <th class="list_order"><{$smarty.const._MD_A_PICO_TH_CONTENTSWEIGHT}></th>
             <th class="list_visible"><{$smarty.const._MD_A_PICO_TH_CONTENTSVISIBLE}><br>
                 <input type="checkbox" onclick="with(document.contents){for(i=0;i<length;i++){if(elements[i].type=='checkbox'&&elements[i].id.indexOf('col_visible_')>=0){elements[i].checked=this.checked;}}}">
             </th>
@@ -83,7 +82,8 @@
         <tr class="<{if $content.locked}>bg-red<{/if}>">
         <td class="list_id">
             <{$content.id}>
-            <{if $cat_id == $smarty.const.SPECIAL_CAT_ID_ALL}> - <i class="i-folder" title="<{$content.cat_id}><{'--'|str_repeat:$content.cat_depth_in_tree}><{$content.cat_title}>"></i>
+            <{if $cat_id == $smarty.const.SPECIAL_CAT_ID_ALL}> 
+            - <i class="i-folder" title="<{$content.cat_id}><{'--'|str_repeat:$content.cat_depth_in_tree}><{$content.cat_title}>"></i>
             <{/if}>
         </td>
         <td class="list_center">
@@ -92,6 +92,9 @@
                    name="subjects[<{$content.id}>]"
                    id="col_subject_<{$content.id}>"
                    value="<{$content.subject}>">
+                   
+                   
+                   
             <{if $content.wrap_file}><br>
             <input type="text"
                    size="27"
@@ -103,7 +106,7 @@
             <{$content.wrap_file.mtime_formatted}>
             (<{$content.wrap_file.size}> <{$smarty.const._MD_PICO_BYTE}>)
             <{/if}>
-        </td>
+            </td>
         <td class="list_order">
             <input type="number"
                    size="3"

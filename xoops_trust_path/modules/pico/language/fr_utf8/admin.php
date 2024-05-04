@@ -65,7 +65,7 @@ define( '_MD_A_PICO_TH_ID' , 'ID');
 define( '_MD_A_PICO_TH_TYPE' , 'Type');
 define( '_MD_A_PICO_TH_SUMMARY' , 'Sommaire');
 define( '_MD_A_PICO_LINK_DETAIL' , 'Détail');
-define( '_MD_A_PICO_LINK_EXTRACT' , 'Delete');
+define( '_MD_A_PICO_LINK_EXTRACT' , 'Supprimer');
 define( '_MD_A_PICO_LABEL_SEARCHBYPHRASE' , 'Recherche par phrase');
 define( '_MD_A_PICO_TH_EXTRASACTIONS' , 'Action');
 define( '_MD_A_PICO_LABEL_EXTRASRIGHTCHECKED' , 'Action groupée pour les éléments sélectionnés');
@@ -79,6 +79,6 @@ define( '_MD_A_PICO_TH_USED' , 'Utilisé');
 define( '_MD_A_PICO_LABEL_ORDER' , 'Ordre');
 
 // tips
-define( '_MD_A_PICO_TIPS_CONTENTS' , 'Content Tips');
-define( '_MD_A_PICO_TIPS_TAGS' , 'Tags Tips');
-define( '_MD_A_PICO_TIPS_EXTRAS' , 'Extras Tips');
+define( '_MD_A_PICO_TIPS_CONTENTS' , 'Conseils sur le contenu');
+define( '_MD_A_PICO_TIPS_TAGS' , 'Conseils sur les Tips');
+define( '_MD_A_PICO_TIPS_EXTRAS' , 'Conseils supplémentaires');

@@ -2,12 +2,12 @@
 /**
  * Pico content management D3 module for XCL
  *
- * @package XCL
- * @subpackage Pico
- * @version 2.3
- * @author Gijoe (Peak), Gigamaster (XCL)
+ * @package    Pico
+ * @version    XCL 2.4.0
+ * @author     Other authors Gigamaster, 2020 XCL PHP7
+ * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
- * @license GPL v2.0
+ * @license    GPL v2.0
  */
 
 $GLOBALS['pico_blocks_tags_order_options'] = ['count ASC'         => 'count ASC', 'count DESC'        => 'count DESC', 'weight ASC'        => 'weight ASC', 'weight DESC'       => 'weight DESC', 'label ASC'         => 'label ASC', 'label DESC'        => 'label DESC', 'created_time ASC'  => 'created_time ASC', 'created_time DESC' => 'created_time DESC'];

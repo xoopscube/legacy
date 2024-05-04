@@ -8,7 +8,7 @@ define( '_MD_PICO_FORMMAIL_CCMAILSUBJECT' , '(confirm) An inquiry about %s');
 define( '_MD_PICO_FORMMAIL_MAILFLDSEP' , "\n---------------------------------------------------------------\n");
 define( '_MD_PICO_FORMMAIL_MAILMIDSEP' , "\n--------\n");
 
-define( '_MD_PICO_FORMMAIL_BLOCK_POSTCONFIRM' , '<div class="confirmMsg">Are you OK?<br><input type="submit" value="Go!"> <input type="submit" name="cancel" value="Cancel"></div>');
+define( '_MD_PICO_FORMMAIL_BLOCK_POSTCONFIRM' , '<div class="confirmMsg">Confirm to submit!<br><input type="submit" value="Submit"> <input type="submit" name="cancel" value="Cancel"></div>');
 define( '_MD_PICO_FORMMAIL_BLOCK_ERROR_BEGIN' , '<div class="errorMsg"><ul>You input incompletely');
 define( '_MD_PICO_FORMMAIL_BLOCK_ERROR_END' , '</ul></div>');
 

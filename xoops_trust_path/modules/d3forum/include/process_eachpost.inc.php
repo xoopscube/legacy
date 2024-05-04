@@ -122,14 +122,14 @@ if ( is_object( $poster_obj ) ) {
 }
 
 // d3comment object
-if ( ! empty( $forum_row['forum_external_link_format'] ) ) {
+if ( isset($forum_row['forum_external_link_format']) && ($forum_row['forum_external_link_format']!==null) ) {
 	$d3com = d3forum_main_get_comment_object( $mydirname, $forum_row['forum_external_link_format'], $forum_id );
 } else {
 	$d3com = false;
 }
 
 // d3comment overridings
-if ( is_object( $d3com ) ) {
+if ( is_object( $d3com ) && (isset($topic_row['topic_external_link_id']) && ($forum_row['forum_external_link_format']!==null)) ) {
 	$can_vote     = $d3com->canVote( $topic_row['topic_external_link_id'], $can_vote, $post_row['post_id'] );
 	$can_post     = $d3com->canPost( $topic_row['topic_external_link_id'], $can_post );
 	$can_reply    = $d3com->canReply( $topic_row['topic_external_link_id'], $can_reply, $post_row['post_id'] );

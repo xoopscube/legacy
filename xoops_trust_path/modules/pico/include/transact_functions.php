@@ -3,7 +3,7 @@
  * Pico content management D3 module for XCL
  * This file can be included from transaction procedures
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
@@ -265,10 +265,8 @@ function pico_sync_tags( $mydirname ) {
 		$content_ids4sql = implode( ',', $content_ids );
 		$count           = $count = sizeof( $content_ids ) ; // Gigamaster fix refactor count( $content_ids );
         // @todo @gigamaster replace INSERT INTO (results Duplicate entry for key 'PRIMARY')
-        // Using INSERT IGNORE INTO ref. https://www.tutorialspoint.com/mysql/mysql-handling-duplicates.htm
-		//$result  = $db->queryF( "INSERT IGNORE INTO " . $db->prefix( $mydirname . "_tags" ) . " SET label=$label4sql,weight=0,count='$count',content_ids='$content_ids4sql',created_time=UNIX_TIMESTAMP(),modified_time=UNIX_TIMESTAMP()" );
-        // WONT FIX - with 'ignore' the tags are not updated ! And without, output errors : duplicated and LIMIT error syntax
-		$result    = $db->queryF( "INSERT INTO ".$db->prefix($mydirname."_tags" )." SET label=$label4sql,weight=0,count='$count',content_ids='$content_ids4sql',created_time=UNIX_TIMESTAMP(),modified_time=UNIX_TIMESTAMP()" ) ;
+        // Using: INSERT IGNORE INTO
+		$result    = $db->queryF( "INSERT IGNORE INTO ".$db->prefix($mydirname."_tags" )." SET label=$label4sql,weight=0,count='$count',content_ids='$content_ids4sql',created_time=UNIX_TIMESTAMP(),modified_time=UNIX_TIMESTAMP()" ) ;
 
 		if ( ! $result ) {
 			$db->queryF( "UPDATE " . $db->prefix( $mydirname . "_tags" ) . " SET count=$count,content_ids='$content_ids4sql',modified_time=UNIX_TIMESTAMP() WHERE label=$label4sql" );

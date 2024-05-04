@@ -1,7 +1,7 @@
 <?php
 /**
  * XOOPSCube Legacy — Versão em Português
- * @version XCL 2.3.3
+ * @version XCL 2.4.0
  * @author  Nuno Luciano aka gigamaster XCL23
  * @author  Mikhail Miguel ( mikhail.miguel@gmail.com )
  * @license http://creativecommons.org/licenses/by/2.5/br/
@@ -61,7 +61,7 @@ Os módulos e temas são lançados sob as licenças BSD, GPL e MIT.<br>
 A licença BSD do XCube permite o uso proprietário e permite a incorporação do software em produtos proprietários.");
 
 define( '_WAP_BUNDLE' , 'Pacote XCL');
-define( '_WAP_BUNDLE_DSC' , "XCL v.2.3.x é um aplicativo da Web de propósito geral com uma abordagem de desenvolvimento de baixo código mantida no GitHub.
+define( '_WAP_BUNDLE_DSC' , "XCL v.2.4.x é um aplicativo da Web de propósito geral com uma abordagem de desenvolvimento de baixo código mantida no GitHub.
 Uma das principais vantagens do XCL Bundle Package são as opções expansivas que ele oferece prontas para uso.
 Você mesmo pode estendê-lo com armazenamento em nuvem seguindo as instruções simples do compositor baseado em GUI.
 Você não precisa mais baixar arquivos separadamente e carregá-los manualmente. O X-Update Manager fornece funcionalidade de um clique para ajudá-lo a obter e implantar complementos.

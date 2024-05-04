@@ -6,15 +6,15 @@
  * @version    2.3.1
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     chanoir
- * @copyright  (c) 2005-2023 Authors
+ * @copyright  (c) 2005-2024 Authors
  * @license    https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
  */
 
 function b_sitemap_show( $options )
 {
 	$member_handler = null;
- $sitemap_configsBackup = null;
- global $xoopsConfig, $xoopsDB, $xoopsUser, $xoopsUserIsAdmin;
+	$sitemap_configsBackup = null;
+	global $xoopsConfig, $xoopsDB, $xoopsUser, $xoopsUserIsAdmin;
 	global $sitemap_configs ;
 
 	$cols = empty( $options[0] ) ? 1 : (int) $options[0];
@@ -25,7 +25,7 @@ function b_sitemap_show( $options )
 	$sitemap_configs = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
 
 	$block = [];
-
+	
 	include_once(XOOPS_ROOT_PATH . '/modules/sitemap/include/sitemap.php');
 
 	// for All-time guest mode (backup uid & set as Guest)
@@ -40,7 +40,8 @@ function b_sitemap_show( $options )
 	$sitemap = sitemap_show();
 
 	// for All-time guest mode (restore $xoopsUser*)
-	if( ! empty( $backup_uid ) ) {
+	if( ! empty( $backup_uid ) && ! empty( $sitemap_configs['alltime_guest'] ) ) {
+		$member_handler =& xoops_gethandler('member');
 		$xoopsUser =& $member_handler->getUser( $backup_uid ) ;
 		$xoopsUserIsAdmin = $backup_userisadmin ;
 	}
@@ -62,7 +63,7 @@ function b_sitemap_show( $options )
 		$block['isadmin'] = $xoopsUserIsAdmin ;
 	}
 
-	$sitemap_configs = @$sitemap_configsBackup ;
+	$sitemap_configs = $sitemap_configsBackup ;
 
 	return $block;
 }

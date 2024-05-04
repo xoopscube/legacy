@@ -8,8 +8,8 @@ define( '_MB_USER_USERREG' , 'Register now!');
 define( '_MB_USER_SECURE' , 'SSL');
 define( '_MB_USER_REMEMBERME' , 'Remember Me');
 
-define( '_MB_USER_ONLINEPHRASE' , '%s user(s) online');
-define( '_MB_USER_ONLINEPHRASEX' , '%s user(s) browsing %s');
+define( '_MB_USER_ONLINEPHRASE' , '<span class="badge">%s</span> user(s) online');
+define( '_MB_USER_ONLINEPHRASEX' , '<span class="badge">%s</span> user(s) browsing <strong>%s</strong>');
 define( '_MB_USER_MEMBERS' , 'Members');
 define( '_MB_USER_GUESTS' , 'Guests');
 define( '_MB_USER_MORE' , 'more...');

@@ -2,7 +2,7 @@
 /**
  * Pico content management D3 module for XCL
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
@@ -27,13 +27,13 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = $mydirname;
-$modversion['version']          = '2.44';
-$modversion['detailed_version'] = '2.44.4';
+$modversion['version']          = '2.45';
+$modversion['detailed_version'] = '2.45.0';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'GIJ=CHECKMATE PEAK Corp. - peak.ne.jp';
 $modversion['credits']          = 'PEAK Corp. Update by XOOPS-X (10) and refactoring by @gigamaster (XCL PHP7)';
 $modversion['license']          = 'GPL';
-$modversion['image']            = '/images/module_pico.svg';
+$modversion['image']            = '/images/module_image.svg';
 $modversion['icon']             = 'images/module_icon.svg';
 $modversion['help']             = 'help.html';
 $modversion['official']         = 0;
@@ -503,7 +503,7 @@ $modversion['config'][] = [
     'description' => $constpref . '_EFIMAGES_QUALITYDSC',
     'formtype'    => 'textbox',
     'valuetype'   => 'int',
-    'default'     => 50,
+    'default'     => 75,
     'options'     => []
 ];
 $modversion['config'][] = [

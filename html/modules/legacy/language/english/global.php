@@ -55,7 +55,7 @@ Modules and themes are released under the BSD, GPL and MIT licenses.<br>
 The BSD license of XCube allows proprietary use and permits incorporation of the software into proprietary products.");
 
 define( '_WAP_BUNDLE' , 'XCL Bundle Package');
-define( '_WAP_BUNDLE_DSC' , "XCL v.2.3.x is a general purpose web application with a low code development approach maintained on GitHub. 
+define( '_WAP_BUNDLE_DSC' , "XCL v.2.4.x is a general purpose web application with a low code development approach maintained on GitHub. 
 One of the main advantages of the XCL Bundle Package is the expansive options it provides out of the box. 
 You can extend it yourself with cloud storage by following the simple instructions of the GUI-based composer. 
 You no longer need to download archives separately and upload them manually. X-Update Manager provides one-click functionality to help you get and deploy add-ons. 

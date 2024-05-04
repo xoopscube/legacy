@@ -3,7 +3,7 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
@@ -14,9 +14,6 @@ define( 'PICO_URI_MAPPER_ALLOW_CAT_ID_OVERWRITING', true );
 
 // common prepend
 require dirname( __DIR__ ) . '/include/common_prepend.inc.php';
-// global $breadcrumbsObj, $picoRequest, $permissions, $currenCategoryObj
-// global $xoopsModuleConfig(overridden)
-
 
 // redirecting for wraps mode and restoring after redirection
 if ( $xoopsModuleConfig['use_wraps_mode'] ) {

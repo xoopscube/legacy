@@ -1,4 +1,4 @@
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 <script type="text/javascript">
     function cc_changeDisplay(id){
         var elestyle = xoopsGetElementById(id).style;

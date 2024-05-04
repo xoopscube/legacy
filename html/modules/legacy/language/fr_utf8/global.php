@@ -54,7 +54,7 @@ Les modules et les thèmes sont publiés sous les licences BSD, GPL et MIT.<br>
 La licence BSD de XCube permet une utilisation propriétaire et permet l'incorporation du logiciel dans des produits propriétaires.");
 
 define( '_WAP_BUNDLE' , 'XCL Bundle Package');
-define( '_WAP_BUNDLE_DSC' , "XCL v.2.3.x est une application Web à usage général avec une approche de développement à faible code maintenue sur GitHub.
+define( '_WAP_BUNDLE_DSC' , "XCL v.2.4.x est une application Web à usage général avec une approche de développement à faible code maintenue sur GitHub.
 L'un des principaux avantages du package groupé XCL réside dans les nombreuses options qu'il offre prêtes à l'emploi.
 Vous pouvez l'étendre vous-même avec le stockage en nuage en suivant les instructions simples du compositeur basé sur l'interface graphique.
 Vous n'avez plus besoin de télécharger les archives séparément et de les télécharger manuellement. X-Update Manager fournit une fonctionnalité en un clic pour vous aider à obtenir et à déployer des modules complémentaires.

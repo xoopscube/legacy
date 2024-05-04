@@ -5,8 +5,8 @@
 // Manifesto
 $modversion['dirname']          = 'user';
 $modversion['name']             = _MI_USER_NAME;
-$modversion['version']          = '2.33';
-$modversion['detailed_version'] = '2.33.3';
+$modversion['version']          = '2.40';
+$modversion['detailed_version'] = '2.40.0';
 $modversion['description']      = _MI_USER_NAME_DESC;
 $modversion['author']           = 'The XOOPSCube Project';
 $modversion['credits']          = 'Minahito, The XOOPSCube Project';

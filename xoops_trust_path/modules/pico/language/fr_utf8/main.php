@@ -3,7 +3,7 @@
 //
 // CHECK THE FUNCTION IN THE BOTTOM OF THIS FILE (for multibyte languages)
 //
-define( '_MD_PICO_NUM' , 'Items per page');
+define( '_MD_PICO_NUM' , 'Éléments par page');
 define( '_MD_PICO_TOP' , 'TOP');
 define( '_MD_PICO_ALLCONTENTS' , 'Tout le contenu');
 define( '_MD_PICO_DELETEDCONTENTS' , 'Publications supprimées');
@@ -55,7 +55,7 @@ define( '_MD_PICO_LINK_PUBLICCATEGORYINDEX' , 'Index public');
 define( '_MD_PICO_LINK_PRINTERFRIENDLY' , 'Imprimer');
 define( '_MD_PICO_LINK_TELLAFRIEND' , 'Informer un ami');
 define( '_MD_PICO_FMT_TELLAFRIENDSUBJECT' , 'Article trouvé sur %s');
-define( '_MD_PICO_FMT_TELLAFRIENDBODY' , "Je viens de trouver un article intéressant\nSubjet:%s");
+define( '_MD_PICO_FMT_TELLAFRIENDBODY' , "Je viens de trouver un article intéressant\nSujet:%s");
 
 define( '_MD_PICO_JUMPTOTOPOFPICOBODY' , 'Haut de la page');
 define( '_MD_PICO_CSVENCODING' , 'UTF-8');

@@ -3,7 +3,7 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
@@ -20,8 +20,6 @@ $content_history_id = (int) @$_GET['content_history_id'];
 
 // common prepend
 require dirname( __DIR__ ) . '/include/common_prepend.inc.php';
-// global $breadcrumbsObj, $picoRequest, $permissions, $currenCategoryObj
-// global $xoopsModuleConfig(overridden)
 
 // add request
 $picoRequest['content_history_id'] = $content_history_id;
