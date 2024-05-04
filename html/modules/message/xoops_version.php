@@ -2,10 +2,10 @@
 /**
  * Message module for private messages and forward to email
  * @package    Message
- * @version    2.3.3
+ * @version    2.4.0
  * @author     Other authors Nuno Luciano aka gigamaster, 2020 XCL23
  * @author     Osamu Utsugi aka Marijuana
- * @copyright  (c) 2005-2023 The XOOPSCube Project, Authors
+ * @copyright  (c) 2005-2024 The XOOPSCube Project, Authors
  * @license    GPL 3.0
  */
 
@@ -22,8 +22,8 @@ $mydirpath = basename(dirname(__DIR__)) ;
 // Manifesto
 $modversion['dirname']          = basename(__DIR__);
 $modversion['name']             = _MI_MESSAGE_NAME;
-$modversion['version']          = '2.43';
-$modversion['detailed_version'] = '2.43.3';
+$modversion['version']          = '2.44';
+$modversion['detailed_version'] = '2.44.0';
 $modversion['description']      = _MI_MESSAGE_DESC;
 $modversion['author']           = 'Osamu Utsugi (aka Marijuana)';
 $modversion['credits']          = 'The XOOPSCube Project, Nuno Luciano aka Gigamaster (XCL23)';

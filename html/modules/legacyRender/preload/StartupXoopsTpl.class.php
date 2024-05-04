@@ -10,7 +10,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 /***
  * @internal
- * Some XOOPS2 resources need $xoopsTpl, before Legacy_RenderSystem will be
+ * Some XOOPS2 resources need $xoopsTpl, before Legacy_RenderSystem is
  * prepared under XOOPSCube regular process. For that, this action filter
  * tries to get 'Legacy_RenderSystem' as dummy.
  */

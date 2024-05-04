@@ -8,8 +8,8 @@
 // Manifesto
 $modversion['dirname']          = 'legacyRender';
 $modversion['name']             = _MI_LEGACYRENDER_NAME;
-$modversion['version']          = '2.33';
-$modversion['detailed_version'] = '2.33.3';
+$modversion['version']          = '2.40';
+$modversion['detailed_version'] = '2.40.0';
 $modversion['description']      = _MI_LEGACYRENDER_NAME_DESC;
 $modversion['author']           = 'The XOOPSCube Project Team';
 $modversion['credits']          = 'The XOOPSCube Project Team';
@@ -123,7 +123,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_META_COPYRIGHT_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'Copyright &copy; 2002-2023'
+    'default'     => 'Copyright &copy; 2002-2024'
 ];
 
 
@@ -180,7 +180,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_FOOTER_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => 'Powered by XCL 2.3.3 © 2005-2023 <a href="https://github.com/xoopscube/" rel="noopener">The XOOPSCube Project</a>'
+    'default'     => 'Powered by XCL 2.4.0 © 2005-2024 <a href="https://github.com/xoopscube/" rel="noopener">The XOOPSCube Project</a>'
 ];
 
 
@@ -201,7 +201,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_JQUERY_CORE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => XOOPS_URL . '/common/js/jquery.min.js'
+    'default'     => XOOPS_URL . '/common/js/jquery-3.7.1.min.js'
 ];
 
 $modversion['config'][]= [
