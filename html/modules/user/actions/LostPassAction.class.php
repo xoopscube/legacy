@@ -81,9 +81,9 @@ class User_LostPassAction extends User_Action
         }
 
         $builder =new User_LostPass2MailBuilder();
-        //$getXConfig = getXoopsConfig();
+        //$getXConfig = getXoopsConfig(); gigamaster fix error 'lost-password'
 		$getXConfig = $controller->mRoot->mContext->getXoopsConfig();
-		// gigamaster fix error 'lost-password'
+		
 		
         $director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->$getXConfig, $extraVars);
         $director->contruct();
@@ -109,7 +109,7 @@ class User_LostPassAction extends User_Action
         $userHandler =& xoops_gethandler('user');
         $lostUserArr =& $userHandler->getObjects(new Criteria('email', $this->mActionForm->get('email')));
 
-        if (is_array($lostUserArr) && count($lostUserArr) > 0) {
+        if (is_array($lostUserArr) && (count($lostUserArr) > 0) ) {
             $lostUser =& $lostUserArr[0];
         } else {
             return USER_FRAME_VIEW_ERROR;
@@ -119,8 +119,8 @@ class User_LostPassAction extends User_Action
         //$getXConfig = getXoopsConfig();
 
 		$root =& XCube_Root::getSingleton();
-		$getXConfig = $root->mContext->getXoopsConfig();
-		// gigamaster fix lost-password
+		$getXConfig = $root->mContext->getXoopsConfig(); // gigamaster fix lost-password
+		
 
         $director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->$getXConfig);
         $director->contruct();

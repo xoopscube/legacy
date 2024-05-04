@@ -321,9 +321,9 @@ class User_AvatarEditAction extends User_AbstractEditAction
             break;
         }
         $size = $this->_getResizedSize($width, $height, $this->mAvatarWidth, $this->mAvatarHeight);
-        $result = function_exists(\IMAGECREATETRUECOLOR) ? imagecreatetruecolor($size['width'], $size['height']) : imagecreate($size['width'], $size['height']);
+        $result = function_exists('imagecreatetruecolor') ? imagecreatetruecolor($size['width'], $size['height']) : imagecreate($size['width'], $size['height']);
         if (!imagecopyresampled($result, $source, 0, 0, 0, 0, $size['width'], $size['height'], $width, $height)) {
-            die();
+            die(); // TODO redirect message
         }
         switch ($type) {
             case 2:

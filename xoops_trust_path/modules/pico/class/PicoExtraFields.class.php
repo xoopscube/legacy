@@ -3,7 +3,7 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.43.1
+ * @version    XCL 2.4.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
@@ -86,11 +86,12 @@ class PicoExtraFields {
 		if ( ! is_uploaded_file( $file['tmp_name'] ) ) {
 			return false;
 		}
-
+	
 		// check the directory exists
-        // TODO REDIRECT MESSAGE TO SETTINGS
+        // redirect to module preferences
 		if ( ! is_dir( $this->images_path ) ) {
-			die( 'create upload directory for pico first' );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/admin/index.php", 3, 'Create the upload directory first : ' . htmlspecialchars( $this->mod_config['extra_images_dir'], ENT_QUOTES ) );
+			exit;
 		}
 
 		// command for removing. upload "remove.gif"
@@ -109,15 +110,17 @@ class PicoExtraFields {
 		// create temp file name
 		$tmp_image = $this->images_path . '/tmp_' . $id;
 
+
 		// set mask - 0022  sets default write permissions
         // lets the owner both read and write all newly created files, but everybody else can only read them
 		$prev_mask = @umask( 0022 );
-
+	
 		// move temporary
-        // TODO REDIRECT MESSAGE TO SETTINGS
+        // redirect to module preferences
 		$upload_result = move_uploaded_file( $file['tmp_name'], $tmp_image );
 		if ( ! $upload_result ) {
-			die( 'check the permission/owner of the directory ' . htmlspecialchars( $this->mod_config['extra_images_dir'], ENT_QUOTES ) );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/admin/index.php", 3, 'Check read and write permissions of the directory : ' . htmlspecialchars( $this->mod_config['extra_images_dir'], ENT_QUOTES ) );
+			exit;
 		}
 		@chmod( $tmp_image, 0644 );
 
@@ -125,21 +128,57 @@ class PicoExtraFields {
 		$check_result = @getimagesize( $tmp_image );
 		if ( ! is_array( $check_result ) || empty( $check_result['mime'] ) ) {
 			@unlink( $tmp_image );
-            // TODO ALERT / REDIRECT MESSAGE
-			die( 'An invalid image file is uploaded' );
-		}
+            // upload file is Not valid, redirect message
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 3, '🛑 Invalid image file uploaded ! Allowed file types JPG, PNG, GIF.'. htmlspecialchars( print_r($this->$content_id), ENT_QUOTES ) );
+			exit;
+		} 
 
 		// set image_id ( = $id . $ext )
 		$image_id = $id . '.' . $this->getExtFromMime( $check_result['mime'] );
-
-		// resize loop - image_magick_path - crop the image source preserving the height {$sizes[0]}x{$sizes[1]}
+		$imime = $this->getExtFromMime( $check_result['mime'] );
+		
+		// v.2.4.0 resize loop with GD, since exec image_magick_path is not available or limited in many servers!
 		foreach ( $this->image_sizes as $size_key => $sizes ) {
 			$image_path = $this->getImageFullPath( $field_name, $size_key, $image_id );
-			exec( $this->mod_config['image_magick_path'] . "convert -geometry {$sizes[0]}x{$sizes[1]} -quality $this->image_quality $tmp_image $image_path" );
+
+			/* Resize images to have the width specified in module admin. 
+			 * The height will be calculated automatically based on the dimensions of the original image.
+			 * This will work properly with images that have different sizes and aspect ratios and save 
+			 * to the folder indicated in module preferences. 
+			 */
+		
+			if ($imime == 'jpg') 
+			{
+				$image = imagecreatefromjpeg($tmp_image);
+			}
+			elseif ($imime == 'gif') 
+			{
+				$image = imagecreatefromgif($tmp_image);
+			}
+			elseif ($imime == 'png') 
+			{
+				$image = imagecreatefrompng($tmp_image);
+			}
+			else
+			{
+				die('Unknown image file format');
+			}
+			// scale, without a specified fixed height, so the height will be calculated automatically.
+			$image = imagescale($image, $sizes[0]);
+			
+
+			// compress and save file to jpg, destination file and compression quality
+			// If the third parameter 'image_quality' is omitted, save with a default quality of 75
+			imagejpeg($image, $image_path, $this->image_quality);
+
+			// cleans up the memory
+			imagedestroy($image);
+
+			// set permissions
 			@chmod( $image_path, 0644 );
 		}
 
-		// force remove remove temporary
+		// force remove temporary
 		@unlink( $tmp_image );
 
 		// @Todo garbage collection

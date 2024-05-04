@@ -2,7 +2,7 @@
 /**
  * Legacy_RenderSystem.class.php
  * @package LegacyRender
- * @version 2.3.3
+ * @version 2.4.0
  * @author  Nobuhiro YASUTOMI, PHP8
  * @author  Nuno Luciano v.XCL23
  * @author  Kazuhisa Minato aka minahito v 1.4 2008/08/26 15:58:41
@@ -363,8 +363,6 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $xoopsCachedTemplateId = null;
         $this->_commonPrepareRender();
 
-        // TODO refactor using null coalescing operator in PHP 7
-//$cachedTemplateId = isset($GLOBLAS['xoopsCachedTemplateId']) ? $GLOBLAS['xoopsCachedTemplateId'] : null;
         $cachedTemplateId = $GLOBLAS['xoopsCachedTemplateId'] ?? null;
 
         foreach ($target->getAttributes() as $key=>$value) {
@@ -427,8 +425,11 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         // Extra Meta App ID
         $vars['xoops_meta_fb_app'] = $textFilter->toShow($headerScript->getMeta('fb:app_id') ?: $configs['meta_fb_app']);
         $vars['xoops_meta_twitter_site'] = $textFilter->toShow($headerScript->getMeta('twitter:site') ?: $configs['meta_twitter_site']);
+        // main
+        $vars['logotype'] = $configs['logotype'];
         // footer may be raw HTML text.
         $vars['xoops_footer'] = $configs['footer'];
+        
 
         //
         // Banner Management Settings
@@ -581,7 +582,6 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         echo '<link rel="stylesheet" type="text/css" media="all" href="'.XOOPS_URL.'/theme/xcl_default/style.css">';
         if ($themecss) {
             echo '<link rel="stylesheet" type="text/css" media="all" href="'.$themecss.'">';
-            //echo '<style type="text/css" media="all"><!-- @import url('.$themecss.'); --></style>';
         }
         if ($closehead) {
             echo '</head><body>';

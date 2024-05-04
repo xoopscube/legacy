@@ -4,7 +4,7 @@
  * @package Legacy
  * @author     Nobuhiro YASUTOMI, PHP8
  * @version $Id: Legacy_Controller.class.php,v 1.22 2008/11/14 09:45:23 mumincacao Exp $
- * @copyright  (c) 2005-2023 The XOOPSCube Project
+ * @copyright  (c) 2005-2024 The XOOPSCube Project
  * @license    GPL 2.0
  *
  */
@@ -17,7 +17,7 @@ if (!defined('XOOPS_TRUST_PATH')) {
     exit();
 }
 
-define('LEGACY_MODULE_VERSION', '2.3.3');
+define('LEGACY_MODULE_VERSION', '2.4.0');
 
 define('LEGACY_CONTROLLER_STATE_PUBLIC', 1);
 define('LEGACY_CONTROLLER_STATE_ADMIN', 2);
@@ -1243,9 +1243,16 @@ class Legacy_Controller extends XCube_Controller
                 }
             }
         }
-        // XCL 2.3.x
-        //@gigamaster added theme_set, theme_url and theme_css (custom templates from theme)
-        //@gigamaster added icon_set
+        
+       /* XCL 2.3.x
+        * @gigamaster added theme_set, theme_url and theme_css (custom templates from theme)
+        * @gigamaster added logotype, use $configs for LegacyRender 
+        */
+        $moduleHandler = xoops_gethandler('module');
+        $legacyRender =& $moduleHandler->getByDirname('legacyRender');
+        $configHandler = xoops_gethandler('config');
+        $configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
+
         if (!defined('XOOPS_CPFUNC_LOADED')) {
             require_once XOOPS_ROOT_PATH.'/class/template.php';
             $xoopsTpl = new XoopsTpl();
@@ -1256,7 +1263,7 @@ class Legacy_Controller extends XCube_Controller
                     'theme_set'        =>htmlspecialchars($xoopsConfig['theme_set'], ENT_QUOTES),
                     'theme_url'        =>XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'],
                     'theme_css'        =>getcss(),
-                    'icon_set'          =>XOOPS_URL . '/images/' . $xoopsConfig['icon_set'],
+                    'logotype'         =>$configs['logotype'],
                     'langcode'         =>_LANGCODE,
                     'charset'          =>_CHARSET,
                     'time'             =>$time,

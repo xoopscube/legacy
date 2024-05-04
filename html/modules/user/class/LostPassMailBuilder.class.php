@@ -63,12 +63,16 @@ class User_LostPass1MailBuilder
 
     public function setFromEmail($user, $xoopsConfig)
     {
+        $root =& XCube_Root::getSingleton();
+        $xoopsConfig = $root->mContext->mXoopsConfig;
         $this->mMailer->setFromEmail(defined('XOOPS_NOTIFY_FROM_EMAIL') ? XOOPS_NOTIFY_FROM_EMAIL : $xoopsConfig['adminmail']);
         $this->mMailer->setFromName(defined('XOOPS_NOTIFY_FROM_NAME') ? XOOPS_NOTIFY_FROM_NAME : $xoopsConfig['sitename']);
     }
 
     public function setSubject($user, $xoopsConfig)
     {
+        $root =& XCube_Root::getSingleton();
+        $xoopsConfig = $root->mContext->mXoopsConfig;
         $this->mMailer->setSubject(sprintf(_MD_USER_LANG_NEWPWDREQ, $xoopsConfig['sitename']));
     }
 
@@ -85,6 +89,8 @@ class User_LostPass1MailBuilder
 
     public function setBody($user, $xoopsConfig, $extraVars)
     {
+        $root =& XCube_Root::getSingleton();
+        $xoopsConfig = $root->mContext->mXoopsConfig;
         $this->mMailer->assign('SITENAME', $xoopsConfig['sitename']);
         $this->mMailer->assign('ADMINMAIL', (!defined('XOOPS_NOTIFY_FROM_EMAIL') || XOOPS_NOTIFY_FROM_EMAIL === $xoopsConfig['adminmail']) ? $xoopsConfig['adminmail'] : '');
         $this->mMailer->assign('SITEURL', XOOPS_URL . '/');
@@ -122,11 +128,15 @@ class User_LostPass2MailBuilder extends User_LostPass1MailBuilder
 
     public function setSubject($user, $xoopsConfig)
     {
+        $root =& XCube_Root::getSingleton();
+        $xoopsConfig = $root->mContext->mXoopsConfig;
         $this->mMailer->setSubject(sprintf(_MD_USER_LANG_NEWPWDREQ, $xoopsConfig['sitename']));
     }
 
     public function setBody($user, $xoopsConfig, $extraVars)
     {
+        $root =& XCube_Root::getSingleton();
+        $xoopsConfig = $root->mContext->mXoopsConfig;
         $this->mMailer->assign('SITENAME', $xoopsConfig['sitename']);
         $this->mMailer->assign('ADMINMAIL', (!defined('XOOPS_NOTIFY_FROM_EMAIL') || XOOPS_NOTIFY_FROM_EMAIL === $xoopsConfig['adminmail']) ? $xoopsConfig['adminmail'] : '');
         $this->mMailer->assign('SITEURL', XOOPS_URL . '/');

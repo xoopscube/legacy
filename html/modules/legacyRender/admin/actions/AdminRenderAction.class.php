@@ -67,7 +67,6 @@ class LegacyRender_AdminRenderAction extends LegacyRender_Action
         $render->setAttribute('meta_twitter_site',$textFilter->toShow($headerScript->getMeta('twitter:site') ?: $configs['meta_twitter_site']));
         // Main
         $render->setAttribute('favicon',$configs['favicon']);
-        $render->setAttribute('icon_set',$configs['icon_set']);
         $render->setAttribute('logotype',$configs['logotype']);
         // footer may be raw HTML text.
         $render->setAttribute('footer',$configs['footer']);
