@@ -20,7 +20,7 @@
 // default directory permissions are 755 and default file permissions are 644.
 
 define("XCUBE_FORMFILE_PREVMASK", "0022");
-
+define("XCUBE_FORMFILE_CHMOD", "0022");
 
 class XCube_FormFile {
 	public $mName;

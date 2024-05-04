@@ -59,11 +59,6 @@ class XoopsTpl extends Smarty
         // $this->default_template_handler_func = 'xoops_template_create';
         $this->use_sub_dirs = false;
 		
-        // Smarty assign Legacy XOOPS2
-        // Refer to preload XCubeRender for XCL.2.3.x UI frameworks
-        if (isset($GLOBALS['xoopsUserIsAdmin'])) {
-            $xoops_isadmin = $GLOBALS['xoopsUserIsAdmin'];
-        }
         $this->assign(
             [
                 'xoops_url'         => XOOPS_URL,
@@ -71,8 +66,7 @@ class XoopsTpl extends Smarty
                 'xoops_langcode'    => _LANGCODE,
                 'xoops_charset'     => _CHARSET,
                 'xoops_version'     => XOOPS_VERSION,
-                'xoops_upload_url'  => XOOPS_UPLOAD_URL,
-                'xoops_isadmin'     => $xoops_isadmin
+                'xoops_upload_url'  => XOOPS_UPLOAD_URL
             ]
         );
 

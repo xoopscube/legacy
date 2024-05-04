@@ -2,7 +2,7 @@
 /**
  * @package Legacy
  * @version $Id: index.php,v 1.3 2008/09/25 15:10:27 kilica Exp $
- * @copyright (c) 2005-2023 The XOOPSCube Project
+ * @copyright (c) 2005-2024 The XOOPSCube Project
  * @license GPL 2.0
  */
 require_once './mainfile.php';
