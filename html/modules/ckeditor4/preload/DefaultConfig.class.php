@@ -26,7 +26,9 @@ class ckeditor4_DefaultConfig extends XCube_ActionFilter
 		// for d3forum
 		$mObj = $this->mRoot->mContext->mXoopsModule;
 		if (is_a($mObj, 'XoopsModule') && $mObj->get('trust_dirname') === 'd3forum') {
-			if (is_null($params['onload'])) {
+			// PHP8 v2.4.0 warning undefined key
+			//if (is_null($params['onload'])) {
+				if(isset($params['onload']) && ($params['onload']!==null)) {
 				$params['onload'] = <<<EOD
 if (!!$('input#quote')) {
 	$('input#quote').prop('onclick', null);

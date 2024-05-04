@@ -3,7 +3,7 @@
 /**
  * @package EasyLexSQL
  * @version $Id: EasyLex_SQLScanner.class.php,v 1.3 2008/10/12 04:31:22 minahito Exp $
- * @copyright (c) 2005-2023 The XOOPSCube Project
+ * @copyright (c) 2005-2024 The XOOPSCube Project
  * @license BSD
  *
  */

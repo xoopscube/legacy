@@ -4,7 +4,7 @@
  * @package Legacy
  * @author     Nobuhiro YASUTOMI, PHP8
  * @version $Id: Legacy_TextFilter.class.php,v 1.9 2008/09/25 15:11:57 kilica Exp $
- * @copyright  (c) 2005-2023 The XOOPSCube Project
+ * @copyright  (c) 2005-2024 The XOOPSCube Project
  * @license    GPL 2.0
  *
  */

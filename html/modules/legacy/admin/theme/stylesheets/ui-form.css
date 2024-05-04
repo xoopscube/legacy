@@ -178,15 +178,17 @@ select {
     color           : var( --secondary ) !important;
     border          : var( --input-border );
     border-radius   : var( --input-radius );
-    font-size       : var(--font-size );
+    font-size       : var( --font-size );
     line-height     : 1.5;
     padding         : var(--input-padding);
     margin          : var(--input-margin);
 }
 
 select option {
-    font-size       : 14px;
+    /* font-size       : 16px; */
     display         : block;
+    padding         : 4px 2px;
+    margin-bottom   : 1px;
     width           : 100%
 }
 

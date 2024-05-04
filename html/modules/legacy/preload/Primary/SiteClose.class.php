@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: SiteClose.class.php,v 1.5 2008/09/25 15:12:38 kilica Exp $
- * @copyright Copyright 2005-2023 XOOPS Cube Project  <https://github.com/xoopscube/>
+ * @copyright Copyright 2005-2024 XOOPS Cube Project  <https://github.com/xoopscube/>
  * @license   GPL 2.0
  *
  */
@@ -53,6 +53,14 @@ class Legacy_SiteClose extends XCube_ActionFilter
                 }
             }
         }
+       /* XCL 2.3.x
+        * @gigamaster added theme_set, theme_url and theme_css (custom templates from theme)
+        * @gigamaster added logotype, use $configs for LegacyRender 
+        */
+        $moduleHandler = xoops_gethandler('module');
+        $legacyRender =& $moduleHandler->getByDirname('legacyRender');
+        $configHandler = xoops_gethandler('config');
+        $configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
 
         if (!$accessAllowFlag) {
             require_once XOOPS_ROOT_PATH . '/class/template.php';
@@ -64,11 +72,13 @@ class Legacy_SiteClose extends XCube_ActionFilter
                     'xoops_themecss'    => xoops_getcss(),
                     'xoops_imageurl'    => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
                     'theme_css'         => getcss(),
-                    'theme_url'         => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'],
+                    'theme_url'         => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
                     'lang_login'        => _LOGIN,
                     'lang_username'     => _USERNAME,
                     'lang_password'     => _PASSWORD,
-                    'lang_siteclosemsg' => $xoopsConfig['closesite_text']
+                    'lang_siteclosemsg' => $xoopsConfig['closesite_text'],
+                    'logotype'          => $configs['logotype'],
+                    'footer'            => $configs['footer']
                 ]
             );
 

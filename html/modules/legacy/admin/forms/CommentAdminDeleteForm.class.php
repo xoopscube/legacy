@@ -2,10 +2,10 @@
 /**
  * CommentAdminDeleteForm.class.php
  * @package    Legacy
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors  gigamaster, 2020 XCL/PHP7
  * @author     Kilica, 2008/09/25
- * @copyright  (c) 2005-2023 The XOOPSCube Project
+ * @copyright  (c) 2005-2024 The XOOPSCube Project
  * @license    GPL 2.0
  */
 
