@@ -11,7 +11,6 @@
  * @license    GPL 2.0
  */
 
-
 if (!defined('SMARTY_DIR')) {
     exit();
 }
@@ -41,7 +40,8 @@ class XoopsTpl extends Smarty
         if (1 == $xoopsConfig['theme_fromfile']) {
             $this->_canUpdateFromFile = true;
             $this->compile_check = false; /* This should be set to false on an active site*/
-            $this->force_compile = true;
+            $this->force_compile = true; /* This setting overrides $compile_check. By default this is FALSE. 
+            This is handy for development and debugging. It should never be used in a production environment.*/
         } else {
             $this->_canUpdateFromFile = false;
             $this->compile_check = false;
@@ -52,13 +52,27 @@ class XoopsTpl extends Smarty
         $this->template_dir = XOOPS_THEME_PATH;
         $this->cache_dir = XOOPS_CACHE_PATH;
         $this->compile_dir = XOOPS_COMPILE_PATH;
-        //loading under root_path for compatibility with XCL2.1
+        //Loading under root_path for compatibility with XCL2.1
         //$this->plugins_dir = [SMARTY_DIR . 'plugins', XOOPS_ROOT_PATH . '/class/smarty/plugins'];
         $this->plugins_dir = [SMARTY_DIR . 'plugins'];
-
+        // Legacy_RenderSystem
         // $this->default_template_handler_func = 'xoops_template_create';
         $this->use_sub_dirs = false;
-		
+
+        // Legacy compatility requirement for development and debugging of templates
+        // Because D3 modules can use XoopsTpl class without Cube's boot
+		if (isset($GLOBALS['xoopsUserIsAdmin'])) {
+            $isadmin['xoops_isadmin']=$GLOBALS['xoopsUserIsAdmin'];
+        }else{
+            $isadmin['xoops_isadmin']=false;
+        }
+        // Render System - get config preferences e.g. logotype, favicon
+        // for D3 modules who don't delegate XoopsTpl.New 
+        $moduleHandler = xoops_gethandler('module');
+        $legacyRender =& $moduleHandler->getByDirname('legacyRender');
+        $configHandler = xoops_gethandler('config');
+        $configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
+
         $this->assign(
             [
                 'xoops_url'         => XOOPS_URL,
@@ -66,7 +80,10 @@ class XoopsTpl extends Smarty
                 'xoops_langcode'    => _LANGCODE,
                 'xoops_charset'     => _CHARSET,
                 'xoops_version'     => XOOPS_VERSION,
-                'xoops_upload_url'  => XOOPS_UPLOAD_URL
+                'xoops_upload_url'  => XOOPS_UPLOAD_URL,
+                'xoops_isadmin'     => $isadmin,
+                'logotype'          => $configs['logotype'],
+                'favicon'           => $configs['favicon']
             ]
         );
 
@@ -191,7 +208,7 @@ class XoopsTpl extends Smarty
     }
 
     /**
-     *
+     * _canUpdateFromFile
      **/
     public function xoops_canUpdateFromFile()
     {

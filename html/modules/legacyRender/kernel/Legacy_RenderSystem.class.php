@@ -36,11 +36,6 @@ class Legacy_XoopsTpl extends XoopsTpl
     public $_mContextReserve = ['xoops_pagetitle' => 'legacy_pagetitle'];
 //public $_mContextReserve = [];
 
-//    public function Legacy_XoopsTpl()
-//    {
-//        $this->__construct();
-//    }
-
     public function __construct()
     {
         //$this->_mContextReserve = ['xoops_pagetitle' => 'legacy_pagetitle'];
@@ -181,6 +176,9 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             $mTpl->xoops_setDebugging(true);
         }
 
+        if (isset($GLOBALS['xoopsUserIsAdmin'])) {
+            $isadmin['xoops_isadmin']=$GLOBALS['xoopsUserIsAdmin'];
+        }
         $mTpl->assign(
             [
             'xoops_requesturi' => htmlspecialchars($GLOBALS['xoopsRequestUri'], ENT_QUOTES),    //@todo ?????????????
@@ -268,7 +266,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $root =& $this->mController->mRoot;
         $context =& $root->getContext();
         $textFilter =& $root->getTextFilter();
-        // @gigamaster themename
+        // @gigamaster get theme name
         $themeName = $context->getThemeName();
         $vars = [
             'xoops_theme'     =>$themeName,
@@ -276,8 +274,8 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             'xoops_themecss'  =>xoops_getcss($themeName),
             'xoops_sitename'  =>$textFilter->toShow($context->getAttribute('legacy_sitename')),
             'xoops_pagetitle' =>$textFilter->toShow($context->getAttribute('legacy_pagetitle')),
-	    'xoops_slogan'    =>$textFilter->toShow($context->getAttribute('legacy_slogan')),
-	    'xoops_dirname'   => ''
+            'xoops_slogan'    =>$textFilter->toShow($context->getAttribute('legacy_slogan')),
+            'xoops_dirname'   => ''
         ];
 
         //
@@ -405,6 +403,8 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $vars['xoops_module_header'] = $moduleHeader;
         $vars['module_header'] = $moduleHeader; // xcl 2.3.x
 
+        // gigamaster assign Render configs logotype, favicon
+        // in /class/template.php for X3 D3 compatibility 
         $moduleHandler = xoops_gethandler('module');
         $legacyRender =& $moduleHandler->getByDirname('legacyRender');
         $configHandler = xoops_gethandler('config');
@@ -425,8 +425,6 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         // Extra Meta App ID
         $vars['xoops_meta_fb_app'] = $textFilter->toShow($headerScript->getMeta('fb:app_id') ?: $configs['meta_fb_app']);
         $vars['xoops_meta_twitter_site'] = $textFilter->toShow($headerScript->getMeta('twitter:site') ?: $configs['meta_twitter_site']);
-        // main
-        $vars['logotype'] = $configs['logotype'];
         // footer may be raw HTML text.
         $vars['xoops_footer'] = $configs['footer'];
         

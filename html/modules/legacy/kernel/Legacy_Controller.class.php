@@ -1,11 +1,11 @@
 <?php
 /**
  *
- * @package Legacy
- * @author     Nobuhiro YASUTOMI, PHP8
- * @version $Id: Legacy_Controller.class.php,v 1.22 2008/11/14 09:45:23 mumincacao Exp $
- * @copyright  (c) 2005-2024 The XOOPSCube Project
- * @license    GPL 2.0
+ * @package     Legacy
+ * @author      Nobuhiro YASUTOMI, PHP8
+ * @version     $Id: Legacy_Controller.class.php,v 1.22 2008/11/14 09:45:23 mumincacao Exp $
+ * @copyright   (c) 2005-2024 The XOOPSCube Project
+ * @license     GPL 2.0
  *
  */
 
@@ -408,7 +408,7 @@ class Legacy_Controller extends XCube_Controller
                 //
                 // If caching is enabled and the cache file exists, load and use it.
                 // Note : version 2.3.0
-                // @gigamaster added 'getTemplate' for block link in theme
+                // @gigamaster added 'getTemplate' to link block in front theme
                 if ($cacheInfo->isEnableCache() && $this->existActiveCacheFile($filepath, $blockProcedure->getCacheTime())) {
                     $content = $this->loadCache($filepath);
                     if ($blockProcedure->isDisplay() && !empty($content)) {
@@ -434,7 +434,7 @@ class Legacy_Controller extends XCube_Controller
                 if ($blockProcedure->isDisplay()) {
                     $renderBuffer =& $blockProcedure->getRenderTarget();
                     // Note : version 2.3.0
-                    // @gigamaster added 'getTemplate' for block link in theme
+                    // @gigamaster added 'getTemplate' to link block in front theme
                     $context->mAttributes['legacy_BlockShowFlags'][$blockProcedure->getEntryIndex()] = true;
                     $context->mAttributes['legacy_BlockContents'][$blockProcedure->getEntryIndex()][] = [
                         'name'      => $blockProcedure->getName(),
@@ -1218,7 +1218,7 @@ class Legacy_Controller extends XCube_Controller
 
         // @TODO test XOOPS2 Compatibility $addredirect = true
 
-// TODO uncomment line 1195
+        // TODO uncomment to test
         // $addRedirect = $addredirect = true;
 
         if ($addRedirect && strpos($url, 'user.php') !== false) {
@@ -1246,13 +1246,8 @@ class Legacy_Controller extends XCube_Controller
         
        /* XCL 2.3.x
         * @gigamaster added theme_set, theme_url and theme_css (custom templates from theme)
-        * @gigamaster added logotype, use $configs for LegacyRender 
+        * also Render configs for X2 and D3 compatibility, refer to /class/template.php
         */
-        $moduleHandler = xoops_gethandler('module');
-        $legacyRender =& $moduleHandler->getByDirname('legacyRender');
-        $configHandler = xoops_gethandler('config');
-        $configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
-
         if (!defined('XOOPS_CPFUNC_LOADED')) {
             require_once XOOPS_ROOT_PATH.'/class/template.php';
             $xoopsTpl = new XoopsTpl();
@@ -1263,7 +1258,6 @@ class Legacy_Controller extends XCube_Controller
                     'theme_set'        =>htmlspecialchars($xoopsConfig['theme_set'], ENT_QUOTES),
                     'theme_url'        =>XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'],
                     'theme_css'        =>getcss(),
-                    'logotype'         =>$configs['logotype'],
                     'langcode'         =>_LANGCODE,
                     'charset'          =>_CHARSET,
                     'time'             =>$time,
@@ -1274,7 +1268,7 @@ class Legacy_Controller extends XCube_Controller
             );
             $GLOBALS['xoopsModuleUpdate'] = 1;
 
-            $xoopsTpl->display('db:system_redirect.html');  // TODO gigamaster
+            $xoopsTpl->display('db:system_redirect.html');  // Legacy compatibility
 
         } else {
 
@@ -1501,7 +1495,7 @@ class Legacy_AbstractControllerStrategy
 
         if (!is_object($module)) {
             XCube_DelegateUtils::call('Legacy.Event.Exception.XoopsModuleNotFound', $dirname);
-            $this->mController->executeRedirect(XOOPS_URL . '/', 1, 'You can\'t access this URL.');    // TODO need message catalog.
+            $this->mController->executeRedirect(XOOPS_URL . '/', 1, 'You can\'t access this URL.'); // TODO need message catalog.
             die();
         }
 

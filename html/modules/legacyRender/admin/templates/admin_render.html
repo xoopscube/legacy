@@ -99,12 +99,11 @@
             <h6>Smarty Template Engine</h6>
         </div>
         <div data-self="size-x1 sm-full">
-            <p>The Web Application Platform Renderer uses Smarty Template Engine to provide data to FrontEnd and BackEnd.<br>
-                You can edit both, FrontEnd and BackEnd theme and templates with HTML, CSS, JavaScript and of course some<br>
+            <p>The Web Application Platform Renderer uses Smarty Template Engine for the Frontend and Backend.<br>
+                You can edit both, Frontend and Backend themes and templates with HTML, CSS, JavaScript and of course some<br>
                 Smarty code to add logic, dynamic data, and personalization rules to your templates.</p>
 
-            <p>This overview provides basic information of the Render syntax built on Smarty<br>
-                to help you get started with Smarty theme and template files.
+            <p>This overview provides basic information to help you get started with the Render syntax built on Smarty.
         </div>
     </div>
 </div>
@@ -117,26 +116,43 @@
 
     <h3>Default Themes</h3>
 
-    <p>The system default theme for the frontend uses the suffix <span class="badge">_default</span><br>
-        While the default admin theme for the backend uses a prefix <span class="badge">admin_</span></p>
+    <p>The default theme for the frontend uses the suffix _default <span class="badge">_default</span><br>
+        While the default backend admin theme uses a prefix <span class="badge">admin_</span></p>
 
     <ul>
-        <li>The FrontEnd Theme ensures how the webpage appears on the client browser: <span class="badge">/html/themes/theme-name/</span></li>
-        <li>The BackEnd Theme provides a user interface to different roles and permissions: <span class="badge">/html/modules/legacy/admin/theme</span></li>
+        <li>The Frontend theme ensures how the webpage appears on the client browser: <span class="badge">/html/themes/theme-name/</span></li>
+        <li>The Backend theme provides a user interface to manage system preferences: <span class="badge">/html/modules/legacy/admin/theme</span>
+        <br>including the module settings, roles and user permissions.</li>
     </ul>
-
+    
     <div class="help-tips">
         You can put a custom backend theme with prefix <span class="badge">admin_</span> in directory /themes e.g. <span class="badge">/html/themes/admin_theme</span>
     </div>
 
     <h3>Custom Theme</h3>
-    <p>A custom theme can inherit the functionality, features, and style of the default theme and default template-set.<br>
-        You can copy to your custom theme only the templates you need to customize without making any changes to default set.</p>
-    <p>Custom themes can save time and effort, they are also a safer solution because of the automatic fallback to default settings.</p>
     <p>The Smarty tags defined here are needed for the Core Render and components to work properly!<br>
-        When making a custom theme, you should base it on the following Smarty Engine variables.</p>
-</div>
-<div class="ui-card-full">
+        When making a custom theme, you should base it on the following logic and Smarty Engine variables.</p>
+
+    <p>Each installed module has a number of templates. These templates are automatically added to the default template set.
+    <p>A custom theme inherits the functionality, features, and style of the default set.</p>
+       
+    <p>It is recommended to duplicate the default template set before any customization. You can do it from the Admin using the following modules:<br>
+       <ul>
+        <li>Admin > Control Panel > Render > Template Management</li>
+        <li>Admin > Control Panel > Components > Templates</li>
+    </ul>
+       
+    <p>In order to customize modules templates or blocks templates (prefix block_)</p>
+    <ul>
+    <li>You can copy the templates for each module into your personalized theme under the
+        <span class="badge">/themes/custom-theme/templates/modulename/</span> directory.</li>
+    <li>A custom theme can inherit the functionality, features, and style of the default theme and default template-set.</li>
+    <li>You can override only the templates you have customized, and that, without making any changes to the default set.</li>
+    </ul>
+    <p>Custom themes can save time and effort, they are also a safer solution because of the automatic fallback to default settings.</p>
+
+<!-- </div>
+<div class="ui-card-full"> -->
 
     <h3>Default Templates</h3>
 
@@ -152,15 +168,32 @@
                However, the extension <span class="badge"><code>.tpl</code></span> is used for email templates by convention.</p>
 
             <div class="confirm">It is recommended to not edit the default version of these templates !<br>
-                Make a copy of the default template-set in Template Management to customize.<br>
+                First, clone the default template set in Template Management.<br>
             </div>
             <p>You can put a copy of default templates in the theme directory e.g.: <span class="badge"><code>/themes/theme_name/templates/module_name/</code></span><br>
                 <em>it was /theme_name/modules/templates/ prior to version 2.3.x</em></p>
-               <{* Help documentation on "How To Create a Custom Theme") for more details *}>
+
+        <{* Help documentation on "How To Create a Custom Theme") for more details *}>
+
+            <h3>Template Syntax</h3>
+
+            <p>Smarty uses a markup-like syntax which is similar to HTML tags.<br>
+                The tags are shorter and more readable than embedding plain PHP on pages.</p>
+            
+            <h3>Tag delimiters</h3>
+            
+            <p>All Smarty tags, variables and functions start with a left delimiter curly bracket { and end with a right curly bracket } within <> like HTML.</p>
+            
+            <div class="help-tips">The Renderer implementation of Smarty uses custom delimiters <b class="badge">&lt;{</b> ... <b class="badge">}&gt;</b><br>
+                instead of Smarty code enclosed in curly brace tag delimiters {$var} of the official documentation.</div>
+            
+            <p>The Render engine will handle the delimiters present in Theme and templates to generate valid HTML.
+            </p>
+
         </div>
-        <div data-self="size-1of4 sm-full">
+<div data-self="size-1of4 sm-full">
  <pre><code class="language-treeview">
-// XCube module directory tree
+// XCube module admin directory tree
 
 module-name
 ├── admin
@@ -174,23 +207,22 @@ module-name
        └── components [optional]
 
 </code></pre>
-        </div>
-    </div>
+<br> 
+<pre><code class="language-treeview">
+// D3 in module TRUST_PATH directory
 
-    <h3>Template Syntax</h3>
+module-name *
+└── templates
+        ├── blocks
+        ├── components [optional]
+        └── stylesheets [optional]
 
-    <p>Smarty uses a markup-like syntax which is similar to HTML tags.<br>
-        The tags are shorter and more readable than embedding plain PHP on pages.</p>
+* D3 duplicatable modules D4Forum, Pico
+</code></pre>
+</div>
 
-    <h3>Tag delimiters</h3>
+</div>
 
-    <p>All Smarty tags, variables and functions start with a left delimiter curly bracket { and end with a right curly bracket } within <> like HTML.</p>
-
-    <div class="help-tips">The Renderer implementation of Smarty uses custom delimiters <b class="badge">&lt;{</b> ... <b class="badge">}&gt;</b><br>
-        instead of Smarty code enclosed in curly brace tag delimiters {$var} of the official documentation.</div>
-
-    <p>The Render engine will handle the delimiters present in Theme and templates to generate valid HTML.
-    </p>
 
     <h3>Template Variables</h3>
 
@@ -234,8 +266,8 @@ module-name
 <table class="outer">
     <thead>
     <tr>
-        <th>X2 Themes</th>
-        <th>XCL Themes</th>
+        <th>X2 / XCL Themes</th>
+        <th>XRENDER V3</th>
         <th>Output</th>
     </tr>
     </thead>
@@ -316,23 +348,23 @@ module-name
             <a href="https://developer.twitter.com/en/docs/platform-overview" target="_blank" rel="nofollow noopener">Twitter Developer Platform <{$ilink}></a></td>
     </tr>
     <tr>
-        <td> </td>
-        <td><pre><code class="lang-smarty">&lt;{$favicon}&gt;</code></pre></td>
-        <td><{$favicon}></td>
-    </tr>
-    <tr>
-        <td> </td>
+        <td><pre><code class="lang-smarty">&lt;{$logotype}&gt;</code></pre></td>
         <td><pre><code class="lang-smarty">&lt;{$logotype}&gt;</code></pre></td>
         <td><{$logotype}></td>
     </tr>
     <tr>
+        <td><pre><code class="lang-smarty">&lt;{$favicon}&gt;</code></pre></td>
+        <td><pre><code class="lang-smarty">&lt;{$favicon}&gt;</code></pre></td>
+        <td><{$favicon}></td>
+    </tr>
+    <tr>
         <td><pre><code class="lang-smarty">&lt;{$xoops_module_header}&gt;</code></pre></td>
-        <td></td>
+        <td><pre><code class="lang-smarty">&lt;{$library}&gt;</code></pre></td>
         <td>CSS style and JavaScript added by module header</td>
     </tr>
     <tr>
         <td><pre><code class="lang-smarty">&lt;{$xoops_block_header}&gt;</code></pre></td>
-        <td></td>
+        <td><pre><code class="lang-smarty">&lt;{$framework}&gt;</code></pre></td>
         <td>CSS style and JavaScript added by block</td>
     </tr>
     <tr>
@@ -348,12 +380,12 @@ module-name
     <tr>
         <td><pre><code class="lang-smarty">&lt;{$xoops_version}&gt;</code></pre></td>
         <td><pre><code class="lang-smarty">&lt;{$app_version}&gt;</code></pre></td>
-        <td><{$app_version}></td>
+        <td><{$xoops_version}></td>
     </tr>
     <tr>
         <td><pre><code class="lang-smarty">&lt;{$xoops_upload_url}&gt;</code></pre></td>
         <td><pre><code class="lang-smarty">&lt;{$upload_url}&gt;</code></pre></td>
-        <td><{$upload_url}></td>
+        <td><{$xoops_upload_url}></td>
     </tr>
     <tr>
         <td><pre><code class="lang-smarty">&lt;{$xoops_banner}&gt;</code></pre></td>
@@ -386,6 +418,9 @@ module-name
     <h5>Database</h5>
     <p>Example from D3 module</p>
     <pre><code class="lang-smarty">&lt;{include file=&quot;db:`$mydirname`_inc_breadcrumbs.html&quot;}&gt;</code></pre>
+
+    <h5>Conditional inclusion of subtemplates</h5>
+    <pre><code class="lang-smarty">&lt;{include_if_exists file=&quot;foo.html&quot; else=&quot;bar.html&quot;}&gt;</code></pre>
 
     <h3>Block</h3>
 

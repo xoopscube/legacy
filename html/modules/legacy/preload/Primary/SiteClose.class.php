@@ -56,6 +56,9 @@ class Legacy_SiteClose extends XCube_ActionFilter
        /* XCL 2.3.x
         * @gigamaster added theme_set, theme_url and theme_css (custom templates from theme)
         * @gigamaster added logotype, use $configs for LegacyRender 
+        *
+        * Render System - get config preferences e.g. logotype, footer
+        * for D3 modules who don't delegate XoopsTpl.New
         */
         $moduleHandler = xoops_gethandler('module');
         $legacyRender =& $moduleHandler->getByDirname('legacyRender');
@@ -78,6 +81,7 @@ class Legacy_SiteClose extends XCube_ActionFilter
                     'lang_password'     => _PASSWORD,
                     'lang_siteclosemsg' => $xoopsConfig['closesite_text'],
                     'logotype'          => $configs['logotype'],
+                    'favicon'           => $configs['favicon'],
                     'footer'            => $configs['footer']
                 ]
             );

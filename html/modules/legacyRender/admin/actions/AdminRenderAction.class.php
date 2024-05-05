@@ -25,7 +25,8 @@ class LegacyRender_AdminRenderAction extends LegacyRender_Action
         $xoopsConfig = $controller->mRoot->mContext->getXoopsConfig();
         $mRoot = $controller->mRoot;
         $mContext = $mRoot->mContext;
-
+        
+        // Render System - get configurations categories
         $moduleHandler = xoops_gethandler('module');
         $legacyRender =& $moduleHandler->getByDirname('legacyRender');
         $configHandler = xoops_gethandler('config');

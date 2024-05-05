@@ -51,7 +51,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_FAVICON_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => XOOPS_URL . '/favicon.svg'
+    'default'     => XOOPS_URL . '/images/favicon/favicon.svg'
 ];
 
 $modversion['config'][]= [

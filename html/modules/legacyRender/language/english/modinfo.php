@@ -56,6 +56,6 @@ define( '_MI_LR_JQUERY_UI_DESC' , 'If you use Google Libraries API, set the jQue
 define( '_MI_LR_ICONSET' , 'Directory for icon set files');
 define( '_MI_LR_ICONSET_DESC' , 'Relative path to public/common/images. Default: icons');
 define( '_MI_LR_FAVICON' , "Favicon - png or svg images");
-define( '_MI_LR_FAVICON_DESC' , "Note: The favicon must be a multiple of 48px square e.g. 48x48px, 96x96px, 144x144px and so on.<br> SVG files don't have a specific size. Root-relative hyperlink (e.g. https://example.com). Default: /favicon.svg");
+define( '_MI_LR_FAVICON_DESC' , 'SVG favicon has gained support in major browsers, visit <a href="https://caniuse.com/link-icon-svg" target="blank" rel="noopener noreferrer">Caniuse  ↗ 🌐</a><br>Read more from the root-relative hyperlink (e.g. https://example.com/images/favicon). Default: /images/favicon/favicon.svg');
 define( '_MI_LR_LOGO' , 'Logotype or logomark that represents your brand or website');
 define( '_MI_LR_LOGO_DESC' , 'Root-relative hyperlink (e.g. https://example.com). Default: /images/logo.png');
