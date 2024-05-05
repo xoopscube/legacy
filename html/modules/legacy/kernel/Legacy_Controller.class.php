@@ -1248,6 +1248,11 @@ class Legacy_Controller extends XCube_Controller
         * @gigamaster added theme_set, theme_url and theme_css (custom templates from theme)
         * also Render configs for X2 and D3 compatibility, refer to /class/template.php
         */
+        $moduleHandler = xoops_gethandler('module');
+        $legacyRender =& $moduleHandler->getByDirname('legacyRender');
+        $configHandler = xoops_gethandler('config');
+        $configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
+
         if (!defined('XOOPS_CPFUNC_LOADED')) {
             require_once XOOPS_ROOT_PATH.'/class/template.php';
             $xoopsTpl = new XoopsTpl();
@@ -1263,6 +1268,8 @@ class Legacy_Controller extends XCube_Controller
                     'time'             =>$time,
                     'url'              =>$url,
                     'message'          =>$displayMessage,
+                    'logotype'         =>$configs['logotype'],
+                    'favicon'          =>$configs['favicon'],
                     'lang_ifnotreload' =>sprintf(_IFNOTRELOAD, $url)
                 ]
             );

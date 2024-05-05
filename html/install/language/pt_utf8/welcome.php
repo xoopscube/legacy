@@ -36,13 +36,13 @@ $content =
     <div class="ui-tab-content">
     <p>
     <a href="https://www.apache.org/" target="_blank" rel="external">Apache</a>, <a href="https://www.nginx.com/" target="_blank" rel="external">Nginx</a> or outro servidor WEB.<br>
-    <a href="https://www.php.net/" target="_blank" rel="external">PHP7</a> ou superior<br>
+    <a href="https://www.php.net/" target="_blank" rel="external">PHP7.4</a> ou superior<br>
     <a href="https://www.mysql.com/" target="_blank" rel="external">MySQL</a> or <a href="https://mariadb.org/" target="_blank" rel="external">MariaDB</a> Database 5.6.x ou superior
     </p>
     </div>
 </div>
     <h3>Lista de verificação para instalação</h3>
-    <p><input type="checkbox" required> Servidor Web, PHP7 e Base de dados SQL.
+    <p><input type="checkbox" required> Servidor Web, PHP7.4 e Base de dados SQL.
     </p><p><input type="checkbox" required> Base de dados, conjunto de carácteres codificadoscom <em>utf8mb4_general_ci</em>, utilizador e senha.
     </p><p>Conceda permissões de escrita ao ficheiro e directórios :
     </p><p><input type="checkbox" required> <code>html/uploads/</code>

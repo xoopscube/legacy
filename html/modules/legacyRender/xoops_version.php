@@ -4,7 +4,6 @@
  * @package legacyRender
  */
 
-
 // Manifesto
 $modversion['dirname']          = 'legacyRender';
 $modversion['name']             = _MI_LEGACYRENDER_NAME;
@@ -18,7 +17,6 @@ $modversion['image']            = 'images/module_render.svg';
 $modversion['icon']             = 'images/module_icon.svg';
 $modversion['help']             = 'help.html';
 $modversion['cube_style']       = true;
-
 
 // SQL
 // $modversion['sqlfile']['mysql'] = "sql/mysql.sql";
@@ -126,7 +124,6 @@ $modversion['config'][]= [
     'default'     => 'Copyright &copy; 2002-2024'
 ];
 
-
 // Meta Webmaster Tools
 $modversion['config'][]= [
     'name'        => 'meta_bing',
@@ -183,8 +180,6 @@ $modversion['config'][]= [
     'default'     => 'Powered by XCL 2.4.0 © 2005-2024 <a href="https://github.com/xoopscube/" rel="noopener">The XOOPSCube Project</a>'
 ];
 
-
-
 $modversion['config'][]= [
     'name'        => 'css_file',
     'title'       => '_MI_LR_CSS_FILE',
@@ -194,14 +189,13 @@ $modversion['config'][]= [
     'default'     => XOOPS_URL . '/common/js/jquery-ui.min.css'
 ];
 
-
 $modversion['config'][]= [
     'name'        => 'jquery_core',
     'title'       => '_MI_LR_JQUERY_CORE',
     'description' => '_MI_LR_JQUERY_CORE_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => XOOPS_URL . '/common/js/jquery-3.7.1.min.js'
+    'default'     => XOOPS_URL . '/common/js/jquery.min.js'
 ];
 
 $modversion['config'][]= [

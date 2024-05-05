@@ -20,7 +20,8 @@
 
 if ( PHP_VERSION_ID >= 70000 ) {
 	//error_reporting( error_reporting() ^ E_ALL & ~E_NOTICE );E_ERROR
-    ini_set('error_reporting', E_ALL & ~E_NOTICE);
+    ini_set('error_reporting', E_ALL);
+	ini_set('display_errors', '0');
 }
 
 /* ALERT PHP VERSION REQUIRED BY XCL V2.4.0 */

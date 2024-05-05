@@ -66,12 +66,6 @@ class XoopsTpl extends Smarty
         }else{
             $isadmin['xoops_isadmin']=false;
         }
-        // Render System - get config preferences e.g. logotype, favicon
-        // for D3 modules who don't delegate XoopsTpl.New 
-        $moduleHandler = xoops_gethandler('module');
-        $legacyRender =& $moduleHandler->getByDirname('legacyRender');
-        $configHandler = xoops_gethandler('config');
-        $configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
 
         $this->assign(
             [
@@ -81,9 +75,6 @@ class XoopsTpl extends Smarty
                 'xoops_charset'     => _CHARSET,
                 'xoops_version'     => XOOPS_VERSION,
                 'xoops_upload_url'  => XOOPS_UPLOAD_URL,
-                'xoops_isadmin'     => $isadmin,
-                'logotype'          => $configs['logotype'],
-                'favicon'           => $configs['favicon']
             ]
         );
 

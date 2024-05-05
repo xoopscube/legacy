@@ -453,7 +453,14 @@ if (strpos($url, (string) XOOPS_URL) === 0) {
                 }
             }
         }
-        //@gigamaster added theme_set and theme_url (custom templates from theme)
+
+        // RENDER configs
+        $moduleHandler = xoops_gethandler('module');
+        $legacyRender =& $moduleHandler->getByDirname('legacyRender');
+        $configHandler = xoops_gethandler('config');
+        $configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
+
+        //@gigamaster added theme_set and theme_url, logotype and favicon
         $url = preg_replace('/&amp;/i', '&', htmlspecialchars($url, ENT_QUOTES));
         $message = trim($message) !== '' ? $message : _TAKINGBACK;
         $xoopsTpl->assign(
@@ -469,6 +476,8 @@ if (strpos($url, (string) XOOPS_URL) === 0) {
                 'time'             =>$time,
                 'url'              =>$url,
                 'message'          =>$message,
+                'logotype'         =>$configs['logotype'],
+                'favicon'          =>$configs['favicon'],
                 'lang_ifnotreload' =>sprintf(_IFNOTRELOAD, $url)
             ]
         );

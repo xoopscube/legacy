@@ -14,7 +14,7 @@ if ( ! defined( '_INSTALL_L128' ) ) {
 
 $langarr = getDirList( './language/' );
 
-$php7   = ( version_compare(PHP_VERSION, '7.0.0') >= 0 );
+$php7   = ( version_compare(PHP_VERSION, '7.4.0') >= 0 );
 
 foreach ( $langarr as $lang ) {
 	if ( $php7 && 'english' !== $lang && '_utf8' !== substr( $lang, - 5 ) ) {

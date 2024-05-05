@@ -32,14 +32,14 @@ $content =
     <p>
     </p><ul>
     <li><a href="https://www.apache.org/" target="_blank" rel="external">Apache</a>, <a href="https://www.nginx.com/" target="_blank" rel="external">Nginx</a> or any other Web Server.</li>
-    <li><a href="https://www.php.net/" target="_blank" rel="external">PHP7</a> and higher</li>
+    <li><a href="https://www.php.net/" target="_blank" rel="external">PHP7.4</a> and higher</li>
     <li><a href="https://www.mysql.com/" target="_blank" rel="external">MySQL</a> or <a href="https://mariadb.org/" target="_blank" rel="external">MariaDB</a> Database 5.6.x and higher</li>
     </ul>
     <p></p>
     </div>
 </div>
     <h3>Checklist for Installation</h3>
-    <p><input type="checkbox" required> Set up Web Server, PHP7 and SQL Database.
+    <p><input type="checkbox" required> Set up Web Server, PHP7.4 and SQL Database.
     </p><p><input type="checkbox" required> Database with charset <em>utf8mb4_general_ci</em>, user and password.
     </p><p>Make the directories  and file writabale :
     </p><p><input type="checkbox" required> <code>html/uploads/</code>

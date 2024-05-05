@@ -47,15 +47,22 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="<{$xoops_meta_twitter_site}>"><!-- @site_account -->
     <meta name="twitter:creator" content="@<{$xoops_meta_author}>">
-    <!-- Resquesturi $xoops_requesturi : /module/dirname/id -->
+    <{* ----- Browserconfig and Webmanifest located in the root directory ----- *}>    
+    <meta name="msapplication-config" content="<{$xoops_url}>/browserconfig.xml">
+    <link rel="manifest" href="<{$xoops_url}>/site.webmanifest">
+    <{* ----- Favicons THEME COLOR ----- *}>
+    <meta name="theme-color" content="#181c25">
+    <meta name="msapplication-TileColor" content="#181c25">
+    <link rel="mask-icon" href="<{$xoops_url}>/images/favicons/safari-pinned-tab.svg" color="#181c25">
+    <{* ----- Favicon SVG - default /images/favicon ----- *}>
+    <link rel="icon" href="<{$favicon}>" type="image/svg+xml">
+    <{* ----- Favicons located in the root directory ----- *}>
+    <link rel="apple-touch-icon" sizes="180x180" href="<{$xoops_url}>/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<{$xoops_url}>/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<{$xoops_url}>/images/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" href="<{$xoops_url}>/images/favicons/favicon.ico">
+    <{* ----- Resquesturi $xoops_requesturi : /module/dirname/id ----- *}>
     <link rel="canonical" href="<{$xoops_url}><{$SCRIPT_NAME}>">
-
-    <{* ----- Favicon SVG located in the root directory ----- *}>
-    <link rel="icon" href="<{$xoops_url}>/favicon.svg" type="image/svg+xml">
-
-    <!-- Mobile App Manifest -->
-    <!-- <link rel="manifest" href="<{$xoops_imageurl}>site.webmanifest">-->
-
     <{* ----- CSS - PicoCSS ----- *}>
     <link rel="preload" href="<{$xoops_imageurl}>css/pico.amber.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="<{$xoops_imageurl}>css/pico.amber.min.css"></noscript>
@@ -69,8 +76,8 @@
     <noscript><link rel="stylesheet" href="<{$xoops_url}>/common/prismjs/prism.css"></noscript>
     <{* ----- CSS - Theme ----- *}>
     <link rel="stylesheet" href="<{$xoops_themecss}>" />
+    <{* ----- CSS - MainMenu Active ----- *}>
     <style>
-    /* MainMenu Active */
     [data-theme=dark] {
     <{if $xoops_dirname}>body.<{$xoops_dirname}> ul#main-menu li a.<{$xoops_dirname}>
     <{else}>ul#main-menu li a.menu-top<{/if}> {
@@ -86,12 +93,13 @@
         </a></li>
         <li>
             <a href="<{$xoops_url}>/" class="contrast nav-logo" title="<{$xoops_slogan}>">
-                <img src="<{$logotype}>" width="24px" height="auto" alt=""> LOGO
+                <img src="<{$logotype}>" width="100px" height="auto" alt="">
                 <span data-self="sm-hide"><{$xoops_sitename}></span>
             </a>
         </li>
     </ul>
     <ul>
+        <li><{if $xoops_isadmin}>yes<{/if}></li>
         <{if $xoops_showlblock==1}>
             <{foreach item=block from=$xoops_lblocks}>
             <{if $block.title=="User Menu" or $block.id==28}>

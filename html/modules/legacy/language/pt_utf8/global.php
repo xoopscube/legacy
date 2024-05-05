@@ -61,11 +61,9 @@ Os módulos e temas são lançados sob as licenças BSD, GPL e MIT.<br>
 A licença BSD do XCube permite o uso proprietário e permite a incorporação do software em produtos proprietários.");
 
 define( '_WAP_BUNDLE' , 'Pacote XCL');
-define( '_WAP_BUNDLE_DSC' , "XCL v.2.4.x é um aplicativo da Web de propósito geral com uma abordagem de desenvolvimento de baixo código mantida no GitHub.
-Uma das principais vantagens do XCL Bundle Package são as opções expansivas que ele oferece prontas para uso.
-Você mesmo pode estendê-lo com armazenamento em nuvem seguindo as instruções simples do compositor baseado em GUI.
-Você não precisa mais baixar arquivos separadamente e carregá-los manualmente. O X-Update Manager fornece funcionalidade de um clique para ajudá-lo a obter e implantar complementos.
-Não há contratos, custos ocultos, limitações ou restrições.");
+define( '_WAP_BUNDLE_DSC' , "XCL é um aplicativo da web open source de uso geral mantido no GitHub.
+Uma das principais vantagens do pacote XCL Bundle é que ele está pronto para uso.
+Você pode gerenciar seus dados e usar seu armazenamento cloud seguindo as instruções simples do elFinder, o gerenciador de arquivos da web. Não existem contratos, custos ocultos, limitações ou restrições.");
 
 define( '_WAP_B2C' , 'B2B and B2C Services');
 define( '_WAP_B2C_DSC' , "Por exemplo, desenvolvedores e agências individuais podem criar seu próprio pacote gratuito ou pago,

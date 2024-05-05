@@ -34,14 +34,14 @@ $content =
     <p>
     </p><ul>
     <li><a href="https://www.apache.org/" target="_blank" rel="external">Apache</a>, <a href="https://www.nginx.com/" target="_blank" rel="external">Nginx</a> ou tout autre serveur Web.</li>
-    <li><a href="https://www.php.net/" target="_blank" rel="external">PHP7</a> ou supérieure</li>
+    <li><a href="https://www.php.net/" target="_blank" rel="external">PHP7.4</a> ou supérieure</li>
     <li><a href="https://www.mysql.com/" target="_blank" rel="external">MySQL</a> ou <a href="https://mariadb.org/" target="_blank" rel="external">MariaDB</a> Base de données 5.6.x ou supérieure</li>
     </ul>
     <p></p>
     </div>
 </div>
     <h3>Liste de contrôle pour l\'installation</h3>
-    <p><input type="checkbox" required=""> Configurer serveur Web, PHP7 et base de données SQL.
+    <p><input type="checkbox" required=""> Configurer serveur Web, PHP7.4 et base de données SQL.
     </p><p><input type="checkbox" required=""> Base de données utilisant <em>utf8mb4_general_ci</em> collation, utilisateur et mot de passe.
     </p><p>Rendre les répertoires et les fichiers accessibles en écriture :
     </p><p><input type="checkbox" required> <code>html/uploads/</code>

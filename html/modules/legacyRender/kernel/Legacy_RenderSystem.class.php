@@ -425,6 +425,9 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         // Extra Meta App ID
         $vars['xoops_meta_fb_app'] = $textFilter->toShow($headerScript->getMeta('fb:app_id') ?: $configs['meta_fb_app']);
         $vars['xoops_meta_twitter_site'] = $textFilter->toShow($headerScript->getMeta('twitter:site') ?: $configs['meta_twitter_site']);
+        // custom
+        $vars['logotype'] = $configs['logotype'];
+        $vars['favicon'] = $configs['favicon'];
         // footer may be raw HTML text.
         $vars['xoops_footer'] = $configs['footer'];
         

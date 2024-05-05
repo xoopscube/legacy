@@ -205,8 +205,9 @@ class XCube_FormFile {
 			$root =& XCube_Root::getSingleton();
 			$salt = $root->getSiteConfig( 'Cube', 'Salt' );
 		}
-		mt_srand( microtime() * 1_000_000 );
 
+		mt_srand( microtime(true) * 10000 );
+	
 		return md5( $salt . random_int(0, mt_getrandmax()) );
 	}
 

@@ -85,7 +85,7 @@ Usage with color var:
         --h : 221deg;
         --s : 15%;
         --layer-1       : hsl(var(--h) var(--s) 14%);
-        --layer-2       : hsl(var(--h) var(--s) 16%);
+        --layer-2       : hsl(var(--h) var(--s) 12%);
         --layer-3       : hsl(var(--h) var(--s) 18%);
         --layer-4       : hsl(var(--h) var(--s) 22%);
 

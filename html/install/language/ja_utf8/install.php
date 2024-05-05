@@ -2,7 +2,7 @@
 // Syntax replace define with const v2.3.0 2021/05/15 @gigamaster XCL-PHP7
 
 const _INSTALL_L0 = '<span>ẊOOPS Cube Web Application Platform</span><br>インストール・ウィザードの開始' ;
-const _INSTALL_L168 = 'XCL の動作には PHP7.2 以降が必要です' ;
+const _INSTALL_L168 = 'XCL の動作には PHP7.4 以降が必要です' ;
 const _INSTALL_L70 = 'サーバ上のmainfile.php への書き込み権限を与えてください。<br>（例：UNIX/LINUXサーバの場合はchmod 777 mainfile.php、Windowsサーバの場合は読み取り専用プロパティがセットされていないかチェックする。）<br>権限の設定完了後、ブラウザの「更新」ボタンを押してこのページを再度読み込んでください。' ;
 //define("_INSTALL_L71","下記のボタンをクリックするとインストールを開始します。");
 const _INSTALL_L1 = 'mainfile.phpを開き、31行目に以下のコードがあることを確認してください。' ;
