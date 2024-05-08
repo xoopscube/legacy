@@ -1,0 +1,14 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<ul class="pico_block_mywaitings">
+	<{foreach from=$block.contents item=content}>
+		<li>
+			<a href="<{$block.mod_url}>/index.php?page=contentmanager&content_id=<{$content.id}>">
+				<{$content.subject_waiting_raw|escape}>
+				&nbsp;
+			</a>
+			(<{$content.modified_time_formatted}>)
+		</li>
+	<{/foreach}>
+</ul>

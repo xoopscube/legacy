@@ -1,0 +1,26 @@
+<form action="<{$mod_url}>/index.php" method="get">
+    <{$forum_selection_sort}>
+
+    <input type="hidden" name="forum_id" value="<{$forum.id}>">
+    <input type="hidden" name="external_link_id" value="<{$query.external_link_id}>">
+
+    <div data-layout="row center-right">
+        <label>
+            <input type="text" size="12" name="txt" value="<{$query.txt}>">
+        </label>
+        <{if $mod_config.use_solved}>
+        <label>
+            <select name="solved">
+                <{html_options options=$solved_options selected=$query.solved}>
+            </select>
+        </label>
+        <{/if}>
+        <label>
+            <select name="odr">
+                <{html_options options=$odr_options selected=$query.odr}>
+            </select>
+        </label>
+        <button type="submit" class="button" value="<{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}>">
+            <{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}></button>
+    </div>
+</form>

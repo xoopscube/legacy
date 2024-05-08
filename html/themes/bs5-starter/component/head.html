@@ -1,0 +1,64 @@
+<head>
+    <meta charset="utf-8" lang="<{$xoops_langcode}>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark" />
+    <title><{$xoops_sitename}> - <{$xoops_pagetitle}></title>
+    <meta name="description" content="<{$xoops_meta_description}>">
+    <meta name="robots" content="<{$xoops_meta_robots}>">
+    <meta name="keywords" content="<{$xoops_meta_keywords}>">
+    <meta name="rating" content="<{$xoops_meta_rating}>">
+    <meta name="author" content="<{$xoops_meta_author}>">
+    <meta name="copyright" content="<{$xoops_meta_copyright}>">
+    <meta name="generator" content="XOOPSCube">
+    <!-- Meta Webmaster Tools-->
+    <meta name="msvalidate.01" content="<{$xoops_meta_bing}>">
+    <meta name="google-site-verification" content="<{$xoops_meta_google}>">
+    <meta name="yandex-verification" content="<{$xoops_meta_yandex}>">
+    <!-- Facebook App -->
+    <meta property="fb:app_id" content="<{$xoops_meta_fb_app}>">
+    <!-- Open Graph data -->
+    <meta property="og:url" content="<{$xoops_url}>"><meta property="og:url" content="//<{$smarty.server.HTTP_HOST}><{$xoops_requesturi}>">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<{$xoops_pagetitle}>">
+    <{if $xoops_dirname == 'pico' && isset($content.ef.pico_img)}>
+    <meta property="og:image" content="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/pico_img_0_<{$content.ef.pico_img|escape}>">
+    <{else}>
+    <meta property="og:image" content="<{$xoops_url}>/images/tile.png">
+    <{/if}>
+    <meta property="og:description" content="<{$xoops_meta_description}>">
+    <meta property="og:site_name" content="<{$xoops_sitename}>">
+    <meta property="article:author" content="<{$xoops_meta_author}>">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="<{$xoops_meta_twitter_site}>"><!-- @site_account -->
+    <meta name="twitter:creator" content="@<{$xoops_meta_author}>">
+    <{* ----- Browserconfig and Webmanifest located in the root directory ----- *}>    
+    <meta name="msapplication-config" content="<{$xoops_url}>/browserconfig.xml">
+    <link rel="manifest" href="<{$xoops_url}>/site.webmanifest">
+    <{* ----- Favicons THEME COLOR ----- *}>
+    <meta name="theme-color" content="#181c25">
+    <meta name="msapplication-TileColor" content="#181c25">
+    <link rel="mask-icon" href="<{$xoops_url}>/images/favicon/safari-pinned-tab.svg" color="#181c25">
+    <{* ----- Favicon SVG - default /images/favicon ----- *}>
+    <link rel="icon" href="<{$favicon}>" type="image/svg+xml">
+    <{* ----- Favicons located in the root directory ----- *}>
+    <link rel="apple-touch-icon" sizes="180x180" href="<{$xoops_url}>/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<{$xoops_url}>/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<{$xoops_url}>/images/favicon/favicon-16x16.png">
+    <link rel="shortcut icon" href="<{$xoops_url}>/images/favicon/favicon.ico">
+    <{* ----- Resquesturi $xoops_requesturi : /module/dirname/id ----- *}>
+    <link rel="canonical" href="<{$xoops_url}><{$SCRIPT_NAME}>">
+    <!-- Bootstrap style - Local first -->
+    <link href="<{$xoops_imageurl}>css/bootstrap.min.css" rel="stylesheet">
+    <!-- Theme default style.css -->
+    <link rel="stylesheet" href="<{$xoops_themecss}>">
+    <!-- Theme default module.css -->
+    <link href="<{$xoops_imageurl}>css/module.css" rel="stylesheet">
+    <!-- Bootstrap icons - Local first -->
+    <link href="<{$xoops_imageurl}>css/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<{$xoops_url}>/common/prismjs/prism.css">
+    <!-- RMV: added module header -->
+    <{$module_header}>
+    <!-- RMV: added block header -->
+    <{$xoops_block_header}>
+</head>

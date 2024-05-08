@@ -1,0 +1,198 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{* /////// CUSTOMIZED BREADCRUMB \\\\\\\ *}>
+<{if $mod_config.show_breadcrumbs}>
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt="home"></a>
+        <li class="breadcrumb-item" aria-current="page"><a href="<{$mod_url}>/index.php"><{$xoops_dirname|ucfirst}></a>
+    </ol>
+</nav>
+<{/if}>
+<style>
+    .is-toogle[aria-expanded=false] .btn-open {
+        display: none;
+    }
+    .is-toogle[aria-expanded=true] .btn-closed {
+        display: none;
+    }
+</style>
+
+<div class="card my-4">
+
+    <div class="card-header">
+
+        <h3>
+            <svg class="folder" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z"/>
+                <path fill-rule="evenodd" d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z"/>
+            </svg> <{$xoops_dirname|ucfirst}>
+        </h3>
+
+        <{* ------- Category Description *}>
+        <div class="card-text"><{$mod_config.top_message}></div>
+
+
+
+    </div>
+
+
+    <div class="card-body m-2">
+
+    <{* ------- Start Categories List *}>
+    <{foreach item=category from=$categories}>
+
+        <{* ------- Category title *}>
+        <div class="level<{$category.depth_in_tree|min:5}> d-flex flex-row justify-content-between align-items-center flex-wrap">
+
+            <h5>
+            <span class="btn btn-sm is-toogle"
+                  data-bs-toggle="collapse"
+                  href="#ct-<{$category.id}>"
+                  role="button" aria-expanded="false"
+                  aria-controls="ct-<{$category.id}>">
+                <span class="btn btn-primary btn-sm btn-closed"><img class="svg" src="<{$xoops_url}>/images/icons/arrow-down.svg" width="1em" alt="close"></span>
+                <span class="btn btn-outline-primary btn-sm btn-open"><img class="svg" src="<{$xoops_url}>/images/icons/arrow-up.svg" width="1em" alt="open"></span>
+            </span> <a href="<{$mod_url}>/<{$category.link}>"><{$category.title}></a></h5>
+
+            <{* ------- Action controllers *}>
+            <div class="action">
+
+                <{if $category.isadminormod && $category.private_contents_counter}>
+                <a class="text-danger" href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>">
+                    <svg class="shield-lock-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.187 1.025C6.23.749 7.337.5 8 .5c.662 0 1.77.249 2.813.525a61.09 61.09 0 0 1 2.772.815c.528.168.926.623 1.003 1.184.573 4.197-.756 7.307-2.367 9.365a11.191 11.191 0 0 1-2.418 2.3 6.942 6.942 0 0 1-1.007.586c-.27.124-.558.225-.796.225s-.526-.101-.796-.225a6.908 6.908 0 0 1-1.007-.586 11.192 11.192 0 0 1-2.417-2.3C2.167 10.331.839 7.221 1.412 3.024A1.454 1.454 0 0 1 2.415 1.84a61.11 61.11 0 0 1 2.772-.815zm3.328 6.884a1.5 1.5 0 1 0-1.06-.011.5.5 0 0 0-.044.136l-.333 2a.5.5 0 0 0 .493.582h.835a.5.5 0 0 0 .493-.585l-.347-2a.5.5 0 0 0-.037-.122z"/>
+                    </svg> <{$category.private_contents_counter|string_format:$smarty.const._MD_PICO_FMT_PRIVATECOUNT}>
+                </a>
+                <{/if}>
+
+                <div class="btn btn-group btn-group-sm" role="group" aria-label="pico controllers menu">
+
+                    <{if $category.isadminormod}>
+                    <a class="px-1 mr-1" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>" title="<{$smarty.const._MD_PICO_LINK_EDITCATEGORY}>">
+                        <svg class="edit" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                            <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                        </svg>
+                    </a>
+                    <{/if}>
+
+                    <{if $category.can_makesubcategory}>
+                    <a class="px-1 mr-1" href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>" title="<{$smarty.const._MD_PICO_LINK_MAKESUBCATEGORY}>">
+                        <svg class="folder-plus" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91H9v1H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0 0 13.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 0 1 1-.98h3.672a1 1 0 0 1 .707.293z"/>
+                            <path fill-rule="evenodd" d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
+                            <path fill-rule="evenodd" d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+                        </svg></a>
+                    <{/if}>
+
+                    <{if $xoops_isadmin}>
+                    <a class="px-1 mr-1" href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>" title="<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>">
+                    <svg class="unlock" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M9.655 8H2.333c-.264 0-.398.068-.471.121a.73.73 0 0 0-.224.296 1.626 1.626 0 0 0-.138.59V14c0 .342.076.531.14.635.064.106.151.18.256.237a1.122 1.122 0 0 0 .436.127l.013.001h7.322c.264 0 .398-.068.471-.121a.73.73 0 0 0 .224-.296 1.627 1.627 0 0 0 .138-.59V9c0-.342-.076-.531-.14-.635a.658.658 0 0 0-.255-.237A1.122 1.122 0 0 0 9.655 8zm.012-1H2.333C.5 7 .5 9 .5 9v5c0 2 1.833 2 1.833 2h7.334c1.833 0 1.833-2 1.833-2V9c0-2-1.833-2-1.833-2zM8.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                    </svg></a>
+                    <{/if}>
+
+                    <{if $category.can_post}>
+                    <a class="px-1 mr-1" href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mm" title="<{$smarty.const._MD_PICO_LINK_MAKECONTENT}>">
+                        <svg class="document" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5v-1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h5v2.5A1.5 1.5 0 0 0 10.5 6H13v2h1V6L9 1z"/>
+                            <path fill-rule="evenodd" d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
+                            <path fill-rule="evenodd" d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+                        </svg></a>
+                    <{/if}>
+
+                </div>
+
+                <{if $mod_config.show_rss}>
+                <a class="ml-1" href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+                        <g fill="darkorange"><path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5a1 1 0 0 0 0 2a8 8 0 0 1 8 8a1 1 0 1 0 2 0c0-5.523-4.477-10-10-10zm0 4a1 1 0 0 0 0 2a4 4 0 0 1 4 4a1 1 0 1 0 2 0a6 6 0 0 0-6-6zm.5 7a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3z"/></g>
+                    </svg>
+                </a>
+                <{/if}>
+
+            </div>
+            <{* ------- /Action controllers *}>
+
+        </div>
+        <{* ------- /category title *}>
+
+
+        <{* ------- collapse contents *}>
+        <div class="collapse ms-sm-5" id="ct-<{$category.id}>">
+        <{foreach item=content from=$category.contents}>
+
+            <div class="d-flex flex-row justify-content-between mb-3">
+
+            <a class="me-2" href="<{$mod_url}>/<{$content.link}>" title="<{$smarty.const._MD_PICO_CREATED}>:<{$content.created_time_formatted}>">
+            <svg class="document mr-2" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 1h5v1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6h1v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z"/>
+            <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 0 1 9 4.5z"/>
+            </svg> <{$content.subject}></a>
+
+            <{if $category.isadminormod && ! $content.approval}>
+            <em class="pico_notice badge badge-warning">(<{$smarty.const._MD_PICO_WAITINGUPDATE}>)</em>
+            <{/if}>
+
+            <{if $category.can_edit}>
+            <a href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>&amp;ret=mm" title="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>">
+            <svg class="edit-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+            </svg></a>
+            <{/if}>
+
+            </div>
+
+        <{/foreach}>
+        </div>
+        <{* ------- /collapse contents *}>
+
+
+    <{/foreach}>
+    <{* ------- End Categories List *}>
+
+    </div><{* ------- /card body *}>
+    <{if $category.can_post or $xoops_isadmin}>
+    <div class="card-footer d-flex justify-content-between py-3 ">
+        <{* ------- Admin controller *}>
+        <{if $xoops_isadmin}>
+        <div class="btn-group btn-group-sm" role="group" aria-label="Admin Category">
+            <a class="btn btn-outline-secondary" href="<{$mod_url}>/admin/index.php?page=category_access" title="<{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}>">
+                <svg class="unlock mr-2" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M9.655 8H2.333c-.264 0-.398.068-.471.121a.73.73 0 0 0-.224.296 1.626 1.626 0 0 0-.138.59V14c0 .342.076.531.14.635.064.106.151.18.256.237a1.122 1.122 0 0 0 .436.127l.013.001h7.322c.264 0 .398-.068.471-.121a.73.73 0 0 0 .224-.296 1.627 1.627 0 0 0 .138-.59V9c0-.342-.076-.531-.14-.635a.658.658 0 0 0-.255-.237A1.122 1.122 0 0 0 9.655 8zm.012-1H2.333C.5 7 .5 9 .5 9v5c0 2 1.833 2 1.833 2h7.334c1.833 0 1.833-2 1.833-2V9c0-2-1.833-2-1.833-2zM8.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
+                </svg> <{$smarty.const._MD_PICO_LINK_CATEGORYPERMISSIONS}></a>
+            <a class="btn btn-outline-secondary" href="<{$mod_url}>/admin/index.php?page=contents" title="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>">
+                <svg class="batch mr-2" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M14.5 13.5h-13A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5zm-13 1A1.5 1.5 0 0 1 0 13V6a1.5 1.5 0 0 1 1.5-1.5h13A1.5 1.5 0 0 1 16 6v7a1.5 1.5 0 0 1-1.5 1.5h-13zM2 3a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 0-1h-11A.5.5 0 0 0 2 3zm2-2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7A.5.5 0 0 0 4 1z"/>
+                </svg> <{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}></a>
+            <a class="btn btn-outline-secondary" href="<{$mod_url}>/index.php?page=makecategory" title="<{$smarty.const._MD_PICO_LINK_MAKECATEGORY}>">
+                <svg class="folder-plus mr-2" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91H9v1H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0 0 13.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 0 1 1-.98h3.672a1 1 0 0 1 .707.293z"/>
+                    <path fill-rule="evenodd" d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
+                    <path fill-rule="evenodd" d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+                </svg>  <{$smarty.const._MD_PICO_LINK_MAKECATEGORY}></a>
+        </div>
+        <{/if}>
+        <{if $category.can_post}>
+        <div>
+            <a class="btn btn-primary btn-sm" href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mc<{$category.id}>">
+                <svg class="document" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5v-1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h5v2.5A1.5 1.5 0 0 0 10.5 6H13v2h1V6L9 1z"/>
+                    <path fill-rule="evenodd" d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
+                    <path fill-rule="evenodd" d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+                </svg> <{$smarty.const._MD_PICO_LINK_MAKECONTENT}></a>
+        </div>
+        <{/if}>
+    </div>
+    <{/if}>
+
+</div><{* ------- /card *}>
+
+<{* /////// NOTIFICATION \\\\\\\ *}>
+<{if $xoops_isuser}>
+<{include file='db:system_notification_select.html'}>
+<{/if}>
+

@@ -1,0 +1,38 @@
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt="home"></a></li>
+        <li class="breadcrumb-item"><a href="index.php"><{$smarty.const._MI_MESSAGE_NAME}></a></li>
+        <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._MD_USERSEARCH_9}></li>
+    </ol>
+</nav>
+
+
+<h4><{$smarty.const._MD_USERSEARCH_9}></h4>
+
+<{if $fuser!=false}>
+    <form method="post" action="index.php?action=favorites">
+    <table class="outer">
+        <tr><th><{$smarty.const._MD_MESSAGE_TEMPLATE2}></th><th><{$smarty.const._MD_MESSAGE_TEMPLATE18}></th><th><{$smarty.const._MD_MESSAGE_TEMPLATE14}></th></tr>
+        <{foreach item=user from=$fuser}>
+        <tr>
+        <td><a href="index.php?action=new&to_userid=<{$user.userobj->get('uid')}>"><{$user.userobj->get('uname')}></a></td>
+        <td><input type="text" name="weight[<{$user.fobj->get('id')}>]" value="<{$user.fobj->get('weight')}>" /></td>
+        <td>
+            <input class="form-check-input" type="checkbox" name="delid[]" value="<{$user.fobj->get('id')}>">
+        </td>
+        </tr>
+        <{/foreach}>
+        <tr><td>
+            <input type="submit" value="<{$smarty.const._SUBMIT}>">
+        </td>
+        </tr>
+    </table>
+    <input type="hidden" name="cmd" value="edt" />
+    </form>
+<{else}>
+<div><{$smarty.const._MD_USERSEARCH_8}></div>
+<{/if}>
+
+

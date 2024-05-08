@@ -1,0 +1,90 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{* set tab new to current active *}>
+<{if $smarty.template == 'db:message_new.html'}>
+<{assign var="tabNew" value="active"}>
+<{/if}>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt="home"></a></li>
+        <li class="breadcrumb-item"><a href="index.php"><{$smarty.const._MI_MESSAGE_NAME}></a></li>
+        <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._MD_MESSAGE_TEMPLATE1}></li>
+    </ol>
+</nav>
+
+
+    <div class="card my-4">
+    <{include file="$xoops_theme/templates/message/inc_compo_nav.html"}>
+
+    <{* ------- /card-header *}>
+    <form action="index.php?action=new" method="post">
+
+        <{xoops_token form=$mActionForm}>
+        <{xoops_input type=hidden name=mode}>
+
+    <div class="card-body mx-2 my-4">
+
+        <{if $errMsg!=""}>
+        <ul class="alert alert-danger">
+            <{foreach item=error from=$errMsg}>
+            <p><{$error}></p>
+            <{/foreach}>
+        </ul>
+        <hr>
+        <{/if}>
+
+
+        <{if $mActionForm->get('Legacy_Event_User_Preview')!=""}>
+
+            <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></label>
+            <div class="col-sm-5"><{$mActionForm->getShow('uname')}></div>
+            </div>
+
+            <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><{$smarty.const._MD_MESSAGE_TEMPLATE3}></label>
+            <div class="col-sm-8"><{$mActionForm->getShow('title')}></div>
+            </div>
+
+            <div class="form-group row">
+            <label class="col-sm-2 col-form-label"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></label>
+            <div class="col-sm-8"><{$mActionForm->getShow('note', 'toShowTarea')}></div>
+            </div>
+        <hr>
+        <{/if}>
+
+        <div class="form-group row">
+            <label for="uname" class="col-sm-2 col-form-label"><{$smarty.const._MD_MESSAGE_TEMPLATE2}></label>
+            <div class="col-sm-5">
+                <{xoops_input name="uname" class="form-control form-control-sm" maxlength="50" value=$mActionForm->get('uname')}>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="title" class="col-sm-2 col-form-label"><{$smarty.const._MD_MESSAGE_TEMPLATE3}></label>
+            <div class="col-sm-8">
+                <{xoops_input name="title" class="form-control form-control-sm" maxlength="100" id="title" value=$mActionForm->get('title')}>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="note" class="col-sm-2 col-form-label"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></label>
+            <div class="col-sm-10">
+                <{xoops_dhtmltarea class="form-control" rows="7" name="note" id="note" value=$mActionForm->get('note') editor=bbcode}>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card-footer text-center py-3">
+        <{legacy_button class="btn btn-outline-primary btn-sm mr-2" id=Preview Text=$smarty.const._MD_MESSAGE_TEMPLATE5}>
+        <{legacy_button class="btn btn-primary btn-sm" id=Submit Text=$smarty.const._MD_MESSAGE_TEMPLATE6}>
+    </div>
+
+    </form>
+
+</div>
+
+

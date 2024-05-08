@@ -1,0 +1,64 @@
+
+<div class="tab-pane fade m-3" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
+    <div class="row mb-3">
+        <h6 class="col-sm-4"><strong><{$smarty.const._MD_USER_LANG_NAME}></strong></h6>
+        <div class="col-sm"><{$thisUser->getShow('name')}></div>
+    </div>
+
+    <{if $thisUser->get('user_from') != null}>
+    <div class="row mb-3">
+        <h6 class="col-sm-4"><strong><{$smarty.const._MD_USER_LANG_USER_FROM}></strong></h6>
+        <div class="col-sm"><{$thisUser->getShow('user_from')}></div>
+    </div>
+    <{/if}>
+
+    <{if $thisUser->get('user_occ') != null}>
+    <div class="row mb-3">
+        <h6 class="col-sm-4"><{$smarty.const._MD_USER_LANG_USER_OCC}></h6>
+        <div class="col-sm"><p class="text-muted"> <{$thisUser->getShow('user_occ')}></p></div>
+    </div>
+    <{/if}>
+
+
+    <{* ------- Profile module - Extra Fields *}>
+    <{legacy_profile uid=$thisUser->getShow('uid')}>
+
+
+<{* ------- Registered Members Only *}>
+<{if $xoops_isuser === true}>
+
+    <{if $thisUser->get('user_viewemail') == 1 || $user_ownpage == true || $xoops_isadmin == true}>
+    <div class="row mb-3">
+        <h6 class="col-sm-4"><strong><{$smarty.const._MD_USER_LANG_EMAIL}></strong></h6>
+        <div class="col-sm"><p class="text-muted"><{mailto address=$thisUser->get('email') encode="javascript"}></p></div>
+    </div>
+    <{/if}>
+
+    <div class="row mb-3">
+        <h6 class="col-sm-4"><strong><{$smarty.const._MD_USER_LANG_WEBSITE}></strong></h6>
+        <div class="col-sm"><p><a href="<{$thisUser->getShow('url')}>" rel="external"><{$thisUser->getShow('url')}></a></p></div>
+    </div>
+
+    <hr>
+
+    <{if $thisUser->get('bio') != null}>
+    <h6><{$smarty.const._MD_USER_LANG_BIO}></h6>
+    <p class="m-t-4"><{$thisUser->getShow('bio')}></p>
+    <hr>
+    <{/if}>
+
+    <{if $thisUser->get('user_intrest') != null}>
+    <h6><{$smarty.const._MD_USER_LANG_USER_INTREST}></h6>
+    <p class="m-t-4"><{$thisUser->getShow('user_intrest')}></p>
+    <hr>
+    <{/if}>
+
+    <{if $thisUser->get('user_sig') != null}>
+    <h6><{$smarty.const._MD_USER_LANG_USER_SIG}></h6>
+    <div><{$thisUser->getShow('user_sig')}></div>
+    <{/if}>
+
+<{/if}>
+
+</div>

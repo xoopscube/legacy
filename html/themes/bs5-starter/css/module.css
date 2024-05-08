@@ -1,0 +1,75 @@
+/*
+ * Theme XCL Bootstrap v5.3.3 Starter
+ *
+ * @version   2.4.0
+ * @author    Nuno Luciano ( https://github.com/gigamaster )
+ * @copyright (c) 2024 The XOOPSCube Project, author
+ * @license   MIT license for Bootstrap
+ * @license   BSD license for XOOPSCube XCL Theme
+ * @link      https://github.com/xoopscube
+*/
+/* Style to customize modules templates */
+
+/* D3FORUM */
+
+ul.icon-legend {
+    list-style      : none;
+    padding         : 1rem;
+    margin          : 1rem 0;
+}
+/* MAIN MENU */
+.menu-sub {
+    padding-left: 2.25rem;
+}
+
+/* PAGINATION */
+ul.pagenavi,
+.pagination {
+--bs-pagination-font-size: 14px;
+    display         : flex;
+    list-style      : none;
+    margin-bottom   : 0;
+   
+}
+
+.pagenavi li a,
+.pagenavi li a.page-link{
+    position        : relative;
+    display         : block;
+    padding         : var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+    font-size       : var(--bs-pagination-font-size);
+    color           : var(--bs-pagination-color);
+    text-decoration : none;
+    background      : var(--bs-pagination-bg);
+    border          : var(--bs-pagination-border-width) solid var(--bs-pagination-border-color);
+    transition      : color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.pagenavi li[aria-current="page"]  {
+    display         : block;
+    padding         : var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+}
+.pagenavi:first-child .page-link,
+.pagenavi:first-child[aria-current="page"] {
+    border-top-left-radius   : var(--bs-pagination-border-radius);
+    border-bottom-left-radius: var(--bs-pagination-border-radius);
+}
+.pagination .page-link {
+    border          : inherit;
+}
+
+progress#com{}
+progress#topic{}
+#topicLocked {} /* toast bg-danger align-items-center text-light border-0 */
+progress#progressLocked {
+    border          : 1px solid var(--bs-dark-border-subtle);
+    width           : 348px;
+    height          : 4px;
+    position        : relative;
+    bottom          : -4px;
+    left            : 0;
+}
+/* CKEditor source view */
+.cke_contents textarea.cke_source {
+    background      : #000;
+    color           : #bbb;
+}

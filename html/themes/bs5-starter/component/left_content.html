@@ -1,0 +1,28 @@
+<section class="container px-md-5 my-5">
+
+    <div class="row gx-5">
+
+        <{if $xoops_showlblock==1}>
+        <aside class="col-lg-3 mb-5">
+            <{include file="$xoops_theme/component/block_left.html"}>
+        </aside>
+        <{/if}>
+
+        <{*  Content Order first on small devices! *}>
+        <div class="col-lg-9 order-first order-lg-2" id="content">
+
+    <{if !empty($xoops_contents)}>
+        <{$xoops_contents}>
+    <{else}>
+        <{include file='db:legacy_app_start_page.html'}>
+    <{/if}>
+
+    <{if $xoops_showrblock==1}>
+        <{include file="$xoops_theme/component/block_right.html"}>
+    <{/if}>
+
+        </div>
+
+    </div>
+
+</section>

@@ -1,0 +1,41 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{include file=db:legacy_search_form.html}>
+
+<{if $searchResults.0.name !=null}>
+
+
+<{* start results item loop *}>
+<article>
+    <h3><{$searchResults.0.name}></h3>
+
+    <{foreach item=result from=$searchResults.0.results}>
+    <div class="headings">
+    <h5>
+        <img class="svg <{$searchResults.0.name}>" src="<{$result.image}>" alt="<{$searchResults.0.name}>">
+        <a href="<{$result.link}>"><{$result.title}></a>
+    </h5>
+
+    <p>
+        <{if $result.uid > 0}>
+        <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$result.uid|xoops_escape}>"><{$result.uid|xoops_user:user_name}></a>
+        <{/if}>
+        <span class="badge text-bg-secondary"><{$result.time|xoops_formattimestampGMT:l}></span>
+    </p>
+    </div>
+    <{/foreach}>
+
+<{* end results item loop *}>
+
+<{if $actionForm->get('start') > 0}>
+<a href="<{$smarty.const.XOOPS_URL}>/search.php?action=showall&amp;query=<{$actionForm->get('query')|escape:url}>&amp;mid=<{$searchResults.0.mid}>&amp;andor=<{$actionForm->get('andor')|xoops_escape}>"><{$smarty.const._MD_LEGACY_LANG_SHOW_ALL}></a>
+<{/if}>
+
+<{if $searchResults.0.has_more}>
+<a href="<{$smarty.const.XOOPS_URL}>/search.php?action=showall&amp;query=<{$actionForm->get('query')|escape:url}>&amp;mid=<{$searchResults.0.mid}>&amp;andor=<{$actionForm->get('andor')|xoops_escape}>&amp;start=<{$nextStart}>"><{$smarty.const._MD_LEGACY_LANG_NEXT_PAGE}></a>
+<{/if}>
+</article>
+<{/if}>
+
+

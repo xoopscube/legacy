@@ -1,0 +1,28 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<nav class="block-user-menu list-group list-group-flush" id="user-menu">
+    <{if $block.flagShowInbox}>
+        <a href="<{$block.inbox_url}>" class="list-group-item list-group-item-action user-menu-email">
+            <span class="icon"><img class="svg mail" src="<{$xoops_url}>/images/icons/mail.svg" width="1em" height="1em" alt="inbox"></span>
+                <{$smarty.const._MB_LEGACY_INBOX}>
+            <{if $block.new_messages > 0}><span class="badge text-bg-secondary new-messages"><{$block.new_messages}></span><{/if}></a>
+    <{/if}>
+        <a href="<{$xoops_url}>/notifications.php" class="list-group-item list-group-item-action">
+            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="notify"></span>
+            <{$smarty.const._MB_LEGACY_NOTIF}></a>
+        <a href="<{$xoops_url}>/user.php" class="list-group-item list-group-item-action">
+            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/user-details.svg" width="1em" height="1em" alt="account"></span>
+            <{$smarty.const._MB_LEGACY_VACNT}></a>
+        <a href="<{$xoops_url}>/edituser.php" class="list-group-item list-group-item-action">
+            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/user-edit.svg" width="1em" height="1em" alt="edit"></span>
+            <{$smarty.const._MB_LEGACY_EACNT}></a>
+    <{if $block.show_adminlink}>
+        <a href="<{$xoops_url}>/admin.php" class="list-group-item list-group-item-action">
+            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/settings.svg" width="1em" height="1em" alt="settings"></span>
+            <{$smarty.const._MB_LEGACY_ADMENU}></a>
+    <{/if}>
+        <a href="<{$xoops_url}>/user.php?op=logout" class="list-group-item list-group-item-action">
+            <span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/logout.svg" width="1em" height="1em" alt="logout"></span>
+            <{$smarty.const._MB_LEGACY_LOUT}></a>
+</nav>

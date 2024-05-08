@@ -1,0 +1,69 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<ul class="nav nav-tabs profile-tab" id="myTab" role="tablist">
+
+    <li class="nav-item" role="presentation">
+    <a class="nav-link active"
+       data-toggle="tab"
+       href="#home-tab-pane"
+       id="home-tab"
+       data-bs-toggle="tab"
+       data-bs-target="#home-tab-pane"
+       type="button"
+       role="tab"
+       aria-controls="home-tab-pane"
+       aria-selected="true">
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+            <path d="M4 2v6H2V2h2M2 22v-6h2v6H2m3-10c0 1.11-.89 2-2 2a2 2 0 1 1 2-2m11-8c4.42 0 8 3.58 8 8s-3.58 8-8 8c-3.6 0-6.64-2.38-7.65-5.65L6 12l2.35-2.35C9.36 6.38 12.4 4 16 4m0 2c-3.31 0-6 2.69-6 6s2.69 6 6 6s6-2.69 6-6s-2.69-6-6-6m-1 7V8h1.5v4.2l3 1.8l-.82 1.26L15 13z" fill="currentColor"/>
+        </svg> Timeline</a>
+
+    <li class="nav-item" role="presentation">
+    <a class="nav-link"
+       data-toggle="tab"
+       href="#profile"
+       id="profile-tab"
+       data-bs-toggle="tab"
+       data-bs-target="#profile-tab-pane"
+       role="tab"
+       aria-controls="profile-tab-pane"
+       aria-selected="false">Profile</a>
+    </li>
+
+    <{if $user_ownpage == true}>
+    <li class="nav-item" role="presentation">
+    <a class="nav-link" href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>">
+        <svg class="edit" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+            <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+        </svg> <{$smarty.const._MD_USER_LANG_EDITPROFILE}></a>
+    </li>
+
+    <li class="nav-item" role="presentation">
+    <a class="nav-link" href="<{$xoops_url}>/notifications.php">
+        <svg class="bell" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z"/>
+            <path fill-rule="evenodd" d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+        </svg> <{$smarty.const._MD_USER_LANG_NOTIFY}></a>
+    </li>
+    <{/if}>
+
+    <{if $user_ownpage == true && $enableSelfDelete == true && $xoops_isadmin == false}>
+    <li class="nav-item" role="presentation" title="<{$smarty.const._MD_USER_LANG_DELACCOUNT}>">
+    <a class="nav-link text-danger" href="<{$xoops_url}>/user.php?op=delete">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="user-x">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/>
+        </svg></a>
+    </li>
+
+    <{elseif $xoops_isadmin == true}>
+    <li class="nav-item" role="presentation" title="<{$smarty.const._MD_USER_LANG_DELACCOUNT}>">
+    <a class="nav-link text-danger" href="<{$xoops_url}>/modules/user/admin/index.php?action=UserDelete&amp;uid=<{$thisUser->getShow('uid')}>">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="user-x">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/>
+        </svg></a>
+    </li>
+    <{/if}>
+
+</ul>

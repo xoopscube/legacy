@@ -1,0 +1,20 @@
+<{* ---------- Block-Left *}>
+<{foreach item=block from=$xoops_lblocks}>
+<{if !$block.title|strstr:"topage-" && !$block.title|strstr:"navbar-"}>
+<div class="card border-1 mb-5 block-left b-<{$block.weight}>" id="b<{$block.id}>">
+    <div class="card-header bg-dark-subtle">
+    <h5 class="block-title d-flex justify-content-between">
+        <{if $xoops_isadmin}>
+        <{$block.title}>
+        <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+        <{else}>
+        <{if !$block.title|strstr:"none"}><{$block.title}><{/if}>
+        <{/if}>
+    </h5>
+    </div>
+    <div class="block-content">
+        <{$block.content}>
+    </div>
+</div>
+<{/if}>
+<{/foreach}>

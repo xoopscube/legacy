@@ -1,0 +1,16 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<div class="m-3">
+  <{foreach item=user from=$block.users}>
+    <div class="d-flex justify-content-between mb-3">
+
+      <{if $user.avatar !=""}>
+      <img src="<{$user.avatar}>" width="24px" alt="avatar">
+      <{/if}>
+      <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>"><{$user.name}></a>
+
+        <small class="badge text-bg-secondary"><{$user.joindate|xoops_formattimestamp:s}></small>
+    </div>
+  <{/foreach}>
+</div>

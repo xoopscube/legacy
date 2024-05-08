@@ -1,0 +1,82 @@
+<{* Advertise Banner - REMOVE SMARTY COMMENTS OF INCLUDE *}>
+<{if $xoops_banner}>
+<{* include file="$xoops_theme/component/banner_center.html" *}>
+<{/if}>
+
+<div class="container px-md-5 my-md-5">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <div class="col d-flex align-content-sm-stretch flex-wrap">
+
+        <{* ---------- BLOCK Center-Left *}>
+        <{foreach item=block from=$xoops_clblocks}>
+        <{if !$block.title|strstr:"bottom-" and !$block.title|strstr:"admin-"}>
+            <div class="card shadow-sm mb-4 flex-grow-1">
+            <div class="card-header bg-transparent">
+                <h5 class="block-title d-flex justify-content-between">
+                    <{if $xoops_isadmin}>
+                    <{$block.title}>
+                    <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+                    <{else}>
+                    <{if ! $block.title|strstr:"none"}><{$block.title}><{/if}>
+                    <{/if}>
+                </h5>
+            </div>
+            <div class="card-body block-content">
+                <{$block.content}>
+            </div>
+        </div>
+        <{/if}>
+        <{/foreach}>
+    </div>
+
+    <div class="col d-flex align-content-sm-stretch flex-wrap">
+
+        <{* ---------- BLOCK Center-Center *}>
+        <{foreach item=block from=$xoops_ccblocks}>
+        <{if !$block.title|strstr:"bottom-" and !$block.title|strstr:"admin"}>
+        <div class="card shadow-sm mb-4 flex-grow-1">
+            <div class="card-header bg-transparent">
+                <h5 class="block-title d-flex justify-content-between">
+                    <{if $xoops_isadmin}>
+                    <{$block.title}>
+                    <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+                    <{else}>
+                    <{if ! $block.title|strstr:"none"}><{$block.title}><{/if}>
+                    <{/if}>
+                </h5>
+            </div>
+            <div class="card-body block-content">
+                <{$block.content}>
+            </div>
+        </div>
+        <{/if}>
+        <{/foreach}>
+    </div>
+
+    <div class="col d-flex align-content-sm-stretch flex-wrap">
+        <{* ---------- BLOCK Center-Right *}>
+        <{foreach item=block from=$xoops_crblocks}>
+        <{if !$block.title|strstr:"bottom-" and !$block.title|strstr:"admin"}>
+        <div class="card shadow-sm mb-4 flex-grow-1">
+            <div class="card-header bg-transparent">
+                <h5 class="block-title d-flex justify-content-between">
+                    <{if $xoops_isadmin}>
+                    <{$block.title}>
+                    <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+                    <{else}>
+                    <{if ! $block.title|strstr:"none"}><{$block.title}><{/if}>
+                    <{/if}>
+                </h5>
+            </div>
+            <div class="card-body block-content">
+                <{$block.content}>
+            </div>
+        </div>
+        <{/if}>
+        <{/foreach}>
+    </div>
+
+</div>
+</div>

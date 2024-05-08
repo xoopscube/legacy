@@ -1,0 +1,306 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{* /////// INCLUDE BREADCRUMB \\\\\\\ *}>
+<{if $mod_config.show_breadcrumbs}>
+<{include file="db:`$mydirname`_inc_breadcrumb.html"}>
+<{/if}>
+
+
+<{* ------- Top Message *}>
+<{* Edit Top Message : Dashboard »» Forum »» Preferences *}>
+<div class="card my-4">
+
+    <div class="card-body">
+        <p class="card-text"><{$mod_config.top_message}></p>
+    </div>
+
+    <{* ------- Admin controller *}>
+
+    <{if $xoops_isadmin}>
+    <div class="card-footer d-flex justify-content-between py-3">
+
+        <a class="btn btn-primary" href="<{$mod_url}>/index.php?page=makecategory">
+        <svg class="folder-plus mr-2" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91H9v1H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0 0 13.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 0 1 1-.98h3.672a1 1 0 0 1 .707.293z"/>
+        <path fill-rule="evenodd" d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
+        <path fill-rule="evenodd" d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+        </svg> <{$smarty.const._MD_D3FORUM_LINK_MAKECATEGORY}></a>
+
+        <{else}>
+            <div class="card-footer d-flex justify-content py-3">
+        <{/if}>
+            <a class="btn btn-primary" href="<{$mod_url}>/index.php?cat_ids=0">
+            <svg class="list-nested mr-2" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4.5 11.5A.5.5 0 0 1 5 11h10a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 1 3h10a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5z"/>
+            </svg> <{$smarty.const._MD_D3FORUM_LISTALLTOPICS}></a>
+    </div>
+
+</div>
+
+<{* ------- Activity Overview *}>
+<div class="d-flex justify-content-between bg-dark text-white small rounded shadow-sm mb-4 px-3 ">
+    <div class="p-2"><{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>: <span class="badge text-bg-secondary px-2"><{$total_topics_count}></span></div>
+    <div class="p-2"><{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>: <span class="badge text-bg-secondary px-2"><{$total_posts_count}></span></div>
+    <div class="p-2"><{$smarty.const._MD_D3FORUM_TIMENOW}>: <span class="badge text-bg-secondary px-2"><{$currenttime_formatted}></span></div>
+    <div class="p-2"><{$smarty.const._MD_D3FORUM_LASTVISIT}>: <span class="badge text-bg-secondary px-2"><{$lastvisit_formatted}></span></div>
+    <{if $mod_config.show_rss}>
+    <div class="p-2">
+        <a class="float-right" href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=0&amp;odr=1" title="<{$smarty.const._MD_D3FORUM_LINK_ALLRSS}>">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <g fill="darkorange"><path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5a1 1 0 0 0 0 2a8 8 0 0 1 8 8a1 1 0 1 0 2 0c0-5.523-4.477-10-10-10zm0 4a1 1 0 0 0 0 2a4 4 0 0 1 4 4a1 1 0 1 0 2 0a6 6 0 0 0-6-6zm.5 7a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3z"/></g>
+        </svg>
+        </a>
+    </div>
+    <{/if}>
+</div>
+<{* ------- /Activity Overview *}>
+
+
+<{* ------- Top Categories List *}>
+
+<{* Loop Categories *}>
+<{foreach item="category" from=$top_categories}>
+
+    <{* Loop SubCategories Forums & Permissions *}>
+    <{if $category.subcategories or $category.forums or $xoops_isadmin}>
+
+    <div class="card mb-4">
+
+        <div class="card-header">
+
+            <h4><a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>">
+                <svg class="folder" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z"/>
+                    <path fill-rule="evenodd" d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z"/>
+                </svg> <{$category.title}></a>
+            </h4>
+
+            <{* ------- CATEGORY - DESCRIPTION *}>
+            <{if $category.desc}>
+            <div class="card-text"><{$category.desc}></div>
+            <{/if}>
+
+            <{* ------- CATEGORY - ACTIVITY *}>
+            <div class="d-flex align-items-center justify-content-between small">
+
+                <div class="col-sm d-inline">
+                    <{include file="db:`$mydirname`_inc_moderators.html" target=$category}>
+                </div>
+
+                <{* ------- Activity Overview *}>
+                <div class="d-inline px-2"><{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}>: <span class="badge text-bg-secondary"><{$category.topics_count_in_tree}></span></div>
+                <div class="d-inline px-2"><{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}>: <span class="badge text-bg-secondary"><{$category.posts_count_in_tree}></span></div>
+
+                <{if $category.last_post_time}>
+                <div class="d-inline px-2"><{$smarty.const._MD_D3FORUM_LASTPOST}>: <span class="badge text-bg-secondary"><{$category.last_post_time_formatted}></span></div>
+                <{/if}>
+                <{if $mod_config.show_rss}>
+                <div class="d-inline">
+                    <a href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$category.id}>&amp;odr=1" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+                            <g fill="darkorange"><path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5a1 1 0 0 0 0 2a8 8 0 0 1 8 8a1 1 0 1 0 2 0c0-5.523-4.477-10-10-10zm0 4a1 1 0 0 0 0 2a4 4 0 0 1 4 4a1 1 0 1 0 2 0a6 6 0 0 0-6-6zm.5 7a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3z"/></g>
+                        </svg>
+                    </a>
+                </div>
+                <{/if}>
+
+            </div>
+        </div><{* ------- /card header *}>
+
+
+        <div class="card-body">
+
+            <{* ------- SUBCATEGORY - LOOP *}>
+
+            <{if $category.subcategories}>
+            <h5 class="card-title my-3">
+                <svg class="folder" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z"/>
+                <path fill-rule="evenodd" d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z"/>
+                </svg> <{$smarty.const._MD_D3FORUM_SUBCATEGORIES}></h5>
+
+            <ul class="list-group list-group-flush bg-light shadow-sm">
+
+                <{foreach item="subcategory" from=$category.subcategories}>
+                <li class="list-group-item">
+
+                    <h5 class="d-flex align-items-center justify-content-between">
+
+                        <a href="<{$mod_url}>/index.php?cat_id=<{$subcategory.id}>" title="<{$subcategory.desc}>">
+                            <img class="svg" src="<{$xoops_url}>/images/icons/category_<{$subcategory.bit_new}>.svg" width="1em" alt="new">
+                            <{$subcategory.title}>
+                        </a>
+
+                        <{if $xoops_isadmin}>
+                        <a class="px-2" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$subcategory.id}>" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}>">
+                        <svg class="pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                        <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                        </svg></a>
+                        <{/if}>
+                    </h5>
+
+                    <{* ------- SUBCATEGORY - DESCRIPTION *}>
+                    <div class="card-text px-2"><{$subcategory.desc}></div>
+
+                    <{* ------- SUBCATEGORY - ACTIVITY *}>
+                    <div class="d-flex align-items-center justify-content-end small mt-2">
+                        <div class="px-2"><{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}> <span class="badge text-bg-secondary px-2"><{$subcategory.topics_count_in_tree}></span></div>
+                        <div class="px-2"><{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}> <span class="badge text-bg-secondary px-2"><{$subcategory.posts_count_in_tree}></span></div>
+                        <{if $mod_config.show_rss}>
+                        <a class="px-2" href="<{$mod_url}>/index.php?page=rss&amp;cat_ids=<{$subcategory.id}>&amp;odr=1" title="<{$smarty.const._MD_D3FORUM_LINK_CATEGORYRSS}>">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+                                <g fill="darkorange"><path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5a1 1 0 0 0 0 2a8 8 0 0 1 8 8a1 1 0 1 0 2 0c0-5.523-4.477-10-10-10zm0 4a1 1 0 0 0 0 2a4 4 0 0 1 4 4a1 1 0 1 0 2 0a6 6 0 0 0-6-6zm.5 7a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3z"/></g>
+                            </svg>
+                        </a>
+                        <{/if}>
+                    </div>
+
+                </li>
+                <{/foreach}>
+
+            </ul>
+            <{/if}>
+
+
+            <{* ------- FORUMS *}>
+
+            <{if $category.forums}>
+
+            <h5 class="card-title my-3">
+                <svg class="chat-square-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg> <{$smarty.const._MD_D3FORUM_FORUM}></h5>
+
+            <ul class="list-group list-group-flush bg-light shadow-sm">
+
+                <{* ------- FORUM - LOOP *}>
+
+                <{foreach item=forum from=$category.forums}>
+
+                <li class="list-group-item">
+
+                    <h5 class="d-flex justify-content-between">
+                        <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>" class="mr-1">
+                            <img class="svg" src="<{$xoops_url}>/images/icons/forum_<{$forum.bit_new}>.svg" width="1em"  alt="<{$forum.title}>">
+                            <{$forum.title}>
+                        </a>
+
+                        <{if $xoops_isadmin}>
+                        <a class="px-2" href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_LINK_FORUMMANAGER}>">
+                        <svg class="pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                        <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                        </svg></a>
+                        <{/if}>
+                    </h5>
+
+                    <{* ------- FORUM - DESCRIPTION *}>
+                    <div class="card-text px-2"><{$forum.desc}></div>
+
+                    <{* -------  FORUM - ACTIVITY *}>
+                    <div class="d-flex align-items-center justify-content-end small">
+                        <div class="px-2"><{$smarty.const._MD_D3FORUM_TOPICSCOUNT}> <span class="badge text-bg-secondary px-2"><{$forum.topics_count}></span></div>
+                        <div class="px-2"><{$smarty.const._MD_D3FORUM_POSTSCOUNT}> <span class="badge text-bg-secondary px-2"><{$forum.posts_count}></span></div>
+                        <{if $forum.last_post_time}>
+                        <div><{$smarty.const._MD_D3FORUM_LASTPOST}> <span class="badge text-bg-secondary px-2"><{$forum.last_post_time_formatted}></span></div>
+                        <{/if}>
+                        <{if $mod_config.show_rss}>
+                        <a class="px-2" href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+                                <g fill="darkorange"><path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5a1 1 0 0 0 0 2a8 8 0 0 1 8 8a1 1 0 1 0 2 0c0-5.523-4.477-10-10-10zm0 4a1 1 0 0 0 0 2a4 4 0 0 1 4 4a1 1 0 1 0 2 0a6 6 0 0 0-6-6zm.5 7a1.5 1.5 0 1 0 0-3a1.5 1.5 0 0 0 0 3z"/></g>
+                            </svg>
+                        </a>
+                        <{/if}>
+                    </div>
+
+                </li>
+                <{/foreach}>
+
+            </ul>
+            <{/if}><{* -------/category.forums *}>
+
+            </div><{* ------- /card body *}>
+
+
+        <div class="card-footer py-3">
+
+            <{if $xoops_isadmin}>
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <div class="btn-group" role="group" aria-label="Admin Category">
+                <a class="btn btn-outline-secondary btn-sm" href="<{$mod_url}>/index.php?page=categorymanager&amp;cat_id=<{$category.id}>">
+                    <svg class="pencil-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg> <{$smarty.const._MD_D3FORUM_LINK_CATEGORYMANAGER}></a>
+                <a class="btn btn-outline-secondary btn-sm" href="<{$mod_url}>/index.php?page=makecategory&amp;cat_id=<{$category.id}>">
+                    <svg class="folder-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91H9v1H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0 0 13.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 0 1 1-.98h3.672a1 1 0 0 1 .707.293z"/>
+                        <path fill-rule="evenodd" d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
+                        <path fill-rule="evenodd" d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+                    </svg> <{$smarty.const._MD_D3FORUM_LINK_MAKESUBCATEGORY}></a>
+                    <{if $category.can_makeforum}>
+                    <a class="btn btn-outline-primary btn-sm" href="<{$mod_url}>/index.php?page=makeforum&amp;cat_id=<{$category.id}>">
+                        <svg class="plus-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                            <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                            <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        </svg> <{$smarty.const._MD_D3FORUM_LINK_MAKEFORUM}></a>
+                    <{/if}>
+                </div>
+            <{else}>
+            <div class="d-flex align-items-center justify-content-end">
+            <{/if}>
+            <div class="px-2" aria-label="List Topics In Category">
+                <a class="btn btn-outline-primary btn-sm" href="<{$mod_url}>/index.php?cat_ids=<{$category.id}>">
+                <svg class="list-nested" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4.5 11.5A.5.5 0 0 1 5 11h10a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 1 3h10a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5z"/>
+                </svg> <{$smarty.const._MD_D3FORUM_LISTTOPICSINCATEGORY}></a>
+            </div>
+
+            </div><{* ------- /d-flex *}>
+
+        </div><{* ------- /card footer *}>
+
+    </div><{* ------- /card *}>
+
+    <{/if}>
+<{/foreach}>
+<{* ------- /Categories *}>
+
+
+<{* /////// NOTIFICATION \\\\\\\ *}>
+<{if $xoops_isuser}>
+<{include file='db:legacy_notification_select.html'}>
+<{/if}>
+
+
+<{* ------- Forum icon legend *}>
+
+<div class="my-4">
+    <ul class="icon-legend">
+        <li><img class="svg" src="<{$xoops_url}>/images/icons/forum_1.svg" width="1em" alt="new"> = <{$smarty.const._MD_D3FORUM_ALT_NEWPOSTS}></li>
+        <li><img class="svg" src="<{$xoops_url}>/images/icons/forum_0.svg" width="1em" alt="forum"> = <{$smarty.const._MD_D3FORUM_ALT_NONEWPOSTS}></li>
+    </ul>
+</div>
+
+<{* ------- NAV JUMPBOX FORUM *}>
+<form name="forum_jump_box" action="<{$mod_url}>/index.php" method="get">
+    <input type="hidden" name="page" value="forum_access">
+    <div class="row g-3 px-2 py-4 mx-1 my-4">
+        <div class="col-sm-5 my-1">
+            <select name="forum_id" id="select_forum_id" class="form-select"><{$forum_jumpbox_options}></select>
+        </div>
+        <div class="col-sm-4 my-1">
+            <button type="submit" class="btn btn-outline-primary" value="<{$smarty.const._MD_D3FORUM_BTN_JUMPTOFORUM}>"><{$smarty.const._MD_D3FORUM_BTN_JUMPTOFORUM}></button>
+        </div>
+        <div class="col-sm-3 my-1 text-end">
+            <a class="btn btn-outline-primary" href="<{$mod_url}>/index.php?page=search"><{$smarty.const._MD_D3FORUM_LINK_ADVSEARCH}></a>
+        </div>
+    </div>
+</form>
+
+
+

@@ -1,0 +1,17 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+<nav aria-label="pagination">
+    <ol class="pagination pagination-sm justify-content-end">
+        <{foreach from=$pagenav item=nav_}>
+        <{if $nav_.url}>
+        <li class="page-item <{$nav_.class}>">
+            <a class="page-link" href="<{$nav_.url}>" aria-label="go to page <{$nav_.txt}>"><{$nav_.txt}></a>
+        </li>
+        <{else}>
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#"><{$nav_.txt}></a>
+        </li>
+        <{/if}>
+        <{/foreach}>
+    </ol>
+</nav>

@@ -1,0 +1,12 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<ul class="pico_block_subcategories">
+<{foreach item=category from=$block.categories}>
+	<li>
+		<a href="<{$block.mod_url}>/<{$category.link}>">
+			<{$category.title}>
+		</a>
+	</li>
+<{/foreach}>
+</ul>

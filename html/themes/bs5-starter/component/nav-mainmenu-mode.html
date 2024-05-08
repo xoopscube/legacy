@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-5">
+        <a class="navbar-brand" href="index.html"><img src="<{$xoops_url}>/images/logo.svg" width="24px" height="24px"> <{$xoops_sitename}></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+            <{* ---------- BLOCK MAINMENU WITH PREFIX "nav" *}>
+            <{foreach item=block from=$xoops_lblocks}>
+            <{if $block.title=="Nav-Menu"}>
+                <{$block.content}>
+            <{/if}>
+            <{/foreach}>
+
+                <li class="nav-item">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="theme-mode"/>
+                        <label class="form-check-label" for="theme-mode">theme-mode</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

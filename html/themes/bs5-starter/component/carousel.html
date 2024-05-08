@@ -1,0 +1,139 @@
+<style>
+    [data-bs-theme=dark] .carousel .carousel-control-next-icon, [data-bs-theme=dark] .carousel .carousel-control-prev-icon {
+        filter: invert(1) grayscale(100);
+    }
+    [data-bs-theme=dark] .carousel .carousel-indicators [data-bs-target] {
+         background-color: revert;
+    }
+    .carousel-indicators [data-bs-target] {
+        height: 5px;
+    }
+    :is(.carousel-caption) h5, p {
+        --bs-text-opacity: 1;
+        color: rgba(var(--bs-body-color-rgb),var(--bs-text-opacity))!important;
+    }
+    .icon-rect { fill: rgb(37, 42, 46) }
+    .icon-color { fill: rgb(13, 110, 253) }
+    .icon-sec { fill: rgb(173, 181, 189) }
+</style>
+<div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
+    </div>
+    <div class="carousel-inner border-1 rounded-3">
+
+        <{* ITEM ACTIVE - THEME *}>
+        <div class="carousel-item active">
+            <div class="text-center bg-secondary bg-opacity-50 rounded-3">
+                <svg width="480px" height="340px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="icon-rect" x="20.14" width="59.72" height="52.26" rx="3" ry="3" y="10"></rect>
+                    <g transform="matrix(1.849444, 0, 0, 1.849444, 27.806673, 13.873339)">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path class="icon-color" d="M7 10v11H3a1 1 0 0 1-1-1V10h5zm15 0v10a1 1 0 0 1-1 1H9V10h13zm-1-7a1 1 0 0 1 1 1v4H2V4a1 1 0 0 1 1-1h18z"></path>
+                    </g>
+                </svg>
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>XCL Bootstrap 5.3 Starter</h5>
+                <p>Theme and Core modules Templates.</p>
+            </div>
+        </div>
+
+        <{* ITEM - DARK MODE *}>
+        <div class="carousel-item">
+            <div class="text-center bg-secondary bg-opacity-50 rounded-3">
+                <svg width="480px" height="340px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="icon-rect" x="20" width="60" height="52" rx="3" ry="3" y="10"></rect>
+                    <g transform="matrix(1.55041, 0, 0, 1.55041, 31.395081, 16.899179)">
+                        <path class="icon-color" d="M12,22c5.52,0,10-4.48,10-10S17.52,2,12,2S2,6.48,2,12S6.48,22,12,22z M13,4.07c3.94,0.49,7,3.85,7,7.93s-3.05,7.44-7,7.93 V4.07z"></path>
+                    </g>
+                </svg>
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Dark and Light Theme</h5>
+                <p>Mode Toggle with LocalStorage</p>
+            </div>
+        </div>
+
+        <{* ITEM - NAVBAR *}>
+        <div class="carousel-item">
+            <div class="text-center bg-secondary bg-opacity-50 rounded-3">
+                <svg width="480px" height="340px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="icon-rect" x="20" width="60" height="52" rx="3" ry="3" y="10"></rect>
+                    <g transform="matrix(1.964592, 0, 0, 1.964592, 26.4426, 11.571674)">
+                        <path class="icon-color" d="M10 8h11V5c0-1.1-.9-2-2-2h-9v5zM3 8h5V3H5c-1.1 0-2 .9-2 2v3zm2 13h3V10H3v9c0 1.1.9 2 2 2zm8 1l-4-4 4-4zm1-9l4-4 4 4z"></path>
+                        <path class="icon-sec" d="M14.58 19H13v-2h1.58c1.33 0 2.42-1.08 2.42-2.42V13h2v1.58c0 2.44-1.98 4.42-4.42 4.42z"></path>
+                    </g>
+                </svg>
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Navbar Dropdowns Blocks</h5>
+                <p>Display Block-Left lists of links in navbar</p>
+            </div>
+        </div>
+
+        <{* ITEM - CUSTOM START PAGE *}>
+        <div class="carousel-item">
+            <div class="text-center bg-secondary bg-opacity-50 rounded-3">
+                <svg width="480px" height="340px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="icon-rect" x="20" width="60" height="52" rx="3" ry="3" y="10"></rect>
+                    <g transform="matrix(1.807815, 0, 0, 1.807815, 28.027824, 14.124958)" >
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path class="icon-color" d="M15 21H9V10h6v11zm2 0V10h5v10a1 1 0 0 1-1 1h-4zM7 21H3a1 1 0 0 1-1-1V10h5v11zM22 8H2V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v4z"></path>
+                    </g>
+                </svg>
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Customize Your Start Page</h5>
+                <p>Hero section at the top of HTML Template</p>
+            </div>
+        </div>
+
+        <{* ITEM - BOTTOM BLOCKS *}>
+        <div class="carousel-item">
+            <div class="text-center bg-secondary bg-opacity-50 rounded-3">
+                <svg width="480px" height="340px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="icon-rect" x="20" width="60" height="52" rx="3" ry="3" y="10"></rect>
+                    <g transform="matrix(0, 1.820534, -2.13063, 0, 75.567558, 13.831173)">
+                        <path class="icon-color" d="M3 5v14c0 1.1.89 2 2 2h6V3H5c-1.11 0-2 .9-2 2zm16-2h-6v8h8V5c0-1.1-.9-2-2-2zm-6 18h6c1.1 0 2-.9 2-2v-6h-8v8z"></path>
+                    </g>
+                </svg>
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Bottom Center Blocks</h5>
+                <p>Extend the functionality of core block.</p>
+            </div>
+        </div>
+
+        <{* ITEM - BOTTOM BLOCKS *}>
+        <div class="carousel-item">
+            <div class="text-center bg-secondary bg-opacity-50 rounded-3">
+                <svg width="480px" height="340px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="icon-rect" x="20" width="60" height="52" rx="3" ry="3" y="10"></rect>
+                    <g transform="matrix(1.669049, 0, 0, 1.669049, 29.971413, 15.518154)">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path class="icon-color" d="M2.859 2.877l12.57-1.795a.5.5 0 0 1 .571.495v20.846a.5.5 0 0 1-.57.495L2.858 21.123a1 1 0 0 1-.859-.99V3.867a1 1 0 0 1 .859-.99zM17 3h4a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1h-4V3zm-6.8 9L13 8h-2.4L9 10.286 7.4 8H5l2.8 4L5 16h2.4L9 13.714 10.6 16H13l-2.8-4z"></path>
+                    </g>
+                </svg>
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Off-Canvas Panel</h5>
+                <p>Customizable section to display from any edge of viewport.</p>
+            </div>
+        </div>
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon text-reset" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

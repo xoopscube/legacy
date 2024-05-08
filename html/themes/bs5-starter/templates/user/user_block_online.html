@@ -1,0 +1,18 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<div class="m-3">
+<div class="d-flex"><{$block.online_total}></div>
+
+<div class="d-flex justify-content-between"><{$smarty.const._MB_USER_MEMBERS}> <span class="badge text-bg-secondary"><{$block.online_members}></span></div>
+
+<div class="d-flex justify-content-between"><{$smarty.const._MB_USER_GUESTS}> <span class="badge text-bg-secondary"><{$block.online_guests}></span></div>
+
+<div class="d-flex justify-content-between">
+<{foreach item=member from=$block.online_member_list}>
+<a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$member.uid}>"><{$member.uname}></a>
+
+<{/foreach}>
+<a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=online','Online',420,350);"><{$smarty.const._MB_USER_MORE}></a>
+</div>
+</div>

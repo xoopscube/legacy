@@ -1,0 +1,35 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<div id="online-users">
+<table class="outer" width="100%" cellspacing="1">
+  <tr>
+    <th colspan="3"><{$smarty.const._MD_USER_LANG_WHOSONLINE}></th>
+  </tr>
+  <{foreach item=obj from=$objects}>
+    <tr valign="middle" align="center">
+      <td>
+        <{if $obj->get('online_uid')}>
+          <a href="javascript:window.opener.location='<{$xoops_url}>/userinfo.php?uid=<{$obj->getShow('online_uid')}>';window.close();"><{$obj->getShow('online_uname')}></a>
+        <{else}>
+          <{$smarty.const._MD_USER_LANG_GUEST}>
+        <{/if}>
+      </td>
+      <td>
+        <{if $obj->mModule}>
+          <{$obj->mModule->getShow('name')}>
+        <{else}>
+          ---
+        <{/if}>
+      </td>
+      <td>
+        <{if $enableViewIP}>
+          <{$obj->getShow('online_ip')}>
+        <{/if}>
+      </td>
+    </tr>
+  <{/foreach}>
+</table>
+<br />
+<div style="text-align:center;"><{xoops_pagenavi pagenavi=$pageNavi}></div>
+</div>

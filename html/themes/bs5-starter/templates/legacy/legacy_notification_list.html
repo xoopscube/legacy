@@ -1,0 +1,113 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="house mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+            </svg></a>
+        </li>
+        <li class="breadcrumb-item"><a href="user.php"><{$smarty.const._PROFILE}></a></li>
+        <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._NOT_ACTIVENOTIFICATIONS}></li>
+    </ol>
+</nav>
+
+<form name="notificationlist" action="notifications.php" method="post">
+    <{xoops_token form=$actionForm}>
+
+<div class="card my-4" id="notification">
+
+    <div class="card-header">
+    <h3>
+    <svg class="bell mr-2" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z"/>
+        <path fill-rule="evenodd" d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+    </svg> <{$smarty.const._NOT_ACTIVENOTIFICATIONS}>
+    </h3>
+    </div>
+
+    <div class="card-body">
+
+
+        <table class="table outer">
+        <thead>
+        <tr>
+            <th><input name="allbox" id="allbox" onclick="xCheckAll('notificationlist', 'allbox');" type="checkbox" value="<{$smarty.const._NOT_CHECKALL}>" /></th>
+            <th><{$smarty.const._NOT_EVENT}></th>
+            <th><{$smarty.const._NOT_CATEGORY}></th>
+            <th><{$smarty.const._NOT_ITEMID}></th>
+            <th><{$smarty.const._NOT_ITEMNAME}></th>
+        </tr>
+        </thead>
+        <tbody>
+        <{foreach item=module from=$modules}>
+        <tr>
+            <td><input name="del_mod[<{$module.id}>]" id="del_mod_<{$module.id}>" onclick="xCheckGroup('notificationlist', 'del_mod_<{$module.id|escape}>', 'del_not_<{$module.id|escape}>');" type="checkbox" value="<{$module.id}>"></td>
+            <td colspan="4"><strong title="<{$smarty.const._NOT_MODULE}>"><{$module.name|ucfirst}></strong></td>
+        </tr>
+            <{foreach item=category from=$module.categories}>
+                <{foreach item=item from=$category.items}>
+                    <{foreach item=notification from=$item.notifications}>
+                    <tr>
+                    <{cycle values=odd,even assign=class}>
+                    <td class="<{$class}>"><input type="checkbox" name="del_not[<{$module.id}>][]" id="del_not_<{$module.id}>_<{$notification.id}>" value="<{$notification.id}>"></td>
+                    <td class="<{$class}>"><{$notification.event_title}></td>
+                    <td class="<{$class}>"><{$notification.category_title}></td>
+                    <td class="<{$class}>"><{if $item.id != 0}><{$item.id}><{/if}></td>
+                    <td class="<{$class}>"><{if $item.id != 0}><{if $item.url != ''}><a href="<{$item.url}>"><{/if}><{$item.name}><{if $item.url != ''}></a><{/if}><{/if}></td>
+                    </tr>
+                    <{/foreach}>
+                <{/foreach}>
+            <{/foreach}>
+        <{/foreach}>
+        </tbody>
+        </table>
+    </div>
+
+    <div class="card-footer py-3">
+        <input type="submit" class="btn btn-secondary btn-sm" name="delete_cancel" value="<{$smarty.const._CANCEL}>">
+        <input type="reset" class="btn btn-warning btn-sm" name="delete_reset" value="<{$smarty.const._NOT_CLEAR}>">
+<!--        <input type="submit" class="btn btn-danger btn-sm" name="delete" value="<{$smarty.const._DELETE}>">-->
+
+        <button type="submit" class="btn btn-danger btn-sm" name="delete">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="trash-fill mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+            </svg> <{$smarty.const._DELETE}>
+        </button>
+
+    </div>
+
+</div><{* -------/card *}>
+
+</form>
+
+
+<script>
+    function xGetElementById(id){
+        if (document.getElementById) {
+            return (document.getElementById(id));
+        }
+    }
+    function xCheckAll(formname, switchid) {
+        var ele = document.forms[formname].elements;
+        var switch_cbox = xGetElementById(switchid);
+        for (var i = 0; i < ele.length; i++) {
+            var e = ele[i];
+            if ( (e.name != switch_cbox.name) && (e.type == 'checkbox') ) {
+                e.checked = switch_cbox.checked;
+            }
+        }
+    }
+    function xCheckGroup(formname, switchid, groupid) {
+        var ele = document.forms[formname].elements;
+        var switch_cbox = xGetElementById(switchid);
+        for (var i = 0; i < ele.length; i++) {
+            var e = ele[i];
+            if ( (e.type == 'checkbox') && (e.id.substr(0,groupid.length) == groupid) ) {
+                e.checked = switch_cbox.checked;
+            }
+        }
+    }
+</script>

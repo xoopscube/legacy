@@ -1,0 +1,50 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{* USER TAB TIMELINE *}>
+<div class="ui-tab-content">
+
+    <h3><{$smarty.const._MD_USER_LANG_ALLABOUT|replace:"%s":$thisUser->getShow('uname')}></h3>
+
+    <{* ------- start module search results loop *}>
+    <{foreach item=module from=$searchResults}>
+
+        <{* ------- Capitalize module name 'name|ucfirst' *}>
+        <h4><{$module.name|ucfirst}></h4>
+
+        <{* ------- Start results item loop *}>
+        <{foreach item=result from=$module.results}>
+        <div  data-layout="column" class="stream-item">
+            <p>
+                <{* ------- Module icon *}>
+                <img class="svg" src="<{$result.image}>" alt="<{$module.name}>" aria-label="<{$module.name}>">
+                <a href="#"><{$module.name}></a> — <a href="<{$result.link}>"><{$result.title}></a>
+            </p>
+            <p>
+                <svg class="i-clock" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z"/>
+                    <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+                <span class="badge text-bg-secondary"><{$result.time|xoops_formattimestampGMT:l}></span>
+            </p>
+
+        </div><{* ------- stream-item *}>
+
+        <{/foreach}><{* ------- end results item loop *}>
+
+
+        <{if $module.has_more}>
+            <p>
+                <a role="button" class="outline secondary" href="<{$smarty.const.XOOPS_URL}>/search.php?action=showallbyuser&amp;mid=<{$module.mid|xoops_escape}>&amp;uid=<{$thisUser->getShow('uid')}>">
+                <img class="svg post-show-more" src="<{$icon_set}>/post-show.svg" width="1em" height="1em" alt="show more">  <{$module.name}> - <{$smarty.const._MD_USER_LANG_SHOWALL}></a>
+            </p>
+        <{/if}>
+
+    <hr>
+
+    <{/foreach}><{* ------- end module search results loop *}>
+
+
+</div>
+<{* ------- /User profile-timeline *}>
+

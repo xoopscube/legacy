@@ -1,0 +1,11 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<input type="hidden" name="options[0]" value="<{$mydirname}>">
+
+<p>
+	<label for="this_template"><{$smarty.const._MB_PICO_THISTEMPLATE}></label>:
+	<input type="text" size="60" name="options[1]" id="this_template" value="<{$this_template|escape}>">
+	<a href="<{$xoops_url}>/modules/<{$mydirname}>/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=<{$this_template|escape}>"><{$smarty.const._EDIT}></a>
+</p>
+

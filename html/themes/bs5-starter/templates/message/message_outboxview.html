@@ -1,0 +1,77 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{* set tab sent-box to current active *}>
+<{if $smarty.template == 'db:message_outboxview.html'}>
+<{assign var="tabSent" value="active"}>
+<{/if}>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt="home"></a></li>
+        <li class="breadcrumb-item"><a href="index.php"><{$smarty.const._MI_MESSAGE_NAME}></a></li>
+        <li class="breadcrumb-item"><a href="index.php?action=send"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></a></li>
+        <li class="breadcrumb-item active" aria-current="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>"><{$smarty.const._MD_MESSAGE_TEMPLATE4}></li>
+    </ol>
+</nav>
+
+<!--<div class="card g-0 mt-sm-3">-->
+    <div class="card my-4">
+    <{include file="$xoops_theme/templates/message/inc_compo_nav.html"}>
+
+    <{* ------- /card-header *}>
+
+    <div class="card-body my-4" id="printhis">
+
+        <div class="d-flex p-2 mb-4" title="<{$smarty.const._MD_MESSAGE_TEMPLATE9}>">
+            <img class="d-flex me-3 rounded-circle avatar-sm" src="<{$msgdata.to_uid|xoops_user_avatarize}>" width="48px" alt="avatar">
+            <div class="flex-1 align-self-center">
+                <h5 class="font-size-14 m-0"><{$msgdata.toname}></h5>
+                <small class="text-muted"><{$msgdata.utime|xoops_formattimestamp:l}></small>
+            </div>
+        </div>
+
+        <h4 class="p-2 my-4" title="<{$smarty.const._MD_MESSAGE_TEMPLATE3}>">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mail-sent" width="1em" height="1em" viewBox="0 0 24 24"><path d="M13 17h4v-3l5 4.5l-5 4.5v-3h-4v-3m7-13H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7.35a5.8 5.8 0 0 1-.35-2a6 6 0 0 1 11-3.31V6a2 2 0 0 0-2-2m0 4l-8 5l-8-5V6l8 5l8-5z" fill="currentColor"/></svg>
+            <{$msgdata.title}></h4>
+
+        <div class="card-text p-2 mb-4" title="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>">
+            <{$msgdata.message}>
+        </div>
+
+    </div>
+
+    <form method="post" action="index.php?action=delete&amp;inout=out">
+        <input type="hidden" name="outbox" value="<{$msgdata.outbox_id}>">
+
+        <div class="card-footer py-3">
+
+            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteMailModal">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="trash-fill mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                </svg> <{$smarty.const._DELETE}>
+            </button>
+
+     </div>
+        <{* MODAL MUST BE WITHIN FORM *}>
+        <div class="modal fade" id="deleteMailModal" tabindex="-1" aria-labelledby="deleteMailModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteMailModalLabel"><{$smarty.const._DELETE}></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <{$smarty.const._MD_MESSAGE_DELETE_CONFIRM}>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger"><{$smarty.const._DELETE}></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <{* /MODAL MUST BE WITHIN FORM *}>
+    </form>
+</div>
+

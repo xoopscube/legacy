@@ -1,0 +1,651 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{* /////// INCLUDE BREADCRUMB \\\\\\\ *}>
+<{if $mod_config.show_breadcrumbs}>
+<{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
+<{/if}>
+
+<form name="contentform"
+      id="contentform"
+      action="<{$mod_url}>/index.php?page=<{$page}>&amp;content_id=<{$content.id}>&amp;ret=<{$smarty.get.ret|escape:'url'}>"
+      method="post"
+      enctype="multipart/form-data"
+      class="needs-validation" novalidate>
+    <{* onsubmit="return xoopsFormValidate_contentform();" *}>
+    <{$gticket_hidden}>
+
+    <input type="hidden" name="content_id" value="<{$content.id}>">
+    <input type="hidden" name="body_editor" id="body_editor" value="">
+
+    <{if isset($preview)}>
+    <{* foreach from=$preview.errors item="error_message"}>
+    <p onmouseover="document.contentform.vpath.focus();document.contentform.vpath.style.border='#FFFFCC';">
+        <em class="pico_notice"><{$error_message}></em>
+    </p>
+    <{/foreach *}>
+    <h2 class="pico_title"><{$smarty.const._PREVIEW}></h2>
+    <div class="pico_body pico_preview" id="<{$mydirname}>_body">
+        <{$preview.body}>
+    </div>
+    <{/if}>
+
+<article class="card pico_container" id="<{$mydirname}>_container">
+
+	<div class="card-header">
+
+        <h3><img class="svg" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="1em" alt="edit"> <{$formtitle}>: <{$content.subject}></h3>
+
+        <{if !$content.approval}>
+        <strong class="badge text-bg-warning">
+            <{$smarty.const._MD_PICO_WAITINGAPPROVAL}>
+        </strong>
+        <{/if}>
+
+        <{if !$content.visible}>
+        <strong class="badge text-bg-warning">
+            <img class="svg view-hide" src="<{$xoops_url}>/images/icons/view-hide.svg" width="1em" height="1em" alt="invisible">
+            <{$smarty.const._MD_PICO_INVISIBLE}>
+        </strong>
+        <{/if}>
+
+        <{if $content.created_time >= time()}>
+        <strong class="badge text-bg-info">
+            <{$smarty.const._MD_PICO_WAITINGRELEASE}>
+        </strong>
+        <{/if}>
+
+        <{if $content.expiring_time < time()}>
+        <strong class="badge text-bg-danger">
+            <{$smarty.const._MD_PICO_EXPIRED}>
+        </strong>
+        <{/if}>
+
+	</div>
+
+
+
+<div class="card-body">
+	<{* -------Article subject of waiting content *}>
+		<{if $content.subject_waiting && $page !='makecontent'}>
+		<p>
+			<span class="badge text-bg-warning"><{$smarty.const._MD_PICO_TH_SUBJECT_WAITING}></span>
+		</p>
+		<div class="waiting-content">
+			<div><{$content.subject_waiting|htmlspecialchars_decode}></div>
+		</div>
+		<{/if}>
+	<{* ------- Article body of waiting content *}>
+		<{if $content.body_waiting && $page !='makecontent'}>
+		<p>
+			<span class="badge text-bg-warning"><{$smarty.const._MD_PICO_TH_BODY_WAITING}></span>
+		</p>
+		<div class="waiting-content">
+			<div class="pico_waiting"><{$content.body_waiting|htmlspecialchars_decode|nl2br}></div>
+		</div>
+		<{/if}>
+
+    <{* ------- subject *}>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <label for="subject" class="form-label"><{$smarty.const._MD_PICO_TH_SUBJECT}></label>
+        </div>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="subject" id="subject" value="<{$content.subject}>" maxlength="191" required>
+        </div>
+    </div>
+
+
+	<{* ------- category *}>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+	        <label for="cat_id"><{$smarty.const._MD_PICO_CATEGORY}></label>
+        </div>
+        <div class="col-sm-8">
+            <select class="form-select" name="cat_id" id="cat_id">
+                <{html_options options=$categories_can_post selected=$category.id}>
+            </select>
+        </div>
+    </div>
+
+
+	<{* ------- vpath *}>
+
+	<{if $mod_config.use_wraps_mode || strstr($content.filters,"wraps")}>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <label for="vpath" class="form-label"><{$smarty.const._MD_PICO_TH_VIRTUALPATH}></label>
+        </div>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="vpath" id="vpath" value="<{$content.vpath}>" maxlength="191" required>
+        </div>
+    </div>
+
+	    <{if $xoops_isadmin}>
+        <div class="row mb-3">
+            <div class="col-sm-3">
+                <label for="wraps_target"></label>
+            </div>
+            <div class="col-sm-8">
+                <select class="form-select" id="wraps_target" onchange="document.getElementById('vpath').value=this.value;">
+                    <{html_options options=$content.wraps_files selected=$content.vpath}>
+                </select>
+            </div>
+        </div>
+        <{/if}>
+	<{/if}>
+
+    <!-- extra images sample -->
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <label for="ei_pico_img">Image</label>
+        </div>
+        <div class="col-sm-8">
+            <input type="file" id="ei_pico_img" name="ei_pico_img">
+
+            <{if isset($content.ef.pico_img)}>
+            <input type="hidden" name="ef_pico_img" value="<{$content.ef.pico_img|escape}>">
+            <a href="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/pico_img_0_<{$content.ef.pico_img|escape}>">
+                <img src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/pico_img_1_<{$content.ef.pico_img|escape}>">
+            </a>
+            <{/if}>
+        </div>
+    </div>
+
+<{* ------- extra fields sample (TEXTBOX) -------
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <label for="pronunciation">Pronunciation</label>
+        </div>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" name="ef_pronunciation" id="pronunciation" size="80" maxlength="191" value="<{$content.ef.pronunciation|escape}>">
+        </div>
+    </div>
+	<!-- extra fields sample (RADIO) -->
+    <div class="row mb-3">
+        <div class="col-sm-3">
+	        <p>gender</p>
+        </div>
+        <div class="col-sm-8">
+            <p>
+                <input type="radio" class="form-check-input" name="ef_gender" id="gender_male" value="1"<{if $content.ef.gender == 1}> checked="checked"<{/if}>>
+                <label for="gender_male">male</label>
+                <input type="radio" class="form-check-input" name="ef_gender" id="gender_female" value="2"<{if $content.ef.gender == 2}> checked="checked"<{/if}>>
+                <label for="gender_female">female</label>
+            </p>
+        </div>
+    </div>
+
+	<!-- extra fields sample (SELECT) -->
+	<{assign var="countries" value=","|explode:"---,USA,UK,France,Japan"}>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <label for="address1">country</label>
+        </div>
+        <div class="col-sm-8">
+            <select class="form-select" id="address1" name="ef_address1">
+                <{html_options values=$countries output=$countries selected=$content.ef.address1}>
+            </select>
+        </div>
+    </div>
+
+</div>
+------- extra fields ------- *}>
+
+
+	<{* ------- html header *}>
+	<{if $mod_config.allow_each_htmlheader || $content.htmlheader}>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <label for="htmlheader" class="form-label"><{$smarty.const._MD_PICO_TH_HTMLHEADER}></label>
+        </div>
+        <div class="col-sm-8">
+
+            <div class="form-check form-switch">
+            <label for="htmlheader_onoff">
+                <input class="form-check-input" type="checkbox" role="switch" id="htmlheader_onoff" onclick="if(this.checked){
+                           document.getElementById('htmlheader').style.display='block';
+                       }else{
+                           document.getElementById('htmlheader').style.display='none';}"  <{if $content.htmlheader}>checked="checked"<{/if}>>
+                <{$smarty.const._MD_PICO_LABEL_HTMLHEADERONOFF}></label>
+            </div>
+			<{if ! $mod_config.allow_each_htmlheader}>
+				<{$smarty.const._MD_PICO_LABEL_HTMLHEADERCONFIGALERT}>
+			<{/if}>
+        </div>
+    </div>
+    <div class="row mb-3" id="htmlheader" style="display:<{if $content.htmlheader}>block<{else}>none<{/if}>">
+        <div class="col-sm-12">
+        <textarea class="form-control" rows="3" name="htmlheader"><{$content.htmlheader}></textarea>
+        </div>
+    </div>
+
+		<{* ------- html header reference for waiting content *}>
+		<{if $content.htmlheader_waiting && $page !='makecontent'}>
+		<p class="head pico_waiting"><{$smarty.const._MD_PICO_TH_HTMLHEADER_WAITING}></p>
+		<div class="even pico_waiting"><{$content.htmlheader_waiting|nl2br}></div>
+		<{/if}>
+
+	<{/if}>
+
+
+	<{* ------- BODY WYSIWYG *}>
+	<{if $smarty.const.LEGACY_BASE_VERSION|version_compare:'2.2':'>='}>
+		<{assign var=xcl22 value=1}>
+	<{/if}>
+    <div class="row mb-3">
+
+<!--	<label for="htmlheader"><{$smarty.const._MD_PICO_TH_BODY}></label>-->
+
+    <div class="col-sm-12">
+	<{if $body_wysiwyg && !$content.filter_infos.eval.enabled}>
+		<{$body_wysiwyg}>
+	<{else}>
+
+		<{if $xcl22}>
+
+			<{assign var=cssClass value=""}>
+
+			<{if $content.filter_infos._editor_info.editor}>
+				<{if !$content.subject && $content.filter_infos._editor_info.useHtmlAtNew}>
+					<{assign var=editor value=html}>
+				<{else}>
+					<{assign var=editor value=$content.filter_infos._editor_info.editor}>
+				<{/if}>
+				<{if $content.filter_infos._editor_info.cssClass}>
+					<{assign var=cssClass value=" "|cat:$content.filter_infos._editor_info.cssClass}>
+				<{/if}>
+			<{else}>
+				<{if $content.filter_infos.eval.enabled}>
+					<{assign var=editor value=none}>
+				<{elseif !$content.subject || !$content.filter_infos.xcode.enabled}>
+					<{assign var=editor value=html}>
+				<{else}>
+					<{assign var=editor value=bbcode}>
+				<{/if}>
+			<{/if}>
+
+			<{* ---------- CONTENT WAITING else NEW CONTENT *}>
+			<{if $content.body_waiting && $page !='makecontent'}>
+				<{xoops_dhtmltarea class="$editor$cssClass" name=body cols=60 rows=25 value=$content.body_waiting|htmlspecialchars_decode:$smarty.const.ENT_QUOTES editor=$editor}>
+			<{else}>
+				<{xoops_dhtmltarea class="$editor$cssClass" name=body cols=60 rows=25 value=$content.body|htmlspecialchars_decode:$smarty.const.ENT_QUOTES editor=$editor}>
+			<{/if}>
+
+			<{if $legacy_module == 'legacy'}>
+				<{assign var=editor value=bbcode}>
+			<{/if}>
+
+		<{else}>
+		<label for="body_bbcode_onoff">
+            <input type="checkbox" id="body_bbcode_onoff" onclick="if(this.checked){
+                       document.getElementById('body_bbcode_buttons_pre').style.display='block';
+                       document.getElementById('body_bbcode_buttons_post').style.display='block'
+                   }else{
+                       document.getElementById('body_bbcode_buttons_pre').style.display='none';
+                       document.getElementById('body_bbcode_buttons_post').style.display='none'}">
+			<{$smarty.const._MD_PICO_LABEL_INPUTHELPER}></label>
+
+			<{xoopsdhtmltarea name="body" rows="25" value=$content.body pre_style="display:none;" post_style="display:none;height:400px"}>
+		<{/if}>
+
+	<{/if}>
+
+    </div>
+
+    </div>
+	<{* ------- ORDER / WEIGHT *}>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+	<label for="weight">
+		<{$smarty.const._MD_PICO_TH_WEIGHT}></label>
+        </div>
+        <div class="col-sm-2">
+		<{* Input number Max100 *}>
+		<input type="number" class="form-control" min="0" max="100" step="1" name="weight" id="weight" value="<{$content.weight}>" aria-label="Max 100">
+    </div>
+    </div>
+
+	<{* ------- TAGS *}>
+    <div class="row mb-3">
+        <div class="col-sm-3">
+            <label for="tags"><{$smarty.const._MD_PICO_TH_TAGS}></label>
+        </div>
+        <div class="col-sm-8">
+		<input type="text" class="form-control" name="tags" id="tags" maxlength="191" value="<{$content.tags}>">
+        <small><{$smarty.const._MD_PICO_TH_TAGSDSC}></small>
+        </div>
+    </div>
+
+
+
+    <div class="accordion accordion-flush" id="accordionContentSettings">
+
+        <{* ------- CONTENT OPTIONS *}>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="contentOptions">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOptions" aria-expanded="false" aria-controls="collapseOptions">
+                    <img class="svg me-3" src="<{$xoops_url}>/images/icons/view.svg" width="1em" alt="options">
+                    <{$smarty.const._MD_PICO_TH_CONTENTOPTIONS}>
+                </button>
+            </h2>
+            <div id="collapseOptions" class="accordion-collapse collapse" aria-labelledby="contentOptions" data-bs-parent="#accordionContentSettings">
+                <div class="accordion-body">
+
+                    <{* ------- visible *}>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="visible" id="visible" value="1" <{if $content.visible}>checked="checked"<{/if}>>
+                        <label class="form-check-label" for="visible"><{$smarty.const._MD_PICO_LABEL_VISIBLE}></label>
+                    </div>
+
+                    <{* ------- show in nav *}>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="show_in_navi" id="show_in_navi" value="1" <{if $content.show_in_navi}>checked="checked"<{/if}>>
+                        <label class="form-check-label" for="show_in_navi"><{$smarty.const._MD_PICO_LABEL_SHOWINNAVI}></label>
+                    </div>
+
+
+                    <{* ------- show in menu *}>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="show_in_menu" id="show_in_menu" value="1" <{if $content.show_in_menu}>checked="checked"<{/if}>>
+                        <label class="form-check-label" for="show_in_menu"><{$smarty.const._MD_PICO_LABEL_SHOWINMENU}></label>
+                    </div>
+
+
+                    <{* ------- allow comment *}>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="allow_comment" id="allow_comment" value="1" <{if $content.allow_comment}>checked="checked"<{/if}>>
+                        <label class="form-check-label" for="allow_comment"><{$smarty.const._MD_PICO_LABEL_ALLOWCOMMENT}></label>
+                    </div>
+
+                    <{* ------- use body cache *}>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="use_cache" id="use_cache" value="1" <{if $content.use_cache}>checked="checked"<{/if}>>
+                        <label class="form-check-label" for="use_cache"><{$smarty.const._MD_PICO_LABEL_USECACHE}> <small><{$smarty.const._MD_PICO_NOTE_USECACHEDSC}></small></label>
+                    </div>
+
+                    <{* ------- locked *}>
+                    <{if $category.isadminormod}>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="locked" id="locked" value="1" <{if $content.locked}>checked="checked"<{/if}>>
+                        <label class="form-check-label" for="locked"><{$smarty.const._MD_PICO_LABEL_LOCKED}></label>
+                    </div>
+                    <{/if}>
+                </div>
+            </div>
+        </div>
+
+        <{* ------- FILTERS *}>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="contentFilters">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
+                    <img class="svg me-3" src="<{$xoops_url}>/images/icons/code.svg" width="1em" alt="filters">
+                    <{$smarty.const._MD_PICO_TH_FILTERS}>
+                </button>
+            </h2>
+            <div id="collapseFilters" class="accordion-collapse collapse" aria-labelledby="contentFilters" data-bs-parent="#accordionContentSettings">
+                <div class="accordion-body">
+
+                    <{foreach from=$content.filter_infos key="filter_name" item="filter"}>
+                    <div class="d-flex flex-row justify-content-between mb-3">
+                        <{if isset($filter.title)}>
+                            <{if $editor == "html" && !$content.body && $content.filter_infos[$filter_name].disableOnHtml}>
+                            <{assign var=check value=0}>
+                        <{else}>
+                            <{assign var=check value=1}>
+                        <{/if}>
+                        <div class="col-sm-1">
+                            <input type="checkbox" class="form-check-input" name="filter_enabled_<{$filter_name}>" id="filter_enabled_<{$filter_name}>"
+                                   value="1" <{if $filter.enabled && $check}>checked="checked"<{/if}> <{if isset($filter.fixed)}>disabled="disabled"<{/if}>>
+                        </div>
+                        <div class="col-sm-1">
+                            <input type="number" class="form-control form-control-sm" size="3" min="0" max="100" step="1" name="filter_weight_<{$filter_name}>" id="filter_weight_<{$filter_name}>"
+                                   value="<{$filter.weight}>" aria-label="Max 100">
+                        </div>
+                        <label aria-label="filter_enabled_<{$filter_name}>" class="form-check-label col-sm-10 ms-2">
+                            <{$filter.title}> - <small><{$filter.desc}></small>
+                        </label>
+                        <{/if}>
+                    </div>
+                    <{/foreach}>
+
+                </div>
+            </div>
+        </div>
+
+        <{* ------- CONTENT TIME *}>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="contentTime">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTime" aria-expanded="false" aria-controls="collapseTime">
+                    <img class="svg me-3" src="<{$xoops_url}>/images/icons/datetime.svg" width="1em" alt="date-time">
+                    <{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}>
+                </button>
+            </h2>
+            <div id="collapseTime" class="accordion-collapse collapse" aria-labelledby="contentTime" data-bs-parent="#accordionContentSettings">
+                <div class="accordion-body">
+
+                    <{* ------- CREATION DATE-TIME *}>
+                    <{if $category.isadminormod && $page == 'contentmanager'}>
+                    <h6><{$smarty.const._MD_PICO_CREATED}></h6>
+<!--                    <div class="d-flex flex-row align-items-center mb-3">-->
+                    <div class="row gap-0 row-gap-3 border rounded p-3 my-3">
+                        <div class="col-sm-5">
+                        <{* STYLE with in ch unit, 10ch = value input e.g. [12345]
+                            ch: Represents the width of the glyph "0" (zero, the Unicode character U+0030) in the element's font *}>
+                        <input type="number" class="form-control form-control-sm d-inline" name="poster_uid" id="poster_uid" size="3" value="<{$content.poster_uid}>" style="width: 10ch;margin-right:.5em">
+
+                        <label for="poster_uid">
+                            <span>uid : <{$content_base.poster_uid}></span>
+                            <img src="<{$content_base.poster_uname|xoops_user_avatarize}>" width="24px" class="border rounded">
+                            <{$content_base.poster_uname|@ucfirst}>
+                        </label>
+                    </div>
+
+                    <{if $content.specify_created_time}>
+                        <{assign var="specify_created_time_checked" value="checked='checked'"}>
+                    <{else}>
+                        <{assign var="created_time_style" value="display:none;"}>
+                    <{/if}>
+<!--                    <div class="d-flex flex-row mb-3">-->
+                        <div class="col-sm-7">
+                        <label for="specify_created_time">
+                            <input type="checkbox"
+                                   class="form-check-input"
+                                   name="specify_created_time"
+                                   id="specify_created_time"
+                                   value="1"
+                                   onclick="if(this.checked){document.getElementById('created_time').style.display='inline';}else{document.getElementById('created_time').style.display='none'}" <{$specify_created_time_checked}>>
+                            <span><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}> <small><{$content_base.created_time_formatted}></small></span>
+
+                        </label>
+                        <input type="datetime-local"
+                               name="created_time"
+                               id="created_time"
+                               size="24"
+                               value="<{$content.created_time_formatted|escape}>"
+                               style="<{$created_time_style}>">
+                    </div></div>
+                    <{/if}>
+
+
+                    <{* ------- MODIFY DATE-TIME *}>
+
+                    <{if $category.isadminormod && $page == 'contentmanager'}>
+                    <h6><{$smarty.const._MD_PICO_MODIFIED}></h6>
+                    <div class="row gap-0 row-gap-3 border rounded p-3 my-3">
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control form-control-sm d-inline" name="modifier_uid" id="modifier_uid" size="3" value="<{$content.modifier_uid}>" style="width: 10ch;margin-right:.5em">
+                            <label for="modifier_uid" class="form-label m-0">
+                                <span>uid :<{$content_base.modifier_uid}></span>
+                                    <img src="<{$content_base.modifier_uname|xoops_user_avatarize}>" width="24px" class="border rounded">
+                                    <{$content_base.modifier_uname|@ucfirst}>
+                            </label>
+                        </div>
+
+                        <{if $content.specify_modified_time}>
+                            <{assign var="specify_modified_time_checked" value="checked='checked'"}>
+                        <{else}>
+                            <{assign var="modified_time_style" value="display:none;"}>
+                        <{/if}>
+                        <div class="col-sm-7">
+                            <label for="specify_modified_time">
+                                <input type="checkbox"
+                                       class="form-check-input"
+                                       name="specify_modified_time"
+                                       id="specify_modified_time"
+                                       value="1"
+                                       onclick="if(this.checked){document.getElementById('modified_time').style.display='inline';}else{document.getElementById('modified_time').style.display='none'}" <{$specify_modified_time_checked}>>
+
+                                <span><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}> <small><{$content_base.modified_time_formatted}></small></span>
+                            </label>
+                            <input type="datetime-local"
+                                   name="modified_time"
+                                   id="modified_time"
+                                   size="24"
+                                   value="<{$content.modified_time_formatted|escape}>"
+                                   style="<{$modified_time_style}> ">
+                        </div>
+                    </div>
+                    <{/if}>
+
+                    <{* ------- EXPIRE DATE-TIME *}>
+                    <{if $category.isadminormod}>
+                    <h5><{$smarty.const._MD_PICO_EXPIRING}></h5>
+                    <div class="row gap-0 row-gap-3 border rounded p-3 my-3">
+                        <div class="col-auto">
+                        <{if isset($content.specify_expiring_time)}>
+                            <{assign var="specify_expiring_time_checked" value="checked='checked'"}>
+                        <{else}>
+                            <{assign var="expiring_time_style" value="display:none;"}>
+                        <{/if}>
+                        <label for="specify_expiring_time">
+                            <input type="checkbox"
+                                   class="form-check-input"
+                                   name="specify_expiring_time"
+                                   id="specify_expiring_time"
+                                   value="1"
+                                   onclick="if(this.checked){document.getElementById('expiring_time').style.display='inline';}else{document.getElementById('expiring_time').style.display='none'}" <{$specify_expiring_time_checked|default:''}>>
+
+                            <span><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}> <small><{$content_base.expiring_time_formatted}></small></span>
+                        </label>
+
+                        <input type="datetime-local"
+                               name="expiring_time"
+                               id="expiring_time" size="24"
+                               value="<{$content.expiring_time_formatted|escape}>"
+                               style="<{$expiring_time_style}>">
+                        </div>
+                    </div>
+                    <{/if}>
+
+                </div>
+            </div>
+        </div>
+
+        <{* ------- CONTENT HISTORY *}>
+        <{if $page !='makecontent'}>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="contentHistory">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHistory" aria-expanded="false" aria-controls="collapseHistory">
+                    <img class="svg me-3" src="<{$xoops_url}>/images/icons/history.svg" width="1em" alt="revision history">
+                    <{$smarty.const._MD_PICO_HISTORY}>
+                </button>
+            </h2>
+            <div id="collapseHistory" class="accordion-collapse collapse" aria-labelledby="contentHistory" data-bs-parent="#accordionContentSettings">
+                <div class="accordion-body">
+                    <ul class="content-history-list">
+                        <{foreach from=$content_histories item="history"}>
+                        <li>
+                            <{$history.modified_time_formatted}>
+                            -
+                            <{$history.modifier_uname}>
+                            (<{$history.body_size|number_format}><{$smarty.const._MD_PICO_BYTE}>)
+                            <a href="<{$mod_url}>/index.php?page=viewhistory&amp;content_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_REFERIT}></a>
+                            -
+                            <a href="<{$mod_url}>/index.php?page=downloadhistory&amp;content_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_DOWNLOADIT}></a>
+                            -
+                            <a href="<{$mod_url}>/index.php?page=diffhistory&amp;older_history_id=<{$history.id}>&amp;newer_history_id=0"><{$smarty.const._MD_PICO_DIFF2NOW}></a>
+                            <{if $history.prev_id}>
+                            -
+                            <a href="<{$mod_url}>/index.php?page=diffhistory&amp;older_history_id=<{$history.prev_id}>&amp;newer_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_DIFFFROMPREV}></a>
+                            <{/if}>
+                        </li>
+                        <{/foreach}>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <{/if}>
+
+    </div><{* -------/accordionFlushOptions *}>
+
+
+</div><{* -------/card-body *}>
+
+<div class="card-footer py-3">
+
+    <div  class="action-control">
+		<{if $page == 'contentmanager' && $category.can_delete}>
+        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteContentModal">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="trash-fill mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+            </svg> <{$smarty.const._DELETE}>
+        </button>
+		<{/if}>
+
+	<button type="submit" role="button" class="btn btn-outline-primary" name="contentman_preview" id="contentman_preview" value="<{$smarty.const._PREVIEW}>"><{$smarty.const._PREVIEW}></button>
+
+	<button type="submit" role="button" class="btn btn-primary" name="contentman_post" id="contentman_post" value="<{$smarty.const._MD_PICO_BTN_SUBMITEDITING}>"><{$smarty.const._MD_PICO_BTN_SUBMITEDITING}></button>
+
+	<{if !$content.approval && $category.isadminormod && $page !='makecontent'}>
+
+	<button type="submit" role="button" class="primary" name="contentman_copyfromwaiting" value="<{$smarty.const._MD_PICO_BTN_COPYFROMWAITING}>" onclick="return confirm('')">
+	<{$smarty.const._MD_PICO_BTN_COPYFROMWAITING}></button>
+
+	<{elseif $page == 'contentmanager'}>
+
+	<button type="submit" role="button" class="btn btn-primary" name="contentman_post" id="contentman_saveas" value="<{$smarty.const._MD_PICO_BTN_SUBMITSAVEAS}>" onclick="document.contentform.action='<{$mod_url}>/index.php?page=makecontent&amp;content_id=0';return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMSAVEASCONTENT}>');">
+	<{$smarty.const._MD_PICO_BTN_SUBMITSAVEAS}></button>
+
+	<{/if}>
+	</div>
+</div>
+
+
+</article>
+    <{* MODAL MUST BE WITHIN FORM *}>
+    <div class="modal fade" id="deleteContentModal" tabindex="-1" aria-labelledby="deleteContentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteContentModalLabel"><{$smarty.const._DELETE}></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" name="contentman_delete"><{$smarty.const._DELETE}></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <{* /MODAL MUST BE WITHIN FORM *}>
+
+</form>
+    <{* ------- Start Form Validation JavaScript /*}>
+    <script type="text/javascript">
+    // function xoopsFormValidate_contentform() {
+    //     myform = window.document.contentform;
+    //     if ( myform.subject.value == "" ) {
+    //         window.alert("<{$smarty.const._MD_PICO_TH_SUBJECT|string_format:$smarty.const._FORM_ENTER}>");
+    //         myform.subject.focus();
+    //         myform.subject.style.backgroundColor='#FFFFCC';
+    //         return false;
+    //     }
+    //     return true;
+    // }
+    </script>
+    <{* ------- End Form Validation JavaScript *}>

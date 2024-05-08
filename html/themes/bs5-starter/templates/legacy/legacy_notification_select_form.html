@@ -1,0 +1,77 @@
+<{* Dev-Mode Toggle *}>
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<{if $xoops_notification.show}>
+<div class="accordion" id="accordionNotification">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingNotification">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNotification" aria-expanded="false" aria-controls="collapseNotification">
+                <svg class="bell me-3" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z"/>
+                    <path fill-rule="evenodd" d="M8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+                </svg> <{$smarty.const._NOT_ACTIVENOTIFICATIONS}>
+            </button>
+        </h2>
+        <div id="collapseNotification" class="accordion-collapse collapse" aria-labelledby="headingNotification" data-bs-parent="#accordionNotification">
+            <div class="accordion-body">
+
+            <form name="notification_select" action="<{$xoops_notification.target_page}>" method="post">
+                <input type="hidden" name="not_redirect" value="<{$xoops_notification.redirect_script}>">
+
+                <table class="table outer">
+                    <tr>
+                        <th colspan="3">
+                            <div class="ml-1"><{$smarty.const._NOT_NOTIFICATIONMETHODIS}>:&nbsp;
+                                <span class="badge bg-primary-subtle text-primary-emphasis"> <{$user_method}></span>&nbsp;&nbsp;
+                                <a class="btn btn-outline-primary btn-sm" href="<{$editprofile_url|xoops_escape:link}>"><{$smarty.const._NOT_CHANGE}></a>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td><{$smarty.const._NOT_CATEGORY}></td>
+                        <td><input class="form-check-input" name="allbox" id="allbox" onclick="checkAll('notification_select','allbox');" type="checkbox" value="<{$smarty.const._NOT_CHECKALL}>"></td>
+                        <td><{$smarty.const._NOT_EVENT}></td>
+                    </tr>
+                    <{foreach name=outer item=category from=$xoops_notification.categories}>
+                    <{foreach name=inner item=event from=$category.events}>
+                    <tr>
+                        <{if $smarty.foreach.inner.first}>
+                        <td rowspan="<{$smarty.foreach.inner.total}>"><{$category.title}></td>
+                        <{/if}>
+                        <td>
+                            <{counter assign=index}>
+                            <input type="hidden" name="not_list[<{$index}>][params]" value="<{$category.name}>,<{$category.itemid}>,<{$event.name}>">
+                            <input type="checkbox"
+                                   class="form-check-input"
+                                   id="not_list_<{$category.itemid}>_<{$index}>"
+                                   name="not_list[<{$index}>][status]"
+                                   value="1" <{if $event.subscribed}>checked="checked"<{/if}>>
+                        </td>
+                        <td><{$event.caption}></td>
+                    </tr>
+                    <{/foreach}>
+                    <{/foreach}>
+                    <tr>
+                        <td colspan="3">
+                            <button type="submit" class="btn btn-primary btn-sm" name="not_submit" value="<{$smarty.const._NOT_UPDATENOW}>"><{$smarty.const._NOT_UPDATENOW}></button></td>
+                    </tr>
+                </table>
+            </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function checkAll(formname, switchid) {
+        var ele = document.forms[formname].elements;
+        var switch_cbox = document.getElementById(switchid);
+        for (var i = 0; i < ele.length; i++) {
+            var e = ele[i];
+            if ( (e.name != switch_cbox.name) && (e.type == 'checkbox') ) {
+                e.checked = switch_cbox.checked;
+            }
+        }
+    }
+</script>
+<{/if}>

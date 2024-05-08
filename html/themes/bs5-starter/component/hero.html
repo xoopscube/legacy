@@ -1,0 +1,43 @@
+<header class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">A Bootstrap 5 template for XOOPSCube XCL 2.4</h1>
+                    <p class="lead fw-normal text-white-50 mb-4">Quickly design and customize responsive mobile-first sites with XOOPSCube and Bootstrap5 front-end open source toolkit!</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Get Started</button>
+                        <a class="btn btn-outline-light px-4" href="<{$xoops_url}>/themes/<{$xoops_theme}>/index.php" target="_blank" rel="noopener nofollow">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center bg-secondary bg-opacity-50 rounded-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="img-fluid my-5" width="7em" viewBox="0 0 24 24"><path fill="currentColor" d="M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25m19.61 1.11l-4.25 4.25l-5.2-5.2l1.77-1.77l1 1l2.47-2.48l1.42 1.42L18.36 17l1.06 1l1.42-1.4l1.77 1.76m-16-7.53L1.39 5.64l4.25-4.25L7.4 3.16L4.93 5.64L6 6.7l2.46-2.48l1.42 1.42l-1.42 1.41l1 1l-2.85 2.78M20.71 7c.39-.39.39-1 0-1.41l-2.34-2.3c-.37-.39-1.02-.39-1.41 0l-1.84 1.83l3.75 3.75L20.71 7Z"/></svg>
+            </div>
+        </div>
+    </div>
+</header>
+
+<{* ----- MODAL FOR GET STARTED SLIDERS ----- *}>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <{* vertically centered = modal-dialog-centered *}>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0  shadow-lg">
+            <div class="modal-header border-0 ">
+                <h1 class="modal-title fs-6" id="staticBackdropLabel">XCL Theme Bootstrap 5.3.3 Starter</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <{* ----- INCLUDE GET STARTED SLIDERS ----- *}>
+                <{include file="$xoops_theme/component/carousel.html"}>
+            </div>
+            <{* ----- CUSTOMIZE MODAL FOOTER
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+                ----- REMOVE SMARTY COMMENTS  *}>
+        </div>
+    </div>
+</div>

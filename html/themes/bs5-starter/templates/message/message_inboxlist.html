@@ -1,0 +1,155 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{* set tab inbox to current active *}>
+<{if $smarty.template == 'db:message_inboxlist.html'}>
+<{assign var="tab" value="active"}>
+<{/if}>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<{$xoops_url}>/"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" alt="home"></a></li>
+        <li class="breadcrumb-item"><a href="index.php"><{$smarty.const._MI_MESSAGE_NAME}></a></li>
+        <li class="breadcrumb-item active" aria-current="page"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></li>
+    </ol>
+</nav>
+
+<div class="card my-4">
+
+    <{include file="$xoops_theme/templates/message/inc_compo_nav.html"}>
+
+    <{* ------- /card-header *}>
+
+
+    <div class="card-body my-4">
+
+        <form method="post" name="form-search" action="index.php?action=index" class="form-row">
+
+            <div class="row g-3 mb-4">
+
+                <div class="col-sm-4">
+                    <input type="text" class="form-control form-control-sm" name="subject" size="25" value="<{$subject|xoops_escape}>" placeholder="<{$smarty.const._MD_MESSAGE_TEMPLATE3}>">
+                </div>
+
+                <div class="col-sm">
+                    <select name="status" class="form-select form-select-sm mr-2">
+                        <option value="">- <{$smarty.const._MD_MESSAGE_TEMPLATE22}></option>
+                        <option value="0"<{if $status===0}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE16}></option>
+                        <option value="1"<{if $status==1}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE17}></option>
+                        <option value="2"<{if $status==2}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE19}></option>
+                    </select>
+                </div>
+
+                <div class="col-sm">
+                    <select name="fromuid" class="form-select form-select-sm">
+                        <option value="0">- <{$smarty.const._MD_MESSAGE_TEMPLATE12}></option>
+                        <{foreach item=fuser from=$select}>
+                        <option value="<{$fuser.uid}>"<{if $fuser.select==true}> selected="selected"<{/if}>><{$fuser.uname|xoops_escape}></option>
+                        <{/foreach}>
+                    </select>
+                </div>
+
+                <div class="col-sm">
+                    <button type="submit" class="btn btn-primary btn-sm" name="subbtn" value="<{$smarty.const._MD_MESSAGE_SEARCH}>">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="svg" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+                        </svg> <{$smarty.const._MD_MESSAGE_SEARCH}></button>
+                </div>
+
+            </div>
+
+        </form>
+
+        <form method="post" action="index.php?action=deleteall">
+
+        <table class="table table-hover" id="printhis">
+
+            <{foreach item=val from=$ListData}>
+            <tr>
+                <td>
+                <{if $val.is_read==1}>
+                <input type="checkbox" class="form-check-input mt-2 ml-0" name="delmsg[]" value="<{$val.inbox_id}>" title="<{$smarty.const._DELETE}>">
+                    <{else}>
+                    <input type="checkbox" class="form-check-input mt-2 ml-0" name="delmsg[]" value="<{$val.inbox_id}>" disabled>
+                <{/if}>
+                </td>
+
+                <td>
+                <{if $val.is_read==0}>
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="mail-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+                    </svg>
+
+                <{elseif $val.is_read==1}>
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="mail-open" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <title><{$smarty.const._MD_MESSAGE_TEMPLATE17}></title>
+                        <path fill-rule="evenodd" d="M8.47 1.318a1 1 0 0 0-.94 0l-6 3.2A1 1 0 0 0 1 5.4v.818l5.724 3.465L8 8.917l1.276.766L15 6.218V5.4a1 1 0 0 0-.53-.882l-6-3.2zM15 7.388l-4.754 2.877L15 13.117v-5.73zm-.035 6.874L8 10.083l-6.965 4.18A1 1 0 0 0 2 15h12a1 1 0 0 0 .965-.738zM1 13.117l4.754-2.852L1 7.387v5.73zM7.059.435a2 2 0 0 1 1.882 0l6 3.2A2 2 0 0 1 16 5.4V14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5.4a2 2 0 0 1 1.059-1.765l6-3.2z"/>
+                    </svg>
+
+                <{elseif $val.is_read==2}>
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="mail-shield" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <title><{$smarty.const._MD_MESSAGE_TEMPLATE19}></title>
+                        <path fill-rule="evenodd" d="M5.443 1.991a60.17 60.17 0 0 0-2.725.802.454.454 0 0 0-.315.366C1.87 7.056 3.1 9.9 4.567 11.773c.736.94 1.533 1.636 2.197 2.093.333.228.626.394.857.5.116.053.21.089.282.11A.73.73 0 0 0 8 14.5c.007-.001.038-.005.097-.023.072-.022.166-.058.282-.111.23-.106.525-.272.857-.5a10.197 10.197 0 0 0 2.197-2.093C12.9 9.9 14.13 7.056 13.597 3.159a.454.454 0 0 0-.315-.366c-.626-.2-1.682-.526-2.725-.802C9.491 1.71 8.51 1.5 8 1.5c-.51 0-1.49.21-2.557.491zm-.256-.966C6.23.749 7.337.5 8 .5c.662 0 1.77.249 2.813.525a61.09 61.09 0 0 1 2.772.815c.528.168.926.623 1.003 1.184.573 4.197-.756 7.307-2.367 9.365a11.191 11.191 0 0 1-2.418 2.3 6.942 6.942 0 0 1-1.007.586c-.27.124-.558.225-.796.225s-.526-.101-.796-.225a6.908 6.908 0 0 1-1.007-.586 11.192 11.192 0 0 1-2.417-2.3C2.167 10.331.839 7.221 1.412 3.024A1.454 1.454 0 0 1 2.415 1.84a61.11 61.11 0 0 1 2.772-.815z"/>
+                        <path d="M8 2.25c.909 0 3.188.685 4.254 1.022a.94.94 0 0 1 .656.773c.814 6.424-4.13 9.452-4.91 9.452V2.25z"/>
+                    </svg>
+
+                <{/if}>
+                </td>
+
+                 <td><img src="<{$val.from_uid|xoops_user_avatarize}>" width="24px" class="rounded-circle"> <{$val.fromname}></td>
+
+                <td><a href="index.php?action=view&amp;inout=in&amp;inbox=<{$val.inbox_id}>"><{$val.title|truncate:50:"..."}></a></td>
+
+                <td class="small"><{$val.utime|xoops_formattimestamp:l}></td>
+
+            </tr>
+            <{/foreach}>
+
+        </table>
+
+            <input type="hidden" name="inout" value="in">
+
+
+
+    </div><{* ------- /card-body *}>
+
+
+    <div class="card-footer d-flex justify-content-between py-3">
+
+        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteMailModal">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="trash-fill mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+            </svg> <{$smarty.const._DELETE}>
+        </button>
+
+        <nav aria-label="Pagination" class="mb-0">
+            <div class="pagenavi pagination pagination-sm pagination justify-content-center">
+                <{xoops_pagenavi pagenavi=$pageNavi}>
+            </div>
+        </nav>
+
+    </div>
+
+    <{* MODAL MUST BE WITHIN FORM *}>
+    <div class="modal fade" id="deleteMailModal" tabindex="-1" aria-labelledby="deleteMailModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteMailModalLabel"><{$smarty.const._DELETE}></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <{$smarty.const._MD_MESSAGE_DELETE_CONFIRM}>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" name="subbtn"><{$smarty.const._DELETE}></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <{* /MODAL MUST BE WITHIN FORM *}>
+    </form>
+
+</div>
+

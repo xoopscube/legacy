@@ -1,0 +1,13 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{* /////// INCLUDE BREADCRUMB \\\\\\\ *}>
+<{if $mod_config.show_breadcrumbs}>
+<{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
+<{/if}>
+
+<div class="pico_container" id="<{$mydirname}>_container">
+
+<{$history_body_raw|escape|nl2br}>
+
+</div>

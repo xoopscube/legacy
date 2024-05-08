@@ -1,0 +1,28 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<input type="hidden" name="options[0]" value="<{$mydirname}>">
+
+<p>
+	<label for="content_id"><{$smarty.const._MB_PICO_CONTENT_ID}></label>:
+	<select name="options[1]" id="content_id">
+		<{html_options options=$contents selected=$content_id}>
+	</select>
+	<a href="<{$xoops_url}>/modules/<{$mydirname}>/index.php?page=contentmanager&amp;content_id=<{$content_id}>"><{$smarty.const._EDIT}></a>
+</p>
+
+<p>
+	<label for="this_template"><{$smarty.const._MB_PICO_THISTEMPLATE}></label>:
+	<input type="text" size="60" name="options[2]" id="this_template" value="<{$this_template|escape}>">
+	<a href="<{$xoops_url}>/modules/<{$mydirname}>/admin/index.php?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file=<{$this_template|escape}>"><{$smarty.const._EDIT}></a>
+</p>
+
+<p>
+	<{$smarty.const._MB_PICO_PROCESSBODY}>:
+	<label for="process_body_yes"><{$smarty.const._YES}></label>
+	<input type="radio" name="options[3]" id="process_body_yes" value="1" <{if $process_body}>checked="checked"<{/if}>>
+	&nbsp;
+	<label for="process_body_no"><{$smarty.const._NO}></label>
+	<input type="radio" name="options[3]" id="process_body_no" value="0" <{if ! $process_body}>checked="checked"<{/if}>>
+</p>
+

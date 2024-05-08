@@ -1,0 +1,298 @@
+/*
+ * Theme XCL Bootstrap v5.3.3 Starter
+ *
+ * @version   2.4.0
+ * @author    Nuno Luciano ( https://github.com/gigamaster )
+ * @copyright (c) 2024 The XOOPSCube Project, author
+ * @license   MIT license for Bootstrap
+ * @license   BSD license for XOOPSCube XCL Theme
+ * @link      https://github.com/xoopscube
+*/
+:root{
+    /* ------------------ Development Mode */
+    --dev-mode: none; /*  Display Smarty Template Name : block, none */
+
+    --bs-form-control-bg : var(--bs-light-bg-subtle)!important; /* Input background color override to enhance contrast */
+
+    --trackBG       : var(--bs-dark-rgb);
+    --thumbBG       : hsl(219, 15%, 25%); 
+    /* FIREFOX SCROLLBAR */
+    scrollbar-color : var(--thumbBG) var( --trackBG ); /* thumb-color track-color */
+    scrollbar-width : thin;
+}
+@media only screen and (prefers-color-scheme:dark) {
+
+    :root html[data-bs-theme="dark"] {
+        /* -------------------- THEME COLOR */
+        color-scheme: dark;
+        --ntop-bg: var(--bs-btn-bg);
+        --ntop-bg-hover:var(--bs-btn-hover-bg);
+        --ntop-arrow:var(--bs-btn-color);
+        --ntop-arrow-hover:var(--bs-btn-hover-color);
+
+    }
+    /* CHROME Autofill dark theme */
+    :-webkit-autofill,
+    :-webkit-autofill:hover,
+    :-webkit-autofill:focus {
+        -webkit-text-fill-color: var(--bs-body-color);
+        -webkit-box-shadow: 0 0 0 1000px #000 inset;
+        box-shadow: 0 0 0px 1000px #000 inset;
+        color: var(--bs-body-color);
+        transition: background-color 0s;
+        transition-delay: 1s;
+        background-color: var(--bs-form-control-bg);
+        border-color: #86b7fe;
+        outline: 0;
+    }
+
+}
+
+/* Development Mode */
+.ui-dev-mode {
+    background          : rgb(10, 10, 10);
+    color               : rgb(0, 204, 255);
+    font-size           : 12px;
+    display             : var(--dev-mode); /* none or block */
+    position            : absolute;
+    overflow-wrap: anywhere;
+    word-wrap: anywhere;
+    hyphens: auto;
+}
+
+a:link {text-decoration: none;}
+
+/* REMOVE DROPDOWN FROM BLOCK TITLE AND NAV TOP */
+:is( .admin-action, .nav-link, .block-title) .dropdown-toggle::after {
+    display             : none;
+}
+
+/* CKEditor */
+iframe[class^="cke"] html {
+    background-color    : var(--bs-body-bg);
+    color               : var(--bs-body-color);
+}
+
+/* NAVBAR TOGGLER
+ * Reset the default SVG background image and specify your desired alternative in CSS !
+ */
+.navbar-toggler-icon {
+    /*background-image: none;*/
+    width               : 1em;
+    height              : 1em;
+}
+
+/* D3FORUM POST TREE */
+.post-tree-item {
+    list-style          : none;
+}
+/* D3FORUM ALERT PROGRESS TOASTER  */
+.progressTime::-webkit-progress-value { 
+    background          : var(--bs-warning-bg-subtle);
+}
+.progressTime::-moz-progress-bar { 
+    background          : var(--bs-warning-bg-subtle);}
+.progressTime {
+    accent-color        : var(--bs-warning-bg-subtle);
+    border              : 1px solid var(--bs-warning-border-subtle);
+    width               : 348px;
+    height              : 4px;
+    position            : relative;
+    bottom              : -16px;
+    left                : -12px;
+}
+#progressInvisible { 
+    border              : 1px solid var(--bs-danger);
+}
+.btn-close {
+    position            : relative
+}
+
+/* -------------------- -------------------- XCL CUBE */
+.theme-options {
+    background      : transparent;
+    border-top-left-radius : 2px;
+    border-bottom-left-radius : 2px;
+    box-shadow      : -5px 0 5px 1px rgba(0,0,0,0.27);
+    /* USE RGBA TO CUSTOMIZE TEXT OPACITY */
+    --bs-text-opacity: .5;
+    color           : rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+    line-height     : 30px;
+    position        : fixed;
+    top             : 30%;
+    right           : 2px;
+    z-index         : 900;
+    padding         : 1px;
+    margin          : 3px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+.qube-perspective{perspective:900px}
+.qube-preserve3d{preserve-3d;transform-style:preserve-3d}
+.qube{position:relative;margin:0;padding:0;list-style:none;width:100%;height:100%;transform-style:preserve-3d}
+.qube>*{background-size:100%}
+.qube>*,.qube>:after{position:absolute;left:0;top:0;margin:0;padding:0;width:100%;height:100%}
+.qube>:after{pointer-events:none;display:block;content:""}
+.qube.no-shading>:after{display:none}
+.qube.solid>*,.qube.solid>:after{backface-visibility:hidden}
+.qube.textured>*{background-size:300%}
+.qube.faces>:nth-child(1),.qube>.front{transform:rotateX(90deg) translateY(50%) rotateX(-90deg)}
+.qube.textured.faces>:nth-child(1),.qube.textured>.front{background-position:0 0}
+.qube.faces>:nth-child(3),.qube>.back{transform:rotateY(180deg) rotateX(90deg) translateY(50%) rotateX(-90deg)}
+.qube.faces>:nth-child(3):after,.qube>.back:after{background:rgba(0,0,0,.6)}
+.qube.x-axis.faces>:nth-child(3),.qube.x-axis>.back{transform:rotateX(90deg) translateY(-50%) rotateX(90deg)}
+.qube.textured.faces>:nth-child(3),.qube.textured>.back{background-position:-100% 0}
+.qube.faces>:nth-child(2),.qube>.left{transform:translateX(-50%) rotateY(-90deg)}
+.qube.faces>:nth-child(2):after,.qube>.left:after{background:rgba(0,0,0,.5)}
+.qube.textured.faces>:nth-child(2),.qube.textured>.left{background-position:-200% 0}
+.qube.faces>:nth-child(4),.qube>.right{transform:translateX(50%) rotateY(90deg)}
+.qube.faces>:nth-child(4):after,.qube>.right:after{background:rgba(0,0,0,.3)}
+.qube.textured.faces>:nth-child(4),.qube.textured>.right{background-position:0 -100%}
+.qube.faces>:nth-child(5),.qube>.top{transform:translateY(-50%) rotateX(90deg)}
+.qube.faces>:nth-child(5):after,.qube>.top:after{background:rgba(0,0,0,.2)}
+.qube.textured.faces>:nth-child(5),.qube.textured>.top{background-position:-100% -100%}
+.qube.faces>:nth-child(6),.qube>.bottom{transform:translateY(50%) rotateX(-90deg)}
+.qube.faces>:nth-child(6):after,.qube>.bottom:after{background:rgba(0,0,0,.7)}
+.qube.textured.faces>:nth-child(6),.qube.textured>.bottom{background-position:-200% -100%}
+/* MIT License @zacharyjohnson, edited by @gigamaster */
+.xcl-cube {
+    list-style: none;
+    width           : 40px;
+    height          : 40px;
+    line-height     : 40px;
+    transition      : transform 1500ms ease;
+}
+.xcl-cube li {list-style:none}
+.xcl-cube:hover {transform: rotateY(359deg);}
+.xcl-cube > * {
+    background      : var(--primary-focus);
+    border          : 1px solid rgba(0,127,255,0.5);
+    text-align      : center;
+    cursor          : pointer;
+}
+.xcl-cube > .front {
+    background      : rgba(84,110,127,0.27);
+}
+.xcl-cube > .left {
+    background      : rgba(70,90,100,0.27);
+}
+.xcl-cube > .back {
+    background      : rgba(55,70,80,0.27);
+}
+.xcl-cube > .right {
+    background      : rgba(40,52,60,0.27);
+}
+/* ---------- ---------- ------- SCROLL TOP */
+.scroll-top {
+    position        : absolute;
+    pointer-events  : none;
+    z-index         : 1000;
+}
+.scroll-top #ntop-bg {fill: var(--bs-secondary);}
+.scroll-top #ntop-arrow {fill: var(--bs-primary-bg-subtle);}
+.scroll-top a:hover #ntop-bg {fill: var(--bs-primary, var(--bs-primary-bg-subtle));}
+.scroll-top a:hover #ntop-arrow {fill: var(--bs-link-hover-color);}
+.scroll-top a {
+position: fixed;
+    /*position: sticky;*/
+    top: -6rem;
+    right: 2em;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: -2rem;
+    transform: translateY(100vh);
+    backface-visibility: hidden;
+    display: inline-block;
+    text-decoration: none;
+    user-select: none;
+    pointer-events: all;
+    outline: none;
+    overflow: hidden;
+}
+.scroll-top a svg {
+    display: block;
+    border-radius: var(--bs-border-radius);
+    width: 100%;
+    height: 100%;
+}
+.scroll-top a svg path {
+    transition: all 0.1s;
+}
+.scroll-top a #ntop-arrow {
+    transform: scale(0.66);
+    transform-origin: center;
+}
+
+/* -------------------- -------------------- SELECTION */
+/* ::selection pseduo-class selector changes the style of the selected text.
+CSS properties available :
+color and background-color,
+text-decoration and text-shadow,
+stroke-color, fill-color and stroke-width */
+::selection{
+    --bs-bg-opacity     : 0.50;
+    --bs-text-opacity   : 1;
+    color               : rgba(var(--bs-white-rgb),var(--bs-text-opacity))!important;
+    background          : rgba(var(--bs-primary-rgb),var(--bs-bg-opacity))!important;
+}
+
+/* -------------------- -------------------- SCROLLBAR */
+/* Note:
+scrollbar-width and scrollbar-color are part of CSS Working Group’s
+Scrollbars Module Level 1 draft and are currently only supported in Firefox
+*/
+:root{
+    --trackBG       : var( --color-2 ); /*hsl(228, 10%, 10%);*/
+    --thumbBG       : hsl(219, 15%, 25%); /*  hsl(229, 20%, 21%);  */
+    /* FIREFOX SCROLLBAR */
+    scrollbar-color : var(--thumbBG) var( --trackBG ); /* thumb-color track-color */
+    scrollbar-width : thin;
+}
+/* Draggable handle found at the bottom of some elements (like Textarea) */
+::-webkit-resizer {
+    border-width    : 8px;
+    border-style    : solid;
+}
+
+::-webkit-resizer {
+    border-color    : transparent hsl(215, 15%, 25%) hsl(216, 17%, 17%) transparent;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width           : 8px;  /* vertical scrollbar width */
+    height          : 8px; /* horizontal scrollbar height */
+}
+
+::-webkit-scrollbar-button {
+    display         : none
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background      : linear-gradient(145deg, hsl(216, 17%, 17%), hsl(211, 15%, 28%));
+    min-height      : 80px;
+    border-radius   : 0
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    /*background: #555;*/
+}
+/* Track */
+::-webkit-scrollbar-track {
+    border          : 1px solid hsl(220, 15%, 25%);
+    border-radius   : var(--border-radius);
+    background      : linear-gradient(145deg, hsl(220, 15%, 15%), hsl(220, 21%, 15%));
+    /*box-shadow    : inset 2px 2px 4px 1px rgba(0, 0, 0, 0.4),*/
+}
+::-webkit-scrollbar-thumb:horizontal{
+    /*background: #000;*/
+    border-radius   : 10px;
+}
+/*  ::-webkit-scrollbar-track-piece
+the track not covered by the scrollbar-thumb or handle */
+/* ::-webkit-scrollbar-corner
+bottom-right corner where the horizontal and vertical scrollbars meet */

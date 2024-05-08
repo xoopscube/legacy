@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-2">
+        <a class="navbar-brand" href="<{$xoops_url}>/index.php"><img src="<{$xoops_url}>/images/logo.svg" width="24px" height="24px" alt="logo"> <{$xoops_sitename}></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="<{$xoops_url}>/index.php">Home</a></li>
+
+                <{if file_exists("`$xoops_rootpath`/modules/d3forum/index.php")}>
+                <li class="nav-item"><a class="nav-link" href="<{$xoops_url}>/modules/d3forum/">Forum</a></li>
+                <{/if}>
+
+                <{if file_exists("`$xoops_rootpath`/modules/pico/index.php")}>
+                <li class="nav-item"><a class="nav-link" href="<{$xoops_url}>/modules/page/">Page</a></li>
+                <{/if}>
+
+                <{foreach item=block from=$xoops_lblocks}>
+                <{if $block.title|strstr:"navbar-"}>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown-<{$block.id}>" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <{$block.title|replace:'navbar-':' '}>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown-<{$block.id}>">
+                        <li><{$block.content}></li>
+                    </ul>
+                </li>
+                <{if $xoops_isadmin}><li class="nav-item admin-action"><{include file="$xoops_theme/component/_inc_block_edit.html"}></li><{/if}>
+                <{/if}>
+                <{/foreach}>
+
+                <{* ------- CUSTOM DROPDOWN MENU
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                        <li><a class="dropdown-item" href="<{$xoops_theme}>/portfolio-overview.html">Portfolio Overview</a></li>
+                        <li><a class="dropdown-item" href="<{$xoops_theme}>/portfolio-item.html">Portfolio Item</a></li>
+                    </ul>
+                </li>
+                REMOVE SMARTY COMMENT FOR CUSTOM DROPDOWN MENU *}>
+
+                <{* ------- SWITCH THEME COLOR-MODE *}>
+                <li class="nav-item">
+                    <div class="form-check form-switch m-2">
+                        <input class="form-check-input" type="checkbox" role="switch" id="theme-mode"/>
+                        <label class="form-check-label text-light" for="theme-mode">Theme</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
