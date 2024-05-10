@@ -44,16 +44,6 @@ $modversion['hasMain'] = 0;
 // $modversion['sub'][]['name'] = "";
 // $modversion['sub'][]['url'] = "";
 
-//$modversion['config'][] = array(
-//		'name'			=> 'editors' ,
-//		'title'			=> '_MI_CKEDITOR4_EDITORS',
-//		'description'	=> '_MI_CKEDITOR4_EDITORS_DESC',
-//		'formtype'		=> ((defined('_MI_LEGACY_DETAILED_VERSION') && version_compare(_MI_LEGACY_DETAILED_VERSION, 'CorePack 20120825', '>='))? 'checkbox_br' : 'select_multi'),
-//		'valuetype'		=> 'array',
-//		'default'		=> array( 'html', 'bbcode'),
-//		'options'		=> array( 'HTML' => 'html', 'XOOPS(BB)Code' => 'bbcode')
-//) ;
-
 $modversion['config'][] = array(
 		'name'			=> 'toolbar_admin' ,
 		'title'			=> '_MI_CKEDITOR4_TOOLBAR_ADMIN',
@@ -69,7 +59,7 @@ $modversion['config'][] = array(
         'description'	=> '_MI_CKEDITOR4_TOOLBAR_UI_COLOR_DESC',
         'formtype'		=> 'color' ,
         'valuetype'		=> 'string' ,
-        'default'		=> '#405060'
+        'default'		=> '#bbbbbb'
 ) ;
 
 $modversion['config'][] = array(
@@ -87,7 +77,9 @@ $modversion['config'][] = array(
 		'description'	=> '_MI_CKEDITOR4_TOOLBAR_SPECIAL_GROUP_DESC',
 		'formtype'		=> 'textarea' ,
 		'valuetype'		=> 'string' ,
-		'default'		=> 'Full'
+		'default'		=> '[["Source","-","Templates"],["Cut","Copy","Paste","PasteText","-","Undo","Redo"],["Find","Replace","-","SelectAll"],["UIColor","-","Language","-","Maximize","ShowBlocks"],["NumberedList","BulletedList","-","Outdent", "Indent","-","Blockquote","CreateDiv","-","JustifyLeft","JustifyCenter","JustifyRight","JustifyBlock"],["Link", "Unlink", "Anchor" ],["Image", "Table", "HorizontalRule","Smiley","Iframe"],["Bold","Italic","Underline","Strike","Subscript","Superscript","Mark","-","CopyFormatting","RemoveFormat"],["TextColor", "BGColor"],["Format","Font","FontSize"]]'
+// 'default'		=> 'Full'
+		
 ) ;
 
 $modversion['config'][] = array(
@@ -96,8 +88,10 @@ $modversion['config'][] = array(
 		'description'	=> '_MI_CKEDITOR4_TOOLBAR_USER_DESC',
 		'formtype'		=> 'textarea' ,
 		'valuetype'		=> 'string' ,
-		'default'		=> '[["PasteText","-","Undo","Redo" ],["Bold","Italic","Underline","Strike","-","TextColor","-","RemoveFormat","FontSize"],["NumberedList","BulletedList","Outdent","Indent","Blockquote"],["Link","Image","Smiley","PageBreak"],["Maximize", "ShowBlocks","-","CodeSnippet"]]'
+		'default'		=> '[["Source","-","Templates"],["Cut","Copy","Paste","PasteText","-","Undo","Redo"],["Find","Replace","-","SelectAll"],["UIColor","-","Language","-","Maximize","ShowBlocks"],["NumberedList","BulletedList","-","Outdent", "Indent","-","Blockquote","CreateDiv","-","JustifyLeft","JustifyCenter","JustifyRight","JustifyBlock"],["Link", "Unlink", "Anchor" ],["Image", "Table", "HorizontalRule","Smiley","Iframe"],["Bold","Italic","Underline","Strike","Subscript","Superscript","Mark","-","CopyFormatting","RemoveFormat"],["TextColor", "BGColor"],["Format","Font","FontSize"]]'
 ) ;
+
+
 
 $modversion['config'][] = array(
 		'name'			=> 'toolbar_guest' ,

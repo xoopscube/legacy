@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
+ * @license Copyright (c) 2003-2024, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license/
  */
 
@@ -13,10 +13,10 @@
  * (1) https://ckeditor.com/cke4/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) https://ckeditor.com/cke4/builder/069129c9382503296cffba6b1b154b95
+ * (2) https://ckeditor.com/cke4/builder/c2414895d22f91fbc66db4d1a45da176
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) https://ckeditor.com/cke4/builder/download/069129c9382503296cffba6b1b154b95
+ * (3) https://ckeditor.com/cke4/builder/download/c2414895d22f91fbc66db4d1a45da176
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -43,6 +43,7 @@ var CKBUILDER_CONFIG = {
 		'.travis.yml',
 		'bender-err.log',
 		'bender-out.log',
+		'bender-runner.config.json',
 		'bender.ci.js',
 		'bender.js',
 		'dev',
@@ -97,8 +98,6 @@ var CKBUILDER_CONFIG = {
 		'showborders' : 1,
 		'smiley' : 1,
 		'sourcearea' : 1,
-		'stylescombo' : 1,
-		'stylesheetparser' : 1,
 		'tab' : 1,
 		'table' : 1,
 		'tableresize' : 1,
@@ -116,6 +115,7 @@ var CKBUILDER_CONFIG = {
 		'en' : 1,
 		'fr' : 1,
 		'ja' : 1,
-		'pt' : 1
+		'pt' : 1,
+		'ru' : 1
 	}
 };

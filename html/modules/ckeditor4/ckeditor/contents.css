@@ -2,7 +2,7 @@
 Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
 For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 */
-html,
+
 body
 {
 	/* Font */
@@ -11,26 +11,37 @@ body
 	font-size: 12px;
 
 	/* Text color */
-	/*color: #333;*/
-	color: var(--ckeditor-color, #bbc6ce);
-	/* Remove the background color to make it transparent. */
-	/*background-color: #fff;*/
-	background : var(--ckeditor-background, #11191f92);
+	/* color: #333; */
 
-	margin: 20px;
-	padding:10px;
-	height: 100%;
+	/* Remove the background color to make it transparent.  #fff */
+	background: var( --cke-background, #fff);
+	color: var( --cke-color, #111);
+	margin: 1rem;
 }
-
+textarea.cke_source {
+	background: var( --cke-background, #fff);
+	color: var( --cke-color, #111);
+    font-family: 'Courier New', Monospace;
+    font-size: small;
+    white-space: pre-wrap;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
 .cke_editable
 {
 	font-size: 13px;
-	line-height: 1.6;
-
+	line-height: 1.4;
+	background: var( --cke-background, #fff);
+	color: var( --cke-color, #111);
 	/* Fix for missing scrollbars with RTL texts. (#10488) */
 	word-wrap: break-word;
 }
-
+.cke_contents{border:solid 1px #696969;background-color:var(--ckeditor-background);}
+.cke_panel{
+	background: var(--ckeditor-background)!important;
+}
 blockquote
 {
 	font-style: italic;

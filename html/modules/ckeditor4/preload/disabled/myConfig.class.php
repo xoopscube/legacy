@@ -43,7 +43,7 @@ class ckeditor4_myConfig extends XCube_ActionFilter
 		 ******************************/
 
 		// Example: config.removePlugins the set "save,about"
-		$config['removePlugins'] = 'save';
+		$config['removePlugins'] = 'preview,save,about';
 	}
 
 	public function PostBuild(&$config, $params)

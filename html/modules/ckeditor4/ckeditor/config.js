@@ -1,5 +1,5 @@
 /**
- * CKEditor configuration for XCL 2.3.x
+ * CKEditor configuration for XCL 2.4.0
  * Date : 20-04-2024 @gigamaster
  * 
  * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
@@ -13,7 +13,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.language = 'en';
 
     config.width = '100%';     // Editor dimension
-    config.height = '100%';   // Use pixels or CSS unit (percent)
+    config.height = '320px';   // Use pixels or CSS unit (percent)
     
     //var uitheme = JSON.parse(localStorage.getItem('uicolor'));
     // config.uiColor = localStorage.getItem('uicolor');
@@ -37,6 +37,7 @@ CKEDITOR.editorConfig = function( config ) {
 
     // Minimize toolbar
     config.toolbarCanCollapse = true;
+
     // NOTE
     // The following options can be set in Control Panel > CKEditor4 > Preferences
 
@@ -51,27 +52,22 @@ CKEDITOR.editorConfig = function( config ) {
     //config.editorplaceholder = 'Start typing here…';
     
 
-    config.magicline_color = '#e43140';
+    config.magicline_color = '#e44140;';
 
-    config.toolbarGroups = [
-        { name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-        { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-        { name: 'tools', groups: [ 'tools' ] },
-        { name: 'forms', groups: [ 'forms' ] },
-        '/',
-        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-        { name: 'links', groups: [ 'links' ] },
-        { name: 'insert', groups: [ 'insert' ] },
+	config.toolbarGroups = [
+		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+		{ name: 'tools', groups: [ 'tools' ] },
+		'/',
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
+		{ name: 'links', groups: [ 'links' ] },
+		{ name: 'insert', groups: [ 'insert' ] },
+		{ name: 'styles', groups: [ 'styles' ] },
         { name: 'colors', groups: [ 'colors' ] },
-        '/',
-        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-        { name: 'styles', groups: [ 'styles' ] },
-        { name: 'others', groups: [ 'others' ] },
-        { name: 'about', groups: [ 'about' ] }
-    ];
-
-
+		{ name: 'others', groups: [ 'others' ] }
+	];
     // 'la:Language:rtl' = right to left
     // config.language_list = ['ja:Japanese:rtl'];
     config.language_list = [ 'en:English', 'fr:Français', 'ja:Japanese', 'pt:Portuguese' ];
