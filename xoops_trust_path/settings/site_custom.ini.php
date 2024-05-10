@@ -1,5 +1,5 @@
 ;
-; You can register plural render systems.
+; You can register multiple rendering systems.
 ;
 
 [RenderSystems]

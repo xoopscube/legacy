@@ -115,7 +115,7 @@
     .runtime {
         background: hsl(218, 15%, 25%);
         border:1px dotted hsl(220, 15%, 16%);
-        border-radius: 5px;
+        border-radius: 7px;
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.20);
         color: #D3D7DEFF;
         display: none;
