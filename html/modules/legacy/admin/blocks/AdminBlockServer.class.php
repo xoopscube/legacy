@@ -50,35 +50,6 @@ class Legacy_AdminBlockServer extends Legacy_AbstractBlockProcedure
         $langMgr->loadModinfoMessageCatalog('legacy');
 
 
-
-
-//        $controller =& $root->mController;
-//        $user =& $root->mContext->mXoopsUser;
-//        $groups = implode(',', $user->getGroups());
-
-//        $cachePath = LEGACY_ADMINDASBOARDSERVER_CACHEPREFIX . md5(XOOPS_SALT . "($groups)". $langMgr->mLanguageName).'.html';
-//        $render =& $this->getRenderTarget();
-//        if (file_exists($cachePath)) {
-//            $render->mRenderBuffer = file_get_contents($cachePath);
-//            return;
-//        }
-
-
-
-//        $this->mCurrentModule =& $controller->mRoot->mContext->mXoopsModule;
-//
-//        if (($this->mCurrentModule->get('dirname') === 'legacy') && xoops_getrequest('action') === 'help') {
-//            $moduleHandler =& xoops_gethandler('module');
-//            $t_module =& $moduleHandler->getByDirname(xoops_gethandler('legacy'));
-//            if (is_object($t_module)) {
-//                $this->mCurrentModule =& $t_module;
-//            }
-//        }
-//
-
-        //$systeminfo_message = [];
-        //& $root->getRenderSystem($this->getRenderSystemName());
-
         /**
          * Assign Server
          * $sys_info @array
@@ -127,15 +98,6 @@ class Legacy_AdminBlockServer extends Legacy_AbstractBlockProcedure
         // file_put_contents($cachePath, $render->mRenderBuffer);
     }
 
-//    public static function clearCache()
-//    {
-//        $adminDashboardServercache = glob(LEGACY_ADMINDASBOARDSERVER_CACHEPREFIX . '*.html');
-//        if ($adminDashboardServercache) {
-//            foreach ($adminDashboardServercache as $file) {
-//                unlink($file);
-//            }
-//        }
-//    }
 
     public function hasResult()
     {

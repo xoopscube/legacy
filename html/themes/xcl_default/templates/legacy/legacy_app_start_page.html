@@ -1,6 +1,10 @@
 <{* Dev-Mode Toggle *}>
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 <style>
+    .layout { font-size: .75rem; }
+    .layout .grid-c{border:1px dotted var(--pico-ins-color)}
+    .layout .nav-aside{border:1px solid var(--pico-mark-background-color)}
+    .layout div div:hover {background: var(--pico-secondary-focus);}
     .layout span {
         border: 1px solid var(--muted-border-color);
         display:flex;
@@ -13,120 +17,141 @@
 
     <h2>Welcome to <{$xoops_sitename}></h2>
     <p><{$xoops_meta_description}></p>
-
-    <h3>General Settings</h3>
-
-    <p>Your website is preconfigured with default configuration settings.
-        These settings refer to the preexisting value of a user-configurable setting
-        that is assigned to your web application platform. The Control Panel is a graphical user interface,
-        also known as the dashboard or admin area, to configure your website, install components and create content.</p>
-
-    <p><code>Dashboard »» System »» Preferences »» Settings</code></p>
-    <p>The system preferences settings is where you can customize the general settings of your platform, such as site name and slogan,
-        the language and the theme, or if you would like your site to be private or public.
-        You can also designate a module for your home page.
-    </p>
-
-    <H4>Closed for maintenance</H4>
-    <div class="alert warning">The site is currently closed for maintenance. Please come back later,</div>
-    <P>Maintenance mode allows you to close the site with a custom user-friendly notice to visitors.<br>
-        You can also control who has access to your site while you’re setting up significant changes.</P>
-    <p>When you're ready to launch your site, simply go to system preferences settings and change the option "Maintenance mode - Turn your site off?"</p>
     
+    <h3>Getting started</h3>
+
+    <p>Your website is preconfigured with default settings.
+        The backend control panel provides a graphical user interface, also called admin area or dashboard, for configuring your website, installing components, and creating content.</p>
+
+    <hr>
+
     <details>
-        <summary>Maintenance mode - Settings</summary>
-        <p><{if $xoops_isadmin}><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1" target="_blank">Control Panel > Settings</a><{/if}></p>
-        <ol>
-            <li>🚧 Maintenance Mode - Turn your site off?<br> Select yes to turn your site off so that only users in selected groups have access to the site.</li>
-            <li>🚧 Maintenance Mode - Select groups<br>Groups that are allowed to access while the site is turned off. Users in the default webmasters group are always granted access.</li>
-            <li>🚧 Maintenance Mode - Message<br>The text that is presented when the site is closed e.g. Maintenance Mode, Opening Soon, etc.</li>
-        </ol>
+    <summary>General Settings</summary>
+    <p>The system module allows you to customize the general settings of your platform, such as the name and slogan of the site,
+        language and theme, close your site and limit access to certain user groups.
+    <p><strong>Start Page or Module</strong></p>
+    <p>You can modify this template <code>"app_start_page.html”</code>, or you can select a module as the starting point of your website.</p>
+    <{if $xoops_isadmin}><p><code>Administration »» System »» <a href="" target="_blank">Preferences ⭧</a></code></p><{/if}>
     </details>
-    
+      
+    <hr>
+      
     <details>
-        <summary>Maintenance mode - Template</summary>
-        <p>You can edit the Template
-        legacy_site_closed.html</p>
-        <p>Used when the site is closed. Maintenance mode, coming soon, etc.</p>
+    <summary>Closed for maintenance</summary>
+    <div class="alert warning">The site is currently closed for maintenance.</div>
+    <P>Maintenance mode allows you to close the site and display a custom notice to visitors.<br>
+        You can also control who has access to your site when it is closed.</P>
+    <p>When you're ready to launch your site, simply go to System Preferences to open it to the public.</p> 
+       
+    <ol>
+        <li>🚧 Maintenance Mode - Turn your site off?<br> Select yes to turn your site off so that only users in selected groups have access to the site.</li>
+        <li>🚧 Maintenance Mode - Select groups<br>Groups that are allowed to access while the site is turned off. Users in the default webmasters group are always granted access.</li>
+        <li>🚧 Maintenance Mode - Message<br>The text that is displayed when closing the site.</li>
+    </ol>
+    <p>You can edit the Template <code>site_closed.html"</code> used when the site is closed, maintenance mode, coming soon, etc.</p>
+    <{if $xoops_isadmin}>
+    <p><code>Administration »» System »» Preferences »» <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1" target="_blank">"Maintenance mode-Turn your site off?" ⭧</a></code></p>
+    <{/if}> 
     </details>
 
-    <h4>Start Page or Module</h4>
-    <p>You can modify this "app start page" template, also known as the home page or main page, or you can select a module as the starting point of your website.</p>
+    <hr>
+
+    <details>
+    <summary>User Groups Permissions</summary>
+    <p>You can assign users to multiple groups and easily grant access to content of modules and blocks.
+        The installation wizard creates the following system-required groups :</p>
+    <ol>
+        <li>Webmasters (Administrators)
+        <li>Registered Users (members)
+        <li>Anonymous Users (Guests)
+    </ol>
+    <div class="alert warning">Required user groups cannot be deleted !<br>
+    You can create new groups and change permissions for each new group created.</div>
     <{if $xoops_isadmin}>
-    <p><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1" target="_blank">Control Panel »» Settings</a></p>
+    <p><code>Administration »» User Groups »» <a href="<{$xoops_url}>/modules/user/admin/index.php?action=GroupList" target="_blank">Preferences ⭧</a></code></p>
     <{/if}>
-</article>
+    </details>
 
+    <hr>
 
-<article>
-<h3>User Groups Permissions</h3>
-<p>You can assign users to more than one group and grant access to the content of modules and blocks.<p>
-<p>The installation wizard creates the following required Groups :</p>
-<ol>
-    <li>Webmasters (Administrators)
-    <li>Registered Users (members)
-    <li>Anonymous Users (Guests)
-</ol>
-<div class="alert warning">The required Groups can not be deleted !<br>
-    You can create new Groups and modify the permissions for each new Group created.</div>
-    <p><code>Dashboard »» User Groups »» Preferences</code></p>
-    <{if $xoops_isadmin}>
-    <p><a href="<{$xoops_url}>/modules/user/admin/index.php?action=GroupList" target="_blank">Control Panel »» User Groups</a></p>
-    <{/if}>
-</article>
-
-
-<article>
-<h3>Modules Preferences</h3>
-
+    <details>
+    <summary>Modules Preferences</summary>
     <p>Modules also have their own settings, accessible from their "preferences" menu.</p>
-    <p><code>Dashboard »» Renderer »» Preferences</code></p>
+    <p>For example, the render module allows you to manage the meta data of your website, themes (general appearance of your website), and templates (the shape of the content of modules and blocks).</p>
     <{if $xoops_isadmin}>
-    <p><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=3" target="_blank">Control Panel »» Renderer</a></p>
+    <p><code>Administration »» Render »» <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=3" target="_blank">Preferences ⭧</a></code></p>
     <{/if}>
+    </details>
 
-    <h4>Block Parameters</h4>
-    <p>The blocks of these modules often have parameters to customize extended functionality.</p>
-    <p>For example, the "Main menu" block allows you to show the icons of each module and to display the subcategories.</p>
-    <p><code>Dashboard »» System »» Block Management</code></p>
-    <div class="alert info">Alternatively, in the 3 dots drop-down next to block title, click Edit block settings.</div>
+    <hr>
+
+    <details>
+    <summary>Module Blocks</summary>
+    <p>When you install a module, blocks are automatically added to the system Block management.
+        These bloks often have their own settings for functionality and templates for customization.</p>
+    <div class="alert info">On the frontend, click the three-dot drop-down menu to edit the block.</div>
+    <p>For example, the parameters of the "Main Menu" block allow you to display the icons of each module and to display the subcategories.</p>
     <{if $xoops_isadmin}>
-    <p><a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList" target="_blank">Control Panel »» Block Management</a></p>
+    <p><code>Administration »» System »» <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList" target="_blank">Block Management ⭧</a></code></p>
     <{/if}>
+    </details>
+
+    <hr>
+
+    <details>
+    <summary>Theme</summary>
+    <<p>A theme consists of a single HTML file that can include components, CSS style sheet, JavaScript, modules and block templates.</p>
+    <div class="alert info">On the frontend, click the three-dot drop-down menu to edit the block.</div>
+    <p>For example, the parameters of the "Main Menu" block allow you to display the icons of each module and to display the subcategories.</p>
+    <{if $xoops_isadmin}>
+    <p><code>Administration »» System »» <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList" target="_blank">Block Management ⭧</a></code></p>
+    <{/if}>
+    </details>
+
+    <hr>
+
 </article>
-
 
 <article class="layout">
-    <header>
-        <div class="headings">
-        <h3>Hero nav-top <small>User menu</small></h3>
-            <p>Themes are made from components and modules templates.</p>
-        </div>
-    </header>
-    <p><code>Main container</code></p>
-    <div class="grid">
-        <div>
-            <span><code>aside</code></span>
-            <span>Block-left </span>
-        </div>
-        <div>
-            <span>App Start Page [template]</span>
-            <span>Module Content</span>
-            <span>Block-right</span>
+<h4>Default theme layout</h4>
+The placeholders for the content and blocks are defined by the theme layout.
+    <div class="alert info">
+        You can create a custom <code>center-block-left</code> that triggers a component to appear on the <code>Top page</code>.<br> 
+            Simply add to the block title a prefix "top-" and select the target "Toppage".</div>
+
+    <article>
+        <header class="grid-c">
+            <div class="action-control">
+                <div><code data-tooltip="Edit theme.html and module Render Preferences">nav-top</code> Logo</div>
+                <div style="display: inline-flex;"><code data-tooltip="Component nav_user">User menu</code>&nbsp;&nbsp;<code data-tooltip="Component nav_theme">Light | Dark</code></div>
+        </header>
+
+        <div class="grid" style="border:1px dotted var(--pico-ins-color)" data-tooltip="Block Title with prefix 'top-none-' to only show block content">
+            <div class="grid-c"><code>grid-column</code><br>center-block-left<br>Block Title prefix: top</div>
+            <div class="grid-c"><code>grid-column</code><br>center-block-center<br>Block Title prefix: top</div>
+            <div class="grid-c"><code>grid-column</code><br>center-block-right<br>Block Title prefix: top</div>
         </div>
 
-    </div>
-    <p><code>Section container-fluid</code></p>
-    <div class="grid-3">
-        <span>center-block-left</span>
-        <span>center-block-center</span>
-        <span>center-block-right</span>
-    </div>
-    <hr>
-    <p><code>Admin Panel Blocks</code></p>
-    <div>
-        <span>Set block position side to <code><b>Block-Right</b></code>
-            and rename block <code><i>Title</i></code> with prefix <code><u>admin</u></code> e.g. "admin Themes"</span>
-    </div>
-    <footer>Footer</footer>
+        <p>Main container</p>
+        <div class="grid">
+            <div class="nav-aside"><code>aside nav</code><br>Side-Left<br>Default Blocks:<br><ul><li>User Menu<li>Main Menu<li>Themes</ul></div>
+            <div class="grid-c"><code>div.content</code><br>App Start Page [template]<br>or Module content</div>
+            <div class="nav-aside">
+                <code>aside nav</code>
+                <br>Side-Right
+                <br>For Admin panel only, add a block <code><i>Title</i></code> with prefix <code><u>'admin'</u></code> e.g. "admin Menu"
+            </div>
+        </div>
+
+        <p>Section container-fluid</p>
+        <div class="grid" data-tooltip="Block Title with prefix 'none-' to only show block content">
+            <div class="grid-c"><code>grid-column</code><br>center-block-left</div>
+            <div class="grid-c"><code>grid-column</code><br>center-block-left</div>
+            <div class="grid-c"><code>grid-column</code><br>center-block-left</div>
+        </div>
+        
+        <footer class="grid-c" data-tooltip="Edit theme.html and module Render Preferences">Footer</footer>
+    </article>
+   
+    
 </article>

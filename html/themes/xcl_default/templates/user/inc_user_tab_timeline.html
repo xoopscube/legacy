@@ -35,7 +35,7 @@
 
         <{if $module.has_more}>
             <p>
-                <a role="button" class="outline secondary" href="<{$smarty.const.XOOPS_URL}>/search.php?action=showallbyuser&amp;mid=<{$module.mid|xoops_escape}>&amp;uid=<{$thisUser->getShow('uid')}>">
+                <a role="button" class="outline" href="<{$smarty.const.XOOPS_URL}>/search.php?action=showallbyuser&amp;mid=<{$module.mid|xoops_escape}>&amp;uid=<{$thisUser->getShow('uid')}>">
                 <img class="svg post-show-more" src="<{$xoops_url}>/images/icons/post-show.svg" width="1em" height="1em" alt="show more">  <{$module.name}> - <{$smarty.const._MD_USER_LANG_SHOWALL}></a>
             </p>
         <{/if}>

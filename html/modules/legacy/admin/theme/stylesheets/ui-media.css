@@ -168,7 +168,10 @@
     .table-responsive > .table-bordered {
         border          : 0;
     }
-
+    table.module-update {
+        max-width: 65vw;
+        margin: auto;
+    }
     nav#help-menu {
         position :sticky;
     }

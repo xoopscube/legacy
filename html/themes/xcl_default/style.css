@@ -13,16 +13,13 @@
 @import "./css/dropdown.css";   /*  dROPDOWN MENU Grid-Flex */
 /* ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~~~~~~
 ~~~~~~~~~~
- */
+*/
 
 :root {
 
 /* Development Mode */
---dev-mode: none;  /*  Display Smarty Template Name : block, none */
+--dev-mode: none;  /* Display Smarty Template Name : block, none */
 
-/* CKEditor */
---ckeditor-color    : var(--pico-color);
---ckeditor-background: var(--pico-background-colorr);
 
 /* --------------------------- TOOLTIP */
 --tooltip-background-color: var(--pico-primary-hover-background);
@@ -43,7 +40,8 @@
     --z-above       : 100; /* dropdown menu */
     --z-default     : 1;
     --z-below       : -1;
-
+    /* override picocss */
+    --pico-border-radius: .5rem;
     --pico-spacing: 1rem;
     --pico-typography-spacing-vertical: 1rem;
     --pico-block-spacing-vertical: var(--pico-spacing);
@@ -54,6 +52,7 @@
     --pico-form-element-spacing-horizontal: 0.75rem;
 
     --pico-text-decoration: none;
+
 }
 
 .ui-dev-mode {
@@ -111,7 +110,6 @@ body > main > div > aside {
     padding         : .5rem; 
     padding         : var(--pico-nav-element-spacing-vertical) var(--pico-nav-element-spacing-horizontal); /* @todo */
     border-radius   : var(--pico-border-radius);
-    border:2px dotted rgb(255, 0, 93)
 }
 
 /* BODY FOOTER */
@@ -146,8 +144,7 @@ article header :where( p:last-child ){
 /* A HREF LINK COLOR */
 [data-theme=dark] {
     :is([role=button], [type=button], [type=file]::file-selector-button, [type=reset], [type=submit], 
-    button,
-    [type=checkbox]:checked, [type=checkbox]:checked:active, [type=checkbox]:checked:focus, 
+    button, [type=checkbox]:checked, [type=checkbox]:checked:active, [type=checkbox]:checked:focus, 
     [type=radio]:checked, [type=radio]:checked:active, [type=radio]:checked:focus):not(.outline) {
     --pico-background-color: hsl(45 70% 40% / 1);
     }
@@ -196,7 +193,6 @@ hr { margin: 2rem 1rem; } /* @todo ? */
     display         : flex;
     flex-wrap       : wrap;
     justify-content : space-between;
-    margin-top      : 1rem;
     white-space     : normal;
 }
 
@@ -221,6 +217,11 @@ section[role=banner] > div > article {
 }
 
 /* -------------------- BREADCRUMBS - MOBILE */
+
+nav[aria-label=breadcrumb] {
+    margin-bottom   : 1rem; /* space for pico header image */
+}
+
 @media (max-width   : 768px) {
     nav[aria-label=breadcrumb]  ul {
         list-style-type: none;
@@ -296,18 +297,12 @@ section[role=banner] > div > article {
 :is(button.vote) {
     margin-bottom   : 0;
 }
-/* :is(button,input[type=submit],input[type=button],[role=button]):not(summary) {
-    
-    white-space     : nowrap; 
-} */
 :where([type=submit],[type=button],[role=button]) svg {
     display         : inline;
     margin          : 0 .25rem 0; 
     vertical-align: -.175em;
 }
 
-/* :is(footer.action-control) {margin-top:2rem} *//* margin-bottom   : 0; 🟠 */
-/* :is(footer.action-control) :where(button, input) {margin-bottom:0;} */
 :where(footer.action-control, footer div.grid) 
 :is(div, button, input[type=submit],input[type=button],[role=button], details.dropdown, input, a):not(summary) { 
     margin-bottom   : 0; 
@@ -318,44 +313,12 @@ section[role=banner] > div > article {
     border-radius   : var(--pico-border-radius);
     margin          : 0 .5em;
     padding         : .25rem; 
-    
-    /* border:2px solid rgb(149, 0, 255) */
-    /* padding         : var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal); */
 }
 :where(footer.action-control) :is(a, button[type=submit]):hover {
     background      : var(--pico-primary-focus);
     color           : var(--pico-secondary-inverse); 
-    /* border:2px solid rgb(0, 89, 255) */
 }
-/* ARTICLE > FOOTER > DROPDOWN, FORM, BUTTON */
-article > footer {
-    padding         : var(--pico-spacing)}
 
-/* article > footer > :is(details.dropdown, button, div button),
-article > footer > form :is(button, [type=submit]) {
---pico-spacing      : 0;
-    margin          : var(--pico-spacing) 0;
-}
-article > footer :is(button.save-copy) {
-    border:1px solid var(--pico-form-element-valid-border-color);    
-}
-article > footer :is(button.save-copy):hover {
-    border:1px solid var(--pico-form-element-valid-active-border-color)
-} */
-/* ARTICLE FOOTER BUTTON, DROPDOWN, INPUT */
-/* article > footer :is( [role=button], input[role=button]) { 
-    border          : none;
-    margin-bottom   : 0;
-}
-article > footer :is( [role=button], input[role=button]):hover {
-    background      : var(--pico-form-element-focus-color);
-}
-/* dropdown */
-/*article footer div :is(details) {
-    border-radius   : var(--pico-border-radius);
-    box-shadow      : var(--pico-button-hover-box-shadow, 0 0 0 rgba(0, 0, 0, 0)), 0 0 0 var(--pico-outline-width) var(--pico-primary-focus);
-    margin-bottom   : 0;
-} */
 /* -------------------- BLOCKS */
 /* BLOCKS - Title */
 [class^="block-title"] {
@@ -393,7 +356,7 @@ article > footer :is( [role=button], input[role=button]):hover {
 .menu-sub { 
     padding-left    : 2.25rem;
 }
-
+/* BLOCK - PRIVATE MESSAGE */
 .block-messages ul#privatemessages {
     flex-direction  : column;
     width           : 100%;
@@ -405,8 +368,9 @@ article > footer :is( [role=button], input[role=button]):hover {
 .block-messages ul#privatemessages li a {
     display         : inherit;
 }
-
-ul.block-online-members {
+/* BLOCK - LIST MEMBERS */
+/* USERS ONLINE, SITE INFO */
+ul.list-column {
     border-left     : 4px solid var(--pico-muted-border-color);
     column-count    : 3;
     column-width    : 140px;
@@ -415,11 +379,11 @@ ul.block-online-members {
     margin          : 1rem 0;
     padding         : 1rem;
 }
-ul.block-online-members li {
+ul.list-column li {
     list-style      : none;
     margin-bottom   :.5rem
 }
-ul.block-online-members li > h6 {
+ul.list-column li > h6 {
     font-size       : 16px; column-span: all;
 }
 
@@ -448,7 +412,7 @@ summary[role="link"].contrast:is([aria-current],:hover,:active,:focus) {
     border-bottom-left-radius: 1rem;
 }
 
-/* -------------------- TABLE FONT-SIZE IN BLOCKS */
+/* -------------------- TABLE - FONT-SIZE IN BLOCKS */
 [class^="block-"] table tbody, tfoot {
     font-size       : 14px;
 }
@@ -675,8 +639,68 @@ p { text-wrap: pretty }
 /* -------------------- MODULE CKEditor */
 /* BUTTON CKEditor forced fix button 📐*/
 :is([class^="cke_button"],[class^="cke_combo_button"] ) {
-    margin-left     : 0!important;
+    margin-left     : 0!important; 
 }
+/* fix extra space of combo dropdown */
+.cke_combo_on a.cke_combo_button, .cke_combo_off a.cke_combo_button:hover, .cke_combo_off a.cke_combo_button:focus, 
+.cke_combo_off a.cke_combo_button:active {
+    padding         : 0!important; 
+}
+/* CKEditor darkmode */
+:root[data-theme=dark] {    
+    --cke-color     : #fff;
+    --cke-background: #111;;
+    --cke-filter    : invert(1) contrast(1.15);
+    --cke-editable  : #1c212c;
+    --cke-inner     : #181b25;
+}
+/* try to switch mode, fallback ?? */
+:root[data-theme=light] {  
+    --no-var        : #fff;
+}
+/* CKEditor darkmode rounded */
+:is([class^=cke_top],[class^=cke_bottom]) {
+    filter          : var(--cke-filter, none);
+    border-color    : transparent!important;
+    /* Prevent editor from overflow prent container */
+    max-width       : 100%;
+    border-radius   : 8px;
+}
+:where(.cke_chrome) {
+    border          : none!important;
+}
+.cke_inner {
+    display         : block;
+    background      : var(--cke-inner, var(--no-var), #999)!important;
+    border          : 1px solid var(--cke-background, var(--no-var), #999)!important;
+    border-radius   : 8px;
+}
+:where(.cke_contents){
+    background      : var(--cke-editable, var(--no-var), #999)!important;
+    color           : var(--cke-color, var(--no-var))!important;
+    border-radius   : 8px;
+}
+/* customize editable container */ 
+.cke_editable {
+    background      : var(--cke-editable, var(--no-var));
+    color           : var(--no-var, #fff);
+    border-radius   : 8px;
+    padding         : 0.5rem;
+    cursor          : text;
+    margin          : 0.25rem;
+    width           : auto;
+    min-height      : calc(100vh - 1rem);
+}
+textarea.cke_source {
+    background      : var( --cke-background, #fff);
+	color           : var( --cke-color, #111);
+    padding         : 0.5rem;
+}
+.cke_wysiwyg_frame, .cke_wysiwyg_div {
+    background      : var(--cke-editable, var(--no-var))!important;
+    color           : var(--cke-color, var(--no-var))!important;
+}
+
 
 /* -------------------- MODULE D3FORUM */
 /* Used in Dropdowm*/
@@ -692,16 +716,13 @@ p { text-wrap: pretty }
     border-radius   : 50%;
     margin          : 0 auto;
 }
-:is(.w48) {
-    width           : 48px; 
-    height          : 48px;
-}
+/* AUTHOR DROPDOWN */
 :is(.w96) {
     width           : 96px; 
     height          : 96px;
  }
 
-/* AVATAR css rules from x-layout */
+/* AVATAR css from x-layout */
 [data-self="radius-circle"] { border-radius: 50%}
 
 /* NAV POST TREE ORDER */
@@ -749,7 +770,7 @@ li.post-tree-item > span {
     border-radius   : var(--pico-border-radius);
 }
 
-/* FORUM POST CONTENT + SIGNATURE */
+/* FORUM POST - CONTENT + SIGNATURE */
 .post-content {
 }
 .post-signature {
@@ -757,7 +778,7 @@ li.post-tree-item > span {
     margin-top      : 1.5rem;
 }
 
-/* FORUM ICON LIST LEGEND */
+/* FORUM - ICON LIST LEGEND */
 .forum-icon-list {
     display         : block;
     list-style      : none;
@@ -765,7 +786,7 @@ li.post-tree-item > span {
     padding         : 0;
 }
 
-/* Using class badge */
+/* Following classes Using class badge */
 .post-vote,
 .post-vote-count,
 .post-vote-avg {}
@@ -881,11 +902,10 @@ ul.pagenavi li:not([aria-current]):hover a {
     background      : var(--pico-primary-focus);
     color           : var(--pico-secondary-inverse);
     padding         : .25rem .5rem;
-    /* background      : var(--pico-contrast-focus) */
 }
 
 /* -------------------- SYSTEM Notification  */
-/* Replace confirmMsg errorMsgg resultMsg msg-warning */
+/* Replacing older confirmMsg errorMsgg resultMsg msg-warning */
 .alert {
     background      : var(--pico-muted-border-color);
     border-left     : 3px solid;
@@ -931,7 +951,7 @@ ul.pagenavi li:not([aria-current]):hover a {
 }
 
 /* -------------------- MODULE MESSAGE & USER PROFILE */
-/* Mail tab active overrides the default properties */
+/* Note - Mail tab active overrides the default properties */
 
 .mail-list-item {
     border-bottom   : 1px solid hsl(219, 17%, 21%);

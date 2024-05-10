@@ -41,7 +41,7 @@
 
 		<label for="category_title">
 			<{$smarty.const._MD_PICO_TH_CATEGORYTITLE}>
-			<input type="text" name="cat_title" id="category_title" size="60" maxlength="191" value="<{$category.title}>">
+			<input type="text" name="cat_title" id="category_title" size="60" maxlength="191" value="<{$category.title}>" required>
 		</label>
 
 		<label for="category_desc">
@@ -64,7 +64,7 @@
 		<h5><{$smarty.const._MD_PICO_TH_CATEGORYOPTIONS}></h5>
 
 		<label for="category_option_controller_onoff">
-		<input type="checkbox" id="category_option_controller_onoff"
+		<input type="checkbox" role="switch" id="category_option_controller_onoff"
 			   onclick="if(this.checked)
 			   {xoopsGetElementById('category_option_controller').style.display='block';}
 			   else
@@ -103,15 +103,3 @@
 	</article>
 
 </form>
-
-<!-- Start Form Validation JavaScript //-->
-<script type="text/javascript">
-<!--//
-function xoopsFormValidate_categoryform() {
-	myform = window.document.categoryform;
-	if ( myform.title.value == "" ) { window.alert("<{$smarty.const._MD_PICO_TH_CATEGORYTITLE|string_format:$smarty.const._FORM_ENTER}>"); myform.title.focus(); return false; }
-	return true;
-}
-//--></script>
-
-

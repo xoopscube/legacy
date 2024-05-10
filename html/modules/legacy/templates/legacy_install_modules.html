@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=<{$xoops_charset}>">
 <meta http-equiv="content-language" content="<{$xoops_langcode}>" />
+<script src="<{$smarty.const.XOOPS_URL}>/common/js/jquery.min.js"></script>
 <title><{$xoops_sitename}></title>
 
 <!-- !TODO : Fix this to default package stylesheet ! -->
@@ -24,13 +25,11 @@ body {
 	margin  	: 2em auto;
     transition 	: background 500ms ease-in-out, color 200ms ease;
 }
-
 a {
 	color 			: #face74;
 	font-weight 	: bold;
 	text-decoration : none;
 }
-
 a:hover,
 svg:hover {
 	color 			: #fff;
@@ -217,7 +216,6 @@ input[type='submit']:hover {
     background: #333b49;
     color: #fff;
 }
-
 .alert,
 .req {
     color: #ff6633;
@@ -226,6 +224,35 @@ input[type='submit']:hover {
 	margin: 2em 1em;
     padding : .74em 1.27em;
 	text-align: center;
+}
+.notification {
+    color           : hsl(219, 27%, 65%);
+    display         : flex;
+    flex-basis      : 100%;
+    flex-direction  : row-reverse;
+    align-items     : center;
+    justify-content : center;
+    float           : none!important;
+}
+.runtime {
+    background: hsl(218, 15%, 25%);
+    border:1px dotted hsl(220, 15%, 16%);
+    border-radius: 7px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.20);
+    color: #D3D7DEFF;
+    display: none;
+    margin:1rem auto;
+    padding: .5rem .75rem;
+    text-align: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    width: 270px;
+    min-width: 240px;
+    z-index: 1000;
 }
 </style>
 </head>
@@ -288,7 +315,7 @@ input[type='submit']:hover {
 			<tr>
 				<td colspan="4">
 				 <input type="hidden" name="cube_module_install" value="1">
-				 <p><input type="submit" value="<{$smarty.const._INSTALL}>"></p>
+				 <p><input type="submit" value="<{$smarty.const._INSTALL}>" class="cube_module_install"></p>
 				</td>
 			</tr>
 		</tfoot>
@@ -298,7 +325,12 @@ input[type='submit']:hover {
 	</form>
 
 </div>
-
+<div class="notification runtime">Loading...</div>
+<script>
+    // Notify Loading
+    $( 'input[class="cube_module_install"]' ).on( "click", function() {
+        $('div.runtime').fadeIn( 500 ).delay( 8000 ).fadeOut( 500 );
+    });
+</script>
 </body>
-
 </html>

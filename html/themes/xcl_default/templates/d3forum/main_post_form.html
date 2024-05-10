@@ -121,13 +121,14 @@
 				<{/if}>
          </label>
 
-        <{if ($reference_quote)}>
+    <{if ($reference_quote)}>
         <div class="message_textarea_inserter">
-            <input type="button" role="button" class="outline secondary" name="quote" id="quote" onclick="d3forum_quote_message();" value="<{$smarty.const._MD_D3FORUM_BTN_QUOTE}>">
+            <button type="button" class="outline secondary" onclick="appendQuote(); this.onclick=null;">
+                <img class="svg" src="<{$xoops_url}>/images/icons/comment-quote.svg" width="1em" height="1em" alt="quote"> <{$smarty.const._MD_D3FORUM_BTN_QUOTE}></button>
         </div>
-        <{/if}>
-
-        <fieldset>
+    <{/if}>
+     
+    <fieldset>
             <legend><h5><{$smarty.const._MD_D3FORUM_OPTIONS}></h5></legend>
 
         <!-- approval -->
@@ -169,11 +170,11 @@
             <{$smarty.const._MD_D3FORUM_ENABLEHTML}>
         </label>
         <{/if}>
-        </fieldset>
+    </fieldset>
 
         <h5>
         <label for="d3f_post_advanced_options_onoff">
-            <input type="checkbox" class="switch" id="d3f_post_advanced_options_onoff"
+            <input role="switch"  type="checkbox" class="switch" id="d3f_post_advanced_options_onoff"
                    onclick="if(this.checked){xoopsGetElementById('d3f_post_advanced_options').style.display='block';
                    }else{xoopsGetElementById('d3f_post_advanced_options').style.display='none';}">
             <{$smarty.const._MD_D3FORUM_LABEL_ADVANCEDOPTIONS}>
@@ -243,7 +244,7 @@
         <h4><{$reference_subject}></h4>
         <p><{$smarty.const._MD_D3FORUM_BY}>: <{$reference_name}> <{$smarty.const._MD_D3FORUM_ON}>: <{$reference_time_formatted}></p>
 
-        <div class="refer-message"><{$reference_message}></div>
+        <div class="refer_quote"><{$reference_message}></div>
 
         </blockquote>
         <{/if}>
@@ -298,6 +299,7 @@
 
 <{* Start Form Validation JavaScript *}>
 <script type="text/javascript">
+<!--//
 <{$antispam.js_global|default:''}>
 
 function xoopsFormValidate_postform() {
@@ -309,13 +311,15 @@ function xoopsFormValidate_postform() {
 	    window.alert("<{$smarty.const._MD_D3FORUM_ERR_NOMESSAGE}>");
 	    myform.message.focus(); return false; }
 	<{/if}>
-	<{$antispam.js_in_validate_function|default:''}>
+	<{* $antispam.js_in_validate_function|default:'' *}><{$antispam.js_in_validate_function}>
 	return true;
 }
-    function d3forum_quote_message() {
-        xoopsGetElementById("message").value = xoopsGetElementById("message").value + xoopsGetElementById("reference_quote").value ;
-    }
-
+function appendQuote() {
+    var textarea = document.getElementById("message");
+    var quotePost = document.getElementById("reference_quote").value;
+    CKEDITOR.instances['message'].setData(quotePost); /* raw code innerHTML or insertText */
+}
+//-->
 </script>
 <{* End Form Validation JavaScript *}>
 

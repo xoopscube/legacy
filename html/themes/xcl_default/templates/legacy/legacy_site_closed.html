@@ -28,6 +28,8 @@ ob_end_flush();
 <title><{$xoops_sitename}></title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta http-equiv="content-language" content="<{$xoops_langcode}>">
+<{* ----- Favicon SVG located in the root directory ----- *}>
+<link rel="icon" href="<{$favicon}>" type="image/svg+xml">
 <meta name="generator" content="XOOPSCube">
 <link rel="stylesheet" href="<{$theme_url}>/css/pico.amber.min.css">
 <link rel="stylesheet" href="<{$theme_css}>">
@@ -218,18 +220,6 @@ footer p {
     <div>
     <ul>
         <li><img src="<{$logotype}>" width="140px" height="auto" alt="<{$xoops_sitename}>"></li>
-    </ul>
-    <ul>
-        <li>
-        <details class="dropdown" dir="rtl">
-            <summary class="contrast">Theme</summary>
-            <ul>
-                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
-                <li><a href="#" data-theme-switcher="light">Light</a></li>
-                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
-            </ul>
-        </details>
-        </li>
     </ul>
 </div>
 </nav>

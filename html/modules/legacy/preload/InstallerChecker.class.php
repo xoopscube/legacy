@@ -108,7 +108,6 @@ class Legacy_InstallerChecker extends XCube_ActionFilter
                     'xoops_themecss'        => xoops_getcss(),
                     'xoops_imageurl'        => XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
                     'install_confirm'       => XCube_Utils::formatString(_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_CONFIRM, XOOPS_ROOT_PATH . '/install'),
-                    // 'lang_message_warning'  => XCube_Utils::formatString(_MD_LEGACY_MESSAGE_INSTALL_COMPLETE_WARNING, XOOPS_ROOT_PATH . '/install'),
                     'install_warning_dir'   => $install_warn_dir,
                     'install_warning_tip'   => XCube_Utils::formatString(_WARN_INSTALL_TIP),
                     'is_chmod'              => $is_chmod,

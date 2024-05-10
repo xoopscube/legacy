@@ -626,7 +626,7 @@ background: var(--pico-primary-hover-background);
     line-height             : 1.25;
 }
 .ui-tabs .ui-tabs-nav li {
-    border: 1px solid var(--pico-primary-underline);
+    /* border: 1px solid var(--pico-primary-underline); */
 	list-style: none;
 	float: left;
 	position: relative;
@@ -641,9 +641,21 @@ background: var(--pico-primary-hover-background);
     float                   : left;
     text-decoration         : none;
 }
+/* li .ui-tabs-anchor:first-child {
+border-top-left-radius: var(--pico-border-radius);
+}
+li .ui-tabs-anchor:last-child {
+    border-top-right-radius: var(--pico-border-radius);
+} */
+
 .ui-tabs .ui-tabs-nav li.ui-tabs-active {
 	margin-bottom: 0;
 	padding-bottom: 0;
+    border-radius: var(--pico-border-radius);
+    border:none;
+}
+:is(.ui-tabs-tab).ui-state-default,.ui-state-default{
+    border-radius: var(--pico-border-radius);
 }
 .ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
 	cursor: pointer;
@@ -651,10 +663,11 @@ background: var(--pico-primary-hover-background);
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor:hover,
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
     background              : var(--pico-primary-hover-background);
-    color                   : var(--pico-contrast-inverse)
+    color                   : var(--pico-contrast-inverse);
 }
-.ui-tabs .ui-tabs-nav li:first-child {border-top-left-radius: var(--pico-border-radius)}
-.ui-tabs .ui-tabs-nav li:last-child {border-top-right-radius: var(--pico-border-radius)}
+
+:where(li.ui-tabs-tab, a.ui-tabs-anchor):first-child {border-top-left-radius: var(--pico-border-radius)}
+:where(li.ui-tabs-tab, a.ui-tabs-anchor):last-child {border-top-right-radius: var(--pico-border-radius)}
 .ui-tabs .ui-tabs-panel {
     background              : var(--pico-card-background-color);
 	display                 : block;

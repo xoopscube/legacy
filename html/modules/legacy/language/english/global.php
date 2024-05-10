@@ -52,7 +52,7 @@ define( '_SOURCE' , 'Source code');
 define( '_WAP_LICENSE' , 'Open Source Licenses');
 define( '_WAP_LICENSE_DSC' , "Open-source licensed software is usually available for free, but this is not always the case. XCL's source code is designed to be publicly available. Anyone can view, modify and distribute the code as they see fit.
 Modules and themes are released under the BSD, GPL and MIT licenses.<br>
-The BSD license of XCube allows proprietary use and permits incorporation of the software into proprietary products.");
+The BSD license of the core XCube allows proprietary use and permits incorporation of the software into proprietary products.");
 
 define( '_WAP_BUNDLE' , 'XCL Bundle Package');
 define( '_WAP_BUNDLE_DSC' , "XCL is a general purpose open source web application maintained on GitHub.
@@ -102,7 +102,7 @@ define( '_WARNINSTALL2' , '<span>WARNING: <b>Install</b> folder exists!<br><span
 define( '_WARNINWRITEABLE' , "<span>WARNING: <b>Mainfile</b> is writable !<br><span class='alert-install'>{0}</span><br> Change this file permissions for security reasons: Unix (0444), Windows (read-only)</span>");
 define( '_WARNPHPENV' , 'WARNING: php.ini parameter "%s" is set to "%s". %s');
 define( '_WARNSECURITY' , '(It may cause a security problem)');
-define( '_WARN_INSTALL_TIP' , 'Activate the Preload — For development purposes only!<br>The preload allows to keep mainfile unchanged and install directory.<br>Remember to chomd and delete install to prevent any security problem.');
+define( '_WARN_INSTALL_TIP' , 'Activate the Preload — For development purposes only!<br>The preload allows you to keep the <code>mainfile</code> unchanged and <code>install</code> directory.<br>Remember to chomd <code>mainfile</code> and <strong>delet</strong> <code>install</code> to prevent any security problem.');
 
 //%%%%%%	File Name themeuserpost.php 	%%%%%
 define( '_PROFILE' , 'Profile');

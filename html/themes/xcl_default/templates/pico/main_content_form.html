@@ -7,9 +7,8 @@
 
 <form name="contentform"
       id="contentform"
-      action="<{$mod_url}>/index.php?page=<{$page}>&amp;content_id=<{$content.id}>&amp;ret=<{$smarty.get.ret|escape:'url'|default:''}>"
+      action="<{$mod_url}>/index.php?page=<{$page}>&amp;content_id=<{$content.id}>&amp;ret=<{$smarty.get.ret|default:''|escape:'url'}>"
       method="post"
-      onsubmit="return xoopsFormValidate_contentform();"
       enctype="multipart/form-data">
 
     <{$gticket_hidden}>
@@ -71,7 +70,7 @@
 	<{* ------- subject *}>
 	<label for="subject">
 		<{$smarty.const._MD_PICO_TH_SUBJECT}>
-		<input type="text" name="subject" id="subject" maxlength="191" value="<{$content.subject}>">
+		<input type="text" name="subject" id="subject" maxlength="191" value="<{$content.subject}>" required>
 	</label>
 
 	<{* ------- category *}>
@@ -94,7 +93,7 @@
 
 		<{if $xoops_isadmin}>
         <label for="wraps_target">
-			<select id="wraps_target" onchange="xoopsGetElementById('vpath').value=this.value;">
+			<select id="wraps_target" onchange="document.getElementById('vpath').value=this.value;">
 				<{html_options options=$content.wraps_files selected=$content.vpath}>
 			</select>
 		</label>
@@ -240,11 +239,11 @@
 		<{else}>
 		<label for="body_bbcode_onoff">
 				<input type="checkbox" id="body_bbcode_onoff" onclick="if(this.checked){
-						   xoopsGetElementById('body_bbcode_buttons_pre').style.display='block';
-						   xoopsGetElementById('body_bbcode_buttons_post').style.display='block'
+						   document.getElementById('body_bbcode_buttons_pre').style.display='block';
+						   document.getElementById('body_bbcode_buttons_post').style.display='block'
 					   }else{
-						   xoopsGetElementById('body_bbcode_buttons_pre').style.display='none';
-						   xoopsGetElementById('body_bbcode_buttons_post').style.display='none'}">
+						document.getElementById('body_bbcode_buttons_pre').style.display='none';
+						document.getElementById('body_bbcode_buttons_post').style.display='none'}">
 			<{$smarty.const._MD_PICO_LABEL_INPUTHELPER}></label>
 
 			<{xoopsdhtmltarea name="body" cols="60" rows="15" value=$content.body pre_style="display:none;" post_style="display:none;"}>
@@ -379,7 +378,7 @@
 			</label>
 		<{/if}>
 
-		<{* ------- CONTENT TIME *}>
+		<{* ------- CONTENT TIME ADMIN *}>
 
 		<{if $category.isadminormod}>
 			<{if isset($content.specify_created_time)}>
@@ -406,7 +405,7 @@
 			</fieldset>
 		<{/if}>
 
-		<{* ------- modify time *}>
+		<{* ------- CONTENT TIME MODIFY *}>
 
 		<{if $category.isadminormod && $page == 'contentmanager'}>
 			<label for="modifier_uid">
@@ -542,11 +541,12 @@
 </article>
 
 
-<{if isset($preview)}><{$gticket_hidden}>
+<{if isset($preview)}>
+<{$gticket_hidden}><{* 📍gticket might not be need  *}>
 <dialog id="preview-content" open>
     <article>
         <header>
-            <a href="#" title="Cancel" class="close" onclick="javascript:history.go(-1);" title="<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>"></a>
+            <a title="Cancel" class="close secondary" onclick="javascript:history.go(-1);" title="<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>"></a>
             <h4><{$smarty.const._PREVIEW}></h4>
         </header>
         <div>
@@ -560,7 +560,7 @@
         </div>
         <footer>
             <div class="grid">
-                <a href="#" role="button" class="secondary" onclick="javascript:history.go(-1);" title="<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>">Cancel</a>
+                <a role="button" class="secondary" data-target="modal-example" onclick="javascript:history.go(-1);" title="<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>">Cancel</a>
 			<{if trim($smarty.capture.controllers)}>
 				<{$smarty.capture.controllers}>
 			<{/if}>
@@ -570,21 +570,4 @@
 </dialog>
 <{/if}>
 
-
 </form>
-<{* ------- Start Form Validation JavaScript /*}>
-<script type="text/javascript">
-<!--//
-function xoopsFormValidate_contentform() {
-	myform = window.document.contentform;
-	if ( myform.subject.value == "" ) {
-		window.alert("<{$smarty.const._MD_PICO_TH_SUBJECT|string_format:$smarty.const._FORM_ENTER}>");
-		myform.subject.focus();
-		myform.subject.style.backgroundColor='#FFFFCC';
-		return false;
-	}
-	return true;
-}
-//-->
-</script>
-<{* ------- End Form Validation JavaScript *}>

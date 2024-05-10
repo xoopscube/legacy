@@ -35,10 +35,10 @@ $modversion['adminindex'] = 'admin/index.php';
 $modversion['adminmenu'] = 'admin/menu.php';
 
 // Templates
-$modversion['templates'][1]['file'] = 'legacy_misc_ssllogin.html';
-$modversion['templates'][1]['description'] = 'Template SSL login';
-$modversion['templates'][2]['file'] = 'legacy_misc_smilies.html';
-$modversion['templates'][2]['description'] = '';
+$modversion['templates'][1]['file'] = 'legacy_app_start_page.html';
+$modversion['templates'][1]['description'] = 'The start page if no module is selected.';
+$modversion['templates'][2]['file'] = 'legacy_site_closed.html';
+$modversion['templates'][2]['description'] = 'Used when the site is closed. Maintenance mode, coming soon, etc.';
 $modversion['templates'][3]['file'] = 'legacy_search_form.html';
 $modversion['templates'][3]['description'] = 'Template Search Form';
 $modversion['templates'][4]['file'] = 'legacy_comment_edit.html';
@@ -139,11 +139,10 @@ $modversion['templates'][51]['file'] = 'legacy_redirect_function.html';
 $modversion['templates'][51]['description'] = 'Replace direct Xoops2 system';
 $modversion['templates'][52]['file'] = 'legacy_redirect_front_function.html';
 $modversion['templates'][52]['description'] = 'Redirect top page if module content is not selected.';
-$modversion['templates'][52]['file'] = 'legacy_app_start_page.html';
-$modversion['templates'][52]['description'] = 'App start page if module is not selected.';
-$modversion['templates'][53]['file'] = 'legacy_site_closed.html';
-$modversion['templates'][53]['description'] = 'Used when the site is closed. Maintenance mode, coming soon, etc.';
-
+$modversion['templates'][53]['file'] = 'legacy_misc_ssllogin.html';
+$modversion['templates'][53]['description'] = 'Template SSL login';
+$modversion['templates'][54]['file'] = 'legacy_misc_smilies.html';
+$modversion['templates'][54]['description'] = 'Combine text and Emojis, smileys or logos. Keywords or symbols to images.';
 // Menu
 $modversion['hasMain'] = 0;
 

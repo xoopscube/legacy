@@ -114,29 +114,53 @@
 <h2>Render Engine</h2>
 <div class="ui-card-full">
 
+    <div data-layout="column">
     <h3>Default Themes</h3>
 
-    <p>The default theme for the frontend uses the suffix _default <span class="badge">_default</span><br>
-        While the default backend admin theme uses a prefix <span class="badge">admin_</span></p>
-
+    <p>The Frontend theme ensures how the webpage appears on the client browser:</p>
     <ul>
-        <li>The Frontend theme ensures how the webpage appears on the client browser: <span class="badge">/html/themes/theme-name/</span></li>
-        <li>The Backend theme provides a user interface to manage system preferences: <span class="badge">/html/modules/legacy/admin/theme</span>
-        <br>including the module settings, roles and user permissions.</li>
+        <li>The frontend theme uses the suffix <span class="badge">_default</span></li>
+        <li>and is  placed in the folder themes <code>/html/themes/theme-name/</code></li>
     </ul>
-    
-    <div class="help-tips">
-        You can put a custom backend theme with prefix <span class="badge">admin_</span> in directory /themes e.g. <span class="badge">/html/themes/admin_theme</span>
+    <p>The Backend theme provides a user interface to manage system preferences, including the module settings, roles and user permissions.</p>
+        <ul>
+            <li>The backend admin theme uses a prefix <span class="badge">admin_</span></li>
+            <li>and is placed in the folder <code>/html/modules/legacy/admin/theme</code></li>
+        </ul>
+    <ul>
+
     </div>
 
     <h3>Custom Theme</h3>
-    <p>The Smarty tags defined here are needed for the Core Render and components to work properly!<br>
-        When making a custom theme, you should base it on the following logic and Smarty Engine variables.</p>
+    
+    <div data-layout="row sm-column">
+        <div data-self="column size-3of4 sm-full">
 
-    <p>Each installed module has a number of templates. These templates are automatically added to the default template set.
-    <p>A custom theme inherits the functionality, features, and style of the default set.</p>
+    <p>A theme requires four files, all other folders and files are optional.</p>
+
+    <ul>
+        <li>theme.html : HTML layout with Smarty logic</li>
+        <li>style.css : style layout and templates</li>
+        <li>manifesto.ini.php : required by Render engine</li>
+        <li>screenshot.jpg or png (Render admin and block themes)</li>
+    </ul>
+
+    <p>The theme.html needs the Smarty tags defined here to work properly.<br>
+       A custom theme must use the following logic and Smarty variables<br>
+       to inherit the functionality, features, and shape of the <strong>default template set</strong></p>
        
-    <p>It is recommended to duplicate the default template set before any customization. You can do it from the Admin using the following modules:<br>
+    <div class="danger">It is recommended to duplicate the <strong>default template set</strong> before any customization.</div>
+    
+
+    <h3>Default Templates</h3>
+
+    <p>Theme specifies areas and appearance, module templates specify shape.</p>
+    <p>Template files are regular HTML documents, with additional Smarty-specific tags.<br>
+    <p>Each installed module has a number of templates. <br>
+        These templates are automatically added to the <strong>default template set</strong>.</p>
+    <p>The Render Engine uses the <span class="badge"><code>.html</code></span> extension for templates of modules and blocks.<br>
+        However, the extension <span class="badge"><code>.tpl</code></span> is used for email templates by convention.</p>
+    <p>You can clone the default templates using the following modules:</p>
        <ul>
         <li>Admin > Control Panel > Render > Template Management</li>
         <li>Admin > Control Panel > Components > Templates</li>
@@ -144,36 +168,82 @@
        
     <p>In order to customize modules templates or blocks templates (prefix block_)</p>
     <ul>
-    <li>You can copy the templates for each module into your personalized theme under the
-        <span class="badge">/themes/custom-theme/templates/modulename/</span> directory.</li>
-    <li>A custom theme can inherit the functionality, features, and style of the default theme and default template-set.</li>
-    <li>You can override only the templates you have customized, and that, without making any changes to the default set.</li>
+    <li>You can copy the templates from each module into your personalized theme<br>
+        <span class="badge">/themes/custom-theme/templates/modulename/</span></li>
+    <li>You can override only the templates you want to customize, and that,<br>
+         without making any changes to the default set.</li>
     </ul>
-    <p>Custom themes can save time and effort, they are also a safer solution because of the automatic fallback to default settings.</p>
+    <p>Custom themes can save time and effort, they are also a safer solution<br>
+        since you can rely on the automatic fallback to default settings.</p>
+  
+          
+    <div class="help-tips">
+        You can override default themes and templates by placing them in the frontend themes folder, 
+        including a custom backend theme with the prefix <span class="badge">admin_</span> e.g. <span class="badge">/html/themes/admin_theme</span>
+    </div>
+
+    </div>
+
+    <div data-self="size-1of4 sm-full">
+<pre><code class="language-treeview">
+// Theme
+    
+theme-name
+├── component
+│   ├── custom.html
+│   └── [optional]
+├─── css
+├─── js
+├─── templates
+│    └── module-name
+│       ├── block.html
+│       └── template.html
+├─ manifesto.ini.php
+├─ style.css
+├─ screenshot.jpg
+└─ theme.html
+
+</code></pre>
+<br>
+<pre><code class="language-treeview">
+// XCube module admin directory tree
+
+module-name
+├── admin
+│   └── templates
+│      ├── blocks
+│      ├── components
+│      └── stylesheets [optional]
+└── templates
+    └── templates
+        ├── blocks
+        └── components [optional]
+
+</code></pre>
+<br> 
+<pre><code class="language-treeview">
+// D3 module TRUST_PATH directory
+
+module-name *
+└── templates
+        ├── blocks
+        ├── components [optional]
+        └── stylesheets [optional]
+
+* D3 duplicatable modules D3Forum, Pico
+</code></pre>
+    </div>
+</div>
 
 <!-- </div>
 <div class="ui-card-full"> -->
 
-    <h3>Default Templates</h3>
+    
 
     <div data-layout="row sm-column">
         <div data-self="column size-3of4 sm-full">
-            <p>Theme specifies areas and appearance, module templates specify shape.</p>
-            <p>Smarty template files are regular HTML documents, with additional Smarty-specific tags.<br>
-                Thus allowing the easy implementation of custom design, consistent user interface and user experience.</p>
+           
 
-            <p>Frontend default templates are located in the directory <span class="badge">/module_name/templates</span><br>
-                Backend default templates are located in the directory <span class="badge">/module_name/admin/templates</span></p>
-            <p>The Render Engine uses the <span class="badge"><code>.html</code></span> extension for templates of modules and blocks.<br>
-               However, the extension <span class="badge"><code>.tpl</code></span> is used for email templates by convention.</p>
-
-            <div class="confirm">It is recommended to not edit the default version of these templates !<br>
-                First, clone the default template set in Template Management.<br>
-            </div>
-            <p>You can put a copy of default templates in the theme directory e.g.: <span class="badge"><code>/themes/theme_name/templates/module_name/</code></span><br>
-                <em>it was /theme_name/modules/templates/ prior to version 2.3.x</em></p>
-
-        <{* Help documentation on "How To Create a Custom Theme") for more details *}>
 
             <h3>Template Syntax</h3>
 
@@ -192,33 +262,7 @@
 
         </div>
 <div data-self="size-1of4 sm-full">
- <pre><code class="language-treeview">
-// XCube module admin directory tree
 
-module-name
-├── admin
-│   └── templates
-│      ├── blocks
-│      ├── components
-│      └── stylesheets [optional]
-└── templates
-    └── templates
-       ├── blocks
-       └── components [optional]
-
-</code></pre>
-<br> 
-<pre><code class="language-treeview">
-// D3 in module TRUST_PATH directory
-
-module-name *
-└── templates
-        ├── blocks
-        ├── components [optional]
-        └── stylesheets [optional]
-
-* D3 duplicatable modules D4Forum, Pico
-</code></pre>
 </div>
 
 </div>
@@ -266,7 +310,7 @@ module-name *
 <table class="outer">
     <thead>
     <tr>
-        <th>X2 / XCL Themes</th>
+        <th>X2 & XCL Themes</th>
         <th>XRENDER V3</th>
         <th>Output</th>
     </tr>
@@ -388,9 +432,30 @@ module-name *
         <td><{$xoops_upload_url}></td>
     </tr>
     <tr>
+        <td><pre><code class="lang-smarty">&lt;{$xoops_dirname}&gt;</code></pre></td>
+        <td><pre><code class="lang-smarty">&lt;{$mod_url}&gt;</code></pre></td>
+        <td>Output the module directory : <span class="badge"><{$xoops_dirname}></span></td>
+    </tr>
+    <tr>
+        <td><pre><code class="lang-smarty">&lt;{$xoops_theme}&gt;</code></pre></td>
+        <td><pre><code class="lang-smarty">&lt;{$ui_layout}&gt;</code></pre></td>
+        <td>Output the theme name (frontend) e.g.:<br><span class="badge">xcl_default</span></td>
+    </tr>
+    <tr>
+        <td><pre><code class="lang-smarty">&lt;{$xoops_themecss}&gt;</code></pre></td>
+        <td><pre><code class="lang-smarty">&lt;{$ui_css}&gt;</code></pre></td>
+        <td>Output the theme style.css link:<br><span class="badge"><{$xoops_themecss}></span></td>
+    </tr>
+    <tr>
+        <td><pre><code class="lang-smarty">&lt;{$xoops_imageurl}&gt;</code></pre></td>
+        <td><pre><code class="lang-smarty">&lt;{$ui_url}&gt;</code></pre></td>
+        <td>Output the selected theme URL :<br> <span class="badge"><{$xoops_imageurl}></span></td>
+    </tr>
+
+    <tr>
         <td><pre><code class="lang-smarty">&lt;{$xoops_banner}&gt;</code></pre></td>
         <td><pre><code class="lang-smarty">&lt;{$banner}&gt;</code></pre></td>
-        <td>Output an image or HTML with a link.</td>
+        <td>Output an image or HTML with a link from Rener > Banner Management.</td>
     </tr>
     </tbody>
     <tfoot>
@@ -409,21 +474,53 @@ module-name *
 
     <p>You can easily include customized components and templates using relative path, theme variable, or refer to database.</p>
 
-    <h5>Relative path</h5>
+    <h5>Admin Theme Relative path</h5>
     <pre><code class="lang-smarty">&lt;{include file=&quot;./components/panel-todo.html&quot;}&gt;</code></pre>
 
-    <h5>Theme variable</h5>
+    <h5>Front Theme variable</h5>
+    <p>Use the variable <b>$xoops_theme</b></p>
     <pre><code class="lang-smarty">&lt;{include file=&quot;$xoops_theme/components/panel-todo.html&quot;}&gt;</code></pre>
 
     <h5>Database</h5>
-    <p>Example from D3 module</p>
+    <p>Example from D3 module. Note the variable inside backticks <b>( ` )</b></p>
     <pre><code class="lang-smarty">&lt;{include file=&quot;db:`$mydirname`_inc_breadcrumbs.html&quot;}&gt;</code></pre>
 
     <h5>Conditional inclusion of subtemplates</h5>
     <pre><code class="lang-smarty">&lt;{include_if_exists file=&quot;foo.html&quot; else=&quot;bar.html&quot;}&gt;</code></pre>
 
-    <h3>Block</h3>
+    <h3>Fetch Theme Component</h3>
+    <p>Note the variable inside backticks <b>( ` )</b></p>
+    <pre><code class="lang-smarty">&lt;{fetch file=&quot;`$xoops_imageurl`component/sample.html&quot;}&gt;</code></pre>
 
+    <h3>JSON assign to variable</h3>
+    <p>Note the use of local="true" to disable local ssl verification</p>
+    <pre><code class="lang-smarty">
+    // Example using path
+    &lt;{assign var&#x3D;&quot;sample&quot; value&#x3D;&quot;&#x60;$smarty.const.XOOPS_ROOT_PATH&#x60;&#x2F;themes&#x2F;xcl_default&#x2F;theme.json&quot;}&gt;
+    // Example using local&#x3D;&quot;true&quot;
+    &lt;{json file&#x3D;&quot;$sample&quot; theme&#x3D;&quot;theme&quot; local&#x3D;&quot;true&quot;}&gt;</code></pre>
+    <h5>JSON assign variables</h5>
+    <pre><code class="lang-smarty">
+    &#60;{foreach item=foo key=key from=$theme}&#62;
+    &#60;{assign var='version' value=$foo-&#62;version}&#62;
+    &#60;{assign var='body' value=$foo-&#62;body}&#62;
+    &#60;{assign var='color' value=$foo-&#62;color}&#62;
+    &#60;{assign var='primary' value=$foo-&#62;primary}&#62;
+    &#60;{assign var='inverse' value=$foo-&#62;inverse}&#62;
+    &#60;{/foreach}&#62;
+    </code></pre>
+    <h5>JSON use variables in theme or CSS</h5>
+    <pre><code class="lang-css">
+    /* CSS */
+    :root {
+        --pico-background-color: &#60;{$body}&#62;;
+        --pico-color: &#60;{$color}&#62;;
+    }
+    &lt;!-- Theme --&gt;
+    &lt;{$version}&gt;
+    </code></pre>
+
+    <h3>Block</h3>
     <p>The block loop indicates a position, however it is just a legacy code convention to identify areas in the theme layout.<br>
         XCL Themes can provide multiple options based on block id, name or title. Example of basic block-left loop:</p>
 
@@ -444,6 +541,6 @@ module-name *
 
     <h3>Help Resources</h3>
 
-    <p>For general instructions about the core Render Engine, visit module's Help menu.</p>
+    <p>For general instructions about the core Render Engine, visit the module's Help menu.</p>
 
 </div>

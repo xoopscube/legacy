@@ -23,8 +23,34 @@
     <div>
       <img src="<{$block.logourl}>" alt=""><br>
         <{if $block.recoomendtime != 0}>
-          <a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=friend&amp;op=sendform&amp;t=<{$block.recoomendtime}>','friend',<{$block.popup_width}>,<{$block.popup_height}>)"><{$smarty.const._MB_LEGACY_RECO}></a>
+        <{if $xoops_theme == 'xcl_default'}>
+        <article aria-label="Modal">
+          <button class="contrast" data-target="modal-recommend" onclick="toggleModal(event)">
+            <{$smarty.const._MB_LEGACY_RECO}>
+          </button>
+        </article>
+        <{else}>
+        <a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=friend&amp;op=sendform&amp;t=<{$block.recoomendtime}>','friend',<{$block.popup_width}>,<{$block.popup_height}>)"><{$smarty.const._MB_LEGACY_RECO}></a>
+        <{/if}>
         <{/if}>
     </div>
 
 </div>
+<dialog id="modal-recommend">
+  <article>
+    <h2>Confirm Your Membership</h2>
+    <p>
+      Thank you for signing up for a membership!
+      Please review the membership details below:
+    </p>
+    <ul>
+      <li>Membership: Individual</li>
+    </ul>
+    <footer>
+      <button className="secondary">
+        Cancel
+      </button>
+      <button>Confirm</button>
+    </footer>
+  </article>
+</dialog>

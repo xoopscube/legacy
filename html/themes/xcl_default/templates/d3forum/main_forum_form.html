@@ -81,7 +81,7 @@
         <h4><{$smarty.const._MD_D3FORUM_TH_FORUMOPTIONS}></h4>
 
         <label for="forum_option_controller_onoff">
-            <input type="checkbox" id="forum_option_controller_onoff"
+            <input role="switch"  type="checkbox" id="forum_option_controller_onoff"
                    onclick="if(this.checked){document.getElementById('forum_option_controller').style.display='block';}else{document.getElementById('forum_option_controller').style.display='none';}" <{if $forum.options}>checked="checked"<{/if}>>
             <{$smarty.const._MD_D3FORUM_ONOFF}>
         </label>

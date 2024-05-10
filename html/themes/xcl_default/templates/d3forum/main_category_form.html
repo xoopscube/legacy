@@ -20,16 +20,16 @@
     <article class="category-admin">
 
         <header>
-        <h2><{$smarty.const._MD_D3FORUM_CATEGORYMANAGER}></h2>
+        <h3><{$formtitle}>
 
-        <!-- Permissions -->
-        <{if $xoops_isadmin}>
-        <div class="grid">
-            <h4><{$formtitle}></h4>
-            <a role="button" class="outline" href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>">
-            <img class="svg lock" src="<{$xoops_url}>/images/icons/lock.svg" width="1em" alt="admin"> <{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}></a>
-        </div>
-        <{/if}>
+            <{* ----- Permissions *}>
+            <{if $xoops_isadmin}>
+            <div>
+                <a role="button" class="outline" href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>">
+                <img class="svg lock" src="<{$xoops_url}>/images/icons/lock.svg" width="1em" alt="admin"> <{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}></a>
+            </div>
+            <{/if}>
+        </h3>
         </header>
 
     <label for="category_title">
@@ -79,7 +79,7 @@
     <fieldset>
         <h5><{$smarty.const._MD_D3FORUM_TH_CATEGORYOPTIONS}></h5>
         <label for="category_option_controller_onoff">
-            <input type="checkbox" id="category_option_controller_onoff"
+            <input role="switch" type="checkbox" id="category_option_controller_onoff"
                    onclick="if(this.checked){document.getElementById('category_option_controller').style.display='block';}else{document.getElementById('category_option_controller').style.display='none';};"
             <{if $category.options}>checked="checked"<{/if}>>
             <{$smarty.const._MD_D3FORUM_ONOFF}>

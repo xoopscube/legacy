@@ -53,14 +53,14 @@
     <{* ----- Favicons THEME COLOR ----- *}>
     <meta name="theme-color" content="#181c25">
     <meta name="msapplication-TileColor" content="#181c25">
-    <link rel="mask-icon" href="<{$xoops_url}>/images/favicons/safari-pinned-tab.svg" color="#181c25">
+    <link rel="mask-icon" href="<{$xoops_url}>/images/favicon/safari-pinned-tab.svg" color="#181c25">
     <{* ----- Favicon SVG - default /images/favicon ----- *}>
     <link rel="icon" href="<{$favicon}>" type="image/svg+xml">
     <{* ----- Favicons located in the root directory ----- *}>
-    <link rel="apple-touch-icon" sizes="180x180" href="<{$xoops_url}>/images/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="<{$xoops_url}>/images/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="<{$xoops_url}>/images/favicons/favicon-16x16.png">
-    <link rel="shortcut icon" href="<{$xoops_url}>/images/favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="<{$xoops_url}>/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<{$xoops_url}>/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<{$xoops_url}>/images/favicon/favicon-16x16.png">
+    <link rel="shortcut icon" href="<{$xoops_url}>/images/favicon/favicon.ico">
     <{* ----- Resquesturi $xoops_requesturi : /module/dirname/id ----- *}>
     <link rel="canonical" href="<{$xoops_url}><{$SCRIPT_NAME}>">
     <{* ----- CSS - PicoCSS ----- *}>
@@ -76,12 +76,15 @@
     <noscript><link rel="stylesheet" href="<{$xoops_url}>/common/prismjs/prism.css"></noscript>
     <{* ----- CSS - Theme ----- *}>
     <link rel="stylesheet" href="<{$xoops_themecss}>" />
+    <{* ----- CSS - Theme JSON ----- *}>
+    <{assign var="sample" value="`$xoops_imageurl`theme.json"}>
+    <{json file="$sample" themejson="theme" local="true"}>
     <{* ----- CSS - MainMenu Active ----- *}>
     <style>
     [data-theme=dark] {
     <{if $xoops_dirname}>body.<{$xoops_dirname}> ul#main-menu li a.<{$xoops_dirname}>
     <{else}>ul#main-menu li a.menu-top<{/if}> {
-    color: var(--pico-secondary-inverse); /*Active color*/}}
+    color: var(--pico-secondary-inverse); /* Module Active */}}
     </style>
 </head>
 <body class="<{$xoops_dirname}>">
@@ -99,7 +102,6 @@
         </li>
     </ul>
     <ul>
-        <li><{if $xoops_isadmin}>yes<{/if}></li>
         <{if $xoops_showlblock==1}>
             <{foreach item=block from=$xoops_lblocks}>
             <{if $block.title=="User Menu" or $block.id==28}>
@@ -112,13 +114,17 @@
 </nav>
 </header>
 
-<{if $xoops_is_top|default:''}> 
-<{include file="$xoops_theme/component/block-center-top.html"}>
-<{else}> 
-<!-- <section class="container" id="block-top"> ADD A CUSTOMIZED HEADER FOR MODULES </section> -->
+<{* ----- TOPPAGE Center Blocks Title width prefix top- & none- (hide title) 
+          Note : It's Center Block Left that triggers the top to display  *}>
+<{if !empty($xoops_clblocks)}>
+<{foreach item=block from=$xoops_clblocks}>
+    <{if $block.title|strstr:"top-" && !$block.title|strstr:"hero"}>
+    <{include file="$xoops_theme/component/block-center-top.html"}>
+    <{/if}>
+<{/foreach}>
 <{/if}>
 
-<{* Main *}>
+<{* ----- Main *}>
 <main class="container">
     
     <{if $xoops_showlblock==1}>
@@ -160,6 +166,7 @@
 </section>
 <{/if}>
 
+<{* ---------- CENTER BLOCKS *}>
 <{if $xoops_showcblock==1}>
 <section class="container-fluid grid">
  
@@ -174,7 +181,7 @@
             <{$block.title}>
             <{include file="$xoops_theme/component/_inc_block_edit.html"}>
             <{else}>
-            <{if ! $block.title|strstr:"none"}><{$block.title}><{/if}>
+            <{if !$block.title|strstr:"none"}><{$block.title}><{/if}>
             <{/if}>
         </h4>
         <div class="block-content"><{$block.content}></div>
@@ -195,7 +202,7 @@
             <{$block.title}>
             <{include file="$xoops_theme/component/_inc_block_edit.html"}>
             <{else}>
-            <{if ! $block.title|strstr:"none"}><{$block.title}><{/if}>
+            <{if !$block.title|strstr:"none"}><{$block.title}><{/if}>
             <{/if}>
         </h4>
         <div class="block-content"><{$block.content}></div>
@@ -216,7 +223,7 @@
             <{$block.title}>
             <{include file="$xoops_theme/component/_inc_block_edit.html"}>
             <{else}>
-            <{if ! $block.title|strstr:"none"}><{$block.title}><{/if}>
+            <{if !$block.title|strstr:"none"}><{$block.title}><{/if}>
             <{/if}>
         </h4>
         <div class="block-content"><{$block.content}></div>

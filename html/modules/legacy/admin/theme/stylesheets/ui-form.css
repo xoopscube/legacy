@@ -65,7 +65,6 @@ textarea:focus {
  * https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly
  */
 input[type="text"]:disabled,
-/*input:read-only:not([type=button]):not([type=submit]):not([type=reset]):not([type=checkbox]):not([type=radio])  {*/
     :where(input:read-only):not([type=color]) {
     background      : inherit;
     color           : var(--link-visited);
@@ -94,9 +93,6 @@ button,
     display         : inline-block;
     font-family     : var(--font-family);
     font-size       : var(--font-size);
-    /*font-weight     : var(--font-weight);*/
-    /*letter-spacing  : 0.08rem;*/
-    /*line-height     : 1.5;*/
     padding         : var(--button-padding);
     position        : relative;
     margin          : var(--input-margin);
@@ -114,14 +110,6 @@ input[type="submit"]:hover,
 input[type="submit"].button-cancel:hover {
     background          : var( --button-bg-on );
     color               : var( --button-color-on )!important;
-    /*background      : var(  --input-bg			);*/
-    /*background      : rgba(248, 194, 0, 0.42);*/
-    /*border-color    : rgba(248, 194, 0, 0.42);*/
-    /*!* box-shadow   : 0 12px 20px -10px rgba(248, 194, 0, 0.42), 0 4px 20px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(248, 194, 0, 0.2); *!*/
-    /*!* box-shadow   : 0 2px 2px 0 rgba(248, 194, 0, 0.42), 0 3px 1px -2px rgba(248, 194, 0, 0.42), 0 1px 5px 0 rgba(248, 194, 0, 0.42); *!*/
-    /*box-shadow      : 0 14px 26px -12px hsla(47, 100%, 50%, 0.42), 0 4px 23px 0 hsla(47, 100%, 50%, 0.42), 0 8px 10px -5px hsla(47, 100%, 50%, 0.42);*/
-    /*!* color        : var(  --input-color    ); *!*/
-    /*color           : #ffffff;*/
 }
 
 input[type="submit"].button-delete,
@@ -145,7 +133,6 @@ input.buttom-uninstall:hover,
 input[type="reset"]:hover {
     background      : #ff5722;
     border-color    : #ff5722;
-    /*box-shadow      : 0 14px 26px -12px hsla(14, 100%, 57%, 0.42), 0 4px 23px 0 hsla(0, 0%, 0%, 0.12), 0 8px 10px -5px hsla(14, 100%, 57%, 0.2);*/
     box-shadow      : 0 14px 26px -12px hsla(14, 80%, 45%, 0.42), 0 4px 23px 0 hsla(14, 100%, 49%, 0.42), 0 8px 10px -5px hsla(14, 100%, 49%, 0.42);
     color           : #ffffff;
 }
@@ -185,9 +172,9 @@ select {
 }
 
 select option {
-    /* font-size       : 16px; */
+    font-size       : 14px;
     display         : block;
-    padding         : 4px 2px;
+    padding         : 5px 2px;
     margin-bottom   : 1px;
     width           : 100%
 }

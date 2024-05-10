@@ -437,11 +437,11 @@ class Legacy_Controller extends XCube_Controller
                     // @gigamaster added 'getTemplate' to link block in front theme
                     $context->mAttributes['legacy_BlockShowFlags'][$blockProcedure->getEntryIndex()] = true;
                     $context->mAttributes['legacy_BlockContents'][$blockProcedure->getEntryIndex()][] = [
+                        'id'        => $blockProcedure->getId(),
                         'name'      => $blockProcedure->getName(),
                         'title'     => $blockProcedure->getTitle(),
                         'content'   => $renderBuffer->getResult(),
                         'weight'    => $blockProcedure->getWeight(),
-                        'id'        => $blockProcedure->getId(),
                         'template'  => $blockProcedure->getTemplate(),
                     ];
                 } else {

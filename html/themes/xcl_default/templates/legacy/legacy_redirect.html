@@ -27,13 +27,13 @@
 </head>
 <body>
 <section class="container">
-<article>
-<p><img src="<{$logotype}>" width="100px" height="auto" alt="logo"></p>
-<h3><{$message}></h3>
+<article style="text-align:center;">
+<p><img src="<{$logotype}>" width="140px" height="auto" alt="logo"></p>
+<h3 style="justify-content: center;"><{$message}></h3>
     <progress id="indeterminate-progress"></progress>
     <p><{$lang_ifnotreload}></p>
 <{if class_exists('AdelieDebug_Preload')}>
-<p style="color:orange;text-align:center">No automatic redirect during AdelieDebug execution.</p>
+<p style="color:orange;">No automatic redirect during AdelieDebug execution.</p>
 <{/if}>
 </article>
 </section>

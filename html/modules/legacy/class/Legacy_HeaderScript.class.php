@@ -307,7 +307,7 @@ google.load("jqueryui", "'. $this->_mUi .'");
     {
         $html = null;
         if (count($this->_mOnloadScript)>0||count($this->_mScript)>0) {
-            $html = "<script crossorigin=\"anonymous\" aria-label=\"script\">\n";
+            $html = "<script crossorigin=\"anonymous\">\n";
             if ('google' == $this->_mType) {
                 $html .= "google.setOnLoadCallback(function() {\n";
             }
@@ -370,8 +370,6 @@ google.load("jqueryui", "'. $this->_mUi .'");
         $handler =& xoops_gethandler('config');
         $configArr =& $handler->getConfigsByDirname('legacyRender');
 
-        // @todo @gigamaster PHP74 Null coalesce operator - No need to explicitly initialize the variable.
-        // return $configArr[$key];
         return $configArr[$key] ?? '';
     }
 }

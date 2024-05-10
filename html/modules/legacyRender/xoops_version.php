@@ -74,7 +74,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_META_KEYWORDS_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => 'application, web, website, best, top, content, internet, free, news, components, design, development, frameworks, javascript, libraries'
+    'default'     => 'application, web, website, best, top, content, internet, free, article, content, forum, discussion, components, design, development, frameworks, javascript, libraries, open source'
 ];
 
 $modversion['config'][]= [
@@ -83,7 +83,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_META_DESCRIPTION_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => 'XCL is a modular architecture and extensible web application platform written in PHP.'
+    'default'     => 'XCL is a web application platform with a modular and extensible architecture.'
 ];
 
 $modversion['config'][]= [

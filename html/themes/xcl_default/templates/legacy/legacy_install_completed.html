@@ -8,7 +8,7 @@
     <title><{$xoops_sitename}></title>
 
     <!-- XCL-Theme -->
-    <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_url}>/common/picocss/pico.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_imageurl}>/css/pico.amber.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="<{$xoops_themecss}>">
 
     <style type="text/css">
@@ -32,14 +32,13 @@
 <{* Dev-Mode Toggle *}>
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<main class="container">
+<div class="container">
 
     <article data-theme="dark">
     <header>
         <h3><a href="<{$xoops_url}>/"><img src="<{$xoops_url}>/images/logo.png" alt="<{$xoops_sitename}>" aria-label="<{$xoops_sitename}>"></a> <{$xoops_sitename}></h3>
     </header>
-        <h1><{$theme_url}></h1>
-        <h2><{$theme_css}></h2>
+
     <{* ----- INSTALL COMPLETE ----- *}>
     <div class="alert success"><{$install_confirm}></div>
 
@@ -60,14 +59,14 @@
 
     <hr>
 
-        <form method="post" action="">
+    
     <{* ----- ACTION CONTROLS ----- *}>
     <footer>
-
-<div  class="action-control">
+        <form method="post" action="" class="grid">
+        <!-- <div> -->
             <{if $is_chmod > 0}>
             <!-- <input class="ui-button" type="submit" name="chmod" value="<{$btn_chmod}>"> -->
-            <button type="submit" role="button" class="primary" name="chmod" value="<{$btn_chmod}>">
+            <button type="submit" role="button" class="outline delete" name="chmod" value="<{$btn_chmod}>">
                 <img class="svg" src="<{$xoops_url}>/images/icons/file-lock.svg" width="24px" height="24px" alt="file-lock"> <{$smarty.const._EDIT}> mainfile
             </button>
             <{/if}>
@@ -81,13 +80,13 @@
             <!-- <input class="ui-button" type="submit" name="preload_active" value="<{$btn_preload}>"> -->
             <button type="submit" role="button" class="outline"  name="Activate" value="<{$btn_preload}>">
                 <img class="svg" src="<{$xoops_url}>/images/icons/tools.svg" width="24px" height="24px" alt="activate-preload"> <{$smarty.const._INSTALL}> Preload</button>
-</div>
-
+        <!-- </div> -->
+</form>
     </footer>
-        </form>
+        
     </article>
 
-</main>
+</div>
 <!-- x-utils -->
 <script src="<{$xoops_url}>/common/js/jquery.min.js"></script>
 <script src="<{$xoops_url}>/common/js/x-utils.js"></script>

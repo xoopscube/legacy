@@ -92,11 +92,11 @@
             <path fill-rule="evenodd" d="M9.854 2.56a.5.5 0 0 0-.708 0L5.854 5.855a.5.5 0 0 1-.708-.708L8.44 1.854a1.5 1.5 0 0 1 2.122 0l.293.292a.5.5 0 0 1-.707.708l-.293-.293z"/>
             <path d="M13.293 1.207a1 1 0 0 1 1.414 0l.03.03a1 1 0 0 1 .03 1.383L13.5 4 12 2.5l1.293-1.293z"/>
         </svg> <{$smarty.const._MD_USER_LANG_USER_SIG}>
-        <{xoops_dhtmltarea name="user_sig" id="user_sig" rows="3" cols="50" value=$actionForm->get('user_sig') editor=bbcode}>
+        <div style="display:flex;max-width:100%;"><{xoops_dhtmltarea name="user_sig" id="user_sig" rows="3" cols="25" value=$actionForm->get('user_sig') editor=bbcode}></div>
     </label>
 
     <label for="attachsig">
-        <{xoops_input type="checkbox" name="attachsig" id="attachsig" value="1" default=$actionForm->get('attachsig')}>
+        <div><{xoops_input type="checkbox" name="attachsig" id="attachsig" value="1" default=$actionForm->get('attachsig')}></div>
         <{$smarty.const._MD_USER_LANG_ATTACHSIG}>
     </label>
 
