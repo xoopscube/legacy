@@ -17,64 +17,62 @@
 </nav>
 <{/if}>
 
+<!-- TODO ALERT -->
+<{if !$xoops_isuser}>
+<{strip}>
+<div class="alert warning guest">
+<{* ----- GUEST CAN POST ----- *}>
+<{if $forum.can_post}>
+    <{$smarty.const._MD_D3FORUM_GUESTSCANPOST_DESC}>
+<{else}>
+    <{$smarty.const._MD_D3FORUM_GUESTSCANNOTPOST_DESC}>
+<{/if}>
+</div>
+<{/strip}>
+<{/if}>
+
+<{* ----- MODULE COMMENTS ----- *}>
+<{if $forum.external_link_format}>
+<div class="alert warning modulecomment">
+<{$smarty.const._MD_D3FORUM_FORUMASCOMMENT_DESC}>
+</div>
+<{/if}>
+
+
+<article>
+<header>
+    <h2><{$topic.title}></h2>
+</header>
 <{* /////// SUMMARY \\\\\\\ *}>
-<{* if $forum.external_link_format *}>
-<{* include file="db:`$mydirname`_inc_d3comment_summary.html" *}>
-<{* /if *}>
+<{if $forum.external_link_format}>
+<{include file="db:`$mydirname`_inc_d3comment_summary.html"}>
+<{/if}>
 
 <{* ------- TOPIC NEW and ACTIONS *}>
+<footer>
 <{include file="db:`$mydirname`_inc_topicbar.html"}>
+</footer>
 
+</article>
 
-<{* ------- Pagination *}>
+<{* ------- Pagination from theme 
 <{if $pagenav}>
-<{include file="`$xoops_theme`/templates/$mydirname/inc_pagination.html"}>
-<{/if}>
-<{* ------- Pagination *}>
-<{* if $pagenav *}>
-<{* include file="db:`$mydirname`_inc_pagination.html" *}>
-<{* /if *}>
+<{include file="db:`$mydirname`_inc_pagination.html"}>    
+<{/if  *}>
 
 <{* ------- TOPIC FILTER ORDER *}>
 <{include file="db:`$mydirname`_inc_postorder_links.html"}>
 
 
 <{* ------- POSTS LOOP - list of top posts *}>
-    <div class="d3f_wrap">
-    <{foreach item=post from=$posts}>
-        <{include file="db:`$mydirname`_inc_eachpost.html" post=$post caller="listposts" inner_link_format="#post_id%s"}>
-    <{/foreach}>
-    </div>
+<{foreach item=post from=$posts}>
+    <{include file="db:`$mydirname`_inc_eachpost.html" post=$post caller="listposts" inner_link_format="#post_id%s"}>
+<{/foreach}>
 
 
-<{* ------- Pagination *}>
-<{if $pagenav}>
-<{include file="`$xoops_theme`/templates/$mydirname/inc_pagination.html"}>
-<{/if}>
-<{* ------- Pagination *}>
-<{* if $pagenav *}>
-<{* include file="db:`$mydirname`_inc_pagination.html" *}>
-<{* /if *}>
-
-<hr>
 <{* ------- TOPIC FILTER ORDER *}>
 <{include file="db:`$mydirname`_inc_postorder_links.html"}>
 
-<hr>
-
-<{* /////// QUICK REPLY == 3 \\\\\\\ *}>
-<{if $first_post.can_reply && ($postorder==3)}>
-<{* include file="`$xoops_theme`/templates/$mydirname/inc_post_form_quick.html" uname=$xoops_uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw *}>
-<{include file="db:`$mydirname`_inc_post_form_quick.html" uname=$xoops_uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw}>
-<{/if}>
-
-<{* /////// Quick Reply Form  !=3 \\\\\\\ *}>
-<{if $first_post.can_reply && ($postorder!=3)}>
-<{* include file="`$xoops_theme`/templates/$mydirname/inc_post_form_quick.html"  uname=$uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw *}>
-<{include file="db:`$mydirname`_inc_post_form_quick.html" uname=$uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw}>
-<{/if}>
-
-<hr>
 
 <{* /////// POST TREE \\\\\\\ *}>
 <h5>
@@ -83,7 +81,6 @@
         <img class="svg tree" src="<{$xoops_url}>/images/icons/tree.svg" width="1em">
         <{$smarty.const._MD_D3FORUM_POSTSTREE}></label>
 </h5>
-
 <div class="post-tree-view" style="display:none">
 
     <{* /////// -------------------- NOTE
@@ -128,6 +125,18 @@
     </ul>
 
 </div><{* POST TREE *}>
+
+<hr>
+
+<{* /////// QUICK REPLY == 3 \\\\\\\ *}>
+<{if $first_post.can_reply && ($postorder==3)}>
+<{include file="db:`$mydirname`_inc_post_form_quick.html" uname=$xoops_uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw}>
+<{/if}>
+
+<{* /////// Quick Reply Form  !=3 \\\\\\\ *}>
+<{if $first_post.can_reply && ($postorder!=3)}>
+<{include file="db:`$mydirname`_inc_post_form_quick.html" uname=$uname h2_title=$smarty.const._MD_D3FORUM_POSTASSAMETOPIC quick_form_mode="sametopic" subject_raw=$first_post.subject_raw}>
+<{/if}>
 
 
 <{* /////// TOPIC TREE - external link \\\\\\\ *}>
@@ -181,15 +190,6 @@
 <{/if}>
 
 
-
-
-
-<{* /////// NOTIFICATION \\\\\\\ *}>
-<{if $xoops_isuser}>
-<{include file='db:legacy_notification_select.html'}>
-<{/if}>
-<hr>
-
 <{* /////// JUMP BOX \\\\\\\ *}>
 
 <article id="jump-box">
@@ -205,3 +205,10 @@
     </div>
 </form>
 </article>
+
+<{if $xoops_isuser}>
+
+<{* /////// NOTIFICATION \\\\\\\ *}>
+<{include file='db:legacy_notification_select.html'}>
+
+<{/if}>

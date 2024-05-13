@@ -1,4 +1,4 @@
-<h4 class="subcategories"><{$smarty.const._MD_D3FORUM_SUBCATEGORIES}></h4>
+<h4 class="block-title subcategories"><{$smarty.const._MD_D3FORUM_SUBCATEGORIES}></h4>
 
 <{foreach item="subcategory" from=$category.subcategories}>
 <div id="subcategory-<{$subcategory.id}>" class="category-sub">
@@ -20,8 +20,7 @@
         </h3>
 
         <{* ------- Activity Overview - Subcategories *}>
-        <p class="activity">
-
+        <p class="forum-activity">
             <{$smarty.const._MD_D3FORUM_TOTALTOPICSCOUNT}> <span class="badge"><{$subcategory.topics_count_in_tree}></span>
             <{$smarty.const._MD_D3FORUM_TOTALPOSTSCOUNT}> <span class="badge"><{$subcategory.posts_count_in_tree}></span>
             <{if $subcategory.last_post_time}>
@@ -33,7 +32,6 @@
                 <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" alt="RSS">
             </a>
             <{/if}>
-
         </p>
         <{* ------- /Activity Overview - Subcategories *}>
 

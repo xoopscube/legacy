@@ -5,12 +5,12 @@
 <nav aria-label="breadcrumb">
 	<ul>
 		<li><a href="<{$xoops_url}>/">
-			<img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
+			<img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
 		<li><a href="<{$mod_url}>/index.php">
-		<img class="svg forum" src="<{$xoops_url}>/images/icons/forum_0.svg" alt=""> <{$smarty.const._MD_D3FORUM_TOP}></a>
+		<img class="svg" src="<{$xoops_url}>/images/icons/forum_0.svg" width="1em" height="1em" alt="forum"> <{$smarty.const._MD_D3FORUM_TOP}></a>
 		<li><a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"><{$category.title}></a>
 		<li><a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a>
-		<{if $topic.id}>
+		<{if isset($topic.id)}>
 		<li><a aria-current="page" href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>"><{$topic.title}></a>
 		<{/if}>
 	</ul>
@@ -29,30 +29,31 @@
 
 <article id="main-post-form">
 
-    <header>
+   <header>
         <h2><img class="svg topic-new" src="<{$xoops_url}>/images/icons/topic_plus.svg" alt=""> <{$formtitle}>: <{$forum.title}></h2>
         <{if $mode == "edit"}>
             <p class="alert warning">
                 <strong><{$smarty.const._MD_D3FORUM_NOTICE_YOUAREEDITING}></strong>
             </p>
         <{/if}>
+    
+    <{include file="db:`$mydirname`_inc_d3comment_summary.html"}>
     </header>
 
-<{include file="db:`$mydirname`_inc_d3comment_summary.html"}>
 
 	 <label for="subject">
          <{$smarty.const._MD_D3FORUM_SUBJECT}>
          <input type="text" name="subject" id="subject" size="50" maxlength="191" value="<{$subject}>">
     </label>
 
-	<{if $post.poster_uid}>
+	<{if isset($post.poster_uid)}>
         <!-- begin edit USER's post -->
 		 <label for="inlineFormInputGroup">
              <{$smarty.const._MD_D3FORUM_TH_UNAME}>
 			 <input type="text" id="inlineFormInputGroup" placeholder="<{$post.poster_uname|string_format:$smarty.const._MD_D3FORUM_FMT_UNAME}>" disabled>
          </label>
 
-        <{elseif $uid && !$post.id}><!-- end edit USER's post -->
+        <{elseif isset($uid) && isset($post.id) && !$post.id}><!-- end edit USER's post -->
 
 		<!-- begin post by USER -->
 		 <label for="inlineFormInputGroup">
@@ -120,13 +121,14 @@
 				<{/if}>
          </label>
 
-        <{if ($reference_quote)}>
+    <{if ($reference_quote)}>
         <div class="message_textarea_inserter">
-            <input type="button" role="button" class="outline secondary" name="quote" id="quote" onclick="d3forum_quote_message();" value="<{$smarty.const._MD_D3FORUM_BTN_QUOTE}>">
+            <button type="button" class="outline secondary" onclick="appendQuote(); this.onclick=null;">
+                <img class="svg" src="<{$xoops_url}>/images/icons/comment-quote.svg" width="1em" height="1em" alt="quote"> <{$smarty.const._MD_D3FORUM_BTN_QUOTE}></button>
         </div>
-        <{/if}>
-
-        <fieldset>
+    <{/if}>
+     
+    <fieldset>
             <legend><h5><{$smarty.const._MD_D3FORUM_OPTIONS}></h5></legend>
 
         <!-- approval -->
@@ -153,6 +155,14 @@
         </label>
         <{/if}>
 
+        <!-- notification thread-new_post -->
+        <{if $allow_notify}>
+        <label for="notify">
+            <input type="checkbox" name="notify" id="notify" value="1" <{$notify_checked}>>
+            <{$smarty.const._MD_D3FORUM_LABEL_NEWPOSTNOTIFY}>
+        </label>
+        <{/if}>
+
         <!-- html -->
         <{if $allow_html}>
         <label for="html">
@@ -160,11 +170,11 @@
             <{$smarty.const._MD_D3FORUM_ENABLEHTML}>
         </label>
         <{/if}>
-        </fieldset>
+    </fieldset>
 
         <h5>
         <label for="d3f_post_advanced_options_onoff">
-            <input type="checkbox" class="switch" id="d3f_post_advanced_options_onoff"
+            <input role="switch"  type="checkbox" class="switch" id="d3f_post_advanced_options_onoff"
                    onclick="if(this.checked){xoopsGetElementById('d3f_post_advanced_options').style.display='block';
                    }else{xoopsGetElementById('d3f_post_advanced_options').style.display='none';}">
             <{$smarty.const._MD_D3FORUM_LABEL_ADVANCEDOPTIONS}>
@@ -178,14 +188,6 @@
             <label for="attachsig">
                 <input type="checkbox" name="attachsig" id="attachsig" value="1" <{$attachsig_checked}>>
                 <{$smarty.const._MD_D3FORUM_LABEL_ATTACHSIG}>
-            </label>
-            <{/if}>
-
-            <!-- notification thread-new_post -->
-            <{if $allow_notify}>
-            <label for="notify">
-                <input type="checkbox" name="notify" id="notify" value="1" <{$notify_checked}>>
-                <{$smarty.const._MD_D3FORUM_LABEL_NEWPOSTNOTIFY}>
             </label>
             <{/if}>
 
@@ -242,68 +244,62 @@
         <h4><{$reference_subject}></h4>
         <p><{$smarty.const._MD_D3FORUM_BY}>: <{$reference_name}> <{$smarty.const._MD_D3FORUM_ON}>: <{$reference_time_formatted}></p>
 
-        <div class="refer-message"><{$reference_message}></div>
+        <div class="refer_quote"><{$reference_message}></div>
 
         </blockquote>
         <{/if}>
 
 
-		 <footer>
-<div class="action-control">
-            <{if $mode == "reply"}>
+	<footer>
+        <div class="grid">
+        <{if $mode == "reply"}>
 
-            <a role="button" class="outline primary" href="javascript:void(0);" onclick="if(xoopsGetElementById('post_reference').style.display=='none'){xoopsGetElementById('post_reference').style.display='block'}else{xoopsGetElementById('post_reference').style.display='none'};">
-            <img class="svg comment-quote" src="<{$xoops_url}>/images/icons/comment-quote.svg">
-                <{$smarty.const._MD_D3FORUM_REFERENCEPOST}></a>
-            <{/if}>
+        <a role="button" class="outline primary" href="javascript:void(0);" onclick="if(xoopsGetElementById('post_reference').style.display=='none'){xoopsGetElementById('post_reference').style.display='block'}else{xoopsGetElementById('post_reference').style.display='none'};">
+        <img class="svg" src="<{$xoops_url}>/images/icons/comment-quote.svg" width="1em" height="1em" alt="quote">
+            <{$smarty.const._MD_D3FORUM_REFERENCEPOST}></a>
+        <{/if}>
 
+        <button type="submit" role="button" class="outline" name="contents_preview" id="contents_preview" value="<{$smarty.const._PREVIEW}>">
+            <img class="svg" src="<{$xoops_url}>/images/icons/view.svg" width="1em" height="1em" alt="preview"> <{$smarty.const._PREVIEW}>
+        </button>
 
-                <button type="submit" role="button" class="outline" name="contents_preview" id="contents_preview" value="<{$smarty.const._PREVIEW}>">
-                    <img class="svg preview" src="<{$xoops_url}>/images/icons/view.svg"> <{$smarty.const._PREVIEW}>
-                </button>
-
-
-                <button type="submit" role="button" class="primary" name="content_submit" id="content_submit" value="<{$smarty.const._SUBMIT}>" onclick="return xoopsFormValidate_postform();">
-                    <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg"> <{$smarty.const._SUBMIT}>
-                </button>
-
-</div>
-         </footer>
-
-
-
-
-
-
+        <button type="submit" role="button" class="primary" name="content_submit" id="content_submit" value="<{$smarty.const._SUBMIT}>" onclick="return xoopsFormValidate_postform();">
+            <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg" width="1em" height="1em" alt="check"> <{$smarty.const._SUBMIT}>
+        </button>
+        </div>
+    </footer>
 
 </article>
-    <{if $ispreview}>
-    <dialog open>
-        <article>
-            <header>
-                <a href="#close" title="Close" class="close" onclick="javascript:history.go(-1);"></a>
-                <{$smarty.const._PREVIEW}>
-            </header>
-            <h3><{$preview_subject}></h3>
-            <div>
-                <{$preview_message}>
+
+<{if $ispreview}>
+<dialog open>
+    <article>
+        <header>
+            <a href="#close" title="Close" class="close" onclick="javascript:history.go(-1);"></a>
+            <{$smarty.const._PREVIEW}>
+        </header>
+        <h3><{$preview_subject}></h3>
+        <div>
+            <{$preview_message}>
+        </div>
+        <footer>
+            <div class="grid">
+                <a href="#" role="button" class="secondary" onclick="javascript:history.go(-1);">Cancel</a>
+                <button type="submit" role="button" class="primary" name="content_submit" id="content_submit_preview" value="<{$smarty.const._SUBMIT}>" onclick="return xoopsFormValidate_postform();">
+                    <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg"> <{$smarty.const._SUBMIT}>
+                </button>
             </div>
-            <footer>
-                <div class="grid-2">
-                    <a href="#" role="button" class="secondary" onclick="javascript:history.go(-1);">Cancel</a>
-                    <button type="submit" role="button" class="primary" name="content_submit" id="content_submit_preview" value="<{$smarty.const._SUBMIT}>" onclick="return xoopsFormValidate_postform();">
-                        <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg"> <{$smarty.const._SUBMIT}>
-                    </button>
-                </div>
-            </footer>
-        </article>
-    </dialog>
-    <{/if}>
-    <{$antispam.html_in_form|default:''}>
+        </footer>
+    </article>
+</dialog>
+<{/if}>
+<{$antispam.html_in_form|default:''}>
+
 </form>
 
 <{* Start Form Validation JavaScript *}>
 <script type="text/javascript">
+<!--//
 <{$antispam.js_global|default:''}>
 
 function xoopsFormValidate_postform() {
@@ -315,13 +311,15 @@ function xoopsFormValidate_postform() {
 	    window.alert("<{$smarty.const._MD_D3FORUM_ERR_NOMESSAGE}>");
 	    myform.message.focus(); return false; }
 	<{/if}>
-	<{$antispam.js_in_validate_function|default:''}>
+	<{* $antispam.js_in_validate_function|default:'' *}><{$antispam.js_in_validate_function}>
 	return true;
 }
-    function d3forum_quote_message() {
-        xoopsGetElementById("message").value = xoopsGetElementById("message").value + xoopsGetElementById("reference_quote").value ;
-    }
-
+function appendQuote() {
+    var textarea = document.getElementById("message");
+    var quotePost = document.getElementById("reference_quote").value;
+    CKEDITOR.instances['message'].setData(quotePost); /* raw code innerHTML or insertText */
+}
+//-->
 </script>
 <{* End Form Validation JavaScript *}>
 

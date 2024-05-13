@@ -1,31 +1,9 @@
 <{* Dev-Mode Toggle *}>
-<{if $xoops_isadmin}>isadmin<{/if}>
-<div class="ui-dev-mode"><{$smarty.template}></div>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{if $post_hits > 1}>
 
-<{* ------- Pagination *}>
-<{if $pagenav}>{1]
-<{include file="db:`$mydirname`_inc_pagination.html"}>
-<{/if}>
-<{* if $pagenav  } >
-<nav class="pagination" title="pagination">
-    <ul class="pagenavi>">
-        <li>pagenavi</li>
-        <{foreach from=$pagenav item=nav_}>
-        <{if $nav_.url}>
-        <li class="page-item <{$nav_.class}>">
-            <a class="page-link" href="<{$nav_.url}>" title="go to page <{$nav_.txt}>"><{$nav_.txt}></a>
-        </li>
-        <{else}>
-        <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#"><{$nav_.txt}></a>
-        </li>
-        <{/if}>
-        <{/foreach}>
-    </ul>
-</nav>
-<{ /if *}>
+
 
 <h5>
     <label for="post-tree">
@@ -34,28 +12,28 @@
         <{$smarty.const._MD_D3FORUM_POSTSTREE}>
     </label>
 </h5>
+
+<{* ----- POST TREE VIEW *}>
 <div class="post-tree-view" style="display:none">
-
-    <{foreach from=$posts item=eachpost}>
-        <ul class='d3f_eachbranch'>
-        <{"<span style='padding-left:`$eachpost.depth_in_tree`0px; padding-top: 0;'>"}>
-        <a href="#post_id<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" title="post_path<{$eachpost.unique_path}>">
-            <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$eachpost.icon}>.svg" alt="<{$icon_meanings[$eachpost.icon]}>">
-            <{$eachpost.subject}>
+    <ul class="post-tree">
+<{foreach from=$posts item=eachpost}>
+    <li class='post-tree-item'>
+    <{"<span style='padding-left:`$eachpost.depth_in_tree`0px; padding-top: 0;'>"}>
+    <a href="#post_id<{$eachpost.id}>" id="post_path<{$eachpost.unique_path}>" title="post_path<{$eachpost.unique_path}>">
+        <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$eachpost.icon}>.svg" alt="<{$icon_meanings[$eachpost.icon]}>">
+        <{$eachpost.subject}>
+    </a>
+    <{$eachpost.poster_uname}>, <span class="badge"><{$eachpost.post_time_formatted}></span>
+        <{if $forum.isadminormod}>
+        <a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$eachpost.id}>" data-tooltip="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>">
+            <img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>">
         </a>
-        (<{$eachpost.poster_uname}>, <{$eachpost.post_time_formatted}>)
-            <{if $forum.isadminormod}><a href="<{$mod_url}>/index.php?page=cutpasteposts&amp;post_id=<{$eachpost.id}>">
-                <img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg" alt="<{$smarty.const._MD_D3FORUM_CUTPASTEPOSTS}>">
-            </a>
-            <{/if}>
-            </span>
-        </ul>
-    <{/foreach}>
-
+        <{/if}>
+        </span>
+    </li>
+<{/foreach}>
+    </ul>
 </div>
-
-
-
 
 
 <{if $tree_tp_count>1}>
@@ -66,6 +44,7 @@
         <{$smarty.const._MD_D3FORUM_TOPIC}>
     </label>
 </h5>
+
 <div class="post-tree-topic-view" style="display:none">
 
     <{foreach from=$tree item=eachpost}>
@@ -86,10 +65,7 @@
         <img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg" width="1em" alt="tools"></a>
     <{/if}>
 
-    </span>
-
-
-
+    </span><{* /tree items *}>
 
     <{/foreach}>
     </ul>
@@ -98,34 +74,14 @@
 <{/if}><{* tree_tp_count *}>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <{/if}><{* ------- /$post_hits > 1 *}>
 
 
 <{* /////// PLUGIN PARAMS & QUICK REPLY \\\\\\\ *}>
+
 <{if $plugin_params.order !='asc'}>
-    <{* begin simple comment form *}>
-    <{if $forum.can_post && !$plugin_params.no_form}>
+    <{* ----- begin simple comment form *}>
+    <{if $forum.can_post && !isset($plugin_params.no_form)}>
         <{include file="db:`$mydirname`_inc_post_form_quick.html" h2_title=$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP quick_form_mode="sametopic"}>
     <{/if}>
     <{*  /end simple comment form *}>
@@ -133,31 +89,30 @@
 
 
 <{* /////// CAN POST LINK TO FORM \\\\\\\ *}>
-<{if $forum.can_post && $plugin_params.no_form}>
 
-    <{*  link to comment input form  *}>
-        <div>
-            <a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>&amp;external_link_id=<{$external_link_id|escape:'url'}>&amp;subject=<{$subject|escape:'url'}>">
-            <{if $plugin_params.link_to_form}>
-                <{$plugin_params.link_to_form}>
-            <{else}>
-                <{$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP}>
-            <{/if}>
-            </a>
-        </div>
+<{if $forum.can_post && isset($plugin_params.no_form)}>
 
-    <{/if}>
+<{*  ----- link to comment input form  *}>
+    <div>
+        <a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>&amp;external_link_id=<{$external_link_id|escape:'url'}>&amp;subject=<{$subject|escape:'url'}>">
+        <{if $plugin_params.link_to_form}>
+            <{$plugin_params.link_to_form}>link1
+        <{else}>
+            <{$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP}>link2
+        <{/if}>
+        </a>
+    </div>
+
+<{/if}>
 
 
-
-<{if $post_hits}>
-
+<{* ------- LIST POSTS FLAT *}>
 <{* ------- Top of posts *}>
 <{* ------- Module comments integration *}>
 <{* ------- Poster avatar *}>
 
+<{if $post_hits}>
 <div class="d3f_wrap" id="d3comment_listposts_flat">
-
 
 <{foreach item=post from=$posts}>
 
@@ -169,7 +124,7 @@
         </h4>
         <p>
         <{if $post.guest_url}>
-            <a href="<{$post.guest_url}>" title="<{$post.guest_url}>"><{$smarty.const._MD_D3FORUM_TH_GUESTURL}></a>
+            <a href="<{$post.guest_url}>" title="<{$post.guest_url}>"><{$smarty.const._MD_D3FORUM_TH_GUESTURL}>guest</a>
         <{/if}>
         <{if $post.poster_uid !=0}>
         <a href="<{$xoops_url}>/userinfo.php?uid=<{$post.poster_uid}>" title="<{$post.poster_uname}>">
@@ -179,7 +134,6 @@
             <{elseif $post.poster_avatar.width > 1}>
                 <img src="<{$xoops_upload_url}>/<{$post.poster_avatar.path}>" width="<{$post.poster_avatar.width}>" height="<{$post.poster_avatar.height}>" alt="<{$post.poster_uname}>" data-self="radius-circle">
             <{else}>
-            <!--   <img src="<{$xoops_url}>/modules/user/images/no_avatar.gif" width="48" height="48" alt="<{$post.poster_uname}>" data-self="radius-circle">-->
                 <img class="svg user" src="<{$xoops_url}>/images/icons/user.svg" width="48px" height="48px" alt="<{$post.poster_uname}>">
             <{/if}>
         <{/if}>
@@ -195,38 +149,38 @@
     <div><{$post.post_text}></div>
 
     <{* ------- Actions buttons *}>
-    <footer>
-
+    <footer class="action-control">
+        
+        <div>
         <{if $post.can_edit}>
-        <a role="button" class="outline" href="<{$mod_url}>/index.php?page=edit&amp;post_id=<{$post.id}>">
-        <img class="svg edit-box" src="<{$xoops_url}>/images/icons/edit-box.svg" alt="edit"> <{$smarty.const._MD_D3FORUM_POSTEDIT}></a>
+        <a class="outline" href="<{$mod_url}>/index.php?page=edit&amp;post_id=<{$post.id}>">
+        <img class="svg edit" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="1em" alt="edit"> <{$smarty.const._MD_D3FORUM_POSTEDIT}></a>
         <{/if}>
 
         <{if $post.can_delete}>
-        <a role="button" class="outline delete" href="<{$mod_url}>/index.php?page=delete&amp;post_id=<{$post.id}>">
-            <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt="delete"> <{$smarty.const._MD_D3FORUM_POSTDELETE}></a>
+        <a class="outline delete" href="<{$mod_url}>/index.php?page=delete&amp;post_id=<{$post.id}>">
+            <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"> <{$smarty.const._MD_D3FORUM_POSTDELETE}></a>
         <{/if}>
-
-        <{if $post.can_reply}>
-        <a role="button" class="primary" href="<{$mod_url}>/index.php?page=reply&amp;post_id=<{$post.id}>">
-            <img class="svg reply" src="<{$xoops_url}>/images/icons/reply.svg" alt="reply"> <{$smarty.const._MD_D3FORUM_POSTREPLY}></a>
-        <{/if}>
-
+        </div>
+        <div>
         <{if $post.post_time < $post.modified_time and $xoops_isadmin}>
-
-        <button type="button" class="ui-button"
-                data-toggle="popover"
-                data-html="true"
-                data-placement="top"
-                title="<{$smarty.const._MD_D3FORUM_HISTORIES}>"
-                data-content="
-            <a href='<{$mod_url}>/admin/index.php?page=post_histories&amp;post_id=<{$post.id}>'}>
-            <{$smarty.const._MD_D3FORUM_LASTMODIFIED}><br><{$post.modified_time_formatted}></a>">
-            <img class="svg time-history" src="<{$xoops_url}>/images/icons/time-history.svg" alt="history">
-        </button>
-
+        <details class="dropdown">
+            <summary><img class="svg timeline.svg" src="<{$xoops_url}>/images/icons/timeline.svg" width="1em" height="1em" alt="history"> <{$smarty.const._MD_D3FORUM_HISTORIES}></summary>
+            <ul>
+                <li><a href='<{$mod_url}>/admin/index.php?page=post_histories&amp;post_id=<{$post.id}>'}>
+                    <img class="svg" src="<{$xoops_url}>/images/icons/view.svg" width="1em" height="1em" alt="view"> <{$smarty.const._MD_D3FORUM_LASTMODIFIED}></a></li>
+                <li><{$post.modified_time_formatted}></li>
+              </ul>
+        </details>
         <{/if}>
+        </div>
 
+        <div>
+        <{if $post.can_reply}>
+        <a class="primary" href="<{$mod_url}>/index.php?page=reply&amp;post_id=<{$post.id}>">
+            <img class="svg reply" src="<{$xoops_url}>/images/icons/reply.svg" width="1em" height="1em" alt="reply"> <{$smarty.const._MD_D3FORUM_POSTREPLY}></a>
+        <{/if}>
+        </div>
     </footer>
 
 </article>
@@ -235,49 +189,8 @@
 
 </div><{* /end of posts  *}>
 <{/if}>
-<{* ------- /$post_hits *}>
+<{* /$post_hits *}>
 
-
-
-
-    <{if $post_hits > 1}>
-
-<{* ------- Pagination *}>
-<{*  if $pagenav}>
-<{include file="db:`$mydirname`_inc_pagination.html"}>
-<{/if *}>
-
-    <hr>
-
-    <div class="d3f_link">
-    <{$posts|@count|string_format:$smarty.const._MD_D3FORUM_FMT_POSTDISPLAYSINFO}>
-    (<{$post_hits|string_format:$smarty.const._MD_D3FORUM_FMT_POSTHITSINFO}>)
-    <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>&amp;external_link_id=<{$external_link_id|escape:"url"}>">
-        <{$smarty.const._MD_D3FORUM_LINK_LISTALLCOMMENTS}></a>
-    </div>
-
-       <{if $pagenav}>
-<nav class="pagination" aria-label="pagination">
-    <ul class="pagenavi">
-                    <{foreach from=$pagenav item=nav_}>
-                        <{if $nav_.url}>
-                        <li class="page-item <{$nav_.class}>">
-                            <a class="page-link" href="<{$nav_.url}>" title="go to page <{$nav_.txt}>"><{$nav_.txt}></a>
-                        </li>
-                        <{else}>
-                        <li class="page-item active" aria-current="page">
-                            <a class="page-link" href="#"><{$nav_.txt}></a>
-                        </li>
-                        <{/if}>
-                    <{/foreach}>
-                </ul>
-            </nav>
-        <{/if}>
-<{* ------- /$pagenav *}>
-
-
-    <{/if}>
-<{* ------- /$post_hits > 1 *}>
 
 
 

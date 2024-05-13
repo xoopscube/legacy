@@ -18,9 +18,9 @@
 <{/if}>
 
 
-<!-- TODO ALERT -->
+<{* ----- ALERT MODULE COMMENTS ----- *}>
 <{if $forum.external_link_format}>
-<div class="alert info">
+<div class="alert warning">
     <{$smarty.const._MD_D3FORUM_FORUMASCOMMENT_DESC}>
 </div>
 <{/if}>
@@ -30,13 +30,12 @@
 
 <article class="category-top">
 
-    <div class="headings">
+    <header>
 
         <h2><{$forum.title}></h2>
 
         <{* ------- Activity Overview - Forums *}>
-        <p class="activity">
-
+        <p class="forum-activity">
             <{if $forum.isadminormod}>
             <{include file="db:`$mydirname`_inc_moderators.html" target=$forum}>
             <{/if}>
@@ -59,51 +58,54 @@
             <{/if}>
         </p>
         <{* ------- /Activity Overview - Forums *}>
-    </div>
+    </header>
 
     <{* FORUM DESCRIPTION - RAW TEXT *}>
     <div data-layout="row" class="description">
+        <a class="btn-icon" id="open-help" data-tooltip="<{$smarty.const._MD_D3FORUM_LEGEND}>">
+            <img class="svg" src="<{$xoops_url}>/images/icons/info.svg" width="1em" alt="info"></a> 
         <{$forum.desc}>
     </div>
 
     <footer>
+    <div class="grid">
+        <div>
+        <{* ------- D3 MODULE COMMENT (external) AND FORUM NEW TOPIC  *}>
 
-        <div class="grid-2">
+        <{if !$forum.external_link_format and $forum.can_post}>
             <div>
-
-
-            <{* ------- NEW TOPIC or D3 COMMENT *}>
-
-            <{if $forum.can_post}>
-                <div>
-                    <a role="button" class="primary" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>">
-                        <{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}>
-                    </a>
-                </div>
-            <{else}>
-                <div>
-                    <button role="button" class="primary" disabled><{$smarty.const._MD_D3FORUM_CANTCREATENEWTOPICTHISFORUM}></button>
-                </div>
-            <{/if}>
-                <!-- TODO ALERT -->
-                <{* ----- Guest can post or not *}>
-                <{if !$xoops_isuser}>
-                    <{if $forum.can_post}>
-                    <span><{$smarty.const._MD_D3FORUM_GUESTSCANPOST_DESC}></span>
-                    <{else}>
-                    <span><button role="button" class="outline" disabled><{$smarty.const._MD_D3FORUM_GUESTSCANNOTPOST_DESC}></button></span>
-                    <{/if}>
-                <{/if}>
-
+                <a role="button" class="primary" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>">
+                    <{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}>
+                </a>
             </div>
-
+        <{else}>
+            <div>
+                <span data-tooltip="<{$smarty.const._MD_D3FORUM_CANTCREATENEWTOPICTHISFORUM}>">
+                    <button disabled>
+                    <{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}>
+                </button>
+            </div>
+        <{/if}>
+        </div>
+        <!-- TODO ALERT -->
+        <{* ----- Guest can post or not *}>
+        <{if !$xoops_isuser}>
+        <div>
+            <{if $forum.can_post}>
+                <span><{$smarty.const._MD_D3FORUM_GUESTSCANPOST_DESC}></span>
+            <{else}>
+                <span><button role="button" class="outline" disabled><{$smarty.const._MD_D3FORUM_GUESTSCANNOTPOST_DESC}></button></span>
+            <{/if}>
+        </div>
+        <{/if}>
+        
 
         <{if $category.isadminormod}>
-        <details role="list">
-            <summary aria-haspopup="listbox" role="button" class="outline">
+        <details class="dropdown">
+            <summary role="button" class="outline">
                 Action
             </summary>
-            <ul role="listbox">
+            <ul>
                 <{* ----- FORUM EDIT *}>
                 <{if $forum.isadminormod}>
                 <li><a href="<{$mod_url}>/index.php?page=forummanager&amp;forum_id=<{$forum.id}>" title="edit">
@@ -120,50 +122,14 @@
         </details>
         <{/if}>
 
-        </div>
-
+    </div>
     </footer>
+
 </article>
 
 
 <{* ------- D3 COMMENT SUMMARY *}>
-<{include file="db:`$mydirname`_inc_d3comment_summary.html" topic=$d3comment_info}>
-
-
-<{* ------- FORUM TOPIC SORT *}>
-<article class="topic-sort">
-
-    <form action="<{$mod_url}>/index.php" method="get">
-    <{$forum_selection_sort|default:''}>
-
-    <input type="hidden" name="forum_id" value="<{$forum.id}>">
-    <input type="hidden" name="external_link_id" value="<{$query.external_link_id}>">
-
-    <div class="grid-2">
-
-        <{if $mod_config.use_solved}>
-        <label>
-            <select name="solved">
-                <{html_options options=$solved_options selected=$query.solved}>
-            </select>
-        </label>
-        <{/if}>
-        <label>
-            <select name="odr">
-                <{html_options options=$odr_options selected=$query.odr}>
-            </select>
-        </label>
-
-        <label>
-            <input type="text" size="12" name="txt" value="<{$query.txt}>">
-        </label>
-
-        <button type="submit" role="button" class="outline primary" value="<{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}>">
-            <{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}></button>
-    </div>
-    </form>
-
-</article>
+<{* include file="db:`$mydirname`_inc_d3comment_summary.html" topic=$d3comment_info *}>
 
 
 <{* ------- Pagination *}>
@@ -176,7 +142,7 @@
 
 
 <{* ----- TOPICS LIST *}>
-<article class="topics-list">
+<article>
 
 <{foreach item=topic from=$topics}>
 
@@ -196,7 +162,7 @@
 
     <div data-layout="column" class="topic-post">
 
-        <div class="headings">
+        <header>
         <h4>
             <span>
             <span data-tooltip="<{$topic_icon_alt}>"><img class="svg topic-icon" src="<{$topic_icon_src}>" width="1em" alt="<{$topic_icon_alt}>"></span>
@@ -237,27 +203,25 @@
             </span>
         </h4>
 
-<!--            <span style="border:1px solid red;padding:.5rem;">page jump <{*  $topic.topic_page_jump  *}></span>-->
+        <{* ------- ACTIVITY OVERVIEW - Forums *}>
+        <p class="forum-activity">
+            <{$topic_hits|string_format:$smarty.const._MD_D3FORUM_FMT_TOPICHITS}>
 
-            <{* ------- ACTIVITY OVERVIEW - Forums *}>
-            <p class="activity">
-                <{$topic_hits|string_format:$smarty.const._MD_D3FORUM_FMT_TOPICHITS}>
+            <{$smarty.const._MD_D3FORUM_REPLIES}> <span class="badge"><{$topic.replies}></span>
 
-                <{$smarty.const._MD_D3FORUM_REPLIES}> <span class="badge"><{$topic.replies}></span>
+            <{$smarty.const._MD_D3FORUM_VIEWS}> <span class="badge"><{$topic.views}></span>
 
-                <{$smarty.const._MD_D3FORUM_VIEWS}> <span class="badge"><{$topic.views}></span>
+            <{if $mod_config.use_vote}>
+                <{$smarty.const._MD_D3FORUM_VOTECOUNT}> <span class="badge"><{$topic.votes_count}></span>
+                <{$smarty.const._MD_D3FORUM_VOTEPOINTAVG}> <span class="badge"><{$topic.votes_avg|string_format:"%.2f"}></span>
+            <{/if}>
+        </p>
+        <{* ------- /Activity Overview - Forums *}>
 
-                <{if $mod_config.use_vote}>
-                    <{$smarty.const._MD_D3FORUM_VOTECOUNT}> <span class="badge"><{$topic.votes_count}></span>
-                    <{$smarty.const._MD_D3FORUM_VOTEPOINTAVG}> <span class="badge"><{$topic.votes_avg|string_format:"%.2f"}></span>
-                <{/if}>
-            </p>
-            <{* ------- /Activity Overview - Forums *}>
-
-        </div>
+    </header>
 
         <{if $topic.replies>0}>
-        <p class="topic-last-post">
+        <p>
             <{$smarty.const._MD_D3FORUM_LASTPOST}> <span class="badge"><{$topic.last_post_time_formatted}></span> -
             <a href="<{$mod_url}>/index.php?post_id=<{$topic.last_post_id}>">
                 <{if $topic.last_post_gname}>
@@ -281,6 +245,7 @@
 <{* ----- /LIST TOPICS *}>
 
 
+
 <{* ------- Pagination *}>
 <!-- TODO default pagenavi -->
 <{if $pagenav}>
@@ -288,35 +253,44 @@
 <{/if}>
 
 
+
+<{* ------- FORUM TOPIC SORT *}>
+<article class="topic-sort">
+
+    <form action="<{$mod_url}>/index.php" method="get">
+    <{$forum_selection_sort|default:''}>
+
+    <input type="hidden" name="forum_id" value="<{$forum.id}>">
+    <input type="hidden" name="external_link_id" value="<{$query.external_link_id}>">
+
+    <div class="grid-2">
+
+        <{if $mod_config.use_solved}>
+        <label>
+            <select name="solved">
+                <{html_options options=$solved_options selected=$query.solved}>
+            </select>
+        </label>
+        <{/if}>
+        <label>
+            <select name="odr">
+                <{html_options options=$odr_options selected=$query.odr}>
+            </select>
+        </label>
+
+        <label>
+            <input type="text" size="12" name="txt" value="<{$query.txt}>">
+        </label>
+
+        <button type="submit" role="button" class="outline primary" value="<{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}>">
+            <{$smarty.const._MD_D3FORUM_BTN_REFRESHTOPICS}></button>
+    </div>
+    </form>
+
+</article>
+
+
 <{if $xoops_isuser}>
-
-
-<{* ----- FORUM ICONS LEGEND *}>
-<h5 id="forum-icons-legend">
-    <label for="forum-legend">
-    <input role="switch" type="checkbox" id="forum-legend" onclick="slideToggle('.forum-legend', this)" value="0">
-    <img class="svg help" src="<{$xoops_url}>/images/icons/info.svg" width="1em" height="1em" alt="Legend">
-    <{$smarty.const._MD_D3FORUM_LEGEND}></label>
-</h5>
-
-<div data-layout="row sm-column" class="forum-legend" style="display:none">
-    <ul class="icon-list">
-        <li><img class="svg new" src="<{$xoops_url}>/images/icons/topic_10.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
-        <li><img class="svg new" src="<{$xoops_url}>/images/icons/topic_11.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
-        <li><img class="svg topic" src="<{$xoops_url}>/images/icons/topic_01.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>
-        <li><img class="svg invisible" src="<{$xoops_url}>/images/icons/topic_invisible.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></li>
-        <li><img class="svg stick" src="<{$xoops_url}>/images/icons/topic_sticky0.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICSTICKY}></li>
-    </ul>
-    <ul class="icon-list">
-        <li><img class=" svg lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICLOCKED}></li>
-        <li><img class="svg solved-no" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}></li>
-        <li><img class="svg solved" src="<{$xoops_url}>/images/icons/topic_status_solved1.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDYES}></li>
-        <li><img class="svg marked" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}></li>
-    </ul>
-</div>
-
-<{* /////// NOTIFICATION \\\\\\\ *}>
-<{include file='db:legacy_notification_select.html'}>
 
 <{* ----- FORUM JUMP-BOX *}>
 <article id="jump-box">
@@ -335,8 +309,50 @@
     </form>
 
 </article>
+
+<{* /////// NOTIFICATION \\\\\\\ *}>
+<{include file='db:legacy_notification_select.html'}>
+
 <{/if}>
 
 
+<{* ----- MODAL FORUM ICONS LEGEND *}>
+<div id="dialog-help" title="<{$smarty.const._MD_D3FORUM_LEGEND}>">
+<div>
+    <ul class="forum-icon-list">
+        <li><img class="svg new" src="<{$xoops_url}>/images/icons/topic_10.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
+        <li><img class="svg new" src="<{$xoops_url}>/images/icons/topic_11.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
+        <li><img class="svg topic" src="<{$xoops_url}>/images/icons/topic_01.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>
+        <li><img class="svg invisible" src="<{$xoops_url}>/images/icons/topic_invisible.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></li>
+        <li><img class="svg stick" src="<{$xoops_url}>/images/icons/topic_sticky0.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICSTICKY}></li>
+    </ul>
+    <ul class="forum-icon-list">
+        <li><img class=" svg lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICLOCKED}></li>
+        <li><img class="svg solved-no" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}></li>
+        <li><img class="svg solved" src="<{$xoops_url}>/images/icons/topic_status_solved1.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDYES}></li>
+        <li><img class="svg marked" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}></li>
+    </ul>
+</div>
+</div>
+<script>
+$( function() {
+    $( "#dialog-help" ).dialog({
+    autoOpen: false,
+    resizable: false,
+    height: 380,
+    width:400,
+    show: {
+        effect: "blind",
+        duration: 800
+    },
+    hide: {
+        effect: "fold",
+        duration: 1000
+    }
+    });
 
-
+    $( "#open-help" ).on( "click", function() {
+    $( "#dialog-help" ).dialog( "open" );
+    });
+} );
+</script>

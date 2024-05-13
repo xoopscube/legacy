@@ -12,8 +12,9 @@
  *             - obj2obj [ Boolean | default:false ]:
  *               decodes JSON objects as either PHP associative arrays or PHP objects
  *             - debug [ Boolean | default:false ]: print decoded data in template
+ *             - local [ Boolean | default:false ]: disable local ssl verification
  *             Variable parameters:
- *             {json file="filename.json" home="homepage" lang="languages"}:
+ *             {json file="filename.json" home="homepage" lang="languages" local="true"}:
  *               assign (JSONdata)["homepage"] to template variable $home
  *               and (JSONdata)["languages"] to $lang,
  *               compare to: {config_load file="filename.conf" section="homepage"}
@@ -29,24 +30,12 @@
  */
 
 function smarty_function_json($params, &$smarty) {
-
-
-    $larConfigDir = [];
+    
+    // gigamaster added local for cacert.pem
     $params['file'] ??= null;
     $params['obj2obj'] ??= true;
     $params['debug'] ??= false;
-
-    //! @gigamaster removed $smarty->getConfigDir();
-    //$larConfigDir = $smarty->getConfigDir();
-    $lstConfigDir = $larConfigDir[0];
-
-/*  echo "<pre>";
-    print_r($smarty->template_dir);
-    echo "</pre>";
-    echo "<h1>Params</h1>";
-    echo "<pre>";
-    print_r($params);
-    echo "</pre>"; */
+    $params['local'] ??= false;
 
     if (!is_callable('json_decode')) {
         $smarty->_trigger_fatal_error("{json} requires json_decode() function (PHP 5.2.0+)");
@@ -58,21 +47,34 @@ function smarty_function_json($params, &$smarty) {
         $smarty->_trigger_fatal_error("{json} parameter 'assign' conflicts with a variable assign parameter (both refer to the same variable)");
     }
 
+    if ( (parse_url($params['file'], PHP_URL_SCHEME) == "https") && ($params['local'] == true)){
+        // $smarty->_trigger_fatal_error("parameter local is true");
+        
+        $arrLocal=array(
+            "ssl"=>array(
+                "verify_peer"=>false,
+                "verify_peer_name"=>false,
+            ),
+        ); 
+        $json = file_get_contents($params['file'], false, stream_context_create($arrLocal));
+
+    } else {
+        // $smarty->_trigger_fatal_error("parameter 'file' is https but local false");
+
+        $json = trim(file_get_contents($params['file']));
+    }
+    
     $assoc = ($params['obj2obj'] == true) ? false : true;
-    $json = trim(file_get_contents($lstConfigDir . $params['file']));
+
     $data = json_decode($json, $assoc, 512, JSON_THROW_ON_ERROR);
-/*  echo "<h1>Data</h1>";
-    echo "<pre>";
-    print_r($data);
-    echo "</pre>"; */
-    //! @gigamaster test output debug mode
+
     if ($params['debug'] == true) {
         echo "<pre>";
         print_r($data);
         echo "</pre>";
     }
 
-    unset($params['file'], $params['obj2obj'], $params['debug']);
+    unset($params['file'], $params['obj2obj'], $params['debug'], $params['local']);
 
     $assign = [];
     foreach ($params as $key => $value) {

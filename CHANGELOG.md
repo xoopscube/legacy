@@ -2,11 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
-## The XOOPSCube Project 2023
+## The XOOPSCube Project 2024
 
 #### Git Repository  
 
 Refer please to repository Legacy Commits  
+
+## [2.4.0 RC PHP8] 2024-04-20
+
+- Update Web Install Wizard
+- Update Bundle Modules
+- Update CKEditor4 extra plugins, darkmode
+- Update Default Themes
+- Update Templates
+- Update jquery & UI
+- Avatars, emoji, images
+- Update Pico GD Library
+- Update plugin json
+- Add Pico Activity Overview
+- Removed deprecated files
+
 
 ## [2.3.3 RC PHP8] 2023-04-18
 

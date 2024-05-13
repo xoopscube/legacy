@@ -1,6 +1,10 @@
+<{assign var="theme_user_edit" value="`$xoops_theme`/templates/user/inc_user_tab_edit.html"}>
+<{assign var="theme_user_pref" value="`$xoops_theme`/templates/user/inc_user_tab_pref.html"}>
+
 <{* Dev-Mode Toggle *}>
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
+<h2><{$xoops_theme}></h2>
 <nav aria-label="breadcrumb">
     <ul>
     <li><a href="<{$xoops_url}>/">
@@ -10,7 +14,6 @@
     </ul>
 </nav>
 
-<h1>test</h1>
 <section data-layout="column" id="edit-user">
 
 <!--    <h3><{$smarty.const._MD_USER_LANG_EDITPROFILE}></h3>-->
@@ -60,43 +63,18 @@
                 </li>
             </ul>
 
-
             <div id="tab-edit">
-                <{* ----- THEME TEMPLATE *}>
-                <{* include file="$xoops_theme/templates/user/inc_user_tab_edit.html" *}>
-                <{* ----- MODULE TEMPLATE *}>
-                <{* include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_edit.html" *}>
-
-                <{* ------- Pagination from theme *}>
-
-    <{assign var="theme_user_edit" value="`$xoops_theme`/templates/user/inc_user_tab_edit.html"}>
-    <{if file_exists($theme_user_edit)}> 
-        <{include file="`$theme_user_edit`"}>
-        <{else}>
-        <{include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_edit.html"}>
-    <{/if}>
-
-
+            <{* ----- THEME OR MODULE TEMPLATE *}>
+            <{include_if_exists file="`$theme_user_edit`" else="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_edit.html"}>
             </div>
 
             <div id="tab-pref">
-                <{* ----- THEME TEMPLATE *}>
-                <{* include file="$xoops_theme/templates/user/inc_user_tab_pref.html" *}>
-                <{* ----- MODULE TEMPLATE *}>
-                <{* include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_pref.html" *}>
-
-                <{assign var="theme_user_pref" value="`$xoops_theme`/templates/user/inc_user_tab_pref.html"}>
-                <{if file_exists($theme_user_pref)}> 
-                    <{include file="`$theme_user_pref`"}>
-                    <{else}>
-                    <{include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_pref.html"}>
-                <{/if}>
+            <{* ----- THEME OR MODULE TEMPLATE *}>
+            <{include_if_exists file="`$theme_user_pref`" else="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_pref.html"}>
             </div>
 
         </div>
-
     </form>
-
 </section>
 
 <script>

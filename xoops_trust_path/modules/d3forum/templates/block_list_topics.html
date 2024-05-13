@@ -1,28 +1,23 @@
-<{* Dev-Mode Toggle *}>
-<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
-
 <{if $block.full_view == true}>
 <table class="outer">
 <thead>
 <tr>
 	<th><{$block.lang_forum}></th>
 	<th><{$block.lang_topic}></th>
-	<th align="center"><{$block.lang_replies}></th>
-	<th align="center"><{$block.lang_views}></th>
-	<th align="center" colspan="2"><{$block.lang_lastpost}></th>
 </tr>
 </thead>
+<tbody>
 <{foreach item=topic from=$block.topics}>
-
-
 <{strip}>
 <tr>
-	<td><div style="background:<{cycle name='topicolor' values='#ccdb38,#a676b8,#fe7e17'}>;height:20px;width:10px;">C</div>
-        <a href="<{$block.mod_url}>/index.php?forum_id=<{$topic.forum_id}>"><{$topic.forum_title}></a></td>
+	<td style="border-left:2px solid <{cycle name='topicolor' values='#e8ae01,#2196f3,#7cb342,#7e57c2'}>;">
+        <a href="<{$block.mod_url}>/index.php?forum_id=<{$topic.forum_id}>"><{$topic.forum_title}></a>
+	</td>
 	<td>
 	<{if $block.current_topic_id == $topic.id}>
-    <span class="d3f_currenttopic">
+    <span aria-current="true">
 	<{else}>
+	<{* displays the last post's subject or topic title *}>
     <{* <{if $topic.forum_id == 1}>
         <a href="<{$xoops_url}>/modules/d3diary/detail.php?bid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
     <{elseif $topic.forum_id == 3}>
@@ -35,57 +30,72 @@
         <a href="<{$block.mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>">
     <{* <{/if}> *}>
 	<{/if}>
-
-	<{if $topic.u2t_marked}><img src="<{$block.mod_imageurl}>/block_marked.gif" alt="<{$block.lang_alt_marked}>"><{/if}>
-	<{* displays the last post's subject or topic title *}>
-		<{if $block.disp_last_subject}>
-			<{$topic.last_subject}>
-		<{else}>
-			<{$topic.title}>
-		<{/if}>
-	<{if $block.current_topic_id == $topic.id}></span><{else}></a><{/if}>
+<{/strip}><{* REMOVE ANY SPACES *}>
+	<{if $topic.u2t_marked}>
+	<span data-tooltip="<{$block.lang_alt_marked}>"><img class="svg" src="<{$xoops_url}>/images/icons/marked.svg" width="1em" height="1em" alt=""></span> 
+	<{/if}>
 	<{if !$topic.solved}>
-<!--		<img src="<{$block.mod_imageurl}>/block_unsolved.gif" alt="<{$block.lang_alt_unsolved}>">-->
-		<img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" alt="<{$block.lang_alt_unsolved}>">
-		<{/if}>
-	</td>
-	<td><{$topic.replies}></td>
-	<td><{$topic.views}></td>
-	<td nowrap="nowrap">
+	<span data-tooltip="<{$block.lang_alt_unsolved}>">
+		<img class="svg" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" height="1em" alt="unsolved">
+	</span>
+	<{/if}>
+	
+	<{if isset($block.disp_last_subject)}>
+		<{$topic.last_subject}>
+	<{else}>
+		<{$topic.title}>
+	<{/if}>
+	<{if $block.current_topic_id == $topic.id}></span><{else}></a><{/if}> 
+	<br>
+	<span data-tooltip="<{$block.lang_replies}>"><img class="svg" src="<{$xoops_url}>/images/icons/reply.svg" width="1em" height="1em" alt="replies"></span> <span class="badge"><{$topic.replies}></span>
+	<span data-tooltip="<{$block.lang_views}>"><img class="svg" src="<{$xoops_url}>/images/icons/view.svg" width="1em" height="1em" alt="views"></span> <span class="badge"><{$topic.views}></span> 
+	<small>
+	<span data-tooltip="<{$block.lang_lastpost}>">
 	<{if $topic.guest_name}>
 		<{$topic.guest_name}>
 	<{else}>
 		<{$topic.last_uname}>
 	<{/if}>
+	</span> <span class="badge"><{$topic.last_post_time_formatted}></span></small>
 </td>
-	<td nowrap="nowrap"><{$topic.last_post_time_formatted}></td>
 </tr>
-<{/strip}>
 <{/foreach}>
+</tbody>
+<tfoot>
+	<tr>
+		<td colspan="2">
+	<div>
+	<a class="button" href="<{$block.mod_url}>/index.php?page=search">
+		<img class="svg" src="<{$xoops_url}>/images/icons/search.svg" width="1em" height="1em" alt="search"> <{$block.lang_linktosearch}></a>
+	&nbsp;
+	<{if is_numeric($block.forums)}>
+	<a class="button" href="<{$block.mod_url}>/index.php?forum_id=<{$block.forums}>">
+		<img class="svg" src="<{$xoops_url}>/images/icons/topic_01.svg" width="1em" height="1em" alt="forum"> <{$block.lang_linktolisttopics}></a>
+	<{else}>
+	<a class="button" href="<{$block.mod_url}>/index.php?cat_ids=<{$block.categories}>">
+		<img class="svg" src="<{$xoops_url}>/images/icons/forum.svg" width="1em" height="1em" alt="topics"> <{$block.lang_linktolisttopics}></a>
+	<{/if}>
+	&nbsp;
+	<{if is_numeric($block.categories)}>
+	<a class="button" href="<{$block.mod_url}>/index.php?cat_id=<{$block.categories}>">
+		<img class="svg" src="<{$xoops_url}>/images/icons/category_0.svg" width="1em" height="1em" alt="categories"> <{$block.lang_linktolistforums}></a>
+	&nbsp;
+	<{/if}>
+	<a class="button" href="<{$block.mod_url}>/index.php">
+		<img class="svg" src="<{$xoops_url}>/images/icons/category_0.svg" width="1em" height="1em" alt="Index Forums"> <{$block.lang_linktolistcategories}></a>
+	</div>
+		</td>
+	</tr>
+</tfoot>
 </table>
 
-<div>
-<a class="button" href="<{$block.mod_url}>/index.php?page=search"><{$block.lang_linktosearch}></a>
-&nbsp;
-<{if is_numeric($block.forums)}>
-<a class="button" href="<{$block.mod_url}>/index.php?forum_id=<{$block.forums}>"><{$block.lang_linktolisttopics}></a>
-<{else}>
-<a class="button" href="<{$block.mod_url}>/index.php?cat_ids=<{$block.categories}>"><{$block.lang_linktolisttopics}></a>
-<{/if}>
-&nbsp;
-<{if is_numeric($block.categories)}>
-<a class="button" href="<{$block.mod_url}>/index.php?cat_id=<{$block.categories}>"><{$block.lang_linktolistforums}></a>
-&nbsp;
-<{/if}>
-<a class="button" href="<{$block.mod_url}>/index.php"><{$block.lang_linktolistcategories}></a>
-</div>
-
-
 <{else}>
 
-<ol class="d3f_eachbranch">
+<ul class="post-tree post-tree-branch">
 <{foreach item=topic from=$block.topics}>
-	<li<{if $block.current_topic_id == $topic.id}> class="d3f_currenttopic d3f_block_currenttopic"<{/if}>>
+	<li<{if $block.current_topic_id == $topic.id}> aria-current="true"<{/if}>>
+	<img class="svg" src="<{$xoops_url}>/images/icons/posticon0.svg" width="1em" height="1em" alt="replies"> 
+	<span class="badge"><{$topic.replies}></span> 
 	<{if $block.current_topic_id != $topic.id}>
     <{* <{if $topic.forum_id == 1}>
         <a href="<{$xoops_url}>/modules/d3diary/detail.php?bid=<{$topic.external_link_id}>#post_id<{$topic.last_post_id}>">
@@ -98,17 +108,18 @@
     <{else}> *}>
         <span><a href="<{$block.mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>">
     <{* <{/if}> *}>
-    <{$topic.title}></a>(<{$topic.replies}>)
+    <{$topic.title}></a>
     <{else}>
-    <span><{$topic.title}>(<{$topic.replies}>)
+    <span><{$topic.title}> 
     <{/if}>
+	<small>
 	<{if $topic.guest_name}>
 		<{$topic.guest_name}>
 	<{else}>
 		<{$topic.last_uname}>
 	<{/if}>
- <{$topic.last_post_time_formatted}></span></li>
+	<span class="badge"><{$topic.last_post_time_formatted}></span></small>
+</span></li>
 <{/foreach}>
-</ol>
-
+</ul>
 <{/if}>

@@ -2,67 +2,38 @@
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 
-<!-- TODO ALERT -->
-<{if !$xoops_isuser}>
+<{* ----- ALERT NOTIFICATION TOPIC LOCKED ----- *}>
+<{if $topic.locked}>
 <div class="alert warning">
-
-    <{* ----- GUEST CAN POST ----- *}>
-    <{if $forum.can_post}>
-        <p><{$smarty.const._MD_D3FORUM_GUESTSCANPOST_DESC}></p>
-    <{else}>
-        <p><{$smarty.const._MD_D3FORUM_GUESTSCANNOTPOST_DESC}></p>
-    <{/if}>
-
+    <img class="svg topic-lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg">
+    <strong><{$smarty.const._MD_D3FORUM_TOPICLOCKED_DESC}></strong>
 </div>
 <{/if}>
 
-<{* strip *}>
-<article>
-
-
-
-<{* ---------- CAPTURE TOPIC ACTION CONTROL *}>
-<{capture name="topic_controller"}>
-
-
-
-	<{* ----- ALERT NOTIFICATION TOPIC LOCKED ----- *}>
-	<{if $topic.locked}>
-	<div class="alert warning">
-		<img class="svg topic-lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg">
-		<strong><{$smarty.const._MD_D3FORUM_TOPICLOCKED_DESC}></strong>
-	</div>
-	<{/if}>
-
-	<{if !$forum.can_post}>
-	<div class="alert warning">
-		<p><{$smarty.const._MD_D3FORUM_CANTCREATENEWTOPICTHISFORUM}></p>
-	</div>
-	<{/if}>
-    <!-- TODO ALERT -->
-    <{if $forum.external_link_format}>
-    <div class="alert warning">
-        <{$smarty.const._MD_D3FORUM_FORUMASCOMMENT_DESC}>
-    </div>
-    <{/if}>
 
 <{* ----- ACTION - TOPIC ----- *}>
-<div class="grid-2">
-
+<div class="grid">
 
     <{* ----- D3 MODULE COMMENT MANAGEMENT ----- *}>
-
-    <{if $forum.can_post}>
-    <a role="button" class="primary" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>">
-        <{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}>
-    </a>
+    <{if !$forum.can_post or $forum.external_link_format}>
+    <div>
+        <span data-tooltip="<{$smarty.const._MD_D3FORUM_CANTCREATENEWTOPICTHISFORUM}>">
+            <button disabled>
+            <{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}>
+        </button>
+    </span>
+    </div>
+    <{elseif $forum.can_post and !$forum.external_link_format}>
+        <div>
+        <a role="button" class="primary" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>"><{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}></a>
+        </div>
     <{/if}>
-
-<details role="list">
-    <summary aria-haspopup="listbox"  role="button" class="outline secondary">
+    <{if $forum.isadminormod}>
+    <details class="dropdown">
+        <summary role="button" class="outline">
         Action
     </summary>
-    <ul role="listbox"  class="action-control">
+    <ul>
         <{* ----- TOPIC MARKED STICKY ----- *}>
         <{if $uid && $mod_config.allow_mark}>
             <{if $topic.u2t_marked}>
@@ -117,15 +88,8 @@
             </a></li>
         <{/if}>
     </ul>
-</details>
+    </details>
+    <{/if}>
 </div>
 <{* ----- / ACTION - TOPIC ----- *}>
-<{/capture}>
-
-<{* ---------- RENDER CAPTURE *}>
-<{if $smarty.capture.topic_controller}>
-	<{$smarty.capture.topic_controller}>
-<{/if}>
-
-</article>
 <{* /strip *}>

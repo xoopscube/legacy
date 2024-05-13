@@ -13,7 +13,6 @@
 
 
 <div data-layout="column">
-
     <div id="tabs">
 
         <ul>
@@ -26,7 +25,6 @@
                 <a href="#tab-timeline">
                 <img class="svg timeline" src="<{$xoops_url}>/images/icons/timeline.svg" width="1em" height="1em" alt="timeline"> <span data-self="sm-hide">Timeline</span></a>
             </li>
-
             <{if $xoops_isuser == true && $user_ownpage == true}>
             <li class="page" id="foo">
                 <a href="<{$xoops_url}>/edituser.php?uid=<{$thisUser->getShow('uid')}>">
@@ -37,34 +35,34 @@
                 <img class="svg notifications" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="timeline"> <span data-self="sm-hide">Notifications</span></a>
             </li>
             <{/if}>
-
         </ul>
 
 
         <div id="tab-profile">
-            <{* ----- THEME TEMPLATE *}>
-            <{* include file="$xoops_theme/templates/user/inc_user_tab_profile.html" *}>
-            <{* ----- MODULE TEMPLATE *}>
-            <{include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_profile.html"}>
+        <{assign var="profile_theme" value="`$smarty.const.XOOPS_ROOT_PATH`/themes/`$xoops_theme`/templates/user/inc_user_tab_profile.html"}>
+        <{if file_exists($profile_theme)}> 
+            <{include file="`$profile_theme`"}>
+            <{else}>
+            <{include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_profile.html"}>  
+        <{/if}>
         </div>
 
         <div id="tab-timeline">
-            <{* ----- THEME TEMPLATE *}>
-            <{* include file="$xoops_theme/templates/user/inc_user_tab_timeline.html" *}>
-            <{* ----- MODULE TEMPLATE *}>
-            <{include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_timeline.html"}>
+        <{assign var="timeline_theme" value="`$smarty.const.XOOPS_ROOT_PATH`/themes/`$xoops_theme`/templates/user/inc_user_tab_timeline.html"}>
+        <{if file_exists($timeline_theme)}> 
+            <{include file="`$timeline_theme`"}>
+            <{else}>
+            <{include file="`$smarty.const.XOOPS_MODULE_PATH`/user/templates/inc_user_tab_timeline.html"}>   
+        <{/if}>       
         </div>
 
-
     </div>
-
-
 </div>
 
 <script>
     $( function() {
         $("#tabs").tabs({
-
+            // Use css var !?
             classes: {
                 // "ui-tabs": "tab-bg",
                 // "ui-tabs-nav": "tab-shadow",

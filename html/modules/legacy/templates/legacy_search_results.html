@@ -12,10 +12,7 @@
     <article  class="result">
         <{foreach item=result from=$module.results}>
         <div class="headings">
-            <h5>
-                <img class="svg" src="<{$result.image}>" alt="<{$module.name}>" aria-label="<{$module.name}>">
-                <a href="<{$result.link}>"><{$result.title}></a>
-            </h5>
+            <h5><img class="svg" src="<{$result.image}>" width="1em" height="1em" alt="<{$module.name}>"><a href="<{$result.link}>"><{$result.title}></a></h5>
             <p>
             <{if $result.uid > 0}>
             <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$result.uid|xoops_escape}>"><{$result.uid|xoops_user:user_name}></a>

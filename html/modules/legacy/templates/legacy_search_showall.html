@@ -4,8 +4,6 @@
 <{include file=db:legacy_search_form.html}>
 
 <{if $searchResults.0.name !=null}>
-
-
 <{* start results item loop *}>
 <article>
     <h3><{$searchResults.0.name}></h3>
@@ -13,7 +11,7 @@
     <{foreach item=result from=$searchResults.0.results}>
     <div class="headings">
     <h5>
-        <img class="svg <{$searchResults.0.name}>" src="<{$result.image}>" alt="<{$searchResults.0.name}>">
+        <img class="svg" src="<{$result.image}>" width="1em" height="1em" alt="<{$searchResults.0.name}>">
         <a href="<{$result.link}>"><{$result.title}></a>
     </h5>
 
@@ -35,7 +33,6 @@
 <{if $searchResults.0.has_more}>
 <a href="<{$smarty.const.XOOPS_URL}>/search.php?action=showall&amp;query=<{$actionForm->get('query')|escape:url}>&amp;mid=<{$searchResults.0.mid}>&amp;andor=<{$actionForm->get('andor')|xoops_escape}>&amp;start=<{$nextStart}>"><{$smarty.const._MD_LEGACY_LANG_NEXT_PAGE}></a>
 <{/if}>
+
 </article>
 <{/if}>
-
-

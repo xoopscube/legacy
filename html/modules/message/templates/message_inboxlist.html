@@ -1,6 +1,8 @@
+<{* set tab inbox to active *}>
+<{assign var="inboxView" value="ui-tabs-active ui-state-active"}>
+
 <{* Dev-Mode Toggle *}>
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
-
 <nav aria-label="breadcrumb">
 <ul>
     <li><a href="<{$xoops_url}>/"><img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a></li>
@@ -9,100 +11,97 @@
 </ul>
 </nav>
 
-<div id="tabs-mail">
 
-    <{include file=db:message_nav.html}>
+<article id="mail-inbox-list">
 
-    <div id="mail-inbox-list">
+    <header>
+        <{include file=db:message_nav.html}>
+    </header>
 
-        <div class="ui-tab-content">
+    <form method="post" name="form-search" action="index.php?action=index">
 
-            <form method="post" name="form-search" action="index.php?action=index">
+    <div class="grid">
 
-                <div class="grid-2">
+        <select name="status">
+            <option value="">- <{$smarty.const._MD_MESSAGE_TEMPLATE22}></option>
+            <option value="0"<{if $status===0}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE16}></option>
+            <option value="1"<{if $status==1}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE17}></option>
+            <option value="2"<{if $status==2}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE19}></option>
+        </select>
 
-                    <select name="status">
-                        <option value="">- <{$smarty.const._MD_MESSAGE_TEMPLATE22}></option>
-                        <option value="0"<{if $status===0}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE16}></option>
-                        <option value="1"<{if $status==1}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE17}></option>
-                        <option value="2"<{if $status==2}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE19}></option>
-                    </select>
+        <select name="fromuid">
+            <option value="0">- <{$smarty.const._MD_MESSAGE_TEMPLATE12}></option>
+            <{foreach item=fuser from=$select}>
+            <option value="<{$fuser.uid}>"<{if $fuser.select==true}> selected="selected"<{/if}>><{$fuser.uname|xoops_escape}></option>
+            <{/foreach}>
+        </select>
 
-                    <select name="fromuid">
-                        <option value="0">- <{$smarty.const._MD_MESSAGE_TEMPLATE12}></option>
-                        <{foreach item=fuser from=$select}>
-                        <option value="<{$fuser.uid}>"<{if $fuser.select==true}> selected="selected"<{/if}>><{$fuser.uname|xoops_escape}></option>
-                        <{/foreach}>
-                    </select>
+        <input type="text" name="subject" size="25" value="<{$subject|xoops_escape}>" placeholder="<{$smarty.const._MD_MESSAGE_TEMPLATE3}>">
 
-                    <input type="text" name="subject" size="25" value="<{$subject|xoops_escape}>" placeholder="<{$smarty.const._MD_MESSAGE_TEMPLATE3}>">
+        <button type="submit" class="outline" role="button" name="subbtn" value="<{$smarty.const._MD_MESSAGE_SEARCH}>">
+            <img class="svg search" src="<{$xoops_url}>/images/icons/search.svg"> <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_SEARCH}></span>
+        </button>
 
-                    <button type="submit" class="outline" role="button" name="subbtn" value="<{$smarty.const._MD_MESSAGE_SEARCH}>">
-                        <img class="svg search" src="<{$xoops_url}>/images/icons/search.svg"> <{$smarty.const._MD_MESSAGE_SEARCH}>
-                    </button>
+    </div>
 
-                </div>
-
-            </form>
-
-
-            <hr>
+    </form>
 
 
-            <form method="post" action="index.php?action=deleteall">
-                <input type="hidden" name="inout" value="in">
-
-                <{foreach item=val from=$ListData}>
-
-                <div id="printhis" class="grid-left mail-list-item">
-
-                    <div class="mail-list-author">
-                        <{if $val.is_read==1}>
-                        <input type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>" aria-label="<{$smarty.const._DELETE}>">
-                        <{else}>
-                        <input type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>" disabled>
-                        <{/if}>
-
-                        <{if $val.is_read==0}>
-                        <img class="svg mail" src="<{$xoops_url}>/images/icons/mail.svg" width="1em" height="1em" alt="Mail">
-
-                        <{elseif $val.is_read==1}>
-                        <img class="svg mail-open" src="<{$xoops_url}>/images/icons/mail-open.svg" width="1em" height="1em" data-tooltip="<{$smarty.const._MD_MESSAGE_TEMPLATE17}>">
+<{* ----- List Messages *}>
 
 
-                        <{elseif $val.is_read==2}>
-                        <img class="svg lock" src="<{$xoops_url}>/images/icons/lock.svg" width="1em" height="1em" data-tooltip="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>">
+    <form method="post" action="index.php?action=deleteall">
+        <input type="hidden" name="inout" value="in">
 
-                        <{/if}>
+        <{foreach item=val from=$ListData}>
 
-                        <img class="mail-list-avatar" src="<{$val.from_uid|xoops_user_avatarize}>" alt="avatar">
+        <div id="printhis" class="grid-left mail-list-item">
 
-                        <{$val.fromname}>
+            <div class="mail-list-author">
+                <{if $val.is_read==1}>
+                <input type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>" aria-label="<{$smarty.const._DELETE}>">
+                <{else}>
+                <input type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>" disabled>
+                <{/if}>
 
-                    </div>
+                <{if $val.is_read==0}>
+                <img class="svg mail" src="<{$xoops_url}>/images/icons/mail.svg" width="1em" height="1em" alt="Mail">
 
-                    <div class="flex-justify">
-                        <{* SUBJECT TRUNCATE:46 - CHANGE THIS VALUE OR USE CSS text-overflow: ellipsis; *}>
-                        <a href="index.php?action=view&amp;inout=in&amp;inbox=<{$val.inbox_id}>" class="mail-list-subject"><{$val.title|truncate:46:"..."}></a>
-                        <span class="mail-list-date"><{$val.utime|xoops_formattimestamp:l}></span>
-                    </div>
-                </div>
+                <{elseif $val.is_read==1}>
+                <img class="svg mail-open" src="<{$xoops_url}>/images/icons/mail-open.svg" width="1em" height="1em" data-tooltip="<{$smarty.const._MD_MESSAGE_TEMPLATE17}>">
 
-                <{/foreach}>
 
-                <footer class="action-control">
-                    <div><{* ! wrap [role=button] with div for small button *}>
-                        <button type="submit" role="button" class="outline secondary delete" name="subbtn" value="<{$smarty.const._DELETE}>">
-                            <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg"> <{$smarty.const._DELETE}>
-                        </button></div>
-                    <nav class="pagination" aria-label="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
-                </footer>
+                <{elseif $val.is_read==2}>
+                <img class="svg lock" src="<{$xoops_url}>/images/icons/lock.svg" width="1em" height="1em" data-tooltip="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>">
 
-            </form>
+                <{/if}>
 
-        </div><{* ------- /ui-tab-content *}>
+                <img class="mail-list-avatar" src="<{$val.from_uid|xoops_user_avatarize}>" alt="avatar">
 
-    </div><{* ------- /mail-inbox-list *}>
+                <{$val.fromname}>
 
-</div><{* ------- /tabs-mail *}>
+            </div>
 
+            <div class="flex-justify">
+                <{* SUBJECT TRUNCATE:46 - CHANGE THIS VALUE OR USE CSS text-overflow: ellipsis; *}>
+                <a href="index.php?action=view&amp;inout=in&amp;inbox=<{$val.inbox_id}>" class="mail-list-subject"><{$val.title|truncate:46:"..."}></a>
+                <span class="mail-list-date"><{$val.utime|xoops_formattimestamp:l}></span>
+            </div>
+        </div>
+
+        <{/foreach}>
+    
+    <hr>
+    
+    <footer class="action-control grid">
+        <div>
+        <button type="submit" role="button" class="outline secondary delete" name="subbtn" value="<{$smarty.const._DELETE}>">
+            <img class="svg" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"> <{$smarty.const._DELETE}>
+        </button>
+        </div>
+        <nav class="pagination" aria-label="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
+    </footer>
+
+    </form>
+
+</article>

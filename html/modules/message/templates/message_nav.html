@@ -1,29 +1,31 @@
-<ul>
-    <li class="<{$inboxView|default:''}>">
-        <a href="index.php" target="_self">
+<div id="tabs-msg" class="ui-tabs">
+<ul role="tablist" class="ui-tabs-nav ui-corner-all ui-helper-reset ui-helper-clearfix ui-widget-header">
+    <li class="ui-tabs-tab ui-state-default ui-tab <{$inboxView|default:''}>" role="tab">
+        <a href="index.php" class="ui-tabs-anchor" target="_self">
         <img class="svg inbox-in" src="<{$xoops_url}>/images/icons/inbox-in.svg">
         <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE15}></span></a>
     </li>
 
-    <li class="<{$outboxView|default:''}>">
-        <a href="index.php?action=send" target="_self">
+    <li class="ui-tabs-tab ui-state-default ui-tab <{$outboxView|default:''}>">
+        <a href="index.php?action=send" class="ui-tabs-anchor" target="_self">
         <img class="svg inbox-out" src="<{$xoops_url}>/images/icons/inbox-out.svg">
         <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE7}></span></a>
     </li>
 
-    <li>
-        <a href="index.php?action=new" target="_self">
+    <li class="ui-tabs-tab ui-state-default ui-tab">
+        <a href="index.php?action=new" class="ui-tabs-anchor" target="_self">
         <img class="svg mail-edit" src="<{$xoops_url}>/images/icons/mail-edit.svg">
         <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE8}></span></a>
     </li>
 
-    <{* ------- dropdown *}>
-    <li class="settings">
+    <{* ------- li dropdown *}>
+    <li class="ui-tabs-tab ui-state-default ui-tab <{$inboxSettings|default:''}>">
 
         <div class="dropdown">
 
-            <a id="#settings" href="#!" class="dropdown-toggle" aria-label="<{$smarty.const._MI_MESSAGE_SUB_SETTINGS}>">
-            <img class="svg dropdown" src="<{$xoops_url}>/images/icons/dropdown.svg" alt="control"></a>
+            <a id="settings" href="#!" class="dropdown-toggle ui-tabs-anchor">
+            <img class="svg dropdown" src="<{$xoops_url}>/images/icons/dropdown.svg" alt="control">
+            <span data-self="sm-hide"><{$smarty.const._MI_MESSAGE_SUB_SETTINGS}></span></a>
 
             <div class="dropdown-content">
                 <ul>
@@ -96,5 +98,6 @@
         </div>
 
     </li>
-    <{* ------- dropdown *}>
+    <{* ------- li dropdown *}>
 </ul>
+</div>

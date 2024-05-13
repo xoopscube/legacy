@@ -17,9 +17,28 @@
 </nav>
 <{/if}>
 
-<{include file="db:`$mydirname`_inc_d3comment_summary.html"}>
+<article>
+<header>
+    <h2>
+        <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$post.icon}>.svg" alt="<{$icon_meanings[$post.icon]}>">
+            <{$post.subject}>
+    </h2>
+</header>
+    <{* /////// SUMMARY \\\\\\\ *}>
+    <{if $forum.external_link_format}>
+    <{include file="db:`$mydirname`_inc_d3comment_summary.html"}>
+    <{/if}>
+    
+    <{* ------- TOPIC NEW and ACTIONS *}>
+    <footer>
+    <{include file="db:`$mydirname`_inc_topicbar.html"}>
+    </footer>
+    
+</article>
 
-<div class="flex-justify">
+<{* ------- TOPIC LINK + LIST TREE *}>
+<!-- <div class=""> -->
+<nav class="post-tree-order flex-justify">
     <{if $topic.external_link_id}>
         <div class="d3f_link">
         <{$posts|@count|string_format:$smarty.const._MD_D3FORUM_FMT_POSTDISPLAYSINFO}>
@@ -28,53 +47,43 @@
         </div>
     <{/if}>
 
-    <a role="button" class="outline" href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>">
+    <a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>">
         <img class="svg list-tree" src="<{$xoops_url}>/images/icons/list-tree.svg" alt="list-tree">
         <{$smarty.const._MD_D3FORUM_LINK_LISTPOSTS}></a>
 
-</div>
+<!-- </div> -->
+</nav>
 
-<div class="d3f_wrap">
 
+<{* /////// INCLUDE EACH POST \\\\\\\ *}>
 <{include file="db:`$mydirname`_inc_eachpost.html" caller="viewpost" inner_link_format="`$mod_url`/index.php?post_id=%s"}>
-
-</div>
-
-<hr>
-
-<{* /////// QUICK REPLY \\\\\\\ *}>
-<{if $post.can_reply}>
-    <{include file="db:`$mydirname`_inc_post_form_quick.html" uname=$uname h2_title=$smarty.const._MD_D3FORUM_REPLYTHISPOST quick_form_mode="reply" subject_raw=$post.subject_raw}>
-<{/if}>
-
 
 
 <{* /////// POST TREE \\\\\\\ *}>
-<h5>
-        <label for="post-order">
-            <input role="switch" type="checkbox" id="post-order" name="post-order" onclick="slideToggle('.post-tree-view', this)" value="0">
-            <img class="svg tree" src="<{$xoops_url}>/images/icons/tree.svg" alt="post-tree">
-            <{$smarty.const._MD_D3FORUM_POSTSTREE}>
-        </label>
-    </h5>
-<div class="post-tree-view" style="display:none">
+<h4>
+    <label for="post-order">
+        <input role="switch" type="checkbox" id="post-order" name="post-order" onclick="slideToggle('.post-tree-view', this)" value="0" checked>
+        <img class="svg tree" src="<{$xoops_url}>/images/icons/tree.svg" alt="post-tree">
+        <{$smarty.const._MD_D3FORUM_POSTSTREE}>
+    </label>
+</h5>
+<div class="post-tree-view" style>
 
-<!--    <h3><{$smarty.const._MD_D3FORUM_POSTSTREE}></h3>-->
+<{* /////// -------------------- NOTE
 
-    <{* /////// -------------------- NOTE
+    The "Tree structure" (<ul><li>) is created at
+    trust_path/modules/d3forum/include/comment_functions.php
+    line 513
 
-        The "Tree structure" (<ul><li>) is created at
-        trust_path/modules/d3forum/include/comment_functions.php
-        line 513
+    trust_path/modules/d3forum/include/viewpost.php
+    line 82
 
-        trust_path/modules/d3forum/include/viewpost.php
-        line 82
+    Here UL is replaced (removed) from the "tree structure" and LI margin incremented by 10px
+    Closing tag /LI is optional, since all "block-level" tags are self-closing tags in HTML5.
 
-        Here UL is replaced (removed) from the "tree structure" and LI margin incremented by 10px
-        Closing tag /LI is optional, since all "block-level" tags are self-closing tags in HTML5.
+/////// -------------------- *}>
 
-        /////// -------------------- *}>
-
+    <small>
     <ul class="post-tree">
     <{foreach from=$posts item=eachpost}>
 
@@ -95,26 +104,26 @@
         <img class="svg tools" src="<{$xoops_url}>/images/icons/tools.svg" width="1em" alt="tools"></a>
     <{/if}>
 
-    </span>
+    </span><!-- /CLOSE SPAN FOR EACHPOST-->
 
-        <{* /////// -------------------- NOTE :
+    <{* /////// -------------------- NOTE :
 
-            $eachpost.ul_out
+        $eachpost.ul_out
 
-            Here the UL is replaced (removed) from the "tree structure" and LI incremented by 10px
-            Closing tag /LI is optional, all "block-level" tags are self-closing tags in HTML5.
-        *}>
+        Here the UL is replaced (removed) from the "tree structure" and LI incremented by 10px
+        Closing tag /LI is optional, all "block-level" tags are self-closing tags in HTML5.
+    *}>
 
         <{/foreach}>
     </ul>
-
+    </small>
 
 </div>
 <{* ------- /end post tree *}>
 
 
-
 <{* /////// POST TREE - EXTERNAL LINK \\\\\\\ *}>
+
 <{if $topic.external_link_id && ($tree_tp_count>1)}>
 <h5>
     <label for="post-tree-ext">
@@ -130,11 +139,11 @@
 
         <{if $eachpost.topic_id == $topic.id}>
 
-        <{$eachpost.ul_in|replace:"<ul>":"<ul class='d3f_eachbranch'>\n\t"|replace:"<li>":"<li class='d3f_eachbranchitem d3f_currenttopic'><span style='padding-left:`$eachpost.depth_in_tree`0px;'>"}>
+        <{$eachpost.ul_in|replace:"<ul>":"<ul class='post-tree-branch'>\n\t"|replace:"<li>":"<li class='post-tree-branch-item post-tree-current'><span style='padding-left:`$eachpost.depth_in_tree`0px;'>"}>
 
            <{else}>
 
-           <{$eachpost.ul_in|replace:"<ul>":"<ul class='d3f_eachbranch'>\n\t"|replace:"<li>":"<li class='d3f_eachbranchitem'>
+           <{$eachpost.ul_in|replace:"<ul>":"<ul class='post-tree-branch'>\n\t"|replace:"<li>":"<li class='post-tree-branch-item'>
 
            <span style='padding-left:`$eachpost.depth_in_tree`0px;'>"}>
        <{/if}>
@@ -164,16 +173,21 @@
 
 <{/foreach}>
 </div>
-
 <{/if}>
-
 <{* -------  End external topic list tree  *}>
 
 
-<{* /////// NOTIFICATION \\\\\\\ *}>
-<{if $xoops_isadmin}>
-<{include file='db:system_notification_select.html'}>
+<{* /////// QUICK REPLY \\\\\\\ *}>
+
+<{if $post.can_reply}>
+    <{include file="db:`$mydirname`_inc_post_form_quick.html" uname=$uname h2_title=$smarty.const._MD_D3FORUM_REPLYTHISPOST quick_form_mode="reply" subject_raw=$post.subject_raw}>
 <{/if}>
+
+<{if $xoops_isadmin}>
+
+<{* /////// NOTIFICATION \\\\\\\ *}>
+<{include file='db:system_notification_select.html'}>
+
 
 <{* ----- Forum Jumpbox *}>
 <article id="jump-box">
@@ -190,3 +204,5 @@
         </div>
   </form>
 </article>
+
+<{/if}>

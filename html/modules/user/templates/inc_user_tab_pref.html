@@ -11,7 +11,6 @@
         <{html_options id="umode" name="umode" options=$umodeOptions selected=$actionForm->get('umode')}>
     </label>
 
-
     <label for="uorder">
         <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M11 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
@@ -21,7 +20,6 @@
         <{html_options id="uorder" name="uorder" options=$uorderOptions selected=$actionForm->get('uorder')}>
     </label>
 
-
     <label for="notify_method">
         <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2z"/>
@@ -29,7 +27,6 @@
         </svg> <{$smarty.const._MD_USER_LANG_NOTIFY_METHOD}>
         <{html_options id="notify_method" name="notify_method" options=$notify_methodOptions selected=$actionForm->get('notify_method')}>
     </label>
-
 
     <label for="notify_mode">
         <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +37,6 @@
         <{html_options id="notify_mode" name="notify_mode" options=$notify_modeOptions selected=$actionForm->get('notify_mode')}>
     </label>
 
-
     <label for="pass">
         <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M9.655 8H2.333c-.264 0-.398.068-.471.121a.73.73 0 0 0-.224.296 1.626 1.626 0 0 0-.138.59V14c0 .342.076.531.14.635.064.106.151.18.256.237a1.122 1.122 0 0 0 .436.127l.013.001h7.322c.264 0 .398-.068.471-.121a.73.73 0 0 0 .224-.296 1.627 1.627 0 0 0 .138-.59V9c0-.342-.076-.531-.14-.635a.658.658 0 0 0-.255-.237A1.122 1.122 0 0 0 9.655 8zm.012-1H2.333C.5 7 .5 9 .5 9v5c0 2 1.833 2 1.833 2h7.334c1.833 0 1.833-2 1.833-2V9c0-2-1.833-2-1.833-2zM8.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>
@@ -48,18 +44,15 @@
         <{xoops_input type="password" name="pass" id="pass" size="20" maxlength=32 autocomplete="new-password" value=$actionForm->get('pass')}>
     </label>
 
-
     <label for="vpass">
         <{$smarty.const._MD_USER_LANG_TYPEPASSTWICE}>
         <{xoops_input type="password" name="vpass" id="vpass" size="20" maxlength="32" autocomplete="new-password" value=$actionForm->get('vpass')}>
     </label>
 
-
     <{* <label for="usercookie">
         <input type="checkbox" id="usercookie" name="usercookie" value=1 default="<{$actionForm->get('usercookie')}>">
         <{$smarty.const._MD_USER_LANG_USERCOOKIE}>
     </label> *}>
-
 
     <{* <label for="user_mailok">
         <input type="checkbox" id="user_mailok" name="user_mailok" value=1 default="<{$actionForm->get('user_mailok')}>">
@@ -75,13 +68,12 @@
       <{xoops_input type=radio name=user_mailok value=0 default=$actionForm->get('user_mailok')}><{$smarty.const._NO}> <{$smarty.const._MD_USER_LANG_USER_MAILOK}>
 </label>
 
-   <footer class="action-control">
-       <div>
-            <button type="submit" role="button" class="primary" value="<{$smarty.const._MD_USER_LANG_SAVECHANGES}>">
-                <{$smarty.const._MD_USER_LANG_SAVECHANGES}>
-            </button>
-       </div>
-    </footer>
+<hr>
 
+<footer>
+    <button type="submit" role="button" class="primary" value="<{$smarty.const._MD_USER_LANG_SAVECHANGES}>">
+        <{$smarty.const._MD_USER_LANG_SAVECHANGES}>
+    </button>
+</footer>
 
 </div><{* /ui-tab-content *}>

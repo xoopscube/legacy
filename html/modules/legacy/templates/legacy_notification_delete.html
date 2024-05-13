@@ -16,10 +16,10 @@
 
     <article class="notification alert confirm">
         <header>
-            <h2>
+            <h3>
                 <img class="svg bell" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em"
                      alt="notification"> <{$smarty.const._NOT_DELETINGNOTIFICATIONS}>
-            </h2>
+            </h3>
         </header>
         <{foreach item=ids from=$actionForm->mNotifiyIds}>
         <input type="hidden" name="del_not[<{$ids.modid|xoops_escape:plain}>][]" value="<{$ids.id|xoops_escape:plain}>">

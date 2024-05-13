@@ -1,5 +1,5 @@
 <{* set tab inbox to active *}>
-<{assign var="inboxView" value="ui-state-active"}>
+<{assign var="inboxView" value="ui-tabs-active ui-state-active"}>
 
 <{* Dev-Mode Toggle *}>
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
@@ -14,96 +14,91 @@
 </nav>
 
 
-<div id="tabs-mail">
+<article id="mail-inbox-view">
 
-    <{include file=db:message_nav.html}>
+    <header>
+        <{include file=db:message_nav.html}>
+    </header>
 
-    <div id="mail-inbox-view">
+    <div id="printhis">
 
-        <div class="ui-tab-content" id="printhis">
+        <h3 class="mail-title"><{$smarty.const._MD_MESSAGE_TEMPLATE3}>: <{$msgdata.title}></h3>
 
-            <h3 class="mail-title"><{$smarty.const._MD_MESSAGE_TEMPLATE3}>: <{$msgdata.title}></h3>
+        <div class="mail-author">
+            <{$smarty.const._MD_MESSAGE_TEMPLATE12}> : <img src="<{$msgdata.from_uid|xoops_user_avatarize}>" width="24px" data-self="radius-circle" class="avatar">
+            <{$msgdata.fromname}>
+        </div>
 
-            <div class="mail-author">
-                <{$smarty.const._MD_MESSAGE_TEMPLATE12}> : <img src="<{$msgdata.from_uid|xoops_user_avatarize}>" width="24px" data-self="radius-circle" class="avatar">
-                <{$msgdata.fromname}>
-            </div>
-            <div class="mail-date"><{$smarty.const._MD_MESSAGE_TEMPLATE10}> : <span class="badge"><{$msgdata.utime|xoops_formattimestamp:l}></span></div>
+        <div class="mail-date"><{$smarty.const._MD_MESSAGE_TEMPLATE10}> : <span class="badge"><{$msgdata.utime|xoops_formattimestamp:l}></span></div>
 
-            <hr>
+        <hr>
 
-            <div class="mail-content" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>">
-                <{$msgdata.message}>
-            </div>
+        <div class="mail-content" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>">
+            <{$msgdata.message}>
+        </div>
 
+    </div>
+    
+    <footer class="action-control">
+            
+        <form method="post" id="msgDelete" action="index.php?action=delete&amp;inout=in"> 
+            <input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>">
+            <{if $msgdata.is_read==2}>
+            <button type="submit" class="outline secondary delete" name="subbtn" value="<{$smarty.const._DELETE}>" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE14}> <{$smarty.const._MD_MESSAGE_TEMPLATE19}>" disabled>
+                <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt=""> <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE19}></span>
+            </button>
+            <{else}>
+            <button type="submit" class="outline secondary delete" name="subbtn" value="<{$smarty.const._DELETE}>">
+                <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt=""> <span data-self="sm-hide"><{$smarty.const._DELETE}></span>
+            </button>
+            <{/if}>
+        </form>
 
-            <footer class="action-control">
+        <form method="post" id="msgLock" action="index.php">
+            <input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>">
+            <input type="hidden" name="inout" value="in">
+            <input type="hidden" name="cmd" value="lock">
+            <input type="hidden" name="action" value="view">
+            <{if $msgdata.is_read==1}>
+            <input type="hidden" name="lock" value="1">
+            <button type="submit" class="outline" value="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>">
+                <img class="svg mail-lock" src="<{$xoops_url}>/images/icons/mail-lock.svg" width="1em" height="1em" alt="Mail lock">
+                <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE19}></span>
+            </button>
+            <{else}>
+            <input type="hidden" name="lock" value="0">
+            <button type="submit" class="outline" value="<{$smarty.const._MD_MESSAGE_TEMPLATE20}>">
+                <img class="svg mail-off" src="<{$xoops_url}>/images/icons/mail-off.svg" width="1em" height="1em" alt="Mail off">
+                <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE20}></span>
+            </button>
+            <{/if}>
+        </form>
 
-                <form method="post" id="msgDelete" action="index.php?action=delete&amp;inout=in">
-                    <input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>">
-                    <{if $msgdata.is_read==2}>
-                    <button type="submit" class="outline secondary delete" name="subbtn" value="<{$smarty.const._DELETE}>" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE14}> <{$smarty.const._MD_MESSAGE_TEMPLATE19}>" disabled>
-                        <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt=""> <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE19}></span>
-                    </button>
-                    <{else}>
-                    <button type="submit" class="outline secondary delete" name="subbtn" value="<{$smarty.const._DELETE}>">
-                        <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt=""> <span data-self="sm-hide"><{$smarty.const._DELETE}></span>
-                    </button>
-                    <{/if}>
-                </form>
+        <form method="post" action="index.php" id="forward_message">
+            <input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>">
+            <input type="hidden" name="inout" value="in">
+            <input type="hidden" name="cmd" value="mail">
+            <input type="hidden" name="action" value="view">
 
-                <form method="post" id="msgLock" action="index.php">
-                    <input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>">
-                    <input type="hidden" name="inout" value="in">
-                    <input type="hidden" name="cmd" value="lock">
-                    <input type="hidden" name="action" value="view">
-                    <{if $msgdata.is_read==1}>
-                    <input type="hidden" name="lock" value="1">
-                    <button type="submit" class="outline" value="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>">
-                        <img class="svg mail-lock" src="<{$xoops_url}>/images/icons/mail-lock.svg" width="1em" height="1em" alt="Mail lock">
-                        <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE19}></span>
-                    </button>
-                    <{else}>
-                    <input type="hidden" name="lock" value="0">
-                    <button type="submit" class="outline" value="<{$smarty.const._MD_MESSAGE_TEMPLATE20}>">
-                        <img class="svg mail-off" src="<{$xoops_url}>/images/icons/mail-off.svg" width="1em" height="1em" alt="Mail off">
-                        <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE20}></span>
-                    </button>
-                    <{/if}>
-                </form>
+            <a href="#" onclick="submitForm()" class="outline primary" role="button">
+                <img class="svg mail-send" src="<{$xoops_url}>/images/icons/mail-send.svg" alt="Forward">
+                <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE21}></span></a>
+            <script type="text/javascript">
+                function submitForm() {
+                    let form = document.getElementById("forward_message");
+                    form.submit();
+                }
+            </script>
+        </form>
 
-                <form method="post" action="index.php" id="forward_message">
-                    <input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>">
-                    <input type="hidden" name="inout" value="in">
-                    <input type="hidden" name="cmd" value="mail">
-                    <input type="hidden" name="action" value="view">
+        <div><{* Note : wrap [role=button] with div for small buttons *}>
+            <a href="#!" class="outline primary" role="button" value="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>" onclick="location.href='index.php?action=new&amp;res=<{$msgdata.inbox_id}>'">
+                <img class="svg mail-edit" src="<{$xoops_url}>/images/icons/mail-edit.svg" alt="Reply">
+                <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE13}></span>
+            </a>
+        </div>
+        
+    </footer>
 
-                    <a href="#" onclick="submitForm()" class="outline primary" role="button">
-                        <img class="svg mail-send" src="<{$xoops_url}>/images/icons/mail-send.svg" alt="Forward">
-                        <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE21}></span></a>
-                    <script type="text/javascript">
-                        function submitForm() {
-                            let form = document.getElementById("forward_message");
-                            form.submit();
-                        }
-                    </script>
-                </form>
-
-                <div><{* Note : wrap [role=button] with div for small buttons *}>
-                    <a href="#!" class="outline primary" role="button" value="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>" onclick="location.href='index.php?action=new&amp;res=<{$msgdata.inbox_id}>'">
-                        <img class="svg mail-edit" src="<{$xoops_url}>/images/icons/mail-edit.svg" alt="Reply">
-                        <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE13}></span>
-                    </a>
-                </div>
-
-            </footer>
-
-        </div><{* ------- /ui-tab-content *}>
-
-
-
-    </div><{* ------- /mail-outbox-view *}>
-
-</div><{* ------- /tabs-mail *}>
-
+</article>
 

@@ -32,9 +32,9 @@
 	<div>
         <a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>&amp;external_link_id=<{$external_link_id|escape:'url'}>&amp;subject=<{$subject|escape:'url'}>">
             <{if $plugin_params.link_to_form}>
-            <{$plugin_params.link_to_form}>
+            	<{$plugin_params.link_to_form}>
             <{else}>
-            <{$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP}>
+            	<{$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP}>
             <{/if}>
         </a>
     </div>
@@ -112,13 +112,13 @@
 
 <{* ----- ICONS
 <!-- <div class="icon-list">
-<ul class="icon-list">
+<ul class="forum-icon-list">
 	<li><img src="<{$mod_imageurl}>/topic_11.gif" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
 	<li><img src="<{$mod_imageurl}>/topic_01.gif" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>
 	<li><img src="<{$mod_imageurl}>/topic_invisible.gif" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></li>
 	<li><img src="<{$mod_imageurl}>/topic_sticky0.gif" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICSTICKY}></li>
 </ul>
-<ul class="icon-list">
+<ul class="forum-icon-list">
 	<li><img src="<{$mod_imageurl}>/topic_status_locked1.gif" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICLOCKED}></li>
 	<li><img src="<{$mod_imageurl}>/topic_status_solved0.gif" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}></li>
 	<li><img src="<{$mod_imageurl}>/topic_status_marked1.gif" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}></li>

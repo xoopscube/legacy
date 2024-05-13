@@ -2,6 +2,7 @@
 	.menu-overlay {
 		background: rgba(0, 0, 0, 0);
 		border:var(--ui-widget-content-border);
+		border-radius: var(--border-radius);
 		display: block;
 		pointer-events: none;
 		position: fixed;
@@ -14,7 +15,7 @@
 		z-index: 99999;
 	}
 	.menu-overlay .dialog {
-		border-radius: var(--border-radius);
+		border-radius: 10px;
 		background: var(--ui-dialog-bg );
 		box-shadow: var(--ui-dialog-shadow );
 		margin: 10% auto;
@@ -28,7 +29,7 @@
 	.menu-overlay:target {
 		display: block;
 		pointer-events: auto;
-		background: rgba(0, 0, 0, 0.3);
+		background: rgba(0, 0, 0, 0.5);
 		transition: all 0.2s ease-out;
 	}
 	.menu-overlay:target .dialog {

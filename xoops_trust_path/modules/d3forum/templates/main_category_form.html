@@ -15,21 +15,22 @@
 
 
 <form name="categoryform" id="categoryform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>" method="post" onsubmit="return xoopsFormValidate_categoryform();">
-    <{$gticket_hidden}>
+    <{$gticket_hidden|default:''}>
 
     <article class="category-admin">
 
-        <h2><{$smarty.const._MD_D3FORUM_CATEGORYMANAGER}></h2>
+        <header>
+        <h3><{$formtitle}>
 
-    <!-- Permissions -->
-    <{if $xoops_isadmin}>
-    <div class="grid">
-        <h4><{$formtitle}></h4>
-        <a role="button" class="outline" href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>">
-        <img class="svg lock" src="<{$xoops_url}>/images/icons/lock.svg" width="1em" alt="admin"> <{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}></a>
-    </div>
-    <{/if}>
-
+            <{* ----- Permissions *}>
+            <{if $xoops_isadmin}>
+            <div>
+                <a role="button" class="outline" href="<{$mod_url}>/admin/index.php?page=category_access&amp;cat_id=<{$category.id}>">
+                <img class="svg lock" src="<{$xoops_url}>/images/icons/lock.svg" width="1em" alt="admin"> <{$smarty.const._MD_D3FORUM_LINK_CATEGORYACCESS}></a>
+            </div>
+            <{/if}>
+        </h3>
+        </header>
 
     <label for="category_title">
         <{$smarty.const._MD_D3FORUM_TH_CATEGORYTITLE}>
@@ -78,7 +79,7 @@
     <fieldset>
         <h5><{$smarty.const._MD_D3FORUM_TH_CATEGORYOPTIONS}></h5>
         <label for="category_option_controller_onoff">
-            <input type="checkbox" id="category_option_controller_onoff"
+            <input role="switch" type="checkbox" id="category_option_controller_onoff"
                    onclick="if(this.checked){document.getElementById('category_option_controller').style.display='block';}else{document.getElementById('category_option_controller').style.display='none';};"
             <{if $category.options}>checked="checked"<{/if}>>
             <{$smarty.const._MD_D3FORUM_ONOFF}>
@@ -95,14 +96,14 @@
     <{* ----- /CATEGORY OPTIONS *}>
 
 
-    <footer class="grid">
+    <footer class="action-control">
         <{if $page == 'categorymanager' && $children_count == 0}>
-        <button type="submit" role="button" class="outline secondary delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')">
-            <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" alt="delete"> <{$smarty.const._DELETE}></button>
+        <div>
+            <button type="submit" role="button" class="outline secondary delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')">
+            <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" alt="delete"> <{$smarty.const._DELETE}></button></div>
         <{/if}>
-        <button type="submit" role="button" class="primary" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
-            <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg" width="1em" alt="check"> <{$smarty.const._SUBMIT}>
-        </button>
+        <div><button type="submit" role="button" class="primary" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
+            <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg" width="1em" alt="check"> <{$smarty.const._SUBMIT}></button></div>
     </footer>
 </article>
 

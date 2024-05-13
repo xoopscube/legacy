@@ -10,10 +10,10 @@
     <ul>
         <li>
             <a href="<{$xoops_url}>/">
-                <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
+                <img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></a>
         <li>
             <a href="<{$mod_url}>/index.php">
-                <img class="svg forum" src="<{$xoops_url}>/images/icons/forum_1.svg" alt=""> <{$smarty.const._MD_D3FORUM_TOP}></a>
+            <img class="svg forum" src="<{$xoops_url}>/images/icons/forum_1.svg" width="1em" height="1em" alt="forum"> <{$smarty.const._MD_D3FORUM_TOP}></a>
         <{foreach from=$category.paths_raw key=parent_id item=parent_title_raw}>
         <li><a href="<{$mod_url}>/index.php?cat_id=<{$parent_id}>"><{$parent_title_raw|escape}></a>
         <{/foreach}>
@@ -85,14 +85,14 @@
                 <img src="<{$topic_icon_src}>" alt="<{$topic_icon_alt}>">
 
                 <{if $topic.locked}>
-                    <img class="svg lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" alt="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>">
+                    <img class="svg lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" width="1em" height="1em" alt="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>">
                 <{/if}>
                 <{if ! $topic.solved}>
                     <{if $topic.forum_isadminormod}>
                         <a href="<{$mod_url}>/index.php?page=update_topic_solved&amp;topic_id=<{$topic.id}>&amp;ret_name=cat_ids&amp;ret_val=<{$cat_ids}>" title="<{$smarty.const._MD_D3FORUM_SOLVED_TURNON}>">
-                            <img class="svg solved-no" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>"></a>
+                            <img class="svg unsolved" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" height="1em" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}>"></a>
                     <{else}>
-                        <img class="svg solved" src="<{$xoops_url}>/images/icons/topic_status_solved1.svg" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDYES}>">
+                        <img class="svg solved" src="<{$xoops_url}>/images/icons/topic_status_solved1.svg" width="1em" height="1em" alt="<{$smarty.const._MD_D3FORUM_ALT_SOLVEDYES}>">
                     <{/if}>
                 <{/if}>
                 <{if $uid && $topic.u2t_marked}>
@@ -100,12 +100,11 @@
                         <img class="svg marked" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>"></a>
                 <{/if}>
                 <a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>" class="ml-2"><{$topic.title}></a>
-                <span style="border:1px solid red;padding:.5rem;"><{$topic.topic_page_jump}></span>
+                <span><{$topic.topic_page_jump}></span>
                 <br>
                 <{if $topic.votes_count > 0}>
                     <small class="mr-1"><{$smarty.const._MD_D3FORUM_VOTECOUNT}>:</small>  <span class="badge badge-secondary px-2"><{$topic.votes_count}></span>&nbsp;
                     <small class="mr-1"><{$smarty.const._MD_D3FORUM_VOTEPOINTAVG}>:</small> <span class="badge badge-secondary px-2"><{$topic.votes_avg|string_format:"%.2f"}></span>&nbsp;
-
                 <{/if}>
             </td>
 
@@ -115,15 +114,17 @@
 
             <td class="text-center" ><{$topic.views}></td>
 
-        <td class="small"><{if $topic.replies>0}><{$topic.last_post_time_formatted}><br>
+            <td>
+            <small><{if $topic.replies>0}><{$topic.last_post_time_formatted}><br>
             <{if $topic.last_post_gname}>
                 <{$topic.last_post_gname}>
             <{else}>
                 <{$topic.last_post_uname}>
             <{/if}>
-         <a href="<{$mod_url}>/index.php?post_id=<{$topic.last_post_id}>">
-             <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$topic.last_post_icon}>.svg" alt="<{$topic.last_post_subject}>">
-         </a>
+            </small>
+            <a href="<{$mod_url}>/index.php?post_id=<{$topic.last_post_id}>">
+                <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$topic.last_post_icon}>.svg" alt="<{$topic.last_post_subject}>">
+            </a>
             <{/if}></td>
         <{/strip}>
         </tr>
@@ -162,17 +163,15 @@
 </h4>
 
 <div data-layout="row sm-column" class="forum-legend" style="display:none">
-    <ul class="icon-list">
-        <li><img class="svg new" src="<{$xoops_url}>/images/icons/topic_11.svg" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
-        <li><img class="svg topic" src="<{$xoops_url}>/images/icons/topic_01.svg" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>
-        <li><img class="svg invisible" src="<{$xoops_url}>/images/icons/topic_invisible.svg" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></li>
-        <li><img class="svg stick" src="<{$xoops_url}>/images/icons/topic_sticky0.svg" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICSTICKY}></li>
-    </ul>
-    <ul class="icon-list">
-        <li><img class="svg lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICLOCKED}></li>
-        <li><img class="svg solved-no" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}></li>
-        <li><img class="svg solved" src="<{$xoops_url}>/images/icons/topic_status_solved1.svg" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDYES}></li>
-        <li><img class="svg marked" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}></li>
+    <ul class="forum-icon-list">
+        <li><img class="svg new" src="<{$xoops_url}>/images/icons/topic_11.svg" width="1em" height="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNEWPOSTS}></li>
+        <li><img class="svg topic" src="<{$xoops_url}>/images/icons/topic_01.svg" width="1em" height="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICNONEWPOSTS}></li>
+        <li><img class="svg invisible" src="<{$xoops_url}>/images/icons/topic_invisible.svg" width="1em" height="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICINVISIBLE}></li>
+        <li><img class="svg stick" src="<{$xoops_url}>/images/icons/topic_sticky0.svg" width="1em" height="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICSTICKY}></li>
+        <li><img class="svg lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" width="1em" height="1em" alt=""> = <{$smarty.const._MD_D3FORUM_TOPICLOCKED}></li>
+        <li><img class="svg solved-no" src="<{$xoops_url}>/images/icons/topic_status_solved0.svg" width="1em" height="1em" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDNO}></li>
+        <li><img class="svg solved" src="<{$xoops_url}>/images/icons/topic_status_solved1.svg" width="1em" height="1em" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_SOLVEDYES}></li>
+        <li><img class="svg marked" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" width="1em" height="1em" alt=""> = <{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}></li>
     </ul>
 </div>
 

@@ -5,9 +5,9 @@
 <form name="postform" id="postform" action="<{$mod_url}>/index.php?page=post" method="post" onsubmit="return xoopsFormValidate_postform();">
 
     <input type="hidden" name="mode" id="mode" value="<{$quick_form_mode|default:'sametopic'}>">
-    <input type="hidden" name="pid" id="pid" value="<{$post.id}>">
-    <input type="hidden" name="topic_id" id="topic_id" value="<{$topic.id}>">
-    <input type="hidden" name="forum_id" id="forum_id" value="<{$forum.id}>">
+    <input type="hidden" name="pid" id="pid" value="<{$post.id|default:''}>">
+    <input type="hidden" name="topic_id" id="topic_id" value="<{$topic.id|default:''}>">
+    <input type="hidden" name="forum_id" id="forum_id" value="<{$forum.id|default:''}>">
     <{if isset($external_link_id)}>
     <input type="hidden" name="external_link_id" id="external_link_id" value="<{$external_link_id|escape}>">
     <{/if}>
@@ -17,13 +17,15 @@
     <input type="hidden" name="number_entity" id="number_entity" value="1">
 
 <article class="quick-reply">
-
-    <h3>
+    <header>
+    <h4>
         <span>
-        <img class="svg topic-new" src="<{$xoops_url}>/images/icons/topic-new.svg" alt="new">
+        <img class="svg topic-new" src="<{$xoops_url}>/images/icons/topic-new.svg" width="1em" height="1em" alt="new">
         <{$h2_title|default:$smarty.const._MD_D3FORUM_POSTASCOMMENTTOP}>
         </span>
-    </h3>
+    </h4>
+    </header>
+    
     <{* $smarty.const._MD_D3FORUM_POSTASCOMMENTTOP *}>
     <label for="subject">
         <{$smarty.const._MD_D3FORUM_SUBJECT}>
@@ -62,17 +64,20 @@
         <{$antispam.html_in_form|default:''}>
     </label>
 
-    <footer>
-        <button type="submit" class="primary" name="contents_submit"  id="contents_submit" value="<{$smarty.const._MD_D3FORUM_DOPOST}>">
-            <img class="svg comment-edit" src="<{$xoops_url}>/images/icons/comment-edit.svg" width="1em" alt="edit"> <{$smarty.const._MD_D3FORUM_DOPOST}>
-        </button>
-
+    <footer class="action-control">
         <{if isset($external_link_id)}>
         <span>
+        <img class="svg info" src="<{$xoops_url}>/images/icons/info.svg" width="1em" height="1em" alt="info">
+        
         <a href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>&amp;external_link_id=<{$external_link_id|escape:"url"}>&amp;subject=<{$subject_raw|escape:"url"}>">
         <{$smarty.const._MD_D3FORUM_LINK_RICHERCOMMENTFORM}>
         </span>
         <{/if}>
+        <div>
+            <button type="submit" class="primary" name="contents_submit"  id="contents_submit" value="<{$smarty.const._MD_D3FORUM_DOPOST}>">
+                <img class="svg comment-edit" src="<{$xoops_url}>/images/icons/comment-edit.svg" width="1em" alt="edit"> <{$smarty.const._MD_D3FORUM_DOPOST}>
+            </button>
+        </div>
     </footer>
 
 </article>

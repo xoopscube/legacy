@@ -15,11 +15,12 @@
 
 <article id="notification">
     <header>
-        <h2>
+        <h3>
             <img class="svg bell" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="Notification"> <{$smarty.const._NOT_ACTIVENOTIFICATIONS}>
-        </h2>
+        </h3>
     </header>
 
+    <div class="overflow-auto">
     <table class="outer">
         <thead>
         <tr>
@@ -53,16 +54,18 @@
         <{/foreach}>
         </tbody>
     </table>
-
+    </div>
+    
     <footer>
-            <div class="grid">
-                <input type="submit" role="button" class="outline secondary delete" name="delete" value="<{$smarty.const._DELETE}>">
-                <div><input type="reset" role="button" class="outline reset" name="delete_reset" value="<{$smarty.const._NOT_CLEAR}>"></div>
-                <div><input type="submit" role="button" class="outline cancel" name="delete_cancel" value="<{$smarty.const._CANCEL}>"></div>
-            </div>
+        <div class="grid"> 
+        <button type="submit" role="button" class="outline secondary delete" name="delete">
+        <img class="svg" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"> <{$smarty.const._DELETE}>
+        </button>
+        <input type="reset" role="button" class="outline secondary reset" name="delete_reset" value="<{$smarty.const._NOT_CLEAR}>">
+        <button type="submit" role="button" class="outline cancel" name="delete_cancel">
+            <img class="svg" src="<{$xoops_url}>/images/icons/check.svg" width="1em" height="1em" alt="check"> <{$smarty.const._CANCEL}> 
+        </button>
+    </div>
     </footer>
-
-
-
 </article>
 </form>

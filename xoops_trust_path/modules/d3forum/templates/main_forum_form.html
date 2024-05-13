@@ -25,9 +25,7 @@
       action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>&amp;forum_id=<{$forum.id}>"
       method="post"
       onsubmit="return xoopsFormValidate_forumform();">
-
-    <{* Permissions *}>
-    <{$gticket_hidden}>
+    <{$gticket_hidden|default:''}>
 
     <article>
 
@@ -73,26 +71,26 @@
 
         <label for="forum_external_link_format">
             <{$smarty.const._MD_D3FORUM_TH_EXTERNALLINKFORMAT}>
-            <input type="text" name="external_link_format" id="forum_external_link_format" maxlength="191" value="<{$forum.external_link_format}>">
+            <input type="text" name="external_link_format" id="forum_external_link_format" maxlength="191" value="<{$forum.external_link_format|default:''}>">
         </label>
 
         <p><{$smarty.const._MD_D3FORUM_HELP_EXTERNALLINKFORMAT}></p>
 
+
+        <{* ----- FORUM OPTIONS *}>
         <h4><{$smarty.const._MD_D3FORUM_TH_FORUMOPTIONS}></h4>
 
         <label for="forum_option_controller_onoff">
-            <input type="checkbox" id="forum_option_controller_onoff"
+            <input role="switch"  type="checkbox" id="forum_option_controller_onoff"
                    onclick="if(this.checked){document.getElementById('forum_option_controller').style.display='block';}else{document.getElementById('forum_option_controller').style.display='none';}" <{if $forum.options}>checked="checked"<{/if}>>
             <{$smarty.const._MD_D3FORUM_ONOFF}>
         </label>
-
 
             <label id="forum_option_controller" <{if !$forum.options}>style="display:none;"<{/if}>>
                 <textarea name="options" id="forum_options" cols="50" rows="5"><{$forum.options}></textarea>
                 <br>
                 <{$smarty.const._MD_D3FORUM_HOWTO_OVERRIDEOPTIONS}>
-                <br>
-                <span class="forumoptiondesc"><{$forum.option_desc}></span>
+                <code><span class="forumoptiondesc"><{$forum.option_desc}></span></code>
             </label>
 
 		<{/if}>
@@ -102,7 +100,7 @@
         <{/if}>
 
         <footer class="action-control">
-<!--            <div class="grid-2">-->
+
                 <{if $page == 'forummanager'}>
                 <div>
                     <input type="submit"
@@ -120,7 +118,7 @@
                        name="forumman_post"
                        value="<{$smarty.const._SUBMIT}>">
                 </div>
-<!--            </div>-->
+
         </footer>
 
 </article>

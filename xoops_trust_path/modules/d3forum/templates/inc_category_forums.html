@@ -1,4 +1,4 @@
-<h4 class="forums"><{$smarty.const._MD_D3FORUM_FORUM}></h4>
+<h4 class="block-title forums"><{$smarty.const._MD_D3FORUM_FORUM}></h4>
 
 <{foreach item=forum from=$category.forums}>
 <div id="forum-<{$forum.id}>" class="category-forum">
@@ -19,21 +19,18 @@
             <{/if}>
         </h4>
         <{* ------- Activity Overview - Forums *}>
-        <p class="activity">
-
+        <p class="forum-activity">
             <{$smarty.const._MD_D3FORUM_TOPICSCOUNT}> <span class="badge"><{$forum.topics_count}></span>
             <{$smarty.const._MD_D3FORUM_POSTSCOUNT}> <span class="badge"><{$forum.posts_count}></span>
             <{if $forum.last_post_time}>
             <{$smarty.const._MD_D3FORUM_LASTPOST}> <span class="badge"><{$forum.last_post_time_formatted}></span>
             <{/if}>
 
-
             <{if $mod_config.show_rss}>
             <a href="<{$mod_url}>/index.php?page=rss&amp;forum_id=<{$forum.id}>" title="<{$smarty.const._MD_D3FORUM_LINK_FORUMRSS}>">
                 <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" alt="RSS">
             </a>
             <{/if}>
-
         </p>
         <{* ------- /Activity Overview - Forums *}>
     </div>

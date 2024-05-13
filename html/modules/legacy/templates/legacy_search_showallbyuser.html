@@ -3,32 +3,59 @@
 
 <{include file=db:legacy_search_form.html}>
 
+<{*
+    1- capture the loop
+    2- capture author
+    3- render custom article
+    
+    Date - Time
+    $result.time|xoops_formattimestamp:s    (2021/4/27)
+    $result.time|xoops_formattimestamp:m    (2021/4/27 2:31)
+    $result.time|xoops_formatTimestampGMT:1 (user timezone, 1)
+*}>
+
 <{if $searchResults.0.name != null}>
-<h3><{$searchResults.0.name}></h3>
 
-<!-- start results item loop -->
-<ul style="list-style:none;margin-left:10px;">
-    <{foreach item=result from=$searchResults.0.results}>
-    <li><img class="svg post-show" src="<{$result.image}>" alt="<{$searchResults.0.name}>"
-             aria-label="<{$searchResults.0.name}>"> <span><a href="<{$result.link}>"><{$result.title}></a></span>
-        <br>
+<!-- 1. capture results item loop -->
+<{capture name="author_result"}>
+<{foreach item=result from=$searchResults.0.results}> 
+<h4><a href="<{$result.link}>"><img class="svg content" src="<{$result.image}>" width="1em" height="1em" alt="content"> <{$result.title}></a>
+<small><span class="badge"><{$result.time|xoops_formattimestamp:m}></span></small></h4> 
+<!-- 2. capture author -->
+    <{capture name="author"}>
+    <{if $result.uid > 0}>
+        <a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$result.uid|xoops_escape}>">
+            <img src="<{$result.uid|xoops_user_avatarize}>" width="20px" height="20px" alt="<{$result.uid|xoops_user:user_name}>" data-self="radius-circle"> 
+            <{$result.uid|xoops_user:user_name}></a>        
+    <{/if}>
+    <{/capture}>
 
-      <{if $result.uid > 0}>
-        <span style="font-size:small;"><a href="<{$smarty.const.XOOPS_URL}>/userinfo.php?uid=<{$result.uid|xoops_escape}>"><{$result.uid|xoops_user:user_name}></a></span>
-      <{/if}>
-      <span class="badge"><{$result.time|xoops_formattimestampGMT:l}></span>
-    </li>
-    <{/foreach}>
-</ul>
-<!-- end results item loop -->
+<{/foreach}>
+<{/capture}>
 
-<{if $actionForm->get('start') > 0}>
-<a href="<{$smarty.const.XOOPS_URL}>/search.php?action=showallbyuser&amp;uid=<{$targetUser->getShow('uid')}>&amp;mid=<{$searchResults.0.mid}>&amp;start=<{$prevStart}>"><{$smarty.const._MD_LEGACY_LANG_PREV_PAGE}></a>
-<{/if}>
+<!-- 3 render article -->
+<article>
+    <header>
+    <h3><{$searchResults.0.name|ucfirst}>
+    <{if trim($smarty.capture.author)}>
+    <{$smarty.capture.author}>
+    <{/if}>
+    </h3>
+    </header>
+    
+    <{if trim($smarty.capture.author_result)}>
+    <{$smarty.capture.author_result}>
+    <{/if}>
+    
 
-<{if $searchResults.0.has_more}>
-<a href="<{$smarty.const.XOOPS_URL}>/search.php?action=showallbyuser&amp;uid=<{$targetUser->getShow('uid')}>&amp;mid=<{$searchResults.0.mid}>&amp;start=<{$nextStart}>"><{$smarty.const._MD_LEGACY_LANG_NEXT_PAGE}></a>
-<{/if}>
+    <{if $actionForm->get('start') > 0}>
+    <a href="<{$smarty.const.XOOPS_URL}>/search.php?action=showallbyuser&amp;uid=<{$targetUser->getShow('uid')}>&amp;mid=<{$searchResults.0.mid}>&amp;start=<{$prevStart}>"><{$smarty.const._MD_LEGACY_LANG_PREV_PAGE}></a>
+    <{/if}>
+
+    <{if $searchResults.0.has_more}>
+    <a href="<{$smarty.const.XOOPS_URL}>/search.php?action=showallbyuser&amp;uid=<{$targetUser->getShow('uid')}>&amp;mid=<{$searchResults.0.mid}>&amp;start=<{$nextStart}>"><{$smarty.const._MD_LEGACY_LANG_NEXT_PAGE}></a>
+    <{/if}>
+</article>
 <{/if}>
 
 
