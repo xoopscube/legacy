@@ -17,6 +17,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_DESC', 'Content management with CKEditor, versioning, revision history, diff and granular permissions.' );
 
     // admin menus
+    define( $constpref . '_ADMENU_ACTIVITY', 'Activity' );
     define( $constpref . '_ADMENU_CONTENTSADMIN', 'Contents' );
     define( $constpref . '_ADMENU_CATEGORYACCESS', 'Permissions' );
     define( $constpref . '_ADMENU_IMPORT', 'Import-Sync' );

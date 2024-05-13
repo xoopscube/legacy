@@ -13,7 +13,7 @@ define( '_MD_A_PICO_TH_CONTENTSWEIGHT' , 'poids');
 define( '_MD_A_PICO_TH_CONTENTSVISIBLE' , 'VIS');
 define( '_MD_A_PICO_TH_CONTENTSSHOWINNAVI' , 'NAVI');
 define( '_MD_A_PICO_TH_CONTENTSSHOWINMENU' , 'MENU');
-define( '_MD_A_PICO_TH_CONTENTSALLOWCOMMENT' , 'Commentaire');
+define( '_MD_A_PICO_TH_CONTENTSALLOWCOMMENT' , 'Com');
 define( '_MD_A_PICO_TH_CONTENTSFILTERS' , 'Filtres');
 define( '_MD_A_PICO_TH_CONTENTSACTIONS' , 'Action');
 define( '_MD_A_PICO_LEGEND_CONTENTSTHS' , 'VIS: visible &nbsp; NAVI:affiche dans la page de navigation &nbsp; MENU:affiche dans le menu &nbsp; COM:autorise les commentaires');
@@ -82,3 +82,9 @@ define( '_MD_A_PICO_LABEL_ORDER' , 'Ordre');
 define( '_MD_A_PICO_TIPS_CONTENTS' , 'Conseils sur le contenu');
 define( '_MD_A_PICO_TIPS_TAGS' , 'Conseils sur les Tips');
 define( '_MD_A_PICO_TIPS_EXTRAS' , 'Conseils supplémentaires');
+
+// ACTIVITY
+define( '_MD_A_PICO_ACTIVITY_OVERVIEW' , 'Aactivité général');
+define( '_MD_A_PICO_ACTIVITY_SCHEDULE' , 'Contenu expiré et programmé');
+define( '_MD_A_PICO_ACTIVITY_INTERVAL' , 'jours d\'intervalle avant et après aujourd\'hui');
+define( '_MD_A_PICO_ACTIVITY_LATEST' , 'derniers contenus programmés');

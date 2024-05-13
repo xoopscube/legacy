@@ -224,7 +224,7 @@ class PicoFormProcessBySmartyBase {
 		if ( ! headers_sent() && ! $this->isMobile() ) {
 			header( 'Location: ' . $this->content_uri );
 		} else {
-			redirect_header( htmlspecialchars( $this->content_uri, ENT_QUOTES ), 3, '&nbsp;' );
+			redirect_header( htmlspecialchars( $this->content_uri, ENT_QUOTES ), 2, '&nbsp;' );
 		}
 		exit;
 	}

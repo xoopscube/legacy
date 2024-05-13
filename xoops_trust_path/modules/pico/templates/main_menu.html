@@ -29,11 +29,11 @@
 
             <{* ----- Action controllers - Content ----- *}>
             <div>
-                <details role="list">
+                <details class="dropdown">
                     <summary aria-haspopup="listbox" role="button" class="outline primary">
                         Action
                     </summary>
-                    <ul role="listbox">
+                    <ul>
 
                         <{if $category.can_makesubcategory}>
                         <li><a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>">
@@ -86,14 +86,14 @@
 <p class="flex-justify">
     <{* ------- Activity Overview *}>
 <!--    <span><{$smarty.const._MD_PICO_CATEGORYMANAGER}></span>-->
-    <small class="activity">
+    <p class="content-activity">
         <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="folder">
         <span data-self="sm-hide"><{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}></span> <span class="badge"><{$category.redundants.subcategories_total}></span>
 
         <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file">
         <span data-self="sm-hide"><{$smarty.const._MD_PICO_CONTENTS_TOTAL}></span>
         <span class="badge"><{$category.redundants.contents_total}></span>
-    </small>
+    </p>
 
     <{* ------- Action controllers *}>
     <span>

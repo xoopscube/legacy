@@ -2,18 +2,13 @@
 
 <h3><{$mod_name|ucfirst}> » <{$smarty.const._MD_A_PICO_H2_IMPORTFROM}></h3>
 
-    <div class="help-tips">
+    <div class="tips">
         <{$smarty.const._MD_A_PICO_HELP_IMPORTFROM}>
     </div>
 
     <div class="ui-card-full">
     <form name="importfrom" action="<{$mod_url}>/admin/index.php?page=import" method="post">
         <{$gticket_hidden}>
-        <div data-layout="row">
-            <div data-self="center px-7 py-6 sm-full">
-                <svg xmlns="http://www.w3.org/2000/svg" width="5em" height="5em" viewBox="0 0 24 24"><path fill="currentColor" d="m8.84 12l-4.92 4.92L2.5 15.5L5 13H0v-2h5L2.5 8.5l1.42-1.42L8.84 12M12 3C8.59 3 5.68 4.07 4.53 5.57L5 6l1.03 1.07C6 7.05 6 7 6 7c0-.5 2.13-2 6-2s6 1.5 6 2s-2.13 2-6 2c-2.62 0-4.42-.69-5.32-1.28l3.12 3.12c.7.1 1.44.16 2.2.16c2.39 0 4.53-.53 6-1.36v2.81c-1.3.95-3.58 1.55-6 1.55c-.96 0-1.9-.1-2.76-.27l-1.65 1.64c1.32.4 2.82.63 4.41.63c2.28 0 4.39-.45 6-1.23V17c0 .5-2.13 2-6 2s-6-1.5-6-2v-.04L5 18l-.46.43C5.69 19.93 8.6 21 12 21c4.41 0 8-1.79 8-4V7c0-2.21-3.58-4-8-4Z"/></svg>
-            </div>
-            <div data-self="p-4 sm-full">
         <label for="import_mid"><{$smarty.const._MD_A_PICO_LABEL_SELECTMODULE}></label>
         <select name="import_mid" id="import_mid"><{html_options options=$import_from_options}></select>
         <p>
@@ -21,49 +16,41 @@
                value="<{$smarty.const._MD_A_PICO_BTN_DOIMPORT}>"
                onclick="return confirm('<{$smarty.const._MD_A_PICO_CONFIRM_DOIMPORT}>')">
         </p>
-            </div>
-        </div>
     </form>
     </div>
 
 
-    <h3><{$smarty.const._MD_A_PICO_H2_SYNCALL}></h3>
+    <h3 class="head"><{$smarty.const._MD_A_PICO_H2_SYNCALL}></h3>
 
-    <div class="help-tips">
+    <div class="tips">
         <{$smarty.const._MD_A_PICO_HELP_SYNCALL}>
     </div>
 
     <div class="ui-card-full">
     <form name="syncall" action="<{$mod_url}>/admin/index.php?page=import" method="post">
         <{$gticket_hidden}>
-
-        <div data-layout="row">
-            <div data-self="center px-7 py-6 sm-full">
-                <svg xmlns="http://www.w3.org/2000/svg" width="5em" height="5em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 16c.41 0 .81-.03 1.21-.06c.19-.76.51-1.48.95-2.11c-.69.11-1.42.17-2.16.17c-2.42 0-4.7-.6-6-1.55V9.64c1.47.83 3.61 1.36 6 1.36s4.53-.53 6-1.36v1.55c.5-.12 1-.19 1.55-.19c.15 0 .3 0 .45.03V7c0-2.21-3.58-4-8-4S4 4.79 4 7v10c0 2.21 3.59 4 8 4c.66 0 1.31-.04 1.92-.12c-.35-.59-.61-1.24-.76-1.94c-.37.06-.75.06-1.16.06c-3.87 0-6-1.5-6-2v-2.23c1.61.78 3.72 1.23 6 1.23m0-11c3.87 0 6 1.5 6 2s-2.13 2-6 2s-6-1.5-6-2s2.13-2 6-2m11 12.5c0 .82-.25 1.58-.67 2.21l-1.09-1.09c.17-.34.26-.72.26-1.12A2.5 2.5 0 0 0 19 15v1.5l-2.25-2.25L19 12v1.5c2.21 0 4 1.79 4 4m-4 1l2.25 2.25L19 23v-1.5c-2.21 0-4-1.79-4-4c0-.82.25-1.58.67-2.21l1.09 1.09c-.17.34-.26.72-.26 1.12A2.5 2.5 0 0 0 19 20v-1.5Z"/></svg>
-            </div>
-            <div data-self="p-4 sm-full">
-                <p><input type="submit" name="do_syncall" value="<{$smarty.const._MD_A_PICO_BTN_DOSYNCALL}>"></p>
-            </div>
-        </div>
+        <p>
+        <input type="submit"
+               name="do_syncall"
+               value="<{$smarty.const._MD_A_PICO_BTN_DOSYNCALL}>">
+        </p>
     </form>
     </div>
 
 
-    <h3><{$smarty.const._MD_A_PICO_H2_CLEARBODYCACHE}></h3>
+    <h3 class="head"><{$smarty.const._MD_A_PICO_H2_CLEARBODYCACHE}></h3>
 
-    <div class="help-tips">
+    <div class="tips">
         <{$smarty.const._MD_A_PICO_HELP_CLEARBODYCACHE}>
     </div>
 
     <div class="ui-card-full">
     <form name="clearbodycache" action="<{$mod_url}>/admin/index.php?page=import" method="post">
         <{$gticket_hidden}>
-        <div data-layout="row">
-            <div data-self="center px-7 py-6 sm-full">
-                <svg xmlns="http://www.w3.org/2000/svg" width="5em" height="5em" viewBox="0 0 24 24"><path fill="currentColor" d="M16.5 10V9h-2v1H12v1.5h1v4c0 .83.67 1.5 1.5 1.5h2c.83 0 1.5-.67 1.5-1.5v-4h1V10h-2.5zm0 5.5h-2v-4h2v4zM20 6h-8l-2-2H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm0 12H4V6h5.17l2 2H20v10z"/></svg>            </div>
-            <div data-self="p-4 sm-full">
-                <p><input type="submit" name="do_clearbodycache" value="<{$smarty.const._MD_A_PICO_BTN_DOCLEARBODYCACHE}>"></p>
-            </div>
-        </div>
+        <p>
+        <input type="submit"
+               name="do_clearbodycache"
+               value="<{$smarty.const._MD_A_PICO_BTN_DOCLEARBODYCACHE}>">
+        </p>
     </form>
     </div>

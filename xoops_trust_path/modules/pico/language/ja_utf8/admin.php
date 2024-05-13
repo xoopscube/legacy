@@ -79,6 +79,12 @@ define( '_MD_A_PICO_TH_USED' , '利用数');
 define( '_MD_A_PICO_LABEL_ORDER' , '並び順');
 
 // tips
-define( '_MD_A_PICO_TIPS_CONTENTS' , 'Content Tips');
-define( '_MD_A_PICO_TIPS_TAGS' , 'Tags Tips');
-define( '_MD_A_PICO_TIPS_EXTRAS' , 'Extras Tips');
+define( '_MD_A_PICO_TIPS_CONTENTS' , 'コンテンツのヒント');
+define( '_MD_A_PICO_TIPS_TAGS' , 'タグのヒント');
+define( '_MD_A_PICO_TIPS_EXTRAS' , 'フォームのヒント');
+
+// ACTIVITY
+define( '_MD_A_PICO_ACTIVITY_OVERVIEW' , '活動概要');
+define( '_MD_A_PICO_ACTIVITY_SCHEDULE' , '期限切れおよびスケジュールされたコンテンツ');
+define( '_MD_A_PICO_ACTIVITY_INTERVAL' , '今日の前後数日間の間隔');
+define( '_MD_A_PICO_ACTIVITY_LATEST' , '最新の予定内容');

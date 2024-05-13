@@ -15,15 +15,17 @@ define( '_MD_PICO_LABEL_HTMLHEADERCONFIGALERT' , '(HTML header for each contents
 define( '_MD_PICO_NUM' , 'displays');
 
 // Appended by Xoops Language Checker -GIJOE- in 2008-09-17 13:18:19
-define( '_MD_PICO_MSG_CONFIRMSAVEASCONTENT' , 'Are you OK to save as?');
+define( '_MD_PICO_MSG_CONFIRMSAVEASCONTENT' , 'Confirme para salvar uma cópia.');
 
 // Appended by Xoops Language Checker -GIJOE- in 2008-09-07 05:14:32
-define( '_MD_PICO_EXPIRING' , 'Expiring');
-define( '_MD_PICO_FMT_PUBLIC' , 'Public');
-define( '_MD_PICO_FMT_PRIVATE' , 'Private');
-define( '_MD_PICO_FMT_PUBLICCOUNT' , 'Public: %s items');
-define( '_MD_PICO_FMT_PRIVATECOUNT' , 'Private: %s items');
-define( '_MD_PICO_INVISIBLE' , 'Invisible');
+define( '_MD_PICO_EXPIRED' , 'Expirado');
+define( '_MD_PICO_EXPIRING' , 'Expirando');
+define( '_MD_PICO_FMT_PUBLIC' , 'Público');
+define( '_MD_PICO_FMT_PRIVATE' , 'Privado');
+define( '_MD_PICO_FMT_PUBLICCOUNT' , 'Público: %s items');
+define( '_MD_PICO_FMT_PRIVATECOUNT' , 'Privado: %s items');
+define( '_MD_PICO_VISIBLE' , 'Visível');
+define( '_MD_PICO_INVISIBLE' , 'Invisível');
 
 // Appended by Xoops Language Checker -GIJOE- in 2008-04-23 04:51:13
 define( '_MD_PICO_TH_TAGS' , 'Etiquetas');
@@ -44,7 +46,8 @@ define( '_MD_PICO_MENU' , "Menu");
 define( '_MD_PICO_CREATED' , "Criado");
 define( '_MD_PICO_MODIFIED' , "Modificado");
 define( '_MD_PICO_BYTE' , "byte");
-define( '_MD_PICO_HISTORY' , 'Histórico de Revisão');
+define( '_MD_PICO_REVISIONS' , 'Revisões');
+define( '_MD_PICO_HISTORY' , 'Histórico de revisões');
 define( '_MD_PICO_DIFF2NOW' , 'Comparar com atual');
 define( '_MD_PICO_DIFFFROMPREV' , 'Comparar com anterior');
 define( '_MD_PICO_REFERIT' , 'Referir');
@@ -55,7 +58,7 @@ define( '_MD_PICO_PREV' , 'Anterior');
 define( '_MD_PICO_CATEGORYINDEX' , 'Índice');
 define( '_MD_PICO_NOSUBJECT' , '(sem título)');
 define( '_MD_PICO_WAITINGRELEASE' , 'Publicação pendente');
-define( '_MD_PICO_EXPIRED' , 'Expirado');
+define( '_MD_PICO_LOCKED' , 'Bloqueado');
 define( '_MD_PICO_WAITINGAPPROVAL' , 'Esperando por aprovação');
 define( '_MD_PICO_WAITINGREGISTER' , 'Novos em espera');
 define( '_MD_PICO_WAITINGUPDATE' , 'Atualização pendente');
@@ -129,6 +132,7 @@ define( '_MD_PICO_LABEL_VISIBLE' , "Visível");
 define( '_MD_PICO_LABEL_SHOWINNAVI' , "Mostrar na navegação");
 define( '_MD_PICO_LABEL_SHOWINMENU' , "Mostrar no menu");
 define( '_MD_PICO_LABEL_ALLOWCOMMENT' , "Permitir comentários");
+define( '_MD_PICO_LABEL_COMMENTS' , 'Comentarios');
 define( '_MD_PICO_TH_CATEGORYTITLE' , "Título");
 define( '_MD_PICO_TH_CATEGORYDESC' , "Descrição");
 define( '_MD_PICO_TH_CATEGORYPARENT' , "Principal");

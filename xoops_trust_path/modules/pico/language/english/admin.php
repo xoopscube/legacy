@@ -82,3 +82,9 @@ define( '_MD_A_PICO_LABEL_ORDER' , 'Order');
 define( '_MD_A_PICO_TIPS_CONTENTS' , 'Content Tips');
 define( '_MD_A_PICO_TIPS_TAGS' , 'Tags Tips');
 define( '_MD_A_PICO_TIPS_EXTRAS' , 'Extras Tips');
+
+// ACTIVITY
+define( '_MD_A_PICO_ACTIVITY_OVERVIEW' , 'Activity Overview');
+define( '_MD_A_PICO_ACTIVITY_SCHEDULE' , 'Expired and scheduled content');
+define( '_MD_A_PICO_ACTIVITY_INTERVAL' , 'days of interval before and after today');
+define( '_MD_A_PICO_ACTIVITY_LATEST' , 'latest scheduled contents');

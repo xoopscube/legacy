@@ -4,11 +4,11 @@
 
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
 
+
 <form name="contentform"
       id="contentform"
-      action="<{$mod_url}>/index.php?page=<{$page}>&amp;content_id=<{$content.id}>&amp;ret=<{$smarty.get.ret|escape:'url'}>"
+      action="<{$mod_url}>/index.php?page=<{$page}>&amp;content_id=<{$content.id}>&amp;ret=<{$smarty.get.ret|default:''|escape:'url'}>"
       method="post"
-      onsubmit="return xoopsFormValidate_contentform();"
       enctype="multipart/form-data">
 
     <{$gticket_hidden}>
@@ -19,7 +19,7 @@
 <article class="pico_container" id="<{$mydirname}>_container">
 
 	<header>
-        <h2><{$formtitle}>: <{$content.subject}></h2>
+        <h2><{$formtitle}> <{$content.subject}></h2>
 
         <{if !$content.approval}>
         <strong class="badge warning">
@@ -48,19 +48,6 @@
 
 	</header>
 
-    <{if isset($preview)}>
-        <{foreach from=$preview.errors item="error_message"}>
-        <p onmouseover="document.contentform.vpath.focus();document.contentform.vpath.style.border='#FFFFCC';">
-            <em class="pico_notice"><{$error_message}></em>
-        </p>
-        <{/foreach}>
-        <h2 class="pico_title"><{$smarty.const._PREVIEW}></h2>
-        <div class="pico_body pico_preview" id="<{$mydirname}>_body">
-        <{$preview.body}>
-        </div>
-    <{/if}>
-
-
 	<{* -------Article subject of waiting content *}>
 		<{if $content.subject_waiting && $page !='makecontent'}>
 		<p>
@@ -83,7 +70,7 @@
 	<{* ------- subject *}>
 	<label for="subject">
 		<{$smarty.const._MD_PICO_TH_SUBJECT}>
-		<input type="text" name="subject" id="subject" maxlength="191" value="<{$content.subject}>">
+		<input type="text" name="subject" id="subject" maxlength="191" value="<{$content.subject}>" required>
 	</label>
 
 	<{* ------- category *}>
@@ -106,7 +93,7 @@
 
 		<{if $xoops_isadmin}>
         <label for="wraps_target">
-			<select id="wraps_target" onchange="xoopsGetElementById('vpath').value=this.value;">
+			<select id="wraps_target" onchange="document.getElementById('vpath').value=this.value;">
 				<{html_options options=$content.wraps_files selected=$content.vpath}>
 			</select>
 		</label>
@@ -115,19 +102,25 @@
 
 	<{* ------- image upload *}>
 	<label for="ei_image">
-		Image
-		<input type="file" id="ei_image" name="ei_image">
-		<input type="hidden" name="ef_image" value="<{$content.ef.image|escape}>">
-		<{if $content.ef.image}>
+		Image 
+		<input type="file" id="ei_image" name="ei_image" accept="image/gif, image/jpg, image/jpeg, image/png" />
+		<input type="hidden" name="ef_image" value="<{$content.ef.image|default:''|escape}>">
+		<{if (empty($content.ef.image))}>
+		<small id="email-helper"><b class="badge">.gif</b> <b class="badge">.jpg</b> <b class="badge">.jpeg</b> <b class="badge">.jfif</b> <b class="badge">.pjpeg</b> <b class="badge">.pjp</b> <b class="badge">.png</b></small>
+		<{else}>
 		<a href="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_0_<{$content.ef.image|escape}>">
-			<img src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_1_<{$content.ef.image|escape}>">
+			<img src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_1_<{$content.ef.image|escape|default:''}>" 
+			width="50%" 
+			height="auto" 
+			style="aspect-ratio: 1/0.5;"
+			title="aspect-ratio: 1/0.5">
 		</a>
 		<{/if}>
 	</label>
 
 
 <{* ------- extra fields sample (TEXTBOX) -------
-	<div>
+<div>
 
 	<label for="pronunciation">
         Pronunciation
@@ -159,7 +152,7 @@
         My photo
 		<input type="file" id="ei_myphoto" name="ei_myphoto">
 		<input type="hidden" name="ef_myphoto" value="<{$content.ef.myphoto|escape}>">
-		<{if $content.ef.myphoto}>
+		<{if isset($content.ef.myphoto)}>
 			<a href="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/myphoto_0_<{$content.ef.myphoto|escape}>">
 				<img src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/myphoto_1_<{$content.ef.myphoto|escape}>"></a>
 		<{/if}>
@@ -246,11 +239,11 @@
 		<{else}>
 		<label for="body_bbcode_onoff">
 				<input type="checkbox" id="body_bbcode_onoff" onclick="if(this.checked){
-						   xoopsGetElementById('body_bbcode_buttons_pre').style.display='block';
-						   xoopsGetElementById('body_bbcode_buttons_post').style.display='block'
+						   document.getElementById('body_bbcode_buttons_pre').style.display='block';
+						   document.getElementById('body_bbcode_buttons_post').style.display='block'
 					   }else{
-						   xoopsGetElementById('body_bbcode_buttons_pre').style.display='none';
-						   xoopsGetElementById('body_bbcode_buttons_post').style.display='none'}">
+						document.getElementById('body_bbcode_buttons_pre').style.display='none';
+						document.getElementById('body_bbcode_buttons_post').style.display='none'}">
 			<{$smarty.const._MD_PICO_LABEL_INPUTHELPER}></label>
 
 			<{xoopsdhtmltarea name="body" cols="60" rows="15" value=$content.body pre_style="display:none;" post_style="display:none;"}>
@@ -274,13 +267,13 @@
 	<{* ------- CONTENT OPTIONS *}>
 	<h5>
 		<label for='options'>
-			<input class='switch' type='checkbox' id='options' onclick="slideToggle('.content_options', this)" value='0'>
+			<input class='switch' role="switch" type='checkbox' id='options' onclick="slideToggle('.content-options', this)" value='0'>
 			<img class="svg tree" src="<{$xoops_url}>/images/icons/view.svg" width="1em" alt="options">
 			<{$smarty.const._MD_PICO_TH_CONTENTOPTIONS}>
 		</label>
 	</h5>
 
-	<div class="content_options" style="display:none;">
+	<div class="content-options" style="display:none;">
 
 		<fieldset>
 			<{* ------- visible *}>
@@ -328,25 +321,29 @@
 		</fieldset>
 	</div>
 
-	<{* ------- FILTERS *}>
+	<{* ------- CONTENT FILTERS - CODE SYNTAX *}>
     <h5>
 	<label for='filters_onoff'>
-		<input class='switch' type='checkbox' id='filters_onoff' onclick="slideToggle('.filters', this)" value='0'>
+		<input class='switch' role="switch" type='checkbox' id='filters_onoff' onclick="slideToggle('.content-filters', this)" value='0'>
 		<img class="svg tree" src="<{$xoops_url}>/images/icons/code.svg" width="1em" alt="filters">
 		 <{$smarty.const._MD_PICO_TH_FILTERS}></label>
     </h5>
 
-	<div class="filters" style="display:none;">
-		<div class="content-filter">
+	<div class="content-filters" style="display:none;">
+		<div class="filter">
+			<label>
+				<span>Code Syntax</span>
+				<span>Order</span>
+			</label>
 			<{foreach from=$content.filter_infos key="filter_name" item="filter"}>
-			<{if $filter.title}>
+			<{if isset($filter.title)}>
 			<{if $editor == "html" && !$content.body && $content.filter_infos[$filter_name].disableOnHtml}>
 				<{assign var=check value=0}>
 			<{else}>
 				<{assign var=check value=1}>
 			<{/if}>
 
-			<label title="filter_enabled_<{$filter_name}>" class="grid-right">
+			<label title="filter_enabled_<{$filter_name}>">
 				<span>
 					<input type="checkbox" name="filter_enabled_<{$filter_name}>" id="filter_enabled_<{$filter_name}>" value="1" <{if $filter.enabled && $check}>checked="checked"<{/if}> <{if isset($filter.fixed)}>disabled="disabled"<{/if}>>
 					<{$filter.title}> <br><small><{$filter.desc}></small>
@@ -364,13 +361,13 @@
 
 	<h5>
         <label for='time'>
-		<input class='switch' type='checkbox' id='time' onclick="slideToggle('.content_time', this)" value='0'>
+		<input class='switch' role="switch" type='checkbox' id='time' onclick="slideToggle('.content-time', this)" value='0'>
 		<img class="svg tree" src="<{$xoops_url}>/images/icons/datetime.svg" width="1em" alt="date-time">
 		<{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}>
 	    </label>
     </h5>
 
-	<div class="content_time" style="display:none;">
+	<div class="content-time" style="display:none;">
 		<{if $category.isadminormod && $page == 'contentmanager'}>
 			<label for="poster_uid">
 				<span><{$smarty.const._MD_PICO_CREATED}>
@@ -381,10 +378,10 @@
 			</label>
 		<{/if}>
 
-		<{* ------- creation time *}>
+		<{* ------- CONTENT TIME ADMIN *}>
 
 		<{if $category.isadminormod}>
-			<{if $content.specify_created_time}>
+			<{if isset($content.specify_created_time)}>
 				<{assign var="specify_created_time_checked" value="checked='checked'"}>
 			<{else}>
 				<{assign var="created_time_style" value="display:none;"}>
@@ -395,7 +392,7 @@
 					   name="specify_created_time"
 					   id="specify_created_time"
 					   value="1"
-					   onclick="if(this.checked){xoopsGetElementById('created_time').style.display='inline';}else{xoopsGetElementById('created_time').style.display='none'}" <{$specify_created_time_checked}>>
+					   onclick="if(this.checked){xoopsGetElementById('created_time').style.display='inline';}else{xoopsGetElementById('created_time').style.display='none'}" <{$specify_created_time_checked|default:''}>>
 				<span><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}> <small><{$content_base.created_time_formatted}></small></span>
 
 			</label>
@@ -404,11 +401,11 @@
 				   id="created_time"
 				   size="24"
 				   value="<{$content.created_time_formatted|escape}>"
-				   style="<{$created_time_style}>">
+				   style="<{$created_time_style|default:''}>">
 			</fieldset>
 		<{/if}>
 
-		<{* ------- modify time *}>
+		<{* ------- CONTENT TIME MODIFY *}>
 
 		<{if $category.isadminormod && $page == 'contentmanager'}>
 			<label for="modifier_uid">
@@ -420,7 +417,7 @@
 		<{/if}>
 
 		<{if $category.isadminormod}>
-			<{if $content.specify_modified_time}>
+			<{if isset($content.specify_modified_time)}>
 				<{assign var="specify_modified_time_checked" value="checked='checked'"}>
 			<{else}>
 				<{assign var="modified_time_style" value="display:none;"}>
@@ -431,7 +428,7 @@
 					   name="specify_modified_time"
 					   id="specify_modified_time"
 					   value="1"
-					   onclick="if(this.checked){xoopsGetElementById('modified_time').style.display='inline';}else{xoopsGetElementById('modified_time').style.display='none'}" <{$specify_modified_time_checked}>>
+					   onclick="if(this.checked){xoopsGetElementById('modified_time').style.display='inline';}else{xoopsGetElementById('modified_time').style.display='none'}" <{$specify_modified_time_checked|default:''}>>
 
 				<span><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}> <small><{$content_base.modified_time_formatted}></small></span>
             </label>
@@ -440,13 +437,13 @@
 				   id="modified_time"
 				   size="24"
 				   value="<{$content.modified_time_formatted|escape}>"
-				   style="<{$modified_time_style}> ">
+				   style="<{$modified_time_style|default:''}>">
 			</fieldset>
 		<{/if}>
 
 		<{if $category.isadminormod}>
 		<h5><{$smarty.const._MD_PICO_EXPIRING}></h5>
-			<{if $content.specify_expiring_time}>
+			<{if isset($content.specify_expiring_time)}>
 				<{assign var="specify_expiring_time_checked" value="checked='checked'"}>
 			<{else}>
 				<{assign var="expiring_time_style" value="display:none;"}>
@@ -456,7 +453,7 @@
 				   name="specify_expiring_time"
 				   id="specify_expiring_time"
 				   value="1"
-				   onclick="if(this.checked){xoopsGetElementById('expiring_time').style.display='inline';}else{xoopsGetElementById('expiring_time').style.display='none'}" <{$specify_expiring_time_checked}>>
+				   onclick="if(this.checked){xoopsGetElementById('expiring_time').style.display='inline';}else{xoopsGetElementById('expiring_time').style.display='none'}" <{$specify_expiring_time_checked|default:''}>>
 
 			 <span><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}> <small><{$content_base.expiring_time_formatted}></small></span>
 		</label>
@@ -465,7 +462,7 @@
 			   name="expiring_time"
 			   id="expiring_time" size="24"
 			   value="<{$content.expiring_time_formatted|escape}>"
-			   style="<{$expiring_time_style}>">
+			   style="<{$expiring_time_style|default:''}>">
 
 		<{/if}>
 
@@ -476,14 +473,14 @@
 	<{if $page !='makecontent'}>
 	<h5>
 		<label for='history'>
-		<input class='switch' type='checkbox' id='history' onclick="slideToggle('.content_history', this)" value='0'>
+		<input class='switch' role="switch" type='checkbox' id='history' onclick="slideToggle('.content-history', this)" value='0'>
 		<img class="svg tree" src="<{$xoops_url}>/images/icons/history.svg" width="1em" alt="history">
 		<{$smarty.const._MD_PICO_HISTORY}></label>
 	</h5>
 
-	<section class="content_history" data-layout="column" style="display:none;">
+	<div class="content-history" data-layout="column" style="display:none;">
 
-		<ul class="content_history_list">
+		<ul class="content-history-list">
 			<{foreach from=$content_histories item="history"}>
 			<li>
 				<{$history.modified_time_formatted}>
@@ -503,64 +500,74 @@
 			<{/foreach}>
 		</ul>
 
-	</section>
+	</div>
 
 	<{/if}>
 
 
-	<footer>
-
-    <div  class="action-control">
+<footer>
+	<div class="grid">
 		<{if $page == 'contentmanager' && $category.can_delete}>
-<!--		<input type="submit" class="ui-button delete" name="contentman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECONTENT}>')">-->
-			<button type="submit" role="button" class="outline delete" name="contentman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECONTENT}>')">
-				<{$smarty.const._DELETE}></button>
+		<button type="submit" role="button" class="outline delete" name="contentman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECONTENT}>')">
+			<img class="svg" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"> 
+			<{$smarty.const._DELETE}>
+		</button>
 		<{/if}>
 
-<!--			<input type="submit" role="button" class="ui-button" name="contentman_preview" id="contentman_preview" value="<{$smarty.const._PREVIEW}>">-->
-			<button type="submit" role="button" class="outline" name="contentman_preview" id="contentman_preview" value="<{$smarty.const._PREVIEW}>"><{$smarty.const._PREVIEW}></button>
-
-
-<!--		<div class="grid-2">-->
-<!--		<input type="submit" role="button" class="ui-button" name="contentman_post" id="contentman_post" value="<{$smarty.const._MD_PICO_BTN_SUBMITEDITING}>">-->
-
-			<button type="submit" role="button" class="primary" name="contentman_post" id="contentman_post" value="<{$smarty.const._MD_PICO_BTN_SUBMITEDITING}>"><{$smarty.const._MD_PICO_BTN_SUBMITEDITING}></button>
-
-
-
+		<button type="submit" role="button" class="outline" name="contentman_preview" id="contentman_preview" value="<{$smarty.const._PREVIEW}>">
+			<img class="svg" src="<{$xoops_url}>/images/icons/view.svg" width="1em" height="1em" alt="preview"> 
+			<{$smarty.const._PREVIEW}>
+		</button>
+<{* ----- capture controls for modal preview *}>
+<{capture name="controllers"}>
+		<button type="submit" role="button" class="primary" name="contentman_post" id="contentman_post" value="<{$smarty.const._MD_PICO_BTN_SUBMITEDITING}>">
+			<img class="svg" src="<{$xoops_url}>/images/icons/check.svg" width="1em" height="1em" alt="check"> <{$smarty.const._MD_PICO_BTN_SUBMITEDITING}>
+		</button>
 
 		<{if !$content.approval && $category.isadminormod && $page !='makecontent'}>
+			<button type="submit" role="button" class="primary" name="contentman_copyfromwaiting" value="<{$smarty.const._MD_PICO_BTN_COPYFROMWAITING}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>')">
+			<{$smarty.const._MD_PICO_BTN_COPYFROMWAITING}></button>
+		<{elseif $page == 'contentmanager'}>
+			<button type="submit" role="button" class="outline save-copy" name="contentman_post" id="contentman_saveas" value="<{$smarty.const._MD_PICO_BTN_SUBMITSAVEAS}>" onclick="document.contentform.action='<{$mod_url}>/index.php?page=makecontent&amp;content_id=0';return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMSAVEASCONTENT}>');">
+			<{$smarty.const._MD_PICO_BTN_SUBMITSAVEAS}></button>
+		<{/if}>
+<{/capture}>
 
-<!--			<input type="submit" class="ui-button copy" name="contentman_copyfromwaiting" value="<{$smarty.const._MD_PICO_BTN_COPYFROMWAITING}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>')">-->
-	<button type="submit" role="button" class="primary" name="contentman_copyfromwaiting" value="<{$smarty.const._MD_PICO_BTN_COPYFROMWAITING}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>')">
-		<{$smarty.const._MD_PICO_BTN_COPYFROMWAITING}></button>
-
-	<{elseif $page == 'contentmanager'}>
-
-<!--			<input type="submit" class="ui-button save-copy" name="contentman_post" id="contentman_saveas" value="<{$smarty.const._MD_PICO_BTN_SUBMITSAVEAS}>" onclick="document.contentform.action='<{$mod_url}>/index.php?page=makecontent&amp;content_id=0';return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMSAVEASCONTENT}>');">-->
-	<button type="submit" role="button" class="primary save-copy" name="contentman_post" id="contentman_saveas" value="<{$smarty.const._MD_PICO_BTN_SUBMITSAVEAS}>" onclick="document.contentform.action='<{$mod_url}>/index.php?page=makecontent&amp;content_id=0';return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMSAVEASCONTENT}>');">
-		<{$smarty.const._MD_PICO_BTN_SUBMITSAVEAS}></button>
-
+	<{if trim($smarty.capture.controllers)}>
+		<{$smarty.capture.controllers}>
 	<{/if}>
-		</div>
-	</footer>
-
-
+</div>
+</footer>
 </article>
+
+
+<{if isset($preview)}>
+<{$gticket_hidden}><{* 📍gticket might not be need  *}>
+<dialog id="preview-content" open>
+    <article>
+        <header>
+            <a title="Cancel" class="close secondary" onclick="javascript:history.go(-1);" title="<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>"></a>
+            <h4><{$smarty.const._PREVIEW}></h4>
+        </header>
+        <div>
+			<{foreach from=$preview.errors item="error_message"}>
+			<p onmouseover="document.contentform.vpath.focus();document.contentform.vpath.style.border='#FFFFCC';">
+				<em class="pico_notice"><{$error_message}></em>
+			</p>
+			<{/foreach}>
+		
+            <{$preview.body}>
+        </div>
+        <footer>
+            <div class="grid">
+                <a role="button" class="secondary" data-target="modal-example" onclick="javascript:history.go(-1);" title="<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>">Cancel</a>
+			<{if trim($smarty.capture.controllers)}>
+				<{$smarty.capture.controllers}>
+			<{/if}>
+            </div>
+        </footer>
+    </article>
+</dialog>
+<{/if}>
+
 </form>
-    <{* ------- Start Form Validation JavaScript /*}>
-    <script type="text/javascript">
-    <!--//
-    function xoopsFormValidate_contentform() {
-        myform = window.document.contentform;
-        if ( myform.subject.value == "" ) {
-            window.alert("<{$smarty.const._MD_PICO_TH_SUBJECT|string_format:$smarty.const._FORM_ENTER}>");
-            myform.subject.focus();
-            myform.subject.style.backgroundColor='#FFFFCC';
-            return false;
-        }
-        return true;
-    }
-    //-->
-    </script>
-    <{* ------- End Form Validation JavaScript *}>

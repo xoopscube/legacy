@@ -4,6 +4,10 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 
 $adminmenu = [
 	[
+		'title' => constant( $constpref . '_ADMENU_ACTIVITY' ),
+		'link'  => 'admin/index.php',
+	],
+	[
 		'title' => constant( $constpref . '_ADMENU_CONTENTSADMIN' ),
 		'link'  => 'admin/index.php?page=contents',
 	],

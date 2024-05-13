@@ -3,8 +3,8 @@
 
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
 
-<h2><{$smarty.const._MD_PICO_CATEGORYMANAGER}></h2>
-
+<!-- <h2><{$smarty.const._MD_PICO_CATEGORYMANAGER}></h2>
+ -->
 
 <form name="categoryform" id="categoryform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>" method="post" onsubmit="return xoopsFormValidate_categoryform();">
     <{$gticket_hidden}>
@@ -12,7 +12,7 @@
 	<article data-layout="column" class="framed" id="<{$mydirname}>_container">
 
 		<header>
-			<h3><{$formtitle}></h3>
+			<h2><{$formtitle}></h2>
 		</header>
 
 		<label for="category_pid">
@@ -41,12 +41,12 @@
 
 		<label for="category_title">
 			<{$smarty.const._MD_PICO_TH_CATEGORYTITLE}>
-			<input type="text" name="cat_title" id="category_title" size="60" maxlength="191" value="<{$category.title}>">
+			<input type="text" name="cat_title" id="category_title" size="60" maxlength="191" value="<{$category.title}>" required>
 		</label>
 
 		<label for="category_desc">
 			<{$smarty.const._MD_PICO_TH_CATEGORYDESC}>
-				<textarea name="cat_desc" id="category_desc" cols="50" rows="3"><{$category.desc}></textarea>
+			<textarea name="cat_desc" id="category_desc" cols="50" rows="3"><{$category.desc}></textarea>
 		</label>
 
 		<label>
@@ -64,7 +64,7 @@
 		<h5><{$smarty.const._MD_PICO_TH_CATEGORYOPTIONS}></h5>
 
 		<label for="category_option_controller_onoff">
-		<input type="checkbox" id="category_option_controller_onoff"
+		<input type="checkbox" role="switch" id="category_option_controller_onoff"
 			   onclick="if(this.checked)
 			   {xoopsGetElementById('category_option_controller').style.display='block';}
 			   else
@@ -77,32 +77,29 @@
                 <{* CONSTANT CUSTOM HTML: trust_path/module/pico/language/[lang]/main.php *}>
                 <{* -- DEFAULT <code><b>(option name)</b>:<u>(option value)</u></code> -- *}>
 				<{$smarty.const._MD_PICO_HOWTO_OVERRIDEOPTIONS}>
-                <div class="category_options_desc"><{$category.option_desc}></div>
+                <code class="category_options_desc"><{$category.option_desc}></code>
 		</div>
 		<{* ----- /CATEGORY OPTIONS *}>
 
 		<footer>
-			<div class="grid-2">
-				<{if $page == 'categorymanager' && $children_count == 0}>
-				<input type="submit" role="button" class="outline delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>"
-					   onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECATEGORY}>')">
-				<{/if}>
-				<input type="submit" role="button" class="button" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
+			<div class="grid">
+			<{if $page == 'categorymanager' && isset($children_count) == 0}>
+			<div>
+				<button type="submit" role="button" class="outline delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>"
+					onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECATEGORY}>')">
+					<img class="svg" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"> 
+					<{$smarty.const._DELETE}>
+				</button>
+			</div>
+			<{/if}>
+			<div>
+				<button type="submit" role="button" class="button" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
+					<{$smarty.const._SUBMIT}>
+				</button>
+			</div>
 			</div>
 		</footer>
 
 	</article>
 
 </form>
-
-<!-- Start Form Validation JavaScript //-->
-<script type="text/javascript">
-<!--//
-function xoopsFormValidate_categoryform() {
-	myform = window.document.categoryform;
-	if ( myform.title.value == "" ) { window.alert("<{$smarty.const._MD_PICO_TH_CATEGORYTITLE|string_format:$smarty.const._FORM_ENTER}>"); myform.title.focus(); return false; }
-	return true;
-}
-//--></script>
-
-

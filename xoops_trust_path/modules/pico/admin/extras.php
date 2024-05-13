@@ -85,7 +85,7 @@ if ( !empty( $_POST['extras_output'] ) && is_array( $_POST['action_selects'] ) )
 // extras delete
 if ( ! empty( $_POST['extras_delete'] ) && ! empty( $_POST['action_selects'] ) ) {
 	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 
 	foreach ( $_POST['action_selects'] as $extra_id => $value ) {
@@ -96,7 +96,7 @@ if ( ! empty( $_POST['extras_delete'] ) && ! empty( $_POST['action_selects'] ) )
 		$db->query( 'DELETE FROM ' . $db->prefix( $mydirname . '_content_extras' ) . " WHERE content_extra_id=$extra_id" );
 	}
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=extras", 3, _MD_A_PICO_MSG_DELETED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=extras", 2, _MD_A_PICO_MSG_DELETED );
 	exit;
 }
 

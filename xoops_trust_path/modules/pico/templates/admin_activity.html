@@ -1,0 +1,156 @@
+<style>
+    /* chart css */
+    .content-pending {
+        background: var(--layer-3);
+        border: 1px solid var(--layer-3);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-2);
+    }
+    .content-chart{
+    --line-count: 10;
+    --line-color: currentcolor;
+    --line-opacity: 0.25;
+    --item-gap: 2%;
+    --item-default-color: #060606;
+    --padding-block: 1.5rem; 
+        height: 10rem;
+        display: grid;
+        grid-auto-flow: column;
+        gap: var(--item-gap);
+        align-items: end;
+        padding-inline: var(--item-gap);
+    
+        padding-block: var(--padding-block);
+        position: relative;
+        isolation: isolate;
+    }
+    .content-chart::after{
+    --line-width: 1px;
+    --line-spacing: calc(100% / var(--line-count));
+        background-image: repeating-linear-gradient(to top, transparent 0 calc(var(--line-spacing) - var(--line-width)), var(--line-color) 0 var(--line-spacing));
+        box-shadow: 0 var(--line-width) 0 var(--line-color);
+        content: "";
+        inset: var(--padding-block) 0;
+        opacity: var(--line-opacity);
+        position: absolute;
+        z-index: -1;
+    }
+    /* chart item label */
+    .content-chart > .item{
+        height: calc(1% * var(--val));
+        background-color: var(--clr, var(--item-default-color));
+        position: relative;
+        animation: item-height 1s ease forwards
+    }
+    @keyframes item-height { from { height: 0 } }
+    /* chart item label */
+    .content-chart > .item > * { position: absolute; text-align: center }
+    .content-chart > .item > .label { inset: 100% 0 auto 0 }
+    .content-chart > .item > .value { inset: auto 0 100% 0 }
+    .expired{border-left:3px solid #E0393E;color:#E0393E}
+</style>
+
+<h1><{$smarty.const._MD_A_PICO_ACTIVITY_OVERVIEW}></h1>
+<p><{$mydirname|ucfirst}></p>
+<div data-layout="row sm-column">
+    <div data-self="column size-4of5 sm-full">
+        <div class="content-chart">
+        <div class="item" style="--clr: #3f51b5; --val: <{$totalCat}>">
+            <div class="label"><{$smarty.const._MD_PICO_CATEGORIES}></div>
+            <div class="value"><{$totalCat}> %</div>
+        </div>
+        <div class="item" style="--clr: #5EB344; --val: <{$totalContent}>">
+            <div class="label"><{$smarty.const._MD_PICO_CONTENTS}></div>
+            <div class="value"><{$totalContent}> %</div>
+        </div>
+        <div class="item" style="--clr: #FCB72A; --val: <{$totalRevision}>">
+            <div class="label"><{$smarty.const._MD_PICO_REVISIONS}></div>
+            <div class="value"><{$totalRevision}> %</div>
+        </div>
+        <div class="item" style="--clr: #069CDB; --val: <{$totalTags}>">
+            <div class="label"><{$smarty.const._MD_PICO_TH_TAGS}></div>
+            <div class="value"><{$totalTags}> %</div>
+        </div>
+        <div class="item" style="--clr: #6e35b1; --val: <{$totalComments}>">
+            <div class="label"><{$smarty.const._MD_PICO_LABEL_COMMENTS}></div>
+            <div class="value"><{$totalComments}>%</div>
+        </div>
+        <div class="item" style="--clr: #F8821A; --val: <{$totalVotes}>">
+            <div class="label"><{$smarty.const._MD_PICO_VOTECOUNT}></div>
+            <div class="value"><{$totalVotes}> %</div>
+        </div>
+        <div class="item" style="--clr: #E0393E; --val: <{$totalExtra}>">
+            <div class="label"><{$smarty.const._MD_A_PICO_H2_EXTRAS}></div>
+            <div class="value"><{$totalExtra}></div>
+        </div>
+        </div>
+    </div>
+    <div data-layout="column mx-3" class="content-pending" data-self="size-1of5 center sm-full">
+        <h5><{$smarty.const._MD_PICO_WAITINGAPPROVAL}></h5>
+        <a href="<{$mod_url}>/admin/index.php?page=contents&cat_id=-1" target="_blank">
+        <div data-layout="centered">
+            <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" viewBox="0 0 50 50"><g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke="#a47275" d="m31.25 39.583l4.167 4.167l8.333-8.333M35.417 6.25H12.5a2.083 2.083 0 0 0-2.083 2.083V18.75h8.333l4.167 4.167h16.666v-12.5zm0 0v4.167h4.166z"/><path stroke="#ffd22e" d="M22.917 43.75H8.333a2.083 2.083 0 0 1-2.083-2.083V20.833a2.083 2.083 0 0 1 2.083-2.083H18.75l4.167 4.167h18.75A2.083 2.083 0 0 1 43.75 25v2.083"/></g></svg>
+        </div>
+        <p><span class="badge"><{$totalApproval}></span> <{$smarty.const._MD_PICO_CONTENTS}></p>
+        </a>
+    </div> 
+</div>
+
+<hr>
+
+<h2><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#a46319" fill-opacity="0.45"/><path fill="#a46319" d="M12 5.3c0-.143 0-.214.046-.258c.046-.044.116-.042.254-.036a7 7 0 1 1-6.207 10.75c-.074-.116-.111-.175-.096-.237s.077-.098.2-.169l5.653-3.263c.073-.043.11-.064.13-.099c.02-.034.02-.077.02-.161z"/></svg> 
+     <{$smarty.const._MD_A_PICO_ACTIVITY_SCHEDULE}></h2>
+
+<{* use the date_format modifier to show current date and time : 2024-04-20 20:04:20 *}>
+<{* $smarty.now|date_format:'%Y-%m-%d %H:%M:%S' *}>
+<div class="confirm">
+    <spand class="badge"><{$days}></spand> <{$smarty.const._MD_A_PICO_ACTIVITY_INTERVAL}>
+    <span class="badge" title="<{$smarty.const._TIME_TIP}>"> <{$smarty.now|date_format:"%A, %e %B %Y - %H:%M:%S"}>
+    </span>
+</div>
+
+<table class="outer">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th><{$smarty.const._MD_PICO_CONTENT}></th>
+        <th><{$smarty.const._MD_PICO_VISIBLE}></th>
+        <th><{$smarty.const._MD_PICO_LOCKED}></th>
+        <th><{$smarty.const._MD_PICO_LABEL_COMMENTS}></th>
+        <th><{$smarty.const._MD_PICO_VIEWED}></th>
+        <th><{$smarty.const._MD_PICO_EXPIRING}></th>
+        <th><{$smarty.const._ACTION}></th>
+    </tr>
+    </thead>
+    <tbody>
+    <{foreach from=$active item=active name=active}>
+    <tr>
+    <td class="list_center <{if $active.re <= $days}>expired<{/if}>"><{$active.id}></td>
+    <td><a href="<{$active.link}>" target="_blank">
+        <{if $active.re > $days}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#a46319" fill-opacity="0.5"/><path fill="#a46319" d="M12 5.3c0-.143 0-.214.046-.258c.046-.044.116-.042.254-.036a7 7 0 1 1-6.207 10.75c-.074-.116-.111-.175-.096-.237s.077-.098.2-.169l5.653-3.263c.073-.043.11-.064.13-.099c.02-.034.02-.077.02-.161z"/></svg> 
+        <{/if}> <{$active.subject}></a></td>
+    <td class="list_center">
+    <{if $active.visible}><i class="i-view"></i><{/if}>
+    </td>
+    <td class="list_center">
+    <{if $active.locked}><i class="i-lock"></i><{/if}>
+    </td>
+    <td class="list_center"><{$active.comments}></td>
+    <td class="list_center"><{$active.views}></td>
+    <td class="list_date"><{$active.expire|date_format:'%Y-%m-%d %H:%M'}></td>
+    <td class="list_control">
+        <a class="action-view" href="<{$active.link}>" target="_blank" title="<{$smarty.const._MD_A_PICO_LABEL_MAINDISP}>">
+            <i class="i-view"></i>
+        </a>
+        <a class="action-edit" href="<{$active.edit}>" target="_blank" title="<{$smarty.const._EDIT}>">
+            <i class="i-edit"></i>
+        </a>
+    </td>
+    </tr>
+    <{if $smarty.foreach.active.last}>
+    </tbody> 
+    <tfoot><tr><td colspan="8"><span class="badge"><{$smarty.foreach.active.total}></span> <{$smarty.const._MD_A_PICO_ACTIVITY_LATEST}></td></tr></tfoot>
+    <{/if}>
+    <{/foreach}>
+</table>

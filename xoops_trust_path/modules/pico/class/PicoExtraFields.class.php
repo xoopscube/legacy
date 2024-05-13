@@ -90,7 +90,7 @@ class PicoExtraFields {
 		// check the directory exists
         // redirect to module preferences
 		if ( ! is_dir( $this->images_path ) ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/admin/index.php", 3, 'Create the upload directory first : ' . htmlspecialchars( $this->mod_config['extra_images_dir'], ENT_QUOTES ) );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/admin/index.php", 2, 'Create the upload directory first : ' . htmlspecialchars( $this->mod_config['extra_images_dir'], ENT_QUOTES ) );
 			exit;
 		}
 
@@ -119,7 +119,7 @@ class PicoExtraFields {
         // redirect to module preferences
 		$upload_result = move_uploaded_file( $file['tmp_name'], $tmp_image );
 		if ( ! $upload_result ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/admin/index.php", 3, 'Check read and write permissions of the directory : ' . htmlspecialchars( $this->mod_config['extra_images_dir'], ENT_QUOTES ) );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/admin/index.php", 2, 'Check read and write permissions of the directory : ' . htmlspecialchars( $this->mod_config['extra_images_dir'], ENT_QUOTES ) );
 			exit;
 		}
 		@chmod( $tmp_image, 0644 );
@@ -129,7 +129,7 @@ class PicoExtraFields {
 		if ( ! is_array( $check_result ) || empty( $check_result['mime'] ) ) {
 			@unlink( $tmp_image );
             // upload file is Not valid, redirect message
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 3, '🛑 Invalid image file uploaded ! Allowed file types JPG, PNG, GIF.'. htmlspecialchars( print_r($this->$content_id), ENT_QUOTES ) );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, '🛑 Invalid image file uploaded ! Allowed file types JPG, PNG, GIF.'. htmlspecialchars( print_r($this->$content_id), ENT_QUOTES ) );
 			exit;
 		} 
 

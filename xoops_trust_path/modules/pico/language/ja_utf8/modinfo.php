@@ -16,6 +16,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
     define( $constpref . '_DESC', '静的コンテンツ作成モジュール' );
 
     // admin menus
+    define( $constpref . '_ADMENU_ACTIVITY', '活動概要' );
     define( $constpref . '_ADMENU_CONTENTSADMIN', 'コンテンツ管理' );
     define( $constpref . '_ADMENU_CATEGORYACCESS', 'カテゴリー一覧' );
     define( $constpref . '_ADMENU_IMPORT', 'インポート/同期' );

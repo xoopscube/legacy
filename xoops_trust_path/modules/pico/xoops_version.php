@@ -160,22 +160,22 @@ $modversion['config'][1] = [
 ];
 
 $modversion['config'][] = [
-    'name'        => 'htmlheader',
-    'title'       => $constpref . '_HTMLHEADER',
-    'description' => '',
-    'formtype'    => 'textarea',
-    'valuetype'   => 'text',
-    'default'     => '',
-    'options'     => []
-];
-
-$modversion['config'][] = [
     'name'        => 'allow_each_htmlheader',
     'title'       => $constpref . '_ALLOWEACHHEAD',
     'description' => '',
     'formtype'    => 'yesno',
     'valuetype'   => 'int',
     'default'     => 1,
+    'options'     => []
+];
+
+$modversion['config'][] = [
+    'name'        => 'htmlheader',
+    'title'       => $constpref . '_HTMLHEADER',
+    'description' => '',
+    'formtype'    => 'textarea',
+    'valuetype'   => 'text',
+    'default'     => '',
     'options'     => []
 ];
 
@@ -193,16 +193,6 @@ $modversion['config'][0] = [
 	'name'        => 'use_wraps_mode',
 	'title'       => $constpref . '_USE_WRAPSMODE',
 	'description' => '',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'use_rewrite',
-	'title'       => $constpref . '_USE_REWRITE',
-	'description' => $constpref . '_USE_REWRITEDSC',
 	'formtype'    => 'yesno',
 	'valuetype'   => 'int',
 	'default'     => 0,
@@ -236,6 +226,16 @@ $modversion['config'][] = [
 	'formtype'    => 'text',
 	'valuetype'   => 'text',
 	'default'     => '',
+	'options'     => []
+];
+
+$modversion['config'][] = [
+	'name'        => 'use_rewrite',
+	'title'       => $constpref . '_USE_REWRITE',
+	'description' => $constpref . '_USE_REWRITEDSC',
+	'formtype'    => 'yesno',
+	'valuetype'   => 'int',
+	'default'     => 0,
 	'options'     => []
 ];
 

@@ -33,7 +33,7 @@ $allowed_orders = ['count ASC', 'count DESC', 'weight ASC', 'weight DESC', 'labe
 // tags update
 if ( ! empty( $_POST['tags_update'] ) ) {
 	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 
 	foreach ( array_keys( $_POST['labels'] ) as $old_label ) {
@@ -62,7 +62,7 @@ if ( ! empty( $_POST['tags_update'] ) ) {
 	}
 	pico_sync_tags( $mydirname );
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=tags", 3, _MD_PICO_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=tags", 2, _MD_PICO_MSG_UPDATED );
 	exit;
 }
 
@@ -70,7 +70,7 @@ if ( ! empty( $_POST['tags_update'] ) ) {
 // tags delete
 if ( ! empty( $_POST['tags_delete'] ) && ! empty( $_POST['action_selects'] ) ) {
 	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 
 	foreach ( $_POST['action_selects'] as $label => $value ) {
@@ -95,7 +95,7 @@ if ( ! empty( $_POST['tags_delete'] ) && ! empty( $_POST['action_selects'] ) ) {
 	}
 	pico_sync_tags( $mydirname );
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=tags", 3, _MD_A_PICO_MSG_DELETED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=tags", 2, _MD_A_PICO_MSG_DELETED );
 	exit;
 }
 

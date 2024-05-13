@@ -68,7 +68,7 @@ define( '_MD_A_PICO_MSG_IMPORTDONE' , "Importado corretamente");
 define( '_MD_A_PICO_MSG_SYNCALLDONE' , "Sincronizado corretamente");
 define( '_MD_A_PICO_NOTICE_ADDUSERS' , "Você pode conceder ou negar permissões a usuários específicos.<br>Adicione o <b>uid</b> ou <b>uname</b> do usuário e atribua as permissões.");
 define( '_MD_A_PICO_TH_CONTENTSACTIONS' , "Ações");
-define( '_MD_A_PICO_TH_CONTENTSALLOWCOMMENT' , "Comentários");
+define( '_MD_A_PICO_TH_CONTENTSALLOWCOMMENT' , "Com");
 define( '_MD_A_PICO_TH_CONTENTSFILTERS' , "Filtros");
 define( '_MD_A_PICO_TH_CONTENTSID' , "Número");
 define( '_MD_A_PICO_TH_CONTENTSSHOWINMENU' , "Menu");
@@ -84,3 +84,9 @@ define( '_MD_A_PICO_TH_UNAME' , "Codinome");
 define( '_MD_A_PICO_TIPS_CONTENTS' , 'Content Tips');
 define( '_MD_A_PICO_TIPS_TAGS' , 'Tags Tips');
 define( '_MD_A_PICO_TIPS_EXTRAS' , 'Extras Tips');
+
+// ACTIVITY
+define( '_MD_A_PICO_ACTIVITY_OVERVIEW' , 'Atividade Geral');
+define( '_MD_A_PICO_ACTIVITY_SCHEDULE' , 'Conteúdo expirado e programado');
+define( '_MD_A_PICO_ACTIVITY_INTERVAL' , 'dias de intervalo antes e depois de hoje');
+define( '_MD_A_PICO_ACTIVITY_LATEST' , 'últimos conteúdos programados');

@@ -25,7 +25,7 @@ class PicoControllerCopywaitingContent extends PicoControllerAbstract {
 	public function execute( $request ) {
 		// Ticket Check
 		if ( ! $GLOBALS['xoopsGTicket']->check( true, 'pico' ) ) {
-			redirect_header( XOOPS_URL . '/', 3, $GLOBALS['xoopsGTicket']->getErrors() );
+			redirect_header( XOOPS_URL . '/', 2, $GLOBALS['xoopsGTicket']->getErrors() );
 		}
 
 		parent::execute( $request );

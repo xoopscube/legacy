@@ -89,7 +89,7 @@ class PicoControllerGetContent extends PicoControllerAbstract {
 			$this->assign['categories_can_read'][ $tmp_data['id'] ] = str_repeat( '--', $tmp_data['cat_depth_in_tree'] ) . $tmp_data['cat_title'];
 		}
 
-		// count up 'viewed'
+		// count up 'viewed' - comment out if 'modifier_ip' for local views
 		if ( $content_data['modifier_ip'] !== @$_SERVER['REMOTE_ADDR'] ) {
 			$contentObj->incrementViewed();
 		}

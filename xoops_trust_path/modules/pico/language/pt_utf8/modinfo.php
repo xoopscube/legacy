@@ -65,6 +65,7 @@ define($constpref."_NAME","pico");
 define($constpref."_DESC","Módulo avançado para edição de conteúdo dinâmico e encapsulamento de conteúdo estático");
 
 // admin menus
+define( $constpref . '_ADMENU_ACTIVITY', 'Atividade' );
 define($constpref."_ADMENU_CONTENTSADMIN","Conteúdo");
 define($constpref."_ADMENU_CATEGORYACCESS","Categorias");
 define($constpref."_ADMENU_IMPORT","Importar/sincronizar");

@@ -30,16 +30,17 @@
                 <{/if}>
             </h2>
             <{* ------- Activity Overview - Top Category *}>
-            <small class="activity">
+            <p class="content-activity">
 
                 <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="folder">
-                <span data-self="sm-hide"><{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}></span> <span class="badge"><{$category.redundants.subcategories_total}></span>
+                <span data-self="sm-hide"><{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}></span> 
+                <span class="badge"><{$category.redundants.subcategories_total|default:''}></span>
 
                 <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file">
                 <span data-self="sm-hide"><{$smarty.const._MD_PICO_CONTENTS_TOTAL}></span>
                 <span class="badge"><{$category.redundants.contents_total}></span>
 
-            </small>
+            </p>
             <{* ------- /Activity Overview *}>
         </div>
 
@@ -56,43 +57,42 @@
     <{if isset($subcategories)}>
     <{foreach from=$subcategories item="subcategory"}>
     <div class="list-content">
-    <div class="headings">
-        <h3>
+        <div class="headings">
+            <h3>
             <a href="<{$mod_url}>/<{$subcategory.link}>">
                 <img class="svg category" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="category">
                 <{$subcategory.title}>
             </a>
 
-            <{if $mod_config.show_rss}>
-            <a href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">
-                <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" height="1em" alt="rss">
-            </a>
-            <{/if}>
-        </h3>
+            <{* ----- Activity Overview - Subcategories ----- *}>
+            <{* ----- if $category.isadminormod *}> <{* REMOVE SMARTY COMMENT TO MAKE ACTIVITY PRIVATE *}>
+            <div>
+                <span  data-tooltip="<{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}>">
+                <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="folder">
+                <{* ----- <span data-self="sm-hide"><{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}></span> ----- *}>
+                <span class="badge"><{$subcategory.redundants.subcategories_total > 0}></span>
+                </span>
 
-        <{* ----- Activity Overview - Subcategories ----- *}>
+                <span data-tooltip="<{$smarty.const._MD_PICO_CONTENTS_TOTAL}>">
+                <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file">
+                <{* ----- <span data-self="sm-hide"><{$smarty.const._MD_PICO_CONTENTS_TOTAL}></span> ----- *}>
+                <span class="badge"><{$subcategory.redundants.contents_total}></span>
+                </span>
 
-        <{* ----- if $category.isadminormod *}> <{* REMOVE SMARTY COMMENT TO MAKE ACTIVITY PRIVATE *}>
-        <p>
-            <span  data-tooltip="<{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}>">
-            <img class="svg folder" src="<{$xoops_url}>/images/icons/folder.svg" width="1em" height="1em" alt="folder">
-            <{* ----- <span data-self="sm-hide"><{$smarty.const._MD_PICO_SUBCATEGORIES_TOTAL}></span> ----- *}>
-            <span class="badge"><{$subcategory.redundants.subcategories_total > 0}></span>
-            </span>
+                <{if $mod_config.show_rss}>
+                <a href="<{$mod_url}>/index.php?page=rss&amp;cat_id=<{$category.id}>">
+                    <img class="svg rss" src="<{$xoops_url}>/images/icons/rss.svg" width="1em" height="1em" alt="rss">
+                </a>
+                <{/if}>
+            </div>
+            <{* ----- /if *}> <{* REMOVE SMARTY COMMENT TO MAKE ACTIVITY PRIVATE *}>
+            <{* ----- /Activity Overview - Subcategories ----- *}>
+            </h3>
+        </div>
 
-            <span data-tooltip="<{$smarty.const._MD_PICO_CONTENTS_TOTAL}>">
-            <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file">
-            <{* ----- <span data-self="sm-hide"><{$smarty.const._MD_PICO_CONTENTS_TOTAL}></span> ----- *}>
-            <span class="badge"><{$subcategory.redundants.contents_total}></span>
-            </span>
-        </p>
-        <{* ----- /if *}> <{* REMOVE SMARTY COMMENT TO MAKE ACTIVITY PRIVATE *}>
-        <{* ----- /Activity Overview - Subcategories ----- *}>
-    </div>
-
-    <div class="description">
-        <{$subcategory.desc}>
-    </div>
+        <div class="description">
+            <{$subcategory.desc}>
+        </div>
 
     </div>
     <{/foreach}>
@@ -129,7 +129,7 @@
         </a>
         <{/if}>
     </h4>
-        </div>
+    </div>
     <{/foreach}>
 
     <{/if}>
@@ -138,21 +138,24 @@
     <{if $xoops_isuser}>
     <footer>
 
-        <div class="grid-2">
+        <div class="grid">
 
             <{if $category.can_post}>
+            <div>
             <a role="button" class="primary new" href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mc<{$category.id}>">
                 <img class="svg new-topic" src="<{$xoops_url}>/images/icons/file-new.svg" width="1em" height="1em" alt="new topic">
                 <{$smarty.const._MD_PICO_LINK_MAKECONTENT}></a>
+            </div>
             <{/if}>
 
             <{* ----- Action controllers - Content ----- *}>
+            <{if $category.can_makesubcategory or $category.isadminormod}>
             <div>
-                <details role="list">
+                <details  class="dropdown">
                 <summary aria-haspopup="listbox" role="button" class="outline primary">
                     Action
                 </summary>
-                <ul role="listbox">
+                <ul>
 
                     <{if $category.can_makesubcategory}>
                     <li><a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>">
@@ -179,7 +182,7 @@
                 </ul>
             </details>
             </div>
-
+            <{/if}>
         </div>
         <{* ----- /Action controllers - Content ----- *}>
 

@@ -23,7 +23,7 @@ class PicoControllerPreviewContent extends PicoControllerEditContent {
 	public function processPreview( $request ) {
 		// Ticket Check
 		if ( ! $GLOBALS['xoopsGTicket']->check( true, 'pico' ) ) {
-			redirect_header( XOOPS_URL . '/', 3, $GLOBALS['xoopsGTicket']->getErrors() );
+			redirect_header( XOOPS_URL . '/', 2, $GLOBALS['xoopsGTicket']->getErrors() );
 		}
 
 		// initialize

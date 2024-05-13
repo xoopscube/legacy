@@ -52,7 +52,7 @@ if ( ! empty( $_POST['do_import'] ) && ! empty( $_POST['import_mid'] ) ) {
 	@set_time_limit( 0 );
 
 	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 
 	$import_mid = (int) @$_POST['import_mid'];
@@ -72,7 +72,7 @@ if ( ! empty( $_POST['do_import'] ) && ! empty( $_POST['import_mid'] ) ) {
 			break;
 	}
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=import", 3, _MD_A_PICO_MSG_IMPORTDONE );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=import", 2, _MD_A_PICO_MSG_IMPORTDONE );
 	exit;
 }
 
@@ -80,12 +80,12 @@ if ( ! empty( $_POST['do_syncall'] ) ) {
 	@set_time_limit( 0 );
 
 	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 
 	pico_sync_all( $mydirname );
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=import", 3, _MD_A_PICO_MSG_SYNCALLDONE );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=import", 2, _MD_A_PICO_MSG_SYNCALLDONE );
 	exit;
 }
 
@@ -93,12 +93,12 @@ if ( ! empty( $_POST['do_clearbodycache'] ) ) {
 	@set_time_limit( 0 );
 
 	if ( ! $xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 
 	pico_clear_body_cache( $mydirname );
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=import", 3, _MD_A_PICO_MSG_CLEARBODYCACHEDONE );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=import", 2, _MD_A_PICO_MSG_CLEARBODYCACHEDONE );
 	exit;
 }
 

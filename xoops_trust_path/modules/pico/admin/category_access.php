@@ -40,7 +40,7 @@ include dirname( __DIR__ ) . '/include/category_permissions.inc.php';
 // independent permission update
 if ( !empty( $_POST['independentpermission_update'] ) && 0 != $cat_id) {
 	if ( !$xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 	if ( !empty( $_POST['independentpermission'] ) ) {
 		// update permission_id of categories has the same permission_id and children of the category
@@ -54,7 +54,7 @@ if ( !empty( $_POST['independentpermission_update'] ) && 0 != $cat_id) {
 		// update permission_id of categories which permission_id is the cat_id
 		$db->queryF( 'UPDATE ' . $db->prefix( $mydirname . '_categories' ) . ' SET cat_permission_id=' . (int) $cat_permission_id . " WHERE cat_permission_id=$cat_id" );
 	}
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 3, _MD_PICO_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 2, _MD_PICO_MSG_UPDATED );
 	exit;
 }
 
@@ -62,7 +62,7 @@ if ( !empty( $_POST['independentpermission_update'] ) && 0 != $cat_id) {
 // group update
 if ( !empty( $_POST['group_update'] ) ) {
 	if ( !$xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 	$db->queryF( 'DELETE FROM ' . $db->prefix( $mydirname . '_category_permissions' ) . " WHERE cat_id=$cat_id AND groupid>0" );
 	$result = $db->query( 'SELECT groupid FROM ' . $db->prefix( 'groups' ) );
@@ -75,14 +75,14 @@ if ( !empty( $_POST['group_update'] ) ) {
 			$db->queryF( 'INSERT INTO ' . $db->prefix( $mydirname . '_category_permissions' ) . " (cat_id,groupid,permissions) VALUES ($cat_id,$gid," . $db->quoteString( serialize( $perms ) ) . ')' );
 		}
 	}
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 3, _MD_PICO_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 2, _MD_PICO_MSG_UPDATED );
 	exit;
 }
 
 // user update
 if ( !empty( $_POST['user_update'] ) ) {
 	if ( !$xoopsGTicket->check( true, 'pico_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 	$db->queryF( 'DELETE FROM ' . $db->prefix( $mydirname . '_category_permissions' ) . " WHERE cat_id=$cat_id AND uid>0" );
 
@@ -129,7 +129,7 @@ if ( !empty( $_POST['user_update'] ) ) {
 		}
 	}
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 3, _MD_PICO_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 2, _MD_PICO_MSG_UPDATED );
 	exit;
 }
 

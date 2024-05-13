@@ -82,3 +82,9 @@ define( '_MD_A_PICO_LABEL_ORDER' , 'Заказ');
 define( '_MD_A_PICO_TIPS_CONTENTS' , 'Советы по содержанию');
 define( '_MD_A_PICO_TIPS_TAGS' , 'Теги Советы');
 define( '_MD_A_PICO_TIPS_EXTRAS' , 'Дополнительные советы');
+
+// ACTIVITY
+define( '_MD_A_PICO_ACTIVITY_OVERVIEW' , 'Обзор деятельности');
+define( '_MD_A_PICO_ACTIVITY_SCHEDULE' , 'Просроченный и запланированный контент');
+define( '_MD_A_PICO_ACTIVITY_INTERVAL' , 'дни перерыва до и после сегодняшнего дня');
+define( '_MD_A_PICO_ACTIVITY_LATEST' , 'последний запланированный контент');
