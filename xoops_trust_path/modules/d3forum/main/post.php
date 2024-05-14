@@ -566,27 +566,27 @@ if ( ! empty( $_POST['contents_preview'] ) ) {
 	if ( '{XOOPS_URL}' == substr( $forum_row['forum_external_link_format'], 0, 11 ) && ! empty( $external_link_id ) ) {
 
 		// return to comment target (conventional module)
-		redirect_header( sprintf( str_replace( '{XOOPS_URL}', XOOPS_URL, $forum_row['forum_external_link_format'] ), $external_link_id ), 2, $redirect_message );
+		redirect_header( sprintf( str_replace( '{XOOPS_URL}', XOOPS_URL, $forum_row['forum_external_link_format'] ), $external_link_id ), 1, $redirect_message );
 
 	} else if ( is_object( @$d3com ) && ! empty( $external_link_id ) && is_array( $summary = $d3com->fetchSummary( $external_link_id ) ) ) {
 
 		// return to comment target (d3comment native module)
-		redirect_header( @$summary['uri'], 2, $redirect_message );
+		redirect_header( @$summary['uri'], 1, $redirect_message );
 
 	} else if ( ! empty( $topic_invisible ) ) {
 
 		// redirect the forum for invisible topic
-		redirect_header( XOOPS_URL . "/modules/$mydirname/index.php?forum_id=$forum_id", 2, _MD_D3FORUM_MSG_THANKSPOSTNEEDAPPROVAL );
+		redirect_header( XOOPS_URL . "/modules/$mydirname/index.php?forum_id=$forum_id", 1, _MD_D3FORUM_MSG_THANKSPOSTNEEDAPPROVAL );
 
 	} else if ( ! empty( $mode_sametopic ) ) {
 
 		// display the topic
-		redirect_header( XOOPS_URL . "/modules/$mydirname/index.php?topic_id=$topic_id#post_id$post_id", 2, $redirect_message );
+		redirect_header( XOOPS_URL . "/modules/$mydirname/index.php?topic_id=$topic_id#post_id$post_id", 1, $redirect_message );
 
 	} else {
 
 		// display the post
-		redirect_header( XOOPS_URL . "/modules/$mydirname/index.php?post_id=$post_id", 2, $redirect_message );
+		redirect_header( XOOPS_URL . "/modules/$mydirname/index.php?post_id=$post_id", 1, $redirect_message );
 
 	}
 	exit;

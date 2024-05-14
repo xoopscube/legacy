@@ -18,6 +18,7 @@ define( '_MD_MESSAGE_ACTIONMSG7' , 'Le Message a été envoyé.');
 define( '_MD_MESSAGE_ACTIONMSG8' , 'Vous n\'avez pas les permissions requises. ');
 define( '_MD_MESSAGE_ACTIONMSG9' , 'Le destinataire du message n\'existe pas.');
 
+define( '_MD_MESSAGE_TEMPLATE0' , 'Annuler');
 define( '_MD_MESSAGE_TEMPLATE1' , 'Envoyer le message');
 define( '_MD_MESSAGE_TEMPLATE2' , 'Nom d\'Utilisateur');
 define( '_MD_MESSAGE_TEMPLATE3' , 'Sujet');

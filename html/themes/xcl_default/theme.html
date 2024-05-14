@@ -119,7 +119,7 @@
 <{if !empty($xoops_clblocks)}>
 <{foreach item=block from=$xoops_clblocks}>
     <{if $block.title|strstr:"top-" && !$block.title|strstr:"hero"}>
-    <{include file="$xoops_theme/component/block-center-top.html"}>
+    <{include file="$xoops_theme/component/_inc_top_center.html"}>
     <{/if}>
 <{/foreach}>
 <{/if}>

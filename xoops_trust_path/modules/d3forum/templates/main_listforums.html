@@ -52,7 +52,6 @@
 
 
     <footer>
-
         <div class="grid">
 
         <{* ----- List All Topics *}>
@@ -101,12 +100,9 @@
         <{* ----- /Admin Control *}>
 
         </div>
-
     </footer>
 
 </article>
-
-
 
 
 <article>
@@ -227,7 +223,7 @@
                 <div> [<{$smarty.const._MD_D3FORUM_FORUMASCOMMENT}>] </div>
             <{elseif $forum.can_post}>
                 <div>
-                    <a role="button" class="outline" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>">
+                    <a role="button" aria-busy="false" class="outline" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>">
                         <{$smarty.const._MD_D3FORUM_POSTASNEWTOPIC}>
                     </a>
                 </div>
@@ -259,7 +255,7 @@
             <a role="button" class="outline" href="<{$mod_url}>/index.php?page=search">
                 <img class="svg" src="<{$xoops_url}>/images/icons/search.svg" width="1em" height="1em" alt="search">
                 <{$smarty.const._MD_D3FORUM_LINK_ADVSEARCH}></a>
-            <button type="submit" role="button" class="outline" value="<{$smarty.const._MD_D3FORUM_BTN_JUMPTOCATEGORY}>"><{$smarty.const._MD_D3FORUM_BTN_JUMPTOCATEGORY}></button>
+            <button type="submit" aria-busy="false" role="button" class="outline" value="<{$smarty.const._MD_D3FORUM_BTN_JUMPTOCATEGORY}>"><{$smarty.const._MD_D3FORUM_BTN_JUMPTOCATEGORY}></button>
         </div>
     </form>
 </article>

@@ -35,7 +35,7 @@ class PicoControllerInsertContent extends PicoControllerAbstract {
 
 		// permission check
 		if ( empty( $cat_data['can_post'] ) ) {
-			redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_CREATECONTENT );
+			redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_CREATECONTENT );
 		}
 
 		// create content
@@ -77,7 +77,7 @@ class PicoControllerInsertContent extends PicoControllerAbstract {
 				pico_main_trigger_event( $this->mydirname, 'category', $cat_id, 'newcontent', $extra_tags, $users2notify, 0 );
 			}
 			// message "registered"
-			redirect_header( $ret_uri4html, 2, _MD_PICO_MSG_CONTENTMADE );
+			redirect_header( $ret_uri4html, 1, _MD_PICO_MSG_CONTENTMADE );
 		} else {
 			// Notify for new waiting content (only for admin or mod)
 			$users2notify = pico_main_get_moderators( $this->mydirname, $cat_data['id'] );
@@ -86,7 +86,7 @@ class PicoControllerInsertContent extends PicoControllerAbstract {
 			}
 			pico_main_trigger_event( $this->mydirname, 'global', 0, 'waitingcontent', $extra_tags, $users2notify );
 			// message "waiting approval"
-			redirect_header( $ret_uri4html, 2, _MD_PICO_MSG_CONTENTWAITINGREGISTER );
+			redirect_header( $ret_uri4html, 1, _MD_PICO_MSG_CONTENTWAITINGREGISTER );
 		}
 
 		// view

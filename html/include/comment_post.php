@@ -380,6 +380,6 @@ case 'post':
     }
     break;
 default:
-    redirect_header(XOOPS_URL.'/', 3);
+    redirect_header(XOOPS_URL.'/', 2);
     break;
 }

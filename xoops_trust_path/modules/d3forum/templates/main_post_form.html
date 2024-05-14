@@ -43,7 +43,7 @@
 
 	 <label for="subject">
          <{$smarty.const._MD_D3FORUM_SUBJECT}>
-         <input type="text" name="subject" id="subject" size="50" maxlength="191" value="<{$subject}>">
+         <input type="text" name="subject" id="subject" size="50" maxlength="191" value="<{$subject}>" required>
     </label>
 
 	<{if isset($post.poster_uid)}>
@@ -64,8 +64,6 @@
 
         <{* else *}>
 		<{* ----- REMOVE this smarty comment-line, and smarty comment from "*"else"*" to allow guest comments
-
-		<!-- begin GUEST's new post or edit GUEST's post by somebody -->
 			 <label for="guest_name">
                  <{$smarty.const._MD_D3FORUM_TH_GUESTNAME}>
 				 <input type="text" name="guest_name" id="guest_name" value="<{$guest_name}>" size="25" maxlength="30">
@@ -113,7 +111,7 @@
 							<{assign var=br_checked value=""}>
 						<{/if}>
 					<{else}>
-					<input type="checkbox" id="message_bbcode_onoff" onclick="if(this.checked){xoopsGetElementById('message_bbcode_buttons_pre').style.display='block';xoopsGetElementById('message_bbcode_buttons_post').style.display='block'}else{xoopsGetElementById('message_bbcode_buttons_pre').style.display='none';xoopsGetElementById('message_bbcode_buttons_post').style.display='none'};">
+					<input type="checkbox" id="message_bbcode_onoff" onclick="if(this.checked){document.getElementById('message_bbcode_buttons_pre').style.display='block';document.getElementById('message_bbcode_buttons_post').style.display='block'}else{document.getElementById('message_bbcode_buttons_pre').style.display='none';document.getElementById('message_bbcode_buttons_post').style.display='none'};">
 					<label for="message_bbcode_onoff"><{$smarty.const._MD_D3FORUM_LABEL_INPUTHELPER}></label>
 						<br>
 						<{xoopsdhtmltarea name="message" cols="60" rows="15" value=$message pre_style="display:none;" post_style="display:none;"}>
@@ -175,8 +173,8 @@
         <h5>
         <label for="d3f_post_advanced_options_onoff">
             <input role="switch"  type="checkbox" class="switch" id="d3f_post_advanced_options_onoff"
-                   onclick="if(this.checked){xoopsGetElementById('d3f_post_advanced_options').style.display='block';
-                   }else{xoopsGetElementById('d3f_post_advanced_options').style.display='none';}">
+                   onclick="if(this.checked){document.getElementById('d3f_post_advanced_options').style.display='block';
+                   }else{document.getElementById('d3f_post_advanced_options').style.display='none';}">
             <{$smarty.const._MD_D3FORUM_LABEL_ADVANCEDOPTIONS}>
         </label>
         </h5>
@@ -254,16 +252,16 @@
         <div class="grid">
         <{if $mode == "reply"}>
 
-        <a role="button" class="outline primary" href="javascript:void(0);" onclick="if(xoopsGetElementById('post_reference').style.display=='none'){xoopsGetElementById('post_reference').style.display='block'}else{xoopsGetElementById('post_reference').style.display='none'};">
+        <a role="button" class="outline primary" href="javascript:void(0);" onclick="if(document.getElementById('post_reference').style.display=='none'){document.getElementById('post_reference').style.display='block'}else{document.getElementById('post_reference').style.display='none'};">
         <img class="svg" src="<{$xoops_url}>/images/icons/comment-quote.svg" width="1em" height="1em" alt="quote">
             <{$smarty.const._MD_D3FORUM_REFERENCEPOST}></a>
         <{/if}>
 
-        <button type="submit" role="button" class="outline" name="contents_preview" id="contents_preview" value="<{$smarty.const._PREVIEW}>">
+        <button type="submit" aria-busy="false" class="outline" name="contents_preview" id="contents_preview" value="<{$smarty.const._PREVIEW}>">
             <img class="svg" src="<{$xoops_url}>/images/icons/view.svg" width="1em" height="1em" alt="preview"> <{$smarty.const._PREVIEW}>
         </button>
 
-        <button type="submit" role="button" class="primary" name="content_submit" id="content_submit" value="<{$smarty.const._SUBMIT}>" onclick="return xoopsFormValidate_postform();">
+        <button type="submit" aria-busy="false" class="primary" name="content_submit" id="content_submit" value="<{$smarty.const._SUBMIT}>"> <{* ----- onclick="return xoopsFormValidate_postform();"> *}>
             <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg" width="1em" height="1em" alt="check"> <{$smarty.const._SUBMIT}>
         </button>
         </div>
@@ -275,7 +273,6 @@
 <dialog open>
     <article>
         <header>
-            <a href="#close" title="Close" class="close" onclick="javascript:history.go(-1);"></a>
             <{$smarty.const._PREVIEW}>
         </header>
         <h3><{$preview_subject}></h3>
@@ -284,8 +281,8 @@
         </div>
         <footer>
             <div class="grid">
-                <a href="#" role="button" class="secondary" onclick="javascript:history.go(-1);">Cancel</a>
-                <button type="submit" role="button" class="primary" name="content_submit" id="content_submit_preview" value="<{$smarty.const._SUBMIT}>" onclick="return xoopsFormValidate_postform();">
+                <a href="#"  aria-busy="false" role="button" class="secondary outline" onclick="javascript:history.go(-1);"><{$smarty.const._NOT_CANCEL}></a>
+                <button type="submit" aria-busy="false" class="primary" name="content_submit" id="content_submit_preview" value="<{$smarty.const._SUBMIT}>">
                     <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg"> <{$smarty.const._SUBMIT}>
                 </button>
             </div>
@@ -295,7 +292,6 @@
 <{/if}>
 <{$antispam.html_in_form|default:''}>
 
-</form>
 
 <{* Start Form Validation JavaScript *}>
 <script type="text/javascript">

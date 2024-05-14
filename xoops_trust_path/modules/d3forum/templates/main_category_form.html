@@ -14,7 +14,8 @@
 <{/if}>
 
 
-<form name="categoryform" id="categoryform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>" method="post" onsubmit="return xoopsFormValidate_categoryform();">
+<form name="categoryform" id="categoryform" action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>" method="post">
+<{* ----- onsubmit="return xoopsFormValidate_categoryform();"> *}>
     <{$gticket_hidden|default:''}>
 
     <article class="category-admin">
@@ -34,7 +35,7 @@
 
     <label for="category_title">
         <{$smarty.const._MD_D3FORUM_TH_CATEGORYTITLE}>
-        <input type="text" name="title" id="category_title" size="42" maxlength="191" value="<{$category.title}>">
+        <input type="text" name="title" id="category_title" size="42" maxlength="191" value="<{$category.title}>" required>
     </label>
 
 
@@ -99,23 +100,12 @@
     <footer class="action-control">
         <{if $page == 'categorymanager' && $children_count == 0}>
         <div>
-            <button type="submit" role="button" class="outline secondary delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')">
+            <button type="submit" class="outline secondary delete" name="categoryman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')">
             <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" alt="delete"> <{$smarty.const._DELETE}></button></div>
         <{/if}>
-        <div><button type="submit" role="button" class="primary" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
+        <div><button type="submit" class="primary" name="categoryman_post" value="<{$smarty.const._SUBMIT}>">
             <img class="svg check" src="<{$xoops_url}>/images/icons/check.svg" width="1em" alt="check"> <{$smarty.const._SUBMIT}></button></div>
     </footer>
 </article>
 
 </form>
-
-<{* Start Form Vaidation JavaScript *}>
-<script type="text/javascript">
-<!--//
-function xoopsFormValidate_categoryform() {
-	myform = window.document.categoryform;
-	if ( myform.title.value == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_TH_CATEGORYTITLE|string_format:$smarty.const._FORM_ENTER}>"); myform.title.focus(); return false; }
-	return true;
-}
-//--></script>
-<{* End Form Vaidation JavaScript *}>

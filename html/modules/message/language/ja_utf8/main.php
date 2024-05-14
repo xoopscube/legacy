@@ -22,6 +22,7 @@ define( '_MD_MESSAGE_ACTIONMSG9' , '返信先のユーザが存在しません�
 define( '_MD_MESSAGE_DELETEMSG1' , 'パラメータが不正です。');
 define( '_MD_MESSAGE_DELETEMSG2' , '選択されていません。');
 
+define( '_MD_MESSAGE_TEMPLATE0' , '中止');
 define( '_MD_MESSAGE_TEMPLATE1' , 'メッセージ送信');
 define( '_MD_MESSAGE_TEMPLATE2' , 'ユーザ名');
 define( '_MD_MESSAGE_TEMPLATE3' , '件名');

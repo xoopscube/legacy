@@ -198,7 +198,7 @@ function EmailStats($login, $cid, $bid, $pass)
             list($name, $email, $passwd) = $xoopsDB->fetchRow($result2);
             if ($pass == $passwd) {
                 if ('' == $email) {
-                    redirect_header('banners.php', 3, "There isn't an email associated with client " . $name . '.<br>Please contact the Administrator');
+                    redirect_header('banners.php', 2, "There isn't an email associated with client " . $name . '.<br>Please contact the Administrator');
                     exit();
                 } else {
                     if ($result = $xoopsDB->query('select bid, imptotal, impmade, clicks, imageurl, clickurl, date from ' . $xoopsDB->prefix('banner') . " where bid=$bid and cid=$cid")) {
@@ -227,7 +227,7 @@ function EmailStats($login, $cid, $bid, $pass)
                         $xoopsMailer->setBody($message);
                         $xoopsMailer->send();
                         $token =& XoopsMultiTokenHandler::quickCreate('banner_Ok');
-                        redirect_header("banners.php?op=Ok&amp;login=$login&amp;pass=$pass&amp;".$token->getUrl(), 3, 'Statistics for your banner has been sent to your email address.');
+                        redirect_header("banners.php?op=Ok&amp;login=$login&amp;pass=$pass&amp;".$token->getUrl(), 2, 'Statistics for your banner has been sent to your email address.');
                         exit();
                     }
                 }
@@ -255,7 +255,7 @@ function change_banner_url_by_client($login, $pass, $cid, $bid, $url)
                 $sql = sprintf('update %s set clickurl=%s where bid=%u AND cid=%u', $xoopsDB->prefix('banner'), $xoopsDB->quoteString($url), $bid, $cid);
                 if ($xoopsDB->query($sql)) {
                     $token =& XoopsMultiTokenHandler::quickCreate('banner_Ok');
-                    redirect_header("banners.php?op=Ok&amp;login=$login&amp;pass=$pass&amp;".$token->getUrl(), 3, 'URL has been changed.');
+                    redirect_header("banners.php?op=Ok&amp;login=$login&amp;pass=$pass&amp;".$token->getUrl(), 2, 'URL has been changed.');
                     exit();
                 }
             }

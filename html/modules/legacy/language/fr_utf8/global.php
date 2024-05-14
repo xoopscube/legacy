@@ -102,7 +102,7 @@ define( '_WARNINWRITEABLE' , "<span>ATTENTION: <b>Mainfile</b> est accessible en
 
 define( '_WARNPHPENV' , "ATTENTION : paramètres php.ini \"%s\" est réglé \"%s\". %s");
 define( '_WARNSECURITY' , "(Ceci peut causer des problèmes de sécurité)");
-define( '_WARN_INSTALL_TIP' , "Activer la précharge - A des fins de développement uniquement!<br>Utilisez le 'preload' pour conserver le fichier 'mainfile'' et le répertoire d'installation.<br>Souvenez-vous de changer les permissions de 'mainfile' (lecture) et de supprimer '/install' pour des raisons de sécurité.");
+define( '_WARN_INSTALL_TIP' , "Activer la précharge - A des fins de développement uniquement!<br>Ce qui permet de conserver le répertoire d'installation.<br>Changez les permissions de 'mainfile' en lecture et supprimez '/install' pour des raisons de sécurité.");
 
 //%%%%%% File Name themeuserpost.php %%%%%
 define( '_PROFILE' , "Profil");

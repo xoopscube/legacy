@@ -415,7 +415,7 @@ function xoops_getbanner()
 /*
 * Function to redirect user to certain pages
 */
-function redirect_header($url, $time = 3, $message = '', $addredirect = true)
+function redirect_header($url, $time = 1, $message = '', $addredirect = true)
 {
     global $xoopsConfig, $xoopsRequestUri;
     if (preg_match('/[\\0-\\31]/', $url) || preg_match('/^(javascript|vbscript|about):/i', $url)) {

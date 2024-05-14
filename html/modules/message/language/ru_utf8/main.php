@@ -1,90 +1,85 @@
 <?php
 
-define( '_MD_MESSAGE_NEWMESSAGE' , 'You have {0} messages.');
+define( '_MD_MESSAGE_NEWMESSAGE' , 'У вас есть {0} сообщений.');
 
-define( '_MD_MESSAGE_FORMERROR1' , 'Name is required.');
-define( '_MD_MESSAGE_FORMERROR2' , 'Add a name with a maximum of 30 characters.');
-define( '_MD_MESSAGE_FORMERROR3' , 'Subject is required.');
-define( '_MD_MESSAGE_FORMERROR4' , 'Add a subject with a maximum of 100 characters.');
-define( '_MD_MESSAGE_FORMERROR5' , 'Message is required.');
-define( '_MD_MESSAGE_FORMERROR6' , 'The selected user doesn\'t exist.');
+define( '_MD_MESSAGE_FORMERROR1' , 'Требуется имя.');
+define( '_MD_MESSAGE_FORMERROR2' , 'Добавьте имя длиной не более 30 символов.');
+define( '_MD_MESSAGE_FORMERROR3' , 'Тема обязательна.');
+define( '_MD_MESSAGE_FORMERROR4' , 'Добавьте тему длиной не более 100 символов.');
+define( '_MD_MESSAGE_FORMERROR5' , 'Требуется сообщение.');
+define( '_MD_MESSAGE_FORMERROR6' , 'Выбранный пользователь не существует.');
 
-define( '_MD_MESSAGE_ACTIONMSG1' , 'The message doesn\'t exist.');
-define( '_MD_MESSAGE_ACTIONMSG2' , 'You don\'t have the required permissions.');
-define( '_MD_MESSAGE_ACTIONMSG3' , 'The Message was deleted.');
-define( '_MD_MESSAGE_ACTIONMSG4' , 'Delete fail!');
-define( '_MD_MESSAGE_ACTIONMSG5' , 'Message could not be sent.');
-define( '_MD_MESSAGE_ACTIONMSG6' , 'Fail adding to the Sent Box.');
-define( '_MD_MESSAGE_ACTIONMSG7' , 'Message was sent.');
-define( '_MD_MESSAGE_ACTIONMSG8' , 'You don\'t have the required permissions.');
-define( '_MD_MESSAGE_ACTIONMSG9' , 'The user you reply to doesn\'t exist.');
+define( '_MD_MESSAGE_ACTIONMSG1' , 'Сообщение не существует.');
+define( '_MD_MESSAGE_ACTIONMSG2' , 'У вас нет необходимых разрешений.');
+define( '_MD_MESSAGE_ACTIONMSG3' , 'Сообщение было удалено.');
+define( '_MD_MESSAGE_ACTIONMSG4' , 'Удалить не удалось!');
+define( '_MD_MESSAGE_ACTIONMSG5' , 'Не удалось отправить сообщение.');
+define( '_MD_MESSAGE_ACTIONMSG6' , 'Не удалось добавить сообщение в папку «Отправленные».');
+define( '_MD_MESSAGE_ACTIONMSG7' , 'Сообщение отправлено.');
+define( '_MD_MESSAGE_ACTIONMSG8' , 'У вас нет необходимых разрешений.');
+define( '_MD_MESSAGE_ACTIONMSG9' , 'Пользователь, которому вы отвечаете, не существует.');
 
-define( '_MD_MESSAGE_TEMPLATE1' , 'Send message');
-define( '_MD_MESSAGE_TEMPLATE2' , 'User name');
-define( '_MD_MESSAGE_TEMPLATE3' , 'Subject');
-define( '_MD_MESSAGE_TEMPLATE4' , 'Message');
-define( '_MD_MESSAGE_TEMPLATE5' , 'Preview');
-define( '_MD_MESSAGE_TEMPLATE6' , 'Submit');
-define( '_MD_MESSAGE_TEMPLATE7' , 'Sent Box');
+define( '_MD_MESSAGE_TEMPLATE0' , 'Отменить');
+define( '_MD_MESSAGE_TEMPLATE1' , 'Отправить сообщение');
+define( '_MD_MESSAGE_TEMPLATE2' , 'Имя пользователя');
+define( '_MD_MESSAGE_TEMPLATE3' , 'Предмет');
+define( '_MD_MESSAGE_TEMPLATE4' , 'Сообщение');
+define( '_MD_MESSAGE_TEMPLATE5' , 'просмотр');
+define( '_MD_MESSAGE_TEMPLATE6' , 'отправить');
+define( '_MD_MESSAGE_TEMPLATE7' , ' Отправленные');
 define( '_MD_MESSAGE_TEMPLATE8' , 'New message');
 define( '_MD_MESSAGE_TEMPLATE9' , 'To');
-define( '_MD_MESSAGE_TEMPLATE10' , 'Date');
-define( '_MD_MESSAGE_TEMPLATE11' , 'Message Read');
-define( '_MD_MESSAGE_TEMPLATE12' , 'From');
-define( '_MD_MESSAGE_TEMPLATE13' , 'Reply');
-define( '_MD_MESSAGE_TEMPLATE14' , 'Delete');
-define( '_MD_MESSAGE_TEMPLATE15' , 'Inbox');
-define( '_MD_MESSAGE_TEMPLATE16' , 'Unread');
-define( '_MD_MESSAGE_TEMPLATE17' , 'Read');
-define( '_MD_MESSAGE_TEMPLATE18' , 'Order');
-define( '_MD_MESSAGE_TEMPLATE19' , 'Lock');
-define( '_MD_MESSAGE_TEMPLATE20' , 'Unlock');
-define( '_MD_MESSAGE_TEMPLATE21' , 'Forward to email');
+define( '_MD_MESSAGE_TEMPLATE10' , 'Дата');
+define( '_MD_MESSAGE_TEMPLATE11' , 'Сообщение прочитано');
+define( '_MD_MESSAGE_TEMPLATE12' , 'От');
+define( '_MD_MESSAGE_TEMPLATE13' , 'Отвечать');
+define( '_MD_MESSAGE_TEMPLATE14' , 'Удалить');
+define( '_MD_MESSAGE_TEMPLATE15' , 'Входящие');
+define( '_MD_MESSAGE_TEMPLATE16' , 'Не прочитано');
+define( '_MD_MESSAGE_TEMPLATE17' , 'Читать');
+define( '_MD_MESSAGE_TEMPLATE18' , 'Заказ');
+define( '_MD_MESSAGE_TEMPLATE19' , 'Замок');
+define( '_MD_MESSAGE_TEMPLATE20' , 'Разблокировать');
+define( '_MD_MESSAGE_TEMPLATE21' , 'Отправить по почте');
 define( '_MD_MESSAGE_TEMPLATE22' , 'Status');
 
-define( '_MD_MESSAGE_ADDFAVORITES' , 'Add to favorites');
+define( '_MD_MESSAGE_ADDFAVORITES' , 'Добавить в избранное');
 
-define( '_MD_MESSAGE_FAVORITES0' , 'Select an user to add.');
-define( '_MD_MESSAGE_FAVORITES1' , 'Fail adding!');
-define( '_MD_MESSAGE_FAVORITES2' , 'Add');
-define( '_MD_MESSAGE_FAVORITES3' , 'Fail Updating!');
-define( '_MD_MESSAGE_FAVORITES4' , 'Update');
-define( '_MD_MESSAGE_FAVORITES5' , 'Delete Favorite');
+define( '_MD_MESSAGE_FAVORITES0' , 'Выберите пользователя, которого хотите добавить.');
+define( '_MD_MESSAGE_FAVORITES1' , 'Не удалось добавить!');
+define( '_MD_MESSAGE_FAVORITES2' , 'Добавлять');
+define( '_MD_MESSAGE_FAVORITES3' , 'Ошибка обновления!');
+define( '_MD_MESSAGE_FAVORITES4' , 'Обновлять');
+define( '_MD_MESSAGE_FAVORITES5' , 'Удалить избранное');
 
-define( '_MD_MESSAGE_SETTINGS' , 'Private Message Settings');
-define( '_MD_MESSAGE_SETTINGS_MSG1' , 'Use private message');
-define( '_MD_MESSAGE_SETTINGS_MSG2' , 'Forward to Email');
-define( '_MD_MESSAGE_SETTINGS_MSG3' , 'change settings');
-define( '_MD_MESSAGE_SETTINGS_MSG4' , 'Fail updating !');
-define( '_MD_MESSAGE_SETTINGS_MSG5' , 'You cannot use private message. Please modify settings.');
+define( '_MD_MESSAGE_SETTINGS' , 'Настройки личных сообщений');
+define( '_MD_MESSAGE_SETTINGS_MSG1' , 'Используйте личное сообщение');
+define( '_MD_MESSAGE_SETTINGS_MSG2' , 'Переслать на электронную почту');
+define( '_MD_MESSAGE_SETTINGS_MSG3' , 'изменить настройки');
+define( '_MD_MESSAGE_SETTINGS_MSG4' , 'Не удалось обновиться!');
+define( '_MD_MESSAGE_SETTINGS_MSG5' , 'Вы не можете использовать личное сообщение. Пожалуйста, измените настройки.');
 define( '_MD_MESSAGE_SETTINGS_MSG6' , 'The selected user cannot receive the message.');
-define( '_MD_MESSAGE_SETTINGS_MSG7' , 'Display message in the email.');
-define( '_MD_MESSAGE_SETTINGS_MSG8' , 'Messages per page');
-define( '_MD_MESSAGE_SETTINGS_MSG9' , 'Default settings (15) if value is 0.');
-define( '_MD_MESSAGE_SETTINGS_MSG10' , 'Blacklist');
-define( '_MD_MESSAGE_SETTINGS_MSG11' , 'Separate User IDs with a comma.');
-define( '_MD_MESSAGE_SETTINGS_MSG12' , '{0} was added to the blacklist.');
-define( '_MD_MESSAGE_SETTINGS_MSG13' , 'Fail adding {0}\'s to blacklist.');
-define( '_MD_MESSAGE_SETTINGS_MSG14' , '{0} already exists.');
-define( '_MD_MESSAGE_SETTINGS_MSG15' , 'Blacklist management');
-define( '_MD_MESSAGE_SETTINGS_MSG16' , 'The user was removed.');
-define( '_MD_MESSAGE_SETTINGS_MSG17' , 'Fail removing user.');
-define( '_MD_MESSAGE_SETTINGS_MSG18' , 'Details');
-define( '_MD_MESSAGE_SETTINGS_MSG19' , 'The user does not exist.');
+define( '_MD_MESSAGE_SETTINGS_MSG7' , 'Отображение сообщения в электронном письме.');
+define( '_MD_MESSAGE_SETTINGS_MSG8' , 'Сообщений на странице');
+define( '_MD_MESSAGE_SETTINGS_MSG9' , 'Настройки по умолчанию (15), если значение равно 0.');
+define( '_MD_MESSAGE_SETTINGS_MSG10' , 'Черный список');
+define( '_MD_MESSAGE_SETTINGS_MSG11' , 'Разделяйте идентификаторы пользователей запятой.');
+define( '_MD_MESSAGE_SETTINGS_MSG12' , '{0} был добавлен в черный список.');
+define( '_MD_MESSAGE_SETTINGS_MSG13' , 'Не удалось добавить пользователя {0} в черный список.');
+define( '_MD_MESSAGE_SETTINGS_MSG14' , '{0} уже существует.');
+define( '_MD_MESSAGE_SETTINGS_MSG15' , 'Управление черным списком');
+define( '_MD_MESSAGE_SETTINGS_MSG16' , 'Пользователь был удален.');
+define( '_MD_MESSAGE_SETTINGS_MSG17' , 'Не удалось удалить пользователя.');
+define( '_MD_MESSAGE_SETTINGS_MSG18' , 'Подробности');
+define( '_MD_MESSAGE_SETTINGS_MSG19' , 'Пользователь не существует.');
 
-define( '_MD_MESSAGE_MAILSUBJECT' , 'You have a New Private Message');
-define( '_MD_MESSAGE_MAILBODY' , '{0} login, please.');
+define( '_MD_MESSAGE_MAILSUBJECT' , 'У вас новое личное сообщение');
+define( '_MD_MESSAGE_MAILBODY' , '{0} войдите, пожалуйста.');
 
-define( '_MD_MESSAGE_ADDBLACKLIST' , 'Blacklist User');
+define( '_MD_MESSAGE_ADDBLACKLIST' , 'Пользователь черного списка');
 
-define( '_MD_MESSAGE_DELETEMSG1' , 'The parameter is incorrect.');
-define( '_MD_MESSAGE_DELETEMSG2' , 'No Items Selected.');
-define( '_MD_MESSAGE_DELETE_CONFIRM' , 'Are you sure you want to delete?');
+define( '_MD_MESSAGE_DELETEMSG1' , 'Неверный параметр.');
+define( '_MD_MESSAGE_DELETEMSG2' , 'Элементы не выбраны.');
+define( '_MD_MESSAGE_DELETE_CONFIRM' , 'Вы уверены, что хотите удалить?');
 
-define( '_MD_MESSAGE_SEARCH' , 'Search');
-
-if (!defined('LEGACY_MAIL_LANG')) {
-    define('LEGACY_MAIL_LANG','en');
-    define('LEGACY_MAIL_CHAR','UTF-8');
-    define('LEGACY_MAIL_ENCO','7bit');
-}
+define( '_MD_MESSAGE_SEARCH' , 'Поиск');

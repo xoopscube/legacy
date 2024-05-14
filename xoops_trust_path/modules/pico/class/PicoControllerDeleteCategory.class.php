@@ -31,26 +31,26 @@ class PicoControllerDeleteCategory extends PicoControllerAbstract {
 
 		// check existence
 		if ( $categoryObj->isError() ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 1, _MD_PICO_ERR_READCONTENT );
 			exit;
 		}
 		$cat_data = $categoryObj->getData();
 
 		// permission check
 		if ( empty( $cat_data['isadminormod'] ) ) {
-			redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_CATEGORYMANAGER );
+			redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_CATEGORYMANAGER );
 		}
 
 		// cat_id != 0 check
 		if ( 0 === $cat_data['id'] ) {
 			// LANGTD
-			redirect_header( XOOPS_URL . '/', 2, 'top category cannot be deleted' );
+			redirect_header( XOOPS_URL . '/', 1, 'top category cannot be deleted' );
 		}
 
 		// children check
 		if ( (is_countable($cat_data['redundants']['subcattree_raw']) ? count( $cat_data['redundants']['subcattree_raw'] ) : 0) > 0 ) {
 			// LANGTD
-			redirect_header( XOOPS_URL . '/', 2, 'child categories exist' );
+			redirect_header( XOOPS_URL . '/', 1, 'child categories exist' );
 		}
 
 		// delete transaction
@@ -61,7 +61,7 @@ class PicoControllerDeleteCategory extends PicoControllerAbstract {
 	}
 
 	public function render() {
-		redirect_header( XOOPS_URL . "/modules/$this->mydirname/", 2, _MD_PICO_MSG_CATEGORYDELETED );
+		redirect_header( XOOPS_URL . "/modules/$this->mydirname/", 1, _MD_PICO_MSG_CATEGORYDELETED );
 		exit;
 	}
 }

@@ -51,7 +51,7 @@ $permissions = $picoPermission->getPermissions( $mydirname );
 $currentCategoryObj = new PicoCategory( $mydirname, $picoRequest['cat_id'], $permissions );
 
 if ( $currentCategoryObj->isError() ) {
-	redirect_header( XOOPS_URL . "/modules/$mydirname/index.php", 2, _MD_PICO_ERR_READCATEGORY );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/index.php", 1, _MD_PICO_ERR_READCATEGORY );
 	exit;
 }
 

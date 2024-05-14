@@ -20,7 +20,7 @@ class PicoControllerGetLatestcontents extends PicoControllerAbstract {
 
 		// check existence
 		if ( $this->currentCategoryObj->isError() ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCATEGORY );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 1, _MD_PICO_ERR_READCATEGORY );
 			exit;
 		}
 
@@ -29,7 +29,7 @@ class PicoControllerGetLatestcontents extends PicoControllerAbstract {
 
 		// permission check
 		if ( ! $cat_data['can_read'] ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCATEGORY );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 1, _MD_PICO_ERR_READCATEGORY );
 			exit;
 		}
 

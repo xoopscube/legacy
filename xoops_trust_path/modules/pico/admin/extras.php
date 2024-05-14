@@ -96,7 +96,7 @@ if ( ! empty( $_POST['extras_delete'] ) && ! empty( $_POST['action_selects'] ) )
 		$db->query( 'DELETE FROM ' . $db->prefix( $mydirname . '_content_extras' ) . " WHERE content_extra_id=$extra_id" );
 	}
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=extras", 2, _MD_A_PICO_MSG_DELETED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=extras", 1, _MD_A_PICO_MSG_DELETED );
 	exit;
 }
 

@@ -54,7 +54,7 @@ if ( !empty( $_POST['independentpermission_update'] ) && 0 != $cat_id) {
 		// update permission_id of categories which permission_id is the cat_id
 		$db->queryF( 'UPDATE ' . $db->prefix( $mydirname . '_categories' ) . ' SET cat_permission_id=' . (int) $cat_permission_id . " WHERE cat_permission_id=$cat_id" );
 	}
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 2, _MD_PICO_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 1, _MD_PICO_MSG_UPDATED );
 	exit;
 }
 
@@ -75,7 +75,7 @@ if ( !empty( $_POST['group_update'] ) ) {
 			$db->queryF( 'INSERT INTO ' . $db->prefix( $mydirname . '_category_permissions' ) . " (cat_id,groupid,permissions) VALUES ($cat_id,$gid," . $db->quoteString( serialize( $perms ) ) . ')' );
 		}
 	}
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 2, _MD_PICO_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 1, _MD_PICO_MSG_UPDATED );
 	exit;
 }
 
@@ -129,7 +129,7 @@ if ( !empty( $_POST['user_update'] ) ) {
 		}
 	}
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 2, _MD_PICO_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access&amp;cat_id=$cat_id", 1, _MD_PICO_MSG_UPDATED );
 	exit;
 }
 

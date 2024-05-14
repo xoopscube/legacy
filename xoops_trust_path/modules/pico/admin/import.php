@@ -72,7 +72,7 @@ if ( ! empty( $_POST['do_import'] ) && ! empty( $_POST['import_mid'] ) ) {
 			break;
 	}
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=import", 2, _MD_A_PICO_MSG_IMPORTDONE );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=import", 1, _MD_A_PICO_MSG_IMPORTDONE );
 	exit;
 }
 
@@ -85,7 +85,7 @@ if ( ! empty( $_POST['do_syncall'] ) ) {
 
 	pico_sync_all( $mydirname );
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=import", 2, _MD_A_PICO_MSG_SYNCALLDONE );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=import", 1, _MD_A_PICO_MSG_SYNCALLDONE );
 	exit;
 }
 
@@ -98,7 +98,7 @@ if ( ! empty( $_POST['do_clearbodycache'] ) ) {
 
 	pico_clear_body_cache( $mydirname );
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=import", 2, _MD_A_PICO_MSG_CLEARBODYCACHEDONE );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=import", 1, _MD_A_PICO_MSG_CLEARBODYCACHEDONE );
 	exit;
 }
 

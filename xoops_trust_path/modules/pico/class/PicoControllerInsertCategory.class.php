@@ -32,7 +32,7 @@ class PicoControllerInsertCategory extends PicoControllerAbstract {
 
 		// permission check
 		if ( empty( $pcat_data['can_makesubcategory'] ) ) {
-			redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_MAKECATEGORY );
+			redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_MAKECATEGORY );
 		}
 
 		// create category
@@ -43,7 +43,7 @@ class PicoControllerInsertCategory extends PicoControllerAbstract {
 	}
 
 	public function render( $target = null ) {
-		redirect_header( XOOPS_URL . "/modules/$this->mydirname/" . pico_common_make_category_link4html( $this->mod_config, $this->new_cat_id, $this->mydirname ), 2, _MD_PICO_MSG_CATEGORYMADE );
+		redirect_header( XOOPS_URL . "/modules/$this->mydirname/" . pico_common_make_category_link4html( $this->mod_config, $this->new_cat_id, $this->mydirname ), 1, _MD_PICO_MSG_CATEGORYMADE );
 		exit;
 	}
 }

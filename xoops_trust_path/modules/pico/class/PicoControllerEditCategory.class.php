@@ -28,7 +28,7 @@ class PicoControllerEditCategory extends PicoControllerAbstract {
 
 		// check existence
 		if ( $categoryObj->isError() ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 1, _MD_PICO_ERR_READCONTENT );
 			exit;
 		}
 
@@ -42,11 +42,11 @@ class PicoControllerEditCategory extends PicoControllerAbstract {
 		if ( 'makecategory' === $page ) {
 			$pcat_data = $this->currentCategoryObj->getData();
 			if ( empty( $pcat_data['can_makesubcategory'] ) ) {
-				redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_CREATECATEGORY );
+				redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_CREATECATEGORY );
 			}
 		} else {
 			if ( empty( $cat_data['isadminormod'] ) ) {
-				redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_CATEGORYMANAGEMENT );
+				redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_CATEGORYMANAGEMENT );
 			}
 		}
 

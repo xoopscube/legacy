@@ -106,7 +106,7 @@ class PicoControllerAbstract {
             http_response_code(404);
 			readfile( $error404 );
 		} else {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 1, _MD_PICO_ERR_READCONTENT );
 		}
 		exit;
 	}

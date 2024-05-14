@@ -1,6 +1,6 @@
 <{* ---------- Block-Right *}>
 <{foreach item=block from=$xoops_rblocks}>
-<{if !$block.title|strstr:"admin" && !$block.title|strstr:"hero"}>
+<{if !$block.title|strstr:"admin"}>
 <div class="block-right b-<{$block.weight}>">
     <h4 data-layout="row center-justify" class="block-title">
         <{if $xoops_isadmin}>

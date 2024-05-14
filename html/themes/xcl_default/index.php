@@ -79,6 +79,17 @@ section#block-top header h1 {
 section#block-top h3 {
     height: fit-content;
 }
+
+  .layout { font-size: .75rem; }
+  .layout .grid-c{border:1px dotted var(--pico-ins-color)}
+  .layout .nav-aside{border:1px solid var(--pico-mark-background-color)}
+  .layout div div:hover {background: var(--pico-secondary-focus);}
+  .layout span {
+      border: 1px solid var(--muted-border-color);
+      display:flex;
+      flex-wrap: wrap;
+      padding: var(--nav-element-spacing-horizontal);
+  }
 </style>
 </head>
 <body>
@@ -143,18 +154,6 @@ section#block-top h3 {
 
 </div>
 
-<h3>Center Blocks on Top page</h3>
-
-<ol>
-<li>Browse to Admin > Block Management > Add Custom Block
-<li>Give the Block Title e.g. 'top-none-myblock'<br>
-the prefix 'top-' with 'none-' only show the block content
-<li>Select the side Center (left, center, right) 
-<li>Write some content
-<li>Select Target Modules : Toppage</li>
-<li>Select Target Groups  : check all groups and submit</li>
-</ol>
-
 </section>
 
 
@@ -164,6 +163,7 @@ the prefix 'top-' with 'none-' only show the block content
     <nav>
       <ul>
         <li><a class="secondary" href="#" aria-current="page">Introduction</a></li>
+        <li><a class="secondary" href="#alayout">Layout</a></li>
         <li><a class="secondary" href="#accordions">PicoCSS</a></li>
         <li><a class="secondary" href="#jqueryui">Jquery UI  </a></li>
       </ul>
@@ -173,10 +173,69 @@ the prefix 'top-' with 'none-' only show the block content
       
 <div id="content" role="main">  
 
-<hgroup>
-  <h1>Pico</h1>
-  <p>A pure HTML example, without dependencies.</p>
-</hgroup>
+<article class="layout" id="layout">
+<h4>Default theme layout</h4>
+The placeholders for the content and blocks are defined by the theme layout.
+    <div class="alert info">
+        You can create a custom <code>center-block-left</code> to trigger a component display on the <code>Top page</code><br> 
+        Add to the Block Title a prefix "top-" and select the target "Toppage".</div>
+
+    <article>
+      <p>Header Nav</p>
+        <header class="grid-c">
+            <div class="action-control">
+                <div data-tooltip="Logo set in Render System"> Logo</div>
+                <div style="display: inline-flex;"><code data-tooltip="Component nav_user">User menu</code>&nbsp;&nbsp;<code data-tooltip="Component nav_theme">Light | Dark</code></div>
+        </header>
+        <hr>
+        <p>Component top center</p>
+        <div class="grid">
+            <div class="grid-c" data-tooltip="Block Title prefix 'top-none-' to only display content"><code>grid-column</code><br>center-block-left<br>Block Title prefix: top-</div>
+            <div class="grid-c" data-tooltip="Block Title prefix 'top-none-' to only display content"><code>grid-column</code><br>center-block-center<br>Block Title prefix: top-</div>
+            <div class="grid-c" data-tooltip="Block Title prefix 'top-none-' to only display content"><code>grid-column</code><br>center-block-right<br>Block Title prefix: top-</div>
+        </div>
+        <hr>
+        <p>Main container</p>
+        <div class="grid">
+    <div class="nav-aside" data-tooltip="Block-Left"><code>aside nav</code><br>Side-Left<br>Default Blocks:<br><ul><li>User Menu<li>Main Menu<li>Themes</ul></div>
+    <div class="grid-c" data-tooltip="Content"><code>div.content</code><br>App Start Page [template]<br>or<br>Module Content</div>
+        <div class="nav-aside" data-tooltip="Block-Right and Admin Panel">
+            <code>aside nav</code>
+            <br>Side-Right
+            <br>Block-Right and for Admin Panel a Block Title with prefix <code><u>'admin'</u></code>
+        </div>
+    </div>
+    <hr>
+    <p>Section container-fluid</p>
+    <div class="grid">
+        <div class="grid-c" data-tooltip="Block Title prefix 'none-' to only display content"><code>grid-column</code><br>center-block-left</div>
+        <div class="grid-c" data-tooltip="Block Title prefix 'none-' to only display content"><code>grid-column</code><br>center-block-left</div>
+        <div class="grid-c" data-tooltip="Block Title prefix 'none-' to only display content"><code>grid-column</code><br>center-block-left</div>
+    </div>
+    <hr>
+    <footer class="grid-c" data-tooltip="Edit theme.html and module Render Preferences">Footer</footer>
+    </article>
+    
+</article>
+
+<article>
+<h4>Top Page Center Blocks</h4>
+
+<ol>
+<li>Browse to <code>Admin > Block Management > Add Custom Block</code>
+<li>Give the Block Title e.g. <code>top-none-myblock</code><br>
+the prefix <code>top-</code> with <code>none-</code> only show the block content
+<li>Select the side Center (left, center, right) 
+<li>Write some content
+<li>Select Target Modules : Toppage</li>
+<li>Select Target Groups  : check all groups and submit</li>
+</ol>
+</article>
+
+
+<h1>Pico</h1>
+<p>A pure HTML example, without dependencies.</p>
+
 
 <!-- Accordions -->
     <article id="accordions">
@@ -768,30 +827,6 @@ the prefix 'top-' with 'none-' only show the block content
       height: 56px;
     }
     </style>
-
-      <div>
-        <h2>Control Group</h2>
-        <fieldset>
-          <legend>Horizontal</legend>
-          <div class="controlgroup">
-            <select id="car-type">
-              <option>Compact car</option>
-              <option>Midsize car</option>
-              <option>Full size car</option>
-              <option>SUV</option>
-              <option>Luxury</option>
-              <option>Truck</option>
-              <option>Van</option>
-            </select>
-            <label for="insurance">Insurance</label>
-            <input type="checkbox" name="insurance" id="insurance">
-            <label for="horizontal-spinner" class="ui-controlgroup-label"># of cars</label>
-            <input id="horizontal-spinner" class="ui-spinner-input">
-            <button>Book Now!</button>
-          </div>
-        </fieldset>
-      </div>
-      
       <div>
         <fieldset>
           <legend>Rental Car</legend>

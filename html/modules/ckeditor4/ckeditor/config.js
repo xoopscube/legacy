@@ -13,7 +13,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.language = 'en';
 
     config.width = '100%';     // Editor dimension
-    config.height = '320px';   // Use pixels or CSS unit (percent)
+    config.height = '280px';   // Use pixels or CSS unit (percent)
     
     //var uitheme = JSON.parse(localStorage.getItem('uicolor'));
     // config.uiColor = localStorage.getItem('uicolor');

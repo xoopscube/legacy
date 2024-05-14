@@ -15,55 +15,74 @@
         <{include file=db:message_nav.html}>
     </header>
 
-    <form action="index.php?action=new" method="post" id="message_new">
-        <{xoops_token form=$mActionForm}>
-        <{xoops_input type=hidden name=mode}>
+<form action="index.php?action=new" method="post" id="message_new">
+    <{xoops_token form=$mActionForm}>
+    <{xoops_input type=hidden name=mode}>
 
 
-        <{if $errMsg !=""}>
-            <div class="alert warning">
-                <ul>
-                    <{foreach item=error from=$errMsg}>
-                    <li><{$error}></li>
-                    <{/foreach}>
-                </ul>
-            </div>
-            <hr>
-        <{/if}>
+<{if $errMsg !=""}>
+    <div class="alert warning">
+        <ul>
+            <{foreach item=error from=$errMsg}>
+            <li><{$error}></li>
+            <{/foreach}>
+        </ul>
+    </div>
+    <hr>
+<{/if}>
 
-        <{if $mActionForm->get('Legacy_Event_User_Preview') !=""}>
-            <h3><{$smarty.const._MD_MESSAGE_TEMPLATE3}> : <{$mActionForm->getShow('title')}></h3>
-            <p><{$smarty.const._MD_MESSAGE_TEMPLATE2}> : <{$mActionForm->getShow('uname')}>
-                <br><{$smarty.const._MD_MESSAGE_TEMPLATE4}></p>
+<{* ----- PREVIEW *}>
+<{if $mActionForm->get('Legacy_Event_User_Preview') !=""}>
+<dialog open>
+<article>
+    <header>
+        <h3>
+        <span aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE3}>">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="#a46319" fill-opacity="0" d="M12 13L4 8V18H20V8L12 13Z">
+        <animate fill="freeze" attributeName="fill-opacity" begin="2s" dur="0.3s" values="0;0.3"/></path><g fill="none" stroke="#a46319" stroke-linecap="round" stroke-width="2"><rect width="18" height="14" x="3" y="5" stroke-dasharray="64" stroke-dashoffset="64" rx="1"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.2s" values="64;0"/></rect><path stroke-dasharray="24" stroke-dashoffset="24" d="M3 6.5L12 12L21 6.5">
+        <animate fill="freeze" attributeName="stroke-dashoffset" begin="1.2s" dur="0.8s" values="24;0"/></path></g></svg>
+        <{$mActionForm->getShow('title')}></span>
+        </h3>
+    </header>
+    <p><img src="<{$mActionForm->getShow('uname')|xoops_user_avatarize}>" width="24" height="24" class="avatar" alt="<{$smarty.const._MD_MESSAGE_TEMPLATE2}>"> 
+    <{$mActionForm->getShow('uname')}>
+    </p>
+    <code><{$smarty.const._MD_MESSAGE_TEMPLATE4}></code>
+    <blockquote>
+        <{$mActionForm->getShow('note', 'toShowTarea')}>
+    </blockquote>
+    <hr>
+    <footer>
+        <div class="grid">
+        <button class="secondary outline" aria-busy="false" aria-label="Close"><{$smarty.const._MD_MESSAGE_TEMPLATE0}></button> 
+        <button class="primary" type="submit"  name="Legacy.Event.User.Submit" value="Send message" aria-busy="false"><{$smarty.const._MD_MESSAGE_TEMPLATE1}></button>
+        </div>
+    </footer>
+</article>
+</dialog>
+<{/if}>
 
-            <blockquote>
-                <{$mActionForm->getShow('note', 'toShowTarea')}>
-            </blockquote>
-            <hr>
-        <{/if}>
-
-
-        <label for="uname"><{$smarty.const._MD_MESSAGE_TEMPLATE2}>
-        <{xoops_input name=uname maxlength=25 value=$mActionForm->get('uname')}>
-        </label>
-        <label for="title"><{$smarty.const._MD_MESSAGE_TEMPLATE3}>
-        <{xoops_input name=title class="form-control form-control-sm" maxlength=100 value=$mActionForm->get('title')}>
-        </label>
-        <label for="note" class="note"><{$smarty.const._MD_MESSAGE_TEMPLATE4}>
-        <{xoops_dhtmltarea class="form-control" rows=7 id=note name=note value=$mActionForm->get('note') editor=bbcode}>
-        </label>
+    <label for="uname"><{$smarty.const._MD_MESSAGE_TEMPLATE2}>
+    <{xoops_input name=uname maxlength=25 value=$mActionForm->get('uname')}>
+    </label>
+    <label for="title"><{$smarty.const._MD_MESSAGE_TEMPLATE3}>
+    <{xoops_input name=title class="form-control form-control-sm" maxlength=100 value=$mActionForm->get('title')}>
+    </label>
+    <label for="note" class="note"><{$smarty.const._MD_MESSAGE_TEMPLATE4}>
+    <{xoops_dhtmltarea class="form-control" rows=7 id=note name=note value=$mActionForm->get('note') editor=bbcode}>
+    </label>
         
-        <hr>
-        
-        <footer>
-            <div class="grid">
-            <{legacy_button class="outline" role="button" id=Preview Text=$smarty.const._MD_MESSAGE_TEMPLATE5}>
+    <hr>
+    
+    <footer>
+        <div class="grid">
+        <button type="submit" id="Preview" name="Legacy.Event.User.Preview" value="Preview" class="outline preview" aria-busy="false">
+        <{$smarty.const._MD_MESSAGE_TEMPLATE5}></button>
 
-            <{legacy_button class="primary" role="button" id=Submit Text=$smarty.const._MD_MESSAGE_TEMPLATE6}>
-            </div>
-        </footer>
+        <{legacy_button class="primary" role="button" id=Submit Text=$smarty.const._MD_MESSAGE_TEMPLATE6}>
+        </div>
+    </footer>
 
     </form>
 
 </article>
-

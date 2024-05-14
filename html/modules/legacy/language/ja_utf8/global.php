@@ -102,7 +102,7 @@ define( '_WARNINWRITEABLE' , "<span>警告: <b>Mainfile</b> への書き込み�
 
 define( '_WARNPHPENV' , '注意：PHPの設定環境の中で、"%s" が "%s"になっています。%s');
 define( '_WARNSECURITY' , '（サイトの脆弱につながる危険性があります。）');
-define( '_WARN_INSTALL_TIP' , 'プリロードを有効にする — 開発目的のみ!<br>プリロードを使用してメインファイルとインストール ディレクトリを保持します。<br>セキュリティ上の問題を防ぐために、必ず chomd してインストールを削除してください。');
+define( '_WARN_INSTALL_TIP' , 'プリロードを有効にする — 開発目的のみ!<br>「インストール」ディレクトリが保持されます。<br>セキュリティの問題を防ぐために、必ず読み取り専用の「mainfile.php」を chmod し、「install」を削除してください。');
 
 //%%%%%%	File Name themeuserpost.php 	%%%%%
 define( '_POSTEDBY' , '投稿者：'); // Posted date

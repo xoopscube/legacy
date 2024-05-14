@@ -10,6 +10,7 @@ define( '_NOT_BOOKMARK_NOTIFY' , "Marcador de páginas");
 define( '_NOT_BOOKMARK_NOTIFYCAP' , "Marcar a página desta categoria (sem notificação).");
 define( '_NOT_BOOKMARK_NOTIFYDSC' , "Manter informações sobre atualizações deste artigo sem receber qualquer notificação de evento.");
 define( '_NOT_CATEGORY' , "Categoria");
+define( '_NOT_CANCEL' , 'Cancelar');
 define( '_NOT_CHANGE' , "Modificar");
 define( '_NOT_CHECKALL' , "Marcar todas as opções");
 define( '_NOT_CLEAR' , "Limpar");

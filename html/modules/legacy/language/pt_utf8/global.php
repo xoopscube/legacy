@@ -233,7 +233,7 @@ define( '_WARNINWRITEABLE' , "<span>Atenção: <b>Mainfile</b> com permissão de
 
 define( '_WARNPHPENV' , "Atenção: o parâmetro %s do arquivo php.ini está configurado como %s. %s");
 define( '_WARNSECURITY' , "Isto deixa o seu portal menos seguro. Se possível, altere as configurações de seu servidor.");
-define( '_WARN_INSTALL_TIP' , 'Ative o pré-carregamento — apenas para fins de desenvolvimento!<br> Use o pré-carregamento para manter o arquivo principal e o diretório de instalação.<br>Lembre-se de clicar em chomd e excluir a instalação para evitar qualquer problema de segurança.');
+define( '_WARN_INSTALL_TIP' , 'Ative o pré-carregamento — apenas para fins de desenvolvimento!<br> Isto permite manter o diretório de instalação.<br>Altere "mainfile.php" com permissões somente de leitura e remova "install" por razões de segurança.');
 
 define( '_WEEK' , "Uma semana");
 define( '_WELCOMETO' , "Bem-vindo ao %s");

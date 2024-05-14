@@ -1,17 +1,5 @@
 <{* Dev-Mode Toggle *}>
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
-<style>
-    .layout { font-size: .75rem; }
-    .layout .grid-c{border:1px dotted var(--pico-ins-color)}
-    .layout .nav-aside{border:1px solid var(--pico-mark-background-color)}
-    .layout div div:hover {background: var(--pico-secondary-focus);}
-    .layout span {
-        border: 1px solid var(--muted-border-color);
-        display:flex;
-        flex-wrap: wrap;
-        padding: var(--nav-element-spacing-horizontal);
-    }
-</style>
 
 <article>
 
@@ -21,17 +9,19 @@
     <h3>Getting started</h3>
 
     <p>Your website is preconfigured with default settings.
-        The backend control panel provides a graphical user interface, also called admin area or dashboard, for configuring your website, installing components, and creating content.</p>
-
+        The backend administration provides a graphical user interface, also called control panel or admin dashboard,
+        to configure your website, install components, translation and localization.</p>
     <hr>
 
     <details>
     <summary>General Settings</summary>
     <p>The system module allows you to customize the general settings of your platform, such as the name and slogan of the site,
-        language and theme, close your site and limit access to certain user groups.
+        language and theme, or close your site and restrict access by user groups.
     <p><strong>Start Page or Module</strong></p>
     <p>You can modify this template <code>"app_start_page.html”</code>, or you can select a module as the starting point of your website.</p>
-    <{if $xoops_isadmin}><p><code>Administration »» System »» <a href="" target="_blank">Preferences ⭧</a></code></p><{/if}>
+    <{if $xoops_isadmin}>
+    <p><code>Administration »» System »» <a href="./modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1" target="_blank">Preferences ⭧</a></code></p>
+    <{/if}>
     </details>
       
     <hr>
@@ -44,11 +34,11 @@
     <p>When you're ready to launch your site, simply go to System Preferences to open it to the public.</p> 
        
     <ol>
-        <li>🚧 Maintenance Mode - Turn your site off?<br> Select yes to turn your site off so that only users in selected groups have access to the site.</li>
-        <li>🚧 Maintenance Mode - Select groups<br>Groups that are allowed to access while the site is turned off. Users in the default webmasters group are always granted access.</li>
-        <li>🚧 Maintenance Mode - Message<br>The text that is displayed when closing the site.</li>
+        <li>Maintenance Mode - Turn your site off?<br> Select yes to turn your site off so that only users in selected groups have access to the site.</li>
+        <li>Maintenance Mode - Select groups<br>Groups that are allowed to access while the site is turned off. Users in the default webmasters group are always granted access.</li>
+        <li>Maintenance Mode - Message<br>The text that is displayed when closing the site.</li>
     </ol>
-    <p>You can edit the Template <code>site_closed.html"</code> used when the site is closed, maintenance mode, coming soon, etc.</p>
+    <p>You can edit the Template <code>site_closed.html"</code> and customize the design to match your notice, maintenance, coming soon, etc.</p>
     <{if $xoops_isadmin}>
     <p><code>Administration »» System »» Preferences »» <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1" target="_blank">"Maintenance mode-Turn your site off?" ⭧</a></code></p>
     <{/if}> 
@@ -77,7 +67,7 @@
     <details>
     <summary>Modules Preferences</summary>
     <p>Modules also have their own settings, accessible from their "preferences" menu.</p>
-    <p>For example, the render module allows you to manage the meta data of your website, themes (general appearance of your website), and templates (the shape of the content of modules and blocks).</p>
+    <p>For example, the render module allows you to manage the meta data of your website, themes (general appearance of your website), and templates that shape the contents of modules and blocks.</p>
     <{if $xoops_isadmin}>
     <p><code>Administration »» Render »» <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=3" target="_blank">Preferences ⭧</a></code></p>
     <{/if}>
@@ -87,10 +77,10 @@
 
     <details>
     <summary>Module Blocks</summary>
-    <p>When you install a module, blocks are automatically added to the system Block management.
-        These bloks often have their own settings for functionality and templates for customization.</p>
-    <div class="alert info">On the frontend, click the three-dot drop-down menu to edit the block.</div>
-    <p>For example, the parameters of the "Main Menu" block allow you to display the icons of each module and to display the subcategories.</p>
+    <p>When you install a module, its blocks are automatically added to the Block Management system.
+        These blocks often have their own functionality settings and customization templates.</p>
+    <div class="alert info">On the frontend, click the three-dot dropdown menu to edit the block.</div>
+    <p>For example, the parameters of the "Main Menu" block allow you to display icons for each module and subcategories.</p>
     <{if $xoops_isadmin}>
     <p><code>Administration »» System »» <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList" target="_blank">Block Management ⭧</a></code></p>
     <{/if}>
@@ -100,58 +90,14 @@
 
     <details>
     <summary>Theme</summary>
-    <p>A theme consists of a single HTML file that can include components, CSS style sheet, JavaScript, modules and block templates.</p>
-    <div class="alert info">On the frontend, click the three-dot drop-down menu to edit the block.</div>
-    <p>For example, the parameters of the "Main Menu" block allow you to display the icons of each module and to display the subcategories.</p>
+    <p>A theme consists of a single HTML file that can include components, a CSS stylesheet, JavaScript, modules, and block templates. On the frontend, the Themes block allows users to select their preferred theme. 
+        You first need to enable the themes users can choose from, in Theme Management.</p>
+    <div class="alert info">Learn more about the Theme Options - Custom Parameters link in the Theme Management</div>
     <{if $xoops_isadmin}>
-    <p><code>Administration »» System »» <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList" target="_blank">Block Management ⭧</a></code></p>
+    <p><code>Administration »» System »» <a href="./modules/legacy/admin/index.php?action=ThemeList" target="_blank">Theme Management ⭧</a></code></p>
     <{/if}>
     </details>
 
     <hr>
 
-</article>
-
-<article class="layout">
-<h4>Default theme layout</h4>
-The placeholders for the content and blocks are defined by the theme layout.
-    <div class="alert info">
-        You can create a custom <code>center-block-left</code> that triggers a component to appear on the <code>Top page</code>.<br> 
-            Simply add to the block title a prefix "top-" and select the target "Toppage".</div>
-
-    <article>
-        <header class="grid-c">
-            <div class="action-control">
-                <div><code data-tooltip="Edit theme.html and module Render Preferences">nav-top</code> Logo</div>
-                <div style="display: inline-flex;"><code data-tooltip="Component nav_user">User menu</code>&nbsp;&nbsp;<code data-tooltip="Component nav_theme">Light | Dark</code></div>
-        </header>
-
-        <div class="grid" style="border:1px dotted var(--pico-ins-color)" data-tooltip="Block Title with prefix 'top-none-' to only show block content">
-            <div class="grid-c"><code>grid-column</code><br>center-block-left<br>Block Title prefix: top</div>
-            <div class="grid-c"><code>grid-column</code><br>center-block-center<br>Block Title prefix: top</div>
-            <div class="grid-c"><code>grid-column</code><br>center-block-right<br>Block Title prefix: top</div>
-        </div>
-
-        <p>Main container</p>
-        <div class="grid">
-            <div class="nav-aside"><code>aside nav</code><br>Side-Left<br>Default Blocks:<br><ul><li>User Menu<li>Main Menu<li>Themes</ul></div>
-            <div class="grid-c"><code>div.content</code><br>App Start Page [template]<br>or Module content</div>
-            <div class="nav-aside">
-                <code>aside nav</code>
-                <br>Side-Right
-                <br>For Admin panel only, add a block <code><i>Title</i></code> with prefix <code><u>'admin'</u></code> e.g. "admin Menu"
-            </div>
-        </div>
-
-        <p>Section container-fluid</p>
-        <div class="grid" data-tooltip="Block Title with prefix 'none-' to only show block content">
-            <div class="grid-c"><code>grid-column</code><br>center-block-left</div>
-            <div class="grid-c"><code>grid-column</code><br>center-block-left</div>
-            <div class="grid-c"><code>grid-column</code><br>center-block-left</div>
-        </div>
-        
-        <footer class="grid-c" data-tooltip="Edit theme.html and module Render Preferences">Footer</footer>
-    </article>
-   
-    
 </article>

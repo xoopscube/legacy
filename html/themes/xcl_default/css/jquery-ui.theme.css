@@ -17,9 +17,9 @@
     box-shadow      : var(--pico-box-shadow );
     padding         : calc(var(--block-spacing-horizontal) * 1);
     border          : var(--pico-border-width) solid var(--pico-form-element-border-color);
+    background-color: var(--pico-modal-overlay-background-color);  
+    backdrop-filter : var(--pico-modal-overlay-backdrop-filter);  
     -webkit-backdrop-filter: var(--pico-modal-overlay-backdrop-filter);
-    backdrop-filter: var(--pico-modal-overlay-backdrop-filter);
-    background-color: var(--pico-modal-overlay-background-color);
 
 }
 .ui-dialog-dragging > .ui-widget-header {
@@ -85,7 +85,7 @@ html .ui-button.ui-state-disabled:hover,
 html .ui-button.ui-state-disabled:active {
     background-color: var(--pico-background-color);
     border          : 1px solid var(--pico-form-element-border-color);
-    color           : var(--pico-primary-inverse);
+    color           : var(--pico-contrast);
     font            : var(--pico-font-size);
     font-weight     : inherit;
 }

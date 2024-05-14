@@ -211,7 +211,7 @@ class PicoUriMapper {
 	public function processWrapPath( $path_info ): ?array {
 		// check wraps mode enabled
 		if ( empty( $this->config['use_wraps_mode'] ) ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 1, _MD_PICO_ERR_READCONTENT );
 			exit;
 		}
 

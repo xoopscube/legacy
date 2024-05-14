@@ -35,7 +35,7 @@ if ( empty( $forum_id ) ) {
 
 	if ( empty( $forum_id ) ) {
 
-		redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access", 5, _MD_A_D3FORUM_ERR_CREATEFORUMFIRST );
+		redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=category_access", 2, _MD_A_D3FORUM_ERR_CREATEFORUMFIRST );
 		exit;
 	}
 
@@ -52,7 +52,7 @@ if ( empty( $forum_id ) ) {
 if ( ! empty( $_POST['group_update'] ) && empty( $invaild_forum_id ) ) {
 
 	if ( ! $xoopsGTicket->check( true, 'd3forum_admin' ) ) {
-		redirect_header( XOOPS_URL . '/', 3, $xoopsGTicket->getErrors() );
+		redirect_header( XOOPS_URL . '/', 2, $xoopsGTicket->getErrors() );
 	}
 
 	$db->query( 'DELETE FROM ' . $db->prefix( $mydirname . '_forum_access' ) . " WHERE forum_id=$forum_id AND groupid>0" );
@@ -71,7 +71,7 @@ if ( ! empty( $_POST['group_update'] ) && empty( $invaild_forum_id ) ) {
 			$db->query( 'INSERT INTO ' . $db->prefix( $mydirname . '_forum_access' ) . " SET forum_id=$forum_id, groupid=$gid, can_post=$can_post, can_edit=$can_edit, can_delete=$can_delete, post_auto_approved=$post_auto_approved, is_moderator=$is_moderator" );
 		}
 	}
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=forum_access&amp;forum_id=$forum_id", 3, _MD_D3FORUM_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=forum_access&amp;forum_id=$forum_id", 2, _MD_D3FORUM_MSG_UPDATED );
 	exit;
 }
 
@@ -126,7 +126,7 @@ if ( ! empty( $_POST['user_update'] ) && empty( $invaild_forum_id ) ) {
 		}
 	}
 
-	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=forum_access&amp;forum_id=$forum_id", 3, _MD_D3FORUM_MSG_UPDATED );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/admin/index.php?page=forum_access&amp;forum_id=$forum_id", 2, _MD_D3FORUM_MSG_UPDATED );
 	exit;
 }
 

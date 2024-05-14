@@ -35,14 +35,14 @@ class PicoControllerDeleteContent extends PicoControllerAbstract {
 
 		// check existence
 		if ( $this->contentObj->isError() ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 1, _MD_PICO_ERR_READCONTENT );
 			exit;
 		}
 		$content_data = $this->contentObj->getData();
 
 		// permission check (can_delete)
 		if ( empty( $content_data['can_delete'] ) ) {
-			redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_DELETECONTENT );
+			redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_DELETECONTENT );
 			exit;
 		}
 
@@ -54,7 +54,7 @@ class PicoControllerDeleteContent extends PicoControllerAbstract {
 	}
 
 	public function render() {
-		redirect_header( XOOPS_URL . "/modules/$this->mydirname/" . pico_common_make_category_link4html( $this->mod_config, $this->currentCategoryObj->getData() ), 2, _MD_PICO_MSG_CONTENTDELETED );
+		redirect_header( XOOPS_URL . "/modules/$this->mydirname/" . pico_common_make_category_link4html( $this->mod_config, $this->currentCategoryObj->getData() ), 1, _MD_PICO_MSG_CONTENTDELETED );
 		exit;
 	}
 }

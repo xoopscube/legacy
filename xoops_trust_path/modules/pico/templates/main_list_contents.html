@@ -142,7 +142,7 @@
 
             <{if $category.can_post}>
             <div>
-            <a role="button" class="primary new" href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mc<{$category.id}>">
+            <a aria-busy="false" role="button" class="primary new" href="<{$mod_url}>/index.php?page=makecontent&amp;cat_id=<{$category.id}>&amp;ret=mc<{$category.id}>">
                 <img class="svg new-topic" src="<{$xoops_url}>/images/icons/file-new.svg" width="1em" height="1em" alt="new topic">
                 <{$smarty.const._MD_PICO_LINK_MAKECONTENT}></a>
             </div>
@@ -156,7 +156,6 @@
                     Action
                 </summary>
                 <ul>
-
                     <{if $category.can_makesubcategory}>
                     <li><a href="<{$mod_url}>/index.php?page=makecategory&amp;pid=<{$category.id}>">
                         <img class="svg cat-new" src="<{$xoops_url}>/images/icons/folder-plus.svg" width="1em" height="1em" alt="new category">
@@ -178,7 +177,6 @@
                         <img class="svg file-move" src="<{$xoops_url}>/images/icons/file-move.svg" width="1em" height="1em" alt="batch">
                         <{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}></a></li>
                     <{/if}>
-
                 </ul>
             </details>
             </div>

@@ -12,15 +12,15 @@
  *
  * 1. Theme Switcher
  * 2. Modal
- * - jQuery Document Ready - helper plugins
+ * -- jQuery Document Ready - helper plugins
  * 3. Render SVG
- * 4. Notification Script Time
+ * 4. Notification Time
  * 5. Dropdown - block options, menu, etc
  * 6. Close on click document
  * 7. Highlight Message nav-tab active
  * 8.1 remove border
  * 8.2 url constructor
- * 9. Preload
+ * 9. Aria-busy Toogle
  */
 
 /*
@@ -182,7 +182,7 @@ $(function () {
   // 3. Inline SVG icons
   $('.svg').renderClassSvg();
 
-  // 4. Notification Script Time
+  // 4. Notification Time
   $('div.runtime').fadeIn( 750 ).delay( 3000 ).fadeOut( 500 );
 
   // 5. Dropdown - block options, menu, etc
@@ -232,5 +232,11 @@ $(function () {
       // Highlight dropdown menu
       $('.settings ').parent('li').addClass("ui-state-active");
   }
+  // 9. Aria-busy Toogle
+  $('[aria-busy="false"]').on( "click", function(event) {
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    $(this).prop("ariaBusy", true);
+  });
 
 });

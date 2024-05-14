@@ -37,7 +37,7 @@ class PicoControllerGetHistory extends PicoControllerAbstract {
 
 		// permission check by 'can_edit'
 		if ( empty( $cat_data['can_edit'] ) ) {
-			redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_EDITCONTENT );
+			redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_EDITCONTENT );
 			exit;
 		}
 

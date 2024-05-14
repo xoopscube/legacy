@@ -1,9 +1,7 @@
 <{* Dev-Mode Toggle *}>
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
-
 
 <form name="contentform"
       id="contentform"
@@ -135,7 +133,6 @@
 		<label for="gender_female">female</label>
 	</p>
 
-
 	<!-- extra fields sample (SELECT) -->
 	<{assign var="countries" value=","|explode:"---,USA,UK,France,Japan"}>
 
@@ -145,7 +142,6 @@
 			<{html_options values=$countries output=$countries selected=$content.ef.address1}>
 		</select>
 	</label>
-
 
 	<!-- extra images sample -->
 	<label for="ei_myphoto">
@@ -171,9 +167,9 @@
 
 		<label for="htmlheader_onoff">
 			<input type="checkbox" id="htmlheader_onoff" onclick="if(this.checked){
-					   xoopsGetElementById('htmlheader').style.display='block';
+					document.getElementById('htmlheader').style.display='block';
 				   }else{
-					   xoopsGetElementById('htmlheader').style.display='none';};"  <{if $content.htmlheader}>checked="checked"<{/if}>>
+					document.getElementById('htmlheader').style.display='none';};"  <{if $content.htmlheader}>checked="checked"<{/if}>>
 			<{$smarty.const._MD_PICO_LABEL_HTMLHEADERONOFF}></label>
 
 			<{if ! $mod_config.allow_each_htmlheader}>
@@ -392,7 +388,7 @@
 					   name="specify_created_time"
 					   id="specify_created_time"
 					   value="1"
-					   onclick="if(this.checked){xoopsGetElementById('created_time').style.display='inline';}else{xoopsGetElementById('created_time').style.display='none'}" <{$specify_created_time_checked|default:''}>>
+					   onclick="if(this.checked){document.getElementById('created_time').style.display='inline';}else{document.getElementById('created_time').style.display='none'}" <{$specify_created_time_checked|default:''}>>
 				<span><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}> <small><{$content_base.created_time_formatted}></small></span>
 
 			</label>
@@ -428,7 +424,7 @@
 					   name="specify_modified_time"
 					   id="specify_modified_time"
 					   value="1"
-					   onclick="if(this.checked){xoopsGetElementById('modified_time').style.display='inline';}else{xoopsGetElementById('modified_time').style.display='none'}" <{$specify_modified_time_checked|default:''}>>
+					   onclick="if(this.checked){document.getElementById('modified_time').style.display='inline';}else{document.getElementById('modified_time').style.display='none'}" <{$specify_modified_time_checked|default:''}>>
 
 				<span><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}> <small><{$content_base.modified_time_formatted}></small></span>
             </label>
@@ -453,7 +449,7 @@
 				   name="specify_expiring_time"
 				   id="specify_expiring_time"
 				   value="1"
-				   onclick="if(this.checked){xoopsGetElementById('expiring_time').style.display='inline';}else{xoopsGetElementById('expiring_time').style.display='none'}" <{$specify_expiring_time_checked|default:''}>>
+				   onclick="if(this.checked){document.getElementById('expiring_time').style.display='inline';}else{document.getElementById('expiring_time').style.display='none'}" <{$specify_expiring_time_checked|default:''}>>
 
 			 <span><{$smarty.const._MD_PICO_LABEL_SPECIFY_DATETIME}> <small><{$content_base.expiring_time_formatted}></small></span>
 		</label>
@@ -465,7 +461,6 @@
 			   style="<{$expiring_time_style|default:''}>">
 
 		<{/if}>
-
 	</div>
 
 
@@ -508,46 +503,40 @@
 <footer>
 	<div class="grid">
 		<{if $page == 'contentmanager' && $category.can_delete}>
-		<button type="submit" role="button" class="outline delete" name="contentman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECONTENT}>')">
+		<button type="submit" aria-busy="false" class="outline delete" name="contentman_delete" value="<{$smarty.const._DELETE}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMDELETECONTENT}>')">
 			<img class="svg" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"> 
 			<{$smarty.const._DELETE}>
 		</button>
 		<{/if}>
 
-		<button type="submit" role="button" class="outline" name="contentman_preview" id="contentman_preview" value="<{$smarty.const._PREVIEW}>">
+		<button type="submit" aria-busy="false" class="outline" name="contentman_preview" id="contentman_preview" value="<{$smarty.const._PREVIEW}>">
 			<img class="svg" src="<{$xoops_url}>/images/icons/view.svg" width="1em" height="1em" alt="preview"> 
 			<{$smarty.const._PREVIEW}>
 		</button>
-<{* ----- capture controls for modal preview *}>
-<{capture name="controllers"}>
-		<button type="submit" role="button" class="primary" name="contentman_post" id="contentman_post" value="<{$smarty.const._MD_PICO_BTN_SUBMITEDITING}>">
+
+		<button type="submit" class="primary" name="contentman_post" id="contentman_post" value="<{$smarty.const._MD_PICO_BTN_SUBMITEDITING}>">
 			<img class="svg" src="<{$xoops_url}>/images/icons/check.svg" width="1em" height="1em" alt="check"> <{$smarty.const._MD_PICO_BTN_SUBMITEDITING}>
 		</button>
 
 		<{if !$content.approval && $category.isadminormod && $page !='makecontent'}>
-			<button type="submit" role="button" class="primary" name="contentman_copyfromwaiting" value="<{$smarty.const._MD_PICO_BTN_COPYFROMWAITING}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>')">
+			<button type="submit" aria-busy="false" class="primary" name="contentman_copyfromwaiting" value="<{$smarty.const._MD_PICO_BTN_COPYFROMWAITING}>" onclick="return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>')">
 			<{$smarty.const._MD_PICO_BTN_COPYFROMWAITING}></button>
 		<{elseif $page == 'contentmanager'}>
-			<button type="submit" role="button" class="outline save-copy" name="contentman_post" id="contentman_saveas" value="<{$smarty.const._MD_PICO_BTN_SUBMITSAVEAS}>" onclick="document.contentform.action='<{$mod_url}>/index.php?page=makecontent&amp;content_id=0';return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMSAVEASCONTENT}>');">
+			<button type="submit" aria-busy="false" class="outline save-copy" name="contentman_post" id="contentman_saveas" value="<{$smarty.const._MD_PICO_BTN_SUBMITSAVEAS}>" onclick="document.contentform.action='<{$mod_url}>/index.php?page=makecontent&amp;content_id=0';return confirm('<{$smarty.const._MD_PICO_MSG_CONFIRMSAVEASCONTENT}>');">
 			<{$smarty.const._MD_PICO_BTN_SUBMITSAVEAS}></button>
 		<{/if}>
-<{/capture}>
-
-	<{if trim($smarty.capture.controllers)}>
-		<{$smarty.capture.controllers}>
-	<{/if}>
-</div>
+	</div>
 </footer>
 </article>
 
 
 <{if isset($preview)}>
-<{$gticket_hidden}><{* 📍gticket might not be need  *}>
+
 <dialog id="preview-content" open>
     <article>
         <header>
-            <a title="Cancel" class="close secondary" onclick="javascript:history.go(-1);" title="<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>"></a>
-            <h4><{$smarty.const._PREVIEW}></h4>
+            <a title="Cancel" class="close secondary" onclick="javascript:history.go(-1);" title="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>"></a>
+            <h4><{$smarty.const._PREVIEW}> : <{$preview.subject}></h4>
         </header>
         <div>
 			<{foreach from=$preview.errors item="error_message"}>
@@ -559,8 +548,8 @@
             <{$preview.body}>
         </div>
         <footer>
-            <div class="grid">
-                <a role="button" class="secondary" data-target="modal-example" onclick="javascript:history.go(-1);" title="<{$smarty.const._MD_PICO_MSG_CONFIRMCOPYFROMWAITING}>">Cancel</a>
+            <div>
+                <a href="#" aria-busy="false" role="button" class="secondary" onclick="javascript:history.go(-1);"><{$smarty.const._MD_PICO_LINK_EDITCONTENT}></a>
 			<{if trim($smarty.capture.controllers)}>
 				<{$smarty.capture.controllers}>
 			<{/if}>

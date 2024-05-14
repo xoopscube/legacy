@@ -33,9 +33,9 @@ class PicoControllerGetHtmlwrapped extends PicoControllerAbstract {
 		// permission check
 		if ( empty( $this->assign['content']['can_read'] ) || empty( $this->assign['content']['can_readfull'] ) ) {
 			if ( $this->uid > 0 ) {
-				redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_PERMREADFULL );
+				redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_PERMREADFULL );
 			} else {
-				redirect_header( XOOPS_URL . '/user.php', 2, _MD_PICO_ERR_LOGINTOREADFULL );
+				redirect_header( XOOPS_URL . '/user.php', 1, _MD_PICO_ERR_LOGINTOREADFULL );
 			}
 			exit;
 		}

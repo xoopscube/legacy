@@ -17,12 +17,12 @@ include __DIR__ . '/process_this_topic.inc.php';
 
 // get&check this forum ($forum4assign, $forum_row, $cat_id, $isadminormod), override options
 if ( ! include __DIR__ . '/process_this_forum.inc.php' ) {
-	redirect_header( XOOPS_URL . '/user.php', 3, _MD_D3FORUM_ERR_READFORUM );
+	redirect_header( XOOPS_URL . '/user.php', 2, _MD_D3FORUM_ERR_READFORUM );
 }
 
 // get&check this category ($category4assign, $category_row), override options
 if ( ! include __DIR__ . '/process_this_category.inc.php' ) {
-	redirect_header( XOOPS_URL . '/user.php', 3, _MD_D3FORUM_ERR_READCATEGORY );
+	redirect_header( XOOPS_URL . '/user.php', 2, _MD_D3FORUM_ERR_READCATEGORY );
 }
 
 

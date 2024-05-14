@@ -25,7 +25,7 @@
     </div>
     <{elseif $forum.can_post and !$forum.external_link_format}>
         <div>
-        <a role="button" class="primary" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>"><{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}></a>
+        <a role="button" aria-busy="false" class="primary" href="<{$mod_url}>/index.php?page=newtopic&amp;forum_id=<{$forum.id}>"><{$smarty.const._MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM}></a>
         </div>
     <{/if}>
     <{if $forum.isadminormod}>

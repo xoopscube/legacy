@@ -36,14 +36,14 @@ class PicoControllerCopywaitingContent extends PicoControllerAbstract {
 
 		// check existence
 		if ( $this->contentObj->isError() ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 1, _MD_PICO_ERR_READCONTENT );
 			exit;
 		}
 		$content_data = $this->contentObj->getData();
 
 		// permission check (isadminormod)
 		if ( empty( $content_data['isadminormod'] ) ) {
-			redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_CATEGORYMANAGEMENT );
+			redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_CATEGORYMANAGEMENT );
 			exit;
 		}
 
@@ -55,7 +55,7 @@ class PicoControllerCopywaitingContent extends PicoControllerAbstract {
 	}
 
 	public function render() {
-		redirect_header( XOOPS_URL . "/modules/$this->mydirname/" . pico_common_make_content_link4html( $this->mod_config, $this->contentObj->getData() ), 2, _MD_PICO_MSG_CONTENTUPDATED );
+		redirect_header( XOOPS_URL . "/modules/$this->mydirname/" . pico_common_make_content_link4html( $this->mod_config, $this->contentObj->getData() ), 1, _MD_PICO_MSG_CONTENTUPDATED );
 		exit;
 	}
 }

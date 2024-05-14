@@ -102,7 +102,7 @@ define( '_WARNINSTALL2' , '<span>WARNING: <b>Install</b> folder exists!<br><span
 define( '_WARNINWRITEABLE' , "<span>WARNING: <b>Mainfile</b> is writable !<br><span class='alert-install'>{0}</span><br> Change this file permissions for security reasons: Unix (0444), Windows (read-only)</span>");
 define( '_WARNPHPENV' , 'WARNING: php.ini parameter "%s" is set to "%s". %s');
 define( '_WARNSECURITY' , '(It may cause a security problem)');
-define( '_WARN_INSTALL_TIP' , 'Activate the Preload — For development purposes only!<br>The preload allows you to keep the <code>mainfile</code> unchanged and <code>install</code> directory.<br>Remember to chomd <code>mainfile</code> and <strong>delet</strong> <code>install</code> to prevent any security problem.');
+define( '_WARN_INSTALL_TIP' , 'Activate the Preload — For development purposes only!<br>This allows you to keep the <code>install</code> directory.<br>Remember to chmod read-only <code>mainfile.php</code> and <strong>delete</strong> <code>install</code> to prevent any security issues.');
 
 //%%%%%%	File Name themeuserpost.php 	%%%%%
 define( '_PROFILE' , 'Profile');

@@ -27,7 +27,7 @@ class PicoControllerVoteContent extends PicoControllerAbstract {
 
 		// check error
 		if ( $this->contentObj->isError() ) {
-			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 2, _MD_PICO_ERR_READCONTENT );
+			redirect_header( XOOPS_URL . "/modules/$this->mydirname/index.php", 1, _MD_PICO_ERR_READCONTENT );
 			exit;
 		}
 
@@ -36,9 +36,9 @@ class PicoControllerVoteContent extends PicoControllerAbstract {
 		// permission check
 		if ( empty( $content_data['can_read'] ) ) {
 			if ( $this->uid > 0 ) {
-				redirect_header( XOOPS_URL . '/', 2, _MD_PICO_ERR_PERMREADFULL );
+				redirect_header( XOOPS_URL . '/', 1, _MD_PICO_ERR_PERMREADFULL );
 			} else {
-				redirect_header( XOOPS_URL . '/user.php', 2, _MD_PICO_ERR_LOGINTOREADFULL );
+				redirect_header( XOOPS_URL . '/user.php', 1, _MD_PICO_ERR_LOGINTOREADFULL );
 			}
 			exit;
 		}

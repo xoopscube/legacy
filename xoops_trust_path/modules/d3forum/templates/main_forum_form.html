@@ -23,8 +23,7 @@
 <form name="forumform"
       id="forumform"
       action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>&amp;forum_id=<{$forum.id}>"
-      method="post"
-      onsubmit="return xoopsFormValidate_forumform();">
+      method="post">
     <{$gticket_hidden|default:''}>
 
     <article>
@@ -43,7 +42,7 @@
 
 		<label for="forum_title">
             <{$smarty.const._MD_D3FORUM_TH_FORUMTITLE}>
-            <input type="text" name="title" id="forum_title" maxlength="191" value="<{$forum.title}>">
+            <input type="text" name="title" id="forum_title" maxlength="191" value="<{$forum.title}>" required>
         </label>
 
 		<label for="forum_desc">
@@ -101,23 +100,24 @@
 
         <footer class="action-control">
 
-                <{if $page == 'forummanager'}>
-                <div>
-                    <input type="submit"
-                           role="button"
-                           class="outline delete"
-                           name="forumman_delete"
-                           value="<{$smarty.const._DELETE}>"
-                           onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')">
-                </div>
-                <{/if}>
-                <div>
-                    <input type="submit"
-                       role="button"
-                       class="primary"
-                       name="forumman_post"
-                       value="<{$smarty.const._SUBMIT}>">
-                </div>
+        <{if $page == 'forummanager'}>
+        <div>
+            <input type="submit"
+                role="button"
+                class="outline delete"
+                name="forumman_delete"
+                value="<{$smarty.const._DELETE}>"
+                onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE}>')">
+        </div>
+        <{/if}>
+        <div>
+            <input type="submit"
+                aria-busy="false"
+                role="button"
+                class="primary"
+                name="forumman_post"
+                value="<{$smarty.const._SUBMIT}>">
+        </div>
 
         </footer>
 
@@ -125,79 +125,70 @@
 
 </form>
 
-<!-- Start Form Validation JavaScript //-->
-<script type="text/javascript">
-function xoopsFormValidate_forumform() {
-	myform = window.document.forumform;
-	if ( myform.title.value == "" ) { window.alert("<{$smarty.const._MD_D3FORUM_TH_FORUMTITLE|string_format:$smarty.const._FORM_ENTER}>"); myform.title.focus(); return false; }
-	return true;
-}
-</script>
-<!-- End Form Validation JavaScript //-->
-
 
 <{if $forum.id > 0 && $xoops_isadmin}>
 
 <hr>
 
-    <article class="category-admin">
+<article class="category-admin">
 
-        <form name="forummanager_export"
-              id="forummanager_export"
-              action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>&amp;forum_id=<{$forum.id}>"
-              method="post">
+<form name="forummanager_export"
+        id="forummanager_export"
+        action="<{$mod_url}>/index.php?page=<{$page}>&amp;cat_id=<{$category.id}>&amp;forum_id=<{$forum.id}>"
+        method="post">
 
-                <label for="export_mid">Export to module</label>
-                <select name="export_mid" id="export_mid" onchange="d3forum_showhide_category_select(this);">
-                  <{html_options options=$export_to_module_options}>
-                </select>
+        <label for="export_mid">Export to module</label>
+        <select name="export_mid" id="export_mid" onchange="d3forum_showhide_category_select(this);">
+            <{html_options options=$export_to_module_options}>
+        </select>
 
-                <label for="export_cat_id_0">Export to category</label>
-                <select name="export_cat_id[0]" id="export_cat_id_0">
-                  <option value="0">----</option>
-                </select>
+        <label for="export_cat_id_0">Export to category</label>
+        <select name="export_cat_id[0]" id="export_cat_id_0">
+            <option value="0">----</option>
+        </select>
 
-                <{foreach from=$export_to_cat_options key="ex_cat_id" item="ex_options"}>
-                <label for="export_cat_id_<{$ex_cat_id}>">Export Options</label>
-                <select name="export_cat_id[<{$ex_cat_id}>]" id="export_cat_id_<{$ex_cat_id}>">
-                  <option value="0">----</option>
-                  <{$ex_options}>
-                </select>
-                <{/foreach}>
+        <{foreach from=$export_to_cat_options key="ex_cat_id" item="ex_options"}>
+        <label for="export_cat_id_<{$ex_cat_id}>">Export Options</label>
+        <select name="export_cat_id[<{$ex_cat_id}>]" id="export_cat_id_<{$ex_cat_id}>">
+            <option value="0">----</option>
+            <{$ex_options}>
+        </select>
+        <{/foreach}>
 
+    <div class="grid-2">
+        <div>
+            <button type="submit"
+                    aria-busy="false"
+                    role="button"
+                    class="outline"
+                    name="forumman_export_move"
+                    onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
+            <img class="svg" src="<{$xoops_url}>/images/icons/file-move.svg" width="1em" alt="move">
+                Move
+            </button>
+            <{$smarty.const._MD_D3FORUM_BTN_MOVEFORUMTOOTHERFORUM}>
+        </div>
 
-            <div class="grid-2">
-                <div>
-                    <button type="submit"
-                            role="button"
-                            class="outline"
-                            name="forumman_export_move"
-                            onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
-                    <img class="svg" src="<{$xoops_url}>/images/icons/file-move.svg" width="1em" alt="move">
-                        Move
-                    </button>
-                    <{$smarty.const._MD_D3FORUM_BTN_MOVEFORUMTOOTHERFORUM}>
-                </div>
+        <div>
+            <button type="submit"
+                    aria-busy="false"
+                    role="button"
+                    class="outline"
+                    name="forumman_export_copy"
+                    value=""
+                    onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
+            <img class="svg" src="<{$xoops_url}>/images/icons/file-copy.svg" width="1em" alt="copy">
+                Copy
+            </button>
+            <{$smarty.const._MD_D3FORUM_BTN_COPYFORUMTOOTHERFORUM}>
+        </div>
+    </div>
 
-                <div>
-                    <button type="submit"
-                            role="button"
-                            class="outline"
-                            name="forumman_export_copy"
-                            value=""
-                            onclick="return confirm('<{$smarty.const._MD_D3FORUM_MSG_CONFIRMOK}>')">
-                    <img class="svg" src="<{$xoops_url}>/images/icons/file-copy.svg" width="1em" alt="copy">
-                        Copy
-                    </button>
-                    <{$smarty.const._MD_D3FORUM_BTN_COPYFORUMTOOTHERFORUM}>
-                </div>
-            </div>
+<{$gticket_hidden}>
 
-        <{$gticket_hidden}>
+</form>
 
-        </form>
-
-    </article>
+</article>
 
 <script type="text/javascript">
 d3forum_showhide_category_select( document.getElementById("export_cat_id_0") ) ;

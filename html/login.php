@@ -54,7 +54,7 @@ if ('dologin' == $op) {
     $user =& $member_handler->loginUser(addslashes($myts->stripSlashesGPC($username)), $myts->stripSlashesGPC($password));
     if (is_object($user)) {
         if (0 == $user->getVar('level')) {
-            redirect_header(XOOPS_URL.'/index.php', 5, _US_NOACTTPADM);
+            redirect_header(XOOPS_URL.'/index.php', 2, _US_NOACTTPADM);
             exit();
         }
         if (1 == $xoopsConfig['closesite']) {

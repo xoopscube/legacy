@@ -19,6 +19,7 @@ define( '_MD_MESSAGE_ACTIONMSG7' , 'Message was sent.');
 define( '_MD_MESSAGE_ACTIONMSG8' , 'You don\'t have the required permissions.');
 define( '_MD_MESSAGE_ACTIONMSG9' , 'The user you reply to doesn\'t exist.');
 
+define( '_MD_MESSAGE_TEMPLATE0' , 'Cancel');
 define( '_MD_MESSAGE_TEMPLATE1' , 'Send message');
 define( '_MD_MESSAGE_TEMPLATE2' , 'User name');
 define( '_MD_MESSAGE_TEMPLATE3' , 'Subject');

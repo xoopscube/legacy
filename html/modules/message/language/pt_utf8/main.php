@@ -57,6 +57,8 @@ define( '_MD_MESSAGE_SETTINGS_MSG6' , "O associado selecionado não pôde recebe
 define( '_MD_MESSAGE_SETTINGS_MSG7' , "A mensagem é mostrada no email.");
 define( '_MD_MESSAGE_SETTINGS_MSG8' , "Número de mensagens mostradas por página");
 define( '_MD_MESSAGE_SETTINGS_MSG9' , "Utiliza a configuração padrão do módulo caso o valor for igual a zero.");
+
+define( '_MD_MESSAGE_TEMPLATE0' , 'Cancelar');
 define( '_MD_MESSAGE_TEMPLATE1' , "Enviar mensagem");
 define( '_MD_MESSAGE_TEMPLATE10' , "Data");
 define( '_MD_MESSAGE_TEMPLATE11' , "Mensagem");
