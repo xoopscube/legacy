@@ -38,25 +38,10 @@
     text-transform  : uppercase;
 
 }
-/*    background      : inherit;
-    color           : inherit;
-    display         : block;
-    font-size       : var(--font-size);
-    !*padding         : var(--space-6) var(--space-7);*!
-    margin          : 1rem 0;
-    padding         : 0;
-    position        : sticky;
-    text-transform  : uppercase;
-    !*top             : 2px;*!
-    z-index         : 11;
-}*/
 .right-sidebar .right-panel-title span {
     color           : var(--theme-link);
     cursor          : pointer;
-    /*float           : right;*/
     font-size       : var(--icon-size);
-}
-.right-sidebar .right-panel-title span:hover {
 }
 .right-sidebar .right-panel-block {
     direction       : ltr; /* used for content on the left*/
@@ -84,10 +69,8 @@
 
 @keyframes rotate {
     from {
-        /*-webkit-transform: rotate(0deg);*/
         transform: rotate(0deg); }
     to {
-        /*-webkit-transform: rotate(360deg);*/
         transform: rotate(360deg); }
 }
 @keyframes rotateY {
@@ -125,11 +108,7 @@
 :is(.right-panel-block) button.help-admin.button {width: 100%;text-align: left;margin: 0 0 1em;}
 input#block-tooltip:checked { background: var(--color-red)}
 
-/*#block-tooltip input[type="checkbox"]:checked+label {*/
-/*    background-color: #569cc3!important;*/
-/*}*/
 /* -------------------- --------------------  XCL CUBE */
-
 .qube-perspective{perspective:900px}
 .qube-preserve3d{transform-style:preserve-3d}
 .qube{position:relative;margin:0;padding:0;list-style:none;width:100%;height:100%;transform-style:preserve-3d}
@@ -176,10 +155,7 @@ input#block-tooltip:checked { background: var(--color-red)}
     cursor          : pointer;
 }
 
-/*.xcl-cube > .front {background : rgba(84,110,127,0.27)}*/
 .xcl-cube > .left {background  : rgba(70,90,100,0.27)}
-/*.xcl-cube > .back {background  : rgba(55,70,80,0.27)}*/
-/*.xcl-cube > .right {background : rgba(40,52,60,0.27)}*/
 
 /* -------------------- --------------------  COLOR SCHEME */
 
@@ -219,3 +195,7 @@ ul#themecolors li a.working:before {
 .purple-dark-theme {background: #263238; background: linear-gradient(to right, #263238 0%, #263238 23%, #7460ee 23%, #7460ee 99%);}
 .megna-dark-theme {background: #263238; background: linear-gradient(to right, #263238 0%, #263238 23%, #00897b 23%, #00897b 99%);}
 .red-dark-theme {background: #263238; background: linear-gradient(to right, #263238 0%, #263238 23%, #fc4b6c 23%, #fc4b6c 99%);}
+
+button#clearLS{
+    width: 100%;
+}

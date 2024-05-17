@@ -296,7 +296,9 @@
 
 
     <{if $pageNavi->getPerpage() < $pageNavi->getTotalItems() }>
-    <nav class="pagination" aria-label="breadcrumbs"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
+    <nav class="pagination">
+        <{xoops_pagenavi pagenavi=$pageNavi}>
+    </nav>
     <{/if}>
 
 

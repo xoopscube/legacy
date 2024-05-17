@@ -1,5 +1,9 @@
 <?php
 
+define( '_MI_SITEMAP_DESC' , 'Automated XML Sitemap generator for search engines and humains');
+//keywords
+define( '_MI_SITEMAP_KEYWORD_LIST', 'search engine XML sitemaps generator map conzact address footer credits');
+
 define( '_MI_SITEMAP_ADMENU_OVERVIEW' , 'Overview');
 
 define( '_MI_SITEMAP_NAME' , 'サイトマップ');
@@ -22,9 +26,6 @@ define( '_MI_INVISIBLE_WEIGHTSDSC' , 'モジュール管理画面での表示順
 
 define( '_MI_INVISIBLE_DIRNAMES' , '「ディレクトリ名」による非表示指定');
 define( '_MI_INVISIBLE_DIRNAMESDSC' , 'サイトマップで非表示としたいモジュールを、ディレクトリ名で指定してください。複数指定する場合は、カンマで区切ります。<br>例) xoopsheadline,newbb');
-
-//keywords
-define( '_MI_SITEMAP_ADMIN_KEYWORD_LIST', 'search engine XML sitemaps generator map conzacz address footer credits');
 
 // Block
 define( '_MI_BLOCK_BLOCKNAME' , 'サイトマップ');

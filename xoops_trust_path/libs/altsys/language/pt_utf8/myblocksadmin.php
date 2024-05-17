@@ -1,5 +1,5 @@
 <?php
-// XCL 2.3.3 Nuno Luciano aka gigamaster XCL-PHP7+
+// XCL 2.4.0 Nuno Luciano aka gigamaster XCL-PHP7+
 // $Id: myblocksadmin.php 1040 2011-11-06 05:24:00Z mikhail $
 // License http://creativecommons.org/licenses/by/2.5/br/
 define( '_MD_A_MYBLOCKSADMIN_TIPS' , 'Selecione um módulo para gerenciar seus blocos disponíveis : lado, módulos de destino, permissões de grupo de usuários e duração do cache.');

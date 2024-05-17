@@ -1,5 +1,9 @@
 <?php
 
+define( '_MI_SITEMAP_DESC' , 'Automated XML Sitemap generator for search engines and humains');
+//keywords
+define( '_MI_SITEMAP_KEYWORD_LIST', 'search engine XML sitemaps generator map conzact address footer credits');
+
 define( '_MI_SITEMAP_ADMENU_OVERVIEW' , 'Overview');
 
 define( '_MI_SITEMAP_NAME' , 'Plan du site');
@@ -23,9 +27,6 @@ define( '_MI_INVISIBLE_WEIGHTSDSC' , "Les modules qui ont ce numéro d'ordre dan
 
 define( '_MI_INVISIBLE_DIRNAMES' , 'Nom du répertoire des modules &agrave; cacher');
 define( '_MI_INVISIBLE_DIRNAMESDSC' , "Spécifier le nom des modules qui doivent être cachés.<br>Les noms des répertoires doivent être séparés par une virgule.<br>ex: xoopsheadline,newbb ");
-
-//keywords
-define( '_MI_SITEMAP_ADMIN_KEYWORD_LIST', 'search engine XML sitemaps generator map conzacz address footer credits');
 
 // Block
 define( '_MI_BLOCK_BLOCKNAME' , 'Plan du site');

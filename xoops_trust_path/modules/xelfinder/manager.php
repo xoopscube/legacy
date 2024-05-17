@@ -2,7 +2,7 @@
 /**
  * X-elFinder module for XCL
  * @package    XelFinder
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Naoki Sawada (aka Nao-pon) <https://github.com/nao-pon>
  * @copyright  (c) 2005-2024 Authors
  * @license    https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt

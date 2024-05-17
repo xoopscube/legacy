@@ -3,7 +3,7 @@
  * D3Forum module for XCL
  * This file can be included only from main or admin (not from blocks)
  * @package    D3Forum
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
@@ -38,7 +38,7 @@ function d3forum_make_treeinformations( $data ) {
 				$data[ $i - 1 ]['first_child_id'] = $data[ $i ]['id'];
 			}
 			for ( $j = 0; $j < $depth_diff; $j ++ ) {
-				$data[ $i ]['ul_in'] .= '<ul><li>';
+				$data[ $i ]['ul_in'] .= '<ul class="depth-in-tree"><li>';
 			}
 		} else if ( $depth_diff < 0 ) {
 			for ( $j = 0; $j < - $depth_diff; $j ++ ) {
@@ -383,8 +383,14 @@ function d3forum_get_comment_description( $mydirname, $external_link_format, $ex
 
 	return $d3com->fetchSummary( $external_link_id );
 }
-
-// get object for comment integration  // naao modified
+/**
+ * Returns a D3commentObj instance based on the provided parameters.
+ * get object for comment integration  // naao modified
+ * @param string $forumDirname
+ * @param string $externalLinkFormat
+ * @param int|null $forumId
+ * @return D3commentObj
+ */
 function d3forum_main_get_comment_object( $forum_dirname, $external_link_format, $forum_id = null ) {
 	$params = [];
  require_once dirname( __DIR__ ) . '/class/D3commentObj.class.php';

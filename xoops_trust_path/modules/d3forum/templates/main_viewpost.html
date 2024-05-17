@@ -18,12 +18,12 @@
 <{/if}>
 
 <article>
-<header>
+    <header>
     <h2>
         <img class="svg posticon" src="<{$xoops_url}>/images/icons/posticon<{$post.icon}>.svg" alt="<{$icon_meanings[$post.icon]}>">
             <{$post.subject}>
     </h2>
-</header>
+    </header>
     <{* /////// SUMMARY \\\\\\\ *}>
     <{if $forum.external_link_format}>
     <{include file="db:`$mydirname`_inc_d3comment_summary.html"}>
@@ -42,12 +42,12 @@
     <{if $topic.external_link_id}>
         <div class="d3f_link">
         <{$posts|@count|string_format:$smarty.const._MD_D3FORUM_FMT_POSTDISPLAYSINFO}>
-        <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>&amp;external_link_id=<{$topic.external_link_id|escape:'url'}>">
+        <a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>&amp;external_link_id=<{$topic.external_link_id|escape:'url'}>" aria-busy="false">
         <{$smarty.const._MD_D3FORUM_LINK_LISTALLCOMMENTS}></a>
         </div>
     <{/if}>
 
-    <a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>">
+    <a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>" aria-busy="false">
         <img class="svg list-tree" src="<{$xoops_url}>/images/icons/list-tree.svg" alt="list-tree">
         <{$smarty.const._MD_D3FORUM_LINK_LISTPOSTS}></a>
 

@@ -285,6 +285,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             $xoopsModule =& $context->mXoopsModule;
             $vars['xoops_modulename'] = $xoopsModule->getVar('name');
             $vars['xoops_dirname'] = $xoopsModule->getVar('dirname');
+            $vars['dirname'] = $xoopsModule->getVar('dirname');
         }
 
         if (isset($GLOBALS['xoopsUserIsAdmin'])) {

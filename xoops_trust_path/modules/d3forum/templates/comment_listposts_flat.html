@@ -2,9 +2,25 @@
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{if $post_hits > 1}>
+        <{if $pagenav}>
+        <nav aria-label="Comment pagination">
+            <ul class="pagenavi" data-self="center">
+                <{foreach from=$pagenav item=nav_}>
+                    <{if $nav_.url}>
+                    <li class="page-item <{$nav_.class}>">
+                        <a class="page-link" href="<{$nav_.url}>" aria-label="go to page <{$nav_.txt}>"><{$nav_.txt}></a>
+                    </li>
+                    <{else}>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="#"><{$nav_.txt}></a>
+                    </li>
+                    <{/if}>
+                <{/foreach}>
+            </ul>
+        </nav>
+        <{/if}>
 
-
-
+<{* ----- POST TREE VIEW *}>
 <h5>
     <label for="post-tree">
         <input role="switch" type="checkbox" id="post-tree" onclick="slideToggle('.post-tree-view', this)" value="0">
@@ -12,8 +28,6 @@
         <{$smarty.const._MD_D3FORUM_POSTSTREE}>
     </label>
 </h5>
-
-<{* ----- POST TREE VIEW *}>
 <div class="post-tree-view" style="display:none">
     <ul class="post-tree">
 <{foreach from=$posts item=eachpost}>
@@ -35,7 +49,7 @@
     </ul>
 </div>
 
-
+<{* ----- TOPIC TREE VIEW *}>
 <{if $tree_tp_count>1}>
 <h5>
     <label for="post-tree-topic">
@@ -44,7 +58,6 @@
         <{$smarty.const._MD_D3FORUM_TOPIC}>
     </label>
 </h5>
-
 <div class="post-tree-topic-view" style="display:none">
 
     <{foreach from=$tree item=eachpost}>

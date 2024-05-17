@@ -3,7 +3,7 @@
  * D3Forum module for XCL
  *
  * @package    D3Forum
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
@@ -122,7 +122,7 @@ if ( is_object( $poster_obj ) ) {
 }
 
 // d3comment object
-if ( isset($forum_row['forum_external_link_format']) && ($forum_row['forum_external_link_format']!==null) ) {
+if ( ! empty( $forum_row['forum_external_link_format'] ) ) {
 	$d3com = d3forum_main_get_comment_object( $mydirname, $forum_row['forum_external_link_format'], $forum_id );
 } else {
 	$d3com = false;

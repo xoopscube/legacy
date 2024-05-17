@@ -112,20 +112,6 @@ input[type="submit"].button-cancel:hover {
     color               : var( --button-color-on )!important;
 }
 
-input[type="submit"].button-delete,
-input.button-unassign,
-input.button-uninstall,
-input[type="reset"] {
-    /*background      : var(  --input-bg       );*/
-    /*border-color    : hsl(14, 100%, 57%);*/
-    /*border-radius   : var(  --input-border-radius    );*/
-    /*border-width    : var(  --input-border-width     );*/
-    /*box-shadow      : 0 2px 2px 0 hsla(14, 100%, 57%, 0.14), 0 3px 1px -2px hsla(14, 100%, 57%, 0.2), 0 1px 5px 0 hsla(14, 100%, 57%, 0.12);*/
-    /*color           : #ff5722;*/
-    /*cursor          : pointer;*/
-    /*padding         : var(--space-3) var(--space-7);*/
-    /*transition      : 0.2s ease-in;*/
-}
 input[type="submit"].button-delete:hover,
 input.button-delete:hover,
 input.button-unassign:hover,
@@ -201,32 +187,12 @@ select[multiple] option:checked::before {
     content         : "\2611";
 }
 
-/* 	textarea {
-    background:
-    linear-gradient(rgba(35, 40, 49, 0.8) 30%, rgba(52, 59, 70, 0.8)),
-    linear-gradient(rgba(52, 59, 70, 0.8), rgba(35, 40, 49, 0.8) 70%) 0 100%,
-    radial-gradient(farthest-side at 50% 0, rgba(34,34,34, 0.8), rgba(10,10,10,0)),
-    radial-gradient(farthest-side at 50% 100%, rgba(34,34,34, 0.8), rgba(10,10,10,0)) 0 100%;
-    background-color: var(  --input-bg			);
-    background-repeat: no-repeat;
-    background-attachment: local, local, scroll, scroll;
-    background-size: 100% 15px, 100% 15px, 100% 10px, 100% 10px;
-} */
-
 textarea::-webkit-resizer {
     background		: transparent;
     border-width    : 8px;
     border-style    : solid;
     border-color    : transparent hsl(215, 15%, 25%) hsl(216, 17%, 17%) transparent;
 }
-
-/*option:checked {*/
-/*    !*box-shadow: 0 0 10px 100px darkred inset;*!*/
-/*    background-color: var(--color-blue) !important;*/
-/*    color: var( --secondary ) !important;*/
-/*}*/
-
-
 
 /* Autofill color */
 input:-webkit-autofill,
@@ -296,7 +262,6 @@ input:focus:-webkit-autofill {
 
     input[type='checkbox']:checked:after,
     input[type='radio']:checked:after {
-        /*filter          : drop-shadow(0 1px 2px var( --input-check-shadow-in ));*/
         transition      : opacity 0.3s ease, filter 0.3s ease, transform 0.6s cubic-bezier(0.175, 0.88, 0.32, 1.2);
     }
 

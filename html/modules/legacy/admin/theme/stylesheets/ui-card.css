@@ -118,10 +118,6 @@
 .ui-card-small-subtitle {
     margin          : 0 0 0 1rem;
 }
-/*.ui-card-small:hover {*/
-/*    box-shadow      : var(--card-small-shadow-on);*/
-/*    transform       : translateY(-3px);*/
-/*}*/
 
 /* -------------------- --------------------  UI--BLOCKS-GRID */
 
@@ -185,7 +181,6 @@
     width               : 21%;
 }
 .list  .ui-card-block > .ui-card-block-item:last-child {
-/*.list .ui-card-block-item:last-of-type {*/
     justify-content: flex-end;
     flex-shrink: 0;
     margin-right: 0;
@@ -270,12 +265,7 @@ img.ui-avatar-card {
     width           : var(  --card-item-width   );
 }
 
-/* input[size=] width depend using fonts,
-   then setting by style for compatibility
-
-.ui-card-block-item input[type="text"] { */
 .ui-card-block-item input[size="20"] {
-    /* width: 12em; */
     width           : 74%;
 }
 .ui-card-block-item.pad-left {
@@ -288,12 +278,10 @@ img.ui-avatar-card {
 
 /* -------------------- --------------------  UI-DATA-MODULE  */
 
-.module-update{
-}
-
 .ui-module-state .ui-update-change .module-icon{
     border:1px solid red;
 }
+
 /* -------------------- --------------------  BLOCK STATE SWITCH */
 /* Block Switch Off - color indicator */
 .ui-update-change {
@@ -398,38 +386,33 @@ svg[class="ui-block-module"] {
     background      : var(  --color-block-module);
     color           : var(  --color-white );
 }
+
 /* -------------------- -------------------- Icons Colors */
 
 .ui-icon-amber {
     background      : var(  --color-amber );
     color           : var(  --color-white );
 }
-
 .ui-icon-blue {
     background      : var(  --color-blue );
     color           : var(  --color-white );
 }
-
 .ui-icon-green {
     background      : var(  --color-green );
     color           : var(  --color-white );
 }
-
 .ui-icon-indigo {
     background      : var(  --color-indigo );
     color           : var(  --color-white );
 }
-
 .ui-icon-orange {
     background      : var(  --color-orange );
     color           : var(  --color-white );
 }
-
 .ui-icon-purple {
     background      : var(  --color-purple );
     color           : var(  --color-white );
 }
-
 .ui-icon-red {
     background      : var(  --color-red );
     color           : var(  --color-white );

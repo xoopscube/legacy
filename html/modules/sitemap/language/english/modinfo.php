@@ -1,5 +1,9 @@
 <?php
 
+define( '_MI_SITEMAP_DESC' , 'Automated XML Sitemap generator for search engines and humains');
+//keywords
+define( '_MI_SITEMAP_KEYWORD_LIST', 'search engine XML sitemaps generator map conzact address footer credits');
+
 define( '_MI_SITEMAP_ADMENU_OVERVIEW' , 'Overview');
 
 define( '_MI_SITEMAP_NAME' , 'Sitemap');
@@ -23,9 +27,6 @@ define( '_MI_INVISIBLE_WEIGHTSDSC' , 'Exclude Modules from the Sitemap using the
 
 define( '_MI_INVISIBLE_DIRNAMES' , 'Hide directory names from Sitemap');
 define( '_MI_INVISIBLE_DIRNAMESDSC' , "Specify the directory name of modules to hide from Sitemap.<br>Dirnames must be separated by commas, eg: downloads,widget");
-
-//keywords
-define( '_MI_SITEMAP_ADMIN_KEYWORD_LIST', 'search engine XML sitemaps generator map conzacz address footer credits');
 
 // Block
 define( '_MI_BLOCK_BLOCKNAME' , 'Sitemap Menu');

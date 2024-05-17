@@ -28,8 +28,8 @@ $basename = basename( $dirname );
 $modversion['dirname']          = $myDirName;
 $modversion['trust_dirname']    = $basename;
 $modversion['name']             = _MI_XUPDATE_LANG_XUPDATE;
-$modversion['version']          = '2.34';
-$modversion['detailed_version'] = '2.34.4';
+$modversion['version']          = '2.40';
+$modversion['detailed_version'] = '2.40.0';
 $modversion['description']      = _MI_XUPDATE_DESC_XUPDATE;
 $modversion['author']           = _MI_XUPDATE_LANG_AUTHOR;
 $modversion['credits']          = _MI_XUPDATE_LANG_CREDITS;
@@ -162,6 +162,36 @@ $modversion['config'] = [
 		'options'		=> array()
 	) ,
 */
+//disable SSL verification
+	[
+		'name'        => 'curl_ssl_no_verify',
+		'title'       => '_MI_XUPDATE_CURL_SSL_NO_VERIFY',
+		'description' => '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC',
+		'formtype'    => 'yesno',
+		'valuetype'   => 'int',
+		'default'     => 0,
+		'options'     => [],
+	],
+	//parallel_fetch_max
+	[
+		'name'        => 'parallel_fetch_max',
+		'title'       => '_MI_XUPDATE_PARALLEL_FETCH_MAX',
+		'description' => '_MI_XUPDATE_PARALLEL_FETCH_MAXDSC',
+		'formtype'    => 'text',
+		'valuetype'   => 'int',
+		'default'     => 50,
+		'options'     => [],
+	],
+	//parallel_fetch_max
+	[
+		'name'        => 'curl_multi_select_not_use',
+		'title'       => '_MI_XUPDATE_CURL_MULTI_SELECT',
+		'description' => '_MI_XUPDATE_CURL_MULTI_SELECTDSC',
+		'formtype'    => 'yesno',
+		'valuetype'   => 'int',
+		'default'     => 0,
+		'options'     => [],
+	],
 	[
 		'name'        => 'temp_path',
 		'title'       => '_MI_XUPDATE_TEMP_PATH',
@@ -352,35 +382,6 @@ $modversion['config'] = [
 		'name'        => 'show_disabled_store',
 		'title'       => '_MI_XUPDATE_SHOW_DISABLED_STORE',
 		'description' => '_MI_XUPDATE_SHOW_DISABLED_STOREDSC',
-		'formtype'    => 'yesno',
-		'valuetype'   => 'int',
-		'default'     => 0,
-		'options'     => [],
-	],
-	//parallel_fetch_max
-	[
-		'name'        => 'parallel_fetch_max',
-		'title'       => '_MI_XUPDATE_PARALLEL_FETCH_MAX',
-		'description' => '_MI_XUPDATE_PARALLEL_FETCH_MAXDSC',
-		'formtype'    => 'text',
-		'valuetype'   => 'int',
-		'default'     => 50,
-		'options'     => [],
-	],
-	//parallel_fetch_max
-	[
-		'name'        => 'curl_multi_select_not_use',
-		'title'       => '_MI_XUPDATE_CURL_MULTI_SELECT',
-		'description' => '_MI_XUPDATE_CURL_MULTI_SELECTDSC',
-		'formtype'    => 'yesno',
-		'valuetype'   => 'int',
-		'default'     => 0,
-		'options'     => [],
-	],
-	[
-		'name'        => 'curl_ssl_no_verify',
-		'title'       => '_MI_XUPDATE_CURL_SSL_NO_VERIFY',
-		'description' => '_MI_XUPDATE_CURL_SSL_NO_VERIFYDSC',
 		'formtype'    => 'yesno',
 		'valuetype'   => 'int',
 		'default'     => 0,

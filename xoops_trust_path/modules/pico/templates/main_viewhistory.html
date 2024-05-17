@@ -3,24 +3,34 @@
 
 <{include file="db:`$mydirname`_inc_breadcrumbs.html"}>
 
-<div class="pico_container" id="<{$mydirname}>_container">
-
+<article>
     <pre class="pico_history_diff"><{$history_body_raw|escape|nl2br}></pre>
+</article>
+
+<div class="post-tree-view">
+    <ul class="post-tree">
     <{foreach from=$content_histories item="history"}>
+    <li class="post-tree-item">
+        <small>
+            <span class="badge"><{$history.modified_time_formatted}></span> 
+            <img class="avatar" src="<{$history.modifier_uname|xoops_user_avatarize}>" width="20" height="20"> <{$history.modifier_uname}> 
+            (<{$history.body_size|number_format}><{$smarty.const._MD_PICO_BYTE}>)
+        </small>
+    </li>
     <li>
-        <{$history.modified_time_formatted}>
-        -
-        <{$history.modifier_uname}>
-        (<{$history.body_size|number_format}><{$smarty.const._MD_PICO_BYTE}>)
-        <a href="<{$mod_url}>/index.php?page=viewhistory&amp;content_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_REFERIT}></a>
-        -
-        <a href="<{$mod_url}>/index.php?page=downloadhistory&amp;content_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_DOWNLOADIT}></a>
-        -
-        <a href="<{$mod_url}>/index.php?page=diffhistory&amp;older_history_id=<{$history.id}>&amp;newer_history_id=0"><{$smarty.const._MD_PICO_DIFF2NOW}></a>
+        <div class="action-control">
+        <a href="<{$mod_url}>/index.php?page=viewhistory&amp;content_history_id=<{$history.id}>">
+            <img class="svg" src="<{$xoops_url}>/images/icons/file-view.svg" width="1em" height="1em"> <{$smarty.const._MD_PICO_REFERIT}></a> 
+        <a href="<{$mod_url}>/index.php?page=downloadhistory&amp;content_history_id=<{$history.id}>">
+            <img class="svg" src="<{$xoops_url}>/images/icons/download.svg" width="1em" height="1em"> <{$smarty.const._MD_PICO_DOWNLOADIT}></a>
+        <a href="<{$mod_url}>/index.php?page=diffhistory&amp;older_history_id=<{$history.id}>&amp;newer_history_id=0">
+            <img class="svg" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em"> <{$smarty.const._MD_PICO_DIFF2NOW}></a>
         <{if $history.prev_id}>
-        -
-        <a href="<{$mod_url}>/index.php?page=diffhistory&amp;older_history_id=<{$history.prev_id}>&amp;newer_history_id=<{$history.id}>"><{$smarty.const._MD_PICO_DIFFFROMPREV}></a>
+        <a href="<{$mod_url}>/index.php?page=diffhistory&amp;older_history_id=<{$history.prev_id}>&amp;newer_history_id=<{$history.id}>">
+            <img class="svg" src="<{$xoops_url}>/images/icons/file-swap.svg" width="1em" height="1em"> <{$smarty.const._MD_PICO_DIFFFROMPREV}></a>
         <{/if}>
+        </div>
     </li>
     <{/foreach}>
+</ul>
 </div>

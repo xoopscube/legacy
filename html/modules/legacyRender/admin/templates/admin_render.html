@@ -119,13 +119,14 @@
 
     <p>The Frontend theme ensures how the webpage appears on the client browser:</p>
     <ul>
-        <li>The frontend theme uses the suffix <span class="badge">_default</span></li>
-        <li>and is  placed in the folder themes <code>/html/themes/theme-name/</code></li>
+        <li>The default frontend theme is named with a suffix <span class="badge">_default</span></li>
+        <li>and is placed in the folder themes e.g. <code>/html/themes/xcl_default/</code></li>
     </ul>
     <p>The Backend theme provides a user interface to manage system preferences, including the module settings, roles and user permissions.</p>
         <ul>
-            <li>The backend admin theme uses a prefix <span class="badge">admin_</span></li>
+            <li>The backend admin theme inherits its name from the system <span class="badge">admin</span></li>
             <li>and is placed in the folder <code>/html/modules/legacy/admin/theme</code></li>
+            <li>Customize an admin theme in the folder themes, with a prefix <span class="badge">admin_</span></li>
         </ul>
     <ul>
 
@@ -430,6 +431,11 @@ module-name *
         <td><pre><code class="lang-smarty">&lt;{$xoops_upload_url}&gt;</code></pre></td>
         <td><pre><code class="lang-smarty">&lt;{$upload_url}&gt;</code></pre></td>
         <td><{$xoops_upload_url}></td>
+    </tr>
+    <tr>
+        <td><pre><code class="lang-smarty">&lt;{$dirname}&gt;</code></pre></td>
+        <td><pre><code class="lang-smarty"></code></pre></td>
+        <td>Output the module directory : <span class="badge"><{$dirname}></span></td>
     </tr>
     <tr>
         <td><pre><code class="lang-smarty">&lt;{$xoops_dirname}&gt;</code></pre></td>

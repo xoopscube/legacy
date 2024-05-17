@@ -1,5 +1,9 @@
 <?php
 
+define( '_MI_SITEMAP_DESC' , 'Automated XML Sitemap generator for search engines and humains');
+//keywords
+define( '_MI_SITEMAP_KEYWORD_LIST', 'search engine XML sitemaps generator map conzact address footer credits');
+
 define( '_MI_SITEMAP_ADMENU_OVERVIEW' , 'Overview');
 
 define( '_MI_SITEMAP_NAME' , 'Карта сайта');
@@ -23,8 +27,6 @@ define( '_MI_INVISIBLE_WEIGHTSDSC' , 'Исключите модули из ка�
 
 define( '_MI_INVISIBLE_DIRNAMES' , 'Скрыть имена каталогов из карты сайта');
 define( '_MI_INVISIBLE_DIRNAMESDSC' , "Укажите имя каталога модулей, которые нужно скрыть из карты сайта.<br>Имена каталогов должны быть разделены запятыми, например: загрузки, виджет.");
-//keywords
-define( '_MI_SITEMAP_ADMIN_KEYWORD_LIST', 'search engine XML sitemaps generator map conzacz address footer credits');
 
 // Block
 define( '_MI_BLOCK_BLOCKNAME' , 'Карта сайта');

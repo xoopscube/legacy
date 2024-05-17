@@ -6,123 +6,113 @@
 <{/if}>
 
 <article id="<{$mydirname}>_container">
-
-<header>
-    <{* REFER TO MODULE PREFERENCES
-        Extra images generated from the upload file
-        default images size prefix : image_0_ (larger), image_1_ (small) image_2_ (middle)
-    *}>
-    <{if $content.ef.image}>
-    <img class="header-image" src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_2_<{$content.ef.image|escape}>" width="auto" alt="<{$content.subject}>">
-    <{/if}>
-    
-    <h2>
-        <{if !$content.approval}>
-        <strong class="badge warning">
-            <{$smarty.const._MD_PICO_WAITINGAPPROVAL}>
-        </strong>
+    <header>
+        <{* REFER TO MODULE PREFERENCES
+            Extra images generated from the upload file
+            default images size prefix : image_0_ (larger), image_1_ (small) image_2_ (middle)
+        *}>
+        <{if $content.ef.image}>
+        <img class="header-image" src="<{$xoops_url}>/<{$mod_config.extra_images_dir}>/image_2_<{$content.ef.image|escape}>" width="auto" alt="<{$content.subject}>">
         <{/if}>
+        
+        <h2>
+            <{if !$content.approval}>
+            <strong class="badge warning">
+                <{$smarty.const._MD_PICO_WAITINGAPPROVAL}>
+            </strong>
+            <{/if}>
 
-        <{if !$content.visible}>
-        <strong class="badge warning">
-            <img class="svg view-hide" src="<{$xoops_url}>/images/icons/view-hide.svg" width="1em" height="1em" alt="invisible">
-            <{$smarty.const._MD_PICO_INVISIBLE}>
-        </strong>
-        <{/if}>
+            <{if !$content.visible}>
+            <strong class="badge warning">
+                <img class="svg view-hide" src="<{$xoops_url}>/images/icons/view-hide.svg" width="1em" height="1em" alt="invisible">
+                <{$smarty.const._MD_PICO_INVISIBLE}>
+            </strong>
+            <{/if}>
 
-        <{if $content.created_time >= time()}>
-        <strong class="badge warning">
-            <{$smarty.const._MD_PICO_WAITINGRELEASE}>
-        </strong>
-        <{/if}>
+            <{if $content.created_time >= time()}>
+            <strong class="badge warning">
+                <{$smarty.const._MD_PICO_WAITINGRELEASE}>
+            </strong>
+            <{/if}>
 
-        <{if $content.expiring_time < time()}>
-        <strong class="badge warning">
-            <{$smarty.const._MD_PICO_EXPIRED}>
-        </strong>
-        <{/if}>
+            <{if $content.expiring_time < time()}>
+            <strong class="badge warning">
+                <{$smarty.const._MD_PICO_EXPIRED}>
+            </strong>
+            <{/if}>
 
-        <{$content.subject}>
-    </h2>
+            <{$content.subject}>
+        </h2>
 
-    <{* ----- Activity Overview *}>    
-    <div class="action-control">
-            
-        <{* if $category.isadminormod *}> <{* REMOVE THE SMARTY COMMENT '*' AND SPACES TO MAKE ACTIVITY PRIVATE *}> 
+        <{* ----- Activity Overview *}>    
+        <div class="action-control">
+                
+            <{* if $category.isadminormod *}> <{* REMOVE THE SMARTY COMMENT '*' AND SPACES TO MAKE ACTIVITY PRIVATE *}> 
+            <div>
+            <small>
+                <img class="svg user" src="<{$xoops_url}>/images/icons/user.svg" width="1em" height="1em" alt="user">
+                <{$content.poster_uname}>
+                <img class="svg datetime" src="<{$xoops_url}>/images/icons/datetime.svg" width="1em" height="1em" alt="datetime">
+                <span class="badge" data-tooltip="<{$smarty.const._MD_PICO_CREATED}>"><{$content.created_time_formatted}></span>
+                <{if $content.modified_time > $content.created_time}>
+                    <img class="svg update" src="<{$xoops_url}>/images/icons/update.svg" width="1em" height="1em" alt="update">
+                    <span class="badge" data-tooltip="<{$smarty.const._MD_PICO_MODIFIED}> - <{$content.modifier_uname}>"><{$content.modified_time_formatted}></span>
+                <{/if}>
+                <img class="svg views" src="<{$xoops_url}>/images/icons/file-view.svg" width="1em" height="1em" alt="views">
+                <span class="badge" data-tooltip="<{$smarty.const._MD_PICO_VIEWED}>"><{$content.viewed}></span>
+            </small>
+            </div>
+            <{* /if *}> <{* REMOVE THE SMARTY COMMENT '*' AND SPACES TO MAKE ACTIVITY PRIVATE *}>
+
+
+        <{* ------- ADMIN CONTROL *}>
         <div>
-        <small>
-            <img class="svg user" src="<{$xoops_url}>/images/icons/user.svg" width="1em" height="1em" alt="user">
-            <{$content.poster_uname}>
-            <img class="svg datetime" src="<{$xoops_url}>/images/icons/datetime.svg" width="1em" height="1em" alt="datetime">
-            <span class="badge" data-tooltip="<{$smarty.const._MD_PICO_CREATED}>"><{$content.created_time_formatted}></span>
-            <{if $content.modified_time > $content.created_time}>
-                <img class="svg update" src="<{$xoops_url}>/images/icons/update.svg" width="1em" height="1em" alt="update">
-                <span class="badge" data-tooltip="<{$smarty.const._MD_PICO_MODIFIED}> - <{$content.modifier_uname}>"><{$content.modified_time_formatted}></span>
+            <{if $content.can_edit}>
+            <a class="btn-icon" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>"
+                data-tooltip="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>"><img class="svg edit" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="1em" alt="edit"></a>
             <{/if}>
-            <img class="svg views" src="<{$xoops_url}>/images/icons/file-view.svg" width="1em" height="1em" alt="views">
-            <span class="badge" data-tooltip="<{$smarty.const._MD_PICO_VIEWED}>"><{$content.viewed}></span>
-        </small>
+        
+            <{if $xoops_isadmin}>
+            <a class="btn-icon" href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>"
+            data-tooltip="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>"><img class="svg batch" src="<{$xoops_url}>/images/icons/file-move.svg" width="1em" height="1em" alt="manage"></a>
+            <{/if}>
         </div>
-        <{* /if *}> <{* REMOVE THE SMARTY COMMENT '*' AND SPACES TO MAKE ACTIVITY PRIVATE *}>
+        
+        </div><{* /action-control *}>
+    </header>
 
+<{* ------- WATING OVERVIEW *}>
+<{if $category.isadminormod }>
+    <div data-layout="column">
 
-    <{* ------- ADMIN CONTROL *}>
-    <div>
-        <{if $content.can_edit}>
-        <a class="btn-icon" href="<{$mod_url}>/index.php?page=contentmanager&amp;content_id=<{$content.id}>"
-            data-tooltip="<{$smarty.const._MD_PICO_LINK_EDITCONTENT}>"><img class="svg edit" src="<{$xoops_url}>/images/icons/edit.svg" width="1em" height="1em" alt="edit"></a>
+        <{* ------- subject reference for a waiting content *}>
+
+        <{if $content.subject_waiting && $page !='makecontent'}>
+        <p><span class="badge warning"><{$smarty.const._MD_PICO_TH_SUBJECT_WAITING}></span></p>
+        <div class="waiting-content">
+            <h3><{$content.subject_waiting|htmlspecialchars_decode}></h3>
+        </div>
         <{/if}>
-    
-        <{if $xoops_isadmin}>
-        <a class="btn-icon" href="<{$mod_url}>/admin/index.php?page=contents&amp;cat_id=<{$category.id}>"
-           data-tooltip="<{$smarty.const._MD_PICO_LINK_BATCHCONTENTS}>"><img class="svg batch" src="<{$xoops_url}>/images/icons/file-move.svg" width="1em" height="1em" alt="manage"></a>
+
+        <{* -------  body reference for a waiting content *}>
+
+        <{if $content.body_waiting && $page !='makecontent'}>
+        <p><span class="badge warning"><{$smarty.const._MD_PICO_TH_BODY_WAITING}></span></p>
+        <div class="waiting-content">
+            <div class="pico_waiting"><{$content.body_waiting|htmlspecialchars_decode|nl2br}></div>
+        </div>
         <{/if}>
+
     </div>
-    
+<{/if}>
 
-
-    </div><{* /action-control *}>
-
-</header>
-
-    <{* ------- WATING OVERVIEW *}>
-
-    <{if $category.isadminormod }>
-        <div data-layout="column">
-
-            <{* ------- subject reference for a waiting content *}>
-
-            <{if $content.subject_waiting && $page !='makecontent'}>
-            <p><span class="badge warning"><{$smarty.const._MD_PICO_TH_SUBJECT_WAITING}></span></p>
-            <div class="waiting-content">
-                <h3><{$content.subject_waiting|htmlspecialchars_decode}></h3>
-            </div>
-            <{/if}>
-
-            <{* -------  body reference for a waiting content *}>
-
-            <{if $content.body_waiting && $page !='makecontent'}>
-            <p><span class="badge warning"><{$smarty.const._MD_PICO_TH_BODY_WAITING}></span></p>
-            <div class="waiting-content">
-                <div class="pico_waiting"><{$content.body_waiting|htmlspecialchars_decode|nl2br}></div>
-            </div>
-            <{/if}>
-
-        </div>
-    <{/if}>
-
-    
     <{* ------- CONTENT *}>
-
     <div id="<{$mydirname}>_body" class="page-body">
         <{$content.body}>
     </div>
 
-
     <{* ----- VOTE AND TAGS *}>
-
     <footer>
-
         <div class="action-control">
 
         <{if $mod_config.use_vote && $content.id}>
@@ -158,19 +148,19 @@
         <div>
             <{if $mod_config.show_printicon}>
             <a class="btn-icon"
-               href="<{$mod_url}>/<{$content.link}><{if $mod_config.use_wraps_mode || $mod_config.use_rewrite}>?<{else}>&amp;<{/if}>page=print"
-               title="<{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}>"
-               data-tooltip="<{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}>">
+                href="<{$mod_url}>/<{$content.link}><{if $mod_config.use_wraps_mode || $mod_config.use_rewrite}>?<{else}>&amp;<{/if}>page=print"
+                title="<{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}>"
+                data-tooltip="<{$smarty.const._MD_PICO_LINK_PRINTERFRIENDLY}>">
             <img class="svg print" src="<{$xoops_url}>/images/icons/print.svg" width="1em" height="1em" alt="print">
             </a>
             <{/if}>
-    
+
             <{if $mod_config.show_tellafriend && $content.tellafriend_uri}>
             <a class="btn-icon"
-               href="<{$content.tellafriend_uri}>"
-               target="_top"
-               title="<{$smarty.const._MD_PICO_LINK_TELLAFRIEND}>"
-               data-tooltip="<{$smarty.const._MD_PICO_LINK_TELLAFRIEND}>">
+                href="<{$content.tellafriend_uri}>"
+                target="_top"
+                title="<{$smarty.const._MD_PICO_LINK_TELLAFRIEND}>"
+                data-tooltip="<{$smarty.const._MD_PICO_LINK_TELLAFRIEND}>">
             <img class="svg share" src="<{$xoops_url}>/images/icons/share.svg" width="1em" height="1em" alt="share">
             </a>
             <{/if}>
@@ -189,16 +179,12 @@
         <{/if}>
 
     </footer>
-
 </article>
 
 
-<{* /////// Page navigation \\\\\\\ *}>
-
+<{* ----- Page navigation *}>
 <{if $mod_config.show_pagenavi && $content.id}>
-
 <nav class="container page-nav">
-
     <div>
     <{if !empty($prev_content.id)}>
         <a href="<{$mod_url}>/<{$prev_content.link}>" accesskey="P" data-tooltip="<{$smarty.const._MD_PICO_PREV}>" class="<{$smarty.const._ALIGN_START}>">
@@ -219,9 +205,7 @@
         </a>
     <{/if}>
     </div>
-
 </nav>
-
 <{/if}>
 
 

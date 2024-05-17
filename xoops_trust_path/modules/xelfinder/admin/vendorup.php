@@ -2,7 +2,7 @@
 /**
  * X-elFinder module for XCL
  * @package    XelFinder
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors Nuno Luciano (aka Gigamaster) 2020 XCL/PHP7
  * @author     Naoki Sawada (aka Nao-pon) <https://github.com/nao-pon>
  * @copyright  (c) 2005-2024 Authors

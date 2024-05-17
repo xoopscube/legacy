@@ -2,7 +2,7 @@
 /**
  * D3Forum module for XCL
  * @package    D3Forum
- * @version    XCL 2.3.3
+ * @version    XCL 2.4.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Naoki Sawada (aka Nao-pon)
  * @author     Gijoe (Peak)
@@ -28,8 +28,8 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 $modversion['dirname']          = $mydirname;
 $modversion['trust_dirname']    = $mytrustdirname;
 $modversion['name']             = $mydirname; //constant( $constpref . '_NAME' );
-$modversion['version']          = '2.34';
-$modversion['detailed_version'] = '2.34.0';
+$modversion['version']          = '2.40';
+$modversion['detailed_version'] = '2.40.0';
 $modversion['description']      = constant( $constpref . '_DESC' );
 $modversion['author']           = 'Gijoe (peak.ne.jp) and Jidaikbo, @nao-pon Naoki Sawada';
 $modversion['credits']          = '@domifara, @naao Naoki Okino, @nao-pon Naoki Sawada, @gigamaster (XCL/PHP7)';

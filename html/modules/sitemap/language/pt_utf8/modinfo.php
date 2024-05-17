@@ -1,6 +1,9 @@
 <?php
-
 /* Brazilian Portuguese Translation by Marcelo Yuji Himoro */
+define( '_MI_SITEMAP_DESC' , 'Automated XML Sitemap generator for search engines and humains');
+//keywords
+define( '_MI_SITEMAP_KEYWORD_LIST', 'search engine XML sitemaps generator map conzact address footer credits');
+
 define( '_MI_SITEMAP_ADMENU_OVERVIEW' , 'Overview');
 
 define( '_MI_SITEMAP_NAME' , 'Mapa do site');
@@ -24,9 +27,6 @@ define( '_MI_INVISIBLE_WEIGHTSDSC' , 'Modulos a serem ocultos no mapa no site se
 
 define( '_MI_INVISIBLE_DIRNAMES' , 'Configuração de nome de diretorio a serem ocultos');
 define( '_MI_INVISIBLE_DIRNAMESDSC' , 'Defina os modulos a serem ocultos no mapa do site pelo nome do diretorio. Separe-os por virgulas para indicar mais de um.<br>Ex.: xoopsheadline,newbb');
-
-//keywords
-define( '_MI_SITEMAP_ADMIN_KEYWORD_LIST', 'search engine XML sitemaps generator map conzacz address footer credits');
 
 // Block
 define( '_MI_BLOCK_BLOCKNAME' , 'Mapa do site');

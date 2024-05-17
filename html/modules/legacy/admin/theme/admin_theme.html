@@ -38,9 +38,9 @@
 <{* ---------- ---------- GOOGLEBOT *}>
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="noindex">
-    <!-- HTML5 valid Data URI for fake favicon requests by Browsers -->
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-
+<{* ---------- ---------- FAVICON *}>
+    <link rel="icon" href="<{$favicon}>" type="image/svg+xml">
+    <link rel="shortcut icon" href="<{$xoops_url}>/images/favicon/favicon.ico">
 <{* ---------- ---------- Admin Style *}>
     <!-- XCL Layout -->
     <link type="text/css" rel="stylesheet" href="<{$xoops_url}>/common/css/x-layout.css">
@@ -109,6 +109,7 @@
 
 
     <main class="main">
+        
         <{* foreach name='lblock' item='block' from=$xoops_lblocks *}>
         <{* if $block.name !='action_search' && $block.name !='dashboardmenu' && $block.name !='onlineinfo' && $block.name !='sidemenu' *}>
         <{* $block.content *}>

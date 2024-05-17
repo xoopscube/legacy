@@ -20,7 +20,6 @@
     grid-template-columns: repeat(auto-fit, minmax(Min(11em, 100%), 1fr));
     grid-auto-flow  : row;
     margin          : 2em 0;
-    /* max-width: 57em; container */
     padding         : var(--space-4);
     position        : sticky;
     top             : 110px;
@@ -89,7 +88,6 @@ div.dropdown a.dropdown-toggle.action-menu {
 }
 div.dropdown a.dropdown-toggle:hover {
     background      : var(--d-toggle-bg-on);
-    /*box-shadow      : var(--d-toggle-shadow);*/
     color           : var(--d-toggle-color-on);
 }
 div.dropdown.isopen div.dropdown-content {
@@ -167,7 +165,6 @@ div.dropdown-content > a {
     padding         : var( --space-4 ) var( --space-5 );
     position        : relative;
     text-align      : center;
-    /*text-transform  : uppercase;*/
     transition      : all ease-in-out 0.2s;
     vertical-align  : baseline;
     white-space     : nowrap;
@@ -248,7 +245,6 @@ div.dropdown-content.drop-top :is(span, select, input[type=text]) {width:100%;ma
 }
 
 :is(.navbar-options,.dashboard-options) .set-link {
-    /*display         : block;*/
     font-size       : 1em;
     line-height     : 1.25em;
     min-width       : 85px;
@@ -354,7 +350,6 @@ div.dropdown-content.drop-top :is(span, select, input[type=text]) {width:100%;ma
     border-radius   : var(--mav-block-radius);
     color           : var( --nav-block-color );
     display         : flex;
-    /*padding         : 10px 10px;*/
     padding: var(--space-2);
     margin: 0 var(--space-2);
     position        : relative;
@@ -388,11 +383,9 @@ div.dropdown-content.drop-top :is(span, select, input[type=text]) {width:100%;ma
 }
 .nav-block-open:after {
     border-color    : var(  --nav-block-color-on   );
-    transform       : rotate(-135deg) translate(0, -50%); /* Animation */
+    transform       : rotate(-135deg) translate(0, -50%);
 }
-/*.nav-side-menu li:last-child .nav-block:hover {*/
-/*    border-bottom-right-radius: var( --border-radius );*/
-/*}*/
+
 .nav-side-menu .nav-block-close {
     max-height      : 0;
     visibility      : hidden;
@@ -459,6 +452,6 @@ div.dropdown-content.drop-top :is(span, select, input[type=text]) {width:100%;ma
     display         : flex;
     justify-content : center;
     height          : 2.5rem;
-    padding         : 0; /*var(  --space-4  ) 0; */
+    padding         : 0;
     width           : 100%;
 }

@@ -55,21 +55,23 @@
 
 </article>
 
-<{* ------- Pagination from theme 
-<{if $pagenav}>
-<{include file="db:`$mydirname`_inc_pagination.html"}>    
-<{/if  
-*}>
-
 <{* ------- TOPIC FILTER ORDER *}>
 <{include file="db:`$mydirname`_inc_postorder_links.html"}>
 
+<{* ------- PAGINATION *}>
+<{if $pagenav}>
+<{include file="db:`$mydirname`_inc_pagination.html"}>    
+<{/if}>
 
 <{* ------- POSTS LOOP - list of top posts *}>
 <{foreach item=post from=$posts}>
     <{include file="db:`$mydirname`_inc_eachpost.html" post=$post caller="listposts" inner_link_format="#post_id%s"}>
 <{/foreach}>
 
+<{* ------- PAGINATION *}>
+<{if $pagenav}>
+<{include file="db:`$mydirname`_inc_pagination.html"}>    
+<{/if}>
 
 <{* ------- TOPIC FILTER ORDER *}>
 <{include file="db:`$mydirname`_inc_postorder_links.html"}>

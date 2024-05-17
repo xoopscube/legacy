@@ -85,7 +85,6 @@
 .danger,
 .error {
     border-left     : 7px solid var(  --color-red      );
-    /*background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M1 21L11.5 2.813L22 21H1zm19.268-1L11.5 4.813L2.732 20h17.536zM11 14v-4h1v4h-1zm0 2h1v2h-1v-2z' fill='%23C33022FF'/%3E %3C/svg%3E");*/
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' viewBox='0 0 24 24'%3e%3cpath fill='%23DE3121FF' d='M13 14h-2V9h2m0 9h-2v-2h2M1 21h22L12 2L1 21Z'/%3e%3c/svg%3e");
     background-position:  .6em 1em;
     background-repeat: no-repeat;
@@ -114,20 +113,20 @@
     display: none;
 }
 .success {
-    border-left     : 7px solid var(  --color-green     );
-    background: var(  --notify-bg    ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M9 19l-5.657-5.657l2.121-2.121L9 14.757l8.485-8.485l2.122 2.121L9 19zm-3.536-6.364l-.707.707L9 17.586l9.192-9.193l-.707-.707L9 16.172l-3.536-3.536z' fill='%2349ab4d'/%3E %3C/svg%3E") .6em 1em no-repeat;
+    border-left     : 7px solid var(  --color-green );
+    background: var(  --notify-bg ) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1.5em' height='1.5em' style='vertical-align: -0.125em;' viewBox='0 0 24 24'%3E %3Cpath d='M9 19l-5.657-5.657l2.121-2.121L9 14.757l8.485-8.485l2.122 2.121L9 19zm-3.536-6.364l-.707.707L9 17.586l9.192-9.193l-.707-.707L9 16.172l-3.536-3.536z' fill='%2349ab4d'/%3E %3C/svg%3E") .6em 1em no-repeat;
 }
 .message-warning {
-    background      : var(  --notify-bg    );
+    background      : var(  --notify-bg );
     border          : 1px solid var( --color-amber );
     border-radius   : var(  --notify-radius );
-    color           : var(  --color-white     );
-    padding         : var(  --space-2       );
+    color           : var(  --color-white );
+    padding         : var(  --space-2 );
     animation       : badge-warning 1s infinite alternate;
 }
 
 @keyframes badge-warning {
-/*         from {
+/*  from {
         border: hsl(0, 40%, 40%);
     } */
     to {

@@ -133,7 +133,15 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
         global $xoopsUser, $xoopsModule, $xoopsOption, $xoopsConfig;
         $dirname = is_object( @$xoopsModule ) ? $xoopsModule->getVar('dirname') : '' ;
         $modname = is_object( @$xoopsModule ) ? $xoopsModule->getVar('name') : '' ;
+        $modicon = is_object( @$xoopsModule ) ? $xoopsModule->getInfo('icon') : '' ;
+        
         $uid = is_object( @$xoopsUser ) ? $xoopsUser->getVar('uid') : '' ;
+        
+        // Render System - get configuration
+        $moduleHandler = xoops_gethandler('module');
+        $legacyRender =& $moduleHandler->getByDirname('legacyRender');
+        $configHandler = xoops_gethandler('config');
+        $configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
 
         $this->mSmarty->assign(
             [
@@ -143,11 +151,15 @@ class Legacy_AdminRenderSystem extends Legacy_RenderSystem
             'xoops_charset'     => _CHARSET,
             'xoops_version'     => XOOPS_VERSION,
             'xoops_upload_url'  => XOOPS_UPLOAD_URL,
-            'xoops_modulename'  => $modname,
+            'modulename'        => $modname,
+            'moduleicon'        => $modicon,
+            'dirname'           => $dirname,
             'xoops_dirname'     => $dirname,
             'uid'               => $uid,
             'module_name'       => $modname,
             'module_dir'        => $dirname,
+            'logotype'          => $configs['favicon'],
+            'favicon'           => $configs['favicon'],
             ]
         );
 

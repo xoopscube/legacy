@@ -134,8 +134,8 @@
 
 <{* ------- Pagination *}>
 <{if $pagenav}>
-<nav class="page-nav" title="Forum page navigation">
-    <div class="pagination"><{$pagenav}></div>
+<nav class="pagination" aria-label="pagination">
+    <{$pagenav}>
 </nav>
 <{/if}>
 
@@ -249,7 +249,9 @@
 <{* ------- Pagination *}>
 <!-- TODO default pagenavi -->
 <{if $pagenav}>
-    <nav class="pagination"><{$pagenav}></nav>
+    <nav class="pagination" aria-label="pagination">
+        <{$pagenav}>
+    </nav>
 <{/if}>
 
 

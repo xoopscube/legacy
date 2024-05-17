@@ -11,71 +11,62 @@
 	- button
 	- nav-btn
 */
-/* -------------------- -------------------- ACTION CONTROL
-
-    button border or colored e.g.:
-    background: var(--color-red );
-    color: var(--color-white );
-*/
+/* -------------------- -------------------- ACTION CONTROL */
 :is(button.action-active),
 .action-active {
     border: 1px solid var(  --color-green	)
 }
-.action-select {}
 
 a.action-add,
 a.action-new,
 a.action-send {
-    border: 1px solid var(  --color-green	);
+    border: 1px solid var(  --color-green );
 }
 a.action-cancel {
-    border: 1px solid var(  --border-color	);
+    border: 1px solid var(  --border-color );
 }
 a.action-copy {
-    border: 1px solid var(  --color-amber	);
+    border: 1px solid var(  --color-amber );
 }
-:is(button.delete),
+:is(button.delete, a.button.delete),
 a.action-delete,
 .action-diff {
     border: 1px solid var(  --color-red	);
 }
 a.action-download {
-    border: 1px solid var(  --color-blue	);
+    border: 1px solid var(  --color-blue );
 }
 a.action-lock {
     border: 1px solid var(  --color-red	);
 }
-.action-send {}
 
 :is(button.upload),
 a.action-upload {
-    border: 1px solid var(  --color-amber	);
+    border: 1px solid var(  --color-amber );
 }
 :is(button.edit),
 a.action-edit {
-    border: 1px solid var(  --color-blue	);
+    border: 1px solid var(  --color-blue );
 }
 a.action-submit {
-    border: 1px solid var(  --color-blue	);
+    border: 1px solid var(  --color-blue );
 }
 a.action-view {
-    border: 1px solid var(  --color-amber	);
+    border: 1px solid var(  --color-amber );
 }
-
-
 
 .bg-amber {
-    background      : var(  --color-amber	);
-    color           : var(  --color-white	);
+    background      : var(  --color-amber );
+    color           : var(  --color-white );
 }
 .bg-black {
-    background      : var(  --color-black	);
-    color           : var(  --color-white	);
+    background      : var(  --color-black );
+    color           : var(  --color-white );
 }
 
 .bg-blue {
     background      : var( --color-blue );
-    color           : var( --color-white )!important;
+    color           : var( --color-white)!important;
 }
 .bg-green {
     background      : var( --color-green );
@@ -106,7 +97,7 @@ a.action-view {
 .color-green { background: var( --color-green ); }
 .color-red { background: var( --color-red );}
 
-.color-orange {background: var( --color-orange ); var( --color-white )}
+.color-orange {background: var( --color-orange ), var( --color-white )}
 
 /* -------------------- --------------------  ICONS */
 /* Icons color and size */
@@ -122,65 +113,61 @@ button[type="button"].button-icon {
 
 /* -------------------- --------------------  BADGE */
 
-    /* Badge default */
-    .badge,
-    .badge-count {
-        background      : var( --button-bg );
-        border          : none;
-        border-radius   : var(--border-radius);
-        /*box-shadow      : var( --button-shadow );*/
-        color           : var( --primary);
-        display         : inline-block;
-        font-size       : 0.74rem;
-        font-family     : sans-serif;
-        font-style      : normal;
-        /*letter-spacing  : 0.1rem;*/
-        line-height     : 1em;
-        margin          : var( --button-margin );
-        padding         : var( --space-4 );
-        position        : relative;
-        text-align      : center;
-        /*text-transform      : uppercase;*/
-        transition      : all ease-in-out 0.2s;
-        vertical-align  : baseline;
-        /*white-space     : nowrap;*/
-    }
+/* Badge default */
+.badge,
+.badge-count {
+    background      : var( --button-bg );
+    border          : none;
+    border-radius   : var(--border-radius);
+    color           : var( --primary);
+    display         : inline-block;
+    font-size       : 0.74rem;
+    font-family     : sans-serif;
+    font-style      : normal;
+    line-height     : 1em;
+    margin          : var( --button-margin );
+    padding         : var( --space-4 );
+    position        : relative;
+    text-align      : center;
+    transition      : all ease-in-out 0.2s;
+    vertical-align  : baseline;
+}
 
-    .badge-count {
-        background      : var( --layer-2 );
-        font-size       : 13px;
-        height          : fit-content;
-        margin          : 0 var( --space-2 );
-        padding         : var( --space-1 ) var( --space-2 );
-        min-width       : 4ch;
-        text-align      : right;
+.badge-count {
+    background      : var( --layer-2 );
+    font-size       : 13px;
+    height          : fit-content;
+    margin          : 0 var( --space-2 );
+    padding         : var( --space-1 ) var( --space-2 );
+    min-width       : 4ch;
+    text-align      : right;
 
-    }
+}
 
-    /* Badge with icon background mask */
-    .badge > i[class^="i-"]{
-        mask-size           : 1.5em 1.5em;
-        -webkit-mask-size   : 1.5em 1.5em;
-    }
-    .badge:hover > i[class^="i-"]:hover{
-        filter: invert(100%);
-        ---color    : currentColor;
-    }
-    button.badge:hover {
-        filter: invert(100%);
-    }
-    .badge:hover {
-        background      : var(  --button-bg-on  );
-    }
+/* Badge with icon background mask */
+.badge > i[class^="i-"]{
+    mask-size           : 1.5em 1.5em;
+    -webkit-mask-size   : 1.5em 1.5em;
+}
+.badge:hover > i[class^="i-"]:hover{
+    filter: invert(100%);
+    ---color    : currentColor;
+}
+button.badge:hover {
+    filter: invert(100%);
+}
+.badge:hover {
+    background      : var(  --button-bg-on  );
+}
 
-    button > .badge {
-        border-radius   : 50%;
-        box-shadow      : 1px 2px 2px -1px hsla(0, 0%, 7%, 0.9);
-        padding         : 4px 7px;
-        position        : absolute;
-        right           : -1em;
-        top             : -1em;
-    }
+button > .badge {
+    border-radius   : 50%;
+    box-shadow      : 1px 2px 2px -1px hsla(0, 0%, 7%, 0.9);
+    padding         : 4px 7px;
+    position        : absolute;
+    right           : -1em;
+    top             : -1em;
+}
 
 
 /* -------------------- --------------------  button + jQueryUI */
@@ -197,7 +184,7 @@ nav.ui-breadcrumbs a,
     color               : var( --button-color  )!important;
     cursor              : pointer;
     display             : inline-block;
-    font-size           : 16px;
+    font-size           : 14px;
     line-height         : 1.5; /* 24px*/
     padding             : var( --button-padding );
     position            : relative;

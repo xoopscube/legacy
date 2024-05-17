@@ -230,6 +230,16 @@ $modversion['config'][] = [
 ];
 
 $modversion['config'][] = [
+	'name'        => 'sitemap_showcontents',
+	'title'       => $constpref . '_SITEMAP_SC',
+	'description' => '',
+	'formtype'    => 'yesno',
+	'valuetype'   => 'int',
+	'default'     => 0,
+	'options'     => []
+];
+
+$modversion['config'][] = [
 	'name'        => 'use_rewrite',
 	'title'       => $constpref . '_USE_REWRITE',
 	'description' => $constpref . '_USE_REWRITEDSC',
@@ -332,16 +342,6 @@ $modversion['config'][] = [
 $modversion['config'][] = [
 	'name'        => 'use_taf_module',
 	'title'       => $constpref . '_USE_TAFMODULE',
-	'description' => '',
-	'formtype'    => 'yesno',
-	'valuetype'   => 'int',
-	'default'     => 0,
-	'options'     => []
-];
-
-$modversion['config'][] = [
-	'name'        => 'sitemap_showcontents',
-	'title'       => $constpref . '_SITEMAP_SC',
 	'description' => '',
 	'formtype'    => 'yesno',
 	'valuetype'   => 'int',

@@ -26,13 +26,13 @@
         <div data-layout="row">
             <{$xoops_lblocks.action_search.content}>
         </div>
-
+       
         <{* Admin Module Help *}>
-        <{* assign var="helpAdmin" value="`$xoops_dirname` article#help-overview" *}>
+        <{* assign var="helpAdmin" value="`$dirname` article#help-overview" *}>
         <h6><i class="i-help"></i> <{$smarty.const._HELP}></h6>
         <div data-layout="row center-spread">
-            <button class="help-admin button" type="button" data-module="<{$xoops_dirname}>" data-help-article="#help-overview" aria-label="<{$smarty.const._HELP}>">
-                Module <{$xoops_modulename}>
+            <button class="help-admin button" type="button" data-module="<{$dirname}>" data-help-article="#help-overview" aria-label="<{$smarty.const._HELP}>">
+                <img class="svg" src="<{$xoops_url}>/modules/<{$dirname}>/<{$moduleicon}>" width="1em" height="1em"> Module <{$modulename}>
             </button>
         </div>
 
@@ -89,7 +89,7 @@
 
         </div>
 
-        <button id="clearLS" type="button" class="button delete" style="width:100%;"><i class="i-delete"></i> Clear LocalStorage</button>
+        <button id="clearLS" type="button" class="button delete"><i class="i-delete"></i> Clear LocalStorage</button>
 
 
 

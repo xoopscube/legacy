@@ -109,9 +109,7 @@ Alternative data display
 tr, th, td {
     padding         : var( --table-padding );
 }
-tr {
-    /*border-bottom: 1px solid var(--layer-1);*/
-}
+
 :where(table.outer) tbody tr:nth-child(even) {
     background      : var( --table-even );
 }
@@ -139,10 +137,6 @@ table td.foot,
 
 table.altsys_mytplsadmin .dbtplset_active {
     background      : var( --color-green );
-}
-
-table.altsys_mytplsadmin .dbtplset_active sup {
-    /*display       : none;*/
 }
 
 table.altsys_mytplsadmin .fingerprint1 {
@@ -180,13 +174,6 @@ table.outer tbody tr:hover,
     background      : var(  --table-hover        );
     color           : var(  --table-hover-text   );
 }
-/* 	div.unselected {
-    background      : #37474f;
-} */
-
-/* 	div.selected {
-    background      : var(--color-green);
-} */
 
 div.disabled {
     background      : var( --color-red );
