@@ -1,7 +1,7 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL 2.3.1
-	Version : 2.3.1
+	Distribution : XOOPSCube XCL 2.4.0
+	Version : 2.4.0
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
@@ -58,7 +58,7 @@ body {
     background      : var( --thumbBG );
 }
 ::-webkit-scrollbar-thumb:hover {
-    background      : var(--theme-color, #686c7e);
+    background      : var(--theme-color, rgb(14, 20, 24));
 }
 ::-webkit-scrollbar-track {
     background-color: var( --trackBG );

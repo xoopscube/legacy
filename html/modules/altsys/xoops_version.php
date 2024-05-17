@@ -2,7 +2,7 @@
 /**
  * Altsys library (UI-Components) for D3 modules
  * @package    Altsys
- * @version    2.3.1
+ * @version    2.4.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c)) 2005-2024 Gijoe (https://peak.ne.jp/)

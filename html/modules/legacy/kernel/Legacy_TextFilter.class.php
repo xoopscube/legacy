@@ -221,7 +221,7 @@ class Legacy_TextFilter extends XCube_TextFilter
 
         $encoding = $encoding ?: _CHARSET;
 
-       // !Todo Gigamaster update to HTML Purifier is 4.15.0, released on 2022-09-18
+       // !Todo Gigamaster update to HTML Purifier v4.15.0, released on 2022-09-18
        /* $config = HTMLPurifier_Config::createDefault();
         * $purifier = new HTMLPurifier($config);
         * $clean_html = $purifier->purify($dirty_html);

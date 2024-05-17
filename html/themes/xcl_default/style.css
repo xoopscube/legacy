@@ -769,7 +769,11 @@ li.post-tree-item > span {
     background-color: var(--pico-form-element-selected-background-color);
     border-radius   : var(--pico-border-radius);
 }
-
+/* POST TREE DEPTH-IN-TREE */
+:is(ul.depth-in-tree) {
+    margin          : 0;
+    padding         : 0;
+}
 /* FORUM POST - CONTENT + SIGNATURE */
 .post-content {
 }
@@ -903,6 +907,25 @@ ul.pagenavi li:not([aria-current]):hover a {
     color           : var(--pico-secondary-inverse);
     padding         : .25rem .5rem;
 }
+
+/* -------------------- MODULE SITEMAP  */
+.grid-sitemap {
+    grid-column     : 1 / 7;
+    display         : grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    justify-content : center;
+}
+.grid-map {
+    padding         : 1rem 1rem 0;
+    grid-column     : 1 / 7;
+    display         : grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    align-items     : center;
+}
+.grid-map h1 {
+    font-size       : 2rem
+}
+.grid-map .map iframe { border-radius: var(--pico-border-radius)}
 
 /* -------------------- SYSTEM Notification  */
 /* Replacing older confirmMsg errorMsgg resultMsg msg-warning */

@@ -535,7 +535,8 @@ if (!defined('XOOPS_LISTS_INCLUDED')) {
 
         public static function &getUserRankList()
         {
-            $db =& Database::getInstance();
+            //$db =& Database::getInstance();
+            $db = XoopsDatabaseFactory::getDatabaseConnection();
             $myts =& MyTextSanitizer::sGetInstance();
             $sql = 'SELECT rank_id, rank_title FROM ' . $db->prefix('ranks') . ' WHERE rank_special = 1';
             $ret = [];

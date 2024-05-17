@@ -54,9 +54,7 @@ class LegacyThemeHandler
                         // If this system can use this theme, add this to list.
                         //
                         // @gigamaster merged isset and applied strict ( === )
-//                        if (isset($manifesto['Manifesto']) && isset($manifesto['Manifesto']['Depends']) && 'Legacy_RenderSystem' == $manifesto['Manifesto']['Depends']) {
-
-                        if (isset($manifesto['Manifesto'], $manifesto['Manifesto']['Depends']) && 'Legacy_RenderSystem' === $manifesto['Manifesto']['Depends']) {
+                       if (isset($manifesto['Manifesto']) && isset($manifesto['Manifesto']['Depends']) && 'Legacy_RenderSystem' == $manifesto['Manifesto']['Depends']) {
                             $this->_mThemeList[]=new LegacyTheme($dir, $manifesto);
                         }
                     } else {

@@ -74,11 +74,11 @@ function b_legacy_mainmenu_edit($options)
         $icon_on = $icon_off;
         $icon_off = '';
     }
-    return '<div>' . _MB_LEGACY_MAINMENU_EXPAND_SUB .
+    return '<div><p>' . _MB_LEGACY_MAINMENU_EXPAND_SUB .
            "<input type=\"radio\" name=\"options[0]\" value=\"0\" $off>" . _NO .
            " &nbsp; <input type=\"radio\" name=\"options[0]\" value=\"1\" $on>" . _YES .
-           "<br>Show icon
+           "</p><p>Show module icon
            <input type=\"radio\" name=\"options[1]\" value=\"0\" $icon_off>" . _NO .
            " &nbsp; <input type=\"radio\" name=\"options[1]\" value=\"1\" $icon_on>" . _YES . '
-</div>';
+           </p></div>';
 }

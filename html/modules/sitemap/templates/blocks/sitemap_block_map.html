@@ -1,0 +1,21 @@
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<div id="sitemap_block">
+    <p>
+    <a href="<{$xoops_url}>"><span class="icon"><img class="svg" src="<{$xoops_url}>/images/icons/home.svg" width="1em" height="1em" alt="home"></span> 
+    <{$smarty.const._MB_SITEMAP_HOME}></a>
+    </p>
+
+<div  class="grid-map">
+<{if $block.sitename or $block.slogan}>
+    <hgroup>
+    <{if $block.sitename}><h2><{$block.sitename}></h2><{/if}>
+    <{if $block.slogan}><h3><{$block.slogan}></h3><{/if}>
+    </hgroup>
+    <{/if}>
+    <div class="map">
+    <{if $block.map}><{$block.map}><{/if}><br>
+    <{if $block.address}><{$block.address}><{/if}>
+    </div>
+</div>
+</article>

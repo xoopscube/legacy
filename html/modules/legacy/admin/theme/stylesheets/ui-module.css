@@ -1,7 +1,7 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
-	Distribution : XOOPSCube XCL 2.3.1
-	Version : 2.3.1
+	Distribution : XOOPSCube XCL 2.4.0
+	Version : 2.4.0
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
@@ -195,6 +195,70 @@ h4.help-rel + ul > li:last-of-type {
 h4.help-rel + ul > li:hover{
     box-shadow: var(--shadow-2);
     transition: var(--shadow-transition);
+}
+/* -------------------- MODULE CKEditor */
+/* BUTTON CKEditor forced fix button 📐*/
+:is([class^="cke_button"],[class^="cke_combo_button"] ) {
+    margin-left     : 0!important; 
+}
+/* fix extra space of combo dropdown */
+.cke_combo_on a.cke_combo_button, .cke_combo_off a.cke_combo_button:hover, .cke_combo_off a.cke_combo_button:focus, 
+.cke_combo_off a.cke_combo_button:active {
+    padding         : 0!important; 
+}
+/* CKEditor darkmode */
+:root[data-theme=dark] {    
+    --cke-color     : #fff;
+    --cke-background: #111;;
+    --cke-filter    : invert(1) contrast(1.15);
+    --cke-editable  : #1c212c;
+    --cke-inner     : #181b25;
+}
+/* try to switch mode, fallback ?? */
+:root[data-theme=light] {  
+    --no-var        : #fff;
+}
+/* CKEditor darkmode rounded */
+:is([class^=cke_top],[class^=cke_bottom]) {
+    filter          : var(--cke-filter, none);
+    border-color    : transparent!important;
+    /* Prevent editor from overflow prent container */
+    max-width       : 100%;
+    border-radius   : 8px;
+}
+:where(.cke_chrome) {
+    border          : none!important;
+}
+.cke_inner {
+    display         : block;
+    background      : var(--cke-inner, var(--no-var), #999)!important;
+    border          : 1px solid var(--cke-background, var(--no-var), #999)!important;
+    border-radius   : 8px;
+}
+:where(.cke_contents){
+    background      : var(--cke-editable, var(--no-var), #999)!important;
+    color           : var(--cke-color, var(--no-var))!important;
+    border-radius   : 8px;
+}
+/* customize editable container */ 
+.cke_editable {
+    background      : var(--cke-editable, var(--no-var));
+    color           : var(--no-var, #fff);
+    border-radius   : 8px;
+    padding         : 0.5rem;
+    cursor          : text;
+    margin          : 0.25rem;
+    width           : auto;
+    min-height      : calc(100vh - 1rem);
+}
+textarea.cke_source {
+    background      : var( --cke-background, #fff);
+	color           : var( --cke-color, #111);
+    padding         : 0.5rem;
+}
+.cke_wysiwyg_frame, .cke_wysiwyg_div {
+    background      : var(--cke-editable, var(--no-var))!important;
+    color           : var(--cke-color, var(--no-var))!important;
 }
 
 /* -------------------- --------------------  X-UPDATE STORE */

@@ -1,7 +1,7 @@
 /*
 	XOOPSCube Theme : XCL Admin Flex Grid
 	Distribution : XOOPSCube XCL 2.4.0
-	Version : 2.3.1
+	Version : 2.4.0
 	Author : Nuno Luciano aka Gigamaster
 	Date : 2023-01-27
 	URL : https://github.com/xoopscube/
@@ -9,16 +9,13 @@
 /*  -------------------- --------------------  Media Queries */
 
 /* -------------------- Mobile Devices */
-
 @media (max-width: 480px) {
 
     .layout-grid {
         display: grid;
 
-        grid-template-columns: minmax(0, 1fr); /* 1fr; */
+        grid-template-columns: minmax(0, 1fr);
         grid-template-areas:
-        /*"header header"*/
-        /*"main main";*/
         "header"
         "main"
         "footer";
@@ -31,8 +28,6 @@
 
     main {
         min-width: 0;
-        /*max-width: 100%;*/
-        /*width:calc(100% - 6em);*/
         padding: 0 .5rem;
     }
 
@@ -84,11 +79,9 @@
     }
     .alert-notify,
     .alert-submit {
-        /*position: fixed;*/
         right: -.5rem;
         top: 3rem;
         width: 100%;
-        /*z-index: var(--z-sticky);*/
     }
     .dropdown-content {
         left: calc(-100vw + 250px);
@@ -106,8 +99,6 @@
 /*@media (min-width: 46.875em) {*/
     .layout-grid {
         grid-template-areas:
-        /*"header header"*/
-        /*"main main";*/
         "header"
         "main"
         "footer";
@@ -186,7 +177,6 @@
 }
 
 /* -------------------- --------------------  Tablet Hor. 1024px*/
-
 @media screen and (min-width: 64em) {
     .layout-grid {
         grid-template-columns: auto;
@@ -212,16 +202,13 @@
     .ui-card-overview {
         grid-template-columns   : repeat(auto-fit, minmax(214px, auto));
     }
-
     .ui-card-2-col {
         column-count            : 2;
         list-style              : none;
     }
-
     .ui-block-online-content {
         flex-direction          : row;
     }
-
     .ui-block-online-welcome {
         align-items             : flex-start;
     }
@@ -233,14 +220,12 @@
     .layout-grid {
         display                 : grid;
         grid-template-columns   : 260px calc(100% - 260px);
-        /*grid-template-rows      : 50px 1fr;*/
         grid-template-areas     : "header header" "nav-aside main";
     }
 
     #container > main {
         min-width: 0;
-        max-width               : calc(98vw - 342px);
-        /*width: calc(98vw - 312px);*/
+        max-width               : calc(98vw - 280px);
     }
     .nav-mobile {
         visibility              : hidden;
@@ -261,19 +246,5 @@
     }
     .list .ui-card-block-item {
         margin:0 auto
-    }
-
-
-}
-
-/* device 1408 -> 1440px */
-@media screen and (min-width:88em) {
-body {
-overflow-x: hidden;
-}
-    #container > main {
-        min-width:0;
-        width: 100%;
-        max-width: 1380px;
     }
 }

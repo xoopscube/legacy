@@ -3,7 +3,7 @@
  * Sitemap blocks
  * Automated Sitemap and XML file for search engines
  * @package    Sitemap
- * @version    2.3.1
+ * @version    2.4.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     chanoir
  * @copyright  (c) 2005-2024 Authors
@@ -50,7 +50,7 @@ function b_sitemap_show( $options )
 
 	$block['this']['mods'] = 'sitemap';
 	$block['cols'] = $cols ;
-	$block['div_width'] = 90.0 / $cols ;
+	$block['div_width'] = '-'.$cols ;
 	$block['sitemap'] = $sitemap;
 	$block['msgs'] = $myts->displayTarea( $sitemap_configs['msgs'] , 1 ) ;
 	$block['show_subcategoris'] = $sitemap_configs['show_subcategoris'];

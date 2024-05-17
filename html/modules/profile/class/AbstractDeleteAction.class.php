@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    profile
- * @version    2.3.1
+ * @version    2.4.0
  * @author     Other Authors Nuno Luciano (aka gigamaster), 2020, XCL PHP7
  * @author     Original Author Kilica
  * @copyright  (c) 2005-2024 The XOOPSCube Project
