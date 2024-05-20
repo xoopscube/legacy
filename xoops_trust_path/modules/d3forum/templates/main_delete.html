@@ -4,12 +4,8 @@
 <{if $mod_config.show_breadcrumbs}>
 <nav aria-label="breadcrumb">
     <ul>
-        <li>
-            <a href="<{$xoops_url}>/">
-                <img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
-        <li>
-            <a href="<{$mod_url}>/index.php">
-                <img class="svg forum" src="<{$xoops_url}>/images/icons/forum_1.svg" alt=""> <{$smarty.const._MD_D3FORUM_TOP}></a>
+        <li><a href="<{$xoops_url}>/"><img class="svg home" src="<{$xoops_url}>/images/icons/home.svg" alt=""></a>
+        <li><a href="<{$mod_url}>/index.php"><img class="svg forum" src="<{$xoops_url}>/images/icons/forum_1.svg" alt=""> <{$smarty.const._MD_D3FORUM_TOP}></a>
         <li><a href="<{$mod_url}>/index.php?cat_id=<{$category.id}>"><{$category.title}></a>
         <li><a href="<{$mod_url}>/index.php?forum_id=<{$forum.id}>"><{$forum.title}></a>
         <{if $topic.id}>
@@ -20,29 +16,28 @@
 </nav>
 <{/if}>
 
-
-<h2 class="my-4">
-    <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt=""> <{$smarty.const._DELETE}></h2>
-
-    <article id="post_reference" class="reference">
-        <blockquote>
-        <h3><{$reference_subject}></h3>
-            <p><{$smarty.const._MD_D3FORUM_BY}>: <{$reference_name}></p>
-            <p><{$smarty.const._MD_D3FORUM_ON}>: <{$reference_time_formatted}></p>
-            <div data-layout="row" name="post-message"><{$reference_message}></div>
-            <p><{$smarty.const._MD_D3FORUM_CHILDREN_COUNT}> <span class="badge"><{$children_count}></span></p>
-        </blockquote>
-    </article>
+<article id="post_reference" class="reference">
+    <header>
+        <h2><img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt=""> <{$smarty.const._DELETE}></h2>
+    </header>
+    
+    <blockquote>
+    <h3><{$reference_subject}></h3>
+        <p><{$smarty.const._MD_D3FORUM_BY}>: <{$reference_name}></p>
+        <p><{$smarty.const._MD_D3FORUM_ON}>: <{$reference_time_formatted}></p>
+        <div data-layout="row" name="post-message"><{$reference_message}></div>
+        <p><{$smarty.const._MD_D3FORUM_CHILDREN_COUNT}> <span class="badge"><{$children_count}></span></p>
+    </blockquote>
 
 <form name="deleteposts" id="deleteposts" action="<{$mod_url}>/index.php?page=delete&amp;post_id=<{$post_id}>" method="post">
 
 <{$gticket_hidden}>
 
-	<p class="alert warning"><{if $children_count}>
+	<div class="alert warning"><{if $children_count}>
 		<{$smarty.const._MD_D3FORUM_CONFIRM_AREUSUREDEL}>
 	<{else}>
 		<{$smarty.const._MD_D3FORUM_CONFIRM_AREUSUREDELONE}>
-	<{/if}></p>
+	<{/if}></div>
 
 	<{* password for guest *}>
 	<{if ! $xoops_isuser}>
@@ -52,8 +47,11 @@
 		</dl>
 	<{/if}>
 
-    <p>
-        <button type="submit" class="ui-button delete" name="deletepostsok" id="deletepostsok" value="<{$smarty.const._DELETE}>">
-            <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt=""> <{$smarty.const._DELETE}></button></p>
+    <footer>
+    <button type="submit" class="outline delete" name="deletepostsok" id="deletepostsok" value="<{$smarty.const._DELETE}>">
+        <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em"> <{$smarty.const._DELETE}></button>
+    </footer>
 
 </form>
+
+</article>

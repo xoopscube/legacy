@@ -1,0 +1,103 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<article>
+
+    <h2>Welcome to <{$xoops_sitename}></h2>
+    <p><{$xoops_meta_description}></p>
+    
+    <h3>Getting started</h3>
+
+    <p>Your website is preconfigured with default settings.
+        The backend administration provides a graphical user interface, also called control panel or admin dashboard,
+        to configure your website, install components, translation and localization.</p>
+    <hr>
+
+    <details>
+    <summary>General Settings</summary>
+    <p>The system module allows you to customize the general settings of your platform, such as the name and slogan of the site,
+        language and theme, or close your site and restrict access by user groups.
+    <p><strong>Start Page or Module</strong></p>
+    <p>You can modify this template <code>"app_start_page.html”</code>, or you can select a module as the starting point of your website.</p>
+    <{if $xoops_isadmin}>
+    <p><code>Administration »» System »» <a href="./modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1" target="_blank">Preferences ⭧</a></code></p>
+    <{/if}>
+    </details>
+      
+    <hr>
+      
+    <details>
+    <summary>Closed for maintenance</summary>
+    <div class="alert warning">The site is currently closed for maintenance.</div>
+    <P>Maintenance mode allows you to close the site and display a custom notice to visitors.<br>
+        You can also control who has access to your site when it is closed.</P>
+    <p>When you're ready to launch your site, simply go to System Preferences to open it to the public.</p> 
+       
+    <ol>
+        <li>Maintenance Mode - Turn your site off?<br> Select yes to turn your site off so that only users in selected groups have access to the site.</li>
+        <li>Maintenance Mode - Select groups<br>Groups that are allowed to access while the site is turned off. Users in the default webmasters group are always granted access.</li>
+        <li>Maintenance Mode - Message<br>The text that is displayed when closing the site.</li>
+    </ol>
+    <p>You can edit the Template <code>site_closed.html"</code> and customize the design to match your notice, maintenance, coming soon, etc.</p>
+    <{if $xoops_isadmin}>
+    <p><code>Administration »» System »» Preferences »» <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confcat_id=1" target="_blank">"Maintenance mode-Turn your site off?" ⭧</a></code></p>
+    <{/if}> 
+    </details>
+
+    <hr>
+
+    <details>
+    <summary>User Groups Permissions</summary>
+    <p>You can assign users to multiple groups and easily grant access to content of modules and blocks.
+        The installation wizard creates the following system-required groups :</p>
+    <ol>
+        <li>Webmasters (Administrators)
+        <li>Registered Users (members)
+        <li>Anonymous Users (Guests)
+    </ol>
+    <div class="alert warning">Required user groups cannot be deleted !<br>
+    You can create new groups and change permissions for each new group created.</div>
+    <{if $xoops_isadmin}>
+    <p><code>Administration »» User Groups »» <a href="<{$xoops_url}>/modules/user/admin/index.php?action=GroupList" target="_blank">Preferences ⭧</a></code></p>
+    <{/if}>
+    </details>
+
+    <hr>
+
+    <details>
+    <summary>Modules Preferences</summary>
+    <p>Modules also have their own settings, accessible from their "preferences" menu.</p>
+    <p>For example, the render module allows you to manage the meta data of your website, themes (general appearance of your website), and templates that shape the contents of modules and blocks.</p>
+    <{if $xoops_isadmin}>
+    <p><code>Administration »» Render »» <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=3" target="_blank">Preferences ⭧</a></code></p>
+    <{/if}>
+    </details>
+
+    <hr>
+
+    <details>
+    <summary>Module Blocks</summary>
+    <p>When you install a module, its blocks are automatically added to the Block Management system.
+        These blocks often have their own functionality settings and customization templates.</p>
+    <div class="alert info">On the frontend, click the three-dot dropdown menu to edit the block.</div>
+    <p>For example, the parameters of the "Main Menu" block allow you to display icons for each module and subcategories.</p>
+    <{if $xoops_isadmin}>
+    <p><code>Administration »» System »» <a href="<{$xoops_url}>/modules/legacy/admin/index.php?action=BlockList" target="_blank">Block Management ⭧</a></code></p>
+    <{/if}>
+    </details>
+
+    <hr>
+
+    <details>
+    <summary>Theme</summary>
+    <p>A theme consists of a single HTML file that can include components, a CSS stylesheet, JavaScript, modules, and block templates. On the frontend, the Themes block allows users to select their preferred theme. 
+        You first need to enable the themes users can choose from, in Theme Management.</p>
+    <div class="alert info">Learn more about the Theme Options - Custom Parameters link in the Theme Management</div>
+    <{if $xoops_isadmin}>
+    <p><code>Administration »» System »» <a href="./modules/legacy/admin/index.php?action=ThemeList" target="_blank">Theme Management ⭧</a></code></p>
+    <{/if}>
+    </details>
+
+    <hr>
+
+</article>

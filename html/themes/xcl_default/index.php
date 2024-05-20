@@ -47,9 +47,8 @@
     <meta name="twitter:description" content="XCL Theme built with PicoCSS 2.0.6 for XOOPSCube">
     <meta name="twitter:image" content="picocss-screenshot.png">
     <meta name="twitter:image:alt" content="XCL Theme built with PicoCSS 2.0.6">
-    <!-- HTML5 valid Data URI for fake favicon requests by Browsers -->
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-
+    <!-- Favicon SVG - default /images/favicon -->
+    <link rel="icon" href="<{$favicon}>" type="image/svg+xml">
     <!-- Pico.css -->
     <link rel="stylesheet" href="./css/pico.amber.min.css">
     <!-- jQuery and UI -->

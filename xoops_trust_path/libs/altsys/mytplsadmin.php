@@ -370,15 +370,13 @@ while ( [$tpl_file, $tpl_desc, $type, $count] = $db->fetchRow( $frs ) ) {
 	if ( file_exists( $basefilepath ) ) {
 		$fingerprint                  = tplsadmin_get_fingerprint( file( $basefilepath ) );
 		$fingerprints[ $fingerprint ] = '';
-		echo "<td class='list_right'>"
+		echo "<td class='list_right'><span class='badge' title='". substr( $fingerprint, 0, 16 ) ."'>"
             . formatTimestamp( filemtime( $basefilepath ), 'm' )
-            ." <input type='checkbox' name='basecheck[$tpl_file]' value='1'>"
-            . "<br><small>"
-            . substr( $fingerprint, 0, 16 )
-            . "</small></td>\n";
+            ."</span> <input type='checkbox' name='basecheck[$tpl_file]' value='1'>"
+            . "</td>\n";
 		$fingerprint_class_count = 0;
 	} else {
-		echo '<td><br></td>';
+		echo '<td></td>';
 		$fingerprint_class_count = - 1;
 	}
 
@@ -408,20 +406,18 @@ while ( [$tpl_file, $tpl_desc, $type, $count] = $db->fetchRow( $frs ) ) {
 				$class                        = $fingerprint_classes[ ++ $fingerprint_class_count ];
 				$fingerprints[ $fingerprint ] = $class;
 			}
-			echo "
-                <td class='list_control list_right {$class}'>
-                <a class='action-edit' href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file="
+			echo "<td class='list_control list_right{$class}'>"
+				. "<span class='badge{$class}' title='Template $numrows - ". substr( $fingerprint, 0, 16 ) ."'>"
+                . formatTimestamp( $tpl['tpl_lastmodified'], 'm' )
+                . "</span>"
+                . "<a class='action-edit' href='?mode=admin&amp;lib=altsys&amp;page=mytplsform&amp;tpl_file="
                 . htmlspecialchars( $tpl['tpl_file'], ENT_QUOTES )
                 . "&amp;tpl_tplset="
                 . htmlspecialchars( $tpl['tpl_tplset'], ENT_QUOTES )
                 . "&amp;dirname=" . htmlspecialchars( $target_dirname, ENT_QUOTES )
                 . " title='"._EDIT."'>"
-                . "<i class='i-edit'></i></a> <input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1'> <br>"
-                . "<span title='Template : $numrows'>"
-                . formatTimestamp( $tpl['tpl_lastmodified'], 'm' )
-                . '</span><br><small>'
-                . substr( $fingerprint, 0, 16 )
-                . "</small></td>\n";
+                . "<i class='i-edit'></i></a> <input type='checkbox' name='{$tplset4disp}_check[{$tpl_file}]' value='1'>"
+                . "</td>\n";
 		}
 	}
 

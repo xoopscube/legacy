@@ -4,7 +4,7 @@
  *  * Preload is Top page
  *  *
  *  * Usage
- *  * <{if $xoops_is_top}> It's the top page! <{else}> It's not the top page <{/if}>
+ *  * <{if $xoops_is_top|default:''}> It's the top page! <{else}> It's not the top page <{/if}>
  *  *
  *  * @package    Preload
  *  * @author     Original Author : Ryuji AMANO

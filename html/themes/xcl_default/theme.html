@@ -78,8 +78,18 @@
     <{* ----- CSS - Theme ----- *}>
     <link rel="stylesheet" href="<{$xoops_themecss}>" />
     <{* ----- CSS - Theme JSON ----- *}>
-    <{assign var="sample" value="`$xoops_imageurl`theme.json"}>
-    <{json file="$sample" themejson="theme" local="true"}>
+    <{assign var="theme" value="`$xoops_imageurl`theme.json"}>
+    <{json file="$theme" theme="theme" local="true"}>
+    <{foreach item=theme key=key from=$theme}>
+    <{assign var='name' value=$theme->name}>
+    <{assign var='title' value=$theme->title}>
+    <{assign var='slogan' value=$theme->slogan}>
+    <{assign var='body' value=$theme->body}>
+    <{assign var='color' value=$theme->color}>
+    <{assign var='primary' value=$theme->primary}>
+    <{assign var='secondary' value=$theme->secondary}>
+    <{assign var='inverse' value=$theme->inverse}>
+    <{/foreach}>
     <{* ----- CSS - MainMenu Active ----- *}>
     <style>
     [data-theme=dark] {
@@ -105,8 +115,8 @@
     <ul>
         <{if $xoops_showlblock==1}>
             <{foreach item=block from=$xoops_lblocks}>
-            <{if $block.title=="User Menu" or $block.id==28}>
-            <li><{include file="$xoops_theme/component/_inc_nav_user.html"}></li>
+            <{if $block.title|strstr:"User" or $block.id==28}>
+            <li><{$block.content}></li>
             <{/if}>
             <{/foreach}>
         <{/if}>
@@ -115,8 +125,14 @@
 </nav>
 </header>
 
-<{* ----- TOPPAGE Center Blocks Title width prefix top- & none- (hide title) 
-          Note : It's Center Block Left that triggers the top to display  *}>
+<{* REMOVE SMARTY COMMENTS TO DISPLAY IN TOPPAGE ONLY *}>
+<{* if $xoops_is_top|default:'' *}> 
+<{include file="$xoops_theme/component/_inc_hero.html"}>
+<{* /if *}>
+
+
+<{* ----- TOPPAGE Center Blocks Title width prefix top- & none- (hide title)
+          Note : It's Center Block Left that triggers the top to display  *}> 
 <{if !empty($xoops_clblocks)}>
 <{foreach item=block from=$xoops_clblocks}>
     <{if $block.title|strstr:"top-" && !$block.title|strstr:"hero"}>
@@ -124,6 +140,8 @@
     <{/if}>
 <{/foreach}>
 <{/if}>
+
+
 
 <{* ----- Main *}>
 <main class="container">

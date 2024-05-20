@@ -39,7 +39,7 @@ textarea, select {
     scrollbar-width         : thin;
 }
 [type="number"] {
-    max-width: 7ch;
+    max-width: 8ch;
 }
 [type="color"] {
     border          : var(--border);

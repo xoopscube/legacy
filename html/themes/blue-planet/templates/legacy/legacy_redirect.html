@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="<{$xoops_langcode}>">
+<!--
+/*
+* XCL Theme built with PicoCSS v206
+*
+* @version   2.4.0
+* @update    2024-04-20
+* @Date      2024-02-02
+* @author    Nuno Luciano ( https://github.com/gigamaster )
+* @copyright (c) 2005-2024 The XOOPSCube Project, authors
+* @license   MIT
+* @link      https://github.com/xoopscube
+*/
+-->
+<head>
+<meta charset="<{$xoops_charset}>">
+<meta http-equiv="Content-Type" content="text/html; charset=<{$xoops_charset}>">
+<{if !class_exists('AdelieDebug_Preload')}>
+<meta http-equiv="Refresh" content="2; url=<{$url}>" />
+<{/if}>
+<title><{$xoops_sitename}></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="<{$theme_url}>/css/pico.blue.min.css">
+<link rel="stylesheet" href="<{$theme_css}>">
+<style>
+body{margin: 25vh auto 0;overflow:hidden}
+section.container{
+  background:nonne!important;
+  position:relative;
+  max-width: 70vw;
+  margin:3rem auto 0;
+  z-index:99;
+}
+section.container>article {
+  background: rgba(24 28 37 / 50%);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-align:center;
+}
+.planet {
+  /* content: ""; */
+  display: block;
+  position: fixed;
+  width: 1200px;
+  aspect-ratio: 1;
+  left: 50%;
+  top: -2rem;
+  transform: translateX(-50%) translateY(-50%);
+	background-image: radial-gradient(at 50% 50% in oklch,
+			color-mix(in oklch, skyblue, hsl(227, 100%, 50%) 80%),
+			color-mix(in oklch, skyblue, hsl(227, 92%, 50%) 10%) 19%,
+			color-mix(in oklch, skyblue, hsl(227, 88%, 50%) 20%) 20%,
+			color-mix(in oklch, skyblue, hsl(227, 84%, 50%) 80%),
+			color-mix(in oklch, hsl(226, 100%, 50%), black 50%) 55%,
+			transparent 70%);
+      z-index:-1
+}
+</style>
+
+</head>
+<body>
+<div class="planet"></div>
+<section class="container">
+<article>
+<p><img src="<{$logotype}>" width="140px" height="auto" alt="logo"></p>
+<h3 style="justify-content: center;"><{$message}></h3>
+    <progress id="indeterminate-progress"></progress>
+    <p><{$lang_ifnotreload}></p>
+<{if class_exists('AdelieDebug_Preload')}>
+<p style="color:orange;">No automatic redirect during AdelieDebug execution.</p>
+<{/if}>
+</article>
+</section>
+</body>
+</html>

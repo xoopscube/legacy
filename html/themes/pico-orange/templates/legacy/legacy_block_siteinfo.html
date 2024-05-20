@@ -1,0 +1,30 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<article>
+<{if $block.showgroups == true}>
+<ul class="list-column">
+    <{foreach item=group from=$block.groups}>
+    <li><{$group.name}></li>
+
+        <{foreach item=user from=$group.users}>
+        <li>
+            <img src="<{$user.avatar}>" alt="profile" width="32" data-self="radius-circle"/>
+            <a href="<{$xoops_url}>/userinfo.php?uid=<{$user.id}>"><{$user.name}></a>
+            <{$user.msglink}>
+        </li>
+        <{/foreach}>
+
+    <{/foreach}>
+</ul>
+<{/if}>
+
+<footer class="grid">
+    <img src="<{$block.logourl}>" width="88" height="31" alt="logo">
+    <img class="svg" src="<{$xoops_url}>/images/icons/share.svg" width="1em" height="1em" alt="share">
+    <!-- <{* --- if $block.recoomendtime != 0 --- *}>
+    <a href="javascript:openWithSelfMain('<{$xoops_url}>/misc.php?action=showpopups&amp;type=friend&amp;op=sendform&amp;t=<{$block.recoomendtime}>','friend',<{$block.popup_width}>,<{$block.popup_height}>)"><{$smarty.const._MB_LEGACY_RECO}></a>
+    <{* --- /if --- *}> -->
+</footer>
+
+</article>

@@ -1,0 +1,693 @@
+/*
+* XCL Theme Jquery-UI for PicoCSS v206
+*
+* @version   2.4.0
+* @update    2024-04-20
+* @date      2024-02-02
+* @author    Nuno Luciano ( https://github.com/gigamaster )
+* @copyright (c) 2005-2024 The XOOPSCube Project, authors
+* @license   MIT
+* @link      https://github.com/xoopscube
+*/
+
+/* Component containers
+----------------------------------*/
+.ui-dialog.ui-widget.ui-front {
+    background      : var(--pico-form-element-background-color);
+    box-shadow      : var(--pico-box-shadow );
+    padding         : calc(var(--block-spacing-horizontal) * 1);
+    border          : var(--pico-border-width) solid var(--pico-form-element-border-color);
+    background-color: var(--pico-modal-overlay-background-color);  
+    backdrop-filter : var(--pico-modal-overlay-backdrop-filter);  
+    -webkit-backdrop-filter: var(--pico-modal-overlay-backdrop-filter);
+
+}
+.ui-dialog-dragging > .ui-widget-header {
+    background: var(--pico-primary-background);
+}
+.ui-widget {
+	font-size       : 1rem
+}
+.ui-widget .ui-widget {
+    font-size       : 1rem
+}
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+    outline         : none;
+	font-family     : inherit;
+	font-size       : 1rem
+}
+.ui-widget.ui-widget-content {
+    /* border          : 1px solid var(--pico-form-element-border-color); */
+    border          : 1px solid transparent;
+    background      : var(--pico-form-element-background-color);
+    border-radius   : var(--pico-border-radius);
+    box-shadow      : var(--pico-card-box-shadow);
+    margin          : 0;
+}
+
+.ui-widget-content {
+	background      : var(--pico-form-element-background-color);
+    border          : 1px solid var(--pico-form-element-border-color);
+    color           : var(--pico-color);
+}
+.ui-widget-content a {
+    color           : var(--pico-primary);
+}
+.ui-widget-header {
+    background      : var(--pico-card-sectioning-background-color);
+    border          : var(--pico-border-width) solid var(--pico-border-color);
+    border-radius   : var(--pico-border-radius);
+    color           : var(--pico-color);
+	font-weight     : var(--pico-font-weight);
+    list-style      : none;
+}
+/* custom spacing */
+:is(.ui-menu) li.ui-widget-header {
+    /* custom spacing */
+    padding: .175em .5em;
+    border: 1px solid var(--pico-dropdown-border-color)
+}
+.ui-widget-header a {
+	color           : var(--pico-color);
+}
+
+/* Interaction states
+----------------------------------*/
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+/* greater specificity when clicked or hovered */
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+    background-color: var(--pico-background-color);
+    border          : 1px solid var(--pico-form-element-border-color);
+    color           : var(--pico-contrast);
+    font            : var(--pico-font-size);
+    font-weight     : inherit;
+}
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited,
+a.ui-button,
+a:link.ui-button,
+a:visited.ui-button,
+.ui-button {
+    background-color: var(--pico-background-color);
+    border: 1px solid transparent;
+    color           : var(--pico-primary);
+	text-decoration : none;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus,
+.ui-button:hover,
+.ui-button:focus {
+    background      : var(--pico-primary-hover-background);
+    border          : 1px solid var(--pico-primary-hover-border);
+    color           : var(--pico-color);
+    font-weight     : inherit;
+    outline         : none;
+}
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited,
+.ui-state-focus a,
+.ui-state-focus a:hover,
+.ui-state-focus a:link,
+.ui-state-focus a:visited,
+a.ui-button:hover,
+a.ui-button:focus {
+    background      : var(--pico-primary-hover-background);
+    border          : 1px solid var(--pico-primary-hover-border);
+    color           : var(--pico-primary-hover);
+    font            : var(--pico-font-size);
+    font-weight     : inherit;
+    text-decoration : none;
+    outline         : none;
+}
+.ui-visual-focus {
+	box-shadow      : var(--pico-primary-focus);
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+	background      : var(--pico-primary-hover-background);
+    border          : 1px solid var(--pico-primary-hover-border);
+    color           : var(--pico-primary-inverse);
+	font-weight     : inherit;
+    outline         : none;
+}
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited,
+:where(.dropdown-content):not(a.dropdown-item) {
+    border          : 1px solid var(--pico-primary-hover-border);
+	color           : var(--pico-primary-focus);
+}
+/* Checkbox */
+.ui-icon-background,
+.ui-state-active .ui-icon-background {
+	background-color: var(--pico-primary-hover-background);
+    border          : 1px solid var(--pico-primary-hover-border);
+}
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+    background      : var(--pico-primary-hover-background);
+    border          : 1px solid var(--pico-primary-hover-border);
+    color           : var(--pico-primary-inverse);
+}
+.ui-state-checked {
+	background      : var(--ui-state-checked-bg);
+    border          : var(--ui-state-checked-border);
+}
+.ui-state-highlight a,
+.ui-widget-content .ui-state-highlight a,
+.ui-widget-header .ui-state-highlight a {
+    color           : var(--pico-primary-inverse);
+}
+.ui-state-error,
+.ui-widget-content .ui-state-error,
+.ui-widget-header .ui-state-error {
+	background      : var(--ui-state-error-bg);
+    border          : 1px solid var(--pico-primary-hover-border);
+	color           : var(--ui-state-error-color);
+}
+.ui-state-error a,
+.ui-widget-content .ui-state-error a,
+.ui-widget-header .ui-state-error a {
+	color           : var(--ui-state-error-link);
+}
+.ui-state-error-text,
+.ui-widget-content .ui-state-error-text,
+.ui-widget-header .ui-state-error-text {
+	color           : var(--ui-state-error-text);
+}
+.ui-priority-primary,
+.ui-widget-content .ui-priority-primary,
+.ui-widget-header .ui-priority-primary {
+	font-weight     : inherit;
+}
+.ui-priority-secondary,
+.ui-widget-content .ui-priority-secondary,
+.ui-widget-header .ui-priority-secondary {
+    font-weight     : inherit;
+	opacity         : 0.7;
+}
+.ui-state-disabled,
+.ui-widget-content .ui-state-disabled,
+.ui-widget-header .ui-state-disabled {
+	background-image: none;
+    border          : 1px solid var(--pico-muted-border-color);
+    opacity         : 0.35;
+}
+
+/* Icons
+----------------------------------*/
+/* states and images - RELATIVE TO XCL /COMMON */
+.ui-icon {
+	width: 16px;
+	height: 16px;
+}
+.ui-icon,
+.ui-widget-content .ui-icon {
+	background-image: url("../../../common/js/images/ui-icons_cccccc_256x240.png");
+}
+.ui-widget-header .ui-icon {
+	background-image: url("../../../common/js/images/ui-icons_cccccc_256x240.png");
+}
+.ui-state-hover .ui-icon,
+.ui-state-focus .ui-icon,
+.ui-button:hover .ui-icon,
+.ui-button:focus .ui-icon {
+	background-image: url("../../../common/js/images/ui-icons_ffffff_256x240.png");
+}
+.ui-state-active .ui-icon,
+.ui-button:active .ui-icon {
+	background-image: url("../../../common/js/images/ui-icons_ffffff_256x240.png");
+}
+.ui-state-highlight .ui-icon,
+.ui-button .ui-state-highlight.ui-icon {
+	background-image: url("../../../common/js/images/ui-icons_ffffff_256x240.png");
+}
+.ui-state-error .ui-icon,
+.ui-state-error-text .ui-icon {
+	background-image: url("../../../common/js/images/ui-icons_ffffff_256x240.png");
+}
+.ui-button .ui-icon {
+	background-image: url("../../../common/js/images/ui-icons_cccccc_256x240.png");
+}
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Corner radius */
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-left,
+.ui-corner-tl {
+	border-top-left-radius: var(--pico-border-radius);
+}
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-right,
+.ui-corner-tr {
+	border-top-right-radius: var(--pico-border-radius);
+}
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-left,
+.ui-corner-bl {
+	border-bottom-left-radius: var(--pico-border-radius);
+}
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-right,
+.ui-corner-br {
+	border-bottom-right-radius: var(--pico-border-radius);
+}
+
+/* Overlays */
+/*Applies 100% width & height dimensions to an overlay screen*/
+.ui-widget-overlay {
+	background      : var(--ui-widget-overlay-bg);
+    backdrop-filter : var(--pico-modal-overlay-backdrop-filter);
+	opacity         : .8;
+}
+/*Sets box-shadow x & y offset, blur radius and color.*/
+.ui-widget-shadow {
+	box-shadow : var(--ui-widget-shadow);
+}
+
+/* Accordion
+----------------------------------*/
+.ui-accordion .ui-accordion-header {
+    background      : var(--pico-background-color);
+    border          : 1px solid var(--pico-accordion-border-color);
+	border-radius   : var(--pico-border-radius);
+	box-shadow      : var(--pico-box-shadow);
+	cursor 			: pointer;
+	display 		: block;
+	margin 			: var(--accordion-margin);
+	outline 		: 0;
+    margin-bottom   : .15em;
+	padding 		: .5em;
+	position 		: relative;
+    -moz-user-select: none;
+    user-select     : none;
+    transition      : background-color var(--pico-transition); 
+
+}
+.ui-accordion .ui-accordion-content {
+	background 		: var(--pico-dropdown-background-color);
+	border 			: var(--pico-border-width) solid var(--pico-dropdown-border-color);
+	border-top 		: 0;
+	border-radius 	: var(--pico-border-radius);
+	color 			: var(--pico-color);
+	padding 		: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
+	overflow 		: auto;
+    transition: opacity var(--pico-transition), transform 0s ease-in-out 1s;
+}
+:is(.ui-accordion-header-active):not([aria-selected="false"][aria-expanded="false"]) {
+    color:var(--pico-primary-color);
+}
+:is(.ui-accordion-header):not([aria-selected="true"][aria-expanded="true"]) {
+    color:var(--pico-secondary);
+}
+
+/* UI-MENU */
+.ui-menu {
+    background      : var(--pico-form-element-background-color);
+    border          : var(--pico-border-width) solid var(--pico-form-element-border-color);
+    border-radius   : var(--pico-border-radius);
+    display         : block;
+	list-style      : none!important;
+	margin          : var(--ui-menu-margin);
+    /* Override jQuery-UI css value */
+	outline         : 0;
+    padding:5px;
+    -moz-user-select: none;
+    user-select: none;
+}
+.ui-menu .ui-menu {
+    /* IMPORTANT override  ui-widget-content */
+    background      : var(--pico-form-element-background-color);
+    border          : var(--pico-border-width) solid var(--pico-form-element-border-color);
+    border-radius   : var(--pico-border-radius);
+	position        : absolute;
+    -moz-user-select: none;
+    user-select: none;
+}
+.ui-menu .ui-menu-item-wrapper {
+    background      : inherit;
+    border          : 1px solid transparent;
+    border-radius   : var(--pico-border-radius);
+    color           : var(--pico-color);
+    padding         : .125em .25em;
+    /* position: relative;*/
+}
+.ui-menu-icons {
+    position: relative
+}
+.ui-menu-icons .ui-menu-item-wrapper {
+    padding-left: 1.5em
+}
+.ui-menu .ui-icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: .2em;
+    margin: auto 0
+}
+.ui-menu .ui-menu-icon {
+    left: auto;
+    right: 0
+}
+.ui-menu .ui-state-focus,
+.ui-menu .ui-state-active {
+    /* IMPORTANT override default UI properties */
+    background      : var(--pico-primary-hover-background);
+    border          : 1px solid var(--pico-primary-hover-border);
+    border-radius   : var(--pico-border-radius);
+    color           : var(--pico-primary-inverse);
+    margin          : 0;
+}
+
+.ui-button:not(.ui-spinner-button,.ui-dialog-titlebar-close,.ui-controlgroup-item),
+.ui-button:link,
+.ui-button:visited {
+--pico-background-color: var(--pico-primary-background);
+--pico-border-color: var(--pico-primary-border);
+--pico-color: var(--pico-primary-inverse);
+--pico-box-shadow: var(--pico-button-box-shadow, 0 0 0 rgba(0, 0, 0, 0));
+    background-color: var(--pico-background-color);
+    border: var(--pico-border-width) solid var(--pico-border-color);
+    border-radius: var(--pico-border-radius);
+    box-shadow: var(--pico-box-shadow);
+    color: var(--pico-color);
+    cursor: pointer;
+    font-weight: var(--pico-font-weight);
+    font-size: var(--pico-font-size);
+    line-height: var(--pico-line-height);
+    outline: 0;    
+    padding: var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
+    text-align: center;
+    text-decoration: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
+}
+.ui-button:hover {
+--pico-background-color: var(--pico-primary-hover-background);
+--pico-border-color: var(--pico-primary-hover-border);
+--pico-box-shadow: var(--pico-button-hover-box-shadow, 0 0 0 rgba(0, 0, 0, 0));
+--pico-color: var(--pico-primary-inverse);
+}
+/*
+ref: https://api.jquery.com/first/
+*/
+:is(.ui-selectmenu-button.ui-button) {
+    padding         : var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
+    margin-bottom   : var(--pico-spacing);
+    background-color: var(--pico-form-element-background-color);
+    border          : var(--pico-border-width) solid var(--pico-form-element-border-color);
+    border-radius   : var(--pico-border-radius);
+    box-shadow      : var(--pico-button-hover-box-shadow, 0 0 0 rgba(0, 0, 0, 0.2));
+    color           : var(--pico-form-element-placeholder-color);
+    cursor          : pointer;
+    height          : calc(1rem* var(--pico-line-height) + var(--pico-form-element-spacing-vertical)* 2 + var(--pico-border-width)* 2);
+    line-height     : inherit;
+    text-align      : left;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    transition: background-color var(--pico-transition), border-color var(--pico-transition), color var(--pico-transition), box-shadow var(--pico-transition);
+}
+:is(.ui-selectmenu-button-open.ui-button) {
+background-color: var(--pico-form-element-background-color);
+border          : var(--pico-border-width) solid var(--pico-form-element-border-color);
+color           : var(--pico-form-element-placeholder-color);
+}
+.ui-selectmenu-menu .ui-menu .ui-selectmenu-optgroup {
+	font-weight     : var(--pico-font-weight);
+	margin          : 0;
+}
+.ui-controlgroup-horizontal:first-child .ui-controlgroup-item:nth-of-type(1),
+.ui-controlgroup-horizontal > .ui-selectmenu-button {
+    border-top-left-radius: var(--pico-border-radius) !important;
+    border-bottom-left-radius: var(--pico-border-radius) !important;
+}
+.ui-controlgroup-horizontal .ui-controlgroup-item:last-child {
+    border-top-right-radius: var(--pico-border-radius) !important;
+    border-bottom-right-radius: var(--pico-border-radius) !important;
+}
+.ui-controlgroup-vertical .ui-controlgroup-item:first-child,
+.ui-controlgroup-vertical .ui-selectmenu-button {
+    border-top-left-radius: var(--pico-border-radius) !important;
+    border-top-right-radius: var(--pico-border-radius) !important;
+}
+.ui-controlgroup-vertical .ui-controlgroup-item:last-child {
+    border-bottom-left-radius: var(--pico-border-radius);
+    border-bottom-right-radius: var(--pico-border-radius) !important;
+}
+.ui-controlgroup {
+    display         : inline-block;
+    vertical-align  : middle;
+}
+:where(.ui-controlgroup ) .ui-controlgroup-item:not(.ui-spinner) {
+    background      : var(--pico-background-color);
+    border          : var(--pico-border-width) solid var(--pico-form-element-border-color);
+    color           : var(--pico-color);
+	padding         : var(--pico-form-element-spacing-vertical) var(--pico-form-element-spacing-horizontal);
+	margin          : 0;
+}
+.ui-controlgroup .ui-controlgroup-label span {
+    font-size       : 1rem;
+    color           : var(--pico-primary);
+}
+.ui-controlgroup-horizontal .ui-controlgroup-label + .ui-controlgroup-item {
+   border-left      : var(--pico-border-width) solid var(--pico-accordion-border-color);
+}
+
+/* RESET BROWSER SPINNER */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+display: none;
+-webkit-appearance: none;
+margin: 0; /* reset margin */
+outline: none;
+}
+input[type=number] {
+-moz-appearance:textfield; /* Firefox */
+}
+.ui-spinner-input {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+    border: var(--pico-border-width) solid var(--pico-form-element-border-color);
+    border-radius: var(--pico-border-radius);
+    margin: 0!important;
+    padding-right: 30px!important;
+    min-width: 8ch;
+    text-align: center;
+    vertical-align: middle;
+    outline: none;
+}
+.ui-spinner-input:focus{outline:none;box-shadow: 0 0 0 var(--pico-outline-width) var(--pico-primary-focus);}
+.ui-spinner a.ui-spinner-button {
+    position: absolute;
+    height: 28px!important;
+    background: var(--pico-primary-underline);
+}
+.ui-spinner a.ui-spinner-button:hover{
+background: var(--pico-primary-hover-background);  
+}
+
+/* CHECKBOX + icon */
+.ui-checkboxradio-label .ui-icon-background {
+--pico-background-color: var(--pico-primary-background);
+--pico-border-color: var(--pico-primary-border);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    accent-color    : var(--pico-primary);
+    background      : var(--pico-form-element-border-color);
+	border          : 2px solid var(--pico-form-element-border-color);
+    border-radius   : 3px;
+    box-shadow      : var(--ui-state-check-shadow);    
+    background-position: center;
+    background-size : .75em auto;
+    background-repeat: no-repeat;
+}
+/* RADIO */
+.ui-checkboxradio-radio-label .ui-icon-background {
+    background      : white;
+    border          : 8px solid var(--pico-form-element-border-color);
+    border-radius   : 50%;
+    box-shadow      : var(--ui-state-check-shadow);
+	height          : var(--ui-state-check-height);
+    width           : var(--ui-state-check-width);
+}
+.ui-checkboxradio-radio-label.ui-checkboxradio-checked .ui-icon,
+.ui-checkboxradio-radio-label.ui-checkboxradio-checked:hover .ui-icon {
+    background-image: var(--pico-icon-checkbox);
+	background      : white;
+    cursor          : pointer;
+}
+
+.ui-datepicker table {
+	font-size       : 16px;
+}
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next{
+    border          : 1px solid transparent;
+    position        : absolute;
+    top             : 2px;
+    width           : 1.8em;
+    height          : 1.8em
+}
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover{
+    top:2px
+}
+.ui-datepicker .ui-datepicker-prev{
+    left:2px
+}
+.ui-datepicker .ui-datepicker-next{
+    right:2px
+}
+.ui-datepicker .ui-datepicker-prev-hover{
+    left:2px
+}
+.ui-datepicker .ui-datepicker-next-hover{
+    right:2px
+}
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span{
+    display:block;
+    position:absolute;
+    left:50%;
+    margin-left:-8px;
+    top:50%;
+    margin-top:-8px
+}
+.ui-datepicker .ui-datepicker-title{
+    margin:0 2.3em;
+    line-height:1.8em;
+    text-align:center
+}
+
+.ui-progressbar {
+	height          :  var(--ui-progressbar-height);
+}
+.ui-progressbar .ui-progressbar-value {
+    background      : var(--ui-progressbar-value);
+}
+
+
+/* -------------------- -------------------- jQUERY UI TAB */
+.ui-tabs {
+	position        : relative; 
+    border          : none;
+    border-radius   : var(--pico-border-radius);
+    margin          : 0;
+    padding:0.875rem;
+    list-style      : none;
+}
+.ui-tabs .ui-tabs-nav {
+	margin          : 0;
+	padding         : .2em .2em 0;
+}
+/* The list of tabs */
+.ui-tabs .ui-tabs-nav {
+    background              : transparent;
+    border                  : none;
+    border-top-left-radius  : var(--pico-border-radius);
+    border-top-right-radius : var(--pico-border-radius);
+    box-shadow              : var(--pico-box-shadow);
+    cursor                  : pointer;
+    display                 : inline-block;
+    line-height             : 1.25;
+}
+.ui-tabs .ui-tabs-nav li {
+    /* border: 1px solid var(--pico-primary-underline); */
+	list-style: none;
+	float: left;
+	position: relative;
+	top: 0;
+	margin: 0;
+	white-space: nowrap;
+}
+/* The anchors used to switch panels. */
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+    /* background              : var(--pico-primary-underline); */
+    background              : transparent;
+    color                   : var(--pico-primary);
+    float                   : left;
+    text-decoration         : none;
+}
+/* li .ui-tabs-anchor:first-child {
+border-top-left-radius: var(--pico-border-radius);
+}
+li .ui-tabs-anchor:last-child {
+    border-top-right-radius: var(--pico-border-radius);
+} */
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+	margin-bottom: 0;
+	padding-bottom: 0;
+    border-radius: var(--pico-border-radius);
+    border:none;
+}
+:is(.ui-tabs-tab).ui-state-default,.ui-state-default{
+    border-radius: var(--pico-border-radius);
+}
+.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+	cursor: pointer;
+}
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor:hover,
+.ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
+    background              : var(--pico-primary-hover-background);
+    color                   : var(--pico-contrast);
+}
+
+:where(li.ui-tabs-tab, a.ui-tabs-anchor):first-child {border-top-left-radius: var(--pico-border-radius)}
+:where(li.ui-tabs-tab, a.ui-tabs-anchor):last-child {border-top-right-radius: var(--pico-border-radius)}
+.ui-tabs .ui-tabs-panel {
+    background              : var(--pico-card-background-color);
+	display                 : block;
+	border                  : var(--ui-tab-panel-border);
+	padding                 : var(--pico-block-spacing-vertical) var(--pico-block-spacing-horizontal);
+}
+
+/* CUSTOMIZED content loading via an Ajax call will have the <code>ui-tabs-loading</code> class. */
+.ui-tabs-loading {
+    border                  : var(--ui-tabs-loading); /* TODO */
+}
+
+/* -------------------- jQUERY UI Tooltip */
+/*.ui-tooltip {
+	padding: 8px;
+	position: absolute;
+	z-index: 9999;
+	max-width: 300px;
+}
+body .ui-tooltip {
+	border-width: 2px;
+}*/

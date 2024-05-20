@@ -494,6 +494,10 @@ module-name *
     <h5>Conditional inclusion of subtemplates</h5>
     <pre><code class="lang-smarty">&lt;{include_if_exists file=&quot;foo.html&quot; else=&quot;bar.html&quot;}&gt;</code></pre>
 
+    <h5>Include PHP</h5>
+    <p>You can create a custom Block PHP or include in theme.html a PHP component e.g. language constants, dialog, etc.</p>
+    <pre><code class="lang-smarty">&lt;{include_php file="`$smarty.const.XOOPS_THEME_PATH`/`$xoops_theme`/component/_inc_new_dialog.php"}&gt;</code></pre>
+    
     <h3>Fetch Theme Component</h3>
     <p>Note the variable inside backticks <b>( ` )</b></p>
     <pre><code class="lang-smarty">&lt;{fetch file=&quot;`$xoops_imageurl`component/sample.html&quot;}&gt;</code></pre>

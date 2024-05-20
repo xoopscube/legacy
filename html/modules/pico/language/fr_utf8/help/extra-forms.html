@@ -1,0 +1,299 @@
+<div data-layout="row sm-column">
+
+    <div data-self="size-xxsmall">
+        <nav id="help-menu">
+            <ul data-layout="rows">
+                <li><a href="<{'help.html#help-overview'|helpurl}>" class="button">Help</a>
+                <li><a href="#form-extra" class="button">Extra Forms</a>
+                <li><a href="#form-mail" class="button">Example contact form</a>
+                <li><a href="#form-array" class="button">Example with checkbox</a>
+                <li><a href="#form-plugins" class="button">Form plugins</a>
+                <li><a href="#form-validation" class="button">Form Validation</a>
+                <li><a href="#form-embed" class="button">Embed Forms</a>
+            </ul>
+        </nav>
+    </div>
+
+<article id="help-module">
+
+    <section id="form-extra">
+
+        <h3>Extra Forms</h3>
+
+        <p>You can create and design custom interactive forms. In addition to designing smarty forms,
+            you can generate custom documents using templates and incorporate pre-designed forms.
+            Forms are processed automatically by the module.
+            You can forward responses to your email, or save them to your database and 
+            manage the form responses in the control panel.</p>
+
+        <h4><i class="i-task"></i> Create a Custom Form Mail</h4>
+
+        <p>This is a very simple form that will send a email to webmaster and store data in Extra Forms.<br> 
+            Let's see an example.</p>
+        
+        <ol>
+            <li>Create a new content</li>
+            <li>Title e.g. "Contact Us"</li>
+            <li>Click <strong>"Filters"</strong> and check <strong>"Smarty Renderer"</strong></li>
+            <li>Paste the content below</li>
+        </ol>
+    </section>
+
+    <section id="form-mail">
+    
+    <h3>Example form "Contact Us"</h3>
+
+<pre><code class="lang-smarty">
+    &#60;{capture}&#62;
+    &#60;form&#62;
+    &#60;label for="yourname"&#62;Your name 
+    &#60;input class="required" id="yourname" name="yourname" type="text" class="required" /&#62;
+    &#60;/label&#62;
+    
+    &#60;label for="youremail"&#62;Email 
+    &#60;input class="email" id="youremail" name="youremail" type="text" class="required" /&#62;&#60;/label&#62;
+    
+    &#60;label for="content"&#62;Message
+    &#60;textarea id="body" name="content"&#62;&#60;/textarea&#62;
+    &#60;/label&#62;
+    
+    &#60;br /&#62;
+    
+    &#60;input type="submit" value="Confirm content" /&#62;&#160;&#60;/form&#62;
+    &#60;{/capture}&#62;
+    &#60;{formmail}&#62;
+</code></pre>
+
+    <h5>Form Field and Class</h5>
+
+    <p>Required fields</p>
+    <p><pre><code class="lang-html">class="required"</code></pre></p>
+
+    <p>Email address</p>
+    <p><pre><code class="lang-html">class="email"</code></pre></p>
+
+    <p>Form Type</p>
+    <p><pre><code class="lang-smarty">&#60;{formmail}&#62;</code></pre></p>
+
+    <p>The form will send email to the administrator account and the data will be available in Extra Forms.</p>
+
+    </section>
+
+    <section id="form-array">
+
+        <h3>Form Checkbox Array</h3>
+
+        <p>The most important aspect of using <strong>checkbox</strong> elements is <strong>naming</strong> them correctly :<br>
+            use <strong>square brackets [ ]</strong> to create an array.
+
+        <p><pre><code class="lang-html">name="food[]"</code></pre></p>
+
+<pre><code class="lang-smarty">
+&#60;{capture}&#62;
+&#60;form&#62;
+&#60;label for="yourname"&#62;Your name 
+&#60;input id="yourname" name="yourname" type="text" class="required" /&#62;
+&#60;/label&#62;
+
+&#60;label for="youremail"&#62;email 
+&#60;input class="email" id="youremail" name="youremail" type="text" class="required" /&#62;&#60;/label&#62;
+
+&#60;fieldset&#62;
+&#60;legend&#62;Food preferences:&#60;/legend&#62;
+
+&#60;label for="checkbox_orange"&#62;
+&#60;input class="required" id="checkbox_orange" name="food[]" type="checkbox" value="orange" /&#62; 
+orange&#60;/label&#62; 
+
+&#60;label for="checkbox_apple"&#62;
+&#60;input class="required" id="checkbox_apple" name="food[]" type="checkbox" value="apple" /&#62; 
+apple&#60;/label&#62; 
+
+&#60;label for="checkbox_pear"&#62;
+&#60;input class="required" id="checkbox_pear" name="food[]" type="checkbox" value="pear" checked="checked" /&#62; 
+pear&#60;/label&#62;
+&#60;/fieldset&#62;
+
+&#60;fieldset&#62;
+&#60;legend&#62;Language preferences:&#60;/legend&#62;
+&#60;input type="checkbox" id="hindi" name="language[]" checked="checked" /&#62;
+&#60;label for="hindi"&#62;Hindi&#60;/label&#62;
+
+&#60;input type="checkbox" id="swahili" "language[]" /&#62;
+&#60;label for="swahili"&#62;Swahili&#60;/label&#62;
+
+&#60;input type="checkbox" id="navi" name="language[]" disabled /&#62;
+&#60;label for="navi"&#62;Na'vi&#60;/label&#62;
+&#60;/fieldset&#62;
+
+&#60;label for="selbox"&#62;SELECT sample 
+&#60;select class="required" id="selbox" name="selbox"&#62;
+&#60;option value=""&#62;-- select it --&#60;/option&#62;
+&#60;option value="0"&#62;0&#60;/option&#62;
+&#60;option value="1"&#62;1&#60;/option&#62;
+&#60;option selected="selected" value="2"&#62;2&#60;/option&#62;
+&#60;option value="3"&#62;3&#60;/option&#62; &#60;/select&#62;
+&#60;/label&#62;
+
+&#60;label for="content"&#62;Requirements
+&#60;textarea id="body" name="content"&#62;&#60;/textarea&#62;
+&#60;/label&#62;
+
+&#60;br /&#62;
+
+&#60;input type="submit" value="Confirm content" /&#62;&#160;&#60;/form&#62;
+&#60;{/capture}&#62;
+&#60;{formmail}&#62;
+</code></pre>
+
+<div class="error">Warning: The HTML form is filtered which means that an error in the elements will fail on a blank page.</div>
+
+    </section>
+
+<section id="form-plugins">
+    
+    <h3>Plugins for form processing</h3>
+    <p>Default plugins provided by module Pico</p>
+
+<h5>formmail</h5>
+
+<p>An inquiry email is sent to the administrator's email address in the general settings.</p>
+
+<h5>formmail4fleamarket</h5>
+
+<p>An inquiry email will be sent to the article author's email address.</p>
+<p>In addition, the contents of the query are also stored in the extra table</p>
+
+<h5>survey</h5>
+<p>The answers are stored in the extra table. Don't send emails.</p>
+
+    <h3>Plugins Parameters</h3>
+
+<p>For any plugin, you can specify process and parameter changes, such as adding an email destination or sending a confirmation email as an argument to the plugin.</p>
+
+<h5>Form processing plugin parameters</h5>
+<p>All parameters are optional and if text-related options are omitted, the default definitions from the language file are used.</p>
+
+<pre><code>mail_body_pre</code></pre>
+<p>The body of the email which precedes the content of the request.</p>
+
+<pre><code>mail_body_post</code></pre>
+<p>The body that follows the content of the inquiry.</p>
+
+<pre><code>mail_subject</code></pre>
+<p>Subject of inquiry email.</p>
+
+<pre><code>to</code></pre>
+<p>Add a destination for request emails. If you specify multiple email addresses, separate them with a comma.</p>
+
+<pre><code>from</code></pre>
+<p>The email address from which the inquiry email was sent. Cannot be more than one.</p>
+
+<pre><code>from_name</code></pre>
+<p>Name of the sender of the inquiry email</p>
+
+<pre><code>can_post_again</code></pre>
+<p>Once the form is submitted, if you need to display a blank form again, value 1 to redisplay, and 0 to not refresh.</p>
+
+<pre><code>confirm_message</code></pre>
+<p>Pre-send confirmation screen message.</p>
+
+<pre><code>finished_message</code></pre>
+<p>Message at the end of the sending process.</p>
+
+<pre><code>cc_field_name</code></pre>
+<p>The name of the field to which the confirmation email will be sent.</p>
+
+<pre><code>cc_mail_subject</code></pre>
+<p>Subject of the confirmation email.</p>
+
+<pre><code>cc_mail_body_pre</code></pre>
+<p>In the confirmation email, the body that is placed before the content of the inquiry.</p>
+
+<pre><code>cc_mail_body_post</code></pre>
+<p>In the confirmation email, the body that is placed after the content of the inquiry.</p>
+</section>
+
+<section id="form-validation">
+<h3>Validation Process</h3>
+
+<p>The form part is wrapped in the Smarty plugin's {capture}, and immediately after that, the pico-specific plugin, formmail, is placed.
+   The formmail plugin analyze the contents of capture, receive the POST data, save it to SESSION, rewrite the form part, and output it.</p>
+<p>The "form">" does not have an action or a method, but this is actually a special form that automatically rewrites the action and method only when it is a "form".</p>
+<p>If you know the URI of the form itself,
+    <code>&#60;form action="/modules/pico/form.html" method="POST"&#62;</code>.
+    You can also write it explicitly. In this case, this part will not be rewritten.</p>
+<p>You may write any HTML in the form element description section, 
+        so write as standard and correct HTML as possible, as the formmail plugin will rewrite it.</p>
+<p>Use <code>&#60;label&#62;</code> to define the item name of each form element.
+    If there is no <code>&#60;label&#62;</code>, the name attribute of the form element is used.</p>
+
+<h5>Type check</h5>
+<p>Lastly, there is the type check. 
+The type here is not a narrow "type" like int, double, or string, but a broad "type" that includes phone numbers, emails, addresses, etc.
+For example, class="email" is used to validate an email field. 
+However, it is a class and does not check for the existence of a domain.
+If you want to make email a mandatory input item, you can specify class="email required" to validate it as an email and treat it as a required item.</p>
+
+<h5>Item name</h6>
+<p>Attribute. A whole set of characters are available. Japanese is also acceptable.<br>
+Arrays can also be specified, but they are rarely used explicitly.</p>
+
+<p>If there is a corresponding &lt;label&gt; &lt;input&gt;&lt;select&gt;&lt;textarea&gt; item title, 
+    it will be retrieved with the highest priority.</p>
+<p>In the case of checkbox and radio, the &lt;Legend&gt; in the &lt;fieldset&gt;block to which it belongs, is the highest priority, not the &lt;label&gt;.
+If there is no &lt;label &gt;&lt;&gt;&gt; or &lt;legend&gt;
+&lt; or legend the item title is retrieved from the title attribute of the tag.
+If the item title cannot be obtained from any of the above, the item name (name attribute) is treated as the item title.</p>
+</section>
+
+<section id="form-embed">
+
+    <h3>Embed Forms in Content</h3>
+    
+    <p>Example to embed a common contact form in the product description content using the plugin "formmail4fleamarket"</p>
+
+    
+<pre><code class="lang-smarty"> 
+&lt;{capture}&gt;
+&lt;{pico id&#x3D;&quot;(Content id number of the form)&quot;}&gt;
+&lt;{&#x2F;capture}&gt;
+&lt;{formmail4fleamarket 
+    mail_body_pre&#x3D;&quot;We received an inquiry regarding the following products.\n Please contact our support.\n\n&quot; 
+    from_name&#x3D;&quot;Customer support&quot; 
+    cc_field_name&#x3D;&quot;youremail&quot; 
+    cc_mail_subject&#x3D;&quot;confirmation mail&quot; 
+    cc_mail_body_pre&#x3D;&quot;Thank you for your inquiry. \nThe following is the confirmation.\n&quot;}&gt;
+</code></pre>
+
+<p>This will ensure that you have access to a common form for all of your products.</p>
+    
+<p>Note that the &lt;{formmail}&gt; part is much longer with many parameters to the formmail plugin.
+These parameters allows you to change the behavior of formmail.</p>
+
+<p>mail_body_pre: 
+    The text in the body of the email sent to the administrator,
+     which is placed before the content of the inquiry</p>
+
+<p>from_name: The name of the sender of the email</p>
+<p>cc_field_name: 
+    When sending a confirmation email to the form respondents, 
+    Specify the field name that will be the email address to which it will be sent (in this case, youremail)</p>
+<p>cc_mail_subject: The Subject of the confirmation email</p>
+<p>cc_mail_body_pre: The text in the body of the confirmation email and before</p>
+
+<p>Play around with the arguments and experiment.</p>
+
+<p>You can also import custom forms and content from other instances of Pico. 
+In this case, specify the content id and the instance directory name:</p>
+
+    
+<pre><code class="lang-smarty">&lt;{pico id&#x3D;&quot;(content number)&quot; dirname&#x3D;&quot;(dirname)&quot;}&gt;</code></pre>
+      
+    <div class="tips">
+            Use categories to manage your custom forms and later easily include to new content.</div>
+
+</section>
+
+</article>
+</div>

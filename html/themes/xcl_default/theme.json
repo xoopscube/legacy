@@ -5,13 +5,15 @@
             "version": "2.4.0",
             "date": "2024-04-20",
             "author": "Nuno Luciano",
-            "title1": "<h2 style='color:red'>About XOOPSCube</h2><p>XOOPSCube Legacy was a pioneer open source project in providing developing, deploying and supporting complex IT solutions. Touching millions of lives world wide by bringing in innovative technology.",
-            "title2": "<p>XOOPSCube forayed into the sectors like e-Governance, research and education, in Japan, China, USA and Europe.</p>",
+            "title": "Your Dream, Your Legacy",
+            "slogan": "The greatest legacy that you will leave to your friends is your story.",
             "body": "#13171f",
             "color": "#c2c7d0",
-            "primary": "#c79400",
+            "primary": "#3c71f7",
             "secondary": "#969eaf",
-            "inverse": "#000"
+            "contrast": "#dfe3eb",
+            "inverse": "#000",
+            "muted": "#7b8495"
         }
     ]
 }

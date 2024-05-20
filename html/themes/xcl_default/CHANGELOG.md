@@ -2,9 +2,9 @@
 
 ## XCL DEFAULT THEME v.2.4.0
 
-XCL Default Theme built with PicoCSS v2.0.6
+XCL Theme built with PicoCSS v2.0.6
 
-All notable changes to XCL Theme PicoCSS will be documented in this file.
+All notable changes will be documented in this file.
 
 ## [XCL Theme 240 ] 2024-04-20
 

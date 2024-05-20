@@ -1,5 +1,5 @@
 /*
-* XCL Jquery Theme built for PicoCSS v206
+* XCL Theme Jquery-UI for PicoCSS v206
 *
 * @version   2.4.0
 * @update    2024-04-20
@@ -663,7 +663,7 @@ li .ui-tabs-anchor:last-child {
 .ui-tabs .ui-tabs-nav .ui-tabs-anchor:hover,
 .ui-tabs .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor {
     background              : var(--pico-primary-hover-background);
-    color                   : var(--pico-contrast-inverse);
+    color                   : var(--pico-contrast);
 }
 
 :where(li.ui-tabs-tab, a.ui-tabs-anchor):first-child {border-top-left-radius: var(--pico-border-radius)}

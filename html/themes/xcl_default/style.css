@@ -40,6 +40,7 @@
     --z-above       : 100; /* dropdown menu */
     --z-default     : 1;
     --z-below       : -1;
+
     /* override picocss */
     --pico-border-radius: .5rem;
     --pico-spacing: 1rem;
@@ -82,6 +83,9 @@ body {
     margin          : 0 auto 2rem;
     /* scroll-padding-top: 5rem; */
     box-sizing: border-box;
+}
+body > header {
+    --pico-block-spacing-vertical:0
 }
 body > main {
     display         : grid;
@@ -424,7 +428,9 @@ summary[role="link"].contrast:is([aria-current],:hover,:active,:focus) {
 /* -------------------- TOOLTIP */
 
 [data-tooltip] {
-    border-bottom-color: var(--pico-muted-color)
+    border-bottom-color: var(
+        --pico-border-color
+    )
 }
 [data-tooltip]:after, main [data-tooltip]:before {
     font-size       : 12px
@@ -490,15 +496,12 @@ p { text-wrap: pretty }
     aside#nav-left:target {
         transform: translate3d(0, 0, 0) translateX(0);
     }
-    .nav-logo {
-        margin-left: 32px;
-    }
     .nav-open { 
     display: block;
     position:absolute;
     left: 18px;
     top: 10px;
-}
+    }
     aside#nav-left .nav-close {
         display: block;
         height: 36px;

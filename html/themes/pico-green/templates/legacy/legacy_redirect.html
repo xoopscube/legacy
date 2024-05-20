@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="<{$xoops_langcode}>">
+<!--
+/*
+* XCL Theme built with PicoCSS v206
+*
+* @version   2.4.0
+* @update    2024-04-20
+* @Date      2024-02-02
+* @author    Nuno Luciano ( https://github.com/gigamaster )
+* @copyright (c) 2005-2024 The XOOPSCube Project, authors
+* @license   MIT
+* @link      https://github.com/xoopscube
+*/
+-->
+<head>
+<meta charset="<{$xoops_charset}>">
+<meta http-equiv="Content-Type" content="text/html; charset=<{$xoops_charset}>">
+<{if !class_exists('AdelieDebug_Preload')}>
+<meta http-equiv="Refresh" content="2; url=<{$url}>" />
+<{/if}>
+<title><{$xoops_sitename}></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="<{$theme_url}>/css/pico.green.min.css">
+<link rel="stylesheet" href="<{$theme_css}>">
+<style>body{margin: 25vh auto 0;}section.container{max-width: 70vw;}</style>
+</head>
+<body>
+<section class="container">
+<article style="text-align:center;">
+<p><img src="<{$logotype}>" width="140px" height="auto" alt="logo"></p>
+<h3 style="justify-content: center;"><{$message}></h3>
+    <progress id="indeterminate-progress"></progress>
+    <p><{$lang_ifnotreload}></p>
+<{if class_exists('AdelieDebug_Preload')}>
+<p style="color:orange;">No automatic redirect during AdelieDebug execution.</p>
+<{/if}>
+</article>
+</section>
+<script type="application/javascript">
+    document.getElementById('indeterminate-progress').indeterminate = true;
+</script>
+</body>
+</html>

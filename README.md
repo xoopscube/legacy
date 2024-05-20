@@ -10,19 +10,37 @@
 ## Simple, Secure and Scalable
 ### Web Application Platform and Content Management System
 
-XOOPSCube Legacy (XCL) is a Web Application Platform (WAP) free and open source well suited for general purpose 
-with a low code development approach maintained on GitHub. The XCL bundle package is designed for easy usage 
-to benefit from the performance of XCube Core and the most popular web server stack: Apache, MySQL and PHP.
+XOOPSCube Legacy (XCL) is a Web Application Platform (WAP) free and open source well suited for general purpose. The XCL bundle package is designed for easy usage with the most popular web server stack: Apache, MySQL and PHP.
 
-**Active branches in GitHub**  
-
-Active branch for all new features and bug fixes (PHP74, PHP8).  
-Keep a tested high quality, up-to-date master/main branch for releases.  
+  
+<h3> &#62;&#62;&#62; <a href="https://github.com/xoopscube/legacy/issues/300" target="_blank" rel="noopener">Maintenance Mode - EOL</a></h3>
+ 
 
 | Branch | PHP Version | Commit / Pull request |
 |:-------------:|:-------------:|:-------------:|
-| Master | PHP 7.4. - PHP 8.0 | Release Candidate  |
-| Smarty3 | PHP 7.4. - PHP 8.0| Smarty v3 bug fixes |
+| Master | PHP 8.0 | Security updates only  |
+
+-----  
+
+### [The XOOPSCube Project Celebrates The 20th Anniversary](https://github.com/xoopscube/legacy/blob/master/XOOPSCube-20th-Anniversary.md)
+
+-----
+
+## Get Started
+### Installation Wizard
+
+The XCL bundle package is designed to run smoothly on any local server environment bundle LAMP, MAMP, XAMPP,
+dedicated server, virtual private server (VPS) or shared hosting. Running a local instance (Linux, macOS, Windows) and deploying to your dedicated server or shared hosting is fairly easy.  
+The following guide focuses on the user-friendly [Web installation wizard](https://xoopscube.github.io/legacy/)
+
+1. Create a database (MySQL or MariaDB) InnoDB collation utf8mb4
+2. Unpack the archive to your root directory
+3. Browse to your website URL
+4. Follow the steps in the Installation Wizard
+
+<a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
+<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl-installer-wizard.jpg" alt="Wizard Installation" title="Wizard Installation" width="100%">
+</a>
 
 ## Features  
 **XCL bundle package features out of the box**
@@ -36,32 +54,14 @@ Keep a tested high quality, up-to-date master/main branch for releases.
   Content Management System (CMS), forums, knowledge management systems,   
   and multiple blogs management (e.g. WordPress) .
 
-<p><a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
+<p><a href="https://xoopscube.github.io/legacy/" target="_blank">
 <img src="https://repository-images.githubusercontent.com/4779266/2956517f-c3ea-4177-bd08-e11b6e30f17c" alt="xcl-admin-render" title="XCL Admin version 2.3.x" width="100%">
 </a></p>
 
 
-## Get Started
-### Installation Wizard
 
-The XCL bundle package is designed to run smoothly on any local server environment bundle LAMP, MAMP, XAMPP,
-dedicated server, virtual private server (VPS) or shared hosting. Running a local instance (Linux, macOS, Windows) and deploying to your dedicated server or shared hosting is fairly easy.  
-The following guide focuses on the user-friendly [Web installation wizard](https://xoopscube.github.io/legacy/)
 
-1. Create a database (MySQL or MariaDB) InnoDB collation utf8mb4
-2. Clone or Unzip the package files in your root directory
-3. Browse to your website URL
-4. Follow the steps in the Installer
 
-<a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
-<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl-installer-wizard.jpg" alt="Wizard Installation" title="Wizard Installation" width="100%">
-</a>
-
------  
-
-### [The XOOPSCube Project Celebrates The 20th Anniversary](https://github.com/xoopscube/legacy/blob/master/XOOPSCube-20th-Anniversary.md)
-
------
 
 ## Requirements
 
@@ -94,20 +94,6 @@ Language</th>
 </tr>
 </table>
 
-## Usage
-
-### Post-installation checklist
-
-Once the installation wizard completed, your website is preconfigured with default configuration settings. These settings refer to the pre-existing value of a user-configurable setting that is assigned to your web application platform. Therefore, you need to perform some post-installation tasks before launching your new website. These include setting up the site name and slogan, customizing meta tags (SEO), allowing visitors to register, and user group permissions. More detailed documents are available and highlighted throughout the built-in Help.
-
-- From the Admin Control Panel, set your preferences (your site is closed by default)
-- Install modules, blocks or create custom blocks (HTML, CSS, JavaScript or PHP) to specific modules pages
-- Create new user groups and set permissions
-- Customize meta tags (SEO)
-- Manage translations and localization
-
-<img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl_site_ui_modules.jpg" alt="Modules">
-
 ## License
 
 ### XOOPSCube - XCube Core
@@ -118,39 +104,6 @@ XOOPSCube was started from scratch and the minimalist XCube Core source code is 
 ### XOOPSCube - Package Legacy
 
 XOOPSCube Legacy source code which is a set of modules to ensure compatibility with old versions of Xoops2 is released under a GPL licence.
-
-
-
-
-## Download
-
-The source code of XOOPSCube Legacy is available on [Github](https://github.com/xoopscube/legacy)
-
-XOOPSCube Legacy packages are available at [downloads](https://github.com/xoopscube/legacy/downloads)
-
-
-
-
-#### Documentation
-
-XOOPSCube features a built-in "Help" documentation and Action search function.
-
-**Legacy API documentation**  
-Previous version of the subsystem API generated by Apigen 2.7.0
-
-http://xoopscube.org/documentation/api
-
-#### Support
-
-https://github.com/xoopscube/legacy/
-
-
-XOOPS Cube Legacy is open source project community driven.  
-We encourage everyone in the community to contribute their knowledge and expertise.  
-[enhancement request](https://github.com/xoopscube/legacy/issues)   
-[bug report](https://github.com/xoopscube/legacy/issues)   
-[patch](https://github.com/xoopscube/legacy/pulls)  
-
 
 ## The Contributors
 

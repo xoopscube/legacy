@@ -1,0 +1,1077 @@
+/*
+* XCL Theme Pico Green built with PicoCSS v206
+*
+* @version   2.4.0
+* @update    2024-04-20
+* @Date      2024-02-02
+* @author    Nuno Luciano ( https://github.com/gigamaster )
+* @copyright (c) 2005-2024 The XOOPSCube Project, authors
+* @license   MIT
+* @link      https://github.com/xoopscube
+*/
+/* ---------- ---------- ---------- ---------- --------IMPORT */
+@import "./css/dropdown.css";   /*  dROPDOWN MENU Grid-Flex */
+/* ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~~~~~~
+~~~~~~~~~~
+*/
+
+:root {
+
+/* Development Mode */
+--dev-mode: none;  /* Display Smarty Template Name : block, none */
+
+
+/* --------------------------- TOOLTIP */
+--tooltip-background-color: var(--pico-primary-hover-background);
+--tooltip-color: var(--pico-primary-inverse);
+
+/* --------------------------- TRANSITION */
+/* Transitions to control ANIMATION = TIME + Effect    */
+--transition-time   : 0.4s;
+--transition-cube   : all cubic-bezier(0.25, 0.46, 0.45, 0.94);
+--transition-ease   : all .15s ease-in-out,box-shadow .15s ease-in-out;
+
+/* --------------------------- Z-INDEX */
+    --z-modal       : 600;
+    --z-notify      : 500;
+    --z-overlay     : 400;
+    --z-tooltip     : 300;
+    --z-sticky      : 200;
+    --z-above       : 100; /* dropdown menu */
+    --z-default     : 1;
+    --z-below       : -1;
+
+    /* override picocss */
+
+    --pico-border-radius: .5rem;
+    --pico-spacing: 1rem;
+    --pico-typography-spacing-vertical: 1rem;
+    --pico-block-spacing-vertical: var(--pico-spacing);
+    --pico-block-spacing-horizontal: var(--pico-spacing);
+    --pico-grid-column-gap: var(--pico-spacing);
+    --pico-grid-row-gap: var(--pico-spacing);
+    --pico-form-element-spacing-vertical: 0.5rem;
+    --pico-form-element-spacing-horizontal: 0.75rem;
+
+    --pico-text-decoration: none;
+
+}
+
+.ui-dev-mode {
+    background      : rgb(10, 10, 10);
+    color           : rgb(0, 204, 255);
+    font-size       : 12px;
+    display         : var(--dev-mode); /* none or block */
+    position        : absolute;
+    overflow-wrap   : anywhere;
+    word-wrap       : anywhere;
+    hyphens         : auto;
+}
+
+/* ------------------ HTML BODY */
+/* ---------- OVERRIDE PICOCSS */
+html {
+    box-sizing      : border-box;
+    margin          : 0;
+    padding         : 0;
+    scroll-behavior : smooth;
+    scroll-padding-top: 2rem;
+    overflow-x      : hidden;
+}
+body {    
+--pico-main-top-offset: 0rem;
+    position        : relative; /* for SCROLL-TO-TOP */
+    margin          : 0 auto 2rem;
+    /* scroll-padding-top: 5rem; */
+    box-sizing: border-box;
+}
+body > header {
+    --pico-block-spacing-vertical:0
+}
+body > main {
+    display         : grid;
+    grid-template-rows: 1fr;
+    row-gap         : 2rem;
+    margin-bottom   : calc(var(--pico-spacing) * 4);
+    padding         : 0
+}
+body > main > * {
+    min-width       : 0;
+    margin-bottom   : 0
+}
+
+body > main > article {
+    --pico-block-spacing-vertical: var(--pico-spacing);
+    --pico-block-spacing-horizontal: var(--pico-spacing);
+}
+
+/* Body align Aside and Main */
+body > main > aside#nav-left,
+body > main > aside#block-right {
+    margin-top      : .5rem;
+}
+body > main > div > aside {
+    background      : var(--pico-card-background-color); 
+    padding         : .5rem; 
+    padding         : var(--pico-nav-element-spacing-vertical) var(--pico-nav-element-spacing-horizontal); /* @todo */
+    border-radius   : var(--pico-border-radius);
+}
+
+/* BODY FOOTER */
+body > footer {     
+    display         : flex;
+    align-items     : center;
+    padding         : 1rem 0;
+    justify-content : center;
+    flex-wrap       : wrap;
+}
+body > footer .logos { 
+    display         : inline-flex; 
+    padding         :.25rem .5rem;
+    border-bottom   : 1px solid var(--pico-muted-border-color)
+}
+body > footer .logos a { padding:.25rem; margin:.5rem 0;}
+body > footer .logos svg {
+    width           : auto;
+    height          : 1rem;
+    margin-right    : calc(var(--pico-spacing) * .25);
+    transform       : translateY(-.0625rem)
+}
+
+/* ARTICLE H* ONLY CHILD (FORM COMMENT/REPLY) */
+article header :where( h2, h3, h4 ):only-child{
+    margin          : var(--pico-spacing) 0;
+}
+article header :where( p:last-child ){
+    margin-bottom   : 0;
+}
+
+/* A HREF LINK COLOR */
+[data-theme=dark] {
+    :is([role=button], [type=button], [type=file]::file-selector-button, [type=reset], [type=submit], 
+    button, [type=checkbox]:checked, [type=checkbox]:checked:active, [type=checkbox]:checked:focus, 
+    [type=radio]:checked, [type=radio]:checked:active, [type=radio]:checked:focus):not(.outline) {
+    /* --pico-background-color: hsl(45 70% 40% / 1); */
+    }
+    a:hover:not([role=button]) { 
+        color:var(--pico-secondary-inverse)
+    }
+}
+[role=link]:focus, a:focus {
+--background-color  : var(--pico-primary-focus);
+    border-radius   : var(--pico-border-radius);
+}
+/* A LINK UNDERLINE none */
+a {--pico-text-decoration: none; border:none}
+:where(a:not([role=button])):is([aria-current]:not([aria-current=false]),:hover,:active,:focus), 
+[role=link] :is(a,[aria-current]:not([aria-current=false]),:hover,:active,:focus) {
+--pico-text-decoration: none;
+--pico-primary-underline: none;
+--pico-underline: none;
+    border:none
+}
+/* A LINK - ICON ONLY */
+:is(a.btn-icon) {
+    border-radius   : var(--pico-border-radius);
+    box-shadow      : var(--pico-box-shadow);
+    display         : inline-flex;
+    justify-content : center;
+    font-weight     : 600;
+    font-size       : 24px;
+    width           : 30px;
+    height          : 28px;
+    opacity         : .8;
+    transition      : opacity 0.3s ease-in;
+}
+:is(a.btn-icon):hover {
+    background      : var(--pico-primary-focus);
+    color           : var(--pico-secondary-inverse);
+    opacity         : 1;
+}
+
+hr { margin: 2rem 1rem; } /* @todo ? */
+
+/* -------------------- ARTICLE FOOTER ACTION CONTROL */
+.action-control {
+    align-items     : center;
+    column-gap      : 1rem;
+    display         : flex;
+    flex-wrap       : wrap;
+    justify-content : space-between;
+    white-space     : normal;
+}
+
+/* -------------------- BANNER */
+section[role=banner] > div > article {
+    border          : 1px solid var(--pico-muted-border-color);
+    border-radius   : var(--pico-border-radius);
+    box-shadow      : var(--pico-box-shadow);
+    margin          : calc(var(--pico-block-spacing-vertical) * 3) 0;
+}
+[role=banner] .advert {
+    background      : var(--pico-code-background-color);
+    border          : 1px dotted var(--pico-form-element-disabled-border-color);
+    border-radius   : var(--pico-border-radius);
+    display         : block;
+    padding         : var(--pico-spacing);
+
+}
+[role=banner] .banner {
+    padding         : var(--pico-spacing);
+    text-align      : center;
+}
+
+/* -------------------- BREADCRUMBS - MOBILE */
+
+nav[aria-label=breadcrumb] {
+    margin-bottom   : 1rem; /* space for pico header image */
+}
+
+@media (max-width   : 768px) {
+    nav[aria-label=breadcrumb]  ul {
+        list-style-type: none;
+        /*font-size: 16px;*/
+        margin      : 0;
+        padding     : 10px 0;
+        /* truncate */
+        white-space : nowrap;
+        max-width   : 100%;
+        overflow    : hidden;
+    }
+    nav[aria-label=breadcrumb]  li {
+        display     : inline-block;
+        max-width   : 18%; /* truncate */
+        width       : auto;
+        white-space : nowrap;
+        overflow    : hidden;
+        text-overflow: ellipsis;
+    }
+    nav[aria-label=breadcrumb] li:last-child {max-width: 30%;}
+    nav[aria-label=breadcrumb] li:first-child:before {content: none;}
+    nav[aria-label=breadcrumb] li a span:hover {text-decoration: underline}
+    nav[aria-label=breadcrumb] li,
+    nav[aria-label=breadcrumb] li:last-child {display: none}
+    nav[aria-label=breadcrumb] li:nth-last-child(2) {display: block;max-width: 100%;}
+    nav[aria-label=breadcrumb] li a {text-decoration: none}
+    nav[aria-label=breadcrumb] li:nth-last-child(2) a:after,
+    nav[aria-label=breadcrumb] ul li:not(:last-child) ::after {content: '';}
+    nav[aria-label=breadcrumb] li:nth-last-child(2) a:before {
+        content     : ' ↚ ';
+        display     : inline-flex;
+        min-width   : 5ch;
+        background  : var(--pico-primary);
+        border-radius:var(--pico-border-radius);
+        color       : var(--pico-primary-inverse);
+        margin-right: .5rem;
+        place-content: center;
+    }
+    nav[aria-label=breadcrumb] li:nth-last-child(2):before {content: none}
+
+    section.block-center {
+        background  : var(--pico-contrast-inverse);
+        border      : var(--pico-muted-border-color);
+        margin-bottom: 0;
+        padding     : calc(var(--pico-spacing) * 1) calc(var(--pico-spacing) * 1);
+    }
+}
+
+/* -------------------- BADGE & BUTTONS */
+.badge {
+    background      : hsla(205, 15%, 40%, 0.25);
+    border-radius   : var(--pico-border-radius);
+    font-size       : 12px;
+    min-width       : 3ch;
+    display         : inline-block;
+    padding         : 0 0.5rem;vertical-align: baseline;
+}
+
+/* article h3 :is(.badge){font-size: 14px; } */
+:is(article, hgroup, .list-content) h3, h4, .block-title {
+    display         : flex;
+    flex-wrap       : wrap;
+    justify-content : space-between;
+    width           : 100%;
+    align-items     : baseline;
+}
+
+/* BUTTON ACTION */
+:is(.delete) {
+    color           : var(--pico-del-color);
+    border-color    : var(--pico-del-color);
+}
+:is(button.vote) {
+    margin-bottom   : 0;
+}
+:where([type=submit],[type=button],[role=button]) svg {
+    display         : inline;
+    margin          : 0 .25rem 0; 
+    vertical-align: -.175em;
+}
+
+:where(footer.action-control, footer div.grid) 
+:is(div, button, input[type=submit],input[type=button],[role=button], details.dropdown, input, a):not(summary) { 
+    margin-bottom   : 0; 
+    white-space     : nowrap; 
+    /* border          : 2px solid orange; */
+}
+:where(footer.action-control) :is(a) {
+    border-radius   : var(--pico-border-radius);
+    margin          : 0 .5em;
+    padding         : .25rem; 
+}
+:where(footer.action-control) :is(a, button[type=submit]):hover {
+    background      : var(--pico-primary-focus);
+    color           : var(--pico-secondary-inverse); 
+}
+
+/* -------------------- BLOCKS */
+/* BLOCKS - Title */
+[class^="block-title"] {
+    color           : var(--pico-muted-color);
+    font-weight     : var(--pico-font-weight);
+    font-size       : 1rem;
+    line-height     : 1rem;
+    justify-content : space-between;
+    flex-wrap       : nowrap;
+    margin-bottom   : var(--pico-typography-spacing-vertical);
+    padding         : 0;
+}
+[class^="block-title"] a {
+    display         : inline-block;
+    width           : 100%;
+}
+[class^="block-title"]:hover a {
+--text-decoration   : none;
+    color           :var(--pico-primary-inverse);
+}
+[class^="block-title"]:hover {
+    background-position: 100% 100%;
+    background-size : 200% 100%;
+    text-decoration : none;
+    transition      : background-size .3s .3s, background-position .3s;    
+}
+/* BLOCKS - Content */
+[class="block-content"] {
+    margin-bottom   : var(--pico-typography-spacing-vertical);
+}
+[class="block-content"] > ul {
+    padding         : 0;
+}
+/* BLOCKS - MAIN MENU. SUB, MESSAGE */
+.menu-sub { 
+    padding-left    : 2.25rem;
+}
+/* BLOCK - PRIVATE MESSAGE */
+.block-messages ul#privatemessages {
+    flex-direction  : column;
+    width           : 100%;
+}
+.block-messages ul#privatemessages li {
+    padding         : calc(var(--pico-nav-element-spacing-vertical) * .5) var(--pico-nav-element-spacing-horizontal);
+    width           : inherit;
+}
+.block-messages ul#privatemessages li a {
+    display         : inherit;
+}
+/* BLOCK - LIST MEMBERS */
+/* USERS ONLINE, SITE INFO */
+ul.list-column {
+    border-left     : 4px solid var(--pico-muted-border-color);
+    column-count    : 3;
+    column-width    : 140px;
+    column-gap      : 1.5rem;
+    column-rule     : 4px solid var(--pico-muted-border-color);
+    margin          : 1rem 0;
+    padding         : 1rem;
+}
+ul.list-column li {
+    list-style      : none;
+    margin-bottom   :.5rem
+}
+ul.list-column li > h6 {
+    font-size       : 16px; column-span: all;
+}
+
+/* -------------------- ICONS */
+[class^="i-"] {
+    padding         : .25rem .5rem
+}
+i[class^="i-"],
+:is(span.icon, i.icon) {
+    padding-right   : .5rem;
+}
+
+summary[role="link"].contrast:is([aria-current],:hover,:active,:focus) {
+    background-color: transparent; 
+    color           : var(--pico-contrast-hover);
+}
+
+/* -------------------- SEARCH FORM - PicoCSS default pill: 5rem */
+
+[role=search]>:last-child {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+[role=search]>:first-child {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+/* -------------------- TABLE - FONT-SIZE IN BLOCKS */
+[class^="block-"] table tbody, tfoot {
+    font-size       : 14px;
+}
+
+/* -------------------- TEXT SELECTION */
+::-moz-selection{background-color:var(--pico-primary);color:var(--pico-primary-inverse)}
+::selection{background-color:var(--pico-primary);color:var(--pico-primary-inverse)}
+
+/* -------------------- TOOLTIP */
+
+[data-tooltip] {
+    border-bottom-color: var(
+        --pico-border-color
+    )
+}
+[data-tooltip]:after, main [data-tooltip]:before {
+    font-size       : 12px
+}
+
+/* -------------------- TYPOGRAPHY - FONT SIZE & SCALE */
+/* HEADING */
+h1, h2, h3, h4, h5 {     
+--font-weight: 400;
+    font-weight     : var(--font-weight); 
+    position        : relative;
+}
+h1,h2,h3 {
+        font-family: "Nunito", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+}
+
+p { text-wrap: pretty }
+
+@media (min-width: 576px) { :root { --pico-font-size: 106.25%; } }
+@media (min-width: 768px) { :root { --pico-font-size: 112.5%; /* 18px */}}
+@media (min-width: 1024px) { :root { --pico-font-size: 1rem; }}
+@media (min-width: 1280px) { :root { --pico-font-size: 1rem; }}
+@media (min-width: 1536px) { :root { --pico-font-size: 112.5%; /* 18px */}}
+
+/* -------------------- WRAPPER - GRID */
+/* -------------------- MEDIA QUERIES - desktop, tablet, mobile 
+   CSS override PicoSS rules and specificity */
+@media(max-width: 576px) {
+    [role=button], [type=button], [type=file]::file-selector-button, [type=reset], [type=submit], button {
+        --pico-form-element-spacing-horizontal: 1.5rem;
+    }
+    [role=group] [role=button], [role=group] [type=button], [role=group] [type=submit], [role=group] button, [role=search] [role=button], [role=search] [type=button], [role=search] [type=submit], [role=search] button {
+        --pico-form-element-spacing-horizontal: 1.5rem; 
+    }
+}
+@media screen and (max-width: 1024px) { 
+    body>main>aside#nav-left, body>main>aside#block-right {
+        --pico-font-size: 1rem; /* 16px - 18px picocss */
+        font-size: var(--pico-font-size);
+        margin-top: 0;
+    }
+    [data-self~="sm-hide"] {display:none!important}/* only show icon and hide text */
+
+    aside#nav-left {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 240px;
+        height: 100%;
+        padding: .25em var(--pico-block-spacing-horizontal);
+        background: var(--pico-card-background-color);
+        box-shadow: var(--pico-card-box-shadow);
+        overflow-y: auto;
+        z-index: var(--z-above);
+    }
+    aside#nav-left {
+        transform: translate3d(0, 0, 0) translateX(-240px);
+        transition: all 0.25s cubic-bezier(0.16, 0.63, 0.45, 0.98);
+    }
+    aside#nav-left:target {
+        transform: translate3d(0, 0, 0) translateX(0);
+    }
+    .nav-open { 
+    display: block;
+    position:absolute;
+    left: 18px;
+    top: 10px;
+    }
+    aside#nav-left .nav-close {
+        display: block;
+        height: 36px;
+        display: block;
+        cursor: pointer;
+        position: sticky;
+        left: 180px;
+        top: 10px;
+        width: fit-content;
+        width: -moz-fit-content;
+
+        z-index: var(--z-sticky);
+    }
+}
+@media(min-width: 1024px) {
+    html {
+        scroll-padding-top:calc(var(--pico-header-height) + 2rem - .375rem)
+    }
+    [data-self="sm-hide"] {
+        display: revert!important; /* show icon & show text */
+    }
+    body>header>nav.nav-top{
+        position: relative;
+    }
+    body>main {
+        grid-template-rows:auto 1fr;
+        grid-template-columns: 14rem 1fr;
+        grid-template-areas: "menu main" "menu block-right";
+        -moz-column-gap: 2rem;
+        column-gap: 2rem;
+        row-gap: 2rem;
+    }
+    .nav-logo {margin-left:0}
+    .nav-open,
+    aside#nav-left .nav-close{display: none;}
+    aside#nav-left {
+        position:relative; 
+        width: 220px;
+    }
+    body>main:has(aside#block-right) {
+        grid-template-rows: auto  1fr;
+        grid-template-columns: 14rem 1fr;
+        grid-template-areas: "menu main" "menu block-right"
+    }
+    body>main>aside#nav-left {
+        grid-area: menu
+    }
+    body>main>[role=main] {
+        grid-area: main
+    }   
+    body>main>aside#block-right {
+        grid-area: block-right;
+        align-self: start /* Sticky in grid */
+    }
+    body>main>aside#block-right {
+        position: sticky;
+        top: calc(var(--pico-main-top-offset) + var(--pico-block-spacing-vertical)/2);
+        max-height: calc(var(--max-height) - var(--pico-spacing));
+        transition: top var(--pico-transition);
+        transition-delay: 50ms
+    }
+    body>main>nav[aria-label=breadcrumb] {
+        display: none
+    }
+    body>main>aside>nav {
+        margin-top: calc(var(--pico-block-spacing-vertical)/2)
+    }
+    body>main>hgroup {
+        grid-area: header;
+        margin-top: calc(var(--pico-block-spacing-vertical)/2)
+    }
+}
+@media(min-width: 1280px) {
+    body>main {
+        grid-template-rows:auto 1fr;
+        grid-template-columns: 14rem 1fr 14rem;
+        grid-template-areas: "menu main block-right" "menu main block-right";
+        row-gap: 2rem;
+    }
+    body>main:has(aside#block-right) {
+        grid-template-rows: auto 1fr;
+        grid-template-columns: 14rem 1fr 15rem;
+        grid-template-areas: "menu main block-right" "menu main block-right"
+    }
+    body>main>aside#nav-left {
+        grid-area: menu
+    }
+    body>main>[role=main] {
+        grid-area: main
+    }
+    body>main>aside#block-right {
+        grid-area: block-right
+    }
+}
+@media(min-width: 1536px) {
+    body>main {
+        grid-template-rows:auto 1fr;
+        grid-template-columns: 16rem 1fr 16rem;
+        grid-template-areas: "menu main block-right" "menu main block-right";
+        row-gap: 3rem;
+    }
+}
+/* GRID CUSTOM COLUMNS */
+/* @todo ?? */
+.grid-left, .grid-right, .grid-2, .grid-3 {
+    align-items     : start;
+    display         : grid;
+    grid-template-columns: 1fr;
+    column-gap      : calc(var(--pico-spacing) * .5);
+    row-gap         : calc(var(--pico-spacing) * .5);
+    margin          : 0;
+}
+.flex-justify {
+    align-items     : center;
+    display         : flex;
+    justify-content : space-between;
+    flex-basis      : auto;
+    flex-wrap       : wrap;
+}
+@media (min-width: 1024px) {
+    .grid-main, .grid-left, .grid-right, .grid-2, .grid-3 {
+        align-items : baseline;
+        display     : grid;
+        column-gap  : calc(var(--pico-spacing) * 1);
+        row-gap     : calc(var(--pico-spacing) * 1);
+    }
+    .grid-main {
+        grid-template-columns: 1fr 3fr;
+        grid-column-gap: 1rem;
+        grid-row-gap: 1rem;
+    }
+    .grid-left { grid-template-columns: 1fr 3fr; }
+    .grid-right { grid-template-columns: 3fr 1fr; }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+/* -------------------- MODULE CKEditor */
+/* BUTTON CKEditor forced fix button 📐*/
+:is([class^="cke_button"],[class^="cke_combo_button"] ) {
+    margin-left     : 0!important; 
+}
+/* fix extra space of combo dropdown */
+.cke_combo_on a.cke_combo_button, .cke_combo_off a.cke_combo_button:hover, .cke_combo_off a.cke_combo_button:focus, 
+.cke_combo_off a.cke_combo_button:active {
+    padding         : 0!important; 
+}
+/* CKEditor darkmode */
+:root[data-theme=dark] {    
+    --cke-color     : #fff;
+    --cke-background: #111;;
+    --cke-filter    : invert(1) contrast(1.15);
+    --cke-editable  : #1c212c;
+    --cke-inner     : #181b25;
+}
+/* try to switch mode, fallback ?? */
+:root[data-theme=light] {  
+    --no-var        : #fff;
+}
+/* CKEditor darkmode rounded */
+:is([class^=cke_top],[class^=cke_bottom]) {
+    filter          : var(--cke-filter, none);
+    border-color    : transparent!important;
+    /* Prevent editor from overflow prent container */
+    max-width       : 100%;
+    border-radius   : 8px;
+}
+:where(.cke_chrome) {
+    border          : none!important;
+}
+.cke_inner {
+    display         : block;
+    background      : var(--cke-inner, var(--no-var), #999)!important;
+    border          : 1px solid var(--cke-background, var(--no-var), #999)!important;
+    border-radius   : 8px;
+}
+:where(.cke_contents){
+    background      : var(--cke-editable, var(--no-var), #999)!important;
+    color           : var(--cke-color, var(--no-var))!important;
+    border-radius   : 8px;
+}
+/* customize editable container */ 
+.cke_editable {
+    background      : var(--cke-editable, var(--no-var));
+    color           : var(--no-var, #fff);
+    border-radius   : 8px;
+    padding         : 0.5rem;
+    cursor          : text;
+    margin          : 0.25rem;
+    width           : auto;
+    min-height      : calc(100vh - 1rem);
+}
+textarea.cke_source {
+    background      : var( --cke-background, #fff);
+	color           : var( --cke-color, #111);
+    padding         : 0.5rem;
+}
+.cke_wysiwyg_frame, .cke_wysiwyg_div {
+    background      : var(--cke-editable, var(--no-var))!important;
+    color           : var(--cke-color, var(--no-var))!important;
+}
+
+
+/* -------------------- MODULE D3FORUM */
+/* Used in Dropdowm*/
+.author-info {
+    align-items     : center;
+    display         : flex;
+    flex-direction  : column;
+    padding         : .25em;
+}
+/* AUTHOR AVATAR */
+.avatar { 
+    border          : 2px solid var(--pico-border-color);
+    border-radius   : 50%;
+    margin          : 0 auto;
+}
+/* AUTHOR DROPDOWN */
+:is(.w96) {
+    width           : 96px; 
+    height          : 96px;
+ }
+
+/* AVATAR css from x-layout */
+[data-self="radius-circle"] { border-radius: 50%}
+
+/* NAV POST TREE ORDER */
+nav.post-tree-order {
+    align-items     : center;
+    display         : flex;
+    flex-wrap       : wrap;
+    justify-content : start;
+    padding         : var(--pico-spacing);
+    width           : 100%;
+}
+nav.post-tree-order a {
+    border-radius   : var(--pico-border-radius);
+    padding         : .25em;
+    margin-right    : .5em;
+}
+nav.post-tree-order a:hover {
+    background      : var(--pico-primary-focus);
+    color           : var(--pico-secondary-inverse);
+}
+/* POST TREE */
+/* in main view, main list, comment list */
+ul.post-tree {
+    background      : var(--pico-card-background-color);
+    border-radius   : CALC(var(--pico-border-radius)*2);
+    margin-bottom   : var(--pico-block-spacing-vertical);
+    padding         : 1rem;
+}
+ul.post-tree li {
+    list-style      : none;
+}
+li.post-tree-item {
+    align-items     : center;
+    display         : flex;
+    list-style      : none;
+    margin          : 0; /* NOTE The margin-left is auto-generated from template ! */
+    padding         : 0;
+}
+li.post-tree-item > span {
+    border-radius   : var(--pico-border-radius);
+    padding         : .25rem;
+}
+ .post-tree-current > span {
+    background-color: var(--pico-form-element-selected-background-color);
+    border-radius   : var(--pico-border-radius);
+}
+/* POST TREE DEPTH-IN-TREE */
+:is(ul.depth-in-tree) {
+    margin          : 0;
+    padding         : 0;
+}
+/* FORUM POST - CONTENT + SIGNATURE */
+.post-content {
+}
+.post-signature {
+    border-top      : 1px solid var(--pico-blockquote-border-color);
+    margin-top      : 1.5rem;
+}
+
+/* FORUM - ICON LIST LEGEND */
+.forum-icon-list {
+    display         : block;
+    list-style      : none;
+    margin          : 1em;
+    padding         : 0;
+}
+
+/* Following classes Using class badge */
+.post-vote,
+.post-vote-count,
+.post-vote-avg {}
+.description {}
+
+/* ACTIVITY TOTAL POSTS, COMMENTS, VIEWS */
+.content-activity,
+.forum-activity {
+    font-size       : small;
+}
+
+/* -------------------- MODULE PICO */
+article .header-image {
+    display         : inline-block;
+    box-shadow      : var(--pico-card-box-shadow);
+    height          : 240px;
+    margin-top      : calc(var(--pico-block-spacing-vertical) * -1.25);
+    margin-bottom   : var(--pico-block-spacing-vertical);
+    object-fit      : cover;
+    width           : 100%;
+    border          : 2px solid var(--pico-muted-color);
+    border-radius   : var(--pico-border-radius);
+}
+/* Page list of contents H3  + icons folder, docs */
+article h3 :is(span[data-tooltip]) {font-size:16px;}
+/* TAGS */
+article>footer>.content-tags {
+    color           : var(--pico-code-value-color);
+    padding-top     : 1rem;
+}
+/* POST OPTIONS */
+article > .content-filters,
+article > .content-options,
+article > .content-time,
+article > .content-history {
+    background      : none;
+    border          : var(--pico-border);
+    border-radius   : var(--pico-border-radius);
+    width           : auto;
+    margin-bottom   : var(--pico-grid-row-gap);
+}
+.content-filters >.filter > label {
+    display         : flex;
+    justify-content : space-between;
+    flex-wrap       : wrap;
+    align-content   : center;
+    align-items     : center;
+    flex-direction  : row;
+    width           : auto;
+}
+/* 🚧📐 div.category-sub:not(:last-child) ,*/
+:is(div.list-content):not(:only-of-type),
+:is(div.list-content):not(:last-of-type),
+:is(div.category-sub, div.category-forum):not(:only-of-type),
+:is(div.category-sub, div.category-forum):not(:last-of-type){
+    margin-bottom   : var(--pico-typography-spacing-vertical);
+}
+:is(div.list-content):last-of-type {}
+
+/* WAITING CONTENT */
+:is(div.list-content) :where(em.warning) {
+    background      : #f44336;
+    color           : #fff;
+}
+
+
+/* -------------------- PAGE NAV - CONTENT PAGINATION */
+nav.page-nav div {
+    align-items     : center;
+    display         : flex;
+    justify-content : center;
+    flex-wrap       : wrap;
+    justify-content : space-between;
+    padding         : var(--pico-spacing);
+    margin-bottom   : var(--pico-spacing);
+    width           : 100%;
+}
+/* -------------------- PAGENAVI D3FORUM COMMENTS PAGINATION */
+nav.pagination {
+    display         : flex;
+    margin          : .5em 0;
+    flex-direction  : row;
+    justify-content : flex-end;
+} 
+ul.pagenavi li {
+    border          : 0;
+    color           : var(--pico-primary);
+    border          : 1px solid var(--pico-muted-border-color);
+    border-radius   : var(--pico-border-radius);
+    box-shadow      : var(--pico-box-shadow);
+    padding         : 0;
+    text-align      : center;
+    user-select     : none;
+    margin          : 0 .25rem;
+    min-width       : 4ch;
+}
+/* ul.pagenavi li:last-of-type { margin: 0} */
+
+ul.pagenavi li:not([aria-current]) a {
+    background      : var(--pico-form-element-background-color);
+
+    margin          : 0;
+    padding         : .25rem .5rem;
+    width           : 100%;
+}
+
+ul.pagenavi li[aria-current] { 
+    border-color    : var(--pico-primary);
+    padding         : .25rem .5rem;
+}
+ul.pagenavi li:not([aria-current]):hover a {
+    border-color    : var(--pico-primary);
+    background      : var(--pico-primary-focus);
+    color           : var(--pico-secondary-inverse);
+    padding         : .25rem .5rem;
+}
+
+/* -------------------- MODULE SITEMAP  */
+.grid-sitemap {
+    grid-column     : 1 / 7;
+    display         : grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+    justify-content : center;
+}
+.grid-map {
+    padding         : 1rem 1rem 0;
+    grid-column     : 1 / 7;
+    display         : grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    align-items     : center;
+}
+.grid-map h1 {
+    font-size       : 2rem
+}
+.grid-map .map iframe { border-radius: var(--pico-border-radius)}
+
+/* -------------------- SYSTEM Notification  */
+/* Replacing older confirmMsg errorMsgg resultMsg msg-warning */
+.alert {
+    background      : var(--pico-muted-border-color);
+    border-left     : 3px solid;
+    border-color    : var(--pico-border-color);
+    border-radius   : var(--pico-border-radius);
+    padding         : var(--pico-spacing);
+    margin          : var(--pico-block-spacing-vertical) auto;
+}
+.error,
+.warning { border-color: var(--pico-del-color) }
+.success { border-color: var(--pico-ins-color) }
+.info    { border-color: var(--pico-code-color) }
+.result  { border-color: var(--pico-code-color) }
+
+/* -------------------- MODULE USER PROFILE AVATAR */
+/* Generate CSS Avatar Letter */
+.user-tab-avatar #avatar {
+--avatar-size       :96px;
+    background-size : 100% 100%;
+    background-position: 0px 0px,0px 0px,0px 0px,0px 0px,0px 0px;
+    background-image: repeating-linear-gradient(315deg, #00FFFF2E 92%, #073AFF00 100%),repeating-radial-gradient(75% 75% at 238% 218%, #00FFFF12 30%, #073AFF14 39%),radial-gradient(99% 99% at 109% 2%, #00C9FFFF 0%, #073AFF00 100%),radial-gradient(99% 99% at 21% 78%, #7B00FFFF 0%, #073AFF00 100%),radial-gradient(160% 154% at 711px -303px, #2000FFFF 0%, #073AFFFF 100%); 
+    border-radius   : 50%;
+    box-shadow      : 2px 2px 2px #111;
+    height          : var(--avatar-size);
+    margin          : 20px 0;
+    text-align      : center;
+    width           : var(--avatar-size);
+}
+/* Avatar Letter */
+.user-tab-avatar #username {
+    font-size       : 0;
+    display         : block;
+    color           : var(--pico-primary );
+    position        : relative;
+    line-height     : 1;
+    text-transform  : uppercase;
+    top             : calc(var(--avatar-size) / 4); /* 25% of parent */
+    transition      : font-size 0.3s ease-in;
+    filter          : drop-shadow(2px 2px 5px #010); /* drop-shadow(offset-x offset-y blur-radius color) */
+}
+.user-tab-avatar #username::first-letter {
+    font-size       : calc(var(--avatar-size) / 2); /* 50% of parent  */
+}
+
+/* -------------------- MODULE MESSAGE & USER PROFILE */
+/* Note - Mail tab active overrides the default properties */
+
+.mail-list-item {
+    border-bottom   : 1px solid hsl(219, 17%, 21%);
+    line-height     : 2.5rem;
+}
+.mail-list-avatar {
+    border-radius   : 50%;
+    height          : 24px;
+    margin          : auto .25em;
+    width           : 24px;
+    vertical-align  : middle;
+}
+.mail-list-author {
+    width           : 190px;
+}
+.mail-list-author input:disabled {
+    pointer-events: auto;
+    cursor: not-allowed;  
+}
+.mail-list-subject {
+    font-size       : 16px;
+ }
+.mail-list-date {
+    font-size       : small;
+ }
+.mail-list-date {
+    font-size       : small;
+}
+.mail-subject{}
+.mail-to {}
+.mail-from {}
+.mail-date {}
+.mail-content{}
+
+/* -------------------- SCROLL-TO-TOP */
+.scroll-top {
+    position        : absolute;
+    top             : 12rem;
+    right           : 2rem;
+    bottom          : 0;
+    pointer-events  : none;
+    z-index         : 9000;
+}
+.scroll-top #ntop-bg {fill: var(--pico-progress-background-color);}
+.scroll-top #ntop-arrow {fill: var(--pico-primary-hover);}
+.scroll-top a:hover #ntop-bg {fill: var(--pico-primary-hover-background);}
+.scroll-top a:hover #ntop-arrow {fill: var(--pico-primary-inverse);}
+.scroll-top a {
+    position        : sticky;
+    top             : -5rem;
+    width           : 3rem;
+    height          : 3rem;
+    margin-bottom   : -5rem;
+    transform       : translateY(100vh);
+    backface-visibility: hidden;
+    display         : inline-block;
+    text-decoration : none;
+    user-select     : none;
+    pointer-events  : all;
+    outline         : none;
+    overflow        : hidden;    
+    /* Style */
+    box-shadow      : var(--pico-box-shadow);
+    border          : var(--pico-border-width) solid var(--pico-border-color);
+    border-radius   : var(--pico-border-radius);
+}
+.scroll-top a svg {
+    display         : block;
+    border-radius   : var(--border-radius);
+    width           : 100%;
+    height          : 100%;
+}
+.scroll-top a svg path {
+    transition      : all 0.1s;
+}
+.scroll-top a #ntop-arrow {
+    transform       : scale(0.66);
+    transform-origin: center;
+}
+@media print {
+    .scroll-top { display: none !important; }
+}
+
+/* -------------------- Animation / Transition */
+@keyframes bottom {
+    0% { transform:translateY(10px); opacity:0; }
+    100% { opacity:1; transform:none;}
+}
+@keyframes top {
+    0% { transform:translateY(-10px); opacity:0; }
+    100% { opacity:1; transform:none; }
+}
+@keyframes left {
+    0% { transform:translateX(-10px); opacity:0; }
+    100% { opacity:1; transform:none; }
+}

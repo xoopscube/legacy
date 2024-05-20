@@ -20,7 +20,9 @@ if ( ! $trs = $db->query( $sql ) ) {
 }
 
 if ( $db->getRowsNum( $trs ) <= 0 ) {
-	die( _MD_D3FORUM_ERR_READTOPIC );
+	redirect_header( XOOPS_URL . "/modules/$mydirname/index.php", 2, _MD_D3FORUM_ERR_READTOPIC );
+	exit;
+
 }
 
 $topic_row = $db->fetchArray( $trs );
@@ -61,7 +63,8 @@ if ( $isadminormod ) {
 	$whr_topic_invisible = '1';
 } else {
 	if ( $topic_row['topic_invisible'] ) {
-		die( _MD_D3FORUM_ERR_READTOPIC );
+		redirect_header( XOOPS_URL . "/modules/$mydirname/index.php", 2, _MD_D3FORUM_ERR_READTOPIC );
+		exit;
 	}
 	$whr_topic_invisible = '! topic_invisible';
 }

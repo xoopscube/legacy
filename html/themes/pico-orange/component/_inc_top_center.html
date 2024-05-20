@@ -1,0 +1,146 @@
+<style>
+section#block-top {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: calc(var(--pico-spacing)*3);
+}
+section#block-top header h1 {
+    font-size: 2em;
+    font-weight: 800;
+    width:65%;
+    white-space: normal;
+    word-wrap: normal;
+    z-index: 10;
+}
+section#block-top h3 {
+    height: fit-content;
+}
+
+section#block-top div.grid {
+    z-index: 20;
+}
+.blob {
+    position: absolute;
+    top:10px;
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(90deg, var(--pico-primary-focus) 21%, var(--pico-primary) 100%);
+    /* mix-blend-mode: color-dodge; */
+    -webkit-animation: move 25s infinite alternate;
+            animation: move 25s infinite alternate;
+    transition: 1s cubic-bezier(0.07, 0.8, 0.16, 1);
+}
+.blob:hover {
+  width: 400px;
+  height: 400px;
+  -webkit-filter: blur(30px);
+          filter: blur(30px);
+  box-shadow:
+    inset 0 0 0 5px rgba(255, 255, 255, 0.6),
+    inset 100px 100px 0 0px #98781c,
+    inset 200px 200px 0 0px #2b86c5,
+    inset 340px 340px 0 0px var(--pico-background-color);
+}
+
+@keyframes move {
+  from {
+    transform: translate(-100px, -50px) rotate(-90deg);
+    border-radius: 45% 54% 33% 65% / 47% 43% 65% 74%;
+  }
+
+  to {
+    transform: translate(500px, 100px) rotate(-25deg);
+    border-radius: 74% 27% 13% 25% / 65% 55% 74% 27%;
+  }
+}
+@keyframes move2 {
+  from {
+    transform: translate(100px, 50px) rotate(-90deg);
+    border-radius: 21% 74% 33% 65% / 27% 33% 65% 74%;
+  }
+
+  to {
+    transform: translate(-500px, -100px) rotate(-10deg);
+    border-radius: 74% 27% 33% 65% / 65% 55% 44% 33%;
+  }
+}
+</style>
+
+<{if $xoops_showcblock==1}>
+<section class="container" id="block-top">
+
+<header class="grid">
+    <h1><{$xoops_sitename}></h1>
+    <h3><{$xoops_slogan}></h3>
+</header>
+<div class="blob"></div> 
+<div class="grid">
+<{* ---------- BLOCK Center-Left *}>
+<{if !empty($xoops_clblocks)}>
+<div>
+    <{foreach item=block from=$xoops_clblocks}>
+    <{if $block.title|strstr:"top-" && !$block.title|strstr:"hero"}>
+        <article>
+            <h4>
+                <{if $xoops_isadmin}>
+                <{$block.title}>
+                <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+                <{else}>
+                <{if ! $block.title|strstr:"none"}><{$block.title|replace:'top-':''}><{/if}>
+                <{/if}>
+            </h4>
+            <div class="block-content"><{$block.content}></div>
+        </article>
+    <{/if}>
+    <{/foreach}>
+</div>
+<{/if}>
+
+<{* ---------- BLOCK Center-Center *}>
+<{if !empty($xoops_ccblocks)}>
+<div>
+    <{foreach item=block from=$xoops_ccblocks}>
+    <{if $block.title|strstr:"top-" && !$block.title|strstr:"hero"}>
+    <article>
+        <h4>
+            <{if $xoops_isadmin}>
+            <{$block.title}>
+            <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+            <{else}>
+            <{if ! $block.title|strstr:"none"}><{$block.title|replace:'top-':''}><{/if}>
+            <{/if}>
+        </h4>
+        <div class="block-content"><{$block.content}></div>
+    </article>
+    <{/if}>
+    <{/foreach}>
+</div>
+<{/if}>
+
+<{* ---------- BLOCK Center-Right *}>
+<{if !empty($xoops_crblocks)}>
+<div>
+    <{foreach item=block from=$xoops_crblocks}>
+    <{if $block.title|strstr:"top-" && !$block.title|strstr:"hero"}>
+    <article>
+        <h4>
+            <{if $xoops_isadmin}>
+            <{$block.title}>
+            <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+            <{else}>
+            <{if ! $block.title|strstr:"none"}><{$block.title|replace:'top-':''}><{/if}>
+            <{/if}>
+        </h4>
+        <div class="block-content"><{$block.content}></div>
+    </article>
+    <{/if}>
+    <{/foreach}>
+</div>
+<{/if}>
+
+</div>
+
+</section>
+<{/if}>

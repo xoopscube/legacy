@@ -20,11 +20,11 @@
 </div>
 
 
-<div class="ui-card-full">
+
     <form name="syncalltables" action="<{$mod_url}>/admin/index.php?page=advanced_admin" method="post">
 
         <div data-layout="row sm-column">
-            <div data-self="size-1of3 p-2">
+            <div class="confirm" data-self="size-1of3 px-7 m-2">
             <h3><label for="button_synctopics">1.<{$smarty.const._MD_D3FORUM_TOPIC}></label></h3>
             <p>
                 <{$smarty.const._MD_A_D3FORUM_MAX_TOPIC_ID}>:<{$max_topic_id}>
@@ -38,18 +38,18 @@
             </p>
             </div>
 
-            <div data-self="size-1of3 p-2">
+            <div class="tips" data-self="size-1of3 px-7 m-2">
             <h3><label for="button_syncforums">2.<{$smarty.const._MD_D3FORUM_FORUM}></label></h3>
             <p><input type="submit" name="do_syncforums" id="button_syncforums" value="<{$smarty.const._MD_A_D3FORUM_BTN_DOSYNCTABLES}>"></p>
             </div>
 
-            <div data-self="size-1of3 p-2">
+            <div class="tips" data-self="size-1of3 px-7 m-2">
             <h3><label for="button_synccategories">3.<{$smarty.const._MD_D3FORUM_CATEGORY}></label></h3>
             <p><input type="submit" name="do_synccategories" id="button_synccategories" value="<{$smarty.const._MD_A_D3FORUM_BTN_DOSYNCTABLES}>"></p>
             </div>
+
         </div>
     </form>
-</div>
 
 
 <hr>
@@ -57,7 +57,7 @@
 
 <div data-layout="row sm-column">
 
-    <div data-self="size-1of2 p-2">
+    <div class="tips" data-self="size-1of2 px-7 m-2">
 
         <h3><{$smarty.const._MD_A_D3FORUM_H2_IMPORTFROM}></h3>
 
@@ -65,7 +65,7 @@
             <{$smarty.const._MD_A_D3FORUM_HELP_IMPORTFROM}>
         </div>
 
-        <div class="ui-card-full">
+        
             <form name="importfrom" action="<{$mod_url}>/admin/index.php?page=advanced_admin" method="post">
                 <{$gticket_hidden}>
 
@@ -78,17 +78,17 @@
                 </p>
                 <p><input type="submit" name="do_import" value="<{$smarty.const._MD_A_D3FORUM_BTN_DOIMPORT}>" onclick="return confirm('<{$smarty.const._MD_A_D3FORUM_CONFIRM_DOIMPORT}>')"></p>
             </form>
-        </div>
+        
     </div>
 
 
 
-    <div data-self="size-1of2 p-2">
+    <div class="tips" data-self="size-1of2 px-7 m-2">
         <h3><{$smarty.const._MD_A_D3FORUM_H2_COMIMPORTFROM}></h3>
         <div class="help-tips">
             <{$smarty.const._MD_A_D3FORUM_HELP_COMIMPORTFROM}>
         </div>
-        <div class="ui-card-full">
+       
             <form name="comimportfrom" action="<{$mod_url}>/admin/index.php?page=advanced_admin" method="post">
                 <{$gticket_hidden}>
 
@@ -110,7 +110,7 @@
                 </p>
                 <p><input type="submit" name="do_comimport" value="<{$smarty.const._MD_A_D3FORUM_BTN_DOIMPORT}>" onclick="return confirm('<{$smarty.const._MD_A_D3FORUM_CONFIRM_DOIMPORT}>')"></p>
             </form>
-        </div>
+       
     </div>
 
 </div><{* xlayout row *}>

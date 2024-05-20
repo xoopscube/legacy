@@ -1,0 +1,57 @@
+
+<style>
+section.hero {
+  width: 100vw;
+    height: 34vh;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    position: relative;
+    top: -4.75rem;
+    overflow: hidden;
+}
+.planet {
+  /* content: ""; */
+  display: block;
+  position: fixed;
+  width: 1200px;
+  aspect-ratio: 1;
+  left: 50%;
+  top: -3rem;
+  transform: translateX(-50%) translateY(-50%);
+	background-image: radial-gradient(at 50% 50% in oklch,
+			color-mix(in oklch, lime, hsl(127, 44%, 40%) 80%),
+			color-mix(in oklch, skyblue, hsl(227, 92%, 50%) 10%) 19%,
+			color-mix(in oklch, skyblue, hsl(227, 88%, 50%) 20%) 20%,
+			color-mix(in oklch, skyblue, hsl(227, 84%, 50%) 80%),
+			color-mix(in oklch, hsl(227, 80%, 50%), black 50%) 55%,
+			transparent 70%);
+      z-index:-1
+}
+.planet :where(h1, p)  {
+  position: relative;
+    left: 50%;
+    top: 42rem;
+    transform: translateX(-50%) translateY(50%); 
+    text-align: center;
+}
+.planet h1 {
+  font-size: clamp(3rem, 1.0714rem + 5.3571vw, 4.5rem);
+  font-weight: 700;
+  color: white;
+  mix-blend-mode: overlay;
+}
+.planet p {
+  font-size: clamp(1rem, 0.3571rem + 1.7857vw, 1.5rem);
+    font-weight: 600;
+    color: var(--pico-contrast);
+}
+</style>
+
+<section class="hero">
+
+  <div class="planet text-9xl text-white">
+    <h1><{$title}></h1>
+    <p><{$slogan}></p>
+    </div>
+
+</section>
