@@ -22,6 +22,7 @@ section#block-top h3 {
 section#block-top div.grid {
     z-index: 20;
 }
+
 .blob {
     position: absolute;
     top:10px;
@@ -32,6 +33,8 @@ section#block-top div.grid {
     -webkit-animation: move 25s infinite alternate;
             animation: move 25s infinite alternate;
     transition: 1s cubic-bezier(0.07, 0.8, 0.16, 1);
+    transform-origin: center;
+    z-index: 1;
 }
 .blob:hover {
   width: 400px;
@@ -69,27 +72,28 @@ section#block-top div.grid {
 }
 </style>
 
-<{if $xoops_showcblock==1}>
 <section class="container" id="block-top">
 
 <header class="grid">
     <h1><{$xoops_sitename}></h1>
     <h3><{$xoops_slogan}></h3>
 </header>
-<div class="blob"></div> 
+<div class="blob"></div>
+
 <div class="grid">
+
 <{* ---------- BLOCK Center-Left *}>
-<{if !empty($xoops_clblocks)}>
+<{if $xoops_clblocks}>
 <div>
     <{foreach item=block from=$xoops_clblocks}>
-    <{if $block.title|strstr:"top-" && !$block.title|strstr:"hero"}>
+    <{if $block.title|strstr:"top-"}>
         <article>
             <h4>
                 <{if $xoops_isadmin}>
-                <{$block.title}>
-                <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+                    <{$block.title}>
+                    <{include file="$xoops_theme/component/_inc_block_edit.html"}>
                 <{else}>
-                <{if ! $block.title|strstr:"none"}><{$block.title|replace:'top-':''}><{/if}>
+                    <{if !$block.title|strstr:"none"}><{$block.title|replace:'top-' : ''}><{/if}>
                 <{/if}>
             </h4>
             <div class="block-content"><{$block.content}></div>
@@ -100,17 +104,17 @@ section#block-top div.grid {
 <{/if}>
 
 <{* ---------- BLOCK Center-Center *}>
-<{if !empty($xoops_ccblocks)}>
+<{if $xoops_ccblocks}>
 <div>
     <{foreach item=block from=$xoops_ccblocks}>
-    <{if $block.title|strstr:"top-" && !$block.title|strstr:"hero"}>
+    <{if $block.title|strstr:"top-"}>
     <article>
         <h4>
             <{if $xoops_isadmin}>
-            <{$block.title}>
-            <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+                <{$block.title}>
+                <{include file="$xoops_theme/component/_inc_block_edit.html"}>
             <{else}>
-            <{if ! $block.title|strstr:"none"}><{$block.title|replace:'top-':''}><{/if}>
+                <{if !$block.title|strstr:"none"}><{$block.title|replace:'top-' : ''}><{/if}>
             <{/if}>
         </h4>
         <div class="block-content"><{$block.content}></div>
@@ -121,17 +125,17 @@ section#block-top div.grid {
 <{/if}>
 
 <{* ---------- BLOCK Center-Right *}>
-<{if !empty($xoops_crblocks)}>
+<{if $xoops_crblocks}>
 <div>
     <{foreach item=block from=$xoops_crblocks}>
-    <{if $block.title|strstr:"top-" && !$block.title|strstr:"hero"}>
+    <{if $block.title|strstr:"top-"}>
     <article>
         <h4>
             <{if $xoops_isadmin}>
-            <{$block.title}>
-            <{include file="$xoops_theme/component/_inc_block_edit.html"}>
+                <{$block.title}>
+                <{include file="$xoops_theme/component/_inc_block_edit.html"}>
             <{else}>
-            <{if ! $block.title|strstr:"none"}><{$block.title|replace:'top-':''}><{/if}>
+                <{if !$block.title|strstr:"none"}><{$block.title|replace:'top-' : ''}><{/if}>
             <{/if}>
         </h4>
         <div class="block-content"><{$block.content}></div>
@@ -144,4 +148,3 @@ section#block-top div.grid {
 </div>
 
 </section>
-<{/if}>

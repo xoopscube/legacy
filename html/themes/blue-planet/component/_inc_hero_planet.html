@@ -1,57 +1,65 @@
 
 <style>
 section.hero {
+    display: contents;
   width: 100vw;
-    height: 34vh;
-    margin: 0 0 1.5rem;
+    /* height: clamp(28vh, 34vh + 37vh); */
+    height:32vh; /* max(MIN, min(VAL, MAX))*/
+    margin: 0;
     padding: 0;
-    position: relative;
-    top: -4.75rem;
+    top: 0;
     overflow: hidden;
+    position: fixed;
 }
-.planet {
-  /* content: ""; */
-  display: block;
-  position: fixed;
-  width: 1200px;
-  aspect-ratio: 1;
-  left: 50%;
-  top: -3rem;
-  transform: translateX(-50%) translateY(-50%);
-	background-image: radial-gradient(at 50% 50% in oklch,
-			color-mix(in oklch, lime, hsl(127, 44%, 40%) 80%),
-			color-mix(in oklch, skyblue, hsl(227, 92%, 50%) 10%) 19%,
-			color-mix(in oklch, skyblue, hsl(227, 88%, 50%) 20%) 20%,
-			color-mix(in oklch, skyblue, hsl(227, 84%, 50%) 80%),
-			color-mix(in oklch, hsl(227, 80%, 50%), black 50%) 55%,
-			transparent 70%);
-      z-index:-1
-}
-.planet :where(h1, p)  {
-  position: relative;
+section.hero .planet::before {
+  content: "";
+    display: block;
+    position: fixed;
+    width: 100vw;
+    aspect-ratio: 1;
     left: 50%;
-    top: 42rem;
-    transform: translateX(-50%) translateY(50%); 
+    top: 0;
+    transform: translateX(-50%) translateY(-50%);
+    background-image: radial-gradient(at 50% 50% in oklch,
+        color-mix(in oklch, lime, hsl(127, 44%, 40%) 80%),
+        color-mix(in oklch, skyblue, hsl(227, 92%, 50%) 10%) 19%,
+        color-mix(in oklch, skyblue, hsl(227, 88%, 50%) 20%) 20%,
+        color-mix(in oklch, skyblue, hsl(227, 84%, 50%) 80%),
+        color-mix(in oklch, hsl(227, 80%, 50%), black 50%) 55%,
+        transparent 70%);
+    z-index:-1
+}
+section.hero :where(h1, p)  {
+    position: relative;
+    left: 50%;
+    top: 3.5rem;
+    transform: translateX(-50%) translateY(25%);
     text-align: center;
 }
-.planet h1 {
-  font-size: clamp(3rem, 1.0714rem + 5.3571vw, 4.5rem);
+section.hero  h1 {
+  font-size: clamp(3rem, 1.0714rem + 5.3571vw, 3.5rem);
   font-weight: 700;
   color: white;
   mix-blend-mode: overlay;
+  z-index: 2;
 }
-.planet p {
-  font-size: clamp(1rem, 0.3571rem + 1.7857vw, 1.5rem);
+section.hero  p {
+    font-size: clamp(1rem, 0.35rem + 1.5vw, 1.5rem);
     font-weight: 600;
     color: var(--pico-contrast);
+    top: 1rem;
+    margin-block-end: 2rem;
+    text-shadow: 1px -3px 7px hsl(180, 90%, 50%), 8px 12px 12px #fff, 4px 24px 24px #00BCD4, 0 2px 1px hsla(0, 0%, 100%, 0.95), -1px 4px 8px #2196F3, 20px 35px 25px #3F51B5, 1px 35px 26px hsl(53.88deg 100% 61.57% / 90%), -2px -30px 20px hsl(53.9deg 100% 88.43% / 90%), 0px 1px 0px hsl(0deg 0% 100%);
+
+    z-index: 3;
 }
 </style>
 
 <section class="hero">
 
-  <div class="planet text-9xl text-white">
+  <div class="planet"></div>
     <h1><{$title}></h1>
     <p><{$slogan}></p>
-    </div>
+
 
 </section>

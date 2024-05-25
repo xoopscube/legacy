@@ -12,7 +12,7 @@
 
 // Manifesto
 $modversion['dirname']          = 'sitemap';
-$modversion['name']             = _MI_SITEMAP_NAME;
+$modversion['name']             = _MD_SITEMAP_NAME;
 $modversion['version']          = '2.40';
 $modversion['detailed_version'] = '2.40.0';
 $modversion['description']      = _MI_SITEMAP_DESC;

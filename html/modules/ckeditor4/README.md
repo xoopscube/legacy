@@ -32,9 +32,9 @@ License      | elFinder is distributed under a 3-Clause BSD License.
 
 
 
-          Apache, Nginx, etc. PHP 7.4.x
-          MySQL 5.6, MariaDB  InnoDB utf8 / utf8mb4
-          XCL version 2.3.+
+          Apache, Nginx, etc. PHP 8.x.x
+          MySQL 5.7, MariaDB  InnoDB utf8 / utf8mb4
+          XCL version 2.4.0
 
 
 

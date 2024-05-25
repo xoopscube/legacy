@@ -125,36 +125,30 @@
 </nav>
 </header>
 
-<{* REMOVE SMARTY COMMENTS TO DISPLAY IN TOPPAGE ONLY *}>
-<{* if $xoops_is_top|default:'' *}> 
 <{include file="$xoops_theme/component/_inc_hero.html"}>
-<{* /if *}>
 
-
-<{* ----- TOPPAGE Center Blocks Title width prefix top- & none- (hide title)
-          Note : It's Center Block Left that triggers the top to display  *}> 
-<{if !empty($xoops_clblocks)}>
-<{foreach item=block from=$xoops_clblocks}>
-    <{if $block.title|strstr:"top-" && !$block.title|strstr:"hero"}>
+<{if $xoops_is_top|default:''}>
+<{* SHOW BLOCKS CENTER-L-C-R WITH A BLOCK TITLE PREFIXED BY "top-" *}>
+<{if $xoops_clblocks or $xoops_ccblocks or $xoops_crblocks}>
     <{include file="$xoops_theme/component/_inc_top_center.html"}>
-    <{/if}>
-<{/foreach}>
 <{/if}>
 
+
+<{/if}>
 
 
 <{* ----- Main *}>
 <main class="container">
-    
+
     <{if $xoops_showlblock==1}>
     <aside id="nav-left">
         <nav>
-            <a href="#!" class="nav-close" aria-role="button"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M17 4H3v2h14zm-4 7H3v2h10zm4 7H3v2h14zm4-1V7l-5 5z"/></svg></a>       
+            <a href="#!" class="nav-close" aria-role="button"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M17 4H3v2h14zm-4 7H3v2h10zm4 7H3v2h14zm4-1V7l-5 5z"/></svg></a>
             <{include file="$xoops_theme/component/block-left.html"}>
         </nav>
     </aside>
     <{/if}>
-    
+
     <div id="content" role="main">
     <section>
     <{if !empty($xoops_contents)}>
@@ -188,7 +182,7 @@
 <{* ---------- CENTER BLOCKS *}>
 <{if $xoops_showcblock==1}>
 <section class="container-fluid grid">
- 
+
 <{* ---------- BLOCK Center-Left *}>
 <{if !empty($xoops_clblocks)}>
 <div>
