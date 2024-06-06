@@ -34,21 +34,3 @@ define( '_MI_BLOCK_BLOCKNAME_DESC' , 'Показать карту сайта в 
 
 define( '_MI_BLOCK_MAP' , 'Sitemap Map');
 define( '_MI_BLOCK_MAP_DESC' , 'Use the Map block to display an interactive map.');
-// Options
-define( '_MI_SHOW_SITENAME' , 'Show the site name');
-define( '_MI_SHOW_SITENAME_DESC' , 'Edit the site name in System »» Preferences »» Settings');
-
-define( '_MI_SHOW_SLOGAN' , 'Show the site slogan');
-define( '_MI_SHOW_SLOGAN_DESC' , 'Edit the site slogan in System »» Preferences »» Settings');
-
-define( '_MI_SHOW_MAP' , 'Show map');
-define( '_MI_SHOW_MAP_DESC' , 'DisplAy the embedded map in Sitemap page.');
-
-define( '_MI_SHOW_MAP_CODE' , 'Embed Map HTML');
-define( '_MI_SHOW_MAP_CODE_DESC' , 'To integrate a Map ( e.g. Google Maps, OpenStreetMap), search for the location, click share and Embed a map, click Copy HTML. Default: width=100%, height=240');
-
-define( '_MI_SHOW_ADDRESS' , 'Show adress');
-define( '_MI_SHOW_ADDRESS_DESC' , 'Display the contact address in Sitemap page.');
-
-define( '_MI_SHOW_ADDRESS_CODE' , 'Contact adress');
-define( '_MI_SHOW_ADDRESS_CODE_DESC' , 'Use html tags "address" and "href=tel:" with the telephone number.');

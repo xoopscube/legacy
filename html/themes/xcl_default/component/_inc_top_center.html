@@ -80,7 +80,7 @@ section#block-top div.grid {
 <div class="grid">
 
 <{* ---------- BLOCK Center-Left *}>
-<{if $xoops_clblocks}>
+<{if isset($xoops_clblocks)}>
 <div>
     <{foreach item=block from=$xoops_clblocks}>
     <{if $block.title|strstr:"top-"}>
@@ -101,7 +101,7 @@ section#block-top div.grid {
 <{/if}>
 
 <{* ---------- BLOCK Center-Center *}>
-<{if $xoops_ccblocks}>
+<{if isset($xoops_ccblocks)}>
 <div>
     <{foreach item=block from=$xoops_ccblocks}>
     <{if $block.title|strstr:"top-"}>
@@ -122,7 +122,7 @@ section#block-top div.grid {
 <{/if}>
 
 <{* ---------- BLOCK Center-Right *}>
-<{if $xoops_crblocks}>
+<{if isset($xoops_crblocks)}>
 <div>
     <{foreach item=block from=$xoops_crblocks}>
     <{if $block.title|strstr:"top-"}>

@@ -701,7 +701,7 @@ function xoops_getrank($rank_id =0, $posts = 0)
 function xoops_substr($str, $start, $length, $trimmarker = '...')
 {
     if (!XOOPS_USE_MULTIBYTES) {
-        return (strlen($str) - $start <= $length) ? substr($str, $start, $length) : substr($str, $start, $length - strlen($trimmarker)) . $trimmarker;
+        return (strlen($str) ?? '' - $start <= $length) ? substr($str, $start, $length) : substr($str, $start, $length - strlen($trimmarker)) . $trimmarker;
     }
     if (function_exists('mb_internal_encoding') && @mb_internal_encoding(_CHARSET)) {
         $str2 = mb_strcut($str, $start, $length - strlen($trimmarker));

@@ -19,8 +19,8 @@ Vous pouvez utiliser les modèles compilés pour effectuer les tâches suivantes
 <li>générer le code d'application utilisé dans les modèles et collecter les variables Smarty.</li>
 </ul>");
 
-define( '_TPLSADMIN_CACHE_TITLE', 'modèle compilé');
-define( '_TPLSADMIN_CACHE_DESC' , 'le modèle source reste inchangé, dans la plupart des cas, vous pouvez supprimer tous les fichiers de modèle mis en cache et exécuter <b>Normaliser</b>. La compilation génère un nouvel ensemble de fichiers. ' );
+define( '_TPLSADMIN_CACHE_TITLE', 'Modèles compilés');
+define( '_TPLSADMIN_CACHE_DESC' , 'Le modèle source reste inchangé. Dans la plupart des cas, vous pouvez supprimer tous les fichiers en cache et exécuter <b>Normaliser</b>. La compilation génère un nouvel ensemble de fichiers.' );
 
 define( '_TPLSADMIN_FMT_MSG_ENCLOSEBYCOMMENT' , '%d modèles en cache sont entourés de commentaires tplsadmin.');
 define( '_TPLSADMIN_DT_ENCLOSEBYCOMMENT' , 'Ajouter des commentaires au code source');
@@ -28,27 +28,27 @@ define( '_TPLSADMIN_DD_ENCLOSEBYCOMMENT' , "Ajoutez des commentaires HTML au dé
 define( '_TPLSADMIN_CNF_ENCLOSEBYCOMMENT' , 'Ajoutez un commentaire "tplsadmin" aux modèles compilés mis en cache. Confirmez pour continuer ou annulez !');
 
 define( '_TPLSADMIN_FMT_MSG_ENCLOSEBYBORDEREDDIV' , '%d modèles en cache sont entourés de balises div.l');
-define( '_TPLSADMIN_DT_ENCLOSEBYBORDEREDDIV' , 'Ajoutez des balises div autour des modèles.');
+define( '_TPLSADMIN_DT_ENCLOSEBYBORDEREDDIV' , 'Ajouter des balises div autour des modèles.');
 define( '_TPLSADMIN_DD_ENCLOSEBYBORDEREDDIV' , "Chaque modèle est entouré d'une balise div et d'un lien vers le contrôleur d'édition. Bien que cela affecte la conception globale, vous pouvez facilement identifier le modèle que vous souhaitez modifier.");
 define( '_TPLSADMIN_CNF_ENCLOSEBYBORDEREDDIV' , 'Enveloppez les modèles mis en cache avec des balises div. Confirmer pour continuer ou annuler !');
 
 define( '_TPLSADMIN_FMT_MSG_HOOKSAVEVARS' , '%d logique implémentée dans le cache compilé pour collecter les variables des modèles.');
 define( '_TPLSADMIN_DT_HOOKSAVEVARS' , 'Insérer la logique pour collecter des variables de modèle');
-define( '_TPLSADMIN_DD_HOOKSAVEVARS' , "Etape préliminaire pour obtenir une liste d'informations sur les variables de modèle. En injectant de la logique dans le cache des modèles compilés et en rendant chaque page, les informations sur les variables de modèle sont sauvegardés. Obtenez des informations sur le bouton ci-dessous au bon moment. Videz le cache de compilation lors de la suppression de cette logique.");
-define( '_TPLSADMIN_CNF_HOOKSAVEVARS' , 'Les modèles compilés dans le cache, implémenteront la logique pour collecter les variables de modèle. Voulez-vous continuer?');
+define( '_TPLSADMIN_DD_HOOKSAVEVARS' , "Cette fonction permet d'obtenir une liste d'informations sur les variables de modèle. En injectant de la logique dans le cache des modèles compilés, les informations sur les variables de modèle sont sauvegardés lors du rendu de chaque page. Videz le cache de compilation pour supprimer cette fonction.");
+define( '_TPLSADMIN_CNF_HOOKSAVEVARS' , 'Implémenter la logique pour collecter les variables du modèle. Confirmez pour continuer!');
 
 define( '_TPLSADMIN_FMT_MSG_REMOVEHOOKS' , '%d templates mis en cache sont normalisés !');
 define( '_TPLSADMIN_DT_REMOVEHOOKS' , 'Normaliser les modèles compilés.');
-define( '_TPLSADMIN_DD_REMOVEHOOKS' , 'Cela supprime les commentaires, les balises div et la logique Smarty de tous les modèles compilés.');
-define( '_TPLSADMIN_CNF_REMOVEHOOKS' , 'Normaliser les modèles compilés. Confirmez pour continuer ou annulez !');
+define( '_TPLSADMIN_DD_REMOVEHOOKS' , 'Supprimer les commentaires, les balises div et la logique Smarty de tous les modèles compilés.');
+define( '_TPLSADMIN_CNF_REMOVEHOOKS' , 'Normaliser les modèles compilés. Confirmez pour continuer ou annulez!');
 
 define( '_TPLSADMIN_MSG_CLEARCACHE' , 'Les modèles en cache ont été supprimés !');
 define( '_TPLSADMIN_MSG_CREATECOMPILECACHEFIRST' , "Il n'y a pas de modèles compilés. Parcourez votre front-end pour afficher vos pages et mettre en cache les modèles compilés.");
 
 define( '_TPLSADMIN_CNF_DELETEOK' , 'Confirmez pour supprimer ou annulez !');
 
-define( '_TPLSADMIN_DT_GETTPLSVARSINFO_DW' , "Générer l'extension DreamWeaver avec des variables de modèle.");
-define( '_TPLSADMIN_DD_GETTPLSVARSINFO_DW' , "Ouvrir d'abord le gestionnaire d'extensions.<br>Extraire l'archive de téléchargement.<br>Exécutez les fichiers avec les extensions .mxi et suivez les instructions d'installation des boîtes de dialogue.<br>Les extraits de variables de modèle de votre site seront utilisables après le redémarrage de DreamWeaver.");
+define( '_TPLSADMIN_DT_GETTPLSVARSINFO_DW' , "Générer une extension DreamWeaver avec les variables des modèles.");
+define( '_TPLSADMIN_DD_GETTPLSVARSINFO_DW' , "Ouvrir d'abord le gestionnaire d'extensions.<br>Extraire l'archive de téléchargement.<br>Exécutez les fichiers avec les extensions .mxi et suivez les instructions d'installation des boîtes de dialogue.<br>L'extension avec les variables des modèles sera disponible après le redémarrage de DreamWeaver.");
 
 define( '_TPLSADMIN_DT_GETTEMPLATES' , 'Télécharger templates');
 define( '_TPLSADMIN_DD_GETTEMPLATES' , "Sélectionnez un ensemble de modèles à télécharger et appuyez sur l'un des boutons.");

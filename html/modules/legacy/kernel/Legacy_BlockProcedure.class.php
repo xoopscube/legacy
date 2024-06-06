@@ -228,7 +228,7 @@ class Legacy_BlockProcedure extends Legacy_AbstractBlockProcedure
     /**
      * @public
      * @breaf [Secret Agreement] Gets a value indicating whether the option form of this block needs the row to display the form.
-     * @remark Only block management actions should use this method, and this method should not be overridden usually.
+     * @remark Only block management actions should use this method, and generally this method should not be replaced.
      */
     public function _hasVisibleOptionForm()
     {
@@ -256,8 +256,6 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
     public function execute()
     {
 
-
-
         $result =& $this->_mBlock->buildBlock();
 
         if (empty($result)) {
@@ -268,7 +266,6 @@ class Legacy_BlockProcedureAdapter extends Legacy_BlockProcedure
         $render =& $this->getRenderTarget();
         $render->setAttribute('mid', $this->_mBlock->get('mid'));
         $render->setAttribute('bid', $this->_mBlock->get('bid'));
-
 
 
         if (null == $this->_mBlock->get('template')) {

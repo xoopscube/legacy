@@ -64,7 +64,7 @@ Define( '_MD_D3FORUM_MSG_CONFIRMOK' , 'Confirmer ?');
 Define( '_MD_D3FORUM_MSG_CONFIRMDELETE' , 'Confirmer la suppression ?');
 Define( '_MD_D3FORUM_MSG_CONFIRMDELETERECURSIVE' , 'Toutes les données attachées seront également effacées. Confirmer la suppression ?');
 Define( '_MD_D3FORUM_POSTASNEWTOPIC' , 'Créer un nouveau Sujet');
-Define( '_MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM' , 'Vous pouvez créer un nouveau Sujet dans ce Forum');
+Define( '_MD_D3FORUM_POSTASNEWTOPICTOTHISFORUM' , 'Nouveau Sujet dans ce Forum');
 Define( '_MD_D3FORUM_POSTASSAMETOPIC' , 'Poster dans ce sujet');
 Define( '_MD_D3FORUM_REPLYTHISPOST' , 'Répondre à ce post.');
 Define( '_MD_D3FORUM_CANTPOSTTHISFORUM' , 'Vous ne pouvez pas poster dans ce Forum');
@@ -72,7 +72,7 @@ Define( '_MD_D3FORUM_CANTCREATENEWTOPICTHISFORUM' , 'Vous ne pouvez pas créer u
 Define( '_MD_D3FORUM_GUESTSCANPOST_DESC' , 'Les utilisateurs invités peuvent poster dans ce Forum');
 Define( '_MD_D3FORUM_GUESTSCANNOTPOST_DESC' , 'Les utilisateurs invités ne peuvent pas poster dans ce Forum');
 Define( '_MD_D3FORUM_FORUMASCOMMENT' , 'Forum comme les commentaires');
-Define( '_MD_D3FORUM_FORUMASCOMMENT_DESC' , 'Ce Forum est réservé aux commentaires seulement, vous ne pouvez pas créer un nouveau Sujet');
+Define( '_MD_D3FORUM_FORUMASCOMMENT_DESC' , 'Ce forum est réservé aux commentaires, vous ne pouvez pas créer de nouveau sujet');
 Define( '_MD_D3FORUM_ERR_FORUMASCOMMENT' , 'Vous ne pouvez pas créer directement un nouveau Sujet dans ce Forum.');
 Define( '_MD_D3FORUM_ERR_INVALIDEXTERNALLINKID' , 'Vous avez commenté une cible non valide');
 Define( '_MD_D3FORUM_REPLIES' , 'Réponses');

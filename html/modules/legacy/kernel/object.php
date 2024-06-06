@@ -91,7 +91,7 @@ class XoopsSimpleObject extends AbstractXoopsObject
 
             case XOBJ_DTYPE_STRING:
                 $len = $vars['maxlength'];
-                $vars['value'] = (null !== $len && strlen($value) > $len) ? xoops_substr($value, 0, $len, null) : $value;
+                $vars['value'] = (null !== $len && strlen($value ?? '') > $len) ? xoops_substr($value, 0, $len, null) : $value;
                 return;
 
             case XOBJ_DTYPE_TEXT:

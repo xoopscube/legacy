@@ -94,19 +94,19 @@ function b_sitemap_map_edit( $options ) {
 		$address_yes = '';
 	}
 
-	return "<p>"._MI_SHOW_SITENAME."
+	return "<p>"._MB_SHOW_SITENAME."
 	<label for='site_yes'><input type='radio' name='options[0]' id='site_yes' value='1' $site_yes>" . _YES . "</label>
 <label for='site_no'><input type='radio' name='options[0]' id='site_no' value='0' $site_no>" . _NO . "</label></p>
 
-<p>"._MI_SHOW_SLOGAN."
+<p>"._MB_SHOW_SLOGAN."
 <label for='slogan_yes'><input type='radio' name='options[1]' id='slogan_yes' value='1' $slogan_yes>" . _YES . "</label>
 <label for='slogan_no'><input type='radio' name='options[1]' id='slogan_no' value='0' $slogan_no>" . _NO . "</label></p>
 
-<p>"._MI_SHOW_MAP."
+<p>"._MB_SHOW_MAP."
 <label for='map_yes'><input type='radio' name='options[2]' id='map_yes' value='1' $map_yes>" . _YES . "</label>
 <label for='map_no'><input type='radio' name='options[2]' id='map_no' value='0' $map_no>" . _NO . "</label></p>
 
-<p>"._MI_SHOW_ADDRESS."
+<p>"._MB_SHOW_ADDRESS."
 <label for='address_yes'><input type='radio' name='options[3]' id='address_yes' value='1' $address_yes>" . _YES . "</label>
 <label for='address_no'><input type='radio' name='options[3]' id='address_no' value='0' $address_no>" . _NO . "</label>
 </p>";
