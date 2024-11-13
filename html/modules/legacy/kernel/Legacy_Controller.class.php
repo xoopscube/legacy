@@ -96,6 +96,11 @@ class Legacy_Controller extends XCube_Controller
     public $mSetupDebugger = null;
 
     /**
+     * @var Legacy_AbstractDebugger
+     */
+    public $mDebugger;
+
+    /**
      * @public
      * @var XCube_Delegate
      * [Secret Agreement] In execute_redirect(), notice the redirection which directs toward user.php.
@@ -107,8 +112,6 @@ class Legacy_Controller extends XCube_Controller
      * @var XoopsLogger
      */
     public $mLogger = null;
-    //@todo added
-    //public $mDebugger = null;
 
     public function __construct()
     {
@@ -771,7 +774,9 @@ class Legacy_Controller extends XCube_Controller
      */
     public function _setupDebugger()
     {
-        error_reporting(0);
+	// Commented out because suppressing errors here will not result in an error if the debugger setup fails.
+	// If the debugger setup succeeds, error_reporting is set to the value corresponding to the debug mode.
+        // error_reporting(0);
 
         $debug_mode = $this->mRoot->mContext->mXoopsConfig['debug_mode'];
         if (defined('XC_FORCE_DEBUG_PHP')) {
