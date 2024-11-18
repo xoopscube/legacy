@@ -16,7 +16,6 @@ if (!defined('XOOPS_ROOT_PATH')) {
 class Legacy_PublicControllerStrategy extends Legacy_AbstractControllerStrategy
 {
     public $mStatusFlag = LEGACY_CONTROLLER_STATE_PUBLIC;
-    public $_mLoadedFilterNames = [];
 
     public function __construct(&$controller)
     {
