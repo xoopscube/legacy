@@ -27,6 +27,8 @@ class User_DefaultAction extends User_Action
     {
         parent::prepare($controller, $xoopsUser, $moduleConfig);
         $this->_mAllowRegister = $moduleConfig['allow_register'];
+        // Load the message for the block. Because the template uses the _MB_USER_* message for the block.
+        XCube_Root::getSingleton()->mLanguageManager->loadBlockMessageCatalog('user');
     }
 
     public function getDefaultView(&$controller, &$xoopsUser)
