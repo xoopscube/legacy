@@ -202,7 +202,6 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
      */
     public function _recoverXoopsGroupPermission()
     {
-        $xoopsDB = null;
         $root =& XCube_Root::getSingleton();
         $db =& $root->mController->getDB();
 
@@ -227,7 +226,7 @@ class Legacy_ModuleUpdater extends Legacy_ModulePhasedUpgrader
         if (0 != count($gids)) {
             $sql = sprintf('DELETE FROM `%s` WHERE `gperm_groupid` IN (%s) AND `gperm_modid`=1',
                            $permTable, implode(',', $gids));
-            $result = $xoopsDB->query($sql);
+            $result = $db->query($sql);
             if (!$result) {
                 return false;
             }
