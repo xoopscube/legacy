@@ -1248,7 +1248,7 @@ class Legacy_Controller extends XCube_Controller
                 }
             }
         }
-        
+
        /* XCL 2.3.x
         * @gigamaster added theme_set, theme_url and theme_css (custom templates from theme)
         * also Render configs for X2 and D3 compatibility, refer to /class/template.php
@@ -1462,6 +1462,8 @@ class Legacy_AbstractControllerStrategy
     public $mController = null;
 
     public $mStatusFlag;
+
+    public array $_mLoadedFilterNames = [];
 
     public function __construct(&$controller)
     {
