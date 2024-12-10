@@ -325,7 +325,16 @@ class Legacy_TextFilter extends XCube_TextFilter
             //
             $this->mMakeClickablePre->call(new XCube_Ref($this->mClickablePatterns), new XCube_Ref($this->mClickableReplacements));
         }
-        $text = preg_replace($this->mClickablePatterns, $this->mClickableReplacements, $text);
+        foreach ($this->mClickablePatterns as $arrayIndex => $pattern) {
+            $replacement = $this->mClickableReplacements[$arrayIndex];
+            
+            if (is_callable($replacement)) {
+                $text = preg_replace_callback($pattern, $replacement, $text);
+            }else {
+                $text = preg_replace($pattern, $replacement, $text);
+            }
+        }
+        
         return $text;
     }
 
