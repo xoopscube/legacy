@@ -52,7 +52,7 @@ class Legacy_ModuleEditForm extends XCube_ActionForm
         $this->mFieldProperties['weight']->addMessage('required', _MD_LEGACY_ERROR_REQUIRED, _AD_LEGACY_LANG_WEIGHT);
         $this->mFieldProperties['weight']->addMessage('intRange', _AD_LEGACY_ERROR_INTRANGE, _AD_LEGACY_LANG_WEIGHT);
         $this->mFieldProperties['weight']->addVar('min', '0');
-        $this->mFieldProperties['weight']->addVar('max', '191');
+        $this->mFieldProperties['weight']->addVar('max', '65535');
 
         $this->mFieldProperties['read_groupid'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['read_groupid']->setDependsByArray(['objectExist']);
