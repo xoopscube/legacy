@@ -309,16 +309,16 @@ class PicoContent {
 		$cat_data   = $this->categoryObj->getData();
 
 		$ret4edit = [
-			            'vpath'              => htmlspecialchars( $this->data['vpath'], ENT_QUOTES ),
+			            'vpath'              => htmlspecialchars( $this->data['vpath'] ?? '', ENT_QUOTES ),
 			            'subject'            => 0 == $this->data['approval'] && ! $this->data['visible'] ? htmlspecialchars( $this->data['subject_waiting'], ENT_QUOTES ) : htmlspecialchars( $this->data['subject'], ENT_QUOTES ),
-			            'subject_waiting'    => htmlspecialchars( $this->data['subject_waiting'], ENT_QUOTES ),
-			            'htmlheader'         => htmlspecialchars( $this->data['htmlheader'], ENT_QUOTES ),
-			            'htmlheader_waiting' => htmlspecialchars( $this->data['htmlheader_waiting'], ENT_QUOTES ),
-			            'body'               => htmlspecialchars( $this->data['body'], ENT_QUOTES ),
-			            'body_waiting'       => htmlspecialchars( $this->data['body_waiting'], ENT_QUOTES ),
-			            'filters'            => htmlspecialchars( $this->data['filters'], ENT_QUOTES ),
+			            'subject_waiting'    => htmlspecialchars( $this->data['subject_waiting'] ?? '', ENT_QUOTES ),
+			            'htmlheader'         => htmlspecialchars( $this->data['htmlheader'] ?? '', ENT_QUOTES ),
+			            'htmlheader_waiting' => htmlspecialchars( $this->data['htmlheader_waiting'] ?? '', ENT_QUOTES ),
+			            'body'               => htmlspecialchars( $this->data['body'] ?? '', ENT_QUOTES ),
+			            'body_waiting'       => htmlspecialchars( $this->data['body_waiting'] ?? '', ENT_QUOTES ),
+			            'filters'            => htmlspecialchars( $this->data['filters'] ?? '', ENT_QUOTES ),
 			            'filter_infos'       => pico_main_get_filter_infos( $this->data['filters'], $cat_data['isadminormod'] ),
-			            'tags'               => htmlspecialchars( $this->data['tags'], ENT_QUOTES ),
+			            'tags'               => htmlspecialchars( $this->data['tags'] ?? '', ENT_QUOTES ),
 			            'modifier_uid'       => is_object( $GLOBALS['xoopsUser'] ) ? $GLOBALS['xoopsUser']->getVar( 'uid' ) : 0,
 		            ] + $this->getData4html();
 

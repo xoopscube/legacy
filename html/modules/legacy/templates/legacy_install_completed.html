@@ -30,7 +30,7 @@
 <body>
 
 <{* Dev-Mode Toggle *}>
-<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+<{if isset($xoops_isadmin) && $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <div class="container">
 

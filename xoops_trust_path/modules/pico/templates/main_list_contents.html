@@ -38,7 +38,7 @@
 
                 <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file">
                 <span data-self="sm-hide"><{$smarty.const._MD_PICO_CONTENTS_TOTAL}></span>
-                <span class="badge"><{$category.redundants.contents_total}></span>
+                <span class="badge"><{$category.redundants.contents_total|default:'0'}></span>
 
             </p>
             <{* ------- /Activity Overview *}>
@@ -76,7 +76,7 @@
                 <span data-tooltip="<{$smarty.const._MD_PICO_CONTENTS_TOTAL}>">
                 <img class="svg file" src="<{$xoops_url}>/images/icons/file.svg" width="1em" height="1em" alt="file">
                 <{* ----- <span data-self="sm-hide"><{$smarty.const._MD_PICO_CONTENTS_TOTAL}></span> ----- *}>
-                <span class="badge"><{$subcategory.redundants.contents_total}></span>
+                <span class="badge"><{$subcategory.redundants.contents_total|default:'0'}></span>
                 </span>
 
                 <{if $mod_config.show_rss}>

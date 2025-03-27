@@ -3,7 +3,7 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Author
@@ -107,7 +107,8 @@ if ( ! empty( $_POST['extras_delete'] ) && ! empty( $_POST['action_selects'] ) )
 // requests for form
 $extra_id   = (int) @$_GET['extra_id'];
 $content_id = (int) @$_GET['content_id'];
-$txt        = preg_replace( '/[%_]/', '', $myts->stripSlashesGPC( @$_GET['txt'] ) );
+$txt_raw    = $myts->stripSlashesGPC( @$_GET['txt'] );
+$txt        = preg_replace( '/[%_]/', '', $txt_raw ?? '' );
 $pos        = empty( $_GET['pos'] ) ? 0 : (int) $_GET['pos'];
 $num        = empty( $_GET['num'] ) ? 30 : (int) $_GET['num'];
 $order      = in_array( @$_GET['order'], [

@@ -142,7 +142,7 @@ class XCube_ActionForm {
 	 */
 	public function getToken() {
 		if ( null === $this->_mToken ) {
-			mt_srand( microtime( true ) * 100000 );
+			mt_srand( (int) (microtime( true ) * 100000) );
 			$root          =& XCube_Root::getSingleton();
 			$salt          = $root->getSiteConfig( 'Cube', 'Salt' );
 			$this->_mToken = md5( $salt . uniqid( random_int(0, mt_getrandmax()), true ) );

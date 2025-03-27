@@ -175,35 +175,38 @@ class User_UserSearchFilterForm extends User_AbstractFilterForm
                 break;
         }
         
-        if (strlen($form->get('over_posts')) > 0) {
-            $this->mNavi->addExtra('over_posts', $form->get('over_posts'));
-            $this->_mCriteria->add(new Criteria('u.posts', $form->get('over_posts'), '>='));
+        // XCL 2.5.0 strlen(): Passing null to parameter $string) of type string is deprecated
+        // PHP 8.2 Handle potential null value from form->get()
+
+        if ($form->get('over_posts') !== null && strlen((string)$form->get('over_posts')) > 0) {
+        $this->mNavi->addExtra('over_posts', $form->get('over_posts'));
+        $this->_mCriteria->add(new Criteria('u.posts', $form->get('over_posts'), '>='));
         }
 
-        if (strlen($form->get('under_posts')) > 0) {
+        if ($form->get('under_posts') !== null && strlen((string)$form->get('under_posts')) > 0) {
             $this->mNavi->addExtra('under_posts', $form->get('under_posts'));
             $this->_mCriteria->add(new Criteria('u.posts', $form->get('under_posts'), '<='));
         }
 
-        if (strlen($form->get('lastlog_more')) > 0) {
+        if ($form->get('lastlog_more') !== null && strlen((string)$form->get('lastlog_more')) > 0) {
             $this->mNavi->addExtra('lastlog_more', $form->get('lastlog_more'));
             $time = time() - $form->get('lastlog_more') * 86400;
             $this->_mCriteria->add(new Criteria('u.last_login', $time, '<='));
         }
 
-        if (strlen($form->get('lastlog_less')) > 0) {
+        if ($form->get('lastlog_less') !== null && strlen((string)$form->get('lastlog_less')) > 0) {
             $this->mNavi->addExtra('lastlog_less', $form->get('lastlog_less'));
             $time = time() - $form->get('lastlog_less') * 86400;
             $this->_mCriteria->add(new Criteria('u.last_login', $time, '>='));
         }
 
-        if (strlen($form->get('regdate_more')) > 0) {
+        if ($form->get('regdate_more') !== null && strlen((string)$form->get('regdate_more')) > 0) {
             $this->mNavi->addExtra('regdate_more', $form->get('regdate_more'));
             $time = time() - $form->get('regdate_more') * 86400;
             $this->_mCriteria->add(new Criteria('u.user_regdate', $time, '<='));
         }
 
-        if (strlen($form->get('regdate_less')) > 0) {
+        if ($form->get('regdate_less') !== null && strlen((string)$form->get('regdate_less')) > 0) {
             $this->mNavi->addExtra('regdate_less', $form->get('regdate_less'));
             $time = time() - $form->get('regdate_less') * 86400;
             $this->_mCriteria->add(new Criteria('u.user_regdate', $time, '>='));

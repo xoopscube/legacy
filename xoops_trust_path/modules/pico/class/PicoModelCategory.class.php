@@ -3,7 +3,7 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
@@ -174,8 +174,8 @@ class PicoCategory {
 
 		return [
 			       'title'          => htmlspecialchars( $this->data['cat_title'], ENT_QUOTES ),
-			       'vpath'          => htmlspecialchars( $this->data['cat_vpath'], ENT_QUOTES ),
-			       'desc'           => htmlspecialchars( $this->data['cat_desc'], ENT_QUOTES ),
+			       'vpath'          => htmlspecialchars( $this->data['cat_vpath'] ?? '', ENT_QUOTES ),
+			       'desc'           => htmlspecialchars( $this->data['cat_desc'] ?? '', ENT_QUOTES ),
 			       'options'        => $options4edit,
 			       'children_count' => is_countable(@$this->data['redundants']) ? count( @$this->data['redundants'] ) : 0,
 		       ] + $this->getData4html();

@@ -20,7 +20,8 @@ class UserUsers_searchHandler extends UserUsersHandler
         if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
 
-            if (trim($where)) {
+            // Fix trim() null deprecation
+            if ($where && '' !== trim((string)$where)) {
                 $sql .= ' WHERE ' . $where;
             }
 

@@ -2,7 +2,7 @@
 /**
  * /core/XCube_Property.class.php
  * @package    XCube
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Minahito, 2008/10/12
  * @copyright  (c) 2005-2024 The XOOPSCube Project
@@ -188,7 +188,7 @@ class XCube_AbstractProperty extends XCube_PropertyInterface {
 	 * @return bool
 	 */
 	public function isNull() {
-		return ( trim( $this->mValue ) === '' );
+		return null === $this->mValue || (is_string($this->mValue) && trim($this->mValue) === '');
 	}
 
 	/**
@@ -459,9 +459,9 @@ class XCube_BoolArrayProperty extends XCube_GenericArrayProperty {
  * @brief Represents int property.
  */
 class XCube_IntProperty extends XCube_AbstractProperty {
-	public function set( $value ) {
-		$this->mValue = '' !== trim( $value ) ? (int) $value : null;
-	}
+    public function set($value) {
+        $this->mValue = (null !== $value && '' !== (string)$value) ? (int)$value : null;
+    }
 }
 
 /**
@@ -509,7 +509,9 @@ class XCube_StringProperty extends XCube_AbstractProperty {
 		// 	die("Get control code :" . ord($matches[0][0]));
 		// }
 
-		$this->mValue = preg_replace( "/[\\x00-\\x1f]/", '', $value );
+		//$this->mValue = preg_replace( "/[\\x00-\\x1f]/", '', $value );
+        // v2.5.0 PHP8.2
+		$this->mValue = filter_var($value, FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW);
 	}
 
 	public function toNumber() {

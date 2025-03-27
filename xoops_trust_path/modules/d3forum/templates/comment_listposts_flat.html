@@ -1,5 +1,5 @@
 <{* Dev-Mode Toggle *}>
-<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+<{if isset($xoops_isadmin) && $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{if $post_hits > 1}>
         <{if $pagenav}>

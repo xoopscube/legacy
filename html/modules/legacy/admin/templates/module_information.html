@@ -105,8 +105,7 @@
 
 <h4><{$smarty.const._AD_LEGACY_LANG_SQL_INFO}></h4>
 
-<{if $module->modinfo.tables}>
-
+<{if isset($module->modinfo.tables) && $module->modinfo.tables}>
 <table class="outer">
     <thead>
     <tr><th colspan="2"><{$smarty.const._AD_LEGACY_LANG_SQL_INFO}></th></tr>

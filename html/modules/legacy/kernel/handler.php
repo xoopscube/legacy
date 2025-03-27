@@ -84,8 +84,8 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
 
         if (null !== $criteria && $criteria instanceof \CriteriaElement) {
             $where = $this->_makeCriteria4sql($criteria);
-
-            if (trim($where)) {
+            
+            if (trim((string) $where)) {
                 $sql .= ' WHERE ' . $where;
             }
 

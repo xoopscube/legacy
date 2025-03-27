@@ -20,7 +20,7 @@ $langman = D3LanguageManager::getInstance();
 $langman->read( 'main.php', $mydirname, $mytrustdirname );
 
 // fork each pages
-$page = preg_replace( '/[^a-zA-Z0-9_-]/', '', @$_GET['page'] );
+$page = preg_replace( '/[^a-zA-Z0-9_-]/', '', $_GET['page'] ?? '' );
 
 if ( file_exists( "$mytrustdirpath/main/$page.php" ) ) {
 	include "$mytrustdirpath/main/$page.php";

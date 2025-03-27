@@ -5,7 +5,7 @@
 ![X-Updare Store](https://img.shields.io/badge/X--Update%20Store-Online-green)
 
 
-# XOOPSCube Legacy :: XCL Bundle Package 2.4.0
+# XOOPSCube Legacy :: XCL Bundle Package v.2.5.0
 
 ## Simple, Secure and Scalable
 ### Web Application Platform and Content Management System
@@ -18,7 +18,7 @@ XOOPSCube Legacy (XCL) is a Web Application Platform (WAP) free and open source 
 
 | Branch | PHP Version | Commit / Pull request |
 |:-------------:|:-------------:|:-------------:|
-| Master | PHP 8.0 | Security updates only  |
+| Master | PHP 8.2 | Security updates only  |
 
 -----  
 
@@ -77,8 +77,8 @@ Language</th>
 </tr>
 <tr>
 <td align="center">Apache version 2.4.+</td>
-<td align="center">MySQL version 5.7.+</td>
-<td align="center">PHP version 7.4.+</td>
+<td align="center">MySQL version 8.0.+</td>
+<td align="center">PHP version 8.2.+</td>
 </tr>
 <tr>
 <td align="center"><a href="https://apache.org/"><img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/icons/apache.svg" width="48px" height="48px" alt="Apache" title="Apache"></a></td>

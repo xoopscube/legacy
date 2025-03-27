@@ -1550,11 +1550,12 @@ class Smarty_Compiler extends Smarty {
 
         $last_token = null;
         /* Tokenize tag attributes. */
+        $tag_args = (string)$tag_args;
         preg_match_all('~(?:' . $this->_obj_call_regexp . '|' . $this->_qstr_regexp . ' | (?>[^"\'=\s]+)
                          )+ |
                          [=]
                         ~x', $tag_args, $match);
-        $tokens       = $match[0];
+        $tokens = $match[0];
 
         $attrs = [];
         /* Parse state:

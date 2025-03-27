@@ -3,7 +3,7 @@
  * Pico content management D3 module for XCL
  * This file can be included from transaction procedures
  * @package    Pico
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
@@ -408,7 +408,7 @@ function pico_get_requests4category( $mydirname, $cat_id = null ) {
 		$pid       = 0xffff;
 	} else {
 		// normal category
-		$cat_vpath = trim( $myts->stripSlashesGPC( @$_POST['cat_vpath'] ) );
+		$cat_vpath = trim( $myts->stripSlashesGPC( $_POST['cat_vpath'] ?? '' ) );
 
 		$pid = (int) @$_POST['pid'];
 
@@ -601,12 +601,12 @@ function pico_get_requests4content( $mydirname, &$errors, $auto_approval = true,
 
 	$ret = [
 		'cat_id'        => $cat_id,
-		'vpath'         => trim( $myts->stripSlashesGPC( @$_POST['vpath'] ) ),
+		'vpath'         => trim( $myts->stripSlashesGPC( $_POST['vpath'] ?? '' ) ),
 		'subject'       => $myts->stripSlashesGPC( @$_POST['subject'] ),
 		'htmlheader'    => $myts->stripSlashesGPC( @$_POST['htmlheader'] ),
 		'body'          => $myts->stripSlashesGPC( @$_POST['body'] ),
 		'filters'       => implode( '|', array_keys( $filters ) ),
-		'tags'          => trim( $myts->stripSlashesGPC( @$_POST['tags'] ) ),
+		'tags'          => trim( $myts->stripSlashesGPC( $_POST['tags'] ?? '' ) ),
 		'weight'        => (int) @$_POST['weight'],
 		'use_cache'     => empty( $_POST['use_cache'] ) ? 0 : 1,
 		'show_in_navi'  => empty( $_POST['show_in_navi'] ) ? 0 : 1,

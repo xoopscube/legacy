@@ -47,7 +47,7 @@ function smarty_function_d3comment($params, &$smarty)
 	if( class_exists( $classname ) ) {
 		$obj =& D3commentObj::getInstance ( $m_params ) ;
 		$obj->d3comObj->setSmarty( $smarty ) ;
-		switch( $params['mode'] ) {
+		switch( $params['mode'] ?? 'display_inline' ) {
 			case 'count' :
 				$obj->d3comObj->displayCommentsCount( $params ) ;
 				break ;

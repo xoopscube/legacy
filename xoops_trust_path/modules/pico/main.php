@@ -2,7 +2,7 @@
 /**
  * Pico content management D3 module for XCL
  * @package    Pico
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
@@ -28,7 +28,7 @@ $langman = D3LanguageManager::getInstance();
 $langman->read( 'main.php', $mydirname, $mytrustdirname );
 
 // get page name (new in 2008-03-24)
-$page = preg_replace( '/[^a-zA-Z0-9_-]/', '', @$_GET['page'] );
+$page = preg_replace( '/[^a-zA-Z0-9_-]/', '', $_GET['page'] ?? '' );
 
 if ( empty( $page ) ) {
 	preg_match( '/[?&]page\=([a-zA-Z0-9_-]+)/', @$_SERVER['REQUEST_URI'], $regs );

@@ -4,7 +4,7 @@
  * The subclass of Smarty for the Help viewer
  *
  * @package    Legacy
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Nuno Luciano aka gigamaster, 2020 XCL/PHP7
  * @author     Kilica, 2008/09/25
@@ -48,12 +48,16 @@ class Legacy_HelpSmarty extends Smarty
      */
     public $mFilename = null;
 
+    /**
+     * @var bool
+     */
+    private $_canUpdateFromFile = true;
+
     public function __construct()
     {
         parent::Smarty();
 
         $this->compile_id = null;
-        $this->_canUpdateFromFile = true;
         $this->compile_check = true;
         $this->compile_dir = XOOPS_COMPILE_PATH;
         $this->left_delimiter = '<{';

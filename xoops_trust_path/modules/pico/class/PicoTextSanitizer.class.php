@@ -3,7 +3,7 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
@@ -109,6 +109,10 @@ class PicoTextSanitizer extends MyTextSanitizer {
 
 	// additional pre filters
 	public function prepareXcode( $text ) {
+		if ($text === null) {
+			return '';
+		}
+		
 		$patterns     = [
 			'#\n?\[code\]\r?\n?#',
 			'#\n?\[\/code\]\r?\n?#',
@@ -121,7 +125,7 @@ class PicoTextSanitizer extends MyTextSanitizer {
 			'[quote]',
 			'[/quote]',
 		];
-
+	
 		return preg_replace( $patterns, $replacements, $text );
 	}
 

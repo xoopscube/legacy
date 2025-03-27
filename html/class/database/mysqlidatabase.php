@@ -197,7 +197,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
      */
     public function quoteString($str)
     {
-        $str = '\''.mysqli_real_escape_string($this->conn, $str).'\'';
+        $str = '\''.mysqli_real_escape_string($this->conn, $str ?? '').'\'';
         return $str;
     }
 

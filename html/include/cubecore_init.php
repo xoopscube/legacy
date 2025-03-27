@@ -3,7 +3,7 @@
  * Cube core init
  * @package    XCL
  * @subpackage core
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     kilica, 2008/09/25
  * @copyright  (c) 2005-2024 The XOOPSCube Project
@@ -27,7 +27,7 @@ define('XOOPS_CUBE_LEGACY', true);
  * This constant validates the system BASE version, for module developers.
  * ex) if(defined('LEGACY_BASE_VERSION') && version_compare(LEGACY_BASE_VERSION, '2.2.0.0', '>='))
  */
-define('LEGACY_BASE_VERSION', '2.3.1.1'); // ! XOOPSCube version
+define('LEGACY_BASE_VERSION', '2.5.0.0'); // ! XOOPSCube version
 
 require_once XOOPS_ROOT_PATH . '/core/XCube_Root.class.php';
 require_once XOOPS_ROOT_PATH . '/core/XCube_Controller.class.php';
