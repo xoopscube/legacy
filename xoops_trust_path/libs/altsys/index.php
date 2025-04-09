@@ -3,7 +3,7 @@
  * Altsys library (UI-Components) for D3 modules
  *
  * @package    Altsys
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
@@ -35,7 +35,7 @@ $breadcrumbsObj = AltsysBreadcrumbs::getInstance();
 $breadcrumbsObj->appendPath( XOOPS_URL . '/modules/altsys/admin/index.php', $GLOBALS['xoopsModule']->getVar( 'name' ) );
 
 // get page
-$page = preg_replace( '/[^a-zA-Z0-9_-]/', '', @$_GET['page'] );
+$page = preg_replace( '/[^a-zA-Z0-9_-]/', '', $_GET['page'] ?? '' );
 require __DIR__ . '/controllers.php';
 if ( ! in_array( $page, $controllers, true ) ) {
 	$_GET['page']           = $page = 'myblocksadmin';

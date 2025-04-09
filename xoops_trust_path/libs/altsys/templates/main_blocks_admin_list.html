@@ -3,7 +3,9 @@
 
 <h2><{$smarty.const._MD_A_MYBLOCKSADMIN_BLOCKADMIN}> <{if $target_mname_bread}>» <{$target_mname_bread|ucfirst}><{else}>» <{$target_mname|ucfirst}><{/if}></h2>
 
-<{if $smarty.get.dirname eq '__CustomBlocks__'}>
+
+
+<{if $target_dirname eq '__CustomBlocks__'}>
 <div class="help-tips">
 	<{$smarty.const._MD_A_MYBLOCKSADMIN_CUSTOM_TIPS}>
 </div>
@@ -29,7 +31,7 @@
 			<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M3 5h18v4H3V5m0 5h18v4H3v-4m0 5h18v4H3v-4Z"/></svg>
 		</button>
 
-        <button class="help-admin button-icon" type="button" data-id="4" data-module='altsys' <{if $smarty.get.dirname eq '__CustomBlocks__'}>data-help-article='#help-custom-block'<{else}>data-help-article='#help-module-block'<{/if}> title="<{$smarty.const._HELP}>"><b>?</b></button>
+        <button class="help-admin button-icon" type="button" data-id="4" data-module='altsys' <{if $target_dirname eq '__CustomBlocks__'}>data-help-article='#help-custom-block'<{else}>data-help-article='#help-module-block'<{/if}> title="<{$smarty.const._HELP}>"><b>?</b></button>
     </div>
 
 </section>

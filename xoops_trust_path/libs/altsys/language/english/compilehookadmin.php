@@ -2,21 +2,20 @@
 
 define( '_TPLSADMIN_INTRO', 'Introducing the Template Compilation Hook');
 
-define( '_TPLSADMIN_DESC', 'Compilation hooks can be used to insert visual guides into your templates and helpers for collecting Smarty variables.<br>
-These functions are only available in the frontend templates and duplicatable D3 modules for which they were written.');
+define( '_TPLSADMIN_DESC', 'Compilation hooks can be used to insert visual guides into your templates and helpers for collecting Smarty variables. These functions are only available in the frontend templates and duplicatable D3 modules for which they were written.');
 
 define( '_TPLSADMIN_NOTE', 'Important : Although the visual editing helpers are intended to highlight the structure of your layout and templates, 
 there are limitations to feature-based recognition, for example, of components and custom templates! ');
 
-define( '_TPLSADMIN_TASK_Title', 'Why and when to perform this task!');
+define( '_TPLSADMIN_TASK_Title', 'Why and When to Perform This Task');
 define( '_TPLSADMIN_TASK', '
 You can use the compiled templates to complete the following tasks:<br>
 <ul>
-<li>structural overview facilitating the recognition of functional design flaws</li>
-<li>insert overlay elements which are rendered for each included component and template
-<li>insert code comments to facilitate source code editing</li>
-<li>detect and resolve differences between the design of a template and its implementation.</li> 
-<li>generate application code used in templates and collect the Smarty variables.</li>
+<li>Provide a structural overview to facilitate the recognition of functional design flaws.</li>
+<li>Insert overlay elements that are rendered for each included component and template.
+<li>Add code comments to facilitate source code editing.</li>
+<li>Detect and resolve differences between the design of a template and its implementation.</li> 
+<li>Generate application code used in templates and collect Smarty variables.</li>
 </ul>');
 
 define( '_TPLSADMIN_CACHE_TITLE', 'Compiled Templates');

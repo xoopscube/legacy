@@ -66,15 +66,17 @@ if ( ! empty( $target_module ) && is_object( $target_module ) ) {
 	//$query4redirect = '' ;
 }
 
-// basic GET variables
-$target_lang = preg_replace( '/[^0-9a-zA-Z_-]/', '', @$_GET['target_lang'] );
-if ( empty( $target_lang ) ) {
-	$target_lang = $GLOBALS['xoopsConfig']['language'];
+// GET variables target_lang
+$target_lang = isset($_GET['target_lang']) ? preg_replace('/[^0-9a-zA-Z_-]/', '', $_GET['target_lang']) : '';
+if (empty($target_lang)) {
+    $target_lang = $GLOBALS['xoopsConfig']['language'];
 }
 $target_lang4sql = addslashes( $target_lang );
-$target_file     = preg_replace( '/[^0-9a-zA-Z_.-]/', '', @$_GET['target_file'] );
-if ( empty( $target_file ) ) {
-	$target_file = 'main.php';
+
+// GET variables target_file
+$target_file = isset($_GET['target_file']) ? preg_replace('/[^0-9a-zA-Z_.-]/', '', $_GET['target_file']) : '';
+if (empty($target_file)) {
+    $target_file = 'main.php';
 }
 
 // get $target_trustdirname
@@ -191,6 +193,13 @@ if ( ! empty( $_POST['do_update'] ) ) {
 
 	// read original file
 	$file_contents = file_get_contents( $langfile_unique_path );
+
+	// Find the preg_replace call and ensure the subject is not null
+	if (isset($file_content) && (is_string($file_content) || is_array($file_content))) {
+	    $file_content = preg_replace('/\r\n/', "\n", $file_content);
+	} else {
+	    $file_content = '';  // or handle the null case appropriately
+	}
 
 	// insert fingerprint of langfile_unique_path
 	$langfile_fingerprint = '_MYLANGADMIN_' . md5( $langfile_unique_path );

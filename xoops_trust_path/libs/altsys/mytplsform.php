@@ -3,7 +3,7 @@
  * Altsys library (UI-Components) for D3 modules
  * Templates admin form for each modules
  * @package    Altsys
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
@@ -126,7 +126,7 @@ if ( empty( $tpl ) ) {
 
 	//die( 'Invalid tpl_file.' ); // TODO Cannot edit newblock template - redirect to block management !
    // redirect_header( $_SERVER['REQUEST_URI'], 1, $msg );
-    redirect_header( XOOPS_URL . '/modules/legacy/admin/index.php?action=BlockList', 2, 'Edit Template with Block Management ');
+    redirect_header( XOOPS_URL . '/modules/legacy/admin/index.php?action=BlockList', 2, 'Edit Template with Block Management');
 }
 
 

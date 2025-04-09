@@ -3,7 +3,7 @@
  * Altsys library (UI-Components)
  * Admin Templates for each module
  * @package    Altsys
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
@@ -316,7 +316,7 @@ echo '<div class="help-tips">' . $c_tips . '</div>';
 echo "<form name='MainForm' action='?mode=admin&amp;lib=altsys&amp;page=mytplsadmin&amp;dirname=" . htmlspecialchars( $target_dirname, ENT_QUOTES ) . "' method='post'>"
     . $xoopsGTicket->getTicketHtml( __LINE__ ) ;
 
-////— ACTION-CONTROL —\\\\
+// ACTION-CONTROL
 echo '<section data-layout="row center-justify" class="action-control">';
     echo $c_button;
     echo '<div class="control-view"><a class="button" href="' .XOOPS_URL . '/modules/legacyRender/admin/index.php?action=TplsetList">
