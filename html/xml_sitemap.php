@@ -3,7 +3,7 @@
  * Sitemap
  * Automated Sitemap and XML file for search engines
  * @package    Sitemap
- * @version    2.4.0
+ * @version    2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     chanoir
  * @copyright  (c) 2005-2024 Authors

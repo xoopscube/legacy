@@ -2,7 +2,7 @@
 /**
  * Message module for private messages and forward to email
  * @package    Message
- * @version    2.4.0
+ * @version    2.5.0
  * @author     Other authors Nuno Luciano aka gigamaster, 2020 XCL23
  * @author     Osamu Utsugi aka Marijuana
  * @copyright  (c) 2005-2024 The XOOPSCube Project, Authors

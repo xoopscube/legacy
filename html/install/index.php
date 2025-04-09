@@ -2,7 +2,7 @@
 /**
  * @package    XCL
  * @subpackage Installation Wizard
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     kilica, 2008/09/25
  * @copyright  (c) 2005-2024 The XOOPSCube Project
@@ -24,7 +24,7 @@ if ( PHP_VERSION_ID >= 70000 ) {
 	ini_set('display_errors', '0');
 }
 
-/* ALERT PHP VERSION REQUIRED BY XCL V2.4.0 */
+/* ALERT PHP VERSION REQUIRED BY XCL V2.5.0 */
 if (version_compare(PHP_VERSION, '7.4.0', '<')) {
 	echo '<style>body{background:#222730;color:#bfcbd9;font-family:sans-serif;}
 	 .phpalert{background:#9a0a0a;color:white;font-size:16px;font-weight:600;line-height:2;width:50%;margin:3em auto;padding:1em;border:1 px solid orange;border-radius:6px;} 

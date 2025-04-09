@@ -2,7 +2,7 @@
 /**
  * Common Cubecore.init
  * @package    XCL
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     kilica, 2008/09/25
  * @copyright  (c) 2005-2024 The XOOPSCube Project
  * @license    GPL 2.0

@@ -3,7 +3,7 @@
  * template file class object
  * and handler class
  * @package    kernel
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Other authors Minahito, 2008/08/26
  * @author     Kazumi Ono (aka onokazu)

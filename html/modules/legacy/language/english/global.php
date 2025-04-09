@@ -55,14 +55,10 @@ Modules and themes are released under the BSD, GPL and MIT licenses.<br>
 The BSD license of the core XCube allows proprietary use and permits incorporation of the software into proprietary products.");
 
 define( '_WAP_BUNDLE' , 'XCL Bundle Package');
-define( '_WAP_BUNDLE_DSC' , "XCL is a general purpose open source web application maintained on GitHub.
-One of the main advantages of the XCL Bundle package is that it is ready to use right out of the box.
-You can manage your data and use your cloud storage by following the simple instructions of elFinder, the file manager for the web. There are no contracts, hidden costs, limitations or restrictions.");
+define( '_WAP_BUNDLE_DSC' , "XCL is a general-purpose, open-source web application maintained on GitHub. One of the main advantages of the XCL Bundle package is that it is ready to use right out of the box. You can manage your data and utilize cloud storage by following the simple instructions provided by elFinder, the web-based file manager. There are no contracts, hidden costs, limitations, or restrictions.");
 
 define( '_WAP_B2C' , 'B2B and B2C Services');
-define( '_WAP_B2C_DSC' , "For instance, individual developers and agencies might create their own free or paid package, 
-personalize and offer specific features for a wide range of industries. Professional distributors may charge service 
-fees to cover administrative or processing costs, technical support or maintenance services.");
+define( '_WAP_B2C_DSC' , "For instance, individual developers and agencies might create their own free or paid packages, personalize them, and offer specific features tailored to a wide range of industries. Professional distributors may charge service fees to cover administrative or processing costs, as well as technical support and maintenance services.");
 
 // System
 define( '_TOKEN_ERROR' , 'Alert ! This prevent you from instantiating a malformed request or post. Please, submit again to confirm!');

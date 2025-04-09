@@ -3,7 +3,7 @@
  * Snoopy - the PHP net client
  * @package    kernel
  * @subpackage util
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Monte Ohrt <monte@ohrt.com>
  * @copyright  (c) 1999-2014

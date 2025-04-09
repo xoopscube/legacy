@@ -32,7 +32,11 @@ class XoopsObjectGenericHandler extends XoopsObjectHandler
     public function __construct(&$db)
     {
         parent::__construct($db);
-        $tableArr = explode('_', $this->mTable);
+        if (!is_null($this->mTable)) {
+            $tableArr = explode('_', $this->mTable);
+        } else {
+            $tableArr = [];
+        }
         $this->mDirname = array_shift($tableArr);
         $this->mDataname = implode('_', $tableArr);
         $this->mTable = $this->db->prefix($this->mTable);

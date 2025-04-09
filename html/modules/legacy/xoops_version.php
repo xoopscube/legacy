@@ -219,3 +219,16 @@ $modversion['blocks'][8]['edit_func'] = 'b_legacy_themes_edit';
 $modversion['blocks'][8]['template'] = 'legacy_block_themes.html';
 $modversion['blocks'][8]['visible_any'] = true;
 $modversion['blocks'][8]['show_all_module'] = true;
+
+$modversion['blocks'][9]['func_num'] = 9;
+$modversion['blocks'][9]['file'] = 'legacy_ai_assistant.php';
+$modversion['blocks'][9]['name'] = _MI_LEGACY_BLOCK_AI_NAME;
+$modversion['blocks'][9]['description'] = _MI_LEGACY_BLOCK_AI_DESC;
+$modversion['blocks'][9]['show_func'] = 'b_legacy_ai_assistant_show';
+$modversion['blocks'][9]['edit_func'] = 'b_legacy_ai_assistant_edit';
+$modversion['blocks'][9]['options'] = '|1000|0.7|gpt-3.5-turbo|0'; // Options order: api_token|max_tokens|temperature|model|side
+$modversion['blocks'][9]['template'] = 'legacy_block_ai_assistant.html';
+$modversion['blocks'][9]['visible_any'] = true;
+$modversion['blocks'][9]['show_all_module'] = true;
+$modversion['blocks'][9]['can_clone'] = true;
+$modversion['blocks'][9]['is_system'] = 1;

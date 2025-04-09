@@ -220,6 +220,18 @@ class XoopsMysqliDatabase extends XoopsDatabase
             }
         }
         $result = mysqli_query($this->conn, $sql);
+        if (!$result) {
+            $errorCode = mysqli_errno($this->conn);
+            $errorMessage = mysqli_error($this->conn);
+
+            if ($errorCode == 1146) { // Error code for "table doesn't exist"
+                trigger_error("Table does not exist: $errorMessage. SQL: $sql", E_USER_WARNING);
+                return false; // Gracefully handle the error
+            }
+
+            trigger_error("Database query error (Code: $errorCode): $errorMessage. SQL: $sql", E_USER_WARNING);
+            return false;
+        }
         if ($result) {
             $this->logger->addQuery($sql);
             return $result;

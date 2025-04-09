@@ -2,7 +2,7 @@
 /**
  * Legacy_RenderSystem.class.php
  * @package LegacyRender
- * @version 2.4.0
+ * @version 2.5.0
  * @author  Nobuhiro YASUTOMI, PHP8
  * @author  Nuno Luciano v.XCL23
  * @author  Kazuhisa Minato aka minahito v 1.4 2008/08/26 15:58:41
@@ -96,7 +96,7 @@ class Legacy_XoopsTpl extends XoopsTpl
         return $value;
     }
 }
-// @TODO test version 2.4.0
+// @TODO test version 2.5.0
 require_once XOOPS_ROOT_PATH . '/core/XCube_Theme.class.php';
 /**
  * Compatible render system with XOOPS 2 Themes & Templates.

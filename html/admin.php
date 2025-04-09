@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Legacy
- * @version XCL 2.4.0
+ * @version XCL 2.5.0
  * @author Nuno Luciano aka Gigamaster XCL PHP7
  * @author kilica, v 1.3 2008/09/25 15:10:19 Exp $
  * @copyright (c) 2005-2024 The XOOPSCube Project

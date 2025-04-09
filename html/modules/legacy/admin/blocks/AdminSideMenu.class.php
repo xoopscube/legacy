@@ -2,7 +2,7 @@
 /**
  * Admin Side Menu
  * @package    Legacy
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors  gigamaster, 2020 XCL/PHP7
  * @author     Kilica, 2008/09/25
@@ -92,7 +92,7 @@ class Legacy_AdminSideMenu extends Legacy_AbstractBlockProcedure
         }
 
         // DB & Permissions
-        $db=&$controller->getDB();
+        $db = &$controller->getDB();
 
         $mod = $db->prefix('modules');
         $perm = $db->prefix('group_permission');

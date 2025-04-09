@@ -2,7 +2,7 @@
 /**
  * Legacy_Updater.class.php
  * @package    Legacy
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7 , XCL 2020 PHP7
  * @author     Minahito, 2008/10/26
  * @copyright  (c) 2005-2024 The XOOPSCube Project

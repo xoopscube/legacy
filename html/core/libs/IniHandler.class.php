@@ -2,7 +2,7 @@
 /**
  * /core/libs/IniHandler.class.php
  * @package    XCube
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Minahito
  * @copyright  (c) 2005-2024 The XOOPSCube Project

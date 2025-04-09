@@ -2,7 +2,7 @@
 /**
  * ModuleUpdateAction.class.php
  * @package    Legacy
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Kilica, 2008/09/25
  * @copyright  (c) 2005-2024 The XOOPSCube Project
@@ -83,9 +83,26 @@ class Legacy_ModuleUpdateAction extends Legacy_Action
 
     public $mInstaller = null;
 
-    public function __construct($flag)
+    /**
+     * @var XCube_ActionForm
+     */
+    protected $mActionForm;
+    
+    /**
+     * @var XCube_ActionForm
+     */
+    protected $mErrorMessages;
+    
+    /**
+     * @var array
+     */
+    protected $mModuleObjects;
+    public function __construct()
     {
-        parent::__construct($flag);
+        parent::__construct();
+        $this->mActionForm = null;
+        $this->mErrorMessages = [];
+        $this->mModuleObjects = [];
 
         $this->mUpdateSuccess =new XCube_Delegate();
         $this->mUpdateSuccess->register('Legacy_ModuleUpdateAction.UpdateSuccess');

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    profile
- * @version    2.4.0
+ * @version    2.5.0
  * @author     Other Authors Nuno Luciano (aka gigamaster), 2020, XCL PHP7
  * @author     Original Author Kilica
  * @copyright  (c) 2005-2024 The XOOPSCube Project
@@ -14,12 +14,11 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 $mydirpath = basename(__DIR__) ;
 
-
 // Manifesto
 $modversion['dirname']          = 'profile';
 $modversion['name']             = _MI_PROFILE_LANG_PROFILE;
-$modversion['version']          = '2.40';
-$modversion['detailed_version'] = '2.40.0';
+$modversion['version']          = '2.50';
+$modversion['detailed_version'] = '2.50.0';
 $modversion['description']      = _MI_PROFILE_DESC_PROFILE;
 $modversion['author']           = 'Kilica Hikawa, Update by Nuno Luciano aka gigamaster, XCL23/PHP7';
 $modversion['credits']          = 'Kilica Hikawa, The XOOPSCube Project';

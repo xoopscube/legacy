@@ -7,8 +7,8 @@
 // Manifesto
 $modversion['dirname']          = 'legacyRender';
 $modversion['name']             = _MI_LEGACYRENDER_NAME;
-$modversion['version']          = '2.40';
-$modversion['detailed_version'] = '2.40.0';
+$modversion['version']          = '2.50';
+$modversion['detailed_version'] = '2.50.0';
 $modversion['description']      = _MI_LEGACYRENDER_NAME_DESC;
 $modversion['author']           = 'The XOOPSCube Project Team';
 $modversion['credits']          = 'The XOOPSCube Project Team';
@@ -177,7 +177,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_FOOTER_DESC',
     'formtype'    => 'textarea',
     'valuetype'   => 'text',
-    'default'     => 'Powered by XCL 2.4.0 © 2005-2024 <a href="https://github.com/xoopscube/" rel="noopener">The XOOPSCube Project</a>'
+    'default'     => 'Powered by XCL 2.5.0 © 2005-2025 <a href="https://github.com/xoopscube/" rel="noopener">The XOOPSCube Project</a>'
 ];
 
 $modversion['config'][]= [

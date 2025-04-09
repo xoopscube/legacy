@@ -3,7 +3,7 @@
  * Renders a form for setting module specific group permissions
  * @package    kernel
  * @subpackage form
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Other authors nobunobu, 2007/11/27
  * @author     Kazumi Ono (aka onokazu)

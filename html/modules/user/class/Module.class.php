@@ -6,6 +6,9 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 class User_Module extends Legacy_ModuleAdapter
 {
+    // Declare the property
+    protected $mGetAdminMenu;
+
     public function User_Module(&$xoopsModule)
     {
         self::__construct($xoopsModule);

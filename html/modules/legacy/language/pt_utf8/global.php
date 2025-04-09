@@ -1,7 +1,7 @@
 <?php
 /**
  * XOOPSCube Legacy — Versão em Português
- * @version XCL 2.4.0
+ * @version XCL 2.5.0
  * @author  Nuno Luciano aka gigamaster XCL23
  * @author  Mikhail Miguel ( mikhail.miguel@gmail.com )
  * @license http://creativecommons.org/licenses/by/2.5/br/

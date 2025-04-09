@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    profile
- * @version    2.4.0
+ * @version    2.5.0
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
  * @author     Kilica

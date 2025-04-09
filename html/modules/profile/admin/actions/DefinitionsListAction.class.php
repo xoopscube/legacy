@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    profile
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors  gigamaster, 2020 XCL/PHP7
  * @author     Original Author Kilica
  * @copyright  (c) 2005-2024 The XOOPSCube Project
@@ -21,7 +21,7 @@ class Profile_Admin_DefinitionsListAction extends Profile_AbstractListAction
      */
     public function &_getHandler()
     {
-        $handler =& $this->mAsset->load('handler', 'definitions');
+        $handler = xoops_getmodulehandler('definitions', 'profile');
         return $handler;
     }
 

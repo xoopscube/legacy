@@ -3,7 +3,7 @@
  * Xoops Control panel header
  * @package    XCL
  * @subpackage core
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     kilica, 2008/09/25
  * @copyright  (c) 2005-2024 The XOOPSCube Project

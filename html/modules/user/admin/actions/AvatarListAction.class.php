@@ -175,7 +175,7 @@ class User_AvatarListAction extends User_AbstractListAction
     }
 
     /**
-     * To support a template writer, this send the list of mid that actionForm kept.
+     * To support a template designer, this send the list of mid that actionForm kept.
      * @param $controller
      * @param $xoopsUser
      * @param $render
@@ -187,7 +187,7 @@ class User_AvatarListAction extends User_AbstractListAction
         $render->setAttribute('actionForm', $this->mActionForm);
 
         //
-        // To support a template writer, this send the list of mid that
+        // To support a template designer, this send the list of mid that
         // actionForm kept.
         //
         $t_arr = $this->mActionForm->get('name');

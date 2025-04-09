@@ -34,6 +34,8 @@ require_once XOOPS_ROOT_PATH . '/core/XCube_Controller.class.php';
 require_once XOOPS_ROOT_PATH . '/core/libs/IniHandler.class.php';
 
 //
+// IniHandler - default site, custom and distribution settings
+// The settings provided are various configuration files used in an XOOPSCube-based platform
 // TODO We have to move the following lines to an appropriate place.
 //		(We may not need the following constants here)
 //
@@ -44,7 +46,7 @@ define('XCUBE_SITE_CUSTOM_FILE_SALT', XOOPS_TRUST_PATH . '/settings/site_custom_
 define('XCUBE_SITE_DIST_FILE', XOOPS_TRUST_PATH . '/settings/site_default.dist.ini'); // for CorePack
 
 //
-//@todo Documentation How does the system decide on the main controller?
+//@todo Documentation How does the system decide the main controller?
 //
 $root=&XCube_Root::getSingleton();
 //$root->loadSiteConfig(XCUBE_SITE_SETTING_FILE, XCUBE_SITE_CUSTOM_FILE, XCUBE_SITE_CUSTOM_FILE_SALT);
