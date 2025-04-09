@@ -17,6 +17,63 @@ require_once __DIR__ . '/gtickets.php';
 class PicoControllerEditCategory extends PicoControllerAbstract {
     protected array $categoryObjs = [];
 
+    // get samples of category options
+    public function getCategoryOptions4edit(): string {
+        include dirname( __DIR__ ) . '/include/configs_can_override.inc.php';
+
+        $lines = [];
+        foreach ( $pico_configs_can_be_override as $key => $type ) {
+            if ( isset( $this->mod_config[ $key ] ) ) {
+                $val = $this->mod_config[ $key ];
+                if ( 'int' === $type || 'bool' === $type ) {
+                    $val = (int) $val;
+                }
+                $lines[] = htmlspecialchars( $key . ':' . $val, ENT_QUOTES );
+            }
+        }
+
+        return implode( '<br>', $lines );
+    }
+    
+    // New method to prepare structured config options for the UI
+    public function prepareConfigOptions() {
+        include dirname( __DIR__ ) . '/include/configs_can_override.inc.php';
+        
+        $config_options = [];
+        $current_options = [];
+        
+        // Parse current options from the category
+        if (!empty($this->assign['category']['options'])) {
+            $lines = explode("\n", $this->assign['category']['options']);
+            foreach ($lines as $line) {
+                if (preg_match('/^([^:]+):(.*)$/', $line, $matches)) {
+                    $current_options[trim($matches[1])] = trim($matches[2]);
+                }
+            }
+        }
+        
+        // Prepare structured options
+        foreach ($pico_configs_can_be_override as $key => $type) {
+            if (isset($this->mod_config[$key])) {
+                $default_val = $this->mod_config[$key];
+                if ('int' === $type || 'bool' === $type) {
+                    $default_val = (int) $default_val;
+                }
+                
+                // Use current value if set, otherwise use default
+                $value = isset($current_options[$key]) ? $current_options[$key] : $default_val;
+                
+                $config_options[$key] = [
+                    'type' => $type,
+                    'value' => $value,
+                    'default' => $default_val
+                ];
+            }
+        }
+        
+        $this->assign['category']['config_options'] = $config_options;
+    }
+    
     public function execute( $request ) {
         parent::execute( $request );
 
@@ -81,28 +138,12 @@ class PicoControllerEditCategory extends PicoControllerAbstract {
         $this->assign['gticket_hidden']                = $GLOBALS['xoopsGTicket']->getTicketHtml( __LINE__, 1800, 'pico' );
         $this->assign['category']['option_desc']       = $this->getCategoryOptions4edit();
         $this->assign['category']['wraps_directories'] = [ '' => '---' ] + pico_main_get_wraps_directories_recursively( $this->mydirname, '/' );
+        
+        // Prepare structured config options for the UI
+        $this->prepareConfigOptions();
 
         // views
         $this->template_name         = $this->mydirname . '_main_category_form.html';
         $this->is_need_header_footer = true;
-    }
-
-    // get samples of category options
-    // TODO output html input
-    public function getCategoryOptions4edit(): string {
-        include dirname( __DIR__ ) . '/include/configs_can_override.inc.php';
-
-        $lines = [];
-        foreach ( $pico_configs_can_be_override as $key => $type ) {
-            if ( isset( $this->mod_config[ $key ] ) ) {
-                $val = $this->mod_config[ $key ];
-                if ( 'int' === $type || 'bool' === $type ) {
-                    $val = (int) $val;
-                }
-                $lines[] = htmlspecialchars( $key . ':' . $val, ENT_QUOTES );
-            }
-        }
-
-        return implode( '<br>', $lines );
     }
 }

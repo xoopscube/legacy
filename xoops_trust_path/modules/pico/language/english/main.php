@@ -133,6 +133,7 @@ define( '_MD_PICO_BTN_COPYFROMWAITING' , 'Save waiting content');
 define( '_MD_PICO_MSG_CONFIRMCOPYFROMWAITING' , ' If you do not save the waiting content, the data will be lost. Please confirm!');
 define( '_MD_PICO_HOWTO_OVERRIDEOPTIONS' , '<p>Override preferences by writing a new line for each option.<br><code><b>(option name)</b>:<u>(option value)</u></code><br>Example to show breadcrumbs (1=on, 0=off):<br><code><b>show_breadcrumbs</b>:<u>1</u></code></p><h5>Overridable options current values</h5>');
 
+define( '_MD_PICO_ADVANCED_MODE', 'Advanced Mode');
 
 // vote to post
 define( '_MD_PICO_ERR_VOTEPERM' , 'You cannot vote');

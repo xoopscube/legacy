@@ -1,7 +1,7 @@
 <?php
 /**
  * @package    Legacy
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors  gigamaster, 2020 XCL/PHP7
  * @author     Kilica, 2008/09/25
  * @copyright  (c) 2005-2024 The XOOPSCube Project
@@ -87,6 +87,12 @@ class Legacy_ModuleInstallAction extends Legacy_Action
      * @var Legacy_ModuleInstaller
      */
     public $mInstaller = null;
+
+    /**
+     * @private
+     * @var Legacy_ModuleInstallForm
+     */
+    public $mActionForm = null;
 
     public function __construct($flag)
     {

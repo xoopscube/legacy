@@ -3,7 +3,7 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Author
@@ -191,8 +191,15 @@ if ( SPECIAL_CAT_ID_DELETED === $cat_id ) {
 		. $db->prefix( $mydirname . '_categories' ) . " c ON o.cat_id=c.cat_id WHERE ($whr_cat_id) ORDER BY c.cat_depth_in_tree,o.weight,o.content_id" );
 }
 $contents4assign = [];
-while ( $content_row = $db->fetchArray( $ors ) ) {
-	$wrap_full_path = XOOPS_TRUST_PATH . _MD_PICO_WRAPBASE . '/' . $mydirname . str_replace( '..', '', $content_row['vpath'] );
+// Ensure that $content_row['vpath'] is always a string before passing it to str_replace()
+// and check to skip the replacement if $content_row['vpath'] is null or empty
+	while ( $content_row = $db->fetchArray( $ors ) ) {
+		if (!is_null($content_row['vpath']) && !empty($content_row['vpath'])) {
+			$wrap_full_path = XOOPS_TRUST_PATH . _MD_PICO_WRAPBASE . '/' . $mydirname . str_replace( '..', '', $content_row['vpath'] );
+		} else {
+			// Handle the case where vpath is null or empty, e.g., skip the operation
+			$wrap_full_path = XOOPS_TRUST_PATH . _MD_PICO_WRAPBASE . '/' . $mydirname . $content_row['vpath'];
+		}
 
 	$content4assign    = [
 		'id'                      => (int) $content_row['content_id'],
@@ -204,7 +211,7 @@ while ( $content_row = $db->fetchArray( $ors ) ) {
 		'poster_uname'            => $content_row['poster_uid'] ? $myts->makeTboxData4Show( $content_row['poster_uname'] ) : _MD_PICO_REGISTERED_AUTOMATICALLY,
 		'modifier_uname'          => $content_row['modifier_uid'] ? $myts->makeTboxData4Show( $content_row['modifier_uname'] ) : _MD_PICO_REGISTERED_AUTOMATICALLY,
 		'subject'                 => $myts->makeTboxData4Edit( $content_row['subject'] ),
-		'vpath'                   => htmlspecialchars( $content_row['vpath'] ),
+		'vpath'                   => htmlspecialchars( $content_row['vpath'] ?? '' ),
 		'wrap_file'               => is_file( $wrap_full_path ) ? [
 			'mtime_formatted' => formatTimestamp( filemtime( $wrap_full_path ), 'm' ),
 			'size'            => filesize( $wrap_full_path )

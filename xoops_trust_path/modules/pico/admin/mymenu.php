@@ -40,7 +40,11 @@ if ( file_exists( XOOPS_TRUST_PATH . '/libs/altsys/myblocksadmin.php' ) ) {
 
 	$title = defined( '_MD_A_MYMENU_MYBLOCKSADMIN' ) ? _MD_A_MYMENU_MYBLOCKSADMIN : 'blocksadmin';
 
-	$adminmenu[] = [ 'title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin' ];
+	$adminmenu[] = [ 
+		'title' => $title, 
+		'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin',
+		'dirname' => $mydirname  // Add the dirname key here
+	];
 }
 
 // Preferences
@@ -48,7 +52,8 @@ $config_handler =& xoops_gethandler( 'config' );
 if ( (is_countable($config_handler->getConfigs( new Criteria( 'conf_modid', $xoopsModule->mid() ) )) ? count( $config_handler->getConfigs( new Criteria( 'conf_modid', $xoopsModule->mid() ) ) ) : 0) > 0 ) {
 	$adminmenu[] = [
 		'title' => _PREFERENCES,
-		'link'  => XOOPS_URL . '/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=' . $xoopsModule->mid()
+		'link'  => XOOPS_URL . '/modules/legacy/admin/index.php?action=PreferenceEdit&confmod_id=' . $xoopsModule->mid(),
+		'dirname' => $mydirname  // Add the dirname key here
 	];
 }
 
@@ -83,6 +88,10 @@ if ( empty( $adminmenu_hilighted ) ) {
 foreach ( array_keys( $adminmenu ) as $i ) {
 	if ( stripos( $adminmenu[ $i ]['link'], (string) XOOPS_URL ) === false ) {
 		$adminmenu[ $i ]['link'] = XOOPS_URL . "/modules/$mydirname/" . $adminmenu[ $i ]['link'];
+	}
+	// Ensure dirname is set for all menu items
+	if (!isset($adminmenu[$i]['dirname'])) {
+		$adminmenu[$i]['dirname'] = $mydirname;
 	}
 }
 

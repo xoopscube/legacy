@@ -3,7 +3,7 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
@@ -137,7 +137,7 @@ class PicoExtraFields {
 		$image_id = $id . '.' . $this->getExtFromMime( $check_result['mime'] );
 		$imime = $this->getExtFromMime( $check_result['mime'] );
 		
-		// v.2.4.0 resize loop with GD, since exec image_magick_path is not available or limited in many servers!
+		// v.2.5.0 resize loop with GD, since exec image_magick_path is not available or limited in many servers!
 		foreach ( $this->image_sizes as $size_key => $sizes ) {
 			$image_path = $this->getImageFullPath( $field_name, $size_key, $image_id );
 

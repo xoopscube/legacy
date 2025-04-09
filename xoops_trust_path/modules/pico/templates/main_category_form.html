@@ -61,6 +61,7 @@
 		<input type="number" min="0" max="100" step="1" name="cat_weight" id="category_weight" value="<{$category.weight}>" class="pico_number_only" title="Max 100">
 	</label>
 
+
 	<{* ----- CATEGORY OPTIONS *}>
 	<h5><{$smarty.const._MD_PICO_TH_CATEGORYOPTIONS}></h5>
 
@@ -73,15 +74,214 @@
 			<{$smarty.const._MD_PICO_ONOFF}></label>
 
 	<div id="category_option_controller" <{if !$category.options}>style="display:none;"<{/if}>>
-		<textarea name="cat_options" id="category_options" cols="50" rows="3"><{$category.options}></textarea>
-
-			<{* CONSTANT CUSTOM HTML: trust_path/module/pico/language/[lang]/main.php *}>
-			<{* -- DEFAULT <code><b>(option name)</b>:<u>(option value)</u></code> -- *}>
-			<{$smarty.const._MD_PICO_HOWTO_OVERRIDEOPTIONS}>
-			<code class="category_options_desc"><{$category.option_desc}></code>
+		<{* Hidden textarea to maintain compatibility with existing code *}>
+		<textarea name="cat_options" id="category_options_hidden" style="display:none;"><{$category.options}></textarea>
+		
+		<{* New user-friendly interface *}>
+		<div class="category-options-ui">
+			<{foreach from=$category.config_options key=option_name item=option_data}>
+				<div class="option-item">
+					<{if $option_data.type == 'bool'}>
+						<label for="cat_option_<{$option_name}>">
+							<input type="checkbox" id="cat_option_<{$option_name}>" 
+								data-option-name="<{$option_name}>"
+								class="cat-option-input"
+								<{if $option_data.value}>checked="checked"<{/if}>>
+							<{$option_name}>
+						</label>
+					<{elseif $option_data.type == 'int'}>
+						<label for="cat_option_<{$option_name}>">
+							<{$option_name}>
+							<input type="number" id="cat_option_<{$option_name}>" 
+								data-option-name="<{$option_name}>"
+								class="cat-option-input pico_number_only"
+								value="<{$option_data.value}>">
+						</label>
+					<{else}>
+						<label for="cat_option_<{$option_name}>">
+							<{$option_name}>
+							<input type="text" id="cat_option_<{$option_name}>" 
+								data-option-name="<{$option_name}>"
+								class="cat-option-input"
+								value="<{$option_data.value}>">
+						</label>
+					<{/if}>
+				</div>
+			<{/foreach}>
+		</div>
+		
+		<{* Advanced mode toggle *}>
+		<div class="advanced-toggle">
+			<label for="advanced_mode">
+				<input type="checkbox" id="advanced_mode" onclick="toggleAdvancedMode()">
+				<{$smarty.const._MD_PICO_ADVANCED_MODE|default:"Advanced Mode"}>
+			</label>
+		</div>
+		
+		<{* Advanced mode textarea (hidden by default) *}>
+		<div id="advanced_options" style="display:none;">
+			<textarea id="category_options_advanced" cols="50" rows="10"><{$category.options}></textarea>
+			<div class="help-text">
+				<{$smarty.const._MD_PICO_HOWTO_OVERRIDEOPTIONS}>
+				<code class="category_options_desc"><{$category.option_desc}></code>
+			</div>
+		</div>
+		
+		<{* JavaScript to handle the form *}>
+		<script>
+		// Global variable to track current mode
+		var isAdvancedMode = false;
+		
+		// Function to toggle advanced mode
+		function toggleAdvancedMode() {
+			var advancedSection = document.getElementById('advanced_options');
+			var uiSection = document.querySelector('.category-options-ui');
+			isAdvancedMode = document.getElementById('advanced_mode').checked;
+			
+			if (isAdvancedMode) {
+				advancedSection.style.display = 'block';
+				uiSection.style.display = 'none';
+				
+				// Update the advanced textarea with current values from hidden input
+				document.getElementById('category_options_advanced').value = 
+					document.getElementById('category_options_hidden').value;
+			} else {
+				advancedSection.style.display = 'none';
+				uiSection.style.display = 'block';
+				
+				// Parse the advanced textarea and update the UI and hidden input
+				document.getElementById('category_options_hidden').value = 
+					document.getElementById('category_options_advanced').value;
+				parseAdvancedTextarea();
+			}
+		}
+		
+		// Function to update the hidden input from UI inputs
+		function updateFromUI() {
+			// Get all option values from the UI
+			var optionMap = {};
+			var inputs = document.querySelectorAll('.cat-option-input');
+			
+			inputs.forEach(function(input) {
+				var name = input.getAttribute('data-option-name');
+				var value;
+				
+				if (input.type === 'checkbox') {
+					value = input.checked ? '1' : '0';
+				} else {
+					value = input.value;
+				}
+				
+				optionMap[name] = value;
+			});
+			
+			// Get current options from hidden input
+			var currentOptions = {};
+			var lines = document.getElementById('category_options_hidden').value.split('\n');
+			
+			lines.forEach(function(line) {
+				if (!line.trim()) return;
+				
+				var colonPos = line.indexOf(':');
+				if (colonPos > 0) {
+					var name = line.substring(0, colonPos).trim();
+					var value = line.substring(colonPos + 1).trim();
+					currentOptions[name] = value;
+				}
+			});
+			
+			// Merge UI values with current options
+			// This preserves options that aren't in the UI
+			for (var key in optionMap) {
+				if (optionMap.hasOwnProperty(key)) {
+					currentOptions[key] = optionMap[key];
+				}
+			}
+			
+			// Convert back to string format
+			var result = [];
+			for (var key in currentOptions) {
+				if (currentOptions.hasOwnProperty(key)) {
+					result.push(key + ':' + currentOptions[key]);
+				}
+			}
+			
+			// Update hidden input
+			document.getElementById('category_options_hidden').value = result.join('\n');
+		}
+		
+		// Function to parse the advanced textarea and update UI
+		function parseAdvancedTextarea() {
+			var text = document.getElementById('category_options_advanced').value;
+			var lines = text.split('\n');
+			var optionMap = {};
+			
+			// Parse all options from textarea
+			lines.forEach(function(line) {
+				if (!line.trim()) return;
+				
+				var colonPos = line.indexOf(':');
+				if (colonPos > 0) {
+					var name = line.substring(0, colonPos).trim();
+					var value = line.substring(colonPos + 1).trim();
+					optionMap[name] = value;
+				}
+			});
+			
+			// Update UI inputs
+			var inputs = document.querySelectorAll('.cat-option-input');
+			inputs.forEach(function(input) {
+				var name = input.getAttribute('data-option-name');
+				if (optionMap.hasOwnProperty(name)) {
+					if (input.type === 'checkbox') {
+						input.checked = (optionMap[name] === '1' || 
+										optionMap[name].toLowerCase() === 'true');
+					} else {
+						input.value = optionMap[name];
+					}
+				}
+			});
+		}
+		
+		// Function to handle form submission
+		function handleFormSubmit() {
+			if (isAdvancedMode) {
+				// If in advanced mode, update hidden input from advanced textarea
+				document.getElementById('category_options_hidden').value = 
+					document.getElementById('category_options_advanced').value;
+			} else {
+				// Otherwise update from UI
+				updateFromUI();
+			}
+			return true;
+		}
+		
+		// Add event listeners
+		document.addEventListener('DOMContentLoaded', function() {
+			// Add listeners to UI inputs
+			var inputs = document.querySelectorAll('.cat-option-input');
+			inputs.forEach(function(input) {
+				input.addEventListener('change', updateFromUI);
+				input.addEventListener('input', updateFromUI);
+			});
+			
+			// Add listener to advanced textarea
+			document.getElementById('category_options_advanced').addEventListener('input', function() {
+				document.getElementById('category_options_hidden').value = this.value;
+			});
+			
+			// Add form submit handler
+			document.getElementById('categoryform').addEventListener('submit', handleFormSubmit);
+			
+			// Initialize by parsing the hidden input to UI
+			parseAdvancedTextarea();
+		});
+		</script>
 	</div>
 	<{* ----- /CATEGORY OPTIONS *}>
 
+
+	
 	<footer>
 		<div class="grid">
 		<{if $page == 'categorymanager' && isset($children_count) == 0}>

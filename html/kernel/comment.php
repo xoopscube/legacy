@@ -466,7 +466,7 @@ class XoopsCommentHandler extends XoopsObjectHandler
         $ret= [];
 
         $table=$this->db->prefix('xoopscomments');
-        $sql="SELECT * FROM ${table} WHERE com_pid=" . $comment->getVar('com_id') . ' AND com_id<>' . $comment->getVar('com_id');
+        $sql = "SELECT * FROM " . $table . " WHERE com_pid=" . $comment->getVar('com_id') . ' AND com_id<>' . $comment->getVar('com_id');
         $result=$this->db->query($sql);
         while ($row=$this->db->fetchArray($result)) {
             $comment=new XoopsComment();

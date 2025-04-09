@@ -369,7 +369,7 @@ function pico_convert_serialized_data( $mydirname ) {
 }
 
 // get requests for category's sql (parse options)
-function pico_get_requests4category( $mydirname, $cat_id = null ) {
+/* function pico_get_requests4category( $mydirname, $cat_id = null ) {
 	$myts = null;
  ( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = &MyTextSanitizer::sGetInstance() ) || $myts = &MyTextSanitizer::getInstance();
 
@@ -432,6 +432,98 @@ function pico_get_requests4category( $mydirname, $cat_id = null ) {
 		'pid'         => $pid,
 		'cat_options' => pico_common_serialize( $cat_options ),
 	];
+} */
+
+// get requests for category's sql (parse options)
+function pico_get_requests4category( $mydirname, $cat_id = null ) {
+    $myts = null;
+    ( method_exists( 'MyTextSanitizer', 'sGetInstance' ) and $myts = &MyTextSanitizer::sGetInstance() ) || $myts = &MyTextSanitizer::getInstance();
+
+    $db = XoopsDatabaseFactory::getDatabaseConnection();
+
+    include dirname( __DIR__ ) . '/include/configs_can_override.inc.php';
+
+    $cat_options = [];
+
+    // Check if we're using the new UI format (cat_option array)
+    if (isset($_POST['cat_option']) && is_array($_POST['cat_option'])) {
+        foreach ($_POST['cat_option'] as $key => $val) {
+            if (isset($pico_configs_can_be_override[$key])) {
+                switch ($pico_configs_can_be_override[$key]) {
+                    case 'text':
+                        $cat_options[$key] = trim($val);
+                        break;
+                    case 'int':
+                        $cat_options[$key] = (int) $val;
+                        break;
+                    case 'bool':
+                        $cat_options[$key] = !empty($val) ? 1 : 0;
+                        break;
+                }
+            }
+        }
+    } else {
+        // Original method - parse from textarea
+        foreach ($GLOBALS['xoopsModuleConfig'] as $key => $val) {
+            if (empty($pico_configs_can_be_override[$key])) {
+                continue;
+            }
+
+            foreach (explode("\n", @$_POST['cat_options']) as $line) {
+                if (preg_match('/^' . $key . '\:(.{1,100})$/', $line, $regs)) {
+                    switch ($pico_configs_can_be_override[$key]) {
+                        case 'text':
+                            $cat_options[$key] = trim($regs[1]);
+                            break;
+                        case 'int':
+                            $cat_options[$key] = (int) $regs[1];
+                            break;
+                        case 'bool':
+                            $cat_options[$key] = (int) $regs[1] > 0 ? 1 : 0;
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    if (0 === $cat_id) {
+        // top category
+        $cat_vpath = null;
+        $pid = 0xffff;
+    } else {
+        // normal category
+        $cat_vpath = trim($myts->stripSlashesGPC($_POST['cat_vpath'] ?? ''));
+
+        $pid = (int) @$_POST['pid'];
+
+        // check $pid
+        if ($pid) {
+            $sql = 'SELECT * FROM ' . $db->prefix($mydirname . '_categories') . " c WHERE c.cat_id=$pid";
+            if (!$crs = $db->query($sql)) {
+                die(_MD_PICO_ERR_SQL . __LINE__);
+            }
+            if ($db->getRowsNum($crs) <= 0) {
+                die(_MD_PICO_ERR_READCATEGORY);
+            }
+        }
+    }
+
+    // Convert cat_options to serialized format
+    $cat_options_str = '';
+    foreach ($cat_options as $key => $val) {
+        $cat_options_str .= "$key:$val\n";
+    }
+    $cat_options_str = trim($cat_options_str);
+
+    return [
+        'cat_title' => $myts->stripSlashesGPC(@$_POST['cat_title']),
+        'cat_desc' => $myts->stripSlashesGPC(@$_POST['cat_desc']),
+        'cat_weight' => (int) @$_POST['cat_weight'],
+        'cat_vpath' => $cat_vpath,
+        'pid' => $pid,
+        'cat_options' => pico_common_serialize($cat_options),
+    ];
 }
 
 // create a category

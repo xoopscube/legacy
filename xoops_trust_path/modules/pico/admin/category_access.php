@@ -3,7 +3,7 @@
  * Pico content management D3 module for XCL
  *
  * @package    Pico
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
@@ -120,8 +120,9 @@ if ( !empty( $_POST['user_update'] ) ) {
 				continue;
 			}
 			$uid = $user->getVar( 'uid' );
-
+			$perms = []; //
 			$perms = [ 'can_read' => 1 ];
+			
 			foreach ( $pico_category_permissions as $perm_name ) {
 				$perms[ $perm_name ] = empty( $_POST[ 'new_' . $perm_name ][ $i ] ) ? 0 : 1;
 			}
