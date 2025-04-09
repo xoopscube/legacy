@@ -3,7 +3,7 @@
  * D3Forum module for XCL
  *
  * @package    D3Forum
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
@@ -81,7 +81,7 @@ if ( ! empty( $_GET['lib'] ) ) {
 	$langman->read( 'main.php', $mydirname, $mytrustdirname );
 
 	// fork each pages of this module
-	$page = preg_replace( '/[^a-zA-Z0-9_-]/', '', @$_GET['page'] );
+	$page = preg_replace( '/[^a-zA-Z0-9_-]/', '', $_GET['page'] ?? '' );
 
 	if ( file_exists( "$mytrustdirpath/admin/$page.php" ) ) {
 		include "$mytrustdirpath/admin/$page.php";

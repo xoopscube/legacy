@@ -3,7 +3,7 @@
  * D3Forum module for XCL
  * This file can be included from d3forum's blocks.
  * @package    D3Forum
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
@@ -259,13 +259,13 @@ function d3forum_common_simple_request( $params ) {
 				}
 				$requests[ $key ] = $val;
 				$whrs[]           = $val ? "($whr_prefix$key='$val')" : '1';
-				$queries[]        = "$key=" . urlencode( $val );
+				$queries[]        = "$key=" . urlencode((string)$val);
 				break;
 			case 'like' :
 				$val              = $myts->stripSlashesGPC( @$_GET[ $key ] );
 				$requests[ $key ] = $val;
 				$whrs[]           = $val ? "($whr_prefix$key LIKE '%" . addslashes( $val ) . "%')" : '1';
-				$queries[]        = "$key=" . urlencode( $val );
+				$queries[]        = "$key=" . urlencode((string)$val);
 				break;
 		}
 	}
@@ -283,7 +283,7 @@ function d3forum_common_utf8_encode_recursive( &$data ) {
 		foreach ( array_keys( $data ) as $key ) {
 			d3forum_common_utf8_encode_recursive( $data[ $key ] );
 		}
-	} else if ( ! is_numeric( $data ) ) {
+	} else if ( ! is_numeric( $data ) && $data !== null ) {
 		if ( XOOPS_USE_MULTIBYTES === 1 ) {
 			if ( function_exists( 'mb_convert_encoding' ) ) {
 				$data = mb_convert_encoding( $data, 'UTF-8', _CHARSET );
@@ -291,7 +291,13 @@ function d3forum_common_utf8_encode_recursive( &$data ) {
 				$data = iconv( _CHARSET, 'UTF-8', $data );
 			}
 		} else {
-			$data = utf8_encode( $data );
+			// Replace deprecated utf8_encode() with mb_convert_encoding()
+			if (function_exists('mb_convert_encoding')) {
+				$data = mb_convert_encoding($data, 'UTF-8', 'ISO-8859-1');
+			} else {
+				// Fallback if mb_convert_encoding is not available
+				$data = iconv('ISO-8859-1', 'UTF-8', $data);
+			}
 		}
 	}
 }

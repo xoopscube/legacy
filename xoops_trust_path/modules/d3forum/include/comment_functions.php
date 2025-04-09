@@ -3,7 +3,7 @@
  * D3Forum module for XCL
  *
  * @package    D3Forum
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
@@ -517,7 +517,9 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 
 			$topic_last_post_time = (int) $post_row['topic_last_post_time'];
 
-			$topic_last_uname = XoopsUser::getUnameFromId( $topic_last_uid, $xoopsModuleConfigs['use_name'] ); //naao usereal=1
+			// Fix Undefined array key "use_name"
+			//$topic_last_uname = XoopsUser::getUnameFromId( $topic_last_uid, $xoopsModuleConfigs['use_name'] ); //naao usereal=1
+			$topic_last_uname = XoopsUser::getUnameFromId( $topic_last_uid, $xoopsModuleConfig['use_name'] ?? 0 );
 
 			$topic_last_uname = $topic_last_uid > 0 ? $topic_last_uname : $myts->makeTboxData4Show( $post_row['guest_name'] );
 
