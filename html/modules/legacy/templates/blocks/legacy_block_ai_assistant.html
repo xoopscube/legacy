@@ -1,0 +1,106 @@
+<{assign var="block_id" value=$block.options.bid}>
+
+<div class="ai-assistant-block">
+    <h4><{$block.title|default:$smarty.const._MB_LEGACY_BLOCK_AI_NAME}></h4>
+    
+    <form id="aiQueryForm<{$block_id}>" class="ai-form" onsubmit="return false;">
+        <!-- Debug token value -->
+        <{* Debug token *}>
+        <{assign var="debug_token" value=$block.options.api_token|default:''}>
+        <{if empty($debug_token)}>
+            <div class="alert alert-warning">Please configure HuggingFace API Token in block settings.</div>
+     
+        <{/if}>
+        
+        <!-- Hidden fields with escaped values -->
+        <input type="hidden" name="api_token" value="<{$block.options.api_token|escape:'html'}>" />
+        <input type="hidden" name="max_tokens" value="<{$block.options.max_tokens|escape:'html'}>" />
+        <input type="hidden" name="temperature" value="<{$block.options.temperature|escape:'html'}>" />
+
+        <!-- Rest of form fields -->
+        <div class="form-group mb-3">
+            <textarea name="content" class="form-control" rows="3" required 
+                    placeholder="<{$smarty.const._MB_LEGACY_BLOCK_AI_PLACEHOLDER}>"></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+            <select name="type" class="form-control">
+                <option value="enhance"><{$smarty.const._MB_LEGACY_BLOCK_AI_ACTION_ENHANCE}></option>
+                <option value="translate"><{$smarty.const._MB_LEGACY_BLOCK_AI_ACTION_TRANSLATE}></option>
+                <option value="summarize"><{$smarty.const._MB_LEGACY_BLOCK_AI_ACTION_SUMMARIZE}></option>
+            </select>
+        </div>
+
+        <div class="form-group mb-3" id="translationOptions<{$block_id}>" style="display:none;">
+            <select name="source_lang" class="form-control mb-2">
+                <option value="">Select source language</option>
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="ja">Japanese</option>
+                <option value="ru">Russian</option>
+            </select>
+            
+            <select name="target_lang" class="form-control">
+                <option value="">Select target language</option>
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="ja">Japanese</option>
+                <option value="ru">Russian</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" onclick="submitAiQuery<{$block_id}>(this)">
+            <{$smarty.const._MB_LEGACY_BLOCK_AI_SUBMIT}>
+        </button>
+    </form>
+    <div id="aiResponse<{$block_id}>" class="mt-3"></div>
+</div>
+
+<script>
+async function submitAiQuery<{$block_id}>(button) {
+    const form = button.closest('form');
+    const response = document.getElementById('aiResponse<{$block_id}>');
+    
+    try {
+        const formData = new FormData(form);
+        formData.append('ai_action', 'query');
+        
+        // Validate token presence
+        const token = formData.get('api_token');
+        if (!token) {
+            throw new Error('<{$smarty.const._MB_LEGACY_BLOCK_AI_NO_TOKEN}>');
+        }
+        
+        // Debug request (mask sensitive data)
+        const debugData = Object.fromEntries(formData);
+        debugData.api_token = debugData.api_token ? 'present' : 'missing';
+        console.log('Request data:', debugData);
+        
+        button.disabled = true;
+        response.innerHTML = '<div class="alert alert-info"><{$smarty.const._MB_LEGACY_BLOCK_AI_PROCESSING}></div>';
+        
+        const result = await fetch(window.location.href, {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await result.json();
+        if (!data.success) {
+            throw new Error(data.error || '<{$smarty.const._MB_LEGACY_BLOCK_AI_ERROR}>');
+        }
+        
+        response.innerHTML = `<div class="alert alert-success">${data.result}</div>`;
+        
+    } catch (error) {
+        console.error('AI Request Error:', error);
+        response.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+    } finally {
+        button.disabled = false;
+    }
+}
+
+document.querySelector('select[name="type"]').addEventListener('change', function() {
+    const translationOptions = document.getElementById('translationOptions<{$block_id}>');
+    translationOptions.style.display = this.value === 'translate' ? 'block' : 'none';
+});
+</script>
