@@ -36,3 +36,25 @@ define( '_MB_LEGACY_WDLS' , "Arquivos pendentes");
 define( '_MB_LEGACY_WLNKS' , "Endereços pendentes");
 
 define( '_MB_LEGACY_MAINMENU_EXPAND_SUB' , "Mostrar todos os submenus");
+
+// AI Assistant Block
+define('_MB_LEGACY_BLOCK_AI_NAME', 'Assistente de IA');
+define('_MB_LEGACY_BLOCK_AI_TOKEN', 'Token API HuggingFace');
+define('_MB_LEGACY_BLOCK_AI_NO_TOKEN', 'O Token API HuggingFace é necessário. Edite o bloco para adicionar seu token.');
+// AI Assistant Block Options
+define('_MB_LEGACY_BLOCK_AI_MODEL', 'Modelo de IA');
+define('_MB_LEGACY_BLOCK_AI_TOKENS', 'Máximo de Tokens');
+define('_MB_LEGACY_BLOCK_AI_TEMP', 'Temperatura');
+// AI Assistant Block UI
+define('_MB_LEGACY_BLOCK_AI_PLACEHOLDER', 'Digite o conteúdo aqui...');
+define('_MB_LEGACY_BLOCK_AI_ACTION_ENHANCE', 'Melhorar Conteúdo');
+define('_MB_LEGACY_BLOCK_AI_ACTION_TRANSLATE', 'Traduzir');
+define('_MB_LEGACY_BLOCK_AI_ACTION_SUMMARIZE', 'Resumir');
+define('_MB_LEGACY_BLOCK_AI_SUBMIT', 'Perguntar à IA');
+define('_MB_LEGACY_BLOCK_AI_PROCESSING', 'Processando...');
+define('_MB_LEGACY_BLOCK_AI_NO_CONTENT', 'Por favor, insira conteúdo para processar');
+// AI Assistant Block Errors
+define('_MB_LEGACY_BLOCK_AI_ERROR', 'Erro de processamento da IA. Se o limite de taxa não foi atingido, tente novamente.');
+define('_MB_LEGACY_BLOCK_AI_LANG_ERROR', 'ERRO: Idioma');
+define('_MB_LEGACY_BLOCK_AI_LANG_SAME_ERROR', 'ERRO: Mesmo Idioma');
+define('_MB_LEGACY_BLOCK_AI_LANG_SELECT_ERROR', 'ERRO: Selecione o Idioma');

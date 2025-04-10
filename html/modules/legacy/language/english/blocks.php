@@ -40,28 +40,22 @@ define( '_MB_LEGACY_MAINMENU_EXPAND_SUB' , 'Show all submenus');
 
 // AI Assistant Block
 define('_MB_LEGACY_BLOCK_AI_NAME', 'AI Assistant');
-define('_MB_LEGACY_BLOCK_AI_DESC', 'AI-powered content assistant for enhancement, translation, and summarization');
-
+define('_MB_LEGACY_BLOCK_AI_TOKEN', 'HuggingFace API Token');
+define('_MB_LEGACY_BLOCK_AI_NO_TOKEN', 'HuggingFace API Token is required. Edit block to add your token.');
 // AI Assistant Block Options
 define('_MB_LEGACY_BLOCK_AI_MODEL', 'AI Model');
 define('_MB_LEGACY_BLOCK_AI_TOKENS', 'Max Tokens');
 define('_MB_LEGACY_BLOCK_AI_TEMP', 'Temperature');
-
-// AI Block Interface
-define('_MB_LEGACY_BLOCK_AI_PLACEHOLDER', 'Enter content to enhance...');
+// AI Assistant Block UI
+define('_MB_LEGACY_BLOCK_AI_PLACEHOLDER', 'Enter content here...');
 define('_MB_LEGACY_BLOCK_AI_ACTION_ENHANCE', 'Enhance Content');
 define('_MB_LEGACY_BLOCK_AI_ACTION_TRANSLATE', 'Translate');
 define('_MB_LEGACY_BLOCK_AI_ACTION_SUMMARIZE', 'Summarize');
 define('_MB_LEGACY_BLOCK_AI_SUBMIT', 'Ask AI');
 define('_MB_LEGACY_BLOCK_AI_PROCESSING', 'Processing...');
 define('_MB_LEGACY_BLOCK_AI_NO_CONTENT', 'Please enter content to process');
-define('_MB_LEGACY_BLOCK_AI_SUCCESS', 'AI Processing Complete');
-
-// AI Block Edit Form
-define('_MB_LEGACY_BLOCK_AI_TITLE', 'Block Title');
-define('_MB_LEGACY_BLOCK_AI_MODEL_DESC', 'Select AI model to use');
-define('_MB_LEGACY_BLOCK_AI_TOKENS_DESC', 'Maximum response length (1-4000)');
-define('_MB_LEGACY_BLOCK_AI_TEMP_DESC', 'Response creativity (0.0-1.0)');
-define('_MB_LEGACY_BLOCK_AI_TOKEN', 'HuggingFace API Token');
-define('_MB_LEGACY_BLOCK_AI_NO_TOKEN', 'HuggingFace API Token is required. Edit block to add your toke.');
-define('_MB_LEGACY_BLOCK_AI_ERROR', 'AI Processing Error');
+// AI Assistant Block Errors
+define('_MB_LEGACY_BLOCK_AI_ERROR', 'AI Processing Error. If the Rate limit is not reached. Try again.');
+define( '_MB_LEGACY_BLOCK_AI_LANG_ERROR' , 'ERROR: Language');
+define( '_MB_LEGACY_BLOCK_AI_LANG_SAME_ERROR' , 'ERROR: Same Language');
+define( '_MB_LEGACY_BLOCK_AI_LANG_SELECT_ERROR' , 'ERROR: Select Language');

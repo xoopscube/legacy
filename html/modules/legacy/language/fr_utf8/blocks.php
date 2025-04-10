@@ -36,3 +36,25 @@ define( '_MB_LEGACY_LANG_RECOMMENDSITE' , "Recommender ce Site a un(e) Ami(e)");
 define( '_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE' , "Désolé, Il est actuellement impossible de changer les themes.");
 
 define( '_MB_LEGACY_MAINMENU_EXPAND_SUB' , "Voir tous les sous-menus");
+
+// AI Assistant Block
+define('_MB_LEGACY_BLOCK_AI_NAME', 'Assistant IA');
+define('_MB_LEGACY_BLOCK_AI_TOKEN', 'Token API HuggingFace');
+define('_MB_LEGACY_BLOCK_AI_NO_TOKEN', 'Le token API HuggingFace est requis. Modifiez le bloc pour ajouter votre token.');
+// AI Assistant Block Options
+define('_MB_LEGACY_BLOCK_AI_MODEL', 'Modèle IA');
+define('_MB_LEGACY_BLOCK_AI_TOKENS', 'Tokens Maximum');
+define('_MB_LEGACY_BLOCK_AI_TEMP', 'Température');
+// AI Assistant Block UI
+define('_MB_LEGACY_BLOCK_AI_PLACEHOLDER', 'Saisissez votre contenu ici...');
+define('_MB_LEGACY_BLOCK_AI_ACTION_ENHANCE', 'Améliorer le Contenu');
+define('_MB_LEGACY_BLOCK_AI_ACTION_TRANSLATE', 'Traduire');
+define('_MB_LEGACY_BLOCK_AI_ACTION_SUMMARIZE', 'Résumer');
+define('_MB_LEGACY_BLOCK_AI_SUBMIT', 'Demander à l\'IA');
+define('_MB_LEGACY_BLOCK_AI_PROCESSING', 'Traitement en cours...');
+define('_MB_LEGACY_BLOCK_AI_NO_CONTENT', 'Veuillez saisir du contenu à traiter');
+// AI Assistant Block Errors
+define('_MB_LEGACY_BLOCK_AI_ERROR', 'Erreur de traitement IA. Si la limite de requêtes n\'est pas atteinte, réessayez.');
+define('_MB_LEGACY_BLOCK_AI_LANG_ERROR', 'ERREUR: Langue');
+define('_MB_LEGACY_BLOCK_AI_LANG_SAME_ERROR', 'ERREUR: Même Langue');
+define('_MB_LEGACY_BLOCK_AI_LANG_SELECT_ERROR', 'ERREUR: Sélectionnez une Langue');

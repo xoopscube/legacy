@@ -8,6 +8,7 @@ class Legacy_AIAssistantBlock
         'en' => 'English',
         'fr' => 'French',
         'ja' => 'Japanese',
+        'pt' => 'Portuguese',
         'ru' => 'Russian'
     ];
 
@@ -41,12 +42,22 @@ class Legacy_AIAssistantBlock
         try {
             switch($type) {
                 case 'translate':
-                    if (empty($sourceLang) || empty($targetLang)) {
-                        $model = "Helsinki-NLP/opus-mt-en-fr"; // default
-                    } else {
-                        $model = "Helsinki-NLP/opus-mt-{$sourceLang}-{$targetLang}";
-                    }
-                    $data = ['inputs' => $content];
+                    // Use Facebook's mBART model for translations
+                    $model = "facebook/mbart-large-50-many-to-many-mmt";
+                    
+                    // Map language codes to mBART format if needed
+                    $mbartSourceLang = $this->getMbartLangCode($sourceLang);
+                    $mbartTargetLang = $this->getMbartLangCode($targetLang);
+                    
+                    $data = [
+                        'inputs' => $content,
+                        'parameters' => [
+                            'src_lang' => $mbartSourceLang,
+                            'tgt_lang' => $mbartTargetLang
+                        ]
+                    ];
+                    
+                    error_log("Using mBART model with src_lang: $mbartSourceLang, tgt_lang: $mbartTargetLang");
                     break;
                 case 'summarize':
                     $model = "facebook/bart-large-cnn";
@@ -97,6 +108,19 @@ class Legacy_AIAssistantBlock
             throw new Exception(_MB_LEGACY_BLOCK_AI_ERROR . ': ' . $e->getMessage());
         }
     }
+    
+    // Helper method to map our language codes to mBART format
+    private function getMbartLangCode($langCode) {
+        $mbartMap = [
+            'en' => 'en_XX',
+            'fr' => 'fr_XX',
+            'ja' => 'ja_XX',
+            'pt' => 'pt_XX',
+            'ru' => 'ru_RU'  // Updated to ru_RU instead of ru_XX
+        ];
+        
+        return $mbartMap[$langCode] ?? 'en_XX'; // Default to English if not found
+    }
 
     private function callHuggingFace($model, $data) 
     {
@@ -108,10 +132,10 @@ class Legacy_AIAssistantBlock
         $url = $this->api_url . $model;
         
         // Debug request
-        error_log("Making API request:");
+/*         error_log("Making API request:");
         error_log("- URL: " . $url);
         error_log("- Token Length: " . strlen($this->api_token));
-        error_log("- Data: " . json_encode($data));
+        error_log("- Data: " . json_encode($data)); */
 
         $ch = curl_init($url);
         curl_setopt_array($ch, [
@@ -149,15 +173,28 @@ class Legacy_AIAssistantBlock
 
         // Log response details
         error_log("HTTP Code: " . $httpCode);
-        error_log("Response: " . $response);
-        error_log("cURL Error: " . $error);
-
+        
         if ($error) {
             throw new Exception("cURL Error: " . $error);
         }
 
+        // Improved error handling with specific messages for common errors
         if ($httpCode !== 200) {
-            throw new Exception("API Error (HTTP $httpCode): " . $response);
+            // Handle specific HTTP error codes
+            switch ($httpCode) {
+                case 403:
+                    error_log("API Authorization Error: " . substr($response, 0, 200) . "...");
+                    throw new Exception(_MB_LEGACY_BLOCK_AI_ERROR);
+                case 404:
+                    error_log("Model Not Found: " . $model);
+                    throw new Exception(_MB_LEGACY_BLOCK_AI_ERROR);
+                case 429:
+                    error_log("Rate Limit Exceeded: " . substr($response, 0, 200) . "...");
+                    throw new Exception(_MB_LEGACY_BLOCK_AI_ERROR);
+                default:
+                    error_log("API Error (HTTP $httpCode): " . substr($response, 0, 200) . "...");
+                    throw new Exception(_MB_LEGACY_BLOCK_AI_ERROR);
+            }
         }
 
         $result = json_decode($response, true);
@@ -167,31 +204,6 @@ class Legacy_AIAssistantBlock
         }
 
         return $result;
-    }
-
-    private function processTranslation($text, $options) 
-    {
-        $sourceLang = $options['source_lang'] ?? '';
-        $targetLang = $options['target_lang'] ?? '';
-
-        // Validate language selections
-        if (empty($sourceLang) || empty($targetLang)) {
-            throw new Exception(_MB_LEGACY_BLOCK_AI_LANG_SELECT_ERROR);
-        }
-
-        if ($sourceLang === $targetLang) {
-            throw new Exception(_MB_LEGACY_BLOCK_AI_LANG_SAME_ERROR);
-        }
-
-        // Get appropriate model for language pair
-        $model = "Helsinki-NLP/opus-mt-{$sourceLang}-{$targetLang}";
-
-        // Call API
-        return $this->callHuggingFace($model, [
-            'inputs' => $text,
-            'source_language' => $sourceLang,
-            'target_language' => $targetLang
-        ]);
     }
 }
 
@@ -238,20 +250,30 @@ function b_legacy_ai_assistant_show($options)
             
             // Get action type from POST
             $action = $_POST['type'] ?? 'enhance';
-            $content = $_POST['content'] ?? '';
-
-            // Handle translation specific parameters
-            $params = [];
-            if ($action === 'translate') {
-                $params['source_lang'] = $_POST['source_lang'] ?? '';
-                $params['target_lang'] = $_POST['target_lang'] ?? '';
-                
-                if (empty($params['source_lang']) || empty($params['target_lang'])) {
-                    throw new Exception(_MB_LEGACY_BLOCK_AI_LANG_ERROR);
-                }
+            $content = $_POST['ai_content'] ?? '';
+            
+            if (empty($content)) {
+                throw new Exception(_MB_LEGACY_BLOCK_AI_NO_CONTENT);
             }
 
-            $result = $aiBlock->processRequest($content, $action, $params);
+            // Handle translation specific parameters
+            if ($action === 'translate') {
+                $sourceLang = $_POST['source_lang'] ?? '';
+                $targetLang = $_POST['target_lang'] ?? '';
+                
+                if (empty($sourceLang) || empty($targetLang)) {
+                    throw new Exception(_MB_LEGACY_BLOCK_AI_LANG_ERROR);
+                }
+                
+                if ($sourceLang === $targetLang) {
+                    throw new Exception(_MB_LEGACY_BLOCK_AI_LANG_SAME_ERROR);
+                }
+                
+                $result = $aiBlock->processRequest($content, $action, $sourceLang, $targetLang);
+            } else {
+                // For non-translation actions
+                $result = $aiBlock->processRequest($content, $action);
+            }
             
             header('Content-Type: application/json');
             echo json_encode(['success' => true, 'result' => $result]);
@@ -267,27 +289,6 @@ function b_legacy_ai_assistant_show($options)
         exit;
     }
 
-    // Action Translate
-    if ($action === 'translate') {
-        $source_lang = $_POST['source_lang'] ?? '';
-        $target_lang = $_POST['target_lang'] ?? '';
-        
-        // Validate language selection
-        if (empty($source_lang) || empty($target_lang)) {
-            throw new Exception(_MB_LEGACY_BLOCK_AI_SELECT_LANG);
-        }
-        
-        // Get appropriate model for language pair
-        $model = "Helsinki-NLP/opus-mt-{$source_lang}-{$target_lang}";
-        
-        // Process translation
-        $result = $this->callHuggingFace($model, [
-            'inputs' => $text,
-            'source_lang' => $source_lang,
-            'target_lang' => $target_lang
-        ]);
-    }
-
     return $block;
 }
 
@@ -300,7 +301,7 @@ function b_legacy_ai_assistant_edit($options)
             'api_token' => $values[0] ?? '',
             'max_tokens' => $values[1] ?? 1000,
             'temperature' => $values[2] ?? 0.7,
-            'model' => $values[3] ?? 'gpt-3.5-turbo',
+            'model' => $values[3] ?? 'facebook/mbart-large-50-many-to-many-mmt',
             'side' => $values[4] ?? 0
         ];
     }
@@ -332,16 +333,16 @@ function b_legacy_ai_assistant_edit($options)
             floatval($options['temperature']) . '" min="0" max="1" step="0.1">';
     $form .= '</td></tr>';
     
-    // Model selection
+    // Model selection - Updated to use Hugging Face models
     $form .= '<tr>';
     $form .= '<td class="head">' . _MB_LEGACY_BLOCK_AI_MODEL . '</td>';
     $form .= '<td class="even"><select name="options[3]">';
-    $form .= '<option value="gpt-3.5-turbo"' . 
-            ($options['model'] === 'gpt-3.5-turbo' ? ' selected' : '') . 
-            '>GPT-3.5 Turbo</option>';
-    $form .= '<option value="gpt-4"' . 
-            ($options['model'] === 'gpt-4' ? ' selected' : '') . 
-            '>GPT-4</option>';
+    $form .= '<option value="facebook/mbart-large-50-many-to-many-mmt"' . 
+            ($options['model'] === 'facebook/mbart-large-50-many-to-many-mmt' ? ' selected' : '') . 
+            '>mBART-50 (Translation)</option>';
+    $form .= '<option value="facebook/bart-large-cnn"' . 
+            ($options['model'] === 'facebook/bart-large-cnn' ? ' selected' : '') . 
+            '>BART-CNN (Summarization)</option>';
     $form .= '</select></td></tr>';
 
     // Side (hidden)

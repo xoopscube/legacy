@@ -37,3 +37,25 @@ define( '_MB_LEGACY_LANG_RECOMMENDSITE' , '当サイトを友達に薦める');
 define( '_MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE' , 'ただいまテーマチェンジャーはご利用になれません');
 
 define( '_MB_LEGACY_MAINMENU_EXPAND_SUB' , '全てのサブメニューを表示する');
+
+// AI Assistant Block
+define('_MB_LEGACY_BLOCK_AI_NAME', 'AIアシスタント');
+define('_MB_LEGACY_BLOCK_AI_TOKEN', 'HuggingFace APIトークン');
+define('_MB_LEGACY_BLOCK_AI_NO_TOKEN', 'HuggingFace APIトークンが必要です。ブロックを編集してトークンを追加してください。');
+// AI Assistant Block Options
+define('_MB_LEGACY_BLOCK_AI_MODEL', 'AIモデル');
+define('_MB_LEGACY_BLOCK_AI_TOKENS', '最大トークン数');
+define('_MB_LEGACY_BLOCK_AI_TEMP', '温度');
+// AI Assistant Block UI
+define('_MB_LEGACY_BLOCK_AI_PLACEHOLDER', 'ここにコンテンツを入力...');
+define('_MB_LEGACY_BLOCK_AI_ACTION_ENHANCE', 'コンテンツを強化');
+define('_MB_LEGACY_BLOCK_AI_ACTION_TRANSLATE', '翻訳');
+define('_MB_LEGACY_BLOCK_AI_ACTION_SUMMARIZE', '要約');
+define('_MB_LEGACY_BLOCK_AI_SUBMIT', 'AIに質問');
+define('_MB_LEGACY_BLOCK_AI_PROCESSING', '処理中...');
+define('_MB_LEGACY_BLOCK_AI_NO_CONTENT', '処理するコンテンツを入力してください');
+// AI Assistant Block Errors
+define('_MB_LEGACY_BLOCK_AI_ERROR', 'AI処理エラー。レート制限に達していない場合は、再試行してください。');
+define('_MB_LEGACY_BLOCK_AI_LANG_ERROR', 'エラー：言語');
+define('_MB_LEGACY_BLOCK_AI_LANG_SAME_ERROR', 'エラー：同じ言語');
+define('_MB_LEGACY_BLOCK_AI_LANG_SELECT_ERROR', 'エラー：言語を選択');
