@@ -13,8 +13,9 @@
 XOOPSCube Legacy (XCL) is a Web Application Platform (WAP) free and open source well suited for general purpose. The XCL bundle package is designed for easy usage with the most popular web server stack: Apache, MySQL and PHP.
 
   
-<h3> &#62;&#62;&#62; <a href="https://github.com/xoopscube/legacy/issues/300" target="_blank" rel="noopener">Maintenance Mode - EOL</a></h3>
- 
+<h3> &#62;&#62;&#62; <a href="https://github.com/xoopscube/legacy/issues/300" target="_blank" rel="noopener">Maintenance Mode</a></h3>
+
+
 
 | Branch | PHP Version | Commit / Pull request |
 |:-------------:|:-------------:|:-------------:|
@@ -24,14 +25,15 @@ XOOPSCube Legacy (XCL) is a Web Application Platform (WAP) free and open source 
 
 ### [The XOOPSCube Project Celebrates The 20th Anniversary](https://github.com/xoopscube/legacy/blob/master/XOOPSCube-20th-Anniversary.md)
 
+
+The XOOPSCube project and its available distributions stand as a testament to the dedicated work of a volunteer team. Their multidisciplinary approach and multicultural collaboration have yielded a wealth of diverse perspectives and ideas, which are invaluable assets for future development and design. Moving forward, we encourage all members of the open-source community to foster a spirit of curiosity in learning and to champion the core values of integrity, passion, and respect.
+
 -----
 
 ## Get Started
 ### Installation Wizard
 
-The XCL bundle package is designed to run smoothly on any local server environment bundle LAMP, MAMP, XAMPP,
-dedicated server, virtual private server (VPS) or shared hosting. Running a local instance (Linux, macOS, Windows) and deploying to your dedicated server or shared hosting is fairly easy.  
-The following guide focuses on the user-friendly [Web installation wizard](https://xoopscube.github.io/legacy/)
+You can easily run the XCL bundle package on any local server environment like LAMP, MAMP, or XAMPP, as well as on dedicated servers, VPS, or shared hosting. Both local instance setup (Linux, macOS, Windows) and deployment are quite simple. The following guide will walk you through the user-friendly  [Web installation wizard](https://xoopscube.github.io/legacy/)
 
 1. Create a database (MySQL or MariaDB) InnoDB collation utf8mb4
 2. Unpack the archive to your root directory
@@ -59,20 +61,16 @@ The following guide focuses on the user-friendly [Web installation wizard](https
 </a></p>
 
 
-
-
-
-
 ## Requirements
 
-<table>
+<table align="center" with="100%">
 <tr>
-<th align="center">
+<th width="33%" align="center">
 Server
 </th>
-<th align="center">
+<th width="33%" align="center">
 Database</th>
-<th align="center">
+<th width="33%" align="center">
 Language</th>
 </tr>
 <tr>
@@ -105,29 +103,111 @@ XOOPSCube was started from scratch and the minimalist XCube Core source code is 
 
 XOOPSCube Legacy source code which is a set of modules to ensure compatibility with old versions of Xoops2 is released under a GPL licence.
 
-## The Contributors
+## The Contributors   
 
-
-
-The XOOPSCube project and available distributions have been developed and supported by a group of volunteers with a multidisciplinary approach and multicultural collaboration providing a variety of different perspectives and ideas to consider in future development and design.
-
-We encourage all members of the open source community to promote curiosity in learning and encourage the adoption of these core values: integrity, passion and respect.    
-
-| 10key         | Aaki          | Argon         | Asunta        | Bandit-x      | 
-|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
-| @argon358       | Bindi         | @Bluemooninc   | @Domifara      | Fugafuga      |
-| Gara          | @Gigamaster   | GIJOE         | @Gusagi        | Halt          | 
-| @Hamanaka      | Hiroki        | @Kujiy        | Hxrr          | JardaR        |
-| Jidaikobo      | @Kilica       | kimura363     | Leco          | Lumbago       | 
-| Marijuana     | @Marine123    | Mat           | @Matchan       | Metal         | 
-| @mikhail-miguel| Minahito      | Moegiiro      | @Mumincacao    | Masarap       | 
-| @Naao         | @Nao-pon      | @Neko88        | @nobunobuta   | Nor           | 
-| @Nbuy (Nobu)  | @Ohsepoa      | @OhYear       | @Ohwada       | Okuhiki       | 
-| @Onokazu       | @Orrisroot     | Otneg         | @Plusangel     | @Pcboy         |
-| Roger         | @RyujiAMANO   | Sacchan       | Sak-Axyz      | Salamander    | 
-| Shige-p       | Shiraga       | @shirosaki     | Slayer_cg     | @Sohgo         | 
-| Sow           | @Suin         | @Toemon        | @Tokitam       | @Tohokuaiki    | 
-| Tom_g3x       | Tomoro        | Wanderer      | Wanikoo       |               |
+<table align="center" with="100%">
+  <tr>
+<th colspan="5"><h2>Wall of Fame</h2>
+<p>XOOPSCube values its community and publicly acknowledges and celebrates the individuals who have contributed to the project, giving credit and recognition to developers, designers, writers, and every other person who has helped make it better.</p></th>
+<tr>
+<td width="20%" align="center">10key </td>
+<td width="20%" align="center">Aaki</td>
+<td width="20%" align="center">Argon</td>
+<td width="20%" align="center">Asunta</td>
+<td width="20%" align="center">Bandit-x</td>
+</tr>
+<tr>
+<td width="20%" align="center">@argon358</td>
+<td width="20%" align="center">Bindi</td>
+<td width="20%" align="center">@Bluemooninc</td>
+<td width="20%" align="center">@Domifara</td>
+<td width="20%" align="center">Fugafuga</td>
+</tr>
+<tr>
+<td width="20%" align="center">Gara</td>
+<td width="20%" align="center">@Gigamaster</td>
+<td width="20%" align="center">GIJOE</td>
+<td width="20%" align="center">@Gusagi</td>
+<td width="20%" align="center">Halt</td>
+</tr>
+<tr>
+<td width="20%" align="center">@Hamanaka</td>
+<td width="20%" align="center">Hiroki</td>
+<td width="20%" align="center">@Kujiy</td>
+<td width="20%" align="center">Hxrr</td>
+<td width="20%" align="center">JardaR</td>
+</tr>
+<tr>
+<td width="20%" align="center">Jidaikobo</td>
+<td width="20%" align="center">@Kilica</td>
+<td width="20%" align="center">kimura363</td>
+<td width="20%" align="center">Leco</td>
+<td width="20%" align="center">Lumbago</td>
+</tr>
+<tr>
+<td width="20%" align="center">Marijuana</td>
+<td width="20%" align="center">@Marine123</td>
+<td width="20%" align="center">Mat</td>
+<td width="20%" align="center">@Matchan</td>
+<td width="20%" align="center">Metal</td>
+</tr>
+<tr>
+<td width="20%" align="center">@mikhail-miguel</td>
+<td width="20%" align="center">Minahito</td>
+<td width="20%" align="center">Moegiiro</td>
+<td width="20%" align="center">@Mumincacao</td>
+<td width="20%" align="center">Masarap</td>
+</tr>
+<tr>
+<td width="20%" align="center">@Naao</td>
+<td width="20%" align="center">@Nao-pon</td>
+<td width="20%" align="center">@Neko88</td>
+<td width="20%" align="center">@nobunobuta</td>
+<td width="20%" align="center">Nor</td>
+</tr>
+<tr>
+<td width="20%" align="center">@Nbuy (Nobu)</td>
+<td width="20%" align="center">@Ohsepoa</td>
+<td width="20%" align="center">@OhYear</td>
+<td width="20%" align="center">@Ohwada</td>
+<td width="20%" align="center">Okuhiki</td>
+</tr>
+<tr>
+<td width="20%" align="center">@Onokazu</td>
+<td width="20%" align="center">@Orrisroot</td>
+<td width="20%" align="center">Otneg</td>
+<td width="20%" align="center">@Plusangel</td>
+<td width="20%" align="center">@Pcboy</td>
+</tr>
+<tr>
+<td width="20%" align="center">Roger</td>
+<td width="20%" align="center">@RyujiAMANO</td>
+<td width="20%" align="center">Sacchan</td>
+<td width="20%" align="center">Sak-Axyz</td>
+<td width="20%" align="center">Salamander</td>
+</tr>
+<tr>
+<td width="20%" align="center">Shige-p</td>
+<td width="20%" align="center">Shiraga</td>
+<td width="20%" align="center">@shirosaki</td>
+<td width="20%" align="center">Slayer_cg</td>
+<td width="20%" align="center">@Sohgo</td>
+</tr>
+<tr>
+<td width="20%" align="center">Sow</td>
+<td width="20%" align="center">@Suin</td>
+<td width="20%" align="center">@Toemon</td>
+<td width="20%" align="center">@Tokitam</td>
+<td width="20%" align="center">@Tohokuaiki</td>
+</tr>
+<tr>
+<td width="20%" align="center">Tom_g3x</td>
+<td width="20%" align="center">Tomoro</td>
+<td width="20%" align="center">Wanderer</td>
+<td width="20%" align="center">Wanikoo</td>
+<td width="20%" align="center">^_^/</td>
+</tr>
+</table>
 
 
       —///////////////////////—
