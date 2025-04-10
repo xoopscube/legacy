@@ -17,9 +17,9 @@ XOOPSCube Legacy (XCL) is a Web Application Platform (WAP) free and open source 
 
 
 
-| Branch | PHP Version | Commit / Pull request |
-|:-------------:|:-------------:|:-------------:|
-| Master | PHP 8.2 | Security updates only  |
+| Branch | PHP Version | Database | Commit / Pull request |
+|:-------------:|:-------------:|:-------------:|:-------------:|
+| Master | PHP 8.2 | MySQL 8.x | Security updates |
 
 -----  
 
@@ -35,26 +35,28 @@ The XOOPSCube project and its available distributions stand as a testament to th
 
 You can easily run the XCL bundle package on any local server environment like LAMP, MAMP, or XAMPP, as well as on dedicated servers, VPS, or shared hosting. Both local instance setup (Linux, macOS, Windows) and deployment are quite simple. The following guide will walk you through the user-friendly  [Web installation wizard](https://xoopscube.github.io/legacy/)
 
-1. Create a database (MySQL or MariaDB) InnoDB collation utf8mb4
-2. Unpack the archive to your root directory
-3. Browse to your website URL
-4. Follow the steps in the Installation Wizard
+1. Create a database in MySQL or MariaDB using the InnoDB collation with utf8mb4 character encoding.
+2. Unpack the contents of the archive into your website's root directory.
+3. Open your website URL in a web browser.
+4. Follow the instructions provided by the Installation Wizard.
 
 <a href="https://xoopscube.github.io/legacy/" target="_blank" rel="noopener">
 <img src="https://raw.githubusercontent.com/xoopscube/artwork-social-media/master/images/xcl-installer-wizard.jpg" alt="Wizard Installation" title="Wizard Installation" width="100%">
 </a>
 
 ## Features  
-**XCL bundle package features out of the box**
+**Key features of the XCL bundle package include:**
 
-- X-elFinder file manager with WYSIWYG editors (code, graphics)  
-  Cloud Storage : Box, Dropbox, Google Drive, OneDrive, FTP, and more.  
-  GUI-based Composer to install cloud packages and dependencies  
-- X-Update Manager : get and deploy deploy from stores in GitHub,  
-  Gitlab or any other public or private, local or remote repository.
-- Duplicatable modules :  
-  Content Management System (CMS), forums, knowledge management systems,   
-  and multiple blogs management (e.g. WordPress) .
+- Duplicatable modules (CMS, forums, knowledge bases, multiple blogs)
+- User group permissions control
+- Private messaging system
+- Integrated AI assistant
+- X-elFinder (file manager with WYSIWYG code & graphics editors)
+- Extensive Cloud Storage support (Box, Dropbox, Google Drive, OneDrive, FTP, etc.)
+- Framework independence, Delegate mechanism and Preload system (single file component)
+- Composer for easy package and dependency installation
+- X-Update Manager (for updates from GitHub, GitLab, and more)
+
 
 <p><a href="https://xoopscube.github.io/legacy/" target="_blank">
 <img src="https://repository-images.githubusercontent.com/4779266/2956517f-c3ea-4177-bd08-e11b6e30f17c" alt="xcl-admin-render" title="XCL Admin version 2.3.x" width="100%">
