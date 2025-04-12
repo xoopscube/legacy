@@ -20,7 +20,7 @@ function protector_postcommon() {
 
 	// Protector object
 	require_once dirname( __DIR__ ) . '/class/protector.php';
-	$db        = Database::getInstance();
+	$db = XoopsDatabaseFactory::getDatabaseConnection();
 	$protector = Protector::getInstance();
 	$protector->setConn( $db->conn );
 	$protector->updateConfFromDb();
@@ -28,16 +28,6 @@ function protector_postcommon() {
 	if ( empty( $conf ) ) {
 		return true;
 	} // not installed yet
-
-	// phpmailer vulnerability
-	// https://larholm.com/2007/06/11/phpmailer-0day-remote-execution/
-	if ( in_array( substr( XOOPS_VERSION, 0, 12 ), [ 'XOOPS 2.0.16', 'XOOPS 2.0.13', 'XOOPS 2.2.4' ] ) ) {
-		$config_handler    = &xoops_gethandler( 'config' );
-		$xoopsMailerConfig = &$config_handler->getConfigsByCat( XOOPS_CONF_MAILER );
-		if ( 'sendmail' == $xoopsMailerConfig['mailmethod'] && 'ee1c09a8e579631f0511972f929fe36a' == md5_file( XOOPS_ROOT_PATH . '/class/mail/phpmailer/class.phpmailer.php' ) ) {
-			echo '<strong>phpmailer security hole! Change the preferences of mail from "sendmail" to another, or upgrade the core right now! (message by protector)</strong>';
-		}
-	}
 
 	// global enabled or disabled
 	if ( ! empty( $conf['global_disabled'] ) ) {

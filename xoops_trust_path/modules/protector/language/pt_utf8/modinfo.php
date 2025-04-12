@@ -7,6 +7,23 @@ $constpref = '_MI_'.strtoupper($mydirname);
 
 if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref.'_LOADED')) {
 
+    // The name of this module
+    define($constpref.'_NAME', 'Protector');
+
+// A brief description of this module
+    define($constpref.'_DESC', 'Modulo para proteção contra ataques mal-intencionados, em especial: ataques DoS, SQL Injection e contaminações por variàvel.');
+
+// Menu
+    define( $constpref . '_DASHBOARD', 'Dashboard' );
+    define( $constpref . '_ADMININDEX', 'IP Autorizados');
+    define( $constpref . '_ADVISORY', 'Guia de segurança');
+    define( $constpref . '_LOGLIST', 'Log List' );
+    define( $constpref . '_LOGCLEARED', 'Log Cleared' );
+    define( $constpref . '_IPBAN', 'IP Ban Advisor' );
+    define( $constpref . '_PREFIXMANAGER', 'Prefixo Base Dados');
+    define( $constpref . '_SAFELIST', 'Safe List' );
+    define( $constpref . '_ADMENU_MYBLOCKSADMIN', 'Рermissões' );
+
 // Appended by Xoops Language Checker -GIJOE- in 2017-02-27 14:47:37
     define($constpref.'_BANIP_IPV6PREFIX', 'IPv6 deny list registration prefix');
     define($constpref.'_BANIP_IPV6PREFIXDSC', 'Number of prefix bit at IPv6 address registration (128 bit to all bits)');
@@ -45,16 +62,7 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref.'_LOADED')) {
 
     define($constpref.'_LOADED', 1);
 
-// The name of this module
-    define($constpref.'_NAME', 'Protector');
 
-// A brief description of this module
-    define($constpref.'_DESC', 'Modulo para proteção contra ataques mal-intencionados, em especial: ataques DoS, SQL Injection e contaminações por variàvel.');
-
-// Menu
-    define($constpref.'_ADMININDEX', 'IP Autorizados');
-    define($constpref.'_ADVISORY', 'Guia de segurança');
-    define($constpref.'_PREFIXMANAGER', 'Prefixo Base Dados');
 
 // Configs
     define($constpref.'_GLOBAL_DISBL', 'Interrupção temporaria de funcionamento');

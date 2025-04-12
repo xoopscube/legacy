@@ -1,11 +1,11 @@
 <?php
 
-// mymenu
+// Altsys admin menu and breadcrumbs
 define( '_MD_A_MYMENU_MYTPLSADMIN' , '');
 define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'アクセス権限');
 define( '_MD_A_MYMENU_MYPREFERENCES' , '一般設定');
 
-// index.php
+// Headings
 define( '_AM_TH_DATETIME' , '日時');
 define( '_AM_TH_USER' , 'ユーザ');
 define( '_AM_TH_IP' , 'IP');
@@ -15,6 +15,10 @@ define( '_AM_TH_TYPE' , '種別');
 define( '_AM_TH_DESC' , '詳細');
 define( '_AM_TH_INFO' , '概要');
 define( '_AM_TH_TIPS' , 'チップ');
+define( '_AM_TH_URI' , 'URI');
+define( '_AM_PAGE_PREV' , 'Previous');
+define( '_AM_PAGE_NEXT' , 'Next');
+define( '_AM_CLEARLOG' , 'Clear log');
 
 define( '_AM_TH_BADIPS' , '拒否IPリスト<br><br><span style="font-weight:normal;">１行１IPアドレスで記述してください（前方一致）。空欄なら全許可。<br>IPv6 アドレスの省略表記 "::" 及び "0" の省略は使用できません。</span>');
 define( '_AM_TH_GROUP1IPS' , '管理者グループ(1)の許可IP<br><br><span style="font-weight:normal;">１行１IPアドレスで記述してください（前方一致）。<br>IPv6 アドレスの省略表記 "::" 及び "0" の省略は使用できません。<br>192.168. とすれば、192.168.*からのみ管理者になれます。空欄なら全許可。</span>');
@@ -109,3 +113,26 @@ define( '_AM_ADV_DBFACTORY_TIPS' , 'パラメータ化されたクエリによ�
 define( '_AM_ADV_SUBTITLECHECK' , 'Protectorの動作チェック');
 define( '_AM_ADV_CHECKCONTAMI' , '変数汚染');
 define( '_AM_ADV_CHECKISOCOM' , '孤立コメント');
+
+// Admin constants v4.0 
+define('_AM_PROTECTOR_EXPORT', 'Export Data');
+define('_AM_PROTECTOR_DOWNLOAD', 'Download');
+define('_AM_PROTECTOR_DOWNLOAD_TXT', 'Download as Text');
+define('_AM_PROTECTOR_DOWNLOAD_CSV', 'Download as CSV');
+define('_AM_PROTECTOR_DASHBOARD', 'Dashboard');
+define('_AM_PROTECTOR_INFORMATION', 'Module Information');
+define('_AM_PROTECTOR_VERSION', 'Version');
+define('_AM_PROTECTOR_STATUS', 'Status');
+define('_AM_PROTECTOR_ENABLED', 'Enabled');
+define('_AM_PROTECTOR_DISABLED', 'Disabled');
+define('_AM_PROTECTOR_QUICKLINKS', 'Quick Links');
+define('_AM_PROTECTOR_IPSAFELIST', 'IP Safe List');
+define('_AM_PROTECTOR_IPSAFELISTDESC', 'IPs listed here will be exempt from Protector\'s security checks');
+define('_AM_PROTECTOR_IPSAFELISTFORMAT', 'Each IP should be on a separate line. You can use CIDR notation (e.g. 192.168.1.0/24)');
+define('_AM_PROTECTOR_UPDATE', 'Update');
+define('_AM_PROTECTOR_UPDATED', 'Settings have been updated');
+define('_AM_PROTECTOR_IMPORT', 'Import Data');
+define('_AM_PROTECTOR_UPLOAD', 'Upload');
+define('_AM_PROTECTOR_IMPORT_TIPS', 'Upload a previously exported TXT or CSV file to restore your settings.');
+define('_AM_PROTECTOR_IMPORT_ERROR', 'Error uploading file. Please try again.');
+define('_AM_PROTECTOR_IMPORT_SUCCESS', 'Logs imported successfully.');

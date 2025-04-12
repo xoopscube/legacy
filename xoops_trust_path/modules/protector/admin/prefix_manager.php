@@ -1,10 +1,10 @@
 <?php
 /**
- * Protector module for XCL - Database prefix manager and backup
+ * Protector Database prefix manager and backup
  *
  * @package    Protector
  * @version    XCL 2.5.0
- * @author     Other authors Gigamaster, 2020 XCL PHP7
+ * @author     Nuno Luciano aka gigamaster
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
@@ -13,7 +13,7 @@
 require_once dirname( __DIR__ ) . '/class/gtickets.php';
 require_once dirname( __DIR__ ) . '/class/dbIntegrate.php';
 
-$db =& Database::getInstance();
+$db = XoopsDatabaseFactory::getDatabaseConnection();
 
 // COPY TABLES
 if ( ! empty( $_POST['copy'] ) && ! empty( $_POST['old_prefix'] ) ) {
@@ -37,8 +37,8 @@ if ( ! empty( $_POST['copy'] ) && ! empty( $_POST['old_prefix'] ) ) {
 
 	$count = 0;
 
-	//while ( $row_table = $db->fetchArray( $srs ) ) {
-while (false !== ($row_table = $db->fetchArray($srs))) {
+
+    while (false !== ($row_table = $db->fetchArray($srs))) {
 		$count ++;
 		$old_table = $row_table['Name'];
 		if ( substr( $old_table, 0, strlen( $old_prefix ) + 1 ) !== $old_prefix . '_' ) {

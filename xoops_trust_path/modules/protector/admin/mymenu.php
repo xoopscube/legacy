@@ -1,16 +1,17 @@
 <?php
 /**
- * Protector module for XCL - Administration panel.
+ * Protector module menu for XCL Administration panel.
+ * 
  * @package    Protector
  * @version    XCL 2.5.0
- * @author     Other authors Gigamaster, 2020 XCL PHP7
+ * @author     Nuno Luciano aka gigamaster
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
 // Deny direct access
-if ( 'mymenu' === preg_replace( '/[^a-zA-Z0-9_-]/', '', @$_GET['page'] ) ) {
+if ( isset($_GET['page']) && 'mymenu' === preg_replace( '/[^a-zA-Z0-9_-]/', '', $_GET['page'] ) ) {
 	exit;
 }
 

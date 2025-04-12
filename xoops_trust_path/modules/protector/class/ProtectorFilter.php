@@ -1,104 +1,150 @@
 <?php
+
 /**
- * Protector module for XCL
+ * Protector Filter Handler for XCL
  *
  * @package    Protector
  * @version    XCL 2.5.0
- * @author     Other authors Gigamaster, 2020 XCL PHP7
+ * @author     Nuno Luciano aka gigamaster
+ * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
-// Abstract of each filter classes
-class ProtectorFilterAbstract {
-	public $protector = null;
+class ProtectorFilterHandler
+{
+    private array $filters = [];
+    private static ?ProtectorFilterHandler $instance = null;
 
-	public function __construct() {
-		$this->protector = Protector::getInstance();
-		$lang            = empty( $GLOBALS['xoopsConfig']['language'] ) ? @$this->protector->_conf['default_lang'] : $GLOBALS['xoopsConfig']['language'];
-		@include_once dirname( __DIR__ ) . '/language/' . $lang . '/main.php';
-		if ( ! defined( '_MD_PROTECTOR_YOUAREBADIP' ) ) {
-			include_once dirname( __DIR__ ) . '/language/english/main.php';
-		}
-	}
+    /**
+     * Private constructor for singleton pattern
+     */
+    private function __construct()
+    {
+        // Load all filters
+        $this->loadFilters();
+    }
 
-	public function isMobile() {
-		if ( class_exists( 'Wizin_User' ) ) {
-			// WizMobile (gusagi)
-			$user =& Wizin_User::getSingleton();
+    /**
+     * Get singleton instance
+     */
+    public static function getInstance(): self
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
 
-			return $user->bIsMobile;
-		} elseif ( defined( 'HYP_K_TAI_RENDER' ) && HYP_K_TAI_RENDER ) {
-			// hyp_common ktai-renderer (nao-pon)
-			return true;
-		} else {
-			return false;
-		}
-	}
+    /**
+     * Load all filter classes
+     */
+    private function loadFilters(): void
+    {
+        $filter_dir = dirname(__DIR__) . '/filters';
+        
+        if (!is_dir($filter_dir)) {
+            return;
+        }
+        
+        $handler = opendir($filter_dir);
+        if (!$handler) {
+            return;
+        }
+        
+        while (($file = readdir($handler)) !== false) {
+            if (str_ends_with($file, '.php')) {
+                include_once $filter_dir . '/' . $file;
+                $filter_name = substr($file, 0, -4);
+                
+                // Create filter instance if class exists
+                if (class_exists($filter_name)) {
+                    $this->filters[$filter_name] = new $filter_name();
+                }
+            }
+        }
+        closedir($handler);
+    }
+
+    /**
+     * Execute a specific filter type
+     */
+    public function execute(string $type): bool
+    {
+        $ret = true;
+        
+        foreach ($this->filters as $filter) {
+            if (method_exists($filter, $type)) {
+                try {
+                    $ret_filter = $filter->$type();
+                    if ($ret_filter === false) {
+                        $ret = false;
+                    }
+                } catch (\Exception $e) {
+                    error_log('Protector filter error in ' . get_class($filter) . "::$type - " . $e->getMessage());
+                }
+            }
+        }
+        
+        return $ret;
+    }
 }
 
-
-// Filter Handler class (singleton)
-class ProtectorFilterHandler {
-	public $protector = null;
-	public $filters_base = '';
-	public $filters_byconfig = '';
-
-	public function __construct() {
-		$this->protector        = Protector::getInstance();
-		$this->filters_base     = dirname( __DIR__ ) . '/filters_enabled';
-		$this->filters_byconfig = dirname( __DIR__ ) . '/filters_byconfig';
-	}
-
-	public static function &getInstance() {
-		static $instance;
-		if ( ! isset( $instance ) ) {
-			$instance = new ProtectorFilterHandler();
-		}
-
-		return $instance;
-	}
-
-	// return: false : execute default action
-	public function execute( $type ) {
-		$ret = 0;
-
-		$filters = [];
-
-		// parse $protector->_conf['filters']
-		foreach ( preg_split( '/[\s\n,]+/', $this->protector->_conf['filters'] ) as $file ) {
-			if ( '.php' != substr( $file, - 4 ) ) {
-				$file .= '.php';
-			}
-			if ( 0 === strncmp( $file, $type . '_', strlen( $type ) + 1 ) ) {
-				$filters[] = [ 'file' => $file, 'base' => $this->filters_byconfig ];
-			}
-		}
-
-		// search from filters_enabled/
-		$dh = opendir( $this->filters_base );
-		while ( false !== ( $file = readdir( $dh ) ) ) {
-			if ( 0 === strncmp( $file, $type . '_', strlen( $type ) + 1 ) ) {
-				$filters[] = [ 'file' => $file, 'base' => $this->filters_base ];
-			}
-		}
-		closedir( $dh );
-
-		// execute the filters
-		foreach ( $filters as $filter ) {
-			include_once $filter['base'] . '/' . $filter['file'];
-			$plugin_name = 'protector_' . substr( $filter['file'], 0, - 4 );
-			if ( function_exists( $plugin_name ) ) {
-				// old way
-				$ret |= call_user_func( $plugin_name );
-			} elseif ( class_exists( $plugin_name ) ) {
-				// newer way
-				$plugin_obj = new $plugin_name();
-				$ret        |= $plugin_obj->execute();
-			}
-		}
-
-		return $ret;
-	}
+/**
+ * Abstract base class for all filters
+ */
+abstract class ProtectorFilterAbstract
+{
+    protected protector $protector;
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->protector = protector::getInstance();
+    }
+    
+    /**
+     * Get config value with default fallback
+     */
+    protected function getConf(string $key, $default = null)
+    {
+        $conf = $this->protector->getConf();
+        return $conf[$key] ?? $default;
+    }
+    
+    /**
+     * Log message
+     */
+    protected function logMessage(string $message, int $uid = 0, bool $unique = false, int $level = 1): bool
+    {
+        $this->protector->message .= $message . "\n";
+        return $this->protector->output_log(get_class($this), $uid, $unique, $level);
+    }
+    
+    /**
+     * Register bad IP
+     */
+    protected function registerBadIp(int $jailed_time = 0, ?string $ip = null): bool
+    {
+        return $this->protector->register_bad_ips($jailed_time, $ip);
+    }
+    
+    /**
+     * Deny by htaccess
+     */
+    protected function denyByHtaccess(?string $ip = null): bool
+    {
+        return $this->protector->deny_by_htaccess($ip);
+    }
+    
+    /**
+     * Purge sessions
+     */
+    protected function purge(bool $redirect_to_top = false): void
+    {
+        $this->protector->purge($redirect_to_top);
+    }
 }

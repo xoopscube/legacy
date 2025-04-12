@@ -5,11 +5,7 @@ class protector_postcommon_post_htmlpurify4everyone extends ProtectorFilterAbstr
 	public $method;
 
 	public function execute() {
-		// HTMLPurifier runs with PHP5 only
-//		if ( version_compare( PHP_VERSION, '5.0.0' ) < 0 ) {
-//			die( 'Turn postcommon_post_htmlpurify4everyone.php off because this filter cannot run with PHP4' );
-//		}
-
+		// HTMLPurifier library
 		if ( file_exists( LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php' ) ) {
 
 			require_once LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php';

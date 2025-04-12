@@ -14,14 +14,16 @@ $mytrustdirpath = __DIR__;
 
 // environment
 require_once XOOPS_ROOT_PATH . '/class/template.php';
-$module_handler    =& xoops_gethandler( 'module' );
-$xoopsModule       =& $module_handler->getByDirname( $mydirname );
-$config_handler    =& xoops_gethandler( 'config' );
-$xoopsModuleConfig =& $config_handler->getConfigsByCat( 0, $xoopsModule->getVar( 'mid' ) );
+// Remove reference operators
+$module_handler    = xoops_gethandler( 'module' );
+$xoopsModule       = $module_handler->getByDirname( $mydirname );
+$config_handler    = xoops_gethandler( 'config' );
+$xoopsModuleConfig = $config_handler->getConfigsByCat( 0, $xoopsModule->getVar( 'mid' ) );
 
 // check permission of 'module_admin' of this module
-$moduleperm_handler =& xoops_gethandler( 'groupperm' );
-if ( ! is_object( @$xoopsUser ) || ! $moduleperm_handler->checkRight( 'module_admin', $xoopsModule->getVar( 'mid' ), $xoopsUser->getGroups() ) ) {
+$moduleperm_handler = xoops_gethandler( 'groupperm' );
+// Improve null check and permission verification
+if ( !isset($xoopsUser) || !is_object($xoopsUser) || !$moduleperm_handler->checkRight( 'module_admin', $xoopsModule->getVar( 'mid' ), $xoopsUser->getGroups() ) ) {
 	die( 'only admin can access this area' );
 }
 
@@ -30,51 +32,62 @@ require XOOPS_ROOT_PATH . '/include/cp_functions.php';
 
 // language files (admin.php)
 $language = empty( $xoopsConfig['language'] ) ? 'english' : $xoopsConfig['language'];
-if ( file_exists( "$mydirpath/language/$language/admin.php" ) ) {
-	// user customized language file
-	include_once "$mydirpath/language/$language/admin.php";
-} elseif ( file_exists( "$mytrustdirpath/language/$language/admin.php" ) ) {
+// Use file_exists more efficiently by checking most likely path first
+if ( file_exists( "$mytrustdirpath/language/$language/admin.php" ) ) {
 	// default language file
 	include_once "$mytrustdirpath/language/$language/admin.php";
+} elseif ( file_exists( "$mydirpath/language/$language/admin.php" ) ) {
+	// user customized language file
+	include_once "$mydirpath/language/$language/admin.php";
 } else {
 	// fallback english
 	include_once "$mytrustdirpath/language/english/admin.php";
 }
 
 // language files (main.php)
-$language = empty( $xoopsConfig['language'] ) ? 'english' : $xoopsConfig['language'];
-if ( file_exists( "$mydirpath/language/$language/main.php" ) ) {
-	// user customized language file
-	include_once "$mydirpath/language/$language/main.php";
-} elseif ( file_exists( "$mytrustdirpath/language/$language/main.php" ) ) {
+// Use same pattern for main.php
+if ( file_exists( "$mytrustdirpath/language/$language/main.php" ) ) {
 	// default language file
 	include_once "$mytrustdirpath/language/$language/main.php";
+} elseif ( file_exists( "$mydirpath/language/$language/main.php" ) ) {
+	// user customized language file
+	include_once "$mydirpath/language/$language/main.php";
 } else {
 	// fallback english
 	include_once "$mytrustdirpath/language/english/main.php";
 }
 
+// Improve request parameter handling
+$lib = '';
+$page = '';
 
-if ( ! empty( $_GET['lib'] ) ) {
+if ( !empty( $_GET['lib'] ) ) {
 	// common libs (eg. altsys)
 	$lib  = preg_replace( '/[^a-zA-Z0-9_-]/', '', $_GET['lib'] );
-	$page = preg_replace( '/[^a-zA-Z0-9_-]/', '', @$_GET['page'] );
+	$page = isset($_GET['page']) ? preg_replace( '/[^a-zA-Z0-9_-]/', '', $_GET['page'] ) : '';
+	
+	$lib_path = XOOPS_TRUST_PATH . '/libs/' . $lib;
+	$page_file = $lib_path . '/' . $page . '.php';
+	$index_file = $lib_path . '/index.php';
 
-	if ( file_exists( XOOPS_TRUST_PATH . '/libs/' . $lib . '/' . $page . '.php' ) ) {
-		include XOOPS_TRUST_PATH . '/libs/' . $lib . '/' . $page . '.php';
-	} elseif ( file_exists( XOOPS_TRUST_PATH . '/libs/' . $lib . '/index.php' ) ) {
-		include XOOPS_TRUST_PATH . '/libs/' . $lib . '/index.php';
+	if ( file_exists( $page_file ) ) {
+		include $page_file;
+	} elseif ( file_exists( $index_file ) ) {
+		include $index_file;
 	} else {
 		die( 'wrong request' );
 	}
 } else {
 	// fork each pages of this module
-	$page = preg_replace( '/[^a-zA-Z0-9_-]/', '', @$_GET['page'] );
+	$page = isset($_GET['page']) ? preg_replace( '/[^a-zA-Z0-9_-]/', '', $_GET['page'] ) : '';
+	
+	$page_file = "$mytrustdirpath/admin/$page.php";
+	$index_file = "$mytrustdirpath/admin/index.php";
 
-	if ( file_exists( "$mytrustdirpath/admin/$page.php" ) ) {
-		include "$mytrustdirpath/admin/$page.php";
-	} elseif ( file_exists( "$mytrustdirpath/admin/index.php" ) ) {
-		include "$mytrustdirpath/admin/index.php";
+	if ( file_exists( $page_file ) ) {
+		include $page_file;
+	} elseif ( file_exists( $index_file ) ) {
+		include $index_file;
 	} else {
 		die( 'wrong request' );
 	}

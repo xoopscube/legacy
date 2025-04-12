@@ -3,7 +3,7 @@
  * Protector module for XCL
  * @package    Protector
  * @version    XCL 2.5.0
- * @author     Other authors Gigamaster, 2020 XCL PHP7
+ * @author     Nuno Luciano aka gigamaster (XCL/PHP8)
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
@@ -21,12 +21,11 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 // Manifesto
 $modversion['dirname']          = $mydirname;
 $modversion['name']             = constant( $constpref . '_NAME' );
-$modversion['version']          = '3.58';
-$modversion['detailed_version'] = '3.58.5';
-$modversion['detailed_version'] = $modversion['version'].'.1';
+$modversion['version']          = '4.00';
+$modversion['detailed_version'] = '4.00.0';
 $modversion['description']      = constant( $constpref . '_DESC' );
-$modversion['author']           = 'GIJ=CHECKMATE PEAK Corp.(https://www.peak.ne.jp/) ';
-$modversion['credits']          = 'PEAK Corp. (v.3.54). Gigamaster (XCL23/PHP)';
+$modversion['author']           = 'GIJ=CHECKMATE, Nuno Luciano aka Gigamaster (XCL/PHP8)';
+$modversion['credits']          = 'PEAK Corp.(v.3.54) (https://www.peak.ne.jp/)';
 $modversion['license']          = 'GPL';
 $modversion['image']            = '/images/module_protector.svg';
 $modversion['icon']             = 'images/module_icon.svg';
@@ -39,9 +38,9 @@ $modversion['cube_style']       = true;
 $modversion['sqlfile'] = false;
 $modversion['tables']  = [];
 
-// Admin things
+// Admin menu and default admin page
 $modversion['hasAdmin']   = 1;
-$modversion['adminindex'] = 'admin/index.php?page=advisory';
+$modversion['adminindex'] = 'admin/index.php?page=dashboard';
 $modversion['adminmenu']  = 'admin/admin_menu.php';
 
 // Templates
@@ -52,7 +51,7 @@ $modversion['blocks'] = [];
 // Menu
 $modversion['hasMain'] = 0;
 
-// Config
+// Config Settings (only for modules that need config settings generated automatically)
 $modversion['config'][1] = [
 	'name'        => 'global_disabled',
 	'title'       => $constpref . '_GLOBAL_DISBL',
@@ -166,15 +165,6 @@ $modversion['config'][]  = [
 	'default'     => '1',
 	'options'     => [],
 ];
-/* $modversion['config'][] = array(
-    'name'			=> 'die_nullbyte' ,
-    'title'			=> $constpref.'_DIE_NULLBYTE' ,
-    'description'	=> $constpref.'_DIE_NULLBYTEDSC' ,
-    'formtype'		=> 'yesno' ,
-    'valuetype'		=> 'int' ,
-    'default'		=> "1" ,
-    'options'		=> array()
-) ; */
 $modversion['config'][] = [
 	'name'        => 'die_badext',
 	'title'       => $constpref . '_DIE_BADEXT',
@@ -420,8 +410,6 @@ $modversion['hasSearch'] = 0;
 
 // Comments
 $modversion['hasComments'] = 0;
-
-// Config Settings (only for modules that need config settings generated automatically)
 
 // Notification
 

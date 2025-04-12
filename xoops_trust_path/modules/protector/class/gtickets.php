@@ -2,6 +2,7 @@
 /**
  * Protector module for XCL
  * GIJOE's Ticket Class (based on Marijuana's Oreteki XOOPS)
+ * 
  * @package    Protector
  * @version    XCL 2.5.0
  * @author     Other authors Gigamaster, 2020 XCL PHP7
@@ -20,15 +21,7 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 			global $xoopsConfig;
 
 			// language file
-//			if ( defined( 'XOOPS_ROOT_PATH' ) && ! empty( $xoopsConfig['language'] ) && ! strstr( $xoopsConfig['language'], '/' ) ) {
-
-//				if ( file_exists( dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml' ) ) {
-//					include dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.phtml';
-//				}
-//                if ( file_exists( dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.php' ) ) {
-//                    include dirname( __DIR__ ) . '/language/' . $xoopsConfig['language'] . '/gticket_messages.php';
-//                }
-//			}
+            // if ( defined( 'XOOPS_ROOT_PATH' ) && ! empty( $xoopsConfig['language'] ) && ! strstr( $xoopsConfig['language'], '/' ) ) {}
 
 			// default messages
 			if ( empty( $this->messages ) ) {
@@ -228,7 +221,6 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 			$table .= '</table>';
 			$form  .= $this->getTicketHtml( __LINE__, 300, $area ) . '<input type="submit" value="' . $this->messages['btn_repost'] . '"></form>';
 
-//			echo '<html><head><title>' . $this->messages['err_general'] . '</title><link rel="stylesheet" href="<{$xoops_url}>/common/css/x-layout.css"><script src="<{$xoops_url}>/common/js/x-utils.js"></script><<style>table,td,th {border:solid black 1px; border-collapse:collapse;}</style></head><body>' . sprintf( $this->messages['fmt_prompt4repost'], $this->getErrors() ) . $table . $form . '</body></html>';
             echo '<!doctype html><html class="no-js" lang="en"><head><meta charset="utf-8"><title>' . $this->messages['err_general'] . '</title><link rel="stylesheet" href="'.XOOPS_URL.'/common/css/x-layout.css"><link rel="stylesheet" href="'.XOOPS_URL.'/modules/legacy/admin/theme/style.css"></script><style>table,td,th {border:solid black 1px; border-collapse:collapse;}</style></head><body>' . sprintf( $this->messages['fmt_prompt4repost'], $this->getErrors() ) . $table . $form . '</body></html>';
 
         }
@@ -250,12 +242,10 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 			return [ $table, $form ];
 		}
 
-
 		// clear all stubs
 		public function clear() {
 			$_SESSION['XOOPS_G_STUBS'] = [];
 		}
-
 
 		// Ticket Using
 		public function using() {
@@ -265,7 +255,6 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 				return false;
 			}
 		}
-
 
 		// return errors
 		public function getErrors( $ashtml = true ) {
@@ -290,16 +279,16 @@ if ( ! class_exists( 'XoopsGTicket' ) ) {
 
 			return;
 		}
-// end of class
-	}
 
-// create a instance in global scope
+	} 
+	// end of class
+    // create a instance in global scope
 	$GLOBALS['xoopsGTicket'] = new XoopsGTicket();
 }
 
 if ( ! function_exists( 'admin_refcheck' ) ) {
 
-//Admin Referer Check By Marijuana(Rev.011)
+// Admin Referer Check By Marijuana(Rev.011)
 	function admin_refcheck( $chkref = '' ) {
 		if ( empty( $_SERVER['HTTP_REFERER'] ) ) {
 			return true;

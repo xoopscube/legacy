@@ -15,9 +15,14 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_DESC', 'This module protects your application platform from various attacks like DoS, SQL Injection, and contamination of global variables.' );
 
 	// Menu
+	define( $constpref . '_DASHBOARD', 'Dashboard' );
 	define( $constpref . '_ADMININDEX', 'IP авторизован' );
 	define( $constpref . '_ADVISORY', 'Советник по безопасности' );
+	define( $constpref . '_LOGLIST', 'Log List' );
+	define( $constpref . '_LOGCLEARED', 'Log Cleared' );
+	define( $constpref . '_IPBAN', 'IP Ban Advisor' );
 	define( $constpref . '_PREFIXMANAGER', 'Префикс БД ' );
+	define( $constpref . '_SAFELIST', 'Safe List' );
 	define( $constpref . '_ADMENU_MYBLOCKSADMIN', 'Разрешения' );
 
 	// Configs

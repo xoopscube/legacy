@@ -15,6 +15,10 @@ define( '_AM_TH_TYPE' , 'Type');
 define( '_AM_TH_DESC' , 'Description');
 define( '_AM_TH_INFO' , 'Overview');
 define( '_AM_TH_TIPS' , 'Solution');
+define( '_AM_TH_URI' , 'URI');
+define( '_AM_PAGE_PREV' , 'Previous');
+define( '_AM_PAGE_NEXT' , 'Next');
+define( '_AM_CLEARLOG' , 'Clear log');
 
 define( '_AM_TH_BADIPS' , 'Bad IPs<br><br>Write each IP address in a different line.<br>Blank means all IPs are allowed<br>The abbreviation of IPv6 address "::" and abbreviation of "0" can not be used.');
 define( '_AM_TH_GROUP1IPS' , 'Allowed IPs for Group=1<br><br>Write each IP address in a different line.<br>The abbreviation of IPv6 address "::" and abbreviation of "0" can not be used.<br>192.168. means 192.168.*<br>Blank means all IPs are allowed</span>');
@@ -123,3 +127,26 @@ define( '_AM_ADV_DBFACTORY_TIPS' , 'Parameterized queries allows the database to
 define( '_AM_ADV_SUBTITLECHECK' , 'Test Protector Security');
 define( '_AM_ADV_CHECKCONTAMI' , 'Prevent injection vulnerabilities');
 define( '_AM_ADV_CHECKISOCOM' , 'Prevent isolated comments');
+
+// Admin constants v4.0 
+define('_AM_PROTECTOR_EXPORT', 'Export Data');
+define('_AM_PROTECTOR_DOWNLOAD', 'Download');
+define('_AM_PROTECTOR_DOWNLOAD_TXT', 'Download as Text');
+define('_AM_PROTECTOR_DOWNLOAD_CSV', 'Download as CSV');
+define('_AM_PROTECTOR_DASHBOARD', 'Dashboard');
+define('_AM_PROTECTOR_INFORMATION', 'Module Information');
+define('_AM_PROTECTOR_VERSION', 'Version');
+define('_AM_PROTECTOR_STATUS', 'Status');
+define('_AM_PROTECTOR_ENABLED', 'Enabled');
+define('_AM_PROTECTOR_DISABLED', 'Disabled');
+define('_AM_PROTECTOR_QUICKLINKS', 'Quick Links');
+define('_AM_PROTECTOR_IPSAFELIST', 'IP Safe List');
+define('_AM_PROTECTOR_IPSAFELISTDESC', 'IPs listed here will be exempt from Protector\'s security checks');
+define('_AM_PROTECTOR_IPSAFELISTFORMAT', 'Each IP should be on a separate line. You can use CIDR notation (e.g. 192.168.1.0/24)');
+define('_AM_PROTECTOR_UPDATE', 'Update');
+define('_AM_PROTECTOR_UPDATED', 'Settings have been updated');
+define('_AM_PROTECTOR_IMPORT', 'Import Data');
+define('_AM_PROTECTOR_UPLOAD', 'Upload');
+define('_AM_PROTECTOR_IMPORT_TIPS', 'Upload a previously exported TXT or CSV file to restore your settings.');
+define('_AM_PROTECTOR_IMPORT_ERROR', 'Error uploading file. Please try again.');
+define('_AM_PROTECTOR_IMPORT_SUCCESS', 'Logs imported successfully.');
