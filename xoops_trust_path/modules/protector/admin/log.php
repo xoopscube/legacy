@@ -21,7 +21,7 @@ $db = XoopsDatabaseFactory::getDatabaseConnection();
 // Process clear logs action
 if (isset($_POST['action']) && $_POST['action'] === 'delete' && isset($_POST['confirm']) && $_POST['confirm'] === '1') {
     // Verify CSRF token
-    if (!$GLOBALS['xoopsSecurity']->check()) {
+    if (!$xoopsGTicket->check(true, 'protector_admin')) {
         redirect_header('index.php?page=log', 3, _NOPERM);
         exit;
     }
@@ -37,7 +37,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'delete' && isset($_POST['co
 // Add export functionality
 if (isset($_GET['op']) && $_GET['op'] === 'export') {
     // Verify CSRF token
-    if (!$GLOBALS['xoopsSecurity']->check()) {
+    if (!$xoopsGTicket->check(false, 'protector_admin')) {
         redirect_header('index.php?page=log', 3, _NOPERM);
         exit;
     }
@@ -93,7 +93,7 @@ if (isset($_GET['op']) && $_GET['op'] === 'export') {
 // Add import functionality
 if (isset($_POST['action']) && $_POST['action'] === 'import') {
     // Verify CSRF token
-    if (!$GLOBALS['xoopsSecurity']->check()) {
+    if (!$xoopsGTicket->check(true, 'protector_admin')) {
         redirect_header('index.php?page=log', 3, _NOPERM);
         exit;
     }
@@ -230,11 +230,10 @@ echo '<div class="floatright">
       <form method="post" action="index.php?page=log">
         <input type="hidden" name="action" value="delete">
         <input type="hidden" name="confirm" value="1">
-        ' . $GLOBALS['xoopsSecurity']->getTokenHTML() . '
+        ' . $xoopsGTicket->getTicketHtml('protector_admin') . '
         <input type="submit" value="' . _AM_CLEARLOG . '" class="formButton">
       </form>
       </div>';
-
 
 // Display export select form
 echo '<div data-layout="row sm-column">
@@ -243,7 +242,7 @@ echo '<div data-layout="row sm-column">
 <div class="confirm">';
 echo '<h4>' . _AM_PROTECTOR_EXPORT . '</h4>';
 echo '<form action="index.php?page=log&op=export" method="post" style="display:inline;">';
-echo $GLOBALS['xoopsSecurity']->getTokenHTML();
+echo $xoopsGTicket->getTicketHtml('protector_admin');
 echo '<select name="format" class="formButton">';
 echo '<option value="csv">CSV</option>';
 echo '<option value="txt">Text</option>';
@@ -258,7 +257,7 @@ echo '<div data-self="size-1of2 sm-full">
 <div class="danger">';
 echo '<h4>' . _AM_PROTECTOR_IMPORT . '</h4>';
 echo '<form action="index.php?page=log" method="post" enctype="multipart/form-data">';
-echo $GLOBALS['xoopsSecurity']->getTokenHTML();
+echo $xoopsGTicket->getTicketHtml('protector_admin');
 echo '<input type="hidden" name="action" value="import">';
 echo '<input type="file" name="import_file" accept=".txt,.csv" class="formButton"> ';
 echo '<input type="submit" value="' . _AM_PROTECTOR_UPLOAD . '" class="formButton">';

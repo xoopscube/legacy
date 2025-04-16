@@ -18,30 +18,31 @@ if ($xoopsUser) {
     exit();
 }
 
-// Get page parameter (changed from action to page for consistency)
-$page = $_GET['page'] ?? 'dashboard';
+// Get the page parameter
+$page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
 
-// Include appropriate page file
+// TODO Include the appropriate page 
 switch ($page) {
     case 'log':
-        include_once __DIR__ . '/log_viewer.php';
+        include __DIR__ . '/log.php';
         break;
     case 'ban':
-        include_once __DIR__ . '/ban_manager.php';
+        include __DIR__ . '/ban.php';
         break;
     case 'prefix_manager':
-        include_once __DIR__ . '/prefix_manager.php';
+        include __DIR__ . '/prefix_manager.php';
         break;
     case 'advisory':
-        include_once __DIR__ . '/advisory.php';
-        break;
-    case 'mymenu':
-        include_once __DIR__ . '/mymenu.php';
+        include __DIR__ . '/advisory.php';
         break;
     case 'safe_list':
-        include_once __DIR__ . '/safe_list.php';
+        include __DIR__ . '/safe_list.php';
         break;
+    case 'threat_intelligence':
+        include __DIR__ . '/threat_intelligence.php';
+        break;
+    case 'dashboard':
     default:
-        include_once __DIR__ . '/dashboard.php';
+        include __DIR__ . '/dashboard.php';
         break;
 }

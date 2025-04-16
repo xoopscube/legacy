@@ -151,3 +151,45 @@ define('_AM_PROTECTOR_UPLOAD', 'Upload');
 define('_AM_PROTECTOR_IMPORT_TIPS', 'Upload a previously exported TXT or CSV file to restore your settings.');
 define('_AM_PROTECTOR_IMPORT_ERROR', 'Error uploading file. Please try again.');
 define('_AM_PROTECTOR_IMPORT_SUCCESS', 'Logs imported successfully.');
+
+// Threat Intelligence
+define('_AM_PROTECTOR_THREAT_INTELLIGENCE', 'Threat Intelligence');
+define('_AM_PROTECTOR_THREAT_INTELLIGENCE_DESC', 'Configure threat intelligence settings to protect your site from malicious IPs and known threats.');
+define('_AM_PROTECTOR_THREAT_INTELLIGENCE_DASHBOARD', 'Threat Intelligence Dashboard');
+define('_AM_PROTECTOR_THREAT_INTELLIGENCE_SETTINGS', 'Threat Intelligence Settings');
+define('_AM_PROTECTOR_NOTHREATSTATS', 'No threat intelligence events recorded yet');
+
+// HTTP:BL Settings
+define('_AM_PROTECTOR_HTTPBL_SETTINGS', 'HTTP:BL Settings');
+define('_AM_PROTECTOR_HTTPBL_ENABLED', 'Enable HTTP:BL');
+define('_AM_PROTECTOR_HTTPBL_KEY', 'HTTP:BL API Key');
+define('_AM_PROTECTOR_HTTPBL_KEY_DESC', 'Enter your Project Honeypot HTTP:BL API key. Get one at projecthoneypot.org');
+define('_AM_PROTECTOR_HTTPBL_THREAT_THRESHOLD', 'Threat Threshold');
+define('_AM_PROTECTOR_HTTPBL_THREAT_THRESHOLD_DESC', 'IPs with a threat score above this value will be blocked (0-255). Recommended: 25-50');
+define('_AM_PROTECTOR_HTTPBL_TEST', 'Test Connection');
+define('_AM_PROTECTOR_HTTPBL_TEST_SUCCESS', 'HTTP:BL connection successful! Your API key is working correctly.');
+define('_AM_PROTECTOR_HTTPBL_TEST_FAILURE', 'HTTP:BL connection failed. Please check your API key and try again.');
+
+// Feed Settings
+define('_AM_PROTECTOR_FEED_SETTINGS', 'Threat Feed Settings');
+define('_AM_PROTECTOR_FEED_URLS', 'Threat Feed URLs');
+define('_AM_PROTECTOR_FEED_URLS_DESC', 'Enter URLs for IP blacklists, one per line. Supported formats: CSV, TXT with one IP per line');
+
+// Check Points
+define('_AM_PROTECTOR_CHECK_POINTS', 'Check Points');
+define('_AM_PROTECTOR_CHECK_LOGIN', 'Check Login Attempts');
+define('_AM_PROTECTOR_CHECK_LOGIN_DESC', 'Verify IPs against threat intelligence during login attempts');
+define('_AM_PROTECTOR_CHECK_REGISTER', 'Check Registration');
+define('_AM_PROTECTOR_CHECK_REGISTER_DESC', 'Verify IPs against threat intelligence during user registration');
+define('_AM_PROTECTOR_CHECK_FORMS', 'Check Form Submissions');
+define('_AM_PROTECTOR_CHECK_FORMS_DESC', 'Verify IPs against threat intelligence during any form submission (may impact performance)');
+define('_AM_PROTECTOR_CHECK_ADMIN', 'Check Admin Access');
+define('_AM_PROTECTOR_CHECK_ADMIN_DESC', 'Verify IPs against threat intelligence during admin area access');
+
+// Cache Settings
+define('_AM_PROTECTOR_CACHE_SETTINGS', 'Cache Settings');
+define('_AM_PROTECTOR_CACHE_DURATION', 'Cache Duration');
+define('_AM_PROTECTOR_CACHE_1HOUR', '1 Hour');
+define('_AM_PROTECTOR_CACHE_6HOURS', '6 Hours');
+define('_AM_PROTECTOR_CACHE_1DAY', '1 Day');
+define('_AM_PROTECTOR_CACHE_1WEEK', '1 Week');

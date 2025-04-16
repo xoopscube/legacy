@@ -5,12 +5,14 @@
             <ul data-layout="rows">
                 <li><a href="#help-overview" class="button">Protector Module</a>
                 <li><a href="#help-blacklist" class="button">IP Blacklist</a>
+                <li><a href="#help-httpbl" class="button">HTTP:BL Settings</a></li>
                 <li><a href="#help-session" class="button">Session Hijacking</a>
                 <li><a href="#help-dos" class="button">DoS</a>
                 <li><a href="#help-crawler" class="button">Bad Crawlers</a>
                 <li><a href="#help-sql" class="button">SQL Injection</a>
                 <li><a href="#help-xss" class="button">XSS</a>
                 <li><a href="#help-var" class="button">Global Variables</a>
+                <li><a href="#help-proxy" class="button"> Web HTTP Proxy</a></li>
                 <li><a href="#help-development" class="button">Development</a>
             </ul>
         </nav>
@@ -55,6 +57,33 @@
 
     </section>
 
+    <section id="help-httpbl">
+        <!-- Start documentation on usage of HTTP:BL Settings using html tags <h3>, <p>, <ul>, <li> -->
+           
+            <h3>HTTP:BL Settings</h3>
+            <p>HTTP:BL (HTTP BlackList) is a service provided by Project Honey Pot that helps identify and block malicious web requests. It allows you to check if an IP address is known for suspicious activities before processing requests from that IP.</p>
+            
+            <p>To use HTTP:BL with Protector, you need to:</p>
+            
+            <ul>
+                <li>Sign up for a free API key at <a href="https://www.projecthoneypot.org/" target="_blank">Project Honey Pot</a></li>
+                <li>Enter your API key in the Protector module's "Threat Intelligence" settings</li>
+                <li>Configure the threat threshold to determine how aggressive the filtering should be</li>
+            </ul>
+            
+            <p>HTTP:BL provides information about IP addresses including:</p>
+            
+            <ul>
+                <li>Threat score (0-255, higher means more dangerous)</li>
+                <li>Visitor type (search engine, suspicious, harvester, comment spammer)</li>
+                <li>Last seen (how many days since this IP was last reported)</li>
+            </ul>
+            
+            <p>When enabled, Protector will check visitor IPs against the HTTP:BL database and take action based on your configured settings. This adds an additional layer of protection against known malicious actors.</p>
+    
+            <!-- End documentation on usage of HTTP:BL Settings-->
+
+    </section>
 
     <section id="help-session">
 
@@ -191,6 +220,80 @@
 
     </section>
 
+    <section id="help-proxy">
+
+        <h3>Web HTTP Proxy</h3>
+        
+        <p>The Web HTTP Proxy feature provides secure access to external resources while protecting your site from malicious content. When enabled, it acts as an intermediary between your users and external websites.</p>
+        
+        <h4>Key Features:</h4>
+        <ul>
+            <li>Content filtering and sanitization</li>
+            <li>URL rewriting to maintain proxy connections</li>
+            <li>Caching of proxied content for improved performance</li>
+            <li>Detailed logging of proxy requests</li>
+            <li>Plugin system for extending functionality</li>
+        </ul>
+        
+        <h4>Configuration Options:</h4>
+        <ul>
+            <li><strong>Allowed Domains</strong> - Specify which domains can be accessed through the proxy</li>
+            <li><strong>Blocked Domains</strong> - Specify domains that should never be accessible</li>
+            <li><strong>Cache Settings</strong> - Enable caching and set cache duration</li>
+            <li><strong>Security Options</strong> - Strip JavaScript, cookies, and other potentially harmful content</li>
+            <li><strong>Custom User Agent</strong> - Set a specific user agent for proxy requests</li>
+        </ul>
+        
+        <h4>Using the Proxy:</h4>
+        <p>Access the proxy through: <code>yoursite.com/modules/protector/proxy.php?url=https://example.com</code></p>
+        
+        <h4>Creating Proxy Plugins:</h4>
+        <p>Plugins allow you to extend the proxy functionality. Here's a simple example:</p>
+        
+        <pre><code class="lang-php">
+class ProtectorProxyExamplePlugin {
+    private $proxy;
+    
+    public function __construct($proxy) {
+        $this->proxy = $proxy;
+    }
+    
+    public function processContent($url, $content) {
+        // Example: Add a banner at the top of every proxied page
+        $banner = '<div style="background:#f8f9fa;padding:10px;text-align:center;">
+                    Viewed through secure proxy
+                   </div>';
+        
+        // Insert banner after the body tag
+        $content = preg_replace('/<body([^>]*)>/i', 
+                               '<body$1>' . $banner, 
+                               $content);
+        
+        return $content;
+    }
+}
+</code></pre>
+        
+        <p>Save your plugin as <code>example.php</code> in the <code>plugins/proxy/</code> directory and enable it in the proxy settings.</p>
+        
+        <p>When enabled, Protector will check the IP address of the client against the list of trusted proxies.
+        If the IP address is not in the list, Protector will take action based on your configured settings.
+        This adds an additional layer of protection against known malicious actors.</p>
+
+
+        <h4>Proxy Plugin Example</h4>
+        
+        <p>Content Sanitizer Plugin for Protector Proxy is a simple plugin example, a content sanitizer plugin, that removes potentially harmful elements from proxied content. 
+        This is a practical utility that demonstrates the plugin system while providing real security benefits.</p>
+        <p>This plugin:</p>
+        <ol>
+        <li>1. Adds a clear notification banner so users know they're viewing content through a proxy</li>
+        <li>2. Removes potentially harmful elements like scripts, iframes, and event handlers</li>
+        <li>3. Adds CSS to prevent certain positioning tricks that could be used for clickjacking</li>
+        </ol>
+        <p>It's simple enough to understand but provides real value, making it an excellent first example for the proxy system.</p>
+
+    </section>
 
     <section id="help-development">
 

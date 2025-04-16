@@ -1,135 +1,171 @@
 <?php
-
 /**
- * Protector MySQL Database Handler
- *
- * This class extends the core MySQL database handler to add SQL injection protection
+ * Protector module for XCL
  *
  * @package    Protector
  * @version    XCL 2.5.0
- * @author     Nuno Luciano aka gigamaster
- * @author     Nobuhiro YASUTOMI, PHP8
+ * @author     Other authors Gigamaster, 2020 XCL PHP7
  * @author     Gijoe (Peak)
  * @copyright  (c) 2005-2024 Authors
  * @license    GPL v2.0
  */
 
-// Include the base database class
-require_once XOOPS_ROOT_PATH . '/class/database/mysqldatabase.php';
+if ( file_exists( XOOPS_ROOT_PATH . '/class/database/drivers/' . XOOPS_DB_TYPE . '/database.php' ) ) {
+	require_once XOOPS_ROOT_PATH . '/class/database/drivers/' . XOOPS_DB_TYPE . '/database.php';
+} else {
+	require_once XOOPS_ROOT_PATH . '/class/database/' . XOOPS_DB_TYPE . 'database.php';
+}
 
-// Create a simpler implementation that just uses the global database connection
-class ProtectorMysqlDatabase
-{
-    public $conn;
-    protected $protector;
-    protected $doubtful_requests = [];
-    protected $doubtful_needles = [];
-    
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        global $xoopsDB;
-        
-        if (isset($xoopsDB) && is_object($xoopsDB)) {
-            $this->conn = $xoopsDB->conn;
-        }
-        
-        $this->initializeProtection();
-    }
+require_once XOOPS_ROOT_PATH . '/class/database/database.php';
 
-    /**
-     * Initialize SQL injection protection
-     */
-    private function initializeProtection()
-    {
-        $this->protector = protector::getInstance();
-        $this->doubtful_requests = $this->protector->getDblayertrapDoubtfuls();
-        $this->doubtful_needles = ['UNION', 'SELECT', 'UPDATE', 'DELETE', 'INSERT', 'DROP', 'TRUNCATE'];
-    }
+eval( 'class ProtectorMySQLDatabase_base extends Xoops' . ucfirst( XOOPS_DB_TYPE ) . 'DatabaseProxy{}' );
 
-    /**
-     * Check if a query is potentially malicious
-     */
-    private function checkMaliciousQuery($sql)
-    {
-        foreach ($this->doubtful_requests as $request) {
-            foreach ($this->doubtful_needles as $needle) {
-                if (strpos($request, $needle) !== false && strpos(strtoupper($sql), $needle) !== false) {
-                    $this->protector->last_error_type = 'SQL Injection';
-                    $this->protector->message .= "Doubtful SQL found: {$sql}\n";
-                    $this->protector->output_log('SQL Injection', 0, false, 32);
-                    
-                    // Call the filter
-                    $ret = $this->protector->call_filter('dblayertrap_sql_check');
-                    if ($ret === false) {
-                        die('SQL Injection found');
-                    }
-                    
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    
-    /**
-     * Execute a query with protection
-     */
-    public function query($sql)
-    {
-        $sql4check = substr($sql, 0, 4096);
-        
-        // Check for malicious queries
-        $this->checkMaliciousQuery($sql4check);
-        
-        // Execute the query using the global database
-        global $xoopsDB;
-        return $xoopsDB->query($sql);
-    }
+class ProtectorMySQLDatabase extends ProtectorMySQLDatabase_base {
+	public $doubtful_requests = [];
+	public $doubtful_needles = [
+		// 'order by' ,
+		'concat',
+		'information_schema',
+		'select',
+		'union',
+		'/*', /**/
+		'--',
+		'#',
+	];
 
-    /**
-     * Prepare a statement with proper escaping
-     */
-    public function prepare($sql, $params = [])
-    {
-        if (empty($params)) {
-            return $sql;
-        }
-        
-        $parts = explode('?', $sql);
-        $prepared = $parts[0];
-        
-        for ($i = 1; $i < count($parts); $i++) {
-            if (isset($params[$i-1])) {
-                $value = $params[$i-1];
-                
-                if (is_string($value)) {
-                    $prepared .= "'" . mysqli_real_escape_string($this->conn, $value) . "'";
-                } elseif (is_numeric($value)) {
-                    $prepared .= $value;
-                } elseif (is_null($value)) {
-                    $prepared .= 'NULL';
-                } elseif (is_bool($value)) {
-                    $prepared .= $value ? '1' : '0';
-                } else {
-                    $prepared .= "'" . mysqli_real_escape_string($this->conn, (string)$value) . "'";
-                }
-            }
-            
-            $prepared .= $parts[$i];
-        }
-        
-        return $prepared;
-    }
+	public function __construct() {
+		$protector               = Protector::getInstance();
+		$this->doubtful_requests = $protector->getDblayertrapDoubtfuls();
+		$this->doubtful_needles  = array_merge( $this->doubtful_needles, $this->doubtful_requests );
+	}
 
-    /**
-     * Execute a prepared statement
-     */
-    public function executeStatement($sql, $params = [])
-    {
-        $prepared = $this->prepare($sql, $params);
-        return $this->query($prepared);
-    }
+
+	public function injectionFound( $sql ) {
+		$protector = Protector::getInstance();
+
+		$protector->last_error_type = 'SQL Injection';
+		$protector->message         .= $sql;
+		$protector->output_log( $protector->last_error_type );
+		die( 'SQL Injection found' );
+	}
+
+
+	public function separateStringsInSQL( $sql ) {
+		$sql            = trim( $sql );
+		$sql_len        = strlen( $sql );
+		$char           = '';
+		$string_start   = '';
+		$in_string      = false;
+		$sql_wo_string  = '';
+		$strings        = [];
+		$current_string = '';
+
+		for ( $i = 0; $i < $sql_len; $i ++ ) {
+			$char = $sql[ $i ];
+			if ( $in_string ) {
+				while ( 1 ) {
+					$new_i          = strpos( $sql, $string_start, $i );
+					$current_string .= substr( $sql, $i, $new_i - $i + 1 );
+					$i              = $new_i;
+					if ( false === $i ) {
+						break 2;
+					} elseif (/* $string_start == '`' || */ '\\' != $sql[ $i - 1 ] ) {
+						$string_start = '';
+						$in_string    = false;
+						$strings[]    = $current_string;
+						break;
+					} else {
+						$j                 = 2;
+						$escaped_backslash = false;
+						while ( $i - $j > 0 && '\\' == $sql[ $i - $j ] ) {
+							$escaped_backslash = ! $escaped_backslash;
+							$j ++;
+						}
+						if ( $escaped_backslash ) {
+							$string_start = '';
+							$in_string    = false;
+							$strings[]    = $current_string;
+							break;
+						} else {
+							$i ++;
+						}
+					}
+				}
+			} elseif ( '"' == $char || "'" == $char ) { // dare to ignore ``
+				$in_string      = true;
+				$string_start   = $char;
+				$current_string = $char;
+			} else {
+				$sql_wo_string .= $char;
+			}
+			// dare to ignore comment
+			// because unescaped ' or " have been already checked in stage1
+		}
+
+		return [ $sql_wo_string, $strings ];
+	}
+
+
+	public function checkSql( $sql ) {
+		[$sql_wo_strings, $strings] = $this->separateStringsInSQL( $sql );
+
+		// stage1: addslashes() processed or not
+		foreach ( $this->doubtful_requests as $request ) {
+			if ( addslashes( $request ) != $request ) {
+				if ( stristr( $sql, trim( $request ) ) ) {
+					// check the request stayed inside of strings as whole
+					$ok_flag = false;
+					foreach ( $strings as $string ) {
+						if ( strstr( $string, (string) $request ) ) {
+							$ok_flag = true;
+							break;
+						}
+					}
+					if ( ! $ok_flag ) {
+						$this->injectionFound( $sql );
+					}
+				}
+			}
+		}
+
+		// stage2: doubtful requests exists and outside of quotations ('or")
+		// $_GET['d'] = '1 UNION SELECT ...'
+		// NG: select a from b where c=$d
+		// OK: select a from b where c='$d_escaped'
+		// $_GET['d'] = '(select ... FROM)'
+		// NG: select a from b where c=(select ... from)
+		foreach ( $this->doubtful_requests as $request ) {
+			if ( strstr( $sql_wo_strings, trim( $request ) ) ) {
+				$this->injectionFound( $sql );
+			}
+		}
+
+		// stage3: comment exists or not without quoted strings (too sensitive?)
+		if ( preg_match( '/(\/\*|\-\-|\#)/', $sql_wo_strings, $regs ) ) {
+			foreach ( $this->doubtful_requests as $request ) {
+				if ( strstr( $request, $regs[1] ) ) {
+					$this->injectionFound( $sql );
+				}
+			}
+		}
+	}
+
+
+	public function &query( $sql, $limit = 0, $start = 0 ) {
+		$sql4check = substr( $sql, 7 );
+		foreach ( $this->doubtful_needles as $needle ) {
+			if ( stristr( $sql4check, (string) $needle ) ) {
+				$this->checkSql( $sql );
+				break;
+			}
+		}
+
+		if ( ! defined( 'XOOPS_DB_PROXY' ) ) {
+			$ret = parent::queryF( $sql, $limit, $start );
+		} else {
+			$ret = parent::query( $sql, $limit, $start );
+		}
+
+		return $ret;
+	}
 }

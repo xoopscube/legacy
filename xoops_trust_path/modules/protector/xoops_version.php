@@ -51,6 +51,21 @@ $modversion['blocks'] = [];
 // Menu
 $modversion['hasMain'] = 0;
 
+// Search
+$modversion['hasSearch'] = 0;
+
+// Comments
+$modversion['hasComments'] = 0;
+
+// Notification
+
+$modversion['hasNotification'] = 0;
+
+// onInstall, onUpdate, onUninstall
+$modversion['onInstall']   = 'oninstall.php';
+$modversion['onUpdate']    = 'onupdate.php';
+$modversion['onUninstall'] = 'onuninstall.php';
+
 // Config Settings (only for modules that need config settings generated automatically)
 $modversion['config'][1] = [
 	'name'        => 'global_disabled',
@@ -403,19 +418,498 @@ $modversion['config'][] = [
 	'default'     => '',
 	'options'     => [],
 ];
+// Threat Intelligence configs
+$modversion['config'][] = [
+    'name'        => 'httpbl_enabled',
+    'title'       => $constpref . '_HTTPBL_ENABLED',
+    'description' => $constpref . '_HTTPBL_ENABLED_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+];
 
+$modversion['config'][] = [
+    'name'        => 'httpbl_key',
+    'title'       => $constpref . '_HTTPBL_KEY',
+    'description' => $constpref . '_HTTPBL_KEY_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => '',
+];
 
-// Search
-$modversion['hasSearch'] = 0;
+$modversion['config'][] = [
+    'name'        => 'httpbl_threat_threshold',
+    'title'       => $constpref . '_HTTPBL_THREAT_THRESHOLD',
+    'description' => $constpref . '_HTTPBL_THREAT_THRESHOLD_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 25,
+];
 
-// Comments
-$modversion['hasComments'] = 0;
+$modversion['config'][] = [
+    'name'        => 'ti_feed_urls',
+    'title'       => $constpref . '_FEED_URLS',
+    'description' => $constpref . '_FEED_URLS_DESC',
+    'formtype'    => 'textarea',
+    'valuetype'   => 'text',
+    'default'     => '',
+];
 
-// Notification
+$modversion['config'][] = [
+    'name'        => 'ti_check_login',
+    'title'       => $constpref . '_CHECK_LOGIN',
+    'description' => $constpref . '_CHECK_LOGIN_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
 
-$modversion['hasNotification'] = 0;
+$modversion['config'][] = [
+    'name'        => 'ti_check_register',
+    'title'       => $constpref . '_CHECK_REGISTER',
+    'description' => $constpref . '_CHECK_REGISTER_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
 
-// onInstall, onUpdate, onUninstall
-$modversion['onInstall']   = 'oninstall.php';
-$modversion['onUpdate']    = 'onupdate.php';
-$modversion['onUninstall'] = 'onuninstall.php';
+$modversion['config'][] = [
+    'name'        => 'ti_check_forms',
+    'title'       => $constpref . '_CHECK_FORMS',
+    'description' => $constpref . '_CHECK_FORMS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+];
+
+$modversion['config'][] = [
+    'name'        => 'ti_check_admin',
+    'title'       => $constpref . '_CHECK_ADMIN',
+    'description' => $constpref . '_CHECK_ADMIN_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+];
+
+$modversion['config'][] = [
+    'name'        => 'ti_cache_duration',
+    'title'       => $constpref . '_CACHE_DURATION',
+    'description' => $constpref . '_CACHE_DURATION_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 3600,
+    'options'     => [
+        $constpref . '_CACHE_1HOUR' => 3600,
+        $constpref . '_CACHE_6HOURS' => 21600,
+        $constpref . '_CACHE_1DAY' => 86400,
+        $constpref . '_CACHE_1WEEK' => 604800,
+    ],
+];
+// Add proxy configuration options
+$modversion['config'][] = [
+    'name'        => 'proxy_enabled',
+    'title'       => '_MI_PROTECTOR_PROXY_ENABLED',
+    'description' => '_MI_PROTECTOR_PROXY_ENABLED_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0
+];
+
+$modversion['config'][] = [
+    'name'        => 'proxy_allowed_domains',
+    'title'       => '_MI_PROTECTOR_PROXY_ALLOWED_DOMAINS',
+    'description' => '_MI_PROTECTOR_PROXY_ALLOWED_DOMAINS_DESC',
+    'formtype'    => 'textarea',
+    'valuetype'   => 'text',
+    'default'     => ''
+];
+
+$modversion['config'][] = [
+    'name'        => 'proxy_blocked_domains',
+    'title'       => '_MI_PROTECTOR_PROXY_BLOCKED_DOMAINS',
+    'description' => '_MI_PROTECTOR_PROXY_BLOCKED_DOMAINS_DESC',
+    'formtype'    => 'textarea',
+    'valuetype'   => 'text',
+    'default'     => ''
+];
+
+$modversion['config'][] = [
+    'name'        => 'proxy_cache_enabled',
+    'title'       => '_MI_PROTECTOR_PROXY_CACHE_ENABLED',
+    'description' => '_MI_PROTECTOR_PROXY_CACHE_ENABLED_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1
+];
+
+$modversion['config'][] = [
+    'name'        => 'proxy_cache_time',
+    'title'       => '_MI_PROTECTOR_PROXY_CACHE_TIME',
+    'description' => '_MI_PROTECTOR_PROXY_CACHE_TIME_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 3600
+];
+
+$modversion['config'][] = [
+    'name'        => 'proxy_log_requests',
+    'title'       => '_MI_PROTECTOR_PROXY_LOG_REQUESTS',
+    'description' => '_MI_PROTECTOR_PROXY_LOG_REQUESTS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1
+];
+
+$modversion['config'][] = [
+    'name'        => 'proxy_strip_js',
+    'title'       => '_MI_PROTECTOR_PROXY_STRIP_JS',
+    'description' => '_MI_PROTECTOR_PROXY_STRIP_JS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0
+];
+
+$modversion['config'][] = [
+    'name'        => 'proxy_strip_cookies',
+    'title'       => '_MI_PROTECTOR_PROXY_STRIP_COOKIES',
+    'description' => '_MI_PROTECTOR_PROXY_STRIP_COOKIES_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0
+];
+
+$modversion['config'][] = [
+    'name'        => 'proxy_user_agent',
+    'title'       => '_MI_PROTECTOR_PROXY_USER_AGENT',
+    'description' => '_MI_PROTECTOR_PROXY_USER_AGENT_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => ''
+];
+
+$modversion['config'][] = [
+    'name'        => 'proxy_plugins_enabled',
+    'title'       => '_MI_PROTECTOR_PROXY_PLUGINS_ENABLED',
+    'description' => '_MI_PROTECTOR_PROXY_PLUGINS_ENABLED_DESC',
+    'formtype'    => 'select_multi',
+    'valuetype'   => 'array',
+    'default'     => [],
+    'options'     => [] // This will be populated dynamically
+];
+
+$modversion['config'][] = [
+    'name'        => 'contami_action',
+    'title'       => $constpref . '_CONTAMI_ACTION',
+    'description' => $constpref . '_CONTAMI_ACTIONDS',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 3,
+    'options'     => [
+        $constpref . '_OPT_NONE'     => 0,
+        $constpref . '_OPT_EXIT'     => 3,
+        $constpref . '_OPT_BIPTIME0' => 7,
+        $constpref . '_OPT_BIP'      => 15
+    ],
+];
+$modversion['config'][] = [
+    'name'        => 'isocom_action',
+    'title'       => $constpref . '_ISOCOM_ACTION',
+    'description' => $constpref . '_ISOCOM_ACTIONDSC',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => [
+        $constpref . '_OPT_NONE'     => 0,
+        $constpref . '_OPT_SAN'      => 1,
+        $constpref . '_OPT_EXIT'     => 3,
+        $constpref . '_OPT_BIPTIME0' => 7,
+        $constpref . '_OPT_BIP'      => 15
+    ],
+];
+$modversion['config'][] = [
+    'name'        => 'union_action',
+    'title'       => $constpref . '_UNION_ACTION',
+    'description' => $constpref . '_UNION_ACTIONDSC',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => [
+        $constpref . '_OPT_NONE'     => 0,
+        $constpref . '_OPT_SAN'      => 1,
+        $constpref . '_OPT_EXIT'     => 3,
+        $constpref . '_OPT_BIPTIME0' => 7,
+        $constpref . '_OPT_BIP'      => 15
+    ],
+];
+$modversion['config'][] = [
+    'name'        => 'id_forceintval',
+    'title'       => $constpref . '_ID_INTVAL',
+    'description' => $constpref . '_ID_INTVALDSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => '0',
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'file_dotdot',
+    'title'       => $constpref . '_FILE_DOTDOT',
+    'description' => $constpref . '_FILE_DOTDOTDSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => '1',
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'bf_count',
+    'title'       => $constpref . '_BF_COUNT',
+    'description' => $constpref . '_BF_COUNTDSC',
+    'formtype'    => 'text',
+    'valuetype'   => 'int',
+    'default'     => '10',
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'bwlimit_count',
+    'title'       => $constpref . '_BWLIMIT_COUNT',
+    'description' => $constpref . '_BWLIMIT_COUNTDSC',
+    'formtype'    => 'text',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'dos_skipmodules',
+    'title'       => $constpref . '_DOS_SKIPMODS',
+    'description' => $constpref . '_DOS_SKIPMODSDSC',
+    'formtype'    => 'text',
+    'valuetype'   => 'text',
+    'default'     => '',
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'dos_expire',
+    'title'       => $constpref . '_DOS_EXPIRE',
+    'description' => $constpref . '_DOS_EXPIREDSC',
+    'formtype'    => 'text',
+    'valuetype'   => 'int',
+    'default'     => '60',
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'dos_f5count',
+    'title'       => $constpref . '_DOS_F5COUNT',
+    'description' => $constpref . '_DOS_F5COUNTDSC',
+    'formtype'    => 'text',
+    'valuetype'   => 'int',
+    'default'     => '20',
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'dos_f5action',
+    'title'       => $constpref . '_DOS_F5ACTION',
+    'description' => '',
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'default'     => 'exit',
+    'options'     => [
+        $constpref . '_DOSOPT_NONE'     => 'none',
+        $constpref . '_DOSOPT_SLEEP'    => 'sleep',
+        $constpref . '_DOSOPT_EXIT'     => 'exit',
+        $constpref . '_DOSOPT_BIPTIME0' => 'biptime0',
+        $constpref . '_DOSOPT_BIP'      => 'bip',
+        $constpref . '_DOSOPT_HTA'      => 'hta'
+    ],
+];
+$modversion['config'][] = [
+    'name'        => 'dos_crcount',
+    'title'       => $constpref . '_DOS_CRCOUNT',
+    'description' => $constpref . '_DOS_CRCOUNTDSC',
+    'formtype'    => 'text',
+    'valuetype'   => 'int',
+    'default'     => '40',
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'dos_craction',
+    'title'       => $constpref . '_DOS_CRACTION',
+    'description' => '',
+    'formtype'    => 'select',
+    'valuetype'   => 'text',
+    'default'     => 'exit',
+    'options'     => [
+        $constpref . '_DOSOPT_NONE'     => 'none',
+        $constpref . '_DOSOPT_SLEEP'    => 'sleep',
+        $constpref . '_DOSOPT_EXIT'     => 'exit',
+        $constpref . '_DOSOPT_BIPTIME0' => 'biptime0',
+        $constpref . '_DOSOPT_BIP'      => 'bip',
+        $constpref . '_DOSOPT_HTA'      => 'hta'
+    ],
+];
+$modversion['config'][] = [
+    'name'        => 'dos_crsafe',
+    'title'       => $constpref . '_DOS_CRSAFE',
+    'description' => $constpref . '_DOS_CRSAFEDSC',
+    'formtype'    => 'text',
+    'valuetype'   => 'text',
+    'default'     => '/(msnbot|Googlebot|Yahoo! Slurp)/i',
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'bip_except',
+    'title'       => $constpref . '_BIP_EXCEPT',
+    'description' => $constpref . '_BIP_EXCEPTDSC',
+    'formtype'    => 'group_multi',
+    'valuetype'   => 'array',
+    'default'     => [ 1 ],
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'disable_features',
+    'title'       => $constpref . '_DISABLES',
+    'description' => '',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 1,
+    'options'     => [ 'xmlrpc' => 1, 'xmlrpc + 2.0.9.2 bugs' => 1025, '_NONE' => 0 ],
+];
+$modversion['config'][] = [
+    'name'        => 'enable_dblayertrap',
+    'title'       => $constpref . '_DBLAYERTRAP',
+    'description' => $constpref . '_DBLAYERTRAPDSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'dblayertrap_wo_server',
+    'title'       => $constpref . '_DBTRAPWOSRV',
+    'description' => $constpref . '_DBTRAPWOSRVDSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'enable_bigumbrella',
+    'title'       => $constpref . '_BIGUMBRELLA',
+    'description' => $constpref . '_BIGUMBRELLADSC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'spamcount_uri4user',
+    'title'       => $constpref . '_SPAMURI4U',
+    'description' => $constpref . '_SPAMURI4UDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 0,
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'spamcount_uri4guest',
+    'title'       => $constpref . '_SPAMURI4G',
+    'description' => $constpref . '_SPAMURI4GDSC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 5,
+    'options'     => [],
+];
+$modversion['config'][] = [
+    'name'        => 'filters',
+    'title'       => $constpref . '_FILTERS',
+    'description' => $constpref . '_FILTERSDSC',
+    'formtype'    => 'textarea',
+    'valuetype'   => 'text',
+    'default'     => '',
+    'options'     => [],
+];
+// Threat Intelligence configs
+$modversion['config'][] = [
+    'name'        => 'httpbl_enabled',
+    'title'       => $constpref . '_HTTPBL_ENABLED',
+    'description' => $constpref . '_HTTPBL_ENABLED_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+];
+
+$modversion['config'][] = [
+    'name'        => 'httpbl_key',
+    'title'       => $constpref . '_HTTPBL_KEY',
+    'description' => $constpref . '_HTTPBL_KEY_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'text',
+    'default'     => '',
+];
+
+$modversion['config'][] = [
+    'name'        => 'httpbl_threat_threshold',
+    'title'       => $constpref . '_HTTPBL_THREAT_THRESHOLD',
+    'description' => $constpref . '_HTTPBL_THREAT_THRESHOLD_DESC',
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 25,
+];
+
+$modversion['config'][] = [
+    'name'        => 'ti_feed_urls',
+    'title'       => $constpref . '_FEED_URLS',
+    'description' => $constpref . '_FEED_URLS_DESC',
+    'formtype'    => 'textarea',
+    'valuetype'   => 'text',
+    'default'     => '',
+];
+
+$modversion['config'][] = [
+    'name'        => 'ti_check_login',
+    'title'       => $constpref . '_CHECK_LOGIN',
+    'description' => $constpref . '_CHECK_LOGIN_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+
+$modversion['config'][] = [
+    'name'        => 'ti_check_register',
+    'title'       => $constpref . '_CHECK_REGISTER',
+    'description' => $constpref . '_CHECK_REGISTER_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 1,
+];
+
+$modversion['config'][] = [
+    'name'        => 'ti_check_forms',
+    'title'       => $constpref . '_CHECK_FORMS',
+    'description' => $constpref . '_CHECK_FORMS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+];
+
+$modversion['config'][] = [
+    'name'        => 'ti_check_admin',
+    'title'       => $constpref . '_CHECK_ADMIN',
+    'description' => $constpref . '_CHECK_ADMIN_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
+];
+
+$modversion['config'][] = [
+    'name'        => 'ti_cache_duration',
+    'title'       => $constpref . '_CACHE_DURATION',
+    'description' => $constpref . '_CACHE_DURATION_DESC',
+    'formtype'    => 'select',
+    'valuetype'   => 'int',
+    'default'     => 3600,
+    'options'     => [
+        $constpref . '_CACHE_1HOUR' => 3600,
+        $constpref . '_CACHE_6HOURS' => 21600,
+        $constpref . '_CACHE_1DAY' => 86400,
+        $constpref . '_CACHE_1WEEK' => 604800,
+    ],
+];

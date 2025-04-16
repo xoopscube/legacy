@@ -133,4 +133,70 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_MANIPUVALUE', '<b>Value to check files change</b>' );
 	define( $constpref . '_MANIPUVALUEDSC', '⛔ Warning, do not change this field !' );
 
+	// Threat Intelligence settings
+	define( $constpref . '_HTTPBL_ENABLED', 'Enable HTTP:BL');
+	define( $constpref . '_HTTPBL_ENABLED_DESC', 'Enable Project Honeypot HTTP:BL service for IP reputation checking');
+	define( $constpref . '_HTTPBL_KEY', 'HTTP:BL API Key');
+	define( $constpref . '_HTTPBL_KEY_DESC', 'Enter your Project Honeypot HTTP:BL API key. Get one at projecthoneypot.org');
+	define( $constpref . '_HTTPBL_THREAT_THRESHOLD', 'Threat Threshold');
+	define( $constpref . '_HTTPBL_THREAT_THRESHOLD_DESC', 'IPs with a threat score above this value will be blocked (0-255). Recommended: 25-50');
+
+	define( $constpref . '_FEED_URLS', 'Threat Feed URLs');
+	define( $constpref . '_FEED_URLS_DESC', 'Enter URLs for IP blacklists, one per line. Supported formats: CSV, TXT with one IP per line');
+
+	define( $constpref . '_CHECK_LOGIN', 'Check Login Attempts');
+	define( $constpref . '_CHECK_LOGIN_DESC', 'Verify IPs against threat intelligence during login attempts');
+	define( $constpref . '_CHECK_REGISTER', 'Check Registration');
+	define( $constpref . '_CHECK_REGISTER_DESC', 'Verify IPs against threat intelligence during user registration');
+	define( $constpref . '_CHECK_FORMS', 'Check Form Submissions');
+	define( $constpref . '_CHECK_FORMS_DESC', 'Verify IPs against threat intelligence during any form submission (may impact performance)');
+	define( $constpref . '_CHECK_ADMIN', 'Check Admin Access');
+	define( $constpref . '_CHECK_ADMIN_DESC', 'Verify IPs against threat intelligence during admin area access');
+
+	define( $constpref . '_CACHE_DURATION', 'Cache Duration');
+	define( $constpref . '_CACHE_DURATION_DESC', 'How long to cache threat intelligence results');
+	define( $constpref . '_CACHE_1HOUR', '1 Hour');
+	define( $constpref . '_CACHE_6HOURS', '6 Hours');
+	define( $constpref . '_CACHE_1DAY', '1 Day');
+	define( $constpref . '_CACHE_1WEEK', '1 Week');
+
+	// Threat Intelligence Dashboard
+define( $constpref . '_THREAT_INTELLIGENCE_DASHBOARD', 'Threat Intelligence Dashboard');
+define( $constpref . '_THREAT_INTELLIGENCE_SETTINGS', 'Threat Intelligence Settings');
+define( $constpref . '_NOTHREATSTATS', 'No threat intelligence events recorded yet');
+define( $constpref . '_DATE', 'Date/Time');
+define( $constpref . '_IP', 'IP Address');
+define( $constpref . '_AGENT', 'User Agent');
+define( $constpref . '_DESCRIPTION', 'Description');
+
+// Proxy settings
+define('_MI_PROTECTOR_PROXY_ENABLED', 'Enable Web Proxy');
+define('_MI_PROTECTOR_PROXY_ENABLED_DESC', 'Enable the web proxy functionality');
+
+define('_MI_PROTECTOR_PROXY_ALLOWED_DOMAINS', 'Allowed Domains');
+define('_MI_PROTECTOR_PROXY_ALLOWED_DOMAINS_DESC', 'Enter one domain per line. Leave empty to allow all domains not in the blocked list. Use .example.com to match all subdomains.');
+
+define('_MI_PROTECTOR_PROXY_BLOCKED_DOMAINS', 'Blocked Domains');
+define('_MI_PROTECTOR_PROXY_BLOCKED_DOMAINS_DESC', 'Enter one domain per line. These domains will always be blocked. Use .example.com to match all subdomains.');
+
+define('_MI_PROTECTOR_PROXY_CACHE_ENABLED', 'Enable Caching');
+define('_MI_PROTECTOR_PROXY_CACHE_ENABLED_DESC', 'Cache proxied content to improve performance');
+
+define('_MI_PROTECTOR_PROXY_CACHE_TIME', 'Cache Time (seconds)');
+define('_MI_PROTECTOR_PROXY_CACHE_TIME_DESC', 'How long to keep cached content (in seconds)');
+
+define('_MI_PROTECTOR_PROXY_LOG_REQUESTS', 'Log Requests');
+define('_MI_PROTECTOR_PROXY_LOG_REQUESTS_DESC', 'Log all proxy requests');
+
+define('_MI_PROTECTOR_PROXY_STRIP_JS', 'Strip JavaScript');
+define('_MI_PROTECTOR_PROXY_STRIP_JS_DESC', 'Remove JavaScript from proxied content');
+
+define('_MI_PROTECTOR_PROXY_STRIP_COOKIES', 'Strip Cookies');
+define('_MI_PROTECTOR_PROXY_STRIP_COOKIES_DESC', 'Do not forward cookies from proxied sites');
+
+define('_MI_PROTECTOR_PROXY_USER_AGENT', 'Custom User Agent');
+define('_MI_PROTECTOR_PROXY_USER_AGENT_DESC', 'Set a custom user agent for proxy requests. Leave empty to use the default.');
+
+define('_MI_PROTECTOR_PROXY_PLUGINS_ENABLED', 'Enabled Plugins');
+define('_MI_PROTECTOR_PROXY_PLUGINS_ENABLED_DESC', 'Select which proxy plugins to enable');
 }
