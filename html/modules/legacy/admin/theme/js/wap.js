@@ -24,6 +24,24 @@
         }
         getTheme();
 
+        // Activity items per page selector
+        if ($('#activity-items-select').length) {
+            // Set initial value from localStorage or default to 10
+            const savedItemCount = localStorage.getItem('activity-items-count') || 10;
+            $('#activity-items-select').val(savedItemCount);
+            
+            // Handle change event
+            $('#activity-items-select').on('change', function() {
+                const itemCount = $(this).val();
+                localStorage.setItem('activity-items-count', itemCount);
+                
+                // Reload the page with the new items parameter
+                let currentUrl = new URL(window.location.href);
+                currentUrl.searchParams.set('items', itemCount);
+                window.location.href = currentUrl.toString();
+            });
+        }
+
         /*
          * Inline SVG icons with the class "svg" ex.:
          * <img class="svg" src="..." width="1em" height="1em" alt="...">

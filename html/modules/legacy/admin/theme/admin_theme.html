@@ -110,11 +110,11 @@
 
     <main class="main">
         
-        <{* foreach name='lblock' item='block' from=$xoops_lblocks *}>
-        <{* if $block.name !='action_search' && $block.name !='dashboardmenu' && $block.name !='onlineinfo' && $block.name !='sidemenu' *}>
-        <{* $block.content *}>
-        <{* /if *}>
-        <{* /foreach * }>
+    <{* foreach name='lblock' item='block' from=$xoops_lblocks *}>
+    <{* if $block.name !='action_search' && $block.name !='dashboardmenu' && $block.name !='onlineinfo' && $block.name !='sidemenu' *}>
+    <{* $block.content *}>
+    <{* /if *}>
+    <{* /foreach * }>
 
     <{* ---------- ---------- Admin Dashboard Info *}>
     <{if $smarty.server.SCRIPT_FILENAME|basename == "admin.php"}>
@@ -150,7 +150,7 @@
 
             </div>
 
-            <div data-layout="column px-3" data-self="size-xsmall sm-full">
+            <div data-layout="column mt-7 px-3" data-self="size-xsmall sm-full">
                 <div id="admin-block-overview">
                 <{$xoops_lblocks.block_overview.content}>
                 </div>

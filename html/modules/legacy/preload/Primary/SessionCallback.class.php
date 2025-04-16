@@ -12,14 +12,16 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-// registration `session_write_close()` on shutdown procedure final.
-// For the environment in which the object before writing session is destroyed when PHP execution end.
-// ex. APC, memcached etc...
-// !Fix
-// ob_start(create_function('', '(session_id() && session_write_close());return false;'));
-function xclCallback($session_id, $session_write_close)
+// Registers session_write_close() to execute during the shutdown procedure.
+// This ensures session data is properly saved when PHP execution ends,
+// especially in environments where objects might be destroyed prematurely
+// (e.g., when using APC, memcached, etc.).
+function xclCallback($buffer)
 {
-return false;
+    if (session_id()) {
+        session_write_close();
+    }
+    return $buffer;
 }
 
 ob_start('xclCallback');
@@ -34,6 +36,7 @@ class Legacy_SessionCallback extends XCube_ActionFilter
 
     public static function setupSessionHandler()
     {
+        // Keep reference for compatibility with XCube architecture
         $sessionHandler =& xoops_gethandler('session');
         session_set_save_handler(
             [&$sessionHandler, 'open'],
@@ -48,6 +51,7 @@ class Legacy_SessionCallback extends XCube_ActionFilter
     public static function getSessionCookiePath(&$cookiePath)
     {
         $parse_array = parse_url(XOOPS_URL);
-        $cookiePath = @$parse_array['path'].'/';
+        $cookiePath = isset($parse_array['path']) ? $parse_array['path'] : '';
+        $cookiePath .= '/';
     }
 }

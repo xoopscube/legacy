@@ -758,8 +758,8 @@ ul.post-tree li {
     list-style      : none;
 }
 li.post-tree-item {
-    align-items     : center;
     display         : flex;
+    flex-direction  : column;
     list-style      : none;
     margin          : 0; /* NOTE The margin-left is auto-generated from template ! */
     padding         : 0;

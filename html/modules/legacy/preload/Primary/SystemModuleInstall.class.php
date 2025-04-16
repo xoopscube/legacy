@@ -115,7 +115,7 @@ class Legacy_SystemModuleInstall extends XCube_ActionFilter
                 $controller->executeRedirect(XOOPS_URL . '/', 1);
             } elseif (!empty($_GET['cube_module_uninstall'])) {
                 require_once XOOPS_ROOT_PATH . '/class/template.php';
-                $xoopsTpl =new XoopsTpl();
+                $xoopsTpl = new XoopsTpl();
                 $xoopsTpl->assign('cube_module_uninstall', htmlspecialchars($_GET['cube_module_uninstall'], ENT_QUOTES));
                 $xoopsTpl->assign(
                     [
