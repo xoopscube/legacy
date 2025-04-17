@@ -84,3 +84,5 @@ define( '_MD_MESSAGE_DELETE_CONFIRM' , 'Are you sure you want to delete?');
 define( '_MD_MESSAGE_ADDBLACKLIST' , 'このユーザをブラックリストに追加する');
 
 define( '_MD_MESSAGE_SEARCH' , '検索');
+define( '_MD_MESSAGE_PREV' , 'Previous');
+define( '_MD_MESSAGE_NEXT' , 'Next');

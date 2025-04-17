@@ -22,26 +22,28 @@
 
     <div id="printhis">
 
-        <h3 class="mail-title"><{$smarty.const._MD_MESSAGE_TEMPLATE3}>: <{$msgdata.title}></h3>
+      <h3 class="mail-title"><{$msgdata.title}></h3>
 
+      <div class="mail-body">
         <div class="mail-author">
             <{$smarty.const._MD_MESSAGE_TEMPLATE12}> : <img src="<{$msgdata.from_uid|xoops_user_avatarize}>" width="24px" data-self="radius-circle" class="avatar">
             <{$msgdata.fromname}>
         </div>
 
-        <div class="mail-date"><{$smarty.const._MD_MESSAGE_TEMPLATE10}> : <span class="badge"><{$msgdata.utime|xoops_formattimestamp:l}></span></div>
-
+        <div class="defaultdate"><{$smarty.const._MD_MESSAGE_TEMPLATE10}> : <span class="badge"><{$msgdata.utime|xoops_formattimestamp:l}></span></div>
+        <div class="mail-date"><{$msgdata.utime|xoops_formattimestamp:l}></span></div>
         <hr>
 
         <div class="mail-content" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>">
             <{$msgdata.message}>
         </div>
+      </div>
 
     </div>
-    
+
     <footer class="action-control">
-            
-        <form method="post" id="msgDelete" action="index.php?action=delete&amp;inout=in"> 
+
+        <form method="post" id="msgDelete" action="index.php?action=delete&amp;inout=in">
             <input type="hidden" name="inbox" value="<{$msgdata.inbox_id}>">
             <{if $msgdata.is_read==2}>
             <button type="submit" class="outline secondary delete" name="subbtn" value="<{$smarty.const._DELETE}>" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE14}> <{$smarty.const._MD_MESSAGE_TEMPLATE19}>" disabled>
@@ -91,14 +93,47 @@
             </script>
         </form>
 
-        <div><{* Note : wrap [role=button] with div for small buttons *}>
+        <div>
             <a href="#!" class="outline primary" role="button" value="<{$smarty.const._MD_MESSAGE_TEMPLATE13}>" onclick="location.href='index.php?action=new&amp;res=<{$msgdata.inbox_id}>'">
                 <img class="svg mail-edit" src="<{$xoops_url}>/images/icons/mail-edit.svg" alt="Reply">
                 <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE13}></span>
             </a>
+            <span id="msg-nav">
+              <{if $msgdata.prev_id}>
+              <a href="#" onclick="loadMessage('<{$msgdata.prev_id}>', '<{$msgdata.param}>', '<{$msgdata.inout_short}>'); return false;">&laquo; Previous</a>
+              <{/if}>
+              <{if $msgdata.next_id}>
+              <a href="#" onclick="loadMessage('<{$msgdata.next_id}>', '<{$msgdata.param}>', '<{$msgdata.inout_short}>'); return false;">Next &raquo;</a>
+              <{/if}>
+            </span>
         </div>
-        
+
     </footer>
 
 </article>
 
+<script type="text/javascript">
+  function loadMessage(id, param, inout) {
+      fetch('index.php?action=view&' + param + '=' + id + '&inout=' + inout + '&ajax=1')
+          .then(response => response.json())
+          .then(data => {
+              if (data.error) {
+                  alert(data.error);
+                  return;
+              }
+              document.querySelector('.mail-title').innerHTML = data.subject;
+              document.querySelector('.mail-author').innerHTML = data.from;
+              document.querySelector('.mail-content').innerHTML = data.body;
+              document.querySelector('.mail-date').innerHTML = data.date;
+              // Update navigation buttons
+              let navHtml = '';
+              if (data.prev_id) {
+                  navHtml += `<a href="#" onclick="loadMessage('${data.prev_id}', '${data.param}', '${data.inout_short}'); return false;">&laquo; Previous</a> `;
+              }
+              if (data.next_id) {
+                  navHtml += `<a href="#" onclick="loadMessage('${data.next_id}', '${data.param}', '${data.inout_short}'); return false;">Next &raquo;</a>`;
+              }
+              document.getElementById('msg-nav').innerHTML = navHtml;
+          });
+  }
+</script>

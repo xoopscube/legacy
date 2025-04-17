@@ -82,6 +82,9 @@ define( '_MD_MESSAGE_TEMPLATE7' , "Mensagens enviadas");
 define( '_MD_MESSAGE_TEMPLATE8' , "Nova mensagem");
 define( '_MD_MESSAGE_TEMPLATE9' , "Destinatário");
 
+define( '_MD_MESSAGE_PREV' , 'Previous');
+define( '_MD_MESSAGE_NEXT' , 'Next');
+
 if (!defined('LEGACY_MAIL_LANG')) {
     define('LEGACY_MAIL_LANG','pt');
     define('LEGACY_MAIL_CHAR','UTF-8');

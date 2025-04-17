@@ -83,3 +83,5 @@ define( '_MD_MESSAGE_DELETEMSG2' , 'Элементы не выбраны.');
 define( '_MD_MESSAGE_DELETE_CONFIRM' , 'Вы уверены, что хотите удалить?');
 
 define( '_MD_MESSAGE_SEARCH' , 'Поиск');
+define( '_MD_MESSAGE_PREV' , 'Previous');
+define( '_MD_MESSAGE_NEXT' , 'Next');

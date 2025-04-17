@@ -80,6 +80,8 @@ define( '_MD_MESSAGE_DELETEMSG2' , 'Sélection manquante');
 define( '_MD_MESSAGE_DELETE_CONFIRM' , 'Are you sure you want to delete?');
 
 define( '_MD_MESSAGE_SEARCH' , 'Rechercher');
+define( '_MD_MESSAGE_PREV' , 'Previous');
+define( '_MD_MESSAGE_NEXT' , 'Next');
 
 if (!defined('LEGACY_MAIL_LANG')) {
 define('LEGACY_MAIL_LANG','fr');

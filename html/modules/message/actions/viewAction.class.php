@@ -31,13 +31,73 @@ class viewAction extends AbstractAction
         $modHand = xoops_getmodulehandler($this->inout);
         $modObj = $modHand->get($boxid);
         if (!is_object($modObj)) {
+            if ($this->root->mContext->mRequest->getRequest('ajax') == 1) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => _MD_MESSAGE_ACTIONMSG1]);
+                exit;
+            }
             $this->setErr(_MD_MESSAGE_ACTIONMSG1);
             return;
         }
-
         if ($modObj->get('uid') != $this->root->mContext->mXoopsUser->get('uid')) {
+            if ($this->root->mContext->mRequest->getRequest('ajax') == 1) {
+                header('Content-Type: application/json');
+                echo json_encode(['error' => _MD_MESSAGE_ACTIONMSG8]);
+                exit;
+            }
             $this->setErr(_MD_MESSAGE_ACTIONMSG8);
             return;
+        }
+
+        // start After $modObj is loaded and validated
+        $uid = $this->root->mContext->mXoopsUser->get('uid');
+        $inboxTable = $modHand->mTable;
+
+        $key = ($this->inout === 'inbox') ? 'inbox_id' : 'outbox_id';
+        $this->msgdata['param'] = ($this->inout === 'inbox') ? 'inbox' : 'outbox';
+        $this->msgdata['inout_short'] = ($this->inout === 'inbox') ? 'in' : 'out';
+        $currentId = $modObj->get($key);
+
+        // Previous message (smaller ID)
+        $sqlPrev = "SELECT $key FROM $inboxTable WHERE uid=$uid AND $key < $currentId ORDER BY $key DESC LIMIT 1";
+        $resultPrev = $modHand->db->query($sqlPrev);
+        $prevId = ($row = $modHand->db->fetchArray($resultPrev)) ? $row[$key] : null;
+
+        // Next message (larger ID)
+        $sqlNext = "SELECT $key FROM $inboxTable WHERE uid=$uid AND $key > $currentId ORDER BY $key ASC LIMIT 1";
+        $resultNext = $modHand->db->query($sqlNext);
+        $nextId = ($row = $modHand->db->fetchArray($resultNext)) ? $row[$key] : null;
+
+        // Build navigation and $this->msgdata
+        foreach (array_keys($modObj->gets()) as $var_name) {
+            $this->msgdata[$var_name] = $modObj->getShow($var_name);
+        }
+        if ('inbox' == $this->inout) {
+            $this->msgdata['fromname'] = $this->getLinkUnameFromId($this->msgdata['from_uid'], $this->msgdata['uname']);
+        } else {
+            $this->msgdata['toname'] = $this->getLinkUnameFromId($this->msgdata['to_uid'], $this->root->mContext->mXoopsConfig['anonymous']);
+        }
+        $this->msgdata['prev_id'] = $prevId;
+        $this->msgdata['next_id'] = $nextId;
+        $this->msgdata['key'] = $key;
+        $this->msgdata['utime'] = $modObj->get('utime');
+
+        // --- AJAX block: must be AFTER $this->msgdata is built ---
+        if ($this->root->mContext->mRequest->getRequest('ajax') == 1) {
+            header('Content-Type: application/json');
+            echo json_encode([
+                'subject' => $this->msgdata['title'],
+                'body' => $this->msgdata['message'],
+                'from' => $this->msgdata['fromname'] ?? '',
+                'to' => $this->msgdata['toname'] ?? '',
+                'date' => isset($this->msgdata['utime']) ? date('Y-m-d H:i', $this->msgdata['utime']) : '',                'prev_id' => $this->msgdata['prev_id'],
+                'next_id' => $this->msgdata['next_id'],
+                'key' => $this->msgdata['key'],
+                'inout' => $this->inout,
+                'param' => $this->msgdata['param'],
+                'inout_short' => $this->msgdata['inout_short'],
+            ]);
+            exit;
         }
 
         if ('inbox' == $this->inout) {
@@ -69,14 +129,6 @@ class viewAction extends AbstractAction
             }
         }
 
-        foreach (array_keys($modObj->gets()) as $var_name) {
-            $this->msgdata[$var_name] = $modObj->getShow($var_name);
-        }
-        if ('inbox' == $this->inout) {
-            $this->msgdata['fromname'] = $this->getLinkUnameFromId($this->msgdata['from_uid'], $this->msgdata['uname']);
-        } else {
-            $this->msgdata['toname'] = $this->getLinkUnameFromId($this->msgdata['to_uid'], $this->root->mContext->mXoopsConfig['anonymous']);
-        }
         // service UserSearch
         $this->mService = $this->root->mServiceManager->getService('UserSearch');
     }
@@ -102,5 +154,6 @@ class viewAction extends AbstractAction
         $render->setAttribute('msgdata', $this->msgdata);
         $render->setAttribute('UserSearch', $this->mService);
         $render->setAttribute('message_url', XOOPS_URL.'/modules/message/index.php');
+        $render->setAttribute('inout', $this->inout); // Previous and Next urls
     }
 }
