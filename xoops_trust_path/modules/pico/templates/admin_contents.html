@@ -17,7 +17,6 @@
         <input type="submit" value="<{$smarty.const._SUBMIT}>">
     </form>
 
-<!--    <div class="control-view">-->
     <div data-self="right sm-full">
     <{if $cat_id >= 0}>
         <{* ////— DROPDOWN MENU —\\\\ *}>
@@ -97,21 +96,21 @@
             <{/if}>
         </td>
         <td class="list_center">
-            <input type="text" 
-            size="24" 
-            name="subjects[<{$content.id}>]" 
-            id="col_subject_<{$content.id}>" 
+            <input type="text"
+            size="24"
+            name="subjects[<{$content.id}>]"
+            id="col_subject_<{$content.id}>"
             value="<{$content.subject}>">
         </td>
         <td class="list_center">
         <{if $content.wrap_file}>
-            <input type="text" 
-            size="24" 
-            name="vpaths[<{$content.id}>]" 
-            id="col_vpath_<{$content.id}>" 
+            <input type="text"
+            size="24"
+            name="vpaths[<{$content.id}>]"
+            id="col_vpath_<{$content.id}>"
             value="<{$content.vpath}>">
             <{if strstr($content.filters,"wraps")}>*<{/if}>
-            
+
             <br>
             <{$content.wrap_file.mtime_formatted}>
             (<{$content.wrap_file.size}> <{$smarty.const._MD_PICO_BYTE}>)
@@ -122,7 +121,7 @@
                    value="<{$content.weight}>" style="max-width: 8ch;">
         </td>
         <td class="list_visible">
-            <input type="checkbox" name="visibles[<{$content.id}>]" id="col_visible_<{$content.id}>" value="1" title="Visible" 
+            <input type="checkbox" name="visibles[<{$content.id}>]" id="col_visible_<{$content.id}>" value="1" title="Visible"
             <{if $content.visible}>checked="checked"<{/if}>>
         </td>
         <td class="list_nav">
@@ -138,7 +137,7 @@
                    value="1" <{if $content.allow_comment}>checked="checked"<{/if}>>
         </td>
         <td class="list_date">
-        
+
             <{if $content.is_deleted}>
             <ul class="admin-revision-list">
                 <{foreach from=$content.histories item="history"}>
@@ -178,12 +177,12 @@
 
             <{if $content.expiring_time < time()}>
             <strong style="color:var(--color-red,#607D8B);"><{$smarty.const._MD_PICO_EXPIRED}></strong>
-            <{/if}>            
+            <{/if}>
             <br>
             <img src="<{$content.modifier_uname|xoops_user_avatarize}>" width="20px" height="20px" data-self="radius-circle" alt="avatar"> <{$content.modifier_uname}>
             <br>
             <small><span class="badge" title="<{$smarty.const._MD_PICO_MODIFIED}>"><{$content.modified_time_formatted}></span></small>
-         </td>   
+         </td>
          <td class="list_control">
             <{if !$content.is_deleted}>
             <a class="action-view" href="<{$mod_url}>/<{$content.link}>" title="<{$smarty.const._MD_A_PICO_LABEL_MAINDISP}>">

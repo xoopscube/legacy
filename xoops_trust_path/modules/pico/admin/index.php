@@ -30,7 +30,14 @@ $active = $xoopsDB->query($query);
 $total = $active->fetch_array();
 
 // QUERY SETTINGS
-$items = 10; // TODO Limit of items to display and pagination
+$default_items = 10; // Default limit of items to display
+$items = isset($_GET['items']) ? (int)$_GET['items'] : $default_items;
+
+// Validate items to only allow specific values
+if (!in_array($items, [10, 20, 30])) {
+    $items = $default_items;
+}
+
 $days  = 5; /* interval scheduled to expire, default 5 */
 
 // QUERY DB
@@ -106,7 +113,8 @@ $tpl->assign(
         'totalApproval' =>$total['totalApproval'],
         'totalExtra'    =>$total['totalExtra'],
         'active'            => $assignActivity,
-        'days'              => $days
+        'days'              => $days,
+        'items'             => $items
 	]
 );
 

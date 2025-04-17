@@ -258,39 +258,54 @@ class PicoContent {
 
 		$filters = explode( '|', $content4assign['filters'] );
 
-		foreach ( array_keys( $filters ) as $i ) {
-			$filter = trim( $filters[ $i ] );
-			if ( empty( $filter ) ) {
-				continue;
-			}
-			// xcode special check
-			if ( 'xcode' == $filter ) {
-				$nl2br = $smiley = 0;
-				for ( $j = $i + 1; $j < $i + 3; $j ++ ) {
-					if ( 'nl2br' == @$filters[ $j ] ) {
-						$nl2br         = 1;
-						$filters[ $j ] = '';
-					} elseif ( 'smiley' == @$filters[ $j ] ) {
-						$smiley        = 1;
-						$filters[ $j ] = '';
-					}
-				}
-
-				require_once dirname( __DIR__ ) . '/class/PicoTextSanitizer.class.php';
-
-				$myts = &PicoTextSanitizer::sGetInstance();
-
-				$text = $myts->displayTarea( $text, 1, $smiley, 1, 1, $nl2br );
-
-				$text = $myts->pageBreak( $this->mydirname, $text, $content4assign );
-				continue;
-			}
-			$func_name = 'pico_' . $filter;
-			$file_path = dirname( __DIR__ ) . '/filters/pico_' . $filter . '.php';
-			if ( ! function_exists( $func_name ) ) {
-				require_once $file_path;
-			}
-			$text = $func_name( $this->mydirname, $text, $content4assign );
+		// In the filterBody method, modify the filter loading section:
+		
+		foreach ($filters as $i => $filter) {
+		    $filter = trim($filter);
+		    if (empty($filter)) {
+		        continue;
+		    }
+		    
+		    // xcode special check
+		    if ('xcode' == $filter) {
+		        $nl2br = $smiley = 0;
+		        for ( $j = $i + 1; $j < $i + 3; $j ++ ) {
+		            if ( 'nl2br' == @$filters[ $j ] ) {
+		                $nl2br         = 1;
+		                $filters[ $j ] = '';
+		            } elseif ( 'smiley' == @$filters[ $j ] ) {
+		                $smiley        = 1;
+		                $filters[ $j ] = '';
+		            }
+		        }
+		
+		        require_once dirname( __DIR__ ) . '/class/PicoTextSanitizer.class.php';
+		
+		        $myts = &PicoTextSanitizer::sGetInstance();
+		
+		        $text = $myts->displayTarea( $text, 1, $smiley, 1, 1, $nl2br );
+		
+		        $text = $myts->pageBreak( $this->mydirname, $text, $content4assign );
+		        continue;
+		    }
+		    $func_name = 'pico_' . $filter;
+		    $file_path = dirname(__DIR__) . '/filters/pico_' . $filter . '.php';
+		    
+		    // Check if file exists before requiring it
+		    if (!function_exists($func_name)) {
+		        if (file_exists($file_path)) {
+		            require_once $file_path;
+		        } else {
+		            // Log error about missing filter file
+		            $this->logFilterError($filter, $file_path);
+		            continue; // Skip this filter and continue with the next one
+		        }
+		    }
+		    
+		    // Only call the function if it exists
+		    if (function_exists($func_name)) {
+		        $text = $func_name($this->mydirname, $text, $content4assign);
+		    }
 		}
 
 		// store the result into body_cached and for_search field just after modification of the content
@@ -302,6 +317,26 @@ class PicoContent {
 		}
 
 		return $text;
+	}
+
+	/**
+	 * Log an error when a filter file is missing
+	 * 
+	 * @param string $filter The filter name
+	 * @param string $file_path The path to the missing filter file
+	 * @return void
+	 */
+	private function logFilterError($filter, $file_path) {
+	    // Log to XOOPS logger if available
+	    if (class_exists('XoopsLogger') && isset($GLOBALS['xoopsLogger']) && is_object($GLOBALS['xoopsLogger'])) {
+	        $GLOBALS['xoopsLogger']->addExtra('Pico', 'Missing filter file: ' . $filter . ' (' . $file_path . ')');
+	    }
+	    
+	    // Log to PHP error log
+	    error_log('Pico module: Missing filter file for "' . $filter . '" at ' . $file_path);
+	    
+	    // Trigger a user error to be caught by our custom error handler
+	    trigger_error('Missing filter file for "' . $filter . '" at ' . $file_path, E_USER_WARNING);
 	}
 
 	public function getData4edit() {

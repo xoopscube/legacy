@@ -88,3 +88,4 @@ define( '_MD_A_PICO_ACTIVITY_OVERVIEW' , 'Activity Overview');
 define( '_MD_A_PICO_ACTIVITY_SCHEDULE' , 'Expired and scheduled content');
 define( '_MD_A_PICO_ACTIVITY_INTERVAL' , 'days of interval before and after today');
 define( '_MD_A_PICO_ACTIVITY_LATEST' , 'latest scheduled contents');
+define( '_MD_A_PICO_ITEMS_PER_PAGE' , 'Items to display');

@@ -787,10 +787,8 @@ function pico_get_requests4content( $mydirname, &$errors, $auto_approval = true,
 		}
 	}
 
-	// HTML Purifier in Protector (only for PHP5)
-	//'htmlpurify_except' ,
-	//if ( 0 !== strpos( PHP_VERSION, 4 ) && file_exists( LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php' ) ) {
-    if ( file_exists( LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php' ) ) {
+	// version 2.3.0 HTML Purifier in Protector
+/*     if ( file_exists( LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php' ) ) {
 		if ( is_object( $xoopsUser ) ) {
 			$purifier_enable = 0 == count( array_intersect( $xoopsUser->getGroups(), @$mod_config['htmlpurify_except'] ) );
 		} else {
@@ -823,7 +821,54 @@ function pico_get_requests4content( $mydirname, &$errors, $auto_approval = true,
 				mb_substitute_character( $_substitute );
 			}
 		}
+	} */
+
+
+// Start Code to review-  HTML Purifier in Protector
+	if ( file_exists( LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php' ) ) {
+		if ( is_object( $xoopsUser ) ) {
+			// Check if user belongs to any of the exempt groups
+			$user_groups = $xoopsUser->getGroups();
+			$exempt_groups = isset($mod_config['htmlpurify_except']) ? $mod_config['htmlpurify_except'] : [1];
+			$purifier_enable = 0 == count( array_intersect( $user_groups, $exempt_groups ) );
+		} else {
+			$purifier_enable = true; // Always purify for guests
+		}
+
+		// Skip purification if htmlspecialchars filter is already applied
+		$purifier_enable = $purifier_enable && ! isset( $filters['htmlspecialchars'] );
+
+		if ( $purifier_enable ) {
+			require_once LIBRARY_PATH . '/htmlpurifier/library/HTMLPurifier.auto.php';
+
+			$config = HTMLPurifier_Config::createDefault();
+			$config->set( 'Cache.SerializerPath', XOOPS_TRUST_PATH . '/modules/protector/configs' );
+			$config->set( 'Core.Encoding', 'UTF-8' );
+			
+			// Allow more HTML elements if user is admin or moderator - why not all elements for Admins and limit here for other groups ?
+			if ($isadminormod) {
+				$config->set('HTML.Allowed', 'p,b,a[href|title],i,strong,em,br,img[src|alt|width|height],ul,ol,li,dl,dt,dd,table,tr,td,th,h1,h2,h3,h4,h5,h6,blockquote,pre,code,div,span[style],hr');
+				$config->set('CSS.AllowedProperties', 'font,font-size,font-weight,font-style,font-family,text-decoration,color,background-color,text-align,margin,padding,border');
+			}
+
+			$purifier = new HTMLPurifier( $config );
+
+			// Handle character encoding conversion if needed
+			if ( $_conv = ( _CHARSET !== 'UTF-8' ) ) {
+				$_substitute = mb_substitute_character();
+				mb_substitute_character( 'none' );
+				$ret['body'] = mb_convert_encoding( $ret['body'], 'UTF-8', _CHARSET );
+			}
+			
+			$ret['body'] = $purifier->purify( $ret['body'] );
+			
+			if ( $_conv ) {
+				$ret['body'] = mb_convert_encoding( $ret['body'], _CHARSET, 'UTF-8' );
+				mb_substitute_character( $_substitute );
+			}
+		}
 	}
+// End Code to review - HTML Purifier in Protector
 
 	// extra_fields (read ef class and create the object)
 	$ef_class = empty( $mod_config['extra_fields_class'] ) ? 'PicoExtraFields' : preg_replace( '/[^0-9a-zA-Z_]/', '', $mod_config['extra_fields_class'] );

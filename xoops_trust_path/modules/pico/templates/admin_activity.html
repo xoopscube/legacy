@@ -50,8 +50,8 @@
     .expired{border-left:3px solid #E0393E;color:#E0393E}
 </style>
 
-<h1><{$smarty.const._MD_A_PICO_ACTIVITY_OVERVIEW}></h1>
-<p><{$mydirname|ucfirst}></p>
+<h2><{$mod_name|ucfirst}> <{$smarty.const._MD_A_PICO_ACTIVITY_OVERVIEW}></h2>
+
 <div data-layout="row sm-column">
     <div data-self="column size-4of5 sm-full">
         <div class="content-chart">
@@ -107,50 +107,106 @@
     <spand class="badge"><{$days}></spand> <{$smarty.const._MD_A_PICO_ACTIVITY_INTERVAL}>
     <span class="badge" title="<{$smarty.const._TIME_TIP}>"> <{$smarty.now|date_format:"%A, %e %B %Y - %H:%M:%S"}>
     </span>
+    
+    <div class="activity-controls" style="float:right;">
+        <form id="activity-form" class="form-inline">
+            <label for="activity-items-select"><{$smarty.const._MD_A_PICO_ITEMS_PER_PAGE|default:"Items per page"}>:</label>
+            <select id="activity-items-select" name="items" class="form-control">
+                <option value="10" <{if $items == 10}>selected<{/if}>>10</option>
+                <option value="20" <{if $items == 20}>selected<{/if}>>20</option>
+                <option value="30" <{if $items == 30}>selected<{/if}>>30</option>
+            </select>
+        </form>
+    </div>
+    <div style="clear:both;"></div>
 </div>
 
-<table class="outer">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th><{$smarty.const._MD_PICO_CONTENT}></th>
-        <th><{$smarty.const._MD_PICO_VISIBLE}></th>
-        <th><{$smarty.const._MD_PICO_LOCKED}></th>
-        <th><{$smarty.const._MD_PICO_LABEL_COMMENTS}></th>
-        <th><{$smarty.const._MD_PICO_VIEWED}></th>
-        <th><{$smarty.const._MD_PICO_EXPIRING}></th>
-        <th><{$smarty.const._ACTION}></th>
-    </tr>
-    </thead>
-    <tbody>
-    <{foreach from=$active item=active name=active}>
-    <tr>
-    <td class="list_center <{if $active.re <= $days}>expired<{/if}>"><{$active.id}></td>
-    <td><a href="<{$active.link}>" target="_blank">
-        <{if $active.re > $days}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#a46319" fill-opacity="0.5"/><path fill="#a46319" d="M12 5.3c0-.143 0-.214.046-.258c.046-.044.116-.042.254-.036a7 7 0 1 1-6.207 10.75c-.074-.116-.111-.175-.096-.237s.077-.098.2-.169l5.653-3.263c.073-.043.11-.064.13-.099c.02-.034.02-.077.02-.161z"/></svg> 
-        <{/if}> <{$active.subject}></a></td>
-    <td class="list_center">
-    <{if $active.visible}><i class="i-view"></i><{/if}>
-    </td>
-    <td class="list_center">
-    <{if $active.locked}><i class="i-lock"></i><{/if}>
-    </td>
-    <td class="list_center"><{$active.comments}></td>
-    <td class="list_center"><{$active.views}></td>
-    <td class="list_date"><{$active.expire|date_format:'%Y-%m-%d %H:%M'}></td>
-    <td class="list_control">
-        <a class="action-view" href="<{$active.link}>" target="_blank" title="<{$smarty.const._MD_A_PICO_LABEL_MAINDISP}>">
-            <i class="i-view"></i>
-        </a>
-        <a class="action-edit" href="<{$active.edit}>" target="_blank" title="<{$smarty.const._EDIT}>">
-            <i class="i-edit"></i>
-        </a>
-    </td>
-    </tr>
-    <{if $smarty.foreach.active.last}>
-    </tbody> 
-    <tfoot><tr><td colspan="8"><span class="badge"><{$smarty.foreach.active.total}></span> <{$smarty.const._MD_A_PICO_ACTIVITY_LATEST}></td></tr></tfoot>
-    <{/if}>
-    <{/foreach}>
-</table>
+<div id="activity-table-container">
+    <table class="outer">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th><{$smarty.const._MD_PICO_CONTENT}></th>
+            <th><{$smarty.const._MD_PICO_VISIBLE}></th>
+            <th><{$smarty.const._MD_PICO_LOCKED}></th>
+            <th><{$smarty.const._MD_PICO_LABEL_COMMENTS}></th>
+            <th><{$smarty.const._MD_PICO_VIEWED}></th>
+            <th><{$smarty.const._MD_PICO_EXPIRING}></th>
+            <th><{$smarty.const._ACTION}></th>
+        </tr>
+        </thead>
+        <tbody>
+        <{foreach from=$active item=active name=active}>
+        <tr>
+        <td class="list_center"><{$active.id}></td>
+        <td><a href="<{$active.link}>" target="_blank">
+            <{if $active.re > $days}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#a46319" fill-opacity="0.5"/><path fill="#a46319" d="M12 5.3c0-.143 0-.214.046-.258c.046-.044.116-.042.254-.036a7 7 0 1 1-6.207 10.75c-.074-.116-.111-.175-.096-.237s.077-.098.2-.169l5.653-3.263c.073-.043.11-.064.13-.099c.02-.034.02-.077.02-.161z"/></svg> 
+            <{/if}> <{$active.subject}></a></td>
+        <td class="list_center">
+        <{if $active.visible}><i class="i-view"></i><{/if}>
+        </td>
+        <td class="list_center">
+        <{if $active.locked}><i class="i-lock"></i><{/if}>
+        </td>
+        <td class="list_center"><{$active.comments}></td>
+        <td class="list_center"><{$active.views}></td>
+        <td class="list_date"><{$active.expire|date_format:'%Y-%m-%d %H:%M'}></td>
+        <td class="list_control">
+            <a class="action-view" href="<{$active.link}>" target="_blank" title="<{$smarty.const._MD_A_PICO_LABEL_MAINDISP}>">
+                <i class="i-view"></i>
+            </a>
+            <a class="action-edit" href="<{$active.edit}>" target="_blank" title="<{$smarty.const._EDIT}>">
+                <i class="i-edit"></i>
+            </a>
+        </td>
+        </tr>
+        <{if $smarty.foreach.active.last}>
+        </tbody> 
+        <tfoot><tr><td colspan="8"><span class="badge"><{$smarty.foreach.active.total}></span> <{$smarty.const._MD_A_PICO_ACTIVITY_LATEST}></td></tr></tfoot>
+        <{/if}>
+        <{/foreach}>
+    </table>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // Initialize from localStorage if available
+    const savedItemCount = localStorage.getItem('activity-items-count');
+    if (savedItemCount && !window.location.href.includes('items=')) {
+        $('#activity-items-select').val(savedItemCount);
+    }
+    
+    // Handle change event
+    $('#activity-items-select').on('change', function() {
+        const itemCount = $(this).val();
+        localStorage.setItem('activity-items-count', itemCount);
+        
+        // Show loading indicator
+        $('#activity-table-container').addClass('loading');
+        
+        // Reload the page with the new items parameter
+        let currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.set('items', itemCount);
+        window.location.href = currentUrl.toString();
+    });
+});
+</script>
+
+<style>
+/* Loading indicator styles */
+#activity-table-container.loading {
+    position: relative;
+    min-height: 200px;
+}
+#activity-table-container.loading:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(250, 250, 250, 0.025) url('<{$mod_url}>/images/loading.gif') no-repeat center center;
+    z-index: 1;
+}
+</style>

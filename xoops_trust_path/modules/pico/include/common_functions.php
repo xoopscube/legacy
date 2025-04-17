@@ -327,3 +327,10 @@ if ( ! function_exists( 'htmlspecialchars_ent' ) ) {
 		return htmlspecialchars( $string, ENT_QUOTES );
 	}
 }
+
+// Include error handler but check if $mydirname is defined before using it
+include_once __DIR__ . '/error_handler.php';
+// Only register the error handler when the module dirname is defined
+if (isset($mydirname) && $mydirname) {
+    pico_register_error_handler($mydirname);
+}
