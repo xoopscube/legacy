@@ -11,7 +11,7 @@ define( $constpref.'_LOADED' , 1 ) ;
 define($constpref."_NAME","フォーラム");
 
 // A brief description of this module
-define($constpref."_DESC","XOOPSフォーラムモジュール");
+define($constpref."_DESC","XOOPSCubeフォーラムモジュール");
 
 // Names of blocks for this module (Not all module has blocks)
 define($constpref."_BNAME_LIST_TOPICS","トピック一覧");

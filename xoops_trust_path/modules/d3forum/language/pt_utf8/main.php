@@ -2,29 +2,29 @@
 // Syntax replace define with Define( 'v2.3.0 2021/05/15 @gigamaster XCL-PHP7
 
 // Appended by Xoops Language Checker -GIJOE- in 2015-04-24 14:09:40
-Define( '_MD_D3FORUM_THIS_TOPIC' , '# THIS TOPIC');
+Define( '_MD_D3FORUM_THIS_TOPIC' , '# ESTE TÓPICO');
 
 // Appended by Xoops Language Checker -GIJOE- in 2009-01-19 05:36:18
-Define( '_MD_D3FORUM_HISTORIES' , 'Histories');
-Define( '_MD_D3FORUM_LINK_TOPICHISTORIES' , 'Refer histries about this topic');
-Define( '_MD_D3FORUM_FMT_POSTHITSINFO' , '%d hits');
-Define( '_MD_D3FORUM_FMT_POSTDISPLAYSINFO' , '%d displayed');
+Define( '_MD_D3FORUM_HISTORIES' , 'Históricos');
+Define( '_MD_D3FORUM_LINK_TOPICHISTORIES' , 'Ver históricos sobre este tópico');
+Define( '_MD_D3FORUM_FMT_POSTHITSINFO' , '%d acessos');
+Define( '_MD_D3FORUM_FMT_POSTDISPLAYSINFO' , '%d exibidos');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-11-16 18:15:37
-Define( '_MD_D3FORUM_LINK_ALLRSS' , 'RSS over all categories');
-Define( '_MD_D3FORUM_LINK_CATEGORYRSS' , 'RSS of this category');
-Define( '_MD_D3FORUM_LINK_FORUMRSS' , 'RSS of this forum');
+Define( '_MD_D3FORUM_LINK_ALLRSS' , 'RSS de todas as categorias');
+Define( '_MD_D3FORUM_LINK_CATEGORYRSS' , 'RSS desta categoria');
+Define( '_MD_D3FORUM_LINK_FORUMRSS' , 'RSS deste fórum');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-09-28 15:55:33
-Define( '_MD_D3FORUM_BATCH_ACTIONS' , 'Batch Actions');
-Define( '_MD_D3FORUM_BATCH_ACTIONS_DESC' , 'Batch actions are actions triggered on a set of selected objects. 
-By default, Admins can run this action in several entries at once.');
-Define( '_MD_D3FORUM_BA_TURNSOLVEDON' , 'Turn all topics as solved');
-Define( '_MD_D3FORUM_BA_MSG_CONFIRM' , 'Notice: this action effects all topics/posts inside the category/forum');
+Define( '_MD_D3FORUM_BATCH_ACTIONS' , 'Ações em Lote');
+Define( '_MD_D3FORUM_BATCH_ACTIONS_DESC' , 'Ações em lote são ações executadas em um conjunto de objetos selecionados. 
+Por padrão, os Administradores podem executar esta ação em várias entradas de uma só vez.');
+Define( '_MD_D3FORUM_BA_TURNSOLVEDON' , 'Marcar todos os tópicos como solucionados');
+Define( '_MD_D3FORUM_BA_MSG_CONFIRM' , 'Aviso: esta ação afeta todos os tópicos/postagens dentro da categoria/fórum');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-09-26 17:55:48
-Define( '_MD_D3FORUM_LINK_FORUMACCESS' , 'Set permissions for this forum');
-Define( '_MD_D3FORUM_LINK_CATEGORYACCESS' , 'Set permissions for this category');
+Define( '_MD_D3FORUM_LINK_FORUMACCESS' , 'Definir permissões para este fórum');
+Define( '_MD_D3FORUM_LINK_CATEGORYACCESS' , 'Definir permissões para esta categoria');
 
 // Define( '_MD_D3FORUM_MULTIBYTESPACES' , " ");
 Define( '_MD_D3FORUM_ALT_INVISIBLE' , "Invisível");

@@ -1,5 +1,6 @@
 <?php
 
+// D3 Frontend
 define( '_MD_D3FORUM_ON' , 'Posted');
 define( '_MD_D3FORUM_LASTMODIFIED' , 'Last modified');
 define( '_MD_D3FORUM_HISTORIES' , 'View edit history');
@@ -63,7 +64,7 @@ define( '_MD_D3FORUM_CANTCREATENEWTOPICTHISFORUM' , 'You cannot start a new topi
 define( '_MD_D3FORUM_GUESTSCANPOST_DESC' , 'Guests can post in this forum');
 define( '_MD_D3FORUM_GUESTSCANNOTPOST_DESC' , 'Guests cannot post in this forum');
 define( '_MD_D3FORUM_FORUMASCOMMENT' , 'Forum for comments');
-define( '_MD_D3FORUM_FORUMASCOMMENT_DESC' , 'This forum is only for comments. You cannot create a new topic!');
+define( '_MD_D3FORUM_FORUMASCOMMENT_DESC' , 'This forum is for comments only. Starting new discussions is not available.');
 define( '_MD_D3FORUM_ERR_FORUMASCOMMENT' , 'You cannot create a new topic in this forum.');
 define( '_MD_D3FORUM_ERR_INVALIDEXTERNALLINKID' , 'You have commented to an invalid target');
 define( '_MD_D3FORUM_REPLIES' , 'Replies');

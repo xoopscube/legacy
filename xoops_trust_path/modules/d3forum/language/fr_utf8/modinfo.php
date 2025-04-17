@@ -7,14 +7,14 @@ if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
 
 
 // Appended by Xoops Language Checker -GIJOE- in 2015-04-24 14:09:43
-define($constpref.'_USENAME','display name');
-define($constpref.'_USENAMEDESC','which name to use display name \'uname\'(user ID) or \'name\'(Real name). <br /> xoops default is \'uname\'(user ID)');
-define($constpref.'_USENAME_UNAME','use\'uname\'(user ID)');
-define($constpref.'_USENAME_NAME','use\'name\'(Real name)');
-define($constpref.'_RSS_SHOW_HIDDEN','RSS Show hidden topics');
-define($constpref.'_RSS_SHOW_HIDDENDSC','Show hidden (comment integrated) topic title.');
-define($constpref.'_RSS_HIDDEN_TITLE','RSS Title of hidden topic');
-define($constpref.'_RSS_HIDDEN_TITLEDSC','Own title uses when empty value.');
+define($constpref.'_USENAME','Nom d\'affichage');
+define($constpref.'_USENAMEDESC','Quel nom utiliser pour l\'affichage: "uname" (ID utilisateur) ou "name" (Nom réel). <br /> Par défaut: "uname" (ID utilisateur)');
+define($constpref.'_USENAME_UNAME','utiliser "uname" (ID utilisateur)');
+define($constpref.'_USENAME_NAME','utiliser "name" (Nom réel)');
+define($constpref.'_RSS_SHOW_HIDDEN','Afficher les sujets cachés dans le RSS');
+define($constpref.'_RSS_SHOW_HIDDENDSC','Afficher le titre des sujets cachés (commentaires intégrés).');
+define($constpref.'_RSS_HIDDEN_TITLE','Titre RSS des sujets cachés');
+define($constpref.'_RSS_HIDDEN_TITLEDSC','Utilise son propre titre quand la valeur est vide.');
 
 define( $constpref.'_LOADED' , 1 ) ;
 
@@ -22,7 +22,7 @@ define( $constpref.'_LOADED' , 1 ) ;
 define($constpref."_NAME","Forum");
 
 // A brief description of this module
-define($constpref."_DESC","Module Forums pour XOOPS");
+define($constpref."_DESC","Module Forums pour XOOPSCube");
 
 // Names of blocks for this module (Not all module has blocks)
 define($constpref."_BNAME_LIST_TOPICS","Sujets");

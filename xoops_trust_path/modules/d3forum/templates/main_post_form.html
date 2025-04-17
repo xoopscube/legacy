@@ -291,7 +291,7 @@
 </dialog>
 <{/if}>
 <{$antispam.html_in_form|default:''}>
-
+</form>
 
 <{* Start Form Validation JavaScript *}>
 <script type="text/javascript">
@@ -299,7 +299,8 @@
 <{$antispam.js_global|default:''}>
 
 function xoopsFormValidate_postform() {
-	myform = window.document.postform;
+	//myform = window.document.postform;
+    myform = document.getElementById('d3forum');
 	if ( myform.subject.value.replace(/^\s+|\s+$/g,"") == "" ) {
     window.alert("<{$smarty.const._MD_D3FORUM_SUBJECT|string_format:$smarty.const._FORM_ENTER}>"); myform.subject.focus(); return false; }
 	<{if !$body_wysiwyg}>
@@ -307,7 +308,7 @@ function xoopsFormValidate_postform() {
 	    window.alert("<{$smarty.const._MD_D3FORUM_ERR_NOMESSAGE}>");
 	    myform.message.focus(); return false; }
 	<{/if}>
-	<{* $antispam.js_in_validate_function|default:'' *}><{$antispam.js_in_validate_function}>
+	<{$antispam.js_in_validate_function|default:''}>
 	return true;
 }
 function appendQuote() {

@@ -1,0 +1,60 @@
+<div id="activity-table-container">
+  <table class="outer" width="100%">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Subject</th>
+      <th>Topic</th>
+      <th>Forum</th>
+      <th>Date</th>
+      <th>Views</th>
+      <th>Posts</th>
+      <th>Votes</th>
+      <th>Rating</th>
+    </tr>
+    </thead>
+    <tbody>
+    <{foreach item=item from=$active}>
+      <tr class="<{if $item.re % 2}>odd<{else}>even<{/if}>">
+        <td class="list_center">
+          <{$item.id}>
+        </td>
+        <td><a href="<{$item.link}>" target="_blank">
+            <{$item.subject}> ⭧
+          </a></td>
+        <td><a href="<{$item.topic_link}>" target="_blank">
+            <{$item.topic_title}> ⭧
+          </a></td>
+        <td><a href="<{$item.forum_link}>" target="_blank">
+            <{$item.forum_title}> ⭧
+          </a></td>
+        <td class="list_center"><{$item.post_time|date_format:"%Y-%m-%d %H:%M"}></td>
+        <td class="list_center">
+          <{$item.topic_views}>
+        </td>
+        <td class="list_center">
+          <{$item.topic_posts_count}>
+        </td>
+        <td class="list_center">
+          <{$item.vote_count}>
+        </td>
+        <td title="<{$item.average_rating}> / 5">
+          <{* Generate star rating display using Smarty 2.4 compatible syntax *}>
+          <{assign var=rating value=$item.average_rating|floatval}>
+          <{assign var=fullStars value=$rating|floor}>
+          <{assign var=halfStar value=0}>
+          <{if ($rating-$fullStars)>= 0.5}><{assign var=halfStar value=1}>
+          <{/if}>
+
+          <{section name=star loop=5}>
+          <{if $smarty.section.star.iteration <=$fullStars}>★<{* Full star *}>
+          <{elseif $smarty.section.star.iteration==$fullStars+1 && $halfStar}>⯨<{* Half star *}>
+          <{else}>☆<{* Empty star *}>
+          <{/if}>
+          <{/section}>
+        </td>
+      </tr>
+      <{/foreach}>
+    </tbody>
+  </table>
+</div>

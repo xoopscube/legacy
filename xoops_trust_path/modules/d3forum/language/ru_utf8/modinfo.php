@@ -83,14 +83,14 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_GUESTVOTE_IVL','Голосование анонимными пользователями');
     define($constpref . '_GUESTVOTE_IVLDSC','Установите это значение в 0, чтобы запретить голосовать анонимным пользователям. Другое число в этом поле означает время (в секундах), втечение которого разрешено голосование с этого же IP.');
 
-    define($constpref . '_ANTISPAM_GROUPS', 'Anti-SPAM ');
-    define($constpref . '_ANTISPAM_GROUPSDSC', 'Spam filter settings can be applied to User groups. If guests are not allowed to post, you can leave all unchecked.');
-    define($constpref . '_ANTISPAM_CLASS', ' Anti-SPAM Class name');
-    define($constpref . '_ANTISPAM_CLASSDSC', 'If you disable Anti-SPAM for guests, leave input field blank. Default class name: defaultmobile<br>Available options : defaultmobilesmart, japanese and japanesemobilesmart require WizMobile by Gusagi or hyp_common ktai-renderer by Nao-pon.');
-    define($constpref . '_RSS_SHOW_HIDDEN', 'Enable RSS Show hidden topics');
-    define($constpref . '_RSS_SHOW_HIDDENDSC', 'Show hidden topics from comment-integration.');
-    define($constpref . '_RSS_HIDDEN_TITLE', 'Enable RSS Show Title of hidden topics');
-    define($constpref . '_RSS_HIDDEN_TITLEDSC', 'Default title used when empty value.');
+    define($constpref . '_ANTISPAM_GROUPS', 'Анти-СПАМ группы');
+    define($constpref . '_ANTISPAM_GROUPSDSC', 'Настройки спам-фильтра могут быть применены к группам пользователей. Если гостям не разрешено публиковать сообщения, вы можете оставить все поля неотмеченными.');
+    define($constpref . '_ANTISPAM_CLASS', 'Имя класса Анти-СПАМ');
+    define($constpref . '_ANTISPAM_CLASSDSC', 'Если вы отключаете Анти-СПАМ для гостей, оставьте поле ввода пустым. Имя класса по умолчанию: defaultmobile<br>Доступные варианты: defaultmobilesmart, japanese и japanesemobilesmart требуют WizMobile от Gusagi или hyp_common ktai-renderer от Nao-pon.');
+    define($constpref . '_RSS_SHOW_HIDDEN', 'Включить отображение скрытых тем в RSS');
+    define($constpref . '_RSS_SHOW_HIDDENDSC', 'Показывать скрытые темы из интеграции комментариев.');
+    define($constpref . '_RSS_HIDDEN_TITLE', 'Включить отображение заголовков скрытых тем в RSS');
+    define($constpref . '_RSS_HIDDEN_TITLEDSC', 'Заголовок по умолчанию, используемый при пустом значении.');
 
     // Notify Categories
     define($constpref . '_NOTCAT_TOPIC', 'Текущая тема');

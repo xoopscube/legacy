@@ -1,8 +1,26 @@
 <?php
-
+// Admin Menu
 define( '_MD_A_MYMENU_MYTPLSADMIN' , 'Templates');
 define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Blocks');
 define( '_MD_A_MYMENU_MYPREFERENCES' , 'Preferences');
+
+// ACTIVITY
+define( '_MD_A_D3FORUM_ACTIVITY_OVERVIEW' , 'Activity Overview');
+define( '_MD_A_D3FORUM_ACTIVITY_SUMMARY' , 'Activity Summary');
+define( '_MD_A_D3FORUM_ITEMS_PER_PAGE' , 'Items to display');
+// Activity Total
+define( '_MD_A_D3FORUM_TOTAL_CATS' , 'Categories');
+define( '_MD_A_D3FORUM_TOTAL_CAT_TOPICS' , 'Categories Topics');
+define( '_MD_A_D3FORUM_TOTAL_CAT_POSTS' , 'Categories Posts');
+define( '_MD_A_D3FORUM_TOTAL_FORUMS' , 'Total Forums');
+define( '_MD_A_D3FORUM_TOTAL_FORUMS_TOPICS' , 'Forums Topics');
+define( '_MD_A_D3FORUM_TOTAL_FORUMS_POSTS' , 'Forums Posts');
+define( '_MD_A_D3FORUM_TOTAL_TOPICS' , 'Total Topics');
+define( '_MD_A_D3FORUM_TOTAL_POSTS' , 'Total Posts');
+// Activity Labels
+define( '_MD_A_ACTIVITY_SCHEDULE' , 'Expired and scheduled content');
+define( '_MD_A_ACTIVITY_INTERVAL' , 'days of interval before and after today');
+define( '_MD_A_ACTIVITY_LATEST' , 'latest scheduled contents');
 
 // forum_access and category_access
 define( '_MD_A_D3FORUM_LABEL_SELECTFORUM' , 'Select a forum');

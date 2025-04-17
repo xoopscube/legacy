@@ -22,6 +22,7 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref . '_LOADED')) {
     define($constpref . '_BNAME_LIST_FORUMS', 'Forums');
 
     // admin menu
+    define($constpref . '_ADMENU_ACTIVITY', 'Activity');
     define($constpref . '_ADMENU_CATEGORYACCESS', 'Categories');
     define($constpref . '_ADMENU_FORUMACCESS', 'Forums');
     define($constpref . '_ADMENU_ADVANCEDADMIN', 'Advanced');

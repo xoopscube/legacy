@@ -1,0 +1,311 @@
+<style>
+  /* chart css */
+  .content-pending {
+    background: var(--layer-3);
+    border: 1px solid var(--layer-3);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-2);
+  }
+
+  .content-chart {
+    --line-count: 10;
+    --line-color: currentcolor;
+    --line-opacity: 0.25;
+    --item-gap: 2%;
+    --item-default-color: #060606;
+    --padding-block: 1.5rem;
+    height: 10rem;
+    display: grid;
+    grid-auto-flow: column;
+    gap: var(--item-gap);
+    align-items: end;
+    padding-inline: var(--item-gap);
+
+    padding-block: var(--padding-block);
+    position: relative;
+    isolation: isolate;
+  }
+
+  .content-chart::after {
+    --line-width: 1px;
+    --line-spacing: calc(100% / var(--line-count));
+    background-image: repeating-linear-gradient(to top, transparent 0 calc(var(--line-spacing) - var(--line-width)), var(--line-color) 0 var(--line-spacing));
+    box-shadow: 0 var(--line-width) 0 var(--line-color);
+    content: "";
+    inset: var(--padding-block) 0;
+    opacity: var(--line-opacity);
+    position: absolute;
+    z-index: -1;
+  }
+
+  /* chart item label */
+  .content-chart>.item {
+    height: calc(1% * var(--val));
+    background-color: var(--clr, var(--item-default-color));
+    position: relative;
+    animation: item-height 1s ease forwards
+  }
+
+  @keyframes item-height {
+    from {
+      height: 0
+    }
+  }
+
+  /* chart item label */
+  .content-chart>.item>* {
+    position: absolute;
+    text-align: center
+  }
+
+  .content-chart>.item>.label {
+    inset: 100% 0 auto 0
+  }
+
+  .content-chart>.item>.value {
+    inset: auto 0 100% 0
+  }
+
+  .expired {
+    border-left: 3px solid #E0393E;
+    color: #E0393E
+  }
+</style>
+
+<h1>
+  <{$mydirname|ucfirst}> » <{$smarty.const._MD_A_D3FORUM_ACTIVITY_OVERVIEW}>
+</h1>
+<p>
+
+</p>
+<div data-layout="row sm-column">
+  <div data-self="column size-4of5 sm-full">
+    <div class="content-chart">
+      <div class="item" style="--clr: #3f51b5; --val: <{$totalCat}>">
+        <div class="label">
+          <{$smarty.const._MD_A_D3FORUM_TOTAL_CATS}>
+        </div>
+        <div class="value">
+          <{$totalCat}> %
+        </div>
+      </div>
+      <div class="item" style="--clr: #5EB344; --val: <{$totalForums}>">
+        <div class="label">
+          <{$smarty.const._MD_A_D3FORUM_TOTAL_FORUMS}>
+        </div>
+        <div class="value">
+          <{$totalForums}> %
+        </div>
+      </div>
+      <div class="item" style="--clr: #FCB72A; --val: <{$totalForumTopics}>">
+        <div class="label">
+          <{$smarty.const._MD_A_D3FORUM_TOTAL_FORUMS_TOPICS}>
+        </div>
+        <div class="value">
+          <{$totalForumTopics}> %
+        </div>
+      </div>
+      <div class="item" style="--clr: #069CDB; --val: <{$totalForumPosts}>">
+        <div class="label">
+          <{$smarty.const._MD_A_D3FORUM_TOTAL_FORUMS_POSTS}>
+        </div>
+        <div class="value">
+          <{$totalForumPosts}> %
+        </div>
+      </div>
+      <div class="item" style="--clr: #6e35b1; --val: <{$totalTopics}>">
+        <div class="label">
+          <{$smarty.const._MD_A_D3FORUM_TOTAL_TOPICS}>
+        </div>
+        <div class="value">
+          <{$totalTopics}>%
+        </div>
+      </div>
+      <div class="item" style="--clr: #F8821A; --val: <{$totalPosts}>">
+        <div class="label">
+          <{$smarty.const._MD_A_D3FORUM_TOTAL_POSTS}>
+        </div>
+        <div class="value">
+          <{$totalPosts}> %
+        </div>
+      </div>
+      <div class="item" style="--clr: #E0393E; --val: <{$totalSolved}>">
+        <div class="label">Total Solved</div>
+        <div class="value">
+          <{$totalSolved}>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-layout="column mx-3" class="content-pending" data-self="size-1of5 center sm-full">
+    <h5>Unsolved</h5>
+    <a href="<{$mod_url}>/index.php?cat_ids=0&solved=2&odr=1&txt=" target="_blank">
+      <div data-layout="centered">
+        <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" viewBox="0 0 24 24">
+          <path fill="#ffd22e" stroke-width="1" stroke="#a47275" d="M6.29 10.3a1 1 0 0 0 1.09 1.63a1.2 1.2 0 0 0 .33-.22a1 1 0 0 0 .21-.32A.85.85 0 0 0 8 11a1 1 0 0 0-.29-.7a1 1 0 0 0-1.42 0M7 5a1 1 0 0 1 0 2a1 1 0 0 0 0 2a3 3 0 1 0-2.6-4.5a1 1 0 0 0 .37 1.37a1 1 0 0 0 1.36-.37A1 1 0 0 1 7 5m12 1h-6a1 1 0 0 0 0 2h6a1 1 0 0 1 1 1v9.72l-1.57-1.45a1 1 0 0 0-.68-.27H9a1 1 0 0 1-1-1v-1a1 1 0 0 0-2 0v1a3 3 0 0 0 3 3h8.36l3 2.73A1 1 0 0 0 21 22a1.1 1.1 0 0 0 .4-.08A1 1 0 0 0 22 21V9a3 3 0 0 0-3-3"/>
+        </svg>
+      </div>
+        <p><span class="badge">Topics</span>
+           <span class="badge-count"><{$totalUnsolved}></span>
+        </p>
+    </a>
+  </div>
+</div>
+
+<hr>
+
+<h2><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="9" fill="#a46319" fill-opacity="0.45" />
+    <path fill="#a46319"
+      d="M12 5.3c0-.143 0-.214.046-.258c.046-.044.116-.042.254-.036a7 7 0 1 1-6.207 10.75c-.074-.116-.111-.175-.096-.237s.077-.098.2-.169l5.653-3.263c.073-.043.11-.064.13-.099c.02-.034.02-.077.02-.161z" />
+  </svg>
+  <{$smarty.const._MD_A_D3FORUM_ACTIVITY_SUMMARY}>
+</h2>
+
+
+<{if !empty($active)}>
+  <{* use the date_format modifier to show current date and time : 2024-04-20 20:04:20 *}>
+    <{* $smarty.now|date_format:'%Y-%m-%d %H:%M:%S' *}>
+      <div class="confirm">
+        Last <span class="badge">
+          <{$days}>
+        </span> days
+        <span class="badge" title="<{$smarty.const._TIME_TIP}>">
+          <{$smarty.now|date_format:"%A, %e %B %Y - %H:%M:%S"}>
+        </span>
+
+        <div class="activity-controls" style="float:right;">
+          <form id="activity-form" class="form-inline">
+            <label for="activity-items-select">
+              <{$smarty.const._MD_A_D3FORUM_ITEMS_PER_PAGE}>:
+            </label>
+            <select id="activity-items-select" name="items" class="form-control">
+              <option value="10" <{if $items==10}>selected<{/if}>>10</option>
+              <option value="20" <{if $items==20}>selected<{/if}>>20</option>
+              <option value="30" <{if $items==30}>selected<{/if}>>30</option>
+            </select>
+          </form>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+
+      <div id="activity-table-container">
+        <table class="outer" width="100%">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Subject</th>
+            <th>Topic</th>
+            <th>Forum</th>
+            <th>Date</th>
+            <th>Views</th>
+            <th>Posts</th>
+            <th>Votes</th>
+            <th>Rating</th>
+          </tr>
+          </thead>
+          <tbody>
+          <{foreach item=item from=$active}>
+            <tr class="<{if $item.re % 2}>odd<{else}>even<{/if}>">
+              <td class="list_center">
+                <{$item.id}>
+              </td>
+              <td><a href="<{$item.link}>" target="_blank">
+                  <{$item.subject}> ⭧
+                </a></td>
+              <td><a href="<{$item.topic_link}>" target="_blank">
+                  <{$item.topic_title}> ⭧
+                </a></td>
+              <td><a href="<{$item.forum_link}>" target="_blank">
+                  <{$item.forum_title}> ⭧
+                </a></td>
+              <td class="list_center"><{$item.post_time|date_format:"%Y-%m-%d %H:%M"}></td>
+              <td class="list_center">
+                <{$item.topic_views}>
+              </td>
+              <td class="list_center">
+                <{$item.topic_posts_count}>
+              </td>
+              <td class="list_center">
+                <{$item.vote_count}>
+              </td>
+              <td title="<{$item.average_rating}> / 5">
+                <{* Generate star rating display using Smarty 2.4 compatible syntax *}>
+                <{assign var=rating value=$item.average_rating|floatval}>
+                <{assign var=fullStars value=$rating|floor}>
+                <{assign var=halfStar value=0}>
+                <{if ($rating-$fullStars)>= 0.5}><{assign var=halfStar value=1}>
+                <{/if}>
+
+                <{section name=star loop=5}>
+                <{if $smarty.section.star.iteration <=$fullStars}>★<{* Full star *}>
+                <{elseif $smarty.section.star.iteration==$fullStars+1 && $halfStar}>⯨<{* Half star *}>
+                <{else}>☆<{* Empty star *}>
+                <{/if}>
+                <{/section}>
+              </td>
+            </tr>
+            <{/foreach}>
+          </tbody>
+        </table>
+      </div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    // Initialize from localStorage if available
+    const savedItemCount = localStorage.getItem('activity-items-count');
+    if (savedItemCount && !window.location.href.includes('items=')) {
+      $('#activity-items-select').val(savedItemCount);
+    }
+
+    // Handle change event
+    $('#activity-items-select').on('change', function () {
+      const itemCount = $(this).val();
+      localStorage.setItem('activity-items-count', itemCount);
+
+      // Show loading indicator
+      $('#activity-table-container').addClass('loading');
+
+      // AJAX request to get updated table content
+      $.ajax({
+        url: window.location.pathname,
+        data: {
+          items: itemCount,
+          ajax: 1
+        },
+        success: function (response) {
+          // Extract only the table content from the response
+          const tableHtml = $(response).find('#activity-table-container').html();
+          $('#activity-table-container').html(tableHtml);
+
+          // Remove loading indicator
+          $('#activity-table-container').removeClass('loading');
+        },
+        error: function () {
+          // Fallback to page reload if AJAX fails
+          window.location.href = window.location.pathname + '?items=' + itemCount;
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  /* Loading indicator styles */
+  #activity-table-container.loading {
+    position: relative;
+    min-height: 200px;
+  }
+
+  #activity-table-container.loading:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(250, 250, 250, 0.025) url('<{$mod_url}>/images/loading.gif') no-repeat center center;
+    z-index: 1;
+  }
+</style>
+<{/if}>

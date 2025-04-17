@@ -29,9 +29,10 @@ class D3forumTextSanitizer extends MyTextSanitizer {
 	}
 
 	// override
-	// a fix to the original implementation
+	// Fix to the original implementation
 	public function &htmlSpecialChars( $text, $forEdit = false ) {
-		$ret = htmlspecialchars( $text, ENT_QUOTES );
+		// Fix for PHP 8.1+ - prevent passing null to htmlspecialchars
+		$ret = htmlspecialchars( $text ?? '', ENT_QUOTES );
 
 		return $ret;
 	}

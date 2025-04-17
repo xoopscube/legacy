@@ -5,37 +5,37 @@ $constpref = '_MI_' . strtoupper( $mydirname );
 if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
 
 // Appended by Xoops Language Checker -GIJOE- in 2015-04-24 14:09:40
-define($constpref.'_USENAME','display name');
-define($constpref.'_USENAMEDESC','which name to use display name \'uname\'(user ID) or \'name\'(Real name). <br /> xoops default is \'uname\'(user ID)');
-define($constpref.'_USENAME_UNAME','use\'uname\'(user ID)');
-define($constpref.'_USENAME_NAME','use\'name\'(Real name)');
-define($constpref.'_RSS_SHOW_HIDDEN','RSS Show hidden topics');
-define($constpref.'_RSS_SHOW_HIDDENDSC','Show hidden (comment integrated) topic title.');
-define($constpref.'_RSS_HIDDEN_TITLE','RSS Title of hidden topic');
-define($constpref.'_RSS_HIDDEN_TITLEDSC','Own title uses when empty value.');
+define($constpref.'_USENAME','Nome de exibição');
+define($constpref.'_USENAMEDESC','Qual nome usar para exibição: "uname" (ID do usuário) ou "name" (Nome real). <br /> O padrão é "uname" (ID do usuário)');
+define($constpref.'_USENAME_UNAME','usar "uname" (ID do usuário)');
+define($constpref.'_USENAME_NAME','usar "name" (Nome real)');
+define($constpref.'_RSS_SHOW_HIDDEN','Mostrar tópicos ocultos no RSS');
+define($constpref.'_RSS_SHOW_HIDDENDSC','Mostrar título de tópicos ocultos (integrados com comentários).');
+define($constpref.'_RSS_HIDDEN_TITLE','Título RSS para tópicos ocultos');
+define($constpref.'_RSS_HIDDEN_TITLEDSC','Usa título próprio quando o valor estiver vazio.');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-09-28 15:55:33
-define($constpref.'_DEFAULT_OPTIONS','Default checked in post form');
-define($constpref.'_DEFAULT_OPTIONSDSC','List checked options separated by comma(,).<br>eg) smiley,xcode,br,number_entity<br>You can add these options: special_entity html attachsig u2t_marked');
+define($constpref.'_DEFAULT_OPTIONS','Opções marcadas por padrão no formulário de postagem');
+define($constpref.'_DEFAULT_OPTIONSDSC','Lista de opções marcadas separadas por vírgula(,).<br />ex: smiley,xcode,br,number_entity<br>Você pode adicionar estas opções: special_entity html attachsig u2t_marked');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-09-27 16:50:42
-define($constpref.'_BODY_EDITOR','Body Editor');
-define($constpref.'_BODY_EDITORDSC','WYSIWYG editor will be enabled under only forums allowing HTML. With forums escaping HTML specialchars, xoopsdhtml will be displayed automatically.');
+define($constpref.'_BODY_EDITOR','Editor de Conteúdo');
+define($constpref.'_BODY_EDITORDSC','O editor WYSIWYG será habilitado apenas em fóruns que permitem HTML. Em fóruns que escapam caracteres especiais HTML, o xoopsdhtml será exibido automaticamente.');
 
 // Appended by Xoops Language Checker -GIJOE- in 2007-09-26 17:55:48
-define($constpref.'_ADMENU_POSTHISTORIES','Histories');
-define($constpref.'_SHOW_BREADCRUMBS','Display breadcrumbs');
-define($constpref.'_SHOW_RSS','Display link RSS');
-define($constpref.'_ANTISPAM_GROUPS','Groups should be checked anti-SPAM');
-define($constpref.'_ANTISPAM_GROUPSDSC','Usually set all blank.');
-define($constpref.'_ANTISPAM_CLASS','Class name of anti-SPAM');
-define($constpref.'_ANTISPAM_CLASSDSC','Default value is "default". If you disable anti-SPAM against guests even, set it blank');
+define($constpref.'_ADMENU_POSTHISTORIES','Históricos');
+define($constpref.'_SHOW_BREADCRUMBS','Exibir navegação estrutural');
+define($constpref.'_SHOW_RSS','Exibir link RSS');
+define($constpref.'_ANTISPAM_GROUPS','Grupos que devem ser verificados pelo anti-SPAM');
+define($constpref.'_ANTISPAM_GROUPSDSC','Normalmente deixe todos em branco.');
+define($constpref.'_ANTISPAM_CLASS','Nome da classe anti-SPAM');
+define($constpref.'_ANTISPAM_CLASSDSC','O valor padrão é "default". Se você desativar o anti-SPAM mesmo para visitantes, deixe em branco');
 
 define( $constpref.'_LOADED' , 1 );
 // The name of this module
 define($constpref."_NAME","Forum");
 // A brief description of this module
-define($constpref."_DESC","Forum module for XOOPS");
+define($constpref."_DESC","Modulo Forum para XOOPSCube");
 // Names of blocks for this module (Not all module has blocks)
 define($constpref."_BNAME_LIST_TOPICS","Topicos"); //
 define($constpref."_BDESC_LIST_TOPICS","Este bloco pode ser usado para varias finalidade. Naturalmente, você pode por multiplly.");
