@@ -113,6 +113,7 @@
 
 </article>
 
+<{* Add JavaScript for ajax *}>
 <script type="text/javascript">
   function loadMessage(id, param, inout) {
       fetch('index.php?action=view&' + param + '=' + id + '&inout=' + inout + '&ajax=1')
@@ -143,6 +144,52 @@
               document.querySelectorAll('input[name="inbox"]').forEach(input => {
                   input.value = id;
               });
+              
+              // Update lock/unlock button based on message status
+              const lockForm = document.getElementById('msgLock');
+              if (lockForm && data.is_read !== undefined) {
+                  // Clear existing inputs and create new ones
+                  const lockInput = lockForm.querySelector('input[name="lock"]');
+                  const lockButton = lockForm.querySelector('button[type="submit"]');
+                  
+                  if (data.is_read == 1) {
+                      // Message is read but not locked - show lock button
+                      if (lockInput) lockInput.value = "1";
+                      if (lockButton) {
+                          lockButton.innerHTML = '<img class="svg mail-lock" src="<{$xoops_url}>/images/icons/mail-lock.svg" width="1em" height="1em" alt="Mail lock">' +
+                              '<span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE19}></span>';
+                          lockButton.value = '<{$smarty.const._MD_MESSAGE_TEMPLATE19}>';
+                      }
+                  } else if (data.is_read == 2) {
+                      // Message is locked - show unlock button
+                      if (lockInput) lockInput.value = "0";
+                      if (lockButton) {
+                          lockButton.innerHTML = '<img class="svg mail-off" src="<{$xoops_url}>/images/icons/mail-off.svg" width="1em" height="1em" alt="Mail off">' +
+                              '<span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE20}></span>';
+                          lockButton.value = '<{$smarty.const._MD_MESSAGE_TEMPLATE20}>';
+                      }
+                  }
+              }
+              
+              // Update delete button state based on message status
+              const deleteForm = document.getElementById('msgDelete');
+              if (deleteForm && data.is_read !== undefined) {
+                  const deleteButton = deleteForm.querySelector('button[type="submit"]');
+                  if (deleteButton) {
+                      // Disable delete button if message is locked (is_read == 2)
+                      if (data.is_read == 2) {
+                          deleteButton.disabled = true;
+                          deleteButton.setAttribute('aria-label', '<{$smarty.const._MD_MESSAGE_TEMPLATE14}> <{$smarty.const._MD_MESSAGE_TEMPLATE19}>');
+                          deleteButton.innerHTML = '<img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt="">' +
+                              '<span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE19}></span>';
+                      } else {
+                          deleteButton.disabled = false;
+                          deleteButton.removeAttribute('aria-label');
+                          deleteButton.innerHTML = '<img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt="">' +
+                              '<span data-self="sm-hide"><{$smarty.const._DELETE}></span>';
+                      }
+                  }
+              }
               
               // Update reply link
               const replyLink = document.querySelector('a[onclick^="location.href=\'index.php?action=new&res="]');
@@ -222,7 +269,18 @@
           lockForm.addEventListener('submit', function(event) {
               event.preventDefault();
               
+              // Get form data
               const formData = new URLSearchParams(new FormData(lockForm));
+              const messageId = lockForm.querySelector('input[name="inbox"]').value;
+              const lockValue = lockForm.querySelector('input[name="lock"]').value;
+              const inout = lockForm.querySelector('input[name="inout"]').value;
+              const param = inout === 'in' ? 'inbox' : 'outbox';
+              
+              // Show status indicator (could add a span for this)
+              const lockButton = lockForm.querySelector('button[type="submit"]');
+              const originalButtonHtml = lockButton.innerHTML;
+              lockButton.innerHTML = '<img class="svg spinner" src="<{$xoops_url}>/images/icons/spinner.svg" width="1em" height="1em" alt="Loading...">';
+              lockButton.disabled = true;
               
               fetch('index.php?action=view&ajax=1', {
                   method: 'POST',
@@ -231,19 +289,56 @@
                   },
                   body: formData
               })
-              .then(response => response.json())
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error('Server returned ' + response.status);
+                  }
+                  return response.json();
+              })
               .then(data => {
-                  // Refresh the current message to show updated lock status
-                  const messageId = lockForm.querySelector('input[name="inbox"]').value;
-                  const inout = lockForm.querySelector('input[name="inout"]').value;
-                  const param = inout === 'in' ? 'inbox' : 'outbox';
+                  // Re-enable button
+                  lockButton.disabled = false;
                   
-                  // Reload the message with updated status
-                  loadMessage(messageId, param, inout);
+                  // Update the button UI based on the new lock state
+                  if (lockValue === "1") {
+                      // We just locked the message, update to show unlock button
+                      lockForm.querySelector('input[name="lock"]').value = "0";
+                      lockButton.innerHTML = '<img class="svg mail-off" src="<{$xoops_url}>/images/icons/mail-off.svg" width="1em" height="1em" alt="Mail off">' +
+                          '<span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE20}></span>';
+                      lockButton.value = '<{$smarty.const._MD_MESSAGE_TEMPLATE20}>';
+                      
+                      // Disable delete button
+                      const deleteButton = document.querySelector('#msgDelete button[type="submit"]');
+                      if (deleteButton) {
+                          deleteButton.disabled = true;
+                          deleteButton.setAttribute('aria-label', '<{$smarty.const._MD_MESSAGE_TEMPLATE14}> <{$smarty.const._MD_MESSAGE_TEMPLATE19}>');
+                          deleteButton.innerHTML = '<img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt="">' +
+                              '<span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE19}></span>';
+                      }
+                  } else {
+                      // We just unlocked the message, update to show lock button
+                      lockForm.querySelector('input[name="lock"]').value = "1";
+                      lockButton.innerHTML = '<img class="svg mail-lock" src="<{$xoops_url}>/images/icons/mail-lock.svg" width="1em" height="1em" alt="Mail lock">' +
+                          '<span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_TEMPLATE19}></span>';
+                      lockButton.value = '<{$smarty.const._MD_MESSAGE_TEMPLATE19}>';
+                      
+                      // Enable delete button
+                      const deleteButton = document.querySelector('#msgDelete button[type="submit"]');
+                      if (deleteButton) {
+                          deleteButton.disabled = false;
+                          deleteButton.removeAttribute('aria-label');
+                          deleteButton.innerHTML = '<img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt="">' +
+                              '<span data-self="sm-hide"><{$smarty.const._DELETE}></span>';
+                      }
+                  }
               })
               .catch(error => {
                   console.error('Error updating lock status:', error);
                   alert('Error updating message status. Please try again.');
+                  
+                  // Restore button state
+                  lockButton.disabled = false;
+                  lockButton.innerHTML = originalButtonHtml;
               });
           });
       }

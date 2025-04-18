@@ -86,3 +86,5 @@ define( '_MD_MESSAGE_ADDBLACKLIST' , 'このユーザをブラックリストに
 define( '_MD_MESSAGE_SEARCH' , '検索');
 define( '_MD_MESSAGE_PREV' , 'Previous');
 define( '_MD_MESSAGE_NEXT' , 'Next');
+define( '_MD_MESSAGE_DELETEMSG_SUCCESS_NUM' , 'Deleted Messages: {0}');
+define( '_MD_MESSAGE_DELETEMSG_FAIL_NUM' , 'Deleted Messages: {0}');

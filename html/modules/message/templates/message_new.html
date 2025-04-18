@@ -63,7 +63,7 @@
 <{/if}>
 
     <label for="uname"><{$smarty.const._MD_MESSAGE_TEMPLATE2}>
-    <{xoops_input name=uname maxlength=25 value=$mActionForm->get('uname')}>
+    <{message_suggestlist name="uname" size="40" placeholder=$smarty.const._MD_MESSAGE_TEMPLATE2 id="uname" uname=$mActionForm->get('uname')}>
     </label>
     <label for="title"><{$smarty.const._MD_MESSAGE_TEMPLATE3}>
     <{xoops_input name=title class="form-control form-control-sm" maxlength=100 value=$mActionForm->get('title')}>

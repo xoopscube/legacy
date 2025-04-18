@@ -85,3 +85,5 @@ define( '_MD_MESSAGE_DELETE_CONFIRM' , 'Вы уверены, что хотите
 define( '_MD_MESSAGE_SEARCH' , 'Поиск');
 define( '_MD_MESSAGE_PREV' , 'Previous');
 define( '_MD_MESSAGE_NEXT' , 'Next');
+define( '_MD_MESSAGE_DELETEMSG_SUCCESS_NUM' , 'Deleted Messages: {0}');
+define( '_MD_MESSAGE_DELETEMSG_FAIL_NUM' , 'Deleted Messages: {0}');

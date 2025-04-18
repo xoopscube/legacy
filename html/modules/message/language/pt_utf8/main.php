@@ -36,7 +36,6 @@ define( '_MD_MESSAGE_FORMERROR6' , "Ocorreu um erro: o associado selecionado apa
 define( '_MD_MESSAGE_MAILBODY' , "{0} - identique-se, por favor.");
 define( '_MD_MESSAGE_MAILSUBJECT' , "Você tem uma nova mensagem");
 define( '_MD_MESSAGE_NEWMESSAGE' , "Você tem {0} mensagens.");
-define( '_MD_MESSAGE_SEARCH' , "Pesquisar");
 define( '_MD_MESSAGE_SETTINGS' , "Configurações ");
 define( '_MD_MESSAGE_SETTINGS_MSG1' , "Mensagens internas");
 define( '_MD_MESSAGE_SETTINGS_MSG10' , "Lista de ignorados");
@@ -82,8 +81,11 @@ define( '_MD_MESSAGE_TEMPLATE7' , "Mensagens enviadas");
 define( '_MD_MESSAGE_TEMPLATE8' , "Nova mensagem");
 define( '_MD_MESSAGE_TEMPLATE9' , "Destinatário");
 
+define( '_MD_MESSAGE_SEARCH' , 'Pesquisar');
 define( '_MD_MESSAGE_PREV' , 'Previous');
 define( '_MD_MESSAGE_NEXT' , 'Next');
+define( '_MD_MESSAGE_DELETEMSG_SUCCESS_NUM' , 'Deleted Messages: {0}');
+define( '_MD_MESSAGE_DELETEMSG_FAIL_NUM' , 'Deleted Messages: {0}');
 
 if (!defined('LEGACY_MAIL_LANG')) {
     define('LEGACY_MAIL_LANG','pt');

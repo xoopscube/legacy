@@ -85,6 +85,8 @@ define( '_MD_MESSAGE_DELETE_CONFIRM' , 'Are you sure you want to delete?');
 define( '_MD_MESSAGE_SEARCH' , 'Search');
 define( '_MD_MESSAGE_PREV' , 'Previous');
 define( '_MD_MESSAGE_NEXT' , 'Next');
+define( '_MD_MESSAGE_DELETEMSG_SUCCESS_NUM' , 'Deleted Messages: {0}');
+define( '_MD_MESSAGE_DELETEMSG_FAIL_NUM' , 'Deleted Messages: {0}');
 
 if (!defined('LEGACY_MAIL_LANG')) {
     define('LEGACY_MAIL_LANG','en');

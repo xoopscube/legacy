@@ -1,11 +1,12 @@
 <?php
 /**
  * Message module for private messages and forward to email
+ * 
  * @package    Message
  * @version    2.5.0
- * @author     Other authors Nuno Luciano aka gigamaster, 2020 XCL23
+ * @author     Nuno Luciano aka gigamaster, 2020 XCL23
  * @author     Osamu Utsugi aka Marijuana
- * @copyright  (c) 2005-2024 The XOOPSCube Project, Authors
+ * @copyright  (c) 2005-2025 The XOOPSCube Project, Authors
  * @license    GPL 3.0
  */
 
@@ -92,19 +93,21 @@ class deleteallAction extends AbstractAction
         $final_message = '';
 
         if (count($deleted_ids) > 0) {
-            // Use a generic success message or build one
-             $final_message .= sprintf(_MD_MESSAGE_DELETEMSG_SUCCESS_NUM, count($deleted_ids)); // Assuming you have a constant like this
-            // Fallback message:
-            // $final_message .= count($deleted_ids) . " message(s) deleted successfully. ";
+            // Use XCube_Utils::formatString instead of sprintf for {0} placeholders
+            $final_message .= XCube_Utils::formatString(_MD_MESSAGE_DELETEMSG_SUCCESS_NUM, count($deleted_ids));
         }
         if (count($failed_ids) > 0) {
-             $final_message .= sprintf(_MD_MESSAGE_DELETEMSG_FAIL_NUM, count($failed_ids)); // Assuming you have a constant like this
-            // Fallback message:
-            // $final_message .= count($failed_ids) . " message(s) failed to delete. ";
+            // Check if constant exists and use XCube_Utils::formatString
+            if (defined('_MD_MESSAGE_DELETEMSG_FAIL_NUM')) {
+                $final_message .= XCube_Utils::formatString(_MD_MESSAGE_DELETEMSG_FAIL_NUM, count($failed_ids));
+            } else {
+                // Fallback message if constant doesn't exist
+                $final_message .= count($failed_ids) . " message(s) failed to delete.";
+            }
         }
-         if (empty($final_message)) {
-             $final_message = _MD_MESSAGE_DELETEMSG2; // No items selected or processed message
-         }
+        if (empty($final_message)) {
+            $final_message = _MD_MESSAGE_DELETEMSG2; // No items selected or processed message
+        }
 
 
         if ($isAjax) {
@@ -122,16 +125,15 @@ class deleteallAction extends AbstractAction
             exit;
         } else {
             // For non-AJAX, set a general success or error message
-            // The original code set success on *each* successful delete and returned on the first error.
-            // This modification provides a summary message after trying all.
             if ($final_success) {
-                 $this->setErr(sprintf(_MD_MESSAGE_DELETEMSG_SUCCESS_NUM, count($deleted_ids))); // Or a more general success message
+                // Use XCube_Utils::formatString here too
+                $this->setErr(XCube_Utils::formatString(_MD_MESSAGE_DELETEMSG_SUCCESS_NUM, count($deleted_ids)));
             } elseif (count($deleted_ids) > 0) {
-                 // Partial success
-                 $this->setErr(trim($final_message)); // Show combined message
+                // Partial success
+                $this->setErr(trim($final_message)); // Show combined message
             } else {
-                 // Complete failure or nothing to delete
-                 $this->setErr(count($errors) > 0 ? _MD_MESSAGE_ACTIONMSG4 : _MD_MESSAGE_DELETEMSG2); // General failure or no items
+                // Complete failure or nothing to delete
+                $this->setErr(count($errors) > 0 ? _MD_MESSAGE_ACTIONMSG4 : _MD_MESSAGE_DELETEMSG2);
             }
             // The redirect URL is already set earlier.
             return; // Proceed to redirect
