@@ -115,8 +115,12 @@ class newAction extends AbstractAction
 
     private function getMailBody($body = 0)
     {
+
+
         $tpl = new Smarty();
-        $tpl->_canUpdateFromFile = true;
+
+        // WONT FIX ! Trying dynamic properties, even checking if the proper method exists
+        // $tpl->_canUpdateFromFile = true;
         $tpl->compile_check = true;
         $tpl->template_dir = _MY_MODULE_PATH.'language/'.$this->root->mLanguageManager->mLanguageName.'/';
         $tpl->cache_dir = XOOPS_CACHE_PATH;

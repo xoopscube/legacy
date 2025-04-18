@@ -85,17 +85,60 @@ class viewAction extends AbstractAction
         // --- AJAX block: must be AFTER $this->msgdata is built ---
         if ($this->root->mContext->mRequest->getRequest('ajax') == 1) {
             header('Content-Type: application/json');
+            
+            // Handle AJAX lock/unlock requests
+            if ('inbox' == $this->inout && 'POST' == $_SERVER['REQUEST_METHOD'] && 
+                'lock' == $this->root->mContext->mRequest->getRequest('cmd')) {
+                
+                if (1 == (int)$this->root->mContext->mRequest->getRequest('lock')) {
+                    $modObj->set('is_read', 2);  // Lock the message
+                } else {
+                    $modObj->set('is_read', 1);  // Unlock the message
+                }
+                $modHand->insert($modObj);
+                
+                // Update the is_read value in msgdata to reflect the change
+                $this->msgdata['is_read'] = $modObj->get('is_read');
+            }
+            // Update message status for inbox messages if unread
+            elseif ('inbox' == $this->inout && 0 == $modObj->get('is_read')) {
+                $modObj->set('is_read', 1);
+                $modHand->insert($modObj, true);
+                // Update the is_read value in msgdata to reflect the change
+                $this->msgdata['is_read'] = 1;
+            }
+            
+            // Get the avatar URL using the same function as the Smarty modifier
+            $avatarUrl = '';
+            if ('inbox' == $this->inout && isset($this->msgdata['from_uid'])) {
+                $handler = xoops_gethandler('user');
+                $user = $handler->get(intval($this->msgdata['from_uid']));
+                if (is_object($user) && $user->isActive() && ($user->get('user_avatar') != "blank.gif") && file_exists(XOOPS_UPLOAD_PATH . "/" . $user->get('user_avatar'))) {
+                    $avatarUrl = XOOPS_UPLOAD_URL . "/" . $user->getShow('user_avatar');
+                } else {
+                    $avatarUrl = XOOPS_URL . "/modules/user/images/no_avatar.gif";
+                }
+            }
+            
             echo json_encode([
                 'subject' => $this->msgdata['title'],
                 'body' => $this->msgdata['message'],
                 'from' => $this->msgdata['fromname'] ?? '',
                 'to' => $this->msgdata['toname'] ?? '',
-                'date' => isset($this->msgdata['utime']) ? date('Y-m-d H:i', $this->msgdata['utime']) : '',                'prev_id' => $this->msgdata['prev_id'],
+                'date' => isset($this->msgdata['utime']) ? date('Y-m-d H:i', $this->msgdata['utime']) : '',
+                'prev_id' => $this->msgdata['prev_id'],
                 'next_id' => $this->msgdata['next_id'],
                 'key' => $this->msgdata['key'],
                 'inout' => $this->inout,
                 'param' => $this->msgdata['param'],
                 'inout_short' => $this->msgdata['inout_short'],
+                'avatar_url' => $avatarUrl,
+                'from_uid' => $this->msgdata['from_uid'] ?? 0,
+                'is_read' => $this->msgdata['is_read'] ?? 1,
+                'success' => true,
+                'message' => 'lock' == $this->root->mContext->mRequest->getRequest('cmd') ? 
+                    ($this->msgdata['is_read'] == 2 ? 'Message locked' : 'Message unlocked') : 
+                    'Message loaded'
             ]);
             exit;
         }

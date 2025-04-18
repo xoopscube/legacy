@@ -23,6 +23,8 @@
     <div id="printhis">
 
         <div class="headings">
+
+        <div class="mail-body">
         <h3 class="mail-subject" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE3}>"><{$msgdata.title}></h3>
             <div class="flex-justify">
                 <div class="mail-to" aria-label="<{$smarty.const._MD_MESSAGE_TEMPLATE4}>">
@@ -40,18 +42,129 @@
             <{$msgdata.message}>
         </div>
 
+        </div>
+
     </div><{* printhis *}>
 
     <hr>
-    
+
     <footer class="action-control">
         <form id="message-delete" method="post" action="index.php?action=delete&amp;inout=out">
             <input type="hidden" name="outbox" value="<{$msgdata.outbox_id}>">
             <button type="submit" role="button" class="outline secondary delete" value="<{$smarty.const._MD_MESSAGE_TEMPLATE14}>">
                 <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt="delete"> <{$smarty.const._MD_MESSAGE_TEMPLATE14}>
             </button>
-       </form>     
+            <span id="delete-status"></span>
+       </form>
+       
+       <span id="msg-nav">
+           <{if $msgdata.prev_id}>
+           <a href="#" onclick="loadMessage('<{$msgdata.prev_id}>', '<{$msgdata.param}>', '<{$msgdata.inout_short}>'); return false;" class="outline">&laquo; Previous</a>
+           <{/if}>
+           <{if $msgdata.next_id}>
+           <a href="#" onclick="loadMessage('<{$msgdata.next_id}>', '<{$msgdata.param}>', '<{$msgdata.inout_short}>'); return false;" class="outline">Next &raquo;</a>
+           <{/if}>
+       </span>
     </footer>
-    
-
 </article>
+
+<script type="text/javascript">
+  function loadMessage(id, param, inout) {
+      fetch('index.php?action=view&' + param + '=' + id + '&inout=' + inout + '&ajax=1')
+          .then(response => response.json())
+          .then(data => {
+              if (data.error) {
+                  alert(data.error);
+                  return;
+              }
+              
+              // Update message content
+              document.querySelector('.mail-subject').innerHTML = data.subject;
+              
+              // Update recipient with avatar
+              const toElement = document.querySelector('.mail-to');
+              if (toElement) {
+                  // Use the avatar_url from the response
+                  toElement.innerHTML = '<{$smarty.const._MD_MESSAGE_TEMPLATE9}> ' + 
+                      '<img src="' + (data.avatar_url || '<{$xoops_url}>/modules/user/images/no_avatar.gif') + 
+                      '" width="24px" data-self="radius-circle" alt="avatar"> ' + 
+                      data.to;
+              }
+              
+              document.querySelector('.mail-content').innerHTML = data.body;
+              document.querySelector('.mail-date').innerHTML = 
+                  '<img class="svg datetime" src="<{$xoops_url}>/images/icons/datetime.svg" alt="datetime"> ' + 
+                  '<span class="badge">' + data.date + '</span>';
+              
+              // Update form values for delete form
+              document.querySelectorAll('input[name="outbox"]').forEach(input => {
+                  input.value = id;
+              });
+              
+              // Update navigation buttons
+              let navHtml = '';
+              if (data.prev_id) {
+                  navHtml += `<a href="#" onclick="loadMessage('${data.prev_id}', '${data.param}', '${data.inout_short}'); return false;" class="outline">&laquo; Previous</a> `;
+              }
+              if (data.next_id) {
+                  navHtml += `<a href="#" onclick="loadMessage('${data.next_id}', '${data.param}', '${data.inout_short}'); return false;" class="outline">Next &raquo;</a>`;
+              }
+              document.getElementById('msg-nav').innerHTML = navHtml;
+              
+              // Update URL without reloading
+              history.pushState({}, '', 'index.php?action=view&' + param + '=' + id + '&inout=' + inout);
+          })
+          .catch(error => {
+              console.error('Error loading message:', error);
+              alert('Error loading message. Please try again.');
+          });
+  }
+  
+  // AJAX delete functionality
+  document.addEventListener('DOMContentLoaded', function() {
+      const deleteForm = document.getElementById('message-delete');
+      const deleteStatus = document.getElementById('delete-status');
+      
+      if (deleteForm) {
+          deleteForm.addEventListener('submit', function(event) {
+              event.preventDefault();
+              
+              // Get the message ID from the form
+              const messageId = deleteForm.querySelector('input[name="outbox"]').value;
+              const inout = 'out'; // For outbox view
+              
+              // Show deleting status
+              if (deleteStatus) deleteStatus.textContent = 'Deleting...';
+              
+              // Send AJAX request
+              fetch('index.php?action=delete&inout=' + inout + '&ajax=1', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded',
+                  },
+                  body: 'outbox=' + encodeURIComponent(messageId)
+              })
+              .then(response => response.json())
+              .then(data => {
+                  if (data.success) {
+                      // Success - redirect to outbox
+                      if (deleteStatus) deleteStatus.textContent = data.message || 'Message deleted successfully.';
+                      
+                      // Redirect to outbox after a short delay
+                      setTimeout(function() {
+                          window.location.href = 'index.php?action=send';
+                      }, 500); // Reduced delay for better UX
+                  } else {
+                      // Error
+                      if (deleteStatus) deleteStatus.textContent = data.error || 'Error deleting message.';
+                      console.error('Delete error:', data);
+                  }
+              })
+              .catch(error => {
+                  console.error('Network error:', error);
+                  if (deleteStatus) deleteStatus.textContent = 'Network error. Please try again.';
+              });
+          });
+      }
+  });
+</script>

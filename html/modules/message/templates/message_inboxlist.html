@@ -1,6 +1,3 @@
-<{* set tab inbox to active *}>
-<{assign var="inboxView" value="ui-tabs-active ui-state-active"}>
-
 <{* Dev-Mode Toggle *}>
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 <nav aria-label="breadcrumb">
@@ -19,89 +16,207 @@
     </header>
 
     <form method="post" name="form-search" action="index.php?action=index">
-
-    <div class="grid">
-
-        <select name="status">
-            <option value="">- <{$smarty.const._MD_MESSAGE_TEMPLATE22}></option>
-            <option value="0"<{if $status===0}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE16}></option>
-            <option value="1"<{if $status==1}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE17}></option>
-            <option value="2"<{if $status==2}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE19}></option>
-        </select>
-
-        <select name="fromuid">
-            <option value="0">- <{$smarty.const._MD_MESSAGE_TEMPLATE12}></option>
-            <{foreach item=fuser from=$select}>
-            <option value="<{$fuser.uid}>"<{if $fuser.select==true}> selected="selected"<{/if}>><{$fuser.uname|xoops_escape}></option>
-            <{/foreach}>
-        </select>
-
-        <input type="text" name="subject" size="25" value="<{$subject|xoops_escape}>" placeholder="<{$smarty.const._MD_MESSAGE_TEMPLATE3}>">
-
-        <button type="submit" class="outline" role="button" name="subbtn" value="<{$smarty.const._MD_MESSAGE_SEARCH}>">
-            <img class="svg search" src="<{$xoops_url}>/images/icons/search.svg"> <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_SEARCH}></span>
-        </button>
-
-    </div>
-
+        <!-- Search form content -->
+        <div class="grid">
+            <select name="status">
+                <option value="">- <{$smarty.const._MD_MESSAGE_TEMPLATE22}></option>
+                <option value="0"<{if $status===0}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE16}></option>
+                <option value="1"<{if $status==1}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE17}></option>
+                <option value="2"<{if $status==2}> selected="selected"<{/if}>><{$smarty.const._MD_MESSAGE_TEMPLATE19}></option>
+            </select>
+            <select name="fromuid">
+                <option value="0">- <{$smarty.const._MD_MESSAGE_TEMPLATE12}></option>
+                <{foreach item=fuser from=$select}>
+                <option value="<{$fuser.uid}>"<{if $fuser.select==true}> selected="selected"<{/if}>><{$fuser.uname|xoops_escape}></option>
+                <{/foreach}>
+            </select>
+            <input type="text" name="subject" size="25" value="<{$subject|xoops_escape}>" placeholder="<{$smarty.const._MD_MESSAGE_TEMPLATE3}>">
+            <button type="submit" class="outline" role="button" name="subbtn" value="<{$smarty.const._MD_MESSAGE_SEARCH}>">
+                <img class="svg search" src="<{$xoops_url}>/images/icons/search.svg"> <span data-self="sm-hide"><{$smarty.const._MD_MESSAGE_SEARCH}></span>
+            </button>
+        </div>
     </form>
 
 
-<{* ----- List Messages *}>
+    <{* ----- List Messages *}>
 
-
-    <form method="post" action="index.php?action=deleteall">
+    <{* Add an ID here *}>
+    <form method="post" action="index.php?action=deleteall" id="delete-all-inbox-form">
         <input type="hidden" name="inout" value="in">
 
         <{foreach item=val from=$ListData}>
-
-        <div id="printhis" class="grid-left mail-list-item">
-
+        <{* Add unique ID to the container div for easy removal *}>
+        <div id="inbox-item-<{$val.inbox_id}>" class="grid-left mail-list-item">
             <div class="mail-list-author">
                 <{if $val.is_read==1}>
                 <input type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>" aria-label="<{$smarty.const._DELETE}>">
                 <{else}>
+                <{* Still disable checkbox for unread, but maybe add a class? *}>
                 <input type="checkbox" name="delmsg[]" value="<{$val.inbox_id}>" disabled>
                 <{/if}>
 
                 <{if $val.is_read==0}>
                 <img class="svg mail" src="<{$xoops_url}>/images/icons/mail.svg" width="1em" height="1em" alt="Mail">
-
                 <{elseif $val.is_read==1}>
                 <img class="svg mail-open" src="<{$xoops_url}>/images/icons/mail-open.svg" width="1em" height="1em" data-tooltip="<{$smarty.const._MD_MESSAGE_TEMPLATE17}>">
-
-
                 <{elseif $val.is_read==2}>
                 <img class="svg lock" src="<{$xoops_url}>/images/icons/lock.svg" width="1em" height="1em" data-tooltip="<{$smarty.const._MD_MESSAGE_TEMPLATE19}>">
-
                 <{/if}>
 
                 <img class="mail-list-avatar" src="<{$val.from_uid|xoops_user_avatarize}>" alt="avatar">
-
                 <{$val.fromname}>
-
             </div>
-
             <div class="flex-justify">
-                <{* SUBJECT TRUNCATE:46 - CHANGE THIS VALUE OR USE CSS text-overflow: ellipsis; *}>
                 <a href="index.php?action=view&amp;inout=in&amp;inbox=<{$val.inbox_id}>" class="mail-list-subject"><{$val.title|truncate:46:"..."}></a>
                 <span class="mail-list-date"><{$val.utime|xoops_formattimestamp:l}></span>
             </div>
         </div>
-
         <{/foreach}>
-    
-    <hr>
-    
-    <footer class="action-control grid">
-        <div>
-        <button type="submit" role="button" class="outline secondary delete" name="subbtn" value="<{$smarty.const._DELETE}>">
-            <img class="svg" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"> <{$smarty.const._DELETE}>
-        </button>
-        </div>
-        <nav class="pagination" aria-label="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
-    </footer>
 
+        <hr>
+
+        <footer class="action-control grid">
+            <div>
+                <button type="submit" role="button" class="outline secondary delete" name="subbtn" value="<{$smarty.const._DELETE}>">
+                    <img class="svg" src="<{$xoops_url}>/images/icons/delete.svg" width="1em" height="1em" alt="delete"> <{$smarty.const._DELETE}>
+                </button>
+                <{* Optional: Add a placeholder for notifications *}>
+                <span id="delete-inbox-status"></span>
+            </div>
+            <nav class="pagination" aria-label="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav>
+        </footer>
     </form>
-
 </article>
+
+<{* Add JavaScript at the end *}>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('delete-all-inbox-form');
+    const statusSpan = document.getElementById('delete-inbox-status');
+
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Stop normal form submission
+
+            // Get selected message IDs (only enabled and checked checkboxes)
+            const selectedIds = Array.from(form.querySelectorAll('input[name="delmsg[]"]:checked:not(:disabled)')).map(cb => cb.value);
+
+            if (selectedIds.length === 0) {
+                if (statusSpan) statusSpan.textContent = '<{$smarty.const._MD_MESSAGE_DELETEMSG2|escape:"javascript"}>';
+                return; // Don't submit if nothing valid is selected
+            }
+
+            // Clear previous status and show deleting message
+            if (statusSpan) statusSpan.textContent = 'Deleting...';
+
+            // Fix: Use URLSearchParams instead of FormData for better compatibility
+            const params = new URLSearchParams();
+            
+            // Add each selected ID to the params
+            selectedIds.forEach(id => {
+                params.append('delmsg[]', id);
+            });
+            
+            // Add the inout parameter
+            params.append('inout', 'in');
+
+            // Use fetch with proper content type for form submission
+            fetch('index.php?action=deleteall&ajax=1', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: params.toString()
+            })
+            .then(response => {
+                // First check if the response is ok before trying to parse JSON
+                if (!response.ok) {
+                    throw new Error('Server returned ' + response.status + ' ' + response.statusText);
+                }
+                
+                // Try to parse as JSON, but handle text responses too
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    return response.json();
+                } else {
+                    // If not JSON, get text and try to parse it
+                    return response.text().then(text => {
+                        try {
+                            return JSON.parse(text);
+                        } catch (e) {
+                            // If parsing fails, return a simple success object
+                            console.warn('Response is not valid JSON:', text);
+                            return { success: true, message: 'Operation completed' };
+                        }
+                    });
+                }
+            })
+            .then(data => {
+                console.log('Server response:', data); // Debug: log the full response
+                
+                // Handle both success formats
+                if (data.success === true || data.success === 'true' || 
+                    (data.deleted_count && data.deleted_count > 0)) {
+                    
+                    // Success: Remove deleted items from the page
+                    if (data.deleted_ids && Array.isArray(data.deleted_ids)) {
+                        data.deleted_ids.forEach(id => {
+                            const itemToRemove = document.getElementById(`inbox-item-${id}`);
+                            if (itemToRemove) {
+                                itemToRemove.remove();
+                            }
+                        });
+                    } else if (selectedIds.length > 0) {
+                        // Fallback if server didn't return deleted_ids
+                        selectedIds.forEach(id => {
+                            const itemToRemove = document.getElementById(`inbox-item-${id}`);
+                            if (itemToRemove) {
+                                itemToRemove.remove();
+                            }
+                        });
+                    }
+                    
+                    if (statusSpan) statusSpan.textContent = data.message || 'Deleted successfully.';
+                    
+                    // Check if list is now empty
+                    const remainingItems = form.querySelectorAll('.mail-list-item');
+                    if (remainingItems.length === 0) {
+                        // Show empty inbox message
+                        const emptyMessage = document.createElement('p');
+                        emptyMessage.textContent = 'Inbox is now empty.';
+                        form.parentNode.insertBefore(emptyMessage, form);
+                        
+                        // Disable delete button
+                        const deleteButton = form.querySelector('button[type="submit"]');
+                        if (deleteButton) {
+                            deleteButton.disabled = true;
+                        }
+                    }
+                } else {
+                    // Handle failure
+                    console.error('Deletion failed:', data);
+                    if (statusSpan) statusSpan.textContent = data.error || 'Deletion failed.';
+                }
+            })
+            .catch(error => {
+                console.error('Error during deletion:', error);
+                if (statusSpan) statusSpan.textContent = 'Network error during deletion. Please try again.';
+            });
+        });
+    }
+
+    // Enable/disable delete button based on checkbox selection
+    const deleteButton = form.querySelector('button[type="submit"]');
+    const checkBoxes = form.querySelectorAll('input[name="delmsg[]"]:not(:disabled)');
+
+    function toggleDeleteButton() {
+        const anyChecked = Array.from(checkBoxes).some(cb => cb.checked);
+        if (deleteButton) {
+            deleteButton.disabled = !anyChecked;
+        }
+    }
+
+    checkBoxes.forEach(cb => cb.addEventListener('change', toggleDeleteButton));
+    toggleDeleteButton(); // Initial check
+});
+</script>
