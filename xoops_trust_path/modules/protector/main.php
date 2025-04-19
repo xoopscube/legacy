@@ -1,29 +1,32 @@
 <?php
+/**
+ * Protector main dispatcher
+ *
+ * @package    Protector
+ * @version    XCL 2.5.0
+ * @author     Nuno Luciano aka gigamaster
+ * @copyright  (c) 2005-2024 Authors
+ * @license    GPL v2.0
+ */
 
-$mytrustdirname = basename( __DIR__ );
-$mytrustdirpath = __DIR__;
-
-// check permission of 'module_read' of this module
-// (already checked by common.php)
-
-// language files
-$language = empty( $xoopsConfig['language'] ) ? 'english' : $xoopsConfig['language'];
-if ( file_exists( "$mydirpath/language/$language/main.php" ) ) {
-	// user customized language file (already read by common.php)
-	// include_once "$mydirpath/language/$language/main.php" ;
-} elseif ( file_exists( "$mytrustdirpath/language/$language/main.php" ) ) {
-	// default language file
-	include_once "$mytrustdirpath/language/$language/main.php";
-} else {
-	// fallback english
-	include_once "$mytrustdirpath/language/english/main.php";
+// Direct access is prohibited
+if (!defined('XOOPS_ROOT_PATH') || !defined('XOOPS_TRUST_PATH')) {
+    exit();
 }
 
-// fork each pages
-$page = preg_replace( '/[^a-zA-Z0-9_-]/', '', @$_GET['page'] );
+$mytrustdirname = basename( __DIR__ );
 
-if ( file_exists( "$mytrustdirpath/main/$page.php" ) ) {
-	include "$mytrustdirpath/main/$page.php";
-} else {
-	include "$mytrustdirpath/main/index.php";
+$mytrustdirpath = __DIR__;
+
+$page = isset($_GET['page']) ? trim($_GET['page']) : '';
+
+// Dispatch
+switch ($page) {
+    case 'notification_update':
+        require_once XOOPS_ROOT_PATH.'/include/notification_update.php';
+        break;
+    default:
+        // Default action - redirect to admin
+        header('Location: '.XOOPS_URL.'/modules/protector/admin/index.php');
+        exit();
 }

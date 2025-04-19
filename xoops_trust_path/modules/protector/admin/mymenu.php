@@ -32,11 +32,11 @@ $langman->read( 'modinfo.php', $mydirname, $mytrustdirname );
 
 include dirname( __DIR__ ) . '/admin_menu.php';
 
-if ( file_exists( XOOPS_TRUST_PATH . '/libs/altsys/myblocksadmin.php' ) ) {
+/* if ( file_exists( XOOPS_TRUST_PATH . '/libs/altsys/myblocksadmin.php' ) ) {
 	// myblocksadmin
 	$title       = defined( '_MD_A_MYMENU_MYBLOCKSADMIN' ) ? _MD_A_MYMENU_MYBLOCKSADMIN : 'blocksadmin';
 	$adminmenu[] = [ 'title' => $title, 'link' => 'admin/index.php?mode=admin&lib=altsys&page=myblocksadmin' ];
-}
+} */
 
 // preferences
 $config_handler =& xoops_gethandler( 'config' );
@@ -96,29 +96,3 @@ $tpl->assign(
 	]
 );
 $tpl->display( 'db:altsys_inc_menu.html' );
-
-
-// Add menu items for proxy functionality
-$module_handler = xoops_getHandler('module');
-$config_handler = xoops_getHandler('config');
-$module = $module_handler->getByDirname('protector');
-$configs = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
-
-// Check if proxy is enabled
-$proxy_enabled = $configs['proxy_enabled'] ?? 0;
-
-// Add proxy menu items
-if ($proxy_enabled) {
-    $adminmenu[] = [
-        'title' => 'Web Proxy Settings',
-        'link' => 'index.php?page=proxy_settings'
-    ];
-    $adminmenu[] = [
-        'title' => 'Proxy Logs',
-        'link' => 'index.php?page=proxy_logs'
-    ];
-    $adminmenu[] = [
-        'title' => 'Proxy Plugins',
-        'link' => 'index.php?page=proxy_plugins'
-    ];
-}

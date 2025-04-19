@@ -36,7 +36,18 @@ class protectorDbIntegrate {
 					return false;
 				}
 			default:
-				return mysqli_field_flags( $result, $field_offset );
+				// The mysql_field_flags function is deprecated and removed in PHP 7+
+				// Use the mysqli approach as a fallback
+				$res = mysqli_fetch_field_direct( $result, $field_offset );
+				if ( $res && $res->flags ) {
+					$flags = $res->flags;
+					if ( defined( 'MYSQLI_BINARY_FLAG' ) and ( $flags & MYSQLI_BINARY_FLAG ) ) {
+						$flags .= ' BINARY';
+					}
+					return $flags;
+				} else {
+					return false;
+				}
 		}
 	}
 
@@ -69,7 +80,12 @@ class protectorDbIntegrate {
 
 				return $res;
 			default:
-				return mysqli_fetch_field( $result );
+				// Use mysqli approach for all cases since we're supporting MySQL 5.7+ only
+				$res = mysqli_fetch_field_direct( $result, $field_offset );
+				if ( isset( $type_hash[ $res->type ] ) ) {
+					$res->type = $type_hash[ $res->type ];
+				}
+				return $res;
 		}
 	}
 }

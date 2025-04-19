@@ -12,21 +12,21 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_NAME', 'Protector' );
 
 	// A brief description of this module
-	define( $constpref . '_DESC', 'This module protects your application platform from various attacks like DoS, SQL Injection, and contamination of global variables.' );
+	define( $constpref . '_DESC', 'Protector safeguards your website against multiple security threats including DoS attacks, SQL Injection, XSS vulnerabilities, session hijacking, and global variable contamination, Content Security Policy (CSP) implementation, CORS protection, IP filtering, brute force prevention, and comprehensive security logging.' );
 
 	// Menu
 	define( $constpref . '_DASHBOARD', 'Dashboard' );
-	define( $constpref . '_ADMININDEX', 'IP Safe List' );
 	define( $constpref . '_ADVISORY', 'Security Advisor' );
-	define( $constpref . '_LOGLIST', 'Log List' );
+	define( $constpref . '_LOGLIST', 'Security Log' );
 	define( $constpref . '_LOGCLEARED', 'Log Cleared' );
-	define( $constpref . '_IPBAN', 'IP Ban Advisor' );
+	define( $constpref . '_IPBAN', 'Banned IPs' );
 	define( $constpref . '_PREFIXMANAGER', 'DB Prefix Manager' );
-	define( $constpref . '_SAFELIST', 'Safe List' );
+	define( $constpref . '_SAFELIST', 'Allowed IPs' );
 	define( $constpref . '_ADMENU_MYBLOCKSADMIN', 'Permissions' );
+	define( $constpref . '_CSP_REPORTS', 'CSP Reports');
 
 	// Configs
-	define( $constpref . '_GLOBAL_DISBL', 'Temporary disabled' );
+	define( $constpref . '_GLOBAL_DISBL', '<h5>🚧 Temporary disabled</h5>' );
 	define( $constpref . '_GLOBAL_DISBLDSC', 'All protections are temporary disabled.<br>Remember to turn this off after solving any trouble.' );
 
 	define( $constpref . '_DEFAULT_LANG', 'Default language' );
@@ -52,10 +52,10 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_HIJACK_TOPBITDSC', 'Anti Session Hijacking:<br>Default 32(bit). (All bits are protected)<br>When your IP is not static, set the IP range by number of the bits.<br>(eg) If your IP is dynamic and in the range of 192.168.0.0-192.168.0.255, set the value here to: 24' );
 	define( $constpref . '_HIJACK_TOPBITV6', 'Protected IP bits for the session(IPv6)' );
 	define( $constpref . '_HIJACK_TOPBITV6DSC', 'Anti Session Hijacking:<br>Default 128(bit). (All bits are protected)<br>When your IP is not static, set the IP range by number of the bits.' );
-	define( $constpref . '_HIJACK_DENYGP', 'Groups disallowed IP moving in a session' );
-	define( $constpref . '_HIJACK_DENYGPDSC', 'Anti Session Hijacking:<br>Select groups which is disallowed to move their IP in a session.<br>(I recommend to turn Administrator on.)' );
-	define( $constpref . '_SAN_NULLBYTE', 'Sanitizing null-bytes' );
-	define( $constpref . '_SAN_NULLBYTEDSC', 'The null character is often represented as the escape sequence "\\0" and it is often used in malicious attacks.<br>Protector will change a null-byte to a space.<br>It is highly recomment to turn this option: On' );
+	define( $constpref . '_HIJACK_DENYGP', 'Anti Session Hijacking: Prevent IP Changes for Groups' );
+	define( $constpref . '_HIJACK_DENYGPDSC', 'Select the user groups for which any change in their IP address during a logged-in session will be considered a potential hijacking attempt and thus prevented. As a security best practice, <b>it is recommended to enable this for Webmasters group</b>.' );
+	define( $constpref . '_SAN_NULLBYTE', 'Sanitize null-bytes' );
+	define( $constpref . '_SAN_NULLBYTEDSC', 'Null characters (\0) are frequently used in malicious exploits. When enabled, this setting will automatically convert any detected null-bytes into spaces, thus preventing many potential attacks. For optimal security, <b>it is strongly recommended to turn this option ON</b>.' );
 	define( $constpref . '_DIE_NULLBYTE', 'Exit if null bytes are found' );
 	define( $constpref . '_DIE_NULLBYTEDSC', 'The terminating character "\\0" is often used in malicious attacks.<br>(highly recommended as On)' );
 	define( $constpref . '_DIE_BADEXT', 'Exit if the file extension is not allowed to upload' );
@@ -110,23 +110,23 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_BIP_EXCEPT', 'Safe Groups' );
 	define( $constpref . '_BIP_EXCEPTDSC', 'Users from the selected groups are not registered as Bad IP.<br>It is recommended to select the group of administrators: Webmasters' );
 
-	define( $constpref . '_DISABLES', 'Disable XML-RPC to avoid a brute force attack. It is recommend to check for such dangerous feature on older XOOPS versions and modules (eg. Xpress, Wordpress).' );
+	define( $constpref . '_DISABLES', 'Disable XML-RPC to prevent brute force attacks.<br> For enhanced security, disable this feature in older XOOPS2 modules (e.g., Xpress, WordPress).' );
 
-	define( $constpref . '_DBLAYERTRAP', 'Enable DB Layer trapping Anti-SQL-Injection' );
-	define( $constpref . '_DBLAYERTRAPDSC', 'Most SQL injection attacks will be negated by this feature. This feature requires databasefactory support. You can check it on the Security Notices page. This setting must be enabled. Never turn it off accidentally!' );
-	define( $constpref . '_DBTRAPWOSRV', 'Never check _SERVER for Anti-SQL-Injection' );
-	define( $constpref . '_DBTRAPWOSRVDSC', 'Some servers still enable DB Layer trapping. This causes bad detections like an SQL injection attack. If you have such errors, enable this option. You should be aware that this option weakens the security of DB Layer trapping anti-SQL-Injection.' );
+	define( $constpref . '_DBLAYERTRAP', '🗄 Enable DB Layer trapping Anti-SQL-Injection' );
+	define( $constpref . '_DBLAYERTRAPDSC', 'This feature offers strong protection against most SQL injection attacks and requires databasefactory support (check status on the Advisory page). Ensure this setting is enabled and never accidentally turned off!' );
+	define( $constpref . '_DBTRAPWOSRV', '🗄 Disable the check of the $_SERVER superglobal for Anti-SQL-Injection' );
+	define( $constpref . '_DBTRAPWOSRVDSC', 'Enabling this option may resolve false SQL injection attack detections caused by DB Layer trapping on some servers. However, be aware that it weakens the security of the DB Layer trapping anti-SQL injection system.<br> Use it cautiously.' );
 
 	define( $constpref . '_BIGUMBRELLA', 'Enable Anti-XSS (BigUmbrella)' );
-	define( $constpref . '_BIGUMBRELLADSC', 'This protects you from almost all attacks via XSS vulnerabilities. But it is not 100% sure' );
+	define( $constpref . '_BIGUMBRELLADSC', 'This option provides robust protection against the vast majority of Cross-Site Scripting (XSS) vulnerabilities. While highly effective, it is important to note that no security measure can guarantee 100% protection.' );
 
-	define( $constpref . '_SPAMURI4U', 'Anti-SPAM: Limit the number of URLs for user posts' );
-	define( $constpref . '_SPAMURI4UDSC', 'If this number of URLs is in the POST data of users other than the administrator, the POST is considered SPAM. 0 means disable this feature.' );
-	define( $constpref . '_SPAMURI4G', 'Anti-SPAM: Limit the number of URLs for guests' );
-	define( $constpref . '_SPAMURI4GDSC', 'If this number of URLs are found in POST data from guests, the POST is considered as SPAM. 0 means disabling this feature.' );
+	define( $constpref . '_SPAMURI4U', 'Anti-SPAM: Limit the number of URLs in user posts' );
+	define( $constpref . '_SPAMURI4UDSC', 'Set the maximum number of URLs allowed in posts by regular users. Posts exceeding this limit will be considered spam. Administrators posts are exempt. Enter 0 to disable this feature.' );
+	define( $constpref . '_SPAMURI4G', 'Anti-SPAM: Limit the number of URLs in guests posts' );
+	define( $constpref . '_SPAMURI4GDSC', 'Set the maximum number of URLs allowed in posts by guests. Posts exceeding this limit will be considered spam. Enter 0 to disable this feature.' );
 
 	define( $constpref . '_FILTERS', 'Enable filters' );
-	define( $constpref . '_FILTERSDSC', 'Specify each file name inside of /filters_byconfig/ with a new line.<br> e.g. postcommon_post_deny_by_httpbl.php' );
+	define( $constpref . '_FILTERSDSC', 'To activate filters, list each filter file name (located in the /filters_byconfig/ directory) on a separate line e.g.: postcommon_post_deny_by_httpbl.php' );
 
 	define( $constpref . '_MANIPUCHECK', '<b>Enable check files change</b>' );
 	define( $constpref . '_MANIPUCHECKDSC', '🔔 Notify administrators if the root folder or index changes.' );
@@ -134,7 +134,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_MANIPUVALUEDSC', '⛔ Warning, do not change this field !' );
 
 	// Threat Intelligence settings
-	define( $constpref . '_HTTPBL_ENABLED', 'Enable HTTP:BL');
+	define( $constpref . '_HTTPBL_ENABLED', '<h5>🔶 Enable HTTP:BL</h5>');
 	define( $constpref . '_HTTPBL_ENABLED_DESC', 'Enable Project Honeypot HTTP:BL service for IP reputation checking');
 	define( $constpref . '_HTTPBL_KEY', 'HTTP:BL API Key');
 	define( $constpref . '_HTTPBL_KEY_DESC', 'Enter your Project Honeypot HTTP:BL API key. Get one at projecthoneypot.org');
@@ -169,8 +169,10 @@ define( $constpref . '_IP', 'IP Address');
 define( $constpref . '_AGENT', 'User Agent');
 define( $constpref . '_DESCRIPTION', 'Description');
 
+
+
 // Proxy settings
-define('_MI_PROTECTOR_PROXY_ENABLED', 'Enable Web Proxy');
+define('_MI_PROTECTOR_PROXY_ENABLED', '<h5><a id="enable-proxy">🌐</a> Enable Web Proxy</h5>');
 define('_MI_PROTECTOR_PROXY_ENABLED_DESC', 'Enable the web proxy functionality');
 
 define('_MI_PROTECTOR_PROXY_ALLOWED_DOMAINS', 'Allowed Domains');
@@ -199,4 +201,93 @@ define('_MI_PROTECTOR_PROXY_USER_AGENT_DESC', 'Set a custom user agent for proxy
 
 define('_MI_PROTECTOR_PROXY_PLUGINS_ENABLED', 'Enabled Plugins');
 define('_MI_PROTECTOR_PROXY_PLUGINS_ENABLED_DESC', 'Select which proxy plugins to enable');
+
+// Module access permissions
+define('_MI_PROTECTOR_MODULE_ACCESS_GROUPS', 'Module Access Groups');
+define('_MI_PROTECTOR_MODULE_ACCESS_GROUPS_DESC', 'Select which groups can access the Protector module administration');
+
+// Proxy access permissions
+define('_MI_PROTECTOR_PROXY_ACCESS_GROUPS', 'Proxy Access Groups');
+define('_MI_PROTECTOR_PROXY_ACCESS_GROUPS_DESC', 'Select which groups can use the web proxy functionality');
+
+// Notification related constants
+define('_MI_PROTECTOR_NOTIFY_GLOBAL', 'Global Notifications');
+define('_MI_PROTECTOR_NOTIFY_GLOBAL_DESC', 'Global Protector notifications');
+
+define('_MI_PROTECTOR_NOTIFY_SECURITY_THREAT', 'Security Threat Detected');
+define('_MI_PROTECTOR_NOTIFY_SECURITY_THREAT_CAP', 'Notify me when security threats are detected');
+define('_MI_PROTECTOR_NOTIFY_SECURITY_THREAT_DESC', 'Receive notifications when the system detects security threats');
+define('_MI_PROTECTOR_NOTIFY_SECURITY_THREAT_SUBJECT', 'Security Threat Alert: {SITE_NAME}');
+
+define('_MI_PROTECTOR_NOTIFY_PROXY_ACCESS', 'Proxy Access Alert');
+define('_MI_PROTECTOR_NOTIFY_PROXY_ACCESS_CAP', 'Notify me about proxy access events');
+define('_MI_PROTECTOR_NOTIFY_PROXY_ACCESS_DESC', 'Receive notifications about proxy access events');
+define('_MI_PROTECTOR_NOTIFY_PROXY_ACCESS_SUBJECT', 'Proxy Access Alert: {SITE_NAME}');
+
+define('_MI_PROTECTOR_NOTIFICATION_ENABLED', '<h5><a id="enable-notification">🔔</a> Enable Notifications</h5>');
+define('_MI_PROTECTOR_NOTIFICATION_ENABLED_DESC', 'Choose how you want to receive notifications from Protector');
+define('_MI_PROTECTOR_NOTIFICATION_DISABLE', 'Disable notifications');
+define('_MI_PROTECTOR_NOTIFICATION_ENABLE_INBOX', 'Enable inbox notifications only');
+define('_MI_PROTECTOR_NOTIFICATION_ENABLE_EMAIL', 'Enable email notifications only');
+define('_MI_PROTECTOR_NOTIFICATION_ENABLE_BOTH', 'Enable both inbox and email notifications');
+
+define('_MI_PROTECTOR_NOTIFICATION_EVENTS', 'Notification Events');
+define('_MI_PROTECTOR_NOTIFICATION_EVENTS_DESC', 'Select which events should trigger notifications');
+
+// CORS Proxy settings
+define('_MI_PROTECTOR_PROXY_CORS_ORIGIN', '<h5><a id="enable-cors">☁</a> CORS: Allowed Origins</h5>');
+define('_MI_PROTECTOR_PROXY_CORS_ORIGIN_DESC', 'Specify which origins are allowed to access resources through the proxy. Use * for all origins or a comma-separated list of domains.');
+
+define('_MI_PROTECTOR_PROXY_CORS_METHODS', 'CORS: Allowed Methods');
+define('_MI_PROTECTOR_PROXY_CORS_METHODS_DESC', 'HTTP methods allowed when accessing the resource. Separate multiple methods with commas.');
+
+define('_MI_PROTECTOR_PROXY_CORS_HEADERS', 'CORS: Allowed Headers');
+define('_MI_PROTECTOR_PROXY_CORS_HEADERS_DESC', 'Headers that are allowed to be used with the request. Use * for all headers or a comma-separated list.');
+
+define('_MI_PROTECTOR_PROXY_CORS_DEBUG', 'CORS: Debug Mode');
+define('_MI_PROTECTOR_PROXY_CORS_DEBUG_DESC', 'Enable debug logging for CORS requests and responses.');
+
+// Content Security Policy settings
+define('_MI_PROTECTOR_ENABLE_CSP', '<h5>🛡️ Enable Content Security Policy</h5>');
+define('_MI_PROTECTOR_ENABLE_CSP_DESC', 'Activate Content Security Policy (CSP) to help prevent XSS attacks and other code injection attacks');
+
+define('_MI_PROTECTOR_CSP_LEGACY_SUPPORT', 'Add CSP Meta Tag Support');
+define('_MI_PROTECTOR_CSP_LEGACY_SUPPORT_DESC', 'Also add CSP as a meta tag for older browsers that don\'t support CSP headers');
+
+define('_MI_PROTECTOR_CSP_DEFAULT_SRC', 'Default Sources');
+define('_MI_PROTECTOR_CSP_DEFAULT_SRC_DESC', 'Default policy for loading content such as JavaScript, Images, CSS, Fonts, AJAX requests, Frames, HTML5 Media');
+
+define('_MI_PROTECTOR_CSP_SCRIPT_SRC', 'Script Sources');
+define('_MI_PROTECTOR_CSP_SCRIPT_SRC_DESC', 'Defines valid sources of JavaScript. Use \'unsafe-inline\' to allow inline scripts and \'unsafe-eval\' to allow eval()');
+
+define('_MI_PROTECTOR_CSP_STYLE_SRC', 'Style Sources');
+define('_MI_PROTECTOR_CSP_STYLE_SRC_DESC', 'Defines valid sources of stylesheets or CSS. Use \'unsafe-inline\' to allow inline styles');
+
+define('_MI_PROTECTOR_CSP_IMG_SRC', 'Image Sources');
+define('_MI_PROTECTOR_CSP_IMG_SRC_DESC', 'Defines valid sources of images. Add \'data:\' to allow data: URIs for images');
+
+define('_MI_PROTECTOR_CSP_CONNECT_SRC', 'Connect Sources');
+define('_MI_PROTECTOR_CSP_CONNECT_SRC_DESC', 'Defines valid sources for fetch, XMLHttpRequest, WebSocket, and EventSource connections');
+
+define('_MI_PROTECTOR_CSP_FONT_SRC', 'Font Sources');
+define('_MI_PROTECTOR_CSP_FONT_SRC_DESC', 'Defines valid sources for fonts loaded using @font-face');
+
+define('_MI_PROTECTOR_CSP_OBJECT_SRC', 'Object Sources');
+define('_MI_PROTECTOR_CSP_OBJECT_SRC_DESC', 'Defines valid sources for the <object>, <embed>, and <applet> elements');
+
+define('_MI_PROTECTOR_CSP_MEDIA_SRC', 'Media Sources');
+define('_MI_PROTECTOR_CSP_MEDIA_SRC_DESC', 'Defines valid sources for loading media using the <audio>, <video> and <track> elements');
+
+define('_MI_PROTECTOR_CSP_FRAME_SRC', 'Frame Sources');
+define('_MI_PROTECTOR_CSP_FRAME_SRC_DESC', 'Defines valid sources for loading frames');
+
+define('_MI_PROTECTOR_CSP_REPORT_URI', 'Report URI');
+define('_MI_PROTECTOR_CSP_REPORT_URI_DESC', 'URI to which the browser sends reports about policy violations');
+
+// CSP Reporting
+define('_MI_PROTECTOR_NOTIFY_CSP', 'Notify on Critical CSP Violations');
+define('_MI_PROTECTOR_NOTIFY_CSP_DESC', 'Send email notifications for critical Content Security Policy violations (script-src)');
+define('_MI_PROTECTOR_NOTIFY_ALL_CSP', 'Notify on All CSP Violations');
+define('_MI_PROTECTOR_NOTIFY_ALL_CSP_DESC', 'Send email notifications for all Content Security Policy violations (may generate many emails)');
+
 }

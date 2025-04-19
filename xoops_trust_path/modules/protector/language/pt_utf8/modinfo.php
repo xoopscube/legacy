@@ -15,13 +15,12 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref.'_LOADED')) {
 
 // Menu
     define( $constpref . '_DASHBOARD', 'Dashboard' );
-    define( $constpref . '_ADMININDEX', 'IP Autorizados');
     define( $constpref . '_ADVISORY', 'Guia de segurança');
-    define( $constpref . '_LOGLIST', 'Log List' );
+    define( $constpref . '_LOGLIST', 'Security Log' );
     define( $constpref . '_LOGCLEARED', 'Log Cleared' );
-    define( $constpref . '_IPBAN', 'IP Ban Advisor' );
+    define( $constpref . '_IPBAN', 'Banned IPs' );
     define( $constpref . '_PREFIXMANAGER', 'Prefixo Base Dados');
-    define( $constpref . '_SAFELIST', 'Safe List' );
+    define( $constpref . '_SAFELIST', 'IP Autorizados' );
     define( $constpref . '_ADMENU_MYBLOCKSADMIN', 'Рermissões' );
 
 // Appended by Xoops Language Checker -GIJOE- in 2017-02-27 14:47:37
@@ -65,7 +64,7 @@ if (defined('FOR_XOOPS_LANG_CHECKER') || !defined($constpref.'_LOADED')) {
 
 
 // Configs
-    define($constpref.'_GLOBAL_DISBL', 'Interrupção temporaria de funcionamento');
+    define($constpref.'_GLOBAL_DISBL', '<h5>🚧 Interrupção temporaria</h5>');
     define($constpref.'_GLOBAL_DISBLDSC', 'Suspende temporariamente o funcionamento de todas as proteções.<br>Apos resolver os problemas, não se esqueça de desativar.');
     define($constpref.'_RELIABLE_IPS', 'IPs confiaveis');
     define($constpref.'_RELIABLE_IPSDSC', 'Indique os endereços IP que não passarão por examinação para ataques DoS, separados por |. ^ para o invalido, e  $ para o final do string.');

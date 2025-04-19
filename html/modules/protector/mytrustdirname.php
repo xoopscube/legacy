@@ -1,2 +1,2 @@
 <?php
-    $mytrustdirname = 'protector' ;
+$mytrustdirname = 'protector';

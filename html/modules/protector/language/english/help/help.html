@@ -4,6 +4,7 @@
         <nav id="help-menu">
             <ul data-layout="rows">
                 <li><a href="#help-overview" class="button">Protector Module</a>
+                <li><a href="#help-csp" class="button">Content Security Policy</a>
                 <li><a href="#help-blacklist" class="button">IP Blacklist</a>
                 <li><a href="#help-httpbl" class="button">HTTP:BL Settings</a></li>
                 <li><a href="#help-session" class="button">Session Hijacking</a>
@@ -12,7 +13,7 @@
                 <li><a href="#help-sql" class="button">SQL Injection</a>
                 <li><a href="#help-xss" class="button">XSS</a>
                 <li><a href="#help-var" class="button">Global Variables</a>
-                <li><a href="#help-proxy" class="button"> Web HTTP Proxy</a></li>
+                <li><a href="#help-proxy" class="button">Proxy</a></li>
                 <li><a href="#help-development" class="button">Development</a>
             </ul>
         </nav>
@@ -38,6 +39,111 @@
         <p>You can define security settings and rules to a more strict web security policy mechanism.
         <p>Protector is a module developed by the trusted developer Gijoe from https://peak.ne.jp
         <p>This module is widely considered by module developers as well as other CMS as a "must have" module.
+
+    </section>
+
+    <!-- Todo: write documentation to help configure CSP, a short summary, and a paragraph for each config and ul list for options -->
+    <section id="help-csp">
+
+        <h3>Content Security Policy (CSP)</h3>
+
+        <p>Content Security Policy (CSP) is a powerful security feature that helps prevent Cross-Site Scripting (XSS) and other code injection attacks. It works by specifying which content sources are considered trusted, and instructing the browser to only execute or render resources from those trusted sources.</p>
+        
+        <p>When enabled, CSP acts as an additional layer of defense by restricting what resources can be loaded on your pages. This significantly reduces the risk of XSS vulnerabilities even if they exist in your site's code.</p>
+        
+        <h4>Key Benefits:</h4>
+        <ul>
+            <li>Mitigates XSS attacks by controlling which scripts can execute</li>
+            <li>Prevents unwanted content injection</li>
+            <li>Protects against clickjacking and frame injection</li>
+            <li>Provides detailed violation reports to help identify potential security issues</li>
+            <li>Reduces the attack surface of your website</li>
+        </ul>
+        
+        <h4>Configuration Options:</h4>
+        
+        <p><strong>Enable Content Security Policy</strong> - Activates the CSP protection for your site. When enabled, the system will add appropriate CSP headers to all responses.</p>
+        
+        <p><strong>Add CSP Meta Tag Support</strong> - Adds CSP as a meta tag in addition to HTTP headers for compatibility with older browsers that don't support CSP headers.</p>
+        
+        <p><strong>Default Sources</strong> - Controls the default policy for loading content such as JavaScript, Images, CSS, Fonts, AJAX requests, and Frames. The default value <code>'self'</code> allows resources to be loaded only from the same origin.</p>
+        <ul>
+            <li><code>'self'</code> - Allow resources from the same origin</li>
+            <li><code>'none'</code> - Block all resources of this type</li>
+            <li><code>example.com</code> - Allow resources from specific domains</li>
+            <li><code>*.example.com</code> - Allow resources from all subdomains</li>
+        </ul>
+        
+        <p><strong>Script Sources</strong> - Defines valid sources for JavaScript. This is one of the most important directives for security.</p>
+        <ul>
+            <li><code>'self'</code> - Allow scripts from the same origin</li>
+            <li><code>'unsafe-inline'</code> - Allow inline scripts (reduces security but may be necessary for compatibility)</li>
+            <li><code>'unsafe-eval'</code> - Allow the use of eval() and similar methods (reduces security)</li>
+            <li><code>https://trusted-cdn.com</code> - Allow scripts from specific external sources</li>
+        </ul>
+        
+        <p><strong>Style Sources</strong> - Defines valid sources for stylesheets or CSS.</p>
+        <ul>
+            <li><code>'self'</code> - Allow styles from the same origin</li>
+            <li><code>'unsafe-inline'</code> - Allow inline styles (often needed for compatibility)</li>
+            <li><code>https://fonts.googleapis.com</code> - Allow styles from external sources like Google Fonts</li>
+        </ul>
+        
+        <p><strong>Image Sources</strong> - Defines valid sources for images.</p>
+        <ul>
+            <li><code>'self'</code> - Allow images from the same origin</li>
+            <li><code>data:</code> - Allow data: URIs for images (commonly used for small inline images)</li>
+            <li><code>https:</code> - Allow images from any HTTPS source</li>
+        </ul>
+        
+        <p><strong>Connect Sources</strong> - Defines valid sources for fetch, XMLHttpRequest, WebSocket, and EventSource connections.</p>
+        <ul>
+            <li><code>'self'</code> - Allow connections to the same origin</li>
+            <li><code>https://api.example.com</code> - Allow connections to specific API endpoints</li>
+        </ul>
+        
+        <p><strong>Font Sources</strong> - Defines valid sources for web fonts.</p>
+        <ul>
+            <li><code>'self'</code> - Allow fonts from the same origin</li>
+            <li><code>https://fonts.gstatic.com</code> - Allow fonts from services like Google Fonts</li>
+            <li><code>data:</code> - Allow data: URIs for fonts</li>
+        </ul>
+        
+        <p><strong>Object Sources</strong> - Defines valid sources for plugins like &lt;object&gt;, &lt;embed&gt;, and &lt;applet&gt; elements.</p>
+        <ul>
+            <li><code>'self'</code> - Allow objects from the same origin</li>
+            <li><code>'none'</code> - Block all plugins (recommended for security)</li>
+        </ul>
+        
+        <p><strong>Media Sources</strong> - Defines valid sources for &lt;audio&gt;, &lt;video&gt;, and &lt;track&gt; elements.</p>
+        <ul>
+            <li><code>'self'</code> - Allow media from the same origin</li>
+            <li><code>https://media.example.com</code> - Allow media from specific sources</li>
+        </ul>
+        
+        <p><strong>Frame Sources</strong> - Defines valid sources for frames and iframes.</p>
+        <ul>
+            <li><code>'self'</code> - Allow frames from the same origin</li>
+            <li><code>'none'</code> - Block all frames (high security)</li>
+            <li><code>https://youtube.com https://player.vimeo.com</code> - Allow frames from specific services</li>
+        </ul>
+        
+        <p><strong>Report URI</strong> - URI to which the browser sends reports about policy violations. This can help you identify and fix potential issues.</p>
+        <ul>
+            <li>Example: <code>/modules/protector/csp-report.php</code></li>
+            <li>You can also use third-party CSP reporting services</li>
+        </ul>
+        
+        <h4>Implementation Notes:</h4>
+        <ul>
+            <li>Start with strict policies and relax them as needed based on functionality requirements</li>
+            <li>Use the report-only mode initially to identify potential issues without breaking functionality</li>
+            <li>Test thoroughly after implementing CSP as it may affect third-party modules and themes</li>
+            <li>Consider using nonces or hashes instead of 'unsafe-inline' for better security</li>
+            <li>Review CSP reports regularly to identify potential security issues</li>
+        </ul>
+        
+        <p>For more information about Content Security Policy, visit the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="_blank">Mozilla Developer Network</a>.</p>
 
     </section>
 

@@ -1,9 +1,11 @@
 <?php
-require '../../mainfile.php' ;
+require '../../mainfile.php';
 
-if (! defined('XOOPS_TRUST_PATH')) {
-    die('set XOOPS_TRUST_PATH in mainfile.php') ;
+if (!defined('XOOPS_TRUST_PATH')) {
+    die('set XOOPS_TRUST_PATH in mainfile.php');
 }
+
+require_once XOOPS_ROOT_PATH . '/include/notification_update.php';
 
 $mydirname = basename(__DIR__) ;
 $mydirpath = __DIR__ ;

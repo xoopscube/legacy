@@ -5,8 +5,7 @@
  * @package    Protector
  * @version    XCL 2.5.0
  * @author     Nuno Luciano aka gigamaster
- * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2024 Authors
+ * @copyright  (c) 2024 The XOOPSCube Project
  * @license    GPL v2.0
  */
 
@@ -137,8 +136,6 @@ if ( ! empty( $_POST['copy'] ) && ! empty( $_POST['old_prefix'] ) ) {
 				} elseif ( preg_match( '/^[0-9]+(?:\.[0-9]+)?$/', $row[ $j ] ) && 'timestamp' != $fields_meta->type ) {
 					$values[] = $row[ $j ];
 					// a binary field
-					// Note: with mysqli, under MySQL 4.1.3, we get the flag
-					// "binary" for those field types (I don't know why)
 				} elseif ( stristr( $field_flags[ $j ], 'BINARY' )
 				           && 'datetime' != $fields_meta->type
 				           && 'date' != $fields_meta->type
@@ -280,18 +277,18 @@ while ( $row_table = $db->fetchArray( $srs ) ) {
 
 
 // table
-echo "<h2>" . _AM_H3_PREFIXMAN . "</h2>
-    <div class='tips'>" . sprintf( _AM_TXT_HOWTOCHANGEDB, XOOPS_ROOT_PATH, XOOPS_DB_PREFIX ) . "</div>
-    <table class='outer'>
+echo '<h2>' . _AM_H3_PREFIXMAN . '</h2>
+    <div class="tips">' . sprintf( _AM_TXT_HOWTOCHANGEDB, XOOPS_ROOT_PATH, XOOPS_DB_PREFIX ) . '</div>
+    <table class="outer">
     <thead>
 	<tr>
 		<th>PREFIX</th>
 		<th>TABLES</th>
 		<th>UPDATED</th>
 		<th>COPY</th>
-		<th class='list_control'>ACTIONS</th>
+		<th class="list_control">ACTIONS</th>
 	</tr>
-	</thead>";
+	</thead>';
 
 foreach ( $prefixes as $prefix ) {
 
@@ -323,7 +320,7 @@ foreach ( $prefixes as $prefix ) {
 		$style_append = '';
 	}
 
-	echo "<tr>
+	echo "<tr class='list_center'>
 		<td>$prefix4disp</td>
 		<td>$table_count</td>
 		<td>{$prefix['updated']}</td>

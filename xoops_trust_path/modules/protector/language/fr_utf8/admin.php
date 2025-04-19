@@ -9,7 +9,7 @@ define( '_MD_A_MYMENU_MYPREFERENCES' , 'Préférences');
 define( '_AM_TH_DATETIME' , 'Date');
 define( '_AM_TH_USER' , 'Utilisateur');
 define( '_AM_TH_IP' , 'IP');
-define( '_AM_TH_IP_BAN' , 'Système IP Ban');
+define( '_AM_TH_IP_BAN' , 'Banned IPs');
 define( '_AM_TH_AGENT' , 'AgentT');
 define( '_AM_TH_TYPE' , 'Type');
 define( '_AM_TH_DESC' , 'Description');
@@ -66,6 +66,9 @@ define( '_AM_ADV_APACHE' , 'The Apache functions are only available when running
 
 
 // Mainfile
+define( '_AM_ADV_MAIN_INFO' , 'Your mainfile.php is properly patched and includes both pre-check and post-check Protector security measures. required postcheck!');
+define( '_AM_ADV_MAIN_DESC' , 'mainfile.php required postcheck!');
+define( '_AM_ADV_MAIN_TIPS' , 'mainfile.php postcheck!');
 define( '_AM_ADV_MAINUNPATCHED' , 'Both pre-check and post-check are required. Refer to the module documentation to edit your mainfile.php');
 define( '_AM_ADV_MAIN_PRECHECK' , 'Missing required precheck!');
 define( '_AM_ADV_MAIN_POSTCHECK' , 'Missing required postcheck!');
@@ -80,7 +83,7 @@ define( '_AM_ADV_TRUSTPATH_DESC' , 'The safest place for the TRUST_PATH is outsi
     If this is not possible, increase security using Apache .htaccess file or equivalent Nginx directives.');
 
 define( '_AM_ADV_TRUSTPATH_TIPS' , 'Create a .htaccess file in your TRUST_PATH directory. Then open the .htaccess file and write this directive "Deny from all"<br>
-    Since Nginx does not have an equivalent to the .htaccess file (i.e. no directory level configuration files), 
+    Since Nginx does not have an equivalent to the .htaccess file (i.e. no directory level configuration files),
     you need to update the main configuration and reload Nginx for any changes to take effect. By default, the configuration file is named <b>nginx.conf</b> and placed in the directory :
     <ul><li><code>/usr/local/nginx/conf</code>
     <li><code>/etc/nginx</code>
@@ -90,10 +93,9 @@ define( '_AM_ADV_TRUSTPATH_TIPS' , 'Create a .htaccess file in your TRUST_PATH d
 
 // allow_url_fopen
 define( '_AM_ADV_FOPEN' , 'Allow url fopen');
-define( '_AM_ADV_FOPEN_ON' , 'It is recommended to turn off <b>allow_url_include</b><br> 
-    This setting allows attackers to execute arbitrary scripts on remote servers.<br>
-    Change this option or claim it to your web hosting service.');
-define( '_AM_ADV_FOPEN_DESC' , '<p>The PHP configuration directive allow_url_fopen is enabled. 
+define( '_AM_ADV_FOPEN_ON' , 'It is recommended to turn off <b>allow_url_include</b><br>
+    This setting allows attackers to execute arbitrary scripts on remote servers. Change this option or claim it to your web hosting service.');
+define( '_AM_ADV_FOPEN_DESC' , '<p>The PHP configuration directive allow_url_fopen is enabled.
     When enabled, this directive allows data retrieval from remote locations, allowing files to be included from external sources
     (web site or FTP server). A large number of code injection vulnerabilities reported in PHP-based web applications are caused by the combination
     of enabling allow_url_fopen and bad input filtering.</p>');
@@ -115,16 +117,14 @@ define( '_AM_ADV_SESSION_TIPS' , 'You can disable <b>session.use_trans_sid</b> f
 
 
 // Database
-define( '_AM_ADV_DBPREFIX_ON' , "It is recommended to change the <b>database prefix</b> !");
-define( '_AM_ADV_DBPREFIX_DESC' , "This setting is a security risk of <b>SQL injection attacks</b> !<br>
-    Sanitizing and validating inputs could prevent some of the most common website attacks.<br>
-    Enable SQL <b>sanitization</b> options in the module's preferences.");
+define( '_AM_ADV_DBPREFIX_ON' , "Changing the default <b>database prefix</b> is recommended for enhanced security and easier multi-site setup.");
+define( '_AM_ADV_DBPREFIX_DESC' , "Default database prefixes are common targets. A custom prefix increases security. Use <b>Database Prefix Manager</b> to backup and change the prefix.");
 define( '_AM_ADV_DBPREFIX_TIPS' , 'You can use the Prefix Manager to manage, save, and modify the database prefix.<br> <a class="button" href="index.php?page=prefix_manager">Prefix manager</a>');
 
 // Database factory
 define( '_AM_ADV_DBFACTORYPATCHED' , 'Your databasefactory is ready for DBLayer Trapping Anti-SQL-Injection');
-define( '_AM_ADV_DBFACTORYUNPATCHED' , 'Your databasefactory is not ready !');
-define( '_AM_ADV_DBFACTORY_ON' , 'Your databasefactory is not ready for DBLayer Trapping anti-SQL-Injection.<br> A patch or update is required !');
+define( '_AM_ADV_DBFACTORYUNPATCHED' , 'Enable Protector to secure your database!');
+define( '_AM_ADV_DBFACTORY_ON' , 'If Protector is enable but your databasefactory is not ready for DBLayer Trapping anti-SQL-Injection, a patch or update is required !');
 define( '_AM_ADV_DBFACTORY_DESC' , 'SQL injection (SQLi) refers to an injection attack wherein an attacker can execute malicious SQL statements that control a web app database server.
     Protector ensures parameterized queries when dealing with SQL queries that contains user input.');
 define( '_AM_ADV_DBFACTORY_TIPS' , 'Parameterized queries allows the database to understand which parts of the SQL query should be considered as user input, therefore solving SQL injection.
@@ -135,7 +135,7 @@ define( '_AM_ADV_SUBTITLECHECK' , "Contrôler Protector");
 define( '_AM_ADV_CHECKCONTAMI' , "Contaminations");
 define( '_AM_ADV_CHECKISOCOM' , "Commentaires Isolés");
 
-// Admin constants v4.0 
+// Admin constants v4.0
 define('_AM_PROTECTOR_EXPORT', 'Export Data');
 define('_AM_PROTECTOR_DOWNLOAD', 'Download');
 define('_AM_PROTECTOR_DOWNLOAD_TXT', 'Download as Text');
@@ -154,6 +154,7 @@ define('_AM_PROTECTOR_UPDATE', 'Update');
 define('_AM_PROTECTOR_UPDATED', 'Settings have been updated');
 define('_AM_PROTECTOR_IMPORT', 'Import Data');
 define('_AM_PROTECTOR_UPLOAD', 'Upload');
+define('_AM_PROTECTOR_EXPORT_TIPS', 'Export your data to a TXT or CSV file so that you can restore them later.');
 define('_AM_PROTECTOR_IMPORT_TIPS', 'Upload a previously exported TXT or CSV file to restore your settings.');
 define('_AM_PROTECTOR_IMPORT_ERROR', 'Error uploading file. Please try again.');
 define('_AM_PROTECTOR_IMPORT_SUCCESS', 'Logs imported successfully.');

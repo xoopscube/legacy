@@ -9,7 +9,7 @@ define( '_MD_A_MYMENU_MYPREFERENCES' , '一般設定');
 define( '_AM_TH_DATETIME' , '日時');
 define( '_AM_TH_USER' , 'ユーザ');
 define( '_AM_TH_IP' , 'IP');
-define( '_AM_TH_IP_BAN' , 'System IP Ban');
+define( '_AM_TH_IP_BAN' , 'Banned IPs');
 define( '_AM_TH_AGENT' , 'AGENT');
 define( '_AM_TH_TYPE' , '種別');
 define( '_AM_TH_DESC' , '詳細');
@@ -114,7 +114,7 @@ define( '_AM_ADV_SUBTITLECHECK' , 'Protectorの動作チェック');
 define( '_AM_ADV_CHECKCONTAMI' , '変数汚染');
 define( '_AM_ADV_CHECKISOCOM' , '孤立コメント');
 
-// Admin constants v4.0 
+// Admin constants v4.0
 define('_AM_PROTECTOR_EXPORT', 'Export Data');
 define('_AM_PROTECTOR_DOWNLOAD', 'Download');
 define('_AM_PROTECTOR_DOWNLOAD_TXT', 'Download as Text');
@@ -133,6 +133,7 @@ define('_AM_PROTECTOR_UPDATE', 'Update');
 define('_AM_PROTECTOR_UPDATED', 'Settings have been updated');
 define('_AM_PROTECTOR_IMPORT', 'Import Data');
 define('_AM_PROTECTOR_UPLOAD', 'Upload');
+define('_AM_PROTECTOR_EXPORT_TIPS', 'Export your data to a TXT or CSV file so that you can restore them later.');
 define('_AM_PROTECTOR_IMPORT_TIPS', 'Upload a previously exported TXT or CSV file to restore your settings.');
 define('_AM_PROTECTOR_IMPORT_ERROR', 'Error uploading file. Please try again.');
 define('_AM_PROTECTOR_IMPORT_SUCCESS', 'Logs imported successfully.');

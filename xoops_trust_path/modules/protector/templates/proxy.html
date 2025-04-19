@@ -1,0 +1,98 @@
+<div class="container">
+    <h2>Web Proxy</h2>
+    
+    <{if $is_admin && $admin_notice != ''}>
+    <div class="alert alert-warning">
+        <strong>Administrator Notice:</strong> <{$admin_notice}>
+        <p>You can enable the proxy in the <a href="<{$xoops_url}>/modules/protector/admin/index.php?page=proxy_settings">module settings</a>.</p>
+    </div>
+    <{/if}>
+
+    <{if $proxy_enabled && $can_use_proxy}>
+    <form action="<{$form_action}>" method="get">
+        <div class="form-group">
+            <label for="url"><{$lang_enter_url}></label>
+            <input type="text" name="url" id="url" class="form-control" placeholder="https://example.com" required>
+        </div>
+        <button type="submit" class="btn btn-primary"><{$lang_access}></button>
+    </form>
+
+    <{if $iframe_url != ''}>
+    <!-- Add this where the iframe is displayed -->
+    <div class="proxy-content">
+        <h3>Proxied Content</h3>
+        
+        <div class="proxy-controls">
+            <a href="<{$original_url}>" target="_blank" class="btn btn-secondary">Open Original URL</a>
+            <a href="<{$iframe_url}>" target="_blank" class="btn btn-primary">Open in New Tab</a>
+        </div>
+        
+        <{if $frame_blocked}>
+        <div class="alert alert-warning">
+            <strong>Note:</strong> This website may have security measures that prevent it from being displayed in an iframe. 
+            Try opening it in a new tab using the button above.
+        </div>
+        <{/if}>
+        
+        <div class="iframe-container">
+            <iframe src="<{$iframe_url}>" width="100%" height="600px" sandbox="allow-same-origin allow-scripts"></iframe>
+        </div>
+    </div>
+    <{/if}>
+    <{elseif !$proxy_enabled}>
+    <div class="alert alert-danger">
+        The proxy service is currently disabled.
+        <{if $is_admin}>
+        <p>As an administrator, you can still use the interface for testing purposes.</p>
+        <form action="<{$form_action}>" method="get">
+            <div class="form-group">
+                <label for="url">Test URL (Admin Only):</label>
+                <input type="text" name="url" id="url" class="form-control" placeholder="https://example.com" required>
+            </div>
+            <button type="submit" class="btn btn-warning">Test Proxy (Admin Only)</button>
+        </form>
+        <{/if}>
+    </div>
+    <{else}>
+    <div class="alert alert-warning">
+        You don't have permission to use the proxy service.
+    </div>
+    <{/if}>
+
+    <{if $is_admin}>
+        <h3>Recent Proxy Requests</h3>
+        <{if $recent_requests|@count > 0}>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>IP</th>
+                    <th>URL</th>
+                    <th>Status</th>
+                    <{if isset($recent_requests[0].title)}><th>Title</th><{/if}>
+                </tr>
+            </thead>
+            <tbody>
+                <{foreach item=request from=$recent_requests}>
+                <tr>
+                    <td><{$request.time}></td>
+                    <td><{$request.ip}></td>
+                    <td><a href="<{$form_action}>?url=<{$request.url|escape:'url'}>"><{$request.url|escape}></a></td>
+                    <td><{$request.status|escape}></td>
+                    <{if isset($request.title)}><td><{$request.title}></td><{/if}>
+                </tr>
+                <{/foreach}>
+            </tbody>
+        </table>
+        <{else}>
+        <div class="alert alert-info">No recent proxy requests found.</div>
+        <{/if}>
+        
+        <div class="admin-controls">
+            <h4>Proxy Administration</h4>
+            <a href="<{$xoops_url}>/modules/protector/admin/index.php?page=proxy_settings" class="btn btn-primary">Proxy Settings</a>
+            <a href="<{$xoops_url}>/modules/protector/admin/index.php?page=proxy_logs" class="btn btn-info">View All Logs</a>
+            <a href="<{$xoops_url}>/modules/protector/admin/index.php?page=permissions" class="btn btn-secondary">Manage Permissions</a>
+        </div>
+    <{/if}>
+</div>

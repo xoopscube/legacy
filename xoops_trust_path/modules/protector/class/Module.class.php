@@ -6,12 +6,18 @@
  * @package    Protector
  * @version    XCL 2.5.0
  * @author     Nuno Luciano aka gigamaster
- * @copyright  (c) 2005-2024 Authors
+ * @copyright  (c) 2024 The XOOPSCube Project
  * @license    GPL v2.0
  */
 
 class Protector_Module extends Legacy_ModuleAdapter
 {
+    /**
+     * Module directory name
+     * @var string
+     */
+    protected $mDirname;
+    
     /**
      * Constructor
      */
@@ -27,7 +33,6 @@ class Protector_Module extends Legacy_ModuleAdapter
     public function getAdminMenu(): array
     {
         // Include the admin_menu.php file which defines the menu
-        $mydirname = $this->mDirname;
         $adminmenu = [];
         include XOOPS_TRUST_PATH . '/modules/' . $this->mDirname . '/admin_menu.php';
         return $adminmenu;
@@ -35,10 +40,18 @@ class Protector_Module extends Legacy_ModuleAdapter
     
     /**
      * Module installation
+     * 
+     * @param XoopsModule|null $module The module to install
+     * @param bool $force Force installation
+     * @return bool Success or failure
      */
-    public function install(): bool
+    public function installModule(?XoopsModule $module = null, bool $force = false): bool
     {
-        $ret = parent::install();
+        // Get the module object from parent if not provided
+        if ($module === null) {
+            // Use the module object from the mXoopsModule property
+            $module = $this->mXoopsModule;
+        }
         
         // Create module tables
         $this->createTables();
@@ -46,7 +59,7 @@ class Protector_Module extends Legacy_ModuleAdapter
         // Set default configs
         $this->setDefaultConfigs();
         
-        return $ret;
+        return true;
     }
     
     /**
@@ -93,6 +106,13 @@ class Protector_Module extends Legacy_ModuleAdapter
         $module_handler = xoops_getHandler('module');
         $module = $module_handler->getByDirname($this->mDirname);
         
+        // Check if module was found
+        if (!$module) {
+            // Log error or throw exception
+            trigger_error("Could not find module with dirname: {$this->mDirname}");
+            return;
+        }
+        
         // Default configs
         $configs = [
             'global_disabled' => 0,
@@ -117,7 +137,20 @@ class Protector_Module extends Legacy_ModuleAdapter
             'enable_only_admin_groups' => '1',
             'enable_only_admin_page' => 'index.php,admin.php',
             'enable_only_admin_hosts' => '127.0.0.1',
-            'enable_only_admin_message' => 'Site maintenance in progress. Please come back later.'
+            'enable_only_admin_message' => 'Site maintenance in progress. Please come back later.',
+            // CSP related configs
+            'enable_csp' => 0,
+            'csp_report_only' => 1,
+            'csp_default_src' => "'self'",
+            'csp_script_src' => "'self' 'unsafe-inline' 'unsafe-eval'",
+            'csp_style_src' => "'self' 'unsafe-inline'",
+            'csp_img_src' => "'self' data:",
+            'csp_connect_src' => "'self'",
+            'csp_font_src' => "'self'",
+            'csp_media_src' => "'self'",
+            'csp_frame_src' => "'self'",
+            'csp_report_uri' => 'modules/protector/csp-report.php',
+            'csp_log_max_entries' => 1000
         ];
         
         // Create config objects and save

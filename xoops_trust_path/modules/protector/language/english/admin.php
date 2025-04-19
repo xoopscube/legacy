@@ -1,15 +1,14 @@
 <?php
 
 // Altsys admin menu and breadcrumbs
-define( '_MD_A_MYMENU_MYTPLSADMIN' , 'Templates');
-define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Permissions');
-define( '_MD_A_MYMENU_MYPREFERENCES' , 'Preferences');
+define( '_MI_PROTECTOR_ADMENU_MYLANGADMIN' , 'Language');
+define( '_MI_PROTECTOR_ADMENU_MYTPLSADMIN' , 'Templates');
 
 // Headings
 define( '_AM_TH_DATETIME' , 'Time');
 define( '_AM_TH_USER' , 'User');
 define( '_AM_TH_IP' , 'IP');
-define( '_AM_TH_IP_BAN' , 'System IP Ban');
+define( '_AM_TH_IP_BAN' , 'Banned IPs');
 define( '_AM_TH_AGENT' , 'AGENT');
 define( '_AM_TH_TYPE' , 'Type');
 define( '_AM_TH_DESC' , 'Description');
@@ -20,8 +19,7 @@ define( '_AM_PAGE_PREV' , 'Previous');
 define( '_AM_PAGE_NEXT' , 'Next');
 define( '_AM_CLEARLOG' , 'Clear log');
 
-
-define( '_AM_TH_BADIPS' , 'Bad IPs<br><br>Write each IP address in a different line.<br>Blank means all IPs are allowed<br>The abbreviation of IPv6 address "::" and abbreviation of "0" can not be used.');
+define( '_AM_TH_BADIPS' , 'The list of banned IPs<br><br>Write each IP address in a different line.<br>Blank means all IPs are allowed<br>The abbreviation of IPv6 address "::" and abbreviation of "0" can not be used.');
 define( '_AM_TH_GROUP1IPS' , 'Allowed IPs for Group=1<br><br>Write each IP address in a different line.<br>The abbreviation of IPv6 address "::" and abbreviation of "0" can not be used.<br>192.168. means 192.168.*<br>Blank means all IPs are allowed</span>');
 
 define( '_AM_LABEL_COMPACTLOG' , 'Compact log');
@@ -43,24 +41,26 @@ define( '_AM_FMT_CONFIGSNOTWRITABLE' , 'Turn the configs directory writable: %s'
 define( '_AM_H3_PREFIXMAN' , 'Prefix Manager');
 define( '_AM_MSG_DBUPDATED' , 'Database Updated Successfully!');
 define( '_AM_CONFIRM_DELETE' , 'All data will be dropped. Do you want to proceed ?');
-define( '_AM_TXT_HOWTOCHANGEDB' , "To change the database prefix, edit the file :<br><code>%s/mainfile.php </code><br><br>define('XOOPS_DB_PREFIX', '<b>%s</b>');");
+define( '_AM_TXT_HOWTOCHANGEDB' , "<p>Modifying the database prefix requires editing the file :</p><p><code>%s/mainfile.php </code><br><code class='lang-php'>define('XOOPS_DB_PREFIX', '<b>%s</b>');</code></p>");
 
 
 // advisory.php
 define( '_AM_ADV_NOTSECURE' , 'Not secure');
 define( '_AM_ADV_TITLE' , 'Protector Security Advisor');
-define( '_AM_ADV_TITLE_TIP' , 'Protector Security Advisor can make a set of security checks and detect potential security risks.<br>
-    Moreover, you can get recommendations as well as remediation methods for the detected security risks.');
+define( '_AM_ADV_TITLE_TIP' , 'Protector Security Advisor audits your system configuration for potential security risks and vulnerabilities, offering recommendations and fixes to improve the site security.');
 define( '_AM_ADV_NGINX' , 'You should keep in mind, that NginX does not manage php processes like Apache and you might need to configure either php-fpm, or php-cgi');
 define( '_AM_ADV_NGINX_VAR' , 'Server software var dump');
 define( '_AM_ADV_SERVER' , 'Server Software');
-define( '_AM_ADV_ENV' , 'The entries in this table are created by the web server. There is no guarantee that every web server will provide any of these.
-    servers may omit some, or provide others not listed here. These variables are accounted for in the » CGI/1.1 specification, so you should be able to expect those.');
+define( '_AM_ADV_ENV' , 'The web server creates the entries bellow. However, not all web servers guarantee to provide every listed variable; 
+some may omit entries or include others not shown. You can generally expect the variables defined in the CGI/1.1 specification to be present.');
 define( '_AM_ADV_ENV_LABEL' , 'Server and execution environment information');
 define( '_AM_ADV_APACHE' , 'The Apache functions are only available when running PHP as an Apache module.<br>
     Furthermore, some web servers configuration might not return the value for');
 
 // Mainfile
+define( '_AM_ADV_MAIN_INFO' , 'Your mainfile.php is properly patched and includes both pre-check and post-check Protector security measures. required postcheck!');
+define( '_AM_ADV_MAIN_DESC' , 'mainfile.php required postcheck!');
+define( '_AM_ADV_MAIN_TIPS' , 'mainfile.php postcheck!');
 define( '_AM_ADV_MAINUNPATCHED' , 'Both pre-check and post-check are required. Refer to the module documentation to edit your mainfile.php');
 define( '_AM_ADV_MAIN_PRECHECK' , 'Missing required precheck!');
 define( '_AM_ADV_MAIN_POSTCHECK' , 'Missing required postcheck!');
@@ -73,7 +73,7 @@ define( '_AM_ADV_TRUSTPATH_PUBLIC' , 'TRUST_PATH is not installed properly if th
 define( '_AM_ADV_TRUSTPATH_DESC' , 'The safest place for the TRUST_PATH is outside of public DocumentRoot.<br>
     If this is not possible, increase security using Apache .htaccess file or equivalent Nginx directives.');
 define( '_AM_ADV_TRUSTPATH_TIPS' , 'Create a .htaccess file in your TRUST_PATH directory. Then open the .htaccess file and write this directive "Deny from all"<br>
-    Since Nginx does not have an equivalent to the .htaccess file (i.e. no directory level configuration files), 
+    Since Nginx does not have an equivalent to the .htaccess file (i.e. no directory level configuration files),
     you need to update the main configuration and reload Nginx for any changes to take effect. By default, the configuration file is named <b>nginx.conf</b> and placed in the directory :
     <ul><li><code>/usr/local/nginx/conf</code>
     <li><code>/etc/nginx</code>
@@ -82,10 +82,9 @@ define( '_AM_ADV_TRUSTPATH_TIPS' , 'Create a .htaccess file in your TRUST_PATH d
 
 // allow_url_fopen
 define( '_AM_ADV_FOPEN' , 'Allow url fopen');
-define( '_AM_ADV_FOPEN_ON' , 'It is recommended to turn off <b>allow_url_include</b><br> 
-    This setting allows attackers to execute arbitrary scripts on remote servers.<br>
-    Change this option or claim it to your web hosting service.');
-define( '_AM_ADV_FOPEN_DESC' , '<p>The PHP configuration directive allow_url_fopen is enabled. 
+define( '_AM_ADV_FOPEN_ON' , 'It is recommended to turn off <b>allow_url_include</b><br>
+    This setting allows attackers to execute arbitrary scripts on remote servers. Change this option or claim it to your web hosting service.');
+define( '_AM_ADV_FOPEN_DESC' , '<p>The PHP configuration directive allow_url_fopen is enabled.
     When enabled, this directive allows data retrieval from remote locations, allowing files to be included from external sources
     (web site or FTP server). A large number of code injection vulnerabilities reported in PHP-based web applications are caused by the combination
     of enabling allow_url_fopen and bad input filtering.</p>');
@@ -109,16 +108,14 @@ define( '_AM_ADV_SESSION_TIPS' , 'You can disable <b>session.use_trans_sid</b> f
     <b>session.use_trans_sid , "off"</b>');
 
 // Database
-define( '_AM_ADV_DBPREFIX_ON' , "It is recommended to change the <b>database prefix</b> !");
-define( '_AM_ADV_DBPREFIX_DESC' , "This setting is a security risk of <b>SQL injection attacks</b> !<br>
-    Sanitizing and validating inputs could prevent some of the most common website attacks.<br>
-    Enable SQL <b>sanitization</b> options in the module's preferences.");
+define( '_AM_ADV_DBPREFIX_ON' , "Changing the default <b>database prefix</b> is recommended for enhanced security and easier multi-site setup.");
+define( '_AM_ADV_DBPREFIX_DESC' , "Default database prefixes are common targets. A custom prefix increases security. Use <b>Database Prefix Manager</b> to backup and change the prefix.");
 define( '_AM_ADV_DBPREFIX_TIPS' , 'You can use the Prefix Manager to manage, save, and modify the database prefix.<br> <a class="button" href="index.php?page=prefix_manager">Prefix manager</a>');
 
 // Database factory
 define( '_AM_ADV_DBFACTORYPATCHED' , 'Your databasefactory is ready for DBLayer Trapping Anti-SQL-Injection');
-define( '_AM_ADV_DBFACTORYUNPATCHED' , 'Your databasefactory is not ready !');
-define( '_AM_ADV_DBFACTORY_ON' , 'Your databasefactory is not ready for DBLayer Trapping anti-SQL-Injection.<br> A patch or update is required !');
+define( '_AM_ADV_DBFACTORYUNPATCHED' , 'Enable Protector to secure your database!');
+define( '_AM_ADV_DBFACTORY_ON' , 'If Protector is enable but your databasefactory is not ready for DBLayer Trapping anti-SQL-Injection, a patch or update is required !');
 define( '_AM_ADV_DBFACTORY_DESC' , 'SQL injection (SQLi) refers to an injection attack wherein an attacker can execute malicious SQL statements that control a web app database server.
     Protector ensures parameterized queries when dealing with SQL queries that contains user input.');
 define( '_AM_ADV_DBFACTORY_TIPS' , 'Parameterized queries allows the database to understand which parts of the SQL query should be considered as user input, therefore solving SQL injection.
@@ -129,7 +126,7 @@ define( '_AM_ADV_SUBTITLECHECK' , 'Test Protector Security');
 define( '_AM_ADV_CHECKCONTAMI' , 'Prevent injection vulnerabilities');
 define( '_AM_ADV_CHECKISOCOM' , 'Prevent isolated comments');
 
-// Admin constants v4.0 
+// Admin constants v4.0
 define('_AM_PROTECTOR_EXPORT', 'Export Data');
 define('_AM_PROTECTOR_DOWNLOAD', 'Download');
 define('_AM_PROTECTOR_DOWNLOAD_TXT', 'Download as Text');
@@ -148,9 +145,15 @@ define('_AM_PROTECTOR_UPDATE', 'Update');
 define('_AM_PROTECTOR_UPDATED', 'Settings have been updated');
 define('_AM_PROTECTOR_IMPORT', 'Import Data');
 define('_AM_PROTECTOR_UPLOAD', 'Upload');
+define('_AM_PROTECTOR_EXPORT_TIPS', 'Export your data to a TXT or CSV file so that you can restore them later.');
 define('_AM_PROTECTOR_IMPORT_TIPS', 'Upload a previously exported TXT or CSV file to restore your settings.');
 define('_AM_PROTECTOR_IMPORT_ERROR', 'Error uploading file. Please try again.');
 define('_AM_PROTECTOR_IMPORT_SUCCESS', 'Logs imported successfully.');
+
+// Advisory test
+define('_AM_ADV_PROTECTION_DISABLED', 'Protector module is installed but protection is globally disabled!');
+define('_AM_ADV_PROTECTION_DISABLED_INFO', 'The Protector module is installed and the database factory is patched, but protection is disabled in the module configuration.');
+define('_AM_ADV_PROTECTION_DISABLED_TIPS', 'If this is a production site, it is recommended to enable protection by setting "All protections are temporary disabled" to "No" in the module preferences.');
 
 // Threat Intelligence
 define('_AM_PROTECTOR_THREAT_INTELLIGENCE', 'Threat Intelligence');
@@ -193,3 +196,51 @@ define('_AM_PROTECTOR_CACHE_1HOUR', '1 Hour');
 define('_AM_PROTECTOR_CACHE_6HOURS', '6 Hours');
 define('_AM_PROTECTOR_CACHE_1DAY', '1 Day');
 define('_AM_PROTECTOR_CACHE_1WEEK', '1 Week');
+
+// Notification section
+define('_AM_PROTECTOR_NOTIFICATIONS', 'Notifications');
+define('_AM_PROTECTOR_NOTIFICATIONS_DESC', 'Protector can send notifications when security events or proxy access attempts occur.');
+define('_AM_PROTECTOR_NOTIFICATIONS_AVAILABLE', 'Available Notifications');
+define('_AM_PROTECTOR_NOTIFICATIONS_ADMINS', 'Security threats will automatically trigger notifications to all administrators and webmasters.<br>To manage email delivery of these alerts, check your profile preferences ("Notification Method")<br>or the module message ("settings").');
+define('_AM_PROTECTOR_NOTIFY_SECURITY_EVENTS', 'Security Events');
+define('_AM_PROTECTOR_NOTIFY_SECURITY_EVENTS_DESC', 'Receive notifications when security threats are detected');
+define('_AM_PROTECTOR_NOTIFY_PROXY_EVENTS', 'Proxy Access');
+define('_AM_PROTECTOR_NOTIFY_PROXY_EVENTS_DESC', 'Receive notifications when someone uses the web proxy');
+define('_AM_PROTECTOR_NOTIFICATIONS_MANAGE', 'Manage Your Notifications');
+define('_AM_PROTECTOR_MANAGE_NOTIFICATIONS', 'Manage Notifications');
+define('_AM_PROTECTOR_SUBSCRIBE_ADMINS', 'Subscribe All Webmasters to Notifications');
+define('_AM_PROTECTOR_ADMINS_SUBSCRIBED', 'All webmasters have been subscribed to security notifications.');
+define('_AM_PROTECTOR_SUBSCRIPTION_ERROR', 'There was an error subscribing some users to notifications.');
+
+// Notification tabs and tests
+
+define('_AM_PROTECTOR_NOTIFICATION_SUBSCRIBE', 'Subscribe Admins');
+define('_AM_PROTECTOR_NOTIFICATION_TEST', 'Test Notifications');
+define('_AM_PROTECTOR_NOTIFICATION_TEST_DESC', 'Click on a button below to trigger the notification system for different threat levels.');
+define('_AM_PROTECTOR_NOTIFICATION_SENT', 'Test notification for level %d has been sent. Check your email.');
+
+// CSP Violations
+define('_AM_PROTECTOR_CSP_VIOLATIONS', 'Content Security Policy Violations');
+define('_AM_PROTECTOR_CSP_DISABLED', 'Content Security Policy is currently disabled. Enable it in module preferences.');
+define('_AM_PROTECTOR_CSP_NO_VIOLATIONS', 'No CSP violations have been reported.');
+define('_AM_PROTECTOR_CSP_CLEAR_ALL', 'Clear All Violations');
+define('_AM_PROTECTOR_CSP_CONFIRM_CLEAR', 'Are you sure you want to delete all CSP violation reports?');
+define('_AM_PROTECTOR_CSP_CLEARED', 'All CSP violations have been cleared.');
+define('_AM_PROTECTOR_CSP_DELETED', 'CSP violation has been deleted.');
+define('_AM_PROTECTOR_CSP_INVALID_ID', 'Invalid violation ID.');
+define('_AM_PROTECTOR_CSP_NOT_FOUND', 'CSP violation not found.');
+define('_AM_PROTECTOR_CSP_VIEW_TITLE', 'CSP Violation Details');
+define('_AM_PROTECTOR_CSP_TIME', 'Time');
+define('_AM_PROTECTOR_CSP_IP', 'IP Address');
+define('_AM_PROTECTOR_CSP_DOCUMENT_URI', 'Document URI');
+define('_AM_PROTECTOR_CSP_VIOLATED_DIRECTIVE', 'Violated Directive');
+define('_AM_PROTECTOR_CSP_BLOCKED_URI', 'Blocked URI');
+define('_AM_PROTECTOR_CSP_SOURCE_FILE', 'Source File');
+define('_AM_PROTECTOR_CSP_LINE_NUMBER', 'Line Number');
+define('_AM_PROTECTOR_CSP_COLUMN_NUMBER', 'Column Number');
+define('_AM_PROTECTOR_CSP_REFERRER', 'Referrer');
+define('_AM_PROTECTOR_CSP_USER_AGENT', 'User Agent');
+define('_AM_PROTECTOR_CSP_ACTIONS', 'Actions');
+define('_AM_PROTECTOR_CSP_VIEW', 'View');
+define('_AM_PROTECTOR_CSP_DELETE', 'Delete');
+define('_AM_PROTECTOR_BACK', 'Back');

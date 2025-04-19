@@ -5,7 +5,7 @@
  * @package    Protector
  * @version    XCL 2.5.0
  * @author     Nuno Luciano aka gigamaster
- * @copyright  (c) 2005-2024 Authors
+ * @copyright  (c) 2024 The XOOPSCube Project
  * @license    GPL v2.0
  */
 
@@ -163,7 +163,7 @@ echo '</div>';
 // Display form
 echo '<form action="index.php?page=threat_intelligence" method="post">';
 echo $xoopsGTicket->getTicketHtml('protector_admin');
-echo '<input type="hidden" name="action" value="test_httpbl">';
+echo '<input type="hidden" name="action" value="update_ti_config">';
 
 // HTTP:BL Settings
 echo '<table class="outer" width="100%">';

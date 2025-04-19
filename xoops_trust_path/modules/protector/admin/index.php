@@ -1,4 +1,13 @@
 <?php
+/**
+ * Protector Admin Dashboard
+ *
+ * @package    Protector
+ * @version    XCL 2.5.0
+ * @author     Nuno Luciano aka gigamaster
+ * @copyright  (c) 2024 The XOOPSCube Project
+ * @license    GPL v2.0
+ */
 
 require_once '../../../mainfile.php';
 require_once XOOPS_ROOT_PATH . '/include/cp_functions.php';
@@ -38,8 +47,25 @@ switch ($page) {
     case 'safe_list':
         include __DIR__ . '/safe_list.php';
         break;
+// Proxy
+    case 'proxy_settings':
+        include __DIR__ . '/proxy_settings.php';
+        break;
+    case 'proxy_plugins':
+        include __DIR__ . '/proxy_plugins.php';
+        break;
+    case 'proxy_logs':
+        include __DIR__ . '/proxy_logs.php';
+        break;
+// HTTP:BL
     case 'threat_intelligence':
         include __DIR__ . '/threat_intelligence.php';
+        break;
+    case 'permissions':
+        include __DIR__ . '/permissions.php';
+        break;
+    case 'csp_violations':
+        include __DIR__ . '/csp_violations.php';
         break;
     case 'dashboard':
     default:

@@ -16,17 +16,16 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 
 	// Menu
 	define( $constpref . '_DASHBOARD', 'Dashboard' );
-	define( $constpref . '_ADMININDEX', 'IPセーフリスト' );
 	define( $constpref . '_ADVISORY', 'セキュリティガイド' );
-	define( $constpref . '_LOGLIST', 'Log List' );
+	define( $constpref . '_LOGLIST', 'Security Log' );
 	define( $constpref . '_LOGCLEARED', 'Log Cleared' );
-	define( $constpref . '_IPBAN', 'IP Ban Advisor' );
+	define( $constpref . '_IPBAN', 'Banned IPs' );
 	define( $constpref . '_PREFIXMANAGER', 'DBプレフィックス ' );
-	define( $constpref . '_SAFELIST', 'Safe List' );
+	define( $constpref . '_SAFELIST', 'IPセーフリスト' );
 	define( $constpref . '_ADMENU_MYBLOCKSADMIN', 'アクセス権限' );
 
 	// Configs
-	define( $constpref . '_GLOBAL_DISBL', '動作の一時的中断' );
+	define( $constpref . '_GLOBAL_DISBL', '<h5>🚧 動作の一時的中断</h5>' );
 	define( $constpref . '_GLOBAL_DISBLDSC', 'あらゆる防御動作を一時的に無効化します。<br>問題が解決されたら無効化を解除することをお忘れなく' );
 
 	define( $constpref . '_DEFAULT_LANG', 'サイトのデフォルト言語' );
