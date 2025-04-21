@@ -9,8 +9,8 @@
 // Manifesto
 $modversion['dirname']          = 'stdCache';
 $modversion['name']             = _MI_STDCACHE_NAME;
-$modversion['version']          = '2.40';
-$modversion['detailed_version'] = '2.40.0';
+$modversion['version']          = '2.50';
+$modversion['detailed_version'] = '2.50.0';
 $modversion['description']      = _MI_STDCACHE_NAME_DESC;
 $modversion['author']           = 'The XOOPSCube Project';
 $modversion['credits']          = 'The XOOPSCube Project';

@@ -3,9 +3,9 @@
  * Sitemap block map and address
  * Customize block with map and address
  * @package    Sitemap
- * @version    2.4.0
+ * @version    2.5.0
  * @author     gigamaster, 2020 XCL/PHP7
- * @copyright  (c) 2005-2024 Authors
+ * @copyright  (c) 2005-2025 Authors
  * @license    https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
  */
 

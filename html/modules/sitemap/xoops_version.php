@@ -3,18 +3,18 @@
  * Sitemap
  * Automated Sitemap and XML file for search engines
  * @package    Sitemap
- * @version    2.4.0
+ * @version    2.5.0
  * @author     Gigamaster, 2020 XCL PHP7
  * @author     chanoir
- * @copyright  (c) 2005-2024 Authors
+ * @copyright  (c) 2005-2025 Authors
  * @license    GPL V2.0
  */
 
 // Manifesto
 $modversion['dirname']          = 'sitemap';
 $modversion['name']             = _MI_SITEMAP_NAME;
-$modversion['version']          = '2.40';
-$modversion['detailed_version'] = '2.40.0';
+$modversion['version']          = '2.50';
+$modversion['detailed_version'] = '2.50.0';
 $modversion['description']      = _MI_SITEMAP_DESC;
 $modversion['author']           = 'chanoir';
 $modversion['credits']          = 'The XOOPSCube Project';
