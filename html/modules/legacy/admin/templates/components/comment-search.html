@@ -32,7 +32,7 @@
     <select name="com_status" id="com_status">
         <option value="0"><{$smarty.const._AD_LEGACY_LANG_ALL_STATUS}></option>
         <{foreach item=status from=$statusArr}>
-        <{if $pageNavi->mExtra.com_status == $status->get('id')}>
+        <{if isset($pageNavi->mExtra.com_status) && $pageNavi->mExtra.com_status == $status->get('id')}>
         <option value="<{$status->getShow('id')}>" selected="selected"><{$status->getShow('name')}></option>
         <{else}>
         <option value="<{$status->getShow('id')}>"><{$status->getShow('name')}></option>

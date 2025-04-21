@@ -267,7 +267,7 @@ class Legacy_ModulePhasedUpgrader
     {
         $handler =& xoops_gethandler('module');
         if ($handler->insert($module)) {
-            $this->mLog->addReport('XoopsModule is updated.');
+            $this->mLog->addReport('XCL Module is updated.');
         } else {
             $this->mLog->addError('Could not update module information.');
         }

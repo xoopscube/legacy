@@ -15,6 +15,7 @@
     border-radius   : var(--border-radius);
     box-shadow      : var(--shadow-2);
     display         : grid;
+    font-size       : 0.875rem;
     justify-content : center;
     grid-gap        : 0.25em;
     grid-template-columns: repeat(auto-fit, minmax(Min(11em, 100%), 1fr));
@@ -22,7 +23,7 @@
     margin          : 2em 0;
     padding         : var(--space-4);
     position        : sticky;
-    top             : 110px;
+    top             : 100px;
     z-index         : var(--z-above);
 }
 .adminavi .adminavi-item {

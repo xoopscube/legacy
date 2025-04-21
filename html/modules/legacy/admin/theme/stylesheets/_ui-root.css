@@ -243,7 +243,7 @@ Usage with color var:
     --breadcrumbs-color     : var( --theme-color, var( --link ) );
     --breadcrumbs-radius	: var( --border-radius );
     --breadcrumbs-shadow    : var( --shadow-2 );
-    --breadcrumbs-padding   : var( --space-5 ) var( --space-6 );
+    --breadcrumbs-padding   : var( --space-4 );
     --breadcrumbs-margin    : var( --space-3 ) 0; /* Top & Bottom, '0' for Left & Right*/
     --breadcrumbs-bg-link   : var( --button-bg); /* var( --button-bg ); */
 
@@ -290,7 +290,7 @@ Usage with color var:
 
     /* -------------------- --------------------  CARD-FULL */
 
-    --card-full-bg          : var( --layer-4 );
+    --card-full-bg          : var( --layer-3 );
     --card-full-border      : 1px solid var( --layer-4);
     --card-full-radius      : var( --border-radius );
     --card-full-padding     : var( --space-6 );

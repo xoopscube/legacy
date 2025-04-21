@@ -27,13 +27,14 @@
     <{xoops_token form=$actionForm}>
     <{xoops_input type=hidden name=confirm value=1}>
     <table class="outer">
-        <tr>
+        <thead><tr>
             <th><{$smarty.const._AD_LEGACY_LANG_ID}></th>
             <th><{$smarty.const._MD_LEGACY_LANG_CODE}></th>
             <th><{$smarty.const._MD_LEGACY_LANG_EMOTION}></th>
             <th><{$smarty.const._AD_LEGACY_LANG_DISPLAY}></th>
             <th><{$smarty.const._DELETE}></th>
-        </tr>
+        </tr></thead>
+        <tbody>
 
         <{foreach item=sid from=$sids}>
         <tr>
@@ -96,11 +97,12 @@
             </td>
         </tr>
         <{/foreach}>
-        <tr>
+        </tbody>
+        <tfoot><tr>
             <td colspan="5">
                 <input class="button-cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <input class="button-update" type="submit" value="<{$smarty.const._AD_LEGACY_LANG_UPDATE}>">
             </td>
-        </tr>
+        </tr></tfoot>
     </table>
 </form>

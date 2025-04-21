@@ -91,6 +91,8 @@ class Legacy_CommentListAction extends Legacy_AbstractListAction
         $render->setAttribute('statusArr', $statusArr);
         $render->setAttribute('filterForm', $this->mFilter);
         $render->setAttribute('pageArr', $this->mpageArr);
+        // Add the actionForm to the template
+        $render->setAttribute('actionForm', $this->mActionForm);
 
         $comment_handler =& $this->_getHandler();
         $comment_total = $comment_handler->getCount();

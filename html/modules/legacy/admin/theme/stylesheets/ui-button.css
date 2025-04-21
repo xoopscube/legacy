@@ -180,7 +180,7 @@ nav.ui-breadcrumbs a,
     background-color    : var( --button-bg     );
     border              : var( --button-border );
     border-radius       : var( --button-radius );
-    box-shadow          : var( --button-shadow );
+    /* box-shadow          : var( --button-shadow ); */
     color               : var( --button-color  )!important;
     cursor              : pointer;
     display             : inline-block;
