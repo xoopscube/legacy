@@ -121,7 +121,7 @@ $modversion['config'][]= [
     'description' => '_MI_LR_META_COPYRIGHT_DESC',
     'formtype'    => 'textbox',
     'valuetype'   => 'text',
-    'default'     => 'Copyright &copy; 2002-2024'
+    'default'     => 'Copyright &copy; 2002-2025'
 ];
 
 // Meta Webmaster Tools
