@@ -5,12 +5,15 @@
  * @package    Protector
  * @version    XCL 2.5.0
  * @author     Nuno Luciano aka gigamaster
- * @copyright  (c) 2024 The XOOPSCube Project
+ * @copyright  (c) 2025 The XOOPSCube Project
  * @license    GPL v2.0
  */
 
-require_once '../../../mainfile.php';
-require_once XOOPS_ROOT_PATH . '/include/cp_header.php';
+// require_once '../../../mainfile.php';
+// require_once XOOPS_ROOT_PATH . '/include/cp_header.php';
+
+// Include header
+xoops_cp_header();
 
 // Check admin permission
 if (!is_object($xoopsUser) || !$xoopsUser->isAdmin()) {

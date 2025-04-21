@@ -39,7 +39,7 @@ define( '_AM_FMT_CONFIGSNOTWRITABLE' , 'Turn the configs directory writable: %s'
 
 // prefix_manager.php
 define( '_AM_H3_PREFIXMAN' , 'Prefix Manager');
-define( '_AM_MSG_DBUPDATED' , 'Database Updated Successfully!');
+define( '_AM_MSG_DBUPDATED' , 'Database tables have been created with the new prefix.');
 define( '_AM_CONFIRM_DELETE' , 'All data will be dropped. Do you want to proceed ?');
 define( '_AM_TXT_HOWTOCHANGEDB' , "<p>Modifying the database prefix requires editing the file :</p><p><code>%s/mainfile.php </code><br><code class='lang-php'>define('XOOPS_DB_PREFIX', '<b>%s</b>');</code></p>");
 
@@ -244,3 +244,39 @@ define('_AM_PROTECTOR_CSP_ACTIONS', 'Actions');
 define('_AM_PROTECTOR_CSP_VIEW', 'View');
 define('_AM_PROTECTOR_CSP_DELETE', 'Delete');
 define('_AM_PROTECTOR_BACK', 'Back');
+
+// Prefix Manager
+define('_AM_H3_PREFIXMANAGER', 'Database Prefix Manager');
+define('_AM_TXT_PREFIXMANAGER', 'Manage your database prefix for security or multiple installations. You can change the prefix or create backups of your database.');
+define('_AM_H3_CURRENTPREFIX', 'Current Database Prefix');
+define('_AM_LABEL_CURRENTPREFIX', 'Current Prefix');
+define('_AM_LABEL_TABLECOUNT', 'Number of Tables');
+define('_AM_H3_CHANGEPREFIX', 'Change Database Prefix');
+define('_AM_MSG_CHANGEPREFIX_WARNING', 'WARNING: Changing the database prefix is a sensitive operation. Make sure to backup your database before proceeding.');
+define('_AM_LABEL_NEWPREFIX', 'New Prefix');
+define('_AM_TXT_PREFIXPATTERN', 'Only alphanumeric characters and underscores are allowed.');
+define('_AM_BUTTON_CHANGEPREFIX', 'Change Prefix');
+define('_AM_H3_BACKUPDB', 'Backup Database');
+define('_AM_TXT_BACKUPDB', 'Create a backup of your database tables with the specified prefix.');
+define('_AM_LABEL_PREFIXTOBACKUP', 'Prefix to Backup');
+define('_AM_BUTTON_BACKUP_SQL_TOOLTIP', 'Download as SQL');
+define('_AM_BUTTON_BACKUP_ZIP_TOOLTIP', 'Download as ZIP');
+define('_AM_BUTTON_BACKUP_TGZ_TOOLTIP', 'Download as TGZ');
+define('_AM_H3_CONFIRMCHANGE', 'Confirm Prefix Change');
+define('_AM_MSG_CONFIRMCHANGE_TITLE', 'Are you sure you want to change the database prefix?');
+define('_AM_MSG_CONFIRMCHANGE_DESC', 'This operation will create new tables with the new prefix. The original tables will remain untouched. You should verify the new tables and update your configuration manually.');
+define('_AM_H3_AFFECTEDTABLES', 'Tables that will be affected');
+define('_AM_BUTTON_EXECUTE_CHANGE', 'Execute Change');
+define('_AM_BUTTON_CANCEL', 'Cancel');
+
+define('_AM_H3_BACKUPLOGS', 'Backup Operation Logs');
+define('_AM_TXT_NOLOGS', 'No backup logs available.');
+define('_AM_TH_TIMESTAMP', 'Time');
+define('_AM_TH_OPERATION', 'Operation');
+define('_AM_TH_PREFIX', 'Prefix');
+define('_AM_TH_STATUS', 'Status');
+define('_AM_STATUS_SUCCESS', 'Success');
+define('_AM_STATUS_ERROR', 'Error');
+define('_AM_TH_MESSAGE', 'Message');
+define('_AM_BUTTON_CLEAR_LOGS', 'Clear Logs');
+

@@ -62,7 +62,7 @@
     <{if $is_admin}>
         <h3>Recent Proxy Requests</h3>
         <{if $recent_requests|@count > 0}>
-        <table class="table">
+        <table class="outer">
             <thead>
                 <tr>
                     <th>Time</th>
@@ -90,9 +90,9 @@
         
         <div class="admin-controls">
             <h4>Proxy Administration</h4>
-            <a href="<{$xoops_url}>/modules/protector/admin/index.php?page=proxy_settings" class="btn btn-primary">Proxy Settings</a>
-            <a href="<{$xoops_url}>/modules/protector/admin/index.php?page=proxy_logs" class="btn btn-info">View All Logs</a>
-            <a href="<{$xoops_url}>/modules/protector/admin/index.php?page=permissions" class="btn btn-secondary">Manage Permissions</a>
+            <a href="<{$xoops_url}>/modules/protector/admin/index.php?page=proxy_settings" class="button outline">Proxy Settings</a>
+            <a href="<{$xoops_url}>/modules/protector/admin/index.php?page=proxy_logs" class="btn outline">View All Logs</a>
+            <a href="<{$xoops_url}>/modules/protector/admin/index.php?page=permissions" class="btn outline">Manage Permissions</a>
         </div>
     <{/if}>
 </div>

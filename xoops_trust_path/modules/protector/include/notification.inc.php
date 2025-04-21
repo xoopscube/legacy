@@ -5,7 +5,7 @@
  * @package    Protector
  * @version    XCL 2.5.0
  * @author     Nuno Luciano aka gigamaster
- * @copyright  (c) 2024 The XOOPSCube Project
+ * @copyright  (c) 2025 The XOOPSCube Project
  * @license    GPL v2.0
  */
 
@@ -61,9 +61,8 @@ function protector_send_security_notification($threat_type, $threat_desc, $ip = 
     // Get notification handler
     $notification_handler = xoops_gethandler('notification');
     
-    // Try to directly insert a notification message for all subscribed users
     try {
-        // First, get all users subscribed to this event
+        // Get all users subscribed to this event
         $sql = "SELECT not_uid FROM " . $db->prefix('xoopsnotifications') . " 
                 WHERE not_modid = " . $module_id . " 
                 AND not_category = 'global' 
@@ -79,6 +78,7 @@ function protector_send_security_notification($threat_type, $threat_desc, $ip = 
             $subscribers[] = $row['not_uid'];
         }
         
+        // If no subscribers, don't try to send notifications
         if (empty($subscribers)) {
             return false;
         }
@@ -96,12 +96,10 @@ function protector_send_security_notification($threat_type, $threat_desc, $ip = 
         $message .= "Description: {$threat_desc}\n\n";
         $message .= "You can manage your notifications at: " . XOOPS_URL . "/notifications.php";
         
-        // Try both methods - standard notification trigger and direct message insertion
-        
-        // Method 1: Standard notification trigger
-        $notification_handler->triggerEvent('global', 0, 'security_threat', $tags);
-        
-        // Method 2: Direct message insertion
+        // FIX: Skip the standard notification trigger which is causing the error
+        // $notification_handler->triggerEvent('global', 0, 'security_threat', $tags);
+
+        // Send direct message
         foreach ($subscribers as $uid) {
             // Check if the message_users table has an entry for this user
             $check_sql = "SELECT * FROM " . $db->prefix('message_users') . " WHERE uid = " . $uid;
@@ -127,6 +125,8 @@ function protector_send_security_notification($threat_type, $threat_desc, $ip = 
         
         return true;
     } catch (Exception $e) {
+        // Log the error for debugging
+        error_log('Protector notification error: ' . $e->getMessage());
         return false;
     }
 }

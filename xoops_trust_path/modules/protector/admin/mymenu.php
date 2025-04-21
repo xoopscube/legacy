@@ -6,7 +6,7 @@
  * @version    XCL 2.5.0
  * @author     Nuno Luciano aka gigamaster
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2024 Authors
+ * @copyright  (c) 2005-2025 Authors
  * @license    GPL v2.0
  */
 
@@ -96,3 +96,4 @@ $tpl->assign(
 	]
 );
 $tpl->display( 'db:altsys_inc_menu.html' );
+

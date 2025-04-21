@@ -5,7 +5,7 @@
  * @package    Protector
  * @version    XCL 2.5.0
  * @author     Nuno Luciano aka gigamaster
- * @copyright  (c) 2024 The XOOPSCube Project
+ * @copyright  (c) 2025 The XOOPSCube Project
  * @license    GPL v2.0
  */
 
@@ -94,7 +94,7 @@ switch ($op) {
         xoops_cp_header();
         include dirname(__FILE__).'/mymenu.php';
         
-        echo '<h3>' . _AM_PROTECTOR_CSP_VIEW_TITLE . '</h3>';
+        echo '<h2>' . _AM_PROTECTOR_CSP_VIEW_TITLE . '</h2>';
         echo '<div class="csp-violation-details">';
         echo '<p><strong>' . _AM_PROTECTOR_CSP_TIME . ':</strong> ' . date('Y-m-d H:i:s', $violation['created']) . '</p>';
         echo '<p><strong>' . _AM_PROTECTOR_CSP_IP . ':</strong> ' . htmlspecialchars($violation['ip']) . '</p>';
@@ -556,6 +556,6 @@ switch ($op) {
             }
         }
 
-        // Make sure to exit after sending the file
+        // Exit after sending the file
         exit;
 }

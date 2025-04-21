@@ -8,7 +8,7 @@
  * @author     Nunoo Luciano Gigamaster XCL PHP8.2
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2024 Authors
+ * @copyright  (c) 2005-2025 Authors
  * @license    GPL v2.0
  */
 

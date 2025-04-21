@@ -1,5 +1,8 @@
 <?php
 
+// Threat Intelligence messages
+define('_MD_PROTECTOR_MALICIOUS_IP', 'Your IP address has been identified as potentially malicious. This action has been blocked for security reasons.');
+
 define( '_MD_PROTECTOR_YOUAREBADIP' , 'You are registered as BAD_IP by Protector.<br>');
 define( '_MD_PROTECTOR_FMT_JAILINFO' , 'This restriction will be expired on %s');
 define( '_MD_PROTECTOR_FMT_JAILTIME' , 'Y-m-j H:i:s');

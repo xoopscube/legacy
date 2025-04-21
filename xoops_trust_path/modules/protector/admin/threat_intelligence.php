@@ -5,7 +5,7 @@
  * @package    Protector
  * @version    XCL 2.5.0
  * @author     Nuno Luciano aka gigamaster
- * @copyright  (c) 2024 The XOOPSCube Project
+ * @copyright  (c) 2025 The XOOPSCube Project
  * @license    GPL v2.0
  */
 
@@ -16,8 +16,7 @@ $xoopsGTicket = new XoopsGTicket();
 // Include header
 xoops_cp_header();
 
-// Display admin menu
-include __DIR__ . '/mymenu.php';
+
 
 // Get protector instance
 $protector = protector::getInstance();
@@ -151,6 +150,10 @@ $check_register = $configs['ti_check_register'] ?? 1;
 $check_forms = $configs['ti_check_forms'] ?? 0;
 $check_admin = $configs['ti_check_admin'] ?? 0;
 $cache_duration = $configs['ti_cache_duration'] ?? 3600;
+
+
+// Display admin menu
+include __DIR__ . '/mymenu.php';
 
 // Display page title
 echo '<h3>' . _AM_PROTECTOR_THREAT_INTELLIGENCE . '</h3>';

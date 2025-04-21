@@ -23,6 +23,7 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_PREFIXMANAGER', 'Префикс БД ' );
 	define( $constpref . '_SAFELIST', 'IP авторизован' );
 	define( $constpref . '_ADMENU_MYBLOCKSADMIN', 'Разрешения' );
+	define( $constpref . '_CSP_REPORTS', 'CSP Reports');
 
 	// Configs
 	define( $constpref . '_GLOBAL_DISBL', '<h5>🚧 Временно отключен</h5>' );
@@ -131,4 +132,160 @@ if ( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref . '_LOADED' ) 
 	define( $constpref . '_MANIPUCHECKDSC', '🔔 Notify administrators if the root folder or index changes.' );
 	define( $constpref . '_MANIPUVALUE', '<b>Value to check files change</b>' );
 	define( $constpref . '_MANIPUVALUEDSC', '⛔ Warning, do not change this field !' );
+
+	// Threat Intelligence settings
+	define( $constpref . '_HTTPBL_ENABLED', '<h5>🔶 Enable HTTP:BL</h5>');
+	define( $constpref . '_HTTPBL_ENABLED_DESC', 'Enable Project Honeypot HTTP:BL service for IP reputation checking');
+	define( $constpref . '_HTTPBL_KEY', 'HTTP:BL API Key');
+	define( $constpref . '_HTTPBL_KEY_DESC', 'Enter your Project Honeypot HTTP:BL API key. Get one at projecthoneypot.org');
+	define( $constpref . '_HTTPBL_THREAT_THRESHOLD', 'Threat Threshold');
+	define( $constpref . '_HTTPBL_THREAT_THRESHOLD_DESC', 'IPs with a threat score above this value will be blocked (0-255). Recommended: 25-50');
+
+	define( $constpref . '_FEED_URLS', 'Threat Feed URLs');
+	define( $constpref . '_FEED_URLS_DESC', 'Enter URLs for IP blacklists, one per line. Supported formats: CSV, TXT with one IP per line');
+
+	define( $constpref . '_CHECK_LOGIN', 'Check Login Attempts');
+	define( $constpref . '_CHECK_LOGIN_DESC', 'Verify IPs against threat intelligence during login attempts');
+	define( $constpref . '_CHECK_REGISTER', 'Check Registration');
+	define( $constpref . '_CHECK_REGISTER_DESC', 'Verify IPs against threat intelligence during user registration');
+	define( $constpref . '_CHECK_FORMS', 'Check Form Submissions');
+	define( $constpref . '_CHECK_FORMS_DESC', 'Verify IPs against threat intelligence during any form submission (may impact performance)');
+	define( $constpref . '_CHECK_ADMIN', 'Check Admin Access');
+	define( $constpref . '_CHECK_ADMIN_DESC', 'Verify IPs against threat intelligence during admin area access');
+
+	define( $constpref . '_CACHE_DURATION', 'Cache Duration');
+	define( $constpref . '_CACHE_DURATION_DESC', 'How long to cache threat intelligence results');
+	define( $constpref . '_CACHE_1HOUR', '1 Hour');
+	define( $constpref . '_CACHE_6HOURS', '6 Hours');
+	define( $constpref . '_CACHE_1DAY', '1 Day');
+	define( $constpref . '_CACHE_1WEEK', '1 Week');
+
+	// Threat Intelligence Dashboard
+define( $constpref . '_THREAT_INTELLIGENCE_DASHBOARD', 'Threat Intelligence Dashboard');
+define( $constpref . '_THREAT_INTELLIGENCE_SETTINGS', 'Threat Intelligence Settings');
+define( $constpref . '_NOTHREATSTATS', 'No threat intelligence events recorded yet');
+define( $constpref . '_DATE', 'Date/Time');
+define( $constpref . '_IP', 'IP Address');
+define( $constpref . '_AGENT', 'User Agent');
+define( $constpref . '_DESCRIPTION', 'Description');
+
+// Proxy settings
+define('_MI_PROTECTOR_PROXY_ENABLED', '<h5><a id="enable-proxy">🌐</a> Enable Web Proxy</h5>');
+define('_MI_PROTECTOR_PROXY_ENABLED_DESC', 'Enable the web proxy functionality');
+
+define('_MI_PROTECTOR_PROXY_ALLOWED_DOMAINS', 'Allowed Domains');
+define('_MI_PROTECTOR_PROXY_ALLOWED_DOMAINS_DESC', 'Enter one domain per line. Leave empty to allow all domains not in the blocked list. Use .example.com to match all subdomains.');
+
+define('_MI_PROTECTOR_PROXY_BLOCKED_DOMAINS', 'Blocked Domains');
+define('_MI_PROTECTOR_PROXY_BLOCKED_DOMAINS_DESC', 'Enter one domain per line. These domains will always be blocked. Use .example.com to match all subdomains.');
+
+define('_MI_PROTECTOR_PROXY_CACHE_ENABLED', 'Enable Caching');
+define('_MI_PROTECTOR_PROXY_CACHE_ENABLED_DESC', 'Cache proxied content to improve performance');
+
+define('_MI_PROTECTOR_PROXY_CACHE_TIME', 'Cache Time (seconds)');
+define('_MI_PROTECTOR_PROXY_CACHE_TIME_DESC', 'How long to keep cached content (in seconds)');
+
+define('_MI_PROTECTOR_PROXY_LOG_REQUESTS', 'Log Requests');
+define('_MI_PROTECTOR_PROXY_LOG_REQUESTS_DESC', 'Log all proxy requests');
+
+define('_MI_PROTECTOR_PROXY_STRIP_JS', 'Strip JavaScript');
+define('_MI_PROTECTOR_PROXY_STRIP_JS_DESC', 'Remove JavaScript from proxied content');
+
+define('_MI_PROTECTOR_PROXY_STRIP_COOKIES', 'Strip Cookies');
+define('_MI_PROTECTOR_PROXY_STRIP_COOKIES_DESC', 'Do not forward cookies from proxied sites');
+
+define('_MI_PROTECTOR_PROXY_USER_AGENT', 'Custom User Agent');
+define('_MI_PROTECTOR_PROXY_USER_AGENT_DESC', 'Set a custom user agent for proxy requests. Leave empty to use the default.');
+
+define('_MI_PROTECTOR_PROXY_PLUGINS_ENABLED', 'Enabled Plugins');
+define('_MI_PROTECTOR_PROXY_PLUGINS_ENABLED_DESC', 'Select which proxy plugins to enable');
+
+// Module access permissions
+define('_MI_PROTECTOR_MODULE_ACCESS_GROUPS', 'Module Access Groups');
+define('_MI_PROTECTOR_MODULE_ACCESS_GROUPS_DESC', 'Select which groups can access the Protector module administration');
+
+// Proxy access permissions
+define('_MI_PROTECTOR_PROXY_ACCESS_GROUPS', 'Proxy Access Groups');
+define('_MI_PROTECTOR_PROXY_ACCESS_GROUPS_DESC', 'Select which groups can use the web proxy functionality');
+
+// Notification related constants
+define('_MI_PROTECTOR_NOTIFY_GLOBAL', 'Global Notifications');
+define('_MI_PROTECTOR_NOTIFY_GLOBAL_DESC', 'Global Protector notifications');
+
+define('_MI_PROTECTOR_NOTIFY_SECURITY_THREAT', 'Security Threat Detected');
+define('_MI_PROTECTOR_NOTIFY_SECURITY_THREAT_CAP', 'Notify me when security threats are detected');
+define('_MI_PROTECTOR_NOTIFY_SECURITY_THREAT_DESC', 'Receive notifications when the system detects security threats');
+define('_MI_PROTECTOR_NOTIFY_SECURITY_THREAT_SUBJECT', 'Security Threat Alert: {SITE_NAME}');
+
+define('_MI_PROTECTOR_NOTIFY_PROXY_ACCESS', 'Proxy Access Alert');
+define('_MI_PROTECTOR_NOTIFY_PROXY_ACCESS_CAP', 'Notify me about proxy access events');
+define('_MI_PROTECTOR_NOTIFY_PROXY_ACCESS_DESC', 'Receive notifications about proxy access events');
+define('_MI_PROTECTOR_NOTIFY_PROXY_ACCESS_SUBJECT', 'Proxy Access Alert: {SITE_NAME}');
+
+define('_MI_PROTECTOR_NOTIFICATION_ENABLED', '<h5><a id="enable-notification">🔔</a> Enable Notifications</h5>');
+define('_MI_PROTECTOR_NOTIFICATION_ENABLED_DESC', 'Choose how you want to receive notifications from Protector');
+define('_MI_PROTECTOR_NOTIFICATION_DISABLE', 'Disable notifications');
+define('_MI_PROTECTOR_NOTIFICATION_ENABLE_INBOX', 'Enable inbox notifications only');
+define('_MI_PROTECTOR_NOTIFICATION_ENABLE_EMAIL', 'Enable email notifications only');
+define('_MI_PROTECTOR_NOTIFICATION_ENABLE_BOTH', 'Enable both inbox and email notifications');
+
+define('_MI_PROTECTOR_NOTIFICATION_EVENTS', 'Notification Events');
+define('_MI_PROTECTOR_NOTIFICATION_EVENTS_DESC', 'Select which events should trigger notifications');
+
+// CORS Proxy settings
+define('_MI_PROTECTOR_PROXY_CORS_ORIGIN', '<h5><a id="enable-cors">☁</a> CORS: Allowed Origins</h5>');
+define('_MI_PROTECTOR_PROXY_CORS_ORIGIN_DESC', 'Specify which origins are allowed to access resources through the proxy. Use * for all origins or a comma-separated list of domains.');
+
+define('_MI_PROTECTOR_PROXY_CORS_METHODS', 'CORS: Allowed Methods');
+define('_MI_PROTECTOR_PROXY_CORS_METHODS_DESC', 'HTTP methods allowed when accessing the resource. Separate multiple methods with commas.');
+
+define('_MI_PROTECTOR_PROXY_CORS_HEADERS', 'CORS: Allowed Headers');
+define('_MI_PROTECTOR_PROXY_CORS_HEADERS_DESC', 'Headers that are allowed to be used with the request. Use * for all headers or a comma-separated list.');
+
+define('_MI_PROTECTOR_PROXY_CORS_DEBUG', 'CORS: Debug Mode');
+define('_MI_PROTECTOR_PROXY_CORS_DEBUG_DESC', 'Enable debug logging for CORS requests and responses.');
+
+// Content Security Policy settings
+define('_MI_PROTECTOR_ENABLE_CSP', '<h5>🛡️ Enable Content Security Policy</h5>');
+define('_MI_PROTECTOR_ENABLE_CSP_DESC', 'Activate Content Security Policy (CSP) to help prevent XSS attacks and other code injection attacks');
+
+define('_MI_PROTECTOR_CSP_LEGACY_SUPPORT', 'Add CSP Meta Tag Support');
+define('_MI_PROTECTOR_CSP_LEGACY_SUPPORT_DESC', 'Also add CSP as a meta tag for older browsers that don\'t support CSP headers');
+
+define('_MI_PROTECTOR_CSP_DEFAULT_SRC', 'Default Sources');
+define('_MI_PROTECTOR_CSP_DEFAULT_SRC_DESC', 'Default policy for loading content such as JavaScript, Images, CSS, Fonts, AJAX requests, Frames, HTML5 Media');
+
+define('_MI_PROTECTOR_CSP_SCRIPT_SRC', 'Script Sources');
+define('_MI_PROTECTOR_CSP_SCRIPT_SRC_DESC', 'Defines valid sources of JavaScript. Use \'unsafe-inline\' to allow inline scripts and \'unsafe-eval\' to allow eval()');
+
+define('_MI_PROTECTOR_CSP_STYLE_SRC', 'Style Sources');
+define('_MI_PROTECTOR_CSP_STYLE_SRC_DESC', 'Defines valid sources of stylesheets or CSS. Use \'unsafe-inline\' to allow inline styles');
+
+define('_MI_PROTECTOR_CSP_IMG_SRC', 'Image Sources');
+define('_MI_PROTECTOR_CSP_IMG_SRC_DESC', 'Defines valid sources of images. Add \'data:\' to allow data: URIs for images');
+
+define('_MI_PROTECTOR_CSP_CONNECT_SRC', 'Connect Sources');
+define('_MI_PROTECTOR_CSP_CONNECT_SRC_DESC', 'Defines valid sources for fetch, XMLHttpRequest, WebSocket, and EventSource connections');
+
+define('_MI_PROTECTOR_CSP_FONT_SRC', 'Font Sources');
+define('_MI_PROTECTOR_CSP_FONT_SRC_DESC', 'Defines valid sources for fonts loaded using @font-face');
+
+define('_MI_PROTECTOR_CSP_OBJECT_SRC', 'Object Sources');
+define('_MI_PROTECTOR_CSP_OBJECT_SRC_DESC', 'Defines valid sources for the <object>, <embed>, and <applet> elements');
+
+define('_MI_PROTECTOR_CSP_MEDIA_SRC', 'Media Sources');
+define('_MI_PROTECTOR_CSP_MEDIA_SRC_DESC', 'Defines valid sources for loading media using the <audio>, <video> and <track> elements');
+
+define('_MI_PROTECTOR_CSP_FRAME_SRC', 'Frame Sources');
+define('_MI_PROTECTOR_CSP_FRAME_SRC_DESC', 'Defines valid sources for loading frames');
+
+define('_MI_PROTECTOR_CSP_REPORT_URI', 'Report URI');
+define('_MI_PROTECTOR_CSP_REPORT_URI_DESC', 'URI to which the browser sends reports about policy violations');
+
+// CSP Reporting
+define('_MI_PROTECTOR_NOTIFY_CSP', 'Notify on Critical CSP Violations');
+define('_MI_PROTECTOR_NOTIFY_CSP_DESC', 'Send email notifications for critical Content Security Policy violations (script-src)');
+define('_MI_PROTECTOR_NOTIFY_ALL_CSP', 'Notify on All CSP Violations');
+define('_MI_PROTECTOR_NOTIFY_ALL_CSP_DESC', 'Send email notifications for all Content Security Policy violations (may generate many emails)');
+
 }

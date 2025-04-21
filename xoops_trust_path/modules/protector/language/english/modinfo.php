@@ -169,8 +169,6 @@ define( $constpref . '_IP', 'IP Address');
 define( $constpref . '_AGENT', 'User Agent');
 define( $constpref . '_DESCRIPTION', 'Description');
 
-
-
 // Proxy settings
 define('_MI_PROTECTOR_PROXY_ENABLED', '<h5><a id="enable-proxy">🌐</a> Enable Web Proxy</h5>');
 define('_MI_PROTECTOR_PROXY_ENABLED_DESC', 'Enable the web proxy functionality');

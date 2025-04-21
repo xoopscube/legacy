@@ -5,12 +5,13 @@
  * @package    Protector
  * @version    XCL 2.5.0
  * @author     Nuno Luciano aka gigamaster
- * @copyright  (c) 2024 The XOOPSCube Project
+ * @copyright  (c) 2025 The XOOPSCube Project
  * @license    GPL v2.0
  */
 
-require_once '../../../mainfile.php';
-require_once XOOPS_ROOT_PATH . '/include/cp_header.php';
+// Include header
+xoops_cp_header();
+
 require_once XOOPS_TRUST_PATH . '/libs/altsys/include/gtickets.php';
 
 // Check admin permission
@@ -26,8 +27,6 @@ $mid = $module->getVar('mid');
 
 // Display header
 xoops_cp_header();
-
-
 
 // Get group handler
 $group_handler = xoops_getHandler('group');
