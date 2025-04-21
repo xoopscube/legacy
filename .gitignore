@@ -2,6 +2,8 @@
 # Folders cache, temp and upload
 # Temporary files, cache, templates
 xoops_trust_path/cache/*
+xoops_trust_path/cache/protector/*
+xoops_trust_path/cache/proxy/*
 xoops_trust_path/libs/elfinder/php/.tmp/*
 xoops_trust_path/modules/protector/configs/*
 xoops_trust_path/templates_c/*
@@ -10,23 +12,8 @@ xoops_trust_path/uploads/xupdate/*
 
 # Files by IDE/VS
 .hintrc
-*_i.c
-*_p.c
-*_i.h
-*.ilk
 *.meta
 *.obj
-*.iobj
-*.pch
-*.pdb
-*.ipdb
-*.pgc
-*.pgd
-*.rsp
-*.sbr
-*.tlb
-*.tli
-*.tlh
 *.tmp
 *.tmp_proj
 *.log
@@ -34,7 +21,6 @@ xoops_trust_path/uploads/xupdate/*
 *.vssscc
 .builds
 *.pidb
-*.svclog
 *.scc
 *.bak
 ## Linux
@@ -53,7 +39,6 @@ xoops_trust_path/uploads/xupdate/*
 .AppleDouble
 .LSOverride
 # Files that might appear in the root of a volume
-.DocumentRevisions-V100
 .fseventsd
 .Spotlight-V100
 .TemporaryItems

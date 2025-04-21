@@ -1,18 +1,27 @@
 # EditorConfig is awesome: https://EditorConfig.org
 
 # Top-most EditorConfig file
+# stop searching for other .editorconfig files in parent directories
 root = true
-
 # Unix-style newlines with a newline ending every file
+# wildcard that means these settings apply to all files in the project,
+# regardless of their file extension e.g. html, php, js, etc.
 [*]
-end_of_line = lf
-insert_final_newline = true
-indent_style = space
-indent_size = 2
-trim_trailing_whitespace = true
-
-[*.rb]
 charset = utf-8
-
+# all files should use Unix-style line endings (Line Feed, \n)
+end_of_line = lf
+# Ensure that every file ends with a newline character.
+# This is a common practice that helps with version control and code readability
+insert_final_newline = true
+# specifies that spaces should be used for indentation, rather than tabs
+indent_style = space
+# specifies that each indentation level should be two spaces
+indent_size = 2
+# automatically remove any whitespace (spaces or tabs) that appears at the end of a line.
+# This helps keep code clean and prevents unnecessary changes in version control
+trim_trailing_whitespace = true
+# overrides trailing whitespace only for Markdown files
+# it can sometimes have meaning (e.g., creating line breaks),
+# so it's often desirable to not trim it
 [*.md]
 trim_trailing_whitespace = false

@@ -8,6 +8,56 @@ All notable changes to this project will be documented in this file.
 
 Refer please to repository Legacy Commits  
 
+## [2.5.0 PHP8.2] 2025-04-20
+
+Update maintenance PHP 8.2.x
+
+- Module d3forum v2.5
+  - Admin dashboard
+  - Overview activity
+- Module Legacy v2.5
+  - Warnings and refactoring
+- Module Message v2.5
+  - UI ajax endpoint
+  - UI user list 
+  - Smarty plugins
+  - Removed dependencies suggest.js
+- Module Pico v2.5
+  - Admin dashboard 
+  - Fix deprecated warnings
+- Module Protector v4.0
+  - Admin Dashboard
+  - IP Ban, safe list
+  - Log viewer
+  - Notification (auto admins)
+  - Notification Test treath
+  - Proxy Dashboard
+  - Proxy Plugins manager 
+  - Permissions 
+  - Threat Intelligence 
+  - Security Advisor UI
+  - Stats overview
+- Deprecated warnings
+  - htmlspecialchars, strlen, trim, preg_replace
+  - Passing null to parameter of type array|string
+  - Smarty templates undefined array key
+- Translations (WIP)
+  - English
+  - Français
+  - 日本語, Japanese
+  - Português
+  - Pусский, Russian
+
+## [2.5.0 PHP8.2] 2025-03-27
+
+Update maintenance PHP 8.2.x  
+
+- Add system block AI Assistant
+- Deprecated preg_replace()
+- Fix Module->modinfo
+- Fix undefined array key
+- Fix altsys langage manager
+
 ## [2.4.0 RC PHP8] 2024-04-20
 
 - Update Web Install Wizard

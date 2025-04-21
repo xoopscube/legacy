@@ -6,7 +6,7 @@
  * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2024 Authors
+ * @copyright  (c) 2005-2025 Authors
  * @license    GPL v2.0
  */
 
@@ -93,7 +93,7 @@ function get_mxi_body( $mxi_name, $file_entries ) {
 XoopsDWSnipettets is published under the CC-GNU LGPL
 https://creativecommons.org/licenses/LGPL/2.1/
 
-(C) 2006-2024 GIJOE https://peak.ne.jp/
+(C) 2006-2025 GIJOE https://peak.ne.jp/
 
 	]]></license-agreement>
 	<description><![CDATA[
