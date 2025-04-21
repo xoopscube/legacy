@@ -8,7 +8,7 @@
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors Nuno Luciano aka gigamaster, 2020 XCL/PHP7
  * @author     Kilica, 2008/09/25
- * @copyright  (c) 2005-2024 The XOOPSCube Project
+ * @copyright  (c) 2005-2025 The XOOPSCube Project
  * @license    GPL 2.0
  */
 

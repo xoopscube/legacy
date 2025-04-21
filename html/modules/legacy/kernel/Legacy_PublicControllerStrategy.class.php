@@ -4,7 +4,7 @@
  * @package Legacy
  * @author     Nobuhiro YASUTOMI, PHP8
  * @version $Id: Legacy_PublicControllerStrategy.class.php,v 1.7 2008/11/14 09:45:23 mumincacao Exp $
- * @copyright (c) 2005-2024 The XOOPSCube Project
+ * @copyright (c) 2005-2025 The XOOPSCube Project
  * @license   GPL 2.0
  *
  */

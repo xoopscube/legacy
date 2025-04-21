@@ -3,7 +3,7 @@
  *
  * @package Legacy
  * @version $Id: SearchShowallbyuserForm.class.php,v 1.4 2008/09/25 15:12:39 kilica Exp $
- * @copyright  (c) 2005-2024 The XOOPSCube Project
+ * @copyright  (c) 2005-2025 The XOOPSCube Project
  * @license    GPL 2.0
  *
  */

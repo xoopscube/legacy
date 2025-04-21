@@ -2,7 +2,7 @@
 /**
  * @package ShadeSoap
  * @version $Id: NusoapServer.class.php,v 1.3 2007/12/15 12:16:57 minahito Exp $
- * @copyright (c) 2005-2024 The XOOPSCube Project
+ * @copyright (c) 2005-2025 The XOOPSCube Project
  * @license GPL 2
  */
  // TODO prevent path disclosure, gigamaster

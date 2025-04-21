@@ -3,15 +3,15 @@
  *
  * @package Legacy
  * @version $Id: xoops_version.php,v 1.13 2008/09/25 14:31:43 kilica Exp $
- * @copyright (c) 2005-2024 The XOOPSCube Project
+ * @copyright (c) 2005-2025 The XOOPSCube Project
  * @license   GPL v2.0
  *
  */
 
 $modversion['dirname']          = 'legacy';
 $modversion['name']             = _MI_LEGACY_NAME;
-$modversion['version']          = '2.40';
-$modversion['detailed_version'] = '2.40.0';
+$modversion['version']          = '2.50';
+$modversion['detailed_version'] = '2.50.0';
 $modversion['description']      = _MI_LEGACY_NAME_DESC;
 $modversion['author']           = 'The XOOPSCube Project Team';
 $modversion['credits']          = 'The XOOPSCube Project Team';
