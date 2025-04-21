@@ -7,7 +7,7 @@
  * @author     Nobuhiro YASUTOMI, PHP8
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2024 Authors
+ * @copyright  (c) 2005-2025 Authors
  * @license    GPL v2.0
  */
 
@@ -49,13 +49,8 @@ if ( ! function_exists( 'd3forum_oninstall_base' ) ) {
 
 			$ret[] = 'SQL file found at <b>' . htmlspecialchars( $sql_file_path ) . '</b>.<br> Creating tables...';
 
-			if ( file_exists( XOOPS_ROOT_PATH . '/class/database/oldsqlutility.php' ) ) {
-				include_once XOOPS_ROOT_PATH . '/class/database/oldsqlutility.php';
-				$sqlutil = new OldSqlUtility();
-			} else {
-				include_once XOOPS_ROOT_PATH . '/class/database/sqlutility.php';
-				$sqlutil = new SqlUtility();
-			}
+			include_once XOOPS_ROOT_PATH . '/class/database/sqlutility.php';
+			$sqlutil = new SqlUtility();
 
 			$sql_query = trim( file_get_contents( $sql_file_path ) );
 
