@@ -2,10 +2,10 @@
 /**
  * Pico content management D3 module for XCL
  * @package    Pico
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Gijoe (Peak)
- * @copyright  (c) 2005-2024 Authors
+ * @copyright  (c) 2005-2025 Authors
  * @license    GPL v2.0
  */
 
