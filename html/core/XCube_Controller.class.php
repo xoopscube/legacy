@@ -6,7 +6,7 @@
  * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Minahito, 2008/10/12
- * @copyright  (c) 2005-2024 The XOOPSCube Project
+ * @copyright  (c) 2005-2025 The XOOPSCube Project
  * @license    BSD-3-Clause
  * @brief      This is an abstract class.
  * A subclass of this class has many impositions that finally establishes the root object and implements a significant amount of actual logic.
@@ -133,7 +133,7 @@ class XCube_Controller {
 		$this->_mBlockChain        = [];
 		$this->_mFilterChain       = [];
 		$this->_mLoadedFilterNames = [];
-    // ----- reverse for further testing in XCL 2.4.0
+    // ----- reverse for further testing in XCL 2.5.0
 
 		$this->mSetupUser       = new XCube_Delegate();
 		$this->mExecute         = new XCube_Delegate();

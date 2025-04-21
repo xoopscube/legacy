@@ -3,7 +3,7 @@
  * connection to a mysql database
  * @package    kernel
  * @subpackage database
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Kazumi Ono (aka onokazu)
  * @copyright  (c) 2000-2003 XOOPS.org
@@ -25,7 +25,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
 {
     /**
      * Database connection
-     * @var resource
+     * @var mysqli
      */
     public $conn;
 
@@ -88,8 +88,8 @@ class XoopsMysqliDatabase extends XoopsDatabase
     /**
      * Get a result row as an enumerated array
      *
-     * @param resource $result
-     * @return array
+     * @param mysqli_result $result
+     * @return array|null
      */
     public function fetchRow($result)
     {
@@ -220,18 +220,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
             }
         }
         $result = mysqli_query($this->conn, $sql);
-        if (!$result) {
-            $errorCode = mysqli_errno($this->conn);
-            $errorMessage = mysqli_error($this->conn);
 
-            if ($errorCode == 1146) { // Error code for "table doesn't exist"
-                trigger_error("Table does not exist: $errorMessage. SQL: $sql", E_USER_WARNING);
-                return false; // Gracefully handle the error
-            }
-
-            trigger_error("Database query error (Code: $errorCode): $errorMessage. SQL: $sql", E_USER_WARNING);
-            return false;
-        }
         if ($result) {
             $this->logger->addQuery($sql);
             return $result;
@@ -262,7 +251,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
      * perform queries from SQL dump file in a batch
      *
      * @param string $file file path to an SQL dump file
-     *
+     * 
      * @return bool FALSE if failed reading SQL file or TRUE if the file has been read and queries executed
      */
     public function queryFromFile($file)
@@ -287,7 +276,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
     /**
      * Get field name
      *
-     * @param resource $result query result
+     * @param mysqli_result $result
      * @param int numerical field index
      * @return string
      */
@@ -303,7 +292,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
     /**
      * Get field type
      *
-     * @param resource $result query result
+     * @param mysqli_result $result
      * @param int $offset numerical field index
      * @return string
      */
@@ -319,7 +308,7 @@ class XoopsMysqliDatabase extends XoopsDatabase
     /**
      * Get number of fields in result
      *
-     * @param resource $result query result
+     * @param mysqli_result $result
      * @return int
      */
     public function getFieldsNum($result)

@@ -2,7 +2,7 @@
 /**
  * @file
  * @package Sitemap
- * @version 2.4.0
+ * @version 2.5.0
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {

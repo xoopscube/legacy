@@ -16,9 +16,7 @@ class sqlutility
 {
     /**
     * Function from phpMyAdmin (http://phpwizard.net/projects/phpMyAdmin/)
-    *
     * Removes comment and splits large sql files into individual queries
-    *
     * Last revision: September 23, 2001 - gandon
     *
     * @param   array    the splitted sql commands

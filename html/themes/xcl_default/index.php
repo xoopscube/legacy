@@ -8,7 +8,7 @@
 /*
 * XCL Default Theme built with PicoCSS v206
 *
-* @version   2.4.0
+* @version   2.5.0
 * @update    2024-04-20
 * @Date      2024-02-02
 * @author    Nuno Luciano ( https://github.com/gigamaster )
@@ -1297,7 +1297,7 @@ the prefix <code>top-</code> with <code>none-</code> only show the block content
     </div>
     <div class="credits"><small>Theme by Nuno Luciano <a href="https://github.com/gigamaster" target="_blank" rel="noopener">@gigamaster</a>  • Built with
         <a href="https://picocss.com" target="_blank" rel="noopener">Pico CSS</a></small><br>
-    <small>Powered by XCL 2.4.0 © 2005-2024 <a href="https://github.com/xoopscube/" rel="noopener">The XOOPSCube Project</a></small></div>
+    <small>Powered by XCL 2.5.0 © 2005-2024 <a href="https://github.com/xoopscube/" rel="noopener">The XOOPSCube Project</a></small></div>
 </footer>
     <!-- ./ Footer -->
 

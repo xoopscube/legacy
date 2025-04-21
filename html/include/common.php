@@ -4,7 +4,7 @@
  * @package    XCL
  * @version    XCL 2.5.0
  * @author     kilica, 2008/09/25
- * @copyright  (c) 2005-2024 The XOOPSCube Project
+ * @copyright  (c) 2005-2025 The XOOPSCube Project
  * @license    GPL 2.0
  * @brief      This file was entirely rewritten by the XOOPSCube Legacy project
  *             for compatibility with XOOPS2

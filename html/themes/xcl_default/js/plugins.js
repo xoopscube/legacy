@@ -1,7 +1,7 @@
 /*
  * XCL Default Theme built with PicoCSS v206
  *
- * @version   2.4.0
+ * @version   2.5.0
  * @update    2024-04-20
  * @Date      2024-02-02
  * @author    Nuno Luciano ( https://github.com/gigamaster )

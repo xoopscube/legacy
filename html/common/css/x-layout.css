@@ -8,7 +8,7 @@
  * @package    XCL-UI
  * @author     Nuno Luciano ( @gigamaster v.2.x.x)
  * @author     Stefan Kovac (v.1.x.x)
- * @copyright  (c) 2005-2024 The XOOPSCube Project
+ * @copyright  (c) 2005-2025 The XOOPSCube Project
  * @License    MIT license
  * @license    XCube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  * @link       https://github.com/xoopscube/xcl
@@ -368,7 +368,6 @@ Stats Jan 2020 – Jan 2021
     ORDER BY SCREEN USING MIN-WIDTH
 */
 
-
 /* Video fallback 56.25% represents the aspect ratio of the video, which is usually 16/9 (9 is 56.25% of 16) */
 @supports not (aspect-ratio: 1) {
     .video {
@@ -383,7 +382,6 @@ Stats Jan 2020 – Jan 2021
         height: 100%;
     }
 }
-
 
 /* [ lg- ] Large Screen Device > 1024px */
 @media screen and (max-width:64em) {

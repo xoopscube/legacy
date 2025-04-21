@@ -1,6 +1,6 @@
 # Change Log
 
-## XCL DEFAULT THEME v.2.4.0
+## XCL DEFAULT THEME v.2.5.0
 
 XCL Theme built with PicoCSS v2.0.6
 

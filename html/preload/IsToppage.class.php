@@ -8,7 +8,7 @@
  *  *
  *  * @package    Preload
  *  * @author     Original Author : Ryuji AMANO
- *  * @copyright  (c) 2005-2024 The XOOPSCube Project
+ *  * @copyright  (c) 2005-2025 The XOOPSCube Project
  *  * @license    Legacy : https://github.com/xoopscube/xcl/blob/master/GPL_V2.txt
  *  * @license    Cube : https://github.com/xoopscube/xcl/blob/master/BSD_license.txt
  *  * @version    Release: @package_230@

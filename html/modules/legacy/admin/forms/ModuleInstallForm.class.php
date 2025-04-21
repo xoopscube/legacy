@@ -2,7 +2,7 @@
 /**
  * ModuleInstallForm.class.php
  * @package    Legacy
- * @version    XCL 2.4.0
+ * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Kilica, 2008/09/25
  * @copyright  (c) 2005-2025 The XOOPSCube Project

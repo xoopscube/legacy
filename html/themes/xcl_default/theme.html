@@ -4,7 +4,7 @@
 /*
 * XCL Default Theme built with PicoCSS v206
 *
-* @version   2.4.0
+* @version   2.5.0
 * @update    2024-04-20
 * @Date      2024-02-02
 * @author    Nuno Luciano ( https://github.com/gigamaster )
@@ -26,6 +26,9 @@
     <meta name="copyright" content="<{$xoops_meta_copyright}>">
     <meta name="generator" content="XOOPSCube">
     <!-- Meta Webmaster Tools-->
+    <{if isset($xoops_csp_meta)}>
+    <{$xoops_csp_meta}>
+    <{/if}>
     <meta name="msvalidate.01" content="<{$xoops_meta_bing}>">
     <meta name="google-site-verification" content="<{$xoops_meta_google}>">
     <meta name="yandex-verification" content="<{$xoops_meta_yandex}>">
@@ -295,5 +298,10 @@
 <script src="<{$xoops_imageurl}>js/plugins.js"></script>
 <{* ---------- PrismJS ----- *}>
 <script async src="<{$xoops_url}>/common/prismjs/prism.js"></script>
+
+<!-- 
+<{* if $xoops_dirname == 'message' && isset($smarty.get.action) && $smarty.get.action == 'view'}>
+    <script type="text/javascript" src="<{$xoops_url}>/themes/xcl_default/js/message-navigation.js"></script>
+<{/if *}> -->
 </body>
 </html>

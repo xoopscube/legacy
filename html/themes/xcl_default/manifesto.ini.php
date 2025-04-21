@@ -6,7 +6,7 @@ Name="XCL Default Theme"
 Depends=Legacy_RenderSystem,legacy
 ThemeOptions="index.php"
 Url="https://github.com/xoopscube-themes/"
-Version="2.4.0"
+Version="2.5.0"
 
 [Theme]
 RenderSystem=Legacy_RenderSystem

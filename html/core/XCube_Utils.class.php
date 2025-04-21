@@ -5,7 +5,7 @@
  * @version    XCL 2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     Minahito, 2008/10/12
- * @copyright  (c) 2005-2024 The XOOPSCube Project
+ * @copyright  (c) 2005-2025 The XOOPSCube Project
  * @license    BSD-3-Clause
  * @brief      The utility class collecting static helper functions.
  */

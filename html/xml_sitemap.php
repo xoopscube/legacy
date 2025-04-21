@@ -6,7 +6,7 @@
  * @version    2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     chanoir
- * @copyright  (c) 2005-2024 Authors
+ * @copyright  (c) 2005-2025 Authors
  * @license    GPL v2.0
  */
 
