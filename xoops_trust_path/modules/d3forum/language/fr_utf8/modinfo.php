@@ -1,20 +1,11 @@
 <?php
 
-if( defined( 'FOR_XOOPS_LANG_CHECKER' ) ) $mydirname = 'd3forum' ;
-$constpref = '_MI_' . strtoupper( $mydirname ) ;
+if (defined('FOR_XOOPS_LANG_CHECKER')) {
+	$mydirname = 'd3forum';
+}
+$constpref = '_MI_' . strtoupper($mydirname);
 
 if( defined( 'FOR_XOOPS_LANG_CHECKER' ) || ! defined( $constpref.'_LOADED' ) ) {
-
-
-// Appended by Xoops Language Checker -GIJOE- in 2015-04-24 14:09:43
-define($constpref.'_USENAME','Nom d\'affichage');
-define($constpref.'_USENAMEDESC','Quel nom utiliser pour l\'affichage: "uname" (ID utilisateur) ou "name" (Nom réel). <br /> Par défaut: "uname" (ID utilisateur)');
-define($constpref.'_USENAME_UNAME','utiliser "uname" (ID utilisateur)');
-define($constpref.'_USENAME_NAME','utiliser "name" (Nom réel)');
-define($constpref.'_RSS_SHOW_HIDDEN','Afficher les sujets cachés dans le RSS');
-define($constpref.'_RSS_SHOW_HIDDENDSC','Afficher le titre des sujets cachés (commentaires intégrés).');
-define($constpref.'_RSS_HIDDEN_TITLE','Titre RSS des sujets cachés');
-define($constpref.'_RSS_HIDDEN_TITLEDSC','Utilise son propre titre quand la valeur est vide.');
 
 define( $constpref.'_LOADED' , 1 ) ;
 
@@ -30,15 +21,16 @@ define($constpref."_BDESC_LIST_TOPICS","Ce bloc peut être utilisé de manière 
 define($constpref."_BNAME_LIST_POSTS","Posts");
 define($constpref."_BNAME_LIST_FORUMS","Forums");
 
-// admin menu
-define($constpref.'_ADMENU_CATEGORYACCESS','Catégories');
-define($constpref.'_ADMENU_FORUMACCESS','Forums');
-define($constpref.'_ADMENU_ADVANCEDADMIN','Avancé');
-define($constpref.'_ADMENU_POSTHISTORIES','Historique');
-define($constpref.'_ADMENU_MYLANGADMIN','Langues');
-define($constpref.'_ADMENU_MYTPLSADMIN','Templates');
-define($constpref.'_ADMENU_MYBLOCKSADMIN','Blocs Permissions');
-define($constpref.'_ADMENU_MYPREFERENCES','Préférences');
+    // admin menu
+    define($constpref . '_ADMENU_ACTIVITY', 'Activity');
+    define($constpref . '_ADMENU_CATEGORYACCESS', 'Categories');
+    define($constpref . '_ADMENU_FORUMACCESS', 'Forums');
+    define($constpref . '_ADMENU_ADVANCEDADMIN', 'Advanced');
+    define($constpref . '_ADMENU_POSTHISTORIES', 'Histories');
+    define($constpref . '_ADMENU_MYLANGADMIN', 'Language');
+    define($constpref . '_ADMENU_MYTPLSADMIN', 'Templates');
+    define($constpref . '_ADMENU_MYBLOCKSADMIN', 'Blocks');
+    define($constpref . '_ADMENU_MYPREFERENCES', 'Preferences');
 
 // configurations
 define($constpref.'_TOP_MESSAGE','Message en-tête du forum');
@@ -49,6 +41,11 @@ define($constpref.'_DEFAULT_OPTIONS','Options cochées par défault dans le form
 define($constpref.'_DEFAULT_OPTIONSDSC','Lister les options a cocher séparées par une virgule (,).<br>eg) smiley,xcode,br,number_entity<br>Vous pouvez ajouter ces options: special_entity html attachsig u2t_marked');
 define($constpref.'_ALLOW_HTML','Autoriser HTML');
 define($constpref.'_ALLOW_HTMLDSC','N\'activez pas cette option au hazard. Ceci peut rendre votre site vulnérable et permettre à un utilisateur malveillant \'insérer un script.');
+define($constpref . '_USENAME_UNAME', "use'uname'(user ID)");
+    define($constpref . '_USENAME_NAME', "use'name'(Real name)");
+    define($constpref . '_ALLOW_HTML', 'Enable HTML');
+    define($constpref . '_ALLOW_HTMLDSC', 'Beware of the risks of Script injection attack by malicious users. Allow trusted user groups only.');
+    
 define($constpref.'_ALLOW_TEXTIMG','Autoriser l\'affichage d\'images externes dans les messages');
 define($constpref.'_ALLOW_TEXTIMGDSC','Si un utilisateur malveillant poste une image externe utilisant [img], il peut connaitre les adresses IP ou navigateurs des utilisateurs de votre site.');
 define($constpref.'_ALLOW_SIG','Autoriser la signature');
@@ -88,6 +85,10 @@ define($constpref.'_ANTISPAM_GROUPS','Les Groupes a cocher anti-SPAM');
 define($constpref.'_ANTISPAM_GROUPSDSC','Laisser habituellement tout en blanc.');
 define($constpref.'_ANTISPAM_CLASS','Nom de la Class anti-SPAM');
 define($constpref.'_ANTISPAM_CLASSDSC','La valeur par défaut est "default". Si vous voulez désactiver l\'anti-SPAM pour les invités, laissez en blanc');
+define($constpref . '_RSS_SHOW_HIDDEN', 'Enable RSS Show hidden topics');
+define($constpref . '_RSS_SHOW_HIDDENDSC', 'Show hidden topics from comment-integration.');
+define($constpref . '_RSS_HIDDEN_TITLE', 'Enable RSS Show Title of hidden topics');
+define($constpref . '_RSS_HIDDEN_TITLEDSC', 'Default title used when empty value.');
 
 
 // Notify Categories

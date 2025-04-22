@@ -197,12 +197,24 @@ class Legacy_HelpAction extends Legacy_Action
         // TODO We should not access files in language directory directly.
         //
         $template_dir = XOOPS_MODULE_PATH . '/' . $this->_mDirname . "/language/{$language}/help";
-        if (!file_exists($template_dir . '/' . $helpfile)) {
+       
+       
+/*         if (!file_exists($template_dir . '/' . $helpfile)) {
             $template_dir = XOOPS_MODULE_PATH . '/' . $this->_mDirname . '/language/english/help';
             if (!file_exists($template_dir . '/' . $helpfile)) {
                 $this->mErrorMessage = _AD_LEGACY_ERROR_NO_HELP_FILE;
                 return LEGACY_FRAME_VIEW_ERROR;
             }
+        } */
+
+        if (!file_exists($template_dir . '/' . $helpfile)) {
+            // Try XOOPS_TRUST_PATH for D3 modules
+            $trust_dir = XOOPS_TRUST_PATH . '/modules/' . $this->_mDirname . '/language/english/help';
+            if (!file_exists($trust_dir . '/' . $helpfile)) {
+                $this->mErrorMessage = _AD_LEGACY_ERROR_NO_HELP_FILE;
+                return LEGACY_FRAME_VIEW_ERROR;
+            }
+            $template_dir = $trust_dir;
         }
 
         $controller->mRoot->mContext->setAttribute('legacy_help_dirname', $this->_mDirname);

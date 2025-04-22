@@ -562,12 +562,27 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                 $helpfile = $this->mXoopsModule->getHelp();
                 $dir = XOOPS_MODULE_PATH . '/' . $this->mXoopsModule->getVar('dirname') . '/language/' . $language . '/help';
 
-                if (!file_exists($dir . '/' . $helpfile)) {
+/*                 if (!file_exists($dir . '/' . $helpfile)) {
                     $dir = XOOPS_MODULE_PATH . '/' . $this->mXoopsModule->getVar('dirname') . '/language/english/help';
                     if (!file_exists($dir . '/' . $helpfile)) {
                         return;
                     }
+                } */
+                if (!file_exists($dir . '/' . $helpfile)) {
+                    $dir = XOOPS_MODULE_PATH . '/' . $this->mXoopsModule->getVar('dirname') . '/language/english/help';
+                    if (!file_exists($dir . '/' . $helpfile)) {
+                        // Try XOOPS_TRUST_PATH for D3 modules
+                        $trustDir = XOOPS_TRUST_PATH . '/modules/' . $this->mXoopsModule->getVar('dirname') . '/language/' . $language . '/help';
+                        if (!file_exists($trustDir . '/' . $helpfile)) {
+                            $trustDir = XOOPS_TRUST_PATH . '/modules/' . $this->mXoopsModule->getVar('dirname') . '/language/english/help';
+                            if (!file_exists($trustDir . '/' . $helpfile)) {
+                                return;
+                            }
+                        }
+                        $dir = $trustDir;
+                    }
                 }
+                
                 $lines = file($dir . '/' . $helpfile);
                 foreach ($lines as $line) {
                     foreach ($searchArgs->getKeywords() as $word) {
