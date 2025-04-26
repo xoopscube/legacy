@@ -250,7 +250,6 @@ define( '_DEBUG_MODE_SMARTY' , 'Smarty');
 define( '_DEBUG_MODE_DESC' , 'Disable debug mode in production. Admin > Settings > Debug mode [Off].');
 
 //%%%%% System Control Panel %%%%%
-//%%%%% System Control Panel %%%%%
 define( '_ACCOUNT' , 'Account');
 define( '_BANNERS' , 'Banners');
 define( '_BLOCKS' , 'Blocks');

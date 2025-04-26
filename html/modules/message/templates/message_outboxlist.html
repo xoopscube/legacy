@@ -38,6 +38,8 @@
     <{* Add an ID here *}>
     <form method="post" action="index.php?action=deleteall" id="delete-all-outbox-form">
         <input type="hidden" name="inout" value="out">
+        <{* Add XOOPS token for CSRF protection *}>
+        <{xoops_token name="delete_messages" value="1"}>
 
         <{foreach item=val from=$ListData}>
         <{* Add unique ID to the container div *}>
@@ -91,24 +93,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // Clear previous status and show deleting message
             if (statusSpan) statusSpan.textContent = 'Deleting...';
 
-            // Fix: Use URLSearchParams instead of FormData for better compatibility
-            const params = new URLSearchParams();
+            // Create FormData from the form - this automatically includes all fields including the token
+            const formData = new FormData(form);
+            const searchParams = new URLSearchParams(formData);
             
-            // Add each selected ID to the params
-            selectedIds.forEach(id => {
-                params.append('delmsg[]', id);
-            });
-            
-            // Add the inout parameter
-            params.append('inout', 'out');
-
             // Use fetch with proper content type for form submission
             fetch('index.php?action=deleteall&ajax=1', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: params.toString()
+                body: searchParams.toString()
             })
             .then(response => {
                 // First check if the response is ok before trying to parse JSON

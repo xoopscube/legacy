@@ -2,22 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
-## The XOOPSCube Project 2024
+## The XOOPSCube Project 2025
 
 #### Git Repository  
 
 Refer please to repository Legacy Commits  
 
-## [2.5.0 PHP8.2] 2025-04-20
+## [2.5.0 PHP8.2] 2025-04-25
 
 Update maintenance PHP 8.2.x
 
+- Add recovery.php (audit locales)
+- Add TemplateAutoUpdate.class.php
+- Altsys
+  - Audit Translations
 - Module d3forum v2.5
   - Admin dashboard
   - Overview activity
 - Module Legacy v2.5
+  - Block AI assistant
   - Warnings and refactoring
-- Module Message v2.5
+- Module Message v2.5 
   - UI ajax endpoint
   - UI user list 
   - Smarty plugins
@@ -41,6 +46,7 @@ Update maintenance PHP 8.2.x
   - htmlspecialchars, strlen, trim, preg_replace
   - Passing null to parameter of type array|string
   - Smarty templates undefined array key
+- Themes removed to repository
 - Translations (WIP)
   - English
   - Français

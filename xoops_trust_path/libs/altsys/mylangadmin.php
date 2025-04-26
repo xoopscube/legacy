@@ -267,10 +267,8 @@ if ( ALTSYS_CORE_TYPE_XCL21 == altsys_get_core_type() ) {
 }
 
 
-//
-// display stage
-//
 
+// render
 xoops_cp_header();
 
 // mymenu

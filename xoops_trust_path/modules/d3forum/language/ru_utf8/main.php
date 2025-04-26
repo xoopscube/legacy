@@ -156,49 +156,49 @@ define( '_MD_D3FORUM_LABEL_KEYWORDS' , 'Ключевые слова');
 define( '_MD_D3FORUM_LABEL_SEARCHOR' , 'Искать ЛЮБОЕ из слов');
 define( '_MD_D3FORUM_LABEL_SEARCHAND' , 'Искать ВСЕ слова');
 define( '_MD_D3FORUM_LABEL_TARGETBOTH' , 'И в теме, и в тексте');
-Define( '_MD_D3FORUM_LABEL_SORTBY' , 'Сортировать по');
-Define( '_MD_D3FORUM_LABEL_USERNAME' , 'имя пользователя');
-Define( '_MD_D3FORUM_LEGEND_SEARCHIN' , 'Искать в');
-Define( '_MD_D3FORUM_LEGEND_WORDSMEANING' , 'Тип поискового запроса');
-Define( '_MD_D3FORUM_FMT_BYTE' , '(%d байт)');
-Define( '_MD_D3FORUM_MSG_NOMATCH' , 'По вашему запросу ничего не найдено.<br>Проверьте, нет ли ошибок в ключевых словах.<br>Используйте более общие термины.');
-Define( '_MD_D3FORUM_FMT_SEARCHHITS' , 'Результаты поиска: %s элементов');
+define( '_MD_D3FORUM_LABEL_SORTBY' , 'Сортировать по');
+define( '_MD_D3FORUM_LABEL_USERNAME' , 'имя пользователя');
+define( '_MD_D3FORUM_LEGEND_SEARCHIN' , 'Искать в');
+define( '_MD_D3FORUM_LEGEND_WORDSMEANING' , 'Тип поискового запроса');
+define( '_MD_D3FORUM_FMT_BYTE' , '(%d байт)');
+define( '_MD_D3FORUM_MSG_NOMATCH' , 'По вашему запросу ничего не найдено.<br>Проверьте, нет ли ошибок в ключевых словах.<br>Используйте более общие термины.');
+define( '_MD_D3FORUM_FMT_SEARCHHITS' , 'Результаты поиска: %s элементов');
 
 // module top
-Define( '_MD_D3FORUM_TOTALTOPICSCOUNT' , 'Темы');
-Define( '_MD_D3FORUM_TOTALPOSTSCOUNT' , 'Сообщения');
-Define( '_MD_D3FORUM_TIMENOW' , 'Местное время');
-Define( '_MD_D3FORUM_LASTVISIT' , 'Ваш последний визит');
+define( '_MD_D3FORUM_TOTALTOPICSCOUNT' , 'Темы');
+define( '_MD_D3FORUM_TOTALPOSTSCOUNT' , 'Сообщения');
+define( '_MD_D3FORUM_TIMENOW' , 'Местное время');
+define( '_MD_D3FORUM_LASTVISIT' , 'Ваш последний визит');
 
 // topic attributes
-Define( '_MD_D3FORUM_TOPICLOCKED' , 'Закрытая тема');
-Define( '_MD_D3FORUM_TOPICLOCKED_DESC' , 'Эта тема <em>ЗАКРЫТА</em> администраторами или модераторами. Вы не можете отвечать или редактировать сообщения.');
-Define( '_MD_D3FORUM_TOPICSTICKY' , 'Прикрепленная тема');
-Define( '_MD_D3FORUM_TOPICPOPULAR' , 'Популярная тема');
-Define( '_MD_D3FORUM_TOPICNEWPOSTS' , 'Тема с новыми сообщениями');
-Define( '_MD_D3FORUM_TOPICNONEWPOSTS' , 'Тема без новых сообщений');
-Define( '_MD_D3FORUM_TOPICINVISIBLE' , 'Невидимая тема (Только администраторы и модераторы могут её видеть)');
+define( '_MD_D3FORUM_TOPICLOCKED' , 'Закрытая тема');
+define( '_MD_D3FORUM_TOPICLOCKED_DESC' , 'Эта тема <em>ЗАКРЫТА</em> администраторами или модераторами. Вы не можете отвечать или редактировать сообщения.');
+define( '_MD_D3FORUM_TOPICSTICKY' , 'Прикрепленная тема');
+define( '_MD_D3FORUM_TOPICPOPULAR' , 'Популярная тема');
+define( '_MD_D3FORUM_TOPICNEWPOSTS' , 'Тема с новыми сообщениями');
+define( '_MD_D3FORUM_TOPICNONEWPOSTS' , 'Тема без новых сообщений');
+define( '_MD_D3FORUM_TOPICINVISIBLE' , 'Невидимая тема (Только администраторы и модераторы могут её видеть)');
 
 // PERMISSION ERRORS
-Define( '_MD_D3FORUM_ERR_SPECIFYFORUM' , 'Форум должен быть указан');
-Define( '_MD_D3FORUM_ERR_EXISTSFORUM' , 'Указан неверный идентификатор форума');
-Define( '_MD_D3FORUM_ERR_EXISTSCATEGORY' , 'Указан неверный идентификатор категории');
-Define( '_MD_D3FORUM_ERR_SQL' , 'Произошла ошибка SQL в ');
-Define( '_MD_D3FORUM_ERR_READPOST' , 'Вы не можете получить доступ к указанному сообщению');
-Define( '_MD_D3FORUM_ERR_READTOPIC' , 'Вы не можете получить доступ к указанной теме');
-Define( '_MD_D3FORUM_ERR_READFORUM' , 'Вы не можете получить доступ к указанному форуму');
-Define( '_MD_D3FORUM_ERR_READCATEGORY' , 'Вы не можете получить доступ к указанной категории');
-Define( '_MD_D3FORUM_ERR_POSTTOPIC' , 'Вы не можете писать в указанной теме');
-Define( '_MD_D3FORUM_ERR_POSTFORUM' , 'Вы не можете писать в указанном форуме');
-Define( '_MD_D3FORUM_ERR_EDITPOST' , 'Вы не можете изменить указанное сообщение');
-Define( '_MD_D3FORUM_ERR_REPLYPOST' , 'Вы не можете ответить на указанное сообщение');
-Define( '_MD_D3FORUM_ERR_DELETEPOST' , 'Вы не можете удалить указанное сообщение');
-Define( '_MD_D3FORUM_ERR_MODERATETOPIC' , 'Вы не можете модерировать указанную тему');
-Define( '_MD_D3FORUM_ERR_MODERATEFORUM' , 'Вы не можете модерировать указанный форум');
-Define( '_MD_D3FORUM_ERR_MODERATECATEGORY' , 'Вы не можете модерировать указанную категорию');
-Define( '_MD_D3FORUM_ERR_CREATETOPIC' , 'Вы не можете создать новую тему');
-Define( '_MD_D3FORUM_ERR_CREATEFORUM' , 'Вы не можете создать новый форум');
-Define( '_MD_D3FORUM_ERR_CREATECATEGORY' , 'Вы не можете создать новую категорию');
+define( '_MD_D3FORUM_ERR_SPECIFYFORUM' , 'Форум должен быть указан');
+define( '_MD_D3FORUM_ERR_EXISTSFORUM' , 'Указан неверный идентификатор форума');
+define( '_MD_D3FORUM_ERR_EXISTSCATEGORY' , 'Указан неверный идентификатор категории');
+define( '_MD_D3FORUM_ERR_SQL' , 'Произошла ошибка SQL в ');
+define( '_MD_D3FORUM_ERR_READPOST' , 'Вы не можете получить доступ к указанному сообщению');
+define( '_MD_D3FORUM_ERR_READTOPIC' , 'Вы не можете получить доступ к указанной теме');
+define( '_MD_D3FORUM_ERR_READFORUM' , 'Вы не можете получить доступ к указанному форуму');
+define( '_MD_D3FORUM_ERR_READCATEGORY' , 'Вы не можете получить доступ к указанной категории');
+define( '_MD_D3FORUM_ERR_POSTTOPIC' , 'Вы не можете писать в указанной теме');
+define( '_MD_D3FORUM_ERR_POSTFORUM' , 'Вы не можете писать в указанном форуме');
+define( '_MD_D3FORUM_ERR_EDITPOST' , 'Вы не можете изменить указанное сообщение');
+define( '_MD_D3FORUM_ERR_REPLYPOST' , 'Вы не можете ответить на указанное сообщение');
+define( '_MD_D3FORUM_ERR_DELETEPOST' , 'Вы не можете удалить указанное сообщение');
+define( '_MD_D3FORUM_ERR_MODERATETOPIC' , 'Вы не можете модерировать указанную тему');
+define( '_MD_D3FORUM_ERR_MODERATEFORUM' , 'Вы не можете модерировать указанный форум');
+define( '_MD_D3FORUM_ERR_MODERATECATEGORY' , 'Вы не можете модерировать указанную категорию');
+define( '_MD_D3FORUM_ERR_CREATETOPIC' , 'Вы не можете создать новую тему');
+define( '_MD_D3FORUM_ERR_CREATEFORUM' , 'Вы не можете создать новый форум');
+define( '_MD_D3FORUM_ERR_CREATECATEGORY' , 'Вы не можете создать новую категорию');
 
 // postform
 define( '_MD_D3FORUM_LABEL_INPUTHELPER' , 'Помощник ввода ВКЛ/ВЫКЛ');
@@ -217,7 +217,7 @@ define( '_MD_D3FORUM_TH_GUESTEMAIL' , 'электронная почта');
 define( '_MD_D3FORUM_TH_GUESTURL' , 'адрес сайта');
 define( '_MD_D3FORUM_TH_GUESTPASSWORD' , 'пароль');
 define( '_MD_D3FORUM_TH_GUESTTRIP' , 'визит гостя');
-Define( '_MD_D3FORUM_FMT_UNAME' , '%s');
+define( '_MD_D3FORUM_FMT_UNAME' , '%s');
 define( '_MD_D3FORUM_MESSAGEICON' , 'Иконка сообщения');
 define( '_MD_D3FORUM_TH_BODY' , 'Текст сообщения');
 define( '_MD_D3FORUM_OPTIONS' , 'Настройки');
@@ -307,7 +307,7 @@ define( '_MD_D3FORUM_TH_FORUMWEIGHT' , 'Порядок форума (вес)');
 define( '_MD_D3FORUM_TH_FORUMDESC' , 'Описание форума');
 define( '_MD_D3FORUM_TH_FORUMOPTIONS' , 'Настройки форума');
 define( '_MD_D3FORUM_TH_EXTERNALLINKFORMAT' , 'Формат для интеграции комментариев');
-define( '_MD_D3FORUM_HELP_EXTERNALLINKFORMAT' , 'Оставьте пустым для обычного форума. Модули с интеграцией комментариев установят это поле автоматически. 
+define( '_MD_D3FORUM_HELP_EXTERNALLINKFORMAT' , 'Оставьте пустым для обычного форума. Модули с интеграцией комментариев установят это поле автоматически.
 Обратите внимание, что если URI написан с форматной строкой %s, начинающейся с {APP_URL}/modules/, он перенаправляет к источнику комментария.');
 define( '_MD_D3FORUM_BTN_MOVEFORUMTOOTHERFORUM' , 'Переместить этот форум в другой форум');
 define( '_MD_D3FORUM_BTN_COPYFORUMTOOTHERFORUM' , 'Копировать этот форум в другой форум');
@@ -333,14 +333,14 @@ define( '_MD_D3FORUM_SUFFIX_UNDERTHISFORUM' , '(в этом форуме)');
 
 // batch actions
 define( '_MD_D3FORUM_BATCH_ACTIONS' , 'Пакетные действия');
-define( '_MD_D3FORUM_BATCH_ACTIONS_DESC' , 'Пакетные действия - это действия, выполняемые над набором выбранных объектов. 
+define( '_MD_D3FORUM_BATCH_ACTIONS_DESC' , 'Пакетные действия - это действия, выполняемые над набором выбранных объектов.
 По умолчанию, администраторы могут выполнять эти действия с несколькими записями одновременно.');
 define( '_MD_D3FORUM_BA_TURNSOLVEDON' , 'Отметить все темы как решенные');
 define( '_MD_D3FORUM_BA_MSG_CONFIRM' , 'Внимание: это действие повлияет на все темы и сообщения внутри категории или форума');
 
 // multi-byte spaces separated by ,
 // (don't define for single space languages)
-//Define( '_MD_D3FORUM_MULTIBYTESPACES' , ' ');
+//define( '_MD_D3FORUM_MULTIBYTESPACES' , ' ');
 // permission error
 define( '_MD_D3FORUM_ERR_NOPERM' , 'Извините, у вас нет доступа.');
 

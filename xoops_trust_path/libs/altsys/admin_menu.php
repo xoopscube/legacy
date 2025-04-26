@@ -39,6 +39,10 @@ $adminmenu = [
 		'title' => _MI_ALTSYS_MENU_MYLANGADMIN,
 		'link'  => 'admin/index.php?mode=admin&lib=altsys&page=mylangadmin',
 	],
+	[
+		'title' => _MI_ALTSYS_MENU_MYLANGAUDIT,
+		'link'  => 'admin/index.php?mode=admin&lib=altsys&page=lang_audit',
+	],
 	/*	array(
 		'title' => _MI_ALTSYS_MENU_MYAVATAR ,
 		'link' => 'index.php?mode=admin&lib=altsys&page=myavatar' ,

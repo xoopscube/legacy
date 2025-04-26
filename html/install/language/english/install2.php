@@ -3,9 +3,9 @@
 
 const _INSTALL_WEBMASTER = 'Webmasters' ;
 const _INSTALL_WEBMASTERD = 'Webmasters of this site' ;
-const _INSTALL_REGUSERS = 'Registered Users' ;
+const _INSTALL_REGUSERS = 'Registered' ;
 const _INSTALL_REGUSERSD = 'Registered Users Group' ;
-const _INSTALL_ANONUSERS = 'Anonymous Users' ;
+const _INSTALL_ANONUSERS = 'Anonymous' ;
 const _INSTALL_ANONUSERSD = 'Anonymous Users Group' ;
 
 const _INSTALL_ANON = 'Anonymous' ;

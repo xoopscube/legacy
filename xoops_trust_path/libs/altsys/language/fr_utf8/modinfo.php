@@ -10,6 +10,7 @@ define( '_MI_ALTSYS_MENU_MYBLOCKSADMIN' , 'Blocs des Modules');
 define( '_MI_ALTSYS_MENU_MYTPLSADMIN' , 'Templates');
 define( '_MI_ALTSYS_MENU_COMPILEHOOKADMIN' , 'Templates Avancés');
 define( '_MI_ALTSYS_MENU_MYLANGADMIN' , 'Langue');
+define( '_MI_ALTSYS_MENU_MYLANGAUDIT' , 'Audit Translations');
 define( '_MI_ALTSYS_MENU_ADVANCEDLANGADMIN' , 'Langue Avancés');
 define( '_MI_ALTSYS_MENU_MYAVATAR' , 'Avatars');
 define( '_MI_ALTSYS_MENU_MYSMILEY' , 'Emoticones');

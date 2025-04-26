@@ -12,6 +12,7 @@ define( '_MI_ALTSYS_MENU_MYBLOCKSADMIN' , "Blocos dos módulos");
 define( '_MI_ALTSYS_MENU_MYTPLSADMIN' , "Modelos");
 define( '_MI_ALTSYS_MENU_COMPILEHOOKADMIN' , "Modelos (avançado)");
 define( '_MI_ALTSYS_MENU_MYLANGADMIN' , "Idiomas");
+define( '_MI_ALTSYS_MENU_MYLANGAUDIT' , 'Audit Translations');
 define( '_MI_ALTSYS_MENU_ADVANCEDLANGADMIN' , "Idiomas (avançado)");
 define( '_MI_ALTSYS_MENU_MYAVATAR' , "Avatares");
 define( '_MI_ALTSYS_MENU_MYSMILEY' , "Ícones emotivos");

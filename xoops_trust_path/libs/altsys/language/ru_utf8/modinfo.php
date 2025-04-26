@@ -10,6 +10,7 @@ define( '_MI_ALTSYS_MENU_MYBLOCKSADMIN' , 'Модули Блоки');
 define( '_MI_ALTSYS_MENU_MYTPLSADMIN' , 'Шаблоны');
 define( '_MI_ALTSYS_MENU_COMPILEHOOKADMIN' , 'Расширенные шаблоны');
 define( '_MI_ALTSYS_MENU_MYLANGADMIN' , 'Язык');
+define( '_MI_ALTSYS_MENU_MYLANGAUDIT' , 'Audit Translations');
 define( '_MI_ALTSYS_MENU_ADVANCEDLANGADMIN' , 'Продвинутые языки');
 define( '_MI_ALTSYS_MENU_MYAVATAR' , 'Аватары');
 define( '_MI_ALTSYS_MENU_MYSMILEY' , 'Smileys');

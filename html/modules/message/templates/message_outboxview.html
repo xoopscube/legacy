@@ -50,6 +50,8 @@
 
     <footer class="action-control">
         <form id="message-delete" method="post" action="index.php?action=delete&amp;inout=out">
+            <{* token implementation by providing name and value parameters *}>
+            <{xoops_token name="outboxview_token" value="1"}>
             <input type="hidden" name="outbox" value="<{$msgdata.outbox_id}>">
             <button type="submit" role="button" class="outline secondary delete" value="<{$smarty.const._MD_MESSAGE_TEMPLATE14}>">
                 <img class="svg delete" src="<{$xoops_url}>/images/icons/delete.svg" alt="delete"> <{$smarty.const._MD_MESSAGE_TEMPLATE14}>
@@ -71,6 +73,7 @@
 <{* Add JavaScript for ajax *}>
 <script type="text/javascript">
   function loadMessage(id, param, inout) {
+
       fetch('index.php?action=view&' + param + '=' + id + '&inout=' + inout + '&ajax=1')
           .then(response => response.json())
           .then(data => {
@@ -137,13 +140,18 @@
               // Show deleting status
               if (deleteStatus) deleteStatus.textContent = 'Deleting...';
               
+            // Create FormData from the form
+            // this automatically includes all fields including the token
+            const formData = new FormData(deleteForm);
+            const searchParams = new URLSearchParams(formData);
+
               // Send AJAX request
               fetch('index.php?action=delete&inout=' + inout + '&ajax=1', {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/x-www-form-urlencoded',
                   },
-                  body: 'outbox=' + encodeURIComponent(messageId)
+                  body: searchParams.toString(),
               })
               .then(response => response.json())
               .then(data => {

@@ -1,4 +1,14 @@
 <?php
+/**
+ * legacy_ai_assistant.php
+ * 
+ * @package    Legacy
+ * @version    XCL 2.5.0
+ * @author     Nuno Luciano aka gigamaster
+ * @copyright  (c) 2005-2025 The XOOPSCube Project
+ * @license    GPL 2.0
+ * @brief      This version uses huggingface.co mBART model for translations
+ */
 
 class Legacy_AIAssistantBlock
 {
@@ -15,7 +25,7 @@ class Legacy_AIAssistantBlock
     public function __construct($options)
     {
         // Debug configuration with better visibility
-        error_log("AI Block Constructor Options: " . json_encode($options));
+        // error_log("AI Block Constructor Options: " . json_encode($options));
         
         // Fix token extraction
         if (is_array($options)) {
@@ -27,10 +37,10 @@ class Legacy_AIAssistantBlock
         
         // Validate token format
         if (!empty($this->api_token) && !preg_match('/^hf_/', $this->api_token)) {
-            error_log("Invalid token format. Should start with 'hf_'");
+            //error_log("Invalid token format. Should start with 'hf_'");
         }
         
-        error_log("Token Status: " . (empty($this->api_token) ? 'Empty' : 'Present'));
+        // error_log("Token Status: " . (empty($this->api_token) ? 'Empty' : 'Present'));
     }
 
     public function processRequest($content, $type, $sourceLang = '', $targetLang = '')
@@ -57,7 +67,8 @@ class Legacy_AIAssistantBlock
                         ]
                     ];
                     
-                    error_log("Using mBART model with src_lang: $mbartSourceLang, tgt_lang: $mbartTargetLang");
+                    // debug
+                    // error_log("Using mBART model with src_lang: $mbartSourceLang, tgt_lang: $mbartTargetLang");
                     break;
                 case 'summarize':
                     $model = "facebook/bart-large-cnn";
@@ -80,7 +91,7 @@ class Legacy_AIAssistantBlock
             $result = $this->callHuggingFace($model, $data);
             
             // Debug response
-            error_log("API Result: " . print_r($result, true));
+            // error_log("API Result: " . print_r($result, true));
             
             // Handle different response formats
             if (is_array($result)) {
@@ -104,7 +115,8 @@ class Legacy_AIAssistantBlock
             return (string)$result;
             
         } catch (Exception $e) {
-            error_log("AI Processing Error: " . $e->getMessage());
+            // Debug error
+           // error_log("AI Processing Error: " . $e->getMessage());
             throw new Exception(_MB_LEGACY_BLOCK_AI_ERROR . ': ' . $e->getMessage());
         }
     }
@@ -125,14 +137,15 @@ class Legacy_AIAssistantBlock
     private function callHuggingFace($model, $data) 
     {
         if (empty($this->api_token)) {
-            error_log("Missing API token in callHuggingFace");
+            // Debug error
+            // error_log("Missing API token in callHuggingFace");
             throw new Exception(_MB_LEGACY_BLOCK_AI_NO_TOKEN);
         }
 
         $url = $this->api_url . $model;
         
         // Debug request
-/*         error_log("Making API request:");
+    /*  error_log("Making API request:");
         error_log("- URL: " . $url);
         error_log("- Token Length: " . strlen($this->api_token));
         error_log("- Data: " . json_encode($data)); */
@@ -167,12 +180,13 @@ class Legacy_AIAssistantBlock
         // Log verbose debug info
         rewind($verbose);
         $verboseLog = stream_get_contents($verbose);
-        error_log("CURL Debug: " . $verboseLog);
+        // debug
+        // error_log("CURL Debug: " . $verboseLog);
 
         curl_close($ch);
 
         // Log response details
-        error_log("HTTP Code: " . $httpCode);
+        // error_log("HTTP Code: " . $httpCode);
         
         if ($error) {
             throw new Exception("cURL Error: " . $error);
@@ -183,16 +197,16 @@ class Legacy_AIAssistantBlock
             // Handle specific HTTP error codes
             switch ($httpCode) {
                 case 403:
-                    error_log("API Authorization Error: " . substr($response, 0, 200) . "...");
+                    // error_log("API Authorization Error: " . substr($response, 0, 200) . "...");
                     throw new Exception(_MB_LEGACY_BLOCK_AI_ERROR);
                 case 404:
-                    error_log("Model Not Found: " . $model);
+                   // error_log("Model Not Found: " . $model);
                     throw new Exception(_MB_LEGACY_BLOCK_AI_ERROR);
                 case 429:
-                    error_log("Rate Limit Exceeded: " . substr($response, 0, 200) . "...");
+                   // error_log("Rate Limit Exceeded: " . substr($response, 0, 200) . "...");
                     throw new Exception(_MB_LEGACY_BLOCK_AI_ERROR);
                 default:
-                    error_log("API Error (HTTP $httpCode): " . substr($response, 0, 200) . "...");
+                    // error_log("API Error (HTTP $httpCode): " . substr($response, 0, 200) . "...");
                     throw new Exception(_MB_LEGACY_BLOCK_AI_ERROR);
             }
         }

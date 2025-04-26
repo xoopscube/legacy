@@ -13,12 +13,33 @@
 XOOPSCube Legacy (XCL) is a Web Application Platform (WAP) free and open source well suited for general purpose. The XCL bundle package is designed for easy usage with the most popular web server stack: Apache, MySQL and PHP.
 
   
-<h3> &#62;&#62;&#62; <a href="https://github.com/xoopscube/legacy/issues/300" target="_blank" rel="noopener">Maintenance Mode - EOL</a></h3>
+
  
 
 | Branch | PHP Version | Commit / Pull request |
 |:-------------:|:-------------:|:-------------:|
-| Master | PHP 8.2 | Security updates only  |
+| 2.5.0 | PHP 8.2 | New files and updates only |
+
+
+<h3> ⚠ <a href="https://github.com/xoopscube/legacy/issues/300" target="_blank" rel="noopener">XOOPSCUBE Legacy backwards compatibility — Maintenance Mode EOL</a></h3>
+<p>There are no plans for ongoing development to provide support for older XOOPS v2.x versions.</p>
+  
+
+**Migration to XOOPSCUBE XCL v2.5.x is recommended.**
+
+## Upgrade 
+
+> [!WARNING]
+> Before proceeding, backup your files, uploads and database. Then, secure your 'mainfile'.  
+> Disable Protector, and overwrite your current installation with the latest version. 
+
+**Database**  
+
+- Upgrade your MySQL database to version 8.0 or higher !
+- Switch the character encoding to utf8mb4 and collation to utf8mb4
+- Import the .sql file into a new database with UTF8MB4 support
+
+&#62;&#62;&#62; [Step-by-Step Database Upgrade Guide](https://github.com/xoopscube/legacy/wiki/Upgrade-Database) 
 
 -----  
 

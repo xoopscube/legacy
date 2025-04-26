@@ -2,9 +2,9 @@
 // $Id$
 define("_INSTALL_WEBMASTER", "Webmasters");
 define("_INSTALL_WEBMASTERD", "Вебмастеры сайта");
-define("_INSTALL_REGUSERS", "Registered Users");
+define("_INSTALL_REGUSERS", "Пользователи");
 define("_INSTALL_REGUSERSD", "Зарегистрированные пользователи");
-define("_INSTALL_ANONUSERS", "Anonymous Users");
+define("_INSTALL_ANONUSERS", "Гость");
 define("_INSTALL_ANONUSERSD", "Группа анонимных пользователей");
 
 define("_INSTALL_ANON", "Гость");

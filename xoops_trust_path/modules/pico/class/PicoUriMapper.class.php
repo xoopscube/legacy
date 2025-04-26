@@ -35,11 +35,11 @@ class PicoUriMapper {
 			}
 		}
 	}
-
+// TODO audit and add Doc
 	public function parseRequest(): array {
-		if ( (int) @$_REQUEST['content_id'] > 0 ) {
+		if ( isset($_REQUEST['content_id']) && (int) $_REQUEST['content_id'] > 0 ) {
 			// 1st check $_REQUEST['content_id']
-			$content_id = (int) @$_REQUEST['content_id'];
+			$content_id = (int) $_REQUEST['content_id'];
 			$cat_id     = pico_common_get_cat_id_from_content_id( $this->mydirname, $content_id );
 		} else {
 			// 2nd check path_info
@@ -58,23 +58,23 @@ class PicoUriMapper {
 			} else {
 				// 3rd check $_REQUEST['cat_id']
 				$content_id = 0;
-				$cat_id     = (int) @$_REQUEST['cat_id'];
+				$cat_id     = isset($_REQUEST['cat_id']) ? (int) $_REQUEST['cat_id'] : 0;
 			}
 		}
-
+	
 		// set the parameter of $this->request  (controller/view/content_id etc.)
 		$this->judgeController( $cat_id, $content_id );
-
+	
 		// cat_id modification (makecontent/contentmanager etc.)
 		if ( defined( 'PICO_URI_MAPPER_ALLOW_CAT_ID_OVERWRITING' ) && isset( $_REQUEST['cat_id'] ) ) {
-			$cat_id = (int) @$_REQUEST['cat_id'];
+			$cat_id = (int) $_REQUEST['cat_id'];
 		}
-
+	
 		// content_id modification (contentmanager)
 		if ( defined( 'PICO_URI_MAPPER_ALLOW_CONTENT_ID_OVERWRITING' ) && isset( $_REQUEST['content_id'] ) ) {
-			$content_id = (int) @$_REQUEST['content_id'];
+			$content_id = (int) $_REQUEST['content_id'];
 		}
-
+	
 		// for notification
 		if ( $content_id ) {
 			$_GET['content_id'] = $content_id;
@@ -82,30 +82,40 @@ class PicoUriMapper {
 		if ( $cat_id ) {
 			$_GET['cat_id'] = $cat_id;
 		}
-
+	
 		// set request
 		$this->request['content_id'] = $content_id;
 		$this->request['cat_id']     = $cat_id;
-
+	
 		return $this->request;
 	}
 
+	// TODO: audit and add Doc
 	// override it if you want to add another URI mapping rules
 	public function judgeController( &$cat_id, &$content_id ) {
 		// default controller
 		if ( empty( $this->request['controller'] ) ) {
 			$this->request['controller'] = 'content';
 		}
-
+		
 		// controller/view
-		if ( 'singlecontent' === @$_GET['page'] || '?page=singlecontent' === substr( $_SERVER['REQUEST_URI'], - 19 ) ) {
+		if ( 
+			(isset($_GET['page']) && 'singlecontent' === $_GET['page']) || 
+			'?page=singlecontent' === substr( $_SERVER['REQUEST_URI'], - 19 ) 
+		) {
 			$this->request['view'] = 'singlecontent';
-		} elseif ( 'print' === @$_GET['page'] || '?page=print' === substr( $_SERVER['REQUEST_URI'], - 11 ) ) {
+		} elseif ( 
+			(isset($_GET['page']) && 'print' === $_GET['page']) || 
+			'?page=print' === substr( $_SERVER['REQUEST_URI'], - 11 ) 
+		) {
 			$this->request['view'] = 'print';
-		} elseif ( 'rss' === @$_GET['page'] || '?page=rss' === substr( $_SERVER['REQUEST_URI'], - 9 ) ) {
+		} elseif ( 
+			(isset($_GET['page']) && 'rss' === $_GET['page']) || 
+			'?page=rss' === substr( $_SERVER['REQUEST_URI'], - 9 ) 
+		) {
 			$this->request['controller'] = 'latestcontents';
 			$this->request['view']       = 'rss';
-		} elseif ( ! empty( $_GET['tag'] ) ) {
+		} elseif ( !empty( $_GET['tag'] ) ) {
 			$this->request['tag']        = $_GET['tag'];
 			$this->request['controller'] = 'querycontents';
 			$this->request['view']       = 'list';
@@ -114,7 +124,11 @@ class PicoUriMapper {
 		} elseif ( $cat_id > 0 ) {
 			$this->request['controller'] = 'category';
 			$this->request['view']       = 'list';
-		} elseif ( '0' !== @$_GET['cat_id'] && ( $this->config['show_menuinmoduletop'] || 'menu' === @$_GET['page'] ) ) {
+		} elseif ( 
+			isset($_GET['cat_id']) && '0' !== $_GET['cat_id'] && 
+			( $this->config['show_menuinmoduletop'] || 
+			  (isset($_GET['page']) && 'menu' === $_GET['page']) ) 
+		) {
 			$this->request['controller'] = 'menu';
 			$this->request['view']       = 'menu';
 		} else {

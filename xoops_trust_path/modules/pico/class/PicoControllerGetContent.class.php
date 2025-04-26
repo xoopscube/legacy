@@ -89,10 +89,25 @@ class PicoControllerGetContent extends PicoControllerAbstract {
 			$this->assign['categories_can_read'][ $tmp_data['id'] ] = str_repeat( '--', $tmp_data['cat_depth_in_tree'] ) . $tmp_data['cat_title'];
 		}
 
-		// count up 'viewed' - comment out if 'modifier_ip' for local views
-		if ( $content_data['modifier_ip'] !== @$_SERVER['REMOTE_ADDR'] ) {
+		// Content Count Views 
+		// in template: (<{$content.viewed}> 
+		// Prevent counting views from the content author's IP
+		// if ( $content_data['modifier_ip'] !== @$_SERVER['REMOTE_ADDR'] ) {
+		// 	$contentObj->incrementViewed();
+		// } 
+
+		// Allow view counting with basic protection:
+		// 1. Prevent counting views from the content author's own IP
+		// 2. Always allow counting for localhost (127.0.0.1) to support local development and testing
+		if ( $content_data['modifier_ip'] !== @$_SERVER['REMOTE_ADDR'] || 
+			$content_data['modifier_ip'] === '127.0.0.1' ) {
 			$contentObj->incrementViewed();
 		}
+
+		// Debug view counting
+		// error_log('Attempting to increment view for content ID: ' . $content_data['id']);
+		// error_log('Modifier IP: ' . $content_data['modifier_ip']);
+		// error_log('Current IP: ' . @$_SERVER['REMOTE_ADDR']);
 
 		// breadcrumbs
 		$breadcrumbsObj = AltsysBreadcrumbs::getInstance();

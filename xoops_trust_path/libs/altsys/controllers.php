@@ -25,4 +25,5 @@ $controllers = [
 	'mytplsform',
 	'put_templates',
 	'mylangadmin',
+	'lang_audit',
 ];

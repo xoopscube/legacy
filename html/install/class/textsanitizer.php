@@ -32,10 +32,15 @@ class textsanitizer {
 	}
 
 	public function &makeClickable( &$text ) {
+		// Ensure proper UTF-8 encoding
+		if (!mb_check_encoding($text, 'UTF-8')) {
+			$text = mb_convert_encoding($text, 'UTF-8', 'auto');
+		}
+		
 		$patterns     = [
-			"/([^]_a-z0-9-=\"'\/])([a-z]+?):\/\/([^, \r\n\"\(\)'<>]+)/i",
-			"/([^]_a-z0-9-=\"'\/])www\.([a-z0-9\-]+)\.([^, \r\n\"\(\)'<>]+)/i",
-			"/([^]_a-z0-9-=\"'\/])([a-z0-9\-_.]+?)@([^, \r\n\"\(\)'<>]+)/i"
+			"/([^]_a-z0-9-=\"'\/])([a-z]+?):\/\/([^, \r\n\"\(\)'<>]+)/iu", // Added 'u' modifier
+			"/([^]_a-z0-9-=\"'\/])www\.([a-z0-9\-]+)\.([^, \r\n\"\(\)'<>]+)/iu", // Added 'u' modifier
+			"/([^]_a-z0-9-=\"'\/])([a-z0-9\-_.]+?)@([^, \r\n\"\(\)'<>]+)/iu" // Added 'u' modifier
 		];
 		$replacements = [
 			"\\1<a href=\"\\2://\\3\" rel=\"external\">\\2://\\3</a>",
@@ -43,23 +48,37 @@ class textsanitizer {
 			"\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>"
 		];
 		$ret          = preg_replace( $patterns, $replacements, $text );
-
+	
 		return $ret;
 	}
 
 	public function &nl2Br( $text ) {
-		$ret = preg_replace( "/(\015\012)|(\015)|(\012)/", '<br>', $text );
-
+		// Ensure proper UTF-8 encoding
+		if (!mb_check_encoding($text, 'UTF-8')) {
+			$text = mb_convert_encoding($text, 'UTF-8', 'auto');
+		}
+		
+		$ret = preg_replace( "/(\015\012)|(\015)|(\012)/u", '<br>', $text ); // Added 'u' modifier
+	
 		return $ret;
 	}
 
 	public function &addSlashes( $text, $force = false ) {
+		// Ensure proper UTF-8 encoding
+		if (!mb_check_encoding($text, 'UTF-8')) {
+			$text = mb_convert_encoding($text, 'UTF-8', 'auto');
+		}
+		
 		if ( $force ) {
-			$ret = addslashes( $text );
-
+			// Use mb_ereg_replace for UTF-8 safety if available
+			if (function_exists('mb_ereg_replace')) {
+				$ret = mb_ereg_replace('([\'\"\\\\])', '\\\\\\1', $text);
+			} else {
+				$ret = addslashes( $text );
+			}
 			return $ret;
 		}
-
+	
 		return $text;
 	}
 
@@ -75,8 +94,13 @@ class textsanitizer {
 	*  for displaying data in html textbox forms
 	*/
 	public function &htmlSpecialChars( $text ) {
-		$text = preg_replace( '/&amp;/i', '&', htmlspecialchars( $text, ENT_QUOTES ) );
-
+		// Ensure proper UTF-8 encoding
+		if (!mb_check_encoding($text, 'UTF-8')) {
+			$text = mb_convert_encoding($text, 'UTF-8', 'auto');
+		}
+		
+		$text = preg_replace( '/&amp;/i', '&', htmlspecialchars( $text, ENT_QUOTES, 'UTF-8' )); // Added UTF-8 encoding
+	
 		return $text;
 	}
 

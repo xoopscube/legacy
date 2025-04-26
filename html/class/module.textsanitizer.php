@@ -5,12 +5,13 @@
  * @package    kernel
  * @subpackage core
  * @version    XCL 2.5.0
- * @author     Other authors gigamaster, 2020 XCL/PHP7
- * @author     Other authors Minahito, 2007/05/15
+ * @author     Nuno Luciano (aka gigamaster), 2020 XCL/PHP7
+ * @author     Minahito, 2007/05/15
  * @author     Kazumi Ono (aka onokazu)
  * @author     Goghs Cheng
  * @copyright  (c) 2000-2003 XOOPS.org
  * @license    GPL 2.0
+ * @brief      This version uses XOOPSCube XCube Delegate
  */
 
 
@@ -188,14 +189,23 @@ class MyTextSanitizer
      * @param   string  $text
      * @return  string
      **/
-    // Only variables can be returned by reference
-    // public function &addSlashes($text)
-	public function addSlashes($text)
+    public function addSlashes($text)
     {
-        return addslashes($text);
+        // Ensure proper UTF-8 encoding before adding slashes
+        if (!mb_check_encoding($text, 'UTF-8')) {
+            $text = mb_convert_encoding($text, 'UTF-8', 'auto');
+        }
+        
+        // Use mb_addslashes equivalent for UTF-8 safety
+        if (function_exists('mb_ereg_replace')) {
+            return mb_ereg_replace('([\'\"\\\\])', '\\\\\\1', $text);
+        } else {
+            return addslashes($text);
+        }
     }
+    
     /*
-    * if magic_quotes_gpc is on, stirip back slashes
+    * if magic_quotes_gpc is on, strip back slashes
     *
     * @param    string  $text
     *
@@ -203,7 +213,19 @@ class MyTextSanitizer
     */
     public function &stripSlashesGPC($text)
     {
-        //trigger_error("assume magic_quotes_gpc is off", E_USER_NOTICE);
+        // Ensure $text is a string
+        $text = (string)$text;
+    
+        // Ensure proper UTF-8 encoding
+        if (!mb_check_encoding($text, 'UTF-8')) {
+            $text = mb_convert_encoding($text, 'UTF-8', 'auto');
+        }
+        
+        // Use mb_stripslashes equivalent for UTF-8 safety
+        if (function_exists('mb_ereg_replace')) {
+            $text = mb_ereg_replace('\\\\([\'\"\\\\])', '\\1', (string)$text);
+        }
+    
         return $text;
     }
 

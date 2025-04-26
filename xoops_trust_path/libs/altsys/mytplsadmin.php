@@ -452,16 +452,16 @@ foreach ( $tplsets as $tplset ) {
         . "<select name='copy_to[{$tplset4disp}]'>\n"
         . str_replace( '<option value=\'' . $tplset4disp . '\'>' . $tplset4disp . '</option>', '', $tplset_options )
         . "</select>\n"
-		. "<input name='copy_do[{$tplset4disp}]' 
-		    type='submit' 
-		    value='" . _MYTPLSADMIN_BTN_COPY . "' 
+		. "<input name='copy_do[{$tplset4disp}]'
+		    type='submit'
+		    value='" . _MYTPLSADMIN_BTN_COPY . "'
 		    onclick='return altsys_mytpladmin_check_copy_submit(\"" . _MYTPLSADMIN_CNF_COPY_SELECTED_TEMPLATES . "\", \"{$tplset4disp}_\", true);'>\n"
 		. ( 'default' == $tplset && '_custom' != $target_dirname ? ''
-            : "<button class='button delete' 
-            name='del_do[{$tplset4disp}]' 
-            type='submit' 
-            value='" . _DELETE . "' 
-            onclick='return altsys_mytpladmin_check_copy_submit(\"" . _MYTPLSADMIN_CNF_DELETE_SELECTED_TEMPLATES . "\", \"{$tplset4disp}_\", false);' 
+            : "<button class='button delete'
+            name='del_do[{$tplset4disp}]'
+            type='submit'
+            value='" . _DELETE . "'
+            onclick='return altsys_mytpladmin_check_copy_submit(\"" . _MYTPLSADMIN_CNF_DELETE_SELECTED_TEMPLATES . "\", \"{$tplset4disp}_\", false);'
             title='" . _DELETE . "'><img class='svg' src='". XOOPS_URL ."/images/icons/delete.svg' width='1em' height='1em'></button>" )
         . "</td>\n";
 }

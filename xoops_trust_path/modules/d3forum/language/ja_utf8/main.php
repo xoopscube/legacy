@@ -328,7 +328,7 @@ define( '_MD_D3FORUM_SUFFIX_UNDERTHISFORUM' , '（このフォーラムの下に
 
 // batch actions
 define( '_MD_D3FORUM_BATCH_ACTIONS' , '一斉処理');
-Define( '_MD_D3FORUM_BATCH_ACTIONS_DESC' , 'Batch actions are actions triggered on a set of selected objects. 
+define( '_MD_D3FORUM_BATCH_ACTIONS_DESC' , 'Batch actions are actions triggered on a set of selected objects.
 By default, Admins can run this action in several entries at once.');
 define( '_MD_D3FORUM_BA_TURNSOLVEDON' , '全トピックを解決済とする');
 define( '_MD_D3FORUM_BA_MSG_CONFIRM' , '送信前に、本当にこの一斉処理を行って良いか確認してください');

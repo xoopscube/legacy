@@ -1,9 +1,8 @@
 <?php
 
 // Altsys admin menu and breadcrumbs
-define( '_MD_A_MYMENU_MYTPLSADMIN' , 'Templates');
-define( '_MD_A_MYMENU_MYBLOCKSADMIN' , 'Blocs Permissions');
-define( '_MD_A_MYMENU_MYPREFERENCES' , 'Préférences');
+define( '_MI_PROTECTOR_ADMENU_MYLANGADMIN' , 'Language');
+define( '_MI_PROTECTOR_ADMENU_MYTPLSADMIN' , 'Templates');
 
 // Headings
 define( '_AM_TH_DATETIME' , 'Date');
