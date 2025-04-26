@@ -18,34 +18,38 @@ XOOPSCube Legacy (XCL) is a Web Application Platform (WAP) free and open source 
 
 | Branch | PHP Version | Commit / Pull request |
 |:-------------:|:-------------:|:-------------:|
-| 2.5.0 | PHP 8.2 | New files and updates only |
+| 2.5.0 | PHP 8.2 | New files and updates only |  
+  
+
+### [The XOOPSCube Project Celebrates The 20th Anniversary](https://github.com/xoopscube/legacy/blob/master/XOOPSCube-20th-Anniversary.md)
+
+-----
 
 
-<h3> ⚠ <a href="https://github.com/xoopscube/legacy/issues/300" target="_blank" rel="noopener">XOOPSCUBE Legacy backwards compatibility — Maintenance Mode EOL</a></h3>
-<p>There are no plans for ongoing development to provide support for older XOOPS v2.x versions.</p>
+## Upgrade 
+
+> [!CAUTION]
+> ⚠ [XOOPSCUBE Legacy backwards compatibility — Maintenance Mode EOL](https://github.com/xoopscube/legacy/issues/300)  
+> There are no plans for ongoing development to provide support for older XOOPS v2.x versions.
   
 
 **Migration to XOOPSCUBE XCL v2.5.x is recommended.**
 
-## Upgrade 
+**Upgrade Database**    
+
 
 > [!WARNING]
 > Before proceeding, backup your files, uploads and database. Then, secure your 'mainfile'.  
 > Disable Protector, and overwrite your current installation with the latest version. 
 
-**Database**  
-
-- Upgrade your MySQL database to version 8.0 or higher !
+- Upgrade your MySQL database to version 8.0 or higher!
 - Switch the character encoding to utf8mb4 and collation to utf8mb4
 - Import the .sql file into a new database with UTF8MB4 support
 
-&#62;&#62;&#62; [Step-by-Step Database Upgrade Guide](https://github.com/xoopscube/legacy/wiki/Upgrade-Database) 
+> [!TIP]
+> [Step-by-Step Database Upgrade Guide](https://github.com/xoopscube/legacy/wiki/Upgrade-Database) 
 
 -----  
-
-### [The XOOPSCube Project Celebrates The 20th Anniversary](https://github.com/xoopscube/legacy/blob/master/XOOPSCube-20th-Anniversary.md)
-
------
 
 ## Get Started
 ### Installation Wizard
