@@ -13,7 +13,7 @@
 // Scans all modules in XOOPS_ROOT_PATH and XOOPS_TRUST_PATH for language files
 // Compares all constants in /english/*.php to those in each other language folder
 // Outputs an HTML report with emoji for success/fail
-// Now also reports extra constants
+// Add also reports extra constants
 // (defined in translation but not in English, or not used anywhere on the code)
 
 // Polyfill for PHP < 8 str_contains
@@ -23,7 +23,7 @@ if (!function_exists('str_contains')) {
     }
 }
 
-// Emergency language reset to handler (must be at top, before any output)
+// Emergency language reset handler (must be at top, before any output)
 if (isset($_GET['resetlang']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Content-Type: application/json');
     require_once dirname(__FILE__) . '/mainfile.php';
@@ -188,103 +188,54 @@ header('Content-Type: text/html; charset=utf-8');
 <head>
     <title>XOOPSCube XCL - Recovery Language Audit</title>
     <meta charset="UTF-8">
-    <!-- CSS STYLES SECTION -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-    *::before,
-*::after {
-  box-sizing: border-box;
-}
+    *::before,*::after {box-sizing: border-box;}
     body{font:14px sans-serif;} 
-    .ok{color:green;}
-    .fail{color:red;} 
-    ul{margin:0 0 1em 2em;} 
-    li{margin:0.2em 0;}
-    section {max-width: 1024px; margin:0 auto 2rem;}
+    .ok{color:green;}.fail{color:red;}.flex{display:flex;}
+    .flex-1{padding:1rem;width: 50%;}ul{margin:0 0 1em 2em;} 
+    li{margin:0.2em 0;}section {max-width: 1024px; margin:0 auto 2rem;}
     .audit-header{background:#f5f5f5;padding:1em 2em 1em 2em;border-bottom:1px solid #ccc;}
-    .audit-btn{background:#0074d9;color:#fff;border:none;padding: 0.65em;margin: 1em 0 0;margin-top:1em;font-size:1.1em;border-radius:3px;cursor:pointer;}
-    .audit-btn:active{background:#005fa3;}
-
-    /* Layout Styles */
-    .audit-result-wrap {
-        margin: 1em auto 0 auto;
-        max-width: 1100px;
-        background: #fff;
-        position: relative;
-    }
-
-    .audit-controls {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background-color: #f8f8f8;
-        padding: 1em 1.5em;
-        border-bottom: 1px solid #ddd;
-        margin: 0 auto 0 auto;
-        max-width: 1100px;
-        box-sizing: border-box;
-    }
-
-    #audit-results-inner {
-        height: 480px;
-        overflow-y: auto;
-        padding: 1.5em 2em;
-        border: 1px solid #eee;
-        margin-top: 1em;
-    }
-
-    /* Button Styles */
-    .audit-export-btn{
-        background: #2abf3b;
-        color: #fff;
-        border: none;
-        padding: 0.65em;
-        margin: 1em 0 0;
-        font-size: 1em;
-        border-radius: 3px;
-        cursor: pointer;
-    }
-    .audit-export-btn:active{
-        background:#229c2b;
-    }
-    input, select {
-        max-width: 200px;
-        position: relative;
-    }
-    input, select {
-        appearance: none;
-        width: 100%;
-        font-size: 1rem;
-        padding: 0.5em;
-        background-color: #fff;
-        border: 1px solid #caced1;
-        border-radius: 0.25rem;
-        color: #111;
-        cursor: pointer;
-    }
-    select {
-        background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='m13 16.172l5.364-5.364l1.414 1.414L12 20l-7.778-7.778l1.414-1.414L11 16.172V4h2z'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-size: 0.8em auto;
-        background-position: right 5% bottom 50%;
-    }
+    .audit-btn{background:#0074d9;color:#fff;border:none;padding:0.5em 1.25em;margin: 1em 0 0;margin-top:1em;font-size:1.1em;border-radius:3px;cursor:pointer;}
+    .audit-btn:active{background:#005fa3;} #newauditbtn{background:#ff851b;}
+    .audit-result-wrap{margin:1em auto 0;max-width:1100px;background:#fff;position:relative}
+    .audit-controls{position:sticky;top:0;z-index:10;background-color:#f8f8f8;padding:1em 1.5em;border-bottom:1px solid #ddd;margin:0 auto;max-width:1100px;box-sizing:border-box}
+    #audit-results-inner{height:480px;overflow-y:auto;padding:1.5em 2em;border:1px solid #eee;margin-top:1em}
+    .audit-export-btn{background:#1b932a;border:none;border-radius:3px;color:#fff;cursor:pointer;font-size:1em;margin:1em 0 0;padding:.65em}
+    .audit-export-btn:active{background:#229c2b}
+    input,select{max-width:180px;position:relative;appearance:none;background-color:#fff;border:1px solid #caced1;border-radius:4px;color:#111;cursor:pointer;padding:.5em;width:100%}
+    select{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='m13 16.172l5.364-5.364l1.414 1.414L12 20l-7.778-7.778l1.414-1.414L11 16.172V4h2z'/%3E%3C/svg%3E") right 5% bottom 50%/.8em auto no-repeat #fff}
+    .lang-reset-dialog{background:#b22222;border:1px solid #ffa9a9;border-radius:4px;color:#facfcf;margin:1em 0 1.5em;padding:1em 2em;text-align:center}
+    #lang-reset-english-btn{background:#d9534f;border:none;border-radius:4px;color:#fff;cursor:pointer;font-weight:700;padding:.5em 1.25em}
     </style>
 </head>
 <body>
-    <!-- HTML CONTENT SECTION -->
-    <section>
-
+<section>
     <div class="audit-header">
         <h1>XOOPSCube XCL Language Audit Tool</h1>
         <p>This tool scans all modules for language files and compares constants between English and other languages.</p>
+        <div class="flex">
+        <div class="flex-1">
         <button id="runbtn" class="audit-btn" onclick="runAudit()">Start Audit</button>
-        <button id="newauditbtn" class="audit-btn" onclick="newAudit()" style="display:none;background:#ff851b;">New Audit</button>
+        <button id="newauditbtn" class="audit-btn" onclick="newAudit()" style="display:none;">New Audit</button>
+        </div>
+    <?php 
+    if (is_object($xoopsUser) && $xoopsUser->isAdmin(1)) {
+        echo '<div class="flex-1 lang-reset-dialog">
+            <strong>Stuck with a broken language?</strong><br> 
+            <button id="lang-reset-english-btn">Reset Site Language to English</button><br>
+            <small>(Emergency recovery)</small>
+        </div>';
+    }
+    ?>
+        </div>
         <div id="audit-loading" style="display:none;margin-top:1em;">
             <p>Analyzing language files... please wait.</p>
         </div>
     </div>
 
-    <!-- Controls Section -->
-    <div id="audit-controls-section" class="audit-controls" style="display:none;">
+<!-- Controls Section -->
+<div id="audit-controls-section" class="audit-controls" style="display:none;">
         <div style="display:flex;flex-wrap:wrap;gap:1em;align-items:center;">
             <div style="flex:1;">
                 <label for="audit-module"><b>Filter by Module:</b></label>
@@ -336,21 +287,16 @@ header('Content-Type: text/html; charset=utf-8');
   </div>
 </div>
 </div><!-- // End of audit-controls -->
-
-        <!-- Summary container -->
-        <div id="audit-summary-container"></div>
-    </div>
-
-    <!-- Results Section -->
-    <div id="audit-results" class="audit-result-wrap" style="display:none;">
-        <div id="audit-results-inner"></div>
-    </div>
-
-    <!-- JAVASCRIPT SECTION -->
-    <script>
-    // All JavaScript functions grouped together
+<!-- Summary container -->
+<div id="audit-summary-container"></div>
+</div>
+<!-- Results Section -->
+<div id="audit-results" class="audit-result-wrap" style="display:none;">
+    <div id="audit-results-inner"></div>
+</div>
+<script>
+// All JavaScript functions grouped together
     let allReports = <?php echo json_encode($all_reports, JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_UNESCAPED_UNICODE); ?>;
-    
     // Filter reports based on selected criteria
     function filterReports() {
         let mod = document.getElementById("audit-module").value;
@@ -364,7 +310,6 @@ header('Content-Type: text/html; charset=utf-8');
         );
         renderReports(results);
     }
-
     // Render the filtered reports
     function renderReports(reports) {
         // Summary statistics
@@ -424,7 +369,6 @@ header('Content-Type: text/html; charset=utf-8');
         // Update results container
         document.getElementById("audit-results-inner").innerHTML = reportHtml;
     }
-
     // Start the audit process
     function runAudit() {
         const runBtn = document.getElementById("runbtn");
@@ -440,7 +384,6 @@ header('Content-Type: text/html; charset=utf-8');
             document.getElementById("newauditbtn").style.display = "inline-block";
         }, 250);
     }
-
     // Reset for a new audit
     function newAudit() {
         const runBtn = document.getElementById("runbtn");
@@ -463,7 +406,6 @@ header('Content-Type: text/html; charset=utf-8');
         document.getElementById("newauditbtn").style.display = "none";
         if (runBtn) runBtn.style.display = "inline-block";
     }
-
 
   // Email modal logic.
   // Note that email depends on the context settings
@@ -630,12 +572,10 @@ header('Content-Type: text/html; charset=utf-8');
     </table>
     <p>✅ = All constants present<br>❌ = Missing constant<br>⚠️ = Extra constant in translation<br>🚫 = Extra constant not used anywhere in codebase</p>
 </body>
-</html>`;
-            
+</html>`;  
             mimeType = 'text/html';
             filename += '.html';
         }
-        
         // Handle view or download based on action
         if (action === 'view') {
             // Open in new tab
@@ -657,7 +597,6 @@ header('Content-Type: text/html; charset=utf-8');
             }, 0);
         }
     }
-
     // Event listeners
     window.addEventListener('DOMContentLoaded', function() {
         // Export select handler
@@ -695,7 +634,6 @@ header('Content-Type: text/html; charset=utf-8');
             filterReports();
         }
     });
-
     // Save filter selections to localStorage
     document.addEventListener('change', function(e) {
         if (e.target && e.target.id === 'audit-module') {
@@ -708,15 +646,8 @@ header('Content-Type: text/html; charset=utf-8');
             localStorage.setItem('auditFile', e.target.value);
         }
     });
-    </script>
-
-</section>
-</body>
-</html>
-
-
-<script>
-window.addEventListener('DOMContentLoaded', function() {
+    // Reset emergency
+    window.addEventListener('DOMContentLoaded', function() {
     var resetBtn = document.getElementById('lang-reset-english-btn');
     if (resetBtn) {
         resetBtn.addEventListener('click', function() {
@@ -752,9 +683,10 @@ if (savedFile) {
 // if (document.getElementById('audit-results').style.display === 'block') {
 //     filterReports();
 // }
-
 </script>
-
+</section>
+</body>
+</html>
 <?php
 // TODO check if any setup available
 // PHP: handle email send request using Mailer
@@ -775,7 +707,7 @@ if (isset($_GET['sendmail']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $subject = 'XOOPSCube XCL - Recovery Language Audit Report';
     if ($mod || $lang) $subject .= " [" . ($mod ? "Module: $mod " : "") . ($lang ? "Lang: $lang" : "") . "]";
     $body = "Attached is the audit report as a JSON file.\n\n";
-    $mailer = new xoopsmailer();
+    $mailer = new xoopsmailer(); // Use the global $mailer instance
     $mailer->useMail();
     $mailer->setToEmails([$to]);
     $mailer->setFromEmail($GLOBALS['xoopsConfig']['adminmail'] ?? 'webmaster@' . $_SERVER['SERVER_NAME']);
