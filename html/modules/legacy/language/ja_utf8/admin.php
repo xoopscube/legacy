@@ -268,7 +268,7 @@ define( '_MD_AM_CENSORRPLCDSC' , '禁止用語がこのテキストボックス�
 define( '_MD_AM_CENSORWRD' , '禁止用語');
 define( '_MD_AM_CENSORWRDDSC' , 'ユーザが投稿する際に使用を禁止ｓする文字列を入力してください。文字列と文字列の間は <br> | で区切り、大文字小文字は区別しません。');
 define( '_MD_AM_CHNGUTHEME' , '全てのユーザのテーマを変更する');
-define( '_MD_AM_CLOSESITE' , '<a id="close-site">🚧 メンテナンスモードです。 サイトを閉鎖する</a>');
+define( '_MD_AM_CLOSESITE' , '<h5><a id="close-site">🚧</a> メンテナンスモードです。 サイトを閉鎖する</h5>');
 define( '_MD_AM_CLOSESITEDSC' , '特定グループ以外はサイトにアクセスすることができないようにします。');
 define( '_MD_AM_CLOSESITEOK' , 'メンテナンスモードです。 サイト閉鎖時でもアクセスが認められているグループ');
 define( '_MD_AM_CLOSESITEOKDSC' , 'デフォルトの管理者グループは常にアクセスできます');

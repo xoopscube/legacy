@@ -71,109 +71,11 @@
 </article>
 
 <{* Add JavaScript for ajax *}>
+<script type="text/javascript" src="<{$xoops_url}>/modules/message/js/messageview.js"></script>
 <script type="text/javascript">
-  function loadMessage(id, param, inout) {
-
-      fetch('index.php?action=view&' + param + '=' + id + '&inout=' + inout + '&ajax=1')
-          .then(response => response.json())
-          .then(data => {
-              if (data.error) {
-                  alert(data.error);
-                  return;
-              }
-              
-              // Update message content
-              document.querySelector('.mail-subject').innerHTML = data.subject;
-              
-              // Update recipient with avatar
-              const toElement = document.querySelector('.mail-to');
-              if (toElement) {
-                  // Use the avatar_url from the response
-                  toElement.innerHTML = '<{$smarty.const._MD_MESSAGE_TEMPLATE9}> ' + 
-                      '<img src="' + (data.avatar_url || '<{$xoops_url}>/modules/user/images/no_avatar.gif') + 
-                      '" width="24px" data-self="radius-circle" alt="avatar"> ' + 
-                      data.to;
-              }
-              
-              document.querySelector('.mail-content').innerHTML = data.body;
-              document.querySelector('.mail-date').innerHTML = 
-                  '<img class="svg datetime" src="<{$xoops_url}>/images/icons/datetime.svg" alt="datetime"> ' + 
-                  '<span class="badge">' + data.date + '</span>';
-              
-              // Update form values for delete form
-              document.querySelectorAll('input[name="outbox"]').forEach(input => {
-                  input.value = id;
-              });
-              
-              // Update navigation buttons
-              let navHtml = '';
-              if (data.prev_id) {
-                  navHtml += `<a href="#" onclick="loadMessage('${data.prev_id}', '${data.param}', '${data.inout_short}'); return false;" class="outline">&laquo; Previous</a> `;
-              }
-              if (data.next_id) {
-                  navHtml += `<a href="#" onclick="loadMessage('${data.next_id}', '${data.param}', '${data.inout_short}'); return false;" class="outline">Next &raquo;</a>`;
-              }
-              document.getElementById('msg-nav').innerHTML = navHtml;
-              
-              // Update URL without reloading
-              history.pushState({}, '', 'index.php?action=view&' + param + '=' + id + '&inout=' + inout);
-          })
-          .catch(error => {
-              console.error('Error loading message:', error);
-              alert('Error loading message. Please try again.');
-          });
-  }
-  
-  // AJAX delete functionality
-  document.addEventListener('DOMContentLoaded', function() {
-      const deleteForm = document.getElementById('message-delete');
-      const deleteStatus = document.getElementById('delete-status');
-      
-      if (deleteForm) {
-          deleteForm.addEventListener('submit', function(event) {
-              event.preventDefault();
-              
-              // Get the message ID from the form
-              const messageId = deleteForm.querySelector('input[name="outbox"]').value;
-              const inout = 'out'; // For outbox view
-              
-              // Show deleting status
-              if (deleteStatus) deleteStatus.textContent = 'Deleting...';
-              
-            // Create FormData from the form
-            // this automatically includes all fields including the token
-            const formData = new FormData(deleteForm);
-            const searchParams = new URLSearchParams(formData);
-
-              // Send AJAX request
-              fetch('index.php?action=delete&inout=' + inout + '&ajax=1', {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/x-www-form-urlencoded',
-                  },
-                  body: searchParams.toString(),
-              })
-              .then(response => response.json())
-              .then(data => {
-                  if (data.success) {
-                      // Success - redirect to outbox
-                      if (deleteStatus) deleteStatus.textContent = data.message || 'Message deleted successfully.';
-                      
-                      // Redirect to outbox after a short delay
-                      setTimeout(function() {
-                          window.location.href = 'index.php?action=send';
-                      }, 500); // Reduced delay for better UX
-                  } else {
-                      // Error
-                      if (deleteStatus) deleteStatus.textContent = data.error || 'Error deleting message.';
-                      console.error('Delete error:', data);
-                  }
-              })
-              .catch(error => {
-                  console.error('Network error:', error);
-                  if (deleteStatus) deleteStatus.textContent = 'Network error. Please try again.';
-              });
-          });
-      }
-  });
+    // Define constants needed by the JS functions
+    const XOOPS_URL = '<{$xoops_url}>';
+    
+    // Initialize the delete functionality
+    setupSingleMessageDelete('message-delete', 'delete-status', 'index.php?action=send');
 </script>

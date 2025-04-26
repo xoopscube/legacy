@@ -371,7 +371,7 @@ define( '_MD_AM_CENSORRPLCDSC' , 'Censored words will be replaced with the chara
 define( '_MD_AM_CENSORWRD' , 'Words to censor');
 define( '_MD_AM_CENSORWRDDSC' , 'Enter words that should be censored in user posts.<br>Separate each with a <b>|</b> (pipe), case insensitive.');
 define( '_MD_AM_CHNGUTHEME' , "Change all users' theme");
-define( '_MD_AM_CLOSESITE' , '<a id="close-site">🚧 Maintenance Mode - Turn your site off?</a>');
+define( '_MD_AM_CLOSESITE' , '<h5><a id="close-site">🚧</a> Maintenance Mode - Turn your site off?</h5>');
 define( '_MD_AM_CLOSESITEDSC' , 'Select yes to turn your site off so that only users in selected groups have access to the site. ');
 define( '_MD_AM_CLOSESITEOK' , '🚧 Maintenance Mode - Select groups');
 define( '_MD_AM_CLOSESITEOKDSC' , 'Groups that are allowed to access while the site is turned off. Users in the default webmasters group are always granted access.');

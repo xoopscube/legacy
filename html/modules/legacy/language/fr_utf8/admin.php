@@ -370,7 +370,7 @@ define( '_MD_AM_CENSORRPLCDSC' , "Les mots censurés seront remplacés par les c
 define( '_MD_AM_CENSORWRD' , "Mots censurés");
 define( '_MD_AM_CENSORWRDDSC' , "Entrez les mots qui seront censurés dans les envois utilisateurs.<br />Les séparer par un <b>|</b>, casse insensible.");
 define( '_MD_AM_CHNGUTHEME' , "Change le theme de tous les utilisateurs");
-define( '_MD_AM_CLOSESITE' , '<a id="close-site">🚧 Mode maintenance - Fermer votre site ?</a>');
+define( '_MD_AM_CLOSESITE' , '<h5><a id="close-site">🚧</a> Mode maintenance - Fermer votre site ?</h5>');
 define( '_MD_AM_CLOSESITEDSC' , "Choisissez oui pour fermer votre site au public et limiter l'accès au groupe d'utilisateurs choisis.");
 define( '_MD_AM_CLOSESITEOK' , "Mode maintenance - Groupes autorisés");
 define( '_MD_AM_CLOSESITEOKDSC' , "Sélectionnez les groupes autorisés à accéder au site. Le groupe d'administrateurs ont accès par défaut.");

@@ -373,7 +373,7 @@ define( '_MD_AM_CENSORRPLCDSC' , "As palavras censuradas serão substitu죡s por
 define( '_MD_AM_CENSORWRD' , "Palavras a serem censuradas");
 define( '_MD_AM_CENSORWRDDSC' , "Escreva as mensagens para serem censuradas nas mensagens dos associados.<br />Separar cada um por uma barra certical ( <strong>|</strong> ), é indiferente o uso de maiúsculas ou minúsculas.");
 define( '_MD_AM_CHNGUTHEME' , "Editar o tema de todos os associados");
-define( '_MD_AM_CLOSESITE' , '<a id="close-site">🚧 Modo de manutenção. Fechar temporariamente o portal?</a>');
+define( '_MD_AM_CLOSESITE' , '<h5><a id="close-site">🚧</a> Modo de manutenção. Fechar temporariamente o portal?</h5>');
 define( '_MD_AM_CLOSESITEDSC' , "Fechando o portal, somente os grupos com permissão de acesso poderão mostrar o conteúdo do mesmo.");
 define( '_MD_AM_CLOSESITEOK' , "Grupos com acesso ao <i>site</i> bloqueado.");
 define( '_MD_AM_CLOSESITEOKDSC' , "Escolha os grupos que poderão acessar o portal enquanto este estiver bloqueado (administradores não precisam de permissão).");

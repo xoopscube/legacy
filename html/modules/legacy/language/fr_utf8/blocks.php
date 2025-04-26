@@ -54,7 +54,7 @@ define('_MB_LEGACY_BLOCK_AI_SUBMIT', 'Demander à l\'IA');
 define('_MB_LEGACY_BLOCK_AI_PROCESSING', 'Traitement en cours...');
 define('_MB_LEGACY_BLOCK_AI_NO_CONTENT', 'Veuillez saisir du contenu à traiter');
 // AI Assistant Block Errors
-define('_MB_LEGACY_BLOCK_AI_ERROR', 'Erreur de traitement IA. Si la limite de requêtes n\'est pas atteinte, réessayez.');
+define('_MB_LEGACY_BLOCK_AI_ERROR', 'Erreur de traitement IA. Vérifiez si vous avez atteint la limite de demande et réessayez.');
 define('_MB_LEGACY_BLOCK_AI_LANG_ERROR', 'ERREUR: Langue');
 define('_MB_LEGACY_BLOCK_AI_LANG_SAME_ERROR', 'ERREUR: Même Langue');
 define('_MB_LEGACY_BLOCK_AI_LANG_SELECT_ERROR', 'ERREUR: Sélectionnez une Langue');
