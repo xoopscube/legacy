@@ -158,7 +158,7 @@ class Legacy_AbstractModule
      * @param string|null $key
      * @return mixed If $key is specified null, returns map array (std::map<string, mixed>)
      */
-    public function getModuleConfig(string $key = null)
+    public function getModuleConfig(?string $key = null)
     {
         if (null == $key) {
             return $this->mModuleConfig;
@@ -428,25 +428,8 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
 
         $this->mXoopsModule->loadAdminMenu();
 
-        /*
-        * Polyfill if not PHP >= 7.3.0 // XCL 2.3.0 Bug fix #163 @gigamaster
-        */
-        if (!function_exists('is_countable')) {
-
-            function is_countable($searchArgs) {
-
-                if (0 == (is_countable($this->mXoopsModule->adminmenu) ? count($this->mXoopsModule->adminmenu) : 0) && !isset($this->mXoopsModule->modinfo['config'])) {
-
-                    return (is_countable($searchArgs));
-                }
-            }
-        }
-
-
-        //
         // Search preference
-        //
-        if (isset($this->mXoopsModule->modinfo['config']) && (is_countable($this->mXoopsModule->modinfo['config']) ? count($this->mXoopsModule->modinfo['config']) : 0)>0) {
+        if (isset($this->mXoopsModule->modinfo['config']) && (is_countable($this->mXoopsModule->modinfo['config']) ? count($this->mXoopsModule->modinfo['config']) : 0) > 0) {
             $findFlag = false;
             foreach ($searchArgs->getKeywords() as $word) {
                 if (stripos(_PREFERENCES, (string) $word) !== false) {
@@ -456,7 +439,7 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                     break;
                 }
             }
-			// Since XCL 2.3.x PHP8 Check if constant is defined
+            // Since XCL 2.3.x PHP8 Check if constant is defined
             if (!$findFlag) {
                 $configInfos= [];
                 foreach ($this->mXoopsModule->modinfo['config'] as $config) {
@@ -485,65 +468,66 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                 }
 
                 if ($findFlag) {
-                    $searchArgs->addRecord($this->mXoopsModule->getVar('name'),
-                                      XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&amp;confmod_id='.$this->mXoopsModule->getVar('mid'),
-                                      _PREFERENCES);
-                }
-            }
-        }
-
-        /*
-        *  Search AdminMenu
-        *  Polyfill if not PHP 7.3.0 // XCLBug #163 @Gigamaster
-        */
-        if (!function_exists('is_countable')) {
-
-            function is_countable($searchArgs) {
-
-                if ((is_countable($this->mXoopsModule->adminmenu) ? count($this->mXoopsModule->adminmenu) : 0) > 0 ) {
-                    foreach ($this->mXoopsModule->adminmenu as $menu) {
-                        $findFlag = true;
-                        foreach ($searchArgs->getKeywords() as $word) {
-                            $tmpFlag=false;
-                            $tmpFlag|=(stripos($menu['title'], (string) $word) !== false);
-
-                            // Search keyword
-                            if (isset($menu['keywords'])) {
-                                $keyword=is_array($menu['keywords']) ? implode(' ', $menu['keywords']) : $menu['keywords'];
-                                $tmpFlag|=(stripos($keyword, (string) $word) !== false);
-                            }
-
-                            $findFlag&=$tmpFlag;
-                        }
-
-                        if ($findFlag) {
-                            //
-                            // Create url string with absolute information.
-                            //
-                            $url= '';
-                            if (isset($menu['absolute'])&&$menu['absolute']) {
-                                $url=$menu['link'];
-                            } else {
-                                $url= XOOPS_URL . '/modules/' . $this->mXoopsModule->getVar('dirname') . '/' . $menu['link'];
-                            }
-
-                            //
-                            // Add record
-                            //
-                            $searchArgs->addRecord($this->mXoopsModule->getVar('name'), $url, $menu['title']);
+                    // Get the description from the config that matched
+                    $description = '';
+                    foreach ($this->mXoopsModule->modinfo['config'] as $config) {
+                        if (isset($config['description']) && defined($config['description'])) {
+                            $description = constant($config['description']);
+                            break;
                         }
                     }
+                    
+                    if (!empty($description)) {
+                        $searchArgs->addRecord($this->mXoopsModule->getVar('name'),
+                                          XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&amp;confmod_id='.$this->mXoopsModule->getVar('mid'),
+                                          _PREFERENCES,
+                                          $description);
+                    } else {
+                        $searchArgs->addRecord($this->mXoopsModule->getVar('name'),
+                                          XOOPS_URL.'/modules/legacy/admin/index.php?action=PreferenceEdit&amp;confmod_id='.$this->mXoopsModule->getVar('mid'),
+                                          _PREFERENCES);
+                    }
                 }
-
-            return (is_countable($searchArgs));
-
             }
-
         }
 
-        //
-        // Search help
-        //
+        // Search AdminMenu
+        if ((is_countable($this->mXoopsModule->adminmenu) ? count($this->mXoopsModule->adminmenu) : 0) > 0) {
+            foreach ($this->mXoopsModule->adminmenu as $menu) {
+                $findFlag = true;
+                foreach ($searchArgs->getKeywords() as $word) {
+                    $tmpFlag=false;
+                    $tmpFlag|=(stripos($menu['title'], (string) $word) !== false);
+
+                    // Search keyword
+                    if (isset($menu['keywords'])) {
+                        $keyword=is_array($menu['keywords']) ? implode(' ', $menu['keywords']) : $menu['keywords'];
+                        $tmpFlag|=(stripos($keyword, (string) $word) !== false);
+                    }
+
+                    $findFlag&=$tmpFlag;
+                }
+
+                if ($findFlag) {
+                    // Create url string with absolute information.
+                    $url= '';
+                    if (isset($menu['absolute'])&&$menu['absolute']) {
+                        $url=$menu['link'];
+                    } else {
+                        $url= XOOPS_URL . '/modules/' . $this->mXoopsModule->getVar('dirname') . '/' . $menu['link'];
+                    }
+
+                    // Add record with description if available
+                    if (isset($menu['description'])) {
+                        $searchArgs->addRecord($this->mXoopsModule->getVar('name'), $url, $menu['title'], $menu['description']);
+                    } else {
+                        $searchArgs->addRecord($this->mXoopsModule->getVar('name'), $url, $menu['title']);
+                    }
+                }
+            }
+        }
+
+        // Search module's help files
         if ($this->mXoopsModule->hasHelp()) {
             $findFlag = false;
 
@@ -562,12 +546,6 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                 $helpfile = $this->mXoopsModule->getHelp();
                 $dir = XOOPS_MODULE_PATH . '/' . $this->mXoopsModule->getVar('dirname') . '/language/' . $language . '/help';
 
-/*                 if (!file_exists($dir . '/' . $helpfile)) {
-                    $dir = XOOPS_MODULE_PATH . '/' . $this->mXoopsModule->getVar('dirname') . '/language/english/help';
-                    if (!file_exists($dir . '/' . $helpfile)) {
-                        return;
-                    }
-                } */
                 if (!file_exists($dir . '/' . $helpfile)) {
                     $dir = XOOPS_MODULE_PATH . '/' . $this->mXoopsModule->getVar('dirname') . '/language/english/help';
                     if (!file_exists($dir . '/' . $helpfile)) {
@@ -583,15 +561,35 @@ class Legacy_ModuleAdapter extends Legacy_AbstractModule
                     }
                 }
                 
-                $lines = file($dir . '/' . $helpfile);
-                foreach ($lines as $line) {
-                    foreach ($searchArgs->getKeywords() as $word) {
-                        if (stripos($line, (string) $word) !== false) {
-                            $url = XOOPS_MODULE_URL . '/legacy/admin/index.php?action=Help&amp;dirname=' . $this->mXoopsModule->getVar('dirname');
-                            $searchArgs->addRecord($this->mXoopsModule->getVar('name'), $url, _HELP);
-                            return;
-                        }
+                // Improved search in help files
+                $helpContent = file_get_contents($dir . '/' . $helpfile);
+                $matchCount = 0;
+                $matchedKeywords = [];
+                
+                // Count matches for each keyword
+                foreach ($searchArgs->getKeywords() as $word) {
+                    $count = substr_count(strtolower($helpContent), strtolower((string) $word));
+                    if ($count > 0) {
+                        $matchCount += $count;
+                        $matchedKeywords[] = $word;
                     }
+                }
+                
+                // If we have matches, add to search results with relevance info
+                if ($matchCount > 0) {
+                    $url = XOOPS_MODULE_URL . '/legacy/admin/index.php?action=Help&amp;dirname=' . $this->mXoopsModule->getVar('dirname');
+                    
+                    // Create a description with matched keywords
+                    $description = sprintf(_MI_LEGACY_SEARCH_HELP_MATCHES, 
+                                          $matchCount, 
+                                          implode(', ', $matchedKeywords));
+                    
+                    $searchArgs->addRecord(
+                        $this->mXoopsModule->getVar('name'),
+                        $url,
+                        _HELP,
+                        $description
+                    );
                 }
             }
         }

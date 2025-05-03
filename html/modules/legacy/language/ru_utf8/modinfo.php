@@ -38,6 +38,7 @@ define('_MI_LEGACY_MENU_THEME_MANAGE', "темами оформления");
 define('_MI_LEGACY_MENU_XOOPS_CONFIG', "XOOPS Config");
 define('_MI_LEGACY_NAME', "Система (Legacy)");
 define('_MI_LEGACY_NAME_DESC', "Этот модуль обеспечивает совместимость между XOOPS Cube и XOOPS 2.0.x.");
+define( '_MI_LEGACY_SEARCH_HELP_MATCHES', 'Найдено %d совпадений для ключевых слов: %s');
 
 // AI Assistant Block
 define('_MI_LEGACY_BLOCK_AI_NAME', 'AI Assistant');

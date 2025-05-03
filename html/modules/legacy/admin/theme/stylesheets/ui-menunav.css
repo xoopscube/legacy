@@ -429,7 +429,7 @@ div.dropdown-content.drop-top :is(span, select, input[type=text]) {width:100%;ma
 
     border-left     : var( --nav-block-border );
     display         : flex; /* icons options*/
-    line-height     : 2.5rem;
+    line-height     : 2rem;
 }
 
 .nav-module-link a {

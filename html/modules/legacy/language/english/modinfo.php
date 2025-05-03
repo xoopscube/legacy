@@ -38,6 +38,7 @@ define( '_MI_LEGACY_MENU_THEME_MANAGE' , 'Themes');
 define( '_MI_LEGACY_MENU_XOOPS_CONFIG' , 'Preferences');
 define( '_MI_LEGACY_NAME' , 'System');
 define( '_MI_LEGACY_NAME_DESC' , 'XOOPSCube Core system module provides management and legacy support for XOOPS2, D3 modules and Cube services.');
+define( '_MI_LEGACY_SEARCH_HELP_MATCHES', 'Found %d matches for keywords: %s');
 
 // AI Assistant Block
 define('_MI_LEGACY_BLOCK_AI_NAME', 'AI Assistant');

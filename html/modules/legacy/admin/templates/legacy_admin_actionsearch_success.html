@@ -1,20 +1,33 @@
 <{include file="legacy_admin_actionsearch_form.html"}>
 
-<div class="ui-card-full">
+
 
     <div class="ui-dev-mode"><{$smarty.template}></div>
 
     <h2><{$smarty.const._AD_LEGACY_LANG_RESULT}></h2>
 
-    <ul class="action-search-records">
-        <{foreach item=record from=$records}>
-        <li>
-            <{$record->mModuleName|xoops_escape}> &raquo;&raquo; <a href="<{$record->mActionUrl}>"><{$record->mTitle|xoops_escape}></a>
-            <{if $record->mDescription}>
-            <div class="action-search-records-desc"><{$record->mDescription|xoops_escape}></div>
-            <{/if}>
-        </li>
-        <{/foreach}>
-    </ul>
+    <div id="action-search-results">
+        <{if $records}>
+            <ul class="action-search-records">
+                <{foreach item=record from=$records}>
+                <li>
+                    <div class="headings">
+                        <h5>
+                            <{$record->mModuleName|xoops_escape}> &raquo;&raquo; <a href="<{$record->mActionUrl}>"><{$record->mTitle|xoops_escape}></a>
+                        </h5>
+                        <{if $record->mDescription}>
+                        <div class="action-search-records-desc"><{$record->mDescription}></div><{* removed '|xoops_escape' from mDescription|xoops_escape *}>
+                        <{/if}>
+                    </div>
+                </li>
+                <{/foreach}>
+            </ul>
+        <{else}>
+            <div class="alert alert-info error">
+                <p><{$smarty.const._AD_LEGACY_ERROR_ACTION_SEARCH_NORESULT}></p>
+                <p><{$smarty.const._AD_LEGACY_ERROR_ACTION_SEARCH_TRY_AGAIN}></p>
+            </div>
+        <{/if}>
+    </div>
 
-</div>
+

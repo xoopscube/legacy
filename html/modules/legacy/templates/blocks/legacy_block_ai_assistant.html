@@ -93,7 +93,7 @@ async function submitAiQuery<{$block_id}>(button) {
         console.log('Request data:', debugData);
         
         button.disabled = true;
-        response.innerHTML = '<div class="alert alert-info"><{$smarty.const._MB_LEGACY_BLOCK_AI_PROCESSING}></div>';
+        response.innerHTML = '<div class="alert alert-info error"><{$smarty.const._MB_LEGACY_BLOCK_AI_PROCESSING}></div>';
         
         const result = await fetch(window.location.href, {
             method: 'POST',

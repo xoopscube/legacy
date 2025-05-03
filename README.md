@@ -21,7 +21,9 @@ XOOPSCube Legacy (XCL) is a Web Application Platform (WAP) free and open source 
 | 2.5.0 | PHP 8.2 | New files and updates only |  
 
 
+### Documentation 
 
+#### 📖 [Documentation XCL v2.5.x](https://xoopscube.github.io/documentation/)  
 
 #### 📙 [API Documentation XCL v2.5.x](https://xoopscube.github.io/documentation/api/)  
 

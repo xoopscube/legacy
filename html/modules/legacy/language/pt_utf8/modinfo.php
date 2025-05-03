@@ -44,6 +44,7 @@ define( '_MI_LEGACY_MENU_THEME_MANAGE' , "Temas");
 define( '_MI_LEGACY_MENU_XOOPS_CONFIG' , "Configurações gerais");
 define( '_MI_LEGACY_NAME' , "Sistema");
 define( '_MI_LEGACY_NAME_DESC' , "Módulo do sistema XOOPSCube Core fornece gerenciamento e suporte para módulos XOOPS2, D3 e serviços Cube.");
+define( '_MI_LEGACY_SEARCH_HELP_MATCHES', 'Foram encontradas %d correspondências para as palavras-chave: %s');
 
 // AI Assistant Block
 define('_MI_LEGACY_BLOCK_AI_NAME', 'AI Assistant');

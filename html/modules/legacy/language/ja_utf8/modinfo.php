@@ -38,6 +38,7 @@ define( '_MI_LEGACY_MENU_THEME_MANAGE' , 'テーマの管理');
 define( '_MI_LEGACY_MENU_XOOPS_CONFIG' , 'XOOPS コンフィグ');
 define( '_MI_LEGACY_NAME' , 'システム設定');
 define( '_MI_LEGACY_NAME_DESC' , 'XOOPSCubeコアシステムモジュールは、XOOPS2、D3モジュール、およびCubeサービスの管理とサポートを提供します。');
+define( '_MI_LEGACY_SEARCH_HELP_MATCHES', 'キーワードに一致するものが %d 件見つかりました: %s');
 
 // AI Assistant Block
 define('_MI_LEGACY_BLOCK_AI_NAME', 'AI Assistant');

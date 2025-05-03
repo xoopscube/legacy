@@ -58,6 +58,7 @@ class Legacy_ActionSearchArgs
          if(is_countable($this->mRecords)) {
              return count($this->mRecords) > 0;
          }
+         return false;
     }
 
 }
