@@ -208,7 +208,7 @@ if (empty($plugins)) {
         
         echo '<td class="list_center" width="25%">' . ($enabled ? 'Enabled' : 'Disabled') . '</td>';
         
-        echo '<td class="list_control width="25%">';
+        echo '<td class="list_control" width="25%">';
         echo '<a class="action-add" href="index.php?page=proxy_settings" title="Configure"><i class="i-add"></i></a>';
         echo '<a class="action-view" href="index.php?page=proxy_plugins&test=' . $plugin . '" title="Test"><i class="i-view"></i></a> ';
         echo '<a class="action-delete" href="index.php?page=proxy_plugins&delete=' . $plugin . '" onclick="return confirm(\'Are you sure you want to delete this plugin?\')" title="Delete"><i class="i-delete"></i></a>';

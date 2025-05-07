@@ -120,9 +120,8 @@ if ( !empty( $_POST['user_update'] ) ) {
 				continue;
 			}
 			$uid = $user->getVar( 'uid' );
-			$perms = []; //
+
 			$perms = [ 'can_read' => 1 ];
-			
 			foreach ( $pico_category_permissions as $perm_name ) {
 				$perms[ $perm_name ] = empty( $_POST[ 'new_' . $perm_name ][ $i ] ) ? 0 : 1;
 			}

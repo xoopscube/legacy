@@ -10,83 +10,11 @@
  * @copyright  (c) 2005-2025 Authors
  * @license    GPL v2.0
  */
-
 require_once XOOPS_ROOT_PATH . '/mainfile.php';
 // Include required XoopsCube notification functions
 require_once XOOPS_ROOT_PATH . '/include/notification_functions.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsmailer.php';
 
-// Get the XOOPS root object
-$root = XCube_Root::getSingleton();
-
-// Get the user object of the sender (current user)
-$xoopsUser = $root->mContext->mXoopsUser;
-
-if (!is_object($xoopsUser)) {
-    // Handle the case where there's no logged-in user.  Perhaps log an error or return.
-    echo "No logged-in user.";
-    return;
-}
-
-$fromUserId = $xoopsUser->get('uid');
-
-// Get the group ID for 'administrators' or 'webmasters'
-// Replace 'Administrator' with 'Webmaster' if needed
-$groupName = 'webmasters';
-$groupHandler = xoops_gethandler('group');
-$group = $groupHandler->getByName($groupName);
-
-if (empty($group)) {
-    echo "Group '$groupName' not found.";
-    return;
-}
-$groupId = $group[0]->getVar('groupid');
-
-// Get the user IDs of the users in the group
-$memberHandler = xoops_gethandler('member');
-$memberIds = $memberHandler->getUsersIds($groupId);
-
-// Message details
-$subject = 'Your Subject';
-$messageText = 'Your Message Body';
-
-// Get the private message handler
-$pmHandler = xoops_gethandler('privmessage');
-
-// Loop through the user IDs and send a private message to each user
-foreach ($memberIds as $toUserId) {
-    // Create a new private message object
-    $pm = $pmHandler->create();
-
-    // Set the message properties
-    $pm->setVar('subject', $subject);
-    $pm->setVar('from_userid', $fromUserId);
-    $pm->setVar('to_userid', $toUserId);
-    $pm->setVar('msg_text', $messageText);
-    $pm->setVar('msg_time', time());
-    $pm->setVar('read_msg', 0); // 0 for unread
-
-    // Send the private message
-    $result = $pmHandler->insert($pm);
-
-    if (!$result) {
-        echo "Error sending PM to user ID: " . $toUserId . "\n";
-    } else {
-        echo "PM sent to user ID: " . $toUserId . "\n";
-    }
-}
-
-echo "Finished sending private messages.\n";
-
-/**
- * Send notification to all webmasters
- * 
- * @param string $mydirname Module directory name
- * @param string $subject Notification subject
- * @param string $message Notification message
- * @param array $tags Optional tags for message templating
- * @return bool Success status
- */
 function pico_notify_webmasters($mydirname, $subject, $message, $tags = array()) {
     global $xoopsConfig;
     
@@ -162,11 +90,11 @@ function pico_notify_webmasters($mydirname, $subject, $message, $tags = array())
             // Create a new message
             $pm = $pm_handler->create();
             $pm->setVar('subject', $subject);
-            $pm->setVar('from_userid', 1); // Admin user ID
+            $pm->setVar('from_userid', 1); // System user ID
             $pm->setVar('to_userid', $uid);
             $pm->setVar('msg_text', $message);
             $pm->setVar('msg_time', $current_time);
-            $pm->setVar('read_msg', 0); // 0 for unread
+            $pm->setVar('read_msg', 0);
             
             // Save the message
             $result = $pm_handler->insert($pm);
@@ -176,7 +104,8 @@ function pico_notify_webmasters($mydirname, $subject, $message, $tags = array())
                 // error_log("PM sent to user ID: " . $uid);
             } else {
                 // Optionally log failure
-                // error_log("Error sending PM to user ID: " . $uid);
+                error_log("Error sending PM to user ID: " . $uid);
+                $pm_sent = false;
             }
         }
     }
