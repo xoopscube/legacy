@@ -8,6 +8,17 @@ All notable changes to this project will be documented in this file.
 
 Refer please to repository Legacy Commits  
 
+
+## [2.5.0 PHP8.2] 2025-05-05
+
+- Admin - Action Search #325
+- Update Nusoap 
+- Pico filter error notification
+- Pico restore system notification
+- Pico markdown removed
+- CKEditor add plugin markdown
+- XCube php doc review
+
 ## [2.5.0 PHP8.2] 2025-04-25
 
 Update maintenance PHP 8.2.x

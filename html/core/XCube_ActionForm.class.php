@@ -9,23 +9,22 @@
  * @license    BSD-3-Clause
  * @brief      [Abstract] Fetches input values, validates fetched values and passes them to an object.
  *
- *   This class fetches the input value from the request value through the
- *   current context object and validates those values. It separates fetching
- *   and the validation layer from your main logic.
- *   Such class is important in a web program.
  *
- *   Plus, this action form features one-time token.
- *   The passed token informs the API that the bearer of the token has been authorized to access the API and perform specific actions.
- *   The token is registered in templates.
+ * This class retrieves input values from the request using the current context object and then validates them.
+ * It cleanly separates the data fetching and validation processes from your core application logic.
+ * Such a class is crucial in web programming.
  *
- *   This is a simple suggestion of action form. We do not force a module
- *   developer to use this. You can learn more full-scale action forms from JAVA
- *   and .NET and other PHP. And, you must use any other tool auto-generating
- *   what you need to ActionForm as a sub-class of this class.
+ * Additionally, this action form incorporates a one-time token mechanism.
+ * This token, when passed, informs the API that the token holder has been authorized to access the API and perform specific actions.
+ * The token is registered within templates.
  *
- *   XCube_ActionForm contains the one-time token feature to protect against CSRF attacks
- *   But, if the current HTTP request is from the web service, the token isn't needed.
- *   Therefore, this class decides whether to use the token based on context information.
+ * This class provides a basic example of an action form and its usage is not mandatory for module developers.
+ * You can explore more comprehensive action form implementations in frameworks like JAVA, .NET, and other PHP frameworks.
+ * Furthermore, you are encouraged to utilize any suitable tool to auto-generate your specific ActionForm classes as subclasses of this base class.
+ *
+ * XCube_ActionForm includes a one-time token feature to protect against CSRF attacks.
+ * However, this token is not required if the current HTTP request originates from a web service.
+ * Consequently, this class dynamically determines whether to employ the token based on the current context information.
  *
  * @remarks
  *     This class is disabled for XCube_Service, because the class uses SESSION directly.

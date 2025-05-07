@@ -7,17 +7,17 @@
  * @author     Minahito, 2008/10/12
  * @copyright  (c) 2005-2025 The XOOPSCube Project
  * @license    BSD-3-Clause
- * @brief This class manages XCube_Service instances, searches these, creates a much
- * client instance. Now, the purpose of this class is for inside of own XOOPS
- * site. In other words, this class doesn't work for publishing web services.
- * About these separated working, the core team shall examine.
+ * @brief This class manages XCube_Service instances, searches for them, and creates the appropriate
+ * client instance. Currently, the purpose of this class is for internal use within the XOOPSCube
+ * site. In other words, this class is not designed for publishing external web services.
+ * The core team will examine the possibility of separating these functionalities.
  *
- * XCube namespace can't contain the SOAP library directly.
- * Delegate mechanism is good for this class. This class creates a client instance
- * which connects to a service, following the kind of the service.
- * For example, if the specified service is really a web service,
- * the SOAP client has to be created. But, if the service is a virtual service of XCube,
- * virtual client has to be created.
+ * The XCube namespace cannot directly contain the SOAP library.
+ * The delegate mechanism is well-suited for this class. This class creates a client instance
+ * that connects to a service based on the service type.
+ * For example, if the specified service is indeed an external web service,
+ * a SOAP client must be created. However, if the service is an internal virtual service of XCube,
+ * a virtual client must be created instead.
  */
 
 if ( ! defined( 'XCUBE_CORE_PATH' ) ) {
