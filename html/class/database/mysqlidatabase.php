@@ -136,7 +136,11 @@ class XoopsMysqliDatabase extends XoopsDatabase
      */
     public function getRowsNum($result)
     {
-        return @ mysqli_num_rows($result);
+        // Add type checking
+        if (!$result || !is_object($result)) {
+            return 0; // Return 0 for failed queries
+        }
+        return mysqli_num_rows($result);
     }
 
     /**

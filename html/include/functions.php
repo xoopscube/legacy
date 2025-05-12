@@ -151,7 +151,7 @@ function xoops_confirm_validate()
 
 function xoops_refcheck($docheck=1)
 {
-    $ref = xoops_getenv('HTTP_REFERER');
+    $ref = xoops_getenv('HTTP_REFERER') ?? '';
     if ($docheck === 0) {
         return true;
     }
@@ -159,12 +159,11 @@ function xoops_refcheck($docheck=1)
         return false;
     }
     // Allow protocol part to be omitted
-    if (substr(XOOPS_URL, 0, 1)==='/') $ref = preg_replace('/^https?:/', '', $ref);
-    //TODO PHP8 'strpos' call can be converted to 'str_starts_with'
-    if (strpos($ref, (string) XOOPS_URL) !== 0) {
-        return false;
+    if (substr(XOOPS_URL, 0, 1)==='/') {
+        $ref = preg_replace('/^https?:/', '', $ref);
     }
-    return true;
+    // Use str_starts_with() for PHP 8 compatibility
+    return str_starts_with($ref, (string) XOOPS_URL);
 }
 
 function xoops_getUserTimestamp($time, $timeoffset='')

@@ -9,6 +9,19 @@ All notable changes to this project will be documented in this file.
 Refer please to repository Legacy Commits  
 
 
+## [2.5.0 PHP8.2] 2025-05-12
+
+- Add property declarations to class/xoopsmailer
+- Add property declarations to lib/Mailer
+- class/mysqlidatabase type checking
+- class/errorHandler + Debug log #329
+- class/Template enhanced 
+- include/functions str_starts_with() for PHP 8 compatibility
+- Inline Debug (PHP, SQL, Smarty)
+- Improve Legacy_Debugger
+- Update debug.tpl
+
+
 ## [2.5.0 PHP8.2] 2025-05-05
 
 - Admin - Action Search #325
@@ -17,7 +30,9 @@ Refer please to repository Legacy Commits
 - Pico restore system notification
 - Pico markdown removed
 - CKEditor add plugin markdown
+- Message remove pgsql.sql
 - XCube php doc review
+
 
 ## [2.5.0 PHP8.2] 2025-04-25
 

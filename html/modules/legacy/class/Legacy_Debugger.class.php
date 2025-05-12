@@ -87,8 +87,15 @@ class Legacy_NonDebugger extends Legacy_AbstractDebugger
 
 /***
  * @internal
-This class works for "PHP debugging mode".
-*/
+ * 
+ * This class works for "PHP debugging mode".
+ * If you specifically need to suppress notices 
+ * (though often not recommended during development), 
+ * use error_reporting(E_ALL & ~E_NOTICE);
+ * Similarly, use & ~E_DEPRECATED if you must suppress deprecation notices. 
+ * Avoid XOR (^) for simply removing levels, 
+ * as & ~ (AND NOT) is clearer and more standard for this purpose 
+**/
 class Legacy_PHPDebugger extends Legacy_AbstractDebugger
 {
     public function prepare()
@@ -96,7 +103,8 @@ class Legacy_PHPDebugger extends Legacy_AbstractDebugger
         if (defined('XOOPS_ERROR_REPORTING_LEVEL')) {
             error_reporting(XOOPS_ERROR_REPORTING_LEVEL);
         } else {
-            error_reporting(E_ALL ^ E_STRICT ^ E_NOTICE);
+
+            error_reporting(E_ALL);
         }
         $GLOBALS['xoopsErrorHandler'] =& XoopsErrorHandler::getInstance();
         $GLOBALS['xoopsErrorHandler']->activate(true);
@@ -121,22 +129,16 @@ class Legacy_MysqlDebugger extends Legacy_AbstractDebugger
         return $xoopsLogger->dumpAll();
     }
 
-    // TODO ! @gigamaster debug
+    // Inline debug view @gigamaster
     public function displayLog()
     {
-        echo '<script type="text/javascript">
-        <!--//
-        debug_window = openWithSelfMain("Debug", "xoops_debug", 680, 600, true);
-        ';
-        $content = '<html lang="'._CHARSET.'"><head><meta http-equiv="content-type" content="text/html; charset='._CHARSET.'" /><meta http-equiv="content-language" content="'._LANGCODE.'" /><title>'.htmlspecialchars($GLOBALS['xoopsConfig']['sitename']).'</title><link rel="stylesheet" type="text/css" media="all" href="'.getcss($GLOBALS['xoopsConfig']['theme_set']).'" /></head><body>'.$this->renderLog().'<div style="text-align:center;"><input class="btn close" value="'._CLOSE.'" type="button" onclick="javascript:window.close();"></div></body></html>';
-        $lines = preg_split("/(\r\n|\r|\n)( *)/", $content);
-        foreach ($lines as $line) {
-            echo 'debug_window.document.writeln("'.str_replace('"', '\"', $line).'");';
-        }
-        echo '
-        debug_window.document.close();
-        //-->
-        </script>';
+        $content = '<div id="xcl-debug-log" style="position:fixed;bottom:0;left:0;right:0;background:#111;border-top:1px solid #000;color:#eee;padding:10px;z-index:9999;max-height:50vh;overflow:auto;">';
+        $content .= '<h3 style="margin:0 0 10px 0;">Debug Log</h3>';
+        $content .= $this->renderLog();
+        $content .= '<div style="text-align:center;margin-top:10px;">';
+        $content .= '<input class="btn close" value="'._CLOSE.'" type="button" onclick="document.getElementById(\'xoops-debug-log\').style.display=\'none\';">';
+        $content .= '</div></div>';
+        echo $content;
     }
 }
 

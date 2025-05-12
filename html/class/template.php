@@ -30,6 +30,16 @@ class XoopsTpl extends Smarty
     public $_canUpdateFromFile = false;
 
     /**
+     * @var float Timestamp when debug mode was started
+     */
+    protected $_debug_start_time = 0;
+
+    /**
+     * @var int Index for included templates in debug info
+     */
+    protected $_included_tpls_idx = 0;
+
+    /**
      * Constructor
      **/
     public function __construct()
@@ -98,6 +108,7 @@ class XoopsTpl extends Smarty
         //
         XCube_DelegateUtils::call('XoopsTpl.New',  new XCube_Ref($this));
     }
+
     public function XoopsTpl()
     {
         return $this->__construct();
@@ -248,10 +259,22 @@ class XoopsTpl extends Smarty
     public function fetchDebugConsole()
     {
         if ($this->debugging) {
+            // Initialize debug start time if not set
+            if ($this->_debug_start_time == 0) {
+                $_params = [];
+                require_once(SMARTY_CORE_DIR . 'core.get_microtime.php');
+                $this->_debug_start_time = smarty_core_get_microtime($_params, $this);
+            }
+            
+            // Initialize included templates index if not set
+            if (!isset($this->_included_tpls_idx)) {
+                $this->_included_tpls_idx = 0;
+            }
+
             // capture time for debugging info
             $_params = [];
             require_once(SMARTY_CORE_DIR . 'core.get_microtime.php');
-            $this->_smarty_debug_info[$_included_tpls_idx]['exec_time'] = (smarty_core_get_microtime($_params, $this) - $_debug_start_time);
+            $this->_smarty_debug_info[$this->_included_tpls_idx]['exec_time'] = (smarty_core_get_microtime($_params, $this) - $this->_debug_start_time);
             require_once(SMARTY_CORE_DIR . 'core.display_debug_console.php');
             return smarty_core_display_debug_console($_params, $this);
         }

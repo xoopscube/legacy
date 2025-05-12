@@ -177,10 +177,14 @@ class XoopsErrorHandler
                 $count[$md5] = 1;
             }
         }
-        $ret = '<div class="alert error">';
-        $ret .= implode("<br>\n", $output);
-        $ret .= '</div>';
-        return $ret;
+
+        $content = '<div id="xcl-debug-log" style="position:fixed;bottom:0;left:0;right:0;background:#111;border-top:1px solid #000;font:normal 14px/1.5 monospace; padding:10px;z-index:9999;max-height:25vh;overflow:auto;">';
+        $content .= '<h3 class="xcl-debug">Debug Log</h3>';
+        $content .= implode("<br>\n", $output);
+        $content .= '<div style="text-align:center;margin-top:10px;">';
+        $content .= '<input class="btn close" value="'._CLOSE.'" type="button" onclick="document.getElementById(\'xoops-debug-log\').style.display=\'none\';">';
+        $content .= '</div></div>';
+        return $content;
     }
 }
 
@@ -189,7 +193,7 @@ class XoopsErrorHandler
  *
  * NOTE: Some recent versions of PHP have a 5th parameter, &$p_ErrContext
  * which is an associative array of all variables defined in scope in which
- * error occurred.  We cannot support this, for compatibility with older PHP.
+ * error occurred. We cannot support this, for compatibility with older PHP.
  *
  * @access public
  * @param int $errNo Type of error
@@ -213,6 +217,10 @@ function XoopsErrorHandler_HandleError($errNo, $errStr, $errFile, $errLine)
 
 /**
  * User-defined shutdown function (called from 'exit')
+ * The error handler checks for errors before processing
+ * - Catch and display fatal errors
+ * - Show all accumulated errors at shutdown
+ * - Avoid PHP warnings about null array access
  *
  * @access public
  * @return void
@@ -220,7 +228,7 @@ function XoopsErrorHandler_HandleError($errNo, $errStr, $errFile, $errLine)
 function XoopsErrorHandler_Shutdown()
 {
     $error = error_get_last();
-    if (E_ERROR === $error['type']) {
+    if ($error !== null && E_ERROR === $error['type']) {
         XoopsErrorHandler_HandleError($error['type'], $error['message'], $error['file'], $error['line']);
     }
     $error_handler =& XoopsErrorHandler::getInstance();

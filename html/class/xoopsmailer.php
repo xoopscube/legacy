@@ -107,6 +107,10 @@ class xoopsmailer
     // public $charSet = 'iso-8859-1';
     public $charSet = 'UTF-8';
 
+    // v2.5.0 Add property declarations
+    public $priority;
+    public $LE;
+
     // protected
     public $encoding = '8bit';
 

@@ -14,6 +14,20 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 /**
  * This is a class for mail.
+ * 
+ * @property string $From Email address of the sender
+ * @property string $FromName Name of the sender
+ * @property string $Subject Subject of the email
+ * @property string $Body Body of the email
+ * @property string $CharSet Character set of the email
+ * @property string $Encoding Encoding of the email
+ * @property string $Host SMTP hosts, comma or semicolon separated
+ * @property string $Sender Email address for Return-Path
+ * @property boolean $SMTPAuth Whether to use SMTP authentication
+ * @property string $Username SMTP username
+ * @property string $Password SMTP password
+ * @property string $Sendmail Path to sendmail binary
+ * @property string $SetLanguage Language for error messages
  */
 class Legacy_Mailer extends PHPMailer
 {
