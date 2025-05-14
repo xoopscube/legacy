@@ -168,7 +168,7 @@ div.smarty {
     {section name=vars loop=$_debug_keys}
         <tr class="{cycle values="odd,even"}">
             <th>{ldelim}${$_debug_keys[vars]|escape:'html'}{rdelim}</th>
-            <td>{$_debug_vals[vars]|@debug_print_var}</td></tr>
+            <td>{$_debug_vals[vars]|@xoops_debug_print_var}</td></tr>
     {sectionelse}
         <tr><td><p>no template variables assigned</p></td></tr>
     {/section}
@@ -183,7 +183,7 @@ div.smarty {
     {section name=config_vars loop=$_debug_config_keys}
         <tr class="{cycle values="odd,even"}">
             <th>{ldelim}#{$_debug_config_keys[config_vars]|escape:'html'}#{rdelim}</th>
-            <td>{$_debug_config_vals[config_vars]|@debug_print_var}</td></tr>
+            <td>{$_debug_config_vals[config_vars]|@xoops_debug_print_var}</td></tr>
     {sectionelse}
         <tr><td><p>no config vars assigned</p></td></tr>
     {/section}
