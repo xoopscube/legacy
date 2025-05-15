@@ -1,0 +1,174 @@
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
+    &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_STDCACHE_NAME}></a>
+    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_STDCACHE_CLEAR_TITLE}></span>
+</nav>
+
+<h2><{$smarty.const._AD_STDCACHE_CLEAR_CONFIRM}></h2>
+
+<{if $actionForm->hasError()}>
+<div class="error">
+    <ul>
+        <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li><{$message|escape:'html'}></li>
+        <{/foreach}>
+    </ul>
+</div>
+<{/if}>
+
+  <div class="error">
+    <{$smarty.const._AD_STDCACHE_WARNING_CLEAR_UPLOADS|default:'Warning: This will delete all user-uploaded files like avatars and images. Use with extreme caution!'}>
+  </div>
+
+
+<style>
+
+.set-link {
+    font-size       : 1em;
+    line-height     : 1.25em;
+    min-width       : 85px;
+    max-width       : calc(100% / 4 );
+    background      : var(--layer-4);
+    border          : 1px solid var(--border);
+    border-radius   : var(--border-radius);
+    margin-bottom   : var(--space-2);
+    padding         : var(--space-2) 0;
+    text-align      : center;
+}
+.set-link:hover {
+    background      : var(--layer-4)
+}
+.set-icon {
+    display         : block;
+    margin          : var(--space-3) auto;
+}
+.set-icon svg {
+    height          : 24px;
+    width           : 24px;
+}
+.set-name {
+    display         : block;
+    font-size       : 13px;
+    margin          : 0;
+}
+
+.form-group,
+    .card-container {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .cache-clear{
+      position: relative;
+      width: 25%;
+      height: 55px;
+    border          : 1px solid var( --layer-4 );
+    border-radius   : var(--border-radius);
+      background-color: var(--layer-4);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .cache-clear input[type="checkbox"],
+.cache-clear input[type="radio"] {
+      display: none;
+    }
+.cache-clear label{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      font-size: var( --font-size   );
+      font-weight: 300;
+      color: var( --body-color  );
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .cache-clear input[type="checkbox"]:checked + label,
+    .cache-clear input[type="radio"]:checked + label {
+      background-color:var( --layer-1 );
+      color: var( --body-color  );
+      border          : 1px solid var(  --color-red      );
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+    }
+.cache-clear input[type="radio"]:checked + label::after,
+    .cache-clear input[type="radio"]:checked + label::after {
+      content: "✓";
+      font-size: 24px;
+      margin-left: 10px;
+    }
+  </style>
+
+
+<form action="index.php?action=CacheClearAction" method="post" onsubmit="return confirmClearUploads(this);">
+    <{xoops_token form=$actionForm}>
+
+
+    <h3>1. <{$smarty.const._AD_STDCACHE_CLEAR_OLDER_THAN}></h3>
+
+      <div class="form-group ui-card-full">
+        
+        <div class="cache-clear">
+            <input type="radio" class="cache-clear-input" name="clear_age" id="clear_age_all" value="0" <{if $actionForm->get('clear_age') == 0}>checked="checked"<{/if}> />
+            <label class="cache-clear-label" for="clear_age_all"><{$smarty.const._AD_STDCACHE_CLEAR_ALL_FILES}></label>
+        </div>
+        <div class="cache-clear">
+            <input type="radio" class="cache-clear-input" name="clear_age" id="clear_age_1_day" value="86400" <{if $actionForm->get('clear_age') == 86400}>checked="checked"<{/if}> />
+            <label class="cache-clear-label" for="clear_age_1_day"><{$smarty.const._AD_STDCACHE_CLEAR_OLDER_1_DAY}></label>
+        </div>
+        <div class="cache-clear">
+            <input type="radio" class="cache-clear-input" name="clear_age" id="clear_age_7_days" value="604800" <{if $actionForm->get('clear_age') == 604800}>checked="checked"<{/if}> />
+            <label class="cache-clear-label" for="clear_age_7_days"><{$smarty.const._AD_STDCACHE_CLEAR_OLDER_7_DAYS}></label>
+        </div>
+        <div class="cache-clear">
+            <input type="radio" class="cache-clear-input" name="clear_age" id="clear_age_30_days" value="2592000" <{if $actionForm->get('clear_age') == 2592000}>checked="checked"<{/if}> />
+            <label class="cache-clear-label" for="clear_age_30_days"><{$smarty.const._AD_STDCACHE_CLEAR_OLDER_30_DAYS}></label>
+        </div>
+    </div>
+
+    <hr/>
+
+
+
+<h3>2. <{$smarty.const._AD_STDCACHE_CLEAR_FILE_TYPES}></h3>
+    
+<div class="form-group ui-card-full">
+        
+        <div class="cache-clear">
+          <input type="checkbox" class="cache-clear-input" name="clear_smarty_cache" id="clear_smarty_cache" value="1" <{if $actionForm->get('clear_smarty_cache')}>checked="checked"<{/if}> />
+          <label class="cache-clear-label" for="clear_smarty_cache"><{$smarty.const._AD_STDCACHE_CLEAR_SMARTY_CACHE_OPTION}></label>
+        </div>
+        <div class="cache-clear">
+          <input type="checkbox" class="cache-clear-input" name="clear_compiled_templates" id="clear_compiled_templates" value="1" <{if $actionForm->get('clear_compiled_templates')}>checked="checked"<{/if}> />
+          <label class="cache-clear-label" for="clear_compiled_templates"><{$smarty.const._AD_STDCACHE_CLEAR_COMPILED_TEMPLATES_OPTION}></label>
+        </div>
+        <div class="cache-clear">
+          <input type="checkbox" class="cache-clear-input" name="clear_logs" id="clear_logs" value="1" <{if $actionForm->get('clear_logs')}>checked="checked"<{/if}> />
+          <label class="cache-clear-label" for="clear_logs"><{$smarty.const._AD_STDCACHE_CLEAR_LOG_FILES_OPTION}></label>
+        </div>
+        <div class="cache-clear">
+          <input type="checkbox" class="cache-clear-input" name="clear_uploads" id="clear_uploads" value="1" <{if $actionForm->get('clear_uploads')}>checked="checked"<{/if}> />
+          <label class="cache-clear-label" for="clear_uploads"><{$smarty.const._AD_STDCACHE_CLEAR_UPLOADS_OPTION}></label>
+    
+        </div>
+      </div>
+
+    <input type="hidden" name="confirm" value="1"> <{* This is the general confirmation flag for the form submission itself *}>
+    
+    <p data-self="my-5"><button type="submit" class="button delete">
+        <{$smarty.const._MI_STDCACHE_CONFIRM_CLEAR|escape:'html'}>
+    </button></p>
+</form>
+
+<script type="text/javascript">
+function confirmClearUploads(form) {
+    if (form.clear_uploads && form.clear_uploads.checked) {
+        var confirmationMessage = "<{$smarty.const._AD_STDCACHE_JS_CONFIRM_CLEAR_UPLOADS|escape:'javascript'|default:'Are you absolutely sure you want to delete all files from the uploads directory? This action cannot be undone.'}>";
+        return confirm(confirmationMessage);
+    }
+    return true; // Proceed normally if uploads not checked
+}
+</script>

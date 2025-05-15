@@ -1,0 +1,257 @@
+<style>
+/* Temporary override of input number */
+table.cache-config input[type='number']{width:14ch;max-width:14ch;}
+
+</style>
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
+    &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_STDCACHE_NAME}></a>
+    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_STDCACHE_CONFIG}></span>
+</nav>
+
+<h2><{$smarty.const._AD_STDCACHE_CONFIG}></h2>
+
+<{* Standard XOOPSCube error display block *}>
+<{if $actionForm->hasError()}>
+<div class="error">
+    <ul>
+        <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li><{$message|escape:'html'}></li>
+        <{/foreach}>
+    </ul>
+</div>
+<{/if}>
+
+<div class="help-tips">
+    Recommended: 100MB for small sites, 500MB for medium traffic, 1GB for large sites. Use the converter below for precise byte values.
+</div>
+
+<div data-layout="row">
+
+    <div data-self="size-2of3 mr-6">
+        
+            <form action="./index.php?action=CacheConfig" method="post">
+                <{xoops_token form=$actionForm}>
+                
+                <table class="outer cache-config">
+                    <thead>
+                    <tr>
+                        <th colspan="2"><{$smarty.const._AD_STDCACHE_CACHE_SETTINGS}></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="head"><{$smarty.const._AD_STDCACHE_CACHE_LIMIT}></td>
+                        <td class="<{cycle values='odd,even'}>">
+                            <input 
+                                type="number" 
+                                name="cache_limit"
+                                id="cache_limit_input" 
+                                value="<{$actionForm->get('cache_limit')}>"
+                                min="<{$actionForm->getFieldMin('cache_limit')}>"
+                                max="<{$actionForm->getFieldMax('cache_limit')}>"
+                                step="1000" 
+                                size="20"
+                                oninput="updateHumanReadableSize('cache_limit_input', 'cache_limit_hr_display')" 
+                            />
+                            <code id="cache_limit_hr_display" class="xoops-help-text  badge">(<{$cache_limit_mb}>)</code>
+                            <br /><span class="xoops-help-text"><{$smarty.const._AD_STDCACHE_CACHE_LIMIT_DESC}></span>
+                        </td>
+                    </tr>
+            
+                    <tr>
+                        <td class="head"><{$smarty.const._AD_STDCACHE_CACHE_NOTIFICATION_LIMIT}></td>
+                        <td class="<{cycle values='odd,even'}>">
+                            <input 
+                                type="number" 
+                                name="cache_notification_limit"
+                                id="cache_notification_limit_input" 
+                                value="<{$actionForm->get('cache_notification_limit')}>" 
+                                min="<{$actionForm->getFieldMin('cache_notification_limit')}>"
+                                max="<{$actionForm->getFieldMax('cache_notification_limit')}>"
+                                step="1000" 
+                                size="20"
+                                oninput="updateHumanReadableSize('cache_notification_limit_input', 'cache_notification_limit_hr_display')" 
+                            />
+                            <span id="cache_notification_limit_hr_display" class="xoops-help-text">(<{$cache_notification_limit_mb}>)</span>
+                            <br /><span class="xoops-help-text"><{$smarty.const._AD_STDCACHE_CACHE_NOTIFICATION_LIMIT_DESC}></span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="head"><{$smarty.const._AD_STDCACHE_CACHE_CLEANUP_LIMIT}></td>
+                        <td class="<{cycle values='odd,even'}>">
+                            <input 
+                                type="number" 
+                                name="cache_cleanup_limit"
+                                id="cache_cleanup_limit_input" 
+                                value="<{$actionForm->get('cache_cleanup_limit')}>" 
+                                min="<{$actionForm->getFieldMin('cache_cleanup_limit')}>"
+                                max="<{$actionForm->getFieldMax('cache_cleanup_limit')}>"
+                                step="1000" 
+                                size="20"
+                                oninput="updateHumanReadableSize('cache_cleanup_limit_input', 'cache_cleanup_limit_hr_display')"
+                            />
+                            <span id="cache_cleanup_limit_hr_display" class="xoops-help-text">(<{$cache_cleanup_limit_mb}>)</span>
+                            <br /><span class="xoops-help-text"><{$smarty.const._AD_STDCACHE_CACHE_CLEANUP_LIMIT_DESC}></span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="head"><{$smarty.const._AD_STDCACHE_COMPILED_TEMPLATES_LIMIT}></td>
+                        <td class="<{cycle values='odd,even'}>">
+                            <input 
+                                type="number" 
+                                name="compiled_templates_limit"
+                                id="compiled_templates_limit_input" 
+                                value="<{$actionForm->get('compiled_templates_limit')}>" 
+                                min="<{$actionForm->getFieldMin('compiled_templates_limit')}>"
+                                max="<{$actionForm->getFieldMax('compiled_templates_limit')}>"
+                                step="1000"
+                                size="20"
+                                oninput="updateHumanReadableSize('compiled_templates_limit_input', 'compiled_templates_limit_hr_display')"
+                            />
+                            <span id="compiled_templates_limit_hr_display" class="xoops-help-text">(<{$compiled_templates_limit_mb}>)</span>
+                            <br /><span class="xoops-help-text"><{$smarty.const._AD_STDCACHE_COMPILED_TEMPLATES_LIMIT_DESC}></span>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="head"><{$smarty.const._AD_STDCACHE_NOTIFICATION_ENABLED}></td>
+                        <td class="<{cycle values='odd,even'}>">
+                            <input type="checkbox" name="notification_enabled" value="1" <{if $actionForm->get('notification_enabled') == 1}>checked="checked"<{/if}> />
+                            <br /><span class="xoops-help-text"><{$smarty.const._AD_STDCACHE_NOTIFICATION_ENABLED_DESC}></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">
+                        <input class="button submit" type="submit" value="<{$smarty.const._MI_STDCACHE_SAVE_CONFIG}>" />
+                        <input class="button cancel" type="submit" name="_form_control_cancel" value="<{$smarty.const._CANCEL}>" />
+                        </td>
+                    </tr>
+                </tfoot>
+                </table>
+        </form>
+    </div>
+
+    <div data-self="size-1of3 ml-6">
+                  
+    <h5>MB to Bytes Converter</h5>
+
+    <p>
+    <input id="mbInput" type="number" min="0" step="10" style="max-width:10ch" title="Enter MB">
+    <button class="btn btn-primary" type="button" onclick="convertMBtoBytes(document.getElementById('mbInput').value)">
+    Convert</button>
+    </p>
+    
+    <p>
+        <button class="btn" onclick="convertMBtoBytes(1)">1MB</button>
+        <button class="btn" onclick="convertMBtoBytes(10)">10MB</button>
+        <button class="btn" onclick="convertMBtoBytes(100)">100MB</button>
+        <button class="btn" onclick="convertMBtoBytes(1000)">1000MB</button>
+    </p>
+                 
+    <h5>Result:</h5>
+    <pre><code id="resultbytes">0 bytes</code></pre>
+    <span class="alert-notify"></span>
+    <div class="ui-card-full">
+        <div class="textarea-wrap">
+        <textarea id="resultotal" rows="2" style="min-height: 2rem;" readonly>
+        0 bytes
+        </textarea>
+        <div id="copyToClipboard" class="clipboard icon" title="Copy To Clipboard"></div>
+        </div><{* textarea wrapper *}>
+    </div>
+               
+    </div>
+
+</div>
+
+<p>
+    <a href="index.php?action=CacheStats&amp;cmd=testNotification" class="button">Test Notification</a>
+
+    
+</p>
+<div class="help-tips">
+    3. Considerations :<br />
+    - Choose a cache size that is appropriate for your site's traffic and usage patterns<br />
+    - Monitor your cache usage<br />
+    - Clear the cache when necessary<br />
+    - Test your site's performance after making changes<br />
+    - Adjust the cache size based on your site's traffic and usage patterns<br />
+    - Consider your site's traffic volume<br />
+    - Larger caches improve performance but require more disk space<br />
+    - Smaller caches may clear more frequently but use less resources<br />
+    - Monitor your disk space availability<br />
+    The ideal size depends on your specific usage patterns, but these ranges provide good starting points for most XOOPS installations.
+</div>
+
+<script type="text/javascript">
+function formatBytesForDisplay(bytes, decimals = 2) {
+    if (bytes === 0 || isNaN(parseFloat(bytes)) || !isFinite(bytes)) return '0 Bytes';
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+
+function updateHumanReadableSize(inputId, displaySpanId) {
+    const inputElement = document.getElementById(inputId);
+    const displayElement = document.getElementById(displaySpanId);
+    
+    if (inputElement && displayElement) {
+        const byteValue = parseFloat(inputElement.value);
+        displayElement.textContent = '(' + formatBytesForDisplay(byteValue) + ')';
+    }
+}
+
+// Initial update for all fields on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateHumanReadableSize('cache_limit_input', 'cache_limit_hr_display');
+    updateHumanReadableSize('cache_notification_limit_input', 'cache_notification_limit_hr_display');
+    updateHumanReadableSize('cache_cleanup_limit_input', 'cache_cleanup_limit_hr_display');
+    updateHumanReadableSize('compiled_templates_limit_input', 'compiled_templates_limit_hr_display');
+});
+
+// Your existing MB to Bytes converter function
+function convertMBtoBytes(mb) {
+    const mbValue = parseFloat(mb);
+    if (isNaN(mbValue)) {
+        document.getElementById('resultbytes').textContent = 'Invalid MB input';
+        document.getElementById('resultotal').textContent = '0 bytes';
+        return;
+    }
+    const bytes = mbValue * 1024 * 1024; // Use 1024 for MiB to Bytes
+    document.getElementById('resultbytes').textContent = new Intl.NumberFormat().format(bytes) + ' bytes';
+    document.getElementById('resultotal').textContent = bytes.toString();
+    document.getElementById('mbInput').value = mbValue;
+}
+
+// Assuming you have clipboard copy functionality elsewhere or will add it
+// Example for copyToClipboard (basic, might need a library for robustness)
+const copyButton = document.getElementById('copyToClipboard');
+const totalResultTextarea = document.getElementById('resultotal');
+const alertNotifySpan = document.querySelector('.alert-notify'); // Assuming this exists
+
+if (copyButton && totalResultTextarea && alertNotifySpan) {
+    copyButton.addEventListener('click', function() {
+        totalResultTextarea.select();
+        totalResultTextarea.setSelectionRange(0, 99999); // For mobile devices
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'Copied to clipboard!' : 'Copying failed.';
+            alertNotifySpan.textContent = msg;
+            setTimeout(() => { alertNotifySpan.textContent = ''; }, 2000);
+        } catch (err) {
+            alertNotifySpan.textContent = 'Oops, unable to copy.';
+            setTimeout(() => { alertNotifySpan.textContent = ''; }, 2000);
+        }
+        // Deselect
+        window.getSelection().removeAllRanges();
+    });
+}
+</script>

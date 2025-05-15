@@ -1,0 +1,241 @@
+<style id="dynamicss">
+:root{
+    --left: 10px; /* used to place meter label */
+}
+.cache-stats {
+    & h5 {margin:1rem 0;}
+    & label {position:relative}
+    & label::after{
+    border:1px dotted #0005;
+    content: ''; 
+    display: block; 
+    position: absolute; 
+    right: 2rem; 
+    width: 60%;
+    }
+    & meter {
+    -webkit-appearance: none; /* Reset appearance */
+    appearance: none;
+    border:none;
+    margin: 1.4rem 0 0;
+    position: relative;
+    width: 100%;
+    }
+    & meter::-webkit-meter-bar {
+    background: none;/* Required to remove property */
+    background-color: #0005;
+    box-shadow: 0 2px 2px -2px #333 inset;
+    padding:2px 0;
+    height: 6px;
+    }
+
+    & meter::-webkit-meter-optimum-value,
+    meter::-webkit-meter-even-less-good-value,
+    meter::-webkit-meter-suboptimum-value {
+    box-shadow: 0 1px 1px 1px #333 insert;
+    background: linear-gradient(0.25turn,#8bcf69 25%, #f69d3c 65%, #f44);
+    background-size: 100% 100%;
+    height: 4px;
+    }
+    & meter::-webkit-meter-suboptimum-value {
+    background: linear-gradient(0.25turn,#f69d3c 25%, #f44);
+    }
+
+    & meter::after {
+    content : attr(value)' %';
+    background:#11111157; 
+    border:1px solid #444;
+    border-radius:4px;
+    color:#fff;
+    font-size:10px; 
+    left:var(--left);
+    top:-14px;
+    padding:2px 6px;
+    position: absolute;
+    text-wrap: nowrap;
+    }
+}
+</style>
+
+
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
+    &raquo;&raquo; <a href="./index.php"><{$smarty.const._MI_STDCACHE_NAME}></a>
+    &raquo;&raquo; <span class="page-title"><{$smarty.const._AD_STDCACHE_STATS}></span>
+</nav>
+
+<h2>
+    <{$smarty.const._AD_STDCACHE_STATS_TITLE}>
+</h2>
+
+        <div class="tips">
+            Tips about cache management and best pratices
+        </div>
+
+
+<div data-layout="row sm-column mb-5" class="cache-stats">
+
+    <div data-self="size-1of3 m-5">
+        
+        <div class="ui-card-full">
+
+            <div data-layout="row center-justify">
+                <div class="ui-card-small-icon ui-icon-red">
+                    <img class="svg" src="<{'icons/icon-module.svg'|theme}>" width="1em" height="1em" alt="modules">
+                </div>
+                <h5 class="ui-card-small-title"><{$smarty.const._AD_STDCACHE_CACHE_DIR_TITLE}></h5>
+            </div>
+
+            <!-- <h5><{$smarty.const._AD_STDCACHE_TOTAL_SIZE}></h5> -->
+            <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_SUBDIRS_COUNT}></h5>
+                <span class="badge"><{$cache_subdirs}></span>
+            </label>
+            <meter max="100" low="50" optimum="40" high="70" value="<{$cache_subdirs}>" style="--left: <{$cache_subdirs}>%;"></meter>
+            
+
+            <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_FILES_COUNT}></h5>
+                <span class="badge"><{$cache_count}></span>
+            </label>
+            <meter max="100" low="50" optimum="40" high="70" value="<{$cache_count}>" style="--left:<{$cache_count}>%"></meter>
+            
+        
+            <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_TOTAL_SIZE}></h5> 
+                <span class="badge"><{$cache_size}> <{$cache_percentage_text}>%</span>
+            </label>
+            <meter max="100" low="50" optimum="40" high="70" value="<{$cache_percentage_bar}>" style="--left: <{$cache_percentage_bar}>%;"></meter>
+            
+        </div>
+
+    </div><!-- cache -->
+
+    <div data-self="size-1of3 m-5">
+
+        <div class="ui-card-full">
+
+            <div data-layout="row center-justify">
+                <div class="ui-card-small-icon ui-icon-blue">
+                    <img class="svg" src="<{'icons/icon-module.svg'|theme}>" width="1em" height="1em" alt="modules">
+                </div>
+                <h5 class="ui-card-small-title"><{$smarty.const._AD_STDCACHE_LOG_FILES_SECTION}></h5>
+            </div>
+
+            <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_SUBDIRS_COUNT}></h5>
+                <span class="badge"><{$logs_subdirs}></span>
+            </label>
+            <meter max="100" low="50" optimum="40" high="70" value="<{$logs_subdirs}>" style="--left:<{$logs_subdirs}>%;"></meter>
+            
+
+            <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_FILES_COUNT}></h5>
+                <span class="badge"><{$logs_count}></span>
+            </label>
+            <meter max="100" low="50" optimum="40" high="70" value="<{$logs_count}>" style="--left:<{$logs_count}>%"></meter>
+            
+        
+            <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_TOTAL_SIZE}></h5> 
+                <span class="badge"><{$log_size}> <{$cache_percentage_text}>%</span>
+            </label>
+            <meter max="100" low="50" optimum="40" high="70" value="<{$cache_percentage_bar}>" style="--left: <{$cache_percentage_bar}>%;"></meter>
+            
+        </div>
+
+    </div>
+
+
+      <div data-self="size-1of3 m-5">
+
+        <div class="ui-card-full">
+
+            <div data-layout="row center-justify">
+                <div class="ui-card-small-icon ui-icon-orange">
+                    <img class="svg" src="<{'icons/icon-module.svg'|theme}>" width="1em" height="1em" alt="modules">
+                </div>
+                <h5 class="ui-card-small-title"><{$smarty.const._AD_STDCACHE_COMPILED_TEMPLATES}></h5>
+            </div>
+
+            <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_SUBDIRS_COUNT}></h5>
+                <span class="badge"><{$cache_subdirs}></span>
+            </label>
+            <meter max="100" low="50" optimum="40" high="70" value="<{$cache_subdirs}>" style="--left: <{$cache_subdirs}>%;"></meter>
+            
+
+            <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_FILES_COUNT}></h5>
+                <span class="badge"><{$compiled_count}></span>
+            </label>
+            <meter max="100" low="50" optimum="40" high="70" value="<{$compiled_count}>" style="--left:<{$compiled_count}>%"></meter>
+            
+        
+            <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_TOTAL_SIZE}></h5> 
+                <span class="badge"><{$compiled_size}> <{$compiled_percentage_text}>%</span>
+            </label>
+            <meter max="100" low="50" optimum="40" high="70" value="<{$compiled_percentage_bar}>" style="--left<{$compiled_percentage_bar}>%;"></meter>
+            
+        </div>
+
+      </div>
+
+</div><!-- row sm-column -->
+
+
+<table class="outer">
+<thead>
+<tr>
+    <th></th>
+    <th><{$smarty.const._AD_STDCACHE_SUBDIRS_COUNT}></th>
+    <th><{$smarty.const._AD_STDCACHE_FILES_COUNT}></th>
+    <th><{$smarty.const._AD_STDCACHE_TOTAL_SIZE}></th>
+</tr>
+</thead>
+<tbody>
+<tr class="list_center">
+    <th><{$smarty.const._AD_STDCACHE_COMPILED_TEMPLATES}></th>
+    <td>--</td>
+    <td><{$compiled_count}></td>
+    <td><{$compiled_size}></td>
+</tr>
+<tr class="list_center">
+    <th><{$smarty.const._AD_STDCACHE_CACHE_DIR_TITLE}></th>
+    <td><{$cache_subdirs}></td>
+    <td><{$cache_count}></td>
+    <td><{$cache_size}></td>
+</tr>
+<tr class="list_center">
+    <th><{$smarty.const._AD_STDCACHE_LOG_FILES_SECTION}></th>
+    <td><{$logs_subdirs}></td>
+    <td><{$logs_count}></td>
+    <td><{$log_size}></td>
+</tr>
+<tr class="list_center">
+    <th><{$smarty.const._AD_STDCACHE_UPLOAD_DIRECTORY}></th>
+    <td><{$upload_subdirs}></td>
+    <td><{$upload_count}></td>
+    <td><{$upload_size}></td>
+</tr>
+</tbody>
+<tfoot>
+    <tr>
+        <th><{$smarty.const._AD_STDCACHE_SUMMARY}></th>
+        <td></td>
+        <th class="fingerprint1"><{$smarty.const._AD_STDCACHE_CACHE_LIMIT}></th>
+        <th><{$smarty.const._AD_STDCACHE_TOTAL_SIZE}></th>
+    </tr>
+    <tr class="list_center">
+        <td>
+            <a href="index.php?action=CacheClearAction" class="button"><{$smarty.const._MI_STDCACHE_CLEAR_CACHE}></a>
+        </td>
+        <td>
+            <a href="index.php?action=CacheConfigAction" class="button"><{$smarty.const._MI_STDCACHE_CONFIG}></a>
+        </td>        
+        <td><span class="badge-count fingerprint1"><{$cache_limit}></span></td>
+        <td><span class="badge-count"><{$total_size}></span></td>
+    </tr>
+</tfooot>
+</table>
