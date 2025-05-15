@@ -255,7 +255,7 @@ function b_legacy_ai_assistant_show($options)
         )
     );
 
-    error_log("Block Options: " . print_r($block['options'], true));
+    // error_log("Block Options: " . print_r($block['options'], true));
 
     // Process AI request if needed
     if (isset($_POST['ai_action']) && $_POST['ai_action'] === 'query') {

@@ -179,11 +179,9 @@ class XoopsErrorHandler
         }
 
         $content = '<div id="xcl-debug-log" style="position:fixed;bottom:0;left:0;right:0;background:#111;border-top:1px solid #000;font:normal 14px/1.5 monospace; padding:10px;z-index:9999;max-height:25vh;overflow:auto;">';
-        $content .= '<h3 class="xcl-debug">Debug Log</h3>';
+        $content .= '<h3 style="margin: 0 0 0.5rem;"><input class="btn close" value="'._CLOSE.'" type="button" onclick="document.getElementById(\'xcl-debug-log\').style.display=\'none\';"> Debug Log</h3>';
         $content .= implode("<br>\n", $output);
-        $content .= '<div style="text-align:center;margin-top:10px;">';
-        $content .= '<input class="btn close" value="'._CLOSE.'" type="button" onclick="document.getElementById(\'xoops-debug-log\').style.display=\'none\';">';
-        $content .= '</div></div>';
+        $content .= '</div>';
         return $content;
     }
 }

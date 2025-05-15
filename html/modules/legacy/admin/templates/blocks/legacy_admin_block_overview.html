@@ -40,26 +40,26 @@
 
 <div class="overview-stats" data-layout="column">
 
-	<{* ---------- ---------- Modules Overview *}>
+	<{* ---------- ---------- Users Overview *}>
 	<div class="ui-card-full" data-layout="column">
 		<div data-layout="row">
 			<div class="ui-card-small-icon ui-icon-blue">
-				<img class="svg" src="<{'icons/icon-module.svg'|theme}>" width="1em" height="1em" alt="modules">
+				<img class="svg" src="<{'icons/icon-user-group.svg'|theme}>" width="1em" height="1em" alt="user-groups">
 			</div>
 			<div class="ui-card-small-info">
-				<h5 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_ALL_MODULES}></h5>
+				<h5 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_ALL_OF_USERS}></h5>
 			</div>
 		</div>
-		<div id="status-module"
-			 style="width: 100%"
-			 chart-type="bar-compare"
-			 data-chart-max="<{$ModuleTotal}>"
-			 data-segments="[
-	 [&quot;<{$ModuleTotal}>&quot;,&quot;&lt;b&gt;<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>&lt;/b&gt;&quot;],
-	 [&quot;<{$activeModuleTotal}>&quot;,&quot;<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>&quot;],
-	 [&quot;<{$inactiveModuleTotal}>&quot;,&quot;<{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>&quot;]
+		<div id="status-user"
+				 style="width: 100%"
+				 chart-type="bar-compare"
+				 data-chart-max="<{$UserTotal}>"
+				 data-segments="[
+	 [&quot;<{$UserTotal}>&quot;,&quot;&lt;b&gt;<{$smarty.const._AD_USER_LANG_USER_TOTAL}>&lt;/b&gt;&quot;],
+	 [&quot;<{$activeUserTotal}>&quot;,&quot;<{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>&quot;],
+	 [&quot;<{$inactiveUserTotal}>&quot;,&quot;<{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>&quot;]
 	 ]" data-colors="[&quot;var(--color-blue)&quot;,&quot;var(--color-green)&quot;,&quot;var(--color-red)&quot;]">
-		</div>
+			</div>
 	</div>
 
 	<{* ---------- ---------- Blocks Overview *}>
@@ -86,26 +86,26 @@
 		</div>
 	</div>
 
-	<{* ---------- ---------- Users Overview *}>
+	<{* ---------- ---------- Modules Overview *}>
 	<div class="ui-card-full" data-layout="column">
 		<div data-layout="row">
 			<div class="ui-card-small-icon ui-icon-blue">
-				<img class="svg" src="<{'icons/icon-user-group.svg'|theme}>" width="1em" height="1em" alt="user-groups">
+				<img class="svg" src="<{'icons/icon-module.svg'|theme}>" width="1em" height="1em" alt="modules">
 			</div>
 			<div class="ui-card-small-info">
-				<h5 class="ui-card-small-title"><{$smarty.const._AD_USER_LANG_ALL_OF_USERS}></h5>
+				<h5 class="ui-card-small-title"><{$smarty.const._AD_LEGACY_LANG_ALL_MODULES}></h5>
 			</div>
 		</div>
-		<div id="status-user"
-				 style="width: 100%"
-				 chart-type="bar-compare"
-				 data-chart-max="<{$UserTotal}>"
-				 data-segments="[
-	 [&quot;<{$UserTotal}>&quot;,&quot;&lt;b&gt;<{$smarty.const._AD_USER_LANG_USER_TOTAL}>&lt;/b&gt;&quot;],
-	 [&quot;<{$activeUserTotal}>&quot;,&quot;<{$smarty.const._AD_USER_LANG_LEVEL_ACTIVE}>&quot;],
-	 [&quot;<{$inactiveUserTotal}>&quot;,&quot;<{$smarty.const._AD_USER_LANG_LEVEL_PENDING}>&quot;]
+		<div id="status-module"
+			 style="width: 100%"
+			 chart-type="bar-compare"
+			 data-chart-max="<{$ModuleTotal}>"
+			 data-segments="[
+	 [&quot;<{$ModuleTotal}>&quot;,&quot;&lt;b&gt;<{$smarty.const._AD_LEGACY_LANG_MOD_TOTAL}>&lt;/b&gt;&quot;],
+	 [&quot;<{$activeModuleTotal}>&quot;,&quot;<{$smarty.const._AD_LEGACY_LANG_ACTIVE}>&quot;],
+	 [&quot;<{$inactiveModuleTotal}>&quot;,&quot;<{$smarty.const._AD_LEGACY_LANG_DEACTIVATE}>&quot;]
 	 ]" data-colors="[&quot;var(--color-blue)&quot;,&quot;var(--color-green)&quot;,&quot;var(--color-red)&quot;]">
-			</div>
+		</div>
 	</div>
 
 </div>
