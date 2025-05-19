@@ -1,7 +1,6 @@
 <style>
-/* Temporary override of input number */
+/* TODO override of input number */
 table.cache-config input[type='number']{width:14ch;max-width:14ch;}
-
 </style>
 <nav class="ui-breadcrumbs" aria-label="breadcrumb">
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
@@ -26,114 +25,124 @@ table.cache-config input[type='number']{width:14ch;max-width:14ch;}
     Recommended: 100MB for small sites, 500MB for medium traffic, 1GB for large sites. Use the converter below for precise byte values.
 </div>
 
+<section data-layout="row center-justify" class="action-control">
+<div>
+    <a href="index.php?action=CacheStatsAction" class="button"><{$smarty.const._AD_STDCACHE_STATS_TITLE}></a>
+    <a href="index.php?action=CacheClearAction" class="button"><{$smarty.const._MI_STDCACHE_CLEAR_CACHE}></a>
+    <a href="index.php?action=CacheConfigAction" class="button"><{$smarty.const._MI_STDCACHE_CONFIG}></a>
+    <a href="index.php?action=CacheNotifyAction" class="button"><{$smarty.const._AD_STDCACHE_TEST_BUTTON}></a>
+</div>
+<div class="control-view"></div>
+</section>
+
 <div data-layout="row">
 
     <div data-self="size-2of3 mr-6">
         
-            <form action="./index.php?action=CacheConfig" method="post">
-                <{xoops_token form=$actionForm}>
-                
-                <table class="outer cache-config">
-                    <thead>
-                    <tr>
-                        <th colspan="2"><{$smarty.const._AD_STDCACHE_CACHE_SETTINGS}></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="head"><{$smarty.const._AD_STDCACHE_CACHE_LIMIT}></td>
-                        <td class="<{cycle values='odd,even'}>">
-                            <input 
-                                type="number" 
-                                name="cache_limit"
-                                id="cache_limit_input" 
-                                value="<{$actionForm->get('cache_limit')}>"
-                                min="<{$actionForm->getFieldMin('cache_limit')}>"
-                                max="<{$actionForm->getFieldMax('cache_limit')}>"
-                                step="1000" 
-                                size="20"
-                                oninput="updateHumanReadableSize('cache_limit_input', 'cache_limit_hr_display')" 
-                            />
-                            <code id="cache_limit_hr_display" class="xoops-help-text  badge">(<{$cache_limit_mb}>)</code>
-                            <br /><span class="xoops-help-text"><{$smarty.const._AD_STDCACHE_CACHE_LIMIT_DESC}></span>
-                        </td>
-                    </tr>
+    <form action="./index.php?action=CacheConfig" method="post">
+        <{xoops_token form=$actionForm}>
+        
+        <table class="outer cache-config">
+            <thead>
+            <tr>
+                <th colspan="2"><{$smarty.const._AD_STDCACHE_CACHE_SETTINGS}></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="head"><{$smarty.const._AD_STDCACHE_CACHE_LIMIT}></td>
+                <td class="<{cycle values='odd,even'}>">
+                    <input 
+                        type="number" 
+                        name="cache_limit_smarty"
+                        id="cache_limit_input" 
+                        value="<{$actionForm->get('cache_limit_smarty')}>"
+                        min="<{$actionForm->getFieldMin('cache_limit_smarty')}>"
+                        max="<{$actionForm->getFieldMax('cache_limit_smarty')}>"
+                        step="1000" 
+                        size="20"
+                        oninput="updateHumanReadableSize('cache_limit_input', 'cache_limit_hr_display')" 
+                    />
+                    <code id="cache_limit_hr_display" class="xoops-help-text  badge">(<{$cache_limit_mb}>)</code>
+                    <br /><span class="xoops-help-text"><{$smarty.const._AD_STDCACHE_CACHE_LIMIT_DESC}></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="head"><{$smarty.const._MI_STDCACHE_ALERT_TRIGGER}></td>
+                <td class="<{cycle values='odd,even'}>">
+                    <input 
+                        type="number" 
+                        name="cache_limit_alert_trigger"
+                        id="cache_limit_alert_trigger_input" 
+                        value="<{$actionForm->get('cache_limit_alert_trigger')}>" 
+                        min="<{$actionForm->getFieldMin('cache_limit_alert_trigger')}>"
+                        max="<{$actionForm->getFieldMax('cache_limit_alert_trigger')}>"
+                        step="1000" 
+                        size="20"
+                        oninput="updateHumanReadableSize('cache_limit_alert_trigger_input', 'cache_limit_alert_trigger_hr_display')" 
+                    />
+                    <span id="cache_limit_alert_trigger_hr_display" class="xoops-help-text">(<{$cache_limit_alert_trigger_mb}>)</span>
+                    <br /><span class="xoops-help-text"><{$smarty.const._MI_STDCACHE_ALERT_TRIGGER_DESC}></span>
+                </td>
+            </tr>
             
-                    <tr>
-                        <td class="head"><{$smarty.const._AD_STDCACHE_CACHE_NOTIFICATION_LIMIT}></td>
-                        <td class="<{cycle values='odd,even'}>">
-                            <input 
-                                type="number" 
-                                name="cache_notification_limit"
-                                id="cache_notification_limit_input" 
-                                value="<{$actionForm->get('cache_notification_limit')}>" 
-                                min="<{$actionForm->getFieldMin('cache_notification_limit')}>"
-                                max="<{$actionForm->getFieldMax('cache_notification_limit')}>"
-                                step="1000" 
-                                size="20"
-                                oninput="updateHumanReadableSize('cache_notification_limit_input', 'cache_notification_limit_hr_display')" 
-                            />
-                            <span id="cache_notification_limit_hr_display" class="xoops-help-text">(<{$cache_notification_limit_mb}>)</span>
-                            <br /><span class="xoops-help-text"><{$smarty.const._AD_STDCACHE_CACHE_NOTIFICATION_LIMIT_DESC}></span>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="head"><{$smarty.const._AD_STDCACHE_CACHE_CLEANUP_LIMIT}></td>
-                        <td class="<{cycle values='odd,even'}>">
-                            <input 
-                                type="number" 
-                                name="cache_cleanup_limit"
-                                id="cache_cleanup_limit_input" 
-                                value="<{$actionForm->get('cache_cleanup_limit')}>" 
-                                min="<{$actionForm->getFieldMin('cache_cleanup_limit')}>"
-                                max="<{$actionForm->getFieldMax('cache_cleanup_limit')}>"
-                                step="1000" 
-                                size="20"
-                                oninput="updateHumanReadableSize('cache_cleanup_limit_input', 'cache_cleanup_limit_hr_display')"
-                            />
-                            <span id="cache_cleanup_limit_hr_display" class="xoops-help-text">(<{$cache_cleanup_limit_mb}>)</span>
-                            <br /><span class="xoops-help-text"><{$smarty.const._AD_STDCACHE_CACHE_CLEANUP_LIMIT_DESC}></span>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="head"><{$smarty.const._AD_STDCACHE_COMPILED_TEMPLATES_LIMIT}></td>
-                        <td class="<{cycle values='odd,even'}>">
-                            <input 
-                                type="number" 
-                                name="compiled_templates_limit"
-                                id="compiled_templates_limit_input" 
-                                value="<{$actionForm->get('compiled_templates_limit')}>" 
-                                min="<{$actionForm->getFieldMin('compiled_templates_limit')}>"
-                                max="<{$actionForm->getFieldMax('compiled_templates_limit')}>"
-                                step="1000"
-                                size="20"
-                                oninput="updateHumanReadableSize('compiled_templates_limit_input', 'compiled_templates_limit_hr_display')"
-                            />
-                            <span id="compiled_templates_limit_hr_display" class="xoops-help-text">(<{$compiled_templates_limit_mb}>)</span>
-                            <br /><span class="xoops-help-text"><{$smarty.const._AD_STDCACHE_COMPILED_TEMPLATES_LIMIT_DESC}></span>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="head"><{$smarty.const._AD_STDCACHE_NOTIFICATION_ENABLED}></td>
-                        <td class="<{cycle values='odd,even'}>">
-                            <input type="checkbox" name="notification_enabled" value="1" <{if $actionForm->get('notification_enabled') == 1}>checked="checked"<{/if}> />
-                            <br /><span class="xoops-help-text"><{$smarty.const._AD_STDCACHE_NOTIFICATION_ENABLED_DESC}></span>
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="2">
-                        <input class="button submit" type="submit" value="<{$smarty.const._MI_STDCACHE_SAVE_CONFIG}>" />
-                        <input class="button cancel" type="submit" name="_form_control_cancel" value="<{$smarty.const._CANCEL}>" />
-                        </td>
-                    </tr>
-                </tfoot>
-                </table>
-        </form>
+            <tr>
+                <td class="head"><{$smarty.const._AD_STDCACHE_CACHE_CLEANUP_LIMIT}></td>
+                <td class="<{cycle values='odd,even'}>">
+                    <input 
+                        type="number" 
+                        name="cache_limit_cleanup"
+                        id="cache_limit_cleanup_input" 
+                        value="<{$actionForm->get('cache_limit_cleanup')}>" 
+                        min="<{$actionForm->getFieldMin('cache_limit_cleanup')}>"
+                        max="<{$actionForm->getFieldMax('cache_limit_cleanup')}>"
+                        step="1000" 
+                        size="20"
+                        oninput="updateHumanReadableSize('cache_limit_cleanup_input', 'cache_limit_cleanup_hr_display')"
+                    />
+                    <span id="cache_limit_cleanup_hr_display" class="xoops-help-text">(<{$cache_limit_cleanup_mb}>)</span>
+                    <br /><span class="xoops-help-text"><{$smarty.const._AD_STDCACHE_CACHE_CLEANUP_LIMIT_DESC}></span>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="head"><{$smarty.const._AD_STDCACHE_COMPILED_TEMPLATES_LIMIT}></td>
+                <td class="<{cycle values='odd,even'}>">
+                    <input 
+                        type="number" 
+                        name="cache_limit_compiled"
+                        id="cache_limit_compiled_input" 
+                        value="<{$actionForm->get('cache_limit_compiled')}>" 
+                        min="<{$actionForm->getFieldMin('cache_limit_compiled')}>"
+                        max="<{$actionForm->getFieldMax('cache_limit_compiled')}>"
+                        step="1000"
+                        size="20"
+                        oninput="updateHumanReadableSize('cache_limit_compiled_input', 'cache_limit_compiled_hr_display')"
+                    />
+                    <span id="cache_limit_compiled_hr_display" class="xoops-help-text">(<{$cache_limit_compiled_mb}>)</span>
+                    <br /><span class="xoops-help-text"><{$smarty.const._AD_STDCACHE_COMPILED_TEMPLATES_LIMIT_DESC}></span>
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="head"><{$smarty.const._MI_STDCACHE_ALERT_ENABLED}></td>
+                <td class="<{cycle values='odd,even'}>">
+                    <input type="checkbox" name="cache_limit_alert_enable" value="1" <{if $actionForm->get('cache_limit_alert_enable') == 1}>checked="checked"<{/if}> />
+                    <br /><span class="xoops-help-text"><{$smarty.const._MI_STDCACHE_ALERT_ENABLED_DESC}></span>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                <input class="button submit" type="submit" value="<{$smarty.const._AD_STDCACHE_SAVE_CONFIG}>" />
+                <input class="button cancel" type="submit" name="_form_control_cancel" value="<{$smarty.const._CANCEL}>" />
+                </td>
+            </tr>
+        </tfoot>
+        </table>
+    </form>
     </div>
 
     <div data-self="size-1of3 ml-6">
@@ -169,24 +178,7 @@ table.cache-config input[type='number']{width:14ch;max-width:14ch;}
 
 </div>
 
-<p>
-    <a href="index.php?action=CacheStats&amp;cmd=testNotification" class="button">Test Notification</a>
 
-    
-</p>
-<div class="help-tips">
-    3. Considerations :<br />
-    - Choose a cache size that is appropriate for your site's traffic and usage patterns<br />
-    - Monitor your cache usage<br />
-    - Clear the cache when necessary<br />
-    - Test your site's performance after making changes<br />
-    - Adjust the cache size based on your site's traffic and usage patterns<br />
-    - Consider your site's traffic volume<br />
-    - Larger caches improve performance but require more disk space<br />
-    - Smaller caches may clear more frequently but use less resources<br />
-    - Monitor your disk space availability<br />
-    The ideal size depends on your specific usage patterns, but these ranges provide good starting points for most XOOPS installations.
-</div>
 
 <script type="text/javascript">
 function formatBytesForDisplay(bytes, decimals = 2) {
@@ -211,12 +203,12 @@ function updateHumanReadableSize(inputId, displaySpanId) {
 // Initial update for all fields on page load
 document.addEventListener('DOMContentLoaded', function() {
     updateHumanReadableSize('cache_limit_input', 'cache_limit_hr_display');
-    updateHumanReadableSize('cache_notification_limit_input', 'cache_notification_limit_hr_display');
-    updateHumanReadableSize('cache_cleanup_limit_input', 'cache_cleanup_limit_hr_display');
-    updateHumanReadableSize('compiled_templates_limit_input', 'compiled_templates_limit_hr_display');
+    updateHumanReadableSize('cache_limit_alert_trigger_input', 'cache_limit_alert_trigger_hr_display');
+    updateHumanReadableSize('cache_limit_cleanup_input', 'cache_limit_cleanup_hr_display');
+    updateHumanReadableSize('cache_limit_compiled_input', 'cache_limit_compiled_hr_display');
 });
 
-// Your existing MB to Bytes converter function
+// MB to Bytes converter function
 function convertMBtoBytes(mb) {
     const mbValue = parseFloat(mb);
     if (isNaN(mbValue)) {
@@ -228,30 +220,5 @@ function convertMBtoBytes(mb) {
     document.getElementById('resultbytes').textContent = new Intl.NumberFormat().format(bytes) + ' bytes';
     document.getElementById('resultotal').textContent = bytes.toString();
     document.getElementById('mbInput').value = mbValue;
-}
-
-// Assuming you have clipboard copy functionality elsewhere or will add it
-// Example for copyToClipboard (basic, might need a library for robustness)
-const copyButton = document.getElementById('copyToClipboard');
-const totalResultTextarea = document.getElementById('resultotal');
-const alertNotifySpan = document.querySelector('.alert-notify'); // Assuming this exists
-
-if (copyButton && totalResultTextarea && alertNotifySpan) {
-    copyButton.addEventListener('click', function() {
-        totalResultTextarea.select();
-        totalResultTextarea.setSelectionRange(0, 99999); // For mobile devices
-
-        try {
-            var successful = document.execCommand('copy');
-            var msg = successful ? 'Copied to clipboard!' : 'Copying failed.';
-            alertNotifySpan.textContent = msg;
-            setTimeout(() => { alertNotifySpan.textContent = ''; }, 2000);
-        } catch (err) {
-            alertNotifySpan.textContent = 'Oops, unable to copy.';
-            setTimeout(() => { alertNotifySpan.textContent = ''; }, 2000);
-        }
-        // Deselect
-        window.getSelection().removeAllRanges();
-    });
 }
 </script>

@@ -20,6 +20,16 @@
     <{$smarty.const._AD_STDCACHE_WARNING_CLEAR_UPLOADS|default:'Warning: This will delete all user-uploaded files like avatars and images. Use with extreme caution!'}>
   </div>
 
+<section data-layout="row center-justify" class="action-control">
+<div>
+    <a href="index.php?action=CacheStatsAction" class="button"><{$smarty.const._AD_STDCACHE_STATS_TITLE}></a>
+    <a href="index.php?action=CacheClearAction" class="button"><{$smarty.const._MI_STDCACHE_CLEAR_CACHE}></a>
+    <a href="index.php?action=CacheConfigAction" class="button"><{$smarty.const._MI_STDCACHE_CONFIG}></a>
+    <a href="index.php?action=CacheNotifyAction" class="button"><{$smarty.const._AD_STDCACHE_TEST_BUTTON}></a>
+</div>
+<div class="control-view"></div>
+</section>
+
 
 <style>
 
@@ -96,7 +106,7 @@
     }
 .cache-clear input[type="radio"]:checked + label::after,
     .cache-clear input[type="radio"]:checked + label::after {
-      content: "✓";
+      content: "?";
       font-size: 24px;
       margin-left: 10px;
     }
@@ -159,7 +169,7 @@
     <input type="hidden" name="confirm" value="1"> <{* This is the general confirmation flag for the form submission itself *}>
     
     <p data-self="my-5"><button type="submit" class="button delete">
-        <{$smarty.const._MI_STDCACHE_CONFIRM_CLEAR|escape:'html'}>
+        <{$smarty.const._AD_STDCACHE_CONFIRM_CLEAR|escape:'html'}>
     </button></p>
 </form>
 

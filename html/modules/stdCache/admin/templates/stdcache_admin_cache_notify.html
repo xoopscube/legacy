@@ -1,0 +1,118 @@
+<{* Dev-Mode Toggle *}>
+<{if isset($xoops_isadmin)}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<div class="ui-admin-page-header">
+  <h2 class="ui-admin-page-title"><{$smarty.const._AD_STDCACHE_TEST_TITLE|default:'Test Admin Notification'}></h2>
+</div>
+
+<{* Display any errors from the actionForm (e.g., token errors, mail sending errors) *}>
+<{if $actionForm->hasError()}>
+  <div class="ui-alert error">
+    <h4><{$smarty.const._AD_STDCACHE_ERROR_FORM_VALIDATION_FAILED|default:'An error occurred:'}></h4>
+    <ul>
+      <{foreach item=message from=$actionForm->getErrorMessages()}>
+        <li><{$message}></li>
+      <{/foreach}>
+    </ul>
+  </div>
+<{/if}>
+
+<div class="<{if $isNotificationEnabled}>success<{else}>error<{/if}>">
+    <{if $isNotificationEnabled}>
+        <{$smarty.const._AD_STDCACHE_TEST_ALERT_ENABLED}>
+    <{else}>
+        <{$smarty.const._AD_STDCACHE_TEST_ALERT_DISABLED}>
+        »» <a href="<{$xoops_url}>/modules/stdCache/admin/index.php?action=CacheConfig"><{$smarty.const._AD_STDCACHE_CONFIG}></a>
+    <{/if}>
+</div>
+
+<section data-layout="row center-justify" class="action-control">
+<div>
+    <a href="index.php?action=CacheStatsAction" class="button"><{$smarty.const._AD_STDCACHE_STATS_TITLE}></a>
+    <a href="index.php?action=CacheClearAction" class="button"><{$smarty.const._MI_STDCACHE_CLEAR_CACHE}></a>
+    <a href="index.php?action=CacheConfigAction" class="button"><{$smarty.const._MI_STDCACHE_CONFIG}></a>
+    <a href="index.php?action=CacheNotifyAction" class="button"><{$smarty.const._AD_STDCACHE_TEST_BUTTON}></a>
+</div>
+<div class="control-view"></div>
+</section>
+
+<{*
+  The group subscription form has been removed as this functionality
+  is now handled by direct admin email notifications via XCube_MailBuilder.
+*}>
+
+
+<h3 class="ui-admin-section-title"><{$smarty.const._AD_STDCACHE_TEST_TITLE}></h3>
+  
+  <div class="ui-card-full">  
+    <p><{$smarty.const._AD_STDCACHE_TEST_DESC}></p>
+    
+    <form action="<{$xoops_url}>/modules/stdCache/admin/index.php?action=CacheNotify" method="post" class="ui-form">
+    <{xoops_token form=$actionForm}> 
+
+      <input type="hidden" name="cmd" value="testNotification" />
+
+      <button type="submit" class="ui-button ui-button-primary">
+         <{$smarty.const._AD_STDCACHE_TEST_BUTTON|default:'Trigger Test Notification'}>
+      </button>
+    </form>
+  </div>
+
+
+<h3>Preload Configuration Constants</h3>
+
+<div class="tips">prealod/CacheNotifyPreload.class.php is the central configuration point for notification settings.</div>
+
+<pre><code class="language-php">
+  /**
+    * Defines the interval (in seconds) for both session re-checks and notification cooldown.
+    * Example: 60 for testing, 3600 (1 hour) or 86400 (24 hours) for production.
+    */
+  public const SESSION_CHECK_INTERVAL = 86400; // Preload interval constant
+  
+  // Mail Notification Settings
+
+  /** Language constant for the email subject. */
+  public const MAIL_SUBJECT_LANG_CONST = '_AD_STDCACHE_MAIL_SUBJECT_CACHE_LIMIT';
+  /** Default email subject if language constant is not found. %s is sitename. */
+  public const MAIL_SUBJECT_DEFAULT = '[%s] stdCache Admin Notification';
+
+  /** Language constant for the 'limit reached' message body. */
+  public const MAIL_MSG_LIMIT_REACHED_LANG_CONST = '_AD_STDCACHE_MAIL_MSG_LIMIT_REACHED';
+  /** Default 'limit reached' message. %s are cache size and limit. */
+  ...
+  /** Comma-separated list of additional email addresses to notify. */
+  public const MAIL_EXTRA_ADMIN_EMAILS = '';
+</code></pre>
+
+
+
+<{* --- SECTION: Preview of the notification template --- *}>
+<h3>Preview Mail Template</h3>
+<div class="ui-card-full">
+<pre><code class="language-smarty">
+Subject: stdCache Alert: Cache Limit Exceeded on {SITENAME}
+
+Hello Administrator,
+
+This is an automated notification from the stdCache module on your website: {SITENAME} ({SITEURL}).
+
+The cache size has exceeded the configured notification limit.
+
+Module: {X_MODULE}
+Event: Cache Limit Exceeded
+
+Current Cache Size: {CACHE_SIZE}
+Notification Limit: {CACHE_LIMIT}
+
+Please review the cache statistics in the admin area:
+{ADMIN_URL}
+
+This is an automated message. Please do not reply.
+
+-----------
+{SITENAME} ({SITEURL})
+Webmaster
+{ADMINMAIL}
+</code></pre>
+</div>

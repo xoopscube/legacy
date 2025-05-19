@@ -3,10 +3,10 @@
  * Standard cache - Module for XCL
  *
  * @package    stdCache
- * @author     Nuno Luciano (aka gigamaster) XCL PHP8 
+ * @author     Nuno Luciano (aka gigamaster) XCL/PHP8
  * @copyright  2005-2025 The XOOPSCube Project
  * @license    GPL V2
- * @version    Release: XCL v2.5.0
+ * @version    2.5.0 Release: XCL
  * @link       http://github.com/xoopscube/
  */
 

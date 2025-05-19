@@ -38,9 +38,11 @@
     height: 4px;
     }
     & meter::-webkit-meter-suboptimum-value {
+    background: linear-gradient(0.25turn,#f69d3c 45%, #f44);
+    }
+    & meter::-webkit-meter-even-less-good-value {
     background: linear-gradient(0.25turn,#f69d3c 25%, #f44);
     }
-
     & meter::after {
     content : attr(value)' %';
     background:#11111157; 
@@ -68,10 +70,24 @@
     <{$smarty.const._AD_STDCACHE_STATS_TITLE}>
 </h2>
 
-        <div class="tips">
-            Tips about cache management and best pratices
-        </div>
+<div class="<{if $isNotificationEnabled}>success<{else}>error<{/if}>">
+    <{if $isNotificationEnabled}>
+        <{$smarty.const._AD_STDCACHE_TEST_ALERT_ENABLED}>
+    <{else}>
+        <{$smarty.const._AD_STDCACHE_TEST_ALERT_DISABLED}>
+        »» <a href="<{$xoops_url}>/modules/stdCache/admin/index.php?action=CacheConfig"><{$smarty.const._AD_STDCACHE_CONFIG}></a>
+    <{/if}>
+</div>
 
+<section data-layout="row center-justify" class="action-control">
+<div>
+    <a href="index.php?action=CacheStatsAction" class="button"><{$smarty.const._AD_STDCACHE_STATS_TITLE}></a>
+    <a href="index.php?action=CacheClearAction" class="button"><{$smarty.const._MI_STDCACHE_CLEAR_CACHE}></a>
+    <a href="index.php?action=CacheConfigAction" class="button"><{$smarty.const._MI_STDCACHE_CONFIG}></a>
+    <a href="index.php?action=CacheNotifyAction" class="button"><{$smarty.const._AD_STDCACHE_TEST_BUTTON}></a>
+</div>
+<div class="control-view"></div>
+</section>
 
 <div data-layout="row sm-column mb-5" class="cache-stats">
 
@@ -86,27 +102,22 @@
                 <h5 class="ui-card-small-title"><{$smarty.const._AD_STDCACHE_CACHE_DIR_TITLE}></h5>
             </div>
 
-            <!-- <h5><{$smarty.const._AD_STDCACHE_TOTAL_SIZE}></h5> -->
-            <label data-layout="row center-justify">
-                <h5><{$smarty.const._AD_STDCACHE_SUBDIRS_COUNT}></h5>
-                <span class="badge"><{$cache_subdirs}></span>
-            </label>
-            <meter max="100" low="50" optimum="40" high="70" value="<{$cache_subdirs}>" style="--left: <{$cache_subdirs}>%;"></meter>
-            
-
-            <label data-layout="row center-justify">
-                <h5><{$smarty.const._AD_STDCACHE_FILES_COUNT}></h5>
-                <span class="badge"><{$cache_count}></span>
-            </label>
-            <meter max="100" low="50" optimum="40" high="70" value="<{$cache_count}>" style="--left:<{$cache_count}>%"></meter>
-            
-        
             <label data-layout="row center-justify">
                 <h5><{$smarty.const._AD_STDCACHE_TOTAL_SIZE}></h5> 
                 <span class="badge"><{$cache_size}> <{$cache_percentage_text}>%</span>
             </label>
             <meter max="100" low="50" optimum="40" high="70" value="<{$cache_percentage_bar}>" style="--left: <{$cache_percentage_bar}>%;"></meter>
-            
+          
+            <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_SUBDIRS_COUNT}></h5>
+                <span class="badge"><{$cache_subdirs}></span>
+            </label>
+
+            <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_FILES_COUNT}></h5>
+                <span class="badge"><{$cache_count}></span>
+            </label>            
+  
         </div>
 
     </div><!-- cache -->
@@ -123,25 +134,21 @@
             </div>
 
             <label data-layout="row center-justify">
-                <h5><{$smarty.const._AD_STDCACHE_SUBDIRS_COUNT}></h5>
-                <span class="badge"><{$logs_subdirs}></span>
-            </label>
-            <meter max="100" low="50" optimum="40" high="70" value="<{$logs_subdirs}>" style="--left:<{$logs_subdirs}>%;"></meter>
-            
-
-            <label data-layout="row center-justify">
-                <h5><{$smarty.const._AD_STDCACHE_FILES_COUNT}></h5>
-                <span class="badge"><{$logs_count}></span>
-            </label>
-            <meter max="100" low="50" optimum="40" high="70" value="<{$logs_count}>" style="--left:<{$logs_count}>%"></meter>
-            
-        
-            <label data-layout="row center-justify">
                 <h5><{$smarty.const._AD_STDCACHE_TOTAL_SIZE}></h5> 
                 <span class="badge"><{$log_size}> <{$cache_percentage_text}>%</span>
             </label>
             <meter max="100" low="50" optimum="40" high="70" value="<{$cache_percentage_bar}>" style="--left: <{$cache_percentage_bar}>%;"></meter>
             
+            <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_SUBDIRS_COUNT}></h5>
+                <span class="badge"><{$logs_subdirs}></span>
+            </label>
+            
+            <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_FILES_COUNT}></h5>
+                <span class="badge"><{$logs_count}></span>
+            </label>
+
         </div>
 
     </div>
@@ -159,25 +166,21 @@
             </div>
 
             <label data-layout="row center-justify">
+                <h5><{$smarty.const._AD_STDCACHE_TOTAL_SIZE}></h5> 
+                <span class="badge"><{$compiled_size}> <{$compiled_percentage_text}>%</span>
+            </label>
+            <meter max="100" low="50" optimum="40" high="70" value="<{$compiled_percentage_bar}>" style="--left<{$compiled_percentage_bar}>%;"></meter>
+          
+            <label data-layout="row center-justify">
                 <h5><{$smarty.const._AD_STDCACHE_SUBDIRS_COUNT}></h5>
                 <span class="badge"><{$cache_subdirs}></span>
-            </label>
-            <meter max="100" low="50" optimum="40" high="70" value="<{$cache_subdirs}>" style="--left: <{$cache_subdirs}>%;"></meter>
-            
+            </label>            
 
             <label data-layout="row center-justify">
                 <h5><{$smarty.const._AD_STDCACHE_FILES_COUNT}></h5>
                 <span class="badge"><{$compiled_count}></span>
             </label>
-            <meter max="100" low="50" optimum="40" high="70" value="<{$compiled_count}>" style="--left:<{$compiled_count}>%"></meter>
-            
-        
-            <label data-layout="row center-justify">
-                <h5><{$smarty.const._AD_STDCACHE_TOTAL_SIZE}></h5> 
-                <span class="badge"><{$compiled_size}> <{$compiled_percentage_text}>%</span>
-            </label>
-            <meter max="100" low="50" optimum="40" high="70" value="<{$compiled_percentage_bar}>" style="--left<{$compiled_percentage_bar}>%;"></meter>
-            
+  
         </div>
 
       </div>
@@ -229,12 +232,10 @@
     </tr>
     <tr class="list_center">
         <td>
-            <a href="index.php?action=CacheClearAction" class="button"><{$smarty.const._MI_STDCACHE_CLEAR_CACHE}></a>
         </td>
         <td>
-            <a href="index.php?action=CacheConfigAction" class="button"><{$smarty.const._MI_STDCACHE_CONFIG}></a>
         </td>        
-        <td><span class="badge-count fingerprint1"><{$cache_limit}></span></td>
+        <td><span class="badge-count fingerprint1"><{$cache_limit_smarty}></span></td>
         <td><span class="badge-count"><{$total_size}></span></td>
     </tr>
 </tfooot>

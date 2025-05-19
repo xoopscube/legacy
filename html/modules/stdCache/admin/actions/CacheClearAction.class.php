@@ -3,10 +3,10 @@
  * Standard cache - Module for XCL
  *
  * @package    stdCache
- * @author     Nuno Luciano (aka gigamaster) XCL PHP8 
+ * @author     Nuno Luciano (aka gigamaster) XCL/PHP8
  * @copyright  2005-2025 The XOOPSCube Project
  * @license    GPL V2
- * @version    Release: XCL v2.5.0
+ * @version    2.5.0 Release: XCL
  * @link       http://github.com/xoopscube/
  */
 
@@ -16,19 +16,24 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 require_once __DIR__ . '/../class/Action.class.php';
 require_once __DIR__ . '/../class/CacheManager.class.php';
-// require_once XOOPS_ROOT_PATH . '/modules/legacy/class/Legacy_Utils.class.php'; // Not directly used
 require_once __DIR__ . '/../forms/CacheClearForm.class.php';
+
+// For XCube_DelegateUtils if not autoloaded or included by the core
+if (!class_exists('XCube_DelegateUtils') && file_exists(XOOPS_ROOT_PATH . '/core/XCube_DelegateUtils.class.php')) {
+    require_once XOOPS_ROOT_PATH . '/core/XCube_DelegateUtils.class.php';
+}
+
 
 class stdCache_CacheClearAction extends stdCache_Action
 {
     /**
      * @var XCube_Root
      */
-    protected $mRoot = null;
+    protected $mRoot = null; // Declare the property
     /**
      * @var XoopsModule
      */
-    protected $mModule = null; // Module instance
+    protected $mModule = null; // XoopsModule instance
 
     /**
      * @var stdCache_CacheClearForm
@@ -41,10 +46,15 @@ class stdCache_CacheClearAction extends stdCache_Action
     protected $mCacheManager = null;
 
 
-    public function __construct()
+    /**
+     * Constructor to initialize mRoot and call parent constructor
+     * @param bool $adminFlag Flag indicating an admin action
+     */
+    public function __construct($adminFlag = false) // Accept adminFlag
     {
-        parent::__construct(); // Call parent constructor
-        $this->mRoot =& XCube_Root::getSingleton();
+        parent::__construct($adminFlag); // Call parent constructor and pass adminFlag
+        $this->mRoot = XCube_Root::getSingleton(); // Initialize the property
+        // Access mRoot via $this->mRoot now
         if (is_object($this->mRoot->mContext->mModule)) {
             $this->mModule = $this->mRoot->mContext->mModule->getXoopsModule(); // Get XoopsModule object
         }
@@ -57,19 +67,21 @@ class stdCache_CacheClearAction extends stdCache_Action
 
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
-        parent::prepare($controller, $xoopsUser, $moduleConfig); // Call parent
+        parent::prepare($controller, $xoopsUser, $moduleConfig);
 
-        if (!(is_object($xoopsUser) && $xoopsUser->isAdmin())) {
-            $controller->executeForward(XOOPS_URL . '/');
+        // Access mRoot via $this->mRoot now
+        if (!(is_object($this->mRoot->mContext->mXoopsUser) && $this->mRoot->mContext->mXoopsUser->isAdmin())) {
+            // Use $this->mRoot->mController->executeForward for consistency
+            $this->mRoot->mController->executeForward(XOOPS_URL . '/');
             return false;
         }
-        
+
         $this->_setupActionForm();
         $this->mCacheManager = $this->_getHandler();
 
         return true;
     }
-    
+
     protected function _setupActionForm()
     {
         if ($this->mActionForm === null) {
@@ -81,7 +93,14 @@ class stdCache_CacheClearAction extends stdCache_Action
     protected function _getHandler()
     {
         if ($this->mCacheManager === null) {
-            $this->mCacheManager = new stdCache_CacheManager();
+            // Use try-catch during object instantiation
+            try {
+                $this->mCacheManager = new stdCache_CacheManager();
+            } catch (Exception $e) {
+                // Log the error and rethrow or handle
+                error_log("stdCache_CacheClearAction: Failed to initialize CacheManager - " . $e->getMessage());
+                throw new RuntimeException('Failed to initialize CacheManager: ' . $e->getMessage());
+            }
         }
         return $this->mCacheManager;
     }
@@ -97,22 +116,13 @@ class stdCache_CacheClearAction extends stdCache_Action
     {
         // Ensure form is fetched and validated for POST requests
         $this->mActionForm->fetch(); // Fetch data from request
-        
+
+        // validate() implicitly handles token validation if getTokenName() is defined for POST
         if (!$this->mActionForm->validate()) {
             return STDCACHE_FRAME_VIEW_INPUT; // Show form with errors
         }
-        
-        // Token validation should be part of XCube_ActionForm or handled explicitly if needed
-        // For POST, XCube_ActionForm usually handles token validation if getTokenName() is defined.
-        // Let's assume token validation is implicitly handled
-        // if (!$this->mActionForm->getToken()->validate()) { // This might need specific token setup
-        //     return STDCACHE_FRAME_VIEW_ERROR;
-        // }
-        
+
         $ageToClear = (int)$this->mActionForm->get('clear_age');
-        // When constructing options for CacheManager:
-        // The CacheManager::clearCache method needs to be adapted to accept age.
-        // For example, if clearCache takes $options as an array:
 
         $optionsToClear = [];
         if ($this->mActionForm->get('clear_smarty_cache')) {
@@ -125,21 +135,22 @@ class stdCache_CacheClearAction extends stdCache_Action
             $optionsToClear['logs'] = ['age' => $ageToClear];
         }
         if ($this->mActionForm->get('clear_uploads')) {
-            // TODO: Add a Help-Tip about age-clearing for uploads.
-            // Users might expect "all" or nothing.
+            // TODO: Add a Help-Tip about age-clearing for uploads
+            // Users might expect "all" or nothing
             $optionsToClear['uploads'] = ['age' => $ageToClear];
         }
-        
+
 
         if (empty($optionsToClear)) {
-            // TODO: This case should be caught by form validation, but as a safeguard:
+            // This case should be caught by form validation, but as a safeguard:
             // Add a message that nothing was selected.
-            // For example: $this->mRoot->mContext->mModule->setMsg(_AD_STDCACHE_SELECT_CACHE_TYPE_TO_CLEAR);
+            // Access mRoot via $this->mRoot now
+            XCube_DelegateUtils::call('Legacy.Admin.Event.AddErrorMessage', defined('_AD_STDCACHE_SELECT_CACHE_TYPE_TO_CLEAR') ? _AD_STDCACHE_SELECT_CACHE_TYPE_TO_CLEAR : 'Please select at least one cache type to clear.');
             return STDCACHE_FRAME_VIEW_INPUT;
         }
 
         $results = $this->mCacheManager->clearCache($optionsToClear);
-        
+
         // Add messages from CacheManager operation
         if (!empty($results['messages'])) {
             foreach ($results['messages'] as $message) {
@@ -169,26 +180,29 @@ class stdCache_CacheClearAction extends stdCache_Action
         return defined('_MI_STDCACHE_ADMENU_CLEAR') ? _MI_STDCACHE_ADMENU_CLEAR : 'Clear Cache';
     }
 
+    /**
+     * Helper method to set common view attributes for the clear cache page
+     * @param XCube_RenderTarget $render
+     */
     protected function _setupViewCommon(&$render)
     {
         $render->setTemplateName('stdcache_admin_cache_clear.html');
         $render->setAttribute('actionForm', $this->mActionForm); // Pass the action form
-        
-        // Token handling for the form template
-        // $render->setAttribute('xoops_token_name', $this->mActionForm->getTokenName());
-        // $render->setAttribute('xoops_token', $this->mActionForm->getTokenHTML()); // Use getTokenHTML() for Smarty
 
+        // Pass the module object
         if (is_object($this->mModule)) {
             $render->setAttribute('module', $this->mModule);
         }
-        $render->setAttribute('xoops_pagetitle', $this->getPageTitle()); // Already set by parent Action class
+        // Page title is usually set by the parent Action class automatically
+        // $render->setAttribute('xoops_pagetitle', $this->getPageTitle());
     }
 
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        parent::executeViewInput($controller, $xoopsUser, $render); // Call parent
+        parent::executeViewInput($controller, $xoopsUser, $render);
         $this->_setupViewCommon($render);
-        // Ensure form has defaults for the first view
+        // Ensure form has defaults for the first view (GET request)
+        // If it's a POST request that failed validation, fetch() already loaded the submitted values.
         if (xoops_getenv('REQUEST_METHOD') !== 'POST') {
             $this->mActionForm->loadDefaults();
         }
@@ -197,10 +211,10 @@ class stdCache_CacheClearAction extends stdCache_Action
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        parent::executeViewSuccess($controller, $xoopsUser, $render); // Call parent
-        // After successful clear, redirect to stats page or show success on the same page.
-        // Redirecting is often cleaner.
-        $controller->executeForward('./index.php?action=CacheStats'); 
+        parent::executeViewSuccess($controller, $xoopsUser, $render);
+        // After successful clear, redirect to stats page or show success on the same page
+        // Use $this->mRoot->mController->executeForward for consistency
+        $this->mRoot->mController->executeForward('./index.php?action=CacheStats');
         // If not redirecting, then:
         // $this->_setupViewCommon($render);
         // $render->setTemplateName('stdcache_admin_cache_clear_success.html'); // Or similar
@@ -209,15 +223,15 @@ class stdCache_CacheClearAction extends stdCache_Action
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        parent::executeViewError($controller, $xoopsUser, $render); // Call parent
+        parent::executeViewError($controller, $xoopsUser, $render);
         $this->_setupViewCommon($render);
-        // The form already contains error messages if validation failed.
-        // If error came from CacheManager, messages were added via DelegateUtils.
+        // The form already contains error messages if validation failed
+        // If error came from CacheManager, messages added via DelegateUtils
         return true;
     }
 
-    // executeViewIndex is not typically used for an action like "clear",
-    // but if it were, it would be similar to executeViewInput.
+    // executeViewIndex is not usually for an action like "clear",
+    // but it would be similar to executeViewInput
     /*
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {

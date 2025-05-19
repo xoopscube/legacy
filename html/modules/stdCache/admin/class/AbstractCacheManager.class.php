@@ -3,10 +3,10 @@
  * Standard cache - Module for XCL
  *
  * @package    stdCache
- * @author     Nuno Luciano (aka gigamaster) XCL PHP8 
+ * @author     Nuno Luciano (aka gigamaster) XCL/PHP8
  * @copyright  2005-2025 The XOOPSCube Project
  * @license    GPL V2
- * @version    Release: XCL v2.5.0
+ * @version    2.5.0 Release: XCL
  * @link       http://github.com/xoopscube/
  */
 
@@ -28,18 +28,15 @@ class stdCache_AbstractCacheManager
         if (isset($root->mController) && is_object($root->mController)) {
             $this->logger = $root->mController->mLogger;
         } else {
-            // Fallback or error handling if controller or logger isn't available
-            // This might happen if the constructor is called very early
+            // Fallback or error handling
             $this->logger = null; 
-            // Optionally, log an error here if a more robust logging mechanism is available
-            // error_log('stdCache_AbstractCacheManager: XCube_Controller or mLogger not available.');
         }
         
         $this->cacheDirs = [
             'templates_c' => XOOPS_TRUST_PATH . '/templates_c', // Smarty compiled templates
-            'cache' => XOOPS_TRUST_PATH . '/cache',            // Smarty cache (typically from XOOPS_TRUST_PATH)
-            'logs' => XOOPS_TRUST_PATH . '/cache/logs',       // Targets only files logs
-            'uploads' => XOOPS_TRUST_PATH . '/uploads'       // Changed from target the public uploads directory
+            'cache' => XOOPS_TRUST_PATH . '/cache',      // Smarty cache (from XOOPS_TRUST_PATH)
+            'logs' => XOOPS_TRUST_PATH . '/cache/logs', 
+            'uploads' => XOOPS_TRUST_PATH . '/uploads'  // Changed to prevent system assets delete
         ];
     }
 
@@ -53,11 +50,9 @@ class stdCache_AbstractCacheManager
         }
     }
 
-    protected function logOperation($message, $type = 'info')
+    public function logOperation($message, $type = 'info')
     {
-        // Check if logger was successfully initialized before using it
-        if ($this->logger && method_exists($this->logger, 'add')) {
-            $this->logger->add($type, $message, 'stdCache');
-        }
+        error_log("STDCACHE_LOG ({$type}): {$message}");
     }
+
 }

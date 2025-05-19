@@ -1,56 +1,49 @@
 <?php
+/**
+ * Standard Cache - Module Information Language File (English)
+ *
+ * @package    stdCache
+ * @author     Nuno Luciano (aka gigamaster) XCL/PHP8
+ * @copyright  2005-2025 The XOOPSCube Project
+ * @license    GPL V2
+ * @version    2.5.0 Release: XCL
+ * @link       http://github.com/xoopscube/
+ */
+
 // Module Name
 define('_MI_STDCACHE_NAME', 'Standard Cache');
-define('_MI_STDCACHE_NAME_DESC', 'Cache management module for XOOPS Cube Legacy');
+define('_MI_STDCACHE_NAME_DESC', 'Cache management module for XOOPSCube Legacy');
 
-define('_MI_STDCACHE_BLOCK_CACHECLEAR' , "Clear Cache");
 // Admin Menu
-define('_MI_STDCACHE_ADMIN', 'Cache Management');
-define('_MI_STDCACHE_STATS', 'Cache Statistics');
-define('_MI_STDCACHE_CLEAR', 'Clear Cache');
-define('_MI_STDCACHE_CONFIG', 'Cache Configuration');
-
-
-
-// Block
-define('_MI_STDCACHE_BLOCK_NAME', 'Cache Clear');
-define('_MI_STDCACHE_BLOCK_DESC', 'Quick cache clearing block');
-
-
-// Help
-define('_MI_STDCACHE_HELP_HEADER', __FILE__);
-define('_MI_STDCACHE_HELP_OVERVIEW', 'overview.html');
-define('_MI_STDCACHE_HELP_DISCLAIMER', 'disclaimer.html');
-define('_MI_STDCACHE_HELP_LICENSE', 'license.html');
-define('_MI_STDCACHE_HELP_SUPPORT', 'support.html');
-
-// language/english/modinfo.php
-// Admin Menu
+define('_MI_STDCACHE_ADMIN_TITLE', 'Cache Management');
 define('_MI_STDCACHE_ADMENU_STATS', 'Cache Statistics');
 define('_MI_STDCACHE_ADMENU_CLEAR', 'Clear Cache');
-define('_MI_STDCACHE_ADMENU_CONFIG', 'Cache Configuration');
+define('_MI_STDCACHE_ADMENU_CONFIG', 'Configuration');
+define('_MI_STDCACHE_ADMENU_NOTIFY', 'Mail Notification');
+define('_MI_STDCACHE_ADMENU_TEST_NOTIFICATION', 'Test Notification');
 
-define('_MI_STDCACHE_CLEAR_CACHE', 'Clear Cache');
-define('_MI_STDCACHE_CONFIRM_CLEAR', 'Confirm Clear');
-define('_MI_STDCACHE_SAVE_CONFIG', 'Save Configuration');
+// Block
+define('_MI_STDCACHE_BLOCK_NAME', 'Quick Cache Clear');
+define('_MI_STDCACHE_BLOCK_DESC', 'Provides a button to quickly clear configured cache types.');
+define('_MI_STDCACHE_BLOCK_CACHECLEAR' , "Clear Cache Block"); 
 
-// TODO
-define('_MI_STDCACHE_COMPILED_FILES', 'Compiled Templates');
-define('_MI_STDCACHE_CACHE_FILES', 'Cache Files');
+// Module Config
+define('_MI_STDCACHE_CACHE_LIMIT', 'Smarty Cache Size Limit (Bytes)');
+define('_MI_STDCACHE_CONF_CACHE_LIMIT', 'Smarty Cache Size Limit (Bytes)');
+define('_MI_STDCACHE_CONF_CACHE_LIMIT_DESC', 'Maximum allowed size for the Smarty cache directory (typically TRUST_PATH/cache). Example: 52428800 for 50MB.');
+define('_MI_STDCACHE_CONF_CACHE_CLEANUP_LIMIT', 'Smarty Cache Auto-Cleanup Threshold (Bytes)');
+define('_MI_STDCACHE_CONF_CACHE_CLEANUP_LIMIT_DESC', 'Automatically clean up oldest Smarty cache files when its size exceeds this value. Example: 47185920 for 45MB.');
+define('_MI_STDCACHE_CONF_COMPILED_TEMPLATES_LIMIT', 'Compiled Templates Size Limit (Bytes)');
+define('_MI_STDCACHE_CONF_COMPILED_TEMPLATES_LIMIT_DESC', 'Maximum allowed size for compiled templates directory (TRUST_PATH/templates_c). Example: 20971520 for 20MB.');
 
+// Email alerts
+define('_MI_STDCACHE_ALERT_TRIGGER', 'Email Alert Threshold (Bytes)');
+define('_MI_STDCACHE_ALERT_TRIGGER_DESC', 'Send an email alert when the Smarty cache size exceeds this value. Example: 41943040 for 40MB.');
+define('_MI_STDCACHE_ALERT_ENABLED','Enable Cache Limit Email Alerts');
+define('_MI_STDCACHE_ALERT_ENABLED_DESC','If enabled, an email alert will be sent to administrators when the cache email alert threshold is reached.');
 
-// Module config
-define('_MI_STDCACHE_CACHE_LIMIT', 'Cache Size Limit');
-define('_MI_STDCACHE_CACHE_LIMIT_DESC', 'Maximum allowed size for the cache directory in bytes. Minimum: 10MB, Maximum: 1GB');
-define('_MI_STDCACHE_CACHE_NOTIFICATION_LIMIT', 'Notification Threshold');
-define('_MI_STDCACHE_CACHE_NOTIFICATION_LIMIT_DESC', 'Send notification to administrators when cache size exceeds this value');
-define('_MI_STDCACHE_CACHE_CLEANUP_LIMIT', 'Auto-Cleanup Threshold');
-define('_MI_STDCACHE_CACHE_CLEANUP_LIMIT_DESC', 'Automatically clean up oldest cache files when cache size exceeds this value');
-define('_MI_STDCACHE_COMPILED_TEMPLATES_LIMIT', 'Compiled Templates Size Limit');
-define('_MI_STDCACHE_COMPILED_TEMPLATES_LIMIT_DESC', 'Maximum allowed size for compiled templates directory in bytes');
-define('_MI_STDCACHE_NOTIFICATION_ENABLED', 'Enable Email Notifications');
-define('_MI_STDCACHE_NOTIFICATION_ENABLED_DESC', 'Send email notifications to administrators when cache size exceeds the notification threshold');
+define('_MI_STDCACHE_CONF_ALERT_LAST_TIME', 'Last Notification Time');
+define('_MI_STDCACHE_CONF_ALERT_LAST_TIME_DESC', 'Timestamp of the last sent notification (system managed, not user-editable).');
 
-// Cache notification settings
-define('_MI_STDCACHE_LAST_NOTIFICATION_TIME', 'Last Notification Time');
-define('_MI_STDCACHE_LAST_NOTIFICATION_TIME_DESC', 'Timestamp of the last sent notification (system managed)');
+define('_MI_STDCACHE_CLEAR_CACHE','Clear cache');
+define('_MI_STDCACHE_CONFIG','Configuration');
