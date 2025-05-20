@@ -1,23 +1,3 @@
-ALTER TABLE banner
-    CHANGE bid bid           smallint(5) unsigned  not null auto_increment,
-    change cid cid           tinyint(3) unsigned   not null,
-    CHANGE imptotal imptotal mediumint(8) unsigned NOT NULL,
-    CHANGE impmade impmade   mediumint(8) unsigned NOT NULL,
-    CHANGE clicks clicks     mediumint(8) unsigned NOT NULL,
-    ADD htmlbanner           tinyint(1)            NOT NULL,
-    ADD htmlcode             text                  NOT NULL;
-
-ALTER TABLE bannerclient
-    CHANGE cid cid smallint(5) unsigned NOT NULL auto_increment;
-
-ALTER TABLE bannerfinish
-    CHANGE bid bid                 smallint(5) unsigned  NOT NULL auto_increment,
-    CHANGE cid cid                 smallint(5) unsigned  NOT NULL,
-    CHANGE impressions impressions mediumint(8) unsigned NOT NULL,
-    CHANGE clicks clicks           mediumint(8) unsigned NOT NULL,
-    CHANGE datestart datestart     int(10) unsigned      NOT NULL,
-    CHANGE dateend dateend         int(10) unsigned      NOT NULL;
-
 ALTER TABLE groups
     CHANGE groupid groupid         smallint(5) unsigned NOT NULL auto_increment,
     CHANGE description description text                 NOT NULL,

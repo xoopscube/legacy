@@ -1,16 +1,4 @@
 #
-# Dumping data for table `bannerclient`
-#
-
-INSERT INTO bannerclient
-VALUES (0, 'Sample client', 'XCL Project', '', '', '', '');
-
-#
-# Dumping data for table `bannerfinish`
-#
-
-
-#
 # Dumping data for table `newblocks`
 #
 INSERT INTO newblocks (`bid`, `mid`, `func_num`, `options`, `name`, `title`, `content`, `side`, `weight`, `visible`,

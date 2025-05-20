@@ -45,7 +45,6 @@ $xoopsConfig['sessioncookie']         = 'wap_session';
 $xoopsConfig['sessionexpire']         = 4500;
 $xoopsConfig['server_TZ']             = 0;
 $xoopsConfig['default_TZ']            = 0;
-$xoopsConfig['banners']               = 1;
 $xoopsConfig['com_mode']              = 'nest';
 $xoopsConfig['com_order']             = 1;
 $xoopsConfig['my_ip']                 = '127.0.0.1';

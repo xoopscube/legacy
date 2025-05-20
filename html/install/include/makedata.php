@@ -35,9 +35,6 @@ function make_groups( &$dbm ) {
 function make_data( &$dbm, &$cm, $adminname, $adminpass, $adminmail, $language, $gruops, $timezone ) {
 	$tables = [];
 
-	// data for table 'banner'
-
-	$dbm->insert( 'banner', " (bid, cid, imptotal, impmade, clicks, imageurl, clickurl, date, htmlcode) VALUES (1, 1, 0, 1, 0, '" . XOOPS_URL . "/images/banners/banner.png', 'https://github.com/xoopscube/legacy', 1008813250, '')" );
 
 	// default theme
 
