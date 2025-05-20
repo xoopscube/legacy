@@ -8,14 +8,14 @@
  * @author     Kazuhisa Minato aka minahito, Core developer
  * @copyright  2005-2025 The XOOPSCube Project
  * @license    GPL V2
- * @version    Release: XCL v2.5.0
+ * @version    v2.5.0 Release: XCL
  * @link       http://github.com/xoopscube/
  * @since      v 1.1 2007/05/15 02:34:17 minahito
  **/
 
 $modversion['dirname'] = 'bannerstats';
 $modversion['name'] = 'Banner Stats';
-$modversion['version'] = 1.0;
+$modversion['version'] = '2.50.0';
 $modversion['description'] = 'Banner management and client statistics';
 $modversion['author'] = 'Nuno Luciano aka gigamaster';
 $modversion['credits'] = 'The XOOPSCube Project';
@@ -26,6 +26,9 @@ $modversion['icon'] = 'images/module_icon.svg';
 $modversion['image'] = 'images/module_image.svg';
 $modversion['cube_style'] = true;
 $modversion['read_any'] = true;
+
+//Mysql
+$modversion['sqlfile']['mysql'] = 'sql/mysql.sql';
 
 // Admin
 $modversion['hasAdmin'] = 1;

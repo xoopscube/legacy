@@ -371,11 +371,12 @@ function d3forum_get_comment_link( $external_link_format, $external_link_id ) {
 // started from class:: for native d3comment modules
 function d3forum_get_comment_description( $mydirname, $external_link_format, $external_link_id, $forum_id = null ) {
 	$d3com = d3forum_main_get_comment_object( $mydirname, $external_link_format, $forum_id );
+
 	if ( ! is_object( $d3com ) ) {
 		return '';
 	}
 
-	$description = $d3com->fetchDescription( $external_link_id );
+	$description = method_exists($d3com, 'fetchDescription') ? $d3com->fetchDescription($external_link_id) : '';
 
 	if ( $description ) {
 		return $description;

@@ -67,43 +67,55 @@ class XCube_Utils {
 	 *     This method does not implement or provide a formatted string for a given locale.
 	 *     This method is therefore provisionally implemented.
 	 */
-	public static function formatString() {
-		$arr = func_get_args();
+    public static function formatString() {
+        $arr = func_get_args();
 
-		if (count($arr) === 0) {
-			return null;
-		}
+        if (count($arr) === 0) {
+            return null;
+        }
 
-		$message = $arr[0];
+        $message = $arr[0];
+        
+        // Initialize variables array
+        $variables = [];
+        
+        // Only process variables if we have more than one argument
+        if (count($arr) > 1) {
+            if (is_array($arr[1])) {
+                $variables = $arr[1];
+            } else {
+                $variables = $arr;
+                array_shift($variables);
+            }
+        }
 
-		$variables = [];
-		if ( is_array( $arr[1] ) ) {
-			$variables = $arr[1];
-		} else {
-			$variables = $arr;
-			array_shift( $variables );
-		}
-		foreach ( $variables as $i => $iValue ) {
-			// Temporary....
-			// @gigamaster merged calls
-			$message = str_replace(
-				[
-					'{' . ( $i ) . '}',
-					'{' . ( $i ) . ':ucFirst}',
-					'{' . ( $i ) . ':toLower}',
-					'{' . ( $i ) . ':toUpper}'
-				],
-				[
-					$variables[ $i ],
-					ucfirst( $iValue ),
-					strtolower( $iValue ),
-					strtoupper( $iValue )
-				],
-				$message );
-		}
+        // Only process replacements if we have variables
+        if (!empty($variables)) {
+            foreach ($variables as $i => $iValue) {
+                if (!is_scalar($iValue)) {
+                    continue; // Skip non-scalar values
+                }
+                
+                $search = [
+                    '{' . $i . '}',
+                    '{' . $i . ':ucFirst}',
+                    '{' . $i . ':toLower}',
+                    '{' . $i . ':toUpper}'
+                ];
+                
+                $replace = [
+                    (string)$iValue, // Use $iValue directly instead of $variables[$i]
+                    ucfirst((string)$iValue),
+                    strtolower((string)$iValue),
+                    strtoupper((string)$iValue)
+                ];
+                
+                $message = str_replace($search, $replace, $message);
+            }
+        }
 
-		return $message;
-	}
+        return $message;
+    }
 
 	/**
 	 * @public

@@ -40,8 +40,6 @@
         <{/if}>
     </h2>
 
-  
-
     <{if $category.desc}>
         <div data-layout="row" class="description">
             <a class="btn-icon" id="open-help" data-tooltip="<{$smarty.const._MD_D3FORUM_LEGEND}>">
@@ -50,17 +48,18 @@
         </div>
     <{/if}>
 
-
     <footer>
         <div class="grid">
 
         <{* ----- List All Topics *}>
+        <{if $xoops_isuser}>
         <div>
         <a role="button" class="primary"  href="<{$mod_url}>/index.php?cat_ids=<{$category.id}>">
             <img class="svg" src="<{$xoops_url}>/images/icons/list-tree.svg" width="1em" height="1em" alt="list-tree">
             <{$smarty.const._MD_D3FORUM_LISTTOPICSINCATEGORY}>
         </a>
         </div>
+        <{/if}>
 
         <{* ------- Admin Control *}>
         <{if $category.isadminormod}>

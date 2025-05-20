@@ -283,7 +283,7 @@ class XCube_Delegate {
 	 */
 	public function call() {
 		$mSigs = [];
-  $args = func_get_args();
+  		$args = func_get_args();
 		$num  = func_num_args();
 
 		if ( $this->_mIsLazyRegister ) {

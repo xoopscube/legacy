@@ -20,6 +20,8 @@ define( '_AD_LEGACYRENDER_ERROR_TPLSET_NO_EXIST' , 'Specified template set does 
 define( '_AD_LEGACYRENDER_ERROR_TPLSET_WRONG' , 'Template set wrong');
 define( '_AD_LEGACYRENDER_ERROR_UNIQUE_NAME' , 'Input unique name');
 define( '_AD_LEGACYRENDER_LANG_ACTIVE' , 'Active');
+define( '_AD_LEGACYRENDER_LANG_CONTROL' , 'Action');
+
 define( '_AD_LEGACYRENDER_LANG_RECENT_MODIFY_FILES' , 'Recently modified files');
 define( '_AD_LEGACYRENDER_LANG_SEARCH_TEMPLATE' , 'Search templates');
 define( '_AD_LEGACYRENDER_LANG_TEMPLATE' , 'Template');

@@ -21,9 +21,14 @@
  */
 function smarty_modifier_escape($string, $esc_type = 'html', $char_set = 'ISO-8859-1')
 {
+    // Handle null values by converting them to empty strings
+    if ($string === null) {
+        $string = '';
+    }
+    
     switch ($esc_type) {
         case 'html':
-            return htmlspecialchars($string ?? '', ENT_QUOTES, $char_set);
+            return htmlspecialchars($string, ENT_QUOTES, $char_set);
 
         case 'htmlall':
             return htmlentities($string, ENT_QUOTES, $char_set);
@@ -32,7 +37,7 @@ function smarty_modifier_escape($string, $esc_type = 'html', $char_set = 'ISO-88
             return rawurlencode($string);
 
         case 'urlpathinfo':
-            return str_replace('%2F','/',rawurlencode($string));
+            return str_replace('%2F', '/', rawurlencode($string));
 
         case 'quotes':
             // escape unescaped single quotes

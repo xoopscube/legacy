@@ -9,10 +9,25 @@ All notable changes to this project will be documented in this file.
 Refer please to repository Legacy Commits  
 
 
+## [2.5.0 PHP8.2] 2025-05-20
+
+- Add module Bannerstats
+- Render delegate banners
+- Remove Banners from Render
+- XCube Utils
+- Update preference list
+
+
 ## [2.5.0 PHP8.2] 2025-05-12
 
 - Add property declarations to class/xoopsmailer
 - Add property declarations to lib/Mailer
+- Add New Delegate to bannerstats
+- Add core/XCube_MailBuilder
+- Add stdCache limit alert admin 
+- Add stdCache limit configuration
+- Add stdCache limit stats
+- Add stdCache limit auto-cleanup
 - class/mysqlidatabase type checking
 - class/errorHandler + Debug log #329
 - class/Template enhanced 
@@ -20,7 +35,13 @@ Refer please to repository Legacy Commits
 - Inline Debug (PHP, SQL, Smarty)
 - Improve Legacy_Debugger
 - Update debug.tpl
-
+- Update mysql.structure.sql
+- Update sample banner in makedata.php
+- Install Wizard banner imp min-value 
+- Update legacyRender banner admin actions
+- Banner imptotal enforced safety 1 to 100,000
+- Remove old function for banners
+- Redirect banners to new bannerstats
 
 ## [2.5.0 PHP8.2] 2025-05-05
 

@@ -17,9 +17,9 @@ if ( ! $crs = $db->query( $sql ) ) {
 	die( _MD_D3FORUM_ERR_SQL . __LINE__ );
 }
 
-//if( $db->getRowsNum( $crs ) <= 0 ) die( _MD_D3FORUM_ERR_READCATEGORY ) ;
+
 if ( $db->getRowsNum( $crs ) <= 0 ) {
-	return false;
+	return false;  // This line is important. If no row is found (or not readable), it returns false.
 }
 
 $cat_row = $db->fetchArray( $crs );
