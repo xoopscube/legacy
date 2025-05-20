@@ -1,4 +1,17 @@
 <?php
+/**
+ * Bannerstats - Module for XCL
+ * Migrated banner files from legacyRender to Bannerstats
+ *
+ * @package    Bannerstats
+ * @author     Nuno Luciano (aka gigamaster) XCL PHP8
+ * @author     Kazuhisa Minato aka minahito, Core developer
+ * @copyright  2005-2025 The XOOPSCube Project
+ * @license    GPL V2
+ * @version    Release: XCL v2.5.0
+ * @link       http://github.com/xoopscube/
+ * @since      v 1.1 2007/05/15 02:34:17 minahito
+ **/
 
 $modversion['dirname'] = 'bannerstats';
 $modversion['name'] = 'Banner Stats';
@@ -9,7 +22,8 @@ $modversion['credits'] = 'The XOOPSCube Project';
 $modversion['help'] = '';
 $modversion['license'] = 'GPL';
 $modversion['official'] = 0;
-$modversion['image'] = 'images/module_bannerstats.png';
+$modversion['icon'] = 'images/module_icon.svg';
+$modversion['image'] = 'images/module_image.svg';
 $modversion['cube_style'] = true;
 $modversion['read_any'] = true;
 
@@ -33,12 +47,22 @@ $modversion['templates'][] = array('file' => 'bannerstats_message.html', 'descri
 $modversion['templates'][] = array('file' => 'bannerstats_change_url_form.html', 'description' => 'Change Banner URL Form');
 $modversion['templates'][] = array('file' => 'bannerstats_request_support_form.html', 'description' => 'Banner Support Request Form');
 
-// Admin templates
-/* $modversion['templates'][] = array('file' => 'admin/bannerstats_admin_banner_list.html', 'description' => 'Admin Banner List');
-$modversion['templates'][] = array('file' => 'admin/bannerstats_admin_banner_edit.html', 'description' => 'Admin Banner Edit');
-$modversion['templates'][] = array('file' => 'admin/bannerstats_admin_client_list.html', 'description' => 'Admin Client List');
-$modversion['templates'][] = array('file' => 'admin/bannerstats_admin_client_edit.html', 'description' => 'Admin Client Edit');
- */
+$modversion['config'][]= [
+    'name'        => 'banners',
+    'title'       => '_MI_BANNERSTATS_CONF_BANNERS',
+    'description' => '_MI_BANNERSTATS_CONF_BANNERS_DESC',
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0
+];
+$modversion['config'][] = [
+    'name'        => 'min_impressions',
+    'title'       => '_MI_BANNERSTATS_MIN_IMPRESSIONS', // Define this language constant
+    'description' => '_MI_BANNERSTATS_MIN_IMPRESSIONS_DESC', // Define this language constant
+    'formtype'    => 'textbox',
+    'valuetype'   => 'int',
+    'default'     => 1 // Set your desired default minimum
+];
 // Blocks
 $modversion['blocks'][1]['file'] = 'banner.php';
 $modversion['blocks'][1]['name'] = _MI_BANNERSTATS_BLOCK_BANNER;

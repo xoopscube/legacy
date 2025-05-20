@@ -1,53 +1,50 @@
 <?php
-// html/modules/bannerstats/index.php
+/**
+ * Bannerstats - Module for XCL
+ *
+ * @package    Bannerstats
+ * @author     Nuno Luciano (aka gigamaster) XCL PHP8
+ * @copyright  2005-2025 The XOOPSCube Project
+ * @license    GPL V2
+ * @version    Release: XCL v2.5.0
+ * @link       http://github.com/xoopscube/
+ **/
 
-// Include XOOPS mainfile. This bootstraps the XOOPS environment.
 include_once __DIR__ . '/../../mainfile.php';
 
-// Include XOOPS header. This sets up the theme, Smarty ($xoopsTpl), etc.
 require_once XOOPS_ROOT_PATH . '/header.php';
 
-// Ensure session is started, as BannerClientSession relies on it.
 if (session_status() == PHP_SESSION_NONE) {
     @session_start();
 }
 
-// Get the current module's directory name
-$moduleDirname = basename(dirname(__FILE__)); // This will be 'bannerstats'
+$moduleDirname = basename(dirname(__FILE__));
 
-// Include necessary classes from your module
 require_once XOOPS_MODULE_PATH . '/' . $moduleDirname . '/class/BannerClientSession.class.php';
 require_once XOOPS_MODULE_PATH . '/' . $moduleDirname . '/class/BannerClientToken.class.php';
-// require_once XOOPS_MODULE_PATH . '/' . $moduleDirname . '/class/BannerStatsManager.class.php';
 
-// Determine the action to perform. Default to 'Login'.
 $actionName = isset($_REQUEST['action']) ? ucfirst(trim($_REQUEST['action'])) : 'Login';
 
-// Security: Basic validation for action name (alphanumeric)
 if (!preg_match('/^[a-zA-Z0-9_]+$/', $actionName)) {
     $actionName = 'Login';
 }
 
-// If not authenticated and the action is not 'Login', 'Logout', or 'Contact', force to 'Login'.
 if (!BannerClientSession::isAuthenticated() &&
     !in_array($actionName, ['Login', 'Logout', 'Contact'])) {
     $actionName = 'Login';
 }
 
-// --- ENSURE THESE INITIALIZATIONS ARE PRESENT AND CORRECTLY PLACED ---
 $actionInstance = null;
-$actionErrorMessage = null; // <<< THIS LINE IS CRITICAL
+$actionErrorMessage = null;
 $templateToRender = null;
-$pageTitle = "Banner Statistics"; // Default page title
-// --- END INITIALIZATIONS ---
+$pageTitle = "Banner Statistics";
 
 
-// Define known, valid actions and their corresponding class details
 $knownActions = [
     'Login'   => ['file' => 'LoginAction.class.php',   'class' => 'Bannerstats_LoginAction'],
     'Stats'   => ['file' => 'StatsAction.class.php',   'class' => 'Bannerstats_StatsAction'],
     'Logout'  => ['file' => 'LogoutAction.class.php',  'class' => 'Bannerstats_LogoutAction'],
-    //'Contact' => ['file' => 'ContactAction.class.php', 'class' => 'Bannerstats_ContactAction'],
+    //'FAQ' => ['file' => 'FaqAction.class.php', 'class' => 'Bannerstats_FaqAction'],
     'EmailStats' => ['file' => 'EmailStatsAction.class.php', 'class' => 'Bannerstats_EmailStatsAction'],
     'ChangeUrl'  => ['file' => 'ChangeUrlAction.class.php',  'class' => 'Bannerstats_ChangeUrlAction'],
     'RequestSupport'   => ['file' => 'RequestSupportAction.class.php', 'class' => 'Bannerstats_RequestSupportAction'],
@@ -55,7 +52,7 @@ $knownActions = [
     // 'ChangeUrl'  => ['file' => 'ChangeUrlAction.class.php',  'class' => 'Bannerstats_ChangeUrlAction'],
 
 ];
-// --- Action Dispatching Logic (as previously discussed) ---
+
 if (isset($knownActions[$actionName])) {
     $actionDetails = $knownActions[$actionName];
     $actionFile = XOOPS_MODULE_PATH . '/' . $moduleDirname . '/actions/' . $actionDetails['file'];
@@ -100,11 +97,8 @@ if ($actionInstance && !$actionErrorMessage) {
     $actionErrorMessage = $actionErrorMessage ?: 'System Error: Unable to initialize the requested page. Please contact the administrator.';
     error_log("Bannerstats Critical Error: Failed to obtain a valid action instance for action '{$actionName}'. Error: " . ($actionErrorMessage ?: 'Unknown reason.'));
 }
-// --- End Action Dispatching Logic ---
 
-
-// Handle any errors that occurred during action loading or preparation
-// This is likely where your line 100 is, or the block just before it.
+// Handle any errors on action loading or preparation
 if ($actionErrorMessage !== null) {
     if (is_object($GLOBALS['xoopsTpl'])) {
         $GLOBALS['xoopsTpl']->assign('bannerstats_error_message', $actionErrorMessage);
@@ -118,18 +112,17 @@ if (is_object($GLOBALS['xoopsTpl'])) {
     $GLOBALS['xoopsTpl']->assign('xoops_pagetitle', htmlspecialchars($pageTitle, ENT_QUOTES));
 }
 
-// If a template name was set (either by a successful action or error handling), display it
 if ($templateToRender) {
     $templateIdentifier = 'db:' . $templateToRender;
     if (is_object($GLOBALS['xoopsTpl'])) {
         $GLOBALS['xoopsTpl']->display($templateIdentifier);
     } else {
         echo "Critical Error: Template engine not available.";
-        if ($actionErrorMessage) { // Check if $actionErrorMessage is set before trying to use it
+        if ($actionErrorMessage) {
             echo "<br>Error Details: " . htmlspecialchars($actionErrorMessage);
         }
     }
 }
 
-// Include XOOPS footer
+// render footer
 require_once XOOPS_ROOT_PATH . '/footer.php';

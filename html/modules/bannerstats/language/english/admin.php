@@ -46,6 +46,21 @@ define('_AD_BANNERSTATS_BLOCK_BANNER', 'Banner');
 define('_AD_BANNERSTATS_BLOCK_BANNER_DESC', 'Display a banner');
 define('_AD_BANNERSTATS_ERROR_DBUPDATE_FAILED', 'DB UPDATE FAILED');
 
+// Banner delete client
+define('_AD_BANNERSTATS_CLIENT_DELETE_CONFIRM', 'Confirm Client Deletion');
+define('_AD_BANNERSTATS_CLIENT_DELETE_WARNING', 'Are you sure you want to delete this client?');
+define('_AD_BANNERSTATS_CLIENT_DELETE_BANNER_COUNT_WARNING', 'WARNING: Deleting this client will also permanently delete all associated banners listed below.');
+define('_AD_BANNERSTATS_ACTIVE_BANNERS', 'Active Banners');
+define('_AD_BANNERSTATS_FINISHED_BANNERS', 'Finished Banners');
+
+// TODO delete
+// _AD_BANNERSTATS_LANG_BANNER_NAME, 
+// _AD_BANNERSTATS_LANG_BANNER_TYPE, 
+// _AD_BANNERSTATS_LANG_STATUS, 
+// _AD_BANNERSTATS_LANG_REASON_FINISHED, 
+// _AD_BANNERSTATS_STATUS_ACTIVE, 
+// _AD_BANNERSTATS_STATUS_INACTIVE
+
 // import from legacyRender
 
 define( '_AD_BANNERSTATS_LANG_ACTIVE' , 'Active');
