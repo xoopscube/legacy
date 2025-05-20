@@ -234,7 +234,7 @@ function _formatTimeStamp($time, $format='l')
         }
         break;
     }
-    return ucfirst(date($datestring, $time));
+    return ucfirst(date($datestring, (int)$time));
 }
 
 /*
@@ -356,60 +356,34 @@ function showbanner()
     echo xoops_getbanner();
 }
 
+
 /*
- * Function to get the banner html tags for templates
+ * NEW Function to get the banner html tags for templates
+ * This function will now get banner HTML via a delegate.
+ * 
+ * @since 2.5.0
  */
 function xoops_getbanner()
 {
-    global $xoopsConfig;
-    $db =& Database::getInstance();
-    $bresult = $db->query('SELECT COUNT(*) FROM ' . $db->prefix('banner'));
-    [$numrows] = $db->fetchRow($bresult);
-    if ($numrows > 1) {
-        $numrows = $numrows-1;
-        mt_srand((double)microtime()*1_000_000);
-        /*use rand() unless you need a securely randomized integer,
-        then use random_int() . If you don't know if you need the latter,
-        you probably don't (it impacts "guessability", so imagine where that's useful).
-        If you're trying to randomize a slideshow, for instance, rand() is just fine */
-        $bannum = random_int(0, $numrows);
-        /*
-        try {
-            $bannum = random_int (0, $numrows);
-        } catch (Exception $e) {
-        }
-        */
-    } else {
-        $bannum = 0;
+    $bannerHtml = ''; // Default to empty string
+
+    // Define a delegate point for getting banner HTML.
+    // The delegate should expect a reference to $bannerHtml and can modify it.
+    XCube_DelegateUtils::call('Legacy.Function.GetBannerHtml', new XCube_Ref($bannerHtml));
+
+    if (empty($bannerHtml)) {
+        // If no delegate provided HTML, it means either:
+        // 1. The responsible module (e.g., bannerstats) is not active.
+        // 2. The responsible module is active but decided no banner should be shown for this request.
+        // 3. The responsible module has not implemented this delegate.
+        // A simple HTML comment is a safe fallback.
+        return "<!-- Banner display is now handled by a modern module. If 'bannerstats' is active, it controls this output. -->";
     }
-    if ($numrows > 0) {
-        $bresult = $db->query('SELECT * FROM ' . $db->prefix('banner'), 1, $bannum);
-        [$bid, $cid, $imptotal, $impmade, $clicks, $imageurl, $clickurl, $date, $htmlbanner, $htmlcode] = $db->fetchRow($bresult);
-        if ($xoopsConfig['my_ip'] == xoops_getenv('REMOTE_ADDR')) {
-            // EMPTY
-        } else {
-            $db->queryF(sprintf('UPDATE %s SET impmade = impmade+1 WHERE bid = %u', $db->prefix('banner'), $bid));
-        }
-        /* Check if this impression is the last one and print the banner */
-        if ($imptotal !== 0 && $imptotal == $impmade) {
-            $newid = $db->genId($db->prefix('bannerfinish') . '_bid_seq');
-            $sql = sprintf('INSERT INTO %s (bid, cid, impressions, clicks, datestart, dateend) VALUES (%u, %u, %u, %u, %u, %u)', $db->prefix('bannerfinish'), $newid, $cid, $impmade, $clicks, $date, time());
-            $db->queryF($sql);
-            // Delete banner finished impressions
-            $db->queryF(sprintf('DELETE FROM %s WHERE bid = %u', $db->prefix('banner'), $bid));
-        }
-        if ($htmlbanner) {
-            $bannerobject = '<div class="banner"><a href="'.XOOPS_URL.'/banners.php?op=click&amp;bid='.$bid.'" rel="noopener">';
-            $bannerobject .= $htmlcode;
-            $bannerobject .= '</a></div>';
-        } else {
-            $bannerobject = '<div class="banner"><a href="'.XOOPS_URL.'/banners.php?op=click&amp;bid='.$bid.'" rel="noopener">';
-            $bannerobject .= '<img src="' . $imageurl . '" alt="banner" loading="lazy">';
-            $bannerobject .= '</a></div>';
-        }
-        return $bannerobject;
-    }
+
+    return $bannerHtml;
 }
+
+
 
 /*
 * Function to redirect user to certain pages

@@ -2,13 +2,14 @@
 /**
  * Login screen popup for SSL enabled in the preferences
  * You should use this script only when your server supports SSL. Place this file under your SSL directory
+ * 
  * @package    Legacy
  * @version    2.3.1
  * @author     Nuno Luciano (aka gigamaster), 2020, XCL PHP7
  * @author     Minahito
  * @author     Kazumi Ono (aka onokazu)
  * @copyright  (c) 20002-2003 Authors
- * @license   GPL 2.0
+ * @license    GPL 2.0
  */
 
 // path to your xoops main directory

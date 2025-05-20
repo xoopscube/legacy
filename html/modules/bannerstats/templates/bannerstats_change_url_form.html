@@ -1,0 +1,74 @@
+<!-- html/modules/bannerstats/templates/bannerstats_change_url_form.html -->
+<h2><{$xoops_pagetitle}></h2>
+
+<{if $bannerstats_error_message}>
+    <div class="errorMsg"><{$bannerstats_error_message}></div>
+<{/if}>
+<{if $bannerstats_message}>
+    <div class="infoMsg"><{$bannerstats_message}></div>
+<{/if}>
+
+<{if $smarty.get.status == 'success' && $smarty.get.bid == $banner_to_edit.id && !$is_html_banner}>
+    <div class="successMsg">Banner URL updated successfully!</div>
+<{/if}>
+
+<{if $banner_to_edit}>
+    <h3>
+        <{if $is_html_banner}>
+            Details for HTML Banner: <{$banner_to_edit.name|escape:'html'}>
+        <{else}>
+            Edit URL for Banner: <{$banner_to_edit.name|escape:'html'}>
+        <{/if}>
+    </h3>
+
+    <{if $is_html_banner}>
+        <div class="infoMsg"><{$html_banner_notice}></div>
+        <{if $banner_to_edit.clickurl}>
+            <p><strong>Registered Click URL (may not be active for this HTML banner):</strong> <{$banner_to_edit.clickurl|escape:'html'}></p>
+        <{/if}>
+        <p style="margin-top:15px;">
+            <a href="<{$change_url_base}>">Select Different Banner</a>
+        </p>
+    <{else}>
+        <form action="<{$action_url}>" method="post">
+            <input type="hidden" name="csrf_token" value="<{$csrf_token}>">
+            <input type="hidden" name="bid" value="<{$banner_to_edit.id}>">
+            
+            <p>
+                <label for="current_url_display">Current Click URL:</label><br>
+                <input type="text" id="current_url_display" name="current_url_display" value="<{$banner_to_edit.clickurl|escape:'html'}>" readonly size="50">
+            </p>
+            
+            <p>
+                <label for="new_url">New Click URL:</label><br>
+                <input type="url" id="new_url" name="new_url" value="<{$submitted_new_url|default:$banner_to_edit.clickurl|escape:'html'}>" required size="50" placeholder="https://example.com/new-target" aria-describedby="new_url_help">
+                <small id="new_url_help">Enter the full URL, e.g., https://example.com</small>
+            </p>
+            
+            <p>
+                <input type="submit" value="Update URL">
+                &nbsp;|&nbsp;
+                <a href="<{$change_url_base}>">Cancel / Select Different Banner</a>
+            </p>
+        </form>
+    <{/if}>
+<{elseif $client_banners}>
+    <h3>Select a Banner to Edit its URL</h3>
+    <{if $client_banners|@count > 0}>
+        <ul>
+            <{foreach item=banner from=$client_banners}>
+                <li>
+                    <a href="<{$change_url_base}>&bid=<{$banner.id}>"><{$banner.name|escape:'html'}></a>
+                    <br>(Current URL: <{$banner.clickurl|escape:'html'}>)
+                </li>
+            <{/foreach}>
+        </ul>
+    <{else}>
+        <p>No banners found for your account.</p>
+    <{/if}>
+<{elseif !$bannerstats_message && !$bannerstats_error_message}> 
+    <p>You do not have any banners assigned to your account, or no banner was selected.</p>
+<{/if}>
+
+<hr>
+<p><a href="<{$stats_url}>">Back to Stats</a></p>

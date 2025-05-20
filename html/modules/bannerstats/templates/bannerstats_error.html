@@ -1,0 +1,19 @@
+<{* bannerstats_error.html *}>
+
+<h2><{$xoops_pagetitle|default:"Error"}></h2>
+
+<{if $bannerstats_error_message}>
+    <div class="errorMsg" style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 15px;">
+        <{$bannerstats_error_message}>
+    </div>
+<{else}>
+    <div class="errorMsg" style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 15px;">
+        An unspecified error occurred. Please try again later or contact the webmaster.
+    </div>
+<{/if}>
+
+<p style="text-align:center;">
+    <a href="<{$xoops_url}>/modules/bannerstats/index.php?action=Login">Return to Login Page</a>
+    <br>
+    <a href="<{$xoops_url}>/modules/bannerstats/index.php?action=Contact">Contact Webmaster</a>
+</p>

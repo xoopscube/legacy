@@ -1,0 +1,172 @@
+<style type="text/css">
+    /* TODO removve this css and js */
+    .required { color: red; margin-left: 3px; }
+</style>
+
+<{if isset($smarty.get.status) && $smarty.get.status == 'success'}>
+    <div class="successMsg"><{if defined('_MD_BANNERSTATS_SUPPORT_SENT_SUCCESS')}><{$smarty.const._MD_BANNERSTATS_SUPPORT_SENT_SUCCESS}><{else}>Your support request has been sent. We will get back to you shortly.<{/if}></div>
+<{/if}>
+
+<{if $bannerstats_error_message}>
+    <div class="errorMsg"><{$bannerstats_error_message}></div>
+<{/if}>
+<{if $bannerstats_message}> <{* !-- Assuming bannerstats_message might be used for non-error messages -- *}>
+    <div class="infoMsg"><{$bannerstats_message}></div>
+<{/if}>
+
+
+ <form action="<{$action_url}>" method="post" id="bannerSupportForm">
+<input type="hidden" name="csrf_token" value="<{$csrf_token}>">
+
+<article>
+
+    <header>
+    <div class="headings">
+        <h2><{$xoops_pagetitle}></h2>
+        <p class="content-activity">
+            <a href="<{$stats_url}>">
+            <{if defined('_MD_BANNERSTATS_BACK_TO_STATS')}>
+            <{$smarty.const._MD_BANNERSTATS_BACK_TO_STATS}>
+            <{else}>Back to Stats<{/if}>
+            </a>
+        </p>
+    </div>
+    </header>
+      
+    <label for="client_name">
+        <span class="required">*</span>
+        <{if defined('_MD_BANNERSTATS_YOUR_NAME')}>
+        <{$smarty.const._MD_BANNERSTATS_YOUR_NAME}>
+        <{else}>Your Name<{/if}>
+        <input type="text" id="client_name" name="client_name" value="<{$form_data.client_name|escape:'html'}>" required size="40">
+    </label>
+    
+    <label for="client_email">
+        <span class="required">*</span>
+        <{if defined('_MD_BANNERSTATS_YOUR_EMAIL')}>
+        <{$smarty.const._MD_BANNERSTATS_YOUR_EMAIL}>
+        <{else}>Your Email<{/if}>
+    <input type="email" id="client_email" name="client_email" value="<{$form_data.client_email|escape:'html'}>" required size="40">
+    </label>
+
+    <label for="request_type">
+        <span class="required">*</span>
+        <{if defined('_MD_BANNERSTATS_REQUEST_TYPE')}>
+        <{$smarty.const._MD_BANNERSTATS_REQUEST_TYPE}>
+        <{else}>Request Type<{/if}>:
+    <select id="request_type" name="request_type" required>
+        <option value=""><{if defined('_MD_BANNERSTATS_SELECT_ONE')}><{$smarty.const._MD_BANNERSTATS_SELECT_ONE}><{else}>-- Select One --<{/if}></option>
+        <{foreach from=$request_types key=key item=label}>
+            <option value="<{$key}>" <{if $form_data.request_type == $key}>selected<{/if}>><{$label|escape:'html'}></option>
+        <{/foreach}>
+    </select>
+    </label>
+
+    <p id="banner_id_field" style="display:none;"> <{* -- container toggled by JS -- *}>
+        <label for="banner_id_select">
+            <{if defined('_MD_BANNERSTATS_BANNER_ID_OPTIONAL')}>
+            <{$smarty.const._MD_BANNERSTATS_BANNER_ID_OPTIONAL}>
+            <{else}>Banner ID (if applicable)<{/if}>:</label><br>
+        
+        <{* SELECT dropdown for specific request types *}>
+        <{* Note: Both select and text input have the SAME name="banner_id". Only the visible one's value is submitted *}>
+        <select id="banner_id_select" name="banner_id" class="banner-id-input">
+            <{foreach from=$banner_options item=option}>
+                <option value="<{$option.id}>" <{if $form_data.banner_id == $option.id}>selected<{/if}>><{$option.name}></option>
+            <{/foreach}>
+        </select>
+
+        <{* The text input for other request types *}>
+        <input type="text" id="banner_id_text" name="banner_id" value="<{$form_data.banner_id|escape:'html'}>" size="20" class="banner-id-input" style="display:none;"> 
+        <{* -- Initially hidden -- *}>
+    </p>
+
+
+    <label for="subject">
+        <span class="required">*</span>
+        <{if defined('_MD_BANNERSTATS_SUBJECT')}>
+        <{$smarty.const._MD_BANNERSTATS_SUBJECT}>
+        <{else}>Subject<{/if}>:
+    <input type="text" id="subject" name="subject" value="<{$form_data.subject|escape:'html'}>" required size="50">
+    </label>
+    
+    <label for="message">
+        <span class="required">*</span>
+        <{if defined('_MD_BANNERSTATS_MESSAGE')}>
+        <{$smarty.const._MD_BANNERSTATS_MESSAGE}>
+        <{else}>Message / Details<{/if}>:
+    <textarea id="message" name="message" rows="8" cols="60" required><{$form_data.message|escape:'html'}></textarea>
+    <small><{if defined('_MD_BANNERSTATS_MSG_HINT_AD_CODE')}><{$smarty.const._MD_BANNERSTATS_MSG_HINT_AD_CODE}><{else}>If providing new ad code, please paste it here.<{/if}></small>
+    </label>
+
+    <footer>
+        <input type="submit" value="<{if defined('_MD_BANNERSTATS_SEND_REQUEST')}><{$smarty.const._MD_BANNERSTATS_SEND_REQUEST}><{else}>Send Request<{/if}>">
+    </footer>
+
+</article>
+</form>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const requestTypeSelect = document.getElementById('request_type');
+    const bannerIdFieldContainer = document.getElementById('banner_id_field');
+    const bannerIdSelect = document.getElementById('banner_id_select');
+    const bannerIdText = document.getElementById('banner_id_text');
+    const subjectField = document.getElementById('subject');
+
+    // Store original request types text for checking if subject was auto-filled
+    const requestTypeTexts = Array.from(requestTypeSelect.options).map(opt => opt.text);
+
+    // Check if subject field was repopulated from server-side (PHP)
+    // and mark it so initial prefill doesn't overwrite it IF it's custom text
+    if (subjectField && subjectField.value.trim() !== '' && !requestTypeTexts.includes(subjectField.value.trim())) {
+        subjectField.dataset.customSubject = 'true';
+    }
+
+    function toggleBannerIdField() {
+        const selectedType = requestTypeSelect.value;
+        if (selectedType === 'update_code' || selectedType === 'problem') {
+            bannerIdFieldContainer.style.display = 'block';
+            bannerIdSelect.style.display = 'inline-block';
+            bannerIdText.style.display = 'none';
+            bannerIdSelect.disabled = false; // Enable the select
+            bannerIdText.disabled = true;    // Disable the text input
+        } else if (selectedType === 'question' || selectedType === 'other') {
+            bannerIdFieldContainer.style.display = 'block';
+            bannerIdSelect.style.display = 'none';
+            bannerIdText.style.display = 'inline-block';
+            bannerIdSelect.disabled = true;     // Disable the select
+            bannerIdText.disabled = false;    // Enable the text input
+        } else { // For 'new_banner' or empty selection
+            bannerIdFieldContainer.style.display = 'none';
+            bannerIdSelect.style.display = 'none';
+            bannerIdText.style.display = 'none';
+            bannerIdSelect.disabled = true;     // Disable both
+            bannerIdText.disabled = true;
+        }
+    }
+
+    function prefillSubject() {
+        const selectedType = requestTypeSelect.value;
+        const selectedOptionText = requestTypeSelect.options[requestTypeSelect.selectedIndex].text;
+        let canPrefill = (subjectField.value.trim() === '' || requestTypeTexts.includes(subjectField.value.trim()));
+
+        if (selectedType !== '' && canPrefill && subjectField.dataset.customSubject !== 'true') {
+            if (selectedType !== '') { // Avoid prefilling with "-- Select One --"
+               subjectField.value = selectedOptionText;
+            }
+        }
+    }
+
+    if (requestTypeSelect) {
+        toggleBannerIdField();
+        prefillSubject(); 
+
+        requestTypeSelect.addEventListener('change', function() {
+            toggleBannerIdField();
+            if (subjectField.dataset.customSubject !== 'true') {
+                 prefillSubject();
+            }
+        });
+    }
+});
+</script>

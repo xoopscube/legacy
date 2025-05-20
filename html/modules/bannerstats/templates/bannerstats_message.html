@@ -1,0 +1,18 @@
+<{* bannerstats_message.html *}>
+
+<h2><{$xoops_pagetitle}></h2>
+
+<{if $bannerstats_message_content}>
+    <div class="<{if $bannerstats_message_is_error}>errorMsg<{else}>successMsg<{/if}>" 
+         style="border: 1px solid <{if $bannerstats_message_is_error}>red<{else}>green<{/if}>; 
+                color: <{if $bannerstats_message_is_error}>red<{else}>green<{/if}>; 
+                padding: 10px; margin-bottom: 15px;">
+        <{$bannerstats_message_content}>
+    </div>
+<{/if}>
+
+<p style="text-align:center;">
+    <a href="<{$bannerstats_continue_link|default:$xoops_url|cat:'/modules/bannerstats/index.php?action=Stats'}>">
+        <{$bannerstats_continue_text|default:'Continue'}>
+    </a>
+</p>

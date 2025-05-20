@@ -1,0 +1,61 @@
+<div class="ui-dev-mode"><{$smarty.template}></div>
+
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
+    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    &raquo;&raquo; <a href="./index.php"><{$smarty.const._AD_BANNERSTATS_NAME}></a>
+    &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._AD_BANNERSTATS_BANNER_LIST}></a>
+    &raquo;&raquo; <a href="./index.php?action=BannerclientList"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_LIST}></a>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_DELETE}></span>
+</nav>
+
+
+<h2><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_DELETE}></h2>
+
+
+<div class="error"><{$smarty.const._AD_BANNERSTATS_MESSAGE_CONFIRM_DELETE}></div>
+
+<form method="post" action="./index.php?action=BannerclientDelete">
+    <{xoops_token form=$actionForm}>
+    <{xoops_input type=hidden name=cid value=$actionForm->get('cid')}>
+    <table class="outer">
+        <thead>
+        <tr>
+            <th colspan="2"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_DELETE}></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_LANG_CID}></td>
+            <td><{$object->getShow('cid')}></td>
+        </tr>
+        <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_LANG_NAME}></td>
+            <td><{$object->getShow('name')}></td>
+        </tr>
+        <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_LANG_CONTACT}></td>
+            <td><{$object->getShow('contact')}></td>
+        </tr>
+        <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_LANG_EMAIL}></td>
+            <td><{$object->getShow('email')}></td>
+        </tr>
+        <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_LANG_LOGIN}></td>
+            <td><{$object->getShow('login')}></td>
+        </tr>
+        <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_LANG_EXTRAINFO}></td>
+            <td><{$object->getShow('extrainfo')}></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2">
+                <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
+                <button class="button delete" type="submit"><img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="delete"> <{$smarty.const._DELETE}></button>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</form>
