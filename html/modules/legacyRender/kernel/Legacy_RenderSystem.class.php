@@ -16,8 +16,10 @@ require_once XOOPS_ROOT_PATH.'/modules/legacyRender/kernel/Legacy_RenderTarget.c
 require_once XOOPS_ROOT_PATH . '/class/template.php';
 
 /**
+ * @since 2.5.0 Banners moved to Bannerstats module
  * If a module handling banners can not work perfectly in your site, change the following
  * "false" to "true". (For Bug#1786123)
+ * 
  */
 define('LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE', false);
 
@@ -99,7 +101,7 @@ class Legacy_XoopsTpl extends XoopsTpl
 // @TODO test version 2.5.0
 require_once XOOPS_ROOT_PATH . '/core/XCube_Theme.class.php';
 /**
- * Compatible render system with XOOPS 2 Themes & Templates.
+ * Compatible render system with XOOPS2 Themes & Templates.
  *
  * @brief This allows you to directly manage the theme and the main rendering target.
  * And, this implements the variable-sharing-mechanism using Smarty Template Engine.
@@ -200,32 +202,36 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $mTpl->assign('xoops_slogan', $textFilter->toShow($context->getAttribute('legacy_slogan')));
 
         // --------------------------------------
-        // Module - Banner
+        // Module - Bannerstats
+        // @since v2.5.0
         // --------------------------------------
         $moduleHandler = xoops_gethandler('module');
-        $legacyRender =& $moduleHandler->getByDirname('legacyRender');
+        $bannerstatsModule = $moduleHandler->getByDirname('bannerstats');
 
-        if (is_object($legacyRender)) {
+        if (is_object($bannerstatsModule) && $bannerstatsModule->getVar('isactive')) {
             $configHandler = xoops_gethandler('config');
-            $configs =& $configHandler->getConfigsByCat(0, $legacyRender->get('mid'));
-
-            //
-            // If this site has banner set.
-            // TODO this process depends on XOOPS 2.x Legacy.
-            //
-            $this->_mIsActiveBanner = $configs['banners'];
-            if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE == true) {
-                if (1 == $configs['banners']) {
-                    $mTpl->assign('xoops_banner', xoops_getbanner());
-                    $mTpl->assign('banner', xoops_getbanner()); // XCL 2.3.x
-                } else {
-                    $mTpl->assign('xoops_banner', '&nbsp;');
-                    $mTpl->assign('banner', '&nbsp;'); // XCL 2.3.x
-                }
+            // Bannerstats module config named 'banners' to enable
+            $bannerstatsConfigs = $configHandler->getConfigsByCat(0, $bannerstatsModule->get('mid'));
+            
+            if (isset($bannerstatsConfigs['banners']) && $bannerstatsConfigs['banners'] == 1) {
+                $this->_mIsActiveBanner = true;
+            } else {
+                $this->_mIsActiveBanner = false; // bannerstats is active but its banner system is disabled
             }
         } else {
-            $mTpl->assign('xoops_banner', '&nbsp;');
-            $mTpl->assign('banner', '&nbsp;'); // XCL 2.3.x
+            $this->_mIsActiveBanner = false; // bannerstats module is not active or not found
+        }
+
+        // LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE logic remains,
+        // but now depends on Bannerstats set $this->_mIsActiveBanner
+        if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE == true) {
+            if ($this->_mIsActiveBanner) {
+                $this->mXoopsTpl->assign('xoops_banner', xoops_getbanner());
+                $this->mXoopsTpl->assign('banner', xoops_getbanner()); // XCL 2.3.x
+            } else {
+                $this->mXoopsTpl->assign('xoops_banner', '&nbsp;');
+                $this->mXoopsTpl->assign('banner', '&nbsp;'); // XCL 2.3.x
+            }
         }
 
         // --------------------------------------
@@ -434,12 +440,13 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         
 
         //
-        // Banner Management Settings
-        // TODO this process depends on XOOPS2 Legacy.
+        // Banner Management Settings 
+        // $this->_mIsActiveBanner is now set based on bannerstats
         //
         if (LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE == false) {
-            $vars['xoops_banner'] = (1 == $this->_mIsActiveBanner)?xoops_getbanner():'&nbsp;';
-            $vars['banner'] = (1 == $this->_mIsActiveBanner)?xoops_getbanner():'&nbsp;'; // XCL 2.3.x
+            // $this->_mIsActiveBanner is now set based on bannerstats module
+            $vars['xoops_banner'] = ($this->_mIsActiveBanner) ? xoops_getbanner() : '&nbsp;';
+            $vars['banner'] = ($this->_mIsActiveBanner) ? xoops_getbanner() : '&nbsp;'; // XCL 2.3.x
         }
 
         $mTpl->assign($vars);
