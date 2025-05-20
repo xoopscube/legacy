@@ -51,15 +51,6 @@ $modversion['config'][]= [
     'valuetype'   => 'text',
     'default'     => XOOPS_URL . '/images/favicon/favicon.svg'
 ];
-
-$modversion['config'][]= [
-    'name'        => 'banners',
-    'title'       => '_MI_LEGACYRENDER_CONF_BANNERS',
-    'description' => '_MI_LEGACYRENDER_CONF_BANNERS_DESC',
-    'formtype'    => 'yesno',
-    'valuetype'   => 'int',
-    'default'     => 0
-];
 $modversion['config'][]= [
     'name'        => 'pagetitle',
     'title'       => '_MI_LR_PAGETITLE_FORMAT',

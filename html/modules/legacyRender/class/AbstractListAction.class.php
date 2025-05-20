@@ -32,10 +32,14 @@ class LegacyRender_AbstractListAction extends LegacyRender_Action
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $this->mFilter =& $this->_getFilterForm();
-        $this->mFilter->fetch();
-        
-        $handler =& $this->_getHandler();
-        $this->mObjects =& $handler->getObjects($this->mFilter->getCriteria());
+        if ($this->mFilter !== null) {
+            $this->mFilter->fetch();
+            
+            $handler =& $this->_getHandler();
+            if ($handler !== null) {
+                $this->mObjects =& $handler->getObjects($this->mFilter->getCriteria());
+            }
+        }
         
         return LEGACYRENDER_FRAME_VIEW_INDEX;
     }
