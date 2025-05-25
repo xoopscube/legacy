@@ -149,5 +149,7 @@ define('_AD_BANNERSTATS_BANNERS', 'Banners');
 define('_AD_BANNERSTATS_FINISHED', 'Finished');
 define('_AD_BANNERSTATS_BANNER_EDIT', 'edit');
 define('_AD_BANNERSTATS_BANNER_REACTIVATE', 'REACTIVATE');
-
+define('_AD_BANNERSTATS_EMAIL_TYPE_ADMIN_ALERT', 'Admin Alert');
+define('_AD_BANNERSTATS_EMAIL_TYPE_CLIENT_ALERT', 'Client Alert');
+define('_AD_BANNERSTATS_EMAIL_TYPE_BOTH', 'Both Admin and Client');
 ?>

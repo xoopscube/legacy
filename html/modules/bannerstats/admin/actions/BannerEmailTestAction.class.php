@@ -49,8 +49,9 @@ class Bannerstats_BannerEmailTestAction extends Bannerstats_Action
 
     /**
      * @var BannerEmailTestForm
+     * Changed from protected to public to match parent class
      */
-    protected $mActionForm = null;
+    public $mActionForm = null;
 
     /**
      * @var XoopsModule
@@ -73,7 +74,7 @@ class Bannerstats_BannerEmailTestAction extends Bannerstats_Action
         $this->mRoot = XCube_Root::getSingleton();
     }
 
-    public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
+    public function hasPermission(&$controller, &$xoopsUser)
     {
         return (is_object($xoopsUser) && $xoopsUser->isAdmin());
     }
@@ -364,6 +365,6 @@ class Bannerstats_BannerEmailTestAction extends Bannerstats_Action
 
     protected function _getPagetitle()
     {
-        return defined('_AD_BANNERSTATS_EMAIL_TEST_TITLE') ? _AD_BANNERSTATS_EMAIL_TEST_TITLE : 'Test Banner Email Notification';
+        return defined('_AD_BANNERSTATS_EMAIL_TEST_TITLE') ? _AD_BANNERSTATS_EMAILTEST_TITLE : 'Test Banner Email Notification';
     }
 }
