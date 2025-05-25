@@ -4,51 +4,84 @@
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._AD_BANNERSTATS_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._AD_BANNERSTATS_BANNER_LIST}></a>
-    &raquo;&raquo; <a href="./index.php?action=BannerfinishList"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERFINISH_LIST}></a>
-    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERFINISH_DELETE}></span>
+    &raquo;&raquo; <a href="./index.php?action=BannerfinishList"><{$smarty.const._AD_BANNERSTATS_FINISH_LIST}></a>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_FINISH_DELETE}></span>
 </nav>
 
+<h2><{$smarty.const._AD_BANNERSTATS_FINISH_DELETE}></h2>
 
-<h2><{$smarty.const._AD_BANNERSTATS_LANG_BANNERFINISH_DELETE}></h2>
-
-<div class="confirm"><{$smarty.const._AD_BANNERSTATS_MESSAGE_CONFIRM_DELETE}></div>
+<div class="confirm"><{$smarty.const._AD_BANNERSTATS_MESSAGE_DELETE_CONFIRM}></div>
 
 <form method="post" action="./index.php?action=BannerfinishDelete">
     <{xoops_token form=$actionForm}>
     <{xoops_input type=hidden name=bid value=$actionForm->get('bid')}>
     <table class="outer">
+        <thead>
         <tr>
-            <th colspan="2"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERFINISH_DELETE}></th>
+            <th colspan="2"><{$smarty.const._AD_BANNERSTATS_FINISH_DELETE}></th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_BID}></td>
+            <td><{$smarty.const._AD_BANNERSTATS_BID}></td>
             <td><{$object->getShow('bid')}></td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_CID}></td>
-            <td><{$object->mClient->getShow('name')}></td>
+            <td><{$smarty.const._AD_BANNERSTATS_BANNER_NAME}></td> 
+            <td><{$object->getShow('name')|default:"N/A"}></td> 
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_IMPRESSIONS}></td>
+            <td><{$smarty.const._AD_BANNERSTATS_CLIENT_NAME}></td>
+            <td><{$object->mClient->getShow('name')}></td>
+        </tr>
+         <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_BANNER_TYPE}></td> 
+            <td><{$object->getShow('banner_type')|default:"N/A"}></td> 
+        </tr>
+        <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_IMPRESSIONS}></td>
             <td><{$object->getShow('impressions')}></td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_CLICKS}></td>
+            <td><{$smarty.const._AD_BANNERSTATS_CLICKS}></td>
             <td><{$object->getShow('clicks')}></td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_DATESTART}></td>
+            <td><{$smarty.const._AD_BANNERSTATS_DATESTART}></td>
             <td><{$object->get('datestart')|xoops_formattimestamp}></td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_DATEEND}></td>
+            <td><{$smarty.const._AD_BANNERSTATS_DATEEND}></td>
             <td><{$object->get('dateend')|xoops_formattimestamp}></td>
         </tr>
+         <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_REASON_FINISHED}></td> 
+            <td><{$object->getShow('reason_finished')|default:"N/A"}></td> 
+        </tr>
+        <{* Display content fields if needed for confirmation, similar to banner_delete.html *}>
+        <{if $object->get('banner_type') == 'image'}>
+        <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_IMAGEURL}></td>
+            <td><{$object->getShow('imageurl')}></td>
+        </tr>
+        <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_CLICKURL}></td>
+            <td><{$object->getShow('clickurl')}></td>
+        </tr>
+        <{elseif $object->get('banner_type') != 'image'}>
+         <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_HTMLCODE}></td>
+            <td><{$object->getShow('htmlcode')}></td>
+        </tr>
+        <{/if}>
+        </tbody>
+        <tfoot>
         <tr>
             <td colspan="2">
                 <input class="button" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
                 <button class="button delete" type="submit"><img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="delete"> <{$smarty.const._DELETE}></button>
             </td>
         </tr>
+        </tfoot>
     </table>
 </form>

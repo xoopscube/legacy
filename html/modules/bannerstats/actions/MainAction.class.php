@@ -1,10 +1,17 @@
 <?php
 /**
+ * Bannerstats - Module for XCL
  * Bannerstats - MainAction: Shows login or redirects to stats if authenticated
- */
+ *
+ * @package    Bannerstats
+ * @author     Nuno Luciano (aka gigamaster) XCL PHP8
+ * @copyright  2005-2025 The XOOPSCube Project
+ * @license    GPL V2
+ * @version    v2.5.0 Release XCL 
+ * @link       http://github.com/xoopscube/
+ **/
 
-// Include mainfile.php to access system bootstrap and constants
-require_once '../../../../mainfile.php';
+/* require_once '../../../../mainfile.php'; */
 
 if (!defined('XOOPS_ROOT_PATH')) exit();
 

@@ -1,151 +1,142 @@
 <?php
+/**
+ * Bannerstats - Module for XCL
+ *
+ * @package    Bannerstats
+ * @author     Nuno Luciano (aka gigamaster) XCL PHP8
+ * @copyright  2005-2025 The XOOPSCube Project
+ * @license    GPL V2
+ * @version    v2.5.0 Release XCL 
+ * @link       http://github.com/xoopscube/
+ **/
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
+require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/object.php';
+
+if (!class_exists('XoopsObjectGenericHandler')) {
+    require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/handler.php';
+}
+require_once __DIR__ . '/BannerClient.class.php';
+
+
 class Bannerstats_BannerObject extends XoopsSimpleObject
 {
+    /** @var Bannerstats_BannerclientObject|null Associated client object */
     public $mClient = null;
     public $_mClientLoadedFlag = false;
 
     public function __construct()
     {
-        static $initVars;
-        if (isset($initVars)) {
-            $this->mVars = $initVars;
-            return;
-        }
-        $this->initVar('bid', XOBJ_DTYPE_INT, '', false);
-        $this->initVar('cid', XOBJ_DTYPE_INT, '0', true);
-        $this->initVar('imptotal', XOBJ_DTYPE_INT, '0', true);
-        $this->initVar('impmade', XOBJ_DTYPE_INT, '0', true);
-        $this->initVar('clicks', XOBJ_DTYPE_INT, '0', true);
-        $this->initVar('imageurl', XOBJ_DTYPE_STRING, '', true, 191);
-        $this->initVar('clickurl', XOBJ_DTYPE_STRING, '', true, 191);
-        $this->initVar('date', XOBJ_DTYPE_INT, time(), true);
-        $this->initVar('htmlbanner', XOBJ_DTYPE_BOOL, '0', true);
-        $this->initVar('htmlcode', XOBJ_DTYPE_TEXT, '', true);
-        $initVars = $this->mVars;
+        parent::__construct();
+
+        // Define variables based on the {prefix}_banner table schema
+
+        $this->initVar('bid', XOBJ_DTYPE_INT, 0, true);
+        $this->initVar('cid', XOBJ_DTYPE_INT, 0, true);
+        $this->initVar('campaign_id', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('name', XOBJ_DTYPE_STRING, '', true, 255);
+        $this->initVar('banner_type', XOBJ_DTYPE_STRING, 'image', true, 10);
+        $this->initVar('imageurl', XOBJ_DTYPE_STRING, null, false, 255);
+        $this->initVar('clickurl', XOBJ_DTYPE_STRING, null, false, 255);
+        $this->initVar('htmlcode', XOBJ_DTYPE_TEXT, null, false);
+        $this->initVar('width', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('height', XOBJ_DTYPE_INT, null, false);
+        $this->initVar('imptotal', XOBJ_DTYPE_INT, 0, true);
+        $this->initVar('impmade', XOBJ_DTYPE_INT, 0, true);
+        $this->initVar('clicks', XOBJ_DTYPE_INT, 0, true);
+        $this->initVar('start_date', XOBJ_DTYPE_INT, 0, true);
+        $this->initVar('end_date', XOBJ_DTYPE_INT, 0, true);
+        $this->initVar('last_impression_time', XOBJ_DTYPE_INT, 0, true);
+        $this->initVar('last_click_time', XOBJ_DTYPE_INT, 0, true);
+        $this->initVar('timezone', XOBJ_DTYPE_STRING, null, false, 50);
+        $this->initVar('date_created', XOBJ_DTYPE_INT, 0, true);
+        $this->initVar('status', XOBJ_DTYPE_INT, 1, true);
+        $this->initVar('weight', XOBJ_DTYPE_INT, 10, true);
+        $this->initVar('low_impression_alert_sent', XOBJ_DTYPE_INT, 0, true);
     }
 
-    public function loadBannerclient()
+    /**
+     * Loads the associated banner client object
+     * @return void
+     */
+    public function loadBannerclient(): void
     {
-        if (false == $this->_mClientLoadedFlag) {
-            $handler =& xoops_getmodulehandler('bannerclient', 'bannerstats');
-            $this->mClient =& $handler->get($this->get('cid'));
+        if (false === $this->_mClientLoadedFlag) {
+            $handler = xoops_getmodulehandler('bannerclient', 'bannerstats');
+            if ($handler) {
+                $this->mClient = $handler->get($this->get('cid'));
+            }
             $this->_mClientLoadedFlag = true;
         }
     }
-}
 
-// Corrected class name from LegacyRenderBannerHandler to Bannerstats_BannerHandler
-class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
-{
-    public $mTable = 'banner';
-    public $mPrimary = 'bid';
-    // Corrected class name reference
-    public $mClass = 'Bannerstats_BannerObject'; 
-    
     /**
-     * Finish a banner by moving it to the bannerfinish table
-     * 
-     * @param Bannerstats_BannerObject $banner The banner object to finish
-     * @return Bannerstats_BannerfinishObject|false The new bannerfinish object or false on failure
+     * Loads the associated client object
+     * @return Bannerstats_BannerclientObject|null
      */
-    public function finishBanner(Bannerstats_BannerObject $banner) // Type hint with corrected object name
+    public function loadClient(): ?Bannerstats_BannerclientObject
     {
-        // Ensure this uses the 'bannerstats' module for the handler
-        $bannerfinishHandler = xoops_getmodulehandler('bannerfinish', 'bannerstats');
-        if (!$bannerfinishHandler) {
-            error_log("Bannerstats_BannerHandler::finishBanner - Failed to get bannerfinish handler.");
-            return false;
-        }
-        
-        $bannerfinish = $bannerfinishHandler->create();
-        
-        // Copy basic fields
-        $bannerfinish->set('bid', $banner->get('bid'));
-        $bannerfinish->set('cid', $banner->get('cid'));
-        $bannerfinish->set('impressions', $banner->get('impmade'));
-        $bannerfinish->set('clicks', $banner->get('clicks'));
-        $bannerfinish->set('datestart', $banner->get('date'));
-        $bannerfinish->set('dateend', time());
-        
-        // Copy content fields
-        $bannerfinish->set('imageurl', $banner->get('imageurl'));
-        $bannerfinish->set('clickurl', $banner->get('clickurl'));
-        $bannerfinish->set('htmlbanner', $banner->get('htmlbanner'));
-        $bannerfinish->set('htmlcode', $banner->get('htmlcode'));
-        
-        // Insert and return
-        if ($bannerfinishHandler->insert($bannerfinish)) {
-            // After successfully inserting into bannerfinish, delete from active banners
-            if ($this->delete($banner, true)) { // true to force delete
-                 return $bannerfinish;
+        // Check if client object is loaded or cid is invalid
+        if (null === $this->mClient && $this->get('cid') > 0) {
+            $clientHandler = xoops_getmodulehandler('bannerclient', 'bannerstats');
+            if ($clientHandler) {
+                $client = $clientHandler->get($this->get('cid'));
+                if ($client instanceof Bannerstats_BannerclientObject) {
+                    $this->mClient = $client;
+                } else {
+                    // Client not found or null
+                    $this->mClient = null;
+                }
             } else {
-                error_log("Bannerstats_BannerHandler::finishBanner - CRITICAL: Inserted to bannerfinish but FAILED to delete original banner (bid: " . $banner->get('bid') . ")");
-                return $bannerfinish; // Return the finished object anyway, but log the error.
+                $this->mClient = null;
             }
-        } else {
-            error_log("Bannerstats_BannerHandler::finishBanner - Failed to insert bannerfinish record for bid: " . $banner->get('bid'));
-        }
-        
-        return false;
-    }
-
-    // You should also move/implement getRandomActiveBanner, countImpression, countClick here
-    // if they were previously in LegacyRenderBannerHandler or BannerDisplayHelper
-    // and are meant to be part of this handler.
-
-    public function getRandomActiveBanner()
-    {
-        $criteria = new CriteriaCompo();
-        $criteria->add(new Criteria('impmade', 'imptotal', '<'));
-        $criteria->add(new Criteria('imptotal', 0, '>'));
-        // Optionally add date checks
-
-        $count = $this->getCount($criteria);
-        if ($count <= 0) {
-            return false;
-        }
-        $offset = 0;
-        if ($count > 1) {
-            try {
-                $offset = random_int(0, $count - 1);
-            } catch (Exception $e) {
-                $offset = mt_rand(0, $count - 1);
+        } elseif ($this->get('cid') == 0) {
+            if (!($this->mClient instanceof Bannerstats_BannerclientObject)) {
+                 $this->mClient = null;
             }
         }
-        
-        $criteria->setStart($offset);
-        $criteria->setLimit(1);
-        $banners = $this->getObjects($criteria);
-        return $banners ? $banners[0] : false;
+        return $this->mClient;
     }
 
-    public function countImpression(int $bid): bool
+    /**
+     * Increments the impression count for this banner
+     * @return void
+     */
+    public function incrementImpressions(): void
     {
-        $banner = $this->get($bid);
-        if ($banner instanceof Bannerstats_BannerObject) {
-            $banner->setVar('impmade', $banner->getVar('impmade') + 1);
-            $result = $this->insert($banner, true);
-
-            if ($result && $banner->getVar('imptotal') > 0 && $banner->getVar('impmade') >= $banner->getVar('imptotal')) {
-                $this->finishBanner($banner);
-            }
-            return (bool)$result;
-        }
-        return false;
+        $this->setVar('impmade', $this->getVar('impmade') + 1);
     }
 
-    public function countClick(int $bid): bool
+    /**
+     * Increments the click count for this banner
+     * @return void
+     */
+    public function incrementClicks(): void
     {
-        $banner = $this->get($bid);
-        if ($banner instanceof Bannerstats_BannerObject) {
-            $banner->setVar('clicks', $banner->getVar('clicks') + 1);
-            return $this->insert($banner, true);
-        }
-        return false;
+        $this->setVar('clicks', $this->getVar('clicks') + 1);
+    }
+
+    /**
+     * Checks if the banner type is HTML-like (html, ad_tag, video)
+     * @return bool
+     */
+    public function isHtmlLike(): bool
+    {
+        $type = $this->get('banner_type');
+        return in_array($type, ['html', 'ad_tag', 'video'], true);
+    }
+
+    /**
+     * Checks if the banner type is 'image'
+     * @return bool
+     */
+    public function isImage(): bool
+    {
+        return $this->get('banner_type') === 'image';
     }
 }
+
+

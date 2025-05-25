@@ -1,5 +1,15 @@
 <?php
-// html/modules/bannerstats/actions/StatsAction.class.php
+/**
+ * Bannerstats - Module for XCL
+ * StatsAction.class.php
+ *
+ * @package    Bannerstats
+ * @author     Nuno Luciano (aka gigamaster) XCL PHP8
+ * @copyright  2005-2025 The XOOPSCube Project
+ * @license    GPL V2
+ * @version    v2.5.0 Release XCL 
+ * @link       http://github.com/xoopscube/
+ **/
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
@@ -11,11 +21,11 @@ require_once dirname(__DIR__) . '/class/BannerClientToken.class.php';
 
 class Bannerstats_StatsAction
 {
-    private $moduleDirname;
+    private string $moduleDirname;
 
     public function __construct()
     {
-        $this->moduleDirname = basename(dirname(dirname(__FILE__))); // 'bannerstats'
+        $this->moduleDirname = basename(dirname(dirname(__FILE__)));
     }
 
     public function getPageTitle(): string
@@ -26,172 +36,161 @@ class Bannerstats_StatsAction
 
     public function getDefaultView(): ?string
     {
-        global $xoopsTpl, $xoopsConfig;
+        global $xoopsTpl; 
 
         if (!BannerClientSession::isAuthenticated()) {
-            header("Location: " . XOOPS_URL . "/modules/" . $this->moduleDirname . "/index.php?action=Login");
+            $root = XCube_Root::getSingleton();
+            if ($root && $root->getController()) {
+                $root->getController()->executeForward(XOOPS_URL . "/modules/" . $this->moduleDirname . "/index.php?action=Login");
+            } else {
+                header("Location: " . XOOPS_URL . "/modules/" . $this->moduleDirname . "/index.php?action=Login");
+            }
             exit();
         }
 
         $cid = BannerClientSession::getClientId();
         if ($cid === null) {
-            header("Location: " . XOOPS_URL . "/modules/" . $this->moduleDirname . "/index.php?action=Login&error=session");
+            $root = XCube_Root::getSingleton();
+            if ($root && $root->getController()) {
+                $root->getController()->executeForward(XOOPS_URL . "/modules/" . $this->moduleDirname . "/index.php?action=Login&error=session");
+            } else {
+                header("Location: " . XOOPS_URL . "/modules/" . $this->moduleDirname . "/index.php?action=Login&error=session");
+            }
             exit();
         }
 
         $statsManager = new BannerStatsManager();
-        // BannerStatsManager will now fetch banners where imptotal > 0
         $activeBannersData = $statsManager->getActiveBanners($cid);
         $finishedBannersData = $statsManager->getFinishedBanners($cid);
 
         $activeBanners = [];
         foreach ($activeBannersData as $banner) {
-            $isHtmlBanner = !empty($banner['htmlbanner']);
+            $bannerType = $banner['banner_type'] ?? 'unknown';
+            $isHtmlBanner = in_array($bannerType, ['html', 'ad_tag', 'video'], true);
 
-            // Raw integer values - imptotal is now always > 0 for active banners
             $rawImpressionsMade = (int)($banner['impmade'] ?? 0);
             $rawClicksReceived = (int)($banner['clicks'] ?? 0);
-            $rawImpressionsTotal = (int)($banner['imptotal'] ?? 1); // Default to 1 if somehow 0 slips through, though admin should prevent this.
+            $rawImpressionsTotal = (int)($banner['imptotal'] ?? 1); 
+            $rawImpressionsRemaining = max(0, $rawImpressionsTotal - $rawImpressionsMade);
 
-            // Calculate raw impressions remaining
-            $rawImpressionsRemaining = $rawImpressionsTotal - $rawImpressionsMade;
-            if ($rawImpressionsRemaining < 0) {
-                $rawImpressionsRemaining = 0;
-            }
-
-            // --- Formatted display variables ---
             $displayImpressionsMade = $rawImpressionsMade;
             $displayClicksReceived = $rawClicksReceived;
-            $displayCurrentCtr = '0%';
-            $displayImpressionsTotalPurchased = $rawImpressionsTotal; // Always a number now
-            $displayImpressionsRemaining = $rawImpressionsRemaining; // Always a number now
+            $displayCurrentCtr = ($rawImpressionsMade > 0) ? round(($rawClicksReceived * 100) / $rawImpressionsMade, 2) . '%' : '0%';
+            $displayImpressionsTotalPurchased = $rawImpressionsTotal;
+            $displayImpressionsRemaining = $rawImpressionsRemaining;
+            
             $statsNote = '';
-
             if ($isHtmlBanner) {
-                $displayCurrentCtr = ($rawImpressionsMade > 0 && $rawClicksReceived > 0) ? round(($rawClicksReceived * 100) / $rawImpressionsMade, 2) . '%' : '0% (Site Data)';
-                $statsNote = "Note: For HTML/Ad Service banners, 'Impressions' and 'Clicks' reflect site-level display counts and may differ from your ad service provider's official statistics. Please consult your ad service dashboard for accurate performance metrics.";
-            } else {
-                $displayCurrentCtr = ($rawImpressionsMade > 0) ? round(($rawClicksReceived * 100) / $rawImpressionsMade, 2) . '%' : '0%';
+                $statsNote = "Note: For HTML/Ad Service banners, statistics reflect site-level counts and may differ from your ad service provider's data. Please consult their dashboard for official metrics.";
             }
 
-            // Alert logic (imptotal is always > 0 for active banners)
             $alert_message = '';
             $alert_class = '';
-            // $rawImpressionsTotal should always be > 0 if it's an active banner from the new system
-            if ($rawImpressionsTotal > 0) { // This check is still good practice
-                $lowImpressionPercentageThreshold = 0.10;
-                $criticalImpressionAbsoluteThreshold = 100; // Example
-
+            if ($rawImpressionsTotal > 0) {
+                $lowImpressionPercentageThreshold = 0.10; 
                 if ($rawImpressionsRemaining <= ($rawImpressionsTotal * $lowImpressionPercentageThreshold)) {
-                    if ($rawImpressionsRemaining == 0) {
-                        $alert_message = sprintf(
-                            "Critical: 0 of %d %s remaining. Banner may stop serving soon or has finished.",
-                            $rawImpressionsTotal,
-                            $isHtmlBanner ? "display opportunities" : "impressions"
-                        );
-                        $alert_class = 'banner-alert-critical';
-                    } else {
-                        $alert_message = sprintf(
-                            "Warning: %s low. %d of %d remaining (%.1f%%).",
-                            $isHtmlBanner ? "Display opportunities" : "Impressions",
-                            $rawImpressionsRemaining,
-                            $rawImpressionsTotal,
-                            ($rawImpressionsRemaining / $rawImpressionsTotal) * 100
-                        );
-                        $alert_class = 'banner-alert-warning';
-                    }
-                } elseif ($rawImpressionsRemaining <= $criticalImpressionAbsoluteThreshold && $rawImpressionsTotal > $criticalImpressionAbsoluteThreshold) {
+                    $alert_class = ($rawImpressionsRemaining == 0) ? 'banner-alert-critical' : 'banner-alert-warning';
                     $alert_message = sprintf(
-                        "Notice: Only %d %s remaining.",
+                        "%s: %d of %d %s remaining (%.1f%%).",
+                        ($rawImpressionsRemaining == 0) ? "Critical" : "Warning",
                         $rawImpressionsRemaining,
-                        $isHtmlBanner ? "display opportunities" : "impressions"
+                        $rawImpressionsTotal,
+                        $isHtmlBanner ? "display opportunities" : "impressions",
+                        ($rawImpressionsTotal > 0 ? ($rawImpressionsRemaining / $rawImpressionsTotal) * 100 : 0)
                     );
-                    $alert_class = 'banner-alert-notice';
                 }
             }
 
             $preview = '';
+            $bannerNameForAlt = htmlspecialchars($banner['name'] ?? ('Banner ID ' . ($banner['bid'] ?? 'N/A')), ENT_QUOTES, 'UTF-8');
+
             if ($isHtmlBanner) {
-                $preview = "[HTML Banner - ID: " . $banner['bid'] . "]";
-            } elseif (!empty($banner['imageurl'])) {
-                $preview = "<img src='" . htmlspecialchars(XOOPS_URL . "/" . $xoopsConfig['uploads_path'] . "/" . $banner['imageurl'], ENT_QUOTES) . "' alt='Banner ID " . $banner['bid'] . "' title='Banner ID " . $banner['bid'] . "' style='max-width:200px; max-height:100px;'>";
+                $preview = $banner['htmlcode'] ?? '[HTML Content Not Available]';
+            } elseif ($bannerType === 'image' && !empty($banner['imageurl'])) {
+                $imageUrl = $banner['imageurl'];
+                if (strpos($imageUrl, '://') === false) { 
+                    $imageUrl = XOOPS_URL . '/' . ltrim($imageUrl, '/');
+                }
+                $preview = "<img src='" . htmlspecialchars($imageUrl, ENT_QUOTES) . 
+                           "' alt='" . $bannerNameForAlt . 
+                           "' title='" . $bannerNameForAlt . 
+                           "' style='max-width:200px; max-height:100px; display:block; margin:auto; border:1px solid #ccc;' loading='lazy'>";
             } else {
-                $preview = "Banner ID: " . $banner['bid'];
+                $preview = "[Preview Not Available - Banner ID: " . ($banner['bid'] ?? 'N/A') . " - Type: " . htmlspecialchars($bannerType, ENT_QUOTES) . "]";
             }
 
             $changeUrlTokenHtml = '';
-            if (!$isHtmlBanner && !empty($banner['clickurl'])) {
+            if ($bannerType === 'image' && !empty($banner['clickurl'])) { 
                 $changeUrlTokenHtml = BannerClientToken::getHtml("ChangeUrl_" . $banner['bid']);
             }
             
             $activeBanners[] = [
                 'bid' => $banner['bid'],
+                'name' => $banner['name'],
                 'preview' => $preview,
                 'impressions_made' => $displayImpressionsMade,
                 'clicks_received' => $displayClicksReceived,
                 'current_ctr' => $displayCurrentCtr,
                 'impressions_total_purchased' => $displayImpressionsTotalPurchased,
                 'impressions_remaining' => $displayImpressionsRemaining,
-                'raw_impressions_made' => $rawImpressionsMade,
-                'raw_clicks_received' => $rawClicksReceived,
-                'raw_impressions_total' => $rawImpressionsTotal,
-                'raw_impressions_remaining' => $rawImpressionsRemaining,
-                // 'is_unlimited_impressions' => false, // This flag is no longer needed
-
                 'clickurl' => htmlspecialchars($banner['clickurl'] ?? '', ENT_QUOTES),
                 'is_html' => $isHtmlBanner,
+                'banner_type' => $bannerType,
                 'stats_note' => $statsNote,
                 'email_stats_link' => XOOPS_URL . "/modules/" . $this->moduleDirname . "/index.php?action=EmailStats&bid=" . $banner['bid'] . "&amp;" . BannerClientToken::getUrlQuery('EmailStats_' . $banner['bid']),
-                'manage_url_link' => XOOPS_URL . "/modules/" . $this->moduleDirname . "/index.php?action=ChangeUrl&bid=" . $banner['bid'],
+                'manage_url_link' => ($bannerType === 'image') ? (XOOPS_URL . "/modules/" . $this->moduleDirname . "/index.php?action=ChangeUrl&bid=" . $banner['bid']) : '',
                 'change_url_token_html' => $changeUrlTokenHtml,
                 'alert_message' => $alert_message,
                 'alert_class' => $alert_class,
-                'impressions_made_label' => $isHtmlBanner ? _MD_BANNERSTATS_IMPRESSIONS : 'Impressions Made',
-                'clicks_received_label' => $isHtmlBanner ? _MD_BANNERSTATS_CLICKS : 'Clicks',
-                'current_ctr_label' => $isHtmlBanner ? _MD_BANNERSTATS_CTR : 'Current CTR',
-                'impressions_total_purchased_label' => $isHtmlBanner ? _MD_BANNERSTATS_IMPTOTAL : 'Total Purchased',
-                'impressions_remaining_label' => $isHtmlBanner ? _MD_BANNERSTATS_IMPLEFT : 'Impressions Remaining',
             ];
         }
 
-        // Finished Banners loop (unchanged as it deals with historical data)
         $finishedBanners = [];
         foreach ($finishedBannersData as $banner) {
-            // pass raw values for consistency
-            $isHtmlBannerFinished = !empty($banner['htmlbanner']);
-            $rawTotalImpressionsServed = (int)($banner['impressions'] ?? 0);
-            $rawTotalClicksReceived = (int)($banner['clicks'] ?? 0);
-            $displayFinalCtr = '0%';
+            $bannerTypeFinished = $banner['banner_type'] ?? 'unknown';
+            $isHtmlBannerFinished = in_array($bannerTypeFinished, ['html', 'ad_tag', 'video'], true);
+
+            $rawTotalImpressionsServed = (int)($banner['impressions_made'] ?? $banner['impressions'] ?? 0);
+            $rawTotalClicksReceived = (int)($banner['clicks_made'] ?? $banner['clicks'] ?? 0);
+            $displayFinalCtr = ($rawTotalImpressionsServed > 0) ? round(($rawTotalClicksReceived * 100) / $rawTotalImpressionsServed, 2) . '%' : '0%';
+            
             $finishedStatsNote = '';
+            if ($isHtmlBannerFinished) {
+                $finishedStatsNote = "Note: For finished HTML/Ad Service banners, these stats reflect site-level counts.";
+            }
+
+            $previewFinished = '';
+            $bannerNameForAltFinished = htmlspecialchars($banner['name'] ?? ('Banner ID ' . ($banner['bid'] ?? 'N/A')), ENT_QUOTES, 'UTF-8');
 
             if ($isHtmlBannerFinished) {
-                $displayFinalCtr = ($rawTotalImpressionsServed > 0 && $rawTotalClicksReceived > 0) ? round(($rawTotalClicksReceived * 100) / $rawTotalImpressionsServed, 2) . '%' : '0% (Site Data)';
-                $finishedStatsNote = "Note: For finished HTML/Ad Service banners, these stats reflect site-level counts.";
+                $previewFinished = $banner['htmlcode'] ?? '[Finished HTML Content Not Available]';
+            } elseif ($bannerTypeFinished === 'image' && !empty($banner['imageurl'])) {
+                $imageUrlFinished = $banner['imageurl'];
+                if (strpos($imageUrlFinished, '://') === false) {
+                    $imageUrlFinished = XOOPS_URL . '/' . ltrim($imageUrlFinished, '/');
+                }
+                $previewFinished = "<img src='" . htmlspecialchars($imageUrlFinished, ENT_QUOTES) . 
+                                   "' alt='" . $bannerNameForAltFinished . 
+                                   "' title='" . $bannerNameForAltFinished . 
+                                   "' class='banner-preview' loading='lazy'>";
             } else {
-                $displayFinalCtr = ($rawTotalImpressionsServed > 0) ? round(($rawTotalClicksReceived * 100) / $rawTotalImpressionsServed, 2) . '%' : '0%';
-            }
-            
-            $preview = '';
-            if ($isHtmlBannerFinished) {
-                 $preview = "[HTML Banner - ID: " . $banner['bid'] . "]";
-            } elseif (!empty($banner['imageurl'])) {
-                $preview = "<img src='" . htmlspecialchars(XOOPS_URL . "/" . $xoopsConfig['uploads_path'] . "/" . $banner['imageurl'], ENT_QUOTES) . "' alt='Banner ID " . $banner['bid'] . "' title='Banner ID " . $banner['bid'] . "' style='max-width:100px; max-height:50px;'>";
-            } else {
-                $preview = "Banner ID: " . $banner['bid'];
+                $previewFinished = "[Finished Banner Preview Not Available - ID: " . ($banner['bid'] ?? 'N/A') . " - Type: " . htmlspecialchars($bannerTypeFinished, ENT_QUOTES) . "]";
             }
 
             $finishedBanners[] = [
                 'bid' => $banner['bid'],
-                'preview' => $preview,
+                'name' => $banner['name'],
+                'preview' => $previewFinished,
                 'total_impressions_served' => $rawTotalImpressionsServed,
                 'total_clicks_received' => $rawTotalClicksReceived,
                 'final_ctr' => $displayFinalCtr,
-                'raw_total_impressions_served' => $rawTotalImpressionsServed,
-                'raw_total_clicks_received' => $rawTotalClicksReceived,
                 'is_html' => $isHtmlBannerFinished,
+                'banner_type' => $bannerTypeFinished,
                 'stats_note' => $finishedStatsNote,
-                'datestart' => ($banner['datestart'] ?? 0) > 0 ? formatTimestamp((int)$banner['datestart'], 'm') : 'N/A',
-                'dateend' => ($banner['dateend'] ?? 0) > 0 ? formatTimestamp((int)$banner['dateend'], 'm') : 'N/A',
+                'datestart_original' => ($banner['datestart_original'] ?? 0) > 0 ? formatTimestamp((int)$banner['datestart_original'], 'm') : 'N/A',
+                'dateend_original' => ($banner['dateend_original'] ?? 0) > 0 ? formatTimestamp((int)$banner['dateend_original'], 'm') : 'N/A',
+                'date_finished' => ($banner['date_finished'] ?? 0) > 0 ? formatTimestamp((int)$banner['date_finished'], 'm') : 'N/A',
+                'finish_reason' => htmlspecialchars($banner['finish_reason'] ?? 'N/A', ENT_QUOTES),
             ];
         }
 

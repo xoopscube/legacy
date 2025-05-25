@@ -4,15 +4,31 @@
     <a href="<{$xoops_url}>/admin.php">Dashboard</a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._AD_BANNERSTATS_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._AD_BANNERSTATS_BANNER_LIST}></a>
-    &raquo;&raquo; <a href="./index.php?action=BannerclientList"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_LIST}></a>
-    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_DELETE}></span>
+    &raquo;&raquo; <a href="./index.php?action=BannerclientList"><{$smarty.const._AD_BANNERSTATS_CLIENT_LIST}></a>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_CLIENT_DELETE}></span>
 </nav>
 
+<h2><{$smarty.const._AD_BANNERSTATS_CLIENT_DELETE}></h2>
 
-<h2><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_DELETE}></h2>
+<div class="error">
+    <{$smarty.const._AD_BANNERSTATS_CLIENT_DELETE_WARNING}>
+</div>
 
+<{* Access member variables directly, assuming they are public and populated *}>
+<{if $object->mBannerCount > 0 || $object->mFinishBannerCount > 0}>
+    <div class="warning">
+        <{$smarty.const._AD_BANNERSTATS_WARNING_DELETE_CLIENT_BANNERS|default:"Warning: Deleting this client will also delete:"}>
+        <ul>
+            <{if $object->mBannerCount > 0}>
+                <li><{$object->mBannerCount}> <{$smarty.const._AD_BANNERSTATS_ACTIVE_BANNERS|default:"active banner(s)"}></li>
+            <{/if}>
+            <{if $object->mFinishBannerCount > 0}>
+                <li><{$object->mFinishBannerCount}> <{$smarty.const._AD_BANNERSTATS_FINISHED_BANNERS|default:"finished banner(s)"}></li>
+            <{/if}>
+        </ul>
+    </div>
+<{/if}>
 
-<div class="error"><{$smarty.const._AD_BANNERSTATS_MESSAGE_CONFIRM_DELETE}></div>
 
 <form method="post" action="./index.php?action=BannerclientDelete">
     <{xoops_token form=$actionForm}>
@@ -20,33 +36,47 @@
     <table class="outer">
         <thead>
         <tr>
-            <th colspan="2"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_DELETE}></th>
+            <th colspan="2"><{$smarty.const._AD_BANNERSTATS_CLIENT_DELETE}></th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_CID}></td>
+            <td><{$smarty.const._AD_BANNERSTATS_CID}></td>
             <td><{$object->getShow('cid')}></td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_NAME}></td>
+            <td><{$smarty.const._AD_BANNERSTATS_NAME}></td>
             <td><{$object->getShow('name')}></td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_CONTACT}></td>
-            <td><{$object->getShow('contact')}></td>
+            <td><{$smarty.const._AD_BANNERSTATS_CONTACT}></td>
+            <td><{$object->getShow('contact')|default:"--"}></td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_EMAIL}></td>
+            <td><{$smarty.const._AD_BANNERSTATS_EMAIL}></td>
             <td><{$object->getShow('email')}></td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_LOGIN}></td>
+            <td><{$smarty.const._AD_BANNERSTATS_LOGIN}></td>
             <td><{$object->getShow('login')}></td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_EXTRAINFO}></td>
-            <td><{$object->getShow('extrainfo')}></td>
+            <td><{$smarty.const._AD_BANNERSTATS_STATUS}></td> 
+            <td>
+                <{if $object->getShow('status') == 1}>
+                    <span style="color: green;"><{$smarty.const._AD_BANNERSTATS_STATUS_ACTIVE|default:"Active"}></span>
+                <{else}>
+                    <span style="color: red;"><{$smarty.const._AD_BANNERSTATS_STATUS_INACTIVE|default:"Inactive"}></span>
+                <{/if}>
+            </td> 
+        </tr>
+         <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_COUNTRY_CODE}></td> 
+            <td><{$object->getShow('country_code')|default:"--"}></td> 
+        </tr>
+        <tr>
+            <td><{$smarty.const._AD_BANNERSTATS_EXTRAINFO}></td>
+            <td><{$object->getShow('extrainfo')|default:"--"}></td>
         </tr>
         </tbody>
         <tfoot>

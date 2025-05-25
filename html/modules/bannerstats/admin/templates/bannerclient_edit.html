@@ -1,24 +1,23 @@
 <div class="ui-dev-mode"><{$smarty.template}></div>
 
 <nav class="ui-breadcrumbs" aria-label="breadcrumb">
-    <a href="<{$xoops_url}>/admin.php">Dashboard</a>
+    <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._AD_BANNERSTATS_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._AD_BANNERSTATS_BANNER_LIST}></a>
-    &raquo;&raquo; <a href="./index.php?action=BannerclientList"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_LIST}></a>
+    &raquo;&raquo; <a href="./index.php?action=BannerclientList"><{$smarty.const._AD_BANNERSTATS_CLIENT_LIST}></a>
     <{if $actionForm->get('cid')}>
-    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_EDIT}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_CLIENT_EDIT}></span>
     <{else}>
-    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_NEW}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_CLIENT_NEW}></span>
     <{/if}>
 </nav>
 
 
 <{if $actionForm->get('cid')}>
-<h2><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_EDIT}></h2>
+<h2><{$smarty.const._AD_BANNERSTATS_CLIENT_EDIT}>: <{$actionForm->get('name')|default:$actionForm->get('cid')}></h2>
 <{else}>
-<h2><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_NEW}></h2>
+<h2><{$smarty.const._AD_BANNERSTATS_CLIENT_NEW}></h2>
 <{/if}>
-
 
 
 <{if $actionForm->hasError()}>
@@ -39,48 +38,116 @@
         <tr>
             <th colspan="2">
                 <{if $actionForm->get('cid')}>
-                <{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_EDIT}>
+                <{$smarty.const._AD_BANNERSTATS_CLIENT_EDIT}>
                 <{else}>
-                <{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_NEW}>
+                <{$smarty.const._AD_BANNERSTATS_CLIENT_NEW}>
                 <{/if}>
             </th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_NAME}></td>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_NAME}><span class="legacy_required">*</span></td>
             <td>
                 <{xoops_input type=text name=name value=$actionForm->get('name') size=50 maxlength=60}>
             </td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_CONTACT}></td>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_CONTACT}></td>
             <td>
                 <{xoops_input type=text name=contact value=$actionForm->get('contact') size=50 maxlength=60}>
             </td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_EMAIL}></td>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_EMAIL}><span class="legacy_required">*</span></td>
             <td>
-                <{xoops_input type=text name=email value=$actionForm->get('email') size=50 maxlength=60}>
+                <{xoops_input type=text name=email value=$actionForm->get('email') size=50 maxlength=191}>
             </td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_LOGIN}></td>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_TEL}></td>
             <td>
-                <{xoops_input type=text name=login value=$actionForm->get('login') size=15 maxlength=10}>
+                <{xoops_input type=text name=tel value=$actionForm->get('tel') size=30 maxlength=50}>
             </td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_PASSWD}></td>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_ADDRESS1}></td>
             <td>
-                <{xoops_input type=text name=passwd value=$actionForm->get('passwd') size=15 maxlength=10}>
+                <{xoops_input type=text name=address1 value=$actionForm->get('address1') size=50 maxlength=191}>
             </td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_EXTRAINFO}></td>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_ADDRESS2}></td>
             <td>
-                <{xoops_dhtmltarea type=text name=extrainfo value=$actionForm->get('extrainfo') rows=5 cols=50 editor=bbcode}>
+                <{xoops_input type=text name=address2 value=$actionForm->get('address2') size=50 maxlength=191}>
+            </td>
+        </tr>
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_CITY}></td>
+            <td>
+                <{xoops_input type=text name=city value=$actionForm->get('city') size=30 maxlength=100}>
+            </td>
+        </tr>
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_REGION}></td>
+            <td>
+                <{xoops_input type=text name=region value=$actionForm->get('region') size=30 maxlength=100}> 
+                <span class="help-text"><{$smarty.const._AD_BANNERSTATS_REGION_DESC}></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_POSTAL_CODE}></td>
+            <td>
+                <{xoops_input type=text name=postal_code value=$actionForm->get('postal_code') size=15 maxlength=20}>
+            </td>
+        </tr>
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_COUNTRY_CODE}></td>
+            <td>
+                <{xoops_input type=text name=country_code value=$actionForm->get('country_code') size=5 maxlength=2}> 
+                <span class="help-text"><{$smarty.const._AD_BANNERSTATS_COUNTRY_CODE_DESC}></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_LOGIN}><span class="legacy_required">*</span></td>
+            <td>
+                <{xoops_input type=text name=login value=$actionForm->get('login') size=25 maxlength=25}>
+            </td>
+        </tr>
+        <tr>
+            <td class="head">
+                <{if !$actionForm->get('cid')}>
+                    <{$smarty.const._AD_BANNERSTATS_PASSWD}><span class="legacy_required">*</span>
+                <{else}>
+                    <{$smarty.const._AD_BANNERSTATS_NEWPASSWD}>
+                <{/if}>
+            </td>
+            <td>
+                <{xoops_input type=password name=passwd value="" size=25 autocomplete="new-password"}>
+                <{if $actionForm->get('cid')}>
+                    <br><span class="help-text"><{$smarty.const._AD_BANNERSTATS_NEWPASSWD_DESC}></span>
+                <{/if}>
+            </td>
+        </tr>
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_PASSWD_CONFIRM}></td>
+            <td>
+                <{xoops_input type=password name=passwd_confirm value="" size=25 autocomplete="new-password"}>
+            </td>
+        </tr>
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_STATUS}><span class="legacy_required">*</span></td>
+            <td>
+                <select name="status">
+                    <option value="1" <{if $actionForm->get('status') == 1}>selected="selected"<{/if}>><{$smarty.const._AD_BANNERSTATS_STATUS_ACTIVE}></option>
+                    <option value="0" <{if $actionForm->get('status') == 0 && $actionForm->get('status') !== null}>selected="selected"<{/if}>><{$smarty.const._AD_BANNERSTATS_STATUS_INACTIVE}></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_EXTRAINFO}></td>
+            <td>
+                <{xoops_textarea name=extrainfo value=$actionForm->get('extrainfo') rows=5 cols=50}>
             </td>
         </tr>
         </tbody>
@@ -88,7 +155,7 @@
         <tr>
             <td colspan="2">
                 <input class="button cancel" type="submit" value="<{$smarty.const._BACK}>" name="_form_control_cancel">
-                <input class="button edit" type="submit" value="<{$smarty.const._SUBMIT}>">
+                <input class="button submit" type="submit" value="<{$smarty.const._SUBMIT}>">
             </td>
         </tr>
         </tfoot>

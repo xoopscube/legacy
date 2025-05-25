@@ -1,105 +1,153 @@
 <?php
 // Admin language definitions
+define('_AD_BANNERSTATS_MODULE', 'Banner Stats');
+define('_AD_BANNERSTATS_NAME', 'Name');
+define('_AD_BANNERSTATS_ACTIVE_BANNERS', 'Active Banners');
 define('_AD_BANNERSTATS_BANNER_LIST', 'Banner List');
-define('_AD_BANNERSTATS_BANNER_NEW', 'New Banner');
-define('_AD_BANNERSTATS_BANNER_EDIT', 'Edit Banner');
-define('_AD_BANNERSTATS_BANNER_DELETE', 'Delete Banner');
-define('_AD_BANNERSTATS_BANNER_ID', 'ID');
-define('_AD_BANNERSTATS_BANNER_CLIENT', 'Client');
-define('_AD_BANNERSTATS_BANNER_IMPRESSIONS', 'Impressions');
-define('_AD_BANNERSTATS_BANNER_CLICKS', 'Clicks');
-define('_AD_BANNERSTATS_BANNER_ACTIONS', 'Actions');
-define('_AD_BANNERSTATS_BANNER_IMAGE', 'Banner Image');
-define('_AD_BANNERSTATS_BANNER_CLICKURL', 'Click URL');
-define('_AD_BANNERSTATS_BANNER_IMPTOTAL', 'Total Impressions');
-define('_AD_BANNERSTATS_BANNER_IMPMADE', 'Impressions Made');
-define('_AD_BANNERSTATS_BANNER_HTMLBANNER', 'HTML Banner');
+define('_AD_BANNERSTATS_BANNER_LIST_DESC', 'Banner List Description');
+define('_AD_BANNERSTATS_ACTIONS', 'Actions');
+
+define('_AD_BANNERSTATS_CLIENT', 'Client');
+define('_AD_BANNERSTATS_CLICKS', 'Clicks');
+define('_AD_BANNERSTATS_DELETE', 'Delete Banner');
+define('_AD_BANNERSTATS_EDIT', 'Edit Banner');
+define('_AD_BANNERSTATS_BANNER_HTML', 'HTML Banner');
 define('_AD_BANNERSTATS_BANNER_HTMLCODE', 'HTML Code');
+define('_AD_BANNERSTATS_BANNER_ID', 'BID');
+define('_AD_BANNERSTATS_IMPRESSIONS', 'Impressions');
+define('_AD_BANNERSTATS_IMPMADE', 'Impressions Made');
+define('_AD_BANNERSTATS_IMPTOTAL', 'Total Impressions');
+define('_AD_BANNERSTATS_IMPTOTAL_ZERO_DESC', '(0 for unlimited)');
+define('_AD_BANNERSTATS_BANNER_IMAGE', 'Banner Image');
 
-define('_AD_BANNERSTATS_CLIENT_LIST', 'Client List');
-define('_AD_BANNERSTATS_CLIENT_NEW', 'New Client');
-define('_AD_BANNERSTATS_CLIENT_EDIT', 'Edit Client');
-define('_AD_BANNERSTATS_CLIENT_DELETE', 'Delete Client');
-define('_AD_BANNERSTATS_CLIENT_ID', 'ID');
-define('_AD_BANNERSTATS_CLIENT_NAME', 'Name');
-define('_AD_BANNERSTATS_CLIENT_CONTACT', 'Contact');
-define('_AD_BANNERSTATS_CLIENT_EMAIL', 'Email');
-define('_AD_BANNERSTATS_CLIENT_LOGIN', 'Login');
-define('_AD_BANNERSTATS_CLIENT_PASS', 'Password');
-define('_AD_BANNERSTATS_CLIENT_EXTRAINFO', 'Extra Info');
+define('_AD_BANNERSTATS_BANNER_NEW', 'New Banner');
+define('_AD_BANNERSTATS_BTYPE_ADTAG', 'Third-Party Ad Tag');
+define('_AD_BANNERSTATS_BTYPE_HTML', 'HTML Banner');
+define('_AD_BANNERSTATS_BTYPE_IMAGE', 'Image Banner');
+define('_AD_BANNERSTATS_BTYPE_VIDEO', 'Video Banner');
 define('_AD_BANNERSTATS_CLIENT_ACTIONS', 'Actions');
-
-define('_AD_BANNERSTATS_ERROR_REQUIRED', 'REQUIRED');
-define('_AD_BANNERSTATS_ERROR_OBJECT_EXIST', 'ERROR OBJECT EXIST');
-define('_AD_BANNERSTATS_ERROR_MAXLENGTH', 'MAXLENGTH');
-define('_AD_BANNERSTATS_ERROR_EMAIL', 'MAXLENGTH');
-// Bannerstats
-define('_AD_BANNERSTATS_NAME', 'Banner Stats');
-define('_AD_BANNERSTATS_DESC', 'Banner management and client statistics');
-
-define('_AD_BANNERSTATS_MENU_BANNER_LIST', 'Banner List');
-define('_AD_BANNERSTATS_MENU_BANNER_NEW', 'New Banner');
-define('_AD_BANNERSTATS_MENU_CLIENT_LIST', 'Client List');
-define('_AD_BANNERSTATS_MENU_CLIENT_NEW', 'New Client');
-
-define('_AD_BANNERSTATS_BLOCK_BANNER', 'Banner');
-define('_AD_BANNERSTATS_BLOCK_BANNER_DESC', 'Display a banner');
-define('_AD_BANNERSTATS_ERROR_DBUPDATE_FAILED', 'DB UPDATE FAILED');
-
-// Banner delete client
+define('_AD_BANNERSTATS_CLIENT_CONTACT', 'Contact');
+define('_AD_BANNERSTATS_CLIENT_DELETE_BANNER_COUNT_WARNING', 'Warning: Deleting this client will also permanently delete all associated banners listed below.');
 define('_AD_BANNERSTATS_CLIENT_DELETE_CONFIRM', 'Confirm Client Deletion');
 define('_AD_BANNERSTATS_CLIENT_DELETE_WARNING', 'Are you sure you want to delete this client?');
-define('_AD_BANNERSTATS_CLIENT_DELETE_BANNER_COUNT_WARNING', 'WARNING: Deleting this client will also permanently delete all associated banners listed below.');
-define('_AD_BANNERSTATS_ACTIVE_BANNERS', 'Active Banners');
+define('_AD_BANNERSTATS_CLIENT_EMAIL', 'Email');
+define('_AD_BANNERSTATS_CLIENT_EXTRAINFO', 'Extra Info');
+define('_AD_BANNERSTATS_CLIENT_ID', 'Client ID');
+define('_AD_BANNERSTATS_CLIENT_LOGIN', 'Login');
+
+define('_AD_BANNERSTATS_EMAILTEST_BANNER_ID', 'Banner ID (BID):');
+define('_AD_BANNERSTATS_EMAILTEST_DESC', 'This page allows you to send test email notifications for a selected banner.');
+define('_AD_BANNERSTATS_EMAILTEST_MSG_BANNER_NOT_FOUND', 'Banner with ID %d not found.');
+define('_AD_BANNERSTATS_EMAILTEST_MSG_CLIENT_NOT_FOUND', 'Client for banner ID %d not found. Client-specific emails may not be accurate.');
+define('_AD_BANNERSTATS_EMAILTEST_MSG_FAIL', 'Failed to send test email "%s". Check error logs.');
+define('_AD_BANNERSTATS_EMAILTEST_MSG_SUCCESS', 'Test email "%s" sent successfully to %s.');
+define('_AD_BANNERSTATS_EMAILTEST_SEND_EMAIL', 'Send Test Email');
+define('_AD_BANNERSTATS_EMAILTEST_SELECT_BANNER', 'Select Banner (or enter BID):');
+define('_AD_BANNERSTATS_EMAILTEST_SELECT_EMAIL_TYPE', 'Select Email Type to Test:');
+define('_AD_BANNERSTATS_EMAILTEST_TITLE', 'Email Notification Test');
+define('_AD_BANNERSTATS_EMAILTEST_TYPE_FINISHED_ADMIN', 'Banner Finished - To Admin');
+define('_AD_BANNERSTATS_EMAILTEST_TYPE_FINISHED_CLIENT', 'Banner Finished - To Client');
+define('_AD_BANNERSTATS_EMAILTEST_TYPE_LOW_ADMIN', 'Low Impressions - To Admin');
+define('_AD_BANNERSTATS_EMAILTEST_TYPE_LOW_CLIENT', 'Low Impressions - To Client');
+define('_AD_BANNERSTATS_ERROR_ACTION_FAILED', 'Action failed. Please try again.');
+define('_AD_BANNERSTATS_ERROR_BANNER_TYPE', 'Invalid banner type.');
+define('_AD_BANNERSTATS_ERROR_COULD_NOT_COPY_TO_FINISH', 'Error: Could not copy banner to finished banners table. Banner was not deleted.');
+define('_AD_BANNERSTATS_ERROR_COULD_NOT_DELETE', 'Error: Banner was copied to finished banners but could not be deleted from active banners.');
+define('_AD_BANNERSTATS_ERROR_CREATE_FAILED', 'Creation failed.');
+define('_AD_BANNERSTATS_ERROR_DATE_ORDER', 'End date cannot be before start date.');
+define('_AD_BANNERSTATS_ERROR_DATETIME_FORMAT', 'Invalid date/time format.');
+define('_AD_BANNERSTATS_ERROR_DELETE_ACTIVE_FAILED', 'Failed to delete active banners.');
+define('_AD_BANNERSTATS_ERROR_DELETE_CLIENT_FAILED', 'Failed to delete client operation.');
+define('_AD_BANNERSTATS_ERROR_DELETE_FINISHED_FAILED', 'Failed to delete finished banners.');
+define('_AD_BANNERSTATS_ERROR_EMAIL', 'Invalid email address.');
+define('_AD_BANNERSTATS_ERROR_HANDLER_NOT_FOUND', 'Handler not found.');
+define('_AD_BANNERSTATS_ERROR_COUNTRY_CODE', 'Invalid country code. 2-letter ISO code, e.g., US, GB');
+define('_AD_BANNERSTATS_ERROR_INTRANGE', 'Value out of range.');
+define('_AD_BANNERSTATS_ERROR_LOAD_OBJECT_FAILED', 'Failed to load object.');
+define('_AD_BANNERSTATS_ERROR_MAXLENGTH', 'Value exceeds maximum length.');
+define('_AD_BANNERSTATS_ERROR_MIN', 'Value is below minimum.');
+define('_AD_BANNERSTATS_ERROR_OBJECT_EXIST', 'Object already exists.');
+define('_AD_BANNERSTATS_ERROR_OBJECT_IS_NOT_EXIST', 'Object does not exist.');
+define('_AD_BANNERSTATS_ERROR_PASSWORD_MATCH', 'Passwords do not match.');
+define('_AD_BANNERSTATS_ERROR_PASSWORD_MATCH1', 'Password confirmation does not match.');
+define('_AD_BANNERSTATS_ERROR_PASSWORD_MINLENGTH', 'Password is too short.');
+define('_AD_BANNERSTATS_ERROR_REQUIRED', 'This field is required.');
+define('_AD_BANNERSTATS_ERROR_STATUS', 'Invalid status.');
+define('_AD_BANNERSTATS_ERROR_URL', 'Invalid URL.');
 define('_AD_BANNERSTATS_FINISHED_BANNERS', 'Finished Banners');
+define('_AD_BANNERSTATS_FINISH_BANNER_FAILED', 'Failed to finish banner.');
+define('_AD_BANNERSTATS_FINISH_BANNER_SUCCESS', 'Banner was successfully finished.');
+define('_AD_BANNERSTATS_FINISH_REASON_COMMENT', 'Additional comments (optional).');
+define('_AD_BANNERSTATS_INFO_NO_BANNERCLIENTS_FOUND', 'No banner clients found.');
+define('_AD_BANNERSTATS_INFO_NO_BANNERFINISH_FOUND', 'No finished banners found.');
+define('_AD_BANNERSTATS_ADDRESS1', 'Address 1');
+define('_AD_BANNERSTATS_ADDRESS2', 'Address 2');
+define('_AD_BANNERSTATS_BANNER', 'Banner');
+define('_AD_BANNERSTATS_CLIENT_DELETE', 'Delete a Banner Client');
+define('_AD_BANNERSTATS_CLIENT_EDIT', 'Edit a Banner Client');
+define('_AD_BANNERSTATS_CLIENT_LIST', 'Banner Clients');
+define('_AD_BANNERSTATS_CLIENT_LIST_TIP', 'Create a contact account for Banner Clients');
+define('_AD_BANNERSTATS_CLIENT_NEW', 'New Banner Client');
+define('_AD_BANNERSTATS_FINISH_DELETE', 'Delete Expired Banner');
+define('_AD_BANNERSTATS_FINISH_LIST', 'Expired Banners');
+define('_AD_BANNERSTATS_FINISH_LIST_TIPS', 'List of Expired Banners');
 
-// TODO delete
-// _AD_BANNERSTATS_LANG_BANNER_NAME, 
-// _AD_BANNERSTATS_LANG_BANNER_TYPE, 
-// _AD_BANNERSTATS_LANG_STATUS, 
-// _AD_BANNERSTATS_LANG_REASON_FINISHED, 
-// _AD_BANNERSTATS_STATUS_ACTIVE, 
-// _AD_BANNERSTATS_STATUS_INACTIVE
+define('_AD_BANNERSTATS_BANNER_NAME', 'Banner Name');
+define('_AD_BANNERSTATS_BANNER_TYPE', 'Banner Type');
+define('_AD_BANNERSTATS_BID', 'Banner ID');
+define('_AD_BANNERSTATS_CAMPAIGN_ID', 'Campaign ID');
+define('_AD_BANNERSTATS_CAMPAIGN_ID_DESC', 'Campaign ID Description');
+define('_AD_BANNERSTATS_COUNTRY_CODE', 'Country Code');
+define('_AD_BANNERSTATS_COUNTRY_CODE_DESC', 'Country Code Description');
+define('_AD_BANNERSTATS_CITY', 'City');
+define('_AD_BANNERSTATS_CID', 'Client ID');
 
-// import from legacyRender
+define('_AD_BANNERSTATS_CLICKURL', 'Click URL');
+define('_AD_BANNERSTATS_CLIENT_NAME', 'Client Name');
+define('_AD_BANNERSTATS_CONTACT', 'Contact');
+define('_AD_BANNERSTATS_CONTROL', 'Action');
+define('_AD_BANNERSTATS_CREATE_NEW', 'Create New');
+define('_AD_BANNERSTATS_DATE', 'Registration Date');
+define('_AD_BANNERSTATS_DATE_CREATED', 'Date Created');
+define('_AD_BANNERSTATS_DATEEND', 'Expiration Date');
+define('_AD_BANNERSTATS_DATESTART', 'Start Date');
+define('_AD_BANNERSTATS_EMAIL', 'Email');
+define('_AD_BANNERSTATS_DATE_END', 'End Date');
+define('_AD_BANNERSTATS_EXTRAINFO', 'Extra Info');
+define('_AD_BANNERSTATS_HEIGHT', 'Height');
+define('_AD_BANNERSTATS_HTMLBANNER', 'Is HTML');
+define('_AD_BANNERSTATS_HTMLCODE', 'HTML Code');
+define('_AD_BANNERSTATS_LAST_UPDATED', 'Last Updated');
+define('_AD_BANNERSTATS_LOGIN', 'Login');
 
-define( '_AD_BANNERSTATS_LANG_ACTIVE' , 'Active');
-define( '_AD_BANNERSTATS_LANG_BANNER' , 'Banner');
-define( '_AD_BANNERSTATS_LANG_BANNER_DELETE' , 'Delete a Banner');
-define( '_AD_BANNERSTATS_LANG_BANNER_EDIT' , 'Edit a Banner');
-define( '_AD_BANNERSTATS_LANG_BANNER_LIST' , 'List of Banners');
-define( '_AD_BANNERSTATS_LANG_BANNER_LIST_DESC' , 'Before adding a new HTML banner or link, create a contact account for your Banner Clients.<br>The client credential grant type is used to get a token to access banner statistics.');
-define( '_AD_BANNERSTATS_LANG_BANNER_NEW' , 'New Banner');
-define( '_AD_BANNERSTATS_LANG_BANNERCLIENT_DELETE' , 'Delete a Banner Client');
-define( '_AD_BANNERSTATS_LANG_BANNERCLIENT_EDIT' , 'Edit a Banner Client');
-define( '_AD_BANNERSTATS_LANG_BANNERCLIENT_LIST' , 'List of Banner Clients');
-define( '_AD_BANNERSTATS_LANG_BANNERCLIENT_LIST_TIP' , 'Create a contact account for Banner Clients');
-define( '_AD_BANNERSTATS_LANG_BANNERCLIENT_NEW' , 'New Banner Client');
-define( '_AD_BANNERSTATS_LANG_BANNERFINISH_DELETE' , 'Delete Expired Banner');
-define( '_AD_BANNERSTATS_LANG_BANNERFINISH_LIST' , 'List of Expired Banners');
-define( '_AD_BANNERSTATS_LANG_BANNERFINISH_LIST_TIPS' , 'List of Expired Banners');
-define( '_AD_BANNERSTATS_LANG_BID' , 'bid');
-define( '_AD_BANNERSTATS_LANG_CID' , 'cid');
-define( '_AD_BANNERSTATS_LANG_CLICKS' , 'Clicks');
-define( '_AD_BANNERSTATS_LANG_CLICKURL' , 'Click URL');
-define( '_AD_BANNERSTATS_LANG_CLIENT_NAME' , 'Client name');
-define( '_AD_BANNERSTATS_LANG_CONTACT' , 'Contact');
-define( '_AD_BANNERSTATS_LANG_CONTROL' , 'Action');
-define( '_AD_BANNERSTATS_LANG_CREATE_NEW' , 'Create new');
-define( '_AD_BANNERSTATS_LANG_DATE' , 'Reg. Date');
-define( '_AD_BANNERSTATS_LANG_DATEEND' , 'Exp. date');
-define( '_AD_BANNERSTATS_LANG_DATESTART' , 'Start date');
-define( '_AD_BANNERSTATS_LANG_EMAIL' , 'Email');
-define( '_AD_BANNERSTATS_LANG_EXTRAINFO' , 'Extra info');
-define( '_AD_BANNERSTATS_LANG_HTMLBANNER' , 'Is HTML');
-define( '_AD_BANNERSTATS_LANG_HTMLCODE' , 'HTML code');
-define( '_AD_BANNERSTATS_LANG_IMAGEURL' , 'Image URL');
-define( '_AD_BANNERSTATS_LANG_IMPMADE' , 'Imp. Made');
-define( '_AD_BANNERSTATS_LANG_IMPRESSIONS' , 'Impressions');
-define( '_AD_BANNERSTATS_LANG_IMPTOTAL' , 'Imp. Allowed');
-define( '_AD_BANNERSTATS_LANG_LOGIN' , 'Login');
-define( '_AD_BANNERSTATS_LANG_MORE' , 'more');
-define( '_AD_BANNERSTATS_LANG_MORE_LARGE' , 'larger');
-define( '_AD_BANNERSTATS_LANG_MORE_SMALL' , 'smaller');
-define( '_AD_BANNERSTATS_LANG_NAME' , 'Name');
-define( '_AD_BANNERSTATS_LANG_PASSWD' , 'Password');
+define('_AD_BANNERSTATS_ORIGINAL', 'Original');
+define('_AD_BANNERSTATS_PASSWD', 'Password');
+define('_AD_BANNERSTATS_PASSWD_CONFIRM', 'Password Confirmation');
+define('_AD_BANNERSTATS_POSTAL_CODE', 'Postal Code');
+define('_AD_BANNERSTATS_REGION', 'Region');
+define('_AD_BANNERSTATS_REGION_DESC', 'State/Province');
+define('_AD_BANNERSTATS_START_DATE', 'Start Date');
+define('_AD_BANNERSTATS_STATE', 'State');
+define('_AD_BANNERSTATS_STATUS', 'Status');
+define('_AD_BANNERSTATS_TEL', 'Telephone');
+define('_AD_BANNERSTATS_TIMEZONE', 'Timezone');
+define('_AD_BANNERSTATS_TIMEZONE_DESC', 'Timezone Description');
+define('_AD_BANNERSTATS_WEIGHT', 'Weight');
+define('_AD_BANNERSTATS_WEIGHT_DESC', 'Weight Description');
+define('_AD_BANNERSTATS_REASON_FINISHED', 'Reason Finished');
+
+define('_AD_BANNERSTATS_BANNER_DELETE', 'Delete Banner');
+define('_AD_BANNERSTATS_MESSAGE_DELETE_CONFIRM', 'Are you sure you want to delete this banner?');
+define('_AD_BANNERSTATS_BANNER_PREVIEW', 'Banner Preview');
+define('_AD_BANNERSTATS_BANNER_PREVIEW_NOT_AVAILABLE', 'Banner preview not available');
+define('_AD_BANNERSTATS_STATUS_ACTIVE', 'Active');
+define('_AD_BANNERSTATS_STATUS_INACTIVE', 'Inactive');
+
+define('_AD_BANNERSTATS_IMAGEURL', 'Image URL');
+define('_AD_BANNERSTATS_WIDTH', 'Width');
+define('_AD_BANNERSTATS_BANNERS', 'Banners');
+define('_AD_BANNERSTATS_FINISHED', 'Finished');
+define('_AD_BANNERSTATS_BANNER_EDIT', 'edit');
+define('_AD_BANNERSTATS_BANNER_REACTIVATE', 'REACTIVATE');
+
+?>

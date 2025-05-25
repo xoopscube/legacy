@@ -8,25 +8,24 @@
 </nav>
 
 
-<h2><{$smarty.const._AD_BANNERSTATS_LANG_BANNER_LIST}>
+<h2><{$smarty.const._AD_BANNERSTATS_BANNER_LIST}>
     <{if isset($currentClient)}>
-    » <{$currentClient->getShow('name')}>
+    &raquo; <{$currentClient->getShow('name')}>
     <{/if}>
 </h2>
 
 <div class="help-tips">
-    <{$smarty.const._AD_BANNERSTATS_LANG_BANNER_LIST_DESC}>
+    <{$smarty.const._AD_BANNERSTATS_BANNER_LIST_DESC}>
 </div>
-
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
 <section data-layout="rows center-justify" class="action-control">
 
     <div>
-        <a href="index.php?action=BannerEdit" class="button"><i class="i-add"></i><{$smarty.const._AD_BANNERSTATS_LANG_BANNER_NEW}></a>
-        <a href="index.php?action=BannerclientEdit" class="button"><i class="i-add"></i><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_NEW}></a>
-        <a href="index.php?action=BannerclientList" class="button"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_LIST}></a>
-        <a href="index.php?action=BannerfinishList" class="button"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERFINISH_LIST}></a>
+        <a href="index.php?action=BannerEdit" class="button"><i class="i-add"></i><{$smarty.const._AD_BANNERSTATS_BANNER_NEW}></a>
+        <a href="index.php?action=BannerclientEdit" class="button"><i class="i-add"></i><{$smarty.const._AD_BANNERSTATS_CLIENT_NEW}></a>
+        <a href="index.php?action=BannerclientList" class="button"><{$smarty.const._AD_BANNERSTATS_CLIENT_LIST}></a>
+        <a href="index.php?action=BannerfinishList" class="button"><{$smarty.const._AD_BANNERSTATS_FINISH_LIST}></a>
     </div>
 
     <div class="control-view">
@@ -35,53 +34,87 @@
             <a href="#" class="dropdown-toggle button" aria-label="filter sort"><img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options"></a>
             <div class="dropdown-content drop-top">
                 <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._AD_BANNERSTATS_LANG_BID}></h6>
+                    <h6><{$smarty.const._AD_BANNERSTATS_BID}></h6>
                     <div>
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_BID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_BID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._AD_BANNERSTATS_LANG_CID}></h6>
+                    <h6><{$smarty.const._AD_BANNERSTATS_BANNER_NAME}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_NAME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_NAME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_BANNERSTATS_CLIENT_NAME}></h6>
                     <div>
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_CID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_CID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;
-                        </a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_CID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_BANNERSTATS_BANNER_TYPE}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_BANNER_TYPE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_BANNER_TYPE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_BANNERSTATS_LANG_IMPTOTAL}></h6>
+                    <h6><{$smarty.const._AD_BANNERSTATS_IMPTOTAL}></h6>
                     <div>
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_IMPTOTAL}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_IMPTOTAL}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_BANNERSTATS_LANG_IMPMADE}></h6>
+                    <h6><{$smarty.const._AD_BANNERSTATS_IMPMADE}></h6>
                     <div>
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_IMPMADE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_IMPMADE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_BANNERSTATS_LANG_CLICKS}></h6>
+                    <h6><{$smarty.const._AD_BANNERSTATS_CLICKS}></h6>
                     <div>
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_CLICKS}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
                         <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_CLICKS}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_BANNERSTATS_LANG_DATE}></h6>
+                    <h6><{$smarty.const._AD_BANNERSTATS_DATE_CREATED}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_DATE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_DATE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_DATE_CREATED}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_DATE_CREATED}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_BANNERSTATS_LANG_HTMLBANNER}></h6>
+                    <h6><{$smarty.const._AD_BANNERSTATS_START_DATE}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_HTMLBANNER}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_HTMLBANNER}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_START_DATE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_START_DATE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify">
+                    <h6><{$smarty.const._AD_BANNERSTATS_DATE_END}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_END_DATE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_END_DATE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify">
+                    <h6><{$smarty.const._AD_BANNERSTATS_STATUS}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_STATUS}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_STATUS}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify">
+                    <h6><{$smarty.const._AD_BANNERSTATS_WEIGHT}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNER_SORT_KEY_WEIGHT}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNER_SORT_KEY_WEIGHT}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
             </div><{* ----- /Dropdown-content *}>
@@ -97,38 +130,54 @@
 <table class="outer">
     <thead>
     <tr>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_BID}></th>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_CID}></th>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_IMPTOTAL}></th>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_IMPMADE}></th>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_CLICKS}></th>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_DATE}></th>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_HTMLBANNER}></th>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_CONTROL}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_BID}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_BANNER_NAME}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_CLIENT_NAME}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_BANNER_TYPE}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_STATUS}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_IMPTOTAL}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_IMPMADE}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_CLICKS}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_START_DATE}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_DATE_END}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_DATE_CREATED}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_WEIGHT}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_CONTROL}></th>
     </tr>
     </thead>
     <tbody>
     <{foreach item=obj from=$objects}>
     <tr>
         <td class="list_id"><{$obj->getShow('bid')}></td>
+        <td class="list_text"><{$obj->getShow('name')|default:"N/A"}></td>
         <td class="list_title"><{$obj->mClient->getShow('name')}></td>
+        <td class="list_select"><{$obj->getShow('banner_type')}></td>
+        <td class="list_select">
+            <{if $obj->getShow('status') == 1}>
+                <span style="color: green;"><{$smarty.const._AD_BANNERSTATS_STATUS_ACTIVE|default:"Active"}></span>
+            <{else}>
+                <span style="color: red;"><{$smarty.const._AD_BANNERSTATS_STATUS_INACTIVE|default:"Inactive"}></span>
+            <{/if}>
+        </td>
         <td class="list_number">
             <{if $obj->get('imptotal') > 0}>
             <{$obj->getShow('imptotal')}>
             <{else}>
-            <{$smarty.const._AD_BANNERSTATS_LANG_UN_LIMITED}>
+            <{$smarty.const._AD_BANNERSTATS_UN_LIMITED}>
             <{/if}>
         </td>
         <td class="list_number"><{$obj->getShow('impmade')}></td>
         <td class="list_number">
-            <{if $obj->getShow('clickurl')}>
-            <{$obj->getShow('clicks')}>
+            <{if $obj->getShow('clickurl') || $obj->getShow('banner_type') == 'html' || $obj->getShow('banner_type') == 'ad_tag' || $obj->getShow('banner_type') == 'video'}>
+                <{$obj->getShow('clicks')}>
             <{else}>
-            --
+                --
             <{/if}>
         </td>
-        <td class="list_date"><{$obj->get('date')|xoops_formattimestamp}></td>
-        <td class="list_select"><{if $obj->getShow('htmlbanner') == 1}><{$smarty.const._YES}><{else}><{$smarty.const._NO}><{/if}></td>
+        <td class="list_date"><{$obj->get('start_date')|xoops_formattimestamp:"m"|default:"--"}></td>
+        <td class="list_date"><{$obj->get('end_date')|xoops_formattimestamp:"m"|default:"--"}></td>
+        <td class="list_date"><{$obj->get('date_created')|xoops_formattimestamp:"m"}></td>
+        <td class="list_number"><{$obj->getShow('weight')}></td>
         <td class="list_control">
             <a class="action-edit" href="./index.php?action=BannerEdit&amp;bid=<{$obj->getShow('bid')}>" aria-label="<{$smarty.const._EDIT}>">
                 <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="edit">
@@ -142,9 +191,8 @@
     </tbody>
     <tfoot>
     <tr>
-        <td colspan="8"><nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav></td>
+        <td colspan="13"><nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav></td>
     </tr>
     </tfoot>
 </table>
-
 

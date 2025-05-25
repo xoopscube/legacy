@@ -1,11 +1,21 @@
 <?php
+/**
+ * Bannerstats - Module for XCL
+ *
+ * @package    Bannerstats
+ * @author     Nuno Luciano (aka gigamaster) XCL PHP8
+ * @copyright  2005-2025 The XOOPSCube Project
+ * @license    GPL V2
+ * @version    v2.5.0 Release XCL 
+ * @link       http://github.com/xoopscube/
+ **/
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
 require_once XOOPS_ROOT_PATH . '/core/XCube_PageNavigator.class.php';
-require_once XOOPS_MODULE_PATH . '/bannerstats/admin/class/Action.class.php'; // Or whatever you name the file containing Bannerstats_Action
+require_once XOOPS_MODULE_PATH . '/bannerstats/admin/class/Action.class.php';
 
 class Bannerstats_AbstractListAction extends Bannerstats_Action
 {

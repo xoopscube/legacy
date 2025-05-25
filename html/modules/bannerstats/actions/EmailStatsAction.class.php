@@ -1,5 +1,15 @@
 <?php
-// html/modules/bannerstats/actions/EmailStatsAction.class.php
+/**
+ * Bannerstats - Module for XCL
+ * ChangeUrlAction.class.php
+ *
+ * @package    Bannerstats
+ * @author     Nuno Luciano (aka gigamaster) XCL PHP8
+ * @copyright  2005-2025 The XOOPSCube Project
+ * @license    GPL V2
+ * @version    v2.5.0 Release XCL 
+ * @link       http://github.com/xoopscube/
+ **/
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
@@ -21,9 +31,8 @@ class Bannerstats_EmailStatsAction
 
     /**
      * Handles the request to email stats.
-     * Since it's triggered by a GET link, we'll put the logic in getDefaultView.
-     * It will perform the action and then prepare to render a message page.
-     * @return string Template name to render.
+     * 
+     * @return string Template name
      */
     public function getDefaultView(): string
     {
@@ -38,14 +47,13 @@ class Bannerstats_EmailStatsAction
         $bid = isset($_GET['bid']) ? (int)$_GET['bid'] : 0;
         $submittedToken = isset($_GET['bstoken']) ? (string)$_GET['bstoken'] : '';
 
-        // Validate token
         if ($bid <= 0 || !BannerClientToken::validate($submittedToken, 'EmailStats_' . $bid)) {
             $this->message = _MD_BANNERSTATS_INVALID_TOKEN;
             $this->isError = true;
         } else {
             $statsManager = new BannerStatsManager();
             $clientEmail = $statsManager->getBannerClientEmail($cid);
-            $bannerDetails = $statsManager->getBannerDetails($bid, $cid); // Ensures client owns the banner
+            $bannerDetails = $statsManager->getBannerDetails($bid, $cid);
 
             if (empty($clientEmail)) {
                 $this->message = _MD_BANNERSTATS_EMAIL_SENT_FAIL . " (Client email not found)";
@@ -66,7 +74,7 @@ class Bannerstats_EmailStatsAction
 
                 $clientLogin = BannerClientSession::getClientLogin() ?? 'Valued Client';
 
-                // Language constants for email (ensure these are defined in your language file)
+                // Language constants for email
                 $subject = sprintf(
                     defined('_MB_BANNERSTATS_SUBJECT') ? _MB_BANNERSTATS_SUBJECT : "Banner Statistics for %s",
                     $bannerIdentifier
@@ -81,7 +89,7 @@ class Bannerstats_EmailStatsAction
                 );
 
                 $xoopsMailer = getMailer();
-                $xoopsMailer->useMail(); // Use PHP mail()
+                $xoopsMailer->useMail();
                 $xoopsMailer->setToEmails($clientEmail);
                 $xoopsMailer->setFromEmail($xoopsConfig['adminmail']);
                 $xoopsMailer->setFromName(htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES));
@@ -106,6 +114,6 @@ class Bannerstats_EmailStatsAction
             $xoopsTpl->assign('bannerstats_continue_text', 'Return to Statistics');
         }
 
-        return 'bannerstats_message.html'; // Template to display the success/error message
+        return 'bannerstats_message.html';
     }
 }

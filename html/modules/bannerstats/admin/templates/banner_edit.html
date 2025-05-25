@@ -5,19 +5,18 @@
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._AD_BANNERSTATS_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._AD_BANNERSTATS_BANNER_LIST}></a>
     <{if $actionForm->get('bid')}>
-    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_LANG_BANNER_EDIT}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_BANNER_EDIT}></span>
     <{else}>
-    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_LANG_BANNER_NEW}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_BANNER_NEW}></span>
     <{/if}>
 </nav>
 
 
 <{if $actionForm->get('bid')}>
-<h2><{$smarty.const._AD_BANNERSTATS_LANG_BANNER_EDIT}></h2>
+<h2><{$smarty.const._AD_BANNERSTATS_BANNER_EDIT}>: <{$actionForm->get('name')|default:$actionForm->get('bid')}></h2>
 <{else}>
-<h2><{$smarty.const._AD_BANNERSTATS_LANG_BANNER_NEW}></h2>
+<h2><{$smarty.const._AD_BANNERSTATS_BANNER_NEW}></h2>
 <{/if}>
-
 
 
 <{if $actionForm->hasError()}>
@@ -38,9 +37,9 @@
         <tr>
             <th colspan="2">
                 <{if $actionForm->get('bid')}>
-                <{$smarty.const._AD_BANNERSTATS_LANG_BANNER_EDIT}>
+                <{$smarty.const._AD_BANNERSTATS_BANNER_EDIT}>
                 <{else}>
-                <{$smarty.const._AD_BANNERSTATS_LANG_BANNER_NEW}>
+                <{$smarty.const._AD_BANNERSTATS_BANNER_NEW}>
                 <{/if}>
             </th>
         </tr>
@@ -48,42 +47,119 @@
         <tbody>
         <{if $actionForm->get('bid')}>
         <tr>
-            <td class="head list_image" colspan="2">
-                <{if $actionForm->get('htmlbanner')}>
-                <{$actionForm->get('htmlcode')}>
+            <td class="head list_image" colspan="2" style="text-align: center; padding: 10px;">
+                <strong><{$smarty.const._AD_BANNERSTATS_BANNER_PREVIEW}></strong><br>
+                <{if $actionForm->get('banner_type') == 'image' && $actionForm->get('imageurl')}>
+                    <a href="<{$actionForm->get('clickurl')|xoops_escape:'url'}>" rel="external" target="_blank">
+                        <img src="<{$actionForm->get('imageurl')|xoops_escape:'url'}>" alt="<{$actionForm->get('name')|xoops_escape}>" style="max-width:100%; height:auto; border:1px solid #ccc;">
+                    </a>
+                <{elseif ($actionForm->get('banner_type') == 'html' || $actionForm->get('banner_type') == 'ad_tag' || $actionForm->get('banner_type') == 'video') && $actionForm->get('htmlcode')}>
+                    <div style="padding:1rem; overflow:auto; max-width:728px; margin:0 auto;">
+                        <{$actionForm->get('htmlcode')}>  
+                    </div>
                 <{else}>
-                <a href="<{$actionForm->get('clickurl')}>" rel="external"><img src="<{$actionForm->get('imageurl')}>" alt="Banner"></a>
+                    <{$smarty.const._AD_BANNERSTATS_BANNER_PREVIEW_NOT_AVAILABLE}>
                 <{/if}>
             </td>
         </tr>
         <{/if}>
+
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_CID}></td>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_BANNER_NAME}></td>
+            <td><{xoops_input type=text name=name value=$actionForm->get('name') size=50 maxlength=100}></td>
+        </tr>
+
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_CID}><span class="legacy_required">*</span></td>
             <td><select name="cid"><{xoops_optionsArray id=cid from=$bannerclientArr label=name value=cid default=$actionForm->get('cid')}></select></td>
         </tr>
+
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_IMPTOTAL}></td>
-            <td><{xoops_input type=text name=imptotal value=$actionForm->get('imptotal') class=list_number}></td>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_CAMPAIGN_ID}></td>
+            <td><{xoops_input type=text name=campaign_id value=$actionForm->get('campaign_id') size=10 class=list_number}> <span class="help-text"><{$smarty.const._AD_BANNERSTATS_CAMPAIGN_ID_DESC|default:"(Optional)"}></span></td>
         </tr>
+
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_IMAGEURL}></td>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_BANNER_TYPE}><span class="legacy_required">*</span></td>
+            <td>
+                <select name="banner_type" id="banner_type_selector">
+                    <option value="image" <{if $actionForm->get('banner_type') == 'image'}>selected="selected"<{/if}>><{$smarty.const._AD_BANNERSTATS_BTYPE_IMAGE|default:"Image"}></option>
+                    <option value="video" <{if $actionForm->get('banner_type') == 'video'}>selected="selected"<{/if}>><{$smarty.const._AD_BANNERSTATS_BTYPE_VIDEO|default:"Video (Embed/VAST)"}></option>
+                    <option value="html" <{if $actionForm->get('banner_type') == 'html'}>selected="selected"<{/if}>><{$smarty.const._AD_BANNERSTATS_BTYPE_HTML|default:"Custom HTML"}></option>
+                    <option value="ad_tag" <{if $actionForm->get('banner_type') == 'ad_tag'}>selected="selected"<{/if}>><{$smarty.const._AD_BANNERSTATS_BTYPE_ADTAG|default:"Third-Party Ad Tag"}></option>
+                </select>
+            </td>
+        </tr>
+
+        <tr class="banner-field banner-image-field">
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_IMAGEURL}></td>
             <td><{xoops_input type=text name=imageurl value=$actionForm->get('imageurl') size=70 maxlength=191}></td>
         </tr>
-        <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_CLICKURL}></td>
+        <tr class="banner-field banner-image-field">
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_CLICKURL}></td>
             <td><{xoops_input type=text name=clickurl value=$actionForm->get('clickurl') size=70 maxlength=191}></td>
         </tr>
+
+        <tr class="banner-field banner-html-field">
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_HTMLCODE}></td>
+            <td><{xoops_textarea name=htmlcode cols=68 rows=10 value=$actionForm->get('htmlcode')}></td>
+        </tr>
+
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_HTMLCODE}></td>
-            <td><{xoops_textarea name=htmlcode cols=50 rows=10 value=$actionForm->get('htmlcode')}></td>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_WIDTH}></td>
+            <td><{xoops_input type=text name=width value=$actionForm->get('width') size=5 maxlength=5 class=list_number}> px</td>
         </tr>
         <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_LANG_HTMLBANNER}></td>
-            <td>
-                <label class="ui-checkbox" title="HTML Banner"><{xoops_input type=checkbox name=htmlbanner value=1 default=$actionForm->get('htmlbanner')}>
-                <span class="ui-checkbox-custom"></span>
-                </label>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_HEIGHT}></td>
+            <td><{xoops_input type=text name=height value=$actionForm->get('height') size=5 maxlength=5 class=list_number}> px</td>
+        </tr>
+
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_IMPTOTAL}><span class="legacy_required">*</span></td>
+            <td><{xoops_input type=text name=imptotal value=$actionForm->get('imptotal') class=list_number}> 
+                <span class="help-text"><{$smarty.const._AD_BANNERSTATS_IMPTOTAL_ZERO_DESC|default:"(0 for unlimited)"}></span>
             </td>
+        </tr>
+
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_START_DATE}></td>
+            <td>
+                <{* Change type to datetime-local *}>
+                <input type="datetime-local" name="start_date" value="<{$actionForm->get('start_date')}>"> 
+                <span class="help-text">(YYYY-MM-DD HH:MM)</span> <{* Update help text *}>
+            </td>
+        </tr>
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_DATE_END}></td>
+            <td>
+                 <{* Change type to datetime-local *}>
+                <{* xoops_input type=datetime-local name=end_date value=$actionForm->get('end_date') *}> 
+                <input type="datetime-local" name="end_date" value="<{$actionForm->get('end_date')}>"> 
+
+                <span class="help-text">(YYYY-MM-DD HH:MM)</span> <{* Update help text *}>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_TIMEZONE}></td>
+            <td>
+                <{* xoops_input type=text name=timezone value=$actionForm->get('timezone') size=30 maxlength=50 *}>
+                <input type="text" name="timezone" value="<{$actionForm->get('timezone')}>" size="30" maxlength="50">  
+                <span class="help-text"><{$smarty.const._AD_BANNERSTATS_TIMEZONE_DESC|default:"(e.g., America/New_York or UTC)"}></span></td>
+        </tr>
+
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_STATUS}><span class="legacy_required">*</span></td>
+            <td>
+                <select name="status">
+                    <option value="1" <{if $actionForm->get('status') == 1}>selected="selected"<{/if}>><{$smarty.const._AD_BANNERSTATS_STATUS_ACTIVE|default:"Active"}></option>
+                    <option value="0" <{if $actionForm->get('status') == 0 && $actionForm->get('status') !== null}>selected="selected"<{/if}>><{$smarty.const._AD_BANNERSTATS_STATUS_INACTIVE|default:"Inactive"}></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="head"><{$smarty.const._AD_BANNERSTATS_WEIGHT}><span class="legacy_required">*</span></td>
+            <td><{xoops_input type=text name=weight value=$actionForm->get('weight') size=5 maxlength=3 class=list_number}> <span class="help-text"><{$smarty.const._AD_BANNERSTATS_WEIGHT_DESC|default:"(Higher numbers display more often)"}></span></td>
         </tr>
         </tbody>
         <tfoot>
@@ -96,3 +172,32 @@
         </tfoot>
     </table>
 </form>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    const bannerTypeSelector = document.getElementById('banner_type_selector');
+    const imageFields = document.querySelectorAll('.banner-image-field');
+    const htmlFields = document.querySelectorAll('.banner-html-field');
+
+    function toggleBannerFields() {
+        const selectedType = bannerTypeSelector.value;
+        if (selectedType === 'image') {
+            imageFields.forEach(field => field.style.display = ''); // Or 'table-row'
+            htmlFields.forEach(field => field.style.display = 'none');
+        } else if (selectedType === 'html' || selectedType === 'ad_tag' || selectedType === 'video') {
+            imageFields.forEach(field => field.style.display = 'none');
+            htmlFields.forEach(field => field.style.display = ''); // Or 'table-row'
+        } else {
+            // Default case, perhaps hide both or show specific ones
+            imageFields.forEach(field => field.style.display = 'none');
+            htmlFields.forEach(field => field.style.display = 'none');
+        }
+    }
+
+    if (bannerTypeSelector) {
+        bannerTypeSelector.addEventListener('change', toggleBannerFields);
+        // Initial call to set the correct fields on page load
+        toggleBannerFields();
+    }
+});
+</script>

@@ -1,8 +1,14 @@
 <?php
 /**
- * @package bannerstats
- * @version $Id: BannerclientAdminDeleteForm.class.php,v 1.1 2007/05/15 02:34:40 minahito Exp $
- */
+ * Bannerstats - Module for XCL
+ *
+ * @package    Bannerstats
+ * @author     Nuno Luciano (aka gigamaster) XCL PHP8
+ * @copyright  2005-2025 The XOOPSCube Project
+ * @license    GPL V2
+ * @version    v2.5.0 Release XCL 
+ * @link       http://github.com/xoopscube/
+ **/
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
@@ -20,17 +26,10 @@ class Bannerstats_BannerclientAdminDeleteForm extends XCube_ActionForm
 
     public function prepare()
     {
-        //
-        // Set form properties
-        //
         $this->mFormProperties['cid'] =new XCube_IntProperty('cid');
-    
-        //
-        // Set field properties
-        //
         $this->mFieldProperties['cid'] =new XCube_FieldProperty($this);
         $this->mFieldProperties['cid']->setDependsByArray(['required']);
-        $this->mFieldProperties['cid']->addMessage('required', _AD_BANNERSTATS_ERROR_REQUIRED, _AD_BANNERSTATS_LANG_CID);
+        $this->mFieldProperties['cid']->addMessage('required', _AD_BANNERSTATS_ERROR_REQUIRED, _AD_BANNERSTATS_CID);
     }
 
     public function load(&$obj)

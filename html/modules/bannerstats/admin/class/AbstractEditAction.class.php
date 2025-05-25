@@ -1,11 +1,20 @@
 <?php
+/**
+ * Bannerstats - Module for XCL
+ *
+ * @package    Bannerstats
+ * @author     Nuno Luciano (aka gigamaster) XCL PHP8
+ * @copyright  2005-2025 The XOOPSCube Project
+ * @license    GPL V2
+ * @version    v2.5.0 Release XCL 
+ * @link       http://github.com/xoopscube/
+ **/
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once XOOPS_MODULE_PATH . '/bannerstats/admin/class/Action.class.php'; // Or whatever you name the file containing Bannerstats_Action
-
+require_once XOOPS_MODULE_PATH . '/bannerstats/admin/class/Action.class.php';
 
 class Bannerstats_AbstractEditAction extends Bannerstats_Action
 {
@@ -29,7 +38,7 @@ class Bannerstats_AbstractEditAction extends Bannerstats_Action
     {
         $id = $this->_getId();
 
-        $this->mObjectHandler = $this->_getHandler();
+        $this->mObjectHandler =& $this->_getHandler();
 
         $this->mObject =& $this->mObjectHandler->get($id);
 
@@ -42,6 +51,7 @@ class Bannerstats_AbstractEditAction extends Bannerstats_Action
     {
         return true;
     }
+
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         $this->_setupActionForm();
@@ -79,9 +89,9 @@ class Bannerstats_AbstractEditAction extends Bannerstats_Action
         }
 
         $this->mActionForm->update($this->mObject);
-//return $this->_doExecute($this->mObject) ? BANNERSTATS_FRAME_VIEW_SUCCESS
+        
         return $this->_doExecute() ? BANNERSTATS_FRAME_VIEW_SUCCESS
-                                                 : BANNERSTATS_FRAME_VIEW_ERROR;
+                                   : BANNERSTATS_FRAME_VIEW_ERROR;
     }
 
     public function _doExecute()

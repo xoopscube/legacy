@@ -4,125 +4,211 @@
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._AD_BANNERSTATS_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._AD_BANNERSTATS_BANNER_LIST}></a>
-    &raquo;&raquo; <span class="page-title" aria-current="page"><a href="./index.php?action=BannerfinishList"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERFINISH_LIST}></a></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><a href="./index.php?action=BannerfinishList"><{$smarty.const._AD_BANNERSTATS_FINISH_LIST}></a></span>
 </nav>
 
 
-<h2><{$smarty.const._AD_BANNERSTATS_LANG_BANNERFINISH_LIST}>
+<h2><{$smarty.const._AD_BANNERSTATS_FINISH_LIST}>
     <{if isset($currentClient)}>
     ( <{$currentClient->getShow('name')}> )
     <{/if}>
 </h2>
 
-
-
 <div class="help-tips">
-    <{$smarty.const._AD_BANNERSTATS_LANG_BANNERFINISH_LIST_TIPS}>
+    <{$smarty.const._AD_BANNERSTATS_FINISH_LIST_TIPS}>
 </div>
+
+<{* ////— FILTER FORM (Placeholder - Add your actual filter form inputs here if desired) —\\\\ *}>
+<{*
+    To enable filtering on new fields, you would:
+    1. Add corresponding properties to BannerfinishFilterForm.class.php
+    2. Add input fields here. Example:
+    <form action="index.php?action=BannerfinishList" method="get" class="filter-form">
+        <input type="hidden" name="action" value="BannerfinishList">
+        <{if isset($currentClient)}><input type="hidden" name="cid" value="<{$currentClient->get('cid')}>"><{/if}>
+
+        <label for="filter_name"><{$smarty.const._AD_BANNERSTATS_BANNER_NAME}></label>
+        <input type="text" id="filter_name" name="name" value="<{$filterForm->get('name')|xoops_escape}>">
+
+        <label for="filter_banner_type"><{$smarty.const._AD_BANNERSTATS_BANNER_TYPE}></label>
+        <select id="filter_banner_type" name="banner_type">
+            <option value=""><{$smarty.const._ALL}></option>
+            <option value="image" <{if $filterForm->get('banner_type') == 'image'}>selected<{/if}>><{$smarty.const._AD_BANNERSTATS_BTYPE_IMAGE|default:"Image"}></option>
+            <option value="video" <{if $filterForm->get('banner_type') == 'video'}>selected<{/if}>><{$smarty.const._AD_BANNERSTATS_BTYPE_VIDEO|default:"Video"}></option>
+            <option value="html" <{if $filterForm->get('banner_type') == 'html'}>selected<{/if}>><{$smarty.const._AD_BANNERSTATS_BTYPE_HTML|default:"HTML"}></option>
+            <option value="ad_tag" <{if $filterForm->get('banner_type') == 'ad_tag'}>selected<{/if}>><{$smarty.const._AD_BANNERSTATS_BTYPE_ADTAG|default:"Ad Tag"}></option>
+        </select>
+        <input type="submit" value="<{$smarty.const._SUBMIT}>" class="button">
+    </form>
+*}>
 
 <{* ////— ACTION-CONTROL —\\\\ *}>
 <section data-layout="rows center-justify" class="action-control">
     <div>
-        <a href="index.php?action=BannerList" class="button"><{$smarty.const._AD_BANNERSTATS_LANG_BANNER_LIST}></a>
-        <a href="index.php?action=BannerclientList" class="button"><{$smarty.const._AD_BANNERSTATS_LANG_BANNERCLIENT_LIST}></a>
+        <a href="index.php?action=BannerList" class="button"><{$smarty.const._AD_BANNERSTATS_BANNER_LIST}></a>
+        <a href="index.php?action=BannerclientList" class="button"><{$smarty.const._AD_BANNERSTATS_CLIENT_LIST}></a>
     </div>
     <div class="control-view">
         <{* ////— DROPDOWN FILTER-SORT —\\\\ *}>
         <div class="dropdown button-icon" id="filter-sort">
-
-            <a href="#" class="dropdown-toggle button" title="filter sort"><img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options"></a>
+            <a href="#" class="dropdown-toggle button" aria-label="filter sort"><img class="svg" src="<{'icons/icon-list-order.svg'|theme}>" width="1em" height="1em" alt="options"></a>
             <div class="dropdown-content drop-top">
                 <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._AD_BANNERSTATS_LANG_BID}></h6>
+                    <h6><{$smarty.const._AD_BANNERSTATS_BID}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_BID}>" title="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_BID}>" title="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_BID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_BID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify inline">
-                    <h6><{$smarty.const._AD_BANNERSTATS_LANG_CLIENT_NAME}></h6>
+                    <h6><{$smarty.const._AD_BANNERSTATS_BANNER_NAME}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_CID}>" title="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_CID}>" title="<{$smarty.const._DESCENDING}>">&darr;
-                        </a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_NAME}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_NAME}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_BANNERSTATS_CLIENT_NAME}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_CID}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_CID}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify inline">
+                    <h6><{$smarty.const._AD_BANNERSTATS_BANNER_TYPE}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_BANNER_TYPE}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_BANNER_TYPE}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_BANNERSTATS_LANG_IMPRESSIONS}></h6>
+                    <h6><{$smarty.const._AD_BANNERSTATS_IMPRESSIONS}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_IMPRESSIONS}>" title="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_IMPRESSIONS}>" title="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_IMPRESSIONS}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_IMPRESSIONS}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_BANNERSTATS_LANG_CLICKS}></h6>
+                    <h6><{$smarty.const._AD_BANNERSTATS_CLICKS}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_CLICKS}>" title="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_CLICKS}>" title="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_CLICKS}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_CLICKS}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_BANNERSTATS_LANG_DATESTART}></h6>
+                    <h6><{$smarty.const._AD_BANNERSTATS_DATESTART}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_DATESTART}>" title="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_DATESTART}>" title="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_DATESTART}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_DATESTART}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
                 <div data-layout="row center-justify">
-                    <h6><{$smarty.const._AD_BANNERSTATS_LANG_DATEEND}></h6>
+                    <h6><{$smarty.const._AD_BANNERSTATS_DATEEND}></h6>
                     <div>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_DATEEND}>" title="<{$smarty.const._ASCENDING}>">&uarr;</a>
-                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_DATEEND}>" title="<{$smarty.const._DESCENDING}>">&darr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_DATEEND}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_DATEEND}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
+                    </div>
+                </div>
+                <div data-layout="row center-justify">
+                    <h6><{$smarty.const._AD_BANNERSTATS_REASON_FINISHED}></h6>
+                    <div>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=<{$smarty.const.BANNERFINISH_SORT_KEY_REASON_FINISHED}>" aria-label="<{$smarty.const._ASCENDING}>">&uarr;</a>
+                        <a class="btn" href="<{$pageNavi->renderUrlForSort()}>&amp;sort=-<{$smarty.const.BANNERFINISH_SORT_KEY_REASON_FINISHED}>" aria-label="<{$smarty.const._DESCENDING}>">&darr;</a>
                     </div>
                 </div>
             </div><{* ----- /Dropdown-content *}>
         </div><{* ----- /Dropdown *}>
-        <button class="help-admin button-icon" type='button' data-module='bannerstats' data-help-article='#help-bannerclient' title="<{$smarty.const._HELP}>"><b>?</b></button>
+        <button class="help-admin button-icon" type='button' data-module='bannerstats' data-help-article='#help-bannerfinish' aria-label="<{$smarty.const._HELP}>"><b>?</b></button>
     </div>
 </section>
 
 <table class="outer">
     <thead>
     <tr>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_BID}></th>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_CLIENT_NAME}></th>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_IMPRESSIONS}></th>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_CLICKS}></th>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_DATESTART}></th>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_DATEEND}></th>
-        <th><{$smarty.const._AD_BANNERSTATS_LANG_CONTROL}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_BID}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_BANNER_NAME}></th> 
+        <th><{$smarty.const._AD_BANNERSTATS_CLIENT_NAME}></th>
+        <th><{$smarty.const._AD_BANNERSTATS_BANNER_TYPE}></th> 
+        <th><{$smarty.const._AD_BANNERSTATS_IMPRESSIONS}></th> <{*- (Made) *}>
+        <th><{$smarty.const._AD_BANNERSTATS_CLICKS}></th> <{*- (Made) *}>
+        <th><{$smarty.const._AD_BANNERSTATS_DATESTART}></th> <{*- (Original) *}>
+        <th><{$smarty.const._AD_BANNERSTATS_DATEEND}></th> <{*- (Finished) *}>
+        <th><{$smarty.const._AD_BANNERSTATS_REASON_FINISHED}></th> 
+        <th><{$smarty.const._AD_BANNERSTATS_CONTROL}></th>
     </tr>
     </thead>
     <tbody>
     <{foreach item=obj from=$objects}>
     <tr>
         <td class="list_id"><{$obj->getShow('bid')}></td>
+        <td class="list_text"><{$obj->getShow('name')|default:"N/A"}></td> 
         <td class="list_title"><{$obj->mClient->getShow('name')}></td>
-        <td class="list_number"><{$obj->getShow('impressions')}></td>
-        <td class="list_number"><{$obj->getShow('clicks')}></td>
-        <td class="list_date"><{$obj->get('datestart')|xoops_formattimestamp}></td>
-        <td class="list_date"><{$obj->get('dateend')|xoops_formattimestamp}></td>
-        <td class="list_control">
-<a class="action-edit" href="./index.php?action=BannerfinishEdit&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._EDIT}>">
-    <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="<{$smarty.const._EDIT}>">
-</a>
-
-            <a class="action-edit" href="./index.php?action=BannerReactivate&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._EDIT}>">
-                <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="<{$smarty.const._EDIT}>">
-            </a>
-
-            <a class="action-delete" href="./index.php?action=BannerfinishDelete&amp;bid=<{$obj->getShow('bid')}>" title="<{$smarty.const._DELETE}>">
-                <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="<{$smarty.const._DELETE}>"></a>
-
+        <td class="list_select"><{$obj->getShow('banner_type')|default:"N/A"}></td> 
+        <td class="list_number"><{$obj->getShow('impressions_made')|default:0}></td> <{*- CORRECTED *}>
+        <td class="list_number"><{$obj->getShow('clicks_made')|default:0}></td>    <{*- CORRECTED *}>
+        <td class="list_date"><{$obj->get('datestart_original')|xoops_formattimestamp:"m"|default:"--"}></td> <{*- CORRECTED *}>
+        <td class="list_date"><{$obj->get('date_finished')|xoops_formattimestamp:"m"|default:"--"}></td>    <{*- CORRECTED *}>
+        <td class="list_text">
+            <{if $obj->getShow('finish_reason') == $smarty.const._BANNERSTATS_FINISH_IMPRESSIONS}>
+                <{$smarty.const._BANNERSTATS_FINISH_IMPRESSIONS}>
+                <div class="small text-muted">
+                    <{* Use impressions_made and imptotal_allocated from BannerfinishObject *}>
+                    <{$smarty.const._BANNERSTATS_FINISH_IMPRESSIONS_DETAIL|replace:"%d":$obj->getShow('impressions_made')|replace:"%d":$obj->getShow('imptotal_allocated')}>
+                </div>
+            <{elseif $obj->getShow('finish_reason') == $smarty.const._BANNERSTATS_FINISH_DATE_EXPIRED}>
+                <{$smarty.const._BANNERSTATS_FINISH_DATE_EXPIRED}>
+                <div class="small text-muted">
+                    <{* Use date_finished for when it actually expired, or dateend_original if that's more relevant for the message *}>
+                    <{$smarty.const._BANNERSTATS_FINISH_DATE_EXPIRED_MSG|replace:"%s":$obj->get('date_finished')|xoops_formattimestamp:"m"}>
+                    <{* Assuming _BANNERSTATS_FINISH_DATE_EXPIRED_MSG is like "Expired on %s" *}>
+                </div>
+            <{elseif $obj->getShow('finish_reason') == $smarty.const._BANNERSTATS_FINISH_ADMIN}>
+                <{$smarty.const._BANNERSTATS_FINISH_ADMIN}>
+                <{if $obj->getShow('finished_by_uid') > 0}>
+                <div class="small text-muted">
+                    <{assign var="finish_user" value=$obj->getShow('finished_by_uid')|xoops_getLinkedUnameFromId}>
+                    <{$smarty.const._BANNERSTATS_FINISH_BY_USER|replace:"%s":$smarty.const._BANNERSTATS_FINISH_ADMIN|replace:"%s":$finish_user}>
+                </div>
+                <{/if}>
+            <{elseif $obj->getShow('finish_reason') == $smarty.const._BANNERSTATS_FINISH_CLIENT}>
+                <{$smarty.const._BANNERSTATS_FINISH_CLIENT}>
+                <{if $obj->getShow('finished_by_uid') > 0}>
+                <div class="small text-muted">
+                    <{assign var="finish_user" value=$obj->getShow('finished_by_uid')|xoops_getLinkedUnameFromId}>
+                    <{$smarty.const._BANNERSTATS_FINISH_BY_USER|replace:"%s":$smarty.const._BANNERSTATS_FINISH_CLIENT|replace:"%s":$finish_user}>
+                </div>
+                <{/if}>
+            <{elseif $obj->getShow('finish_reason') == $smarty.const._BANNERSTATS_FINISH_MANUAL}>
+                <{$smarty.const._BANNERSTATS_FINISH_MANUAL}>
+                <{if $obj->getShow('finished_by_uid') > 0}>
+                <div class="small text-muted">
+                    <{assign var="finish_user" value=$obj->getShow('finished_by_uid')|xoops_getLinkedUnameFromId}>
+                    <{$smarty.const._BANNERSTATS_FINISH_BY_USER|replace:"%s":$smarty.const._BANNERSTATS_FINISH_MANUAL|replace:"%s":$finish_user}>
+                </div>
+                <{/if}>
+            <{else}>
+                <{$obj->getShow('finish_reason')|xoops_escape|default:"N/A"}>
+            <{/if}>
         </td>
+        <td class="list_control">
+            <a class="action-edit" href="./index.php?action=BannerReactivate&amp;bid=<{$obj->getShow('bid')}>" aria-label="<{$smarty.const._AD_BANNERSTATS_BANNER_REACTIVATE|default:'Reactivate'}>">
+                <img class="svg" src="<{'icons/icon-edit.svg'|theme}>" alt="reactivate">
+            </a>
+            <a class="action-delete" href="./index.php?action=BannerfinishDelete&amp;bid=<{$obj->getShow('bid')}>" aria-label="<{$smarty.const._DELETE}>">
+                <img class="svg" src="<{'icons/icon-delete.svg'|theme}>" alt="delete">
+            </a>
+            <{* Removed the duplicate BannerfinishEdit link as the action was removed, and consolidated reactivate/delete links *}>
+        </td>
+    </tr>
+    <{foreachelse}>
+    <tr>
+        <td colspan="10" class="text-center"><{$smarty.const._AD_BANNERSTATS_INFO_NO_BANNERFINISH_FOUND|default:"No finished banners found."}></td>
     </tr>
     <{/foreach}>
     </tbody>
     <tfoot>
     <tr>
-        <td colspan="7"><nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav></td>
+        <td colspan="10"><nav class="pagination"><{xoops_pagenavi pagenavi=$pageNavi}></nav></td>
     </tr>
     </tfoot>
 </table>
-
-

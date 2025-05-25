@@ -1,8 +1,26 @@
 <?php
+/**
+ * Bannerstats - Module for XCL
+ *
+ * @package    Bannerstats
+ * @author     Nuno Luciano (aka gigamaster) XCL PHP8
+ * @copyright  2005-2025 The XOOPSCube Project
+ * @license    GPL V2
+ * @version    v2.5.0 Release XCL 
+ * @link       http://github.com/xoopscube/
+ **/
+
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
+// Ensure the base classes are loaded
+require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/object.php';
+require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/handler.php';
+
+// Load the required module classes
+require_once XOOPS_MODULE_PATH . '/bannerstats/class/Banner.class.php';
+require_once XOOPS_MODULE_PATH . '/bannerstats/class/handler/Banner.class.php';
 require_once XOOPS_MODULE_PATH . '/bannerstats/admin/class/Action.class.php'; // Or whatever you name the file containing Bannerstats_Action
 
 define('BANNERSTATS_FRAME_PERFORM_SUCCESS', 1);
@@ -25,7 +43,7 @@ class Bannerstats_ActionFrame
 
     /**
      * Constructor
-     * @param bool $admin Whether this is an admin action
+     * @param bool $admin action
      */
     public $mCreateAction = null;
     public function __construct($admin)
@@ -34,13 +52,6 @@ class Bannerstats_ActionFrame
         $this->mCreateAction =new XCube_Delegate();
         $this->mCreateAction->register('Bannerstats_ActionFrame.CreateAction');
         $this->mCreateAction->add([&$this, '_createAction']);
-                // Set a default action name if none is provided later
-        // This ensures mActionName is not null when execute() is called
-/*         if ($this->mAdminFlag) {
-            $this->mActionName = 'BannerList'; // Default admin action
-        } else {
-            $this->mActionName = 'Default'; // Or whatever your default public action is
-        } */
     }
 
     /**
@@ -51,12 +62,11 @@ class Bannerstats_ActionFrame
     {
         $this->mActionName = $name;
 
-        //
-        // Temp FIXME!
-        //
         $root =& XCube_Root::getSingleton();
         $root->mContext->setAttribute('actionName', $name);
-        $root->mContext->mModule->setAttribute('actionName', $name);
+        if (is_object($root->mContext->mModule)) {
+            $root->mContext->mModule->setAttribute('actionName', $name);
+        }
     }
 
     public function _createAction(&$actionFrame)
@@ -65,56 +75,57 @@ class Bannerstats_ActionFrame
             return;
         }
 
-        //
-        // Create action object by mActionName
-        //
         $className = 'Bannerstats_' . ucfirst($actionFrame->mActionName) . 'Action';
-        $fileName = ucfirst($actionFrame->mActionName) . 'Action';
+        $fileNamePart = ucfirst($actionFrame->mActionName) . 'Action';
         if ($actionFrame->mAdminFlag) {
-            $fileName = XOOPS_MODULE_PATH . "/bannerstats/admin/actions/{$fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/bannerstats/admin/actions/{$fileNamePart}.class.php";
         } else {
-            $fileName = XOOPS_MODULE_PATH . "/bannerstats/actions/{$fileName}.class.php";
+            $fileName = XOOPS_MODULE_PATH . "/bannerstats/actions/{$fileNamePart}.class.php";
         }
 
         if (!file_exists($fileName)) {
-            die();
+            error_log("Bannerstats_ActionFrame: Action file not found: " . $fileName . " for action " . $actionFrame->mActionName);
+            $actionFrame->mAction = null;
+            return;
         }
 
         require_once $fileName;
 
-        if (XC_CLASS_EXISTS($className)) {
+        if (class_exists($className)) {
             $actionFrame->mAction =new $className($actionFrame->mAdminFlag);
+        } else {
+            error_log("Bannerstats_ActionFrame: Action class not found: " . $className . " in file " . $fileName);
+            $actionFrame->mAction = null;
         }
     }
 
     public function execute(&$controller)
     {
-        // If mActionName hasn't been set externally via setActionName(),
-        // determine it now from the request or use a default.
         if ($this->mActionName === null) {
             $requestedAction = isset($_REQUEST['action']) ? trim(xoops_getrequest('action')) : '';
-            if (!empty($requestedAction)) {
+            if (!empty($requestedAction) && preg_match("/^\w+$/", $requestedAction)) {
                 $this->setActionName($requestedAction);
             } else {
-                // Set a default if no action is in the request
-                $this->setActionName($this->mAdminFlag ? 'BannerList' : 'Default');
+                $this->setActionName($this->mAdminFlag ? 'BannerList' : 'Login');
             }
         }
         
-        // Now $this->mActionName is guaranteed to be a string.
-        // The preg_match validates its format.
         if (!preg_match("/^\w+$/", $this->mActionName)) {
-            error_log("Bannerstats_ActionFrame: Invalid action name format: '" . $this->mActionName . "'");
-            // You might want to redirect to a default valid action here instead of die()
-            die("Invalid action name format.");
+            error_log("Bannerstats_ActionFrame: Invalid action name format after determination: '" . $this->mActionName . "'");
+            $defaultSafeAction = $this->mAdminFlag ? 'BannerList' : 'Login';
+            $moduleDirname = $controller->mRoot->mContext->mModule ? $controller->mRoot->mContext->mModule->getVar('dirname') : 'bannerstats';
+            $controller->executeForward(XOOPS_URL . "/modules/" . $moduleDirname . "/index.php?action=" . $defaultSafeAction);
+            return;
         }
-        //
-        // Create action object by mActionName
-        //
+
         $this->mCreateAction->call(new XCube_Ref($this));
 
         if (!(is_object($this->mAction) && $this->mAction instanceof \Bannerstats_Action)) {
-            die();    //< TODO
+            error_log("Bannerstats_ActionFrame: Action object is not valid for action name: " . $this->mActionName . ". mAction is: " . gettype($this->mAction));
+            $errorAction = $this->mAdminFlag ? 'BannerList' : 'Login';
+            $moduleDirname = $controller->mRoot->mContext->mModule ? $controller->mRoot->mContext->mModule->getVar('dirname') : 'bannerstats';
+            $controller->executeForward(XOOPS_URL . "/modules/" . $moduleDirname . "/index.php?action=" . $errorAction . "&err=invalid_action_obj");
+            return;
         }
 
         $handler =& xoops_gethandler('config');
@@ -125,9 +136,8 @@ class Bannerstats_ActionFrame
         if (!$this->mAction->hasPermission($controller, $controller->mRoot->mContext->mXoopsUser)) {
             if ($this->mAdminFlag) {
                 $controller->executeForward(XOOPS_URL . '/admin.php');
-            } else {
-                $controller->executeForward(XOOPS_URL);
             }
+            return; 
         }
 
         if ('POST' == xoops_getenv('REQUEST_METHOD')) {
@@ -136,84 +146,34 @@ class Bannerstats_ActionFrame
             $viewStatus = $this->mAction->getDefaultView($controller, $controller->mRoot->mContext->mXoopsUser);
         }
 
+        $renderTarget = $controller->mRoot->mContext->mModule->getRenderTarget();
+        if (!$renderTarget instanceof XCube_RenderTarget) {
+            error_log("Bannerstats_ActionFrame: RenderTarget is not available. View status: " . $viewStatus);
+            if ($viewStatus !== BANNERSTATS_FRAME_VIEW_NONE) {
+                echo "Critical Error: Page rendering system not initialized.";
+                exit;
+            }
+        }
+
         switch ($viewStatus) {
             case BANNERSTATS_FRAME_VIEW_SUCCESS:
-                $this->mAction->executeViewSuccess($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
+                $this->mAction->executeViewSuccess($controller, $controller->mRoot->mContext->mXoopsUser, $renderTarget);
                 break;
-
             case BANNERSTATS_FRAME_VIEW_ERROR:
-                $this->mAction->executeViewError($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
+                $this->mAction->executeViewError($controller, $controller->mRoot->mContext->mXoopsUser, $renderTarget);
                 break;
-
             case BANNERSTATS_FRAME_VIEW_INDEX:
-                $this->mAction->executeViewIndex($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
+                $this->mAction->executeViewIndex($controller, $controller->mRoot->mContext->mXoopsUser, $renderTarget);
                 break;
-
             case BANNERSTATS_FRAME_VIEW_INPUT:
-                $this->mAction->executeViewInput($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
+                $this->mAction->executeViewInput($controller, $controller->mRoot->mContext->mXoopsUser, $renderTarget);
                 break;
-
             case BANNERSTATS_FRAME_VIEW_PREVIEW:
-                $this->mAction->executeViewPreview($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
+                $this->mAction->executeViewPreview($controller, $controller->mRoot->mContext->mXoopsUser, $renderTarget);
                 break;
-
             case BANNERSTATS_FRAME_VIEW_CANCEL:
-                $this->mAction->executeViewCancel($controller, $controller->mRoot->mContext->mXoopsUser, $controller->mRoot->mContext->mModule->getRenderTarget());
+                $this->mAction->executeViewCancel($controller, $controller->mRoot->mContext->mXoopsUser, $renderTarget);
                 break;
         }
     }
 }
-/* 
-class Bannerstats_Action
-{
-
-    public $_mAdminFlag = false;
-
-    public function __construct($adminFlag = false)
-    {
-        $this->_mAdminFlag = $adminFlag;
-    }
-
-    public function hasPermission(&$controller, &$xoopsUser)
-    {
-        return true;
-    }
-
-    public function prepare(&$controller, &$xoopsUser, $moduleConfig)
-    {
-    }
-
-    public function getDefaultView(&$controller, &$xoopsUser)
-    {
-        return BANNERSTATS_FRAME_VIEW_NONE;
-    }
-
-    public function execute(&$controller, &$xoopsUser)
-    {
-        return BANNERSTATS_FRAME_VIEW_NONE;
-    }
-
-    public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
-    {
-    }
-
-    public function executeViewError(&$controller, &$xoopsUser, &$render)
-    {
-    }
-
-    public function executeViewIndex(&$controller, &$xoopsUser, &$render)
-    {
-    }
-
-    public function executeViewInput(&$controller, &$xoopsUser, &$render)
-    {
-    }
-
-    public function executeViewPreview(&$controller, &$xoopsUser, &$render)
-    {
-    }
-
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
-    {
-    }
-} */

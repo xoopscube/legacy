@@ -1,8 +1,14 @@
 <?php
 /**
- * @package bannerstats
- * @version $Id: BannerAdminReactivateForm.class.php,v 1.2 2024/05/19 Nuno Exp $
- */
+ * Bannerstats - Module for XCL
+ *
+ * @package    Bannerstats
+ * @author     Nuno Luciano (aka gigamaster) XCL PHP8
+ * @copyright  2005-2025 The XOOPSCube Project
+ * @license    GPL V2
+ * @version    v2.5.0 Release XCL 
+ * @link       http://github.com/xoopscube/
+ **/
 
 if (!defined('XOOPS_ROOT_PATH')) {
     exit();
@@ -10,74 +16,266 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Validator.class.php';
+require_once XOOPS_MODULE_PATH . '/bannerstats/class/handler/BannerFinish.class.php';
+require_once XOOPS_MODULE_PATH . '/bannerstats/class/Banner.class.php';
 
-/***
- * @internal
- * Form for reactivating banners from the bannerfinish table
- */
+
 class Bannerstats_BannerAdminReactivateForm extends XCube_ActionForm
 {
-    public function getTokenName()
+    // Define allowed banner types (BannerAdminEditForm)
+    protected array $allowedBannerTypes = ['image', 'html', 'ad_tag', 'video'];
+    const DEFAULT_WEIGHT = 10;
+
+
+    public function getTokenName(): string
     {
-        return 'module.bannerstats.BannerAdminReactivateForm.TOKEN' . $this->get('bid');
+        return 'module.bannerstats.BannerAdminReactivateForm.TOKEN.' . $this->get('original_bid');
     }
 
     public function prepare()
     {
+        //
         // Set form properties
-        $this->mFormProperties['bid'] = new XCube_IntProperty('bid');
+        //
+        $this->mFormProperties['original_bid'] = new XCube_IntProperty('original_bid');
         $this->mFormProperties['cid'] = new XCube_IntProperty('cid');
+        $this->mFormProperties['campaign_id'] = new XCube_IntProperty('campaign_id'); // Optional
+        $this->mFormProperties['name'] = new XCube_StringProperty('name');
+        $this->mFormProperties['banner_type'] = new XCube_StringProperty('banner_type');
         $this->mFormProperties['imptotal'] = new XCube_IntProperty('imptotal');
         $this->mFormProperties['imageurl'] = new XCube_StringProperty('imageurl');
         $this->mFormProperties['clickurl'] = new XCube_StringProperty('clickurl');
-        $this->mFormProperties['htmlbanner'] = new XCube_IntProperty('htmlbanner');
         $this->mFormProperties['htmlcode'] = new XCube_TextProperty('htmlcode');
-        
-        // Set field properties
-        $this->mFieldProperties['bid'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['bid']->setDependsByArray(['required']);
-        $this->mFieldProperties['bid']->addMessage('required', _AD_BANNERSTATS_ERROR_REQUIRED, _AD_BANNERSTATS_LANG_BID);
-        
-        $this->mFieldProperties['cid'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['cid']->setDependsByArray(['required']);
-        $this->mFieldProperties['cid']->addMessage('required', _AD_BANNERSTATS_ERROR_REQUIRED, _AD_BANNERSTATS_LANG_CID);
-        
-        $this->mFieldProperties['imptotal'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['imptotal']->setDependsByArray(['required', 'min']);
-        $this->mFieldProperties['imptotal']->addMessage('required', _AD_BANNERSTATS_ERROR_REQUIRED, _AD_BANNERSTATS_LANG_IMPTOTAL);
-        $this->mFieldProperties['imptotal']->addMessage('min', '_AD_BANNERSTATS_ERROR_MIN', _AD_BANNERSTATS_LANG_IMPTOTAL, '1');
-        $this->mFieldProperties['imptotal']->addVar('min', '1');
-        
-        $this->mFieldProperties['imageurl'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['imageurl']->setDependsByArray(['maxlength']);
-        $this->mFieldProperties['imageurl']->addMessage('maxlength', _AD_BANNERSTATS_ERROR_MAXLENGTH, _AD_BANNERSTATS_LANG_IMAGEURL, '255');
-        $this->mFieldProperties['imageurl']->addVar('maxlength', '255');
-        
-        $this->mFieldProperties['clickurl'] = new XCube_FieldProperty($this);
-        $this->mFieldProperties['clickurl']->setDependsByArray(['maxlength']);
-        $this->mFieldProperties['clickurl']->addMessage('maxlength', _AD_BANNERSTATS_ERROR_MAXLENGTH, _AD_BANNERSTATS_LANG_CLICKURL, '255');
-        $this->mFieldProperties['clickurl']->addVar('maxlength', '255');
+        $this->mFormProperties['width'] = new XCube_IntProperty('width');
+        $this->mFormProperties['height'] = new XCube_IntProperty('height');
+        $this->mFormProperties['start_date'] = new XCube_StringProperty('start_date');
+        $this->mFormProperties['end_date'] = new XCube_StringProperty('end_date');
+        $this->mFormProperties['timezone'] = new XCube_StringProperty('timezone');
+        $this->mFormProperties['status'] = new XCube_IntProperty('status');
+        $this->mFormProperties['weight'] = new XCube_IntProperty('weight');
+
+        //
+        // Set field properties (validations)
+        //
+        $this->mFieldProperties['width'] = new XCube_FieldProperty($this);
+        $this->mFieldProperties['width']->setDependsByArray(['min']);
+        $this->mFieldProperties['width']->addMessage('min', _AD_BANNERSTATS_ERROR_MIN, _AD_BANNERSTATS_WIDTH, '0');
+        $this->mFieldProperties['width']->addVar('min', '0');
+
+        $this->mFieldProperties['height'] = new XCube_FieldProperty($this);
+        $this->mFieldProperties['height']->setDependsByArray(['min']);
+        $this->mFieldProperties['height']->addMessage('min', _AD_BANNERSTATS_ERROR_MIN, _AD_BANNERSTATS_HEIGHT, '0');
+        $this->mFieldProperties['height']->addVar('min', '0');
+
+        $this->mFieldProperties['start_date'] = new XCube_FieldProperty($this);
+        $this->mFieldProperties['end_date'] = new XCube_FieldProperty($this);
+
+        $this->mFieldProperties['timezone'] = new XCube_FieldProperty($this);
+        $this->mFieldProperties['timezone']->setDependsByArray(['maxlength']);
+        $this->mFieldProperties['timezone']->addMessage('maxlength', _AD_BANNERSTATS_ERROR_MAXLENGTH, _AD_BANNERSTATS_TIMEZONE, '50');
+        $this->mFieldProperties['timezone']->addVar('maxlength', '50');
+
+        $this->mFieldProperties['status'] = new XCube_FieldProperty($this);
+        $this->mFieldProperties['status']->setDependsByArray(['required', 'intRange']); 
+        $this->mFieldProperties['status']->addMessage('required', _AD_BANNERSTATS_ERROR_REQUIRED, _AD_BANNERSTATS_STATUS);
+        $this->mFieldProperties['status']->addMessage('intRange', _AD_BANNERSTATS_ERROR_STATUS, _AD_BANNERSTATS_STATUS); 
+        $this->mFieldProperties['status']->addVar('min', 0);
+        $this->mFieldProperties['status']->addVar('max', 1);
+
+        $this->mFieldProperties['weight'] = new XCube_FieldProperty($this);
+        $this->mFieldProperties['weight']->setDependsByArray(['required', 'min']);
+        $this->mFieldProperties['weight']->addMessage('required', _AD_BANNERSTATS_ERROR_REQUIRED, _AD_BANNERSTATS_WEIGHT);
+        $this->mFieldProperties['weight']->addMessage('min', _AD_BANNERSTATS_ERROR_MIN, _AD_BANNERSTATS_WEIGHT, '0');
+        $this->mFieldProperties['weight']->addVar('min', '0');
     }
 
+    public function validate()
+    {
+        parent::validate();
+
+        // Validate Banner Type
+        $bannerType = $this->get('banner_type');
+        if (!in_array($bannerType, $this->allowedBannerTypes, true)) {
+            $this->addErrorMessage(XCube_Utils::formatString(defined('_AD_BANNERSTATS_ERROR_INVALID_VALUE') ? _AD_BANNERSTATS_ERROR_INVALID_VALUE : "{0} has an invalid value.", _AD_BANNERSTATS_BANNER_TYPE));
+        }
+
+        if ($bannerType === 'image') {
+            if (strlen((string)$this->get('imageurl')) === 0) {
+                $this->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_REQUIRED, _AD_BANNERSTATS_IMAGEURL));
+            }
+            $clickUrl = $this->get('clickurl');
+            if (!empty($clickUrl) && filter_var($clickUrl, FILTER_VALIDATE_URL) === false) {
+                $this->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_URL, _AD_BANNERSTATS_CLICKURL));
+            }
+        } elseif (in_array($bannerType, $this->allowedBannerTypes, true) && $bannerType !== 'image') { // html, ad_tag, video
+            if (strlen((string)$this->get('htmlcode')) === 0) {
+                $this->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_REQUIRED, _AD_BANNERSTATS_HTMLCODE));
+            }
+        }
+
+        $startDateStr = trim((string)$this->get('start_date'));
+        $endDateStr = trim((string)$this->get('end_date'));
+        
+        $startDateObject = null;
+        $endDateObject = null;
+
+        if (!empty($startDateStr)) {
+            $startDateObject = $this->parseValidDateTimeFormat($startDateStr);
+            if ($startDateObject === false) {
+                $this->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME_FORMAT_NEW, _AD_BANNERSTATS_START_DATE, 'YYYY-MM-DDTHH:MM or YYYY-MM-DD HH:MM:SS'));
+            }
+        }
+
+        if (!empty($endDateStr)) {
+            $endDateObject = $this->parseValidDateTimeFormat($endDateStr);
+            if ($endDateObject === false) {
+                $this->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME_FORMAT_NEW, _AD_BANNERSTATS_DATE_END, 'YYYY-MM-DDTHH:MM or YYYY-MM-DD HH:MM:SS'));
+            }
+        }
+
+        if ($startDateObject instanceof DateTime && $endDateObject instanceof DateTime) {
+            if ($endDateObject < $startDateObject) {
+                $this->addErrorMessage(_AD_BANNERSTATS_ERROR_DATE_ORDER);
+            }
+        }
+
+        // Validate Status (must be 0 or 1) - already handled by intRange in prepare()
+        // $status = $this->get('status');
+        // if (!in_array((int)$status, [0, 1], true)) {
+        //     $this->addErrorMessage(XCube_Utils::formatString(defined('_AD_BANNERSTATS_ERROR_INVALID_VALUE') ? _AD_BANNERSTATS_ERROR_INVALID_VALUE : "{0} has an invalid value.", _AD_BANNERSTATS_STATUS));
+        // }
+    }
+
+    /**
+     * Parses the given string against known valid date/datetime formats.
+     * Primarily expects 'Y-m-d\TH:i' from datetime-local inputs.
+     *
+     * @param string $dateTimeStr
+     * @param string|null &$parsedFormat Optional
+     * @return DateTime|false
+     */
+    protected function parseValidDateTimeFormat(string $dateTimeStr, ?string &$parsedFormat = null): DateTime|false
+    {
+        error_log("BannerAdminReactivateForm - Attempting to parse date string: '" . $dateTimeStr . "'");
+
+        $primaryFormat = 'Y-m-d\TH:i';
+        $dateTimeObject = DateTime::createFromFormat($primaryFormat, $dateTimeStr);
+        
+        if ($dateTimeObject !== false) {
+            $errors = DateTime::getLastErrors();
+            if ($errors === false || (is_array($errors) && $errors['warning_count'] === 0 && $errors['error_count'] === 0)) {
+                $parsedFormat = 'datetime-local';
+                error_log("BannerAdminReactivateForm - Successfully parsed '" . $dateTimeStr . "' with primary format '" . $primaryFormat . "'");
+                return $dateTimeObject;
+            } else {
+                error_log("BannerAdminReactivateForm - Parsed '" . $dateTimeStr . "' with primary format '" . $primaryFormat . "' but found errors/warnings: " . print_r($errors, true));
+            }
+        }
+
+        $fallbackFormats = [
+            'db-datetime'    => 'Y-m-d H:i:s',
+            'db-date'        => 'Y-m-d',
+        ];
+
+        foreach ($fallbackFormats as $key => $format) {
+            $dateTimeObject = DateTime::createFromFormat($format, $dateTimeStr);
+            if ($dateTimeObject !== false) {
+                $errors = DateTime::getLastErrors();
+                if ($errors === false || (is_array($errors) && $errors['warning_count'] === 0 && $errors['error_count'] === 0)) {
+                    $parsedFormat = $key;
+                    error_log("BannerAdminReactivateForm - Successfully parsed '" . $dateTimeStr . "' with fallback format '" . $format . "'");
+                    return $dateTimeObject;
+                } else {
+                     error_log("BannerAdminReactivateForm - Parsed '" . $dateTimeStr . "' with fallback format '" . $format . "' but found errors/warnings: " . print_r($errors, true));
+                }
+            }
+        }
+        
+        error_log("BannerAdminReactivateForm - Failed to parse '" . $dateTimeStr . "' with any known format.");
+        $parsedFormat = null;
+        return false;
+    }
+
+    /**
+     * Loads data from a Bannerstats_BannerfinishObject into the form for reactivation
+     *
+     * @param Bannerstats_BannerfinishObject $obj
+     */
     public function load(&$obj)
     {
-        $this->set('bid', $obj->get('bid'));
+        if (!($obj instanceof Bannerstats_BannerfinishObject)) {
+            return;
+        }
+
+        $this->set('original_bid', $obj->get('bid'));
         $this->set('cid', $obj->get('cid'));
-        $this->set('imptotal', 1000); // Default value
-        $this->set('imageurl', $obj->get('imageurl'));
-        $this->set('clickurl', $obj->get('clickurl'));
-        $this->set('htmlbanner', $obj->get('htmlbanner'));
-        $this->set('htmlcode', $obj->get('htmlcode'));
+        $this->set('campaign_id', $obj->get('campaign_id'));
+        $this->set('name', $obj->get('name', 'n'));
+        $this->set('banner_type', $obj->get('banner_type'));
+        $this->set('imageurl', $obj->get('imageurl', 'n'));
+        $this->set('clickurl', $obj->get('clickurl', 'n'));
+        $this->set('htmlcode', $obj->get('htmlcode', 'n'));
+        $this->set('width', $obj->get('width'));
+        $this->set('height', $obj->get('height'));
+        $this->set('timezone', $obj->get('timezone_original', 'n'));
+        $this->set('weight', self::DEFAULT_WEIGHT);
+        
+        // Defaults for reactivation
+        $root = XCube_Root::getSingleton();
+        $moduleConfig = $root->mContext->mModuleConfig ?? [];
+        $minImpressions = isset($moduleConfig['min_impressions']) ? (int)$moduleConfig['min_impressions'] : 1000;
+        $this->set('imptotal', $minImpressions > 0 ? $minImpressions : 1000);
+
+        $this->set('start_date', date('Y-m-d\TH:i'));
+        $this->set('end_date', '');
+        $this->set('status', 1);
     }
 
+    /**
+     * Updates a new Bannerstats_BannerObject with data from the form
+     *
+     * @param Bannerstats_BannerObject $obj
+     */
     public function update(&$obj)
     {
-        $obj->set('bid', $this->get('bid'));
+        if (!($obj instanceof Bannerstats_BannerObject)) {
+            return;
+        }
+
         $obj->set('cid', $this->get('cid'));
+        $obj->set('campaign_id', $this->get('campaign_id'));
+        $obj->set('name', $this->get('name'));
+        $obj->set('banner_type', $this->get('banner_type'));
         $obj->set('imptotal', $this->get('imptotal'));
-        $obj->set('imageurl', $this->get('imageurl'));
-        $obj->set('clickurl', $this->get('clickurl'));
-        $obj->set('htmlbanner', $this->get('htmlbanner'));
-        $obj->set('htmlcode', $this->get('htmlcode'));
+
+        $bannerType = $this->get('banner_type');
+        if ($bannerType === 'image') {
+            $obj->set('imageurl', $this->get('imageurl'));
+            $obj->set('clickurl', $this->get('clickurl'));
+            $obj->set('htmlcode', '');
+        } elseif (in_array($bannerType, $this->allowedBannerTypes, true)) {
+            $obj->set('htmlcode', $this->get('htmlcode'));
+            $obj->set('imageurl', '');
+            $obj->set('clickurl', '');
+        }
+
+        $obj->set('width', $this->get('width'));
+        $obj->set('height', $this->get('height'));
+
+        $startDateStr = $this->get('start_date');
+        $obj->set('start_date', !empty($startDateStr) ? $startDateStr : null);
+
+        $endDateStr = $this->get('end_date');
+        $obj->set('end_date', !empty($endDateStr) ? $endDateStr : null);
+
+        $obj->set('timezone', $this->get('timezone'));
+        $obj->set('status', $this->get('status'));
+        $obj->set('weight', $this->get('weight'));
+
+        $obj->set('impmade', 0);
+        $obj->set('clicks', 0);
+        $obj->set('last_impression_time', 0);
+        $obj->set('last_click_time', 0);
+        $obj->set('date_created', time());
     }
 }

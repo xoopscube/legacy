@@ -1,0 +1,9 @@
+<{* Campaign Banner Display Block Template *}>
+<{if $block.content && $block.content|trim != "" && $block.content|strpos:"<!-- Bannerstats: No banner found" === false}>
+    <div class="bannerstats-campaign-banner-block">
+        <{$block.content}> 
+    </div>
+<{else}>
+    <{* Optionally display nothing or a placeholder if no banner content *}>
+    <{* <!-- No campaign banner to display for current options --> *}>
+<{/if}>

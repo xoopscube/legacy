@@ -1,0 +1,70 @@
+<h2><{$pageTitle}></h2>
+<p><{$pageDescription}></p>
+
+<{if $bannerstats_success_messages}>
+  <div class="success">
+    <ul>
+      <{foreach item=msg from=$bannerstats_success_messages}>
+        <li><{$msg}></li>
+      <{/foreach}>
+    </ul>
+  </div>
+<{/if}>
+
+<{if $bannerstats_error_messages}>
+  <div class="danger">
+    <ul>
+      <{foreach item=msg from=$bannerstats_error_messages}>
+        <li><{$msg}></li>
+      <{/foreach}>
+    </ul>
+  </div>
+<{/if}>
+
+<{if $bannerstats_warning_messages}>
+  <div class="warning">
+    <ul>
+      <{foreach item=msg from=$bannerstats_warning_messages}>
+        <li><{$msg}></li>
+      <{/foreach}>
+    </ul>
+  </div>
+<{/if}>
+
+
+<form action="index.php?action=BannerEmailTest" method="post">
+  <{xoops_token form=$actionForm}>
+  <{xoops_input type=hidden name=bid value=$actionForm->get('bid')}>
+    
+  <div class="form-group">
+    <label for="bid">EMAILTEST_SELECT_BANNER</label>
+    <input type="number" class="form-control" id="bid" name="bid" value="<{$actionForm->get('bid')}>" placeholder="EMAILTEST_BANNER_ID" required>
+    
+    <{if $activeBanners}>
+      <small class="form-text text-muted">Or select from active banners:</small>
+
+      <select class="form-control mt-1" onchange="document.getElementById('bid').value = this.value;">
+        <option value="">-- SELECT_BANNER</option>
+        <{foreach item=banner from=$activeBanners}>
+          <option value="<{$banner->get('bid')}>"><{$banner->getShow('name')|escape}> (ID: <{$banner->get('bid')}>)</option>
+        <{/foreach}>
+      </select>
+    <{/if}>
+
+  </div>
+
+  <hr />
+
+  <div class="form-group">
+    <label for="email_type">SELECT_EMAIL_TYPE</label>
+    <select class="form-control" id="email_type" name="email_type" required>
+      <{foreach from=$emailTypes key=typeKey item=typeName}>
+        <option value="<{$typeKey}>"><{$typeName}></option>
+      <{/foreach}>
+    </select>
+  </div>
+
+  <hr />
+  
+  <button type="submit" class="btn btn-primary">SEND_EMAIL</button>
+</form>

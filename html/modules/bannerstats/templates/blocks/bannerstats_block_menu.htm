@@ -1,0 +1,20 @@
+<{* Bannerstats Client Menu Block Template *}>
+<div class="bannerstats-client-menu">
+    <{if $block.title}>
+        <h4><{$block.title}></h4>
+    <{/if}>
+
+    <{if $block.welcome_message}>
+        <p class="welcome-message"><{$block.welcome_message}></p>
+    <{/if}>
+
+    <{if $block.menu_items}>
+        <ul>
+            <{foreach item=item from=$block.menu_items}>
+                <li><a href="<{$item.link}>"><{$item.title}></a></li>
+            <{/foreach}>
+        </ul>
+    <{else}>
+        <p><{* Optional: Message if no menu items are available *}></p>
+    <{/if}>
+</div>

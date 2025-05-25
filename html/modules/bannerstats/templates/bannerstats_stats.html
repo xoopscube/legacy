@@ -1,5 +1,3 @@
-<{* bannerstats_stats.html *}>
-
 <h2><{$pageTitle|default:$xoops_pagetitle}></h2>
 
 <div style="margin-bottom: 15px; text-align: right;">
@@ -11,23 +9,16 @@
     <h3><{$smarty.const._MD_BANNERSTATS_ACTIVE_BANNERS|default:"Current Active Banners"}></h3>
         
     <{foreach item=banner from=$activeBanners}>
-
     <article class="banner-preview">
-        <{$banner.preview}>    
-        <{if $banner.stats_note}>
-        <footer>
-            <small>
-                <{$banner.stats_note}>
-            </small>
-        </footer>
-        <{/if}>
-    </article>
+        <header>
+        <{$banner.preview}>
+        </header>
 
         <table class="outer" cellspacing="1" width="100%">
         <thead>
             <tr>
-                <th><{$activeBanners[0].impressions_made_label|default:'Impressions Made'}></th>
-                <th><{$activeBanners[0].clicks_received_label|default:'Clicks Received'}></th>
+                <th><{$activeBanners[0].impressions_made_label|default:'Impressions'}></th>
+                <th><{$activeBanners[0].clicks_received_label|default:'Clicks'}></th>
                 <th><{$activeBanners[0].current_ctr_label|default:'Current CTR'}></th>
                 <th><{$activeBanners[0].impressions_total_purchased_label|default:'Total Purchased'}></th>
                 <th><{$activeBanners[0].impressions_remaining_label|default:'Leftover'}></th>
@@ -43,49 +34,68 @@
                 <td><{$banner.impressions_remaining}></td>
                 <td>
                     <a href="<{$banner.email_stats_link}>"><{$smarty.const._MD_BANNERSTATS_EMAIL_STATS|default:"Email Stats"}></a>
-                    <{* Only show Manage URL link for non-HTML banners with a clickurl field *}>
+                    
+                    <{* MANAGE URL LINK *}>
+                    <{assign var="showManageUrl" value=false}>
+                    <{assign var="linkForManageUrl" value=""}>
+
+                    <{* IMAGE banners *}>
                     <{if !$banner.is_html && $banner.clickurl}>
-                            <br><a href="<{$banner.manage_url_link}>"><{$smarty.const._MD_BANNERSTATS_MANAGE_URL|default:'Manage URL'}></a>
+                        <{assign var="showManageUrl" value=true}>
+                        <{assign var="linkForManageUrl" value=$banner.manage_url_link}>
+                    <{* HTML or VIDEO banners (excluding ad_tag) *}>
+                    <{elseif $banner.is_html && ($banner.banner_type == 'html' || $banner.banner_type == 'video') && $banner.clickurl}>
+                        <{assign var="showManageUrl" value=true}>
+                        <{assign var="linkForManageUrl" value="<{$xoops_url}>/modules/<{$module_dirname}>/index.php?action=ChangeUrl&bid=<{$banner.bid}>"}>
                     <{/if}>
 
-                    <{if $banner.alert_message}>
-                        <div class="<{$banner.alert_class}>" style="margin-top:5px; padding:5px; border:1px solid red; font-size:0.9em;">
-                            <{$banner.alert_message}>
-                        </div>
-                    <{/if}>
+                    <{if $showManageUrl && $linkForManageUrl}>
+                        <br><a href="<{$linkForManageUrl}>"><{$smarty.const._MD_BANNERSTATS_MANAGE_URL|default:'Manage URL'}></a>
+                    <{/if}>               
                 </td>
             </tr>
-        <{/foreach}>
         </tbody>
     </table>
+    <{if $banner.stats_note || $banner.alert_message}>
+    <footer>
+        <{if $banner.alert_message}>
+        <div class="<{$banner.alert_class}>" style="margin-top:5px; padding:5px;background:#700; border:1px solid red; font-size:0.9em;">
+            <{$banner.alert_message}>
+        </div>
+        <{/if}>
+        <{if $banner.stats_note}>
+        <small>
+            <{$banner.stats_note nofilter}>
+        </small>
+        <{/if}>
+    </footer>
+    <{/if}>
+</article>
+    <{/foreach}>
 <{else}>
     <p><{$smarty.const._MD_BANNERSTATS_NO_ACTIVE_BANNERS|default:"You have no active banners at this time."}></p>
 <{/if}>
 
+
 <{if $finishedBanners}>
+<hr />
     <h3>
         <{$smarty.const._MD_BANNERSTATS_FINISHED_BANNERS|default:"Previously Finished Banners"}>
     </h3>
 
-    <article class="banner-preview">
-        <{$banner.preview}>    
-        <{if $banner.stats_note}>
-        <footer>
-            <small>
-                <{$banner.stats_note}>
-            </small>
-        </footer>
-        <{/if}>
-    </article>
-
     <{foreach item=banner from=$finishedBanners}>
+    <article class="banner-preview">
+        <headr>
+        <{$banner.preview}>
+        </headr>
         <table class="outer" cellspacing="1" width="100%">
         <thead>
             <tr>
-                <th>Total Impressions Served</th>
-                <th>Total Clicks Received</th>
+                <th>Total Impressions</th>
+                <th>Total Clicks</th>
                 <th>Final CTR</th>
                 <th>Start Date</th>
+                <th>Date end</th>
                 <th>End Date</th>
             </tr>
         </thead>
@@ -94,12 +104,22 @@
                 <td><{$banner.total_impressions_served}></td>
                 <td><{$banner.total_clicks_received}></td>
                 <td><{$banner.final_ctr}><{if $banner.is_html && $banner.final_ctr != 'See Ad Service' && $banner.final_ctr != '0% (Site Data)'}>%<{/if}></td>
-                <td><{$banner.datestart}></td>
-                <td><{$banner.dateend}></td>
+                <td><{$banner.datestart_original}></td>
+                <td><{$banner.dateend_original}></td>
+                <td><{$banner.date_finished}></td>
             </tr>
-        <{/foreach}>
-    </tbody>
-    </table>
+        </tbody>
+        </table>
+
+        <{if $banner.stats_note}>
+        <footer>
+            <small>
+                <{$banner.stats_note}>
+            </small>
+        </footer>
+        <{/if}>
+    </article>
+    <{/foreach}>
 <{else}>
     <p><{$smarty.const._MD_BANNERSTATS_NO_FINISHED_BANNERS|default:"You have no previously finished banners."}></p>
 <{/if}>

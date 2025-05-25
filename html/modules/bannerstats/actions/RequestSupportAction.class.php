@@ -1,17 +1,24 @@
 <?php
-// html/modules/bannerstats/actions/RequestSupportAction.class.php
+/**
+ * Bannerstats - Module for XCL
+ * RequestSupportAction.class.php
+ *
+ * @package    Bannerstats
+ * @author     Nuno Luciano (aka gigamaster) XCL PHP8
+ * @copyright  2005-2025 The XOOPSCube Project
+ * @license    GPL V2
+ * @version    v2.5.0 Release XCL 
+ * @link       http://github.com/xoopscube/
+ **/
 
 if (!defined('XOOPS_ROOT_PATH')) {
     die('XOOPS root path not defined');
 }
 
-// Ensure BannerStatsManager is available
-require_once dirname(__DIR__) . '/class/BannerStatsManager.class.php';
-// Ensure BannerClientSession is available
-require_once dirname(__DIR__) . '/class/BannerClientSession.class.php';
-// Ensure BannerClientToken is available
-require_once dirname(__DIR__) . '/class/BannerClientToken.class.php';
-
+// Ensure dependent classes are loaded
+require_once XOOPS_MODULE_PATH . '/bannerstats/class/BannerClientSession.class.php';
+require_once XOOPS_MODULE_PATH . '/bannerstats/class/BannerStatsManager.class.php';
+require_once XOOPS_MODULE_PATH . '/bannerstats/class/BannerClientToken.class.php';
 
 class Bannerstats_RequestSupportAction
 {
@@ -24,7 +31,7 @@ class Bannerstats_RequestSupportAction
         global $xoopsTpl, $xoopsConfig;
         $this->xoopsTpl = $xoopsTpl;
         $this->xoopsConfig = $xoopsConfig;
-        $this->moduleDirname = basename(dirname(dirname(__FILE__))); // 'bannerstats'
+        $this->moduleDirname = basename(dirname(dirname(__FILE__)));
 
         if (is_object($this->xoopsTpl)) {
             $this->xoopsTpl->assign('module_dirname', $this->moduleDirname);
@@ -68,10 +75,8 @@ class Bannerstats_RequestSupportAction
             if (!isset($template_vars['bannerstats_message'])) {
                  $this->xoopsTpl->assign('bannerstats_message', '');
             }
-            // It's better to render an error template than just return null or an empty string
-            // if $xoopsTpl is expected to be used.
-            // Assuming you have a bannerstats_error.html template:
-            return 'bannerstats_error.html'; // Or handle error appropriately
+            // Todo error template than just return null or an empty string
+            return 'bannerstats_error.html';
         }
 
         $statsManager = new BannerStatsManager();
@@ -200,7 +205,6 @@ class Bannerstats_RequestSupportAction
         // Prepare email
         $xoopsMailer = getMailer();
         
-        // Ensure $xoopsMailer is an object before proceeding
         if (!is_object($xoopsMailer)) {
             $errorMessage = defined('_MD_BANNERSTATS_MAILER_ERROR') ? _MD_BANNERSTATS_MAILER_ERROR : 'Could not initialize the mailer service.';
             $this->xoopsTpl->assign('bannerstats_error_message', $errorMessage);
@@ -209,7 +213,7 @@ class Bannerstats_RequestSupportAction
             return $this->getDefaultView();
         }
 
-        $language = $this->xoopsConfig['language'] ?? 'english'; // Use $this->xoopsConfig
+        $language = $this->xoopsConfig['language'] ?? 'english';
         $mailTemplateDir = XOOPS_MODULE_PATH . '/' . $this->moduleDirname . '/language/' . $language . '/mail_template/';
         if (!is_dir($mailTemplateDir)) {
              $mailTemplateDir = XOOPS_MODULE_PATH . '/' . $this->moduleDirname . '/language/english/mail_template/';
@@ -223,12 +227,12 @@ class Bannerstats_RequestSupportAction
         $xoopsMailer->assign('BANNER_ID', $bannerId ? htmlspecialchars($bannerId, ENT_QUOTES) : 'N/A');
         $xoopsMailer->assign('SUBJECT_LINE', $subject);
         $xoopsMailer->assign('MESSAGE_BODY', nl2br(htmlspecialchars($message, ENT_QUOTES)));
-        $xoopsMailer->assign('SITE_NAME', $this->xoopsConfig['sitename']); // Use $this->xoopsConfig
+        $xoopsMailer->assign('SITE_NAME', $this->xoopsConfig['sitename']);
         $xoopsMailer->assign('SITE_URL', XOOPS_URL . '/');
 
-        $emailSubject = '[' . $this->xoopsConfig['sitename'] . '] Banner Support Request: ' . $subject; // Use $this->xoopsConfig
+        $emailSubject = '[' . $this->xoopsConfig['sitename'] . '] Banner Support Request: ' . $subject;
         $xoopsMailer->setSubject($emailSubject);
-        $xoopsMailer->setToEmails($this->xoopsConfig['adminmail']); // Use $this->xoopsConfig
+        $xoopsMailer->setToEmails($this->xoopsConfig['adminmail']);
         $xoopsMailer->setFromEmail($clientEmail);
         $xoopsMailer->setFromName(htmlspecialchars($clientName, ENT_QUOTES));
 
