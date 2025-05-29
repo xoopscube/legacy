@@ -20,7 +20,7 @@ if (!class_exists('XoopsObjectGenericHandler')) {
     require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/handler.php';
 }
 
-// Define constants for banner finish reasons
+// Define programmatic constants for banner finish reasons
 define('BANNER_FINISH_REASON_MANUAL', 'Manually Finished');
 define('BANNER_FINISH_REASON_IMPRESSIONS', 'Impressions Reached');
 define('BANNER_FINISH_REASON_ADMIN', 'Admin Terminated');
@@ -46,18 +46,18 @@ class Bannerstats_BannerfinishHandler extends XoopsObjectGenericHandler
     public function getFinishReasons(): array
     {
         return [
-            BANNER_FINISH_REASON_MANUAL => _BANNERSTATS_FINISH_MANUAL,
-            BANNER_FINISH_REASON_IMPRESSIONS => _BANNERSTATS_FINISH_IMPRESSIONS,
-            BANNER_FINISH_REASON_ADMIN => _BANNERSTATS_FINISH_ADMIN,
-            BANNER_FINISH_REASON_CLIENT => _BANNERSTATS_FINISH_CLIENT,
-            BANNER_FINISH_REASON_DATE_EXPIRED => _BANNERSTATS_FINISH_DATE_EXPIRED,
-            BANNER_FINISH_REASON_OTHER => _BANNERSTATS_FINISH_OTHER
+            BANNER_FINISH_REASON_MANUAL => _MD_BANNERSTATS_FINISH_MANUAL,
+            BANNER_FINISH_REASON_IMPRESSIONS => _MD_BANNERSTATS_FINISH_IMPRESSIONS,
+            BANNER_FINISH_REASON_ADMIN => _MD_BANNERSTATS_FINISH_ADMIN,
+            BANNER_FINISH_REASON_CLIENT => _MD_BANNERSTATS_FINISH_CLIENT,
+            BANNER_FINISH_REASON_DATE_EXPIRED => _MD_BANNERSTATS_FINISH_DATE_EXPIRED,
+            BANNER_FINISH_REASON_OTHER => _MD_BANNERSTATS_FINISH_OTHER
         ];
     }
     
     /**
      * Gets banners finished by a specific reason
-     * @param string $reason The finish reason to filter by
+     * @param string $reason finish reason to filter by
      * @param int $limit Maximum number of records to return
      * @param int $start Starting position
      * @return array Array of Bannerstats_BannerfinishObject objects
@@ -80,12 +80,12 @@ class Bannerstats_BannerfinishHandler extends XoopsObjectGenericHandler
 
 class Bannerstats_BannerfinishObject extends XoopsSimpleObject
 {
-    protected $_mClientLoadedFlag = false; // Initialize the flag property
-    public $mClient = null; // Initialize the client property
+    protected $_mClientLoadedFlag = false;
+    public $mClient = null;
 
     public function __construct()
     {
-        parent::__construct(); // Essential for initialization
+        parent::__construct();
 
         // These must match the {prefix}_bannerfinish table schema from mysql.sql
         $this->initVar('bid', XOBJ_DTYPE_INT, 0, true);
@@ -110,6 +110,15 @@ class Bannerstats_BannerfinishObject extends XoopsSimpleObject
         $this->initVar('finished_by_uid', XOBJ_DTYPE_INT, 0, false);
     }
 
+    /**
+     * Returns the primary key field name for this object
+     * @return string
+     */
+    public function getPrimaryKey()
+    {
+        return 'bid';
+    }
+
     // loadBannerclient() if needed
     public function loadBannerclient(): void
     {
@@ -121,7 +130,8 @@ class Bannerstats_BannerfinishObject extends XoopsSimpleObject
             $this->_mClientLoadedFlag = true;
         }
     }
-        /**
+
+    /**
      * Gets a human-readable description of the finish reason
      * @return string The formatted finish reason
      */
@@ -132,7 +142,7 @@ class Bannerstats_BannerfinishObject extends XoopsSimpleObject
         // Add additional context if available
         if ($reason === BANNER_FINISH_REASON_IMPRESSIONS) {
             return sprintf(
-                _BANNERSTATS_FINISH_IMPRESSIONS_DETAIL,
+                _MD_BANNERSTATS_FINISH_IMPRESSIONS_DETAIL,
                 $this->get('impressions_made'),
                 $this->get('imptotal_allocated')
             );
@@ -143,7 +153,7 @@ class Bannerstats_BannerfinishObject extends XoopsSimpleObject
                 $user = $userHandler->get($uid);
                 if (is_object($user)) {
                     return sprintf(
-                        _BANNERSTATS_FINISH_BY_USER,
+                        _MD_BANNERSTATS_FINISH_BY_USER,
                         $reason,
                         $user->getVar('uname')
                     );
@@ -153,7 +163,7 @@ class Bannerstats_BannerfinishObject extends XoopsSimpleObject
             $endDate = $this->get('dateend_original');
             if ($endDate > 0) {
                 return sprintf(
-                    _BANNERSTATS_FINISH_DATE_EXPIRED,
+                    _MD_BANNERSTATS_FINISH_DATE_EXPIRED,
                     formatTimestamp($endDate)
                 );
             }

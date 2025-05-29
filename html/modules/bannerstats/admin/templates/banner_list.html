@@ -147,7 +147,7 @@
     </thead>
     <tbody>
     <{foreach item=obj from=$objects}>
-    <tr>
+    <tr class="list_center">
         <td class="list_id"><{$obj->getShow('bid')}></td>
         <td class="list_text"><{$obj->getShow('name')|default:"N/A"}></td>
         <td class="list_title"><{$obj->mClient->getShow('name')}></td>

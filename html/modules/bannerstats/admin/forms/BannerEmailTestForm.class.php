@@ -19,58 +19,44 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
-class BannerEmailTestForm extends XCube_ActionForm
+class Bannerstats_BannerEmailTestForm extends XCube_ActionForm
 {
-    /**
-     * Get the token name for CSRF protection.
-     * @return string Token name
-     */
-    public function getTokenName()
+    public function getTokenName(): string
     {
         return 'module.bannerstats.BannerEmailTestForm.TOKEN';
     }
 
-    /**
-     * Get the error message for token validation failure.
-     */
-    public function getTokenErrorMessage()
-    {
-        return null; // Use framework default
-    }
-
-    /**
-     * Prepares the form and initializes properties.
-     */
     public function prepare()
     {
-        parent::prepare(); // Essential for token generation
-        
-        // Define form properties
+        // Set form properties
         $this->mFormProperties['bid'] = new XCube_IntProperty('bid');
         $this->mFormProperties['email_type'] = new XCube_StringProperty('email_type');
+
+        // Set validation rules
+        $this->mFieldProperties['bid'] = new XCube_FieldProperty($this);
+         $this->mFieldProperties['bid']->setDependsByArray(['required', 'intRange']);
+    
+        $this->mFieldProperties['bid']->addMessage('required', _AD_BANNERSTATS_ERROR_REQUIRED.'bid', _AD_BANNERSTATS_EMAILTEST_BANNER_ID);
+        $this->mFieldProperties['bid']->addMessage('intRange', _AD_BANNERSTATS_ERROR_INTRANGE.'bid int', _AD_BANNERSTATS_EMAILTEST_BANNER_ID, '1');
+        $this->mFieldProperties['bid']->addVar('min', 1);
+        $this->mFieldProperties['bid']->addVar('max', 2147483647);
+
+        $this->mFieldProperties['email_type'] = new XCube_FieldProperty($this);
+        $this->mFieldProperties['email_type']->setDependsByArray(['required']);
+$this->mFieldProperties['email_type']->addMessage('required', _AD_BANNERSTATS_ERROR_REQUIRED, _AD_BANNERSTATS_EMAILTEST_SELECT_EMAIL_TYPE);
     }
 
-    /**
-     * Validate banner ID
-     */
-    public function validate_bid()
-    {
-        $bid = $this->get('bid');
-        if (empty($bid) || !is_numeric($bid) || $bid <= 0) {
-            $this->addErrorMessage('bid', 'Please select a valid banner.');
-        }
+public function validate()
+{
+    // Call parent validation but don't add our own duplicate messages
+    parent::validate();
+    
+    // Only validate email_type against allowed values (not required - that's handled by parent)
+    $validTypes = ['low_client', 'low_admin', 'finished_client', 'finished_admin'];
+    if ($this->get('email_type') && !in_array($this->get('email_type'), $validTypes)) {
+        $this->addErrorMessage('INVALID_EMAIL_TYPE');
     }
-
-    /**
-     * Validate email type
-     */
-    public function validate_email_type()
-    {
-        $emailType = $this->get('email_type');
-        $validTypes = ['admin_alert', 'client_alert', 'both'];
-        
-        if (empty($emailType) || !in_array($emailType, $validTypes)) {
-            $this->addErrorMessage('email_type', 'Please select a valid email type.');
-        }
-    }
+    
+    return !$this->hasError();
+}
 }

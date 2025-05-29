@@ -55,9 +55,9 @@ class Bannerstats_BannerListAction extends Bannerstats_AbstractListAction
     /**
      * Prepares and sets data for the list view
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewIndex(&$controller, &$xoopsUser, &$render): void

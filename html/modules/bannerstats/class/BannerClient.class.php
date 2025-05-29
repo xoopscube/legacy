@@ -4,12 +4,10 @@
  *
  * @package    Bannerstats
  * @author     Nuno Luciano (aka gigamaster) XCL PHP8
- * @author     Kazuhisa Minato aka minahito, Core developer
  * @copyright  2005-2025 The XOOPSCube Project
  * @license    GPL V2
- * @version    Release: XCL v2.5.0
+ * @version    v2.5.0 Release XCL 
  * @link       http://github.com/xoopscube/
- * @since      v 1.1 2007/05/15 02:34:17 minahito
  **/
 
 if (!defined('XOOPS_ROOT_PATH')) {

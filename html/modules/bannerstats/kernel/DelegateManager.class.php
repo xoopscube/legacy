@@ -1,12 +1,12 @@
 <?php
 /**
- * Bannerstats - Module for XCL
+ * Bannerstats Delegate Manager - Module for XCL
  *
  * @package    Bannerstats
  * @author     Nuno Luciano (aka gigamaster) XCL PHP8
  * @copyright  2005-2025 The XOOPSCube Project
  * @license    GPL V2
- * @version    Release: XCL v2.5.0
+ * @version    v2.5.0 Release XCL 
  * @link       http://github.com/xoopscube/
  **/
 
@@ -37,9 +37,6 @@ class Bannerstats_DelegateManager
         if (file_exists($sessionClassPath)) {
             require_once $sessionClassPath;
         } else {
-            error_log("Bannerstats: BannerClientSession.class.php not found in handleBannersAccess delegate.");
-            // It's generally better to let XOOPS handle error display or use a language constant
-            echo "Bannerstats module session handler is missing. Please contact admin.";
             exit();
         }
 
@@ -130,7 +127,7 @@ class Bannerstats_DelegateManager
         if ($bannerData) {
             $bannerHtml = self::_buildBannerHtmlFromData($bannerData);
         } else {
-            // Construct a more informative comment for debugging
+            // TODO informative comment for debugging
             $criteriaParts = [];
             if ($bid > 0) $criteriaParts[] = "bid: {$bid}";
             if ($cid !== null) $criteriaParts[] = "cid: {$cid}";
@@ -279,80 +276,6 @@ class Bannerstats_DelegateManager
         } else {
             $bannerHtml = "<!-- Bannerstats: No banner available -->";
             // error_log("Bannerstats_DelegateManager DEBUG: provideBannerHtml - _fetchAndPrepareBannerDataForPlugin returned NO data for effective CID: " . var_export($cidForHandler, true));
-        }
-    }
-
-    /**
-     * Sends a banner-related notification email.
-     * This method is static and can be called from other classes.
-     *
-     * @param string $recipientEmail
-     * @param string $recipientName
-     * @param string $subject        The email subject
-     * @param string $templateName template for the email body (e.g., 'banner_alert_client.tpl').
-     * @param array  $templateVars
-     * @return bool True on success, false on failure.
-     */
-    public static function _sendNotificationEmail(string $recipientEmail, string $recipientName, string $subject, string $templateName, array $templateVars = []): bool
-    {
-        if (empty($recipientEmail) || !filter_var($recipientEmail, FILTER_VALIDATE_EMAIL)) {
-            error_log("Bannerstats Email Alert: Invalid or empty recipient email: " . $recipientEmail);
-            return false;
-        }
-
-        $root = XCube_Root::getSingleton();
-
-        //TODO XCUBE_MAILBUILDER
-        /** @var XCube_Mailer $mailer */
-        $mailer = $root->mServiceManager->getService('Mailer');
-        if (!$mailer) {
-            // Fallback if service is not available (less common for Mailer)
-            $mailer = new XCube_MailDirector();
-        }
-
-        $xoopsConfig = $root->mContext->getXoopsConfig();
-
-        // Set From address (usually site admin)
-        $fromEmail = !empty($xoopsConfig['adminmail']) ? $xoopsConfig['adminmail'] : 'noreply@example.com';
-        $fromName = !empty($xoopsConfig['sitename']) ? $xoopsConfig['sitename'] : 'Website Notification';
-        
-        $mailer->setFromEmail($fromEmail);
-        $mailer->setFromName($fromName);
-
-        $language = $xoopsConfig['language'] ?? 'english';
-        $modulePath = XOOPS_MODULE_PATH . '/bannerstats';
-
-        $templatePath = $modulePath . '/language/' . $language . '/mail_template/' . $templateName;
-
-        if (!file_exists($templatePath)) {
-            // Fallback to English if current language template doesn't exist
-            $templatePath = $modulePath . '/language/english/mail_template/' . $templateName;
-            if (!file_exists($templatePath)) {
-                error_log("Bannerstats Email Alert: Template {$templateName} not found in English or {$language} path.");
-                return false;
-            }
-        }
-        
-        $mailer->setSubject($subject);
-        $mailer->setTemplate($templatePath); // Path to Smarty .tpl file
-
-        // Assign common variables and specific template variables
-        $mailer->assign('sitename', $xoopsConfig['sitename'] ?? 'Your Site');
-        $mailer->assign('siteurl', XOOPS_URL . '/');
-        $mailer->assign('recipient_name', $recipientName); // For personalization in the template
-
-        foreach ($templateVars as $key => $value) {
-            $mailer->assign($key, $value);
-        }
-
-        $mailer->setToEmails($recipientEmail);
-
-        if ($mailer->send()) {
-            error_log("Bannerstats Email Alert: Successfully sent '{$subject}' to {$recipientEmail}");
-            return true;
-        } else {
-            error_log("Bannerstats Email Alert: Failed to send '{$subject}' to {$recipientEmail}. Error: " . $mailer->dumpErrors());
-            return false;
         }
     }
 }

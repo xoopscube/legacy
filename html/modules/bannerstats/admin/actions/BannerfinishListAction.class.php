@@ -23,7 +23,7 @@ require_once XOOPS_MODULE_PATH . '/bannerstats/class/BannerClient.class.php'; //
 class Bannerstats_BannerfinishListAction extends Bannerstats_AbstractListAction
 {
     /**
-     * Gets the handler for finished banner objects.
+     * Gets the handler for finished banner objects
      * @return Bannerstats_BannerfinishHandler|false
      */
     public function &_getHandler()
@@ -56,9 +56,9 @@ class Bannerstats_BannerfinishListAction extends Bannerstats_AbstractListAction
     /**
      * Prepares and sets data for the list view
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewIndex(&$controller, &$xoopsUser, &$render): void

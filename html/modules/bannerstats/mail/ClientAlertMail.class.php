@@ -1,7 +1,8 @@
 <?php
 /**
- * Bannerstats - Module for XCL
- *
+ * Bannerstats Client Alert Email - Module for XCL
+ * Constructor for client alert emails
+ * 
  * @package    Bannerstats
  * @author     Nuno Luciano (aka gigamaster) XCL PHP8
  * @copyright  2005-2025 The XOOPSCube Project
@@ -41,8 +42,7 @@ class Bannerstats_ClientAlertMail extends XCube_UserNotificationMailBuilder
      * @param string   $templateName          The name of the mail template file (e.g., 'client_low_impressions.tpl').
      * @param string   $subjectKey            The language constant key for the email subject.
      * @param array    $subjectArgs           Optional arguments for sprintf, to be used with the subject string.
-     * @param callable|null $bodyVariablesCallback Optional callback to add specific template variables.
-     *                                          Signature: function($contextObject): array
+     * @param callable|null $bodyVariablesCallback Add specific template variables. Signature: function($contextObject): array
      */
     public function __construct(
         string $clientEmail,
@@ -62,11 +62,11 @@ class Bannerstats_ClientAlertMail extends XCube_UserNotificationMailBuilder
     }
 
     /**
-     * Sets the recipient of the email (the client).
-     * This method is called by the XCube_MailDirector.
+     * Sets the recipient of the email (banner client)
+     * This method is called by the XCube_MailDirector
      *
-     * @param mixed $object      The context object (e.g., Bannerstats_BannerObject) passed from the Director.
-     * @param array $moduleConfig The Bannerstats module configuration array.
+     * @param mixed $object
+     * @param array $moduleConfig
      */
     public function setToUsers($object, $moduleConfig)
     {
@@ -74,22 +74,25 @@ class Bannerstats_ClientAlertMail extends XCube_UserNotificationMailBuilder
             $this->mMailer->setToEmails($this->_clientEmail, $this->_clientName);
         } else {
             $bannerId = ($object && ($object instanceof Bannerstats_BannerObject || $object instanceof Bannerstats_BannerfinishObject)) ? $object->get('bid') : 'N/A';
-            error_log("Bannerstats_ClientAlertMail: No client email provided for notification. Banner ID context: " . $bannerId);
+            //error_log("Bannerstats_ClientAlertMail: No client email provided for notification. Banner ID context: " . $bannerId);
         }
     }
 
-
+    /**
+     * Sets the template file name for the email
+     * This method is called by the XCube_MailDirector
+     */
     public function setTemplateName()
     {
         $this->mMailer->setTemplate($this->_templateName);
     }
 
     /**
-     * Sets the subject of the email.
-     * This method is called by the XCube_MailDirector.
+     * Sets the subject of the email
+     * This method is called by the XCube_MailDirector
      *
-     * @param mixed $object      The context object (e.g., Bannerstats_BannerObject) passed from the Director.
-     * @param array $xoopsConfig The XOOPS configuration array.
+     * @param mixed $object
+     * @param array $xoopsConfig
      */
     public function setSubject($object, $xoopsConfig)
     {
@@ -102,24 +105,26 @@ class Bannerstats_ClientAlertMail extends XCube_UserNotificationMailBuilder
     }
 
     /**
-     * Sets the body of the email by assigning variables to the template.
-     * This method is called by the XCube_MailDirector.
+     * Sets the body of the email by assigning variables to the template
+     * This method is called by the XCube_MailDirector
      *
-     * @param mixed $object      The context object (e.g., Bannerstats_BannerObject) passed from the Director.
-     * @param array $xoopsConfig The XOOPS configuration array.
+     * @param mixed $object
+     * @param array $xoopsConfig
      */
     public function setBody($object, $xoopsConfig)
     {
         parent::setBody($object, $xoopsConfig); 
         // Sets common vars and user vars (X_SITENAME, X_UNAME etc.)
         // Assign common client and banner-related variables
-        $this->mMailer->assign('client_name', $this->_clientName); 
+        $this->mMailer->assign('CLIENT_NAME', $this->_clientName); // Passed in constructor
 
         if ($object instanceof Bannerstats_BannerObject || $object instanceof Bannerstats_BannerfinishObject) {
-            $this->mMailer->assign('banner_bid', $object->get('bid'));
-            $this->mMailer->assign('banner_name', $object->getShow('name'));
-            // Common link for clients
-            $this->mMailer->assign('stats_link', XOOPS_URL . '/modules/bannerstats/index.php?action=Stats');
+            $this->mMailer->assign('BANNER_ID', $object->get('bid'));
+            $this->mMailer->assign('BANNER_NAME', $object->getShow('name'));
+            // View Statistics (General)
+            $this->mMailer->assign('CLIENT_STATS_URL', XOOPS_URL . '/modules/bannerstats/index.php?action=Stats');
+            // Request Support
+            $this->mMailer->assign('CLIENT_SUPPORT', XOOPS_URL . '/modules/bannerstats/index.php?action=RequestSupport');
         }
 
         // Call the custom callback to assign more specific template variables

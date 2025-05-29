@@ -1,9 +1,32 @@
-<{* Campaign Banner Display Block Template *}>
-<{if $block.content && $block.content|trim != "" && $block.content|strpos:"<!-- Bannerstats: No banner found" === false}>
-    <div class="bannerstats-campaign-banner-block">
-        <{$block.content}> 
-    </div>
-<{else}>
-    <{* Optionally display nothing or a placeholder if no banner content *}>
-    <{* <!-- No campaign banner to display for current options --> *}>
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<div class="bannerstats-campaign-banner-block">
+    <{if isset($block.banner_found) && $block.banner_found && isset($block.banner_html) && $block.banner_html|trim != ""}>
+        <{$block.banner_html}> 
+    <{else}>
+        <!-- No banner to display -->
+    <{/if}>
+</div>
+
+<{* Optional: Display debug/selection info, only for admins *}>
+<{if isset($block.show_debug_info) && $block.show_debug_info && ($block.campaign_id_used || $block.client_id_used !== null || $block.banner_id_used)}>
+<small>
+    Block Filter Info:
+    <{assign var="first_item_displayed" value=false}>
+
+    <{if isset($block.campaign_id_used) && $block.campaign_id_used}>
+        Campaign: <{$block.campaign_id_used}>
+        <{assign var="first_item_displayed" value=true}>
+    <{/if}>
+
+    <{if isset($block.client_id_used) && $block.client_id_used !== null}>
+        <{if $first_item_displayed}> | <{/if}>Client ID: <{$block.client_id_used}>
+        <{assign var="first_item_displayed" value=true}>
+    <{/if}>
+
+    <{if isset($block.banner_id_used) && $block.banner_id_used}>
+        <{if $first_item_displayed}> | <{/if}>Banner ID (Option): <{$block.banner_id_used}>
+    <{/if}>
+</small>
 <{/if}>

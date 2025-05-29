@@ -25,8 +25,8 @@ class Bannerstats_LogoutAction
      * Performs the logout and redirects
      * This method is called by index.php
      *
-     * @param XCube_Controller $controller
-     * @param XoopsTpl         $xoopsTpl
+     * @param XCube_Controller
+     * @param XoopsTpl
      * @return null Returns null because it handles its own redirection
      */
     public function getDefaultView(XCube_Controller $controller, XoopsTpl $xoopsTpl)

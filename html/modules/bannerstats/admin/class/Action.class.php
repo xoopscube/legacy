@@ -52,8 +52,8 @@ class Bannerstats_Action
      * Checks if the current user has permission to execute this action.
      * This method MUST exist as it's called by the ActionFrame
      * 
-     * @param XCube_Controller $controller
-     * @param XoopsUser $xoopsUser
+     * @param XCube_Controller
+     * @param XoopsUser
      * @return bool True if permitted
      */
     public function hasPermission(&$controller, &$xoopsUser)
@@ -67,8 +67,8 @@ class Bannerstats_Action
     /**
      * Gets the default view status for GET requests
      * 
-     * @param XCube_Controller $controller
-     * @param XoopsUser $xoopsUser
+     * @param XCube_Controller
+     * @param XoopsUser
      * @return int A BANNERSTATS_FRAME_VIEW_ constant
      */
     public function getDefaultView(&$controller, &$xoopsUser)
@@ -79,8 +79,8 @@ class Bannerstats_Action
     /**
      * Executes the main logic of the action, typically for POST requests
      * 
-     * @param XCube_Controller $controller
-     * @param XoopsUser $xoopsUser
+     * @param XCube_Controller
+     * @param XoopsUser
      * @return int A BANNERSTATS_FRAME_VIEW_ constant
      */
     public function execute(&$controller, &$xoopsUser)
@@ -91,9 +91,9 @@ class Bannerstats_Action
     /**
      * Handles rendering for a successful operation
      * 
-     * @param XCube_Controller $controller
-     * @param XoopsUser $xoopsUser
-     * @param XCube_RenderTarget $render target
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      */
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
@@ -103,9 +103,9 @@ class Bannerstats_Action
     /**
      * Handles rendering for an error in operation
      * 
-     * @param XCube_Controller $controller
-     * @param XoopsUser $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      */
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
@@ -115,9 +115,9 @@ class Bannerstats_Action
     /**
      * Handles rendering for an index/list view
      * 
-     * @param XCube_Controller $controller
-     * @param XoopsUser $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      */
     public function executeViewIndex(&$controller, &$xoopsUser, &$render)
     {
@@ -127,9 +127,9 @@ class Bannerstats_Action
     /**
      * Handles rendering for an input/form view
      * 
-     * @param XCube_Controller $controller
-     * @param XoopsUser $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
@@ -139,9 +139,9 @@ class Bannerstats_Action
     /**
      * Handles rendering for a preview view (if applicable)
      * 
-     * @param XCube_Controller $controller
-     * @param XoopsUser $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      */
     public function executeViewPreview(&$controller, &$xoopsUser, &$render)
     {
@@ -150,9 +150,9 @@ class Bannerstats_Action
     /**
      * Handles rendering or logic for a cancel operation
      * 
-     * @param XCube_Controller $controller
-     * @param XoopsUser $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      */
     public function executeViewCancel(&$controller, &$xoopsUser, &$render)
     {

@@ -1,14 +1,38 @@
-{_MD_BANNERSTATS_EMAIL_DEAR} {CLIENT_NAME},
+Subject: Client Notification: Banner Remaining Impressions - {BANNER_NAME}
 
-{_MD_BANNERSTATS_EMAIL_LOW_IMP_INTRO_CLIENT}
+Hi {CLIENT_NAME},
 
-{_MD_BANNERSTATS_EMAIL_BANNER_NAME}: {BANNER_NAME} (ID: {BANNER_ID})
-{_MD_BANNERSTATS_EMAIL_IMPRESSIONS_TOTAL}: {impressions_total}
-{_MD_BANNERSTATS_EMAIL_IMPRESSIONS_MADE}: {impressions_made}
-{_MD_BANNERSTATS_EMAIL_IMPRESSIONS_REMAINING}: {impressions_remaining}
+This is an automated notification of the number of impressions left to be delivered.
 
-You can view your banner statistics here:
+Banner Details:
+------------------------------------
+
+Banner Name : {BANNER_NAME} 
+Banner ID   : {BANNER_ID}
+Client Name : {CLIENT_NAME}
+Client Email: {CLIENT_EMAIL}
+
+Total Impressions Purchased: {impressions_total}
+Impressions Served: {impressions_made}
+Impressions Remaining: {impressions_remaining}
+
+------------------------------------
+
+The campaign for the banner listed above has low remaining impressions.
+Further details regarding impressions, clicks, may require manual review 
+if not provided by a specific notification process.
+
+Actions:
+------------------------------------
+
+View Statistics (General):
 {CLIENT_STATS_URL}
 
-{_MD_BANNERSTATS_EMAIL_THANK_YOU}
-{_MD_BANNERSTATS_EMAIL_SITENAME_TEAM|sprintf:$X_SITENAME}
+Contact Support:
+{CLIENT_SUPPORT}
+
+------------------------------------
+
+Thank you,
+{X_SITENAME}
+{X_SITEURL}

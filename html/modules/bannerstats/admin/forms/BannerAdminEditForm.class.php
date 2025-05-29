@@ -150,14 +150,14 @@ class Bannerstats_BannerAdminEditForm extends XCube_ActionForm
         if (!empty($startDateStr)) {
             $startDateObject = $this->parseValidDateTimeFormat($startDateStr);
             if ($startDateObject === false) {
-                $this->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME_FORMAT_NEW, _AD_BANNERSTATS_START_DATE, 'YYYY-MM-DDTHH:MM or YYYY-MM-DD HH:MM:SS'));
+                $this->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME, _AD_BANNERSTATS_START_DATE, 'YYYY-MM-DDTHH:MM or YYYY-MM-DD HH:MM:SS'));
             }
         }
 
         if (!empty($endDateStr)) {
             $endDateObject = $this->parseValidDateTimeFormat($endDateStr);
             if ($endDateObject === false) {
-                $this->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME_FORMAT_NEW, _AD_BANNERSTATS_DATE_END, 'YYYY-MM-DDTHH:MM or YYYY-MM-DD HH:MM:SS'));
+                $this->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME, _AD_BANNERSTATS_DATE_END, 'YYYY-MM-DDTHH:MM or YYYY-MM-DD HH:MM:SS'));
             }
         }
 

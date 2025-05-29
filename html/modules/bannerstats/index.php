@@ -14,7 +14,7 @@
 include_once __DIR__ . '/../../mainfile.php';
 require_once XOOPS_ROOT_PATH . '/header.php';
 
-// Ensure session is started for BannerClientSession
+// Check session is started for BannerClientSession
 if (session_status() == PHP_SESSION_NONE) {
     @session_start();
 }
@@ -63,7 +63,7 @@ if (file_exists($actionFilePath)) {
             $pageTitle = $actionInstance->getPageTitle();
         }
 
-        $xoopsTpl->assign('xoops_pagetitle', htmlspecialchars($pageTitle, ENT_QUOTES));
+        $xoopsTpl->assign('page_title', htmlspecialchars($pageTitle, ENT_QUOTES));
 
         $xoopsTpl->assign('bannerstats_client_is_auth', BannerClientSession::isAuthenticated());
         if (BannerClientSession::isAuthenticated()) {
@@ -89,12 +89,12 @@ if (file_exists($actionFilePath)) {
         }
 
     } else {
-        $xoopsTpl->assign('xoops_pagetitle', "Error");
+        $xoopsTpl->assign('page_title', "Error");
         $xoopsTpl->assign('bannerstats_error_message', "The requested action '{$actionName}' could not be processed (class not found).");
         $xoopsTpl->display('db:bannerstats_error.html');
     }
 } else {
-    $xoopsTpl->assign('xoops_pagetitle', "Error");
+    $xoopsTpl->assign('page_title', "Error");
     $xoopsTpl->assign('bannerstats_error_message', "The requested action '{$actionName}' is not available (file not found).");
     $xoopsTpl->display('db:bannerstats_error.html');
 }

@@ -1,5 +1,6 @@
 <h2><{$pageTitle}></h2>
-<p><{$pageDescription}></p>
+
+<div class="tips"><{$pageDescription}></div>
 
 <{if $bannerstats_success_messages}>
   <div class="success">
@@ -31,40 +32,41 @@
   </div>
 <{/if}>
 
-
 <form action="index.php?action=BannerEmailTest" method="post">
   <{xoops_token form=$actionForm}>
-  <{xoops_input type=hidden name=bid value=$actionForm->get('bid')}>
-    
-  <div class="form-group">
-    <label for="bid">EMAILTEST_SELECT_BANNER</label>
-    <input type="number" class="form-control" id="bid" name="bid" value="<{$actionForm->get('bid')}>" placeholder="EMAILTEST_BANNER_ID" required>
-    
-    <{if $activeBanners}>
-      <small class="form-text text-muted">Or select from active banners:</small>
+  <{xoops_input type=hidden name="bid" value=$actionForm->get('bid')}>
+  
+  <div data-layout="row sm-column">
+  <div data-self="size-1of2 sm-full">
+    <div class="tips">
 
-      <select class="form-control mt-1" onchange="document.getElementById('bid').value = this.value;">
+    <{if $activeBanners}>
+      <label for="banner-active">Select an active banner</label>
+      <select name="banner-active" onchange="document.getElementById('bid').value = this.value;">
         <option value="">-- SELECT_BANNER</option>
         <{foreach item=banner from=$activeBanners}>
           <option value="<{$banner->get('bid')}>"><{$banner->getShow('name')|escape}> (ID: <{$banner->get('bid')}>)</option>
         <{/foreach}>
       </select>
     <{/if}>
+    <br />
+    <label for="bid">Or specify a banner id</label>
+    <input type="number" id="bid" name="bid" value="<{$actionForm->get('bid')}>">
 
+    </div>
   </div>
+  <div data-self="size-1of2 sm-full">
+    <div class="confirm">
 
-  <hr />
-
-  <div class="form-group">
-    <label for="email_type">SELECT_EMAIL_TYPE</label>
-    <select class="form-control" id="email_type" name="email_type" required>
+    <label for="email_type">Select Email Type</label>
+    <select id="email_type" name="email_type">
       <{foreach from=$emailTypes key=typeKey item=typeName}>
-        <option value="<{$typeKey}>"><{$typeName}></option>
+        <option value="<{$typeKey}>" <{if $actionForm->get('email_type') == $typeKey}>selected<{/if}>> <{$typeName}></option>
       <{/foreach}>
     </select>
+    <br />
+    <button type="submit">SEND EMAIL</button>
+    </div>
   </div>
-
-  <hr />
-  
-  <button type="submit" class="btn btn-primary">SEND_EMAIL</button>
+</div> 
 </form>

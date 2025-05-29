@@ -30,7 +30,7 @@ class BannerStatsManager
      * Gets active banners for a specific client
      *
      * @param int $cid Client ID.
-     * @return array Array of banner data arrays.
+     * @return array Array of banner data arrays
      */
     public function getActiveBanners(int $cid): array
     {
@@ -110,7 +110,7 @@ class BannerStatsManager
      */
     public function getBannerDetails(int $bid, int $cid): ?array
     {
-        // Select * is fine here, as long as the object definition and DB table are correct
+        // Select * is fine as long as the object definition and DB table are correct
         $sql = sprintf(
             "SELECT * FROM %s WHERE bid = %d AND cid = %d",
             $this->db->prefix('banner'),

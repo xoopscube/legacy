@@ -4,12 +4,12 @@
     <a href="<{$xoops_url}>/admin.php"><{$smarty.const._CPHOME}></a>
     &raquo;&raquo; <a href="./index.php"><{$smarty.const._AD_BANNERSTATS_NAME}></a>
     &raquo;&raquo; <a href="./index.php?action=BannerList"><{$smarty.const._AD_BANNERSTATS_BANNER_LIST}></a>
-    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_BANNER_DELETE}></span>
+    &raquo;&raquo; <span class="page-title" aria-current="page"><{$smarty.const._AD_BANNERSTATS_DELETE_BANNER}></span>
 </nav>
 
-<h2><{$smarty.const._AD_BANNERSTATS_BANNER_DELETE}></h2>
+<h2><{$smarty.const._AD_BANNERSTATS_DELETE_BANNER}></h2>
 
-<div class="error"><{$smarty.const._AD_BANNERSTATS_MESSAGE_DELETE_CONFIRM}></div>
+<div class="error"><{$smarty.const._AD_BANNERSTATS_DELETE_CONFIRM}></div>
 
 <form method="post" action="./index.php?action=BannerDelete">
     <{xoops_token form=$actionForm}>
@@ -17,7 +17,7 @@
     <table class="outer">
         <thead>
         <tr>
-            <th colspan="2"><{$smarty.const._AD_BANNERSTATS_BANNER_DELETE}></th>
+            <th colspan="2"><{$smarty.const._AD_BANNERSTATS_DELETE_BANNER}></th>
         </tr>
         </thead>
         <tbody>

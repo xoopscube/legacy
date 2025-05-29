@@ -82,7 +82,7 @@ class Bannerstats_BannerclientDeleteAction extends Bannerstats_AbstractDeleteAct
         if (!$bannerfinishHandler->deleteAll($criteria, true)) {
             $this->mActionForm->addErrorMessage(
                 sprintf(
-                    _AD_BANNERSTATS_ERROR_DELETE_FINISHED_FAILED, // Define "...banners for client ID: %d"
+                    _AD_BANNERSTATS_ERROR_DELETE_FINISHED_FAILED,
                     $clientId
                 )
             );
@@ -120,10 +120,10 @@ class Bannerstats_BannerclientDeleteAction extends Bannerstats_AbstractDeleteAct
 
         if ($this->mActionForm->hasError()) {
 
-            $controller->executeRedirect('./index.php?action=BannerclientList', 3, _AD_BANNERSTATS_ERROR_DELETE_CLIENT_FAILED); // Define this
+            $controller->executeRedirect('./index.php?action=BannerclientList', 1, _AD_BANNERSTATS_ERROR_DELETE_CLIENT_FAILED);
         } else {
  
-            $controller->executeRedirect('./index.php?action=BannerclientList', 3, _AD_BANNERSTATS_ERROR_DBUPDATE_FAILED);
+            $controller->executeRedirect('./index.php?action=BannerclientList', 1, _AD_BANNERSTATS_ERROR_DBUPDATE_FAILED);
         }
     }
 

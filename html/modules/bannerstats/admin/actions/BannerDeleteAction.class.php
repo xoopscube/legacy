@@ -86,11 +86,11 @@ class Bannerstats_BannerDeleteAction extends Bannerstats_AbstractDeleteAction
                 return true;
             } else {
                 // Failed to delete from banner table
-                $this->mActionForm->addErrorMessage(_AD_BANNERSTATS_ERROR_COULD_NOT_DELETE);
+                $this->mActionForm->addErrorMessage(_AD_BANNERSTATS_ERROR_DELETE);
                 return false;
             }
         } else {
-            $this->mActionForm->addErrorMessage(_AD_BANNERSTATS_ERROR_COULD_NOT_COPY_TO_FINISH);
+            $this->mActionForm->addErrorMessage(_AD_BANNERSTATS_ERROR_COPY_TO_FINISH);
             return false;
         }
     }
@@ -118,9 +118,9 @@ class Bannerstats_BannerDeleteAction extends Bannerstats_AbstractDeleteAction
     /**
      * Prepares and sets data for the delete confirmation view
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render): void
@@ -137,9 +137,9 @@ class Bannerstats_BannerDeleteAction extends Bannerstats_AbstractDeleteAction
     /**
      * Handles successful deletion
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render): void
@@ -150,9 +150,9 @@ class Bannerstats_BannerDeleteAction extends Bannerstats_AbstractDeleteAction
     /**
      * Handles errors during deletion
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewError(&$controller, &$xoopsUser, &$render): void
@@ -163,9 +163,9 @@ class Bannerstats_BannerDeleteAction extends Bannerstats_AbstractDeleteAction
     /**
      * Handles cancellation of the deletion
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewCancel(&$controller, &$xoopsUser, &$render): void

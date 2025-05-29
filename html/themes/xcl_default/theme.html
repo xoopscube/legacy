@@ -129,7 +129,6 @@
 </header>
 
 
-
 <{if $xoops_is_top|default:''}>
     <{* SHOW HERO *}>
     <{include file="$xoops_theme/component/_inc_hero.html"}>
@@ -173,15 +172,6 @@
 
 </main>
 
-<{if $banner !="&nbsp;"}>
-<section role="banner">
-    <div class="container">
-        <article class="flex-justify">
-            <{$xoops_banner}>
-    </article>
-    </div>
-</section>
-<{/if}>
 
 <{* ---------- CENTER BLOCKS *}>
 <{if $xoops_showcblock==1}>
@@ -263,16 +253,7 @@
     </a>
 </div>
 
-<{if $banner !="&nbsp;"}>
-<section role="banner">
-    <div class="container">
-        <article class="flex-justify">
-            <span class="advert"><a href="<{$xoops_url}>/banners.php" target="_blank" rel="noopener nofolloe">Advertise</a></span>
-            <{$xoops_banner}>
-    </article>
-    </div>
-</section>
-<{/if}>
+
 
 <hr>
 

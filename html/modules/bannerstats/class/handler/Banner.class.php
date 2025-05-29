@@ -16,7 +16,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 
 require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/handler.php';
 require_once dirname(__DIR__) . '/Banner.class.php';
-require_once XOOPS_MODULE_PATH . '/bannerstats/mail/AdminAlertMail.class.php'; // This would be line 20
+require_once XOOPS_MODULE_PATH . '/bannerstats/mail/AdminAlertMail.class.php';
 require_once XOOPS_MODULE_PATH . '/bannerstats/mail/ClientAlertMail.class.php';
 
 class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
@@ -40,6 +40,72 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
     public function __construct(&$db)
     {
         parent::__construct($db);
+    }
+
+    /**
+     * Public method to Adnin send test notification emails.
+     * @param int $bid Banner ID
+     * @param string $emailType One of 'low_client', 'low_admin', 'finished_client', 'finished_admin'
+     * @return bool True on success, false on failure
+     */
+    public function sendTestNotification(int $bid, string $emailType): bool
+    {
+        $banner = $this->get($bid);
+        if (!$banner instanceof Bannerstats_BannerObject) {
+            error_log("sendTestNotification: Banner ID {$bid} not found.");
+            return false;
+        }
+        $banner->loadClient();
+        $client = $banner->mClient;
+        $clientName = ($client instanceof Bannerstats_BannerclientObject && $client->get('name')) ? $client->get('name') : self::DEFAULT_CLIENT_NAME;
+        $clientEmail = ($client instanceof Bannerstats_BannerclientObject && $client->get('email')) ? $client->get('email') : null;
+
+        $root = XCube_Root::getSingleton();
+        $configHandler = xoops_gethandler('config');
+        $moduleConfig = $configHandler->getConfigsByDirname('bannerstats');
+        $adminEmail = $moduleConfig['banner_alert_admin_email'] ?? $root->mContext->getXoopsConfig('adminmail');
+        $bannerName = $banner->getShow('name');
+
+        error_log("sendTestNotification: Sending test notification for banner ID {$bid} with email type '{$emailType}'.");
+
+        switch ($emailType) {
+            case 'low_client':
+                if (!$clientEmail) {
+                    error_log("sendTestNotification: Client email not found for banner ID {$bid}.");
+                    return false;
+                }
+                error_log("sendTestNotification: Sending low impressions notification to client email {$clientEmail}.");
+                $this->_sendLowImpressionsNotification($banner);
+                error_log("sendTestNotification: Low impressions notification sent to client.");
+                break;
+
+            case 'low_admin':
+                error_log("sendTestNotification: Sending low impressions notification to admin email {$adminEmail}.");
+                $this->_sendLowImpressionsNotification($banner);
+                error_log("sendTestNotification: Low impressions notification sent to admin.");
+                break;
+
+            case 'finished_client':
+                if (!$clientEmail) {
+                    error_log("sendTestNotification: Client email not found for banner ID {$bid}.");
+                    return false;
+                }
+                error_log("sendTestNotification: Sending finished notification to client email {$clientEmail}.");
+                $this->_sendBannerFinishedNotification(null, $banner, false);
+                error_log("sendTestNotification: Finished notification sent to client.");
+                break;
+
+            case 'finished_admin':
+                error_log("sendTestNotification: Sending finished notification to admin email {$adminEmail}.");
+                $this->_sendBannerFinishedNotification(null, $banner, false);
+                error_log("sendTestNotification: Finished notification sent to admin.");
+                break;
+
+            default:
+                error_log("sendTestNotification: Invalid email type '{$emailType}' for banner ID {$bid}.");
+                return false;
+        }
+        return true;
     }
 
     /**
@@ -134,7 +200,7 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
 
     public function countImpression(int $bid): bool
     {
-            // Use a global variable to track counted impressions per request
+    // Use a global variable to track counted impressions per request
     global $xoopsBannerImpressionTracker;
     if (!is_array($xoopsBannerImpressionTracker)) {
         $xoopsBannerImpressionTracker = [];
@@ -145,17 +211,17 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
     }
     $xoopsBannerImpressionTracker[$bid] = true;
 
-        // 1. Check if impression already counted
+        // Check if impression already counted
         if (isset(self::$countedImpressions[$bid])) {
             error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: Impression already counted in this request.");
             return true;
         }
 
-        // 2. Retrieve banner object
+        // Retrieve banner object
         /** @var Bannerstats_BannerObject|null $banner */
         $banner = $this->get($bid); // Targets prefix_banner
 
-        // 3. Check if impression limit is reached
+        // Check if impression limit is reached
         if ($banner->get('imptotal') > 0 && $banner->get('impmade') >= $banner->get('imptotal')) {
             // Change banner status to inactive (0) and call finishBanner method
             $banner->set('status', 0);
@@ -186,17 +252,13 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
             $finishResult = $this->finishBanner($banner, $impressionsReachedReason); 
                 
             if ($finishResult === false) {
-                error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: finishBanner call FAILED (returned false). Banner should already be inactive from previous step.");
             } elseif ($finishResult instanceof Bannerstats_BannerfinishObject) {
-                error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: finishBanner call SUCCEEDED (returned BannerfinishObject).");
-            } else {
-                error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: finishBanner call returned an unexpected result type.");
+                //error_log("finish result")
             }
             return true;
         } else {
             // Other checks
             if (!($banner instanceof Bannerstats_BannerObject) || $banner->get('status') != 1) {
-                error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: Banner not found or not active (status=" . ($banner ? $banner->get('status') : 'N/A') . "). No impression counted.");
                 return false;
             }
 
@@ -209,15 +271,13 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
 
             if (!$this->insert($banner, true)) { 
                 // Save to prefix_banner failed
-                error_log("Bannerstats Save to prefix_banner failed");
                 return false;
             }
             // Impression counted and saved
-            error_log("Bannerstats Impression counted and saved");
+            // error_log("Bannerstats Impression counted and saved");
 
             // Check if banner now reached its limit after increment
             if ($banner->get('imptotal') > 0 && $banner->get('impmade') >= $banner->get('imptotal')) {
-                error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: Reached or exceeded imptotal after increment, calling finishBanner.");
                 $impressionsReachedReason = defined('BANNER_FINISH_REASON_IMPRESSIONS') ? BANNER_FINISH_REASON_IMPRESSIONS : 'Impressions Reached';
                 $this->finishBanner($banner, $impressionsReachedReason);
             }
@@ -231,7 +291,6 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
     public function finishBanner(Bannerstats_BannerObject $banner, string $reason = 'Manually Finished', int $finished_by_uid = 0)
     {
         if (!($banner instanceof Bannerstats_BannerObject) || !$banner->get('bid')) {
-            error_log("Bannerstats_BannerHandler::finishBanner - ERROR: Invalid banner object or BID provided. Aborting.");
             return false;
         }
         $originalBannerBID = $banner->get('bid');
@@ -239,9 +298,9 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
         $moduleDirname = $this->_mDirname ?? 'bannerstats';
 
 
-        // --- Step 1: Change banner-id status to '0' (inactive) and save to 'banner' table ---
+        //Change banner-id status to '0' (inactive) and save to 'banner' table
         $banner->set('status', 0);
-        error_log("Bannerstats change as inactive in its table.");
+        //error_log("Bannerstats change as inactive in its table.");
 
 
         $impressionsReachedReason = 'Impressions Reached'; // Fallback
@@ -249,7 +308,7 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
         if (!defined('BANNER_FINISH_REASON_IMPRESSIONS')) {
             $bannerFinishHandlerFile = XOOPS_MODULE_PATH . '/' . $moduleDirname . '/class/handler/BannerFinish.class.php';
             if (file_exists($bannerFinishHandlerFile)) {
-                require_once $bannerFinishHandlerFile; // Ensures constants are loaded
+                require_once $bannerFinishHandlerFile;
             }
         }
         if (defined('BANNER_FINISH_REASON_IMPRESSIONS')) {
@@ -263,9 +322,9 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
             }
         }
 
-        // This uses $this->mTable as it is configured in your Bannerstats_BannerHandler constructor.
+        // uses $this->mTable configured in Bannerstats_BannerHandler constructor
         if (!$this->insert($banner, true)) { // Force update
-            error_log("Bannerstats_BannerHandler::finishBanner - CRITICAL (Step 1 FAILED): Failed to mark banner ID {$originalBannerBID} as inactive in its table. DB Error: " . $this->db->error() . ". Aborting finish process.");
+            //error_log("CRITICAL STEP FAILED): Failed to mark banner ID {$originalBannerBID} as inactive in its table. DB Error: " . $this->db->error() . ". Aborting finish process.");
             return false; // Banner remains active if this fails.
         }
         error_log("Bannerstats_BannerHandler::finishBanner - Step 1 SUCCESS: Banner ID {$originalBannerBID} marked as inactive in its table.");
@@ -274,16 +333,6 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
         $bannerfinishHandler = xoops_getmodulehandler('bannerfinish', 'bannerstats');
 
         if (!$bannerfinishHandler instanceof Bannerstats_BannerfinishHandler) {
-             error_log("Bannerstats_BannerHandler::finishBanner - Could not get BannerfinishHandler.");
-   
-            
-            error_log("Bannerstats_BannerHandler::finishBanner - Step 2 PREP FAILED: Could not get BannerfinishHandler for banner ID {$originalBannerBID}. Banner remains inactive but not archived.");
-            
-
-            // Banner is inactive (Step 1 succeeded), but archival failed.
-            
-            // The _sendBannerFinishedNotification method is part of this class.
-            // Directly call the method as it's part of this class
             $this->_sendBannerFinishedNotification(null, $banner, true);
 
             return false;
@@ -291,21 +340,16 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
 
         /** @var Bannerstats_BannerfinishObject $bannerfinish */
         $bannerfinish = $bannerfinishHandler->create();
-$bannerfinish->mDirname = 'bannerstats'; // Force correct module dirname
+        $bannerfinish->mDirname = 'bannerstats'; // Force correct module dirname
 
         if (!$bannerfinish instanceof Bannerstats_BannerfinishObject) {
-            
-             error_log("Bannerstats_BannerHandler::finishBanner - Could not create BannerfinishObject.");
-    
-            error_log("Bannerstats_BannerHandler::finishBanner - Step 2 PREP FAILED: Could not create BannerfinishObject for banner ID {$originalBannerBID}. Banner remains inactive but not archived.");
-           
             // Directly call the method as it's part of this class
             $this->_sendBannerFinishedNotification(null, $banner, true);
 
             return false;
         }
 
-// $bannerfinish->mDirname = 'bannerstats'; // Force correct module dirname
+        // $bannerfinish->mDirname = 'bannerstats'; // Force correct module dirname
 
         // Populate $bannerfinish from the $banner object
         $bannerfinish->set('bid', $banner->get('bid'));
@@ -316,9 +360,8 @@ $bannerfinish->mDirname = 'bannerstats'; // Force correct module dirname
         $bannerfinish->set('imageurl', $banner->get('imageurl'));
         $bannerfinish->set('clickurl', $banner->get('clickurl'));
         $bannerfinish->set('htmlcode', $banner->get('htmlcode'));
-
-$bannerfinish->set('width', is_numeric($banner->get('width')) ? $banner->get('width') : null);
-$bannerfinish->set('height', is_numeric($banner->get('height')) ? $banner->get('height') : null);
+        $bannerfinish->set('width', is_numeric($banner->get('width')) ? $banner->get('width') : null);
+        $bannerfinish->set('height', is_numeric($banner->get('height')) ? $banner->get('height') : null);
         $bannerfinish->set('imptotal_allocated', $banner->get('imptotal'));
         $bannerfinish->set('impressions_made', $banner->get('impmade'));
         $bannerfinish->set('clicks_made', $banner->get('clicks'));
@@ -329,54 +372,33 @@ $bannerfinish->set('height', is_numeric($banner->get('height')) ? $banner->get('
         $bannerfinish->set('date_finished', time());
         $bannerfinish->set('finish_reason', $reason);
         $bannerfinish->set('finished_by_uid', $finished_by_uid);
+        
+        $copySuccess = $bannerfinishHandler->insert($bannerfinish, true); // important, true (force)
 
-        error_log("Bannerstats_BannerHandler::finishBanner - About to insert into bannerfinish for BID {$originalBannerBID}");
-
-        //error_log("Bannerstats_BannerHandler::finishBanner - Bannerfinish object vars: " . print_r(get_object_vars($bannerfinish), true));
-
-error_log("Bannerstats_BannerHandler::finishBanner - Bannerfinish object dump: " . print_r($bannerfinish, true));
-
-$copySuccess = $bannerfinishHandler->insert($bannerfinish, true); // important, true (force)
-
-        // --- Step 3: Conditional Deletion ---
+        // Conditional Deletion
         if ($copySuccess) {
-            error_log("Bannerstats_BannerHandler::finishBanner - Step 2 SUCCESS: Banner ID {$originalBannerBID} copied to 'bannerfinish' table.");
-            
-            // Step 3a: Copy succeeded, proceed with deletion from 'banner' table.
-            // This uses $this->mTable as it is configured in your Bannerstats_BannerHandler constructor.
+            // Copy succeeded, proceed with deletion from 'banner' table
             if ($this->delete($banner, true)) {
-                error_log("Bannerstats_BannerHandler::finishBanner - Step 3a SUCCESS: Deleted banner ID {$originalBannerBID} from its table.");
-               
-                // Directly call the method as it's part of this class
+                //error_log("STEP SUCCESS: Deleted banner ID {$originalBannerBID} from its table.");
                 $this->_sendBannerFinishedNotification($bannerfinish, $banner, false); // Full success
-
 
                 return $bannerfinish;
             } else {
-                error_log("Bannerstats_BannerHandler::finishBanner - Step 3a FAILED: Copied banner ID {$originalBannerBID} to 'bannerfinish', but FAILED to delete from its table. DB Error: " . $this->db->error() . ". Banner remains inactive in its table.");
-               
-                // Directly call the method as it's part of this class
                 $this->_sendBannerFinishedNotification($bannerfinish, $banner, true); // Admin review needed
 
-
-                return $bannerfinish; // Return archived object, but original (inactive) wasn't deleted.
+                return $bannerfinish; // Return archived object, but original (inactive) wasn't deleted
             }
         } else {
-            // Step 3b: Copy failed. Preserve banner-id in table 'banner' with status '0'.
-            // The banner is already inactive (status 0) from Step 1. No further DB action on 'banner' table needed here.
-            error_log("Bannerstats_BannerHandler::finishBanner - Step 2 FAILED (COPY FAILED): Could not insert banner ID {$originalBannerBID} into 'bannerfinish' table. DB Error: " . $bannerfinishHandler->db->error() . ". Banner remains in its table with status 0.");
-           
-            // Directly call the method as it's part of this class
+            // Copy failed. Preserve banner-id in table 'banner' with status '0'.
             $this->_sendBannerFinishedNotification(null, $banner, true); // Notify admin of archival failure
 
-
-            return false; // Indicate archival failed. Banner is inactive.
+            return false; // Indicate archival failed. Banner is inactive
         }
     }
 
 
     /**
-     * Sends notification when a banner's impressions are running low.
+     * Sends notification when a banner's impressions are running low
      * @param Bannerstats_BannerObject $banner
      */
     protected function _sendLowImpressionsNotification(Bannerstats_BannerObject $banner): void
@@ -396,7 +418,7 @@ $copySuccess = $bannerfinishHandler->insert($bannerfinish, true); // important, 
         $clientName = ($client instanceof Bannerstats_BannerclientObject && $client->get('name')) ? $client->getShow('name') : self::DEFAULT_CLIENT_NAME;
         
         $adminEmail = $moduleConfig['banner_alert_admin_email'] ?? $root->mContext->getXoopsConfig('adminmail');
-        $xoopsConfig = $root->mContext->getXoopsConfig(); // For the director
+        $xoopsConfig = $root->mContext->getXoopsConfig(); // For XCube MailBuilder director
 
         $bannerName = $banner->getShow('name');
         $remainingImpressions = $banner->get('imptotal') - $banner->get('impmade');
@@ -426,9 +448,9 @@ $copySuccess = $bannerfinishHandler->insert($bannerfinish, true); // important, 
             $director->constructMail();
             $mailer = $clientBuilder->getResult();
             if (!$mailer->send()) {
-                error_log("BannerStats: FAILED to send Low Impressions (Client) email to {$clientEmail} for banner BID " . $banner->get('bid') . ". Errors: " . implode(', ', $mailer->getErrors(false)));
+                //error_log("BannerStats: FAILED to send Low Impressions (Client) email to {$clientEmail} for banner BID " . $banner->get('bid') . ". Errors: " . implode(', ', $mailer->getErrors(false)));
             } else {
-                error_log("BannerStats: Sent Low Impressions (Client) email to {$clientEmail} for banner BID " . $banner->get('bid'));
+                //error_log("BannerStats: Sent Low Impressions (Client) email to {$clientEmail} for banner BID " . $banner->get('bid'));
             }
         }
 
@@ -456,18 +478,18 @@ $copySuccess = $bannerfinishHandler->insert($bannerfinish, true); // important, 
             $director->constructMail();
             $mailer = $adminBuilder->getResult();
             if (!$mailer->send()) {
-                 error_log("BannerStats: FAILED to send Low Impressions (Admin) email for banner BID " . $banner->get('bid') . ". Errors: " . implode(', ', $mailer->getErrors(false)));
+                //error_log("BannerStats: FAILED to send Low Impressions (Admin) email for banner BID " . $banner->get('bid') . ". Errors: " . implode(', ', $mailer->getErrors(false)));
             } else {
-                error_log("BannerStats: Sent Low Impressions (Admin) email for banner BID " . $banner->get('bid'));
+                //error_log("BannerStats: Sent Low Impressions (Admin) email for banner BID " . $banner->get('bid'));
             }
         }
     }
 
     /**
      * Sends notification when a banner has finished.
-     * @param Bannerstats_BannerfinishObject|null $finishedBanner The archived banner object, or null if archival failed.
-     * @param Bannerstats_BannerObject $originalBanner For client info and original banner details.
-     * @param bool $adminReviewNeeded Indicates if admin attention is required (e.g., delete failed or archival failed).
+     * @param Bannerstats_BannerfinishObject|null $finishedBanner The archived banner object, or null if archival failed
+     * @param Bannerstats_BannerObject $originalBanner For client info and original banner details
+     * @param bool $adminReviewNeeded Indicates if admin attention is required (e.g., delete failed or archival failed)
      */
     protected function _sendBannerFinishedNotification(?Bannerstats_BannerfinishObject $finishedBanner, Bannerstats_BannerObject $originalBanner, bool $adminReviewNeeded = false): void
     {
@@ -479,7 +501,7 @@ $copySuccess = $bannerfinishHandler->insert($bannerfinish, true); // important, 
             return;
         }
 
-        $originalBanner->loadClient(); // Load client data from the original banner object
+        $originalBanner->loadClient();
         $client = $originalBanner->mClient;
 
         $clientEmail = ($client instanceof Bannerstats_BannerclientObject && $client->get('email')) ? $client->get('email') : null;
@@ -492,7 +514,7 @@ $copySuccess = $bannerfinishHandler->insert($bannerfinish, true); // important, 
         $bannerNameForEmail = $finishedBanner ? $finishedBanner->getShow('name') : $originalBanner->getShow('name');
         $bannerBidForEmail = $finishedBanner ? $finishedBanner->get('bid') : $originalBanner->get('bid');
 
-        // --- Send to Client ---
+        // Send to Client
         // Only send to client if the banner was successfully archived ($finishedBanner is not null)
         if ($clientEmail && $finishedBanner instanceof Bannerstats_BannerfinishObject) {
             $clientSubjectArgs = [$bannerNameForEmail];
@@ -550,8 +572,8 @@ $copySuccess = $bannerfinishHandler->insert($bannerfinish, true); // important, 
                 } else { // Archival failed, use original banner data
                     $vars['impressions_served'] = $contextObj->get('impmade');
                     $vars['clicks_received']    = $contextObj->get('clicks');
-                    $vars['finish_reason']      = _MD_BANNERSTATS_EMAIL_ARCHIVAL_FAILED_REASON; // Define this language constant
-                    $vars['date_finished']      = _NA;
+                    $vars['finish_reason']      = _MD_BANNERSTATS_FINISH_OTHER;
+                    $vars['date_finished']      = _MD_BANNERSTATS_FINISH_DATE_EXPIRED;
                 }
                 return $vars;
             };
@@ -577,9 +599,9 @@ $copySuccess = $bannerfinishHandler->insert($bannerfinish, true); // important, 
             }
 
             if (!$mailer->send()) {
-                error_log("BannerStats: FAILED to send Finished (Admin) email for banner BID " . $bannerBidForEmail . ". Errors: " . implode(', ', $mailer->getErrors(false)));
+                // error_log("BannerStats: FAILED to send Finished (Admin) email for banner BID " . $bannerBidForEmail . ". Errors: " . implode(', ', $mailer->getErrors(false)));
             } else {
-                error_log("BannerStats: Sent Finished (Admin) email for banner BID " . $bannerBidForEmail);
+                // error_log("BannerStats: Sent Finished (Admin) email for banner BID " . $bannerBidForEmail);
             }
         }
     }

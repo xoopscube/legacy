@@ -48,7 +48,6 @@ class Bannerstats_BannerclientAdminEditForm extends XCube_ActionForm
         $this->mFormProperties['extrainfo'] = new XCube_TextProperty('extrainfo');
         $this->mFormProperties['status'] = new XCube_IntProperty('status');
 
-
         // Set field properties with validation rules
         $this->mFieldProperties['name'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['name']->setDependsByArray(['required', 'maxlength']);

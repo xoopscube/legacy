@@ -120,7 +120,7 @@ class Bannerstats_BannerReactivateAction extends Bannerstats_AbstractEditAction
             if ($dateTimeObject instanceof DateTime) {
                 $startTimestamp = $dateTimeObject->getTimestamp();
             } else {
-                $this->mActionForm->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME_FORMAT_NEW, _AD_BANNERSTATS_START_DATE, 'YYYY-MM-DDTHH:MM'));
+                $this->mActionForm->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME, _AD_BANNERSTATS_START_DATE, 'YYYY-MM-DDTHH:MM'));
             }
         }
         $activeBanner->set('start_date', $startTimestamp);
@@ -132,7 +132,7 @@ class Bannerstats_BannerReactivateAction extends Bannerstats_AbstractEditAction
             if ($dateTimeObject instanceof DateTime) {
                 $endTimestamp = $dateTimeObject->getTimestamp();
             } else {
-                $this->mActionForm->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME_FORMAT_NEW, _AD_BANNERSTATS_DATE_END, 'YYYY-MM-DDTHH:MM'));
+                $this->mActionForm->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME, _AD_BANNERSTATS_DATE_END, 'YYYY-MM-DDTHH:MM'));
             }
         }
         $activeBanner->set('end_date', $endTimestamp);
@@ -153,9 +153,9 @@ class Bannerstats_BannerReactivateAction extends Bannerstats_AbstractEditAction
     /**
      * Prepares and sets data for the reactivation form view
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render): void
@@ -201,22 +201,22 @@ class Bannerstats_BannerReactivateAction extends Bannerstats_AbstractEditAction
     /**
      * Handles successful reactivation
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render): void
     {
-        $controller->executeRedirect('./index.php?action=BannerList', 1, _AD_BANNERSTATS_MESSAGE_BANNER_REACTIVATED);
+        $controller->executeRedirect('./index.php?action=BannerList', 1, _AD_BANNERSTATS_REACTIVATE_SUCCESS);
     }
 
     /**
      * Handles errors during reactivation
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewError(&$controller, &$xoopsUser, &$render): void
@@ -231,9 +231,9 @@ class Bannerstats_BannerReactivateAction extends Bannerstats_AbstractEditAction
     /**
      * Handles cancellation
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewCancel(&$controller, &$xoopsUser, &$render): void

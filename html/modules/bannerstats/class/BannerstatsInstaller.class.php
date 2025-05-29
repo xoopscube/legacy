@@ -18,15 +18,11 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-// Ensure the base installer class is loaded
 require_once XOOPS_ROOT_PATH . '/modules/legacy/admin/class/ModuleInstaller.class.php';
 
 class Bannerstats_Installer extends Legacy_ModuleInstaller
 {
-    /**
-     * Constructor.
-     * Initializes the installer.
-     */
+
     public function __construct()
     {
         parent::__construct();

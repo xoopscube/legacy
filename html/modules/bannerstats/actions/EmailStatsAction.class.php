@@ -1,7 +1,7 @@
 <?php
 /**
  * Bannerstats - Module for XCL
- * ChangeUrlAction.class.php
+ * EmailStatsAction.class.php
  *
  * @package    Bannerstats
  * @author     Nuno Luciano (aka gigamaster) XCL PHP8
@@ -30,7 +30,7 @@ class Bannerstats_EmailStatsAction
     }
 
     /**
-     * Handles the request to email stats.
+     * Handles the request to email stats
      * 
      * @return string Template name
      */

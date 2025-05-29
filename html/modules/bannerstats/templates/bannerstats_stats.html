@@ -1,12 +1,12 @@
-<h2><{$pageTitle|default:$xoops_pagetitle}></h2>
+<h2><{$page_title}></h2>
 
 <div style="margin-bottom: 15px; text-align: right;">
-    <a href="<{$logoutLink}>"><{$smarty.const._MD_BANNERSTATS_LOGOUT|default:"Logout"}></a> |
-    <a href="<{$contactLink}>"><{$smarty.const._MD_BANNERSTATS_CONTACT_WEBMASTER|default:"Contact Webmaster"}></a>
+    <a href="<{$logoutLink}>"><{$smarty.const._MD_BANNERSTATS_LOGOUT}></a> |
+    <a href="<{$contactLink}>"><{$smarty.const._MD_BANNERSTATS_CONTACT_SUPPORT}></a>
 </div>
 
 <{if $activeBanners}>
-    <h3><{$smarty.const._MD_BANNERSTATS_ACTIVE_BANNERS|default:"Current Active Banners"}></h3>
+    <h3><{$smarty.const._MD_BANNERSTATS_ACTIVE_BANNERS}></h3>
         
     <{foreach item=banner from=$activeBanners}>
     <article class="banner-preview">
@@ -17,23 +17,25 @@
         <table class="outer" cellspacing="1" width="100%">
         <thead>
             <tr>
-                <th><{$activeBanners[0].impressions_made_label|default:'Impressions'}></th>
-                <th><{$activeBanners[0].clicks_received_label|default:'Clicks'}></th>
-                <th><{$activeBanners[0].current_ctr_label|default:'Current CTR'}></th>
-                <th><{$activeBanners[0].impressions_total_purchased_label|default:'Total Purchased'}></th>
-                <th><{$activeBanners[0].impressions_remaining_label|default:'Leftover'}></th>
-                <th>Actions</th>
+                <th><{$smarty.const._MD_BANNERSTATS_IMPRESSIONS}></th>
+                <th><{$smarty.const._MD_BANNERSTATS_CLICKS}></th>
+                <th><{$smarty.const._MD_BANNERSTATS_CTR_LABEL}></th>
+                <th><{$smarty.const._MD_BANNERSTATS_IMPTOTAL}></th>
+                <th><{$smarty.const._MD_BANNERSTATS_IMPLEFT}></th>
+                <th><{$smarty.const._MD_BANNERSTATS_ACTION}></th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><{$banner.impressions_made}></td>
                 <td><{$banner.clicks_received}></td>
-                <td><{$banner.current_ctr}><{if $banner.is_html && $banner.current_ctr != 'See Ad Service' && $banner.current_ctr != '0% (Site Data)'}>%<{/if}></td>
+                <td><{$banner.current_ctr}>
+                    <{if $banner.is_html && $banner.current_ctr != 'See Ad Service' && $banner.current_ctr != '0% (Site Data)'}>%<{/if}>
+                </td>
                 <td><{$banner.impressions_total_purchased}></td>
                 <td><{$banner.impressions_remaining}></td>
                 <td>
-                    <a href="<{$banner.email_stats_link}>"><{$smarty.const._MD_BANNERSTATS_EMAIL_STATS|default:"Email Stats"}></a>
+                    <a href="<{$banner.email_stats_link}>"><{$smarty.const._MD_BANNERSTATS_EMAIL_STATS}></a>
                     
                     <{* MANAGE URL LINK *}>
                     <{assign var="showManageUrl" value=false}>
@@ -50,7 +52,7 @@
                     <{/if}>
 
                     <{if $showManageUrl && $linkForManageUrl}>
-                        <br><a href="<{$linkForManageUrl}>"><{$smarty.const._MD_BANNERSTATS_MANAGE_URL|default:'Manage URL'}></a>
+                        <br><a href="<{$linkForManageUrl}>"><{$smarty.const._MD_BANNERSTATS_MANAGE_URL}></a>
                     <{/if}>               
                 </td>
             </tr>
@@ -73,37 +75,39 @@
 </article>
     <{/foreach}>
 <{else}>
-    <p><{$smarty.const._MD_BANNERSTATS_NO_ACTIVE_BANNERS|default:"You have no active banners at this time."}></p>
+    <p><{$smarty.const._MD_BANNERSTATS_NO_ACTIVE_BANNERS}></p>
 <{/if}>
 
 
 <{if $finishedBanners}>
 <hr />
     <h3>
-        <{$smarty.const._MD_BANNERSTATS_FINISHED_BANNERS|default:"Previously Finished Banners"}>
+        <{$smarty.const._MD_BANNERSTATS_FINISHED_BANNERS}>
     </h3>
 
     <{foreach item=banner from=$finishedBanners}>
     <article class="banner-preview">
-        <headr>
+        <header class="center">
         <{$banner.preview}>
-        </headr>
+        </header>
         <table class="outer" cellspacing="1" width="100%">
         <thead>
             <tr>
-                <th>Total Impressions</th>
-                <th>Total Clicks</th>
-                <th>Final CTR</th>
-                <th>Start Date</th>
-                <th>Date end</th>
-                <th>End Date</th>
+                <th><{$smarty.const._MD_BANNERSTATS_IMPMADE}></th>
+                <th><{$smarty.const._MD_BANNERSTATS_CLICKS}></th>
+                <th><{$smarty.const._MD_BANNERSTATS_CTR_LABEL}></th>
+                <th><{$smarty.const._MD_BANNERSTATS_DATE_START}></th>
+                <th><{$smarty.const._MD_BANNERSTATS_DATE_END}></th>
+                <th><{$smarty.const._MD_BANNERSTATS_DATE_FINISHED}></th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><{$banner.total_impressions_served}></td>
                 <td><{$banner.total_clicks_received}></td>
-                <td><{$banner.final_ctr}><{if $banner.is_html && $banner.final_ctr != 'See Ad Service' && $banner.final_ctr != '0% (Site Data)'}>%<{/if}></td>
+                <td><{$banner.final_ctr}>
+                    <{if $banner.is_html && $banner.final_ctr != 'See Ad Service' && $banner.final_ctr != '0% (Site Data)'}>%<{/if}>
+                </td>
                 <td><{$banner.datestart_original}></td>
                 <td><{$banner.dateend_original}></td>
                 <td><{$banner.date_finished}></td>
@@ -121,5 +125,5 @@
     </article>
     <{/foreach}>
 <{else}>
-    <p><{$smarty.const._MD_BANNERSTATS_NO_FINISHED_BANNERS|default:"You have no previously finished banners."}></p>
+    <p><{$smarty.const._MD_BANNERSTATS_NO_FINISHED_BANNERS}></p>
 <{/if}>

@@ -15,7 +15,6 @@ if (!defined('XOOPS_ROOT_PATH')) {
     die('XOOPS root path not defined');
 }
 
-// Ensure dependent classes are loaded
 require_once XOOPS_MODULE_PATH . '/bannerstats/class/BannerClientSession.class.php';
 require_once XOOPS_MODULE_PATH . '/bannerstats/class/BannerStatsManager.class.php';
 require_once XOOPS_MODULE_PATH . '/bannerstats/class/BannerClientToken.class.php';
@@ -166,24 +165,24 @@ class Bannerstats_RequestSupportAction
 
         $errors = [];
         if (empty($clientName)) {
-            $errors[] = defined('_MD_BANNERSTATS_ERR_NAME_REQUIRED') ? _MD_BANNERSTATS_ERR_NAME_REQUIRED : 'Your name is required.';
+            $errors[] = _MD_BANNERSTATS_ERR_NAME_REQUIRED;
         }
         if (empty($clientEmail) || !filter_var($clientEmail, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = defined('_MD_BANNERSTATS_ERR_EMAIL_REQUIRED') ? _MD_BANNERSTATS_ERR_EMAIL_REQUIRED : 'A valid email address is required.';
+            $errors[] = _MD_BANNERSTATS_ERR_EMAIL_REQUIRED;
         }
         if (empty($requestTypeKey)) {
-            $errors[] = defined('_MD_BANNERSTATS_ERR_REQ_TYPE_REQUIRED') ? _MD_BANNERSTATS_ERR_REQ_TYPE_REQUIRED : 'Please select a request type.';
+            $errors[] = _MD_BANNERSTATS_ERR_REQ_TYPE_REQUIRED;
         }
         if (empty($subject)) {
-            $errors[] = defined('_MD_BANNERSTATS_ERR_SUBJECT_REQUIRED') ? _MD_BANNERSTATS_ERR_SUBJECT_REQUIRED : 'Subject is required.';
+            $errors[] = _MD_BANNERSTATS_ERR_SUBJECT_REQUIRED;
         }
         if (empty($message)) {
-            $errors[] = defined('_MD_BANNERSTATS_ERR_MESSAGE_REQUIRED') ? _MD_BANNERSTATS_ERR_MESSAGE_REQUIRED : 'Message is required.';
+            $errors[] = _MD_BANNERSTATS_ERR_MESSAGE_REQUIRED;
         }
 
         if (in_array($requestTypeKey, ['update_code', 'problem'])) {
              if (empty($bannerId) || !is_numeric($bannerId) || (int)$bannerId <= 0) {
-                 $errors[] = defined('_MD_BANNERSTATS_ERR_BANNER_ID_REQUIRED') ? _MD_BANNERSTATS_ERR_BANNER_ID_REQUIRED : 'Please select a valid Banner ID for this request type.';
+                 $errors[] = _MD_BANNERSTATS_ERR_BANNER_ID_REQUIRED;
              }
         }
 
@@ -194,11 +193,11 @@ class Bannerstats_RequestSupportAction
         }
 
         $requestTypes = [
-            'new_banner' => defined('_MD_BANNERSTATS_REQ_NEW_BANNER') ? _MD_BANNERSTATS_REQ_NEW_BANNER : 'Request New Banner Setup',
-            'update_code' => defined('_MD_BANNERSTATS_REQ_UPDATE_CODE') ? _MD_BANNERSTATS_REQ_UPDATE_CODE : 'Update Ad Code for Existing Banner',
-            'problem' => defined('_MD_BANNERSTATS_REQ_PROBLEM') ? _MD_BANNERSTATS_REQ_PROBLEM : 'Report Problem with Existing Banner',
-            'question' => defined('_MD_BANNERSTATS_REQ_QUESTION') ? _MD_BANNERSTATS_REQ_QUESTION : 'General Question about Banners',
-            'other' => defined('_MD_BANNERSTATS_REQ_OTHER') ? _MD_BANNERSTATS_REQ_OTHER : 'Other',
+            'new_banner' => _MD_BANNERSTATS_REQ_NEW_BANNER,
+            'update_code' => _MD_BANNERSTATS_REQ_UPDATE_CODE,
+            'problem' => _MD_BANNERSTATS_REQ_PROBLEM,
+            'question' => _MD_BANNERSTATS_REQ_QUESTION,
+            'other' => _MD_BANNERSTATS_REQ_OTHER,
         ];
         $requestTypeDisplay = $requestTypes[$requestTypeKey] ?? 'N/A';
 
@@ -206,7 +205,7 @@ class Bannerstats_RequestSupportAction
         $xoopsMailer = getMailer();
         
         if (!is_object($xoopsMailer)) {
-            $errorMessage = defined('_MD_BANNERSTATS_MAILER_ERROR') ? _MD_BANNERSTATS_MAILER_ERROR : 'Could not initialize the mailer service.';
+            $errorMessage = _MD_BANNERSTATS_ERR_MAILER;
             $this->xoopsTpl->assign('bannerstats_error_message', $errorMessage);
             error_log("Bannerstats: Failed to get mailer object from XCube_Root.");
             $_SESSION['bannerstats_support_form_data'] = $_POST;
@@ -241,7 +240,7 @@ class Bannerstats_RequestSupportAction
             header("Location: " . $redirectUrl);
             exit();
         } else {
-            $errorMessage = defined('_MD_BANNERSTATS_SUPPORT_SENT_ERROR') ? _MD_BANNERSTATS_SUPPORT_SENT_ERROR : 'There was an error sending your request. Please try again later.';
+            $errorMessage = _MD_BANNERSTATS_ERR_SUPPORT_SENT;
             $this->xoopsTpl->assign('bannerstats_error_message', $errorMessage . ' ' . $xoopsMailer->getErrors(true));
             error_log("Bannerstats: Failed to send support email. " . $xoopsMailer->getErrors(true));
             $_SESSION['bannerstats_support_form_data'] = $_POST;

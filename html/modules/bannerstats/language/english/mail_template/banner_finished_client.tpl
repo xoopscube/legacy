@@ -1,15 +1,35 @@
-{_MD_BANNERSTATS_EMAIL_DEAR} {CLIENT_NAME},
+Subject: Client Notification: Banner Campaign Finished - {BANNER_NAME}
 
-{_MD_BANNERSTATS_EMAIL_FINISHED_INTRO_CLIENT}
+Hi {CLIENT_NAME},
 
-{_MD_BANNERSTATS_EMAIL_BANNER_NAME}: {BANNER_NAME} (ID: {BANNER_ID})
-{_MD_BANNERSTATS_EMAIL_IMPRESSIONS_MADE}: {impressions_served}
-{_MD_BANNERSTATS_EMAIL_CLICKS_RECEIVED}: {clicks_received}
-{_MD_BANNERSTATS_EMAIL_FINISH_REASON}: {finish_reason}
-{_MD_BANNERSTATS_EMAIL_DATE_FINISHED}: {date_finished}
+This is an automated notification that a banner campaign has concluded.
 
-You can view your past campaign statistics here:
+Banner Details:
+------------------------------------
+
+Banner Name : {BANNER_NAME} 
+Banner ID   : {BANNER_ID}
+Client Name : {CLIENT_NAME}
+Client Email: {CLIENT_EMAIL}
+
+------------------------------------
+
+The campaign for the banner listed above has finished.
+Further details regarding impressions, clicks, 
+and specific finish reasons may require manual review 
+if not provided by a specific notification process.
+
+Actions:
+------------------------------------
+
+View Statistics (General):
 {CLIENT_STATS_URL}
 
-{_MD_BANNERSTATS_EMAIL_THANK_YOU}
-{_MD_BANNERSTATS_EMAIL_SITENAME_TEAM|sprintf:$X_SITENAME}
+Contact Support:
+{CLIENT_SUPPORT}
+
+------------------------------------
+
+Thank you,
+{X_SITENAME}
+{X_SITEURL}

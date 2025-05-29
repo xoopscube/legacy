@@ -1,10 +1,6 @@
 <?php
-// Module info language definitions
+// Module info
 define('_MI_BANNERSTATS_ADMENU_EMAIL_TEST', 'Email Test Utility');
-define('_MI_BANNERSTATS_BLOCK_BANNER', 'Banner');
-define('_MI_BANNERSTATS_BLOCK_BANNER_DESC', 'Display a banner');
-define('_MI_BANNERSTATS_BLOCK_CAMPAIGN', 'Campaign Banners');
-define('_MI_BANNERSTATS_BLOCK_CAMPAIGN_DESC', 'Displays banners filtered by campaign, client, or specific banner ID.');
 define('_MI_BANNERSTATS_CONF_ADMIN_EMAIL', 'Admin Alert Email');
 define('_MI_BANNERSTATS_CONF_ADMIN_EMAIL_DESC', 'Email address to receive banner alert notifications.');
 define('_MI_BANNERSTATS_CONF_ALERT_THRESHOLD', 'Alert Threshold Percentage');
@@ -21,4 +17,14 @@ define('_MI_BANNERSTATS_MENU_CLIENT_LIST', 'Client List');
 define('_MI_BANNERSTATS_MENU_CLIENT_NEW', 'New Client');
 define('_MI_BANNERSTATS_NAME', 'Banner Stats');
 define('_MI_BANNERSTATS_DESC', 'Banner management and client statistics');
-?>
+
+// BLOCKS
+define('_MI_BANNERSTATS_BLOCK_BANNER', 'Banner');
+define('_MI_BANNERSTATS_BLOCK_BANNER_DESC', 'Display a banner');
+
+define('_MI_BANNERSTATS_BLOCK_CLIENT_MENU', 'Banner Menu');
+define('_MI_BANNERSTATS_BLOCK_CLIENT_MENU_DESC', 'Bannerstats client menu');
+
+define('_MI_BANNERSTATS_BLOCK_CAMPAIGN', 'Campaign Banners');
+define('_MI_BANNERSTATS_BLOCK_CAMPAIGN_DESC', 'Displays banners filtered by campaign, client, or specific banner ID.');
+

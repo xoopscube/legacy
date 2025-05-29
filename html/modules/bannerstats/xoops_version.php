@@ -26,11 +26,6 @@ $modversion['cube_style'] = true;
 $modversion['read_any'] = true;
 
 // Modules functions 
-// onInstall, onUpdate, onUninstall
-// $modversion['onInstall']   = 'oninstall.php';
-// $modversion['onUpdate']    = 'onupdate.php';
-// $modversion['onUninstall'] = 'onuninstall.php';
-// Use the legacy_installer pattern
 $modversion['legacy_installer']['installer']['class'] = 'Installer';
 $modversion['legacy_installer']['updater']['class']   = 'Updater';
 $modversion['legacy_installer']['uninstaller']['class'] = 'Uninstaller';
@@ -44,15 +39,11 @@ $modversion['tables'] = [
 
 // Admin
 $modversion['hasAdmin'] = 1;
-
 $modversion['adminindex'] = 'admin/index.php';
 $modversion['adminmenu'] = 'admin/menu.php';
 
 // Main menu
 $modversion['hasMain'] = 1;
-
-// $modversion['sub'][1]['name'] = 'Client Login';
-// $modversion['sub'][1]['url'] = 'index.php?action=Login';
 
 // Templates
 $modversion['templates'][] = array('file' => 'bannerstats_login.html', 'description' => 'Login Form');
@@ -91,7 +82,7 @@ $modversion['config'][] = [
     'name'        => 'banner_alert_percent',
     'title'       => '_MI_BANNERSTATS_CONF_ALERT_THRESHOLD',
     'description' => '_MI_BANNERSTATS_CONF_ALERT_THRESHOLD_DESC',
-    'formtype'    => 'text', // Could be a select box with predefined percentages
+    'formtype'    => 'text',
     'valuetype'   => 'int',
     'default'     => 90, // e.g., send alert when 90% of impressions are used
 ];
@@ -104,29 +95,28 @@ $modversion['config'][] = [
     'default'     => $GLOBALS['xoopsConfig']['adminmail'], // Default to site admin email
 ];
 
+
 // Blocks
-$modversion['blocks'][1]['file'] = 'banner.php';
-$modversion['blocks'][1]['name'] = _MI_BANNERSTATS_BLOCK_BANNER;
+$modversion['blocks'][0]['file']        = 'bannerstats_menu.php';
+$modversion['blocks'][0]['name']        = _MI_BANNERSTATS_BLOCK_CLIENT_MENU;
+$modversion['blocks'][0]['description'] = _MI_BANNERSTATS_BLOCK_CLIENT_MENU_DESC;
+$modversion['blocks'][0]['show_func']   = 'b_bannerstats_menu_show';
+$modversion['blocks'][0]['edit_func']   = '';
+$modversion['blocks'][0]['template']    = 'bannerstats_block_menu.html';
+$modversion['blocks'][0]['visible']     = 1;
+$modversion['blocks'][0]['can_clone']   = 0;
+
+$modversion['blocks'][1]['file']        = 'bannerstats_banner.php';
+$modversion['blocks'][1]['name']        = _MI_BANNERSTATS_BLOCK_BANNER;
 $modversion['blocks'][1]['description'] = _MI_BANNERSTATS_BLOCK_BANNER_DESC;
-$modversion['blocks'][1]['show_func'] = 'b_bannerstats_banner_show';
-$modversion['blocks'][1]['edit_func'] = 'b_bannerstats_banner_edit';
-$modversion['blocks'][1]['options'] = '0|0';
-$modversion['blocks'][1]['template'] = 'bannerstats_block_banner.html';
+$modversion['blocks'][1]['show_func']   = 'b_bannerstats_banner_show';
+$modversion['blocks'][1]['edit_func']   = 'b_bannerstats_banner_edit';
+$modversion['blocks'][1]['options']     = '0|0';
+$modversion['blocks'][1]['template']    = 'bannerstats_block_banner.html';
 
-//client menu block
-$modversion['blocks'][2]['file']        = 'bannerstats_blocks.php';
-$modversion['blocks'][2]['name']        = '_MI_BANNERSTATS_BLOCK_CLIENT_MENU';
-$modversion['blocks'][2]['description'] = '_MI_BANNERSTATS_BLOCK_CLIENT_MENU_DESC';
-$modversion['blocks'][2]['show_func']   = 'b_bannerstats_client_menu_show';
-// $modversion['blocks'][2]['edit_func']   = ''; // No edit function needed for this simple menu
-$modversion['blocks'][2]['template']    = 'bannerstats_block_client_menu.html';
-$modversion['blocks'][2]['visible']     = 1;
-$modversion['blocks'][2]['can_clone']   = 0;
-
-// Block 3: Campaign Banner Block
-$modversion['blocks'][3]['file']        = 'bannerstats_menu.php';
-$modversion['blocks'][3]['name']        = '_MI_BANNERSTATS_BLOCK_CAMPAIGN';
-$modversion['blocks'][3]['description'] = '_MI_BANNERSTATS_BLOCK_CAMPAIGN_DESC';
+$modversion['blocks'][3]['file']        = 'bannerstats_campaign.php';
+$modversion['blocks'][3]['name']        = _MI_BANNERSTATS_BLOCK_CAMPAIGN;
+$modversion['blocks'][3]['description'] = _MI_BANNERSTATS_BLOCK_CAMPAIGN_DESC;
 $modversion['blocks'][3]['show_func']   = 'b_bannerstats_campaign_show';
 $modversion['blocks'][3]['edit_func']   = 'b_bannerstats_campaign_edit';
 $modversion['blocks'][3]['options']     = '-1|0|0'; // Default: cid (any)|bid (any random)|campaign_id (any)

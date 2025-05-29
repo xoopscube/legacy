@@ -125,7 +125,7 @@
     </thead>
     <tbody>
     <{foreach item=obj from=$objects}>
-    <tr>
+    <tr class="list_center">
         <td class="list_id"><{$obj->getShow('cid')}></td>
         <td class="list_title"><a href="./index.php?action=BannerclientEdit&amp;cid=<{$obj->getShow('cid')}>"><{$obj->getShow('name')}></a></td>
         <td class="list_name"><{$obj->getShow('contact')}></td>
@@ -155,7 +155,7 @@
     </tr>
     <{foreachelse}>
     <tr>
-        <td colspan="11" class="text-center"><{$smarty.const._AD_BANNERSTATS_INFO_NO_BANNERCLIENTS_FOUND}></td>
+        <td colspan="11" class="text-center"><{$smarty.const._AD_BANNERSTATS_BANNERCLIENTS_NOTFOUND}></td>
     </tr>
     <{/foreach}>
     </tbody>

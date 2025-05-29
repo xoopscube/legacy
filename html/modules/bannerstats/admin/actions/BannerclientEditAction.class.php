@@ -89,9 +89,9 @@ class Bannerstats_BannerclientEditAction extends Bannerstats_AbstractEditAction
     /**
      * Prepares and sets data for the edit form view
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
@@ -104,6 +104,8 @@ class Bannerstats_BannerclientEditAction extends Bannerstats_AbstractEditAction
         // e.g. list of countries for a dropdown
         $countries = $this->_getCountryList();
         $render->setAttribute('countries', $countries);
+
+        $render->setAttribute('client_country', $this->mObject->get('country_code'));
     }
 
     /**
@@ -129,8 +131,8 @@ class Bannerstats_BannerclientEditAction extends Bannerstats_AbstractEditAction
 
     /**
      * Executes additional actions after successful save
-     * @param XCube_Controller $controller
-     * @param XoopsUser $xoopsUser
+     * @param XCube_Controller
+     * @param XoopsUser
      * @param Bannerstats_BannerclientObject $obj
      */
     public function executeViewSuccess(&$controller, &$xoopsUser, &$obj)

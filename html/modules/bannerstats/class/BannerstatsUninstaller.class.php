@@ -18,15 +18,11 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-// Ensure the base uninstaller class is loaded
 require_once XOOPS_ROOT_PATH . '/modules/legacy/admin/class/ModuleUninstaller.class.php';
 
 class Bannerstats_Uninstaller extends Legacy_ModuleUninstaller
 {
-    /**
-     * Constructor.
-     * Initializes the uninstaller.
-     */
+
     public function __construct()
     {
         parent::__construct();
@@ -79,6 +75,6 @@ class Bannerstats_Uninstaller extends Legacy_ModuleUninstaller
         return true; // Indicate successful execution
     }
 
-    // You can override other methods from Legacy_ModuleUninstaller if needed
-    // For example, executeUninstallTemplates() if you needed custom template handling.
+    // We can override other methods from Legacy_ModuleUninstaller if needed
+    // For example, executeUninstallTemplates() if the module needs custom template handling.
 }

@@ -59,6 +59,15 @@ class Bannerstats_BannerObject extends XoopsSimpleObject
     }
 
     /**
+     * Returns the primary key field name for this object.
+     * @return string
+     */
+    public function getPrimaryKey()
+    {
+        return 'bid';
+    }
+
+    /**
      * Loads the associated banner client object
      * @return void
      */
@@ -137,6 +146,7 @@ class Bannerstats_BannerObject extends XoopsSimpleObject
     {
         return $this->get('banner_type') === 'image';
     }
+
 }
 
 

@@ -1,6 +1,6 @@
 <{* bannerstats_login.html *}>
 
-<h2><{$pageTitle|default:$xoops_pagetitle}></h2>
+<h2><{$page_title}></h2>
 
 <{if $errorMessage}>
     <div class="error" style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 15px;">
@@ -15,14 +15,14 @@
 <{/if}>
     <table class="outer" cellspacing="1">
         <tr>
-            <th colspan="2"><{$smarty.const._MD_BANNERSTATS_LOGIN_FORM_TITLE|default:"Client Login"}></th>
+            <th colspan="2"><{$smarty.const._MD_BANNERSTATS_LOGIN_FORM_TITLE}></th>
         </tr>
         <tr class="even">
-            <td class="itemHead"><label for="bs_login"><{$smarty.const._MD_BANNERSTATS_LOGIN_USERNAME|default:"Username:"}></label></td>
+            <td class="itemHead"><label for="bs_login"><{$smarty.const._MD_BANNERSTATS_LOGIN_USERNAME}></label></td>
             <td><input type="text" name="login" id="bannerstats_login" value="<{$username|escape:'html'}>" size="20" maxlength="25"></td>
         </tr>
         <tr class="odd">
-            <td class="itemHead"><label for="bs_pass"><{$smarty.const._MD_BANNERSTATS_LOGIN_PASSWORD|default:"Password:"}></label></td>
+            <td class="itemHead"><label for="bs_pass"><{$smarty.const._MD_BANNERSTATS_LOGIN_PASSWORD}></label></td>
             <td><input type="password" name="password" id="bannerstats_pass" size="20" maxlength="20"></td>
         </tr>
         <tr class="foot">
@@ -34,7 +34,7 @@
 </form>
 
 <div style="margin-top: 20px; text-align: center;">
-    <a href="<{$contactLink|default:$xoops_url|cat:'/modules/bannerstats/index.php?action=Contact'}>">
-        <{$smarty.const._MD_BANNERSTATS_CONTACT_WEBMASTER|default:"Contact Webmaster"}>
+    <a href="<{$contactLink|default:$xoops_url|cat:'/modules/bannerstats//index.php?action=RequestSupport'}>">
+        <{$smarty.const._MD_BANNERSTATS_CONTACT_SUPPORT}>
     </a>
 </div>

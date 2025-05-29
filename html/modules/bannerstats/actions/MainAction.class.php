@@ -11,14 +11,10 @@
  * @link       http://github.com/xoopscube/
  **/
 
-/* require_once '../../../../mainfile.php'; */
-
 if (!defined('XOOPS_ROOT_PATH')) exit();
 
-// Include the Legacy module's Action class
-if (!class_exists('Legacy_Action')) {
-    require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Action.class.php';
-}
+require_once XOOPS_MODULE_PATH . '/legacy/class/Legacy_Action.class.php';
+
 
 class Bannerstats_MainAction extends Legacy_Action
 {

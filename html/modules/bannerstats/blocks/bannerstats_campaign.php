@@ -1,7 +1,8 @@
 <?php
 /**
+ * Bannerstats - Module for XCL
  * Shows the campaign-specific banner block.
- * Displays banners based on campaign_id, optionally filtered by cid or specific bid.
+ * Fetches banner HTML using DelegateManager and passes it to the template.
  *
  * @package    Bannerstats
  * @author     Nuno Luciano (aka gigamaster) XCL PHP8
@@ -11,18 +12,34 @@
  * @link       http://github.com/xoopscube/
  **/
 
+if (!defined('XOOPS_ROOT_PATH')) exit();
+
 function b_bannerstats_campaign_show($options)
 {
-    $block = [];
-    // $options[0] = cid (0 for any in campaign, -1 for truly any if campaign is also 0)
-    // $options[1] = bid
-    // $options[2] = campaign_id
-    
-    // Interpret block options:
-    // cid: 0 means "banners with cid=0", >0 means specific client, -1 (or not set) means "any client"
-    $cid_option = isset($options[0]) ? (int)$options[0] : -1; // Use -1 to signify "any client" if not set
+    $block = [
+        'banner_html'       => '',    // store HTML from DelegateManager
+        'banner_found'      => false, // Flag banner HTML
+        // Variables for optional debug display in the template
+        'show_debug_info'   => false, // $currentUser->isAdmin
+        'campaign_id_used'  => null,
+        'client_id_used'    => null,
+        'banner_id_used'    => null
+    ];
+
+    $cid_option = isset($options[0]) ? (int)$options[0] : -1;
     $bid_option = isset($options[1]) ? (int)$options[1] : 0;
     $campaign_id_option = isset($options[2]) ? (int)$options[2] : 0;
+
+    // Populate debug info based on options if the template will use it
+    if ($campaign_id_option > 0) {
+        $block['campaign_id_used'] = $campaign_id_option;
+    }
+    if ($cid_option >= 0) { // cid=0 is a valid option
+        $block['client_id_used'] = $cid_option;
+    }
+    if ($bid_option > 0) {
+        $block['banner_id_used'] = $bid_option;
+    }
 
     $delegateManagerPath = XOOPS_ROOT_PATH . '/modules/bannerstats/kernel/DelegateManager.class.php';
     if (file_exists($delegateManagerPath)) {
@@ -35,62 +52,102 @@ function b_bannerstats_campaign_show($options)
             if ($campaign_id_option > 0) {
                 $params['campaign_id'] = $campaign_id_option;
             }
-
-            // Pass cid to DelegateManager:
-            // - If block option cid is >0, pass it.
-            // - If block option cid is 0, pass 0 (for client 0 banners).
-            // - If block option cid is -1 (any client), DelegateManager's getBannerHtmlForDisplay will set its internal $cid to null.
-            if ($cid_option >= 0) { // 0 or specific client
+            if ($cid_option >= 0) {
                 $params['cid'] = $cid_option;
             }
-            // If $cid_option is -1 (default "any"), 'cid' is not added to $params,
-            // so DelegateManager::getBannerHtmlForDisplay will use its default (null for "any client").
-            
-            $block['content'] = Bannerstats_DelegateManager::getBannerHtmlForDisplay($params);
-        } else {
-            $block['content'] = '<!-- Bannerstats Error: DelegateManager class not found -->';
+
+            // Call method that returns an HTML string
+            $htmlOutput = Bannerstats_DelegateManager::getBannerHtmlForDisplay($params);
+
+            // Check if banner HTML
+            if (!empty($htmlOutput) && trim($htmlOutput) !== '' && strpos($htmlOutput, '<!--') !== 0) {
+                $block['banner_html'] = $htmlOutput;
+                $block['banner_found'] = true;
+            }
+            // If no banner HTML is found, display nothing or a minimal message.
         }
-    } else {
-        $block['content'] = '<!-- Bannerstats Error: DelegateManager file not found -->';
     }
+
+    // Determine if debug info should be shown (minimal admin check)
+    $root = XCube_Root::getSingleton();
+    $currentUser = $root->mContext->mXoopsUser;
+    if ($currentUser) {
+        $moduleHandler = xoops_gethandler('module');
+        $bannerstatsModule = $moduleHandler->getByDirname('bannerstats');
+        if ($bannerstatsModule instanceof XoopsModule && $currentUser->isAdmin($bannerstatsModule->get('mid'))) {
+            $block['show_debug_info'] = true;
+        }
+    }
+
     return $block;
 }
 
-/**
- * Edit function for the campaign banner block.
- */
 function b_bannerstats_campaign_edit($options)
 {
-    $cid_val = isset($options[0]) ? (int)$options[0] : -1; // Default to -1 for "Any Client"
-    $bid_val = isset($options[1]) ? (int)$options[1] : 0;
-    $campaign_id_val = isset($options[2]) ? (int)$options[2] : 0;
+    $saved_cid = isset($options[0]) ? (int)$options[0] : -1;
+    $saved_bid = isset($options[1]) ? (int)$options[1] : 0;
+    $saved_campaign_id = isset($options[2]) ? (int)$options[2] : 0;
 
-    // --- Client Dropdown ---
-    $client_options_html = '<option value="-1">' . _MB_BANNERSTATS_OPT_ANY_CLIENT . '</option>'; // Option for "Any Client"
-    $client_options_html .= '<option value="0">' . _MB_BANNERSTATS_OPT_CLIENT_0 . '</option>';   // Option for "Client 0 (System/Global)"
-    
-    $clientHandler = xoops_getmodulehandler('bannerclient', 'bannerstats');
-    if ($clientHandler) {
-        $clients = $clientHandler->getObjects(); // Consider adding criteria if list is too long
-        foreach ($clients as $client) {
-            $selected = ($client->getVar('cid') == $cid_val && $cid_val > 0) ? " selected='selected'" : ""; // Only select if > 0
-            $client_options_html .= "<option value='" . $client->getVar('cid') . "'{$selected}>" . htmlspecialchars($client->getVar('name'), ENT_QUOTES) . " (ID: " . $client->getVar('cid') . ")</option>";
+    // Client Dropdown
+    $client_options_html = '';
+    $selected_any_client = ($saved_cid == -1) ? " selected='selected'" : "";
+    $client_options_html .= "<option value='-1'{$selected_any_client}>" . _MB_BANNERSTATS_OPT_ANY_CLIENT . "</option>";
+
+    $selected_client_0 = ($saved_cid == 0) ? " selected='selected'" : "";
+    $client_options_html .= "<option value='0'{$selected_client_0}>" . _MB_BANNERSTATS_OPT_CLIENT_0 . "</option>";
+
+    // get distinct client IDs present in banners
+    $bannerHandlerForClients = xoops_getmodulehandler('banner', 'bannerstats');
+    $client_ids_from_banners = [];
+    if ($bannerHandlerForClients) {
+        $criteria = new CriteriaCompo();
+        $criteria->add(new Criteria('cid', 0, '>'));
+        $all_banners = $bannerHandlerForClients->getObjects($criteria);
+        foreach ($all_banners as $banner_obj) {
+            $current_cid = $banner_obj->getVar('cid');
+            if (!in_array($current_cid, $client_ids_from_banners)) {
+                $client_ids_from_banners[] = $current_cid;
+            }
+        }
+        sort($client_ids_from_banners);
+
+        foreach ($client_ids_from_banners as $cid_from_banner) {
+            $selected = ($cid_from_banner == $saved_cid && $saved_cid > 0) ? " selected='selected'" : "";
+            $client_options_html .= "<option value='" . $cid_from_banner . "'{$selected}>Client ID: " . htmlspecialchars((string)$cid_from_banner, ENT_QUOTES) . "</option>";
         }
     }
-    if ($cid_val == 0 && $cid_val !== -1) $client_options_html = str_replace('<option value="0">', '<option value="0" selected="selected">', $client_options_html);
-    if ($cid_val == -1) $client_options_html = str_replace('<option value="-1">', '<option value="-1" selected="selected">', $client_options_html);
 
+    // Campaign ID Dropdown
+    $campaign_options_html = '';
+    $selected_any_campaign = ($saved_campaign_id == 0) ? " selected='selected'" : "";
+    $campaign_options_html .= "<option value='0'{$selected_any_campaign}>" . (defined('_MB_BANNERSTATS_OPT_ANY_CAMPAIGN') ? _MB_BANNERSTATS_OPT_ANY_CAMPAIGN : '-- Any Campaign --') . "</option>";
 
-    // --- Campaign ID Input (or Dropdown if you have a campaign management system) ---
-    // For now, a text input for campaign_id.
-    // If you had a campaign handler:
-    // $campaign_options_html = '<option value="0">' . _MB_BANNERSTATS_OPT_ANY_CAMPAIGN . '</option>';
-    // $campaignHandler = xoops_getmodulehandler('campaign', 'bannerstats'); // Hypothetical
-    // if ($campaignHandler) { ... populate ... }
+    $bannerHandlerForCampaigns = xoops_getmodulehandler('banner', 'bannerstats');
+    $campaign_ids = [];
 
-    $form = _MB_BANNERSTATS_OPT_CAMPAIGN_ID . ": <input type='text' name='options[2]' value='{$campaign_id_val}' size='5' /> <small>" . _MB_BANNERSTATS_OPT_CAMPAIGN_ID_DESC . "</small><br />";
-    $form .= _MB_BANNERSTATS_OPT_CID . ": <select name='options[0]'>{$client_options_html}</select> <small>" . _MB_BANNERSTATS_OPT_CID_DESC . "</small><br />";
-    $form .= _MB_BANNERSTATS_OPT_BID . ": <input type='text' name='options[1]' value='{$bid_val}' size='5' /> <small>" . _MB_BANNERSTATS_OPT_BID_DESC . "</small><br />";
-    
+    if ($bannerHandlerForCampaigns) {
+        $criteria = new CriteriaCompo();
+        $criteria->add(new Criteria('campaign_id', 0, '>'));
+        $criteria->setSort('campaign_id');
+        $banners_for_campaigns = $bannerHandlerForCampaigns->getObjects($criteria, false);
+
+        foreach ($banners_for_campaigns as $banner_obj_for_campaign) {
+            $current_campaign_id = $banner_obj_for_campaign->get('campaign_id');
+            if (!in_array($current_campaign_id, $campaign_ids)) {
+                $campaign_ids[] = $current_campaign_id;
+            }
+        }
+
+        foreach ($campaign_ids as $id) {
+            $selected = ($id == $saved_campaign_id) ? " selected='selected'" : "";
+            $campaign_options_html .= "<option value='{$id}'{$selected}>" . htmlspecialchars((string)$id, ENT_QUOTES) . "</option>";
+        }
+    }
+
+    $form = "<select name='options[0]'>{$client_options_html}</select> " . _MB_BANNERSTATS_OPT_CID . ": " . _MB_BANNERSTATS_OPT_CID_DESC . "<br />";
+    $form .= "<input type='text' name='options[1]' value='{$saved_bid}' size='5' /> " . _MB_BANNERSTATS_OPT_BID . ": " . _MB_BANNERSTATS_OPT_BID_DESC . "<br />";
+    $form .= "<select name='options[2]'>{$campaign_options_html}</select> " . _MB_BANNERSTATS_OPT_CAMPAIGN_ID . ": " . _MB_BANNERSTATS_OPT_CAMPAIGN_ID_DESC . "<br />";
+
     return $form;
 }
+

@@ -7,7 +7,7 @@
  * @author     Nuno Luciano (aka gigamaster) XCL PHP8
  * @copyright  2005-2025 The XOOPSCube Project
  * @license    GPL V2
- * @version    Release: XCL v2.5.0
+ * @version    v2.5.0 Release XCL 
  * @link       http://github.com/xoopscube/
  **/
 
@@ -49,7 +49,7 @@ class Bannerstats_ChangeUrlAction
     }
 
     /**
-     * Displays the form to change banner URL or a list of banners.
+     * Displays the form to change banner URL or a list of banners
      */
     public function getDefaultView(): string
     {
@@ -105,12 +105,11 @@ class Bannerstats_ChangeUrlAction
                 'clickurl' => $banner_details['clickurl'] ?? '',
             ];
 
-            // Check if the banner is HTML
+            // Check if the banner is in_array($bannerType, ['html', 'ad_tag', 'video'], true);
             $isHtmlBanner = ($banner_details['banner_type'] ?? '') === 'html';
             $this->xoopsTpl->assign('is_html_banner', $isHtmlBanner);
             if ($isHtmlBanner) {
-                $this->xoopsTpl->assign('html_banner_notice', defined('_MD_BANNERSTATS_HTML_BANNER_NOTICE') ? 
-                    _MD_BANNERSTATS_HTML_BANNER_NOTICE : 'HTML banners cannot have their URL changed directly.');
+                $this->xoopsTpl->assign('html_banner_notice', _MD_BANNERSTATS_ERR_BANNER_ADTAG_LINK);
             }
             $this->xoopsTpl->assign('banner_to_edit', $banner_to_edit);
         } else {
@@ -237,4 +236,3 @@ class Bannerstats_ChangeUrlAction
         }
     }
 }
-?>

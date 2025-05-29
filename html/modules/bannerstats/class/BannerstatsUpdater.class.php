@@ -19,15 +19,11 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-// Ensure the base updater class is loaded
 require_once XOOPS_ROOT_PATH . '/modules/legacy/admin/class/ModuleUpdater.class.php';
 
 class Bannerstats_Updater extends Legacy_ModulePhasedUpgrader
 {
-    /**
-     * Constructor.
-     * Defines the update milestones.
-     */
+
     public function __construct()
     {
         parent::__construct();
@@ -41,7 +37,7 @@ class Bannerstats_Updater extends Legacy_ModulePhasedUpgrader
 
     /**
      * Example update method for version 1.1 (milestone 110).
-     * Rename this method and add logic for your actual updates.
+     * Rename this method and add logic for actual updates.
      *
      * @return bool True on success, false on failure.
      */
@@ -79,12 +75,12 @@ class Bannerstats_Updater extends Legacy_ModulePhasedUpgrader
     /**
      * This method is called after each milestone update.
      * It handles updating the module version in the database and other common tasks.
-     * You can override this if needed, but the parent implementation is usually sufficient.
+     * We can override this if needed, but the parent implementation is usually sufficient.
      */
     public function updatemain()
     {
         parent::updatemain();
-        // You might add logic here that runs after *each* milestone update
+        // We can add logic here that runs after *each* milestone update
         // Example: Re-installing templates or blocks if they changed significantly
         // Legacy_ModuleInstallUtils::clearAllOfModuleTemplatesForUpdate($this->_mTargetXoopsModule, $this->mLog);
         // Legacy_ModuleInstallUtils::installAllOfModuleTemplates($this->_mTargetXoopsModule, $this->mLog);

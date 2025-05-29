@@ -10,7 +10,7 @@
 
 <h2><{$smarty.const._AD_BANNERSTATS_FINISH_DELETE}></h2>
 
-<div class="confirm"><{$smarty.const._AD_BANNERSTATS_MESSAGE_DELETE_CONFIRM}></div>
+<div class="confirm"><{$smarty.const._AD_BANNERSTATS_DELETE_CONFIRM}></div>
 
 <form method="post" action="./index.php?action=BannerfinishDelete">
     <{xoops_token form=$actionForm}>
@@ -40,22 +40,22 @@
         </tr>
         <tr>
             <td><{$smarty.const._AD_BANNERSTATS_IMPRESSIONS}></td>
-            <td><{$object->getShow('impressions')}></td>
+            <td><{$object->getShow('impressions_made')}></td>
         </tr>
         <tr>
             <td><{$smarty.const._AD_BANNERSTATS_CLICKS}></td>
-            <td><{$object->getShow('clicks')}></td>
+            <td><{$object->getShow('clicks_made')}></td>
         </tr>
         <tr>
             <td><{$smarty.const._AD_BANNERSTATS_DATESTART}></td>
-            <td><{$object->get('datestart')|xoops_formattimestamp}></td>
+            <td><{$object->get('datestart_original')|xoops_formattimestamp}></td>
         </tr>
         <tr>
             <td><{$smarty.const._AD_BANNERSTATS_DATEEND}></td>
-            <td><{$object->get('dateend')|xoops_formattimestamp}></td>
+            <td><{$object->get('dateend_original')|xoops_formattimestamp}></td>
         </tr>
          <tr>
-            <td><{$smarty.const._AD_BANNERSTATS_REASON_FINISHED}></td> 
+            <td><{$smarty.const._AD_BANNERSTATS_FINISHED_REASON}></td> 
             <td><{$object->getShow('reason_finished')|default:"N/A"}></td> 
         </tr>
         <{* Display content fields if needed for confirmation, similar to banner_delete.html *}>

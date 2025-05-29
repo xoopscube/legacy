@@ -1,19 +1,36 @@
-Admin Notification: Banner Low on Impressions
+Subject: Admin Notification: Banner Remaining Impressions - {BANNER_NAME}
 
-Banner Name: {BANNER_NAME} (ID: {BANNER_ID})
-Client Name: {CLIENT_NAME}
+Hi {CLIENT_NAME},
+
+This is an automated notification of the number of impressions left to be delivered.
+Alert Threshold: {MODULE_CONFIG_ALERT_PERCENT}%
+
+Banner Details:
+------------------------------------
+
+Banner Name : {BANNER_NAME} 
+Banner ID   : {BANNER_ID}
+Client Name : {CLIENT_NAME}
 Client Email: {CLIENT_EMAIL}
 
 Total Impressions Purchased: {impressions_total}
 Impressions Served: {impressions_made}
 Impressions Remaining: {impressions_remaining}
 
-Alert Threshold: {MODULE_CONFIG_ALERT_PERCENT}%
+------------------------------------
 
-Manage Banner:
-{ADMIN_BANNER_EDIT_URL}
+The campaign for the banner listed above has low remaining impressions.
+Further details regarding impressions, clicks, may require manual review 
+if not provided by a specific notification process.
 
-Client Statistics:
-{CLIENT_STATS_URL}
+Actions:
+------------------------------------
 
-Site: {X_SITENAME} ({X_SITEURL})
+Manage Original Banner :
+{ADMIN_BANNER_EDIT_URL} 
+
+------------------------------------
+
+Thank you,
+{X_SITENAME}
+{X_SITEURL}

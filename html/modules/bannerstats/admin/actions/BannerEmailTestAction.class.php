@@ -3,7 +3,7 @@
  * Bannerstats - Module for XCL
  * BannerEmailTestAction.class.php
  *
- * Action to test email notifications using the XCube_MailBuilder system.
+ * Action to test email notifications using the XCube_MailBuilder system
  *
  * @package    Bannerstats
  * @author     Nuno Luciano (aka gigamaster) XCL PHP8
@@ -17,354 +17,253 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-require_once __DIR__ . '/../class/Action.class.php';
-require_once __DIR__ . '/../forms/BannerEmailTestForm.class.php';
-
-// Core Mail Builder
-if (file_exists(XOOPS_ROOT_PATH . '/core/XCube_MailBuilder.class.php')) {
-    require_once XOOPS_ROOT_PATH . '/core/XCube_MailBuilder.class.php';
-} else {
-    error_log("Bannerstats_BannerEmailTestAction: Core XCube_MailBuilder.class.php not found. Test notification will fail.");
-}
-
-// Bannerstats module's specific mail builders
-require_once XOOPS_MODULE_PATH . '/bannerstats/mail/AdminAlertMail.class.php';
-require_once XOOPS_MODULE_PATH . '/bannerstats/mail/ClientAlertMail.class.php';
-
-// Required classes
-require_once XOOPS_MODULE_PATH . '/bannerstats/class/Banner.class.php';
+require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
+require_once XOOPS_MODULE_PATH . '/bannerstats/admin/class/Action.class.php';
+require_once XOOPS_MODULE_PATH . '/bannerstats/class/handler/Banner.class.php';
+require_once XOOPS_MODULE_PATH . '/bannerstats/kernel/DelegateManager.class.php';
 require_once XOOPS_MODULE_PATH . '/bannerstats/class/BannerClient.class.php';
-
-// For XCube_DelegateUtils if not autoloaded
-if (!class_exists('XCube_DelegateUtils') && file_exists(XOOPS_ROOT_PATH . '/core/XCube_DelegateUtils.class.php')) {
-    require_once XOOPS_ROOT_PATH . '/core/XCube_DelegateUtils.class.php';
-}
+require_once XOOPS_MODULE_PATH . '/bannerstats/admin/forms/BannerEmailTestForm.class.php';
 
 class Bannerstats_BannerEmailTestAction extends Bannerstats_Action
 {
-    /**
-     * @var XCube_Root
-     */
-    protected $mRoot = null;
-
-    /**
-     * @var BannerEmailTestForm
-     * Changed from protected to public to match parent class
-     */
+    /** @var Bannerstats_BannerEmailTestForm */
     public $mActionForm = null;
+    protected string $mPageTitle = ''; // store page title
+    protected array $mSuccessMessages = [];
+    protected array $mErrorMessages = [];
+    protected array $mWarningMessages = [];
 
     /**
-     * @var XoopsModule
+     * Prepare action execution
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param array $moduleConfig
      */
-    protected $mModuleObject = null;
-
-    /**
-     * @var array
-     */
-    protected $mActiveBanners = [];
-
-    /**
-     * @var array
-     */
-    protected $mEmailTypes = [];
-
-    public function __construct($adminFlag = true)
-    {
-        parent::__construct($adminFlag);
-        $this->mRoot = XCube_Root::getSingleton();
-    }
-
-    public function hasPermission(&$controller, &$xoopsUser)
-    {
-        return (is_object($xoopsUser) && $xoopsUser->isAdmin());
-    }
-
     public function prepare(&$controller, &$xoopsUser, $moduleConfig)
     {
         parent::prepare($controller, $xoopsUser, $moduleConfig);
-
-        if (!(is_object($this->mRoot->mContext->mXoopsUser) && $this->mRoot->mContext->mXoopsUser->isAdmin())) {
-            $this->mRoot->mController->executeForward(XOOPS_URL . '/');
-            return false;
-        }
-
-        $this->mActionForm = new BannerEmailTestForm();
+        $this->mPageTitle = _AD_BANNERSTATS_EMAILTEST_TITLE;
+        
+        // Initialize action form
+        $this->mActionForm = new Bannerstats_BannerEmailTestForm();
         $this->mActionForm->prepare();
-
-        // Get module object
-        $module_handler = xoops_gethandler('module');
-        if (!is_object($module_handler)) {
-            error_log("Bannerstats_BannerEmailTestAction: FAILED to get module_handler.");
-            XCube_DelegateUtils::call('Legacy.Admin.Event.AddErrorMessage', 'Error: Module handler not available.');
-            $this->mRoot->mController->executeForward(XOOPS_URL . '/admin.php');
-            return false;
-        }
-        $this->mModuleObject = $module_handler->getByDirname('bannerstats');
-
-        if (!is_object($this->mModuleObject)) {
-            error_log("Bannerstats_BannerEmailTestAction: Failed to load bannerstats module object.");
-            XCube_DelegateUtils::call('Legacy.Admin.Event.AddErrorMessage', 'Error: Bannerstats module object not found.');
-            $this->mRoot->mController->executeForward(XOOPS_URL . '/admin.php');
-            return false;
-        }
-
-        // Load active banners
-        $this->_loadActiveBanners();
-
-        // Define email types
-        $this->mEmailTypes = [
-            'admin_alert' => _AD_BANNERSTATS_EMAIL_TYPE_ADMIN_ALERT ?? 'Admin Alert',
-            'client_alert' => _AD_BANNERSTATS_EMAIL_TYPE_CLIENT_ALERT ?? 'Client Alert',
-            'both' => _AD_BANNERSTATS_EMAIL_TYPE_BOTH ?? 'Both Admin and Client'
-        ];
-
-        return true;
     }
 
+
+    public function getTokenName(): string
+    {
+        return 'module.bannerstats.BannerEmailTestForm.TOKEN';
+    }
+    /**
+     * Check if the current user has permission for this action
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @return bool
+     */
+    public function hasPermission(&$controller, &$xoopsUser)
+    {
+        // Only admins can access this admin utility
+        return (is_object($xoopsUser) && $xoopsUser->isAdmin($controller->mRoot->mContext->mXoopsModule->get('mid')));
+    }
+
+    /**
+     * Gets the default view status for GET requests
+     * This method sets up data for the form.
+     * @param XCube_Controller $controller
+     * @param XoopsUser        $xoopsUser
+     * @return int BANNERSTATS_FRAME_VIEW_INPUT
+     */
     public function getDefaultView(&$controller, &$xoopsUser)
     {
+        // Set default values if needed
+        $this->mActionForm->set('bid', 0);
+        $this->mActionForm->set('email_type', 'low_client');
+        
         return BANNERSTATS_FRAME_VIEW_INPUT;
     }
 
+    /**
+     * Executes the main logic for POST requests (sending the email)
+     * @param XCube_Controller $controller
+     * @param XoopsUser        $xoopsUser
+     * @return int BANNERSTATS_FRAME_VIEW_SUCCESS or BANNERSTATS_FRAME_VIEW_ERROR
+     */
     public function execute(&$controller, &$xoopsUser)
     {
-        if ('POST' == xoops_getenv('REQUEST_METHOD')) {
-            $this->mActionForm->fetch();
-            $this->mActionForm->validate();
+        // populate action form with HTTP request
+        $this->mActionForm->fetch();
 
-            if ($this->mActionForm->hasError()) {
+        // Debug log form properties after fetch
+        //error_log("BannerEmailTestAction::execute - Form properties after fetch: email_type=" . var_export($this->mActionForm->get('email_type'), true) . ", bid=" . var_export($this->mActionForm->get('bid'), true));
+
+        if (!$this->mActionForm->validate($this->mActionForm->getTokenName())) {
+            // If this returns false, it means:
+            // a) field failed validation (e.g., 'bid' not an int, 'email_type', etc.)
+            // OR
+            // b) token check failed.
+            // form object ($this->mActionForm) with specific error messages
+            $this->mErrorMessages = array_merge($this->mErrorMessages, $this->mActionForm->getErrorMessages());
+            // Log errors for debugging
+            foreach($this->mActionForm->getErrorMessages() as $errMsg) {
+                error_log("Validation/Token Error: " . $errMsg);
+            }
+            return BANNERSTATS_FRAME_VIEW_INPUT;
+        }
+
+        // data and token validation have passed, get your validated data:
+        $bid = (int)$this->mActionForm->get('bid');
+        $emailType = (string)$this->mActionForm->get('email_type');
+
+        $bannerHandler = xoops_getmodulehandler('banner', 'bannerstats');
+        /** @var Bannerstats_BannerObject $banner */
+        $banner = $bannerHandler->get($bid);
+
+        if (!$banner instanceof Bannerstats_BannerObject) {
+            $this->mErrorMessages[] = sprintf(_AD_BANNERSTATS_EMAILTEST_BANNER_NOTFOUND, $bid);
+            return BANNERSTATS_FRAME_VIEW_INPUT;
+        }
+
+        $banner->loadClient();
+        $client = $banner->mClient;
+        $clientName = ($client instanceof Bannerstats_BannerclientObject && $client->get('name')) ? $client->getShow('name') : Bannerstats_BannerHandler::DEFAULT_CLIENT_NAME;
+        $clientEmail = ($client instanceof Bannerstats_BannerclientObject && $client->get('email')) ? $client->get('email') : null;
+
+        $root = XCube_Root::getSingleton();
+        $configHandler = xoops_gethandler('config');
+        $moduleConfig = $configHandler->getConfigsByDirname('bannerstats');
+        // module config key is 'admin_alert_email' as used in AdminAlertMail.class.php
+        $adminEmail = $moduleConfig['admin_alert_email'] ?? $root->mContext->getXoopsConfig('adminmail');
+        $bannerName = $banner->getShow('name');
+
+        $recipientEmail = null;
+        $emailTypeName = ''; // Used for success/failure messages
+
+        // UI feedback switch $emailTypeName and $recipientEmail for success/error message
+        // email content is set by BannerHandler::sendTestNotification method and mailer classes
+        switch ($emailType) {
+            case 'low_client':
+                if (!$clientEmail) {
+                    $this->mWarningMessages[] = sprintf(_AD_BANNERSTATS_EMAILTEST_CLIENT_NOTFOUND, $bid) . " Cannot send client email.";
+                    return BANNERSTATS_FRAME_VIEW_INPUT;
+                }
+                $recipientEmail = $clientEmail;
+                $emailTypeName = _AD_BANNERSTATS_EMAILTEST_TYPE_LOW_CLIENT;
+                break;
+            case 'low_admin':
+                $recipientEmail = $adminEmail;
+                $emailTypeName = _AD_BANNERSTATS_EMAILTEST_TYPE_LOW_ADMIN;
+                break;
+            case 'finished_client':
+                if (!$clientEmail) {
+                    $this->mWarningMessages[] = sprintf(_AD_BANNERSTATS_EMAILTEST_CLIENT_NOTFOUND, $bid) . " Cannot send client email.";
+                    return BANNERSTATS_FRAME_VIEW_INPUT;
+                }
+                $recipientEmail = $clientEmail;
+                $emailTypeName = _AD_BANNERSTATS_EMAILTEST_TYPE_FINISHED_CLIENT;
+                break;
+            case 'finished_admin':
+                $recipientEmail = $adminEmail;
+                $emailTypeName = _AD_BANNERSTATS_EMAILTEST_TYPE_FINISHED_ADMIN;
+                break;
+            default:
+                $this->mErrorMessages[] = 'Invalid email type selected.';
                 return BANNERSTATS_FRAME_VIEW_INPUT;
-            }
-
-            return $this->_executeTestEmail($controller, $xoopsUser);
         }
 
-        return BANNERSTATS_FRAME_VIEW_INPUT;
-    }
-
-    /**
-     * Load active banners for the dropdown
-     */
-    protected function _loadActiveBanners()
-    {
-        $banner_handler = xoops_getmodulehandler('banner', 'bannerstats');
-        if ($banner_handler) {
-            $criteria = new CriteriaCompo();
-            $criteria->add(new Criteria('active', 1));
-            $criteria->setSort('name');
-            $criteria->setOrder('ASC');
-            $this->mActiveBanners = $banner_handler->getObjects($criteria);
+        // Delegate the actual email sending to the handler
+        if ($bannerHandler->sendTestNotification($bid, $emailType)) {
+            $this->mSuccessMessages[] = sprintf(_AD_BANNERSTATS_EMAILTEST_MSG_SUCCESS, $emailTypeName, htmlspecialchars((string)$recipientEmail));
+            return BANNERSTATS_FRAME_VIEW_SUCCESS;
+        } else {
+            $this->mErrorMessages[] = sprintf(_AD_BANNERSTATS_EMAILTEST_MSG_FAIL, $emailTypeName);
+            // get more specific errors from the handler
+            // if (method_exists($bannerHandler, 'getErrors') && !empty($bannerHandler->getErrors())) {
+            //    $this->mErrorMessages = array_merge($this->mErrorMessages, $bannerHandler->getErrors());
+            // }
+            return BANNERSTATS_FRAME_VIEW_ERROR;
         }
     }
 
     /**
-     * Execute the test email sending
+     * Renders the input form.
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      */
-    protected function _executeTestEmail(&$controller, &$xoopsUser)
-    {
-        $bid = $this->mActionForm->get('bid');
-        $emailType = $this->mActionForm->get('email_type');
-
-        if (empty($bid) || empty($emailType)) {
-            $this->mActionForm->addErrorMessage('Banner ID and Email Type are required.');
-            return BANNERSTATS_FRAME_VIEW_INPUT;
-        }
-
-        // Load the banner
-        $banner_handler = xoops_getmodulehandler('banner', 'bannerstats');
-        $banner = $banner_handler->get($bid);
-        
-        if (!$banner) {
-            $this->mActionForm->addErrorMessage('Selected banner not found.');
-            return BANNERSTATS_FRAME_VIEW_INPUT;
-        }
-
-        // Get module config
-        $moduleConfig = $this->mRoot->mContext->mModuleConfig;
-        $xoopsConfig = $this->mRoot->mContext->mXoopsConfig ?? $GLOBALS['xoopsConfig'];
-
-        $success = false;
-        $errors = [];
-
-        try {
-            // Send admin email
-            if ($emailType === 'admin_alert' || $emailType === 'both') {
-                $success = $this->_sendAdminTestEmail($banner, $moduleConfig, $xoopsConfig) || $success;
-            }
-
-            // Send client email
-            if ($emailType === 'client_alert' || $emailType === 'both') {
-                $clientSuccess = $this->_sendClientTestEmail($banner, $moduleConfig, $xoopsConfig);
-                $success = $clientSuccess || $success;
-            }
-
-            if ($success) {
-                XCube_DelegateUtils::call('Legacy.Admin.Event.AddMessage', 
-                    'Test email(s) sent successfully. Check the configured email addresses.');
-                return BANNERSTATS_FRAME_VIEW_SUCCESS;
-            } else {
-                $this->mActionForm->addErrorMessage('Failed to send test email(s). Check error logs for details.');
-                return BANNERSTATS_FRAME_VIEW_INPUT;
-            }
-
-        } catch (Exception $e) {
-            $this->mActionForm->addErrorMessage('An unexpected error occurred: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES));
-            error_log("Bannerstats_BannerEmailTestAction: Exception - " . $e->getMessage());
-            return BANNERSTATS_FRAME_VIEW_INPUT;
-        }
-    }
-
-    /**
-     * Send admin test email
-     */
-    protected function _sendAdminTestEmail($banner, $moduleConfig, $xoopsConfig)
-    {
-        try {
-            $templateName = 'admin_test_notification.tpl';
-            $subjectLangKey = '_AD_BANNERSTATS_TEST_EMAIL_SUBJECT';
-            $subjectArgs = [$banner->get('name')];
-            
-            $bodyVarsProvider = function($object, $moduleConfig, $xoopsConfig) {
-                return [
-                    'BANNER_NAME' => $object->get('name'),
-                    'BANNER_ID' => $object->get('bid'),
-                    'BANNER_URL' => $object->get('url'),
-                    'IMPRESSIONS_MADE' => $object->get('impmade'),
-                    'IMPRESSIONS_TOTAL' => $object->get('imptotal'),
-                    'CLICKS_MADE' => $object->get('clicks'),
-                    'TEST_TYPE' => 'Admin Test Notification',
-                    'SITE_NAME' => $xoopsConfig['sitename'],
-                    'SITE_URL' => XOOPS_URL
-                ];
-            };
-
-            $builder = new Bannerstats_AdminAlertMail($templateName, $subjectLangKey, $subjectArgs, $bodyVarsProvider);
-            $director = new XCube_MailDirector($builder, $banner, $xoopsConfig, $moduleConfig);
-            $director->constructMail();
-
-            $mailer = $builder->getResult();
-            $result = $mailer->send();
-            
-            if (!$result) {
-                $errors = $mailer->getErrors();
-                error_log("Bannerstats: Admin test email failed - " . implode(', ', $errors));
-            }
-            
-            return $result;
-            
-        } catch (Exception $e) {
-            error_log("Bannerstats: Admin test email exception - " . $e->getMessage());
-            return false;
-        }
-    }
-
-    /**
-     * Send client test email
-     */
-    protected function _sendClientTestEmail($banner, $moduleConfig, $xoopsConfig)
-    {
-        try {
-            // Get client info
-            $client_handler = xoops_getmodulehandler('bannerclient', 'bannerstats');
-            $client = $client_handler->get($banner->get('cid'));
-            
-            if (!$client || empty($client->get('email'))) {
-                error_log("Bannerstats: No client or client email found for banner ID " . $banner->get('bid'));
-                return false;
-            }
-
-            $templateName = 'client_test_notification.tpl';
-            $subjectLangKey = '_AD_BANNERSTATS_CLIENT_TEST_EMAIL_SUBJECT';
-            $subjectArgs = [$banner->get('name')];
-            
-            $bodyVarsProvider = function($object, $moduleConfig, $xoopsConfig) use ($client) {
-                return [
-                    'CLIENT_NAME' => $client->get('name'),
-                    'BANNER_NAME' => $object->get('name'),
-                    'BANNER_ID' => $object->get('bid'),
-                    'BANNER_URL' => $object->get('url'),
-                    'IMPRESSIONS_MADE' => $object->get('impmade'),
-                    'IMPRESSIONS_TOTAL' => $object->get('imptotal'),
-                    'CLICKS_MADE' => $object->get('clicks'),
-                    'TEST_TYPE' => 'Client Test Notification',
-                    'SITE_NAME' => $xoopsConfig['sitename'],
-                    'SITE_URL' => XOOPS_URL
-                ];
-            };
-
-            $builder = new Bannerstats_ClientAlertMail(
-                $client->get('email'),
-                $client->get('name'),
-                $templateName,
-                $subjectLangKey,
-                $subjectArgs,
-                $bodyVarsProvider
-            );
-            
-            $director = new XCube_MailDirector($builder, $banner, $xoopsConfig, $moduleConfig);
-            $director->constructMail();
-
-            $mailer = $builder->getResult();
-            $result = $mailer->send();
-            
-            if (!$result) {
-                $errors = $mailer->getErrors();
-                error_log("Bannerstats: Client test email failed - " . implode(', ', $errors));
-            }
-            
-            return $result;
-            
-        } catch (Exception $e) {
-            error_log("Bannerstats: Client test email exception - " . $e->getMessage());
-            return false;
-        }
-    }
-
     public function executeViewInput(&$controller, &$xoopsUser, &$render)
     {
-        parent::executeViewInput($controller, $xoopsUser, $render);
         $render->setTemplateName('bannerstats_admin_email_test.html');
-        
+        $render->setAttribute('xoops_pagetitle', $this->mPageTitle);
+        $render->setAttribute('pageTitle', $this->mPageTitle);
+        $render->setAttribute('pageDescription', _AD_BANNERSTATS_EMAILTEST_DESC);
+
+        // Set the action form for the template
         $render->setAttribute('actionForm', $this->mActionForm);
-        $render->setAttribute('activeBanners', $this->mActiveBanners);
-        $render->setAttribute('emailTypes', $this->mEmailTypes);
-        
-        if (is_object($this->mModuleObject)) {
-            $render->setAttribute('module', $this->mModuleObject);
-        }
-        
-        return true;
+
+        // Get all active banners for selection
+        $bannerHandler = xoops_getmodulehandler('banner', 'bannerstats');
+        $criteria = new CriteriaCompo(new Criteria('status', 1));
+        $criteria->setSort('name');
+        $banners = $bannerHandler->getObjects($criteria);
+        $render->setAttribute('activeBanners', $banners);
+
+        $emailTypes = [
+            'low_client' => _AD_BANNERSTATS_EMAILTEST_TYPE_LOW_CLIENT,
+            'low_admin' => _AD_BANNERSTATS_EMAILTEST_TYPE_LOW_ADMIN,
+            'finished_client' => _AD_BANNERSTATS_EMAILTEST_TYPE_FINISHED_CLIENT,
+            'finished_admin' => _AD_BANNERSTATS_EMAILTEST_TYPE_FINISHED_ADMIN,
+        ];
+        $render->setAttribute('emailTypes', $emailTypes);
+
+        $render->setAttribute('bannerstats_success_messages', $this->mSuccessMessages);
+        $render->setAttribute('bannerstats_error_messages', $this->mErrorMessages);
+        $render->setAttribute('bannerstats_warning_messages', $this->mWarningMessages);
     }
 
+    /**
+     * Handles view after successful email sending
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
+     */
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        parent::executeViewSuccess($controller, $xoopsUser, $render);
-        $this->mRoot->mController->executeForward('./index.php?action=BannerEmailTest');
+        if (class_exists('XCube_DelegateUtils')) {
+            foreach ($this->mSuccessMessages as $msg) {
+                XCube_DelegateUtils::call('Legacy.Admin.Event.AddSuccessMessage', $msg);
+            }
+        }
+        //$controller->executeForward('./index.php?action=BannerEmailTest'); TODO MSG
+        $controller->executeRedirect('./index.php?action=BannerEmailTest', 1, _AD_BANNERSTATS_EMAILTEST_TITLE);
     }
 
+    /**
+     * Handles view after failed email sending or other errors
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
+     */
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
-        parent::executeViewError($controller, $xoopsUser, $render);
-        $render->setTemplateName('bannerstats_admin_email_test.html');
-        $render->setAttribute('actionForm', $this->mActionForm);
-        $render->setAttribute('activeBanners', $this->mActiveBanners);
-        $render->setAttribute('emailTypes', $this->mEmailTypes);
-        
-        if (is_object($this->mModuleObject)) {
-            $render->setAttribute('module', $this->mModuleObject);
+        if (!empty($this->mErrorMessages) || !empty($this->mWarningMessages)) {
+            $this->executeViewInput($controller, $xoopsUser, $render); 
+        } else {
+            if (class_exists('XCube_DelegateUtils')) {
+                 XCube_DelegateUtils::call('Legacy.Admin.Event.AddErrorMessage', _AD_BANNERSTATS_ERROR_ACTION_FAILED);
+            }
+            $controller->executeRedirect('./index.php?action=BannerEmailTest', 1);
         }
-        
-        return true;
     }
-
-    public function executeViewCancel(&$controller, &$xoopsUser, &$render)
-    {
-        parent::executeViewCancel($controller, $xoopsUser, $render);
-        $this->mRoot->mController->executeForward('./index.php');
+    
+    public function getSuccessMessages(): array { 
+        return $this->mSuccessMessages; 
     }
-
-    protected function _getPagetitle()
-    {
-        return defined('_AD_BANNERSTATS_EMAIL_TEST_TITLE') ? _AD_BANNERSTATS_EMAILTEST_TITLE : 'Test Banner Email Notification';
+    
+    public function getErrorMessages(): array { 
+        return $this->mErrorMessages; 
+    }
+    
+    public function getWarningMessages(): array { 
+        return $this->mWarningMessages; 
     }
 }

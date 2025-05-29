@@ -1,6 +1,6 @@
 <?php
 /**
- * Bannerstats - Module for XCL
+ * Bannerstats Preload Delegate - Module for XCL
  *
  * @package    Bannerstats
  * @author     Nuno Luciano (aka gigamaster) XCL PHP8

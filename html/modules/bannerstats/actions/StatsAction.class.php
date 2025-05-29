@@ -81,7 +81,7 @@ class Bannerstats_StatsAction
             
             $statsNote = '';
             if ($isHtmlBanner) {
-                $statsNote = "Note: For HTML/Ad Service banners, statistics reflect site-level counts and may differ from your ad service provider's data. Please consult their dashboard for official metrics.";
+                $statsNote = "Note: For Ad Service banners, statistics reflect site-level counts and may differ from your ad service provider's data. Please consult their dashboard for official metrics.";
             }
 
             $alert_message = '';
@@ -114,12 +114,12 @@ class Bannerstats_StatsAction
                 $preview = "<img src='" . htmlspecialchars($imageUrl, ENT_QUOTES) . 
                            "' alt='" . $bannerNameForAlt . 
                            "' title='" . $bannerNameForAlt . 
-                           "' style='max-width:200px; max-height:100px; display:block; margin:auto; border:1px solid #ccc;' loading='lazy'>";
+                           "' style='display:block; margin:auto; border:1px solid #ccc;' loading='lazy'>";
             } else {
                 $preview = "[Preview Not Available - Banner ID: " . ($banner['bid'] ?? 'N/A') . " - Type: " . htmlspecialchars($bannerType, ENT_QUOTES) . "]";
             }
 
-            $changeUrlTokenHtml = '';
+             $changeUrlTokenHtml = '';
             if ($bannerType === 'image' && !empty($banner['clickurl'])) { 
                 $changeUrlTokenHtml = BannerClientToken::getHtml("ChangeUrl_" . $banner['bid']);
             }
@@ -156,7 +156,7 @@ class Bannerstats_StatsAction
             
             $finishedStatsNote = '';
             if ($isHtmlBannerFinished) {
-                $finishedStatsNote = "Note: For finished HTML/Ad Service banners, these stats reflect site-level counts.";
+                $finishedStatsNote = "Note: For finished Ad Service banners, these stats reflect site-level counts.";
             }
 
             $previewFinished = '';
@@ -169,10 +169,12 @@ class Bannerstats_StatsAction
                 if (strpos($imageUrlFinished, '://') === false) {
                     $imageUrlFinished = XOOPS_URL . '/' . ltrim($imageUrlFinished, '/');
                 }
-                $previewFinished = "<img src='" . htmlspecialchars($imageUrlFinished, ENT_QUOTES) . 
+                $previewFinished = "<div style='text-align: center;'>" .
+                                   "<img src='" . htmlspecialchars($imageUrlFinished, ENT_QUOTES) . 
                                    "' alt='" . $bannerNameForAltFinished . 
                                    "' title='" . $bannerNameForAltFinished . 
-                                   "' class='banner-preview' loading='lazy'>";
+                                   "' class='banner-preview' loading='lazy'>" .
+                                   "</div>";
             } else {
                 $previewFinished = "[Finished Banner Preview Not Available - ID: " . ($banner['bid'] ?? 'N/A') . " - Type: " . htmlspecialchars($bannerTypeFinished, ENT_QUOTES) . "]";
             }

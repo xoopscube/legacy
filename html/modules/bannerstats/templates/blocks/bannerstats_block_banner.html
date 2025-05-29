@@ -1,4 +1,8 @@
 <{* Banner block template *}>
 <div class="bannerstats-block">
-    <{$block.banner}>
+    <{if isset($block.banner_found) && $block.banner_found && isset($block.banner_html) && $block.banner_html|trim != ""}>
+        <{$block.banner_html}>
+    <{else}>
+        <!-- No banner to display -->
+    <{/if}>
 </div>

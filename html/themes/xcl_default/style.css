@@ -111,7 +111,6 @@ body > main > aside#block-right {
 }
 body > main > div > aside {
     background      : var(--pico-card-background-color); 
-    padding         : .5rem; 
     padding         : var(--pico-nav-element-spacing-vertical) var(--pico-nav-element-spacing-horizontal); /* @todo */
     border-radius   : var(--pico-border-radius);
 }
@@ -418,7 +417,10 @@ summary[role="link"].contrast:is([aria-current],:hover,:active,:focus) {
 
 /* -------------------- TABLE - FONT-SIZE IN BLOCKS */
 [class^="block-"] table tbody, tfoot {
-    font-size       : 14px;
+    font-size       : 0.85rem;
+}
+:is(table.outer) {
+    font-size       : 0.85rem; 
 }
 
 /* -------------------- TEXT SELECTION */

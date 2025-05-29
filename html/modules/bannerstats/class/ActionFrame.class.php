@@ -14,14 +14,12 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-// Ensure the base classes are loaded
 require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/object.php';
 require_once XOOPS_ROOT_PATH . '/modules/legacy/kernel/handler.php';
 
-// Load the required module classes
 require_once XOOPS_MODULE_PATH . '/bannerstats/class/Banner.class.php';
 require_once XOOPS_MODULE_PATH . '/bannerstats/class/handler/Banner.class.php';
-require_once XOOPS_MODULE_PATH . '/bannerstats/admin/class/Action.class.php'; // Or whatever you name the file containing Bannerstats_Action
+require_once XOOPS_MODULE_PATH . '/bannerstats/admin/class/Action.class.php';
 
 define('BANNERSTATS_FRAME_PERFORM_SUCCESS', 1);
 define('BANNERSTATS_FRAME_PERFORM_FAIL', 2);
@@ -113,7 +111,7 @@ class Bannerstats_ActionFrame
         if (!preg_match("/^\w+$/", $this->mActionName)) {
             error_log("Bannerstats_ActionFrame: Invalid action name format after determination: '" . $this->mActionName . "'");
             $defaultSafeAction = $this->mAdminFlag ? 'BannerList' : 'Login';
-            $moduleDirname = $controller->mRoot->mContext->mModule ? $controller->mRoot->mContext->mModule->getVar('dirname') : 'bannerstats';
+            $moduleDirname = $controller->mRoot->mContext->mModule ? $controller->mRoot->mContext->mModule->get('dirname') : 'bannerstats';
             $controller->executeForward(XOOPS_URL . "/modules/" . $moduleDirname . "/index.php?action=" . $defaultSafeAction);
             return;
         }
@@ -122,9 +120,15 @@ class Bannerstats_ActionFrame
 
         if (!(is_object($this->mAction) && $this->mAction instanceof \Bannerstats_Action)) {
             error_log("Bannerstats_ActionFrame: Action object is not valid for action name: " . $this->mActionName . ". mAction is: " . gettype($this->mAction));
+            //$errorAction = $this->mAdminFlag ? 'BannerList' : 'Login';
+            // $moduleDirname = $controller->mRoot->mContext->mModule ? $controller->mRoot->mContext->mModule->get('dirname') : 'bannerstats';
+            
+            // $controller->executeForward(XOOPS_URL . "/modules/" . $moduleDirname . "/index.php?action=" . $errorAction . "&err=invalid_action_obj");
+            // return;
             $errorAction = $this->mAdminFlag ? 'BannerList' : 'Login';
-            $moduleDirname = $controller->mRoot->mContext->mModule ? $controller->mRoot->mContext->mModule->getVar('dirname') : 'bannerstats';
-            $controller->executeForward(XOOPS_URL . "/modules/" . $moduleDirname . "/index.php?action=" . $errorAction . "&err=invalid_action_obj");
+            $moduleDirname = "bannerstats";
+            $adminFolder = $this->mAdminFlag ? "admin/" : "";
+            $controller->executeForward(XOOPS_URL . "/modules/" . $moduleDirname . "/" . $adminFolder . "index.php?action=" . $errorAction . "&err=invalid_action_obj");
             return;
         }
 

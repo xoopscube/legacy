@@ -108,7 +108,7 @@ class Bannerstats_BannerEditAction extends Bannerstats_AbstractEditAction
      */
     protected function _parseDateTimeString(string $dateTimeStr): DateTime|false
     {
-        error_log("BannerEditAction - Attempting to parse date string: '" . $dateTimeStr . "'");
+        //error_log("BannerEditAction - Attempting to parse date string: '" . $dateTimeStr . "'");
 
         // Formats: datetime-local first, then the DB format (with seconds)
         $formatsToTry = [
@@ -130,7 +130,7 @@ class Bannerstats_BannerEditAction extends Bannerstats_AbstractEditAction
             }
         }
         
-        error_log("BannerEditAction - Failed to parse '" . $dateTimeStr . "' with any known format.");
+        //error_log("BannerEditAction - Failed to parse '" . $dateTimeStr . "' with any known format.");
         return false;
     }
 
@@ -157,7 +157,7 @@ class Bannerstats_BannerEditAction extends Bannerstats_AbstractEditAction
             if ($dateTimeObject instanceof DateTime) {
                 $startTimestamp = $dateTimeObject->getTimestamp();
             } else {
-                $this->mActionForm->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME_FORMAT_NEW, _AD_BANNERSTATS_START_DATE, 'YYYY-MM-DDTHH:MM'));
+                $this->mActionForm->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME, _AD_BANNERSTATS_START_DATE, 'YYYY-MM-DDTHH:MM'));
             }
         }
         error_log("BannerEditAction _doExecute - StartDate String (from ActionForm): '{$startDateStrFromForm}', Parsed Timestamp: {$startTimestamp}");
@@ -170,7 +170,7 @@ class Bannerstats_BannerEditAction extends Bannerstats_AbstractEditAction
             if ($dateTimeObject instanceof DateTime) {
                 $endTimestamp = $dateTimeObject->getTimestamp();
             } else {
-                $this->mActionForm->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME_FORMAT_NEW, _AD_BANNERSTATS_DATE_END, 'YYYY-MM-DDTHH:MM'));
+                $this->mActionForm->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME, _AD_BANNERSTATS_DATE_END, 'YYYY-MM-DDTHH:MM'));
             }
         }
         error_log("BannerEditAction _doExecute - EndDate String (from ActionForm): '{$endDateStrFromForm}', Parsed Timestamp: {$endTimestamp}");
@@ -192,9 +192,9 @@ class Bannerstats_BannerEditAction extends Bannerstats_AbstractEditAction
     /**
      * Prepares and sets data for the edit/create form view
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewInput(&$controller, &$xoopsUser, &$render): void
@@ -244,9 +244,9 @@ class Bannerstats_BannerEditAction extends Bannerstats_AbstractEditAction
     /**
      * Handles successful save
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render): void
@@ -267,9 +267,9 @@ class Bannerstats_BannerEditAction extends Bannerstats_AbstractEditAction
     /**
      * Handles errors during save or validation
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewError(&$controller, &$xoopsUser, &$render): void
@@ -290,9 +290,9 @@ class Bannerstats_BannerEditAction extends Bannerstats_AbstractEditAction
     /**
      * Handles cancellation
      *
-     * @param XCube_Controller $controller
-     * @param XoopsUser        $xoopsUser
-     * @param XCube_RenderTarget $render
+     * @param XCube_Controller
+     * @param XoopsUser
+     * @param XCube_RenderTarget
      * @return void
      */
     public function executeViewCancel(&$controller, &$xoopsUser, &$render): void
