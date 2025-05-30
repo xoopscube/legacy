@@ -1,0 +1,35 @@
+/**
+ * GitHub's Default theme for prism.js
+ * @author Jongwoo Han (@jongwooo)
+ */
+
+@import url("prism-github-skeleton.css");
+
+:root {
+	--color-fg-default: #24292f;
+	--color-bg-code-block: #f6f8fa;
+	--color-bg-inline-code-block: rgb(175 184 193 / 20%);
+	--color-gray: #6e7781;
+	--color-red: #cf222e;
+	--color-green: #116329;
+	--color-blue: #0550ae;
+	--color-indigo: #0a3069;
+	--color-purple: #8250df;
+	--color-brown: #953800;
+}
+
+/* Automatic dark mode */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-fg-default: #c9d1d9;
+		--color-bg-code-block: #161b22;
+		--color-bg-inline-code-block: rgb(110 118 129 / 40%);
+		--color-gray: #8b949e;
+		--color-red: #ff7b72;
+		--color-green: #7ee787;
+		--color-blue: #79c0ff;
+		--color-indigo: #a5d6ff;
+		--color-purple: #d2a8ff;
+		--color-brown: #ffa657;
+	}
+}

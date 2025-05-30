@@ -1,0 +1,19 @@
+/**
+ * GitHub's Dimmed Dark theme for prism.js
+ * @author Jongwoo Han (@jongwooo)
+ */
+
+@import url("prism-github-skeleton.css");
+
+:root {
+	--color-fg-default: #adbac7;
+	--color-bg-code-block: #2d333b;
+	--color-bg-inline-code-block: rgb(99 110 123 / 40%);
+	--color-gray: #768390;
+	--color-red: #f47067;
+	--color-green: #8ddb8c;
+	--color-blue: #96d0ff;
+	--color-indigo: #6cb6ff;
+	--color-purple: #dcbdfb;
+	--color-brown: #f69d50;
+}
