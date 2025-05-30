@@ -28,7 +28,7 @@ define( '_MI_CKEDITOR4_CONTENTSCSS' , '編集エリアの外部 CSS URL');
 define( '_MI_CKEDITOR4_CONTENTSCSS_DESC' , '編集エリアに適用する外部 CSS の URL を行単位で設定します。<br>※ &lt;head&gt; は、表示ページの HTML 中の &lt;head&gt; 内に指定されている CSS を自動的に読み込む特殊指定です。');
 
 define( '_MI_CKEDITOR4_EXTRAPLUGINS' , '追加プラグイン');
-define( '_MI_CKEDITOR4_EXTRAPLUGINS_DESC' , 'CKEditor の config.extraPlugins の設定 : codesnippet,oembed');
+define( '_MI_CKEDITOR4_EXTRAPLUGINS_DESC' , 'CKEditor の config.extraPlugins の設定 : codesnippet,markdown,oembed');
 
 define( '_MI_CKEDITOR4_CUSTOMCONFIG' , '独自コンフィグURL');
 define( '_MI_CKEDITOR4_CUSTOMCONFIG_DESC' , 'CKEditor の config.customConfig の設定');

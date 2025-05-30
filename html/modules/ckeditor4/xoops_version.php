@@ -126,7 +126,7 @@ $modversion['config'][] = array(
 		'description'	=> '_MI_CKEDITOR4_EXTRAPLUGINS_DESC',
 		'formtype'		=> 'textbox' ,
 		'valuetype'		=> 'string' ,
-		'default'		=> ''
+		'default'		=> 'codesnippet,markdown,oembed'
 ) ;
 
 $modversion['config'][] = array(

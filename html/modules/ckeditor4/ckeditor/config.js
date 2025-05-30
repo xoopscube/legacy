@@ -1,6 +1,6 @@
 /**
- * CKEditor configuration for XCL 2.4.0
- * Date : 20-04-2024 @gigamaster
+ * CKEditor configuration for XCL 2.5.0
+ * Date : 20-04-2025 @gigamaster
  * 
  * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
@@ -27,8 +27,17 @@ CKEDITOR.editorConfig = function( config ) {
     config.basicEntities = false;
 
     // codesnnipet plugin 
-    // Changing Highlighter Theme
-    config.codeSnippet_theme = 'github-dark';
+    // Customize languages    
+    config.codeSnippet_languages = {
+ 		javascript: 'JavaScript',
+ 		php: 'PHP',
+        css: 'css',
+ 	};
+    // Default theme
+    // config.codeSnippet_theme = 'prism.css';
+    config.codeSnippet_theme = 'prism-github-default-auto.css';
+    // Customize the class of the `<code>` element to "myCustomClass".
+    // config.codeSnippet_codeClass = 'myCustomClass';
 
     // oEmbed Plugin
     config.oembed_maxWidth = '560';
@@ -57,7 +66,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.toolbarGroups = [
 		{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
 		{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-		{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
+		{ name: 'editing', groups: [ 'find', 'selection', 'editing' ] },
 		{ name: 'tools', groups: [ 'tools' ] },
 		'/',
 		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
@@ -70,8 +79,9 @@ CKEDITOR.editorConfig = function( config ) {
 	];
     // 'la:Language:rtl' = right to left
     // config.language_list = ['ja:Japanese:rtl'];
-    config.language_list = [ 'en:English', 'fr:Français', 'ja:Japanese', 'pt:Portuguese' ];
+    config.language_list = [ 'en:English', 'fr:Français', 'ja:Japanese', 'pt:Portuguese', 'ru:Russian' ];
 
+    // codemirror, refer to 'config_php.js' 
     config.codemirror = {
         autoCloseTags: true,
         autoFormatOnStart: true,

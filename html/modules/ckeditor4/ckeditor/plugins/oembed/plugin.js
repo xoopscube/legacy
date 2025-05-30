@@ -1,5 +1,5 @@
 ﻿/**
-* oEmbed Plugin plugin
+* oEmbed Plugin
 * Licensed under the MIT license
 * jQuery Embed Plugin: http://code.google.com/p/jquery-oembed/ (MIT License)
 * Plugin for: http://ckeditor.com/license (GPL/LGPL/MPL: http://ckeditor.com/license)
@@ -11,7 +11,7 @@
                 icons: "oembed",
                 hidpi: true,
                 requires: "widget,dialog",
-                lang: "ar,bg,ca,cs,de,en,es,et,fr,hu,it,nl,pl,pt-br,ro,ru,sk,sl,tr,zh", // %REMOVE_LINE_CORE%
+                lang: "en,fr,pt,ru", // %REMOVE_LINE_CORE%
                 version: "1.19.0",
                 onLoad: function() {
                     CKEDITOR.document.appendStyleSheet(this.path + "css/oembed.css");
