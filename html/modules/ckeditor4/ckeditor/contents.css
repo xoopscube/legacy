@@ -14,12 +14,12 @@ body
 	/* color: #333; */
 
 	/* Remove the background color to make it transparent.  #fff */
-	background: var( --cke-background, #fff);
+	background-color: var( --cke-background, #fff);
 	color: var( --cke-color, #111);
 	margin: 1rem;
 }
 textarea.cke_source {
-	background: var( --cke-background, #fff);
+	background-color: var( --cke-background, #fff) !important;
 	color: var( --cke-color, #111);
     font-family: 'Courier New', Monospace;
     font-size: small;

@@ -23,7 +23,7 @@ Render Engine| Smarty v2 and XCube Layout
 Version      | 4.22.1
 Author       | @nao-pon Naoki Sawada
 Maintainer   | Update @gigamaster Nuno Luciano (XCL7)
-Copyright    | 2005-2024 Authors
+Copyright    | 2005-2025 Authors
 License      | XCL module is distributed under a GPL 2.0 License.
 License      | elFinder is distributed under a 3-Clause BSD License.
 
@@ -33,8 +33,8 @@ License      | elFinder is distributed under a 3-Clause BSD License.
 
 
           Apache, Nginx, etc. PHP 8.x.x
-          MySQL 5.7, MariaDB  InnoDB utf8 / utf8mb4
-          XCL version 2.4.0
+          MySQL 8.x, MariaDB  InnoDB utf8 / utf8mb4
+          XCL version 2.5.0
 
 
 

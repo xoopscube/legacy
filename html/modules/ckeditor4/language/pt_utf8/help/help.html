@@ -7,6 +7,9 @@
                 <li><a href="#help-implement" class="button">Implement</a>
                 <li><a href="#help-customize" class="button">Customize</a>
                 <li><a href="#help-update" class="button">Build and Update</a>
+                <li><a href="#help-oembed" class="button">Plugin Oembed</a>
+                <li><a href="#help-codesnippet" class="button">Plugin Code snippet</a>
+                <li><a href="#help-prismjs" class="button">Plugin PrismJS</a>
                 <li><a href="#help-license" class="button">License</a>
                 <li><a href="#help-development" class="button">Development</a>
             </ul>
@@ -855,13 +858,13 @@ CKEDITOR.editorConfig = function( config ) {
 
 
         <li>Visit online builder to build CKEditor, starting with the same setup as before.<br>
-        <a href="https://ckeditor.com/cke4/builder/069129c9382503296cffba6b1b154b95" target="_blank" rel="noopener">
-            https://ckeditor.com/cke4/builder/069129c9382503296cffba6b1b154b95  ⭧</a>
+        <a href="https://ckeditor.com/cke4/builder/799d62b8cfb7b7761c5b56c2d4a99092" target="_blank" rel="noopener">
+            https://ckeditor.com/cke4/builder/799d62b8cfb7b7761c5b56c2d4a99092  ⭧</a>
 
 
         <li>Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.<br>
-        <a href="https://ckeditor.com/cke4/builder/download/069129c9382503296cffba6b1b154b95" target="_blank" rel="noopener">
-            https://ckeditor.com/cke4/builder/download/069129c9382503296cffba6b1b154b95  ⭧</a>
+        <a href="https://ckeditor.com/cke4/builder/download/799d62b8cfb7b7761c5b56c2d4a99092" target="_blank" rel="noopener">
+            https://ckeditor.com/cke4/builder/download/799d62b8cfb7b7761c5b56c2d4a99092  ⭧</a>
 
         </ol>
 
@@ -869,6 +872,212 @@ CKEDITOR.editorConfig = function( config ) {
             After download of CkEditor4 plugins update, merge the new files with module/ckeditor4/ckeditor<br>
             The required plugins must be present to run with core modules!
         </div>
+
+    </section>
+
+    <section id="help-oembed">
+
+        <h3>CKEditor Plugin : oEmbed</h3>
+        <p>This Plugin allows to insert embedded content (such as photos, videos, audio, and other rich media) via the OEmbed API. 
+            You only have to provide the url to the site (It works also when the url is shortened) you want to embed and the plugin does the rest. 
+            Developed by w8tcha, <a href="https://github.com/w8tcha/CKEditor-oEmbed-Plugin" target="_blank" rel="source">CKEditor-oEmbed-Plugin  ⭧</a>
+        </p>
+        <div data-layout="row sm-column" style="font-size:0.875rem">
+
+        <div data-self="size-1of3">
+            <h3>Audio</h3>
+        <ul dir="auto">
+        <li>Soundcloud - oEmbed</li>
+        <li>HuffDuffer - oEmbed</li>
+        <li>BandCamp - YQL and Embedded</li>
+        <li>podomatic - OGP</li>
+        <li>rdio.com - oEmbed</li>
+        <li>hark.com - OGP</li>
+        <li>chirb.it - YQL and oembed</li>
+        <li>official.fm - YQL and oembed</li>
+        <li>mixcloud - YQL and oembed</li>
+        <li>shoudio - oembed</li>
+        <li>audioboo.fm - OGP</li>
+        <li>Spotify - OGP YQL</li>
+        </ul>
+            <h3>Video</h3>
+        <ul dir="auto">
+        <li>Youtube - oembed - YQL</li>
+        <li>Blip - oEmbed</li>
+        <li>Hulu - oEmbed</li>
+        <li>Vimeo - oEmbed</li>
+        <li>Nooledge - oEmbed</li>
+        <li>National film board of Canada - oEmbed</li>
+        <li>Qik - oEmbed</li>
+        <li>Dotsub - oEmbed</li>
+        <li>Clikthrough - oEmbed</li>
+        <li>Kino Map - oEmbed</li>
+        <li>Funny Or Die - Embedded</li>
+        <li>College Humour - Embedded</li>
+        <li>Metacafe - Embedded</li>
+        <li>embedr - Embedded</li>
+        <li>5min - oEmbed is XML only - using YQL to translate it</li>
+        <li>ustream.tv - oEmbed is not JSONP enabled - using YQL to translate it</li>
+        <li>viddler - OGP</li>
+        <li>twitvid - Embedded</li>
+        <li>bambuser - Embedded</li>
+        <li>xtranormal - Embedded</li>
+        <li>Gametrailers - Embedded</li>
+        <li>Vzarr - Embedded</li>
+        <li>VHX - oembed</li>
+        <li>bambuser - oembed</li>
+        <li>dailymotion.com - oembed</li>
+        <li>animoto - oembed</li>
+        <li>justin.tv - YQL JSON</li>
+        <li>livestream - OGP</li>
+        <li>scivee - embedded</li>
+        <li>veoh - embedded</li>
+        <li>minoto-video - oembed using YQL</li>
+        <li>TrailerAddict - OGP</li>
+        <li>vodpod - oembed YQL - broken as the oembed has absolute positioning which breaks the display</li>
+        <li>fora.tv -OGP YQL</li>
+        <li>TED - OGP YQL</li>
+        <li>Aniboom - embedded</li>
+        <li>Comedy Central - OGP</li>
+        <li>snotr - embedded</li>
+        <li>zapiks - OGP</li>
+        <li>youku - embedded</li>
+        <li>wistia - Oembed</li>
+        </ul>
+        </div>
+
+        <div data-self="size-1of3">
+            <h3>Photo</h3>
+        <ul dir="auto">
+        <li>flickr - oEmbed</li>
+        <li>photobucket - oEmbed</li>
+        <li>instagram - oEmbed</li>
+        <li>yfrog - oEmbed</li>
+        <li>23HQ - oEmbed</li>
+        <li>Smugmug - oEmbed</li>
+        <li>twitpic - OGP YQL</li>
+        <li>500px.com - OGP</li>
+        <li>visual.ly - YQL Lookup</li>
+        <li>img.ly - Thumbnail view</li>
+        <li>imgur.com - Thumbnail view</li>
+        <li>twitgoo.com - Thumbnail view</li>
+        <li>gravatar - Thumbnail view when using mailto</li>
+        <li>pintrest - YQL - Embedded view of a sort.</li>
+        <li>circuitlab - image view</li>
+        <li>skitch - YQL oembed</li>
+        <li>graphic.ly  - OGP</li>
+        <li>dribble - jsonp lookup</li>
+        <li>Lockerz - YQL lookup</li>
+        <li>AsciiArtFarts - YQL Lookup</li>
+        <li>lego cusoo - OGP over YQL</li>
+        <li>plannary - OGP over YQL</li>
+        <li>propic - OGP</li>
+        <li>avairy.com - OGP</li>
+        <li>lomography - ogp</li>
+        <li>weheartit - ogp</li>
+        <li>glogster - ogp</li>
+        <li>chart.ly - embedded</li>
+        <li>twitrpix - OGP</li>
+        <li>chictopia - OGP</li>
+        </ul>
+        </div>
+
+        <div data-self="size-1of3">
+            <h3>Rich</h3>
+        <ul dir="auto">
+        <li>Meetup - oEmbed</li>
+        <li>gigapans - Embedded</li>
+        <li>Slideshare - oEmbed</li>
+        <li>ebay - Embedded</li>
+        <li>scribd - Embedded</li>
+        <li>DocumentCloud - oEmbed</li>
+        <li>screenr - Embedded</li>
+        <li>tumblr- JSONP lookup</li>
+        <li>imdb - JSONP lookup via imdbapi.com</li>
+        <li>wikipedia- JSONP lookup</li>
+        <li>github- JSONP lookup (CSS)</li>
+        <li>eventful - OGP</li>
+        <li>myspace - OGP</li>
+        <li>live Journal - JSONP Lookup (CSS)</li>
+        <li>wordpress - oEmbed (wordpress.com, wp.me, blogs.cnn.com, techcrunch.com). I can add other wordpress sites as well.</li>
+        <li>circuitbee -Embedded</li>
+        <li>stack overflow - JSONP Lookup (CSS)</li>
+        <li>Facebook - JSONP Lookup (CSS)</li>
+        <li>Pastebin - Embedded</li>
+        <li>Pastie - YQL lookup</li>
+        <li>kickstarter - Embedded</li>
+        <li>issuu - OGP</li>
+        <li>reelapp.com - Embedded</li>
+        <li>Etsy - OGP over YQL</li>
+        <li>Amazon - Embedded - Requires Affiliate code</li>
+        <li>linkedin - Embedded IFRAME - found a link that works</li>
+        <li>Lanyrd - YQL (CSS)</li>
+        <li>twitter - Oembed - status only - but that is ok I think</li>
+        <li>github gist - oembed</li>
+        <li>speakerdeck - yql oembed</li>
+        <li>dipity - yql oembed</li>
+        <li>dailymile - oembed</li>
+        <li>deviantart - oembed</li>
+        <li>Roomshare Japan - oembed</li>
+        <li>mobypictures - oembed</li>
+        <li>prezi - embedded</li>
+        <li>popplet - embedded</li>
+        <li>authorstream - OGP</li>
+        <li>googlecalendar - Iframe</li>
+        <li>cacoo - oembed</li>
+        <li>pearltrees - embedded</li>
+        <li>urtak - oembed - is broken in iframe return atm -seems to be an embed.ly issue??</li>
+        <li>jotform - embedded</li>
+        <li>Urban Dictionary - YQL lookup</li>
+        <li>Ars Technica - YQL Lookup</li>
+        <li>Eventbrite - OGP YQL</li>
+        <li>last.fm OGP YQL</li>
+        <li>Rotten Tomatoes - OGP YQL</li>
+        <li>iFixit - OGP</li>
+        <li>qwiki - OGP</li>
+        <li>brighttalk - Meta info</li>
+        <li>tinychat - OGP</li>
+        <li>tourwrist - embedded</li>
+        <li>bnter - OGP</li>
+        <li>bigthink - OGP</li>
+        <li>wirewax - OGP</li>
+        <li>whosay - OGP</li>
+        <li>timetoast - embedded</li>
+        <li>tripline - OGP</li>
+        <li>jsfiddle - embedded</li>
+        </ul>
+        </div>
+
+       </div>
+
+    </section>
+
+    <section id="help-codesnippet">
+
+        <h3>CKEditor Plugin : Code Snippets</h3>
+        <p>This plugin lets you insert rich code snippets with syntax highlighting into the editor. 
+            The default implementation uses the integrated highlight.js library, but the plugin is easily customized 
+            to use a different syntax highlighter e.g. XCL common PrismJS.</p> 
+            <p><img src="<{'codesnippet.png'|helpimage}>" width="auto"></p>
+            
+        <p>Additionally, the you can also use the following configuration options:</p>
+
+        <ul>
+            <li>config.codeSnippet_theme - to change the default highlighter theme.</li>
+            <li>config.codeSnippet_languages - to change the list of supported languages.</li>
+        </ul>
+
+       <p>Syntax highlighting of over 50 programming languages (note that SVG and XML are under the HTML category, and JSON is under JavaScript)</p>
+
+    </section>
+
+    <section id="help-prismjs">
+        <h3>PrismJS</h3>
+       <p>Prism is a lightweight, extensible syntax highlighter, built with modern web standards in mind.</p>
+       <p>PrismJS 1.30.0 is installed in /common/prismjs/ and preload by the theme.html</p>
+       <p>Visit online builder to customize 
+       <a href="https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+css-extras+diff+markup-templating+php+smarty+sql&plugins=unescaped-markup+toolbar+copy-to-clipboard+diff-highlight" target="_blank">
+       Default Minified version  ⭧</a></p>
 
     </section>
 
@@ -893,7 +1102,6 @@ CKEDITOR.editorConfig = function( config ) {
 
     </section>
 
-
     <section id="help-development">
         <h3>Development</h3>
 
@@ -901,7 +1109,7 @@ CKEDITOR.editorConfig = function( config ) {
             <tbody>
             <tr>
                 <td>Bundle Package</td>
-                <td> XCL 2.4.0</td>
+                <td> XCL 2.5.0</td>
             </tr>
             <tr>
                 <td>Module name</td>
@@ -925,7 +1133,7 @@ CKEDITOR.editorConfig = function( config ) {
             </tr>
             <tr>
                 <td>Copyright </td>
-                <td>(c) 2012-2024 Naoki Sawada, Authors</td>
+                <td>(c) 2012-2025 Naoki Sawada, Authors</td>
             </tr>
             <tr>
                 <td>Repository URL</td>

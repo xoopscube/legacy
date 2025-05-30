@@ -2,9 +2,9 @@
 /**
  * CKEditor4 module for XCL
  * @package    CKEditor4
- * @version    2.4.0
+ * @version    2.5.0
  * @author     Naoki Sawada (aka nao-pon) <https://xoops.hypweb.net/>
- * @copyright  (c) 2005-2024 The XOOPSCube Project
+ * @copyright  (c) 2005-2025 The XOOPSCube Project
  * @license    GPL 2.0
  */
 
@@ -26,7 +26,7 @@ class ckeditor4_DefaultConfig extends XCube_ActionFilter
 		// for d3forum
 		$mObj = $this->mRoot->mContext->mXoopsModule;
 		if (is_a($mObj, 'XoopsModule') && $mObj->get('trust_dirname') === 'd3forum') {
-			// PHP8 v2.4.0 warning undefined key
+			// PHP8 v2.5.0 warning undefined key
 			//if (is_null($params['onload'])) {
 				if(isset($params['onload']) && ($params['onload']!==null)) {
 				$params['onload'] = <<<EOD

@@ -2,10 +2,10 @@
 /**
  * CKEditor4 module for XCL
  * @package    CKEditor4
- * @version    2.4.0
+ * @version    2.5.0
  * @author     Other authors Nuno Luciano (aka gigamaster), 2020, XCL PHP7
  * @author     Naoki Sawada (aka nao-pon) <https://xoops.hypweb.net/>
- * @copyright  (c) 2005-2024 The XOOPSCube Project
+ * @copyright  (c) 2005-2025 The XOOPSCube Project
  * @license    GPL 2.0
  */
 
@@ -357,6 +357,8 @@ EOD;
             } else {
                 $modeconf['source']['toolbar'] = null;
             }
+
+
 			$params['source'] = str_replace('&lt;!--ckeditor4FlgSource--&gt;', '', $params['value'], $modeSource);
            // $params['source'] =
             if ($modeconf['source']) {
@@ -433,6 +435,7 @@ EOD;
 		return (elm.length === 1) ? elm : null;
 	},
 	// checkbox
+
 	html_c = find_c('html'),
 	bbcode_c = find_c('xcode'),
 	br_c = find_c('br');
@@ -492,6 +495,7 @@ EOD;
 		});
 	}
 	// form submit
+
 	ta.closest("form").bind("submit", function(){
 		var e = ta.data("editor");
 		set("br", ((e == "bbcode")? true : ((e == "html")? false : null)), false);
@@ -736,6 +740,7 @@ EOD;
 	});
 	{$switcher}
 })();
+
 // Since XCL 2.3.x @gigamaster added Dialog for copy/paste
 CKEDITOR.on("instanceReady", function(event) {
     event.editor.on("beforeCommandExec", function(event) {
