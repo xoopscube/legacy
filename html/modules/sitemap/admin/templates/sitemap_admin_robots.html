@@ -1,0 +1,73 @@
+<h2><{$sitemap_page_title}></h2>
+
+<div class="tips"><{$sitemap_page_desc}></div>
+
+<{if $sitemap_messages}>
+    <div class="ui-card-content">
+    <{foreach item=msg from=$sitemap_messages}>
+        <div class="alert alert-<{$msg.type}>"><{$msg.text}></div>
+    <{/foreach}>
+    </div>
+<{/if}>  
+    
+
+<h3><{$smarty.const._MI_SITEMAP_ROBOTS_CURRENT_CONTENT}></h3>
+<div class="ui-card-full">
+    <{if $sitemap_current_robots_content_display}>
+        <pre class="current-robots-content">
+        <code class="language-text"><{$sitemap_current_robots_content_display}></code></pre>
+    <{else}>
+        <p><{$smarty.const._MI_SITEMAP_ROBOTS_FILE_NOT_EXIST}></p>
+    <{/if}>
+</div>
+
+<hr>
+
+<h3><{$smarty.const._MI_SITEMAP_ROBOTS_EDIT_AREA}></h3>
+<div class="danger"><{$sitemap_warning_overwrite}></div>
+
+<div class="ui-card-full">
+    <form name="robotsForm" id="robotsForm" action="robots_editor.php" method="post">
+        <{$xoops_token_form}> <{*- XOOPS Security Token -*}>
+
+        <textarea name="robots_content" id="robots_content_textarea" rows="20" style="width: 98%; font-family: monospace; white-space: pre; overflow-wrap: normal; overflow-x: auto;"><{$sitemap_form_content}></textarea>
+
+            <button type="submit" name="save_robots" class="btn btn-primary"><{$smarty.const._MI_SITEMAP_ROBOTS_SAVE_BTN}></button>
+            <button type="button" id="loadRecommendedBtn" class="btn btn-secondary"><{$smarty.const._MI_SITEMAP_ROBOTS_RECOMMENDED_CONTENT_BTN}></button>
+    </form>
+</div>
+
+    
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        const loadRecommendedBtn = document.getElementById('loadRecommendedBtn');
+        const robotsTextarea = document.getElementById('robots_content_textarea');
+        // The recommended content is already escaped for JS string by json_encode in PHP
+        const recommendedContent = <{$sitemap_recommended_robots_content_js}>;
+
+        if (loadRecommendedBtn && robotsTextarea) {
+            loadRecommendedBtn.addEventListener('click', function() {
+                if (confirm('<{$smarty.const._MI_SITEMAP_ROBOTS_CONFIRM_LOAD_RECOMMENDED|escape:"javascript"}>')) {
+                    robotsTextarea.value = recommendedContent;
+                }
+            });
+        }
+    });
+</script>
+
+<style>
+    pre.current-robots-content {
+/*         background-color: #f8f9fa; 
+        border: 1px solid #dee2e6; Lighter border */
+        padding: 15px;
+        border-radius: .25rem;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        max-height: 300px;
+        overflow-y: auto;
+        font-family: monospace;
+    }
+    #robots_content_textarea {
+        line-height: 1.4; /* Improve readability */
+    }
+</style>

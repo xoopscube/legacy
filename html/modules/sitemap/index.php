@@ -1,20 +1,32 @@
 <?php
+/**
+ * Sitemap
+ * Automated Sitemap and XML file for search engines
+ * 
+ * @package    Sitemap
+ * @version    2.5.0
+ * @author     Gigamaster, 2020 XCL PHP7
+ * @author     chanoir
+ * @copyright  (c) 2005-2025 Authors
+ * @license    GPL V2.0
+ */
 
 require '../../mainfile.php' ;
+require_once XOOPS_ROOT_PATH.'/header.php';
 
-
-$xoopsOption['template_main'] = 'sitemap_index.html' ;
-include XOOPS_ROOT_PATH.'/header.php' ;
+if (!defined('XOOPS_ROOT_PATH')) exit();
 
 $sitemap_configs = $xoopsModuleConfig ;
+
 include_once XOOPS_ROOT_PATH.'/modules/sitemap/include/sitemap.php' ;
 
 
-// for All-time guest mode (backup uid & set as Guest)
+// All-time guest mode (backup uid & set as Guest)
 if( is_object( $xoopsUser ) && ! empty( $sitemap_configs['alltime_guest'] ) ) {
 	$backup_uid = $xoopsUser->getVar('uid') ;
 	$backup_userisadmin = $xoopsUserIsAdmin ;
-	$xoopsUser = '' ;
+	unset($xoopsUser);
+    $xoopsUser = null;
 	$xoopsUserIsAdmin = false ;
 }
 
@@ -22,11 +34,16 @@ $sitemap = sitemap_show();
 
 $myts =& MyTextSanitizer::getInstance();
 
-// for All-time guest mode (restore $xoopsUser*)
 if( ! empty( $backup_uid ) && ! empty( $sitemap_configs['alltime_guest'] ) ) {
 	$member_handler =& xoops_gethandler('member');
 	$xoopsUser =& $member_handler->getUser( $backup_uid ) ;
-	$xoopsUserIsAdmin = $backup_userisadmin ;
+	if (is_object($xoopsUser)) { // Check user restored successful
+	    $xoopsUserIsAdmin = $xoopsUser->isAdmin($xoopsModule->getVar('mid'));
+	} else {
+	    // Handle case not restored
+	    $xoopsUser = null;
+	    $xoopsUserIsAdmin = false;
+	}
 }
 
 // options map & address
@@ -44,6 +61,8 @@ if($sitemap_configs['show_site_address'] == 1) {
 } 
 
 // Render
+$xoopsOption['template_main'] = 'sitemap_index.html' ;
+
 $xoopsTpl->assign('sitemap', $sitemap);
 $xoopsTpl->assign('msgs', $myts->displayTarea( $sitemap_configs['msgs'] , 1 ) ) ;
 $xoopsTpl->assign('show_subcategoris', $sitemap_configs["show_subcategoris"]);

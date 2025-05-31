@@ -1,9 +1,24 @@
-User-agent: * #Applies to all robots
 User-agent: *
 Allow: /
+
+# Common XOOPS/XCL paths to disallow
 Disallow: /admin.php
 Disallow: /userinfo.php
+Disallow: /edituser.php
+Disallow: /include/
+Disallow: /class/
+Disallow: /kernel/
+Disallow: /language/
+Disallow: /libraries/
+Disallow: /Frameworks/
+Disallow: /plugins/
+Disallow: /install/
+Disallow: /sql/
+Disallow: /templates_c/
+Disallow: /cache/
+Disallow: /data/
+Disallow: /temp/
+Disallow: /uploads/
 
-# Reference the absolute URL to your XML sitemap
-# You can reference multiple XML sitemaps
-# Sitemap: https://www.example.com/xml_google.php
+# Sitemap URL (ensure this is the correct absolute URL)
+Sitemap: https://php82.local/legacy250/html/xml_sitemap.php

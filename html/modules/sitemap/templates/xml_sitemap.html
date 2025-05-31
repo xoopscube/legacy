@@ -1,44 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc><{$smarty.const.XOOPS_URL}>/</loc>
-<lastmod><{$lastmod}></lastmod>
-<changefreq>daily</changefreq>
-<priority>1.0</priority>
-</url>
-
-<{foreach name=i item=module from=$sitemap.modules}>
-
-  <{if $module.name}>
-    <url>
-      <loc><{$smarty.const.XOOPS_URL}>/modules/<{$module.directory}>/</loc>
-      <{if $module.lastmod}><lastmod><{$module.lastmod}></lastmod><{/if}>
-    </url>
-
-    <{foreach item=parent from=$module.parent}>
-      <url>
-        <loc><{$smarty.const.XOOPS_URL}>/modules/<{$module.directory}>/<{$parent.url}></loc>
-        <{if $parent.lastmod}><lastmod><{$parent.lastmod}></lastmod><{/if}>
-      </url>
-
-      <{if $show_subcategoris}>
-      <{foreach item=child from=$parent.child}>
-        <url>
-          <loc><{$smarty.const.XOOPS_URL}>/modules/<{$module.directory}>/<{$child.url}></loc>
-          <{if $child.lastmod}><lastmod><{$child.lastmod}></lastmod><{/if}>
-        </url>
-      <{/foreach}>
-      <{/if}>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    <{* Loop through each module in the sitemap data *}>
+    <{foreach item=module_data from=$sitemap.modules}>
+        <{* Check if the module has parent items (main links or categories) *}>
+        <{if $module_data.parent}>
+            <{foreach item=content_item from=$module_data.parent}>
+                <url>
+                    <loc><{$content_item.loc|escape:'htmlall'}></loc>
+                    <{if $content_item.lastmod}>
+                        <lastmod><{$content_item.lastmod}></lastmod>
+                    <{/if}>
+                    <{if $content_item.changefreq}>
+                        <changefreq><{$content_item.changefreq}></changefreq>
+                    <{/if}>
+                    <{if isset($content_item.priority) && $content_item.priority !== ''}> <{*- Check for non-empty string, as 0.0 is valid *}>
+                        <priority><{$content_item.priority}></priority>
+                    <{/if}>
+                </url>
+                <{* Check if this parent item has child items (sub-links or sub-categories) *}>
+                <{if $content_item.child}>
+                    <{foreach item=sub_content_item from=$content_item.child}>
+                    <url>
+                        <loc><{$sub_content_item.url|escape:'htmlall'}></loc> <{*- Note: plugins might use 'url' or 'link'. Ensure consistency from sitemap_show() - use 'loc' for all final URLs *}>
+                        <{if $sub_content_item.lastmod}>
+                            <lastmod><{$sub_content_item.lastmod}></lastmod>
+                        <{/if}>
+                        <{if $sub_content_item.changefreq}>
+                            <changefreq><{$sub_content_item.changefreq}></changefreq>
+                        <{/if}>
+                        <{if isset($sub_content_item.priority) && $sub_content_item.priority !== ''}>
+                            <priority><{$sub_content_item.priority}></priority>
+                        <{/if}>
+                    </url>
+                    <{/foreach}>
+                <{/if}>
+            <{/foreach}>
+        <{/if}>
+        <{* If a module has direct sublinks not under a 'parent' structure (less common for sitemap items but possible) *}>
+        <{if $module_data.sublinks && !$module_data.parent}>
+             <{foreach item=sublink_item from=$module_data.sublinks}>
+                 <url>
+                    <loc><{$sublink_item.url|escape:'htmlall'}></loc> <{*- Ensure this 'url' is absolute and has lastmod/changefreq/priority from sitemap_show() *}>
+                    <{if $sublink_item.lastmod}>
+                        <lastmod><{$sublink_item.lastmod}></lastmod>
+                    <{/if}>
+                    <{if $sublink_item.changefreq}>
+                        <changefreq><{$sublink_item.changefreq}></changefreq>
+                    <{/if}>
+                    <{if isset($sublink_item.priority) && $sublink_item.priority !== ''}>
+                        <priority><{$sublink_item.priority}></priority>
+                    <{/if}>
+                 </url>
+             <{/foreach}>
+        <{/if}>
     <{/foreach}>
-    <{foreach item=sublink from=$module.sublinks}>
-      <url>
-        <loc><{$sublink.url}></loc>
-        <{if $sublink.lastmod}><lastmod><{$sublink.lastmod}></lastmod><{/if}>
-      </url>
-    <{/foreach}>
-  <{/if}>
-
-<{/foreach}>
-
 </urlset>

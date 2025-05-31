@@ -1,0 +1,80 @@
+<h2><{$xoops_pagetitle}></h2>
+<div class="tips"><{$smarty.const._AD_SITEMAP_PAGESPEED_PAGE_DESC}></div>
+
+        
+<div class="ui-card-full">
+    <form action="pagespeed.php" method="post">
+        <{$xoops_token_form}>
+        <div>
+            <label for="psi_url" class="mr-1"><{$smarty.const._AD_SITEMAP_PAGESPEED_URL_LABEL}></label> 
+            <input type="url" name="psi_url" id="psi_url" value="<{$sitemap_pagespeed_data.url_tested|escape:'html'}>" size="60" placeholder="https://example.com">
+        </div>
+        <div>
+            <label for="psi_strategy"><{$smarty.const._AD_SITEMAP_PAGESPEED_STRATEGY_LABEL}></label> 
+            <select name="psi_strategy" id="psi_strategy">
+                <option value="mobile" <{if $sitemap_pagespeed_data.strategy == 'mobile'}>selected<{/if}>><{$smarty.const._AD_SITEMAP_PAGESPEED_STRATEGY_MOBILE}></option> 
+                <option value="desktop" <{if $sitemap_pagespeed_data.strategy == 'desktop'}>selected<{/if}>><{$smarty.const._AD_SITEMAP_PAGESPEED_STRATEGY_DESKTOP}></option> 
+            </select>
+        </div>
+        <button type="submit" name="psi_check"><{$smarty.const._AD_SITEMAP_PAGESPEED_RUN_CHECK}></button> 
+    </form>
+</div>
+
+<{if $sitemap_pagespeed_data.show_results}>
+<hr />
+<h3>
+    <{$smarty.const._AD_SITEMAP_PAGESPEED_RESULTS_FOR}> 
+    <{$sitemap_pagespeed_data.url_tested|escape:'html'}> (<{$sitemap_pagespeed_data.strategy|capitalize}>)
+</h3>
+
+<div class="ui-card-full">
+        
+    <{if $sitemap_pagespeed_data.warning}>
+        <div class="danger"><{$sitemap_pagespeed_data.warning}></div>
+    <{elseif $sitemap_pagespeed_data.apiKeyUsed}>
+        <div class="info"><{$smarty.const._AD_SITEMAP_PAGESPEED_API_KEY_USED}></div>
+    <{/if}>
+
+    <{if $sitemap_pagespeed_data.error}>
+        <div class="danger">
+            <{$sitemap_pagespeed_data.error}>
+        </div>
+    <{elseif $sitemap_pagespeed_data.scores}>
+        <table class="outer" style="width: auto;">
+            <thead>
+                <tr>
+                    <th class="head"><{$smarty.const._AD_SITEMAP_PAGESPEED_METRIC}></th>
+                    <th class="head"><{$smarty.const._AD_SITEMAP_PAGESPEED_SCORE}></th>
+                </tr>
+            </thead>
+            <tbody>
+                <{foreach key=metric_title item=metric_data from=$sitemap_pagespeed_data.scores}>
+                <tr>
+                    <td class="odd"><{$metric_title}></td>
+                    <td class="odd">
+                        <div style="width: 100px; background-color: #e9ecef; border-radius: .25rem; text-align: center; position: relative; height: 20px; line-height: 20px;">
+                            <div style="width: <{$metric_data.score}>%; background-color: <{if $metric_data.score >= 90}>#28a745<{elseif $metric_data.score >= 50}>#ffc107<{else}>#dc3545<{/if}>; height: 100%; border-radius: .25rem;">
+                            </div>
+                            <strong style="position: absolute; left: 0; right: 0; top: 0; color: <{if $metric_data.score < 40 || $metric_data.score > 70}>white<{else}>black<{/if}>;"><{$metric_data.score}></strong>
+                        </div>
+                    </td>
+                </tr>
+                <{/foreach}>
+            </tbody>
+        </table>
+
+        <p style="font-size: 0.9em; margin-top: 10px;">
+            <{$smarty.const._AD_SITEMAP_PAGESPEED_LEGEND_GREEN}> 90-100 (Good) &nbsp;
+            <{$smarty.const._AD_SITEMAP_PAGESPEED_LEGEND_ORANGE}> 50-89 (Needs Improvement) &nbsp;
+            <{$smarty.const._AD_SITEMAP_PAGESPEED_LEGEND_RED}> 0-49 (Poor)
+        </p>
+
+    <{if $sitemap_pagespeed_data.report_url}>
+        <p><a href="<{$sitemap_pagespeed_data.report_url}>" target="_blank"><{$smarty.const._AD_SITEMAP_PAGESPEED_VIEW_FULL_REPORT}></a></p> 
+    <{/if}>
+
+    <{else}>
+        <div class="info"><{$smarty.const._AD_SITEMAP_PAGESPEED_NO_DATA}></div>
+    <{/if}>
+</div>
+<{/if}>

@@ -7,7 +7,7 @@
  * @author     Other authors gigamaster, 2020 XCL/PHP7
  * @author     chanoir
  * @copyright  (c) 2005-2025 Authors
- * @license    https://github.com/xoopscube/xcl/blob/master/docs/GPL_V2.txt
+ * @license    GPL v2.0
  */
 
 function b_sitemap_show( $options )

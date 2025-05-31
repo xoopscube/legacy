@@ -13,10 +13,10 @@
 // Manifesto
 $modversion['dirname']          = 'sitemap';
 $modversion['name']             = _MI_SITEMAP_NAME;
-$modversion['version']          = '2.50';
-$modversion['detailed_version'] = '2.50.0';
+$modversion['version']          = '2.51';
+$modversion['detailed_version'] = '2.51.0';
 $modversion['description']      = _MI_SITEMAP_DESC;
-$modversion['author']           = 'chanoir';
+$modversion['author']           = 'chanoir, Gigamaster';
 $modversion['credits']          = 'The XOOPSCube Project';
 $modversion['license']          = 'GPL LICENSE';
 $modversion['image']            = 'images/module_sitemap.svg';
@@ -60,12 +60,19 @@ $modversion['blocks'][2]['options'] = '1|1|1|1';
 $modversion['blocks'][2]['show_all_module'] = true;
 
 // Preference
-$modversion['config'][1]['name'] = 'msgs';
-$modversion['config'][1]['title'] = _MI_MESSAGE;
-$modversion['config'][1]['description'] = '_MI_MESSAGEEDSC';
-$modversion['config'][1]['formtype'] = 'textarea';
-$modversion['config'][1]['valuetype'] = 'text';
-$modversion['config'][1]['default'] = _MI_SITEMAP_MESSAGE;
+$modversion['config'][0]['name'] = 'msgs';
+$modversion['config'][0]['title'] = '_MI_MESSAGE';
+$modversion['config'][0]['description'] = '_MI_MESSAGEEDSC';
+$modversion['config'][0]['formtype'] = 'textarea';
+$modversion['config'][0]['valuetype'] = 'text';
+$modversion['config'][0]['default'] = _MI_SITEMAP_MESSAGE;
+
+$modversion['config'][1]['name'] = 'show_module_sublinks';
+$modversion['config'][1]['title'] = '_MI_SITEMAP_SHOW_MODULE_SUBLINKS';
+$modversion['config'][1]['description'] = '_MI_SITEMAP_SHOW_MODULE_SUBLINKS_DESC';
+$modversion['config'][1]['formtype'] = 'yesno';
+$modversion['config'][1]['valuetype'] = 'int';
+$modversion['config'][1]['default'] = 1; // Default to 'yes' (show sublinks)
 
 $modversion['config'][2]['name'] = 'show_subcategoris';
 $modversion['config'][2]['title'] = '_MI_SHOW_SUBCATEGORIES';
@@ -137,3 +144,40 @@ $modversion['config'][11]['description'] = '_MI_SHOW_ADDRESS_CODE_DESC';
 $modversion['config'][11]['formtype'] = 'textarea';
 $modversion['config'][11]['valuetype'] = 'text';
 $modversion['config'][11]['default'] = '<address>Avenue de la Paix 8-14 · 1202 Genève, Suisse</address><p><small>Tel. <a href="tel:+41229171234">+41 22 917 12 34</a> ----- <a href="https://www.ungeneva.org/en/visit" target="_blank">Visiting UN Geneva</a></small></p>';
+
+// Options for XML Sitemap defaults
+$modversion['config'][12]['name'] = 'default_changefreq';
+$modversion['config'][12]['title'] = '_MI_SITEMAP_DEFAULT_CHANGEFREQ';
+$modversion['config'][12]['description'] = '_MI_SITEMAP_DEFAULT_CHANGEFREQ_DESC';
+$modversion['config'][12]['formtype'] = 'select';
+$modversion['config'][12]['valuetype'] = 'text';
+$modversion['config'][12]['default'] = 'weekly';
+$modversion['config'][12]['options'] = [
+    '_MI_SITEMAP_FREQ_ALWAYS'  => 'always',
+    '_MI_SITEMAP_FREQ_HOURLY'  => 'hourly',
+    '_MI_SITEMAP_FREQ_DAILY'   => 'daily',
+    '_MI_SITEMAP_FREQ_WEEKLY'  => 'weekly',
+    '_MI_SITEMAP_FREQ_MONTHLY' => 'monthly',
+    '_MI_SITEMAP_FREQ_YEARLY'  => 'yearly',
+    '_MI_SITEMAP_FREQ_NEVER'   => 'never'
+];
+
+$modversion['config'][13]['name'] = 'default_priority';
+$modversion['config'][13]['title'] = '_MI_SITEMAP_DEFAULT_PRIORITY';
+$modversion['config'][13]['description'] = '_MI_SITEMAP_DEFAULT_PRIORITY_DESC';
+$modversion['config'][13]['formtype'] = 'select';
+$modversion['config'][13]['valuetype'] = 'float'; // Stored as float, but select options are strings
+$modversion['config'][13]['default'] = '0.5';
+$modversion['config'][13]['options'] = [
+    '1.0' => '1.0',
+    '0.9' => '0.9',
+    '0.8' => '0.8',
+    '0.7' => '0.7',
+    '0.6' => '0.6',
+    '0.5' => '0.5',
+    '0.4' => '0.4',
+    '0.3' => '0.3',
+    '0.2' => '0.2',
+    '0.1' => '0.1',
+    '0.0' => '0.0'
+];

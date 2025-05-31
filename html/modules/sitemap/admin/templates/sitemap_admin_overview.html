@@ -1,0 +1,168 @@
+<nav class="ui-breadcrumbs" aria-label="breadcrumb">
+<!-- todo -->
+</nav>
+
+<nav class="adminavi">
+    <a href="<{$smarty.const.XOOPS_URL}>/modules/sitemap/admin/index.php" class="adminavi-item is-active"><{$smarty.const._MI_SITEMAP_ADMENU_OVERVIEW}></a>
+    <a href="<{$sitemap_robots_editor_url}>" class="adminavi-item"><{$smarty.const._MI_SITEMAP_ADMENU_ROBOTS}></a>
+    <a href="<{$sitemap_pref_url}>" class="adminavi-item"><{$smarty.const._PREFERENCES}></a>
+    <a href="<{$sitemap_help_url}>" class="adminavi-item"><{$smarty.const._HELP}></a>
+</nav>
+
+<h2><{$sitemap_module_name}> - <{$smarty.const._MI_SITEMAP_ADMENU_OVERVIEW}></h2>
+
+<hr />
+
+<table class="outer">
+    <thead>
+        <tr>
+            <th colspan="2"><{$smarty.const._AD_SITEMAP_HEALTH_TITLE}></th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><{$smarty.const._AD_SITEMAP_HEALTH_XML_URL_LABEL}></td> 
+        <td>
+            <{if $sitemap_health.xml_sitemap_url}>
+                <a href="<{$sitemap_health.xml_sitemap_url}>" target="_blank"><{$sitemap_health.xml_sitemap_url}></a>
+            <{else}>
+                <span class="text-danger"><{$smarty.const._AD_SITEMAP_HEALTH_NOT_CONFIGURED}></span> 
+            <{/if}>
+        </td>
+    </tr>
+    <tr>
+        <td><{$smarty.const._AD_SITEMAP_HEALTH_LAST_GENERATED_LABEL}></td> 
+        <td><{$sitemap_health.last_generated_date}></td>
+    </tr>
+    <tr>
+        <td><{$smarty.const._AD_SITEMAP_HEALTH_URL_COUNT_LABEL}></td> 
+        <td>
+            <{if $sitemap_health.xml_load_status}>
+                <{$sitemap_health.url_count}>
+            <{else}>
+                <span class="text-danger">N/A</span>
+            <{/if}>
+        </td>
+    </tr>
+    <tr>
+        <td><{$smarty.const._AD_SITEMAP_HEALTH_XML_VALIDATION_LABEL}></td> 
+        <td>
+            <{if $sitemap_health.xml_load_status}>
+                <span class="text-success"><{$sitemap_health.xml_load_message}></span>
+            <{else}>
+                <span class="text-danger"><{$sitemap_health.xml_load_message}></span>
+            <{/if}>
+        </td>
+    </tr>
+    <tr>
+        <th colspan="2"><strong><{$smarty.const._AD_SITEMAP_HEALTH_ROBOTS_STATUS_LABEL}></strong></th> 
+    </tr>
+    <tr>
+        <td class="head width30"><{$smarty.const._AD_SITEMAP_HEALTH_ROBOTS_EXISTS_LABEL}></td> 
+        <td>
+            <{if $sitemap_health.robots_exists}>
+                <span class="text-success"><{$smarty.const._YES}></span>
+            <{else}>
+                <span class="text-danger"><{$smarty.const._NO}></span> - <a href="<{$sitemap_robots_editor_url}>"><{$smarty.const._AD_SITEMAP_HEALTH_ROBOTS_CREATE_LINK}></a> 
+            <{/if}>
+        </td>
+    </tr>
+    <{if $sitemap_health.robots_exists}>
+    <tr>
+        <td><{$smarty.const._AD_SITEMAP_HEALTH_ROBOTS_SITEMAP_DIRECTIVE_LABEL}></td> 
+        <td>
+            <{if $sitemap_health.robots_sitemap_directive_found}>
+                <span class="text-success"><{$smarty.const._YES}></span> (<code class="language-text">Sitemap: <{$sitemap_health.robots_sitemap_directive_url|escape:'html'}></code>)
+                <{if $sitemap_health.robots_sitemap_directive_correct}>
+                        <span class="text-success">(<{$smarty.const._AD_SITEMAP_HEALTH_ROBOTS_URL_MATCHES}>)</span> 
+                <{else}>
+                        <span class="text-danger">(<{$smarty.const._AD_SITEMAP_HEALTH_ROBOTS_URL_MISMATCH}>)</span> 
+                        <br><{$smarty.const._AD_SITEMAP_HEALTH_ROBOTS_EXPECTED_URL}> <code class="language-text"><{$sitemap_health.xml_sitemap_url}></code>
+                <{/if}>
+            <{else}>
+                <span class="text-warning"><{$smarty.const._NO}></span> - <{$smarty.const._AD_SITEMAP_HEALTH_ROBOTS_ADD_DIRECTIVE_SUGGESTION}> 
+            <{/if}>
+        </td>
+    </tr>
+    <{/if}>
+</tbody>
+<tfoot>
+    <tr>
+        <td colspan="2"><a href="<{$sitemap_robots_editor_url}>" class="button"><{$smarty.const._AD_SITEMAP_HEALTH_ROBOTS_EDIT_LINK}></a></td> 
+    </tr>
+</tfoot>
+</table>
+
+<hr />
+
+<h3><{$smarty.const._AD_SITEMAP_PREVIEW_MAP}></h3>
+<p><{$smarty.const._AD_SITEMAP_PREVIEW_TIPS}></p>
+<div class="ui-card-full">
+
+    <div class="resize">
+        <div class="contain-sitemap">
+            <div>
+                <h2><{$sitemap_show_sitename}></h2>
+                <h4><{$sitemap_show_slogan}></h4>
+            </div>
+            <div class="map">
+                <{$sitemap_show_map}>
+                <br>
+                <{$sitemap_show_address}>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+<h3><{$smarty.const._AD_SITEMAP_PREVIEW_GEN}></h3>
+
+<p><{$smarty.const._AD_SITEMAP_PREVIEW_XML}></p>
+
+<div class="ui-card-full">
+   
+    <div data-layout="row sm-column">
+        <div data-self="column size-1of2 sm-full">
+            <h3><{$smarty.const._AD_SITEMAP_PREVIEW_MAC}></h3>
+            <{$sitemap_machine_xml_preview}>
+        </div>
+        <div data-self="column size-1of2 sm-full">
+            <h3><{$smarty.const._AD_SITEMAP_PREVIEW_HUM}></h3>
+            <{$sitemap_human_xml_preview}>
+        </div>
+    </div>
+    
+</div>
+
+<style>
+.resize {
+    resize: both;
+    background: var(--layer-3);
+    border: 1px solid var(--layer-3);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-2);
+    border: 7px solid rgb(54 61 73 / 70%);
+    display: block;
+    overflow: auto;
+    margin: 1em auto;
+    width: 70vw;
+    min-width: 520px;
+    max-width: 70vw;
+    min-height: 420px;
+    max-height: 640px;
+}
+.contain-sitemap {
+    padding: 1rem 2rem;
+    grid-column: 1 / 7;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    align-items: center;
+}
+.contain-sitemap h2 {font-size:2rem}
+.contain-sitemap .map iframe {border-radius:8px}
+.text-danger { color: #dc3545; }
+.text-success { color: #28a745; }
+.text-warning { color: #ffc107; }
+</style>

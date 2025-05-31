@@ -1,7 +1,10 @@
 <?php
 /**
- * Sitemap
- * Automated Sitemap and XML file for search engines
+ * Sitemap Root Wrapper
+ *
+ * This script's sole purpose is to include and execute the sitemap module's
+ * xml_sitemap.php script. It ensures that the request is effectively
+ * handled by the module, allowing the sitemap to be accessible from the site root.
  * @package    Sitemap
  * @version    2.5.0
  * @author     Other authors gigamaster, 2020 XCL/PHP7
@@ -10,21 +13,18 @@
  * @license    GPL v2.0
  */
 
-if( ! defined( 'SITEMAP_ROOT_CONTROLLER_LOADED' ) ) {
-	if( ! file_exists( __DIR__ .'/modules/sitemap/xml_sitemap.php' ) ) {
-		die( "Don't call this file directly" ) ;
-	}
-	if( ! empty( $_SERVER['REQUEST_URI'] ) ) {
-		$_SERVER['REQUEST_URI'] = str_replace( 'xml_sitemap.php' , 'modules/sitemap/xml_sitemap.php' , $_SERVER['REQUEST_URI'] ) ;
-	} else {
-		$_SERVER['REQUEST_URI'] = '/modules/sitemap/xml_sitemap.php' ;
-	}
-	$_SERVER['PHP_SELF'] = $_SERVER['REQUEST_URI'] ;
-	define( 'SITEMAP_ROOT_CONTROLLER_LOADED' , 1 ) ;
-	$real_xml_google_path = __DIR__ .'/modules/sitemap/xml_sitemap.php' ;
-	chdir( './modules/sitemap/' ) ;
-	require $real_xml_google_path ;
-	exit ;
-    } else {
-	require '../../mainfile.php' ;
+
+$moduleSitemapScript = __DIR__ . '/modules/sitemap/xml_sitemap.php';
+
+if (file_exists($moduleSitemapScript)) {
+    require $moduleSitemapScript;
+} else {
+    header('Content-Type: text/plain; charset=utf-8');
+    echo "Sitemap Generation Error: The sitemap module's core XML script could not be found.\n";
+    echo "Expected at: " . htmlspecialchars($moduleSitemapScript) . "\n";
+    echo "Please check your sitemap module installation.\n";
+    // Optional 404 or 500 HTTP status code
+    // http_response_code(404);
 }
+
+exit;
