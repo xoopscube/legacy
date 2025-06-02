@@ -274,6 +274,9 @@ if (strpos($initial_pico_style_path, 'dark') !== false ||
         <div class="status-message" role="alert"><?php echo $status_message; ?></div>
         <?php endif; ?>
     </div>
+    <div align="right">
+        <a href="<?php echo XOOPS_URL . '/index.php' ?>"><svg xmlns="http://www.w3.org/2000/svg" height="1.25rem" width="1.25rem" viewBox="0 0 24 24"><path d="M19 21H5a1 1 0 0 1-1-1v-9H1l10.327-9.388a1 1 0 0 1 1.346 0L23 11h-3v9a1 1 0 0 1-1 1zm-6-2h5V9.157l-6-5.454l-6 5.454V19h5v-6h2v6z" fill="currentColor"/></svg></a>
+        </div>
 </header>
 
 <main class="container">
@@ -361,6 +364,8 @@ if (strpos($initial_pico_style_path, 'dark') !== false ||
     </div>
     </aside>
     <section class="preview-area">
+
+        <!-- Article -->
         <article>
             <header>
                 <hgroup>
@@ -375,168 +380,164 @@ if (strpos($initial_pico_style_path, 'dark') !== false ||
             </footer>
         </article>
 
-            <!-- Tables -->
-    <article id="tables">
-      <h2>Tables</h2>
-      <div class="overflow-auto">
-        <table class="striped">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-              <th scope="col">Heading</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </article>
+        <!-- Tables -->
+        <article id="tables">
+            <h2>Tables</h2>
+            <table>
+                <thead>
+                    <tr>
+                    <th scope="col">Planet</th>
+                    <th scope="col">Diameter (km)</th>
+                    <th scope="col">Distance to Sun (AU)</th>
+                    <th scope="col">Orbit (days)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope="row">Mercury</th>
+                    <td>4,880</td>
+                    <td>0.39</td>
+                    <td>88</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">Venus</th>
+                    <td>12,104</td>
+                    <td>0.72</td>
+                    <td>225</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">Earth</th>
+                    <td>12,742</td>
+                    <td>1.00</td>
+                    <td>365</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">Mars</th>
+                    <td>6,779</td>
+                    <td>1.52</td>
+                    <td>687</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                    <th scope="row">Average</th>
+                    <td>9,126</td>
+                    <td>0.91</td>
+                    <td>341</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </article>
 
-    <!-- Typography-->
-    <article id="typography">
-      <h2>Typography</h2>
-      <p>
-        Aliquam lobortis vitae nibh nec rhoncus. Morbi mattis neque eget efficitur feugiat.
-        Vivamus porta nunc a erat mattis, mattis feugiat turpis pretium. Quisque sed tristique
-        felis.
-      </p>
+        <!-- Typography-->
+        <article id="typography">
+            <h2>Typography</h2>
+            <p>
+            Aliquam lobortis vitae nibh nec rhoncus. Morbi mattis neque eget efficitur feugiat.
+            Vivamus porta nunc a erat mattis, mattis feugiat turpis pretium. Quisque sed tristique
+            felis.
+            </p>
 
-      <!-- Blockquote-->
-      <blockquote>
-        "Maecenas vehicula metus tellus, vitae congue turpis hendrerit non. Nam at dui sit amet
-        ipsum cursus ornare."
-        <footer>
-          <cite>- Phasellus eget lacinia</cite>
-        </footer>
-      </blockquote>
+            <!-- Blockquote-->
+            <blockquote>
+            "Maecenas vehicula metus tellus, vitae congue turpis hendrerit non. Nam at dui sit amet
+            ipsum cursus ornare."
+            <footer>
+                <cite>- Phasellus eget lacinia</cite>
+            </footer>
+            </blockquote>
 
-      <!-- Lists-->
-      <h3>Lists</h3>
-      <ul>
-        <li>Aliquam lobortis lacus eu libero ornare facilisis.</li>
-        <li>Nam et magna at libero scelerisque egestas.</li>
-        <li>Suspendisse id nisl ut leo finibus vehicula quis eu ex.</li>
-        <li>Proin ultricies turpis et volutpat vehicula.</li>
-      </ul>
+            <!-- Lists-->
+            <h3>Lists</h3>
+            <ul>
+            <li>Aliquam lobortis lacus eu libero ornare facilisis.</li>
+            <li>Nam et magna at libero scelerisque egestas.</li>
+            <li>Suspendisse id nisl ut leo finibus vehicula quis eu ex.</li>
+            <li>Proin ultricies turpis et volutpat vehicula.</li>
+            </ul>
 
-      <!-- Inline text elements-->
-      <h3>Inline text elements</h3>
-      <div class="grid">
-        <p><a href="#" onclick="event.preventDefault()">Primary link</a></p>
-        <p>
-          <a href="#" class="secondary" onclick="event.preventDefault()">Secondary link</a>
-        </p>
-        <p>
-          <a href="#" class="contrast" onclick="event.preventDefault()">Contrast link</a>
-        </p>
-      </div>
-      <div class="grid">
-        <p><strong>Bold</strong></p>
-        <p><em>Italic</em></p>
-        <p><u>Underline</u></p>
-      </div>
-      <div class="grid">
-        <p><del>Deleted</del></p>
-        <p><ins>Inserted</ins></p>
-        <p><s>Strikethrough</s></p>
-      </div>
-      <div class="grid">
-        <p><small>Small </small></p>
-        <p>Text <sub>Sub</sub></p>
-        <p>Text <sup>Sup</sup></p>
-      </div>
-      <div class="grid">
-        <p>
-          <abbr title="Abbreviation" data-tooltip="Abbreviation">Abbr.</abbr>
-        </p>
-        <p><kbd>Kbd</kbd></p>
-        <p><mark>Highlighted</mark></p>
-      </div>
+            <!-- Inline text elements-->
+            <h3>Inline text elements</h3>
+            <div class="grid">
+            <p><a href="#" onclick="event.preventDefault()">Primary link</a></p>
+            <p>
+                <a href="#" class="secondary" onclick="event.preventDefault()">Secondary link</a>
+            </p>
+            <p>
+                <a href="#" class="contrast" onclick="event.preventDefault()">Contrast link</a>
+            </p>
+            </div>
+            <div class="grid">
+            <p><strong>Bold</strong></p>
+            <p><em>Italic</em></p>
+            <p><u>Underline</u></p>
+            </div>
+            <div class="grid">
+            <p><del>Deleted</del></p>
+            <p><ins>Inserted</ins></p>
+            <p><s>Strikethrough</s></p>
+            </div>
+            <div class="grid">
+            <p><small>Small </small></p>
+            <p>Text <sub>Sub</sub></p>
+            <p>Text <sup>Sup</sup></p>
+            </div>
+            <div class="grid">
+            <p>
+                <abbr title="Abbreviation" data-tooltip="Abbreviation">Abbr.</abbr>
+            </p>
+            <p><kbd>Kbd</kbd></p>
+            <p><mark>Highlighted</mark></p>
+            </div>
 
-      <!-- Headings-->
-      <h3>Heading 3</h3>
-      <p>
-        Integer bibendum malesuada libero vel eleifend. Fusce iaculis turpis ipsum, at efficitur
-        sem scelerisque vel. Aliquam auctor diam ut purus cursus fringilla. Class aptent taciti
-        sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-      </p>
-      <h4>Heading 4</h4>
-      <p>
-        Cras fermentum velit vitae auctor aliquet. Nunc non congue urna, at blandit nibh. Donec ac
-        fermentum felis. Vivamus tincidunt arcu ut lacus hendrerit, eget mattis dui finibus.
-      </p>
-      <h5>Heading 5</h5>
-      <p>
-        Donec nec egestas nulla. Sed varius placerat felis eu suscipit. Mauris maximus ante in
-        consequat luctus. Morbi euismod sagittis efficitur. Aenean non eros orci. Vivamus ut diam
-        sem.
-      </p>
-      <h6>Heading 6</h6>
-      <p>
-        Ut sed quam non mauris placerat consequat vitae id risus. Vestibulum tincidunt nulla ut
-        tortor posuere, vitae malesuada tortor molestie. Sed nec interdum dolor. Vestibulum id
-        auctor nisi, a efficitur sem. Aliquam sollicitudin efficitur turpis, sollicitudin
-        hendrerit ligula semper id. Nunc risus felis, egestas eu tristique eget, convallis in
-        velit.
-      </p>
+            <!-- Headings-->
+            <h3>Heading 3</h3>
+            <p>
+            Integer bibendum malesuada libero vel eleifend. Fusce iaculis turpis ipsum, at efficitur
+            sem scelerisque vel. Aliquam auctor diam ut purus cursus fringilla. Class aptent taciti
+            sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+            </p>
+            <h4>Heading 4</h4>
+            <p>
+            Cras fermentum velit vitae auctor aliquet. Nunc non congue urna, at blandit nibh. Donec ac
+            fermentum felis. Vivamus tincidunt arcu ut lacus hendrerit, eget mattis dui finibus.
+            </p>
+            <h5>Heading 5</h5>
+            <p>
+            Donec nec egestas nulla. Sed varius placerat felis eu suscipit. Mauris maximus ante in
+            consequat luctus. Morbi euismod sagittis efficitur. Aenean non eros orci. Vivamus ut diam
+            sem.
+            </p>
+            <h6>Heading 6</h6>
+            <p>
+            Ut sed quam non mauris placerat consequat vitae id risus. Vestibulum tincidunt nulla ut
+            tortor posuere, vitae malesuada tortor molestie. Sed nec interdum dolor. Vestibulum id
+            auctor nisi, a efficitur sem. Aliquam sollicitudin efficitur turpis, sollicitudin
+            hendrerit ligula semper id. Nunc risus felis, egestas eu tristique eget, convallis in
+            velit.
+            </p>
 
-      <!-- Medias-->
-      <figure>
-          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-              <path fill="#817c70" d="M0 0h1024v1024H0z" />
-              <g fill-opacity=".502">
-                  <path fill="#03020f" d="M178 994l580 92L402-62" />
-                  <path fill="#f2e2ba" d="M638 894L614 6l472 340" />
-                  <path fill="#11181e" d="M-62 854h300L138-62" />
-                  <path fill="#0b4041" d="M410-62L154 530-62 38" />
-                  <path fill="#62b4cf" d="M1086-2L498-30l484 408" />
-                  <path fill="#010412" d="M430-2l196 52-76 306" />
-                  <path fill="#eb7d3f" d="M598 594l488-32-308 500" />
-              </g>
-              <text fill="#d7d7d2" font-family="sans-serif" font-size="100%" dy="2" font-weight="bold" x="45%" y="70%" text-anchor="middle">Legacy to Remind Us of Where We Come From</text>
-          </svg>
-        <figcaption>
-          Image from
-          <a href="#!" target="_blank">SVG Image</a>
-        </figcaption>
-      </figure>
-    </article>
+            <!-- Medias-->
+            <figure>
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                    <path fill="#817c70" d="M0 0h1024v1024H0z" />
+                    <g fill-opacity=".502">
+                        <path fill="#03020f" d="M178 994l580 92L402-62" />
+                        <path fill="#f2e2ba" d="M638 894L614 6l472 340" />
+                        <path fill="#11181e" d="M-62 854h300L138-62" />
+                        <path fill="#0b4041" d="M410-62L154 530-62 38" />
+                        <path fill="#62b4cf" d="M1086-2L498-30l484 408" />
+                        <path fill="#010412" d="M430-2l196 52-76 306" />
+                        <path fill="#eb7d3f" d="M598 594l488-32-308 500" />
+                    </g>
+                    <text fill="#d7d7d2" font-family="sans-serif" font-size="100%" dy="2" font-weight="bold" x="45%" y="70%" text-anchor="middle">Legacy to Remind Us of Where We Come From</text>
+                </svg>
+            <figcaption>
+                Image from
+                <a href="#!" target="_blank">SVG Image</a>
+            </figcaption>
+            </figure>
+        </article>
 
     </section>
 </main>

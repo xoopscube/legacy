@@ -211,16 +211,18 @@
         <{/foreach}>
     <{/if}>
         <{* ----- ADMIN PREVIEW ----- *}>
+        <h5>XCL Theming Options</h5>
+        <p><a href="<{$theme_url}>theme-options.php">Customize</a></p>
         <h5>Preview Layout</h5>
         <div class="btn-group device-preview" role="group" aria-label="Preview Device Screen">
-            <button type="button" data-tooltip="Mobile 736x414" href="<{$xoops_url}>/" target="_blank" onclick="window.open('<{$xoops_url}>/','pagename','resizable,height=700,width=400'); return false;" title="mobile">
+            <button type="button" data-tooltip="Mobile 736x414" href="<{$site_url}>/" target="_blank" onclick="window.open('<{$site_url}>/','pagename','resizable,height=700,width=400'); return false;" title="mobile">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 576 1024"><path d="M480 0H96Q70 0 48 13T13 48 0 96v832q0 40 28 68t68 28h384q40 0 68-28t28-68V96q0-26-13-48t-35-35-48-13zm32 928q0 13-9.5 22.5T480 960H96q-13 0-22.5-9.5T64 928V96q0-13 9.5-22.5T96 64h384q13 0 22.5 9.5T512 96v832zM288.5 800q-26.5 0-45.5 19t-19 45q0 17 8.5 32t23.5 23.5 32 8.5 32-8.5 23.5-23.5 8.5-32q0-26-18.5-45t-45-19zM352 96H224q-13 0-22.5 9.5T192 128t9.5 22.5T224 160h128q13 0 22.5-9.5T384 128t-9.5-22.5T352 96z" fill="currentColor"></path></svg>
             </button>
-            <button type="button" class="button" data-tooltip="Tablet 1024x768" href="<{$xoops_url}>/" onclick="window.open('<{$xoops_url}>/','pagename','resizable,height=1024,width=768'); return false;" title="tablet">
+            <button type="button" class="button" data-tooltip="Tablet 1024x768" href="<{$site_url}>/" onclick="window.open('<{$site_url}>/','pagename','resizable,height=1024,width=768'); return false;" title="tablet">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 832 1024"><path d="M736 0H96Q70 0 48 13T13 48 0 96v832q0 40 28 68t68 28h640q40 0 68-28t28-68V96q0-26-13-48t-35-35-48-13zm32 928q0 13-9.5 22.5T736 960H96q-13 0-22.5-9.5T64 928V96q0-13 9.5-22.5T96 64h640q13 0 22.5 9.5T768 96v832zM416 800q-26 0-45 19t-19 45 19 45 45 19 45-19 19-45q0-17-8.5-32T448 808.5t-32-8.5zm64-704H352q-13 0-22.5 9.5T320 128t9.5 22.5T352 160h128q13 0 22.5-9.5T512 128t-9.5-22.5T480 96z" fill="currentColor"></path></svg>
             </button>
 
-            <button type="button" class="button" data-tooltip="Desktop" href="<{$xoops_url}>/" target="_blank" onclick="window.open('<{$xoops_url}>/'); return false;" title="desktop">
+            <button type="button" class="button" data-tooltip="Desktop" href="<{$site_url}>/" target="_blank" onclick="window.open('<{$site_url}>/'); return false;" title="desktop">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 -64 1024 1024"><path d="M960 32H64q-26 0-45 18.5T0 96v544q0 26 19 45t45 19h416v96H320q-13 0-22.5 9.5T288 832t9.5 22.5T320 864h384q13 0 22.5-9.5T736 832t-9.5-22.5T704 800H544v-96h416q26 0 45-19t19-45V96q0-27-19-45.5T960 32zm0 608H64V96h896v544z" fill="currentColor"></path></svg>
             </button>
         </div>
