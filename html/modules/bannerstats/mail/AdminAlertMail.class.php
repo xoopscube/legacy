@@ -65,7 +65,7 @@ class Bannerstats_AdminAlertMail extends XCube_AdminNotificationMailBuilder
                 $this->mMailer->setToEmails($siteAdminEmail);
             } else {
 
-                error_log("Bannerstats_AdminAlertMail: No admin recipient email could be determined (module config empty, site admin email empty).");
+                //error_log("Bannerstats_AdminAlertMail: No admin recipient email could be determined (module config empty, site admin email empty).");
             }
             // Alternatively, to call the parent's logic
             // parent::setToUsers($object, $moduleConfig);

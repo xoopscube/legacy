@@ -34,12 +34,7 @@ function xoops_header($closehead = true)
 {
     $root =& XCube_Root::getSingleton();
     $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
-// PHP 8 only - null safe operator    
-/*  $renderSystem?->showXoopsHeader($closehead); */
-// PHP 74
-    if ($renderSystem !== null) {
-        $renderSystem->showXoopsHeader($closehead);
-    }
+    $renderSystem?->showXoopsHeader($closehead);
 }
 
 /**
@@ -49,12 +44,7 @@ function xoops_footer()
 {
     $root =& XCube_Root::getSingleton();
     $renderSystem =& $root->getRenderSystem('Legacy_RenderSystem');
-// PHP 8 only - null safe operator  
-/*    $renderSystem?->showXoopsFooter();  */
-// PHP 74
-    if ($renderSystem !== null) {
-        $renderSystem->showXoopsFooter();
-    }
+    $renderSystem?->showXoopsFooter();
 }
 
 function xoops_error($message, $title='', $style='errorMsg')
@@ -246,77 +236,42 @@ function userTimeToServerTime($timestamp, $userTZ=null)
     if (!isset($userTZ)) {
         $userTZ = $xoopsConfig['default_TZ'];
     }
-    //@gigamaster changed short this : $timestamp = $timestamp - (($userTZ - $xoopsConfig['server_TZ']) * 3600);
     $timestamp -= (($userTZ - $xoopsConfig['server_TZ']) * 3600);
     return $timestamp;
 }
 
+/**
+ * Generates a simple, somewhat pronounceable password
+ *
+ * The password consists of 4 parts. Each part has a 10% chance
+ * of being a number (1-50) and a 90% chance of being a syllable
+ * chosen from a predefined list.
+ *
+ * @return string generated password
+ */
 function xoops_makepass()
 {
-    $makepass = '';
-    $syllables = ['er', 'in', 'tia', 'wol', 'fe', 'pre', 'vet', 'jo', 'nes', 'al', 'len', 'son', 'cha', 'ir', 'ler', 'bo', 'ok', 'tio', 'nar', 'sim', 'ple', 'bla', 'ten', 'toe', 'cho', 'co', 'lat', 'spe', 'ak', 'er', 'po', 'co', 'lor', 'pen', 'cil', 'li', 'ght', 'wh', 'at', 'the', 'he', 'ck', 'is', 'mam', 'bo', 'no', 'fi', 've', 'any', 'way', 'pol', 'iti', 'cs', 'ra', 'dio', 'sou', 'rce', 'sea', 'rch', 'pa', 'per', 'com', 'bo', 'sp', 'eak', 'st', 'fi', 'rst', 'gr', 'oup', 'boy', 'ea', 'gle', 'tr', 'ail', 'bi', 'ble', 'brb', 'pri', 'dee', 'kay', 'en', 'be', 'se'];
-    mt_srand((double)microtime() * 1_000_000);
-    for ($count = 1; $count <= 4; $count++) {
-        if (random_int(0, mt_getrandmax()) % 10 === 1) {
-            $makepass .= sprintf('%0.0f', (random_int(0, mt_getrandmax()) % 50) + 1);
+    $password = '';
+    $syllables = [
+        'er', 'in', 'tia', 'wol', 'fe', 'pre', 'vet', 'jo', 'nes', 'al', 'len', 'son',
+        'cha', 'ir', 'ler', 'bo', 'ok', 'tio', 'nar', 'sim', 'ple', 'bla', 'ten',
+        'toe', 'cho', 'co', 'lat', 'spe', 'ak', 'er', 'po', 'co', 'lor', 'pen',
+        'cil', 'li', 'ght', 'wh', 'at', 'the', 'he', 'ck', 'is', 'mam', 'bo', 'no',
+        'fi', 've', 'any', 'way', 'pol', 'iti', 'cs', 'ra', 'dio', 'sou', 'rce',
+        'sea', 'rch', 'pa', 'per', 'com', 'bo', 'sp', 'eak', 'st', 'fi', 'rst',
+        'gr', 'oup', 'boy', 'ea', 'gle', 'tr', 'ail', 'bi', 'ble', 'brb', 'pri',
+        'dee', 'kay', 'en', 'be', 'se'
+    ];
+    $numSyllables = count($syllables);
+
+    for ($count = 0; $count < 4; $count++) {
+        if (random_int(1, 10) === 1) {
+            $password .= (string)random_int(1, 50);
         } else {
-            $makepass .= sprintf('%s', $syllables[random_int(0, mt_getrandmax()) % 62]);
+            $password .= $syllables[random_int(0, $numSyllables - 1)];
         }
     }
-    return $makepass;
-}
-
-/*
- * Functions to display dhtml loading image box
- */
-function OpenWaitBox()
-{
-    $GLOBALS['xoopsLogger']->addDeprecated('Function ' . __FUNCTION__ . '() is deprecated');
-    echo '<div id="waitDiv" style="position:absolute;left:40%;top:50%;visibility:hidden;text-align: center;">
-    <table class="table outer">
-      <tr>
-        <td align="center"><b>' ._FETCHING.'</b><br><img src="'.XOOPS_URL.'/images/icons/info.svg" width="1em" height="1em" alt=""><br>' ._PLEASEWAIT.'</td>
-      </tr>
-    </table>
-    </div>
-    <script type="text/javascript">
-    <!--//
-    var DHTML = (document.getElementById || document.all || document.layers);
-    function ap_getObj(name) {
-        if (document.getElementById) {
-            return document.getElementById(name).style;
-        } else if (document.all) {
-            return document.all[name].style;
-        } else if (document.layers) {
-            return document.layers[name];
-        }
-    }
-    function ap_showWaitMessage(div,flag)  {
-        if (!DHTML) {
-            return;
-        }
-        var x = ap_getObj(div);
-        x.visibility = (flag) ? "visible" : "hidden";
-        if (!document.getElementById) {
-            if (document.layers) {
-                x.left=280/2;
-            }
-        }
-        return true;
-    }
-    ap_showWaitMessage("waitDiv", 1);
-    //-->
-    </script>';
-}
-
-function CloseWaitBox()
-{
-    echo '<script type="text/javascript">
-    <!--//
-    ap_showWaitMessage("waitDiv", 0);
-    //-->
-    </script>
-    ';
+    return $password;
 }
 
 function checkEmail($email, $antispam = false)
@@ -349,15 +304,6 @@ function formatURL($url)
 }
 
 /*
- * Function to display banners in all pages
- */
-function showbanner()
-{
-    echo xoops_getbanner();
-}
-
-
-/*
  * NEW Function to get the banner html tags for templates
  * This function will now get banner HTML via a delegate.
  * 
@@ -365,18 +311,19 @@ function showbanner()
  */
 function xoops_getbanner()
 {
-    $bannerHtml = ''; // Default to empty string
+    $bannerHtml = '';
 
-    // Define a delegate point for getting banner HTML.
-    // The delegate should expect a reference to $bannerHtml and can modify it.
-    XCube_DelegateUtils::call('Legacy.Function.GetBannerHtml', new XCube_Ref($bannerHtml));
+    try {
+        // Delegate for getting banner HTML, ref to $bannerHtml
+        XCube_DelegateUtils::call('Legacy.Function.GetBannerHtml', new XCube_Ref($bannerHtml));
+    } catch (Exception $e) {
+        // Log the error
+        error_log('Banner delegate error: ' . $e->getMessage());
+        // Return empty string or comment in case of error
+        return "<!-- Banner display error occurred. Please check if 'bannerstats' module is properly installed. -->";
+    }
 
     if (empty($bannerHtml)) {
-        // If no delegate provided HTML, it means either:
-        // 1. The responsible module (e.g., bannerstats) is not active.
-        // 2. The responsible module is active but decided no banner should be shown for this request.
-        // 3. The responsible module has not implemented this delegate.
-        // A simple HTML comment is a safe fallback.
         return "<!-- Banner display is now handled by a modern module. If 'bannerstats' is active, it controls this output. -->";
     }
 
@@ -397,35 +344,31 @@ function redirect_header($url, $time = 1, $message = '', $addredirect = true)
     if (!defined('XOOPS_CPFUNC_LOADED')) {
         require_once XOOPS_ROOT_PATH.'/class/template.php';
         $xoopsTpl = new XoopsTpl();
-        //TODO PHP8 'strpos' call can be converted to 'str_contains'
-        if ($addredirect && strpos($url, 'user.php') !== false) {
-            if (strpos($url, '?') === false) {
-                $url .= '?xoops_redirect='.urlencode($xoopsRequestUri);
+        if ($addredirect && str_contains($url, 'user.php')) {
+            if (!str_contains($url, '?')) {
+                $url .= '?xoops_redirect=' . urlencode($xoopsRequestUri ?? '');
             } else {
-                $url .= '&amp;xoops_redirect='.urlencode($xoopsRequestUri);
+                $url .= '&amp;xoops_redirect=' . urlencode($xoopsRequestUri ?? '');
             }
         }
-        if (defined('SID') && (! isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && '' !== $xoopsConfig['session_name'] && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
-// TODO Goodbye strpos and strstr: str_contains in PHP8
-if (strpos($url, (string) XOOPS_URL) === 0) {
-                //@gigamaster changed this to save memory
-                if (strpos($url, '?') === false) {
-                    $connector = '?';
-                } else {
-                    $connector = '&amp;';
-                }
-                //@gigamaster changed this to save memory
-                if (strpos($url, '#') !== false) {
-                    $urlArray = explode('#', $url);
-                    $url = $urlArray[0] . $connector . SID;
-                    if (! empty($urlArray[1])) {
-                        $url .= '#' . $urlArray[1];
+
+        if (defined('SID') && (!isset($_COOKIE[session_name()]) || ($xoopsConfig['use_mysession'] && '' !== $xoopsConfig['session_name'] && !isset($_COOKIE[$xoopsConfig['session_name']])))) {
+            // Check if the URL isinternal before appending SID
+            if (str_starts_with($url, (string) XOOPS_URL)) {
+                $connector = str_contains($url, '?') ? '&amp;' : '?';
+                
+                if (str_contains($url, '#')) {
+                    $urlParts = explode('#', $url, 2); // Limit to 2 parts to handle multiple '#'
+                    $url = $urlParts[0] . $connector . SID;
+                    if (isset($urlParts[1])) { // Check if fragment exists
+                        $url .= '#' . $urlParts[1];
                     }
                 } else {
                     $url .= $connector . SID;
                 }
             }
         }
+
 
         // RENDER configs
         $moduleHandler = xoops_gethandler('module');
@@ -439,8 +382,9 @@ if (strpos($url, (string) XOOPS_URL) === 0) {
         $xoopsTpl->assign(
             [
                 'xoops_sitename'   =>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
-                'sitename'         =>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
+                'site_name'        =>htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES),
                 'xoops_theme'      =>htmlspecialchars($xoopsConfig['theme_set'], ENT_QUOTES),
+                'theme_name'       =>htmlspecialchars($xoopsConfig['theme_set'], ENT_QUOTES),
                 'xoops_imageurl'   =>XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/',
                 'theme_url'        =>XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'],
                 'theme_css'        =>XOOPS_THEME_URL . '/' . $xoopsConfig['theme_set'] . '/style.css',
@@ -566,10 +510,10 @@ function &xoops_gethandler($name, $optional = false)
         return $handlers[$name];
     }
 
-        //
-        // The following delegate was tested with version Alpha4-c.
-        //
-        $handler = null;
+    //
+    // The following delegate was tested with version Alpha4-c.
+    //
+    $handler = null;
     XCube_DelegateUtils::call('Legacy.Event.GetHandler', new XCube_Ref($handler), $name, $optional);
     if ($handler) {
 	    $var = $handlers[ $name ] =& $handler;

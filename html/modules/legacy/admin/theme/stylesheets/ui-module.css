@@ -168,6 +168,14 @@ div.help section[id|="help"] {
  .guide-layout div.block {background: var(--card-full-bg );padding:.5em;}
  .guide-layout div.block:not(:last-child) {margin-bottom:1em}
 
+.sqlDelete {
+    & ul {
+        list-style: none;
+        margin:0;
+        padding:0;
+    }
+}
+
 h4.help-rel + ul {
     list-style: none;
     margin:0;

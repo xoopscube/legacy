@@ -180,7 +180,7 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
 
         $result = $this->db->query($sql);
         if (!$result) {
-            error_log("Bannerstats_BannerHandler::getDisplayBanner - SQL Error: " . $this->db->error() . " | SQL: " . $sql);
+            //error_log("Bannerstats_BannerHandler::getDisplayBanner - SQL Error: " . $this->db->error() . " | SQL: " . $sql);
             return null;
         }
 
@@ -206,14 +206,14 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
         $xoopsBannerImpressionTracker = [];
     }
     if (isset($xoopsBannerImpressionTracker[$bid])) {
-        error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: Impression already counted in this request (global), skipping duplicate count.");
+        //error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: Impression already counted in this request (global), skipping duplicate count.");
         return true;
     }
     $xoopsBannerImpressionTracker[$bid] = true;
 
         // Check if impression already counted
         if (isset(self::$countedImpressions[$bid])) {
-            error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: Impression already counted in this request.");
+            //error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: Impression already counted in this request.");
             return true;
         }
 
@@ -230,16 +230,16 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
             if ($banner->get('end_date') == 0 || $banner->get('end_date') > time()) {
                 $banner->set('end_date', time());
             }
-            error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: Attempting to set banner to inactive (status 0) before calling finishBanner.");
+            //error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: Attempting to set banner to inactive (status 0) before calling finishBanner.");
             if (!$this->insert($banner, true)) { // Save status 0 to prefix_banner
-                error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: CRITICAL - FAILED to set banner to inactive (status 0) before calling finishBanner. DB Error: " . $this->db->error() . ". Aborting finish process from countImpression.");
+                //error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: CRITICAL - FAILED to set banner to inactive (status 0) before calling finishBanner. DB Error: " . $this->db->error() . ". Aborting finish process from countImpression.");
                 return false; // Critical failure, banner might still be active in DB.
             } else {
-                error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: Successfully set banner to inactive (status 0) in database.");
+                //error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: Successfully set banner to inactive (status 0) in database.");
             }
 
             // Call finishBanner method
-            error_log("Bannerstats_BannerHandler::countImpression - Calling finishBanner for BID {$bid}. Banner object status is now " . $banner->get('status'));
+            //error_log("Bannerstats_BannerHandler::countImpression - Calling finishBanner for BID {$bid}. Banner object status is now " . $banner->get('status'));
             
             $impressionsReachedReason = 'Impressions Reached';
             if (!defined('BANNER_FINISH_REASON_IMPRESSIONS')) {
@@ -267,7 +267,7 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
             $banner->set('impmade', $newImpmade);
             $banner->set('last_impression_time', time());
             
-            error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: Before save: current_impmade={$currentImpmade}, new_impmade={$newImpmade}, imptotal=" . $banner->get('imptotal'));
+            //error_log("Bannerstats_BannerHandler::countImpression - BID {$bid}: Before save: current_impmade={$currentImpmade}, new_impmade={$newImpmade}, imptotal=" . $banner->get('imptotal'));
 
             if (!$this->insert($banner, true)) { 
                 // Save to prefix_banner failed
@@ -327,7 +327,7 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
             //error_log("CRITICAL STEP FAILED): Failed to mark banner ID {$originalBannerBID} as inactive in its table. DB Error: " . $this->db->error() . ". Aborting finish process.");
             return false; // Banner remains active if this fails.
         }
-        error_log("Bannerstats_BannerHandler::finishBanner - Step 1 SUCCESS: Banner ID {$originalBannerBID} marked as inactive in its table.");
+        //error_log("Bannerstats_BannerHandler::finishBanner - Step 1 SUCCESS: Banner ID {$originalBannerBID} marked as inactive in its table.");
 
         // --- Step 2: Copy banner-id data to table 'bannerfinish' ---
         $bannerfinishHandler = xoops_getmodulehandler('bannerfinish', 'bannerstats');
@@ -541,9 +541,9 @@ class Bannerstats_BannerHandler extends XoopsObjectGenericHandler
             $director->constructMail();
             $mailer = $clientBuilder->getResult();
             if (!$mailer->send()) {
-                error_log("BannerStats: FAILED to send Finished (Client) email to {$clientEmail} for banner BID " . $bannerBidForEmail . ". Errors: " . implode(', ', $mailer->getErrors(false)));
+                //error_log("BannerStats: FAILED to send Finished (Client) email to {$clientEmail} for banner BID " . $bannerBidForEmail . ". Errors: " . implode(', ', $mailer->getErrors(false)));
             } else {
-                 error_log("BannerStats: Sent Finished (Client) email to {$clientEmail} for banner BID " . $bannerBidForEmail);
+                //error_log("BannerStats: Sent Finished (Client) email to {$clientEmail} for banner BID " . $bannerBidForEmail);
             }
         }
 

@@ -1,10 +1,6 @@
 <{* Dev-Mode Toggle *}>
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<{* TODO template db: and custom icon set *}>
-<{include file="db:`$mydirname`_inc_topic_icon.html"}>
-
-
 <{if $mod_config.show_breadcrumbs}>
 <nav aria-label="breadcrumb">
     <ul>
@@ -63,7 +59,7 @@
     <{/if}>
 
 
-    <{* start forum main table *}>
+<{* start forum main table *}>
 <article>
     <table class="outer">
 
@@ -77,12 +73,15 @@
             </tr>
         </thead>
 
-        <{* icons *}>
+
         <{foreach item=topic from=$topics}>
+
+        <{* icons Must be inside the loop and pass the $topic variable *}>
+        <{include file="db:`$mydirname`_inc_topic_icon.html" topic=$topic}>
         <tr>
         <{strip}>
             <td>
-                <img src="<{$topic_icon_src}>" alt="<{$topic_icon_alt}>">
+                <img src="<{$topic_icon_src|default:''}>" alt="<{$topic_icon_alt|default:''}>">
 
                 <{if $topic.locked}>
                     <img class="svg lock" src="<{$xoops_url}>/images/icons/topic_status_locked1.svg" width="1em" height="1em" alt="<{$smarty.const._MD_D3FORUM_TOPICLOCKED}>">
@@ -100,7 +99,7 @@
                         <img class="svg marked" src="<{$xoops_url}>/images/icons/topic_status_marked1.svg" alt="<{$smarty.const._MD_D3FORUM_ALT_MARKEDYES}>"></a>
                 <{/if}>
                 <a href="<{$mod_url}>/index.php?topic_id=<{$topic.id}>#post_id<{$topic.last_post_id}>" class="ml-2"><{$topic.title}></a>
-                <span><{$topic.topic_page_jump}></span>
+                <span><{$topic.topic_page_jump|default:''}></span>
                 <br>
                 <{if $topic.votes_count > 0}>
                     <small class="mr-1"><{$smarty.const._MD_D3FORUM_VOTECOUNT}>:</small>  <span class="badge badge-secondary px-2"><{$topic.votes_count}></span>&nbsp;

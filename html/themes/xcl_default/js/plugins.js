@@ -2,7 +2,7 @@
  * XCL Default Theme built with PicoCSS v206
  *
  * @version   2.5.0
- * @update    2024-04-20
+ * @update    2025-05-25
  * @Date      2024-02-02
  * @author    Nuno Luciano ( https://github.com/gigamaster )
  * @copyright (c) 2005-2024 The XOOPSCube Project, authors

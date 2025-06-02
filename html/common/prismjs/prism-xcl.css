@@ -1,0 +1,166 @@
+/* PrismJS 1.30.0 theme XCL 2.5 */
+
+code[class*=language-], pre[class*=language-] {
+    color: #abc;
+    background: 0 0;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none
+}
+
+pre[class*=language-] {
+    padding: 1em;
+    margin: .5em 0;
+    overflow: auto
+}
+
+:not(pre) > code[class*=language-], pre[class*=language-] {
+    background: rgba(21, 25, 30, .9);
+}
+
+:not(pre) > code[class*=language-] {
+    padding: .1em;
+    border-radius: .3em;
+    white-space: normal
+}
+
+.token.block-comment, .token.cdata, .token.comment, .token.doctype, .token.prolog {
+    color: #999
+}
+
+.token.punctuation {
+    color: rgb(227, 224, 224);
+}
+
+.token.attr-name, .token.deleted, .token.namespace, .token.tag {
+    color: #ff6333;
+}
+
+.token.function-name {
+    color: #6196cc;
+}
+
+.token.boolean, .token.function, .token.number {
+    color: #d77d42;
+}
+
+.token.class-name, .token.constant, .token.property, .token.symbol {
+    color: #f8c555;
+}
+
+.token.atrule, .token.builtin, .token.important, .token.keyword, .token.selector {
+    color: #9f8cee;
+}
+
+.token.attr-value, .token.char, .token.regex, .token.string, .token.variable {
+    color: #83bd42;
+}
+
+.token.entity, .token.operator, .token.url {
+    color: #5dc1c1;
+}
+
+.token.bold, .token.important {
+    font-weight: 700
+}
+
+.token.italic {
+    font-style: italic
+}
+
+.token.entity {
+    cursor: help
+}
+
+.token.inserted {
+    color: #2ba62b
+}
+
+[class*=lang-] script[type='text/plain'], [class*=language-] script[type='text/plain'], script[type='text/plain'][class*=lang-], script[type='text/plain'][class*=language-] {
+    display: block;
+    font: 100% Consolas, Monaco, monospace;
+    white-space: pre;
+    overflow: auto
+}
+
+div.code-toolbar {
+    position: relative
+}
+
+div.code-toolbar > .toolbar {
+    position: absolute;
+    z-index: 10;
+    top: .3em;
+    right: .2em;
+    transition: opacity .3s ease-in-out;
+    opacity: 0
+}
+
+div.code-toolbar:hover > .toolbar {
+    opacity: 1
+}
+
+div.code-toolbar:focus-within > .toolbar {
+    opacity: 1
+}
+
+div.code-toolbar > .toolbar > .toolbar-item {
+    display: inline-block
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a {
+    cursor: pointer
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > button {
+    background: 0 0;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a, div.code-toolbar > .toolbar > .toolbar-item > button, div.code-toolbar > .toolbar > .toolbar-item > span {
+    color: hsl(210, 28%, 15%);
+    font-size: .875em;
+    padding: 0 .5em;
+    background: #f5f2f0;
+    background: rgba(224, 224, 224, 0.5);
+    box-shadow: 1px 2px 0 0 rgba(0,0,0,.2);
+    border-radius: 5px
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a:focus, div.code-toolbar > .toolbar > .toolbar-item > a:hover, div.code-toolbar > .toolbar > .toolbar-item > button:focus, div.code-toolbar > .toolbar > .toolbar-item > button:hover, div.code-toolbar > .toolbar > .toolbar-item > span:focus, div.code-toolbar > .toolbar > .toolbar-item > span:hover {
+    color: inherit;
+    background: hsl(210, 25%, 82%);
+    text-decoration: none
+}
+
+pre.diff-highlight > code .token.deleted:not(.prefix), pre > code.diff-highlight .token.deleted:not(.prefix) {
+    background-color: rgba(255, 0, 0, .1);
+    color: inherit;
+    display: block
+}
+
+pre.diff-highlight > code .token.inserted:not(.prefix), pre > code.diff-highlight .token.inserted:not(.prefix) {
+    background-color: rgba(0, 255, 128, .1);
+    color: inherit;
+    display: block
+}

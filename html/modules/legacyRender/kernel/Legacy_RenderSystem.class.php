@@ -19,7 +19,6 @@ require_once XOOPS_ROOT_PATH . '/class/template.php';
  * @since 2.5.0 Banners moved to Bannerstats module
  * If a module handling banners can not work perfectly in your site, change the following
  * "false" to "true". (For Bug#1786123)
- * 
  */
 define('LEGACY_RENDERSYSTEM_BANNERSETUP_BEFORE', false);
 
@@ -36,11 +35,9 @@ class Legacy_XoopsTpl extends XoopsTpl
      * htmlspecialchars_decode, and set it to the context for compatibility.
      */
     public $_mContextReserve = ['xoops_pagetitle' => 'legacy_pagetitle'];
-//public $_mContextReserve = [];
 
     public function __construct()
     {
-        //$this->_mContextReserve = ['xoops_pagetitle' => 'legacy_pagetitle'];
         parent::__construct();
     }
 
@@ -98,8 +95,11 @@ class Legacy_XoopsTpl extends XoopsTpl
         return $value;
     }
 }
-// @TODO test version 2.5.0
+
+
+// @TODO theme version requirement
 require_once XOOPS_ROOT_PATH . '/core/XCube_Theme.class.php';
+
 /**
  * Compatible render system with XOOPS2 Themes & Templates.
  *
@@ -133,11 +133,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     public $_mIsActiveBanner = false;
 
     public $mBeginRender = null;
-
-  /*  public function Legacy_RenderSystem()
-    {
-        $this->__construct();
-    }*/
+    
 
     public function __construct()
     {
@@ -178,28 +174,51 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             $mTpl->xoops_setDebugging(true);
         }
 
-        if (isset($GLOBALS['xoopsUserIsAdmin'])) {
-            $isadmin['xoops_isadmin']=$GLOBALS['xoopsUserIsAdmin'];
-        }
+        // --------------------------------------
+        // Common Javascript x-utils.js
+        // @since v2.3.0
+        // --------------------------------------
+
+        // Get request URI from XCube context (XCube_HttpRequest object)
+        $requestUri = xoops_getenv('REQUEST_URI');
+        $sanitizedRequestUri = htmlspecialchars($requestUri ?? '', ENT_QUOTES);
+
         $mTpl->assign(
             [
-            'xoops_requesturi' => htmlspecialchars($GLOBALS['xoopsRequestUri'], ENT_QUOTES),    //@todo ?????????????
-            //@todo set JavaScript/Weird, but need extra <script> tags for Xoops Legacy 2.x themes
-                // XCL 2.3.x moved to /common/js/x-utils.js
-            // 'xoops_js' => '</script><script type="text/javascript" src="'.XOOPS_URL.'/include/xoops.js"></script><script type="text/javascript">'
+            // Replace the old assignment with the new one using XCube context
+            'xoops_requesturi' => $sanitizedRequestUri,
+            'request_uri'      => $sanitizedRequestUri, // Add the shorter alias
             'xoops_js' => '</script><script type="text/javascript" src="'.XOOPS_URL.'/common/js/x-utils.js"></script><script type="text/javascript">',
             // XCL 2.3.x
             'xutils_js' => '</script><script type="text/javascript" src="'.XOOPS_URL.'/common/js/x-utils.js"></script><script type="text/javascript">'
             ]
         );
 
-        if (($xoopsRedirect = xoops_getrequest('xoops_redirect')) && '/' === $xoopsRedirect[0]) {
-            $mTpl->assign('xoops_redirect', htmlspecialchars($xoopsRedirect, ENT_QUOTES));
+        // Get xoops_redirect parameter from XCube context
+        $xoopsRedirect = $context->mRequest->getRequest('xoops_redirect');
+
+        // Check valid internal redirect path
+        if (null !== $xoopsRedirect && is_string($xoopsRedirect) && strlen($xoopsRedirect) > 0 && '/' === $xoopsRedirect[0]) {
+            $sanitizedRedirect = htmlspecialchars($xoopsRedirect, ENT_QUOTES);
+            $mTpl->assign('xoops_redirect', $sanitizedRedirect);
+            $mTpl->assign('site_redirect', $sanitizedRedirect); // XCL alias
         }
 
-        $mTpl->assign('xoops_sitename', $textFilter->toShow($context->getAttribute('legacy_sitename')));
-        $mTpl->assign('xoops_pagetitle', $textFilter->toShow($context->getAttribute('legacy_pagetitle')));
-        $mTpl->assign('xoops_slogan', $textFilter->toShow($context->getAttribute('legacy_slogan')));
+        // --------------------------------------
+        // Assign site name, page title, and slogan 
+        // both prefix legacy and XCL themes aliases
+        // --------------------------------------
+        $siteName = $textFilter->toShow($context->getAttribute('legacy_sitename'));
+        $pageTitle = $textFilter->toShow($context->getAttribute('legacy_pagetitle'));
+        $slogan = $textFilter->toShow($context->getAttribute('legacy_slogan'));
+
+        $mTpl->assign('xoops_sitename', $siteName);
+        $mTpl->assign('xoops_pagetitle', $pageTitle);
+        $mTpl->assign('xoops_slogan', $slogan);
+        // Aliases
+        $mTpl->assign('site_name', $siteName);
+        $mTpl->assign('page_title', $pageTitle);
+        $mTpl->assign('slogan', $slogan);
 
         // --------------------------------------
         // Module - Bannerstats
@@ -235,22 +254,32 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         }
 
         // --------------------------------------
-        // Add User
+        // Add User and Admin Status
+        // XOOPSCube Legacy_RenderSystem's contex
         // --------------------------------------
-        $arr = null;
+        $userStatusVars = [];
         if (is_object($context->mXoopsUser)) {
-            $arr = [
+            $isAdmin = $context->mXoopsUser->isAdmin();
+            $userStatusVars = [
                 'xoops_isuser' => true,
                 'xoops_userid' => $context->mXoopsUser->getVar('uid', 'n'),
-                'xoops_uname' => $context->mXoopsUser->getVar('uname')
+                'xoops_uname' => $context->mXoopsUser->getVar('uname'),
+                'xoops_isadmin' => $isAdmin,
+                'isuser' => true,
+                'userid' => $context->mXoopsUser->getVar('uid', 'n'),
+                'uname' => $context->mXoopsUser->getVar('uname'),
+                'isadmin' => $isAdmin,
             ];
         } else {
-            $arr = [
-                'xoops_isuser' => false
+            // Default status
+            $userStatusVars = [
+                'xoops_isuser' => false,
+                'isuser' => false,
+                'xoops_isadmin' => false,
+                'isadmin' => false,       
             ];
         }
-
-        $mTpl->assign($arr);
+        $mTpl->assign($userStatusVars);
     }
 
     public function setAttribute($key, $value)
@@ -278,25 +307,25 @@ class Legacy_RenderSystem extends XCube_RenderSystem
             'xoops_theme'     =>$themeName,
             'xoops_imageurl'  =>XOOPS_THEME_URL . "/{$themeName}/",
             'xoops_themecss'  =>xoops_getcss($themeName),
-            'xoops_sitename'  =>$textFilter->toShow($context->getAttribute('legacy_sitename')),
-            'xoops_pagetitle' =>$textFilter->toShow($context->getAttribute('legacy_pagetitle')),
-            'xoops_slogan'    =>$textFilter->toShow($context->getAttribute('legacy_slogan')),
-            'xoops_dirname'   => ''
+            'xoops_dirname'   => '', 
+            // xcl themes 
+            'theme_name'      =>$themeName,
+            'theme_url'       =>XOOPS_THEME_URL . "/{$themeName}/",
+            'theme_css'       =>xoops_getcss($themeName),
+            'dirname'         => ''
         ];
 
         //
         // Assign module information.
         //
-        if (null !== $context->mModule) {    // The process of module
+        if (null !== $context->mModule) {
             $xoopsModule =& $context->mXoopsModule;
             $vars['xoops_modulename'] = $xoopsModule->getVar('name');
             $vars['xoops_dirname'] = $xoopsModule->getVar('dirname');
+            $vars['module_name'] = $xoopsModule->getVar('name');
             $vars['dirname'] = $xoopsModule->getVar('dirname');
         }
 
-        if (isset($GLOBALS['xoopsUserIsAdmin'])) {
-            $vars['xoops_isadmin']=$GLOBALS['xoopsUserIsAdmin'];
-        }
         $this->mXoopsTpl->assign($vars);
     }
 
@@ -430,14 +459,26 @@ class Legacy_RenderSystem extends XCube_RenderSystem
         $vars['xoops_meta_google'] = $textFilter->toShow($headerScript->getMeta('google-site-verification') ?: $configs['meta_google']);
         $vars['xoops_meta_yandex'] = $textFilter->toShow($headerScript->getMeta('yandex-verification') ?: $configs['meta_yandex']);
         // Extra Meta App ID
-        $vars['xoops_meta_fb_app'] = $textFilter->toShow($headerScript->getMeta('fb:app_id') ?: $configs['meta_fb_app']);
-        $vars['xoops_meta_twitter_site'] = $textFilter->toShow($headerScript->getMeta('twitter:site') ?: $configs['meta_twitter_site']);
+        $vars['xoops_meta_fb'] = $textFilter->toShow($headerScript->getMeta('fb:app_id') ?: $configs['meta_fb_app']);
+        $vars['xoops_meta_twitter'] = $textFilter->toShow($headerScript->getMeta('twitter:site') ?: $configs['meta_twitter_site']);
         // custom
         $vars['logotype'] = $configs['logotype'];
         $vars['favicon'] = $configs['favicon'];
         // footer may be raw HTML text.
         $vars['xoops_footer'] = $configs['footer'];
-        
+        // xcl themes
+        $vars['meta_keywords']      = $vars['xoops_meta_keywords'];
+        $vars['meta_description']   = $vars['xoops_meta_description'];
+        $vars['meta_robots']        = $vars['xoops_meta_robots'];
+        $vars['meta_rating']        = $vars['xoops_meta_rating'];
+        $vars['meta_author']        = $vars['xoops_meta_author'];
+        $vars['meta_copyright']     = $vars['xoops_meta_copyright'];
+        $vars['meta_bing']          = $vars['xoops_meta_bing'];
+        $vars['meta_google']        = $vars['xoops_meta_google'];
+        $vars['meta_yandex']        = $vars['xoops_meta_yandex'];
+        $vars['meta_fb']            = $vars['xoops_meta_fb'];
+        $vars['meta_x']             = $vars['xoops_meta_twitter'];
+        $vars['footer_credit']      = $configs['footer'];
 
         //
         // Banner Management Settings 
@@ -550,7 +591,7 @@ class Legacy_RenderSystem extends XCube_RenderSystem
     {
         global $xoopsConfig;
         $myts =& MyTextSanitizer::sGetInstance();
-//if (1 == $xoopsConfig['gzip_compression']) {
+
         if (1 === $xoopsConfig['gzip_compression']) {
             ob_start('ob_gzhandler');
         } else {

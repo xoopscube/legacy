@@ -188,7 +188,7 @@ class Bannerstats_BannerAdminEditForm extends XCube_ActionForm
      */
     protected function parseValidDateTimeFormat(string $dateTimeStr, ?string &$parsedFormat = null): DateTime|false
     {
-        error_log("BannerAdminEditForm - Attempting to parse date string: '" . $dateTimeStr . "'");
+        //error_log("BannerAdminEditForm - Attempting to parse date string: '" . $dateTimeStr . "'");
 
         $primaryFormat = 'Y-m-d\TH:i';
         $dateTimeObject = DateTime::createFromFormat($primaryFormat, $dateTimeStr);
@@ -213,16 +213,16 @@ class Bannerstats_BannerAdminEditForm extends XCube_ActionForm
                 $errors = DateTime::getLastErrors();
                 if ($errors === false || (is_array($errors) && $errors['warning_count'] === 0 && $errors['error_count'] === 0)) {
                     $parsedFormat = $key;
-                    error_log("BannerAdminEditForm - Successfully parsed '" . $dateTimeStr . "' with fallback format '" . $format . "'");
+                    //error_log("BannerAdminEditForm - Successfully parsed '" . $dateTimeStr . "' with fallback format '" . $format . "'");
                     return $dateTimeObject;
                 } else {
-                     error_log("BannerAdminEditForm - Parsed '" . $dateTimeStr . "' with fallback format '" . $format . "' but found errors/warnings: " . print_r($errors, true));
+                     //error_log("BannerAdminEditForm - Parsed '" . $dateTimeStr . "' with fallback format '" . $format . "' but found errors/warnings: " . print_r($errors, true));
                 }
             }
         }
         
         // If none of the formats matched successfully
-        error_log("BannerAdminEditForm - Failed to parse '" . $dateTimeStr . "' with any known format.");
+        //error_log("BannerAdminEditForm - Failed to parse '" . $dateTimeStr . "' with any known format.");
         $parsedFormat = null;
         return false;
     }

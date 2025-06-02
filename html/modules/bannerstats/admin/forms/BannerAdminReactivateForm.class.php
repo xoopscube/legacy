@@ -156,7 +156,7 @@ class Bannerstats_BannerAdminReactivateForm extends XCube_ActionForm
      */
     protected function parseValidDateTimeFormat(string $dateTimeStr, ?string &$parsedFormat = null): DateTime|false
     {
-        error_log("BannerAdminReactivateForm - Attempting to parse date string: '" . $dateTimeStr . "'");
+        //error_log("BannerAdminReactivateForm - Attempting to parse date string: '" . $dateTimeStr . "'");
 
         $primaryFormat = 'Y-m-d\TH:i';
         $dateTimeObject = DateTime::createFromFormat($primaryFormat, $dateTimeStr);
@@ -165,10 +165,10 @@ class Bannerstats_BannerAdminReactivateForm extends XCube_ActionForm
             $errors = DateTime::getLastErrors();
             if ($errors === false || (is_array($errors) && $errors['warning_count'] === 0 && $errors['error_count'] === 0)) {
                 $parsedFormat = 'datetime-local';
-                error_log("BannerAdminReactivateForm - Successfully parsed '" . $dateTimeStr . "' with primary format '" . $primaryFormat . "'");
+                //error_log("BannerAdminReactivateForm - Successfully parsed '" . $dateTimeStr . "' with primary format '" . $primaryFormat . "'");
                 return $dateTimeObject;
             } else {
-                error_log("BannerAdminReactivateForm - Parsed '" . $dateTimeStr . "' with primary format '" . $primaryFormat . "' but found errors/warnings: " . print_r($errors, true));
+                //error_log("BannerAdminReactivateForm - Parsed '" . $dateTimeStr . "' with primary format '" . $primaryFormat . "' but found errors/warnings: " . print_r($errors, true));
             }
         }
 
@@ -183,10 +183,10 @@ class Bannerstats_BannerAdminReactivateForm extends XCube_ActionForm
                 $errors = DateTime::getLastErrors();
                 if ($errors === false || (is_array($errors) && $errors['warning_count'] === 0 && $errors['error_count'] === 0)) {
                     $parsedFormat = $key;
-                    error_log("BannerAdminReactivateForm - Successfully parsed '" . $dateTimeStr . "' with fallback format '" . $format . "'");
+                    //error_log("BannerAdminReactivateForm - Successfully parsed '" . $dateTimeStr . "' with fallback format '" . $format . "'");
                     return $dateTimeObject;
                 } else {
-                     error_log("BannerAdminReactivateForm - Parsed '" . $dateTimeStr . "' with fallback format '" . $format . "' but found errors/warnings: " . print_r($errors, true));
+                     //error_log("BannerAdminReactivateForm - Parsed '" . $dateTimeStr . "' with fallback format '" . $format . "' but found errors/warnings: " . print_r($errors, true));
                 }
             }
         }

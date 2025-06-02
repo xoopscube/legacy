@@ -333,7 +333,7 @@ class PicoContent {
 	    }
 	    
 	    // Log to PHP error log
-	    error_log('Pico module: Missing filter file for "' . $filter . '" at ' . $file_path);
+	    //error_log('Pico module: Missing filter file for "' . $filter . '" at ' . $file_path);
 	    
 	    // Trigger a user error to be caught by our custom error handler
 	    trigger_error('Missing filter file for "' . $filter . '" at ' . $file_path, E_USER_WARNING);

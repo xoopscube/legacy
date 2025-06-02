@@ -49,12 +49,12 @@ class Bannerstats_LogoutAction
                 if (!empty($fetchedDirname)) {
                     $moduleDirname = $fetchedDirname;
                 }
-                error_log("Bannerstats_LogoutAction - Called get('dirname') as getVar() was not found on module object of class: " . get_class($moduleObject));
+                //error_log("Bannerstats_LogoutAction - Called get('dirname') as getVar() was not found on module object of class: " . get_class($moduleObject));
             } else {
-                error_log("Bannerstats_LogoutAction - Neither getVar() nor get() method found on module object of class: " . get_class($moduleObject) . ". Using default dirname '{$moduleDirname}'.");
+                //error_log("Bannerstats_LogoutAction - Neither getVar() nor get() method found on module object of class: " . get_class($moduleObject) . ". Using default dirname '{$moduleDirname}'.");
             }
         } else {
-            error_log("Bannerstats_LogoutAction - Module context (mModule) is not an object. Using default dirname '{$moduleDirname}'.");
+            //error_log("Bannerstats_LogoutAction - Module context (mModule) is not an object. Using default dirname '{$moduleDirname}'.");
         }
         
         $redirectUrl = XOOPS_URL . '/modules/' . $moduleDirname . '/index.php?action=Login';

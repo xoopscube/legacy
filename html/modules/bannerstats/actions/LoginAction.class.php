@@ -115,7 +115,7 @@ class Bannerstats_LoginAction
         if (!class_exists('BannerClientSession')) {
             $this->errorMessage = "System error: Session manager unavailable."; // Use language constant
             $xoopsTpl->assign('errorMessage', $this->errorMessage);
-            error_log("Bannerstats_LoginAction: BannerClientSession class not found during getDefaultView.");
+            //error_log("Bannerstats_LoginAction: BannerClientSession class not found during getDefaultView.");
             $this->prepareLoginView($xoopsTpl); // Prepare common vars even for this error
             return 'bannerstats_login.html';
         }

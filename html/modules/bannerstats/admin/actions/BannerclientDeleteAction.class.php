@@ -60,7 +60,7 @@ class Bannerstats_BannerclientDeleteAction extends Bannerstats_AbstractDeleteAct
 
         if (!$bannerHandler || !$bannerfinishHandler) {
             $this->mActionForm->addErrorMessage(_AD_BANNERSTATS_ERROR_HANDLER_NOT_FOUND);
-            error_log("Bannerstats_BannerclientDeleteAction: Failed to get banner or bannerfinish handler.");
+            //error_log("Bannerstats_BannerclientDeleteAction: Failed to get banner or bannerfinish handler.");
             return false;
         }
 

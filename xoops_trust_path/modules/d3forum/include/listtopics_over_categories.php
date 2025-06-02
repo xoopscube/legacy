@@ -13,16 +13,19 @@
 
 $cat_ids = [];
 
-foreach ( explode( ',', $_GET['cat_ids'] ) as $cat_id ) {
-	if ( $cat_id > 0 ) {
-		$cat_ids[] = (int) $cat_id;
+// Check $_GET['cat_ids'] is set before exploding to avoid PHP8+ warnings 
+$raw_cat_ids = $_GET['cat_ids'] ?? '';
+foreach ( explode( ',', $raw_cat_ids ) as $cat_id_str ) {
+	$cat_id_val = (int) trim($cat_id_str); // Trim whitespace, cast to int
+	if ( $cat_id_val > 0 ) {
+		$cat_ids[] = $cat_id_val;
 	}
 }
 
 if ( empty( $cat_ids ) ) {
 	// all topics in the module
 	$pagetitle       = _MD_D3FORUM_LISTALLTOPICS;
-	$category4assign = [];
+	$category4assign = ['paths_raw' => []]; // Initialize empty paths_raw
 	$cat_ids4param   = '0';
 	$whr_cat_ids     = '1';
 	$isadminorcatmod = $isadmin;
@@ -35,13 +38,21 @@ if ( empty( $cat_ids ) ) {
 	$whr_cat_ids    = 'c.cat_id=' . $cat_id;
 	// get&check this category ($category4assign, $category_row), override options
 	if ( ! include __DIR__ . '/process_this_category.inc.php' ) {
+		// If process_this_category fails or returns false, paths_raw is an empty array
+		if (!isset($category4assign['paths_raw']) || !is_array($category4assign['paths_raw'])) {
+			$category4assign['paths_raw'] = [];
+		}
 		die( _MD_D3FORUM_ERR_READCATEGORY );
+	}
+	// paths_raw is an array
+	if (!isset($category4assign['paths_raw']) || !is_array($category4assign['paths_raw'])) {
+		$category4assign['paths_raw'] = [];
 	}
 } else {
 	// topics under categories separated with commma
 	sort( $cat_ids );
 	$pagetitle       = _MD_D3FORUM_LISTTOPICSINCATEGORIES;
-	$category4assign = [];
+	$category4assign = ['paths_raw' => []]; // Initialize empty paths_raw
 	$cat_ids4param   = implode( ',', $cat_ids );
 	$whr_cat_ids     = 'c.cat_id IN (' . $cat_ids4param . ')';
 	$isadminorcatmod = $isadmin;
@@ -89,6 +100,7 @@ if ( ! $trs = $db->query( $sql ) ) {
 [ $topic_hits ] = $db->fetchRow( $trs );
 
 // pagenav
+$pagenav = ''; // Initialize pagenav
 if ( $topic_hits > $num ) {
 
 	require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
@@ -175,7 +187,7 @@ while ( $topic_row = $db->fetchArray( $trs ) ) {
 			'title'                     => $myts->makeTboxData4Show( $topic_row['topic_title'], $topic_row['fp_number_entity'], $topic_row['fp_special_entity'] ),
 			'forum_id'                  => $topic_row['forum_id'],
 			'forum_title'               => $myts->makeTboxData4Show( $topic_row['forum_title'] ),
-			'forum_isadminormod'        => (boolean) $forum_permissions[ $topic_row['forum_id'] ]['is_moderator'] || $isadmin,
+			'forum_isadminormod'        => (boolean) ($forum_permissions[ $topic_row['forum_id'] ]['is_moderator'] ?? false) || $isadmin,
 			'cat_id'                    => $topic_row['cat_id'],
 			'cat_title'                 => $myts->makeTboxData4Show( $topic_row['cat_title'] ),
 			'replies'                   => (int) $topic_row['topic_posts_count'] - 1,
@@ -229,7 +241,7 @@ $xoopsTpl->assign(
 		'solved_options'  => $solved_options,
 		'query'           => $query4assign,
 		'cat_ids'         => $cat_ids4param,
-		'pagenav'         => @$pagenav,
+		'pagenav'         => $pagenav,
 		'page'            => 'listtopics_over_categories',
 		'pagetitle'       => $pagetitle,
 		'xoops_pagetitle' => implode( ' - ', array_filter( [

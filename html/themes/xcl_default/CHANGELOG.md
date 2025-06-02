@@ -1,10 +1,13 @@
 # Change Log
 
+All notable changes will be documented in this file.
+
+
 ## XCL DEFAULT THEME v.2.5.0
 
-XCL Theme built with PicoCSS v2.0.6
+- XCL Theme built with PicoCSS v2.1.1
+- XCL Theming Options
 
-All notable changes will be documented in this file.
 
 ## [XCL Theme 240 ] 2024-04-20
 

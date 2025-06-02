@@ -38,7 +38,7 @@ class User_LostPassAction extends User_Action
         return false;
     }
     
-    //// Allow anonymous users only.
+    // Allow anonymous users only.
     public function hasPermission(&$controller, &$xoopsUser, $moduleConfig)
     {
         return !$controller->mRoot->mContext->mUser->mIdentity->isAuthenticated();
@@ -47,8 +47,9 @@ class User_LostPassAction extends User_Action
     public function getDefaultView(&$controller, &$xoopsUser)
     {
         $root =& XCube_Root::getSingleton();
-        $code = $root->mContext->mRequest->getRequest('code');    // const $code
-        $email = $root->mContext->mRequest->getRequest('email');    // const $email
+        $code = $root->mContext->mRequest->getRequest('code') ?? '';
+        $email = $root->mContext->mRequest->getRequest('email') ?? '';
+        
         if (0 == strlen($code) || 0 == strlen($email)) {
             return USER_FRAME_VIEW_INPUT;
         } else {
@@ -81,11 +82,13 @@ class User_LostPassAction extends User_Action
         }
 
         $builder =new User_LostPass2MailBuilder();
-        //$getXConfig = getXoopsConfig(); gigamaster fix error 'lost-password'
+        //$getXConfig = getXoopsConfig();  error 'lost-password'
 		$getXConfig = $controller->mRoot->mContext->getXoopsConfig();
 		
 		
-        $director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->$getXConfig, $extraVars);
+        //$director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->$getXConfig, $extraVars);
+        $director =new User_LostPassMailDirector($builder, $lostUser, $getXConfig, $extraVars);
+        
         $director->contruct();
         $xoopsMailer =& $builder->getResult();
         XCube_DelegateUtils::call('Legacy.Event.RegistUser.SendMail', new XCube_Ref($xoopsMailer), 'LostPass2');
@@ -116,13 +119,14 @@ class User_LostPassAction extends User_Action
         }
 
         $builder =new User_LostPass1MailBuilder();
-        //$getXConfig = getXoopsConfig();
-
+    
 		$root =& XCube_Root::getSingleton();
-		$getXConfig = $root->mContext->getXoopsConfig(); // gigamaster fix lost-password
+		$getXConfig = $root->mContext->getXoopsConfig(); // fix lost-password
 		
 
-        $director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->$getXConfig);
+        //$director =new User_LostPassMailDirector($builder, $lostUser, $controller->mRoot->mContext->$getXConfig);
+        $director =new User_LostPassMailDirector($builder, $lostUser, $getXConfig);
+        
         $director->contruct();
         $xoopsMailer =& $builder->getResult();
         XCube_DelegateUtils::call('Legacy.Event.RegistUser.SendMail', new XCube_Ref($xoopsMailer), 'LostPass1');

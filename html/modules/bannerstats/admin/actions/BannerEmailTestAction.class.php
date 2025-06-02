@@ -105,7 +105,7 @@ class Bannerstats_BannerEmailTestAction extends Bannerstats_Action
             $this->mErrorMessages = array_merge($this->mErrorMessages, $this->mActionForm->getErrorMessages());
             // Log errors for debugging
             foreach($this->mActionForm->getErrorMessages() as $errMsg) {
-                error_log("Validation/Token Error: " . $errMsg);
+                //error_log("Validation/Token Error: " . $errMsg);
             }
             return BANNERSTATS_FRAME_VIEW_INPUT;
         }

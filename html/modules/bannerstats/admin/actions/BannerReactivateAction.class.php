@@ -59,7 +59,7 @@ class Bannerstats_BannerReactivateAction extends Bannerstats_AbstractEditAction
      */
     protected function _parseDateTimeString(string $dateTimeStr): DateTime|false
     {
-        error_log("BannerReactivateAction - Attempting to parse date string: '" . $dateTimeStr . "'");
+        //error_log("BannerReactivateAction - Attempting to parse date string: '" . $dateTimeStr . "'");
         $formatsToTry = [
             'Y-m-d\TH:i',    // Standard datetime-local output
             'Y-m-d H:i:s',  // Full datetime with seconds
@@ -71,14 +71,14 @@ class Bannerstats_BannerReactivateAction extends Bannerstats_AbstractEditAction
             if ($dateTimeObject !== false) {
                 $errors = DateTime::getLastErrors();
                 if ($errors === false || (is_array($errors) && $errors['warning_count'] === 0 && $errors['error_count'] === 0)) {
-                    error_log("BannerReactivateAction - Successfully parsed '" . $dateTimeStr . "' with format '" . $format . "'");
+                    //error_log("BannerReactivateAction - Successfully parsed '" . $dateTimeStr . "' with format '" . $format . "'");
                     return $dateTimeObject;
                 } else {
-                    error_log("BannerReactivateAction - Parsed '" . $dateTimeStr . "' with format '" . $format . "' but found errors/warnings: " . print_r($errors, true));
+                    //error_log("BannerReactivateAction - Parsed '" . $dateTimeStr . "' with format '" . $format . "' but found errors/warnings: " . print_r($errors, true));
                 }
             }
         }
-        error_log("BannerReactivateAction - Failed to parse '" . $dateTimeStr . "' with any known format.");
+        //error_log("BannerReactivateAction - Failed to parse '" . $dateTimeStr . "' with any known format.");
         return false;
     }
 
@@ -100,14 +100,14 @@ class Bannerstats_BannerReactivateAction extends Bannerstats_AbstractEditAction
         $bannerHandler = xoops_getmodulehandler('banner', 'bannerstats');
         if (!$bannerHandler) {
             $this->mActionForm->addErrorMessage(_AD_BANNERSTATS_ERROR_HANDLER_NOT_FOUND);
-            error_log("BannerReactivateAction: Failed to get 'banner' handler.");
+            //error_log("BannerReactivateAction: Failed to get 'banner' handler.");
             return false;
         }
         /** @var Bannerstats_BannerObject $activeBanner */
         $activeBanner = $bannerHandler->create();
         if (!is_object($activeBanner)) {
             $this->mActionForm->addErrorMessage(_AD_BANNERSTATS_ERROR_CREATE_FAILED);
-            error_log("BannerReactivateAction: Failed to create new BannerObject.");
+            //error_log("BannerReactivateAction: Failed to create new BannerObject.");
             return false;
         }
 

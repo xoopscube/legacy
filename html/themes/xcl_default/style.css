@@ -2,7 +2,7 @@
 * XCL Default Theme built with PicoCSS v206
 *
 * @version   2.5.0
-* @update    2024-04-20
+* @update    2025-05-25
 * @Date      2024-02-02
 * @author    Nuno Luciano ( https://github.com/gigamaster )
 * @copyright (c) 2005-2024 The XOOPSCube Project, authors
@@ -10,7 +10,7 @@
 * @link      https://github.com/xoopscube
 */
 /* ---------- ---------- ---------- ---------- --------IMPORT */
-@import "./css/dropdown.css";   /*  dROPDOWN MENU Grid-Flex */
+@import "./css/dropdown.css";   /*  DROPDOWN MENU Grid-Flex */
 /* ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~~~~~~
 ~~~~~~~~~~
 */
@@ -20,7 +20,7 @@
 /* Development Mode */
 --dev-mode: none;  /* Display Smarty Template Name : block, none */
 
-
+--color:<{$color|default:''}>;
 /* --------------------------- TOOLTIP */
 --tooltip-background-color: var(--pico-primary-hover-background);
 --tooltip-color: var(--pico-primary-inverse);
@@ -145,7 +145,7 @@ article header :where( p:last-child ){
 }
 
 /* A HREF LINK COLOR */
-[data-theme=dark] {
+/* [data-theme=dark] {
     :is([role=button], [type=button], [type=file]::file-selector-button, [type=reset], [type=submit], 
     button, [type=checkbox]:checked, [type=checkbox]:checked:active, [type=checkbox]:checked:focus, 
     [type=radio]:checked, [type=radio]:checked:active, [type=radio]:checked:focus):not(.outline) {
@@ -154,6 +154,10 @@ article header :where( p:last-child ){
     a:hover:not([role=button]) { 
         color:var(--pico-secondary-inverse)
     }
+} */
+
+[role=button], [type=button], [type=file]::file-selector-button, [type=reset], [type=submit], button{
+text-wrap: nowrap;
 }
 [role=link]:focus, a:focus {
 --background-color  : var(--pico-primary-focus);
@@ -607,6 +611,23 @@ p { text-wrap: pretty }
     }
 }
 /* GRID CUSTOM COLUMNS */
+
+.grid {
+    grid-column-gap: var(--pico-grid-column-gap);
+    grid-row-gap: var(--pico-grid-row-gap);
+    display: grid;
+    grid-template-columns: 1fr
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns:repeat(auto-fit,minmax(0%,1fr))
+    }
+}
+
+.grid>* {
+    min-width: 0
+}
 /* @todo ?? */
 .grid-left, .grid-right, .grid-2, .grid-3 {
     align-items     : start;

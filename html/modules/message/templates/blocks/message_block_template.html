@@ -1,7 +1,7 @@
 <{* Dev-Mode Toggle *}>
 <{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
-<article id="privatemessages">
+<ul id="privatemessages">
     <li>
     <{if $block>0}>
         <a href="<{$message_url}>?action=index">
@@ -37,4 +37,3 @@
                 <{$smarty.const._MI_MESSAGE_SUB_FAVORITES}></a>
         <{/if}>
 </ul>
-</article>

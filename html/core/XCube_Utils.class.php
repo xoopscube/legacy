@@ -104,7 +104,7 @@ class XCube_Utils {
                 ];
                 
                 $replace = [
-                    (string)$iValue, // Use $iValue directly instead of $variables[$i]
+                    (string)$variables[$i],
                     ucfirst((string)$iValue),
                     strtolower((string)$iValue),
                     strtoupper((string)$iValue)
@@ -117,108 +117,86 @@ class XCube_Utils {
         return $message;
     }
 
-	/**
-	 * @public
-	 * @brief [Static] To encrypt strings by "DES-ECB".
-	 *
-	 * @param string $plain_text
-	 * @param string|null $key
-	 *
-	 * @return string - Encrypted string.
-	 */
-	public static function encrypt(string $plain_text, string $key = null ) {
-		if ($plain_text === '') {
-			return $plain_text;
-		}
+    /**
+     * Encrypts strings using OpenSSL DES-ECB encryption
+     *
+     * @param string $plain_text The text to encrypt
+     * @param ?string $key Optional encryption key (uses XOOPS_SALT if not provided)
+     * @return string The encrypted string or original text if encryption fails
+     */
+    public static function encrypt(string $plain_text, ?string $key = null): string {
+        // Return early if nothing to encrypt
+        if ($plain_text === '') {
+            return $plain_text;
+        }
 
-        // @todo @gigamaster
-        // TODO check if ondition is unnecessary because it is checked by '! is_string( $key )'
-        // if (! is_string( $key )) {
-         if ( null === $key || ! is_string( $key ) ) {
-			if ( ! defined( 'XOOPS_SALT' ) ) {
-				return $plain_text;
-			}
-			$key = XOOPS_SALT;
-		}
-		$key = substr( md5( $key ), 0, 8 );
+        // Use XOOPS_SALT as fallback key
+        if ($key === null) {
+            if (!defined('XOOPS_SALT')) {
+                return $plain_text;
+            }
+            $key = XOOPS_SALT;
+        }
 
-        // Legacy backwards compatibility
-/*		if ( ! function_exists( 'openssl_encrypt' ) ) {
-			if ( ! extension_loaded( 'mcrypt' ) ) {
-				return $plain_text;
-			}
-			$td = mcrypt_module_open( 'des', '', 'ecb', '' );
+        // Generate 8-byte key from input
+        $key = substr(md5($key), 0, 8);
 
-			if ( mcrypt_generic_init( $td, $key, 'iv_dummy' ) < 0 ) {
-				return $plain_text;
-			}
+        // Add PKCS#7 padding
+        $block_size = 8; // DES block size is 8 bytes
+        $pad_length = $block_size - (strlen($plain_text) % $block_size);
+        $plain_text .= str_repeat(chr($pad_length), $pad_length);
 
-			$crypt_text = base64_encode( mcrypt_generic( $td, $plain_text ) );
+        // Perform encryption
+        $crypt_text = openssl_encrypt($plain_text, 'DES-ECB', $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
 
-			mcrypt_generic_deinit( $td );
-			mcrypt_module_close( $td );
-		} else {*/
-			$crypt_text = openssl_encrypt( $plain_text, 'DES-ECB', $key );
-//		}
+        return $crypt_text !== false ? base64_encode($crypt_text) : $plain_text;
+    }
 
-		return false === $crypt_text ? $plain_text : $crypt_text;
-	}
+    /**
+     * Decrypts strings using OpenSSL DES-ECB encryption
+     *
+     * @param string $crypt_text The text to decrypt
+     * @param ?string $key Optional decryption key (uses XOOPS_SALT if not provided)
+     * @return string The decrypted string or original text if decryption fails
+     */
+    public static function decrypt(string $crypt_text, ?string $key = null): string {
+        // Return early if nothing to decrypt
+        if ($crypt_text === '') {
+            return $crypt_text;
+        }
 
-	/**
-	 * @public
-	 * @brief [Static] To decrypt strings by "DES-ECB".
-	 *
-	 * @param string $crypt_text
-	 * @param string|null $key
-	 *
-	 * @return string - Decrypted string.
-	 */
-	public static function decrypt(string $crypt_text, string $key = null ) {
-		if ( '' === $crypt_text ) {
-			return $crypt_text;
-		}
+        // Use XOOPS_SALT as fallback key
+        if ($key === null) {
+            if (!defined('XOOPS_SALT')) {
+                return $crypt_text;
+            }
+            $key = XOOPS_SALT;
+        }
 
-        // @todo @gigamaster
-        // Condition is unnecessary because it is checked by '! is_string( $key )'
-        // if (! is_string( $key )) {
-        if ( null === $key || ! is_string( $key ) ) {
-			if ( ! defined( 'XOOPS_SALT' ) ) {
-				return $crypt_text;
-			}
-			$key = XOOPS_SALT;
-		}
-		$key = substr( md5( $key ), 0, 8 );
+        // Generate 8-byte key from input
+        $key = substr(md5($key), 0, 8);
 
-        // Legacy backwards compatibility
-		// PHP < 5.4.0 can not use `OPENSSL_ZERO_PADDING`
-//		if ( ! function_exists( 'openssl_decrypt' ) || PHP_VERSION_ID < 50400 ) {
-//			if ( ! extension_loaded( 'mcrypt' ) ) {
-//				return $crypt_text;
-//			}
-//			$td = mcrypt_module_open( 'des', '', 'ecb', '' );
-//
-//			if ( mcrypt_generic_init( $td, $key, 'iv_dummy' ) < 0 ) {
-//				return $crypt_text;
-//			}
-//
-//			$plain_text = mdecrypt_generic( $td, base64_decode( $crypt_text ) );
-//
-//			mcrypt_generic_deinit( $td );
-//			mcrypt_module_close( $td );
-//		} else {
-			$plain_text = openssl_decrypt( $crypt_text, 'DES-ECB', $key, OPENSSL_ZERO_PADDING );
-//		}
-		// remove \0 padding for mcrypt encrypted text
-		$plain_text = rtrim( $plain_text, "\0" );
-		// remove pkcs#7 padding for openssl encrypted text if padding string found
-		$pad_ch  = substr( $plain_text, - 1 );
-		$pad_len = ord( $pad_ch );
-		if ( 0 == substr_compare( $plain_text, str_repeat( $pad_ch, $pad_len ), - $pad_len ) ) {
-			$plain_text = substr( $plain_text, 0, strlen( $plain_text ) - $pad_len );
-		}
+        // Decode base64
+        $decoded = base64_decode($crypt_text, true);
+        if ($decoded === false) {
+            return $crypt_text;
+        }
 
-		return false === $plain_text ? $crypt_text : $plain_text;
-	}
+        // Perform decryption
+        $plain_text = openssl_decrypt($decoded, 'DES-ECB', $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING);
+        
+        if ($plain_text === false) {
+            return $crypt_text;
+        }
+
+        // Remove PKCS#7 padding
+        $pad_length = ord($plain_text[strlen($plain_text) - 1]);
+        if ($pad_length > 0 && $pad_length <= 8) {
+            $plain_text = substr($plain_text, 0, -$pad_length);
+        }
+
+        return $plain_text;
+    }
 
 	/**
 	 * @deprecated XCube 1.0 removes this method.

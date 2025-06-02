@@ -21,14 +21,17 @@
  *
  * The subclass of Smarty for the Help viewer, allows using Smarty in html help files.
  * This class extends Smarty to avoid filename collisions in compiled filenames.
- * Smarty custom modifiers supported in Help view :
+ * Since XCL 2.3 - Smarty custom modifiers supported in Help view :
  * 'helpurl'   - modify a relative URL to the dynamic page link.
  * 'helpimage' - modify an image URL.
- * Since XCL 2.3
+ * 
  * Usage : <{$help}>=module_dirname
- * Example
+ * 
  * Module  : <a href="<{$help}>=legacy">System</a>
  * File    : <a href="<{$help}>=legacy&amp;file=block.html">Block</a>
+ * Link    : <a href="<{'mypage.html'|helpurl}>">Link to help file</a>
+ * Image   : <img src="<{'myimage.jpg'|helpimage}>" alt="Help Image in moduleName help/images">
+
  * These modifiers take into account the existence of language files.
  */
 class Legacy_HelpSmarty extends Smarty

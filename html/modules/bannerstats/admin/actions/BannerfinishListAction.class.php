@@ -80,7 +80,7 @@ class Bannerstats_BannerfinishListAction extends Bannerstats_AbstractListAction
             $root = XCube_Root::getSingleton();
             $pageNavi = new XCube_PageNavigator($this->_getBaseUrl(), XCUBE_PAGENAVI_OFFSET);
             $render->setAttribute('pageNavi', $pageNavi);
-            error_log(get_class($this) . "::" . __FUNCTION__ . " - PageNavigator was not initialized via filter form.");
+            //error_log(get_class($this) . "::" . __FUNCTION__ . " - PageNavigator was not initialized via filter form.");
         }
         
         $root = XCube_Root::getSingleton();

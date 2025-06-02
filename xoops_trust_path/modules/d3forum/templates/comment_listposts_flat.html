@@ -1,5 +1,5 @@
 <{* Dev-Mode Toggle *}>
-<{if isset($xoops_isadmin) && $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+<{if isset($isadmin)}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
 
 <{if $post_hits > 1}>
         <{if $pagenav}>
@@ -23,7 +23,7 @@
 <{* ----- POST TREE VIEW *}>
 <h5>
     <label for="post-tree">
-        <input role="switch" type="checkbox" id="post-tree" onclick="slideToggle('.post-tree-view', this)" value="0">
+        <input type="checkbox" id="post-tree" class="switch" role="switch" onclick="slideToggle('.post-tree-view', this)" value="0">
         <img class="svg tree" src="<{$xoops_url}>/images/icons/tree.svg" alt="post-tree">
         <{$smarty.const._MD_D3FORUM_POSTSTREE}>
     </label>
@@ -176,7 +176,7 @@
         <{/if}>
         </div>
         <div>
-        <{if $post.post_time < $post.modified_time and $xoops_isadmin}>
+        <{if $post.post_time < $post.modified_time and $forum.isadminormod}>
         <details class="dropdown">
             <summary><img class="svg timeline.svg" src="<{$xoops_url}>/images/icons/timeline.svg" width="1em" height="1em" alt="history"> <{$smarty.const._MD_D3FORUM_HISTORIES}></summary>
             <ul>

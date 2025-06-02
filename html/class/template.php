@@ -62,29 +62,59 @@ class XoopsTpl extends Smarty
         $this->template_dir = XOOPS_THEME_PATH;
         $this->cache_dir = XOOPS_CACHE_PATH;
         $this->compile_dir = XOOPS_COMPILE_PATH;
-        //Loading under root_path for compatibility with XCL2.1
-        //$this->plugins_dir = [SMARTY_DIR . 'plugins', XOOPS_ROOT_PATH . '/class/smarty/plugins'];
+        //@since XCL v2.1.0
+        //load Smarty plugins from TRUST PATH (settings/definition.inc.php)
         $this->plugins_dir = [SMARTY_DIR . 'plugins'];
         // Legacy_RenderSystem
-        // $this->default_template_handler_func = 'xoops_template_create';
         $this->use_sub_dirs = false;
 
         // Legacy compatility requirement for development and debugging of templates
         // Because D3 modules can use XoopsTpl class without Cube's boot
-		if (isset($GLOBALS['xoopsUserIsAdmin'])) {
-            $isadmin['xoops_isadmin']=$GLOBALS['xoopsUserIsAdmin'];
-        }else{
-            $isadmin['xoops_isadmin']=false;
+        $isAdminStatus = false; // Default to false
+        $isUserStatus = false;
+        $userId = 0;
+        $userName = '';
+
+        // check $xoopsUser object
+        if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser'])) {
+            $isAdminStatus = $GLOBALS['xoopsUser']->isAdmin();
+        }
+        // Fallback to global flag if $xoopsUser isn't a valid object
+        // maintains compatibility
+        elseif (isset($GLOBALS['xoopsUserIsAdmin'])) {
+            $isAdminStatus = (bool)$GLOBALS['xoopsUserIsAdmin'];
+        }
+
+        // Check $xoopsUser object
+        if (isset($GLOBALS['xoopsUser']) && is_object($GLOBALS['xoopsUser'])) {
+            $isUserStatus = true;
+            $userId = $GLOBALS['xoopsUser']->get('uid');
+            $userName = $GLOBALS['xoopsUser']->get('uname');
         }
 
         $this->assign(
             [
+                'isadmin'           => $isAdminStatus,
+                'isuser'            => $isUserStatus,
+                'userid'            => $userId,
+                'uname'             => $userName,
+                'site_url'           => XOOPS_URL,
+                'site_path'          => XOOPS_ROOT_PATH,
+                'langcode'          => _LANGCODE,
+                'charset'           => _CHARSET,
+                'version'           => XOOPS_VERSION,
+                'upload_url'        => XOOPS_UPLOAD_URL,
+                //legacy
+                'xoops_isadmin'     => $isAdminStatus,
                 'xoops_url'         => XOOPS_URL,
                 'xoops_rootpath'    => XOOPS_ROOT_PATH,
                 'xoops_langcode'    => _LANGCODE,
                 'xoops_charset'     => _CHARSET,
                 'xoops_version'     => XOOPS_VERSION,
                 'xoops_upload_url'  => XOOPS_UPLOAD_URL,
+                'xoops_isuser'      => $isUserStatus,
+                'xoops_userid'      => $userId,
+                'xoops_uname'       => $userName,
             ]
         );
 

@@ -5,7 +5,7 @@
 
 <h5 id="notification-options">
     <label for='notification-select'>
-        <input role="switch" type='checkbox' id='notification-select' onclick="slideToggle('.notification-select', this)" value='0'>
+        <input id="notification-select" class="switch" role="switch" type="checkbox" onclick="slideToggle('.notification-select', this)" value="0">
         <img class="svg bell" src="<{$xoops_url}>/images/icons/bell.svg" width="1em" height="1em" alt="Notification"> <{$smarty.const._NOT_NOTIFICATIONOPTIONS}>
     </label>
 </h5>
@@ -16,8 +16,6 @@
 <article class="notification-select" style="display:none">
 
     <h4><{$smarty.const._NOT_ACTIVENOTIFICATIONS}></h4>
-    <p><{$smarty.const._NOT_NOTIFICATIONMETHODIS}>&nbsp;<span class="badge"> <{$user_method}></span>
-        <a  href="<{$editprofile_url|xoops_escape:link}>"><{$smarty.const._NOT_CHANGE}></a></p>
     
     <table class="outer">
         <thead>
@@ -35,13 +33,13 @@
         <tr>
 
             <td><{$category.title}></td>
-            <td>select</td>
+            <td align="center">select</td>
             <td>event</td>
         </tr>
         <{/if}>
         <tr>
             <td></td>
-            <td>
+            <td align="center">
                 <{counter assign=index}>
                 <input type="hidden" name="not_list[<{$index}>][params]" value="<{$category.name}>,<{$category.itemid}>,<{$event.name}>">
                 <input type="checkbox" id="not_list_<{$category.itemid}>_<{$index}>" name="not_list[<{$index}>][status]" value="1" <{if $event.subscribed}>checked="checked"<{/if}>>
@@ -53,18 +51,22 @@
         <{/foreach}>
         <{/foreach}>
         </tbody>
-
+        <tfoot>
+            <tr>
+                <td>
+                    <button type="submit" role="button" class="primary" name="not_submit" value="<{$smarty.const._NOT_UPDATENOW}>"><{$smarty.const._NOT_UPDATENOW}></button>
+                </td>
+                <td></td>
+                <td>
+                    <{$smarty.const._NOT_NOTIFICATIONMETHODIS}>&nbsp;<span class="badge"> <{$user_method}></span> 
+                    <a class="button" href="<{$editprofile_url|xoops_escape:link}>"><{$smarty.const._NOT_CHANGE}></a>
+                </td>
+            </tr>
+        </tfoot>
     </table>
-
-    <footer>
-        <div><{* ! wrap [role=button] with div ! *}>
-            <button type="submit" role="button" class="primary" name="not_submit" value="<{$smarty.const._NOT_UPDATENOW}>"><{$smarty.const._NOT_UPDATENOW}></button>
-        </div>
-    </footer>
-
 </article>
-
 </form>
+
 <script>
     function checkAll(formname, switchid) {
         var ele = document.forms[formname].elements;

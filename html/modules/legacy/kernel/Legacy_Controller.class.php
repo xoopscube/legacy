@@ -1096,19 +1096,17 @@ class Legacy_Controller extends XCube_Controller
     public function logout()
     {
         $successFlag = false;
-        $xoopsUser =& $this->mRoot->mContext->mXoopsUser;
+        $xoopsUser = $this->mRoot->mContext->mXoopsUser;
 
 
         if (is_object($xoopsUser)) {
             $this->mRoot->mLanguageManager->loadModuleMessageCatalog('legacy');
 
             $this->mLogout->call(new XCube_Ref($successFlag), $xoopsUser);
+
             if ($successFlag) {
                 XCube_DelegateUtils::call('Site.Logout.Success', $xoopsUser);
                 // @gigamaster join lang array, 'message' must be of the type string
-                // $msg_array = [_MD_LEGACY_MESSAGE_LOGGEDOUT, _MD_LEGACY_MESSAGE_THANKYOUFORVISIT];
-                // $msg_show = join('<br>', $msg_array);
-                // $this->executeRedirect(XOOPS_URL . '/', 1, $msg_show);
                 $this->executeRedirect(XOOPS_URL . '/', 1, [_MD_LEGACY_MESSAGE_LOGGEDOUT, _MD_LEGACY_MESSAGE_THANKYOUFORVISIT]);
             } else {
                 XCube_DelegateUtils::call('Site.Logout.Fail', $xoopsUser);

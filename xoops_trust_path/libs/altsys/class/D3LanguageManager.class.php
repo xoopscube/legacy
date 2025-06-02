@@ -30,7 +30,9 @@ class D3LanguageManager
      */
     public function __construct()
     {
-        $this->language = preg_replace('/[^0-9a-zA-Z_-]/', '', @$GLOBALS['xoopsConfig']['language']);
+        // Add null coalescing operator to provide default value if language is not set
+        $language = $GLOBALS['xoopsConfig']['language'] ?? $this->default_language;
+        $this->language = preg_replace('/[^0-9a-zA-Z_-]/', '', $language);
 
         $this->salt = mb_substr(md5(XOOPS_ROOT_PATH . XOOPS_DB_USER . XOOPS_DB_PREFIX), 0, 6);
 

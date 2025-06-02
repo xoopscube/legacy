@@ -127,7 +127,7 @@
     <{/if}>
      
     <fieldset>
-            <legend><h5><{$smarty.const._MD_D3FORUM_OPTIONS}></h5></legend>
+        <legend><h5><{$smarty.const._MD_D3FORUM_OPTIONS}></h5></legend>
 
         <!-- approval -->
         <{if $forum.isadminormod && $mode == "edit" && ! $post.approval}>
@@ -236,8 +236,8 @@
             <{/if}>
         </fieldset>
 
-        <{if $mode == "reply"}>
-        <blockquote id="post_reference" class="outer" <{if $ispreview}>style="display:none;"<{/if}>>
+        <{if $mode=="reply"}>
+        <blockquote id="post_reference" class="outer" style="display:none;" <{if $ispreview}>style="display:none;"<{/if}>>
 
         <h4><{$reference_subject}></h4>
         <p><{$smarty.const._MD_D3FORUM_BY}>: <{$reference_name}> <{$smarty.const._MD_D3FORUM_ON}>: <{$reference_time_formatted}></p>
@@ -248,7 +248,7 @@
         <{/if}>
 
 
-	<footer>
+	<footer class="action-control">
         <div class="grid">
         <{if $mode == "reply"}>
 

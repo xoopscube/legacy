@@ -1,13 +1,22 @@
 <{* Smarty assign images to forum topic *}>
-<{if isset($topic)}>
-<{if isset($topic.sticky)}>
-<{assign var="topic_icon_src" value="`$xoops_url`/images/icons/topic_sticky`$topic.bit_new`.svg"}>
-<{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_TOPICSTICKY}>
-<{elseif isset($topic.invisible)}>
-<{assign var="topic_icon_src" value="`$xoops_url`/image/icons/topic_invisible.svg"}>
-<{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_ALT_INVISIBLE}>
+<{if isset($topic) && (is_array($topic) || is_object($topic)) && !empty($topic) }>
+    <{* defaults for bit_new and bit_hot *}>
+    <{assign var="topic_bit_new" value=$topic.bit_new|default:'0'}>
+    <{assign var="topic_bit_hot" value=$topic.bit_hot|default:'0'}>
+
+    <{if isset($topic.sticky)}>
+        <{assign var="topic_icon_src" value="`$xoops_url`/images/icons/topic_sticky`$topic_bit_new`.svg"}>
+        <{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_TOPICSTICKY|default:"Sticky Topic"}>
+    <{elseif isset($topic.invisible)}>
+        <{assign var="topic_icon_src" value="`$xoops_url`/images/icons/topic_invisible.svg"}>
+        <{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_ALT_INVISIBLE|default:"Invisible Topic"}>
+    <{else}>
+        <{assign var="topic_icon_src" value="`$xoops_url`/images/icons/topic_`$topic_bit_new``$topic_bit_hot`.svg"}>
+        <{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_TOPIC|default:"Topic"}>
+    <{/if}>
 <{else}>
-<{assign var="topic_icon_src" value="`$xoops_url`/images/icons/topic_`$topic.bit_new``$topic.bit_hot`.svg"}>
-<{assign var="topic_icon_alt" value=""}>
+    <{* Fallback if $topic not set or empty *}>
+    <{assign var="topic_icon_src" value="`$xoops_url`/images/icons/topic_00.svg"}>
+    <{assign var="topic_icon_alt" value=$smarty.const._MD_D3FORUM_TOPIC|default:"Topic"}>
 <{/if}>
-<{/if}>
+

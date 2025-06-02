@@ -160,7 +160,7 @@ class Bannerstats_BannerEditAction extends Bannerstats_AbstractEditAction
                 $this->mActionForm->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME, _AD_BANNERSTATS_START_DATE, 'YYYY-MM-DDTHH:MM'));
             }
         }
-        error_log("BannerEditAction _doExecute - StartDate String (from ActionForm): '{$startDateStrFromForm}', Parsed Timestamp: {$startTimestamp}");
+        //error_log("BannerEditAction _doExecute - StartDate String (from ActionForm): '{$startDateStrFromForm}', Parsed Timestamp: {$startTimestamp}");
         $this->mObject->set('start_date', $startTimestamp);
 
         $endDateStrFromForm = trim((string)$this->mActionForm->get('end_date'));
@@ -173,7 +173,7 @@ class Bannerstats_BannerEditAction extends Bannerstats_AbstractEditAction
                 $this->mActionForm->addErrorMessage(XCube_Utils::formatString(_AD_BANNERSTATS_ERROR_DATETIME, _AD_BANNERSTATS_DATE_END, 'YYYY-MM-DDTHH:MM'));
             }
         }
-        error_log("BannerEditAction _doExecute - EndDate String (from ActionForm): '{$endDateStrFromForm}', Parsed Timestamp: {$endTimestamp}");
+        //error_log("BannerEditAction _doExecute - EndDate String (from ActionForm): '{$endDateStrFromForm}', Parsed Timestamp: {$endTimestamp}");
         $this->mObject->set('end_date', $endTimestamp);
         
         if ($this->mObject->isNew()) {
@@ -258,7 +258,7 @@ class Bannerstats_BannerEditAction extends Bannerstats_AbstractEditAction
         if (class_exists('XCube_DelegateUtils')) {
             XCube_DelegateUtils::call('Legacy.Admin.Event.AddMessage', $message);
         } else {
-            error_log("Bannerstats_BannerEditAction: Success message (DelegateUtils not available): " . $message);
+            //error_log("Bannerstats_BannerEditAction: Success message (DelegateUtils not available): " . $message);
         }
 
         $controller->executeForward('./index.php?action=BannerList');
@@ -281,7 +281,7 @@ class Bannerstats_BannerEditAction extends Bannerstats_AbstractEditAction
             if (class_exists('XCube_DelegateUtils')) {
                 XCube_DelegateUtils::call('Legacy.Admin.Event.AddErrorMessage', $errorMessage);
             } else {
-                error_log("Bannerstats_BannerEditAction: DB Update Failed (DelegateUtils not available): " . $errorMessage);
+                //error_log("Bannerstats_BannerEditAction: DB Update Failed (DelegateUtils not available): " . $errorMessage);
             }
             $controller->executeRedirect('./index.php?action=BannerList', 1, $errorMessage);
         }

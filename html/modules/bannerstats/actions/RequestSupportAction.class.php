@@ -129,7 +129,7 @@ class Bannerstats_RequestSupportAction
             $token = BannerClientToken::create('support_request_form');
             $this->xoopsTpl->assign('csrf_token', $token);
         } else {
-            error_log("Bannerstats Error: BannerClientToken class not found.");
+            //error_log("Bannerstats Error: BannerClientToken class not found.");
         }
         
         $template_vars = $this->xoopsTpl->get_template_vars();
@@ -207,7 +207,7 @@ class Bannerstats_RequestSupportAction
         if (!is_object($xoopsMailer)) {
             $errorMessage = _MD_BANNERSTATS_ERR_MAILER;
             $this->xoopsTpl->assign('bannerstats_error_message', $errorMessage);
-            error_log("Bannerstats: Failed to get mailer object from XCube_Root.");
+            //error_log("Bannerstats: Failed to get mailer object from XCube_Root.");
             $_SESSION['bannerstats_support_form_data'] = $_POST;
             return $this->getDefaultView();
         }
@@ -242,7 +242,7 @@ class Bannerstats_RequestSupportAction
         } else {
             $errorMessage = _MD_BANNERSTATS_ERR_SUPPORT_SENT;
             $this->xoopsTpl->assign('bannerstats_error_message', $errorMessage . ' ' . $xoopsMailer->getErrors(true));
-            error_log("Bannerstats: Failed to send support email. " . $xoopsMailer->getErrors(true));
+            //error_log("Bannerstats: Failed to send support email. " . $xoopsMailer->getErrors(true));
             $_SESSION['bannerstats_support_form_data'] = $_POST;
             return $this->getDefaultView();
         }

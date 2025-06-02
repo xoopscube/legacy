@@ -419,6 +419,7 @@ function d3forum_render_comments( $mydirname, $forum_id, $params, &$smarty ) {
 			// posts array
 			$posts[] = [
 				'id'                       => (int) $post_row['post_id'],
+				'isadmin'	    		   => $isadmin,
 				'subject'                  => $myts->makeTboxData4Show( $post_row['subject'], $post_row['number_entity'], $post_row['special_entity'] ),
 				'pid'                      => (int) $post_row['pid'],
 				'topic_id'                 => (int) $post_row['topic_id'],

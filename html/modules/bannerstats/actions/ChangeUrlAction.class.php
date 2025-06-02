@@ -149,7 +149,7 @@ class Bannerstats_ChangeUrlAction
         if (!BannerClientToken::validate($_POST['csrf_token'] ?? '', 'change_url_form')) {
             $this->message = defined('_MD_BANNERSTATS_INVALID_TOKEN') ? _MD_BANNERSTATS_INVALID_TOKEN : 'Invalid security token. Please try again.';
             $this->isError = true;
-            error_log("ChangeUrlAction: CSRF token validation failed.");
+            //error_log("ChangeUrlAction: CSRF token validation failed.");
             // To repopulate the form correctly, we might need to pass back the bid
             $_REQUEST['bid'] = isset($_POST['bid']) ? (int)$_POST['bid'] : 0;
             return $this->getDefaultView();
@@ -194,7 +194,7 @@ class Bannerstats_ChangeUrlAction
             $this->message = defined('_MD_BANNERSTATS_URL_UPDATE_FAILED') ? 
                 _MD_BANNERSTATS_URL_UPDATE_FAILED : 'Failed to update banner URL. Please try again.';
             $this->isError = true;
-            error_log("ChangeUrlAction: Failed to update banner {$bid} for client {$clientId}.");
+            //error_log("ChangeUrlAction: Failed to update banner {$bid} for client {$clientId}.");
             $this->prepareMessageTemplate();
             $_REQUEST['bid'] = $bid; // To repopulate form
             return $this->getDefaultView();

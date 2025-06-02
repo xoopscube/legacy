@@ -102,7 +102,7 @@ class Bannerstats_EmailStatsAction
                 } else {
                     $this->message = _MD_BANNERSTATS_EMAIL_SENT_FAIL . "<!-- Mailer Error: " . $xoopsMailer->getErrors(true) . " -->";
                     $this->isError = true;
-                    error_log("BannerStats Email Error: Failed to send stats to {$clientEmail} for banner {$bid}. Mailer errors: " . $xoopsMailer->getErrors(false));
+                    //error_log("BannerStats Email Error: Failed to send stats to {$clientEmail} for banner {$bid}. Mailer errors: " . $xoopsMailer->getErrors(false));
                 }
             }
         }
