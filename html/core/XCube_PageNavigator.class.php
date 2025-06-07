@@ -204,8 +204,8 @@ class XCube_PageNavigator {
 			if ( 0 === (is_countable($tarr) ? count( $tarr ) : 0) ) {
 				return $this->mUrl;
 			}
-            // TODO XCL 2.3.x 'strpos' call can be converted to 'str_contains'
-			if ( false !== strpos( $this->mUrl, '?' ) ) {
+			// Use str_contains for PHP 8+
+			if ( str_contains( $this->mUrl, '?' ) ) {
 				return $this->mUrl . '&amp;' . implode( '&amp;', $tarr );
 			}
 
@@ -228,8 +228,8 @@ class XCube_PageNavigator {
 
 		$delimiter = '?';
 		$url       = $this->getRenderBaseUrl( $mask );
-        // TODO XCL 2.3.x 'strpos' call can be converted to 'str_contains'
-		if ( false !== strpos( $url, '?' ) ) {
+		// Use str_contains for PHP 8+
+		if ( str_contains( $url, '?' ) ) {
 			$delimiter = '&amp;';
 		}
 
@@ -241,13 +241,12 @@ class XCube_PageNavigator {
 			$tarr = [];
 
 			foreach ( $this->mExtra as $key => $value ) {
-				//$tarr[]=$key."=".urlencode($value);
 				$this->_renderExtra( $key, $value, $tarr );
 			}
 
 			$tarr[] = $this->getPerpageKey() . '=' . $this->mPerpage;
-            // TODO XCL 2.3.x 'strpos' call can be converted to 'str_contains'
-			if ( false !== strpos( $this->mUrl, '?' ) ) {
+			// Use str_contains for PHP 8+
+			if ( str_contains( $this->mUrl, '?' ) ) {
 				return $this->mUrl . '&amp;' . implode( '&amp;', $tarr );
 			}
 
@@ -261,12 +260,12 @@ class XCube_PageNavigator {
 		$tarr = [];
 
 		foreach ( $this->mExtra as $key => $value ) {
-			//$tarr[]=$key."=".urlencode($value);
 			$this->_renderExtra( $key, $value, $tarr );
 		}
 
 		foreach ( $this->mSort as $key => $value ) {
-			$tarr[] = $key . '=' . urlencode( $value );
+			// add null check before calling urlencode
+			$tarr[] = $key . '=' . ( $value !== null ? urlencode( $value ) : '' );
 		}
 
 		$tarr[] = $this->getPerpageKey() . '=' . $this->getPerpage();
@@ -274,8 +273,8 @@ class XCube_PageNavigator {
 		if ( null !== $page ) {
 			$tarr[] = $this->getStartKey() . '=' . (int) $page;
 		}
-        // TODO XCL 2.3.x 'strpos' call can be converted to 'str_contains'
-		if ( false !== strpos( $this->mUrl, '?' ) ) {
+		// Use str_contains for PHP 8+
+		if ( str_contains( $this->mUrl, '?' ) ) {
 			return $this->mUrl . '&amp;' . implode( '&amp;', $tarr );
 		}
 

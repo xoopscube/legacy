@@ -407,7 +407,7 @@ class XoopsModuleHandler extends XoopsObjectHandler
     public function &getByDirname($dirname)
     {
         $ret = false;
-        $dirname =    trim($dirname);
+        $dirname = trim((string) $dirname);
         $cache = &$this->_cachedModule_dirname;
         if (!empty($cache[$dirname])) {
             $ret = $cache[$dirname];
