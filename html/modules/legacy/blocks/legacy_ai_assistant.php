@@ -326,42 +326,39 @@ function b_legacy_ai_assistant_edit($options)
     $form .= '<tr>';
     $form .= '<td class="head">' . _MB_LEGACY_BLOCK_AI_TOKEN . '</td>';
     $form .= '<td class="even">';
-    $form .= '<input type="text" name="options[0]" value="' . 
-            htmlspecialchars($options['api_token']) . 
-            '" size="60" placeholder="hf_..." required>';
+    $form .= '<input type="text" name="options[0]" value="' 
+          .  htmlspecialchars($options['api_token'] ?? '', ENT_QUOTES | ENT_HTML5) 
+          .  '" size="60" placeholder="hf_..." required>';
     $form .= '</td></tr>';
     
     // Max tokens
     $form .= '<tr>';
     $form .= '<td class="head">' . _MB_LEGACY_BLOCK_AI_TOKENS . '</td>';
     $form .= '<td class="even">';
-    $form .= '<input type="number" name="options[1]" value="' . 
-            intval($options['max_tokens']) . '" min="1" max="4000">';
+    $form .= '<input type="number" name="options[1]" value="' 
+          .  intval($options['max_tokens'] ?? 1000) . '" min="1" max="4000">';
     $form .= '</td></tr>';
     
     // Temperature
     $form .= '<tr>';
     $form .= '<td class="head">' . _MB_LEGACY_BLOCK_AI_TEMP . '</td>';
     $form .= '<td class="even">';
-    $form .= '<input type="number" name="options[2]" value="' . 
-            floatval($options['temperature']) . '" min="0" max="1" step="0.1">';
+    $form .= '<input type="number" name="options[2]" value="' 
+          .  floatval($options['temperature'] ?? 0.7) . '" min="0" max="1" step="0.1">';
     $form .= '</td></tr>';
     
     // Model selection - Updated to use Hugging Face models
     $form .= '<tr>';
     $form .= '<td class="head">' . _MB_LEGACY_BLOCK_AI_MODEL . '</td>';
     $form .= '<td class="even"><select name="options[3]">';
-    $form .= '<option value="facebook/mbart-large-50-many-to-many-mmt"' . 
-            ($options['model'] === 'facebook/mbart-large-50-many-to-many-mmt' ? ' selected' : '') . 
-            '>mBART-50 (Translation)</option>';
-    $form .= '<option value="facebook/bart-large-cnn"' . 
-            ($options['model'] === 'facebook/bart-large-cnn' ? ' selected' : '') . 
-            '>BART-CNN (Summarization)</option>';
+    $form .= '<option value="' . ($options['model'] ?? 'facebook/mbart-large-50-many-to-many-mmt') . '" ' 
+          . (($options['model'] ?? 'facebook/mbart-large-50-many-to-many-mmt') === 'facebook/mbart-large-50-many-to-many-mmt' ? ' selected' : '') . '>mBART-50 (Translation)</option>';
+    $form .= '<option value="' . ($options['model'] ?? 'facebook/bart-large-cnn') . '" ' 
+          . (($options['model'] ?? 'facebook/bart-large-cnn') === 'facebook/bart-large-cnn' ? ' selected' : '') . '>BART-CNN (Summarization)</option>';
     $form .= '</select></td></tr>';
 
     // Side (hidden)
-    $form .= '<input type="hidden" name="options[4]" value="' . 
-            intval($options['side']) . '">';
+    $form .= '<input type="hidden" name="options[4]" value="' . intval($options['side'] ?? 0) . '">';
     
     $form .= '</table>';
 
