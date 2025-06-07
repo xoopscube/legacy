@@ -22,7 +22,7 @@ require_once XOOPS_MODULE_PATH . '/stdCache/admin/class/CacheManager.class.php';
 class StdCache_AdminNotificationMailBuilder extends XCube_AdminNotificationMailBuilder
 {
     // Static properties to hold configuration values
-    // These will be initialized by initializeEffectiveConfig()
+    // initialized by initializeEffectiveConfig()
     private static bool $sIsConfigInitialized = false;
 
     public static int $sEffectiveIntervalSeconds;

@@ -71,19 +71,17 @@ class stdCache_CacheStatsAction extends stdCache_Action
         } catch (Exception $e) {
 
             $this->mCacheManager = null; 
-            // Optionally, add an error message to be displayed
+            // add an error message to be displayed
             if (class_exists('XCube_DelegateUtils')) {
                 XCube_DelegateUtils::call('Legacy.Admin.Event.AddErrorMessage', 'Error: Cache statistics service is currently unavailable.');
             }
 
         }
         
-        // Get XoopsModule object
         if (is_object($this->mRoot->mContext->mModule)) {
             $this->mModuleObject = $this->mRoot->mContext->mModule->getXoopsModule();
         }
 
-        // Prepare the form for token if any planned action on this page
         $this->mActionForm = new CacheStatsForm();
         $this->mActionForm->prepare();
 
@@ -98,23 +96,13 @@ class stdCache_CacheStatsAction extends stdCache_Action
         if ($this->mCacheManager) {
             $this->mStats = $this->mCacheManager->getCacheStats();
         } else {
-            // If CacheManager failed to initialize, mStats will be empty
             $this->mStats = []; 
-            // Error message should have been added in prepare()
         }
-        return STDCACHE_FRAME_VIEW_INDEX; // Use VIEW_INDEX for the main display
+        return STDCACHE_FRAME_VIEW_INDEX;
     }
 
-    /**
-     * Handles POST requests. Currently, no specific POST actions are defined for this page
-     * beyond what ActionFrame handles (like token validation if a form were submitted)
-     */
     public function execute(&$controller, &$xoopsUser)
     {
-        // This action is primarily for displaying stats (GET request)
-        // If there were POST actions (e.g., a "Refresh Stats" button with a form),
-        // any planned action should be handled here after token validation
-        // For now, it defaults to showing the stats
         return $this->getDefaultView($controller, $xoopsUser);
     }
 
@@ -136,10 +124,9 @@ class stdCache_CacheStatsAction extends stdCache_Action
             $render->setAttribute('module', $this->mModuleObject);
         }
         
-        // Ensure mCacheManager is available for formatting sizes
+        // check mCacheManager for formatting sizes
         if (!$this->mCacheManager && class_exists('stdCache_CacheManager')) {
-            // Attempt to re-initialize if it failed in prepare but is needed now
-            // This is a fallback; ideally, prepare() should handle it
+            // fallback to re-initialize if it failed in prepare
             try {
                 $this->mCacheManager = new stdCache_CacheManager();
             } catch (Exception $e) {
@@ -149,22 +136,18 @@ class stdCache_CacheStatsAction extends stdCache_Action
             }
         }
         
-        // Fetch module configurations
         $moduleConfigs = [];
         if ($this->mCacheManager) {
             $moduleConfigs = $this->mCacheManager->getConfigs();
         }
-        // Assign the notification enable status to the template
-        // Use !empty() to treat 0, null, false, etc., as disabled
+
         $isNotificationEnabled = !empty($moduleConfigs['cache_limit_alert_enable']);
         
-
-        // Helper function to format size, using CacheManager if available
         $formatSizeFunc = function($bytes) {
             if ($this->mCacheManager) {
                 return $this->mCacheManager->formatSize($bytes);
             }
-            // Basic fallback formatter if CacheManager is unavailable
+            // Basic fallback formatter
             if (!is_numeric($bytes)) return '0 B';
             $units = ['B', 'KB', 'MB', 'GB', 'TB'];
             $bytes = max((float)$bytes, 0);
@@ -177,7 +160,7 @@ class stdCache_CacheStatsAction extends stdCache_Action
 
         // Calculate and set stats attributes for easier the template design
         $smarty_cache_current_bytes = (float)($this->mStats['cache_size'] ?? 0);
-        $smarty_cache_limit_bytes = (float)($this->mStats['cache_limit_smarty'] ?? 0); // This is the general limit, not notification limit
+        $smarty_cache_limit_bytes = (float)($this->mStats['cache_limit_smarty'] ?? 0); // the general limit, not notification limit
         $cache_percentage_raw = ($smarty_cache_limit_bytes > 0) ? ($smarty_cache_current_bytes / $smarty_cache_limit_bytes) * 100 : 0;
         $cache_percentage_bar = max(0, min(100, $cache_percentage_raw));
         $cache_percentage_text = round($cache_percentage_raw, 0);
@@ -231,16 +214,13 @@ class stdCache_CacheStatsAction extends stdCache_Action
 
     public function executeViewSuccess(&$controller, &$xoopsUser, &$render)
     {
-        // This action typically doesn't have a separate "success" view from a POST
-        // If it did, it would redirect or show a success message
-        // For now, redirecting to itself (which will re-render stats)
         $controller->executeForward('./index.php?action=CacheStats');
     }
 
     public function executeViewError(&$controller, &$xoopsUser, &$render)
     {
         parent::executeViewError($controller, $xoopsUser, $render); 
-        $this->_setupViewCommon($render); // Display the stats page, errors will be shown by messages
+        $this->_setupViewCommon($render);
         return true;
     }
 }

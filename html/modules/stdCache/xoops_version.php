@@ -55,24 +55,24 @@ $modversion['blocks'][1]['options'] = '60';
 $modversion['config'] = [
     [
         'name'        => 'cache_limit_smarty',
-        'title'       => '_MI_STDCACHE_CACHE_LIMIT',
-        'description' => '_MI_STDCACHE_CACHE_LIMIT_DESC',
+        'title'       => '_MI_STDCACHE_CONF_CACHE_LIMIT',
+        'description' => '_MI_STDCACHE_CONF_CACHE_LIMIT_DESC',
         'formtype'    => 'textbox',
         'valuetype'   => 'int',
         'default'     => 50000000 // 50MB (50 * 1024 * 1024)
     ],
     [
         'name'        => 'cache_limit_cleanup',
-        'title'       => '_MI_STDCACHE_CACHE_CLEANUP_LIMIT',
-        'description' => '_MI_STDCACHE_CACHE_CLEANUP_LIMIT_DESC',
+        'title'       => '_MI_STDCACHE_CONF_CACHE_CLEANUP_LIMIT',
+        'description' => '_MI_STDCACHE_CONF_CACHE_CLEANUP_LIMIT_DESC',
         'formtype'    => 'textbox',
         'valuetype'   => 'int',
         'default'     => 45000000 // 45MB
     ],
     [
         'name'        => 'cache_limit_compiled',
-        'title'       => '_MI_STDCACHE_COMPILED_TEMPLATES_LIMIT',
-        'description' => '_MI_STDCACHE_COMPILED_TEMPLATES_LIMIT_DESC',
+        'title'       => '_MI_STDCACHE_CONF_COMPILED_TEMPLATES_LIMIT',
+        'description' => '_MI_STDCACHE_CONF_COMPILED_TEMPLATES_LIMIT_DESC',
         'formtype'    => 'textbox',
         'valuetype'   => 'int',
         'default'     => 20000000 // 20MB

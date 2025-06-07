@@ -24,19 +24,17 @@ class stdCache_AbstractCacheManager
     {
         $root = XCube_Root::getSingleton();
         $this->xoopsConfig = $root->mContext->mModuleConfig;
-        // Corrected line to get the logger from the controller
         if (isset($root->mController) && is_object($root->mController)) {
             $this->logger = $root->mController->mLogger;
         } else {
-            // Fallback or error handling
             $this->logger = null; 
         }
         
         $this->cacheDirs = [
-            'templates_c' => XOOPS_TRUST_PATH . '/templates_c', // Smarty compiled templates
-            'cache' => XOOPS_TRUST_PATH . '/cache',      // Smarty cache (from XOOPS_TRUST_PATH)
+            'templates_c' => XOOPS_TRUST_PATH . '/templates_c',
+            'cache' => XOOPS_TRUST_PATH . '/cache',
             'logs' => XOOPS_TRUST_PATH . '/cache/logs', 
-            'uploads' => XOOPS_TRUST_PATH . '/uploads'  // Changed to prevent system assets delete
+            'uploads' => XOOPS_TRUST_PATH . '/uploads'
         ];
     }
 

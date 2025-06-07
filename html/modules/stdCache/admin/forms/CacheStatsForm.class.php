@@ -19,10 +19,6 @@ require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class CacheStatsForm extends XCube_ActionForm
 {
-    /**
-     * If the request is GET, never return token name
-     * This allows an action to have multiple views
-     */
     public function getTokenName()
     {
         // This form is used for the stats page
@@ -36,17 +32,9 @@ class CacheStatsForm extends XCube_ActionForm
         }
     }
 
-    /**
-     * Get the error message for token validation failure
-     * Returning null means the framework's default token error handling is used
-     * or return a specific message like _MD_LEGACY_ERROR_TOKEN,
-     * but that would require loading the legacy language file.
-     */
     public function getTokenErrorMessage()
     {
-        return null; // Use default framework token error message if any
-         // Alternative if load legacy language
-        // return defined('_MD_LEGACY_ERROR_TOKEN') ? _MD_LEGACY_ERROR_TOKEN : 'Token error.';
+        return null;
     }
 
     public function prepare()

@@ -14,12 +14,6 @@ if (!defined('XOOPS_ROOT_PATH')) {
     exit();
 }
 
-// These constants define the possible return values from action methods,
-// guiding the ActionFrame on which view method to call
-// define('STDCACHE_FRAME_PERFORM_SUCCESS', 1); // Unused by current actions or ActionFrame logic
-// define('STDCACHE_FRAME_PERFORM_FAIL', 2);
-// define('STDCACHE_FRAME_INIT_SUCCESS', 3);
-
 // These VIEW constants ARE USED by the ActionFrame's switch statement
 // and are expected to be returned by action methods
 define('STDCACHE_FRAME_VIEW_NONE', 1);     // Action handles rendering or redirects, no further view needed
@@ -119,7 +113,7 @@ class stdCache_ActionFrame
             $viewStatus = $this->mAction->getDefaultView($controller, $this->mRoot->mContext->mXoopsUser);
         }
 
-        // The action's executeView* methods are responsible for setting the page title
+        // The action's executeView* methods set the page title
         $render = $this->mRoot->mContext->mModule->getRenderTarget();
 
         switch ($viewStatus) {
@@ -146,7 +140,7 @@ class stdCache_ActionFrame
                 break;
             default:
                 trigger_error("Unknown view status: {$viewStatus} for action: " . $this->mActionName, E_USER_WARNING);
-                // Optionally, default to an error view if appropriate
+                // or default to an error view
                 // $this->mAction->executeViewError($controller, $this->mRoot->mContext->mXoopsUser, $render);
                 break;
         }

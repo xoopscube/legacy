@@ -24,10 +24,7 @@ class stdCache_CacheConfigForm extends XCube_ActionForm
      */
     public function prepare()
     {
-        //
-        // Set form properties (defines the internal properties of the form object)
-        // These should match the names of your config items
-        //
+
         $this->mFormProperties['cache_limit_smarty'] = new XCube_IntProperty('cache_limit_smarty');
         $this->mFormProperties['cache_limit_alert_trigger'] = new XCube_IntProperty('cache_limit_alert_trigger');
         $this->mFormProperties['cache_limit_cleanup'] = new XCube_IntProperty('cache_limit_cleanup');
@@ -37,7 +34,6 @@ class stdCache_CacheConfigForm extends XCube_ActionForm
         //
         // Set field properties (defines validation rules and messages)
         //
-        // Cache limit (in bytes)
         $this->mFieldProperties['cache_limit_smarty'] = new XCube_FieldProperty($this);
         $this->mFieldProperties['cache_limit_smarty']->setDependsByArray(['required', 'intRange']);
         $this->mFieldProperties['cache_limit_smarty']->addMessage('required', _AD_STDCACHE_ERROR_REQUIRED, _AD_STDCACHE_CACHE_LIMIT);
@@ -120,7 +116,6 @@ class stdCache_CacheConfigForm extends XCube_ActionForm
     {
         if (isset($this->mFieldProperties[$fieldName])) {
             $fieldProperty = $this->mFieldProperties[$fieldName];
-            // Access the mVariables public property directly
             if (isset($fieldProperty->mVariables['min'])) {
                 return $fieldProperty->mVariables['min'];
             }
@@ -138,11 +133,10 @@ class stdCache_CacheConfigForm extends XCube_ActionForm
     {
         if (isset($this->mFieldProperties[$fieldName])) {
             $fieldProperty = $this->mFieldProperties[$fieldName];
-            // Access the mVariables public property directly
             if (isset($fieldProperty->mVariables['max'])) {
                 return $fieldProperty->mVariables['max'];
             }
         }
-        return null; // large number or null to omit the attribute
+        return null; // large number or null
     }
 }

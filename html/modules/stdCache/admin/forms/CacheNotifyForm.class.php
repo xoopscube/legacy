@@ -22,30 +22,19 @@ require_once XOOPS_ROOT_PATH . '/core/XCube_ActionForm.class.php';
 
 class CacheNotifyForm extends XCube_ActionForm
 {
-    /**
-     * Get the token name for CSRF protection.
-     * @return string Token name
-     */
     public function getTokenName()
     {
         return 'module.stdCache.CacheNotifyForm.TOKEN';
     }
 
-    /**
-     * Get the error message for token validation failure
-     */
     public function getTokenErrorMessage()
     {
-        // Let parent class handle error message
         return null;
     }
 
-    /**
-     * Prepares the form, parent::prepare() generates and stores the token
-     */
     public function prepare()
     {
-        parent::prepare(); //token generation
+        parent::prepare();
     }
 
     // new fields added to this form require validation,

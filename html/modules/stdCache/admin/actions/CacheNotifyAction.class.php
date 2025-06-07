@@ -19,17 +19,10 @@ if (!defined('XOOPS_ROOT_PATH')) {
 }
 
 require_once __DIR__ . '/../class/Action.class.php';
-require_once __DIR__ . '/../forms/CacheNotifyForm.class.php'; // Still needed for the CSRF token
+require_once __DIR__ . '/../forms/CacheNotifyForm.class.php'; // Still needed for token
 require_once __DIR__ . '/../class/CacheManager.class.php';
-
-// Core Mail Builder (contains XCube_MailDirector, XCube_AbstractMailBuilder, etc.)
 require_once XOOPS_ROOT_PATH . '/core/XCube_MailBuilder.class.php';
-// stdCache module's specific mail builder
 require_once __DIR__ . '/../class/AdminNotificationMailBuilder.class.php';
-// XCube_DelegateUtils if not autoloaded or included by the core
-if (!class_exists('XCube_DelegateUtils') && file_exists(XOOPS_ROOT_PATH . '/core/XCube_DelegateUtils.class.php')) {
-    require_once XOOPS_ROOT_PATH . '/core/XCube_DelegateUtils.class.php';
-}
 
 class stdCache_CacheNotifyAction extends stdCache_Action
 {
@@ -51,7 +44,7 @@ class stdCache_CacheNotifyAction extends stdCache_Action
     /**
      * @var XoopsModule
      */
-    protected $mModuleObject = null; // Still useful for module context in mail builder
+    protected $mModuleObject = null;
 
     public function __construct($adminFlag = false)
     {
@@ -128,10 +121,9 @@ class stdCache_CacheNotifyAction extends stdCache_Action
 
             if ($this->mActionForm->hasError()) {
                 // An error message (e.g., token error) added by validate()
-                return STDCACHE_FRAME_VIEW_INPUT; // Re-display form with errors
+                return STDCACHE_FRAME_VIEW_INPUT;
             }
 
-            // If we reach here, the token was valid for other commands
             if ($cmd === 'testNotification') {
                 return $this->_executeTestNotification($controller, $xoopsUser);
             } else {
@@ -146,7 +138,6 @@ class stdCache_CacheNotifyAction extends stdCache_Action
             return STDCACHE_FRAME_VIEW_NONE;
         }
 
-        // Default view for GET requests or if no specific command
         return STDCACHE_FRAME_VIEW_INPUT;
     }
 
@@ -185,7 +176,6 @@ class stdCache_CacheNotifyAction extends stdCache_Action
             );
             $this->mCacheManager->logOperation(sprintf('Last notification time updated to %d.', $newNotifyTime), 'info');
         } else {
-            // saveConfig in CacheManager should log the specific failure reason to STDCACHE_LOG
             $this->mActionForm->addErrorMessage('Failed to update the last notification time in the configuration. Check stdCache logs.');
             $this->mCacheManager->logOperation('Failed to update last_cache_alert_time via manual form.', 'error');
         }
@@ -211,7 +201,7 @@ class stdCache_CacheNotifyAction extends stdCache_Action
                 defined('_AD_STDCACHE_TEST_ALERT_DISABLED') ? _AD_STDCACHE_TEST_ALERT_DISABLED : 'Notifications are disabled in module settings. Test cannot proceed.'
             );
             $this->mCacheManager->logOperation('Test notification aborted: Notifications disabled in preferences.', 'warning');
-            return STDCACHE_FRAME_VIEW_INPUT; // Stay on page with error
+            return STDCACHE_FRAME_VIEW_INPUT;
         }
 
         $this->mCacheManager->logOperation('Proceeding to trigger test notification via XCube_MailBuilder.', 'info');
@@ -262,10 +252,10 @@ class stdCache_CacheNotifyAction extends stdCache_Action
             $this->mActionForm->addErrorMessage('An unexpected error occurred while sending the test email: ' . htmlspecialchars($e->getMessage(), ENT_QUOTES));
             $this->mCacheManager->logOperation('Test notification exception: ' . $e->getMessage(), 'error');
 
-            return STDCACHE_FRAME_VIEW_INPUT; // Stay on page with error 
+            return STDCACHE_FRAME_VIEW_INPUT; 
         }
         
-        // Always return to the input view to show messages
+        // input view to show messages
        // return STDCACHE_FRAME_VIEW_INPUT;
     }
 
@@ -280,13 +270,11 @@ class stdCache_CacheNotifyAction extends stdCache_Action
             $render->setAttribute('module', $this->mModuleObject);
         }
 
-        // Fetch module configurations
         $moduleConfigs = [];
         if ($this->mCacheManager) {
             $moduleConfigs = $this->mCacheManager->getConfigs();
         }
-        // Assign the notification enable status to the template
-        // Use !empty() to treat 0, null, false, etc., as disabled
+
         $isNotificationEnabled = !empty($moduleConfigs['cache_limit_alert_enable']);
         $render->setAttribute('isNotificationEnabled', $isNotificationEnabled);
 

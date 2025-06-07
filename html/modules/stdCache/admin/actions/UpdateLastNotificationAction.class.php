@@ -25,16 +25,14 @@ class StdCache_UpdateLastNotificationAction extends stdCache_Action
      * For our specific AJAX call (identified by POST and specific parameters),
      * we bypass ActionFrame's admin check and handle token security within execute()
      *
-     * @return bool False if it's the expected AJAX call, true otherwise (to enforce admin login)
+     * @return bool False if expected AJAX call, true to enforce admin login
      */
     public function isSecure()
     {
         if ('POST' === xoops_getenv('REQUEST_METHOD') && isset($_POST['timestamp']) && isset($_POST['token'])) {
             // This is our expected AJAX call. Security (token) will be handled in execute()
-            // Returning false tells ActionFrame to not enforce its standard admin login check
             return false; 
         }
-        // For any other type of access, require standard admin security checks by ActionFrame
         return true;
     }
     
@@ -56,10 +54,6 @@ class StdCache_UpdateLastNotificationAction extends stdCache_Action
         $timestampValue = $_POST['timestamp'] ?? ''; 
 
         // Validate security token
-        // The 'false' for $clearTokenIfValid is used because $GLOBALS['xoopsSecurity']->createToken()
-        // (as used in the preload's AJAX script) typically creates a general session token
-        // that might be used elsewhere on the page. If it were a token specifically for this
-        // single AJAX action, clearing it (true) would be appropriate
         if (!$GLOBALS['xoopsSecurity']->validateToken($submittedToken, false)) { 
             $this->logOperation('Token validation FAILED. Submitted: ' . htmlspecialchars($submittedToken), 'error');
             header('Content-Type: application/json');
@@ -115,7 +109,7 @@ class StdCache_UpdateLastNotificationAction extends stdCache_Action
             XCube_DelegateUtils::call('Legacy.Admin.Event.AddErrorMessage', 'This action is intended for AJAX calls only.');
         }
         $controller->executeRedirect(XOOPS_URL . '/modules/stdCache/admin/index.php?action=CacheStats', 1);
-        return STDCACHE_FRAME_VIEW_NONE; // no further rendering by ActionFrame
+        return STDCACHE_FRAME_VIEW_NONE;
     }
 
     /**
@@ -125,7 +119,7 @@ class StdCache_UpdateLastNotificationAction extends stdCache_Action
      * @param string $type    Log type (e.g., 'info', 'error', 'warning', 'debug')
      */
     protected function logOperation($message, $type = 'info') {
-        // Using the same STDCACHE_LOG prefix for consistency with AbstractCacheManager
+        // use STDCACHE_LOG prefix
         error_log("STDCACHE_LOG ({$type}) UpdateLastNotificationAction: {$message}");
     }
 }

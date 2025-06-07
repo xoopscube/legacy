@@ -27,15 +27,30 @@
 
     <section id="help-features">
 
-        <h3>Features</h3>
+        <h3>Features & Process Flow</h3>
 
-        <p>With the introduction of a new Cache Policy concept called Standard Cache, You can configure the output cache settings in any module or block.
-        <p>Its purpose is to reduce the time it takes to perform certain scenarios caching files of modules and blocks.
-        <p>When the cache is enabled, the cache feature saves automatically the content to a file. If cache files are available, it prevents the extra logic SQL of blocks and modules.
-        At the same time, it checks user's access permissions before delivering the cached module page or block content.
-        This is a useful and powerful feature to speed up access to your web pages.
+        <p>The Standard Cache module provides robust tools to manage your website's cache, enhancing performance and stability. Key features include:</p>
+        <ul>
+            <li><strong>Comprehensive Cache Management:</strong> Monitors and manages various cache types including Smarty cache, compiled templates, system logs, and user uploads.</li>
+            <li><strong>Configurable Limits:</strong> Administrators can set specific size limits for different cache types, including overall limits, notification thresholds, and automated cleanup thresholds.</li>
+            <li><strong>Automated Admin Notifications:</strong> When a cache directory approaches or exceeds its configured notification limit, an email alert is automatically sent to administrators.</li>
+            <li><strong>Intelligent Email Delay:</strong> After a notification email is sent, a record of the notification time (<code>last_cache_alert_time</code>) is stored. This prevents repeated emails for the same issue until a defined interval (e.g., 24 hours) has passed, avoiding alert fatigue.</li>
+            <li><strong>Automated Cache Cleanup:</strong> If cache sizes exceed their configured cleanup limits, the module can automatically clear older or less-used files to free up space.</li>
+            <li><strong>Manual Cache Clearing:</strong> Provides an admin interface to manually clear specific cache types, with options to clear all files or only those older than a certain age.</li>
+            <li><strong>Cache Statistics:</strong> Offers a dashboard view of current cache sizes, file counts, and configured limits, helping administrators monitor cache health.</li>
+        </ul>
+
+        <h4>Process Flow Summary:</h4>
+        <ol>
+            <li><strong>Configuration:</strong> Admins set cache size limits (general, notification, cleanup) and enable/disable notifications in the module preferences.</li>
+            <li><strong>Monitoring & Notification:</strong> The system continuously monitors cache usage. If a cache size exceeds its *notification limit*, an email alert is triggered.</li>
+            <li><strong>Notification Cooldown:</strong> The <code>last_cache_alert_time</code> is updated to ensure emails are not sent too frequently (e.g., respecting a 24-hour delay).</li>
+            <li><strong>Automated Cleanup:</strong> If a cache size exceeds its *cleanup limit*, the module automatically removes older files to bring usage back within acceptable levels.</li>
+        </ol>
+        <p>This combination of monitoring, notification, and cleanup helps maintain optimal server performance and resource usage.</p>
 
     </section>
+
 
 
     <section id="help-policy">
