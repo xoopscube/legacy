@@ -300,7 +300,7 @@ class User_LegacypageFunctions
                     $url .= '?xoops_redirect=' . rawurlencode($redirect);
                 }
                 $root = XCube_Root::getSingleton();
-                $root->mController->executeRedirect($url, 5, _MD_USER_MESSAGE_REPASSWORD);
+                $root->mController->executeRedirect($url, 3, _MD_USER_MESSAGE_REPASSWORD);
             }
         }
     }

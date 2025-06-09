@@ -47,6 +47,31 @@
         <img src="<{$xoops_url}>/images/icons/login.svg" width="1em" height="1em" alt="" class="svg"> <{$smarty.const._MB_USER_LOGIN}>
     </button>
 
+    <{* SAML Login Button/Link *}>
+    <{if $block.show_saml_login}>
+        <div class="saml-login-option my-2">
+            <a href="<{$block.saml_login_url}>" role="button" class="secondary">
+                <{$smarty.const.Login using SAML}>
+            </a>
+        </div>
+    <{/if}>
+
+    <{if $block.oauth2_providers}>
+        <div style="margin-top: 15px; text-align: center;">
+            <strong><{$smarty.const._MB_USER_LOGIN_OAUTH2}></strong>
+        </div>
+        <div style="margin-top: 10px;">
+            <{foreach item=provider from=$block.oauth2_providers}>
+                <div style="margin-bottom: 5px; text-align: center;">
+                    <a href="<{$provider.url}>" class="button">
+                        <{* Optional: <img src="<{$provider.icon}>" alt="<{$provider.name}>" style="width:16px; height:16px; vertical-align:middle; margin-right:5px;"> *}>
+                        Login with <{$provider.name}>
+                    </a>
+                </div>
+            <{/foreach}>
+        </div>
+    <{/if}>
+
     <p>
         <small><a href="<{$xoops_url}>/lostpass.php"><{$smarty.const._MB_USER_LOSTPASS}></a>
         <{if $block.allow_register == '1'}>

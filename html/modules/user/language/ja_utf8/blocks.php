@@ -17,3 +17,6 @@ define( '_MB_USER_MORE' , 'もっと...');
 define( '_MB_USER_DISPLAY' , '%s 人を表示');
 define( '_MB_USER_DISPLAYA' , 'ユーザのアバターを表示');
 define( '_MB_USER_NODISPGR' , '以下の特別ランクのユーザは除外する:');
+
+define( '_MB_USER_LOGIN_SAML' , 'Login using SAML'); 
+define( '_MB_USER_LOGIN_OAUTH2' , 'Login using OAUTH2');

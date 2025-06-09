@@ -17,3 +17,6 @@ define('_MB_USER_MORE', "еще...");
 define('_MB_USER_DISPLAY', "Отображать %s пользователей");
 define('_MB_USER_DISPLAYA', "Отображать аватары пользователей");
 define('_MB_USER_NODISPGR', "Не показывать пользователей с рангом:");
+
+define( '_MB_USER_LOGIN_SAML' , 'Login using SAML'); 
+define( '_MB_USER_LOGIN_OAUTH2' , 'Login using OAUTH2');

@@ -17,3 +17,6 @@ define( '_MB_USER_MORE' , 'more...');
 define( '_MB_USER_DISPLAY' , 'Display %s members');
 define( '_MB_USER_DISPLAYA' , 'Display member avatars');
 define( '_MB_USER_NODISPGR' , 'Do not display users whose rank is:');
+
+define( '_MB_USER_LOGIN_SAML' , 'Login using SAML'); 
+define( '_MB_USER_LOGIN_OAUTH2' , 'Login using OAUTH2');
