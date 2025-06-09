@@ -47,6 +47,17 @@ function b_legacy_usermenu_show()
 
         $block['show_adminlink'] = $root->mContext->mUser->isInRole('Site.Administrator');
 
+        // oauth2 logout URL
+        $block['logout_url'] = XOOPS_URL . '/user.php?op=logout'; // Default
+        if (isset($_SESSION['logged_in_via_oauth2']) && $_SESSION['logged_in_via_oauth2'] === true) {
+            // Check if oauth2 module is active before setting its logout URL
+            $module_handler = xoops_gethandler('module');
+            $oauth2_module = $module_handler->getByDirname('oauth2');
+            if (is_object($oauth2_module) && $oauth2_module->getVar('isactive')) {
+                $block['logout_url'] = XOOPS_URL . '/modules/oauth2/logout.php';
+            }
+        }
+
         return $block;
     }
     return false;
