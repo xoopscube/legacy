@@ -49,22 +49,23 @@
 
     <{* SAML Login Button/Link *}>
     <{if $block.show_saml_login}>
-        <div class="saml-login-option my-2">
-            <a href="<{$block.saml_login_url}>" role="button" class="secondary">
-                <{$smarty.const.Login using SAML}>
-            </a>
+        <div style="margin-top: 10px; text-align: center;">
+            <a href="<{$block.saml_login_url}>" class="btn btn-info"><{$smarty.const._MB_USER_LOGIN_WITH_SAML|default:'Login with SAML'}></a>
         </div>
     <{/if}>
 
-    <{if $block.oauth2_providers}>
+    <{if $block.show_oauth2_index_link}>
+        <div style="margin-top: 15px; text-align: center;">
+            <a href="<{$block.oauth2_index_url}>" class="btn btn-success"><{$smarty.const._MB_USER_LOGIN_OAUTH2}></a>
+        </div>
+    <{elseif $block.oauth2_providers}>
         <div style="margin-top: 15px; text-align: center;">
             <strong><{$smarty.const._MB_USER_LOGIN_OAUTH2}></strong>
         </div>
         <div style="margin-top: 10px;">
             <{foreach item=provider from=$block.oauth2_providers}>
                 <div style="margin-bottom: 5px; text-align: center;">
-                    <a href="<{$provider.url}>" class="button">
-                        <{* Optional: <img src="<{$provider.icon}>" alt="<{$provider.name}>" style="width:16px; height:16px; vertical-align:middle; margin-right:5px;"> *}>
+                    <a href="<{$provider.url}>" class="btn btn-secondary btn-block">
                         Login with <{$provider.name}>
                     </a>
                 </div>

@@ -18,5 +18,8 @@ define( '_MB_USER_DISPLAY' , 'Display %s members');
 define( '_MB_USER_DISPLAYA' , 'Display member avatars');
 define( '_MB_USER_NODISPGR' , 'Do not display users whose rank is:');
 
+define( '_MB_USER_OAUTH2_DISPLAY_MODE' , 'Display mode'); 
+define( '_MB_USER_OAUTH2_DISPLAY_BUTTONS' , 'Providers Buttons');
+define( '_MB_USER_OAUTH2_DISPLAY_LINK' , 'Oauth2 Page Link');
 define( '_MB_USER_LOGIN_SAML' , 'Login using SAML'); 
 define( '_MB_USER_LOGIN_OAUTH2' , 'Login using OAUTH2');

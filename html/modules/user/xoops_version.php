@@ -279,13 +279,16 @@ $modversion['hasMain'] = 0;
 $modversion['read_any'] = true;
 
 // Block
-$modversion['blocks'][1]['file'] = 'user_login.php';
-$modversion['blocks'][1]['name'] = _MI_USER_BLOCK_LOGIN_NAME;
-$modversion['blocks'][1]['description'] = _MI_USER_BLOCK_LOGIN_DESC;
-$modversion['blocks'][1]['show_func'] = 'b_user_login_show';
-$modversion['blocks'][1]['template'] = 'user_block_login.html';
-$modversion['blocks'][1]['visible_any'] = true;
+$modversion['blocks'][1]['file']            = 'user_login.php';
+$modversion['blocks'][1]['name']            = _MI_USER_BLOCK_LOGIN_NAME;
+$modversion['blocks'][1]['description']     = _MI_USER_BLOCK_LOGIN_DESC;
+$modversion['blocks'][1]['show_func']       = 'b_user_login_show';
+$modversion['blocks'][1]['edit_func']       = 'b_user_login_edit';
+$modversion['blocks'][1]['template']        = 'user_block_login.html';
+$modversion['blocks'][1]['options']         = '0';
+$modversion['blocks'][1]['visible_any']     = true;
 $modversion['blocks'][1]['show_all_module'] = true;
+
 
 $modversion['blocks'][2]['file'] = 'user_online.php';
 $modversion['blocks'][2]['name'] = _MI_USER_BLOCK_ONLINE_NAME;
