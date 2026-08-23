@@ -134,6 +134,8 @@ define( '_MD_PICO_BTN_COPYFROMWAITING' , '申請データへの置換' );
 define( '_MD_PICO_MSG_CONFIRMCOPYFROMWAITING' , 'このフォーム内での編集内容は破棄され、申請された通りのデータに置き換わりますが、よろしいですか？' );
 define( '_MD_PICO_HOWTO_OVERRIDEOPTIONS' , '<p>一般設定での設定値をこのカテゴリーだけ変更したい場合は、<br><code><b>(オプション名)</b>:<u>(オプション値)</u></code><br>という形で、１行に１設定ずつ記述してください。例<br><code><b>show_breadcrumbs</b>:<u>1</u></code></p><h5>変更可能なオプションと現在値は以下の通りです。</h5>' );
 
+define( '_MD_PICO_ADVANCED_MODE', 'アドバンストモード');
+
 // vote to content
 define( '_MD_PICO_ERR_VOTEPERM' , '投票権がありません' );
 define( '_MD_PICO_ERR_VOTEINVALID' , '不正な投票です' );

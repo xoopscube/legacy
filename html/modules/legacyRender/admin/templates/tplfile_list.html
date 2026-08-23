@@ -247,7 +247,7 @@
 
                 <{* ----- Customized Input File *}>
                 <label for="<{$obj->mOverride->get('tpl_id')}>">Choose a file</label>
-                <{xoops_input type=file class="action-copy" name="upload" key="$obj->mOverride->get('tpl_id')"}>
+                <{xoops_input type=file class="action-copy" name="upload" key=$obj->mOverride->get('tpl_id')}>
                 <input type=file class="action-upload" name="upload" id="<{$obj->mOverride->get('tpl_id')}>" data-label="Upload">
                 <{* ----- / Customized Input File *}>
 

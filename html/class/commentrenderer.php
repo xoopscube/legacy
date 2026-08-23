@@ -50,7 +50,7 @@ class XoopsCommentRenderer
      * @param bool   $do_iconcheck default  = false
      * @return \XoopsCommentRenderer
      */
-    public function &instance(&$tpl, $use_icons = true, $do_iconcheck = false)
+    public static function &instance(&$tpl, $use_icons = true, $do_iconcheck = false)
     {
         static $instance;
         if (!isset($instance)) {

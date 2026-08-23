@@ -36,6 +36,11 @@
         to can call from any template, or call a function method
         eg.: functionName.call(obj); */
 
+/* Ensure $ is jQuery (Prototype may have overwritten it) */
+if (typeof jQuery !== 'undefined') {
+  window.$ = jQuery;
+}
+
 /* Render inline SVG images
     <img class="svg" ...> */
 const cache = {};

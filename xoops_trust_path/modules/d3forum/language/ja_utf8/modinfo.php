@@ -20,6 +20,7 @@ define($constpref."_BNAME_LIST_POSTS","投稿一覧");
 define($constpref."_BNAME_LIST_FORUMS","フォーラム一覧");
 
 // admin menu
+define($constpref.'_ADMENU_ACTIVITY', 'アクティビティ');
 define($constpref.'_ADMENU_CATEGORYACCESS','カテゴリー権限設定');
 define($constpref.'_ADMENU_FORUMACCESS','フォーラム権限設定');
 define($constpref.'_ADMENU_ADVANCEDADMIN','アドバンス管理');

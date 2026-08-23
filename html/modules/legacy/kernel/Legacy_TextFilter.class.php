@@ -215,7 +215,7 @@ class Legacy_TextFilter extends XCube_TextFilter
      **/
 // TODO version 2.3.0
 //     public function purifyHtml(/*** string ***/ $html, /*** string ***/ $encoding=null, /*** string ***/ $doctype=null, /*** object ***/ $config=null)
-    public function purifyHtml( string $html, string $encoding=null, string $doctype=null, object $config=null)
+    public function purifyHtml( string $html, ?string $encoding = null, ?string $doctype = null, ?object $config = null )
     {
         require_once LIBRARY_PATH.'/htmlpurifier/library/HTMLPurifier.auto.php';
 

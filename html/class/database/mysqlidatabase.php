@@ -93,7 +93,10 @@ class XoopsMysqliDatabase extends XoopsDatabase
      */
     public function fetchRow($result)
     {
-        return @ mysqli_fetch_row($result);
+        if ($result === true || $result === false || !($result instanceof \mysqli_result)) {
+            return null;
+        }
+        return mysqli_fetch_row($result);
     }
 
     /**
@@ -104,7 +107,10 @@ class XoopsMysqliDatabase extends XoopsDatabase
      */
     public function fetchArray($result)
     {
-        return @ mysqli_fetch_assoc($result);
+        if ($result === true || $result === false || !($result instanceof \mysqli_result)) {
+            return null;
+        }
+        return mysqli_fetch_assoc($result);
     }
 
     /**
