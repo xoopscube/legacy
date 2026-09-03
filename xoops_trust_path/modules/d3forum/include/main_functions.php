@@ -13,11 +13,29 @@
  */
 
 function d3forum_make_treeinformations( $data ) {
+	if ( ! is_array( $data ) ) {
+		return array();
+	}
+	foreach ( array_keys( $data ) as $i ) {
+		if ( ! isset( $data[ $i ]['prev_id'] ) ) {
+			$data[ $i ]['prev_id'] = 0;
+		}
+		if ( ! isset( $data[ $i ]['next_id'] ) ) {
+			$data[ $i ]['next_id'] = 0;
+		}
+		if ( ! isset( $data[ $i ]['first_child_id'] ) ) {
+			$data[ $i ]['first_child_id'] = 0;
+		}
+		// in case of no id
+		if ( ! isset( $data[ $i ]['id'] ) ) {
+			$data[ $i ]['id'] = 0;
+		}
+	}
 	$previous_depth = - 1;
-
 	$path_to_i = [];
 
-	foreach ( $data as $i => $iValue ) {
+	for( $i = 0 ; $i < sizeof( $data ) ; $i ++ ) {
+
 		$unique_path               = $data[ $i ]['unique_path'];
 		$path_to_i[ $unique_path ] = $i;
 		$parent_path               = substr( $unique_path, 0, strrpos( $unique_path, '.' ) );

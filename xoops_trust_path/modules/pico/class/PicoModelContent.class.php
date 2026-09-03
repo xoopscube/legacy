@@ -267,27 +267,25 @@ class PicoContent {
 		    }
 		    
 		    // xcode special check
-		    if ('xcode' == $filter) {
-		        $nl2br = $smiley = 0;
-		        for ( $j = $i + 1; $j < $i + 3; $j ++ ) {
-		            if ( 'nl2br' == @$filters[ $j ] ) {
-		                $nl2br         = 1;
-		                $filters[ $j ] = '';
-		            } elseif ( 'smiley' == @$filters[ $j ] ) {
-		                $smiley        = 1;
-		                $filters[ $j ] = '';
-		            }
-		        }
-		
-		        require_once dirname( __DIR__ ) . '/class/PicoTextSanitizer.class.php';
-		
-		        $myts = &PicoTextSanitizer::sGetInstance();
-		
-		        $text = $myts->displayTarea( $text, 1, $smiley, 1, 1, $nl2br );
-		
-		        $text = $myts->pageBreak( $this->mydirname, $text, $content4assign );
-		        continue;
-		    }
+		if ('xcode' == $filter) {
+    		$nl2br = $smiley = 0;
+    		for ( $j = $i + 1; $j < $i + 3; $j ++ ) {
+        		$next = $filters[$j] ?? null;   // 安全に取得
+        		if ( 'nl2br' == $next ) {
+            		$nl2br = 1;
+            		$filters[$j] = '';
+        		} elseif ( 'smiley' == $next ) {
+            		$smiley = 1;
+           		 $filters[$j] = '';
+        		}
+    		}
+
+    		require_once dirname( __DIR__ ) . '/class/PicoTextSanitizer.class.php';
+    		$myts = &PicoTextSanitizer::sGetInstance();
+    		$text = $myts->displayTarea( $text, 1, $smiley, 1, 1, $nl2br );
+    		$text = $myts->pageBreak( $this->mydirname, $text, $content4assign );
+    		continue;
+		}
 		    $func_name = 'pico_' . $filter;
 		    $file_path = dirname(__DIR__) . '/filters/pico_' . $filter . '.php';
 		    

@@ -94,6 +94,9 @@ class textsanitizer {
 	*  for displaying data in html textbox forms
 	*/
 	public function &htmlSpecialChars( $text ) {
+		// avoid null byte（PHP 8.1+）
+		$text = $text ?? '';
+
 		// Ensure proper UTF-8 encoding
 		if (!mb_check_encoding($text, 'UTF-8')) {
 			$text = mb_convert_encoding($text, 'UTF-8', 'auto');

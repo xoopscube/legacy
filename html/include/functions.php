@@ -617,16 +617,21 @@ function xoops_getrank($rank_id =0, $posts = 0)
 */
 function xoops_substr($str, $start, $length, $trimmarker = '...')
 {
+    // PHP 8.1+: void null value
+    $str = $str ?? '';    //added naao
+    $trimmarker = $trimmarker ?? '...';    //added naao
     if (!XOOPS_USE_MULTIBYTES) {
-        return (strlen($str) ?? '' - $start <= $length) ? substr($str, $start, $length) : substr($str, $start, $length - strlen($trimmarker)) . $trimmarker;
+        return (strlen($str) - $start <= $length)
+            ? substr($str, $start, $length)
+            : substr($str, $start, $length - strlen($trimmarker)) . $trimmarker;
     }
     if (function_exists('mb_internal_encoding') && @mb_internal_encoding(_CHARSET)) {
         $str2 = mb_strcut($str, $start, $length - strlen($trimmarker));
-        return $str2 . (mb_strlen($str)!==mb_strlen($str2) ? $trimmarker : '');
+        return $str2 . (mb_strlen($str) !== mb_strlen($str2) ? $trimmarker : '');
     }
     // phppp patch
-    $DEP_CHAR=127;
-    $pos_st=0;
+    $DEP_CHAR = 127;
+    $pos_st = 0;
     $action = false;
     for ($pos_i = 0, $pos_iMax = strlen($str); $pos_i < $pos_iMax; $pos_i++) {
         //@gigamaster changed to array

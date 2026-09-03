@@ -226,7 +226,7 @@ class XCube_Controller {
 	 * @param int $time
 	 * @param string|null $message
 	 */
-	public function executeForward(string $url, int $time = 0, string $message = null ) {
+	public function executeForward(string $url, int $time = 0, ?string $message = null ){
 		// check header output
 		header( 'location: ' . $url );
 		exit();
@@ -239,7 +239,7 @@ class XCube_Controller {
 	 * @param int         $time
 	 * @param string|null $message
 	 */
-	public function executeRedirect(string $url, int $time = 1, string $message = null ) {
+	public function executeRedirect(string $url, int $time = 1, ?string $message = null ) {
 		$this->executeForward( $url, $time, $message );
 	}
 

@@ -56,7 +56,9 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 				// check shell cmd
 				if ( '.zip' === substr( $this->download_file, - 4 ) ) {
 					// check shell cmd
-                    $this->procExec( 'unzip --help', $o, $c );
+                    $o = [];
+					$c = -1;
+					$this->procExec( 'unzip --help', $o, $c );
 					if ( 0 === $c ) {
 						$extractor = '_unzipFile_Unzip';
 					} else {
@@ -83,10 +85,14 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 					}
 				} elseif ( '.tar.gz' === substr( $this->download_file, - 7 ) ) {
 					// check shell cmd
+					$o = [];
+					$c = -1;
 					$this->procExec( 'tar --version', $o, $c );
 					if ( 0 === $c ) {
-						unset( $o );
-						$this->procExec( 'gzip --version', $o, $c );
+    					unset( $o );
+    					$o = [];
+    					$c = -1;
+    					$this->procExec( 'gzip --version', $o, $c );
 						if ( 0 === $c ) {
 							$extractor = '_unzipFile_Tar';
 						}
@@ -118,6 +124,9 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	 */
 	private function _unzipFile_Unzip( $downloadFilePath, $exploredDirPath ) {
 		$this->_cleanup( $exploredDirPath );
+		$o = [];
+		$c = -1;
+		$e = [];
 		$this->procExec( 'unzip ' . $downloadFilePath . ' -d ' . $exploredDirPath, $o, $c, $e );
 		if ( 0 !== $c ) {
 			$this->_set_error_log( 'unzip: ' . $o );
@@ -139,8 +148,10 @@ class Xupdate_FtpCommonZipArchive extends Xupdate_FtpCommonFunc {
 	 */
 	private function _unzipFile_Tar( $downloadFilePath, $exploredDirPath ) {
 		$this->_cleanup( $exploredDirPath );
-		$this->procExec( 'tar -xzf ' . $downloadFilePath . ' -C ' . $exploredDirPath, $o, $c, $e );
-		if ( 0 !== $c ) {
+		$o = [];
+		$c = -1;
+		$e = [];
+		$this->procExec( 'tar -xzf ' . $downloadFilePath . ' -C ' . $exploredDirPath, $o, $c, $e );			if ( 0 !== $c ) {
 			$this->_set_error_log( 'tar: ' . $o );
 			$this->_set_error_log( 'tar error: ' . $e );
 

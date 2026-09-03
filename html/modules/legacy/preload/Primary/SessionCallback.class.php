@@ -36,16 +36,9 @@ class Legacy_SessionCallback extends XCube_ActionFilter
 
     public static function setupSessionHandler()
     {
-        // Keep reference for compatibility with XCube architecture
-        $sessionHandler =& xoops_gethandler('session');
-        session_set_save_handler(
-            [&$sessionHandler, 'open'],
-            [&$sessionHandler, 'close'],
-            [&$sessionHandler, 'read'],
-            [&$sessionHandler, 'write'],
-            [&$sessionHandler, 'destroy'],
-            [&$sessionHandler, 'gc']
-        );
+        $sessionHandler = xoops_gethandler('session');
+        // PHP 8.4+: object implementing SessionHandlerInterface
+        session_set_save_handler($sessionHandler, true);
     }
 
     public static function getSessionCookiePath(&$cookiePath)
