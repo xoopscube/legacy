@@ -1,0 +1,14 @@
+{
+    "theme_options": [
+        {
+            "typography": "Nunito",
+            "pico_style": "classless/pico.classless.indigo.min.css",
+            "site_title": "Web Application Platform",
+            "site_slogan": "Just Use it!",
+            "text_color": "",
+            "primary_color": "#3cc3a8",
+            "secondary_color": "",
+            "background_color": ""
+        }
+    ]
+}

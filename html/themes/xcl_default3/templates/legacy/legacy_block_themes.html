@@ -1,0 +1,37 @@
+<{* Dev-Mode Toggle *}>
+<{if $xoops_isadmin}><div class="ui-dev-mode"><{$smarty.template}></div><{/if}>
+
+<{if $block.isEnableChanger == false}>
+    <{$smarty.const._MB_LEGACY_MESSAGE_CAN_NOT_THEME_CHANGE}>
+<{else}>
+
+<article data-layout="column center-center" class="block-content block-themes">
+
+    <form action="#" method="post">
+        <{if $block.mode==1}>
+        <img id="xoops_theme_img"
+             src="<{$xoops_imageurl}><{$block.theme_selected_screenshot}>"
+             alt="<{$block.theme_selected_name}>"
+             width="<{$block.width}>"
+             height="auto">
+
+        <select id="xoops_theme_select" name="xoops_theme_select" onchange="showThemeScreenshot('xoops_theme_img','xoops_theme_select', '<{$xoops_url}>');" title="theme">
+        <{else}>
+        <select id="xoops_theme_select" name="xoops_theme_select" onchange="submit();" size="3" title="theme">
+        <{/if}>
+        <{foreach item=theme_option from=$block.theme_options}>
+        <option value="<{$theme_option.name}>!-!<{$theme_option.screenshot}>" <{$theme_option.selected}> label="<{$theme_option.name}>"><{$theme_option.name}></option>
+        <{/foreach}>
+        </select>
+
+        <p><{'<span class="badge">'|cat:$block.count|cat:'</span>'|string_format:$smarty.const._MB_LEGACY_LANG_NUMTHEME}></p>
+              
+        <{if $block.mode==1}>
+        <div class="action-control"><button type="submit" class="outline" id="theme_change"><{$smarty.const._GO}></button></div>
+        <{/if}>
+        
+    </form>
+</article>
+
+<{/if}>
+
