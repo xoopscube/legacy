@@ -88,3 +88,4 @@ define( '_MD_A_PICO_ACTIVITY_OVERVIEW' , '活動概要');
 define( '_MD_A_PICO_ACTIVITY_SCHEDULE' , '期限切れおよびスケジュールされたコンテンツ');
 define( '_MD_A_PICO_ACTIVITY_INTERVAL' , '今日の前後数日間の間隔');
 define( '_MD_A_PICO_ACTIVITY_LATEST' , '最新の予定内容');
+define( '_MD_A_PICO_ITEMS_PER_PAGE' , '表示件数');

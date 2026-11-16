@@ -12,7 +12,9 @@ require_once '../../../mainfile.php';
 require_once XOOPS_ROOT_PATH . '/header.php';
 
 // <{$mod_name|ucfirst}>
-$mod_name = $xoopsModule->getVar( 'name' );
+// Use the directory name (not the display name) as the table prefix: cloned modules
+// with a localized or multi-word name otherwise produce a broken SQL table name.
+$mod_name = $xoopsModule->getVar( 'dirname' );
 
 // Query Total from Multiple Tables
 $query = "SELECT 
