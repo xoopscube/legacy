@@ -88,3 +88,4 @@ define( '_MD_A_PICO_ACTIVITY_OVERVIEW' , 'Обзор деятельности');
 define( '_MD_A_PICO_ACTIVITY_SCHEDULE' , 'Просроченный и запланированный контент');
 define( '_MD_A_PICO_ACTIVITY_INTERVAL' , 'дни перерыва до и после сегодняшнего дня');
 define( '_MD_A_PICO_ACTIVITY_LATEST' , 'последний запланированный контент');
+define( '_MD_A_PICO_ITEMS_PER_PAGE' , 'Элементов для отображения');
