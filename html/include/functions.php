@@ -731,14 +731,25 @@ function xoops_groupperm_deletebymoditem($module_id, $perm_name, $item_id = null
 function &xoops_utf8_encode(&$text)
 {
     $out_text = null;
-    if (XOOPS_USE_MULTIBYTES === 1) {
+    // Site already runs in UTF-8 (ja_utf8, english, ...): nothing to convert.
+    if (defined('_CHARSET') && strcasecmp(_CHARSET, 'UTF-8') === 0) {
+        $out_text = $text;
+        return $out_text;
+    }
+    // Language files define XOOPS_USE_MULTIBYTES as a string ('1'), so compare loosely.
+    if ((int)XOOPS_USE_MULTIBYTES === 1) {
         if (function_exists('mb_convert_encoding')) {
-            $out_text = mb_convert_encoding($text, 'UTF-8', 'auto');
+            // Convert from the site charset; 'auto' detection misreads multibyte text.
+            $from = defined('_CHARSET') ? _CHARSET : 'auto';
+            $out_text = mb_convert_encoding($text, 'UTF-8', $from);
             return $out_text;
         }
         return $out_text;
     }
-    $out_text = utf8_encode($text);
+    // Single-byte site: utf8_encode() is deprecated since PHP 8.2.
+    $out_text = function_exists('mb_convert_encoding')
+        ? mb_convert_encoding($text, 'UTF-8', 'ISO-8859-1')
+        : utf8_encode($text);
     return $out_text;
 }
 
