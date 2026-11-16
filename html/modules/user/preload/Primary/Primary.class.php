@@ -146,7 +146,10 @@ class User_Utils
             $sql = 'SELECT COLUMN_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA="'.XOOPS_DB_NAME.'" AND TABLE_NAME="'.$db->prefix('users').'" AND COLUMN_NAME="pass"';
             if ($res = $db->query($sql)) {
                 $type = $db->fetchRow($res);
-                if (preg_replace('/[^0-9]/', '', $type[0]) > 191) {
+                // Fix the column whenever its length differs from 191: a shorter column
+                // (e.g. VARCHAR(32) on sites upgraded from XCL 2.1/2.2) truncates the
+                // bcrypt hash written on the first login and locks the user out.
+                if ((int)preg_replace('/[^0-9]/', '', $type[0]) !== 191) {
                     $sql = 'ALTER TABLE '.$db->prefix('users').' CHANGE `pass` `pass` VARCHAR(191) NOT NULL DEFAULT ""';
                     $res = $db->queryF($sql);
                 } else {
